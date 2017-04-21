@@ -1,0 +1,15 @@
+*.a
+*.o
+*.pro.user
+*.pro.user.*
+*.so
+*~
+.moc/*
+.obj/*
+.qmake.stash
+.qrc/*
+.ui/*
+Makefile
+gmic_gimp_qt
+gmic_krita_qt
+gmic_qt
