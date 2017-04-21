@@ -31,7 +31,7 @@
  * Andrex Starodubtsev (Ukrainian translation)
  * LinuxToy (https://twitter.com/linuxtoy) (Chinese translation)
 
-### Official binary packages
+### Official (pre-release) binary packages
 
  * Available at [gmic.eu](http://gmic.eu)
 
