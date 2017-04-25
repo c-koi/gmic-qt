@@ -60,7 +60,7 @@ std::vector<int> inputLayers;
 
 #if (GIMP_MAJOR_VERSION>=3 || GIMP_MINOR_VERSION>8) && !defined(GIMP_NORMAL_MODE)
   typedef GimpLayerMode GimpLayerModeEffects;
-#define GIMP_NORMAL_MODE        GIMP_LAYER_MODE_NORMAL
+#define GIMP_NORMAL_MODE GIMP_LAYER_MODE_NORMAL
 QMap<QString,GimpLayerModeEffects> BlendModesMap = {
   { QString("alpha"), GIMP_LAYER_MODE_NORMAL },
   { QString("normal"), GIMP_LAYER_MODE_NORMAL },
