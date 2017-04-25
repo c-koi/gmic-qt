@@ -64,12 +64,10 @@ std::vector<int> inputLayers;
 QMap<QString,GimpLayerModeEffects> BlendModesMap = {
   { QString("alpha"), GIMP_LAYER_MODE_NORMAL },
   { QString("normal"), GIMP_LAYER_MODE_NORMAL },
-  { QString("replace"), GIMP_LAYER_MODE_REPLACE },
   { QString("dissolve"), GIMP_LAYER_MODE_DISSOLVE },
   { QString("behind"), GIMP_LAYER_MODE_BEHIND },
   { QString("colorerase"), GIMP_LAYER_MODE_COLOR_ERASE },
   { QString("erase"), GIMP_LAYER_MODE_ERASE },
-  { QString("antierase"), GIMP_LAYER_MODE_ANTI_ERASE },
   { QString("merge"), GIMP_LAYER_MODE_MERGE },
   { QString("split"), GIMP_LAYER_MODE_SPLIT },
   { QString("lighten"), GIMP_LAYER_MODE_LIGHTEN_ONLY },
@@ -162,12 +160,10 @@ const char * BlendModeStrings(const GimpLayerModeEffects &blendmode) {
 #else
   switch (blendmode) {
   case GIMP_LAYER_MODE_NORMAL : return "alpha";
-  case GIMP_LAYER_MODE_REPLACE : return "replace";
   case GIMP_LAYER_MODE_DISSOLVE : return "dissolve";
   case GIMP_LAYER_MODE_BEHIND : return "behind";
   case GIMP_LAYER_MODE_COLOR_ERASE : return "colorerase";
   case GIMP_LAYER_MODE_ERASE : return "erase";
-  case GIMP_LAYER_MODE_ANTI_ERASE : return "antierase";
   case GIMP_LAYER_MODE_MERGE : return "merge";
   case GIMP_LAYER_MODE_SPLIT : return "split";
   case GIMP_LAYER_MODE_LIGHTEN_ONLY : return "lighten";
