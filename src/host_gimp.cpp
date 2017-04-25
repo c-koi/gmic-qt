@@ -60,7 +60,7 @@ std::vector<int> inputLayers;
 
 const char * BlendModeStrings[] = { "alpha","dissolve","behind","multiply",
                                     "screen","overlay","difference",
-                                    "add","subtract","darken","lighten",
+                                    "addition","subtract","darken","lighten",
                                     "hue","saturation","color","value",
                                     "divide","dodge","burn","hardlight",
                                     "softlight","grainextract","grainmerge",
@@ -101,7 +101,7 @@ QMap<QString,GimpLayerModeEffects> BlendModesMap = {
   { QString("lighten"), GIMP_LIGHTEN_ONLY_MODE },
   { QString("screen"), GIMP_SCREEN_MODE },
   { QString("dodge"), GIMP_DODGE_MODE },
-  { QString("add"), GIMP_ADDITION_MODE },
+  { QString("addition"), GIMP_ADDITION_MODE },
   { QString("darken"), GIMP_DARKEN_ONLY_MODE },
   { QString("multiply"), GIMP_MULTIPLY_MODE },
   { QString("burn"), GIMP_BURN_MODE },
