@@ -535,11 +535,12 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     const int spectrum = (gimp_drawable_is_rgb(inputLayers[l])?3:1) +
         (gimp_drawable_has_alpha(inputLayers[l])?1:0);
 
-    GimpDrawable *drawable = gimp_drawable_get(inputLayers[l]);
+    const int dw = static_cast<int>(gimp_drawable_width(inputLayers[l]));
+    const int dh = static_cast<int>(gimp_drawable_height(inputLayers[l]));
     const int ix = static_cast<int>(entireImage?rgn_x:(rgn_x+x*rgn_width));
     const int iy = static_cast<int>(entireImage?rgn_y:(rgn_y+y*rgn_height));
-    const int iw = entireImage?rgn_width:std::min(static_cast<int>(drawable->width)-ix,static_cast<int>(1+std::ceil(rgn_width*width)));
-    const int ih = entireImage?rgn_height:std::min(static_cast<int>(drawable->height)-iy,static_cast<int>(1+std::ceil(rgn_height*height)));
+    const int iw = entireImage?rgn_width:std::min(dw-ix,static_cast<int>(1+std::ceil(rgn_width*width)));
+    const int ih = entireImage?rgn_height:std::min(dh-iy,static_cast<int>(1+std::ceil(rgn_height*height)));
 
     if ( entireImage ) {
       inputLayerDimensions(l,0) = rgn_width;
