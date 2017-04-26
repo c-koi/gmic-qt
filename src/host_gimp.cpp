@@ -572,6 +572,7 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[l]);
 #if (GIMP_MAJOR_VERSION<2) || ((GIMP_MAJOR_VERSION==2) && (GIMP_MINOR_VERSION<=8))
+    GimpDrawable *drawable = gimp_drawable_get(inputLayers[l]);
     GimpPixelRgn region;
     gimp_pixel_rgn_init(&region,drawable,ix,iy,iw,ih,false,false);
     CImg<unsigned char> img(spectrum,iw,ih);
