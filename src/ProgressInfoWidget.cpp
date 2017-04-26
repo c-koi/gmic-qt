@@ -30,6 +30,7 @@
 #include "DialogSettings.h"
 
 #ifdef _IS_WINDOWS_
+#include <windows.h>
 #include <process.h>
 #include <psapi.h>
 #endif
