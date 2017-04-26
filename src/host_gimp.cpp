@@ -58,23 +58,59 @@ int gmic_qt_gimp_image_id;
 cimg_library::CImg<int> inputLayerDimensions;
 std::vector<int> inputLayers;
 
-const char * BlendModeStrings[] = { "alpha","dissolve","behind","multiply",
-                                    "screen","overlay","difference",
-                                    "add","subtract","darken","lighten",
-                                    "hue","saturation","color","value",
-                                    "divide","dodge","burn","hardlight",
-                                    "softlight","grainextract","grainmerge",
-                                    "colorerase" };
-
+#if (GIMP_MAJOR_VERSION>=3 || GIMP_MINOR_VERSION>8) && !defined(GIMP_NORMAL_MODE)
+  typedef GimpLayerMode GimpLayerModeEffects;
+#define GIMP_NORMAL_MODE GIMP_LAYER_MODE_NORMAL
 QMap<QString,GimpLayerModeEffects> BlendModesMap = {
-  { QString("alpha"), GIMP_NORMAL_MODE },
+  { QString("alpha"), GIMP_LAYER_MODE_NORMAL },
+  { QString("normal"), GIMP_LAYER_MODE_NORMAL },
+  { QString("dissolve"), GIMP_LAYER_MODE_DISSOLVE },
+  { QString("behind"), GIMP_LAYER_MODE_BEHIND },
+  { QString("colorerase"), GIMP_LAYER_MODE_COLOR_ERASE },
+  { QString("erase"), GIMP_LAYER_MODE_ERASE },
+  { QString("merge"), GIMP_LAYER_MODE_MERGE },
+  { QString("split"), GIMP_LAYER_MODE_SPLIT },
+  { QString("lighten"), GIMP_LAYER_MODE_LIGHTEN_ONLY },
+  { QString("lumalighten"), GIMP_LAYER_MODE_LUMA_LIGHTEN_ONLY },
+  { QString("screen"), GIMP_LAYER_MODE_SCREEN },
+  { QString("dodge"), GIMP_LAYER_MODE_DODGE },
+  { QString("addition"), GIMP_LAYER_MODE_ADDITION },
+  { QString("darken"), GIMP_LAYER_MODE_DARKEN_ONLY },
+  { QString("lumadarken"), GIMP_LAYER_MODE_LUMA_DARKEN_ONLY },
+  { QString("multiply"), GIMP_LAYER_MODE_MULTIPLY },
+  { QString("burn"), GIMP_LAYER_MODE_BURN },
+  { QString("overlay"), GIMP_LAYER_MODE_OVERLAY },
+  { QString("softlight"), GIMP_LAYER_MODE_SOFTLIGHT },
+  { QString("hardlight"), GIMP_LAYER_MODE_HARDLIGHT },
+  { QString("vividlight"), GIMP_LAYER_MODE_VIVID_LIGHT },
+  { QString("pinlight"), GIMP_LAYER_MODE_PIN_LIGHT },
+  { QString("linearlight"), GIMP_LAYER_MODE_LINEAR_LIGHT },
+  { QString("hardmix"), GIMP_LAYER_MODE_HARD_MIX },
+  { QString("difference"), GIMP_LAYER_MODE_DIFFERENCE },
+  { QString("subtract"), GIMP_LAYER_MODE_SUBTRACT },
+  { QString("grainextract"), GIMP_LAYER_MODE_GRAIN_EXTRACT },
+  { QString("grainmerge"), GIMP_LAYER_MODE_GRAIN_MERGE },
+  { QString("divide"), GIMP_LAYER_MODE_DIVIDE },
+  { QString("hue"), GIMP_LAYER_MODE_HSV_HUE },
+  { QString("saturation"), GIMP_LAYER_MODE_HSV_SATURATION },
+  { QString("color"), GIMP_LAYER_MODE_HSL_COLOR },
+  { QString("value"), GIMP_LAYER_MODE_HSV_VALUE },
+  { QString("lchhue"), GIMP_LAYER_MODE_LCH_HUE },
+  { QString("lchchroma"), GIMP_LAYER_MODE_LCH_CHROMA },
+  { QString("lchcolor"), GIMP_LAYER_MODE_LCH_COLOR },
+  { QString("lchlightness"), GIMP_LAYER_MODE_LCH_LIGHTNESS },
+  { QString("luminance"), GIMP_LAYER_MODE_LUMINANCE },
+  { QString("exclusion"), GIMP_LAYER_MODE_EXCLUSION }
+};
+#else
+QMap<QString,GimpLayerModeEffects> BlendModesMap = {
   { QString("alpha"), GIMP_NORMAL_MODE },
   { QString("normal"), GIMP_NORMAL_MODE },
   { QString("dissolve"), GIMP_DISSOLVE_MODE },
   { QString("lighten"), GIMP_LIGHTEN_ONLY_MODE },
   { QString("screen"), GIMP_SCREEN_MODE },
   { QString("dodge"), GIMP_DODGE_MODE },
-  { QString("add"), GIMP_ADDITION_MODE },
+  { QString("addition"), GIMP_ADDITION_MODE },
   { QString("darken"), GIMP_DARKEN_ONLY_MODE },
   { QString("multiply"), GIMP_MULTIPLY_MODE },
   { QString("burn"), GIMP_BURN_MODE },
@@ -91,6 +127,81 @@ QMap<QString,GimpLayerModeEffects> BlendModesMap = {
   { QString("color"), GIMP_COLOR_MODE },
   { QString("value"), GIMP_VALUE_MODE }
 };
+#endif
+
+const char * BlendModeStrings(const GimpLayerModeEffects &blendmode) {
+#if GIMP_MAJOR_VERSION<=2 && GIMP_MINOR_VERSION<=8
+  switch (blendmode) {
+  case GIMP_NORMAL_MODE : return "alpha";
+  case GIMP_DISSOLVE_MODE : return "dissolve";
+  case GIMP_BEHIND_MODE : return "behind";
+  case GIMP_MULTIPLY_MODE : return "multiply";
+  case GIMP_SCREEN_MODE : return "screen";
+  case GIMP_OVERLAY_MODE : return "overlay";
+  case GIMP_DIFFERENCE_MODE : return "difference";
+  case GIMP_ADDITION_MODE : return "addition";
+  case GIMP_SUBTRACT_MODE : return "subtract";
+  case GIMP_DARKEN_ONLY_MODE : return "darken";
+  case GIMP_LIGHTEN_ONLY_MODE : return "lighten";
+  case GIMP_HUE_MODE : return "hue";
+  case GIMP_SATURATION_MODE : return "saturation";
+  case GIMP_COLOR_MODE : return "color";
+  case GIMP_VALUE_MODE : return "value";
+  case GIMP_DIVIDE_MODE : return "divide";
+  case GIMP_DODGE_MODE : return "dodge";
+  case GIMP_BURN_MODE : return "burn";
+  case GIMP_HARDLIGHT_MODE : return "hardlight";
+  case GIMP_SOFTLIGHT_MODE : return "softlight";
+  case GIMP_GRAIN_EXTRACT_MODE : return "grainextract";
+  case GIMP_GRAIN_MERGE_MODE : return "grainmerge";
+  case GIMP_COLOR_ERASE_MODE : return "colorerase";
+  default : return "alpha";
+  }
+#else
+  switch (blendmode) {
+  case GIMP_LAYER_MODE_NORMAL : return "alpha";
+  case GIMP_LAYER_MODE_DISSOLVE : return "dissolve";
+  case GIMP_LAYER_MODE_BEHIND : return "behind";
+  case GIMP_LAYER_MODE_COLOR_ERASE : return "colorerase";
+  case GIMP_LAYER_MODE_ERASE : return "erase";
+  case GIMP_LAYER_MODE_MERGE : return "merge";
+  case GIMP_LAYER_MODE_SPLIT : return "split";
+  case GIMP_LAYER_MODE_LIGHTEN_ONLY : return "lighten";
+  case GIMP_LAYER_MODE_LUMA_LIGHTEN_ONLY : return "lumalighten";
+  case GIMP_LAYER_MODE_SCREEN : return "screen";
+  case GIMP_LAYER_MODE_DODGE : return "dodge";
+  case GIMP_LAYER_MODE_ADDITION : return "addition";
+  case GIMP_LAYER_MODE_DARKEN_ONLY : return "darken";
+  case GIMP_LAYER_MODE_LUMA_DARKEN_ONLY : return "lumadarken";
+  case GIMP_LAYER_MODE_MULTIPLY : return "multiply";
+  case GIMP_LAYER_MODE_BURN : return "burn";
+  case GIMP_LAYER_MODE_OVERLAY : return "overlay";
+  case GIMP_LAYER_MODE_SOFTLIGHT : return "softlight";
+  case GIMP_LAYER_MODE_HARDLIGHT : return "hardlight";
+  case GIMP_LAYER_MODE_VIVID_LIGHT : return "vividlight";
+  case GIMP_LAYER_MODE_PIN_LIGHT : return "pinlight";
+  case GIMP_LAYER_MODE_LINEAR_LIGHT : return "linearlight";
+  case GIMP_LAYER_MODE_HARD_MIX : return "hardmix";
+  case GIMP_LAYER_MODE_DIFFERENCE : return "difference";
+  case GIMP_LAYER_MODE_SUBTRACT : return "subtract";
+  case GIMP_LAYER_MODE_GRAIN_EXTRACT : return "grainextract";
+  case GIMP_LAYER_MODE_GRAIN_MERGE : return "grainmerge";
+  case GIMP_LAYER_MODE_DIVIDE : return "divide";
+  case GIMP_LAYER_MODE_HSV_HUE : return "hue";
+  case GIMP_LAYER_MODE_HSV_SATURATION : return "saturation";
+  case GIMP_LAYER_MODE_HSL_COLOR : return "color";
+  case GIMP_LAYER_MODE_HSV_VALUE : return "value";
+  case GIMP_LAYER_MODE_LCH_HUE : return "lchhue";
+  case GIMP_LAYER_MODE_LCH_CHROMA : return "lchchroma";
+  case GIMP_LAYER_MODE_LCH_COLOR : return "lchcolor";
+  case GIMP_LAYER_MODE_LCH_LIGHTNESS : return "lchlightness";
+  case GIMP_LAYER_MODE_LUMINANCE : return "luminance";
+  case GIMP_LAYER_MODE_EXCLUSION : return "exclusion";
+  default : return "alpha";
+  }
+#endif
+  return "alpha";
+}
 
 // Get layer blending mode from string.
 //-------------------------------------
@@ -424,11 +535,12 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     const int spectrum = (gimp_drawable_is_rgb(inputLayers[l])?3:1) +
         (gimp_drawable_has_alpha(inputLayers[l])?1:0);
 
-    GimpDrawable *drawable = gimp_drawable_get(inputLayers[l]);
+    const int dw = static_cast<int>(gimp_drawable_width(inputLayers[l]));
+    const int dh = static_cast<int>(gimp_drawable_height(inputLayers[l]));
     const int ix = static_cast<int>(entireImage?rgn_x:(rgn_x+x*rgn_width));
     const int iy = static_cast<int>(entireImage?rgn_y:(rgn_y+y*rgn_height));
-    const int iw = entireImage?rgn_width:std::min(static_cast<int>(drawable->width)-ix,static_cast<int>(1+std::ceil(rgn_width*width)));
-    const int ih = entireImage?rgn_height:std::min(static_cast<int>(drawable->height)-iy,static_cast<int>(1+std::ceil(rgn_height*height)));
+    const int iw = entireImage?rgn_width:std::min(dw-ix,static_cast<int>(1+std::ceil(rgn_width*width)));
+    const int ih = entireImage?rgn_height:std::min(dh-iy,static_cast<int>(1+std::ceil(rgn_height*height)));
 
     if ( entireImage ) {
       inputLayerDimensions(l,0) = rgn_width;
@@ -452,7 +564,7 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     }
 
     QString name = QString("mode(%1),opacity(%2),pos(%3,%4),name(%5)")
-        .arg(BlendModeStrings[blendMode])
+        .arg(BlendModeStrings(blendMode))
         .arg(opacity)
         .arg(xPos)
         .arg(yPos)
@@ -460,6 +572,7 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[l]);
 #if (GIMP_MAJOR_VERSION<2) || ((GIMP_MAJOR_VERSION==2) && (GIMP_MINOR_VERSION<=8))
+    GimpDrawable *drawable = gimp_drawable_get(inputLayers[l]);
     GimpPixelRgn region;
     gimp_pixel_rgn_init(&region,drawable,ix,iy,iw,ih,false,false);
     CImg<unsigned char> img(spectrum,iw,ih);

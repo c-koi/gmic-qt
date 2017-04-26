@@ -39,7 +39,7 @@
 
 ```sh
 git clone https://github.com/dtschump/gmic.git
-git clone https://github.com/ct-koi/gmic-qt.git
+git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib.h
 cd gmic-qt
 qmake [HOST=none|gimp]
