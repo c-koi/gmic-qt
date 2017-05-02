@@ -24,6 +24,7 @@
  */
 #include "HeadlessProcessor.h"
 #include <QSettings>
+#include <QDebug>
 #include "Updater.h"
 #include "Common.h"
 #include "GmicStdlibParser.h"
