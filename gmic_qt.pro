@@ -146,6 +146,7 @@ translations/po.ts \
 translations/pt.ts \
 translations/ru.ts \
 translations/ua.ts \
+translations/ja.ts \
 translations/zh.ts
 
 # PRE_TARGETDEPS +=

@@ -30,6 +30,7 @@
  * Alex Mozheiko (Russian translation)
  * Andrex Starodubtsev (Ukrainian translation)
  * LinuxToy (https://twitter.com/linuxtoy) (Chinese translation)
+ * tokyogeometry / github (Japanese translation)
 
 ### Official (pre-release) binary packages
 
