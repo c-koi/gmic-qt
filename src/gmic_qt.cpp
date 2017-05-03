@@ -118,7 +118,7 @@ int launchPlugin()
     QStringList translations;
     translations << "fr" << "de" << "es" << "zh" << "nl"
                  << "cs" << "it" << "id" << "ua" << "ru"
-		 << "po" << "pt" << "ja";
+		 << "pl" << "pt" << "ja";
     if ( translations.contains(lang) ) {
       QTranslator * translator = new QTranslator(&app);
       translator->load(QString(":/translations/%1.qm").arg(lang));
