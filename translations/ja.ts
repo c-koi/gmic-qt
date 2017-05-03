@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Original Japanese translation done by tokyogeometry (github) -->
+<!-- Original Japanese translation done by omiya tou (tokyogeometry / github) -->
 
 <!DOCTYPE TS>
 <TS version="2.1" language="ja">
