@@ -1035,7 +1035,7 @@ void MainWindow::showEvent(QShowEvent * event)
 
     // Retrieve and select previously selected filter
     QString hash = QSettings().value("SelectedFilter",QString()).toString();
-    if (_newSession) {
+    if (_newSession || !_lastExecutionOK) {
       hash.clear();
     }
     if ( !hash.isEmpty() ) {
