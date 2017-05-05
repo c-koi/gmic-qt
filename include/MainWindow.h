@@ -89,6 +89,7 @@ public slots:
   void onZoomIn();
   void onZoomOut();
   void showZoomWarningIfNeeded();
+  void updateZoomLabel();
 
 protected:
 
