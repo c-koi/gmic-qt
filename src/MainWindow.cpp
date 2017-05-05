@@ -1046,7 +1046,9 @@ void MainWindow::showEvent(QShowEvent * event)
       if ( filterItem ) {
         ui->filtersTree->setCurrentIndex(filterItem->index());
         selectFilter(filterItem->index(),true);
-        ui->previewWidget->sendUpdateRequest();
+        // Preview update is triggered when PreviewWidget receives
+        // the WindowActivate Event (while pendingResize is true
+        // after the very first resize event).
         return;
       }
     } else {
@@ -1057,7 +1059,6 @@ void MainWindow::showEvent(QShowEvent * event)
         ui->filtersTree->expand(index);
       }
       ui->previewWidget->setPreviewFactor(GmicQt::PreviewFactorFullImage,true);
-      //ui->previewWidget->zoomFullImage();
     }
     ui->filtersTree->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
     ui->filtersTree->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
