@@ -59,9 +59,9 @@ cimg_library::CImg<int> inputLayerDimensions;
 std::vector<int> inputLayers;
 
 #if (GIMP_MAJOR_VERSION>=3 || GIMP_MINOR_VERSION>8) && !defined(GIMP_NORMAL_MODE)
-  typedef GimpLayerMode GimpLayerModeEffects;
+typedef GimpLayerMode GimpLayerModeEffects;
 #define GIMP_NORMAL_MODE GIMP_LAYER_MODE_NORMAL
-QMap<QString,GimpLayerModeEffects> BlendModesMap = {
+const QMap<QString,GimpLayerModeEffects> BlendingModesMap = {
   { QString("alpha"), GIMP_LAYER_MODE_NORMAL },
   { QString("normal"), GIMP_LAYER_MODE_NORMAL },
   { QString("dissolve"), GIMP_LAYER_MODE_DISSOLVE },
@@ -103,7 +103,7 @@ QMap<QString,GimpLayerModeEffects> BlendModesMap = {
   { QString("exclusion"), GIMP_LAYER_MODE_EXCLUSION }
 };
 #else
-QMap<QString,GimpLayerModeEffects> BlendModesMap = {
+const QMap<QString,GimpLayerModeEffects> BlendingModesMap = {
   { QString("alpha"), GIMP_NORMAL_MODE },
   { QString("normal"), GIMP_NORMAL_MODE },
   { QString("dissolve"), GIMP_DISSOLVE_MODE },
@@ -129,78 +129,26 @@ QMap<QString,GimpLayerModeEffects> BlendModesMap = {
 };
 #endif
 
-const char * BlendModeStrings(const GimpLayerModeEffects &blendmode) {
-#if GIMP_MAJOR_VERSION<=2 && GIMP_MINOR_VERSION<=8
-  switch (blendmode) {
-  case GIMP_NORMAL_MODE : return "alpha";
-  case GIMP_DISSOLVE_MODE : return "dissolve";
-  case GIMP_BEHIND_MODE : return "behind";
-  case GIMP_MULTIPLY_MODE : return "multiply";
-  case GIMP_SCREEN_MODE : return "screen";
-  case GIMP_OVERLAY_MODE : return "overlay";
-  case GIMP_DIFFERENCE_MODE : return "difference";
-  case GIMP_ADDITION_MODE : return "addition";
-  case GIMP_SUBTRACT_MODE : return "subtract";
-  case GIMP_DARKEN_ONLY_MODE : return "darken";
-  case GIMP_LIGHTEN_ONLY_MODE : return "lighten";
-  case GIMP_HUE_MODE : return "hue";
-  case GIMP_SATURATION_MODE : return "saturation";
-  case GIMP_COLOR_MODE : return "color";
-  case GIMP_VALUE_MODE : return "value";
-  case GIMP_DIVIDE_MODE : return "divide";
-  case GIMP_DODGE_MODE : return "dodge";
-  case GIMP_BURN_MODE : return "burn";
-  case GIMP_HARDLIGHT_MODE : return "hardlight";
-  case GIMP_SOFTLIGHT_MODE : return "softlight";
-  case GIMP_GRAIN_EXTRACT_MODE : return "grainextract";
-  case GIMP_GRAIN_MERGE_MODE : return "grainmerge";
-  case GIMP_COLOR_ERASE_MODE : return "colorerase";
-  default : return "alpha";
+QMap<GimpLayerModeEffects,QString> reverseBlendingModeMap(const QMap<QString,GimpLayerModeEffects> & string2mode )
+{
+  QMap<GimpLayerModeEffects,QString> result;
+  QMap<QString,GimpLayerModeEffects>::const_iterator it = string2mode.cbegin();
+  while ( it != string2mode.cend() ) {
+    result[it.value()] = it.key();
+    ++it;
   }
-#else
-  switch (blendmode) {
-  case GIMP_LAYER_MODE_NORMAL : return "alpha";
-  case GIMP_LAYER_MODE_DISSOLVE : return "dissolve";
-  case GIMP_LAYER_MODE_BEHIND : return "behind";
-  case GIMP_LAYER_MODE_COLOR_ERASE : return "colorerase";
-  case GIMP_LAYER_MODE_ERASE : return "erase";
-  case GIMP_LAYER_MODE_MERGE : return "merge";
-  case GIMP_LAYER_MODE_SPLIT : return "split";
-  case GIMP_LAYER_MODE_LIGHTEN_ONLY : return "lighten";
-  case GIMP_LAYER_MODE_LUMA_LIGHTEN_ONLY : return "lumalighten";
-  case GIMP_LAYER_MODE_SCREEN : return "screen";
-  case GIMP_LAYER_MODE_DODGE : return "dodge";
-  case GIMP_LAYER_MODE_ADDITION : return "addition";
-  case GIMP_LAYER_MODE_DARKEN_ONLY : return "darken";
-  case GIMP_LAYER_MODE_LUMA_DARKEN_ONLY : return "lumadarken";
-  case GIMP_LAYER_MODE_MULTIPLY : return "multiply";
-  case GIMP_LAYER_MODE_BURN : return "burn";
-  case GIMP_LAYER_MODE_OVERLAY : return "overlay";
-  case GIMP_LAYER_MODE_SOFTLIGHT : return "softlight";
-  case GIMP_LAYER_MODE_HARDLIGHT : return "hardlight";
-  case GIMP_LAYER_MODE_VIVID_LIGHT : return "vividlight";
-  case GIMP_LAYER_MODE_PIN_LIGHT : return "pinlight";
-  case GIMP_LAYER_MODE_LINEAR_LIGHT : return "linearlight";
-  case GIMP_LAYER_MODE_HARD_MIX : return "hardmix";
-  case GIMP_LAYER_MODE_DIFFERENCE : return "difference";
-  case GIMP_LAYER_MODE_SUBTRACT : return "subtract";
-  case GIMP_LAYER_MODE_GRAIN_EXTRACT : return "grainextract";
-  case GIMP_LAYER_MODE_GRAIN_MERGE : return "grainmerge";
-  case GIMP_LAYER_MODE_DIVIDE : return "divide";
-  case GIMP_LAYER_MODE_HSV_HUE : return "hue";
-  case GIMP_LAYER_MODE_HSV_SATURATION : return "saturation";
-  case GIMP_LAYER_MODE_HSL_COLOR : return "color";
-  case GIMP_LAYER_MODE_HSV_VALUE : return "value";
-  case GIMP_LAYER_MODE_LCH_HUE : return "lchhue";
-  case GIMP_LAYER_MODE_LCH_CHROMA : return "lchchroma";
-  case GIMP_LAYER_MODE_LCH_COLOR : return "lchcolor";
-  case GIMP_LAYER_MODE_LCH_LIGHTNESS : return "lchlightness";
-  case GIMP_LAYER_MODE_LUMINANCE : return "luminance";
-  case GIMP_LAYER_MODE_EXCLUSION : return "exclusion";
-  default : return "alpha";
+  result[GIMP_NORMAL_MODE] = QString("alpha");
+  return result;
+}
+
+QString blendingMode2String(const GimpLayerModeEffects & blendingMode) {
+  static QMap<GimpLayerModeEffects,QString> mode2string = reverseBlendingModeMap(BlendingModesMap);
+  QMap<GimpLayerModeEffects,QString>::const_iterator it = mode2string.find(blendingMode);
+  if ( it != mode2string.cend() ) {
+    return it.value();
+  } else {
+    return QString("alpha");
   }
-#endif
-  return "alpha";
 }
 
 // Get layer blending mode from string.
@@ -217,8 +165,8 @@ void get_output_layer_props(const char * const s,
   QRegExp modeRe("mode\\(\\s*([^)]*)\\s*\\)");
   if ( modeRe.indexIn(str) != -1 ) {
     QString modeStr = modeRe.cap(1).trimmed();
-    if ( BlendModesMap.find(modeStr) != BlendModesMap.end() ) {
-      blendmode = BlendModesMap[modeStr];
+    if ( BlendingModesMap.find(modeStr) != BlendingModesMap.end() ) {
+      blendmode = BlendingModesMap[modeStr];
     }
   }
 
@@ -564,7 +512,7 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     }
 
     QString name = QString("mode(%1),opacity(%2),pos(%3,%4),name(%5)")
-        .arg(BlendModeStrings(blendMode))
+        .arg(blendingMode2String(blendMode))
         .arg(opacity)
         .arg(xPos)
         .arg(yPos)
