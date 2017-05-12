@@ -35,8 +35,10 @@
 #include <QBuffer>
 #include <QTreeView>
 #include <QStandardItem>
+#include "FiltersTreeAbstractItem.h"
 #include "FiltersTreeFolderItem.h"
 #include "FiltersTreeFilterItem.h"
+#include "FiltersVisibilityMap.h"
 #include "gmic.h"
 
 QByteArray GmicStdLibParser::GmicStdlib;
@@ -45,7 +47,7 @@ GmicStdLibParser::GmicStdLibParser()
 {
 }
 
-void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel & model)
+void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel & model, bool withVisibility)
 {
   if ( GmicStdlib.isEmpty() ) {
     loadStdLib();
@@ -57,11 +59,12 @@ void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel
 
   treeView->setModel(&model);
   model.setHorizontalHeaderItem(0,new QStandardItem(QObject::tr("Available filters")));
-
+  if ( withVisibility ) {
+    model.setHorizontalHeaderItem(1,new QStandardItem(QObject::tr("Visible")));
+  }
   treeFoldersStack.push_back(model.invisibleRootItem());
 
   QString language;
-
   QList<QString> languages = QLocale().uiLanguages();
   if ( languages.size() ) {
     language = languages.front().split("-").front();
@@ -121,8 +124,17 @@ void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel
             }
           }
           if ( ! folderItem ) {
-            treeFoldersStack.last()->appendRow(folderItem = new FiltersTreeFolderItem(folderName,FiltersTreeFolderItem::NormalFolder));
+            // Not found, so create and append it
+            folderItem = new FiltersTreeFolderItem(folderName,FiltersTreeFolderItem::NormalFolder);
             folderItem->setWarningFlag(warning);
+
+            // Add visibility checkbox, if needed
+            if ( withVisibility && folderItem->plainText() != QString("About") ) {
+              addStandardItemWithCheckBox(treeFoldersStack.back(),folderItem,true);
+            } else {
+              // Invisible and empty folders will be removed later
+              treeFoldersStack.last()->appendRow(folderItem);
+            }
           }
           treeFoldersStack.push_back(folderItem);
           filterPath.push_back(folderName);
@@ -167,7 +179,18 @@ void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel
                                                                        previewFactor,
                                                                        accurateIfZoomed);
         filterItem->setWarningFlag(warning);
-        treeFoldersStack.back()->appendRow(filterItem);
+
+        // Add visibility checkbox, if needed
+        bool filterIsVisible = FiltersVisibilityMap::filterIsVisible(filterItem->hash());
+        FiltersTreeFolderItem * parentFolder = dynamic_cast<FiltersTreeFolderItem*>(treeFoldersStack.back());
+        bool isInAboutFolder = (parentFolder && (parentFolder->plainText() == QString("About")));
+        if ( withVisibility && !isInAboutFolder ) {
+          addStandardItemWithCheckBox(treeFoldersStack.back(),filterItem,filterIsVisible);
+        } else {
+          if ( filterIsVisible ) {
+            treeFoldersStack.back()->appendRow(filterItem);
+          }
+        }
 
         QString start = line;
         start.replace(QRegExp(" .*")," :");
@@ -189,6 +212,10 @@ void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel
                   && !filterRegexpNoLanguage.exactMatch(buffer)
                   && !filterRegexpLanguage.exactMatch(buffer));
         filterItem->setParameters(parameters);
+
+        if ( !withVisibility && !filterIsVisible ) {
+          delete filterItem;
+        }
       } else {
         buffer = stdlib.readLine(4096);
       }
@@ -199,6 +226,19 @@ void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel
 
   int count = FiltersTreeAbstractItem::countLeaves(model.invisibleRootItem());
   model.setHorizontalHeaderItem(0,new QStandardItem(QString(QObject::tr("Available filters (%1)")).arg(count)));
+}
+
+void GmicStdLibParser::saveFiltersVisibility(QStandardItem * item)
+{
+  FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(item);
+  if ( filter ) {
+    FiltersVisibilityMap::setVisibility(filter->hash(),filter->isVisible());
+    return;
+  }
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    saveFiltersVisibility(item->child(row));
+  }
 }
 
 void
@@ -223,4 +263,47 @@ QStringList GmicStdLibParser::parseStatus(QString str)
   list[0].replace(QChar(24),QString());
   list.back().replace(QChar(25),QString());
   return list;
+}
+
+void GmicStdLibParser::addStandardItemWithCheckBox(QStandardItem * folder, FiltersTreeAbstractItem * item, bool itemIsVisible)
+{
+  QList<QStandardItem*> items;
+  items.push_back(item);
+  QStandardItem * checkBox = new QStandardItem;
+  checkBox->setCheckable(true);
+  checkBox->setEditable(false);
+  checkBox->setCheckState(itemIsVisible?Qt::Checked:Qt::Unchecked);
+  item->setVisibilityItem(checkBox);
+  items.push_back(checkBox);
+  folder->appendRow(items);
+}
+
+bool GmicStdLibParser::cleanupFolders(QStandardItem * item)
+{
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
+    if ( subFolder ) {
+      while ( cleanupFolders(subFolder) ) { }
+      if ( subFolder->rowCount() == 0 ) {
+        item->removeRow(row);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+void GmicStdLibParser::uncheckFullyUncheckedFolders(QStandardItem * folder)
+{
+  int rows = folder->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(folder->child(row));
+    if ( subFolder ) {
+      uncheckFullyUncheckedFolders(subFolder);
+      if ( subFolder->isFullyUnchecked() ) {
+        subFolder->setVisibility(false);
+      }
+    }
+  }
 }

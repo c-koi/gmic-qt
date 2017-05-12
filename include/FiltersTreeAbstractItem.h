@@ -49,11 +49,17 @@ public:
   bool operator<(const QStandardItem & other ) const;
   static bool matchWordList(const QStringList & words, const QString & str);
 
+  void setVisibilityItem( QStandardItem * );
+  bool isVisible() const;
+  void setVisibility(bool visibility);
+
 protected:
   void setName(QString name);
+  QStandardItem * visibilityItem();
 
 private:
   QString _plainText;
+  QStandardItem * _visibilityItem;
 };
 
 #endif // _GMIC_QT_FILTERSTREEABSTRACTITEM_H_

@@ -91,6 +91,19 @@
           </widget>
          </item>
          <item>
+          <widget class="QToolButton" name="tbRenameFave">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QToolButton" name="tbUpdateFilters">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -114,15 +127,16 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="tbRenameFave">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="Line" name="line_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbFiltersSelectionMode">
            <property name="text">
-            <string/>
+            <string>Selection mode</string>
            </property>
           </widget>
          </item>
@@ -192,7 +206,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>123</width>
+            <width>95</width>
             <height>486</height>
            </rect>
           </property>
@@ -571,7 +585,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>searchField</tabstop>
   <tabstop>filtersTree</tabstop>
   <tabstop>scrollAreaParameters</tabstop>
   <tabstop>previewWidget</tabstop>
@@ -586,7 +599,6 @@
   <tabstop>pbReset</tabstop>
   <tabstop>pbApply</tabstop>
   <tabstop>pbOk</tabstop>
-  <tabstop>tbRenameFave</tabstop>
   <tabstop>tbRemoveFave</tabstop>
  </tabstops>
  <resources>

@@ -27,6 +27,7 @@
 
 #include <QString>
 #include "FiltersTreeAbstractItem.h"
+class QStandardItem;
 
 class FiltersTreeAbstractFilterItem : public FiltersTreeAbstractItem
 {

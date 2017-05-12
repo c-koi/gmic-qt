@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FiltersTreeFolderItem.h
+ *  @file FiltersVisibilityMap.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,38 +22,24 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSTREEFOLDERITEM_H_
-#define _GMIC_QT_FILTERSTREEFOLDERITEM_H_
+#ifndef _GMIC_QT_FILTERSVISIBILITYMAP_H_
+#define _GMIC_QT_FILTERSVISIBILITYMAP_H_
 
-#include <QList>
-#include <QString>
-#include <QStandardItem>
-#include <QStringList>
-#include "FiltersTreeAbstractItem.h"
+#include <QSet>
 
-class FiltersTreeFolderItem : public FiltersTreeAbstractItem
+class FiltersVisibilityMap
 {
-
 public:
-  enum FolderType { NormalFolder, FaveFolder };
 
-  FiltersTreeFolderItem(const QString & name,
-                        FolderType folderType);
-  ~FiltersTreeFolderItem();
-  bool isFaveFolder() const;
-  void setWarningFlag(bool);
-  bool isWarning() const override;
-  FiltersTreeAbstractItem * deepClone(const QStringList &) const override;
-  FiltersTreeAbstractItem * deepClone() const override;
+  static bool filterIsVisible(const QString & hash);
+  static void setVisibility(const QString & hash, bool visible);
+  static void load();
+  static void save();
 
-  void setItemsVisibility(bool visible);
-  bool isFullyUnchecked();
-  void applyVisibilityStatus();
-
+protected:
 private:
-  QString _plainText;
-  const bool _isFaveFolder;
-  bool _isWarning;
+  static QSet<QString> _hiddenFilters;
+  FiltersVisibilityMap() = delete;
 };
 
-#endif // _GMIC_QT_FILTERSTREEFOLDERITEM_H_
+#endif // _GMIC_QT_FILTERSVISIBILITYMAP_H_

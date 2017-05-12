@@ -97,5 +97,35 @@ FiltersTreeAbstractItem * FiltersTreeFolderItem::deepClone() const
     return clone;
   }
   return 0;
+}
 
+void FiltersTreeFolderItem::setItemsVisibility(bool visible)
+{
+  int rows = rowCount();
+  for ( int row = 0; row < rows; ++row ) {
+    FiltersTreeAbstractItem * item = dynamic_cast<FiltersTreeAbstractItem*>(child(row));
+    if ( item ) {
+      item->setVisibility(visible);
+    }
+  }
+}
+
+bool FiltersTreeFolderItem::isFullyUnchecked()
+{
+  int count = rowCount();
+  for ( int row = 0; row < count; ++row ) {
+    FiltersTreeAbstractItem * item = dynamic_cast<FiltersTreeAbstractItem*>(child(row));
+    if ( item && item->isVisible() ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+void FiltersTreeFolderItem::applyVisibilityStatus()
+{
+  QStandardItem * check = visibilityItem();
+  if ( check ) {
+    setItemsVisibility(check->checkState() == Qt::Checked);
+  }
 }

@@ -57,6 +57,7 @@
 #include "FiltersTreeFilterItem.h"
 #include "FiltersTreeFolderItem.h"
 #include "FiltersTreeFaveItem.h"
+#include "FiltersVisibilityMap.h"
 #include "Updater.h"
 #include "GmicStdlibParser.h"
 #include "ImageTools.h"
@@ -64,7 +65,9 @@
 #include "host.h"
 #include "gmic.h"
 
+//
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
+//
 
 MainWindow::MainWindow(QWidget *parent) :
   QWidget(parent),
@@ -171,12 +174,21 @@ MainWindow::~MainWindow()
   saveCurrentParameters();
   saveFaves();
   ParametersCache::save();
+
+  // Save visibility
+  if ( filtersSelectionMode() ) {
+    GmicStdLibParser::saveFiltersVisibility(_filtersTreeModel.invisibleRootItem());
+  }
+  FiltersVisibilityMap::save();
+
   saveSettings();
   if ( _logFile ) {
     fclose(_logFile);
   }
   delete ui;
   delete _gmicImages;
+  qDeleteAll(_hiddenFaves);
+  _hiddenFaves.clear();
 }
 
 void MainWindow::setIcons()
@@ -224,6 +236,7 @@ void MainWindow::setDarkTheme()
   p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
   ui->cbInternetUpdate->setPalette(p);
   ui->cbPreview->setPalette(p);
+  ui->cbFiltersSelectionMode->setPalette(p);
 
   const QString css = "QTreeView { background: #505050; }"
                       "QLineEdit { background: #505050; }"
@@ -263,15 +276,20 @@ void MainWindow::onUpdateDownloadsFinished(bool ok)
 void MainWindow::buildFiltersTree()
 {
   QString currentHash = selectedFilterItem() ? selectedFilterItem()->hash() : QString();
+  TSHOW(currentHash);
   if ( !currentHash.isEmpty() ) {
     saveCurrentParameters();
   }
   GmicStdLibParser::GmicStdlib = Updater::getInstance()->buildFullStdlib();
   _filtersTreeModel.clear();
   _filtersTreeModelSelection.clear();
-  GmicStdLibParser::buildFiltersTree(ui->filtersTree,_filtersTreeModel);
-  loadFaves();
+  const bool withVisibility = filtersSelectionMode();
+  GmicStdLibParser::buildFiltersTree(ui->filtersTree,
+                                     _filtersTreeModel,
+                                     withVisibility);
+  loadFaves(withVisibility);
   _filtersTreeModel.invisibleRootItem()->sortChildren(0);
+
   // Select previously selected filter
   if ( !currentHash.isEmpty() ) {
     FiltersTreeFilterItem * item = findFilter(currentHash,FullModel);
@@ -279,6 +297,24 @@ void MainWindow::buildFiltersTree()
       ui->filtersTree->setCurrentIndex(item->index());
       selectFilter(item->index(),false);
     }
+  }
+
+  if ( withVisibility ) {
+    // Adjust column sizes
+    QStandardItem * headerItem = _filtersTreeModel.horizontalHeaderItem(1);
+    Q_ASSERT_X(headerItem,"MainWindow::buildFiltersTree()","Missing header item");
+    QString title = QString("_%1_").arg(headerItem->text());
+    QFont font;
+    QFontMetrics fm(font);
+    int w = fm.width(title);
+    ui->filtersTree->setColumnWidth(0, ui->filtersTree->width() - w * 2);
+    ui->filtersTree->setColumnWidth(1, w);
+    GmicStdLibParser::uncheckFullyUncheckedFolders(_filtersTreeModel.invisibleRootItem());
+  } else {
+    // Remove empty folders
+    do {
+      // Nothing
+    } while (GmicStdLibParser::cleanupFolders(_filtersTreeModel.invisibleRootItem()));
   }
 }
 
@@ -330,6 +366,14 @@ void MainWindow::updateZoomLabel()
     text = QString("%1 %").arg(static_cast<int>(zoom*100));
   }
   ui->labelZoomLevel->setText(text);
+}
+
+void MainWindow::onFiltersSelectionModeToggled(bool on)
+{
+  if ( ! on ) {
+    GmicStdLibParser::saveFiltersVisibility(_filtersTreeModel.invisibleRootItem());
+  }
+  buildFiltersTree();
 }
 
 void MainWindow::clearMessage()
@@ -434,6 +478,12 @@ void MainWindow::makeConnections()
           this,SLOT(expandOrCollapseFolders()));
   connect(ui->progressInfoWidget,SIGNAL(cancel()),
           this,SLOT(onCancelProcess()));
+
+  connect(ui->cbFiltersSelectionMode,SIGNAL(toggled(bool)),
+          this,SLOT(onFiltersSelectionModeToggled(bool)));
+
+  connect(&_filtersTreeModel,SIGNAL(itemChanged(QStandardItem*)),
+          this,SLOT(onFiltersTreeItemChanged(QStandardItem*)));
 }
 
 void
@@ -767,6 +817,7 @@ MainWindow::saveSettings()
   settings.setValue("Config/MainWindowPosition",frameGeometry().topLeft());
   settings.setValue("Config/MainWindowRect",rect());
   settings.setValue("Config/MainWindowMaximized",isMaximized());
+  settings.setValue("Config/ShowAllFilters",filtersSelectionMode());
   settings.setValue("LastExecution/ExitedNormally",true);
   settings.setValue("LastExecution/HostApplicationID",GmicQt::host_app_pid());
   QList<int> spliterSizes = ui->splitter->sizes();
@@ -780,6 +831,7 @@ void
 MainWindow::loadSettings()
 {
   DialogSettings::loadSettings();
+  FiltersVisibilityMap::load();
   QSettings settings;
   _lastExecutionOK = settings.value("LastExecution/ExitedNormally",true).toBool();
   _newSession = GmicQt::host_app_pid() != settings.value("LastExecution/HostApplicationID",0).toUInt();
@@ -827,6 +879,9 @@ MainWindow::loadSettings()
   if ( sizes.size() == 3 ) {
     ui->splitter->setSizes(sizes);
   }
+
+  // Filters visibility
+  ui->cbFiltersSelectionMode->setChecked(settings.value("Config/ShowAllFilters",false).toBool());
 
   ui->cbInternetUpdate->setChecked(settings.value("Config/RefreshInternetUpdate",true).toBool());
 }
@@ -982,6 +1037,29 @@ QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & image
   return qimage;
 }
 
+void MainWindow::onFiltersTreeItemChanged(QStandardItem * item)
+{
+  if ( ! item->isCheckable() ) {
+    return;
+  }
+  int row = item->index().row();
+  QStandardItem * parentFolder = item->parent();
+  if ( !parentFolder ) {
+    // parent is 0 for top level items
+    parentFolder = _filtersTreeModel.invisibleRootItem();
+  }
+  QStandardItem * leftItem = parentFolder->child(row);
+  FiltersTreeFolderItem * folder = dynamic_cast<FiltersTreeFolderItem*>(leftItem);
+  if ( folder ) {
+    folder->applyVisibilityStatus();
+  }
+}
+
+bool MainWindow::filtersSelectionMode()
+{
+  return ui->cbFiltersSelectionMode->isChecked();
+}
+
 QString
 MainWindow::faveUniqueName(const QString & name)
 {
@@ -1034,12 +1112,23 @@ MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString>
 FiltersTreeAbstractFilterItem *
 MainWindow::selectedFilterItem()
 {
+  // Get filter item even if checkbox is selected
+
   QModelIndex index = ui->filtersTree->currentIndex();
   QStandardItem * item = _currentFiltersTreeModel->itemFromIndex(index);
   if ( item ) {
-    FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(item);
-    if ( filter ) {
-      return filter;
+    int row = index.row();
+    QStandardItem * parentFolder = item->parent();
+    // parent is 0 for top level items
+    if ( !parentFolder ) {
+      parentFolder = _currentFiltersTreeModel->invisibleRootItem();
+    }
+    QStandardItem * leftItem = parentFolder->child(row,0);
+    if ( leftItem ) {
+      FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(leftItem);
+      if ( filter ) {
+        return filter;
+      }
     }
   }
   return 0;
@@ -1132,8 +1221,13 @@ void
 MainWindow::addFaveFolder()
 {
   if ( ! faveFolder(FullModel) ) {
-    _filtersTreeModel.invisibleRootItem()->insertRow(0,new FiltersTreeFolderItem(tr(FAVE_FOLDER_TEXT),
-                                                                                 FiltersTreeFolderItem::FaveFolder));
+    FiltersTreeFolderItem * faveFolder = new FiltersTreeFolderItem(tr(FAVE_FOLDER_TEXT),
+                                                                   FiltersTreeFolderItem::FaveFolder);
+    if ( filtersSelectionMode() ) {
+      GmicStdLibParser::addStandardItemWithCheckBox(_filtersTreeModel.invisibleRootItem(),faveFolder,true);
+    } else {
+      _filtersTreeModel.invisibleRootItem()->appendRow(faveFolder);
+    }
     _filtersTreeModel.invisibleRootItem()->sortChildren(0);
   }
 }
@@ -1164,9 +1258,13 @@ MainWindow::removeFaveFolder()
 }
 
 void
-MainWindow::loadFaves()
+MainWindow::loadFaves(bool withVisibility)
 {
   Q_ASSERT( ui->filtersTree->model() );
+  if ( withVisibility ) {
+    qDeleteAll(_hiddenFaves);
+    _hiddenFaves.clear();
+  }
   bool imported = ! _importedFaves.isEmpty();
   QList<StoredFave> faves = StoredFave::readFaves();
   if ( faves.isEmpty() && _importedFaves.isEmpty() ) {
@@ -1182,10 +1280,19 @@ MainWindow::loadFaves()
       FiltersTreeFaveItem * faveItem = new FiltersTreeFaveItem(filterItem,
                                                                importedFave.name(),
                                                                importedFave.defaultParameters());
-      folder->appendRow(faveItem);
+
+      bool faveIsVisible = FiltersVisibilityMap::filterIsVisible(faveItem->hash());
+      if ( withVisibility ) {
+        GmicStdLibParser::addStandardItemWithCheckBox(folder,faveItem,faveIsVisible);
+      } else {
+        if ( faveIsVisible ) {
+          folder->appendRow(faveItem);
+        } else {
+          _hiddenFaves.push_back(faveItem);
+        }
+      }
     }
   }
-
   faveFolder(FullModel)->sortChildren(0);
   if ( imported ) {
     saveFaves();
@@ -1232,20 +1339,25 @@ MainWindow::saveFaves()
 {
   FiltersTreeFolderItem * folder = faveFolder(FullModel);
   QString filename(QString("%1%2").arg(GmicQt::path_rc(true)).arg("gmic_qt_faves"));
-  if ( folder ) {
+  if ( folder || _hiddenFaves.size() ) {
     QFile::remove(filename+".bak");
     QFile::copy(filename,filename+".bak");
     QFile file(filename);
     if (file.open(QFile::WriteOnly|QFile::Truncate)) {
       QTextStream stream(&file);
-      stream << "@gmic_qt_faves\n";
+      stream << QString("@gmic_qt_faves Version=%1.%2.%3\n").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLocal8Bit();
       stream << "#\n"
                 "# You can copy this file to save or move your faves.\n"
                 "# If you happen to modify it, be careful!\n"
                 "#\n";
-      int count = folder->rowCount();
-      for (int row = 0; row < count; ++row) {
-        FiltersTreeFaveItem * fave = static_cast<FiltersTreeFaveItem*>(folder->child(row));
+      if ( folder ) {
+        int count = folder->rowCount();
+        for (int row = 0; row < count; ++row) {
+          FiltersTreeFaveItem * fave = static_cast<FiltersTreeFaveItem*>(folder->child(row));
+          stream << StoredFave(fave);
+        }
+      }
+      for ( FiltersTreeFaveItem * fave : _hiddenFaves ) {
         stream << StoredFave(fave);
       }
     } else {
@@ -1271,10 +1383,17 @@ MainWindow::onAddFave()
                                                          faveUniqueName(item->text()),
                                                          ui->filterParams->valueStringList());
     FiltersTreeFolderItem  * folder = faveFolder(FullModel);
-    folder->appendRow(fave);
+
+    if ( filtersSelectionMode() ) {
+      GmicStdLibParser::addStandardItemWithCheckBox(folder,fave,true);
+    } else {
+      folder->appendRow(fave);
+    }
+
     ParametersCache::setValue(fave->hash(),ui->filterParams->valueStringList());
     ui->filtersTree->setCurrentIndex(fave->index());
     folder->sortChildren(0,Qt::AscendingOrder);
+    saveFaves();
     ui->tbRemoveFave->setEnabled(true);
     ui->tbRenameFave->setEnabled(true);
   }
@@ -1294,6 +1413,7 @@ MainWindow::onRemoveFave()
     if ( item ) {
       _filtersTreeModelSelection.removeRow(item->row(),item->index().parent());
     }
+    saveFaves();
   }
   if ( faveFolder(FullModel)->rowCount() == 0) {
     removeFaveFolder();
@@ -1357,9 +1477,10 @@ void MainWindow::onRenameFaveFinished(QWidget * editor)
   }
 
   QString hash = fave->hash();
+  QList<QString> values = ParametersCache::getValue(hash);
   ParametersCache::remove(hash);
   fave->rename(newName);
-  ParametersCache::setValue(item->hash(),ui->filterParams->valueStringList());
+  ParametersCache::setValue(fave->hash(),values);
   FiltersTreeFaveItem * selectedFave = findFave(hash,SelectionModel);
   if ( selectedFave ) {
     selectedFave->rename(newName);
@@ -1372,6 +1493,7 @@ void MainWindow::onRenameFaveFinished(QWidget * editor)
   if ( folder ) {
     folder->sortChildren(0);
   }
+  saveFaves();
 }
 
 void

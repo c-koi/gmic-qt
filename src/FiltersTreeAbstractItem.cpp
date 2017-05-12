@@ -35,7 +35,8 @@
 #include "Common.h"
 
 FiltersTreeAbstractItem::FiltersTreeAbstractItem(const QString & name)
-  : QStandardItem(name)
+  : QStandardItem(name),
+    _visibilityItem(0)
 {
   setEditable(false);
   _plainText = HtmlTranslator::html2txt(name,true);
@@ -62,6 +63,11 @@ void FiltersTreeAbstractItem::setName(QString name)
   _plainText = HtmlTranslator::html2txt(name,true);
 }
 
+QStandardItem * FiltersTreeAbstractItem::visibilityItem()
+{
+  return _visibilityItem;
+}
+
 bool FiltersTreeAbstractItem::isWarning() const
 {
   return false;
@@ -78,6 +84,27 @@ FiltersTreeAbstractItem::path() const
     folder = dynamic_cast<FiltersTreeFolderItem*>(folder->parent());
   }
   return result;
+}
+
+void FiltersTreeAbstractItem::setVisibilityItem(QStandardItem * item)
+{
+  _visibilityItem = item;
+}
+
+bool FiltersTreeAbstractItem::isVisible() const
+{
+  if ( _visibilityItem ) {
+    return _visibilityItem->checkState() == Qt::Checked;
+  } else {
+    return true;
+  }
+}
+
+void FiltersTreeAbstractItem::setVisibility(bool visibility)
+{
+  if ( _visibilityItem ) {
+    _visibilityItem->setCheckState(visibility?Qt::Checked:Qt::Unchecked);
+  }
 }
 
 int FiltersTreeAbstractItem::countLeaves(QStandardItem *item)

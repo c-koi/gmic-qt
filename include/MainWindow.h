@@ -28,6 +28,8 @@
 #include <QPalette>
 #include <QWidget>
 #include <QStandardItemModel>
+#include <QModelIndex>
+#include <QList>
 #include <QTimer>
 #include "StoredFave.h"
 #include "Common.h"
@@ -55,6 +57,7 @@ class MainWindow : public QWidget
 
 public:
   enum PreviewPosition { PreviewOnLeft, PreviewOnRight };
+
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
@@ -90,6 +93,7 @@ public slots:
   void onZoomOut();
   void showZoomWarningIfNeeded();
   void updateZoomLabel();
+  void onFiltersSelectionModeToggled(bool);
 
 protected:
 
@@ -108,7 +112,13 @@ protected:
   void setPreviewPosition(PreviewPosition position);
   QImage buildPreviewImage(const cimg_library::CImgList<gmic_pixel_type> & images);
 
+private slots:
+
+  void onFiltersTreeItemChanged(QStandardItem *);
+
 private:
+
+  bool filtersSelectionMode();
   void clearMessage();
   void showMessage(QString text, int ms = 2000);
   void setIcons();
@@ -119,7 +129,7 @@ private:
   FiltersTreeFilterItem * findFilter( const QString & hash, ModelType modelType );
   void addFaveFolder();
   void removeFaveFolder();
-  void loadFaves();
+  void loadFaves(bool withVisibility);
   bool importFaves();
   void saveFaves();
   void buildFiltersTree();
@@ -148,6 +158,7 @@ private:
   GmicQt::OutputMessageMode _lastAppliedCommandOutputMessageMode;
 
   QList<StoredFave> _importedFaves;
+  QList<FiltersTreeFaveItem*> _hiddenFaves;
 
   QIcon _expandIcon;
   QIcon _collapseIcon;

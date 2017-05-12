@@ -29,16 +29,23 @@
 
 class QTreeView;
 class QStandardItemModel;
+class QStandardItem;
 class QStringList;
-
+class FiltersTreeAbstractItem;
 class GmicStdLibParser
 {
 public:
   GmicStdLibParser();
-  static void buildFiltersTree(QTreeView *, QStandardItemModel & );
+  static void buildFiltersTree(QTreeView *, QStandardItemModel & , bool withVisibility);
+  static void saveFiltersVisibility(QStandardItem * );
   static void loadStdLib();
   static QByteArray GmicStdlib;
   static QStringList parseStatus(QString );
+  static void addStandardItemWithCheckBox(QStandardItem * folder,
+                                          FiltersTreeAbstractItem * item,
+                                          bool itemIsVisible);
+  static bool cleanupFolders(QStandardItem * folder);
+  static void uncheckFullyUncheckedFolders(QStandardItem * folder);
 };
 
 #endif // _GMIC_QT_GMICSTDLIBPARSER_H_

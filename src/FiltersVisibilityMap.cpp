@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file ParametersCache.cpp
+ *  @file FiltersVisibilityMap.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,88 +22,77 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QFile>
+#include "FiltersVisibilityMap.h"
+#include <QByteArray>
 #include <QBuffer>
 #include <QDataStream>
+#include <QFile>
 #include <QDebug>
 #include "Common.h"
-#include "ParametersCache.h"
 #include "gmic.h"
 
-QHash<QString,QList<QString>> ParametersCache::_cache;
+QSet<QString> FiltersVisibilityMap::_hiddenFilters;
 
-void ParametersCache::load()
+bool FiltersVisibilityMap::filterIsVisible(const QString & hash)
 {
-  QString path = QString("%1%2").arg( GmicQt::path_rc(false), PARAMETERS_CACHE_FILENAME );
+  return ! _hiddenFilters.contains(hash);
+}
+
+void FiltersVisibilityMap::setVisibility(const QString & hash, bool visible)
+{
+  if ( visible ) {
+    _hiddenFilters.remove(hash);
+  } else {
+    _hiddenFilters.insert(hash);
+  }
+}
+
+void FiltersVisibilityMap::load()
+{
+  QString path = QString("%1%2").arg( GmicQt::path_rc(false), FILTERS_VISIBILITY_FILENAME );
   QFile file(path);
   if ( file.open(QFile::ReadOnly) ) {
     QString line;
     do {
       line = file.readLine();
-    } while ( file.bytesAvailable() && line != QString("[Filter parameters (compressed)]\n") );
+    } while ( file.bytesAvailable() && line != QString("[Hidden filters list (compressed)]\n") );
     QByteArray data = qUncompress(file.readAll());
     QBuffer buffer(&data);
     buffer.open(QIODevice::ReadOnly);
 
-    QDataStream stream(&buffer);
-    stream.setVersion(QDataStream::Qt_5_0);
-    qint32 count;
-    stream >> count;
-    QString hash;
-    QList<QString> values;
-    while ( count-- ) {
-      stream >> hash >> values;
-      setValue(hash,values);
+    bool ok;
+    qint32 count = buffer.readLine().trimmed().toInt(&ok);
+    if (ok) {
+      QString hash;
+      while ( count-- ) {
+        hash = buffer.readLine().trimmed();
+        _hiddenFilters.insert(hash);
+      }
+    } else {
+      qWarning() << "[gmic-qt] Error: reading" << file.fileName();
     }
   }
 }
 
-void
-ParametersCache::save()
+void FiltersVisibilityMap::save()
 {
   QByteArray data;
   QBuffer buffer(&data);
   buffer.open(QIODevice::WriteOnly);
-  QDataStream stream(&buffer);
-  stream.setVersion(QDataStream::Qt_5_0);
-  qint32 count = _cache.size();
-  stream << count;
-  QHash<QString,QList<QString>>::const_iterator it = _cache.begin();
-  while ( it != _cache.end() ) {
-    stream << it.key() << it.value();
-    ++it;
+  qint32 count = _hiddenFilters.size();
+  buffer.write(QString("%1\n").arg(count).toLatin1());
+  for ( const QString & str : _hiddenFilters ) {
+    buffer.write((str+QChar('\n')).toLatin1());
   }
 
-  QString path = QString("%1%2").arg( GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME );
+  QString path = QString("%1%2").arg( GmicQt::path_rc(true), FILTERS_VISIBILITY_FILENAME );
   QFile file(path);
   if ( file.open(QFile::WriteOnly) ) {
     file.write(QString("Version=%1.%2.%3\n").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLocal8Bit());
-    file.write(QString("[Filter parameters (compressed)]\n").toLocal8Bit());
+    file.write(QString("[Hidden filters list (compressed)]\n").toLocal8Bit());
     file.write(qCompress(data));
     file.close();
   } else {
     qWarning() << "[gmic-qt] Error: Cannot write" << path;
   }
-}
-
-void
-ParametersCache::setValue(const QString & hash, const QList<QString> & list)
-{
-  _cache[hash] = list;
-}
-
-QList<QString>
-ParametersCache::getValue(const QString & hash)
-{
-  if ( _cache.count(hash) ) {
-    return _cache[hash];
-  } else {
-    return QList<QString>();
-  }
-}
-
-void
-ParametersCache::remove(const QString & hash)
-{
-  _cache.remove(hash);
 }
