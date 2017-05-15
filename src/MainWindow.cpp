@@ -1611,9 +1611,9 @@ void MainWindow::expandedFolderPaths(QStandardItem * item, QStringList & list)
     FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
     if ( subFolder ) {
       if (ui->filtersTree->isExpanded(subFolder->index())) {
-        expandedFolderPaths(subFolder,list);
         list.push_back(subFolder->path().join(FilterTreePathSeparator));
       }
+      expandedFolderPaths(subFolder,list);
     }
   }
 }
@@ -1637,6 +1637,7 @@ void MainWindow::restoreExpandedFolders(QStandardItem *item)
       } else {
         ui->filtersTree->collapse(subFolder->index());
       }
+      restoreExpandedFolders(subFolder);
     }
   }
 }

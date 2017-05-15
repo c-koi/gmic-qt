@@ -142,7 +142,7 @@ private:
 
   QStringList _expandedFoldersPaths;
 
-  QString treeIndexToPath(const QModelIndex ); // TODO : finish
+  QString treeIndexToPath(const QModelIndex );
   QModelIndex treePathToIndex(const QString path);
   QModelIndex treePathToIndex(const QString path, QStandardItem *);
 
