@@ -69,6 +69,8 @@
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
 //
 
+const QString MainWindow::FilterTreePathSeparator("\t");
+
 MainWindow::MainWindow(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::MainWindow),
@@ -275,8 +277,9 @@ void MainWindow::onUpdateDownloadsFinished(bool ok)
 
 void MainWindow::buildFiltersTree()
 {
+  // Save current expand/collapse status
+  backupExpandedFoldersPaths();
   QString currentHash = selectedFilterItem() ? selectedFilterItem()->hash() : QString();
-  TSHOW(currentHash);
   if ( !currentHash.isEmpty() ) {
     saveCurrentParameters();
   }
@@ -295,6 +298,7 @@ void MainWindow::buildFiltersTree()
     FiltersTreeFilterItem * item = findFilter(currentHash,FullModel);
     if ( item ) {
       ui->filtersTree->setCurrentIndex(item->index());
+      ui->filtersTree->scrollTo(item->index(),QAbstractItemView::PositionAtCenter);
       selectFilter(item->index(),false);
     }
   }
@@ -316,6 +320,7 @@ void MainWindow::buildFiltersTree()
       // Nothing
     } while (GmicStdLibParser::cleanupFolders(_filtersTreeModel.invisibleRootItem()));
   }
+  restoreExpandedFolders();
 }
 
 void MainWindow::startupUpdateFinished(bool ok)
@@ -825,6 +830,9 @@ MainWindow::saveSettings()
     settings.setValue(QString("Config/PanelSize%1").arg(i),spliterSizes.at(i));
   }
   settings.setValue(REFRESH_USING_INTERNET_KEY,ui->cbInternetUpdate->isChecked());
+
+  backupExpandedFoldersPaths();
+  settings.setValue("Config/ExpandedFolders",_expandedFoldersPaths);
 }
 
 void
@@ -882,8 +890,10 @@ MainWindow::loadSettings()
 
   // Filters visibility
   ui->cbFiltersSelectionMode->setChecked(settings.value("Config/ShowAllFilters",false).toBool());
-
   ui->cbInternetUpdate->setChecked(settings.value("Config/RefreshInternetUpdate",true).toBool());
+
+  // This will not be overwritten by the first call of backupExpandedFoldersPaths()
+  _expandedFoldersPaths = settings.value("Config/ExpandedFolders",QStringList()).toStringList();
 }
 
 void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
@@ -1156,6 +1166,7 @@ void MainWindow::showEvent(QShowEvent * event)
       }
       if ( filterItem ) {
         ui->filtersTree->setCurrentIndex(filterItem->index());
+        ui->filtersTree->scrollTo(filterItem->index(),QAbstractItemView::PositionAtCenter);
         selectFilter(filterItem->index(),true);
         // Preview update is triggered when PreviewWidget receives
         // the WindowActivate Event (while pendingResize is true
@@ -1579,4 +1590,96 @@ void MainWindow::closeEvent(QCloseEvent * e)
   } else {
     e->accept();
   }
+}
+
+void MainWindow::backupExpandedFoldersPaths()
+{
+  // Do nothing if a search result is displayed
+  // or if the filters tree is empty
+  if ( (_currentFiltersTreeModel == &_filtersTreeModelSelection) ||
+       ( _filtersTreeModel.invisibleRootItem()->rowCount() == 0) ) {
+    return;
+  }
+  _expandedFoldersPaths.clear();
+  expandedFolderPaths(_filtersTreeModel.invisibleRootItem(),_expandedFoldersPaths);
+}
+
+void MainWindow::expandedFolderPaths(QStandardItem * item, QStringList & list)
+{
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
+    if ( subFolder ) {
+      if (ui->filtersTree->isExpanded(subFolder->index())) {
+        expandedFolderPaths(subFolder,list);
+        list.push_back(subFolder->path().join(FilterTreePathSeparator));
+      }
+    }
+  }
+}
+
+void MainWindow::restoreExpandedFolders()
+{
+  if ( _currentFiltersTreeModel == &_filtersTreeModelSelection ) {
+    return;
+  }
+  restoreExpandedFolders(_filtersTreeModel.invisibleRootItem());
+}
+
+void MainWindow::restoreExpandedFolders(QStandardItem *item)
+{
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
+    if ( subFolder ) {
+      if ( _expandedFoldersPaths.contains(subFolder->path().join(FilterTreePathSeparator)) ) {
+        ui->filtersTree->expand(subFolder->index());
+      } else {
+        ui->filtersTree->collapse(subFolder->index());
+      }
+    }
+  }
+}
+
+QString MainWindow::treeIndexToPath(const QModelIndex index)
+{
+  QStandardItem * item = _filtersTreeModel.itemFromIndex(index);
+  if ( item ) {
+    FiltersTreeAbstractItem * filter = dynamic_cast<FiltersTreeAbstractItem*>(item);
+    if ( filter ) {
+      return filter->path().join(FilterTreePathSeparator);
+    }
+  }
+  return QString();
+}
+
+QModelIndex MainWindow::treePathToIndex(const QString path)
+{
+  return treePathToIndex(path,_filtersTreeModel.invisibleRootItem());
+}
+
+QModelIndex MainWindow::treePathToIndex(const QString path, QStandardItem * item)
+{
+  // Search at current level first
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(item->child(row));
+    if ( filter ) {
+      if ( filter->path().join(FilterTreePathSeparator) == path ) {
+        return filter->index();
+      }
+    }
+  }
+  // Then do a depth-first search
+  QModelIndex result;
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * folder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
+    if ( folder ) {
+      result = treePathToIndex(path,folder);
+      if ( result.isValid() ) {
+        return result;
+      }
+    }
+  }
+  return QModelIndex();
 }

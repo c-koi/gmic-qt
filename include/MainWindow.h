@@ -30,6 +30,7 @@
 #include <QStandardItemModel>
 #include <QModelIndex>
 #include <QList>
+#include <QString>
 #include <QTimer>
 #include "StoredFave.h"
 #include "Common.h"
@@ -134,6 +135,17 @@ private:
   void saveFaves();
   void buildFiltersTree();
 
+  void backupExpandedFoldersPaths();
+  void expandedFolderPaths(QStandardItem * item, QStringList & list);
+  void restoreExpandedFolders();
+  void restoreExpandedFolders(QStandardItem * item);
+
+  QStringList _expandedFoldersPaths;
+
+  QString treeIndexToPath(const QModelIndex ); // TODO : finish
+  QModelIndex treePathToIndex(const QString path);
+  QModelIndex treePathToIndex(const QString path, QStandardItem *);
+
   enum ProcessingAction { NoAction, OkAction, CloseAction, ApplyAction };
 
   Ui::MainWindow *ui;
@@ -167,6 +179,8 @@ private:
   bool _showMaximized;
   bool _lastExecutionOK;
   bool _newSession;
+
+  static const QString FilterTreePathSeparator;
 };
 
 

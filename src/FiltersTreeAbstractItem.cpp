@@ -77,10 +77,10 @@ QList<QString>
 FiltersTreeAbstractItem::path() const
 {
   QList<QString> result;
-  result.push_back(text());
+  result.push_back(plainText());
   const FiltersTreeFolderItem * folder = dynamic_cast<FiltersTreeFolderItem*>(parent());
   while ( folder ) {
-    result.push_front(folder->text());
+    result.push_front(folder->plainText());
     folder = dynamic_cast<FiltersTreeFolderItem*>(folder->parent());
   }
   return result;
