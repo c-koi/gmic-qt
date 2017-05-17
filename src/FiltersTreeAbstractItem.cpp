@@ -73,10 +73,9 @@ bool FiltersTreeAbstractItem::isWarning() const
   return false;
 }
 
-QList<QString>
-FiltersTreeAbstractItem::path() const
+QStringList FiltersTreeAbstractItem::path() const
 {
-  QList<QString> result;
+  QStringList result;
   result.push_back(plainText());
   const FiltersTreeFolderItem * folder = dynamic_cast<FiltersTreeFolderItem*>(parent());
   while ( folder ) {

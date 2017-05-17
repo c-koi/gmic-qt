@@ -26,6 +26,7 @@
 #define _GMIC_QT_FILTERSTREEABSTRACTITEM_H_
 
 #include <QString>
+#include <QStringList>
 #include <QStandardItem>
 
 class FiltersTreeFaveItem;
@@ -42,7 +43,7 @@ public:
   virtual FiltersTreeAbstractItem * deepClone() const = 0;
   virtual bool isWarning() const;
 
-  QList<QString> path() const;
+  QStringList path() const;
   static int countLeaves( QStandardItem * item );
   static FiltersTreeFaveItem * findFave( QStandardItem * folder, QString hash );
   static FiltersTreeFilterItem * findFilter( QStandardItem * folder, QString hash );
