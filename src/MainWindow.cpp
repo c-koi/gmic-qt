@@ -157,6 +157,9 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->labelZoomLevel->setMinimumWidth(fm.width("88.88 %")+10);
   ui->labelZoomLevel->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
 
+  QPalette p = qApp->palette();
+  DialogSettings::UnselectedFilterTextColor = p.color(QPalette::Disabled,QPalette::WindowText);
+
   loadSettings();
 
   if ( ! _newSession ) {
@@ -246,6 +249,9 @@ void MainWindow::setDarkTheme()
                       "QSpinBox  { background: #505050; }"
                       "QDoubleSpinBox { background: #505050; }";
   qApp->setStyleSheet( css );
+
+  //DialogSettings::UnselectedFilterTextColor.setRgb(255,0,0);
+  DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
 
 void MainWindow::updateFiltersFromSources(int ageLimit, bool useNetwork)
@@ -1061,8 +1067,10 @@ void MainWindow::onFiltersTreeItemChanged(QStandardItem * item)
   QStandardItem * leftItem = parentFolder->child(row);
   FiltersTreeFolderItem * folder = dynamic_cast<FiltersTreeFolderItem*>(leftItem);
   if ( folder ) {
-    folder->applyVisibilityStatus();
+    folder->applyVisibilityStatusToFolderContents();
   }
+  // Force an update of the view by triggering a call of QStandardItem::emitDataChanged()
+  leftItem->setData(leftItem->data());
 }
 
 bool MainWindow::filtersSelectionMode()

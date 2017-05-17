@@ -48,7 +48,7 @@ public:
 
   void setItemsVisibility(bool visible);
   bool isFullyUnchecked();
-  void applyVisibilityStatus();
+  void applyVisibilityStatusToFolderContents();
 
 private:
   QString _plainText;

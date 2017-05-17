@@ -23,8 +23,13 @@
  *
  */
 #include "FiltersTreeItemDelegate.h"
+#include "FiltersTreeAbstractFilterItem.h"
+#include "DialogSettings.h"
 #include <QTextDocument>
+#include <QColor>
+#include <QPalette>
 #include <QPainter>
+#include <QDebug>
 
 FiltersTreeItemDelegate::FiltersTreeItemDelegate(QObject *parent)
   : QStyledItemDelegate(parent)
@@ -36,8 +41,21 @@ void FiltersTreeItemDelegate::paint(QPainter* painter, const QStyleOptionViewIte
   QStyleOptionViewItem options = option;
   initStyleOption(&options, index);
   painter->save();
+
+  const QStandardItemModel * model = dynamic_cast<const QStandardItemModel*>(index.model());
+  Q_ASSERT_X(model,"FiltersTreeItemDelegate::paint()","No model");
+  const QStandardItem * item = model->itemFromIndex(index);
+  Q_ASSERT_X(item,"FiltersTreeItemDelegate::paint()","No item");
+  const FiltersTreeAbstractFilterItem * filter = dynamic_cast<const FiltersTreeAbstractFilterItem*>(item);
+
   QTextDocument doc;
-  doc.setHtml(options.text);
+  if ( !item->isCheckable() && filter && !filter->isVisible() ) {
+    QColor textColor;
+    textColor = DialogSettings::UnselectedFilterTextColor;
+    doc.setHtml(QString("<span style=\"color:%1\">%2</span>").arg(textColor.name()).arg(options.text));
+  } else {
+    doc.setHtml(options.text);
+  }
   options.text = "";
   options.widget->style()->drawControl(QStyle::CE_ItemViewItem, &options, painter);
   painter->translate(options.rect.left(), options.rect.top());

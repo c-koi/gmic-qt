@@ -47,6 +47,7 @@ public:
   static void loadSettings();
   static const QColor CheckBoxTextColor;
   static const QColor CheckBoxBaseColor;
+  static QColor UnselectedFilterTextColor;
 
 public slots:
   void onRadioLeftPreviewToggled(bool );

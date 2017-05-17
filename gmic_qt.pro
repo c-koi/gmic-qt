@@ -163,7 +163,7 @@ CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
     QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-    QMAKE_LFLAGS_DEBUG +=  -fsanitize=address
+    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui

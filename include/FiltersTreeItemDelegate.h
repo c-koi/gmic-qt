@@ -32,8 +32,8 @@ class FiltersTreeItemDelegate : public QStyledItemDelegate
 public:
   FiltersTreeItemDelegate(QObject * parent);
 protected:
-  void paint( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
-  QSize sizeHint( const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
+  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
 };
 
 #endif // _GMIC_QT_FILTERSTREEITEMDELEGATE_H_

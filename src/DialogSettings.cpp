@@ -36,6 +36,7 @@ int DialogSettings::_updatePeriodicity;
 
 const QColor DialogSettings::CheckBoxBaseColor(83,83,83);
 const QColor DialogSettings::CheckBoxTextColor(255,255,255);
+QColor DialogSettings::UnselectedFilterTextColor;
 
 DialogSettings::DialogSettings(QWidget *parent) :
   QDialog(parent),

@@ -24,6 +24,7 @@
  */
 #include "Common.h"
 #include "FiltersTreeFolderItem.h"
+#include "FiltersTreeAbstractFilterItem.h"
 #include "HtmlTranslator.h"
 #include <QCryptographicHash>
 #include <QDebug>
@@ -114,15 +115,19 @@ bool FiltersTreeFolderItem::isFullyUnchecked()
 {
   int count = rowCount();
   for ( int row = 0; row < count; ++row ) {
-    FiltersTreeAbstractItem * item = dynamic_cast<FiltersTreeAbstractItem*>(child(row));
+    FiltersTreeAbstractFilterItem * item = dynamic_cast<FiltersTreeAbstractFilterItem*>(child(row));
     if ( item && item->isVisible() ) {
+      return false;
+    }
+    FiltersTreeFolderItem * folder = dynamic_cast<FiltersTreeFolderItem*>(child(row));
+    if ( folder && !folder->isFullyUnchecked() ) {
       return false;
     }
   }
   return true;
 }
 
-void FiltersTreeFolderItem::applyVisibilityStatus()
+void FiltersTreeFolderItem::applyVisibilityStatusToFolderContents()
 {
   QStandardItem * check = visibilityItem();
   if ( check ) {
