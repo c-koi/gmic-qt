@@ -42,6 +42,7 @@ enum InputMode {
   AllInvisiblesDesc,
   AllDesc
 };
+extern const InputMode DefaultInputMode;
 
 enum OutputMode {
   InPlace,
@@ -49,6 +50,7 @@ enum OutputMode {
   NewActiveLayers,
   NewImage
 };
+extern const OutputMode DefaultOutputMode;
 
 enum OutputMessageMode {
   Quiet,
@@ -60,6 +62,7 @@ enum OutputMessageMode {
   DebugConsole,
   DebugLogFile
 };
+extern const OutputMessageMode DefaultOutputMessageMode;
 
 enum PreviewMode {
   FirstOutput,
@@ -71,6 +74,7 @@ enum PreviewMode {
   First2FourthOutput,
   AllOutputs
 };
+extern const PreviewMode DefaultPreviewMode;
 
 extern const float PreviewFactorAny;
 extern const float PreviewFactorFullImage;

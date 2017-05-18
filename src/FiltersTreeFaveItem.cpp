@@ -22,12 +22,15 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <QDebug>
+#include <QCryptographicHash>
 #include "FiltersTreeFaveItem.h"
 #include "FiltersTreeFilterItem.h"
-#include <QCryptographicHash>
 #include "Common.h"
 #include "HtmlTranslator.h"
 #include <QTextDocument>
+#include "InOutPanel.h"
+#include "DialogSettings.h"
 
 FiltersTreeFaveItem::FiltersTreeFaveItem(const FiltersTreeAbstractFilterItem * filter,
                                          const QString & name,
@@ -39,6 +42,11 @@ FiltersTreeFaveItem::FiltersTreeFaveItem(const FiltersTreeAbstractFilterItem * f
                                   filter->isAccurateIfZoomed() ),
     _defaultValues(defaultValues)
 {
+  _inputMode = GmicQt::DefaultInputMode;
+  _outputMode = GmicQt::DefaultOutputMode;
+  _outputMessageMode = GmicQt::DefaultOutputMessageMode;
+  _previewMode = GmicQt::DefaultPreviewMode;
+
   setParameters(filter->parameters());
   const FiltersTreeFaveItem * fave = dynamic_cast<const FiltersTreeFaveItem*>( filter );
   // Fave from a fave -> get the original name
@@ -91,6 +99,30 @@ QString FiltersTreeFaveItem::originalFilterName() const
 QList<QString> FiltersTreeFaveItem::defaultValues() const
 {
   return _defaultValues;
+}
+
+void FiltersTreeFaveItem::setInOutSettings(const InOutPanel * panel)
+{
+  _inputMode = panel->inputMode();
+  _outputMode = panel->outputMode();
+  _outputMessageMode = panel->outputMessageMode();
+  _previewMode = panel->previewMode();
+}
+
+void FiltersTreeFaveItem::getInOutSettings(InOutPanel * panel)
+{
+  if ( DialogSettings::useFaveInputMode() ) {
+    panel->setInputMode(_inputMode);
+  }
+  if ( DialogSettings::useFaveOutputMode() ) {
+    panel->setOutputMode(_outputMode);
+  }
+  if ( DialogSettings::useFaveOutputMessages() ) {
+    panel->setPreviewMode(_previewMode);
+  }
+  if ( DialogSettings::useFavePreviewMode() ) {
+    panel->setOutputMessageMode(_outputMessageMode);
+  }
 }
 
 void FiltersTreeFaveItem::updateHash()

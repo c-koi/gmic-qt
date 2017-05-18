@@ -23,6 +23,7 @@
  *
  */
 #include <QSettings>
+#include <QDebug>
 #include "ui_inoutpanel.h"
 #include "InOutPanel.h"
 #include "gmic.h"
@@ -88,6 +89,9 @@ InOutPanel::InOutPanel(QWidget *parent) :
           this,SLOT(onOutputMessageSelected(int)));
   connect(ui->previewMode,SIGNAL(currentIndexChanged(int)),
           this,SLOT(onPreviewModeSelected(int)));
+
+  _notifyValueChange = true;
+  _hasSavedState = false;
 }
 
 InOutPanel::~InOutPanel()
@@ -98,26 +102,26 @@ InOutPanel::~InOutPanel()
 GmicQt::InputMode InOutPanel::inputMode() const
 {
   int mode = ui->inputLayers->currentData().toInt();
-  return (mode==NoSelection) ? GmicQt::Active : static_cast<GmicQt::InputMode>(mode);
+  return (mode==NoSelection) ? GmicQt::DefaultInputMode : static_cast<GmicQt::InputMode>(mode);
 }
 
 GmicQt::OutputMode InOutPanel::outputMode() const
 {
   int mode = ui->outputMode->currentData().toInt();
-  return (mode==NoSelection) ? GmicQt::InPlace : static_cast<GmicQt::OutputMode>(mode);
+  return (mode==NoSelection) ? GmicQt::DefaultOutputMode : static_cast<GmicQt::OutputMode>(mode);
 }
 
 GmicQt::PreviewMode InOutPanel::previewMode() const
 {
   int mode = ui->previewMode->currentData().toInt();
-  return (mode==NoSelection) ? GmicQt::FirstOutput : static_cast<GmicQt::PreviewMode>(mode);
+  return (mode==NoSelection) ? GmicQt::DefaultPreviewMode : static_cast<GmicQt::PreviewMode>(mode);
 }
 
 GmicQt::OutputMessageMode
 InOutPanel::outputMessageMode() const
 {
   int mode = ui->outputMessages->currentData().toInt();
-  return (mode==NoSelection) ? GmicQt::Quiet : static_cast<GmicQt::OutputMessageMode>(mode);
+  return (mode==NoSelection) ? GmicQt::DefaultOutputMessageMode : static_cast<GmicQt::OutputMessageMode>(mode);
 }
 
 QString InOutPanel::gmicEnvString() const
@@ -127,6 +131,56 @@ QString InOutPanel::gmicEnvString() const
       .arg(outputMode())
       .arg(outputMessageMode())
       .arg(previewMode());
+}
+
+void InOutPanel::setInputMode(GmicQt::InputMode mode)
+{
+  int index = ui->inputLayers->findData(mode);
+  ui->inputLayers->setCurrentIndex((index == -1) ? 0 : index);
+}
+
+void InOutPanel::setOutputMode(GmicQt::OutputMode mode)
+{
+  int index = ui->outputMode->findData(mode);
+  ui->outputMode->setCurrentIndex((index == -1) ? 0 : index);
+}
+
+void InOutPanel::setPreviewMode(GmicQt::PreviewMode mode)
+{
+  int index = ui->previewMode->findData(mode);
+  ui->previewMode->setCurrentIndex((index == -1) ? 0 : index);
+}
+
+void InOutPanel::setOutputMessageMode(GmicQt::OutputMessageMode mode)
+{
+  int index = ui->outputMessages->findData(mode);
+  ui->outputMessages->setCurrentIndex((index == -1) ? 0 : index);
+}
+
+void InOutPanel::saveState()
+{
+  // Only the first saved state is actuallay recorded
+  // in case of consecutive calls (without a restoreState())
+  if ( _hasSavedState ) {
+    return;
+  }
+  _savedInputMode = inputMode();
+  _savedOutputMode = outputMode();
+  _savedOutputMessageMode = outputMessageMode();
+  _savedPreviewMode = previewMode();
+  _hasSavedState = true;
+}
+
+void InOutPanel::restoreState()
+{
+  if ( ! _hasSavedState ) {
+    return;
+  }
+  ui->inputLayers->setCurrentIndex(ui->inputLayers->findData(_savedInputMode));
+  ui->outputMode->setCurrentIndex(ui->outputMode->findData(_savedOutputMode));
+  ui->outputMessages->setCurrentIndex(ui->outputMessages->findData(_savedOutputMessageMode));
+  ui->previewMode->setCurrentIndex(ui->previewMode->findData(_savedPreviewMode));
+  _hasSavedState = false;
 }
 
 void
@@ -160,9 +214,11 @@ void InOutPanel::onInputModeSelected(int)
 {
   int mode = ui->inputLayers->currentData().toInt();
   if ( mode == NoSelection ) {
-    ui->inputLayers->setCurrentIndex(3);
+    ui->inputLayers->setCurrentIndex(ui->inputLayers->findData(GmicQt::DefaultInputMode));
   }
-  emit inputModeChanged(static_cast<GmicQt::InputMode>(ui->inputLayers->currentData().toInt()));
+  if ( _notifyValueChange ) {
+    emit inputModeChanged(static_cast<GmicQt::InputMode>(ui->inputLayers->currentData().toInt()));
+  }
 }
 
 void
@@ -170,7 +226,7 @@ InOutPanel::onOutputModeSelected(int)
 {
   int mode = ui->outputMode->currentData().toInt();
   if ( mode == NoSelection ) {
-    ui->outputMode->setCurrentIndex(2);
+    ui->outputMode->setCurrentIndex(ui->outputMode->findData(GmicQt::DefaultOutputMode));
   }
 }
 
@@ -178,16 +234,30 @@ void InOutPanel::onOutputMessageSelected(int)
 {
   int mode = ui->outputMessages->currentData().toInt();
   if ( mode == NoSelection ) {
-    ui->outputMessages->setCurrentIndex(2);
+    ui->outputMessages->setCurrentIndex(ui->outputMessages->findData(GmicQt::DefaultOutputMessageMode));
   }
-  emit outputMessageModeChanged(static_cast<GmicQt::OutputMessageMode>(mode));
+  if ( _notifyValueChange ) {
+    emit outputMessageModeChanged(static_cast<GmicQt::OutputMessageMode>(mode));
+  }
 }
 
 void InOutPanel::onPreviewModeSelected(int)
 {
   int mode = ui->previewMode->currentData().toInt();
   if ( mode == NoSelection ) {
-    ui->previewMode->setCurrentIndex(2);
+    ui->previewMode->setCurrentIndex(ui->previewMode->findData(GmicQt::DefaultPreviewMode));
   }
-  emit previewModeChanged(static_cast<GmicQt::PreviewMode>(mode));
+  if ( _notifyValueChange ) {
+    emit previewModeChanged(static_cast<GmicQt::PreviewMode>(mode));
+  }
+}
+
+void InOutPanel::disableNotifications()
+{
+  _notifyValueChange = false;
+}
+
+void InOutPanel::enableNotifications()
+{
+  _notifyValueChange = true;
 }

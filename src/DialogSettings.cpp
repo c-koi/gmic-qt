@@ -25,6 +25,7 @@
 #include "DialogSettings.h"
 #include "ui_dialogsettings.h"
 #include <QSettings>
+#include <QCloseEvent>
 #include <limits>
 #include "Common.h"
 #include "Updater.h"
@@ -34,13 +35,17 @@ bool DialogSettings::_nativeColorDialogs;
 MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
 
+bool DialogSettings::_useFaveInputMode;
+bool DialogSettings::_useFaveOutputMode;
+bool DialogSettings::_useFaveOutputMessages;
+bool DialogSettings::_useFavePreviewMode;
+
 const QColor DialogSettings::CheckBoxBaseColor(83,83,83);
 const QColor DialogSettings::CheckBoxTextColor(255,255,255);
 QColor DialogSettings::UnselectedFilterTextColor;
 
 QString DialogSettings::FolderParameterDefaultValue;
 QString DialogSettings::FileParameterDefaultPath;
-
 
 DialogSettings::DialogSettings(QWidget *parent) :
   QDialog(parent),
@@ -77,6 +82,11 @@ DialogSettings::DialogSettings(QWidget *parent) :
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
   ui->cbNativeColorDialogs->setToolTip(tr("Check to use Native/OS color dialog, uncheck to use Qt's"));
 
+  ui->cbInputLayers->setChecked(_useFaveInputMode);
+  ui->cbOutputMode->setChecked(_useFaveOutputMode);
+  ui->cbOutputMessages->setChecked(_useFaveOutputMessages);
+  ui->cbPreviewMode->setChecked(_useFavePreviewMode);
+
   connect(ui->pbOk,SIGNAL(clicked()),
           this,SLOT(onOk()));
   connect(ui->rbLeftPreview,SIGNAL(toggled(bool)),
@@ -112,8 +122,11 @@ DialogSettings::DialogSettings(QWidget *parent) :
     ui->rbDefaultTheme->setPalette(p);
     ui->rbLeftPreview->setPalette(p);
     ui->rbRightPreview->setPalette(p);
+    ui->cbInputLayers->setPalette(p);
+    ui->cbOutputMode->setPalette(p);
+    ui->cbOutputMessages->setPalette(p);
+    ui->cbPreviewMode->setPalette(p);
   }
-
   ui->pbOk->setFocus();
 }
 
@@ -137,6 +150,33 @@ void DialogSettings::loadSettings()
 
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue",QDir::homePath()).toString();
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath",QDir::homePath()).toString();
+
+
+  // Fave parameters restore options
+  _useFaveInputMode = settings.value("Config/UseFaveInputMode",true).toBool();
+  _useFaveOutputMode = settings.value("Config/UseFaveOutputMode",true).toBool();
+  _useFaveOutputMessages = settings.value("Config/UseFaveOutputMessages",true).toBool();
+  _useFavePreviewMode = settings.value("Config/UseFavePreviewMode",true).toBool();
+}
+
+bool DialogSettings::useFaveInputMode()
+{
+  return _useFaveInputMode;
+}
+
+bool DialogSettings::useFaveOutputMode()
+{
+  return _useFaveOutputMode;
+}
+
+bool DialogSettings::useFaveOutputMessages()
+{
+  return _useFaveOutputMessages;
+}
+
+bool DialogSettings::useFavePreviewMode()
+{
+  return _useFavePreviewMode;
 }
 
 void DialogSettings::saveSettings()
@@ -148,6 +188,10 @@ void DialogSettings::saveSettings()
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY,_updatePeriodicity);
   settings.setValue("FolderParameterDefaultValue",FolderParameterDefaultValue);
   settings.setValue("FileParameterDefaultPath",FileParameterDefaultPath);
+  settings.setValue("Config/UseFaveInputMode",_useFaveInputMode);
+  settings.setValue("Config/UseFaveOutputMode",_useFaveOutputMode);
+  settings.setValue("Config/UseFaveOutputMessages",_useFaveOutputMessages);
+  settings.setValue("Config/UseFavePreviewMode", _useFavePreviewMode);
 }
 
 MainWindow::PreviewPosition DialogSettings::previewPosition()
@@ -196,6 +240,15 @@ void DialogSettings::onUpdatePeriodicityChanged(int )
 void DialogSettings::onColorDialogsToggled(bool on)
 {
   _nativeColorDialogs = on;
+}
+
+void DialogSettings::done(int r)
+{
+  _useFaveInputMode = ui->cbInputLayers->isChecked();
+  _useFaveOutputMode = ui->cbOutputMode->isChecked();
+  _useFaveOutputMessages = ui->cbOutputMessages->isChecked();
+  _useFavePreviewMode = ui->cbPreviewMode->isChecked();
+  QDialog::done(r);
 }
 
 bool DialogSettings::darkThemeEnabled()

@@ -29,8 +29,11 @@
 #include <QString>
 #include <QStandardItem>
 #include <QStringList>
+#include "gmic_qt.h"
 
 #include "FiltersTreeAbstractFilterItem.h"
+
+class InOutPanel;
 
 class FiltersTreeFaveItem : public FiltersTreeAbstractFilterItem {
 
@@ -46,6 +49,10 @@ public:
   QString originalFilterName() const;
   QList<QString> defaultValues() const;
 
+  void setInOutSettings(const InOutPanel *);
+  void getInOutSettings(InOutPanel *);
+
+
 protected:
   void updateHash() override;
 
@@ -53,6 +60,11 @@ private:
   QString _originalName;
   QString _originalHash;
   QList<QString> _defaultValues;
+
+  GmicQt::InputMode _inputMode;
+  GmicQt::OutputMode _outputMode;
+  GmicQt::PreviewMode _previewMode;
+  GmicQt::OutputMessageMode _outputMessageMode;
 };
 
 #endif // _GMIC_QT_FILTERSTREEFAVEITEM_H_

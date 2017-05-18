@@ -48,11 +48,21 @@ public:
   GmicQt::InputMode inputMode() const;
   GmicQt::OutputMode outputMode() const;
   GmicQt::PreviewMode previewMode() const;
+  GmicQt::OutputMessageMode outputMessageMode() const;
   void save(QSettings &);
   void load(QSettings &);
   void reset();
-  GmicQt::OutputMessageMode outputMessageMode() const;
   QString gmicEnvString() const;
+
+  void disableNotifications();
+  void enableNotifications();
+  void setInputMode(GmicQt::InputMode mode);
+  void setOutputMode(GmicQt::OutputMode mode);
+  void setPreviewMode(GmicQt::PreviewMode mode);
+  void setOutputMessageMode(GmicQt::OutputMessageMode mode);
+
+  void saveState();
+  void restoreState();
 
 signals:
   void inputModeChanged(GmicQt::InputMode);
@@ -66,8 +76,15 @@ public slots:
   void onPreviewModeSelected(int);
 
 private:
+  bool _notifyValueChange;
   Ui::InOutPanel *ui;
   static const int NoSelection = -1;
+
+  bool _hasSavedState;
+  GmicQt::InputMode _savedInputMode;
+  GmicQt::OutputMode _savedOutputMode;
+  GmicQt::OutputMessageMode _savedOutputMessageMode;
+  GmicQt::PreviewMode _savedPreviewMode;
 };
 
 #endif // _GMIC_QT_INOUTPANEL_H

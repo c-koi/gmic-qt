@@ -48,6 +48,12 @@
 #endif
 
 namespace GmicQt {
+
+const InputMode DefaultInputMode = Active;
+const OutputMode DefaultOutputMode = InPlace;
+const OutputMessageMode DefaultOutputMessageMode = Quiet;
+const PreviewMode DefaultPreviewMode = FirstOutput;
+
 const float PreviewFactorAny = -1.0f;
 const float PreviewFactorFullImage = 1.0f;
 const float PreviewFactorActualSize = 0.0f;
@@ -118,7 +124,7 @@ int launchPlugin()
     QStringList translations;
     translations << "fr" << "de" << "es" << "zh" << "nl"
                  << "cs" << "it" << "id" << "ua" << "ru"
-		 << "pl" << "pt" << "ja";
+     << "pl" << "pt" << "ja";
     if ( translations.contains(lang) ) {
       QTranslator * translator = new QTranslator(&app);
       translator->load(QString(":/translations/%1.qm").arg(lang));

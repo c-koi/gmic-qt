@@ -29,6 +29,8 @@
 #include <QColor>
 #include "MainWindow.h"
 
+class QCloseEvent;
+
 namespace Ui {
 class DialogSettings;
 }
@@ -51,6 +53,11 @@ public:
   static QString FolderParameterDefaultValue;
   static QString FileParameterDefaultPath;
 
+  static bool useFaveInputMode();
+  static bool useFaveOutputMode();
+  static bool useFaveOutputMessages();
+  static bool useFavePreviewMode();
+
 public slots:
   void onRadioLeftPreviewToggled(bool );
   void onUpdateClicked();
@@ -59,6 +66,7 @@ public slots:
   void onDarkThemeToggled(bool);
   void onUpdatePeriodicityChanged(int i);
   void onColorDialogsToggled(bool);
+  void done(int r) override;
 
 private:
   Ui::DialogSettings *ui;
@@ -66,6 +74,10 @@ private:
   static bool _nativeColorDialogs;
   static MainWindow::PreviewPosition _previewPosition;
   static int _updatePeriodicity;
+  static bool _useFaveInputMode;
+  static bool _useFaveOutputMode;
+  static bool _useFaveOutputMessages;
+  static bool _useFavePreviewMode;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_

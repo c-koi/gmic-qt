@@ -1107,7 +1107,19 @@ MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString>
 {
   FiltersTreeAbstractFilterItem * filterItem;
   filterItem = dynamic_cast<FiltersTreeAbstractFilterItem*>( _currentFiltersTreeModel->itemFromIndex(index) );
+  FiltersTreeFaveItem * faveItem = filterItem ? dynamic_cast<FiltersTreeFaveItem*>(filterItem) : 0;
   saveCurrentParameters();
+
+  // Restore fave's Input/Ouput panel settings, or restore previous ones
+  ui->inOutSelector->disableNotifications();
+  if ( faveItem ) {
+    ui->inOutSelector->saveState();
+    faveItem->getInOutSettings(ui->inOutSelector);
+  } else {
+    ui->inOutSelector->restoreState();
+  }
+  ui->inOutSelector->enableNotifications();
+
   if ( filterItem ) {
     ui->filterParams->build(filterItem,values);
     ui->filterName->setText(QString("<b>%1</b>").arg(filterItem->text()));
@@ -1123,9 +1135,8 @@ MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString>
     ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
     _okButtonShouldApply = false;
   }
-  bool fave = filterItem && ( typeid(*filterItem) == typeid(FiltersTreeFaveItem) );
-  ui->tbRemoveFave->setEnabled(fave);
-  ui->tbRenameFave->setEnabled(fave);
+  ui->tbRemoveFave->setEnabled(faveItem != nullptr);
+  ui->tbRenameFave->setEnabled(faveItem != nullptr);
 }
 
 FiltersTreeAbstractFilterItem *
@@ -1402,6 +1413,7 @@ MainWindow::onAddFave()
     FiltersTreeFaveItem * fave = new FiltersTreeFaveItem(item,
                                                          faveUniqueName(item->text()),
                                                          ui->filterParams->valueStringList());
+    fave->setInOutSettings(ui->inOutSelector);
     FiltersTreeFolderItem  * folder = faveFolder(FullModel);
 
     if ( filtersSelectionMode() ) {
