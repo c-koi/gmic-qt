@@ -43,6 +43,8 @@
 #include <QFont>
 #include <QFontMetrics>
 #include <QStyleFactory>
+#include <QJsonDocument>
+#include <QJsonArray>
 #include <iostream>
 #include <typeinfo>
 #include <cassert>
@@ -1311,7 +1313,10 @@ MainWindow::loadFaves(bool withVisibility)
       FiltersTreeFaveItem * faveItem = new FiltersTreeFaveItem(filterItem,
                                                                importedFave.name(),
                                                                importedFave.defaultParameters());
-
+      faveItem->setInOutSettings(importedFave.inputMode(),
+                                 importedFave.outputMode(),
+                                 importedFave.previewMode(),
+                                 importedFave.outputMessageMode());
       bool faveIsVisible = FiltersVisibilityMap::filterIsVisible(faveItem->hash());
       if ( withVisibility ) {
         GmicStdLibParser::addStandardItemWithCheckBox(folder,faveItem,faveIsVisible);
@@ -1370,6 +1375,7 @@ MainWindow::saveFaves()
 {
   FiltersTreeFolderItem * folder = faveFolder(FullModel);
   QString filename(QString("%1%2").arg(GmicQt::path_rc(true)).arg("gmic_qt_faves"));
+  QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(true)).arg("gmic_qt_faves.json"));
   if ( folder || _hiddenFaves.size() ) {
     QFile::remove(filename+".bak");
     QFile::copy(filename,filename+".bak");
@@ -1392,8 +1398,30 @@ MainWindow::saveFaves()
         stream << StoredFave(fave);
       }
     } else {
-      std::cerr << "[gmic_qt] Error: cannot open/create file " << filename.constData() << std::endl;
+      std::cerr << "[gmic_qt] Error: cannot open/create file " << filename.toStdString() << std::endl;
     }
+
+    // Create JSON array
+    QJsonArray array;
+    if ( folder ) {
+      int count = folder->rowCount();
+      for (int row = 0; row < count; ++row) {
+        FiltersTreeFaveItem * fave = static_cast<FiltersTreeFaveItem*>(folder->child(row));
+        array << StoredFave(fave).toJSONObject();
+      }
+    }
+    for ( FiltersTreeFaveItem * fave : _hiddenFaves ) {
+        array << StoredFave(fave).toJSONObject();
+    }
+    // Save JSON array
+    QFile jsonFile(jsonFilename);
+    if ( jsonFile.open(QIODevice::WriteOnly|QIODevice::Truncate) ) {
+      QJsonDocument jsonDoc(array);
+      jsonFile.write(jsonDoc.toJson());
+    } else {
+      std::cerr << "[gmic_qt] Error: cannot open/create file " << jsonFilename.toStdString() << std::endl;
+    }
+
   } else {
     // Backup current file
     QFile::copy(filename,filename+".bak");

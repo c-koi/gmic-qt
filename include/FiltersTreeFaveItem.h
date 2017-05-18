@@ -49,9 +49,17 @@ public:
   QString originalFilterName() const;
   QList<QString> defaultValues() const;
 
+  void setInOutSettings(GmicQt::InputMode inputMode,
+                        GmicQt::OutputMode outputMode,
+                        GmicQt::PreviewMode previewMode,
+                        GmicQt::OutputMessageMode outputMessageMode);
   void setInOutSettings(const InOutPanel *);
   void getInOutSettings(InOutPanel *);
 
+  inline GmicQt::InputMode inputMode() const;
+  inline GmicQt::OutputMode outputMode() const;
+  inline GmicQt::PreviewMode previewMode() const;
+  inline GmicQt::OutputMessageMode outputMessageMode() const;
 
 protected:
   void updateHash() override;
@@ -66,5 +74,10 @@ private:
   GmicQt::PreviewMode _previewMode;
   GmicQt::OutputMessageMode _outputMessageMode;
 };
+
+GmicQt::InputMode FiltersTreeFaveItem::inputMode() const { return _inputMode; }
+GmicQt::OutputMode FiltersTreeFaveItem::outputMode() const { return _outputMode; }
+GmicQt::PreviewMode FiltersTreeFaveItem::previewMode() const { return _previewMode; }
+GmicQt::OutputMessageMode FiltersTreeFaveItem::outputMessageMode() const { return _outputMessageMode; }
 
 #endif // _GMIC_QT_FILTERSTREEFAVEITEM_H_

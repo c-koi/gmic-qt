@@ -125,6 +125,17 @@ void FiltersTreeFaveItem::getInOutSettings(InOutPanel * panel)
   }
 }
 
+void FiltersTreeFaveItem::setInOutSettings(GmicQt::InputMode inputMode,
+                                           GmicQt::OutputMode outputMode,
+                                           GmicQt::PreviewMode previewMode,
+                                           GmicQt::OutputMessageMode outputMessageMode)
+{
+  _inputMode = inputMode;
+  _outputMode = outputMode;
+  _previewMode = previewMode;
+  _outputMessageMode = outputMessageMode;
+}
+
 void FiltersTreeFaveItem::updateHash()
 {
   _hash = FiltersTreeAbstractFilterItem::computeHash(text(),

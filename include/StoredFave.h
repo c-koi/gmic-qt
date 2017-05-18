@@ -29,6 +29,8 @@
 #include <QList>
 #include <QStringList>
 #include <QTextStream>
+#include <QJsonObject>
+#include "gmic_qt.h"
 
 class FiltersTreeFaveItem;
 
@@ -40,6 +42,15 @@ public:
              QString command,
              QString previewCommand,
              QStringList defaultParameters);
+  StoredFave(QString name,
+             QString originalName,
+             QString command,
+             QString previewCommand,
+             QStringList defaultParameters,
+             GmicQt::InputMode inputMode,
+             GmicQt::OutputMode outputMode,
+             GmicQt::OutputMessageMode outputMessageMode,
+             GmicQt::PreviewMode previewMode);
   StoredFave(const FiltersTreeFaveItem *);
   QString originalFilterHash();
   inline QString name() const;
@@ -47,10 +58,21 @@ public:
   inline QString command() const;
   inline QString previewCommand() const;
   inline const QStringList & defaultParameters() const;
+  inline GmicQt::InputMode inputMode() const;
+  inline GmicQt::OutputMode outputMode() const;
+  inline GmicQt::OutputMessageMode outputMessageMode() const;
+  inline GmicQt::PreviewMode previewMode() const;
+
+
+  // @deprecated (Old 2.0.0 pre-release fave format)
   inline QTextStream & flush(QTextStream & stream) const;
 
   static QList<StoredFave> importFaves();
   static QList<StoredFave> readFaves();
+
+  QJsonObject toJSONObject() const;
+
+  static StoredFave fromJSONObject(const QJsonObject & object);
 
 private:
   QString _name;
@@ -58,6 +80,11 @@ private:
   QString _command;
   QString _previewCommand;
   QStringList _defaultParameters;
+
+  GmicQt::InputMode _inputMode;
+  GmicQt::OutputMode _outputMode;
+  GmicQt::OutputMessageMode _outputMessageMode;
+  GmicQt::PreviewMode _previewMode;
 };
 
 QTextStream & operator<<(QTextStream & stream, const StoredFave & fave);
@@ -67,5 +94,9 @@ QString StoredFave::originalName() const { return _originalName; }
 QString StoredFave::command() const  { return _command; }
 QString StoredFave::previewCommand() const { return _previewCommand; }
 const QStringList & StoredFave::defaultParameters() const { return _defaultParameters; }
+GmicQt::InputMode StoredFave::inputMode() const { return _inputMode; }
+GmicQt::OutputMode StoredFave::outputMode() const { return _outputMode; }
+GmicQt::OutputMessageMode StoredFave::outputMessageMode() const { return _outputMessageMode; }
+GmicQt::PreviewMode StoredFave::previewMode() const { return _previewMode; }
 
 #endif // _GMIC_QT_STOREDFAVE_H_
