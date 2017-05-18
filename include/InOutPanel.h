@@ -81,10 +81,10 @@ private:
   static const int NoSelection = -1;
 
   bool _hasSavedState;
-  GmicQt::InputMode _savedInputMode;
-  GmicQt::OutputMode _savedOutputMode;
-  GmicQt::OutputMessageMode _savedOutputMessageMode;
-  GmicQt::PreviewMode _savedPreviewMode;
+  int _savedInputModeIndex;
+  int _savedOutputModeIndex;
+  int _savedOutputMessageModeIndex;
+  int _savedPreviewModeIndex;
 };
 
 #endif // _GMIC_QT_INOUTPANEL_H
