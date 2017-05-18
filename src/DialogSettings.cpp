@@ -38,6 +38,10 @@ const QColor DialogSettings::CheckBoxBaseColor(83,83,83);
 const QColor DialogSettings::CheckBoxTextColor(255,255,255);
 QColor DialogSettings::UnselectedFilterTextColor;
 
+QString DialogSettings::FolderParameterDefaultValue;
+QString DialogSettings::FileParameterDefaultPath;
+
+
 DialogSettings::DialogSettings(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::DialogSettings)
@@ -130,6 +134,9 @@ void DialogSettings::loadSettings()
   _darkThemeEnabled = settings.value("Config/DarkTheme",false).toBool();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs",false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY,INTERNET_NEVER_UPDATE_PERIODICITY).toInt();
+
+  FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue",QDir::homePath()).toString();
+  FileParameterDefaultPath = settings.value("FileParameterDefaultPath",QDir::homePath()).toString();
 }
 
 void DialogSettings::saveSettings()
@@ -139,6 +146,8 @@ void DialogSettings::saveSettings()
   settings.setValue("Config/DarkTheme",_darkThemeEnabled);
   settings.setValue("Config/NativeColorDialogs",_nativeColorDialogs);
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY,_updatePeriodicity);
+  settings.setValue("FolderParameterDefaultValue",FolderParameterDefaultValue);
+  settings.setValue("FileParameterDefaultPath",FileParameterDefaultPath);
 }
 
 MainWindow::PreviewPosition DialogSettings::previewPosition()

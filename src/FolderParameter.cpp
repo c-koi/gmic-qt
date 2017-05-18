@@ -26,6 +26,7 @@
 #include "Common.h"
 #include <QWidget>
 #include <QDebug>
+#include <QRegExp>
 #include <QGridLayout>
 #include <QLabel>
 #include <QFileDialog>
@@ -81,6 +82,9 @@ void
 FolderParameter::setValue(const QString & value)
 {
   _value = value;
+  if ( _value.isEmpty() ) {
+    _value = DialogSettings::FolderParameterDefaultValue;
+  }
   QDir dir(_value);
   QDir abs(dir.absolutePath());
   if (_button) {
@@ -93,25 +97,36 @@ FolderParameter::setValue(const QString & value)
 void
 FolderParameter::reset()
 {
-  _value = _default;
+  setValue(_default);
 }
 
 void FolderParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("folder",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
-  _default = _value = list[1];
+  QRegExp re("^\".*\"$");
+  if ( re.exactMatch(list[1]) ) {
+    list[1].chop(1);
+    list[1].remove(0,1);
+  }
+  if ( list[1].isEmpty() ) {
+    _default.clear();
+    _value = DialogSettings::FolderParameterDefaultValue;
+  } else {
+    _default = _value = list[1];
+  }
 }
 
 void
 FolderParameter::onButtonPressed()
 {
   QString oldValue = _value;
-  QString dirname = QFileDialog::getExistingDirectory(0,tr("Select a folder"),_value);
-  if (dirname.isNull()) {
+  QString path = QFileDialog::getExistingDirectory(0,tr("Select a folder"),_value);
+  if (path.isEmpty()) {
     setValue(oldValue);
   } else {
-    setValue(dirname);
+    DialogSettings::FolderParameterDefaultValue = path;
+    setValue(path);
   }
   emit valueChanged();
 }

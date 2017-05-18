@@ -101,13 +101,18 @@ FileParameter::setValue(const QString & value)
 void
 FileParameter::reset()
 {
-  _value = _default;
+  setValue(_default);
 }
 
 void FileParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("file",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
+  QRegExp re("^\".*\"$");
+  if ( re.exactMatch(list[1]) ) {
+    list[1].chop(1);
+    list[1].remove(0,1);
+  }
   _default = _value = list[1];
 }
 
@@ -115,16 +120,20 @@ void
 FileParameter::onButtonPressed()
 {
   QString folder;
-  if (!_value.isEmpty()) {
+  if (_value.isEmpty()) {
+    folder = DialogSettings::FileParameterDefaultPath;
+  } else {
     folder = QFileInfo(_value).path();
   }
   QString filename = QFileDialog::getSaveFileName(0,tr("Select a file"),folder,QString(),0,
                                                   QFileDialog::DontConfirmOverwrite);
-  if (filename.isNull()) {
-    _value = "";
+  if ( filename.isEmpty() ) {
+    _value.clear();
     _button->setText("...");
   } else {
     _value = filename;
+    QFileInfo info(filename);
+    DialogSettings::FileParameterDefaultPath = info.path();
     int w = _button->contentsRect().width()-10;
     QFontMetrics fm(_button->font());
     _button->setText(fm.elidedText(QFileInfo(_value).fileName(),Qt::ElideRight,w));

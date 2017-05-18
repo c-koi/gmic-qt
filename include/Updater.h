@@ -32,8 +32,6 @@
 #include <QMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-
-
 #include <QSettings>
 #include <QNetworkReply>
 #include <QFile>
@@ -43,8 +41,6 @@
 #include <QTemporaryFile>
 #include <QApplication>
 #include <QTimer>
-
-
 
 #include "gmic_qt.h"
 class Updater : public QObject

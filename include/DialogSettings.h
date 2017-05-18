@@ -48,6 +48,8 @@ public:
   static const QColor CheckBoxTextColor;
   static const QColor CheckBoxBaseColor;
   static QColor UnselectedFilterTextColor;
+  static QString FolderParameterDefaultValue;
+  static QString FileParameterDefaultPath;
 
 public slots:
   void onRadioLeftPreviewToggled(bool );
