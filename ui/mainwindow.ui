@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>987</width>
-    <height>582</height>
+    <width>1224</width>
+    <height>579</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -170,19 +170,30 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,1">
+      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1">
        <item>
-        <widget class="QLabel" name="filterName">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="filterName">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="tbResetParameters">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QScrollArea" name="scrollAreaParameters">
@@ -206,8 +217,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>95</width>
-            <height>486</height>
+            <width>254</width>
+            <height>474</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -453,7 +464,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0,0">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0">
      <item>
       <widget class="QPushButton" name="pbSettings">
        <property name="sizePolicy">
@@ -506,19 +517,6 @@
        </property>
        <property name="text">
         <string>&amp;Fullscreen</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbReset">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>&amp;Reset</string>
        </property>
       </widget>
      </item>
@@ -596,7 +594,6 @@
   <tabstop>tbZoomReset</tabstop>
   <tabstop>pbCancel</tabstop>
   <tabstop>pbFullscreen</tabstop>
-  <tabstop>pbReset</tabstop>
   <tabstop>pbApply</tabstop>
   <tabstop>pbOk</tabstop>
   <tabstop>tbRemoveFave</tabstop>

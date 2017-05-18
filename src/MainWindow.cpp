@@ -104,6 +104,8 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->labelWarning->setToolTip("Warning: Preview may be inaccurate (zoom factor has been modified)");
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
+  ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
+  ui->tbResetParameters->setVisible(false);
 
   ui->tbUpdateFilters->setToolTip(tr("Update filters"));
 
@@ -209,7 +211,7 @@ void MainWindow::setIcons()
   ui->tbUpdateFilters->setIcon(LOAD_ICON("view-refresh"));
   ui->pbApply->setIcon(LOAD_ICON("system-run"));
   ui->pbOk->setIcon(LOAD_ICON("insert-image"));
-  ui->pbReset->setIcon(LOAD_ICON("undo"));
+  ui->tbResetParameters->setIcon(LOAD_ICON("view-refresh"));
   ui->pbCancel->setIcon(LOAD_ICON("process-stop"));
   ui->tbAddFave->setIcon(LOAD_ICON("bookmark-add"));
   ui->tbRemoveFave->setIcon(LOAD_ICON("bookmark-remove"));
@@ -443,7 +445,7 @@ void MainWindow::makeConnections()
           this,SLOT(onCloseClicked()));
   connect(ui->pbApply,SIGNAL(clicked(bool)),
           this,SLOT(onApplyClicked()));
-  connect(ui->pbReset,SIGNAL(clicked(bool)),
+  connect(ui->tbResetParameters,SIGNAL(clicked(bool)),
           this,SLOT(onReset()));
 
   connect(ui->tbUpdateFilters,SIGNAL(clicked(bool)),
@@ -1130,10 +1132,12 @@ MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString>
     ui->previewWidget->setPreviewFactor(filterItem->previewFactor(),resetZoom);
     showZoomWarningIfNeeded();
     _okButtonShouldApply = true;
+    ui->tbResetParameters->setVisible(true);
   } else {
     ui->filterParams->setNoFilter();
     ui->filterName->setVisible(false);
     ui->tbAddFave->setEnabled(false);
+    ui->tbResetParameters->setVisible(false);
     ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
     _okButtonShouldApply = false;
   }
