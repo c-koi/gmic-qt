@@ -816,6 +816,7 @@ MainWindow::saveSettings()
   if ( filterItem ) {
     selectedFilterHash = filterItem->hash();
   }
+  settings.setValue("LastExecution/gmic_version",gmic_version);
   settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname),_lastAppliedCommand);
   settings.setValue(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname),_lastFilterName);
   settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname),_lastAppliedCommandArguments);
