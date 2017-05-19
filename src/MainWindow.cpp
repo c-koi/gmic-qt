@@ -1411,11 +1411,11 @@ MainWindow::saveFaves()
       int count = folder->rowCount();
       for (int row = 0; row < count; ++row) {
         FiltersTreeFaveItem * fave = static_cast<FiltersTreeFaveItem*>(folder->child(row));
-        array << StoredFave(fave).toJSONObject();
+        array.append(StoredFave(fave).toJSONObject());
       }
     }
     for ( FiltersTreeFaveItem * fave : _hiddenFaves ) {
-        array << StoredFave(fave).toJSONObject();
+      array.append(StoredFave(fave).toJSONObject());
     }
     // Save JSON array
     QFile jsonFile(jsonFilename);
