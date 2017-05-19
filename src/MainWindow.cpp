@@ -166,9 +166,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   loadSettings();
 
-  if ( ! _newSession ) {
-    ParametersCache::load();
-  }
+  ParametersCache::load(!_newSession);
 
   setIcons();
 
@@ -804,8 +802,9 @@ void MainWindow::onUpdateFiltersClicked()
 void MainWindow::saveCurrentParameters()
 {
   if ( ! ui->filterParams->pathHash().isEmpty() ) {
-    ParametersCache::setValue(ui->filterParams->pathHash(),
-                              ui->filterParams->valueStringList());
+    QString hash = ui->filterParams->pathHash();
+    ParametersCache::setValue(hash, ui->filterParams->valueStringList());
+    ParametersCache::setInputOutputState(hash, ui->inOutSelector->state());
   }
 }
 
@@ -1455,6 +1454,7 @@ MainWindow::onAddFave()
     }
 
     ParametersCache::setValue(fave->hash(),ui->filterParams->valueStringList());
+    ParametersCache::setInputOutputState(fave->hash(), ui->inOutSelector->state());
     ui->filtersTree->setCurrentIndex(fave->index());
     folder->sortChildren(0,Qt::AscendingOrder);
     saveFaves();
@@ -1542,9 +1542,12 @@ void MainWindow::onRenameFaveFinished(QWidget * editor)
 
   QString hash = fave->hash();
   QList<QString> values = ParametersCache::getValue(hash);
+  InOutPanel::State inOutState = ParametersCache::getInputOutputState(hash);
   ParametersCache::remove(hash);
   fave->rename(newName);
   ParametersCache::setValue(fave->hash(),values);
+  ParametersCache::setInputOutputState(fave->hash(),inOutState);
+
   FiltersTreeFaveItem * selectedFave = findFave(hash,SelectionModel);
   if ( selectedFave ) {
     selectedFave->rename(newName);

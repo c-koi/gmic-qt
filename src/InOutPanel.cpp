@@ -29,6 +29,14 @@
 #include "gmic.h"
 #include <cstdio>
 
+const InOutPanel::State InOutPanel::State::Unspecified(GmicQt::UnspecifiedInputMode,
+                                                       GmicQt::UnspecifiedOutputMode,
+                                                       GmicQt::UnspecifiedPreviewMode,
+                                                       GmicQt::UnspecifiedOutputMessageMode);
+/*
+ * InOutPanel methods
+ */
+
 InOutPanel::InOutPanel(QWidget *parent) :
   QGroupBox(parent),
   ui(new Ui::InOutPanel)
@@ -265,4 +273,109 @@ void InOutPanel::disableNotifications()
 void InOutPanel::enableNotifications()
 {
   _notifyValueChange = true;
+}
+
+/*
+ * InOutPanel::Sate methods
+ */
+
+InOutPanel::State InOutPanel::state() const
+{
+  return InOutPanel::State(ui->inputLayers->currentIndex() ? inputMode() : GmicQt::UnspecifiedInputMode,
+                           ui->outputMode->currentIndex() ? outputMode() : GmicQt::UnspecifiedOutputMode,
+                           ui->previewMode->currentIndex() ? previewMode() : GmicQt::UnspecifiedPreviewMode,
+                           ui->outputMessages->currentIndex() ? outputMessageMode() : GmicQt::UnspecifiedOutputMessageMode);
+}
+
+void InOutPanel::setState(const State & state, bool notify)
+{
+  bool notification = _notifyValueChange;
+  if ( !notify ) {
+    disableNotifications();
+  }
+
+  if ( state.inputMode != GmicQt::UnspecifiedInputMode ) {
+    ui->inputLayers->setCurrentIndex(ui->inputLayers->findData(state.inputMode));
+  } else {
+    ui->inputLayers->setCurrentIndex(0);
+  }
+  if ( state.outputMode != GmicQt::UnspecifiedOutputMode ) {
+    ui->outputMode->setCurrentIndex(ui->outputMode->findData(state.outputMode));
+  } else {
+    ui->outputMode->setCurrentIndex(0);
+  }
+  if ( state.outputMessageMode != GmicQt::UnspecifiedOutputMessageMode ) {
+    ui->outputMessages->setCurrentIndex(ui->outputMessages->findData(state.outputMessageMode));
+  } else {
+    ui->outputMessages->setCurrentIndex(0);
+  }
+  if ( state.previewMode != GmicQt::UnspecifiedPreviewMode ) {
+    ui->previewMode->setCurrentIndex(ui->previewMode->findData(state.previewMode));
+  } else {
+    ui->previewMode->setCurrentIndex(0);
+  }
+
+  if ( notification ) {
+    enableNotifications();
+  }
+}
+
+InOutPanel::State::State()
+  : inputMode(GmicQt::UnspecifiedInputMode),
+    outputMode(GmicQt::UnspecifiedOutputMode),
+    previewMode(GmicQt::UnspecifiedPreviewMode),
+    outputMessageMode(GmicQt::UnspecifiedOutputMessageMode)
+{
+}
+
+InOutPanel::State::State(GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode, GmicQt::PreviewMode previewMode, GmicQt::OutputMessageMode outputMessageMode)
+  : inputMode(inputMode),
+    outputMode(outputMode),
+    previewMode(previewMode),
+    outputMessageMode(outputMessageMode)
+{
+}
+
+bool InOutPanel::State::operator==( const State & other ) const
+{
+  return inputMode == other.inputMode
+      && outputMode == other.outputMode
+      && previewMode == other.previewMode
+      && outputMessageMode == other.outputMessageMode;
+}
+
+bool InOutPanel::State::operator!=( const State & other ) const
+{
+  return inputMode != other.inputMode
+      || outputMode != other.outputMode
+      || previewMode != other.previewMode
+      || outputMessageMode != other.outputMessageMode;
+}
+
+bool InOutPanel::State::isUnspecified() const
+{
+  return inputMode == GmicQt::UnspecifiedInputMode
+      && outputMode == GmicQt::UnspecifiedOutputMode
+      && previewMode == GmicQt::UnspecifiedPreviewMode
+      && outputMessageMode == GmicQt::UnspecifiedOutputMessageMode;
+}
+
+QJsonObject InOutPanel::State::toJSONObject() const
+{
+  QJsonObject object;
+  object.insert("InputLayers",inputMode);
+  object.insert("OutputMode",outputMode);
+  object.insert("PreviewMode",previewMode);
+  object.insert("OutputMessages",outputMessageMode);
+  return object;
+}
+
+InOutPanel::State InOutPanel::State::fromJSONObject(const QJsonObject & object)
+{
+  InOutPanel::State state;
+  state.inputMode = static_cast<GmicQt::InputMode>(object.value("InputLayers").toInt(GmicQt::UnspecifiedInputMode));
+  state.outputMode = static_cast<GmicQt::OutputMode>(object.value("OutputMode").toInt(GmicQt::UnspecifiedOutputMode));
+  state.previewMode = static_cast<GmicQt::PreviewMode>(object.value("PreviewMode").toInt(GmicQt::UnspecifiedPreviewMode));
+  state.outputMessageMode = static_cast<GmicQt::OutputMessageMode>(object.value("outputMessageMode").toInt(GmicQt::UnspecifiedOutputMessageMode));
+  return state;
 }

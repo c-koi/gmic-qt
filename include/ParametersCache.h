@@ -28,16 +28,22 @@
 #include <QHash>
 #include <QString>
 #include <QList>
+#include "InOutPanel.h"
 
 class ParametersCache {
 public:
-  static void load();
+  static void load(bool loadFiltersParameters);
   static void save();
   static void setValue(const QString & hash, const QList<QString> & list );
   static QList<QString> getValue(const QString & hash );
   static void remove( const QString & hash );
+
+  static InOutPanel::State getInputOutputState(const QString & hash );
+  static void setInputOutputState(const QString & hash, const InOutPanel::State & );
+
 private:
-  static QHash<QString,QList<QString>> _cache;
+  static QHash<QString,QList<QString>> _parametersCache;
+  static QHash<QString,InOutPanel::State> _inOutPanelStates;
 };
 
 #endif // _GMIC_QT_PARAMETERSCACHE_H

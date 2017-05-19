@@ -26,13 +26,17 @@
 #include <QBuffer>
 #include <QDataStream>
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "Common.h"
 #include "ParametersCache.h"
 #include "gmic.h"
 
-QHash<QString,QList<QString>> ParametersCache::_cache;
+QHash<QString,QList<QString>> ParametersCache::_parametersCache;
+QHash<QString,InOutPanel::State> ParametersCache::_inOutPanelStates;
 
-void ParametersCache::load()
+void ParametersCache::load(bool loadFiltersParameters)
 {
   QString path = QString("%1%2").arg( GmicQt::path_rc(false), PARAMETERS_CACHE_FILENAME );
   QFile file(path);
@@ -56,6 +60,52 @@ void ParametersCache::load()
       setValue(hash,values);
     }
   }
+
+  // Load JSON file
+
+  _parametersCache.clear();
+  _inOutPanelStates.clear();
+
+  QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), "gmic_qt_parameters_json.dat" );
+  QFile jsonFile(jsonFilename);
+  if ( jsonFile.open(QFile::ReadOnly) ) {
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
+    // QJsonDocument jsonDoc = QJsonDocument::fromJson(qUncompress(jsonFile.readAll()));
+    // QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
+
+    if ( jsonDoc.isObject() ) {
+      QJsonObject documentObject = jsonDoc.object();
+      QJsonObject::iterator itFilter = documentObject.begin();
+      while ( itFilter != documentObject.end() ) {
+        QString hash = itFilter.key();
+        QJsonObject filterObject = itFilter.value().toObject();
+
+        // Retrieve parameters
+        if ( loadFiltersParameters ) {
+          QJsonValue parameters = filterObject.value("parameters");
+          if ( ! parameters.isUndefined() ) {
+            QJsonArray array = parameters.toArray();
+            QStringList values;
+            for ( const QJsonValue & v : array ) {
+              values.push_back(v.toString());
+            }
+            _parametersCache[hash] = values;
+          }
+        }
+
+        QJsonValue state = filterObject.value("in_out_state");
+        // Retrieve Input/Output state
+        if ( ! state.isUndefined() ) {
+          QJsonObject stateObject = state.toObject();
+          _inOutPanelStates[hash] = InOutPanel::State::fromJSONObject(stateObject);
+        }
+        ++itFilter;
+      }
+    }
+  } else {
+    qWarning() << "[gmic-qt] Error: Cannot read" << jsonFilename;
+    qWarning() << "[gmic-qt] Parameters cannot be restored.";
+  }
 }
 
 void
@@ -66,10 +116,10 @@ ParametersCache::save()
   buffer.open(QIODevice::WriteOnly);
   QDataStream stream(&buffer);
   stream.setVersion(QDataStream::Qt_5_0);
-  qint32 count = _cache.size();
+  qint32 count = _parametersCache.size();
   stream << count;
-  QHash<QString,QList<QString>>::const_iterator it = _cache.begin();
-  while ( it != _cache.end() ) {
+  QHash<QString,QList<QString>>::const_iterator it = _parametersCache.begin();
+  while ( it != _parametersCache.end() ) {
     stream << it.key() << it.value();
     ++it;
   }
@@ -84,19 +134,84 @@ ParametersCache::save()
   } else {
     qWarning() << "[gmic-qt] Error: Cannot write" << path;
   }
+
+  // JSON Document format
+  //
+  // {
+  //  "51d288e6f1c6e531cc61289f17e34d8a": {
+  //      "parameters": [
+  //          "6",
+  //          "21.06",
+  //          "1.36",
+  //          "5",
+  //          "0"
+  //      ],
+  //      "in_out_state": {
+  //          "InputLayers": 1,
+  //          "OutputMessages": 5,
+  //          "OutputMode": 100,
+  //          "PreviewMode": 100
+  //      }
+  //  }
+  // }
+
+  QJsonObject documentObject;
+
+  // Add Input/Ouput states
+
+  QHash<QString,InOutPanel::State>::iterator itState = _inOutPanelStates.begin();
+  while ( itState != _inOutPanelStates.end() )  {
+    QJsonObject filterObject;
+    filterObject.insert("in_out_state",itState.value().toJSONObject());
+    documentObject.insert(itState.key(),filterObject);
+    ++itState;
+  }
+
+  // Add filters parameters
+
+  QHash<QString,QList<QString> >::iterator itParams = _parametersCache.begin();
+  while ( itParams != _parametersCache.end() ) {
+    QJsonObject filterObject;
+    QJsonObject::iterator entry = documentObject.find(itParams.key());
+    if ( entry != documentObject.end() ) {
+      filterObject = entry.value().toObject();
+    }
+    // Add the parameters list
+    QJsonArray array;
+    QStringList list = itParams.value();
+    for ( const QString & str : list ) {
+      array.push_back(str);
+    }
+    filterObject.insert("parameters",array);
+    documentObject.insert(itParams.key(),filterObject);
+    ++itParams;
+  }
+
+  QJsonDocument jsonDoc(documentObject);
+  QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), "gmic_qt_parameters_json.dat" );
+  QFile jsonFile(jsonFilename);
+  if ( jsonFile.open(QFile::WriteOnly|QFile::Truncate) ) {
+    //jsonFile.write(jsonDoc.toBinaryData());
+    jsonFile.write(jsonDoc.toJson());
+    //jsonFile.write(qCompress(jsonDoc.toBinaryData()));
+    jsonFile.close();
+  } else {
+    qWarning() << "[gmic-qt] Error: Cannot write" << jsonFilename;
+    qWarning() << "[gmic-qt] Parameters cannot be saved.";
+  }
 }
 
 void
 ParametersCache::setValue(const QString & hash, const QList<QString> & list)
 {
-  _cache[hash] = list;
+  _parametersCache[hash] = list;
 }
 
 QList<QString>
 ParametersCache::getValue(const QString & hash)
 {
-  if ( _cache.count(hash) ) {
-    return _cache[hash];
+  if ( _parametersCache.count(hash) ) {
+    return _parametersCache[hash];
   } else {
     return QList<QString>();
   }
@@ -105,5 +220,24 @@ ParametersCache::getValue(const QString & hash)
 void
 ParametersCache::remove(const QString & hash)
 {
-  _cache.remove(hash);
+  _parametersCache.remove(hash);
+  _inOutPanelStates.remove(hash);
+}
+
+InOutPanel::State ParametersCache::getInputOutputState(const QString & hash)
+{
+  if ( _inOutPanelStates.contains(hash) ) {
+    return _inOutPanelStates[hash];
+  } else {
+    return InOutPanel::State::Unspecified;
+  }
+}
+
+void ParametersCache::setInputOutputState(const QString & hash, const InOutPanel::State & state)
+{
+  if ( state.isUnspecified() ) {
+    _inOutPanelStates.remove(hash);
+    return;
+  }
+  _inOutPanelStates[hash] = state;
 }

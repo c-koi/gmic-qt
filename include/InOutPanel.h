@@ -26,6 +26,7 @@
 #define _GMIC_QT_INOUTPANEL_H
 
 #include <QGroupBox>
+#include <QJsonObject>
 #include "gmic_qt.h"
 #include "host.h"
 
@@ -63,6 +64,25 @@ public:
 
   void saveState();
   void restoreState();
+
+  struct State {
+    GmicQt::InputMode inputMode;
+    GmicQt::OutputMode outputMode;
+    GmicQt::PreviewMode previewMode;
+    GmicQt::OutputMessageMode outputMessageMode;
+    // Methods
+    State();
+    State(GmicQt::InputMode , GmicQt::OutputMode , GmicQt::PreviewMode , GmicQt::OutputMessageMode );
+    bool isUnspecified() const;
+    QJsonObject toJSONObject() const;
+    static State fromJSONObject(const QJsonObject & );
+    static const State Unspecified;
+    bool operator==( const State & other ) const;
+    bool operator!=( const State & other ) const;
+  };
+
+  State state() const;
+  void setState(const State & state, bool notify);
 
 signals:
   void inputModeChanged(GmicQt::InputMode);

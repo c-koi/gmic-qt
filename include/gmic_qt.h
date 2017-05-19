@@ -40,7 +40,8 @@ enum InputMode {
   AllInvisibles,
   AllVisiblesDesc,
   AllInvisiblesDesc,
-  AllDesc
+  AllDesc,
+  UnspecifiedInputMode = 100
 };
 extern const InputMode DefaultInputMode;
 
@@ -48,7 +49,8 @@ enum OutputMode {
   InPlace,
   NewLayers,
   NewActiveLayers,
-  NewImage
+  NewImage,
+  UnspecifiedOutputMode = 100
 };
 extern const OutputMode DefaultOutputMode;
 
@@ -60,7 +62,8 @@ enum OutputMessageMode {
   VeryVerboseConsole,
   VeryVerboseLogFile,
   DebugConsole,
-  DebugLogFile
+  DebugLogFile,
+  UnspecifiedOutputMessageMode = 100
 };
 extern const OutputMessageMode DefaultOutputMessageMode;
 
@@ -72,7 +75,8 @@ enum PreviewMode {
   First2SecondOutput,
   First2ThirdOutput,
   First2FourthOutput,
-  AllOutputs
+  AllOutputs,
+  UnspecifiedPreviewMode = 100
 };
 extern const PreviewMode DefaultPreviewMode;
 
