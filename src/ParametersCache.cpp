@@ -38,101 +38,71 @@ QHash<QString,InOutPanel::State> ParametersCache::_inOutPanelStates;
 
 void ParametersCache::load(bool loadFiltersParameters)
 {
-  QString path = QString("%1%2").arg( GmicQt::path_rc(false), PARAMETERS_CACHE_FILENAME );
-  QFile file(path);
-  if ( file.open(QFile::ReadOnly) ) {
-    QString line;
-    do {
-      line = file.readLine();
-    } while ( file.bytesAvailable() && line != QString("[Filter parameters (compressed)]\n") );
-    QByteArray data = qUncompress(file.readAll());
-    QBuffer buffer(&data);
-    buffer.open(QIODevice::ReadOnly);
-
-    QDataStream stream(&buffer);
-    stream.setVersion(QDataStream::Qt_5_0);
-    qint32 count;
-    stream >> count;
-    QString hash;
-    QList<QString> values;
-    while ( count-- ) {
-      stream >> hash >> values;
-      setValue(hash,values);
-    }
-  }
+  //QString path = QString("%1%2").arg( GmicQt::path_rc(false), PARAMETERS_CACHE_FILENAME );
 
   // Load JSON file
-
   _parametersCache.clear();
   _inOutPanelStates.clear();
 
-  QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), "gmic_qt_parameters_json.dat" );
+  QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME );
   QFile jsonFile(jsonFilename);
   if ( jsonFile.open(QFile::ReadOnly) ) {
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(),&parseError);
     // QJsonDocument jsonDoc = QJsonDocument::fromJson(qUncompress(jsonFile.readAll()));
     // QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
 
-    if ( jsonDoc.isObject() ) {
-      QJsonObject documentObject = jsonDoc.object();
-      QJsonObject::iterator itFilter = documentObject.begin();
-      while ( itFilter != documentObject.end() ) {
-        QString hash = itFilter.key();
-        QJsonObject filterObject = itFilter.value().toObject();
-
-        // Retrieve parameters
-        if ( loadFiltersParameters ) {
-          QJsonValue parameters = filterObject.value("parameters");
-          if ( ! parameters.isUndefined() ) {
-            QJsonArray array = parameters.toArray();
-            QStringList values;
-            for ( const QJsonValue & v : array ) {
-              values.push_back(v.toString());
+    if ( parseError.error != QJsonParseError::NoError ) {
+      std::cerr << "[gmic-qt] Warning: Parse error ("
+                << parseError.errorString().toStdString() << ") in "
+                << jsonFilename.toStdString() << std::endl;
+      std::cerr << "[gmic-qt] Last filters parameters are lost!\n";
+    } else {
+      if ( !jsonDoc.isObject() ) {
+        std::cerr << "[gmic-qt] Error: JSON file format is not correct ("
+                  << jsonFilename.toStdString()
+                  << ")\n";
+      } else {
+        QJsonObject documentObject = jsonDoc.object();
+        QJsonObject::iterator itFilter = documentObject.begin();
+        while ( itFilter != documentObject.end() ) {
+          QString hash = itFilter.key();
+          QJsonObject filterObject = itFilter.value().toObject();
+          // Retrieve parameters
+          if ( loadFiltersParameters ) {
+            QJsonValue parameters = filterObject.value("parameters");
+            if ( ! parameters.isUndefined() ) {
+              QJsonArray array = parameters.toArray();
+              QStringList values;
+              for ( const QJsonValue & v : array ) {
+                values.push_back(v.toString());
+              }
+              _parametersCache[hash] = values;
             }
-            _parametersCache[hash] = values;
           }
+          QJsonValue state = filterObject.value("in_out_state");
+          // Retrieve Input/Output state
+          if ( ! state.isUndefined() ) {
+            QJsonObject stateObject = state.toObject();
+            _inOutPanelStates[hash] = InOutPanel::State::fromJSONObject(stateObject);
+          }
+          ++itFilter;
         }
-
-        QJsonValue state = filterObject.value("in_out_state");
-        // Retrieve Input/Output state
-        if ( ! state.isUndefined() ) {
-          QJsonObject stateObject = state.toObject();
-          _inOutPanelStates[hash] = InOutPanel::State::fromJSONObject(stateObject);
-        }
-        ++itFilter;
       }
     }
   } else {
-    qWarning() << "[gmic-qt] Error: Cannot read" << jsonFilename;
-    qWarning() << "[gmic-qt] Parameters cannot be restored.";
+    std::cerr << "[gmic-qt] Error: Cannot read " << jsonFilename.toStdString() << std::endl;
+    std::cerr << "[gmic-qt] Parameters cannot be restored.\n";
   }
 }
 
 void
 ParametersCache::save()
 {
-  QByteArray data;
-  QBuffer buffer(&data);
-  buffer.open(QIODevice::WriteOnly);
-  QDataStream stream(&buffer);
-  stream.setVersion(QDataStream::Qt_5_0);
-  qint32 count = _parametersCache.size();
-  stream << count;
-  QHash<QString,QList<QString>>::const_iterator it = _parametersCache.begin();
-  while ( it != _parametersCache.end() ) {
-    stream << it.key() << it.value();
-    ++it;
-  }
-
-  QString path = QString("%1%2").arg( GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME );
-  QFile file(path);
-  if ( file.open(QFile::WriteOnly) ) {
-    file.write(QString("Version=%1.%2.%3\n").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLocal8Bit());
-    file.write(QString("[Filter parameters (compressed)]\n").toLocal8Bit());
-    file.write(qCompress(data));
-    file.close();
-  } else {
-    qWarning() << "[gmic-qt] Error: Cannot write" << path;
+  // Remove obsolete 2.0.0 pre-release file
+  QString oldFilename = QString("%1%2").arg( GmicQt::path_rc(true), "gmic_qt_parameters.dat" );
+  if (QFile::exists(oldFilename) ) {
+    QFile::remove(oldFilename);
   }
 
   // JSON Document format
@@ -188,7 +158,7 @@ ParametersCache::save()
   }
 
   QJsonDocument jsonDoc(documentObject);
-  QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), "gmic_qt_parameters_json.dat" );
+  QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME );
   QFile jsonFile(jsonFilename);
   if ( jsonFile.open(QFile::WriteOnly|QFile::Truncate) ) {
     //jsonFile.write(jsonDoc.toBinaryData());
@@ -196,8 +166,8 @@ ParametersCache::save()
     //jsonFile.write(qCompress(jsonDoc.toBinaryData()));
     jsonFile.close();
   } else {
-    qWarning() << "[gmic-qt] Error: Cannot write" << jsonFilename;
-    qWarning() << "[gmic-qt] Parameters cannot be saved.";
+    std::cerr << "[gmic-qt] Error: Cannot write " << jsonFilename.toStdString() << std::endl;
+    std::cerr << "[gmic-qt] Parameters cannot be saved.\n";
   }
 }
 

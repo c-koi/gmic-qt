@@ -50,8 +50,6 @@ public:
   GmicQt::OutputMode outputMode() const;
   GmicQt::PreviewMode previewMode() const;
   GmicQt::OutputMessageMode outputMessageMode() const;
-  void save(QSettings &);
-  void load(QSettings &);
   void reset();
   QString gmicEnvString() const;
 
@@ -61,9 +59,6 @@ public:
   void setOutputMode(GmicQt::OutputMode mode);
   void setPreviewMode(GmicQt::PreviewMode mode);
   void setOutputMessageMode(GmicQt::OutputMessageMode mode);
-
-  void saveState();
-  void restoreState();
 
   struct State {
     GmicQt::InputMode inputMode;
@@ -99,12 +94,6 @@ private:
   bool _notifyValueChange;
   Ui::InOutPanel *ui;
   static const int NoSelection = -1;
-
-  bool _hasSavedState;
-  int _savedInputModeIndex;
-  int _savedOutputModeIndex;
-  int _savedOutputMessageModeIndex;
-  int _savedPreviewModeIndex;
 };
 
 #endif // _GMIC_QT_INOUTPANEL_H

@@ -99,7 +99,6 @@ InOutPanel::InOutPanel(QWidget *parent) :
           this,SLOT(onPreviewModeSelected(int)));
 
   _notifyValueChange = true;
-  _hasSavedState = false;
 }
 
 InOutPanel::~InOutPanel()
@@ -163,51 +162,6 @@ void InOutPanel::setOutputMessageMode(GmicQt::OutputMessageMode mode)
 {
   int index = ui->outputMessages->findData(mode);
   ui->outputMessages->setCurrentIndex((mode == GmicQt::DefaultOutputMessageMode || index == -1) ? 0 : index);
-}
-
-void InOutPanel::saveState()
-{
-  // Only the first saved state is actuallay recorded
-  // in case of consecutive calls (without a restoreState())
-  if ( _hasSavedState ) {
-    return;
-  }
-  _savedInputModeIndex = ui->inputLayers->currentIndex();
-  _savedOutputModeIndex = ui->outputMode->currentIndex();
-  _savedOutputMessageModeIndex = ui->outputMessages->currentIndex();
-  _savedPreviewModeIndex = ui->previewMode->currentIndex();
-  _hasSavedState = true;
-}
-
-void InOutPanel::restoreState()
-{
-  if ( ! _hasSavedState ) {
-    return;
-  }
-  ui->inputLayers->setCurrentIndex(_savedInputModeIndex);
-  ui->outputMode->setCurrentIndex(_savedOutputModeIndex);
-  ui->outputMessages->setCurrentIndex(_savedOutputMessageModeIndex);
-  ui->previewMode->setCurrentIndex(_savedPreviewModeIndex);
-  _hasSavedState = false;
-}
-
-void
-InOutPanel::save(QSettings & settings)
-{
-  settings.setValue("OutputMessageModeIndex",ui->outputMessages->currentIndex());
-  settings.setValue("OutputMessageModeValue",ui->outputMessages->currentData().toInt());
-  settings.setValue("InputLayers",ui->inputLayers->currentIndex());
-  settings.setValue("OutputMode",ui->outputMode->currentIndex());
-  settings.setValue("PreviewMode",ui->previewMode->currentIndex());
-}
-
-void
-InOutPanel::load(QSettings & settings)
-{
-  ui->outputMessages->setCurrentIndex(settings.value("OutputMessageModeIndex",0).toInt());
-  ui->inputLayers->setCurrentIndex(settings.value("InputLayers",0).toInt());
-  ui->outputMode->setCurrentIndex(settings.value("OutputMode",0).toInt());
-  ui->previewMode->setCurrentIndex(settings.value("PreviewMode",0).toInt());
 }
 
 void InOutPanel::reset()
@@ -363,10 +317,18 @@ bool InOutPanel::State::isUnspecified() const
 QJsonObject InOutPanel::State::toJSONObject() const
 {
   QJsonObject object;
-  object.insert("InputLayers",inputMode);
-  object.insert("OutputMode",outputMode);
-  object.insert("PreviewMode",previewMode);
-  object.insert("OutputMessages",outputMessageMode);
+  if ( inputMode != GmicQt::UnspecifiedInputMode ) {
+    object.insert("InputLayers",inputMode);
+  }
+  if ( outputMode != GmicQt::UnspecifiedOutputMode ) {
+    object.insert("OutputMode",outputMode);
+  }
+  if ( previewMode != GmicQt::UnspecifiedPreviewMode ) {
+    object.insert("PreviewMode",previewMode);
+  }
+  if ( outputMessageMode != GmicQt::UnspecifiedOutputMessageMode ) {
+    object.insert("OutputMessages",outputMessageMode);
+  }
   return object;
 }
 
@@ -376,6 +338,6 @@ InOutPanel::State InOutPanel::State::fromJSONObject(const QJsonObject & object)
   state.inputMode = static_cast<GmicQt::InputMode>(object.value("InputLayers").toInt(GmicQt::UnspecifiedInputMode));
   state.outputMode = static_cast<GmicQt::OutputMode>(object.value("OutputMode").toInt(GmicQt::UnspecifiedOutputMode));
   state.previewMode = static_cast<GmicQt::PreviewMode>(object.value("PreviewMode").toInt(GmicQt::UnspecifiedPreviewMode));
-  state.outputMessageMode = static_cast<GmicQt::OutputMessageMode>(object.value("outputMessageMode").toInt(GmicQt::UnspecifiedOutputMessageMode));
+  state.outputMessageMode = static_cast<GmicQt::OutputMessageMode>(object.value("OutputMessages").toInt(GmicQt::UnspecifiedOutputMessageMode));
   return state;
 }

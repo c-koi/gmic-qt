@@ -48,31 +48,6 @@ StoredFave::StoredFave(QString name,
     _previewCommand(previewCommand),
     _defaultParameters(defaultParameters)
 {
-  _inputMode = GmicQt::DefaultInputMode;
-  _outputMode = GmicQt::DefaultOutputMode;
-  _outputMessageMode = GmicQt::DefaultOutputMessageMode;
-  _previewMode = GmicQt::DefaultPreviewMode;
-}
-
-StoredFave::StoredFave(QString name,
-                       QString originalName,
-                       QString command,
-                       QString previewCommand,
-                       QStringList defaultParameters,
-                       GmicQt::InputMode inputMode,
-                       GmicQt::OutputMode outputMode,
-                       GmicQt::OutputMessageMode outputMessageMode,
-                       GmicQt::PreviewMode previewMode)
-  : _name(name),
-    _originalName(originalName),
-    _command(command),
-    _previewCommand(previewCommand),
-    _defaultParameters(defaultParameters),
-    _inputMode(inputMode),
-    _outputMode(outputMode),
-    _outputMessageMode(outputMessageMode),
-    _previewMode(previewMode)
-{
 }
 
 StoredFave::StoredFave(const FiltersTreeFaveItem * fave)
@@ -80,11 +55,7 @@ StoredFave::StoredFave(const FiltersTreeFaveItem * fave)
     _originalName(fave->originalFilterName()),
     _command(fave->command()),
     _previewCommand(fave->previewCommand()),
-    _defaultParameters(fave->defaultValues()),
-    _inputMode(fave->inputMode()),
-    _outputMode(fave->outputMode()),
-    _outputMessageMode(fave->outputMessageMode()),
-    _previewMode(fave->previewMode())
+    _defaultParameters(fave->defaultValues())
 {
 }
 
@@ -230,11 +201,6 @@ QJsonObject StoredFave::toJSONObject() const
     array.push_back(str);
   }
   object["defaultParameters"] = array;
-
-  object["inputMode"] = _inputMode;
-  object["outputMode"] = _outputMode;
-  object["outputMessageMode"] = _outputMessageMode;
-  object["previewMode"] = _previewMode;
   return object;
 }
 
@@ -245,15 +211,10 @@ StoredFave StoredFave::fromJSONObject(const QJsonObject & object)
   QString command = object.value("command").toString("");
   QString previewCommand = object.value("preview").toString();
 
-  GmicQt::InputMode inputMode = static_cast<GmicQt::InputMode>(object.value("inputMode").toInt(GmicQt::DefaultInputMode));
-  GmicQt::OutputMode outputMode = static_cast<GmicQt::OutputMode>(object.value("outputMode").toInt(GmicQt::DefaultOutputMode));
-  GmicQt::OutputMessageMode outputMessageMode = static_cast<GmicQt::OutputMessageMode>(object.value("outputMessageMode").toInt(GmicQt::DefaultOutputMessageMode));
-  GmicQt::PreviewMode previewMode = static_cast<GmicQt::PreviewMode>(object.value("previewMode").toInt(GmicQt::DefaultPreviewMode));
-
   QStringList defaultParameters;
   QJsonArray array = object.value("defaultParameters").toArray();
   for ( const QJsonValue & value : array ) {
     defaultParameters.push_back(value.toString());
   }
-  return StoredFave(name,originalName,command,previewCommand,defaultParameters,inputMode,outputMode,outputMessageMode,previewMode);
+  return StoredFave(name,originalName,command,previewCommand,defaultParameters);
 }

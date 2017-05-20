@@ -53,7 +53,7 @@
 template<typename T> inline void unused(const T&, ...) {}
 
 #define SLIDER_MIN_WIDTH 60
-#define PARAMETERS_CACHE_FILENAME "gmic_qt_parameters.dat"
+#define PARAMETERS_CACHE_FILENAME "gmic_qt_parameters.json"
 #define FILTERS_VISIBILITY_FILENAME "gmic_qt_visibility.dat"
 
 #define FAVE_FOLDER_TEXT "<b>Faves</b>"

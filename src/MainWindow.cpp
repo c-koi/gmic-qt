@@ -811,9 +811,18 @@ void MainWindow::saveCurrentParameters()
 void
 MainWindow::saveSettings()
 {
-  DialogSettings::saveSettings();
   QSettings settings;
-  ui->inOutSelector->save(settings);
+
+  // Cleanup obsolete keys
+  settings.remove("OutputMessageModeIndex");
+  settings.remove("OutputMessageModeValue");
+  settings.remove("InputLayers");
+  settings.remove("OutputMode");
+  settings.remove("PreviewMode");
+
+  // Save all settings
+
+  DialogSettings::saveSettings(settings);
   QString selectedFilterHash;
   FiltersTreeAbstractFilterItem * filterItem = selectedFilterItem();
   if ( filterItem ) {
@@ -854,11 +863,8 @@ MainWindow::loadSettings()
   _lastExecutionOK = settings.value("LastExecution/ExitedNormally",true).toBool();
   _newSession = GmicQt::host_app_pid() != settings.value("LastExecution/HostApplicationID",0).toUInt();
   settings.setValue("LastExecution/ExitedNormally",false);
-  if ( _newSession ) {
-    ui->inOutSelector->reset();
-  } else {
-    ui->inOutSelector->load(settings);
-  }
+  ui->inOutSelector->reset();
+
   // Preview position
   if ( settings.value("Config/PreviewPosition","Left").toString() == "Left" ) {
     setPreviewPosition(PreviewOnLeft);
@@ -1113,19 +1119,10 @@ MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString>
   FiltersTreeFaveItem * faveItem = filterItem ? dynamic_cast<FiltersTreeFaveItem*>(filterItem) : 0;
   saveCurrentParameters();
 
-  // Restore fave's Input/Ouput panel settings, or restore previous ones
-  ui->inOutSelector->disableNotifications();
-  if ( faveItem ) {
-    ui->inOutSelector->saveState();
-    faveItem->getInOutSettings(ui->inOutSelector);
-  } else {
-    ui->inOutSelector->restoreState();
-  }
-  ui->inOutSelector->enableNotifications();
-
   if ( filterItem ) {
     ui->filterParams->build(filterItem,values);
     ui->filterName->setText(QString("<b>%1</b>").arg(filterItem->text()));
+    ui->inOutSelector->setState(ParametersCache::getInputOutputState(filterItem->hash()),false);
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filterItem->previewFactor(),resetZoom);
@@ -1134,6 +1131,7 @@ MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString>
     ui->tbResetParameters->setVisible(true);
   } else {
     ui->filterParams->setNoFilter();
+    ui->inOutSelector->setState(InOutPanel::State::Unspecified,false);
     ui->filterName->setVisible(false);
     ui->tbAddFave->setEnabled(false);
     ui->tbResetParameters->setVisible(false);
@@ -1316,10 +1314,6 @@ MainWindow::loadFaves(bool withVisibility)
       FiltersTreeFaveItem * faveItem = new FiltersTreeFaveItem(filterItem,
                                                                importedFave.name(),
                                                                importedFave.defaultParameters());
-      faveItem->setInOutSettings(importedFave.inputMode(),
-                                 importedFave.outputMode(),
-                                 importedFave.previewMode(),
-                                 importedFave.outputMessageMode());
       bool faveIsVisible = FiltersVisibilityMap::filterIsVisible(faveItem->hash());
       if ( withVisibility ) {
         GmicStdLibParser::addStandardItemWithCheckBox(folder,faveItem,faveIsVisible);
@@ -1444,7 +1438,6 @@ MainWindow::onAddFave()
     FiltersTreeFaveItem * fave = new FiltersTreeFaveItem(item,
                                                          faveUniqueName(item->text()),
                                                          ui->filterParams->valueStringList());
-    fave->setInOutSettings(ui->inOutSelector);
     FiltersTreeFolderItem  * folder = faveFolder(FullModel);
 
     if ( filtersSelectionMode() ) {

@@ -30,6 +30,7 @@
 #include "MainWindow.h"
 
 class QCloseEvent;
+class QSettings;
 
 namespace Ui {
 class DialogSettings;
@@ -45,18 +46,13 @@ public:
   static MainWindow::PreviewPosition previewPosition();
   static bool darkThemeEnabled();
   static bool nativeColorDialogs();
-  static void saveSettings();
+  static void saveSettings(QSettings &);
   static void loadSettings();
   static const QColor CheckBoxTextColor;
   static const QColor CheckBoxBaseColor;
   static QColor UnselectedFilterTextColor;
   static QString FolderParameterDefaultValue;
   static QString FileParameterDefaultPath;
-
-  static bool useFaveInputMode();
-  static bool useFaveOutputMode();
-  static bool useFaveOutputMessages();
-  static bool useFavePreviewMode();
 
 public slots:
   void onRadioLeftPreviewToggled(bool );
@@ -74,10 +70,6 @@ private:
   static bool _nativeColorDialogs;
   static MainWindow::PreviewPosition _previewPosition;
   static int _updatePeriodicity;
-  static bool _useFaveInputMode;
-  static bool _useFaveOutputMode;
-  static bool _useFaveOutputMessages;
-  static bool _useFavePreviewMode;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_
