@@ -38,8 +38,6 @@ QHash<QString,InOutPanel::State> ParametersCache::_inOutPanelStates;
 
 void ParametersCache::load(bool loadFiltersParameters)
 {
-  //QString path = QString("%1%2").arg( GmicQt::path_rc(false), PARAMETERS_CACHE_FILENAME );
-
   // Load JSON file
   _parametersCache.clear();
   _inOutPanelStates.clear();
@@ -50,15 +48,9 @@ void ParametersCache::load(bool loadFiltersParameters)
     return;
   }
   if ( jsonFile.open(QFile::ReadOnly) ) {
-    QJsonParseError parseError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(),&parseError);
-    // QJsonDocument jsonDoc = QJsonDocument::fromJson(qUncompress(jsonFile.readAll()));
-    // QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
-
-    if ( parseError.error != QJsonParseError::NoError ) {
-      std::cerr << "[gmic-qt] Warning: Parse error ("
-                << parseError.errorString().toStdString() << ") in "
-                << jsonFilename.toStdString() << std::endl;
+    QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
+    if ( jsonDoc.isNull() ) {
+      std::cerr << "[gmic-qt] Warning: cannot parse " << jsonFilename.toStdString() << std::endl;
       std::cerr << "[gmic-qt] Last filters parameters are lost!\n";
     } else {
       if ( !jsonDoc.isObject() ) {
@@ -169,8 +161,8 @@ ParametersCache::save()
     QFile::copy(jsonFilename, bakFilename );
   }
   if ( jsonFile.open(QFile::WriteOnly|QFile::Truncate) ) {
-    //jsonFile.write(jsonDoc.toBinaryData());
-    jsonFile.write(jsonDoc.toJson());
+    jsonFile.write(qCompress(jsonDoc.toBinaryData()));
+    //jsonFile.write(jsonDoc.toJson());
     //jsonFile.write(qCompress(jsonDoc.toBinaryData()));
     jsonFile.close();
   } else {
