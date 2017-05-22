@@ -44,8 +44,6 @@ public:
   static void addStandardItemWithCheckBox(QStandardItem * folder,
                                           FiltersTreeAbstractItem * item,
                                           bool itemIsVisible);
-  static bool cleanupFolders(QStandardItem * folder);
-  static void uncheckFullyUncheckedFolders(QStandardItem * folder);
 };
 
 #endif // _GMIC_QT_GMICSTDLIBPARSER_H_

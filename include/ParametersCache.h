@@ -41,6 +41,8 @@ public:
   static InOutPanel::State getInputOutputState(const QString & hash );
   static void setInputOutputState(const QString & hash, const InOutPanel::State & );
 
+  static void cleanup(const QSet<QString> & hashesToKeep);
+
 private:
   static QHash<QString,QList<QString>> _parametersCache;
   static QHash<QString,InOutPanel::State> _inOutPanelStates;

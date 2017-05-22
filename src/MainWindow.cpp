@@ -178,6 +178,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+  //  QSet<QString> hashes;
+  //  FiltersTreeAbstractItem::buildHashesList(_filtersTreeModel.invisibleRootItem(),hashes);
+  //  ParametersCache::cleanup(hashes);
+
   saveCurrentParameters();
   saveFaves();
   ParametersCache::save();
@@ -321,12 +325,12 @@ void MainWindow::buildFiltersTree()
     int w = fm.width(title);
     ui->filtersTree->setColumnWidth(0, ui->filtersTree->width() - w * 2);
     ui->filtersTree->setColumnWidth(1, w);
-    GmicStdLibParser::uncheckFullyUncheckedFolders(_filtersTreeModel.invisibleRootItem());
+    FiltersTreeAbstractItem::uncheckFullyUncheckedFolders(_filtersTreeModel.invisibleRootItem());
   } else {
     // Remove empty folders
     do {
       // Nothing
-    } while (GmicStdLibParser::cleanupFolders(_filtersTreeModel.invisibleRootItem()));
+    } while (FiltersTreeAbstractItem::cleanupFolders(_filtersTreeModel.invisibleRootItem()));
   }
   restoreExpandedFolders();
 }

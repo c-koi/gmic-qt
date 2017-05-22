@@ -201,3 +201,49 @@ bool FiltersTreeAbstractItem::matchWordList(const QStringList & words, const QSt
   }
   return true;
 }
+
+bool FiltersTreeAbstractItem::cleanupFolders(QStandardItem * item)
+{
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
+    if ( subFolder ) {
+      while ( cleanupFolders(subFolder) ) { }
+      if ( subFolder->rowCount() == 0 ) {
+        item->removeRow(row);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+void FiltersTreeAbstractItem::uncheckFullyUncheckedFolders(QStandardItem *folder)
+{
+  int rows = folder->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(folder->child(row));
+    if ( subFolder ) {
+      uncheckFullyUncheckedFolders(subFolder);
+      if ( subFolder->isFullyUnchecked() ) {
+        subFolder->setVisibility(false);
+      }
+    }
+  }
+}
+
+void FiltersTreeAbstractItem::buildHashesList(QStandardItem * item, QSet<QString> & hashes)
+{
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    QStandardItem * child = item->child(row);
+    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(child);
+    FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(child);
+    if ( subFolder ) {
+      buildHashesList(subFolder,hashes);
+    }
+    if ( filter ) {
+      hashes.insert(filter->hash());
+    }
+  }
+}

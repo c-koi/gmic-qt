@@ -277,33 +277,3 @@ void GmicStdLibParser::addStandardItemWithCheckBox(QStandardItem * folder, Filte
   items.push_back(checkBox);
   folder->appendRow(items);
 }
-
-bool GmicStdLibParser::cleanupFolders(QStandardItem * item)
-{
-  int rows = item->rowCount();
-  for (int row = 0; row < rows; ++row) {
-    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(item->child(row));
-    if ( subFolder ) {
-      while ( cleanupFolders(subFolder) ) { }
-      if ( subFolder->rowCount() == 0 ) {
-        item->removeRow(row);
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
-void GmicStdLibParser::uncheckFullyUncheckedFolders(QStandardItem * folder)
-{
-  int rows = folder->rowCount();
-  for (int row = 0; row < rows; ++row) {
-    FiltersTreeFolderItem * subFolder = dynamic_cast<FiltersTreeFolderItem*>(folder->child(row));
-    if ( subFolder ) {
-      uncheckFullyUncheckedFolders(subFolder);
-      if ( subFolder->isFullyUnchecked() ) {
-        subFolder->setVisibility(false);
-      }
-    }
-  }
-}

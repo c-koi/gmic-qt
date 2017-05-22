@@ -46,6 +46,9 @@ void ParametersCache::load(bool loadFiltersParameters)
 
   QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME );
   QFile jsonFile(jsonFilename);
+  if ( !jsonFile.exists() ) {
+    return;
+  }
   if ( jsonFile.open(QFile::ReadOnly) ) {
     QJsonParseError parseError;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(),&parseError);
@@ -160,6 +163,11 @@ ParametersCache::save()
   QJsonDocument jsonDoc(documentObject);
   QString jsonFilename = QString("%1%2").arg( GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME );
   QFile jsonFile(jsonFilename);
+  if ( QFile::exists(jsonFilename) ) {
+    QString bakFilename = QString("%1%2").arg( GmicQt::path_rc(false), PARAMETERS_CACHE_FILENAME ".bak" );
+    QFile::remove(bakFilename);
+    QFile::copy(jsonFilename, bakFilename );
+  }
   if ( jsonFile.open(QFile::WriteOnly|QFile::Truncate) ) {
     //jsonFile.write(jsonDoc.toBinaryData());
     jsonFile.write(jsonDoc.toJson());
@@ -210,4 +218,35 @@ void ParametersCache::setInputOutputState(const QString & hash, const InOutPanel
     return;
   }
   _inOutPanelStates[hash] = state;
+}
+
+void ParametersCache::cleanup(const QSet<QString> & hashesToKeep)
+{
+  QSet<QString> obsoleteHashes;
+
+  // Build set of no longer used parameters
+  QHash<QString,QList<QString>>::iterator itParam = _parametersCache.begin();
+  while ( itParam != _parametersCache.end() ) {
+    if ( ! hashesToKeep.contains(itParam.key()) ) {
+      obsoleteHashes.insert(itParam.key());
+    }
+    ++itParam;
+  }
+  for ( const QString & h : obsoleteHashes ) {
+    _parametersCache.remove(h);
+  }
+  obsoleteHashes.clear();
+
+  // Build set of no longer used In/Out states
+  QHash<QString,InOutPanel::State>::iterator itState = _inOutPanelStates.begin();
+  while ( itState != _inOutPanelStates.end() ) {
+    if ( ! hashesToKeep.contains(itState.key()) ) {
+      obsoleteHashes.insert(itState.key());
+    }
+    ++itState;
+  }
+  for ( const QString & h : obsoleteHashes ) {
+    _inOutPanelStates.remove(h);
+  }
+  obsoleteHashes.clear();
 }

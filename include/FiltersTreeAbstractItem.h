@@ -54,6 +54,10 @@ public:
   bool isVisible() const;
   void setVisibility(bool visibility);
 
+  static bool cleanupFolders(QStandardItem *item);
+  static void uncheckFullyUncheckedFolders(QStandardItem * folder);
+  static void buildHashesList(QStandardItem * item, QSet<QString> & hashes);
+
 protected:
   void setName(QString name);
   QStandardItem * visibilityItem();
