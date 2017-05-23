@@ -94,12 +94,6 @@ void ParametersCache::load(bool loadFiltersParameters)
 void
 ParametersCache::save()
 {
-  // Remove obsolete 2.0.0 pre-release file
-  QString oldFilename = QString("%1%2").arg( GmicQt::path_rc(true), "gmic_qt_parameters.dat" );
-  if (QFile::exists(oldFilename) ) {
-    QFile::remove(oldFilename);
-  }
-
   // JSON Document format
   //
   // {
@@ -161,10 +155,18 @@ ParametersCache::save()
     QFile::copy(jsonFilename, bakFilename );
   }
   if ( jsonFile.open(QFile::WriteOnly|QFile::Truncate) ) {
-    jsonFile.write(qCompress(jsonDoc.toBinaryData()));
+    qint64 count = jsonFile.write(qCompress(jsonDoc.toBinaryData()));
     //jsonFile.write(jsonDoc.toJson());
     //jsonFile.write(qCompress(jsonDoc.toBinaryData()));
     jsonFile.close();
+    if ( count != -1 ) {
+      // Remove obsolete 2.0.0 pre-release files
+      QString path = GmicQt::path_rc(true);
+      QFile::remove( path + "gmic_qt_parameters.dat");
+      QFile::remove( path + "gmic_qt_parameters.json");
+      QFile::remove( path + "gmic_qt_parameters.json.bak");
+      QFile::remove( path + "gmic_qt_parameters_json.dat");
+    }
   } else {
     std::cerr << "[gmic-qt] Error: Cannot write " << jsonFilename.toStdString() << std::endl;
     std::cerr << "[gmic-qt] Parameters cannot be saved.\n";

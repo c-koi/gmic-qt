@@ -125,6 +125,9 @@ FileParameter::onButtonPressed()
   } else {
     folder = QFileInfo(_value).path();
   }
+  if ( ! QFileInfo(folder).isDir() ) {
+    folder = QDir::homePath();
+  }
   QString filename = QFileDialog::getSaveFileName(0,tr("Select a file"),folder,QString(),0,
                                                   QFileDialog::DontConfirmOverwrite);
   if ( filename.isEmpty() ) {

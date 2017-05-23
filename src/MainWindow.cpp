@@ -1395,33 +1395,10 @@ MainWindow::importFaves()
 void
 MainWindow::saveFaves()
 {
-  FiltersTreeFolderItem * folder = faveFolder(FullModel);
-  QString filename(QString("%1%2").arg(GmicQt::path_rc(true)).arg("gmic_qt_faves"));
   QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(true)).arg("gmic_qt_faves.json"));
+
+  FiltersTreeFolderItem * folder = faveFolder(FullModel);
   if ( folder || _hiddenFaves.size() ) {
-    QFile::remove(filename+".bak");
-    QFile::copy(filename,filename+".bak");
-    QFile file(filename);
-    if (file.open(QFile::WriteOnly|QFile::Truncate)) {
-      QTextStream stream(&file);
-      stream << QString("@gmic_qt_faves Version=%1.%2.%3\n").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLocal8Bit();
-      stream << "#\n"
-                "# You can copy this file to save or move your faves.\n"
-                "# If you happen to modify it, be careful!\n"
-                "#\n";
-      if ( folder ) {
-        int count = folder->rowCount();
-        for (int row = 0; row < count; ++row) {
-          FiltersTreeFaveItem * fave = static_cast<FiltersTreeFaveItem*>(folder->child(row));
-          stream << StoredFave(fave);
-        }
-      }
-      for ( FiltersTreeFaveItem * fave : _hiddenFaves ) {
-        stream << StoredFave(fave);
-      }
-    } else {
-      std::cerr << "[gmic_qt] Error: cannot open/create file " << filename.toStdString() << std::endl;
-    }
 
     // Create JSON array
     QJsonArray array;
@@ -1439,15 +1416,19 @@ MainWindow::saveFaves()
     QFile jsonFile(jsonFilename);
     if ( jsonFile.open(QIODevice::WriteOnly|QIODevice::Truncate) ) {
       QJsonDocument jsonDoc(array);
-      jsonFile.write(jsonDoc.toJson());
+      if ( jsonFile.write(jsonDoc.toJson()) != -1 ) {
+        // Cleanup 2.0.0 pre-release files
+        QString obsoleteFilename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves"));
+        QFile::remove(obsoleteFilename);
+        QFile::remove(obsoleteFilename+".bak");
+      }
     } else {
       std::cerr << "[gmic_qt] Error: cannot open/create file " << jsonFilename.toStdString() << std::endl;
     }
-
   } else {
     // Backup current file
-    QFile::copy(filename,filename+".bak");
-    QFile::remove(filename);
+    QFile::copy(jsonFilename,jsonFilename + "bak");
+    QFile::remove(jsonFilename);
   }
 }
 

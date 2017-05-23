@@ -84,6 +84,8 @@ FolderParameter::setValue(const QString & value)
   _value = value;
   if ( _value.isEmpty() ) {
     _value = DialogSettings::FolderParameterDefaultValue;
+  } else if ( ! QFileInfo(_value).isDir() ) {
+    _value = QDir::homePath();
   }
   QDir dir(_value);
   QDir abs(dir.absolutePath());
