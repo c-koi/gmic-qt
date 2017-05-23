@@ -42,7 +42,7 @@ QColor DialogSettings::UnselectedFilterTextColor;
 QString DialogSettings::FolderParameterDefaultValue;
 QString DialogSettings::FileParameterDefaultPath;
 
-DialogSettings::DialogSettings(QWidget *parent) :
+DialogSettings::DialogSettings(QWidget * parent):
   QDialog(parent),
   ui(new Ui::DialogSettings)
 {
@@ -203,6 +203,8 @@ void DialogSettings::onColorDialogsToggled(bool on)
 
 void DialogSettings::done(int r)
 {
+  QSettings settings;
+  saveSettings(settings);
   QDialog::done(r);
 }
 
