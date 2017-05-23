@@ -51,8 +51,8 @@ public:
   QString command() const;
   QString previewCommand() const;
   QString filterName() const;
-  QString pathHash() const;
   int actualParametersCount() const;
+  QString filterHash() const;
 
 public slots:
   void updateValueString(bool notify = true);
@@ -70,7 +70,7 @@ protected:
   QString _command;
   QString _previewCommand;
   QString _filterName;
-  QString _pathHash;
+  QString _filterHash;
 };
 
 #endif // _GMIC_QT_FILTERPARAMSWIDGET_H_

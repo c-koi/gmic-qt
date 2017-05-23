@@ -34,8 +34,8 @@ class ParametersCache {
 public:
   static void load(bool loadFiltersParameters);
   static void save();
-  static void setValue(const QString & hash, const QList<QString> & list );
-  static QList<QString> getValue(const QString & hash );
+  static void setValues(const QString & hash, const QList<QString> & values );
+  static QList<QString> getValues(const QString & hash );
   static void remove( const QString & hash );
 
   static InOutPanel::State getInputOutputState(const QString & hash );

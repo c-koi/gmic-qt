@@ -107,8 +107,10 @@ protected:
   void showUpdateErrors();
   void makeConnections();
   void processImage();
-  QString faveUniqueName(const QString &name);
-  void selectFilter(QModelIndex index, bool resetZoom, const QList<QString> & values = QList<QString>() );
+  QString faveUniqueName(const QString & name, QStandardItem * toBeIgnored = nullptr);
+  void activateFilter(QModelIndex index,
+                      bool resetZoom,
+                      const QList<QString> & values = QList<QString>() );
   FiltersTreeAbstractFilterItem * selectedFilterItem();
   void setPreviewPosition(PreviewPosition position);
   QImage buildPreviewImage(const cimg_library::CImgList<gmic_pixel_type> & images);

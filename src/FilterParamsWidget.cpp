@@ -46,15 +46,16 @@ FilterParamsWidget::FilterParamsWidget(QWidget * parent)
   _labelNoParams->setAlignment(Qt::AlignHCenter|Qt::AlignCenter);
   grid->addWidget(_labelNoParams,0,0,4,3);
   _actualParametersCount = 0;
+  _filterHash.clear();
 }
 
 void
-FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList<QString> &values)
+FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList<QString> & values)
 {
   _filterName = item->name();
   _command = item->command();
   _previewCommand = item->previewCommand();
-  _pathHash = item->hash();
+  _filterHash = item->hash();
   clear();
   delete layout();
   QGridLayout * grid = new QGridLayout(this);
@@ -63,7 +64,7 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
   QList<QString> savedValues;
 
   if ( values.isEmpty() ) {
-    savedValues = ParametersCache::getValue(_pathHash);
+    savedValues = ParametersCache::getValues(item->hash());
     if ( savedValues.isEmpty() ) {
       const FiltersTreeFaveItem * fave = dynamic_cast<const FiltersTreeFaveItem*>(item);
       if ( fave ) {
@@ -169,7 +170,7 @@ void FilterParamsWidget::setNoFilter()
   _valueString.clear();
   _command.clear();
   _previewCommand.clear();
-  _pathHash.clear();
+  _filterHash.clear();
 }
 
 FilterParamsWidget::~FilterParamsWidget()
@@ -236,16 +237,15 @@ FilterParamsWidget::filterName() const
   return _filterName;
 }
 
-QString
-FilterParamsWidget::pathHash() const
-{
-  return _pathHash;
-}
-
 int
 FilterParamsWidget::actualParametersCount() const
 {
   return _actualParametersCount;
+}
+
+QString FilterParamsWidget::filterHash() const
+{
+  return _filterHash;
 }
 
 void

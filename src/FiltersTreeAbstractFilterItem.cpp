@@ -89,12 +89,12 @@ QString FiltersTreeAbstractFilterItem::computeHash(const QString & name,
                                                    const QString & previewCommand,
                                                    const QString & prefix)
 {
-   QCryptographicHash hash(QCryptographicHash::Md5);
-   if ( ! prefix.isEmpty() ) {
-     hash.addData(prefix.toLocal8Bit());
-   }
-   hash.addData(name.toLocal8Bit());
-   hash.addData(command.toLocal8Bit());
-   hash.addData(previewCommand.toLocal8Bit());
-   return hash.result().toHex();
+  QCryptographicHash hash(QCryptographicHash::Md5);
+  if ( ! prefix.isEmpty() ) {
+    hash.addData(prefix.toLocal8Bit());
+  }
+  hash.addData(name.toLocal8Bit());
+  hash.addData(command.toLocal8Bit());
+  hash.addData(previewCommand.toLocal8Bit());
+  return hash.result().toHex();
 }

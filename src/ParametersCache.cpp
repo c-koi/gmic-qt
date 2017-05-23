@@ -172,13 +172,13 @@ ParametersCache::save()
 }
 
 void
-ParametersCache::setValue(const QString & hash, const QList<QString> & list)
+ParametersCache::setValues(const QString & hash, const QList<QString> & values)
 {
-  _parametersCache[hash] = list;
+  _parametersCache[hash] = values;
 }
 
 QList<QString>
-ParametersCache::getValue(const QString & hash)
+ParametersCache::getValues(const QString & hash)
 {
   if ( _parametersCache.count(hash) ) {
     return _parametersCache[hash];

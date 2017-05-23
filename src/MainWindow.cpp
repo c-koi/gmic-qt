@@ -311,7 +311,7 @@ void MainWindow::buildFiltersTree()
     if ( item ) {
       ui->filtersTree->setCurrentIndex(item->index());
       ui->filtersTree->scrollTo(item->index(),QAbstractItemView::PositionAtCenter);
-      selectFilter(item->index(),false);
+      activateFilter(item->index(),false);
     }
   }
 
@@ -506,7 +506,7 @@ void MainWindow::makeConnections()
 void
 MainWindow::onFilterClicked(QModelIndex index)
 {
-  selectFilter(index,false);
+  activateFilter(index,false);
   ui->previewWidget->sendUpdateRequest();
 }
 
@@ -805,9 +805,9 @@ void MainWindow::onUpdateFiltersClicked()
 
 void MainWindow::saveCurrentParameters()
 {
-  if ( ! ui->filterParams->pathHash().isEmpty() ) {
-    QString hash = ui->filterParams->pathHash();
-    ParametersCache::setValue(hash, ui->filterParams->valueStringList());
+  QString hash = ui->filterParams->filterHash();
+  if ( ! hash.isEmpty() ) {
+    ParametersCache::setValues(hash, ui->filterParams->valueStringList());
     ParametersCache::setInputOutputState(hash, ui->inOutSelector->state());
   }
 }
@@ -1093,30 +1093,51 @@ bool MainWindow::filtersSelectionMode()
 }
 
 QString
-MainWindow::faveUniqueName(const QString & name)
+MainWindow::faveUniqueName(const QString & name, QStandardItem * toBeIgnored)
 {
   FiltersTreeFolderItem * folder = faveFolder(FullModel);
   if ( ! folder ) {
     return name;
   }
-  int count = folder->rowCount();
-  int n = 1;
-  for (int i = 0; i < count; ++i) {
-    QString s = folder->child(i)->text();
-    s.replace(QRegExp(" \\(\\d*\\)"),"");
-    if (s == name) {
-      ++n;
+
+  QString basename = name;
+  basename.replace(QRegExp(" *\\(\\d+\\)$"),QString());
+
+  int rows = folder->rowCount();
+  int iMax = -1;
+  bool nameIsUnique = true;
+  for (int i = 0; i < rows; ++i) {
+    if ( folder->child(i) != toBeIgnored ) {
+      QString faveName = folder->child(i)->text();
+      TSHOW(faveName);
+      if ( faveName == name ) {
+        nameIsUnique = false;
+      }
+      QRegExp re(" *\\((\\d+)\\)$");
+      if ( re.indexIn(faveName) != -1 ) {
+        faveName.replace(re,QString());
+        if (faveName == basename) {
+          iMax = std::max(iMax,re.cap(1).toInt());
+        }
+      } else if ( basename == faveName ) {
+        iMax = 1;
+      }
     }
   }
-  if (n > 1) {
-    return QString("%1 (%2)").arg(name).arg(n);
+  TSHOW(name);
+  TSHOW(nameIsUnique);
+  if ( nameIsUnique ) {
+    return name;
+  }
+  if (iMax != -1) {
+    return QString("%1 (%2)").arg(basename).arg(iMax + 1);
   } else {
     return name;
   }
 }
 
 void
-MainWindow::selectFilter(QModelIndex index, bool resetZoom, const QList<QString> & values)
+MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QString> & values)
 {
   FiltersTreeAbstractFilterItem * filterItem;
   filterItem = dynamic_cast<FiltersTreeAbstractFilterItem*>( _currentFiltersTreeModel->itemFromIndex(index) );
@@ -1194,7 +1215,7 @@ void MainWindow::showEvent(QShowEvent * event)
       if ( filterItem ) {
         ui->filtersTree->setCurrentIndex(filterItem->index());
         ui->filtersTree->scrollTo(filterItem->index(),QAbstractItemView::PositionAtCenter);
-        selectFilter(filterItem->index(),true);
+        activateFilter(filterItem->index(),true);
         // Preview update is triggered when PreviewWidget receives
         // the WindowActivate Event (while pendingResize is true
         // after the very first resize event).
@@ -1436,6 +1457,8 @@ MainWindow::onAddFave()
   QModelIndex index = ui->filtersTree->currentIndex();
   FiltersTreeAbstractFilterItem * item = dynamic_cast<FiltersTreeAbstractFilterItem*>( _currentFiltersTreeModel->itemFromIndex(index) );
   if ( item ) {
+    saveCurrentParameters();
+
     if ( ! faveFolder(FullModel) ) {
       addFaveFolder();
     }
@@ -1449,14 +1472,15 @@ MainWindow::onAddFave()
     } else {
       folder->appendRow(fave);
     }
-
-    ParametersCache::setValue(fave->hash(),ui->filterParams->valueStringList());
+    ParametersCache::setValues(fave->hash(),ui->filterParams->valueStringList());
     ParametersCache::setInputOutputState(fave->hash(), ui->inOutSelector->state());
+    ui->filterParams->build(fave,QList<QString>());
     ui->filtersTree->setCurrentIndex(fave->index());
     folder->sortChildren(0,Qt::AscendingOrder);
     saveFaves();
     ui->tbRemoveFave->setEnabled(true);
     ui->tbRenameFave->setEnabled(true);
+    ui->filterName->setText(QString("<b>%1</b>").arg(fave->text()));
   }
 }
 
@@ -1535,14 +1559,16 @@ void MainWindow::onRenameFaveFinished(QWidget * editor)
     } else {
       newName = faveUniqueName("Unkown filter");
     }
+  } else {
+    newName = faveUniqueName(newName,fave);
   }
 
   QString hash = fave->hash();
-  QList<QString> values = ParametersCache::getValue(hash);
+  QList<QString> values = ParametersCache::getValues(hash);
   InOutPanel::State inOutState = ParametersCache::getInputOutputState(hash);
   ParametersCache::remove(hash);
   fave->rename(newName);
-  ParametersCache::setValue(fave->hash(),values);
+  ParametersCache::setValues(fave->hash(),values);
   ParametersCache::setInputOutputState(fave->hash(),inOutState);
 
   FiltersTreeFaveItem * selectedFave = findFave(hash,SelectionModel);
