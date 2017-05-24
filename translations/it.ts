@@ -163,12 +163,6 @@
         <translation>Avanzamento</translation>
     </message>
     <message>
-        <location filename="../ui/headlessprogressdialog.ui" line="29"/>
-        <location filename="../ui/headlessprogressdialog.ui" line="46"/>
-        <source>TextLabel</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
@@ -195,10 +189,6 @@
         <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers...</source>
         <translation>Livelli in ingresso...</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="vanished">-</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="49"/>
@@ -356,10 +346,6 @@
         <translation type="unfinished">1^ -&gt; 3^ immagine {1s?} {2c?}</translation>
     </message>
     <message>
-        <source>2nd ouput</source>
-        <translation type="vanished">2^ immagine</translation>
-    </message>
-    <message>
         <location filename="../src/InOutPanel.cpp" line="85"/>
         <source>3rd ouput</source>
         <translation>3^ immagine</translation>
@@ -368,10 +354,6 @@
         <location filename="../src/InOutPanel.cpp" line="86"/>
         <source>4th ouput</source>
         <translation>4^ immagine</translation>
-    </message>
-    <message>
-        <source>1st -&gt; 2nd ouput</source>
-        <translation type="vanished">1^-&gt; 2^ immagine</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="88"/>
@@ -412,7 +394,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <location filename="../ui/mainwindow.ui" line="493"/>
         <source>TextLabel</source>
         <translation></translation>
@@ -456,10 +437,6 @@
         <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Tutto schermo</translation>
-    </message>
-    <message>
-        <source>&amp;Reset</source>
-        <translation type="vanished">&amp;Re-inizializza</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="532"/>
@@ -576,11 +553,6 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/multilinetextparameterwidget.ui" line="22"/>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <location filename="../ui/multilinetextparameterwidget.ui" line="29"/>
         <source>Update</source>
         <translation>Aggiornare</translation>
@@ -607,10 +579,6 @@
         <location filename="../ui/progressinfowidget.ui" line="55"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>G&apos;MIC Plug-in progression</source>
-        <translation type="vanished">Stato di avanzamento plug-in G&apos;MIC</translation>
     </message>
     <message>
         <location filename="../src/ProgressInfoWidget.cpp" line="44"/>

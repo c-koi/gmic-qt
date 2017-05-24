@@ -163,12 +163,6 @@
         <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="../ui/headlessprogressdialog.ui" line="29"/>
-        <location filename="../ui/headlessprogressdialog.ui" line="46"/>
-        <source>TextLabel</source>
-        <translation>Label teks</translation>
-    </message>
-    <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
         <source>Cancel</source>
         <translation>Batal</translation>
@@ -195,10 +189,6 @@
         <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers...</source>
         <translation>Lapisan masukan...</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="vanished">-</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="49"/>
@@ -356,10 +346,6 @@
         <translation type="unfinished">Keluaran pertama -&gt; ketiga {1s?} {2c?}</translation>
     </message>
     <message>
-        <source>2nd ouput</source>
-        <translation type="vanished">Keluaran kedua</translation>
-    </message>
-    <message>
         <location filename="../src/InOutPanel.cpp" line="85"/>
         <source>3rd ouput</source>
         <translation>Keluaran ketiga</translation>
@@ -368,10 +354,6 @@
         <location filename="../src/InOutPanel.cpp" line="86"/>
         <source>4th ouput</source>
         <translation>Keluaran keempat</translation>
-    </message>
-    <message>
-        <source>1st -&gt; 2nd ouput</source>
-        <translation type="vanished">Keluaran pertama -&gt; kedua</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="88"/>
@@ -412,7 +394,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <location filename="../ui/mainwindow.ui" line="493"/>
         <source>TextLabel</source>
         <translation>LabelTeks</translation>
@@ -456,10 +437,6 @@
         <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Layar penuh</translation>
-    </message>
-    <message>
-        <source>&amp;Reset</source>
-        <translation type="vanished">&amp;Reset</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="532"/>
@@ -576,11 +553,6 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/multilinetextparameterwidget.ui" line="22"/>
-        <source>TextLabel</source>
-        <translation>LabelTeks</translation>
-    </message>
-    <message>
         <location filename="../ui/multilinetextparameterwidget.ui" line="29"/>
         <source>Update</source>
         <translation>Perbarui</translation>
@@ -607,10 +579,6 @@
         <location filename="../ui/progressinfowidget.ui" line="55"/>
         <source>TextLabel</source>
         <translation>LabelTeks</translation>
-    </message>
-    <message>
-        <source>G&apos;MIC Plug-in progression</source>
-        <translation type="vanished">Plug-in G&apos;MIC sedang berjalan</translation>
     </message>
     <message>
         <location filename="../src/ProgressInfoWidget.cpp" line="44"/>

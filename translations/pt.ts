@@ -45,10 +45,6 @@
         <translation>Pré-visualização à &amp;direita</translation>
     </message>
     <message>
-        <source>Tema</source>
-        <translation type="vanished">Tema</translation>
-    </message>
-    <message>
         <location filename="../ui/dialogsettings.ui" line="112"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
@@ -167,12 +163,6 @@
         <translation>Diálogo</translation>
     </message>
     <message>
-        <location filename="../ui/headlessprogressdialog.ui" line="29"/>
-        <location filename="../ui/headlessprogressdialog.ui" line="46"/>
-        <source>TextLabel</source>
-        <translation>Rótulo de texto</translation>
-    </message>
-    <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
@@ -199,10 +189,6 @@
         <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers...</source>
         <translation>Camadas de entrada...</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="vanished">-</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="49"/>
@@ -408,7 +394,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <location filename="../ui/mainwindow.ui" line="493"/>
         <source>TextLabel</source>
         <translation>Rótulo de texto</translation>
@@ -452,10 +437,6 @@
         <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Tela cheia</translation>
-    </message>
-    <message>
-        <source>&amp;Reset</source>
-        <translation type="vanished">&amp;Restabelecer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="532"/>
@@ -572,11 +553,6 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/multilinetextparameterwidget.ui" line="22"/>
-        <source>TextLabel</source>
-        <translation>Rótulo de texto</translation>
-    </message>
-    <message>
         <location filename="../ui/multilinetextparameterwidget.ui" line="29"/>
         <source>Update</source>
         <translation>Atualizar</translation>
@@ -603,10 +579,6 @@
         <location filename="../ui/progressinfowidget.ui" line="55"/>
         <source>TextLabel</source>
         <translation>Rótulo de texto</translation>
-    </message>
-    <message>
-        <source>G&apos;MIC Plug-in progression</source>
-        <translation type="vanished">Progressão do plugin do G&apos;MIC</translation>
     </message>
     <message>
         <location filename="../src/ProgressInfoWidget.cpp" line="44"/>

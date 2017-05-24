@@ -163,12 +163,6 @@
         <translation type="unfinished">ダイアログ</translation>
     </message>
     <message>
-        <location filename="../ui/headlessprogressdialog.ui" line="29"/>
-        <location filename="../ui/headlessprogressdialog.ui" line="46"/>
-        <source>TextLabel</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
@@ -195,10 +189,6 @@
         <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers...</source>
         <translation>入力レイヤー...</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="vanished">-</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="49"/>
@@ -404,7 +394,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <location filename="../ui/mainwindow.ui" line="493"/>
         <source>TextLabel</source>
         <translation></translation>
@@ -448,10 +437,6 @@
         <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Fullscreen</source>
         <translation>フルスクリーン(&amp;F)</translation>
-    </message>
-    <message>
-        <source>&amp;Reset</source>
-        <translation type="vanished">リセット(&amp;R)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="532"/>
@@ -566,11 +551,6 @@
         <location filename="../ui/multilinetextparameterwidget.ui" line="14"/>
         <source>Form</source>
         <translation>GMIC</translation>
-    </message>
-    <message>
-        <location filename="../ui/multilinetextparameterwidget.ui" line="22"/>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../ui/multilinetextparameterwidget.ui" line="29"/>

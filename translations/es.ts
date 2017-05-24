@@ -163,12 +163,6 @@
         <translation>Diálogo</translation>
     </message>
     <message>
-        <location filename="../ui/headlessprogressdialog.ui" line="29"/>
-        <location filename="../ui/headlessprogressdialog.ui" line="46"/>
-        <source>TextLabel</source>
-        <translation>Etiqueta de texto</translation>
-    </message>
-    <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
@@ -195,10 +189,6 @@
         <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers...</source>
         <translation>Capas de entrada...</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="vanished">-</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="49"/>
@@ -404,7 +394,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <location filename="../ui/mainwindow.ui" line="493"/>
         <source>TextLabel</source>
         <translation>Etiqueta de Texto</translation>
@@ -448,10 +437,6 @@
         <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Pantalla completa</translation>
-    </message>
-    <message>
-        <source>&amp;Reset</source>
-        <translation type="vanished">&amp;Reiniciar</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="532"/>
@@ -568,11 +553,6 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/multilinetextparameterwidget.ui" line="22"/>
-        <source>TextLabel</source>
-        <translation>Etiqueta de Texto</translation>
-    </message>
-    <message>
         <location filename="../ui/multilinetextparameterwidget.ui" line="29"/>
         <source>Update</source>
         <translation>Actualizar</translation>
@@ -599,10 +579,6 @@
         <location filename="../ui/progressinfowidget.ui" line="55"/>
         <source>TextLabel</source>
         <translation>Etiqueta de texto</translation>
-    </message>
-    <message>
-        <source>G&apos;MIC Plug-in progression</source>
-        <translation type="vanished">Progresión del plugin de G&apos;MIC</translation>
     </message>
     <message>
         <location filename="../src/ProgressInfoWidget.cpp" line="44"/>
