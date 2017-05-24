@@ -124,6 +124,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                 "Ensicaen (http://www.ensicaen.fr)"));
   ui->logosLabel->setPixmap(QPixmap(":resources/logos.png"));
 
+  ui->tbSelectionMode->setToolTip(tr("Selection mode"));
+  ui->tbSelectionMode->setCheckable(true);
+
   _waitingCursorTimer.setSingleShot(true);
   connect(&_waitingCursorTimer,SIGNAL(timeout()),
           this,SLOT(showWaitingCursor()));
@@ -217,6 +220,7 @@ void MainWindow::setIcons()
   ui->pbCancel->setIcon(LOAD_ICON("process-stop"));
   ui->tbAddFave->setIcon(LOAD_ICON("bookmark-add"));
   ui->tbRemoveFave->setIcon(LOAD_ICON("bookmark-remove"));
+  ui->tbSelectionMode->setIcon(LOAD_ICON("selection_mode"));
   _expandIcon = LOAD_ICON("draw-arrow-down");
   _collapseIcon = LOAD_ICON("draw-arrow-up");
   _expandCollapseIcon = &_expandIcon;
@@ -247,13 +251,14 @@ void MainWindow::setDarkTheme()
   p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
   ui->cbInternetUpdate->setPalette(p);
   ui->cbPreview->setPalette(p);
-  ui->cbFiltersSelectionMode->setPalette(p);
 
   const QString css = "QTreeView { background: #505050; }"
                       "QLineEdit { background: #505050; }"
                       "QTextEdit { background: #505050; }"
                       "QSpinBox  { background: #505050; }"
-                      "QDoubleSpinBox { background: #505050; }";
+                      "QDoubleSpinBox { background: #505050; }"
+                      "QToolButton:checked { background: #383838; }"
+                      "QToolButton:pressed { background: #383838; }";
   qApp->setStyleSheet( css );
 
   //DialogSettings::UnselectedFilterTextColor.setRgb(255,0,0);
@@ -496,7 +501,7 @@ void MainWindow::makeConnections()
   connect(ui->progressInfoWidget,SIGNAL(cancel()),
           this,SLOT(onCancelProcess()));
 
-  connect(ui->cbFiltersSelectionMode,SIGNAL(toggled(bool)),
+  connect(ui->tbSelectionMode,SIGNAL(toggled(bool)),
           this,SLOT(onFiltersSelectionModeToggled(bool)));
 
   connect(&_filtersTreeModel,SIGNAL(itemChanged(QStandardItem*)),
@@ -909,7 +914,7 @@ MainWindow::loadSettings()
   }
 
   // Filters visibility
-  ui->cbFiltersSelectionMode->setChecked(settings.value("Config/ShowAllFilters",false).toBool());
+  ui->tbSelectionMode->setChecked(settings.value("Config/ShowAllFilters",false).toBool());
   ui->cbInternetUpdate->setChecked(settings.value("Config/RefreshInternetUpdate",true).toBool());
 
   // This will not be overwritten by the first call of backupExpandedFoldersPaths()
@@ -1089,7 +1094,7 @@ void MainWindow::onFiltersTreeItemChanged(QStandardItem * item)
 
 bool MainWindow::filtersSelectionMode()
 {
-  return ui->cbFiltersSelectionMode->isChecked();
+  return ui->tbSelectionMode->isChecked();
 }
 
 QString

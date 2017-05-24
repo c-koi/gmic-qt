@@ -4,30 +4,36 @@
         <file>icons/bookmark-remove.png</file>
         <file>icons/dark/bookmark-add.png</file>
         <file>icons/dark/bookmark-remove.png</file>
+        <file>icons/dark/document-open.png</file>
         <file>icons/dark/draw-arrow-down.png</file>
         <file>icons/dark/draw-arrow-up.png</file>
         <file>icons/dark/edit-clear.png</file>
         <file>icons/dark/edit-find.png</file>
+        <file>icons/dark/folder.png</file>
         <file>icons/dark/insert-image.png</file>
         <file>icons/dark/list-add.png</file>
         <file>icons/dark/list-remove.png</file>
         <file>icons/dark/package_settings.png</file>
         <file>icons/dark/process-stop.png</file>
+        <file>icons/dark/selection_mode.png</file>
         <file>icons/dark/system-run.png</file>
         <file>icons/dark/undo.png</file>
         <file>icons/dark/view-fullscreen.png</file>
         <file>icons/dark/view-refresh.png</file>
         <file>icons/dark/zoom-in.png</file>
         <file>icons/dark/zoom-out.png</file>
+        <file>icons/document-open.png</file>
         <file>icons/draw-arrow-down.png</file>
         <file>icons/draw-arrow-up.png</file>
         <file>icons/edit-clear.png</file>
         <file>icons/edit-find.png</file>
+        <file>icons/folder.png</file>
         <file>icons/insert-image.png</file>
         <file>icons/list-add.png</file>
         <file>icons/list-remove.png</file>
         <file>icons/package_settings.png</file>
         <file>icons/process-stop.png</file>
+        <file>icons/selection_mode.png</file>
         <file>icons/system-run.png</file>
         <file>icons/undo.png</file>
         <file>icons/view-fullscreen.png</file>
@@ -42,9 +48,5 @@
         <file>resources/logos.png</file>
         <file>resources/rename.png</file>
         <file>resources/transparency.png</file>
-        <file>icons/folder.png</file>
-        <file>icons/dark/folder.png</file>
-        <file>icons/document-open.png</file>
-        <file>icons/dark/document-open.png</file>
     </qresource>
 </RCC>
