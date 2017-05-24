@@ -7,7 +7,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/ColorParameter.cpp" line="139"/>
+        <location filename="../src/ColorParameter.cpp" line="143"/>
         <source>Select color</source>
         <translation>Pilih warna</translation>
     </message>
@@ -20,17 +20,17 @@
         <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="22"/>
+        <location filename="../ui/dialogsettings.ui" line="28"/>
         <source>Internet updates</source>
         <translation>Pembaruan internet</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="31"/>
+        <location filename="../ui/dialogsettings.ui" line="37"/>
         <source>Update now</source>
         <translation>Perbarui sekarang</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="41"/>
+        <location filename="../ui/dialogsettings.ui" line="22"/>
         <source>Layout</source>
         <translation>Tata letak</translation>
     </message>
@@ -80,42 +80,42 @@
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="43"/>
+        <location filename="../src/DialogSettings.cpp" line="51"/>
         <source>Settings</source>
         <translation>Setelan</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="51"/>
+        <location filename="../src/DialogSettings.cpp" line="59"/>
         <source>Never</source>
         <translation>Tidak pernah</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="52"/>
+        <location filename="../src/DialogSettings.cpp" line="60"/>
         <source>Daily</source>
         <translation>Harian</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="53"/>
+        <location filename="../src/DialogSettings.cpp" line="61"/>
         <source>Weekly</source>
         <translation>Mingguan</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="54"/>
+        <location filename="../src/DialogSettings.cpp" line="62"/>
         <source>Every 2 weeks</source>
         <translation>Tiap 2 minggu</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="55"/>
+        <location filename="../src/DialogSettings.cpp" line="63"/>
         <source>Monthly</source>
         <translation>Bulanan</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="57"/>
+        <location filename="../src/DialogSettings.cpp" line="65"/>
         <source>At launch (debug)</source>
         <translation>Pada pembukaan (debug)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="70"/>
+        <location filename="../src/DialogSettings.cpp" line="78"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Centang untuk gunakan warna native, Tidak centang untuk gunakan Qt</translation>
     </message>
@@ -123,7 +123,7 @@
 <context>
     <name>FileParameter</name>
     <message>
-        <location filename="../src/FileParameter.cpp" line="123"/>
+        <location filename="../src/FileParameter.cpp" line="131"/>
         <source>Select a file</source>
         <translation>Pilih berkas</translation>
     </message>
@@ -131,21 +131,26 @@
 <context>
     <name>FilterParamsWidget</name>
     <message>
-        <location filename="../src/FilterParamsWidget.cpp" line="43"/>
-        <location filename="../src/FilterParamsWidget.cpp" line="128"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="45"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="166"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
         <translation>&lt;i&gt;Pilih filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParamsWidget.cpp" line="114"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="141"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
         <translation>&lt;i&gt;Tak ada parameter&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/FilterParamsWidget.cpp" line="144"/>
+        <source>&lt;i&gt;Error parsing filter parameters&lt;/i&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FolderParameter</name>
     <message>
-        <location filename="../src/FolderParameter.cpp" line="120"/>
+        <location filename="../src/FolderParameter.cpp" line="126"/>
         <source>Select a folder</source>
         <translation>Pilih folder</translation>
     </message>
@@ -182,200 +187,204 @@
         <translation>Masukan / Keluaran</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="37"/>
+        <location filename="../src/InOutPanel.cpp" line="46"/>
         <source>Input layers</source>
         <translation>Lapisan masukan</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="38"/>
+        <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers...</source>
         <translation>Lapisan masukan...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="39"/>
-        <location filename="../src/InOutPanel.cpp" line="53"/>
-        <location filename="../src/InOutPanel.cpp" line="61"/>
-        <location filename="../src/InOutPanel.cpp" line="73"/>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="vanished">-</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="40"/>
+        <location filename="../src/InOutPanel.cpp" line="49"/>
         <source>None</source>
         <translation>Tidak ada</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="41"/>
+        <location filename="../src/InOutPanel.cpp" line="50"/>
         <source>Active (default)</source>
         <translation>Aktif (setelan standar)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="42"/>
+        <location filename="../src/InOutPanel.cpp" line="51"/>
         <source>All</source>
         <translation>Semua</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="43"/>
+        <location filename="../src/InOutPanel.cpp" line="52"/>
         <source>Active and below</source>
         <translation>Aktif dan bawah</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="44"/>
+        <location filename="../src/InOutPanel.cpp" line="53"/>
         <source>Active and above</source>
         <translation>Aktif dan atas</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="45"/>
+        <location filename="../src/InOutPanel.cpp" line="54"/>
         <source>All visible</source>
         <translation>Semua terlihat</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="46"/>
+        <location filename="../src/InOutPanel.cpp" line="55"/>
         <source>All invisible</source>
         <translation>Semua tak terlihat</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="47"/>
+        <location filename="../src/InOutPanel.cpp" line="56"/>
         <source>All visible (decr.)</source>
         <translation>Semua terlihat (mengecil)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="48"/>
+        <location filename="../src/InOutPanel.cpp" line="57"/>
         <source>All invisible (decr.)</source>
         <translation>Semua tak terlihat (mengecil)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="49"/>
+        <location filename="../src/InOutPanel.cpp" line="58"/>
         <source>All (decr.)</source>
         <translation>Semua (mengecil)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="51"/>
+        <location filename="../src/InOutPanel.cpp" line="60"/>
         <source>Output mode</source>
         <translation>Modus keluaran</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="52"/>
+        <location filename="../src/InOutPanel.cpp" line="61"/>
         <source>Output mode...</source>
         <translation>Modus keluaran...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="54"/>
+        <location filename="../src/InOutPanel.cpp" line="63"/>
         <source>In place (default)</source>
         <translation>Pada tempatnya (setelan standar)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="55"/>
+        <location filename="../src/InOutPanel.cpp" line="64"/>
         <source>New layer(s)</source>
         <translation>Lapisan(-lapisan) baru</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="56"/>
+        <location filename="../src/InOutPanel.cpp" line="65"/>
         <source>New active layer(s)</source>
         <translation>Lapisan(-lapisan) aktif baru</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="57"/>
+        <location filename="../src/InOutPanel.cpp" line="66"/>
         <source>New image</source>
         <translation>Citra baru</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="59"/>
+        <location filename="../src/InOutPanel.cpp" line="68"/>
         <source>Output messages</source>
         <translation>Pesan-pesan keluaran</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="60"/>
+        <location filename="../src/InOutPanel.cpp" line="69"/>
         <source>Output messages...</source>
         <translation>Pesan-pesan keluaran...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="62"/>
+        <location filename="../src/InOutPanel.cpp" line="71"/>
         <source>Quiet (default)</source>
         <translation>Sunyi (setelan standar)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="63"/>
+        <location filename="../src/InOutPanel.cpp" line="72"/>
         <source>Verbose (layer name)</source>
         <translation>Verbose (nama lapisan)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="64"/>
+        <location filename="../src/InOutPanel.cpp" line="73"/>
         <source>Verbose (console)</source>
         <translation>Verbose (konsol)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="65"/>
+        <location filename="../src/InOutPanel.cpp" line="74"/>
         <source>Verbose (log file)</source>
         <translation>Verbose (berkas laporan)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="66"/>
+        <location filename="../src/InOutPanel.cpp" line="75"/>
         <source>Very verbose (console)</source>
         <translation>Very verbose (konsol)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="67"/>
+        <location filename="../src/InOutPanel.cpp" line="76"/>
         <source>Very verbose (log file)</source>
         <translation>Very verbose (berkas laporan)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="68"/>
+        <location filename="../src/InOutPanel.cpp" line="77"/>
         <source>Debug (console)</source>
         <translation>Debug (konsol)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="69"/>
+        <location filename="../src/InOutPanel.cpp" line="78"/>
         <source>Debug (log file)</source>
         <translation>Debug (berkas laporan)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="71"/>
+        <location filename="../src/InOutPanel.cpp" line="80"/>
         <source>Preview mode</source>
         <translation>Modus tinjauan</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="72"/>
+        <location filename="../src/InOutPanel.cpp" line="81"/>
         <source>Preview mode...</source>
         <translation>Modus tinjauan...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="74"/>
+        <location filename="../src/InOutPanel.cpp" line="83"/>
         <source>1st ouput (default)</source>
         <translation>Keluaran pertama (setelan standar)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="75"/>
-        <source>2nd ouput</source>
-        <translation>Keluaran kedua</translation>
+        <location filename="../src/InOutPanel.cpp" line="84"/>
+        <source>2cd ouput</source>
+        <translation type="unfinished">Keluaran ketiga {2c?}</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="76"/>
+        <location filename="../src/InOutPanel.cpp" line="87"/>
+        <source>1st -&gt; 2cd ouput</source>
+        <translation type="unfinished">Keluaran pertama -&gt; ketiga {1s?} {2c?}</translation>
+    </message>
+    <message>
+        <source>2nd ouput</source>
+        <translation type="vanished">Keluaran kedua</translation>
+    </message>
+    <message>
+        <location filename="../src/InOutPanel.cpp" line="85"/>
         <source>3rd ouput</source>
         <translation>Keluaran ketiga</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="77"/>
+        <location filename="../src/InOutPanel.cpp" line="86"/>
         <source>4th ouput</source>
         <translation>Keluaran keempat</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="78"/>
         <source>1st -&gt; 2nd ouput</source>
-        <translation>Keluaran pertama -&gt; kedua</translation>
+        <translation type="vanished">Keluaran pertama -&gt; kedua</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="79"/>
+        <location filename="../src/InOutPanel.cpp" line="88"/>
         <source>1st -&gt; 3rd ouput</source>
         <translation>Keluaran pertama -&gt; ketiga</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="80"/>
+        <location filename="../src/InOutPanel.cpp" line="89"/>
         <source>1st -&gt; 4th ouput</source>
         <translation>Keluaran pertama -&gt; keempat</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="81"/>
+        <location filename="../src/InOutPanel.cpp" line="90"/>
         <source>All ouputs</source>
         <translation>Semua keluaran</translation>
     </message>
@@ -388,154 +397,173 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="109"/>
+        <location filename="../ui/mainwindow.ui" line="122"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scaricare le definizioni dei filtri da remoto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="112"/>
+        <location filename="../ui/mainwindow.ui" line="125"/>
         <source>Internet</source>
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="169"/>
-        <location filename="../ui/mainwindow.ui" line="425"/>
+        <location filename="../ui/mainwindow.ui" line="139"/>
+        <source>Selection mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <location filename="../ui/mainwindow.ui" line="493"/>
         <source>TextLabel</source>
         <translation>LabelTeks</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="272"/>
+        <location filename="../ui/mainwindow.ui" line="192"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="297"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilitare/disabilitare anteprima&lt;br/&gt;(click destro per alternare)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="275"/>
+        <location filename="../ui/mainwindow.ui" line="300"/>
         <source>Preview</source>
         <translation>Tinjauan</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="358"/>
+        <location filename="../ui/mainwindow.ui" line="363"/>
+        <source>100 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="426"/>
         <source>Input / Output</source>
         <translation>Masukan / Keluaran</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="409"/>
+        <location filename="../ui/mainwindow.ui" line="477"/>
         <source>Settings...</source>
         <translation>Pengaturan...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="438"/>
+        <location filename="../ui/mainwindow.ui" line="506"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Batalkan</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="451"/>
+        <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Layar penuh</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="464"/>
         <source>&amp;Reset</source>
-        <translation>&amp;Reset</translation>
+        <translation type="vanished">&amp;Reset</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="477"/>
+        <location filename="../ui/mainwindow.ui" line="532"/>
         <source>&amp;Apply</source>
         <translation>&amp;Terapkan</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="490"/>
+        <location filename="../ui/mainwindow.ui" line="545"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
+        <location filename="../src/MainWindow.cpp" line="105"/>
         <source>Add fave</source>
         <translation>Tambah favorit</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="94"/>
+        <location filename="../src/MainWindow.cpp" line="107"/>
+        <source>Reset parameters to default values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="110"/>
         <source>Update filters</source>
         <translation>Perbarui filter</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="96"/>
+        <location filename="../src/MainWindow.cpp" line="112"/>
         <source>Rename fave</source>
         <translation>Namai ulang favorit</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="98"/>
+        <location filename="../src/MainWindow.cpp" line="114"/>
         <source>Remove fave</source>
         <translation>Hapus favorit</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="102"/>
+        <location filename="../src/MainWindow.cpp" line="118"/>
         <source>Expand/Collapse all</source>
         <translation>Expand/Collapse semua</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
+        <location filename="../src/MainWindow.cpp" line="120"/>
         <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandie Université (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="236"/>
+        <location filename="../src/MainWindow.cpp" line="277"/>
         <source>Update completed</source>
         <translation>Pembaruan selesai</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="236"/>
-        <location filename="../src/MainWindow.cpp" line="238"/>
+        <location filename="../src/MainWindow.cpp" line="277"/>
+        <location filename="../src/MainWindow.cpp" line="279"/>
         <source>Filter definitions have been updated.</source>
         <translation>Definisi filter telah diperbarui.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="281"/>
+        <location filename="../src/MainWindow.cpp" line="351"/>
         <source>Filter definitions have been updated</source>
         <translation>Definisi filter telah diperbarui.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="331"/>
+        <location filename="../src/MainWindow.cpp" line="424"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Pembaruan gagal&lt;br/&gt;karena error berikut:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="338"/>
+        <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Update error</source>
         <translation>Error pada pembaruan</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="562"/>
+        <location filename="../src/MainWindow.cpp" line="659"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="632"/>
+        <location filename="../src/MainWindow.cpp" line="728"/>
         <source>Available filters (%1)</source>
         <translation>Filter tersedia (%1)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1166"/>
+        <location filename="../src/MainWindow.cpp" line="1370"/>
         <source>Import faves</source>
         <translation>Impor favorit</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1167"/>
+        <location filename="../src/MainWindow.cpp" line="1371"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Apa anda ingin mengimpor favorit dari berkas dibawah?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1171"/>
+        <location filename="../src/MainWindow.cpp" line="1375"/>
         <source>Don&apos;t ask again</source>
         <translation>Jangan tanya lagi</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1373"/>
+        <location filename="../src/MainWindow.cpp" line="1635"/>
         <source>Confirmation</source>
         <translation>Konfirmasi</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1374"/>
+        <location filename="../src/MainWindow.cpp" line="1636"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Perintah gmic tengah berjalan.&lt;br&gt;Apa anda benar ingin menutup plugin?</translation>
     </message>
@@ -581,17 +609,22 @@
         <translation>LabelTeks</translation>
     </message>
     <message>
-        <location filename="../src/ProgressInfoWidget.cpp" line="38"/>
         <source>G&apos;MIC Plug-in progression</source>
-        <translation>Plug-in G&apos;MIC sedang berjalan</translation>
+        <translation type="vanished">Plug-in G&apos;MIC sedang berjalan</translation>
     </message>
     <message>
-        <location filename="../src/ProgressInfoWidget.cpp" line="98"/>
+        <location filename="../src/ProgressInfoWidget.cpp" line="44"/>
+        <source>G&apos;MIC-Qt Plug-in progression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ProgressInfoWidget.cpp" line="104"/>
+        <location filename="../src/ProgressInfoWidget.cpp" line="117"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Memproses %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/ProgressInfoWidget.cpp" line="101"/>
+        <location filename="../src/ProgressInfoWidget.cpp" line="119"/>
         <source>[Processing %1]</source>
         <translation>[Memproses %1]</translation>
     </message>
@@ -615,17 +648,17 @@
         <translation>Batalkan</translation>
     </message>
     <message>
-        <location filename="../src/ProgressInfoWindow.cpp" line="142"/>
+        <location filename="../src/ProgressInfoWindow.cpp" line="110"/>
         <source>%1 seconds</source>
         <translation>%1 detik</translation>
     </message>
     <message>
-        <location filename="../src/ProgressInfoWindow.cpp" line="159"/>
+        <location filename="../src/ProgressInfoWindow.cpp" line="120"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Memproses %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/ProgressInfoWindow.cpp" line="162"/>
+        <location filename="../src/ProgressInfoWindow.cpp" line="122"/>
         <source>[Processing %1]</source>
         <translation>[Memproses %1]</translation>
     </message>
@@ -633,12 +666,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/host_none.cpp" line="149"/>
+        <location filename="../src/host_none.cpp" line="172"/>
         <source>Select an image to open...</source>
         <translation>Pilih citra untuk dibuka...</translation>
     </message>
     <message>
-        <location filename="../src/host_none.cpp" line="151"/>
+        <location filename="../src/host_none.cpp" line="174"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>Files PNG &amp; JPG (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
@@ -648,7 +681,12 @@
         <translation>Filter tersedia</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="191"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="63"/>
+        <source>Visible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/GmicStdlibParser.cpp" line="228"/>
         <source>Available filters (%1)</source>
         <translation>Filter tersedia (%1)</translation>
     </message>
@@ -674,32 +712,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="195"/>
+        <location filename="../src/Updater.cpp" line="190"/>
         <source>Could not read/decompress %1</source>
         <translation>Tak terbaca/dekompresi %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="186"/>
+        <location filename="../src/Updater.cpp" line="181"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Error download %1 (berkas kosong?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="201"/>
+        <location filename="../src/Updater.cpp" line="196"/>
         <source>Error creating file %1</source>
         <translation>Error membuat berkas %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="205"/>
+        <location filename="../src/Updater.cpp" line="200"/>
         <source>Error writing file %1</source>
         <translation>Error menulis berkas %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="216"/>
+        <location filename="../src/Updater.cpp" line="211"/>
         <source>Error downloading %1</source>
         <translation>Error mengunduh %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="236"/>
+        <location filename="../src/Updater.cpp" line="234"/>
         <source>Download timeout: %1</source>
         <translation>Unduhan menunggu: %1</translation>
     </message>

@@ -142,7 +142,7 @@ translations/fr.ts \
 translations/id.ts \
 translations/it.ts \
 translations/nl.ts \
-translations/po.ts \
+translations/pl.ts \
 translations/pt.ts \
 translations/ru.ts \
 translations/ua.ts \
