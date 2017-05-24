@@ -89,9 +89,10 @@ MainWindow::MainWindow(QWidget *parent) :
 #define BETA_SUFFIX ""
 #endif
 
-  setWindowTitle(QString("G'MIC-Qt %1 - %2.%3.%4" BETA_SUFFIX )
+  setWindowTitle(QString("G'MIC-Qt %1- %5 %6 bits - %2.%3.%4" BETA_SUFFIX )
                  .arg(GmicQt::HostApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(GmicQt::HostApplicationName))
-                 .arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10));
+                 .arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10)
+                 .arg(cimg_library::cimg::stros()).arg(sizeof(void*)==8?64:32));
 
   QStringList tsp = QIcon::themeSearchPaths();
   tsp.append(QString("/usr/share/icons/gnome"));
