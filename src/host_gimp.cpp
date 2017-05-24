@@ -963,8 +963,8 @@ void gmic_qt_query() {
   };
 
   const char name[] = "plug-in-gmic-qt";
-  QByteArray blurb = QString("G'MIC - %1.%2.%3 (Qt)").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLatin1();
-  QByteArray path = QString("G'MIC - %1.%2 (Qt)...").arg(gmic_version/100).arg((gmic_version/10)%10).toLatin1();
+  QByteArray blurb = QString("G'MIC-Qt (%1.%2.%3)").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLatin1();
+  QByteArray path("G'MIC-Qt...");
   path.prepend("_");
   gimp_install_procedure(name,                      // name
                          blurb.constData(),         // blurb
