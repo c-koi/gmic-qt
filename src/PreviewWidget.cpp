@@ -515,6 +515,7 @@ void PreviewWidget::enablePreview(bool on)
   if ( on ) {
     if ( _savedPreviewIsValid ) {
       restorePreview();
+      _paintOriginalImage = false;
       update();
     } else {
       emit previewUpdateRequested();
