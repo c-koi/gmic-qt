@@ -400,7 +400,7 @@ void
 PreviewWidget::zoomIn(QPoint p, int steps)
 {
   double previousZoomFactor = _currentZoomFactor;
-  if ( _currentZoomFactor >= 30.0 ) {
+  if ( _currentZoomFactor >= PREVIEW_MAX_ZOOM_FACTOR ) {
     return;
   }
   double mouseX = p.x() / (_currentZoomFactor*_fullImageSize.width()) + _visibleRect.x;
@@ -408,8 +408,8 @@ PreviewWidget::zoomIn(QPoint p, int steps)
   while (steps--) {
     _currentZoomFactor *= 1.2;
   }
-  if (_currentZoomFactor >= 30.0 ) {
-    _currentZoomFactor = 30.0;
+  if (_currentZoomFactor >= PREVIEW_MAX_ZOOM_FACTOR ) {
+    _currentZoomFactor = PREVIEW_MAX_ZOOM_FACTOR;
   }
   if ( _currentZoomFactor == previousZoomFactor) {
     return;
@@ -436,6 +436,36 @@ void PreviewWidget::zoomOut(QPoint p, int steps)
   if ( isAtFullZoom() ) {
     _currentZoomFactor = std::min( width() / (double) _fullImageSize.width(),
                                    height() / (double) _fullImageSize.height() );
+  }
+  double newMouseX = p.x() / (_currentZoomFactor*_fullImageSize.width()) + _visibleRect.x;
+  double newMouseY = p.y() / (_currentZoomFactor*_fullImageSize.height()) + _visibleRect.y;
+  translateNormalized(mouseX-newMouseX,mouseY-newMouseY);
+  onPreviewParametersChanged();
+  emit zoomChanged(_currentZoomFactor);
+}
+
+void PreviewWidget::setZoomLevel(double zoom)
+{
+  if (zoom == _currentZoomFactor) {
+    return;
+  }
+  if ( (zoom >= PREVIEW_MAX_ZOOM_FACTOR) ||
+       (isAtFullZoom() && (zoom < _currentZoomFactor) ) ) {
+    emit zoomChanged(_currentZoomFactor);
+    return;
+  }
+  double previousZoomFactor = _currentZoomFactor;
+  QPoint p = _imagePosition.center();
+  double mouseX = p.x() / (_currentZoomFactor*_fullImageSize.width()) + _visibleRect.x;
+  double mouseY = p.y() / (_currentZoomFactor*_fullImageSize.height()) + _visibleRect.y;
+  _currentZoomFactor = zoom;
+  updateVisibleRect();
+  if ( isAtFullZoom() ) {
+    _currentZoomFactor = std::min( width() / (double) _fullImageSize.width(),
+                                   height() / (double) _fullImageSize.height() );
+  }
+  if ( _currentZoomFactor == previousZoomFactor ) {
+    return;
   }
   double newMouseX = p.x() / (_currentZoomFactor*_fullImageSize.width()) + _visibleRect.x;
   double newMouseY = p.y() / (_currentZoomFactor*_fullImageSize.height()) + _visibleRect.y;

@@ -115,22 +115,16 @@ INCLUDEPATH	+= $$PWD $$PWD/include $$GMIC_PATH
 
 DEPENDPATH += $$PWD/include $$PWD/images
 
-HEADERS += $$GMIC_PATH/gmic.h \
-                   include/HtmlTranslator.h \
-                   include/StoredFave.h
+HEADERS +=  include/ProgressInfoWidget.h include/FilterThread.h include/MultilineTextParameterWidget.h include/MainWindow.h include/ProgressInfoWindow.h include/BoolParameter.h  include/FiltersTreeFilterItem.h include/ConstParameter.h include/FiltersTreeAbstractFilterItem.h include/LinkParameter.h include/Common.h include/PreviewWidget.h include/ButtonParameter.h include/ChoiceParameter.h include/IntParameter.h include/SearchFieldWidget.h include/FolderParameter.h include/ImageTools.h include/SeparatorParameter.h include/GmicStdlibParser.h include/gmic_qt.h include/FiltersTreeItemDelegate.h include/NoteParameter.h include/DialogSettings.h include/TextParameter.h include/host.h include/ParametersCache.h include/FiltersTreeAbstractItem.h include/AbstractParameter.h include/FloatParameter.h include/ImageConverter.h include/ColorParameter.h include/FiltersTreeFaveItem.h include/Updater.h include/FiltersTreeFolderItem.h include/FilterParamsWidget.h include/InOutPanel.h include/ClickableLabel.h include/FileParameter.h include/HeadlessProcessor.h include/FiltersVisibilityMap.h include/HtmlTranslator.h include/StoredFave.h include/ZoomLevelSelector.h
 
-SOURCES += $$GMIC_PATH/gmic.cpp \
-           src/HtmlTranslator.cpp \
-           src/StoredFave.cpp
+HEADERS += $$GMIC_PATH/gmic.h
 
-# ALL_HEADERS
-HEADERS +=  include/ProgressInfoWidget.h include/FilterThread.h include/MultilineTextParameterWidget.h include/MainWindow.h include/ProgressInfoWindow.h include/BoolParameter.h  include/FiltersTreeFilterItem.h include/ConstParameter.h include/FiltersTreeAbstractFilterItem.h include/LinkParameter.h include/Common.h include/PreviewWidget.h include/ButtonParameter.h include/ChoiceParameter.h include/IntParameter.h include/SearchFieldWidget.h include/FolderParameter.h include/ImageTools.h include/SeparatorParameter.h include/GmicStdlibParser.h include/gmic_qt.h include/FiltersTreeItemDelegate.h include/NoteParameter.h include/DialogSettings.h include/TextParameter.h include/host.h include/ParametersCache.h include/FiltersTreeAbstractItem.h include/AbstractParameter.h include/FloatParameter.h include/ImageConverter.h include/ColorParameter.h include/FiltersTreeFaveItem.h include/Updater.h include/FiltersTreeFolderItem.h include/FilterParamsWidget.h include/InOutPanel.h include/ClickableLabel.h include/FileParameter.h include/HeadlessProcessor.h include/FiltersVisibilityMap.h # ALL_HEADERS
+SOURCES +=  src/FolderParameter.cpp src/ParametersCache.cpp src/gmic_qt.cpp src/TextParameter.cpp src/ColorParameter.cpp  src/FilterParamsWidget.cpp src/FiltersTreeFaveItem.cpp src/FiltersTreeAbstractItem.cpp src/FileParameter.cpp src/GmicStdlibParser.cpp src/ImageTools.cpp src/FiltersTreeFolderItem.cpp src/ProgressInfoWindow.cpp src/IntParameter.cpp src/LayersExtentProxy.cpp src/FiltersTreeItemDelegate.cpp src/FilterThread.cpp src/SeparatorParameter.cpp src/NoteParameter.cpp src/MainWindow.cpp  src/ConstParameter.cpp src/ImageConverter.cpp src/BoolParameter.cpp src/DialogSettings.cpp src/ButtonParameter.cpp src/FloatParameter.cpp src/ProgressInfoWidget.cpp src/AbstractParameter.cpp src/PreviewWidget.cpp src/ClickableLabel.cpp src/FiltersTreeAbstractFilterItem.cpp src/InOutPanel.cpp src/LinkParameter.cpp src/ChoiceParameter.cpp src/FiltersTreeFilterItem.cpp  src/MultilineTextParameterWidget.cpp src/SearchFieldWidget.cpp src/Updater.cpp src/HeadlessProcessor.cpp src/FiltersVisibilityMap.cpp src/HtmlTranslator.cpp src/StoredFave.cpp src/ZoomLevelSelector.cpp
 
-# ALL_SOURCES
-SOURCES +=  src/FolderParameter.cpp src/ParametersCache.cpp src/gmic_qt.cpp src/TextParameter.cpp src/ColorParameter.cpp  src/FilterParamsWidget.cpp src/FiltersTreeFaveItem.cpp src/FiltersTreeAbstractItem.cpp src/FileParameter.cpp src/GmicStdlibParser.cpp src/ImageTools.cpp src/FiltersTreeFolderItem.cpp src/ProgressInfoWindow.cpp src/IntParameter.cpp src/LayersExtentProxy.cpp src/FiltersTreeItemDelegate.cpp src/FilterThread.cpp src/SeparatorParameter.cpp src/NoteParameter.cpp src/MainWindow.cpp  src/ConstParameter.cpp src/ImageConverter.cpp src/BoolParameter.cpp src/DialogSettings.cpp src/ButtonParameter.cpp src/FloatParameter.cpp src/ProgressInfoWidget.cpp src/AbstractParameter.cpp src/PreviewWidget.cpp src/ClickableLabel.cpp src/FiltersTreeAbstractFilterItem.cpp src/InOutPanel.cpp src/LinkParameter.cpp src/ChoiceParameter.cpp src/FiltersTreeFilterItem.cpp  src/MultilineTextParameterWidget.cpp src/SearchFieldWidget.cpp src/Updater.cpp src/HeadlessProcessor.cpp src/FiltersVisibilityMap.cpp # ALL_SOURCES
+SOURCES += $$GMIC_PATH/gmic.cpp
 
 # ALL_FORMS
-FORMS +=  ui/inoutpanel.ui ui/multilinetextparameterwidget.ui ui/progressinfowindow.ui ui/dialogsettings.ui ui/progressinfowidget.ui ui/mainwindow.ui ui/SearchFieldWidget.ui ui/headlessprogressdialog.ui # ALL_FORMS
+FORMS +=  ui/inoutpanel.ui ui/multilinetextparameterwidget.ui ui/progressinfowindow.ui ui/dialogsettings.ui ui/progressinfowidget.ui ui/mainwindow.ui ui/SearchFieldWidget.ui ui/headlessprogressdialog.ui ui/zoomlevelselector.ui
 
 RESOURCES = gmic_qt.qrc translations.qrc
 

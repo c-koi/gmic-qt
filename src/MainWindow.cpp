@@ -380,6 +380,8 @@ void MainWindow::showZoomWarningIfNeeded()
 
 void MainWindow::updateZoomLabel(double zoom)
 {
+  ui->zoomLevelSelector->display(zoom);
+
   bool decimals = static_cast<int>(zoom*10000) % 100 ;
   QString text;
   if (decimals && zoom < 1) {
@@ -438,6 +440,9 @@ void MainWindow::showUpdateErrors()
 
 void MainWindow::makeConnections()
 {
+  connect(ui->zoomLevelSelector,SIGNAL(valueChanged(double)),
+          ui->previewWidget,SLOT(setZoomLevel(double)));
+
   connect(ui->previewWidget,SIGNAL(zoomChanged(double)),
           this,SLOT(showZoomWarningIfNeeded()));
   connect(ui->previewWidget,SIGNAL(zoomChanged(double)),

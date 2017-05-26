@@ -243,7 +243,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>146</width>
+            <width>145</width>
             <height>474</height>
            </rect>
           </property>
@@ -350,6 +350,16 @@
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="ZoomLevelSelector" name="zoomLevelSelector" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>0</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -605,6 +615,12 @@
    <class>InOutPanel</class>
    <extends>QGroupBox</extends>
    <header>InOutPanel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ZoomLevelSelector</class>
+   <extends>QWidget</extends>
+   <header>ZoomLevelSelector.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
