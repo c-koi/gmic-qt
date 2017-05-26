@@ -27,6 +27,7 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QComboBox>
 #include "PreviewWidget.h"
 #include "Common.h"
 #include "ImageConverter.h"
@@ -76,6 +77,7 @@ void PreviewWidget::setPreviewImage(const QImage & image)
   if ( isAtFullZoom() ) {
     _currentZoomFactor = std::min( width() / (double) _fullImageSize.width(),
                                    height() / (double) _fullImageSize.height() );
+    emit zoomChanged(_currentZoomFactor);
   }
   update();
 }
@@ -162,7 +164,7 @@ void PreviewWidget::resizeEvent(QResizeEvent * e)
   if ( isAtFullZoom() ) {
     _currentZoomFactor = std::min( e->size().width() / (double) _fullImageSize.width(),
                                    e->size().height() / (double) _fullImageSize.height() );
-    _visibleRect = PreviewPosition::Full;
+    emit zoomChanged(_currentZoomFactor);
   } else {
     updateVisibleRect();
   }
@@ -391,7 +393,7 @@ void PreviewWidget::zoomFullImage()
   _currentZoomFactor = std::min(width() / (double) _fullImageSize.width(),
                                 height() / (double) _fullImageSize.height());
   onPreviewParametersChanged();
-  emit zoomChanged();
+  emit zoomChanged(_currentZoomFactor);
 }
 
 void
@@ -417,7 +419,7 @@ PreviewWidget::zoomIn(QPoint p, int steps)
   double newMouseY = p.y() / (_currentZoomFactor*_fullImageSize.height()) + _visibleRect.y;
   translateNormalized(mouseX-newMouseX,mouseY-newMouseY);
   onPreviewParametersChanged();
-  emit zoomChanged();
+  emit zoomChanged(_currentZoomFactor);
 }
 
 void PreviewWidget::zoomOut(QPoint p, int steps)
@@ -439,7 +441,7 @@ void PreviewWidget::zoomOut(QPoint p, int steps)
   double newMouseY = p.y() / (_currentZoomFactor*_fullImageSize.height()) + _visibleRect.y;
   translateNormalized(mouseX-newMouseX,mouseY-newMouseY);
   onPreviewParametersChanged();
-  emit zoomChanged();
+  emit zoomChanged(_currentZoomFactor);
 }
 
 double PreviewWidget::defaultZoomFactor() const
@@ -473,7 +475,7 @@ PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
       centerVisibleRect();
     }
   }
-  emit zoomChanged();
+  emit zoomChanged(_currentZoomFactor);
 }
 
 void

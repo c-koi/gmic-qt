@@ -70,7 +70,7 @@ protected:
 
 signals:
   void previewUpdateRequested();
-  void zoomChanged();
+  void zoomChanged(double zoom);
 
 public slots:
   void abortUpdateTimer();

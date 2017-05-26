@@ -378,9 +378,8 @@ void MainWindow::showZoomWarningIfNeeded()
   }
 }
 
-void MainWindow::updateZoomLabel()
+void MainWindow::updateZoomLabel(double zoom)
 {
-  double zoom = ui->previewWidget->currentZoomFactor();
   bool decimals = static_cast<int>(zoom*10000) % 100 ;
   QString text;
   if (decimals && zoom < 1) {
@@ -439,10 +438,10 @@ void MainWindow::showUpdateErrors()
 
 void MainWindow::makeConnections()
 {
-  connect(ui->previewWidget,SIGNAL(zoomChanged()),
+  connect(ui->previewWidget,SIGNAL(zoomChanged(double)),
           this,SLOT(showZoomWarningIfNeeded()));
-  connect(ui->previewWidget,SIGNAL(zoomChanged()),
-          this,SLOT(updateZoomLabel()));
+  connect(ui->previewWidget,SIGNAL(zoomChanged(double)),
+          this,SLOT(updateZoomLabel(double)));
 
   connect(ui->filtersTree,SIGNAL(clicked(QModelIndex)),
           this,SLOT(onFilterClicked(QModelIndex)));

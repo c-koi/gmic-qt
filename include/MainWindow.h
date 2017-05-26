@@ -93,7 +93,7 @@ public slots:
   void onZoomIn();
   void onZoomOut();
   void showZoomWarningIfNeeded();
-  void updateZoomLabel();
+  void updateZoomLabel(double );
   void onFiltersSelectionModeToggled(bool);
 
 protected:
