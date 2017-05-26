@@ -161,12 +161,6 @@ MainWindow::MainWindow(QWidget *parent) :
           ui->searchField,SLOT(setFocus()));
   addAction(searchAction);
 
-  QFont font;
-  QFontMetrics fm(font);
-  ui->frame_zoom_level->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-  ui->labelZoomLevel->setMinimumWidth(fm.width("88.88 %")+10);
-  ui->labelZoomLevel->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-
   QPalette p = qApp->palette();
   DialogSettings::UnselectedFilterTextColor = p.color(QPalette::Disabled,QPalette::WindowText);
 
@@ -383,15 +377,6 @@ void MainWindow::showZoomWarningIfNeeded()
 void MainWindow::updateZoomLabel(double zoom)
 {
   ui->zoomLevelSelector->display(zoom);
-
-  bool decimals = static_cast<int>(zoom*10000) % 100 ;
-  QString text;
-  if (decimals && zoom < 1) {
-    text = QString("%L1 %").arg(zoom*100.0,0,'f',2);
-  } else {
-    text = QString("%1 %").arg(static_cast<int>(zoom*100));
-  }
-  ui->labelZoomLevel->setText(text);
 }
 
 void MainWindow::onFiltersSelectionModeToggled(bool on)

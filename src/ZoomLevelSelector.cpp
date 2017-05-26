@@ -99,6 +99,8 @@ void ZoomLevelSelector::onComboBoxEditingFinished()
 {
   QString text = ui->comboBox->lineEdit()->text();
   if ( text == _currentText ) {
+    // This is required because opening the combobox sends
+    // an editingFinished() signal ;-(
     return;
   }
   if ( ! text.endsWith(" %") ) {
@@ -111,7 +113,7 @@ void ZoomLevelSelector::onComboBoxEditingFinished()
   }
 }
 
-void ZoomLevelSelector::onComboIndexChanged(int index)
+void ZoomLevelSelector::onComboIndexChanged(int )
 {
   _currentText = ui->comboBox->currentText();
   if ( _notificationsEnabled ) {
@@ -123,7 +125,6 @@ double ZoomLevelSelector::currentZoomValue()
 {
   QString text = ui->comboBox->currentText();
   text.remove(" %");
-  TSHOW(text);
   return text.toDouble() / 100.0;
 }
 
