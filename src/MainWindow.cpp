@@ -1105,7 +1105,6 @@ MainWindow::faveUniqueName(const QString & name, QStandardItem * toBeIgnored)
   for (int i = 0; i < rows; ++i) {
     if ( folder->child(i) != toBeIgnored ) {
       QString faveName = folder->child(i)->text();
-      TSHOW(faveName);
       if ( faveName == name ) {
         nameIsUnique = false;
       }
