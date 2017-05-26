@@ -147,6 +147,8 @@ MainWindow::MainWindow(QWidget *parent) :
   _processingAction = NoAction;
   ui->splitter->setChildrenCollapsible(false);
 
+  _selectedAbstractFilterItem = nullptr;
+
   FiltersTreeItemDelegate * delegate = new FiltersTreeItemDelegate(ui->filtersTree);
   ui->filtersTree->setItemDelegate(delegate);
   connect(delegate,SIGNAL(commitData(QWidget*)),
@@ -288,7 +290,7 @@ void MainWindow::onUpdateDownloadsFinished(bool ok)
   buildFiltersTree();
   ui->filtersTree->update();
   ui->tbUpdateFilters->setEnabled(true);
-  if ( selectedFilterItem() ) {
+  if ( _selectedAbstractFilterItem ) {
     ui->previewWidget->sendUpdateRequest();
   }
 }
@@ -297,7 +299,7 @@ void MainWindow::buildFiltersTree()
 {
   // Save current expand/collapse status
   backupExpandedFoldersPaths();
-  QString currentHash = selectedFilterItem() ? selectedFilterItem()->hash() : QString();
+  QString currentHash = _selectedAbstractFilterItem ? _selectedAbstractFilterItem->hash() : QString();
   if ( !currentHash.isEmpty() ) {
     saveCurrentParameters();
   }
@@ -305,9 +307,9 @@ void MainWindow::buildFiltersTree()
   _filtersTreeModel.clear();
   _filtersTreeModelSelection.clear();
   const bool withVisibility = filtersSelectionMode();
-  GmicStdLibParser::buildFiltersTree(ui->filtersTree,
-                                     _filtersTreeModel,
-                                     withVisibility);
+  GmicStdLibParser::buildFiltersTree(_filtersTreeModel,withVisibility);
+  ui->filtersTree->setModel(&_filtersTreeModel);
+
   loadFaves(withVisibility);
   _filtersTreeModel.invisibleRootItem()->sortChildren(0);
 
@@ -370,7 +372,7 @@ void MainWindow::onZoomOut()
 
 void MainWindow::showZoomWarningIfNeeded()
 {
-  FiltersTreeAbstractFilterItem * item = selectedFilterItem();
+  FiltersTreeAbstractFilterItem * item = _selectedAbstractFilterItem;
   if ( item && !item->isAccurateIfZoomed() && !ui->previewWidget->isAtDefaultZoom() ) {
     ui->labelWarning->setPixmap(QPixmap(":/images/warning.png"));
   } else {
@@ -534,7 +536,7 @@ MainWindow::onPreviewUpdateRequested()
     _filterThread = 0;
   }
 
-  if ( !selectedFilterItem() || ui->filterParams->previewCommand().isEmpty() || ui->filterParams->previewCommand() == "_none_" ) {
+  if ( !_selectedAbstractFilterItem || ui->filterParams->previewCommand().isEmpty() || ui->filterParams->previewCommand() == "_none_" ) {
     ui->previewWidget->displayOriginalImage();
   } else {
     _gmicImages->assign(1);
@@ -561,8 +563,9 @@ MainWindow::onPreviewUpdateRequested()
     env += QString(" _preview_width=%1 _preview_height=%2")
         .arg(ui->previewWidget->width())
         .arg(ui->previewWidget->height());
+    Q_ASSERT_X(_selectedAbstractFilterItem,"MainWindow::onPreviewUpdateRequested()","No filter selected");
     _filterThread = new FilterThread(this,
-                                     selectedFilterItem()->plainText(),
+                                     _selectedAbstractFilterItem->plainText(),
                                      ui->filterParams->previewCommand(),
                                      ui->filterParams->valueString(),
                                      env,
@@ -625,14 +628,15 @@ MainWindow::processImage()
     _filterThread->abortGmic();
     _filterThread = 0;
   }
-  if ( !selectedFilterItem() || ui->filterParams->command().isEmpty() || ui->filterParams->command() == "_none_" ) {
+  if ( !_selectedAbstractFilterItem || ui->filterParams->command().isEmpty() || ui->filterParams->command() == "_none_" ) {
     return;
   }
   _gmicImages->assign();
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(*_gmicImages,imageNames,-1,-1,-1,-1,ui->inOutSelector->inputMode());
+  Q_ASSERT_X(_selectedAbstractFilterItem,"MainWindow::processImage()","No filter selected");
   _filterThread = new FilterThread(this,
-                                   _lastFilterName = selectedFilterItem()->plainText(),
+                                   _lastFilterName = _selectedAbstractFilterItem->plainText(),
                                    _lastAppliedCommand = ui->filterParams->command(),
                                    _lastAppliedCommandArguments = ui->filterParams->valueString(),
                                    ui->inOutSelector->gmicEnvString(),
@@ -750,7 +754,7 @@ MainWindow::onApplyClicked()
 void
 MainWindow::onOkClicked()
 {
-  if ( !selectedFilterItem() || ui->filterParams->command().isEmpty() || ui->filterParams->command() == "_none_" ) {
+  if ( !_selectedAbstractFilterItem || ui->filterParams->command().isEmpty() || ui->filterParams->command() == "_none_" ) {
     close();
   }
   if ( _okButtonShouldApply ) {
@@ -786,8 +790,7 @@ MainWindow::onCancelProcess()
 void
 MainWindow::onReset()
 {
-  FiltersTreeAbstractFilterItem * filterItem = selectedFilterItem();
-  FiltersTreeFaveItem * faveItem = filterItem ? dynamic_cast<FiltersTreeFaveItem*>(filterItem) : 0;
+  FiltersTreeFaveItem * faveItem = _selectedAbstractFilterItem ? dynamic_cast<FiltersTreeFaveItem*>(_selectedAbstractFilterItem) : 0;
   if ( faveItem ) {
     ui->filterParams->setValues(faveItem->defaultValues(),true);
     return;
@@ -799,9 +802,8 @@ MainWindow::onReset()
 
 void MainWindow::onPreviewZoomReset()
 {
-  FiltersTreeAbstractFilterItem * filterItem = selectedFilterItem();
-  if ( filterItem ) {
-    ui->previewWidget->setPreviewFactor(filterItem->previewFactor(),true);
+  if ( _selectedAbstractFilterItem ) {
+    ui->previewWidget->setPreviewFactor(_selectedAbstractFilterItem->previewFactor(),true);
     ui->previewWidget->sendUpdateRequest();
     ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
   }
@@ -838,9 +840,8 @@ MainWindow::saveSettings()
 
   DialogSettings::saveSettings(settings);
   QString selectedFilterHash;
-  FiltersTreeAbstractFilterItem * filterItem = selectedFilterItem();
-  if ( filterItem ) {
-    selectedFilterHash = filterItem->hash();
+  if ( _selectedAbstractFilterItem ) {
+    selectedFilterHash = _selectedAbstractFilterItem->hash();
   }
   settings.setValue("LastExecution/gmic_version",gmic_version);
   settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname),_lastAppliedCommand);
@@ -1134,8 +1135,6 @@ MainWindow::faveUniqueName(const QString & name, QStandardItem * toBeIgnored)
       }
     }
   }
-  TSHOW(name);
-  TSHOW(nameIsUnique);
   if ( nameIsUnique ) {
     return name;
   }
@@ -1149,8 +1148,8 @@ MainWindow::faveUniqueName(const QString & name, QStandardItem * toBeIgnored)
 void
 MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QString> & values)
 {
-  FiltersTreeAbstractFilterItem * filterItem;
-  filterItem = dynamic_cast<FiltersTreeAbstractFilterItem*>( _currentFiltersTreeModel->itemFromIndex(index) );
+  _selectedAbstractFilterItem = currentTreeIndexToAbstractFilter(index);
+  FiltersTreeAbstractFilterItem * & filterItem  = _selectedAbstractFilterItem;
   FiltersTreeFaveItem * faveItem = filterItem ? dynamic_cast<FiltersTreeFaveItem*>(filterItem) : 0;
   saveCurrentParameters();
 
@@ -1178,10 +1177,31 @@ MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QStrin
 }
 
 FiltersTreeAbstractFilterItem *
+MainWindow::currentTreeIndexToAbstractFilter(QModelIndex index)
+{
+  QStandardItem * item = _currentFiltersTreeModel->itemFromIndex(index);
+  if ( item ) {
+    int row = index.row();
+    QStandardItem * parentFolder = item->parent();
+    // parent is 0 for top level items
+    if ( !parentFolder ) {
+      parentFolder = _currentFiltersTreeModel->invisibleRootItem();
+    }
+    QStandardItem * leftItem = parentFolder->child(row,0);
+    if ( leftItem ) {
+      FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(leftItem);
+      if ( filter ) {
+        return filter;
+      }
+    }
+  }
+  return 0;
+}
+
+FiltersTreeAbstractFilterItem *
 MainWindow::selectedFilterItem()
 {
   // Get filter item even if checkbox is selected
-
   QModelIndex index = ui->filtersTree->currentIndex();
   QStandardItem * item = _currentFiltersTreeModel->itemFromIndex(index);
   if ( item ) {
@@ -1272,14 +1292,15 @@ MainWindow::faveFolder(ModelType modelType)
   return 0;
 }
 
-FiltersTreeFaveItem * MainWindow::findFave(const QString & hash, ModelType modelType)
+FiltersTreeFaveItem *
+MainWindow::findFave(const QString & hash, ModelType modelType)
 {
   FiltersTreeFolderItem * folder = faveFolder(modelType);
   return folder ? FiltersTreeAbstractItem::findFave(folder,hash) : 0;
 }
 
 FiltersTreeFilterItem *
-MainWindow::findFilter(const QString &hash, MainWindow::ModelType modelType)
+MainWindow::findFilter(const QString & hash, MainWindow::ModelType modelType)
 {
   QStandardItemModel & model = modelType == FullModel ? _filtersTreeModel : _filtersTreeModelSelection;
   FiltersTreeFilterItem * filter = FiltersTreeAbstractItem::findFilter(model.invisibleRootItem(),hash);
@@ -1457,32 +1478,31 @@ MainWindow::onAddFave()
                                                          faveUniqueName(item->text()),
                                                          ui->filterParams->valueStringList());
     FiltersTreeFolderItem  * folder = faveFolder(FullModel);
-
     if ( filtersSelectionMode() ) {
       GmicStdLibParser::addStandardItemWithCheckBox(folder,fave,true);
     } else {
       folder->appendRow(fave);
     }
+    folder->sortChildren(0,Qt::AscendingOrder);
+
     ParametersCache::setValues(fave->hash(),ui->filterParams->valueStringList());
     ParametersCache::setInputOutputState(fave->hash(), ui->inOutSelector->state());
-    ui->filterParams->build(fave,QList<QString>());
+
     ui->filtersTree->setCurrentIndex(fave->index());
-    folder->sortChildren(0,Qt::AscendingOrder);
+    ui->filtersTree->scrollTo(fave->index(),QAbstractItemView::PositionAtCenter);
+    activateFilter(fave->index(),false,QList<QString>());
+
     saveFaves();
-    ui->tbRemoveFave->setEnabled(true);
-    ui->tbRenameFave->setEnabled(true);
-    ui->filterName->setText(QString("<b>%1</b>").arg(fave->text()));
   }
 }
 
 void
 MainWindow::onRemoveFave()
 {
-  FiltersTreeAbstractFilterItem * item = selectedFilterItem();
-  FiltersTreeFaveItem * fave = item ? dynamic_cast<FiltersTreeFaveItem *>(item) : 0;
+  FiltersTreeFaveItem * fave = _selectedAbstractFilterItem ? dynamic_cast<FiltersTreeFaveItem *>(_selectedAbstractFilterItem) : 0;
   if ( fave ) {
-    ParametersCache::remove(fave->hash());
     QString hash = fave->hash();
+    ParametersCache::remove(hash);
     FiltersTreeFaveItem * item = findFave(hash,FullModel);
     _filtersTreeModel.removeRow(item->row(),item->index().parent());
     item = findFave(hash,SelectionModel);
@@ -1501,8 +1521,7 @@ MainWindow::onRemoveFave()
 void
 MainWindow::onRenameFave()
 {
-  FiltersTreeAbstractFilterItem * item = selectedFilterItem();
-  FiltersTreeFaveItem * fave = item ? dynamic_cast<FiltersTreeFaveItem *>(item) : 0;
+  FiltersTreeFaveItem * fave = _selectedAbstractFilterItem ? dynamic_cast<FiltersTreeFaveItem *>(_selectedAbstractFilterItem) : 0;
   if ( fave ) {
     ui->filtersTree->edit(fave->index());
     //    QString newName = QInputDialog::getText(this,

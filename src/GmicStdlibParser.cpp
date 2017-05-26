@@ -47,7 +47,7 @@ GmicStdLibParser::GmicStdLibParser()
 {
 }
 
-void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel & model, bool withVisibility)
+void GmicStdLibParser::buildFiltersTree(QStandardItemModel & model, bool withVisibility)
 {
   if ( GmicStdlib.isEmpty() ) {
     loadStdLib();
@@ -57,7 +57,6 @@ void GmicStdLibParser::buildFiltersTree(QTreeView * treeView, QStandardItemModel
   QList<QStandardItem*> treeFoldersStack;
   QList<QString> filterPath;
 
-  treeView->setModel(&model);
   model.setHorizontalHeaderItem(0,new QStandardItem(QObject::tr("Available filters")));
   if ( withVisibility ) {
     model.setHorizontalHeaderItem(1,new QStandardItem(QObject::tr("Visible")));

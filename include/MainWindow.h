@@ -130,6 +130,7 @@ private:
   FiltersTreeFolderItem * faveFolder( ModelType modelType );
   FiltersTreeFaveItem * findFave( const QString & hash, ModelType modelType );
   FiltersTreeFilterItem * findFilter( const QString & hash, ModelType modelType );
+  FiltersTreeAbstractFilterItem * currentTreeIndexToAbstractFilter( QModelIndex index );
   void addFaveFolder();
   void removeFaveFolder();
   void loadFaves(bool withVisibility);
@@ -154,6 +155,7 @@ private:
   QStandardItemModel _filtersTreeModel;
   QStandardItemModel _filtersTreeModelSelection;
   QStandardItemModel * _currentFiltersTreeModel;
+  FiltersTreeAbstractFilterItem * _selectedAbstractFilterItem;
   cimg_library::CImgList<float> * _gmicImages;
   FilterThread * _filterThread;
   QTimer _waitingCursorTimer;

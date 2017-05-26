@@ -36,7 +36,7 @@ class GmicStdLibParser
 {
 public:
   GmicStdLibParser();
-  static void buildFiltersTree(QTreeView *, QStandardItemModel & , bool withVisibility);
+  static void buildFiltersTree(QStandardItemModel & model, bool withVisibility);
   static void saveFiltersVisibility(QStandardItem * );
   static void loadStdLib();
   static QByteArray GmicStdlib;
