@@ -134,18 +134,21 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     }
   } else {
     // Display the preview
-    if ( _image.size() != _originaImageScaledSize ) {
-      // Preview has a size different from the original image crop
-      // It should fit the widget size
+
+    //  If preview image has a size different from the original image crop, or
+    //  we are at "full image" zoom of an image smaller than the widget,
+    //  then the image should fit the widget size.
+    if ( (_image.size() != _originaImageScaledSize)
+         || (isAtFullZoom() && _currentZoomFactor > 1.0) ) {
       QSize imageSize = _image.size().scaled(width(),height(),Qt::KeepAspectRatio);
       _imagePosition = QRect(QPoint(std::max(0,(width() - imageSize.width())/2),
                                     std::max(0,(height() - imageSize.height())/2)),
                              imageSize);
-      // Make sure next preview update will not consider originaImageScaledSize
-      _originaImageScaledSize = QSize(-1,-1);
+      _originaImageScaledSize = QSize(-1,-1); // Make sure next preview update will not consider originaImageScaledSize
     }
-    // Otherwise : Preview size == Original scaled size
-    // image position is therefore unchanged
+    /*
+     *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
+     */
   }
   if ( _image.hasAlphaChannel() ) {
     painter.fillRect(_imagePosition,QBrush(_transparency));
