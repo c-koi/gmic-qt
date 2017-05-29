@@ -45,6 +45,7 @@ FilterThread::FilterThread(QObject *parent,
     _name(name),
     _messageMode(mode)
 {
+  ENTERING;
 #ifdef _IS_MACOS_
   setStackSize(8*1024*1024);
 #endif

@@ -1583,6 +1583,7 @@ MainWindow::onOutputMessageModeChanged(GmicQt::OutputMessageMode mode)
     }
     cimg_library::cimg::output(stdout);
   }
+  ui->previewWidget->sendUpdateRequest();
 }
 
 void MainWindow::onToggleFullScreen(bool on)
