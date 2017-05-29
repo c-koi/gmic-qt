@@ -246,6 +246,13 @@ void MainWindow::setDarkTheme()
   linkColor = linkColor.lighter();
   p.setColor(QPalette::Link, linkColor);
   p.setColor(QPalette::LinkVisited, linkColor);
+
+  p.setColor(QPalette::Disabled,QPalette::Button, QColor(53,53,53));
+  p.setColor(QPalette::Disabled,QPalette::Window, QColor(53,53,53));
+  p.setColor(QPalette::Disabled,QPalette::Text, QColor(110,110,110));
+  p.setColor(QPalette::Disabled,QPalette::ButtonText, QColor(110,110,110));
+  p.setColor(QPalette::Disabled,QPalette::WindowText, QColor(110,110,110));
+
   qApp->setPalette(p);
 
   p = ui->cbInternetUpdate->palette();
@@ -528,6 +535,11 @@ MainWindow::onPreviewUpdateRequested()
     _filterThread->disconnect(this);
     _filterThread->abortGmic();
     _filterThread = 0;
+
+    _waitingCursorTimer.stop();
+    if ( QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor ) {
+      QApplication::restoreOverrideCursor();
+    }
   }
 
   if ( !selectedFilterItem() || ui->filterParams->previewCommand().isEmpty() || ui->filterParams->previewCommand() == "_none_" ) {

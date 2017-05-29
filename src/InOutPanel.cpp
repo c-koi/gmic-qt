@@ -23,6 +23,7 @@
  *
  */
 #include <QSettings>
+#include <QPalette>
 #include <QDebug>
 #include "ui_inoutpanel.h"
 #include "InOutPanel.h"

@@ -35,6 +35,7 @@ class InOutPanel;
 }
 
 class QSettings;
+class QPalette;
 class FilterThread;
 
 class InOutPanel : public QGroupBox

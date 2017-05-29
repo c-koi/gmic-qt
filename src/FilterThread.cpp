@@ -53,6 +53,7 @@ FilterThread::FilterThread(QObject *parent,
 
 FilterThread::~FilterThread()
 {
+  ENTERING;
   delete _images;
   delete _imageNames;
 }
