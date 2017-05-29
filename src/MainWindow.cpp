@@ -145,6 +145,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->filterParams->setNoFilter();
   _processingAction = NoAction;
+  ui->inOutSelector->disable();
   ui->splitter->setChildrenCollapsible(false);
 
   FiltersTreeItemDelegate * delegate = new FiltersTreeItemDelegate(ui->filtersTree);
@@ -1149,6 +1150,7 @@ MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QStrin
   if ( filterItem ) {
     ui->filterParams->build(filterItem,values);
     ui->filterName->setText(QString("<b>%1</b>").arg(filterItem->text()));
+    ui->inOutSelector->enable();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filterItem->hash()),false);
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
@@ -1158,6 +1160,7 @@ MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QStrin
     ui->tbResetParameters->setVisible(true);
   } else {
     ui->filterParams->setNoFilter();
+    ui->inOutSelector->disable();
     ui->inOutSelector->setState(InOutPanel::State::Unspecified,false);
     ui->filterName->setVisible(false);
     ui->tbAddFave->setEnabled(false);

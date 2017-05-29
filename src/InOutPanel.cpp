@@ -243,8 +243,10 @@ InOutPanel::State InOutPanel::state() const
 
 void InOutPanel::setState(const State & state, bool notify)
 {
-  bool notification = _notifyValueChange;
-  if ( !notify ) {
+  bool savedNotificationStatus = _notifyValueChange;
+  if ( notify ) {
+    enableNotifications();
+  } else {
     disableNotifications();
   }
 
@@ -269,9 +271,27 @@ void InOutPanel::setState(const State & state, bool notify)
     ui->previewMode->setCurrentIndex(0);
   }
 
-  if ( notification ) {
+  if ( savedNotificationStatus ) {
     enableNotifications();
+  } else {
+    disableNotifications();
   }
+}
+
+void InOutPanel::disable()
+{
+  ui->inputLayers->setEnabled(false);
+  ui->outputMode->setEnabled(false);
+  ui->outputMessages->setEnabled(false);
+  ui->previewMode->setEnabled(false);
+}
+
+void InOutPanel::enable()
+{
+  ui->inputLayers->setEnabled(true);
+  ui->outputMode->setEnabled(true);
+  ui->outputMessages->setEnabled(true);
+  ui->previewMode->setEnabled(true);
 }
 
 InOutPanel::State::State()

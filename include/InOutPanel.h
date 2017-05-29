@@ -79,6 +79,9 @@ public:
   State state() const;
   void setState(const State & state, bool notify);
 
+  void disable();
+  void enable();
+
 signals:
   void inputModeChanged(GmicQt::InputMode);
   void outputMessageModeChanged(GmicQt::OutputMessageMode);
