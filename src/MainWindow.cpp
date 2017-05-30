@@ -98,6 +98,20 @@ MainWindow::MainWindow(QWidget *parent) :
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
+  _filterUpdateWidgets = {
+    ui->previewWidget,
+    ui->tbZoomIn,
+    ui->tbZoomOut,
+    ui->tbZoomReset,
+    ui->filtersTree,
+    ui->filterParams,
+    ui->tbUpdateFilters,
+    ui->pbFullscreen,
+    ui->pbSettings,
+    ui->pbOk,
+    ui->pbApply
+  };
+
   ui->tbZoomIn->setToolTip("Zoom in");
   ui->tbZoomOut->setToolTip("Zoom out");
   ui->tbZoomReset->setToolTip("Reset zoom");
@@ -646,6 +660,12 @@ MainWindow::processImage()
           _filterThread,SLOT(deleteLater()));
   _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
   ui->progressInfoWidget->startAnimationAndShow(_filterThread,true);
+
+  // Disable most of the GUI
+  for (QWidget * w : _filterUpdateWidgets) {
+    w->setEnabled(false);
+  }
+
   _filterThread->start();
 }
 
@@ -653,6 +673,12 @@ void
 MainWindow::onApplyThreadFinished()
 {
   ui->progressInfoWidget->stopAnimationAndHide();
+  // Re-enable the GUI
+  for (QWidget * w : _filterUpdateWidgets) {
+    w->setEnabled(true);
+  }
+  ui->previewWidget->update();
+
   QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
   if ( ! list.isEmpty() ) {
     ui->filterParams->setValues(list,false);

@@ -185,6 +185,8 @@ private:
   bool _newSession;
 
   static const QString FilterTreePathSeparator;
+
+  QVector<QWidget*> _filterUpdateWidgets;
 };
 
 
