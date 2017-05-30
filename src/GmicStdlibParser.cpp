@@ -159,6 +159,12 @@ void GmicStdLibParser::buildFiltersTree(QStandardItemModel & model, bool withVis
         QList<QString> commands = filterCommands.split(",");
 
         QString filterCommand = commands[0].trimmed();
+        if ( commands.size() == 0) {
+          commands.push_back("_none_");
+        }
+        if ( commands.size() == 1) {
+          commands.push_back(commands.front());
+        }
         QList<QString> preview = commands[1].trimmed().split("(");
         float previewFactor = GmicQt::PreviewFactorAny;
         bool accurateIfZoomed = true;
