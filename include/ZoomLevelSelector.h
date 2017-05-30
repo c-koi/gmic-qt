@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdLibParser.h
+ *  @file ZoomLevelSelector.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,28 +22,49 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GMICSTDLIBPARSER_H_
-#define _GMIC_QT_GMICSTDLIBPARSER_H_
+#ifndef _GMIC_QT_ZOOMLEVELSELECTOR_H
+#define _GMIC_QT_ZOOMLEVELSELECTOR_H
 
-#include <QByteArray>
+#include <QWidget>
+#include <QDoubleValidator>
 
-class QTreeView;
-class QStandardItemModel;
-class QStandardItem;
-class QStringList;
-class FiltersTreeAbstractItem;
-class GmicStdLibParser
+namespace Ui {
+class ZoomLevelSelector;
+}
+
+class ZoomLevelSelector : public QWidget
 {
+  Q_OBJECT
+
 public:
-  GmicStdLibParser();
-  static void buildFiltersTree(QStandardItemModel & model, bool withVisibility);
-  static void saveFiltersVisibility(QStandardItem * );
-  static void loadStdLib();
-  static QByteArray GmicStdlib;
-  static QStringList parseStatus(QString );
-  static void addStandardItemWithCheckBox(QStandardItem * folder,
-                                          FiltersTreeAbstractItem * item,
-                                          bool itemIsVisible);
+  explicit ZoomLevelSelector(QWidget *parent = 0);
+  ~ZoomLevelSelector();
+
+public slots:
+  void display(double zoom);
+
+signals:
+  void valueChanged(double);
+
+private slots:
+
+  void onComboBoxEditingFinished();
+  void onComboIndexChanged(int );
+
+private:
+  Ui::ZoomLevelSelector *ui;
+  bool _notificationsEnabled;
+  double currentZoomValue();
+  QString _currentText;
 };
 
-#endif // _GMIC_QT_GMICSTDLIBPARSER_H_
+class ZoomLevelValidator : public QValidator {
+
+public:
+  ZoomLevelValidator(QObject * parent);
+  QValidator::State validate(QString & input, int & pos) const override;
+private:
+  QDoubleValidator * _doubleValidator;
+};
+
+#endif // _GMIC_QT_ZOOMLEVELSELECTOR_H

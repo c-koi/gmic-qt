@@ -81,6 +81,7 @@ public slots:
   void zoomFullImage();
   void zoomIn(QPoint, int steps);
   void zoomOut(QPoint, int steps);
+  void setZoomLevel(double zoom);
   /**
    * @brief setPreviewFactor
    * @param filterFactor

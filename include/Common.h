@@ -63,6 +63,8 @@ template<typename T> inline void unused(const T&, ...) {}
 #define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
 #define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()
 
+#define PREVIEW_MAX_ZOOM_FACTOR 40.0
+
 //#define LOAD_ICON( NAME ) ( GmicQt::DarkThemeEnabled ? QIcon(":/icons/dark/" NAME ".png") : QIcon::fromTheme( NAME , QIcon(":/icons/" NAME ".png") ) )
 #define LOAD_ICON( NAME ) ( DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png") )
 
