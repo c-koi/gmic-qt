@@ -56,7 +56,6 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget *parent) :
           this,SLOT(onComboBoxEditingFinished()));
   connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),
           this,SLOT(onComboIndexChanged(int)));
-
 }
 
 ZoomLevelSelector::~ZoomLevelSelector()

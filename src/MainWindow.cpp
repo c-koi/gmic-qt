@@ -262,7 +262,6 @@ void MainWindow::setDarkTheme()
   p.setColor(QPalette::Disabled,QPalette::Text, QColor(110,110,110));
   p.setColor(QPalette::Disabled,QPalette::ButtonText, QColor(110,110,110));
   p.setColor(QPalette::Disabled,QPalette::WindowText, QColor(110,110,110));
-
   qApp->setPalette(p);
 
   p = ui->cbInternetUpdate->palette();
@@ -277,10 +276,11 @@ void MainWindow::setDarkTheme()
                       "QSpinBox  { background: #505050; }"
                       "QDoubleSpinBox { background: #505050; }"
                       "QToolButton:checked { background: #383838; }"
-                      "QToolButton:pressed { background: #383838; }";
+                      "QToolButton:pressed { background: #383838; }"
+                      "QComboBox QAbstractItemView { background: #505050; } "
+                      "QComboBox:editable { background: #505050; } ";
   qApp->setStyleSheet( css );
 
-  //DialogSettings::UnselectedFilterTextColor.setRgb(255,0,0);
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
 

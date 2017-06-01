@@ -27,6 +27,7 @@
 
 #include <QWidget>
 #include <QDoubleValidator>
+#include <QPalette>
 
 namespace Ui {
 class ZoomLevelSelector;
@@ -43,13 +44,12 @@ public:
 public slots:
   void display(double zoom);
 
-signals:
-  void valueChanged(double);
-
 private slots:
-
   void onComboBoxEditingFinished();
   void onComboIndexChanged(int );
+
+signals:
+  void valueChanged(double);
 
 private:
   Ui::ZoomLevelSelector *ui;
