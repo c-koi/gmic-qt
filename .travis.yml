@@ -1,0 +1,34 @@
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided this notice is
+# preserved.  This file is offered as-is, without any warranty.
+# Names of contributors must not be used to endorse or promote products
+# derived from this file without specific prior written permission.
+
+
+# See YAML format https://en.wikipedia.org/wiki/YAML
+# See Travis CI (Continuous Integration) https://docs.travis-ci.com/
+
+
+language: cpp
+
+os:
+  - linux
+
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    packages:
+      - libgmic-dev
+      - libgimp2.0-dev
+      - qt-sdk
+      - libfftw3-dev
+      - libcurl4-openssl-dev
+      - cppcheck
+
+script:
+  - qmake
+  - make
+  - cppcheck --verbose --quiet --error-exitcode=1 --force --language=c++ --std=c++11 --enable=all src/
