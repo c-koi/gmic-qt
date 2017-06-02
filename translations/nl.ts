@@ -181,192 +181,192 @@
         <translation>Invoer / Uitvoer</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="46"/>
+        <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers</source>
         <translation>Invoer lagen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="47"/>
+        <location filename="../src/InOutPanel.cpp" line="48"/>
         <source>Input layers...</source>
         <translation>Invoer lagen...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="49"/>
+        <location filename="../src/InOutPanel.cpp" line="50"/>
         <source>None</source>
         <translation>Geen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="50"/>
+        <location filename="../src/InOutPanel.cpp" line="51"/>
         <source>Active (default)</source>
         <translation>Actief (standaard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="51"/>
+        <location filename="../src/InOutPanel.cpp" line="52"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="52"/>
+        <location filename="../src/InOutPanel.cpp" line="53"/>
         <source>Active and below</source>
         <translation>Actief en daaronder</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="53"/>
+        <location filename="../src/InOutPanel.cpp" line="54"/>
         <source>Active and above</source>
         <translation>Actief en daarboven</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="54"/>
+        <location filename="../src/InOutPanel.cpp" line="55"/>
         <source>All visible</source>
         <translation>Alle zichtbare lagen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="55"/>
+        <location filename="../src/InOutPanel.cpp" line="56"/>
         <source>All invisible</source>
         <translation>Alle onzichtbare lagen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="56"/>
+        <location filename="../src/InOutPanel.cpp" line="57"/>
         <source>All visible (decr.)</source>
         <translation>Alle zichtbare lagen (dalend)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="57"/>
+        <location filename="../src/InOutPanel.cpp" line="58"/>
         <source>All invisible (decr.)</source>
         <translation>Alle onzichtbare lagen (dalend)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="58"/>
+        <location filename="../src/InOutPanel.cpp" line="59"/>
         <source>All (decr.)</source>
         <translation>Alle (dalend)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="60"/>
+        <location filename="../src/InOutPanel.cpp" line="61"/>
         <source>Output mode</source>
         <translation>Uitvoer-modus</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="61"/>
+        <location filename="../src/InOutPanel.cpp" line="62"/>
         <source>Output mode...</source>
         <translation>Uitvoer-modus...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="63"/>
+        <location filename="../src/InOutPanel.cpp" line="64"/>
         <source>In place (default)</source>
         <translation>In plaats van (standaard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="64"/>
+        <location filename="../src/InOutPanel.cpp" line="65"/>
         <source>New layer(s)</source>
         <translation>Nieuwe laag/lagen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="65"/>
+        <location filename="../src/InOutPanel.cpp" line="66"/>
         <source>New active layer(s)</source>
         <translation>Nieuwe actieve laag/lagen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="66"/>
+        <location filename="../src/InOutPanel.cpp" line="67"/>
         <source>New image</source>
         <translation>Nieuwe afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="68"/>
+        <location filename="../src/InOutPanel.cpp" line="69"/>
         <source>Output messages</source>
         <translation>Uitvoer berichten</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="69"/>
+        <location filename="../src/InOutPanel.cpp" line="70"/>
         <source>Output messages...</source>
         <translation>Uitvoer berichten...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="71"/>
+        <location filename="../src/InOutPanel.cpp" line="72"/>
         <source>Quiet (default)</source>
         <translation> Geen bericht (standaard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="72"/>
+        <location filename="../src/InOutPanel.cpp" line="73"/>
         <source>Verbose (layer name)</source>
         <translation>Uitgebreid (laag-naam)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="73"/>
+        <location filename="../src/InOutPanel.cpp" line="74"/>
         <source>Verbose (console)</source>
         <translation>Uitgebreid (console)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="74"/>
+        <location filename="../src/InOutPanel.cpp" line="75"/>
         <source>Verbose (log file)</source>
         <translation>Uitgebreid (logbestand)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="75"/>
+        <location filename="../src/InOutPanel.cpp" line="76"/>
         <source>Very verbose (console)</source>
         <translation>Zeer uitgebreid (console)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="76"/>
+        <location filename="../src/InOutPanel.cpp" line="77"/>
         <source>Very verbose (log file)</source>
         <translation>Zeer uitgebreid (logbestand)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="77"/>
+        <location filename="../src/InOutPanel.cpp" line="78"/>
         <source>Debug (console)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="78"/>
+        <location filename="../src/InOutPanel.cpp" line="79"/>
         <source>Debug (log file)</source>
         <translation>Debug (logbestand)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="80"/>
+        <location filename="../src/InOutPanel.cpp" line="81"/>
         <source>Preview mode</source>
         <translation>Preview-modus</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="81"/>
+        <location filename="../src/InOutPanel.cpp" line="82"/>
         <source>Preview mode...</source>
         <translation>Preview-modus...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="83"/>
+        <location filename="../src/InOutPanel.cpp" line="84"/>
         <source>1st ouput (default)</source>
         <translation>1ste afbeelding (standaard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="84"/>
+        <location filename="../src/InOutPanel.cpp" line="85"/>
         <source>2cd ouput</source>
         <translation>2de afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="85"/>
+        <location filename="../src/InOutPanel.cpp" line="86"/>
         <source>3rd ouput</source>
         <translation>3de afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="86"/>
+        <location filename="../src/InOutPanel.cpp" line="87"/>
         <source>4th ouput</source>
         <translation>4de afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="87"/>
+        <location filename="../src/InOutPanel.cpp" line="88"/>
         <source>1st -&gt; 2cd ouput</source>
         <translation>1ste -&gt; 2de afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="88"/>
+        <location filename="../src/InOutPanel.cpp" line="89"/>
         <source>1st -&gt; 3rd ouput</source>
         <translation>1ste -&gt; 3de afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="89"/>
+        <location filename="../src/InOutPanel.cpp" line="90"/>
         <source>1st -&gt; 4th ouput</source>
         <translation>1ste -&gt; 4de afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="90"/>
+        <location filename="../src/InOutPanel.cpp" line="91"/>
         <source>All ouputs</source>
         <translation>Alle afbeeldingen</translation>
     </message>
@@ -379,168 +379,183 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="122"/>
+        <location filename="../ui/mainwindow.ui" line="174"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter-definities van afzonderlijke bronnen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="125"/>
+        <location filename="../ui/mainwindow.ui" line="177"/>
         <source>Internet</source>
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="139"/>
+        <location filename="../src/MainWindow.cpp" line="142"/>
         <source>Selection mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="493"/>
+        <location filename="../ui/mainwindow.ui" line="486"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="218"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="297"/>
+        <location filename="../ui/mainwindow.ui" line="323"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Inschakelen/uitschakelen preview l&apos;aperçu&lt;br/&gt;(rechtermuisklik in preview-vak voor omwisselen)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="300"/>
+        <location filename="../ui/mainwindow.ui" line="326"/>
         <source>Preview</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="363"/>
-        <source>100 %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="426"/>
+        <location filename="../ui/mainwindow.ui" line="419"/>
         <source>Input / Output</source>
         <translation>Invoer / Uitvoer</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="477"/>
+        <location filename="../ui/mainwindow.ui" line="470"/>
         <source>Settings...</source>
         <translation>Instellingen...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="506"/>
+        <location filename="../ui/mainwindow.ui" line="499"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuleer</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="519"/>
+        <location filename="../ui/mainwindow.ui" line="512"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Schermvullend</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="532"/>
+        <location filename="../ui/mainwindow.ui" line="525"/>
         <source>&amp;Apply</source>
         <translation>&amp;Toepassen</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="545"/>
+        <location filename="../ui/mainwindow.ui" line="538"/>
         <source>&amp;OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="105"/>
+        <location filename="../src/MainWindow.cpp" line="115"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="116"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="117"/>
+        <source>Reset zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="119"/>
+        <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="120"/>
         <source>Add fave</source>
         <translation>Voeg favoriet toe</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="107"/>
+        <location filename="../src/MainWindow.cpp" line="122"/>
         <source>Reset parameters to default values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="110"/>
+        <location filename="../src/MainWindow.cpp" line="125"/>
         <source>Update filters</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="112"/>
+        <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Rename fave</source>
         <translation>Hernoem een favoriet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="114"/>
+        <location filename="../src/MainWindow.cpp" line="129"/>
         <source>Remove fave</source>
         <translation>Verwijder favoriet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="118"/>
+        <location filename="../src/MainWindow.cpp" line="133"/>
         <source>Expand/Collapse all</source>
         <translation>Alles Uitbreiden/Samenvouwen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="120"/>
+        <location filename="../src/MainWindow.cpp" line="135"/>
         <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandie Universiteit (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
+        <location filename="../src/MainWindow.cpp" line="301"/>
         <source>Update completed</source>
         <translation>Update voltooid</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
-        <location filename="../src/MainWindow.cpp" line="279"/>
+        <location filename="../src/MainWindow.cpp" line="301"/>
+        <location filename="../src/MainWindow.cpp" line="303"/>
         <source>Filter definitions have been updated.</source>
         <translation>De filter-definities zijn bijgewerkt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="351"/>
+        <location filename="../src/MainWindow.cpp" line="375"/>
         <source>Filter definitions have been updated</source>
         <translation>De filter-definities zijn bijgewerkt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="424"/>
+        <location filename="../src/MainWindow.cpp" line="440"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>De update is mislukt&lt;br/&gt;vanwege de volgende fouten:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
+        <location filename="../src/MainWindow.cpp" line="446"/>
         <source>Update error</source>
         <translation>Update fout</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="659"/>
+        <location filename="../src/MainWindow.cpp" line="697"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="728"/>
+        <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Available filters (%1)</source>
         <translation>Beschikbare filters (%1)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1370"/>
+        <location filename="../src/MainWindow.cpp" line="1426"/>
         <source>Import faves</source>
         <translation>Importeer favorieten</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1371"/>
+        <location filename="../src/MainWindow.cpp" line="1427"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Wilt u favorieten importeren van het bestand hieronder?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1375"/>
+        <location filename="../src/MainWindow.cpp" line="1431"/>
         <source>Don&apos;t ask again</source>
         <translation>Niet opnieuw vragen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1635"/>
+        <location filename="../src/MainWindow.cpp" line="1690"/>
         <source>Confirmation</source>
         <translation>Bevestiging</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1636"/>
+        <location filename="../src/MainWindow.cpp" line="1691"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>GMIC voert momenteel een commando uit.&lt;br&gt;Wilt u echt afbreken?</translation>
     </message>
@@ -644,17 +659,17 @@
         <translation>PNG &amp; JPG bestanden (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="61"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="60"/>
         <source>Available filters</source>
         <translation>Beschikbare filters</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="63"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="62"/>
         <source>Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="228"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="233"/>
         <source>Available filters (%1)</source>
         <translation>Beschikbare filters (%1)</translation>
     </message>
@@ -708,6 +723,14 @@
         <location filename="../src/Updater.cpp" line="234"/>
         <source>Download timeout: %1</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ZoomLevelSelector</name>
+    <message>
+        <location filename="../ui/zoomlevelselector.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">GMIC</translation>
     </message>
 </context>
 </TS>

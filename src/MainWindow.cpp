@@ -112,11 +112,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pbApply
   };
 
-  ui->tbZoomIn->setToolTip("Zoom in");
-  ui->tbZoomOut->setToolTip("Zoom out");
-  ui->tbZoomReset->setToolTip("Reset zoom");
+  ui->tbZoomIn->setToolTip(tr("Zoom in"));
+  ui->tbZoomOut->setToolTip(tr("Zoom out"));
+  ui->tbZoomReset->setToolTip(tr("Reset zoom"));
 
-  ui->labelWarning->setToolTip("Warning: Preview may be inaccurate (zoom factor has been modified)");
+  ui->labelWarning->setToolTip(tr("Warning: Preview may be inaccurate (zoom factor has been modified)"));
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));

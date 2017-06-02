@@ -181,192 +181,192 @@
         <translation>Ввід / Вивід</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="46"/>
+        <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers</source>
         <translation>Вхідні шари</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="47"/>
+        <location filename="../src/InOutPanel.cpp" line="48"/>
         <source>Input layers...</source>
         <translation>Вхідні шари...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="49"/>
+        <location filename="../src/InOutPanel.cpp" line="50"/>
         <source>None</source>
         <translation>Немає</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="50"/>
+        <location filename="../src/InOutPanel.cpp" line="51"/>
         <source>Active (default)</source>
         <translation>Активний (стандартний)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="51"/>
+        <location filename="../src/InOutPanel.cpp" line="52"/>
         <source>All</source>
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="52"/>
+        <location filename="../src/InOutPanel.cpp" line="53"/>
         <source>Active and below</source>
         <translation>Активний і нижче</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="53"/>
+        <location filename="../src/InOutPanel.cpp" line="54"/>
         <source>Active and above</source>
         <translation>Активний і вище</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="54"/>
+        <location filename="../src/InOutPanel.cpp" line="55"/>
         <source>All visible</source>
         <translation>Всі видимі шари</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="55"/>
+        <location filename="../src/InOutPanel.cpp" line="56"/>
         <source>All invisible</source>
         <translation>Всі невидимі шари</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="56"/>
+        <location filename="../src/InOutPanel.cpp" line="57"/>
         <source>All visible (decr.)</source>
         <translation>Всі видимі шари (зменш.)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="57"/>
+        <location filename="../src/InOutPanel.cpp" line="58"/>
         <source>All invisible (decr.)</source>
         <translation>Всі видимі шари (зменш.)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="58"/>
+        <location filename="../src/InOutPanel.cpp" line="59"/>
         <source>All (decr.)</source>
         <translation>Всі(зменш.)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="60"/>
+        <location filename="../src/InOutPanel.cpp" line="61"/>
         <source>Output mode</source>
         <translation>Режим виводу</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="61"/>
+        <location filename="../src/InOutPanel.cpp" line="62"/>
         <source>Output mode...</source>
         <translation>Режим виводу...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="63"/>
+        <location filename="../src/InOutPanel.cpp" line="64"/>
         <source>In place (default)</source>
         <translation>Замість (стандартний)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="64"/>
+        <location filename="../src/InOutPanel.cpp" line="65"/>
         <source>New layer(s)</source>
         <translation>Новий(і)) шар(и)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="65"/>
+        <location filename="../src/InOutPanel.cpp" line="66"/>
         <source>New active layer(s)</source>
         <translation>Новий(і) активний(і) шар(и)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="66"/>
+        <location filename="../src/InOutPanel.cpp" line="67"/>
         <source>New image</source>
         <translation>Нове зображення</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="68"/>
+        <location filename="../src/InOutPanel.cpp" line="69"/>
         <source>Output messages</source>
         <translation>Повідомлення</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="69"/>
+        <location filename="../src/InOutPanel.cpp" line="70"/>
         <source>Output messages...</source>
         <translation>Повідомлення...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="71"/>
+        <location filename="../src/InOutPanel.cpp" line="72"/>
         <source>Quiet (default)</source>
         <translation>Не виводити повідомлення (стандартний)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="72"/>
+        <location filename="../src/InOutPanel.cpp" line="73"/>
         <source>Verbose (layer name)</source>
         <translation>Докладний режим (ім&apos;я шару)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="73"/>
+        <location filename="../src/InOutPanel.cpp" line="74"/>
         <source>Verbose (console)</source>
         <translation>Докладний режим (консоль)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="74"/>
+        <location filename="../src/InOutPanel.cpp" line="75"/>
         <source>Verbose (log file)</source>
         <translation>Докладний режим (лог)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="75"/>
+        <location filename="../src/InOutPanel.cpp" line="76"/>
         <source>Very verbose (console)</source>
         <translation>Дуже докладний режим (консоль)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="76"/>
+        <location filename="../src/InOutPanel.cpp" line="77"/>
         <source>Very verbose (log file)</source>
         <translation>Дуже докладний режим (лог)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="77"/>
+        <location filename="../src/InOutPanel.cpp" line="78"/>
         <source>Debug (console)</source>
         <translation>Налагодження (консоль)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="78"/>
+        <location filename="../src/InOutPanel.cpp" line="79"/>
         <source>Debug (log file)</source>
         <translation>Налагодження (лог)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="80"/>
+        <location filename="../src/InOutPanel.cpp" line="81"/>
         <source>Preview mode</source>
         <translation>Режим попереднього перегляду</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="81"/>
+        <location filename="../src/InOutPanel.cpp" line="82"/>
         <source>Preview mode...</source>
         <translation>Режим попереднього перегляду...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="83"/>
+        <location filename="../src/InOutPanel.cpp" line="84"/>
         <source>1st ouput (default)</source>
         <translation>1-й результат (стандартний)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="84"/>
+        <location filename="../src/InOutPanel.cpp" line="85"/>
         <source>2cd ouput</source>
         <translation>2-й результат</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="85"/>
+        <location filename="../src/InOutPanel.cpp" line="86"/>
         <source>3rd ouput</source>
         <translation>3-й результат</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="86"/>
+        <location filename="../src/InOutPanel.cpp" line="87"/>
         <source>4th ouput</source>
         <translation>4-й результат</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="87"/>
+        <location filename="../src/InOutPanel.cpp" line="88"/>
         <source>1st -&gt; 2cd ouput</source>
         <translation>1-й -&gt; 2-й результат</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="88"/>
+        <location filename="../src/InOutPanel.cpp" line="89"/>
         <source>1st -&gt; 3rd ouput</source>
         <translation>1-й -&gt; 3-й результат</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="89"/>
+        <location filename="../src/InOutPanel.cpp" line="90"/>
         <source>1st -&gt; 4th ouput</source>
         <translation>1-й -&gt; 4-й результат</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="90"/>
+        <location filename="../src/InOutPanel.cpp" line="91"/>
         <source>All ouputs</source>
         <translation>Усі результати</translation>
     </message>
@@ -379,168 +379,183 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="122"/>
+        <location filename="../ui/mainwindow.ui" line="174"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Завантажити оновлення бази визначень фільтрів&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="125"/>
+        <location filename="../ui/mainwindow.ui" line="177"/>
         <source>Internet</source>
         <translation>Інтернет</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="139"/>
+        <location filename="../src/MainWindow.cpp" line="142"/>
         <source>Selection mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="493"/>
+        <location filename="../ui/mainwindow.ui" line="486"/>
         <source>TextLabel</source>
         <translation>Текстовий Підпис</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="218"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="297"/>
+        <location filename="../ui/mainwindow.ui" line="323"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Увімкнути/вимкнути попередній перегляд&lt;br/&gt;(клацніть правою кнопкою на попередньому перегляді зображення щоб миттєво переключитись)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="300"/>
+        <location filename="../ui/mainwindow.ui" line="326"/>
         <source>Preview</source>
         <translation>Попередній перегляд</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="363"/>
-        <source>100 %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="426"/>
+        <location filename="../ui/mainwindow.ui" line="419"/>
         <source>Input / Output</source>
         <translation>Ввод / Вивод</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="477"/>
+        <location filename="../ui/mainwindow.ui" line="470"/>
         <source>Settings...</source>
         <translation>Настройки...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="506"/>
+        <location filename="../ui/mainwindow.ui" line="499"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Скасувати</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="519"/>
+        <location filename="../ui/mainwindow.ui" line="512"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Повноекранний режим</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="532"/>
+        <location filename="../ui/mainwindow.ui" line="525"/>
         <source>&amp;Apply</source>
         <translation>&amp;Застосовувати</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="545"/>
+        <location filename="../ui/mainwindow.ui" line="538"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="105"/>
+        <location filename="../src/MainWindow.cpp" line="115"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="116"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="117"/>
+        <source>Reset zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="119"/>
+        <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="120"/>
         <source>Add fave</source>
         <translation>Додати до вподобань</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="107"/>
+        <location filename="../src/MainWindow.cpp" line="122"/>
         <source>Reset parameters to default values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="110"/>
+        <location filename="../src/MainWindow.cpp" line="125"/>
         <source>Update filters</source>
         <translation>Оновити фільтри</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="112"/>
+        <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Rename fave</source>
         <translation>Перейменувати уподобання</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="114"/>
+        <location filename="../src/MainWindow.cpp" line="129"/>
         <source>Remove fave</source>
         <translation>Перейменувати уподобання</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="118"/>
+        <location filename="../src/MainWindow.cpp" line="133"/>
         <source>Expand/Collapse all</source>
         <translation>Розгорнути / згорнути</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="120"/>
+        <location filename="../src/MainWindow.cpp" line="135"/>
         <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandie Université (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
+        <location filename="../src/MainWindow.cpp" line="301"/>
         <source>Update completed</source>
         <translation>Оновлення завершено</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
-        <location filename="../src/MainWindow.cpp" line="279"/>
+        <location filename="../src/MainWindow.cpp" line="301"/>
+        <location filename="../src/MainWindow.cpp" line="303"/>
         <source>Filter definitions have been updated.</source>
         <translation>Визначення фільтрiв були оновлені.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="351"/>
+        <location filename="../src/MainWindow.cpp" line="375"/>
         <source>Filter definitions have been updated</source>
         <translation>Визначення фільтрiв були оновлені</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="424"/>
+        <location filename="../src/MainWindow.cpp" line="440"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Оновлення не може бути завершене&lt;br&gt;бо сталися наступні помилки:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
+        <location filename="../src/MainWindow.cpp" line="446"/>
         <source>Update error</source>
         <translation>Помилка оновлення</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="659"/>
+        <location filename="../src/MainWindow.cpp" line="697"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="728"/>
+        <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Available filters (%1)</source>
         <translation>Доступні фільтри (%1)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1370"/>
+        <location filename="../src/MainWindow.cpp" line="1426"/>
         <source>Import faves</source>
         <translation>Імпорт вподобань</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1371"/>
+        <location filename="../src/MainWindow.cpp" line="1427"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Бажаєте імпортувати вподобання з наступного файлу нижче?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1375"/>
+        <location filename="../src/MainWindow.cpp" line="1431"/>
         <source>Don&apos;t ask again</source>
         <translation>Не запитувати знов</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1635"/>
+        <location filename="../src/MainWindow.cpp" line="1690"/>
         <source>Confirmation</source>
         <translation>Підтвердження</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1636"/>
+        <location filename="../src/MainWindow.cpp" line="1691"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Команда gmic виконується.&lt;br&gt;Ви дійсно бажаєте закрити програму?</translation>
     </message>
@@ -644,17 +659,17 @@
         <translation>PNG &amp; JPG файли (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="61"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="60"/>
         <source>Available filters</source>
         <translation>Доступні фільтри</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="63"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="62"/>
         <source>Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="228"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="233"/>
         <source>Available filters (%1)</source>
         <translation>Доступні фільтри (%1)</translation>
     </message>
@@ -708,6 +723,14 @@
         <location filename="../src/Updater.cpp" line="234"/>
         <source>Download timeout: %1</source>
         <translation>Інтервал завантаження: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ZoomLevelSelector</name>
+    <message>
+        <location filename="../ui/zoomlevelselector.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Форма</translation>
     </message>
 </context>
 </TS>

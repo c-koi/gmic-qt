@@ -184,192 +184,192 @@
         <translation>Quellen und Ziel</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="46"/>
+        <location filename="../src/InOutPanel.cpp" line="47"/>
         <source>Input layers</source>
         <translation>Ursprungs-Ebenen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="47"/>
+        <location filename="../src/InOutPanel.cpp" line="48"/>
         <source>Input layers...</source>
         <translation>Ursprungs-Ebenen...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="49"/>
+        <location filename="../src/InOutPanel.cpp" line="50"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="50"/>
+        <location filename="../src/InOutPanel.cpp" line="51"/>
         <source>Active (default)</source>
         <translation>Aktive (Standard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="51"/>
+        <location filename="../src/InOutPanel.cpp" line="52"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="52"/>
+        <location filename="../src/InOutPanel.cpp" line="53"/>
         <source>Active and below</source>
         <translation>Aktive und darunter liegende</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="53"/>
+        <location filename="../src/InOutPanel.cpp" line="54"/>
         <source>Active and above</source>
         <translation>Aktive und darüber liegende</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="54"/>
+        <location filename="../src/InOutPanel.cpp" line="55"/>
         <source>All visible</source>
         <translation>Alle sichtbaren</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="55"/>
+        <location filename="../src/InOutPanel.cpp" line="56"/>
         <source>All invisible</source>
         <translation>Alle nicht sichtbaren</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="56"/>
+        <location filename="../src/InOutPanel.cpp" line="57"/>
         <source>All visible (decr.)</source>
         <translation>Alle sichtbaren (umgekehrte Reihenfolge)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="57"/>
+        <location filename="../src/InOutPanel.cpp" line="58"/>
         <source>All invisible (decr.)</source>
         <translation>Alle unsichtbaren (umgekehrte Reichenfolge)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="58"/>
+        <location filename="../src/InOutPanel.cpp" line="59"/>
         <source>All (decr.)</source>
         <translation>Alle (umgekehrte Reihenfolge)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="60"/>
+        <location filename="../src/InOutPanel.cpp" line="61"/>
         <source>Output mode</source>
         <translation>Ziel</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="61"/>
+        <location filename="../src/InOutPanel.cpp" line="62"/>
         <source>Output mode...</source>
         <translation>Ziel...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="63"/>
+        <location filename="../src/InOutPanel.cpp" line="64"/>
         <source>In place (default)</source>
         <translation>Ebene ersetzen (Standard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="64"/>
+        <location filename="../src/InOutPanel.cpp" line="65"/>
         <source>New layer(s)</source>
         <translation>Neue Ebene(n)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="65"/>
+        <location filename="../src/InOutPanel.cpp" line="66"/>
         <source>New active layer(s)</source>
         <translation>Neue aktive Ebene(n)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="66"/>
+        <location filename="../src/InOutPanel.cpp" line="67"/>
         <source>New image</source>
         <translation>Neues Bild</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="68"/>
+        <location filename="../src/InOutPanel.cpp" line="69"/>
         <source>Output messages</source>
         <translation>Ausgabe der Meldungen</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="69"/>
+        <location filename="../src/InOutPanel.cpp" line="70"/>
         <source>Output messages...</source>
         <translation>Ausgabe der Meldungen...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="71"/>
+        <location filename="../src/InOutPanel.cpp" line="72"/>
         <source>Quiet (default)</source>
         <translation>Keine Ausgabe (Standard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="72"/>
+        <location filename="../src/InOutPanel.cpp" line="73"/>
         <source>Verbose (layer name)</source>
         <translation>Ausführlich als Ebenen-Name</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="73"/>
+        <location filename="../src/InOutPanel.cpp" line="74"/>
         <source>Verbose (console)</source>
         <translation>Ausführlich (Konsole)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="74"/>
+        <location filename="../src/InOutPanel.cpp" line="75"/>
         <source>Verbose (log file)</source>
         <translation>Ausführlich (Log-Datei) </translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="75"/>
+        <location filename="../src/InOutPanel.cpp" line="76"/>
         <source>Very verbose (console)</source>
         <translation>Sehr ausführlich (Konsole)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="76"/>
+        <location filename="../src/InOutPanel.cpp" line="77"/>
         <source>Very verbose (log file)</source>
         <translation>Sehr ausführlich (Log-Datei)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="77"/>
+        <location filename="../src/InOutPanel.cpp" line="78"/>
         <source>Debug (console)</source>
         <translation>Debuggen (Konsole)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="78"/>
+        <location filename="../src/InOutPanel.cpp" line="79"/>
         <source>Debug (log file)</source>
         <translation>Debuggen (Log-Datei)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="80"/>
+        <location filename="../src/InOutPanel.cpp" line="81"/>
         <source>Preview mode</source>
         <translation>Vorschau-Modus</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="81"/>
+        <location filename="../src/InOutPanel.cpp" line="82"/>
         <source>Preview mode...</source>
         <translation>Vorschau-Modus...</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="83"/>
+        <location filename="../src/InOutPanel.cpp" line="84"/>
         <source>1st ouput (default)</source>
         <translation>Erste Ausgabe (Standard)</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="84"/>
+        <location filename="../src/InOutPanel.cpp" line="85"/>
         <source>2cd ouput</source>
         <translation>Zweite Ausgabe</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="85"/>
+        <location filename="../src/InOutPanel.cpp" line="86"/>
         <source>3rd ouput</source>
         <translation>Dritte Ausgabe</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="86"/>
+        <location filename="../src/InOutPanel.cpp" line="87"/>
         <source>4th ouput</source>
         <translation>Vierte Ausgabe</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="87"/>
+        <location filename="../src/InOutPanel.cpp" line="88"/>
         <source>1st -&gt; 2cd ouput</source>
         <translation>Erste bis zweite Ausgabe</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="88"/>
+        <location filename="../src/InOutPanel.cpp" line="89"/>
         <source>1st -&gt; 3rd ouput</source>
         <translation>Erste bis dritte Ausgabe</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="89"/>
+        <location filename="../src/InOutPanel.cpp" line="90"/>
         <source>1st -&gt; 4th ouput</source>
         <translation>Erste bis vierte Ausgabe</translation>
     </message>
     <message>
-        <location filename="../src/InOutPanel.cpp" line="90"/>
+        <location filename="../src/InOutPanel.cpp" line="91"/>
         <source>All ouputs</source>
         <translation>Alle Ausgaben</translation>
     </message>
@@ -382,170 +382,185 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="122"/>
+        <location filename="../ui/mainwindow.ui" line="174"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter-Definitionen von externen Quellen laden&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="125"/>
+        <location filename="../ui/mainwindow.ui" line="177"/>
         <source>Internet</source>
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="139"/>
+        <location filename="../src/MainWindow.cpp" line="142"/>
         <source>Selection mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="493"/>
+        <location filename="../ui/mainwindow.ui" line="486"/>
         <source>TextLabel</source>
         <translatorcomment>why empty?</translatorcomment>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="218"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="297"/>
+        <location filename="../ui/mainwindow.ui" line="323"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vorschau ein/aus&lt;br/&gt;(Bildwechsel durch Rechtsklick auf Vorschau)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="300"/>
+        <location filename="../ui/mainwindow.ui" line="326"/>
         <source>Preview</source>
         <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="363"/>
-        <source>100 %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="426"/>
+        <location filename="../ui/mainwindow.ui" line="419"/>
         <source>Input / Output</source>
         <translatorcomment>I hope this is correct (difficult without context)</translatorcomment>
         <translation>Quelle  / Ziel</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="477"/>
+        <location filename="../ui/mainwindow.ui" line="470"/>
         <source>Settings...</source>
         <translation>Einstellungen...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="506"/>
+        <location filename="../ui/mainwindow.ui" line="499"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="519"/>
+        <location filename="../ui/mainwindow.ui" line="512"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Vollbild</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="532"/>
+        <location filename="../ui/mainwindow.ui" line="525"/>
         <source>&amp;Apply</source>
         <translation>&amp;Anwenden</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="545"/>
+        <location filename="../ui/mainwindow.ui" line="538"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="105"/>
+        <location filename="../src/MainWindow.cpp" line="115"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="116"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="117"/>
+        <source>Reset zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="119"/>
+        <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="120"/>
         <source>Add fave</source>
         <translation>Als Favorit merken</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="107"/>
+        <location filename="../src/MainWindow.cpp" line="122"/>
         <source>Reset parameters to default values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="110"/>
+        <location filename="../src/MainWindow.cpp" line="125"/>
         <source>Update filters</source>
         <translation>Filter aktualisieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="112"/>
+        <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Rename fave</source>
         <translation>Favorit umbenennen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="114"/>
+        <location filename="../src/MainWindow.cpp" line="129"/>
         <source>Remove fave</source>
         <translation>Kein Favorit mehr</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="118"/>
+        <location filename="../src/MainWindow.cpp" line="133"/>
         <source>Expand/Collapse all</source>
         <translation>Alles aufklappen/einklappen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="120"/>
+        <location filename="../src/MainWindow.cpp" line="135"/>
         <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandie Université (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
+        <location filename="../src/MainWindow.cpp" line="301"/>
         <source>Update completed</source>
         <translation>Aktualisierung ist durchgeführt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
-        <location filename="../src/MainWindow.cpp" line="279"/>
+        <location filename="../src/MainWindow.cpp" line="301"/>
+        <location filename="../src/MainWindow.cpp" line="303"/>
         <source>Filter definitions have been updated.</source>
         <translation>Die Filter-Definitionen wurden aktualisiert.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="351"/>
+        <location filename="../src/MainWindow.cpp" line="375"/>
         <source>Filter definitions have been updated</source>
         <translation>Die Filter-Definitionen wurden aktualisiert</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="424"/>
+        <location filename="../src/MainWindow.cpp" line="440"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Wegen der folgenden Fehler konnte&lt;br/&gt;die Aktualisierung nicht durchgeführt werden:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
+        <location filename="../src/MainWindow.cpp" line="446"/>
         <source>Update error</source>
         <translation>Fehler bei der Aktualisierung</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="659"/>
+        <location filename="../src/MainWindow.cpp" line="697"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="728"/>
+        <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Available filters (%1)</source>
         <translation>Verfügbare Filter (%1)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1370"/>
+        <location filename="../src/MainWindow.cpp" line="1426"/>
         <source>Import faves</source>
         <translation>Favoriten importieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1371"/>
+        <location filename="../src/MainWindow.cpp" line="1427"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Möchten Sie Favoriten aus dieser Datei importieren?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1375"/>
+        <location filename="../src/MainWindow.cpp" line="1431"/>
         <source>Don&apos;t ask again</source>
         <translation>Nicht mehr fragen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1635"/>
+        <location filename="../src/MainWindow.cpp" line="1690"/>
         <source>Confirmation</source>
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1636"/>
+        <location filename="../src/MainWindow.cpp" line="1691"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Ein GMIC-Kommando ist aktiv.&lt;br&gt;Wollen Sie das Plugin wirklich schließen?</translation>
     </message>
@@ -649,17 +664,17 @@
         <translation>PNG- &amp; JPG-Dateien (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="61"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="60"/>
         <source>Available filters</source>
         <translation>Verfügbare Filter</translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="63"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="62"/>
         <source>Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/GmicStdlibParser.cpp" line="228"/>
+        <location filename="../src/GmicStdlibParser.cpp" line="233"/>
         <source>Available filters (%1)</source>
         <translation>Verfügbare Filter (%1)</translation>
     </message>
@@ -713,6 +728,14 @@
         <location filename="../src/Updater.cpp" line="234"/>
         <source>Download timeout: %1</source>
         <translation>Zeitüberschreitung beim Herunterladen : %1</translation>
+    </message>
+</context>
+<context>
+    <name>ZoomLevelSelector</name>
+    <message>
+        <location filename="../ui/zoomlevelselector.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">GMIC</translation>
     </message>
 </context>
 </TS>
