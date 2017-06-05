@@ -25,6 +25,7 @@
 #include "FileParameter.h"
 #include "Common.h"
 #include <QWidget>
+#include <QDebug>
 #include <QGridLayout>
 #include <QLabel>
 #include <QFileDialog>
@@ -128,8 +129,19 @@ FileParameter::onButtonPressed()
   if ( ! QFileInfo(folder).isDir() ) {
     folder = QDir::homePath();
   }
-  QString filename = QFileDialog::getSaveFileName(0,tr("Select a file"),folder,QString(),0,
-                                                  QFileDialog::DontConfirmOverwrite);
+
+  QFileDialog dialog(0,tr("Select a file"),folder,QString());
+  dialog.setOptions(QFileDialog::DontConfirmOverwrite|QFileDialog::DontUseNativeDialog);
+  dialog.setFileMode(QFileDialog::AnyFile);
+  if ( ! _value.isEmpty() ) {
+    dialog.selectFile(_value);
+  }
+  dialog.exec();
+  QStringList filenames = dialog.selectedFiles();
+  QString filename;
+  if ( ! filenames.isEmpty() && ! QFileInfo(filenames.front()).isDir()  ) {
+    filename = filenames.front();
+  }
   if ( filename.isEmpty() ) {
     _value.clear();
     _button->setText("...");
