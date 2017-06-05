@@ -452,7 +452,7 @@ void PreviewWidget::setZoomLevel(double zoom)
   if (zoom == _currentZoomFactor) {
     return;
   }
-  if ( (zoom >= PREVIEW_MAX_ZOOM_FACTOR) ||
+  if ( (zoom > PREVIEW_MAX_ZOOM_FACTOR) ||
        (isAtFullZoom() && (zoom < _currentZoomFactor) ) ) {
     emit zoomChanged(_currentZoomFactor);
     return;
