@@ -835,6 +835,7 @@ void MainWindow::onPreviewZoomReset()
 
 void MainWindow::onUpdateFiltersClicked()
 {
+  search(QString());
   ui->tbUpdateFilters->setEnabled(false);
   updateFiltersFromSources(0, ui->cbInternetUpdate->isChecked());
 }
