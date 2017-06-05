@@ -110,3 +110,8 @@ SearchFieldWidget::onTextChanged(QString str)
   }
 #endif
 }
+
+void SearchFieldWidget::clear()
+{
+  _lineEdit->clear();
+}

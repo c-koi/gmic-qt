@@ -41,6 +41,8 @@ class SearchFieldWidget : public QWidget
 public:
   explicit SearchFieldWidget(QWidget *parent = 0);
   ~SearchFieldWidget();
+public slots:
+  void clear();
 signals:
   void textChanged(QString);
 private slots:

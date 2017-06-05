@@ -403,6 +403,9 @@ void MainWindow::updateZoomLabel(double zoom)
 
 void MainWindow::onFiltersSelectionModeToggled(bool on)
 {
+  if ( on ) {
+    ui->searchField->clear();
+  }
   if ( ! on ) {
     GmicStdLibParser::saveFiltersVisibility(_filtersTreeModel.invisibleRootItem());
   }
@@ -744,6 +747,9 @@ void MainWindow::expandOrCollapseFolders()
 
 void MainWindow::search(QString text)
 {
+  if ( !text.isEmpty() && ui->tbSelectionMode->isChecked() ) {
+    ui->tbSelectionMode->setChecked(false);
+  }
   if ( text.length() < MINIMAL_SEARCH_LENGTH ) {
     ui->filtersTree->setModel(_currentFiltersTreeModel = &_filtersTreeModel);
     _filtersTreeModelSelection.clear();
