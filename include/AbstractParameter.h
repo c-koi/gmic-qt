@@ -49,6 +49,7 @@ signals:
 
 protected:
   QStringList parseText(const QString & type, const char * text, int & length);
+  bool matchType(const QString & type, const char * text) const;
   bool _update;
   const bool _actualParameter;
 };

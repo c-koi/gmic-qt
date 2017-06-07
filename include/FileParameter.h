@@ -46,11 +46,13 @@ public slots:
 signals:
   void valueChanged();
 private:
+  enum DialogMode { InputMode, OutputMode, InputOutputMode };
   QString _name;
   QString _default;
   QString _value;
   QLabel * _label;
   QPushButton * _button;
+  DialogMode _dialogMode;
 };
 
 #endif // _GMIC_QT_FILEPARAMETER_H_

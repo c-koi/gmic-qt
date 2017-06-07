@@ -32,13 +32,15 @@
 #include <QPushButton>
 #include <QFileInfo>
 #include <QFontMetrics>
+#include <QApplication>
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
 FileParameter::FileParameter(QObject *parent)
   : AbstractParameter(parent,true),
     _label(0),
-    _button(0)
+    _button(0),
+    _dialogMode(InputOutputMode)
 {
 }
 
@@ -107,7 +109,17 @@ FileParameter::reset()
 
 void FileParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("file",text,textLength);
+  QList<QString> list;
+  if ( matchType("filein",text) ) {
+    list = parseText("filein",text,textLength);
+    _dialogMode = InputMode;
+  } else if ( matchType("fileout",text) ) {
+    list = parseText("fileout",text,textLength);
+    _dialogMode = OutputMode;
+  } else {
+    list = parseText("file",text,textLength);
+    _dialogMode = InputOutputMode;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QRegExp re("^\".*\"$");
   if ( re.exactMatch(list[1]) ) {
@@ -130,18 +142,40 @@ FileParameter::onButtonPressed()
     folder = QDir::homePath();
   }
 
-  QFileDialog dialog(0,tr("Select a file"),folder,QString());
-  dialog.setOptions(QFileDialog::DontConfirmOverwrite|QFileDialog::DontUseNativeDialog);
-  dialog.setFileMode(QFileDialog::AnyFile);
-  if ( ! _value.isEmpty() ) {
-    dialog.selectFile(_value);
-  }
-  dialog.exec();
-  QStringList filenames = dialog.selectedFiles();
   QString filename;
-  if ( ! filenames.isEmpty() && ! QFileInfo(filenames.front()).isDir()  ) {
-    filename = filenames.front();
+
+  switch (_dialogMode) {
+  case InputMode:
+    filename = QFileDialog::getOpenFileName(QApplication::topLevelWidgets().at(0),
+                                            tr("Select a file"),
+                                            folder,
+                                            QString(),
+                                            nullptr);
+    break;
+  case OutputMode:
+    filename = QFileDialog::getSaveFileName(QApplication::topLevelWidgets().at(0),
+                                            tr("Select a file"),
+                                            folder,
+                                            QString(),
+                                            nullptr);
+    break;
+  case InputOutputMode:
+  {
+    QFileDialog dialog(0,tr("Select a file"),folder,QString());
+    dialog.setOptions(QFileDialog::DontConfirmOverwrite|QFileDialog::DontUseNativeDialog);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    if ( ! _value.isEmpty() ) {
+      dialog.selectFile(_value);
+    }
+    dialog.exec();
+    QStringList filenames = dialog.selectedFiles();
+    if ( ! filenames.isEmpty() && ! QFileInfo(filenames.front()).isDir()  ) {
+      filename = filenames.front();
+    }
   }
+    break;
+  }
+
   if ( filename.isEmpty() ) {
     _value.clear();
     _button->setText("...");

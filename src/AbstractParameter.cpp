@@ -84,29 +84,31 @@ AbstractParameter::createFromText(const char *text, int & length, QString & erro
 #define PREFIX "^[^=]*\\s*=\\s*_?"
   if ( QRegExp( PREFIX "int").indexIn(line) == 0 ) {
     result = new IntParameter(parent);
-  } else if ( QRegExp( PREFIX "float").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "float").indexIn(line) == 0 ) {
     result = new FloatParameter(parent);
-  } else if ( QRegExp( PREFIX "bool").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "bool").indexIn(line) == 0 ) {
     result = new BoolParameter(parent);
-  } else if ( QRegExp( PREFIX "choice").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "choice").indexIn(line) == 0 ) {
     result = new ChoiceParameter(parent);
-  } else if ( QRegExp( PREFIX "color").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "color").indexIn(line) == 0 ) {
     result = new ColorParameter(parent);
-  } else if ( QRegExp( PREFIX "separator").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "separator").indexIn(line) == 0 ) {
     result = new SeparatorParameter(parent);
-  } else if ( QRegExp( PREFIX "note").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "note").indexIn(line) == 0 ) {
     result = new NoteParameter(parent);
-  } else if ( QRegExp( PREFIX "file").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "file").indexIn(line) == 0
+              || QRegExp(PREFIX "filein").indexIn(line) == 0
+              || QRegExp(PREFIX "fileout").indexIn(line) == 0 ) {
     result = new FileParameter(parent);
-  } else if ( QRegExp( PREFIX "folder").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "folder").indexIn(line) == 0 ) {
     result = new FolderParameter(parent);
-  } else if ( QRegExp( PREFIX "text").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "text").indexIn(line) == 0 ) {
     result = new TextParameter(parent);
-  } else if ( QRegExp( PREFIX "link").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "link").indexIn(line) == 0 ) {
     result = new LinkParameter(parent);
-  } else if ( QRegExp( PREFIX "value").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "value").indexIn(line) == 0 ) {
     result = new ConstParameter(parent);
-  } else if ( QRegExp( PREFIX "button").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "button").indexIn(line) == 0 ) {
     result = new ButtonParameter(parent);
   }
   if ( result ) {
@@ -150,4 +152,9 @@ AbstractParameter::parseText(const QString & type, const char * text, int & leng
   }
   result << values;
   return result;
+}
+
+bool AbstractParameter::matchType(const QString & type, const char * text) const
+{
+  return QString(text).contains(QRegExp(QString("^[^=]*\\s*=\\s*_?%1\\s*.").arg(type)));
 }
