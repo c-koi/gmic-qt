@@ -278,6 +278,7 @@ void MainWindow::setDarkTheme()
                       "QToolButton:checked { background: #383838; }"
                       "QToolButton:pressed { background: #383838; }"
                       "QComboBox QAbstractItemView { background: #505050; } "
+                      "QFileDialog QAbstractItemView { background: #505050; } "
                       "QComboBox:editable { background: #505050; } ";
   qApp->setStyleSheet( css );
 
