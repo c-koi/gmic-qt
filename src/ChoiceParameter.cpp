@@ -87,7 +87,7 @@ ChoiceParameter::reset()
 
 void ChoiceParameter::initFromText(const char * text, int & textLength)
 {
-  QStringList list = parseText("[cC]hoice",text,textLength);
+  QStringList list = parseText("choice",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   _choices = list[1].split(QChar(','));
   bool ok;

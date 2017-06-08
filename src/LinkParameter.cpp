@@ -78,7 +78,7 @@ LinkParameter::reset()
 void
 LinkParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("[lL]ink",text,textLength);
+  QList<QString> list = parseText("link",text,textLength);
   QList<QString> values = list[1].split(QChar(','));
 
   if ( values.size() == 3 ) {

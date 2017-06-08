@@ -68,7 +68,7 @@ ConstParameter::reset()
 
 void ConstParameter::initFromText(const char * text, int & textLength)
 {
-  QStringList list = parseText("[vV]alue",text,textLength);
+  QStringList list = parseText("value",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   _value = _default = list[1];
 }

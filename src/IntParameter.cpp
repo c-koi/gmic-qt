@@ -113,7 +113,7 @@ IntParameter::reset()
 void
 IntParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("[iI]nt",text,textLength);
+  QList<QString> list = parseText("int",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> values = list[1].split(QChar(','));
   _default = values[0].toInt();

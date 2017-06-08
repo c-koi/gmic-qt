@@ -124,7 +124,7 @@ void
 FloatParameter::initFromText(const char * text, int & textLength)
 {
   textLength = 0;
-  QList<QString> list = parseText("[fF]loat",text,textLength);
+  QList<QString> list = parseText("float",text,textLength);
 
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> values = list[1].split(QChar(','));

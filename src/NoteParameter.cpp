@@ -75,7 +75,7 @@ NoteParameter::reset()
 void
 NoteParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("[nN]ote",text,textLength);
+  QList<QString> list = parseText("note",text,textLength);
   _text = list[1].trimmed()
       .remove(QRegExp("^\""))
       .remove(QRegExp("\"$"))

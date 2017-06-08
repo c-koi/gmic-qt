@@ -110,14 +110,14 @@ FileParameter::reset()
 void FileParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list;
-  if ( matchType("[fF]ilein",text) ) {
-    list = parseText("[fF]ilein",text,textLength);
+  if ( matchType("filein",text) ) {
+    list = parseText("filein",text,textLength);
     _dialogMode = InputMode;
-  } else if ( matchType("[fF]ileout",text) ) {
-    list = parseText("[fF]ileout",text,textLength);
+  } else if ( matchType("fileout",text) ) {
+    list = parseText("fileout",text,textLength);
     _dialogMode = OutputMode;
   } else {
-    list = parseText("[fF]ile",text,textLength);
+    list = parseText("file",text,textLength);
     _dialogMode = InputOutputMode;
   }
   _name = HtmlTranslator::html2txt(list[0]);

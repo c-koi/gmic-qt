@@ -89,7 +89,7 @@ ButtonParameter::onPushButtonClicked(bool )
 void
 ButtonParameter::initFromText(const char *text, int & textLength)
 {
-  QList<QString> list = parseText("[bB]utton",text,textLength);
+  QList<QString> list = parseText("button",text,textLength);
   _text = HtmlTranslator::html2txt(list[0]);
   QString & alignment = list[1];
   if ( alignment.isEmpty() ) {
