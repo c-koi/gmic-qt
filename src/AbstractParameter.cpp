@@ -82,33 +82,33 @@ AbstractParameter::createFromText(const char *text, int & length, QString & erro
   error.clear();
 
 #define PREFIX "^[^=]*\\s*=\\s*_?"
-  if ( QRegExp( PREFIX "int").indexIn(line) == 0 ) {
+  if ( QRegExp( PREFIX "[iI]nt").indexIn(line) == 0 ) {
     result = new IntParameter(parent);
-  } else if ( QRegExp(PREFIX "float").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[fF]loat").indexIn(line) == 0 ) {
     result = new FloatParameter(parent);
-  } else if ( QRegExp(PREFIX "bool").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[bB]ool").indexIn(line) == 0 ) {
     result = new BoolParameter(parent);
-  } else if ( QRegExp(PREFIX "choice").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[cC]hoice").indexIn(line) == 0 ) {
     result = new ChoiceParameter(parent);
-  } else if ( QRegExp(PREFIX "color").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[cC]olor").indexIn(line) == 0 ) {
     result = new ColorParameter(parent);
-  } else if ( QRegExp(PREFIX "separator").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[sS]eparator").indexIn(line) == 0 ) {
     result = new SeparatorParameter(parent);
-  } else if ( QRegExp(PREFIX "note").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[nN]ote").indexIn(line) == 0 ) {
     result = new NoteParameter(parent);
-  } else if ( QRegExp(PREFIX "file").indexIn(line) == 0
-              || QRegExp(PREFIX "filein").indexIn(line) == 0
-              || QRegExp(PREFIX "fileout").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[fF]ile").indexIn(line) == 0
+              || QRegExp(PREFIX "[fF]ilein").indexIn(line) == 0
+              || QRegExp(PREFIX "[fF]ileout").indexIn(line) == 0 ) {
     result = new FileParameter(parent);
-  } else if ( QRegExp(PREFIX "folder").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[fF]older").indexIn(line) == 0 ) {
     result = new FolderParameter(parent);
-  } else if ( QRegExp(PREFIX "text").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[tT]ext").indexIn(line) == 0 ) {
     result = new TextParameter(parent);
-  } else if ( QRegExp(PREFIX "link").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[lL]ink").indexIn(line) == 0 ) {
     result = new LinkParameter(parent);
-  } else if ( QRegExp(PREFIX "value").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[vV]alue").indexIn(line) == 0 ) {
     result = new ConstParameter(parent);
-  } else if ( QRegExp(PREFIX "button").indexIn(line) == 0 ) {
+  } else if ( QRegExp(PREFIX "[bB]utton").indexIn(line) == 0 ) {
     result = new ButtonParameter(parent);
   }
   if ( result ) {
@@ -154,7 +154,7 @@ AbstractParameter::parseText(const QString & type, const char * text, int & leng
   return result;
 }
 
-bool AbstractParameter::matchType(const QString & type, const char * text) const
+bool AbstractParameter::matchType(const QString & typeRegExp, const char * text) const
 {
-  return QString(text).contains(QRegExp(QString("^[^=]*\\s*=\\s*_?%1\\s*.").arg(type)));
+  return QString(text).contains(QRegExp(QString("^[^=]*\\s*=\\s*_?%1\\s*.").arg(typeRegExp)));
 }

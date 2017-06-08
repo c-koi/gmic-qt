@@ -122,7 +122,7 @@ TextParameter::reset()
 
 void TextParameter::initFromText(const char * text, int & textLength)
 {
-  QStringList list = parseText("text",text,textLength);
+  QStringList list = parseText("[tT]ext",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
 
   QString value = list[1];

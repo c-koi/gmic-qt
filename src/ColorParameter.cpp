@@ -120,7 +120,7 @@ ColorParameter::reset()
 
 void ColorParameter::initFromText(const char *text, int & textLength)
 {
-  QList<QString> list = parseText("color",text,textLength);
+  QList<QString> list = parseText("[cC]olor",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> channels = list[1].split(",");
   int r = channels[0].toInt();

@@ -99,7 +99,7 @@ BoolParameter::onCheckBoxChanged(bool on)
 void
 BoolParameter::initFromText(const char *text, int & textLength)
 {
-  QList<QString> list = parseText("bool",text,textLength);
+  QList<QString> list = parseText("[bB]ool",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   _value = _default = ( list[1].startsWith("true") || list[1].startsWith("1") );
 }

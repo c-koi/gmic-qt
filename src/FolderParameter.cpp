@@ -104,7 +104,7 @@ FolderParameter::reset()
 
 void FolderParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("folder",text,textLength);
+  QList<QString> list = parseText("[fF]older",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QRegExp re("^\".*\"$");
   if ( re.exactMatch(list[1]) ) {

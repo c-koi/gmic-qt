@@ -141,7 +141,8 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
       _labelNoParams = new QLabel(tr("<i>No parameters</i>"),this);
       _labelNoParams->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
     } else {
-      _labelNoParams = new QLabel(tr("<i>Error parsing filter parameters</i>").arg(error),this);
+      _labelNoParams = new QLabel(tr("<i>Error parsing filter parameters</i>"),this);
+      _labelNoParams->setToolTip(error);
       QString text = error;
       if ( text.size() > 250 ) {
         text.truncate(250);
