@@ -279,7 +279,8 @@ void MainWindow::setDarkTheme()
                       "QToolButton:pressed { background: #383838; }"
                       "QComboBox QAbstractItemView { background: #505050; } "
                       "QFileDialog QAbstractItemView { background: #505050; } "
-                      "QComboBox:editable { background: #505050; } ";
+                      "QComboBox:editable { background: #505050; } "
+                      "QProgressBar { background: #505050; }";
   qApp->setStyleSheet( css );
 
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
