@@ -85,6 +85,11 @@ SearchFieldWidget::~SearchFieldWidget()
   delete ui;
 }
 
+QString SearchFieldWidget::text() const
+{
+  return _lineEdit->text();
+}
+
 void
 SearchFieldWidget::onTextChanged(QString str)
 {

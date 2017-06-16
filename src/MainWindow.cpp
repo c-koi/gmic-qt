@@ -305,7 +305,23 @@ void MainWindow::onUpdateDownloadsFinished(bool ok)
       showMessage(tr("Filter definitions have been updated."),3000);
     }
   }
-  buildFiltersTree();
+
+  QString searchText = ui->searchField->text();
+  if ( ! searchText.isEmpty() && _selectedAbstractFilterItem ) {
+    QString hash = _selectedAbstractFilterItem->hash();
+    _selectedAbstractFilterItem = nullptr;
+    buildFiltersTree();
+    search(searchText);
+    _selectedAbstractFilterItem = findFilter(hash);
+    if ( _selectedAbstractFilterItem ) {
+      QModelIndex index = _selectedAbstractFilterItem->index();
+      ui->filtersTree->setCurrentIndex(index);
+      ui->filtersTree->scrollTo(index,QAbstractItemView::PositionAtCenter);
+      activateFilter(index,false);
+    }
+  } else {
+    buildFiltersTree();
+  }
   ui->filtersTree->update();
   ui->tbUpdateFilters->setEnabled(true);
   if ( _selectedAbstractFilterItem ) {
@@ -333,7 +349,7 @@ void MainWindow::buildFiltersTree()
 
   // Select previously selected filter
   if ( !currentHash.isEmpty() ) {
-    FiltersTreeFilterItem * item = findFilter(currentHash,FullModel);
+    FiltersTreeFilterItem * item = findFilter(currentHash);
     if ( item ) {
       ui->filtersTree->setCurrentIndex(item->index());
       ui->filtersTree->scrollTo(item->index(),QAbstractItemView::PositionAtCenter);
@@ -843,7 +859,6 @@ void MainWindow::onPreviewZoomReset()
 
 void MainWindow::onUpdateFiltersClicked()
 {
-  search(QString());
   ui->tbUpdateFilters->setEnabled(false);
   updateFiltersFromSources(0, ui->cbInternetUpdate->isChecked());
 }
@@ -1338,6 +1353,13 @@ MainWindow::findFilter(const QString & hash, MainWindow::ModelType modelType)
 {
   QStandardItemModel & model = modelType == FullModel ? _filtersTreeModel : _filtersTreeModelSelection;
   FiltersTreeFilterItem * filter = FiltersTreeAbstractItem::findFilter(model.invisibleRootItem(),hash);
+  return filter;
+}
+
+FiltersTreeFilterItem *
+MainWindow::findFilter(const QString & hash)
+{
+  FiltersTreeFilterItem * filter = FiltersTreeAbstractItem::findFilter(_currentFiltersTreeModel->invisibleRootItem(),hash);
   return filter;
 }
 

@@ -130,6 +130,7 @@ private:
   FiltersTreeFolderItem * faveFolder( ModelType modelType );
   FiltersTreeFaveItem * findFave( const QString & hash, ModelType modelType );
   FiltersTreeFilterItem * findFilter( const QString & hash, ModelType modelType );
+  FiltersTreeFilterItem * findFilter( const QString & hash );
   FiltersTreeAbstractFilterItem * currentTreeIndexToAbstractFilter( QModelIndex index );
   void addFaveFolder();
   void removeFaveFolder();
