@@ -145,6 +145,7 @@ translations/zh.ts
 
 # PRE_TARGETDEPS +=
 
+QMAKE_CXXFLAGS += -Wextra -Wpedantic
 QMAKE_CXXFLAGS_RELEASE += -O3
 QMAKE_CXXFLAGS_DEBUG += -Dcimg_verbosity=3
 
