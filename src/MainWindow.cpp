@@ -606,8 +606,6 @@ MainWindow::onPreviewUpdateRequested()
     _filterThread->setInputImages(*_gmicImages,imageNames);
     connect(_filterThread,SIGNAL(finished()),
             this,SLOT(onPreviewThreadFinished()));
-    connect(_filterThread,SIGNAL(finished()),
-            _filterThread,SLOT(deleteLater()));
     _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
     _okButtonShouldApply = true;
     _filterThread->start();
@@ -649,6 +647,7 @@ void MainWindow::onPreviewThreadFinished()
   }
   _waitingCursorTimer.stop();
   ui->previewWidget->savePreview();
+  _filterThread->deleteLater();
   _filterThread = 0;
 }
 
@@ -677,8 +676,6 @@ MainWindow::processImage()
   _filterThread->setInputImages(*_gmicImages,imageNames);
   connect(_filterThread,SIGNAL(finished()),
           this,SLOT(onApplyThreadFinished()));
-  connect(_filterThread,SIGNAL(finished()),
-          _filterThread,SLOT(deleteLater()));
   _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
   ui->progressInfoWidget->startAnimationAndShow(_filterThread,true);
 
@@ -730,6 +727,7 @@ MainWindow::onApplyThreadFinished()
                             : 0);
     }
   }
+  _filterThread->deleteLater();
   _filterThread = 0;
   if ( ( _processingAction == OkAction || _processingAction == CloseAction ) ) {
     close();
