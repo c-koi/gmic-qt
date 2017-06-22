@@ -166,7 +166,6 @@ private:
 
   ProcessingAction _processingAction;
   PreviewPosition _previewPosition = PreviewOnRight;
-  bool _darkTheme;
   bool _okButtonShouldApply = false;
 
   QString _lastAppliedCommand;

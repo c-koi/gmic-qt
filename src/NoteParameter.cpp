@@ -25,9 +25,11 @@
 #include "NoteParameter.h"
 #include "Common.h"
 #include <QLabel>
+#include <QDebug>
 #include <QGridLayout>
 #include <QDesktopServices>
 #include <QUrl>
+#include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
 NoteParameter::NoteParameter(QObject *parent)
@@ -81,9 +83,20 @@ NoteParameter::initFromText(const char * text, int & textLength)
       .remove(QRegExp("\"$"))
       .replace(QString("\\\""),"\"");
   _text.replace(QString("\\n"),"<br/>");
+
+  if ( DialogSettings::darkThemeEnabled() ) {
+    _text.replace(QRegExp("color\\s*=\\s*\"purple\""),
+                  QString("color=\"#ff00ff\""));
+    _text.replace(QRegExp("foreground\\s*=\\s*\"purple\""),
+                  QString("foreground=\"#ff00ff\""));
+    _text.replace(QRegExp("color\\s*=\\s*\"blue\""),
+                  QString("color=\"#9b9bff\""));
+    _text.replace(QRegExp("foreground\\s*=\\s*\"blue\""),
+                  QString("foreground=\"#9b9bff\""));
+  }
+
   _text.replace(QRegExp("color\\s*=\\s*\""),QString("style=\"color:"));
   _text.replace(QRegExp("foreground\\s*=\\s*\""),QString("style=\"color:"));
-
   _text = HtmlTranslator::fromUtf8Escapes(_text);
 }
 
