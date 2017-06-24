@@ -30,6 +30,10 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QDataStream>
+#include <QBuffer>
+#include <QUuid>
+
+#include <ImageConverter.h>
 
 #include <algorithm>
 #include "host.h"
@@ -59,6 +63,8 @@ const char *HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
 
 static QString socketKey = "gmic-krita";
 static const char ack[] = "ack";
+static QVector<QSharedMemory*> sharedMemorySegments;
+
 
 QByteArray sendMessageSynchronously(const QByteArray ba)
 {
@@ -111,19 +117,22 @@ QByteArray sendMessageSynchronously(const QByteArray ba)
     return answer;
 }
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+void gmic_qt_get_layers_extent(int *width, int *height, GmicQt::InputMode mode)
 {
     *width = 0;
     *height = 0;
+    QByteArray command = QString("command=gmic_qt_get_image_size\nmode=%1").arg((int)mode).toUtf8();
 
-    QByteArray answer = sendMessageSynchronously(QString("command=gmic_qt_get_image_size\nmode=%1").arg((int)mode).toLatin1());
+    QString answer = QString::fromUtf8(sendMessageSynchronously(command));
     if (answer.length() > 0) {
-        QList<QByteArray> wh = answer.split(',');
+        QList<QString> wh = answer.split(',', QString::SkipEmptyParts);
         if (wh.length() == 2) {
             *width = wh[0].toInt();
             *height = wh[1].toInt();
         }
     }
+
+    //qDebug() << "gmic-qt: layers extent:" << *width << *height;
 }
 
 void gmic_qt_get_cropped_images(gmic_list<float> & images,
@@ -131,49 +140,90 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images,
                                 double x, double y, double width, double height,
                                 GmicQt::InputMode mode)
 {
-    images.assign();
-    imageNames.assign();
+
+    //qDebug() << "gmic-qt: get_cropped_images:" << x << y << width << height;
+
+    const bool entireImage = x < 0 && y < 0 && width < 0 && height < 0;
+    if (entireImage) {
+      x = 0.0;
+      y = 0.0;
+      width = 1.0;
+      height = 1.0;
+    }
 
     // Create a message for Krita
     QString message = QString("command=gmic_qt_get_cropped_images\nmode=%5\ncroprect=%1,%2,%3,%4").arg(x).arg(y).arg(width).arg(height).arg(mode);
-    QByteArray ba = message.toLatin1();
-    QByteArray answer = sendMessageSynchronously(ba);
+    QByteArray command = message.toUtf8();
+    QString answer = QString::fromUtf8(sendMessageSynchronously(command));
 
     if (answer.isEmpty()) {
+        qWarning() << "\tgmic-qt: empty answer!";
         return;
     }
 
-    QStringList imagesList = QString::fromUtf8(answer).split("\n");
+    //qDebug() << "\tgmic-qt: " << answer;
+
+    QStringList imagesList = answer.split("\n", QString::SkipEmptyParts);
 
     images.assign(imagesList.size());
     imageNames.assign(imagesList.size());
 
+    //qDebug() << "\tgmic-qt: imagelist size" << imagesList.size();
+
     // Parse the answer -- there should be no new lines in layernames
     QStringList memoryKeys;
+    QList<QSize> sizes;
     // Get the keys for the shared memory areas and the imageNames as prepared by Krita in G'Mic format
     for (int i = 0; i < imagesList.length(); ++i) {
         const QString &layer = imagesList[i];
-        memoryKeys << layer.split(',')[0];
-        gmic_image<char>::string(layer.split(',')[1].toLatin1().constData()).move_to(imageNames[i]);
+        QStringList parts = layer.split(',', QString::SkipEmptyParts);
+        if (!parts.size() == 4) {
+            qWarning() << "\tgmic-qt: Got the wrong answer!";
+        }
+        memoryKeys << parts[0];
+        QByteArray ba = parts[1].toLatin1();
+        ba = QByteArray::fromHex(ba);
+        gmic_image<char>::string(ba.constData()).move_to(imageNames[i]);
+        sizes << QSize(parts[2].toInt(), parts[3].toInt());
     }
+
+    //qDebug() << "\tgmic-qt: keys" << memoryKeys;
+
     // Fill images from the shared memory areas
     for (int i = 0; i < memoryKeys.length(); ++i) {
         const QString &key = memoryKeys[i];
         QSharedMemory m(key);
+
+        if (!m.attach(QSharedMemory::ReadOnly)) {
+            qWarning() << "\tgmic-qt: Could not attach to shared memory area." << m.error() << m.errorString();
+        }
         if (m.isAttached()) {
-            m.lock();
+            if (!m.lock()) {
+                qWarning() << "\tgmic-qt: Could not lock memeory segment"  << m.error() << m.errorString();
+            }
+            //qDebug() << "Memory segment" << key << m.size() << m.constData() << m.data();
+
             // convert the data to the list of float
-            gmic_image<float> img(4, width, height);
-            memcpy(img, m.constData(), m.size());
-            img.move_to(images[i]);
-            m.unlock();
-            m.detach();
+            gmic_image<float> gimg;
+            gimg.assign(sizes[i].width(), sizes[i].height(), 1, 4);
+            memcpy(gimg._data, m.constData(), sizes[i].width() * sizes[i].height() * 4 * sizeof(float));
+            gimg.move_to(images[i]);
+
+            if (!m.unlock()) {
+                qWarning() << "\tgmic-qt: Could not unlock memeory segment"  << m.error() << m.errorString();
+            }
+            if (!m.detach()) {
+                qWarning() << "\tgmic-qt: Could not detach from memeory segment"  << m.error() << m.errorString();
+            }
         }
         else {
-            qWarning() << "Could not attach to shared memory area.";
+            qWarning() << "gmic-qt: Could not attach to shared memory area." << m.error() << m.errorString();
         }
     }
-    Q_ASSERT(images.size() == imageNames.size());
+
+    sendMessageSynchronously("command=gmic_qt_detach");
+
+    //qDebug() << "\tgmic-qt:  Images size" << images.size() << ", names size" << imageNames.size();
 }
 
 void gmic_qt_output_images( gmic_list<float> & images,
@@ -181,57 +231,56 @@ void gmic_qt_output_images( gmic_list<float> & images,
                             GmicQt::OutputMode mode,
                             const char * /*verboseLayersLabel*/)
 {
-    Q_ASSERT(images.size() == imageNames.size());
+
+    //qDebug() << "qmic-qt-output-images";
+
+    Q_FOREACH(QSharedMemory *sharedMemory, sharedMemorySegments) {
+        if (sharedMemory->isAttached()) {
+            sharedMemory->detach();
+        }
+    }
+    qDeleteAll(sharedMemorySegments);
+    sharedMemorySegments.clear();
+
+    //qDebug() << "\tqmic-qt: shared memory" << sharedMemorySegments.count();
 
     // Create qsharedmemory segments for each image
     // Create a message for Krita based on mode, the keys of the qsharedmemory segments and the imageNames
     QString message = QString("command=gmic_qt_output_images\nmode=%1\n").arg(mode);
 
-    QMap<QString, QSharedMemory*> sharedMemoryMap;
-    for (uint i = 0; i < imageNames.size(); ++i) {
-        QSharedMemory *m = new QSharedMemory();
-        m->create(images[i]._width * images[i]._height * 4 * sizeof(float));
+    for (uint i = 0; i < images.size(); ++i) {
+
+        //qDebug() << "\tgmic-qt: image number" << i;
+
+        gmic_image<float> gimg = images.at(i);
+
+        QSharedMemory *m = new QSharedMemory(QString("key_%1").arg(QUuid::createUuid().toString()));
+        sharedMemorySegments.append(m);
+
+        if (!m->create(gimg._width * gimg._height * gimg._spectrum * sizeof(float))) {
+            qWarning() << "Could not create shared memory" << m->error() << m->errorString();
+            return;
+        }
+
         m->lock();
-        memcpy(m->data(), images[i], m->size());
+        memcpy(m->data(), gimg._data, m->size());
         m->unlock();
 
-        if (!m->attach(QSharedMemory::ReadOnly)) {
-            qWarning() << "Could not create shared memory element for layer" << imageNames[i];
-        }
-        sharedMemoryMap[m->key()] = m;
-        message += "layer=" + m->key() + "," + QString::fromLocal8Bit((const char * const)imageNames[i]) + "\n";
+        QString layerName((const char *const)imageNames[i]);
+
+        message += "layer=" + m->key() + ","
+                + layerName.toUtf8().toHex() + ","
+                + QString("%1,%2,%3").arg(gimg._spectrum).arg(gimg._width).arg(gimg._height)
+                + + "\n";
     }
-
-    QByteArray ba = message.toLatin1();
-
-    // Create a socket
-    QLocalSocket socket;
-    socket.connectToServer(socketKey);
-    bool connected = socket.waitForConnected(1000);
-    if (!connected) return;
-
-    // Send the message to Krita
-    QDataStream ds(&socket);
-    ds.writeBytes(ba.constData(), ba.length());
-    bool r = socket.waitForBytesWritten();
-
-    // Wait for the ack
-    r &= socket.waitForReadyRead(); // wait for ack
-    r &= (socket.read(qstrlen(ack)) == ack);
-    socket.waitForDisconnected(-1);
-
-    // The other side is done, we can release our shared memory segments.
-    Q_FOREACH(QSharedMemory *m, sharedMemoryMap) {
-        m->detach();
-    }
-    qDeleteAll(sharedMemoryMap);
+    sendMessageSynchronously(message.toUtf8());
 }
 
 void gmic_qt_show_message(const char * )
 {
-  // May be left empty for Krita.
-  // Only used by launchPluginHeadless(), called in the non-interactive
-  // script mode of GIMP.
+    // May be left empty for Krita.
+    // Only used by launchPluginHeadless(), called in the non-interactive
+    // script mode of GIMP.
 }
 
 void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & )
@@ -260,11 +309,23 @@ int main(int argc, char *argv[])
             }
         }
     }
-    qWarning() << "Socket Key:" << socketKey;
+    qWarning() << "gmic-qt: socket Key:" << socketKey;
+    int r = 0;
     if (headless) {
-        return launchPluginHeadlessUsingLastParameters();
+        r = launchPluginHeadlessUsingLastParameters();
     }
     else {
-        return launchPlugin();
+        r = launchPlugin();
     }
+
+    Q_FOREACH(QSharedMemory *sharedMemory, sharedMemorySegments) {
+        if (sharedMemory->isAttached()) {
+            sharedMemory->detach();
+        }
+    }
+
+    qDeleteAll(sharedMemorySegments);
+    sharedMemorySegments.clear();
+
+    return r;
 }
