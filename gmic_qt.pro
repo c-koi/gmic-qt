@@ -18,6 +18,14 @@
 #
 #
 
+#
+# Check Qt version (>= 5.2)
+#
+!greaterThan(QT_MAJOR_VERSION, 4):error("You need Qt 5.2 or greater to build this program.")
+equals(QT_MAJOR_VERSION,5) {
+  !greaterThan(QT_MINOR_VERSION, 1):error("You need Qt 5.2 or greater to build this program.")
+}
+
 TEMPLATE = app
 QT += widgets network
 CONFIG	+= qt c++11
