@@ -177,7 +177,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images,
     for (int i = 0; i < imagesList.length(); ++i) {
         const QString &layer = imagesList[i];
         QStringList parts = layer.split(',', QString::SkipEmptyParts);
-        if (!parts.size() == 4) {
+        if (parts.size() != 4) {
             qWarning() << "\tgmic-qt: Got the wrong answer!";
         }
         memoryKeys << parts[0];
