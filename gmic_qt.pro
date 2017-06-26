@@ -26,6 +26,12 @@ equals(QT_MAJOR_VERSION,5) {
   !greaterThan(QT_MINOR_VERSION, 1):error("You need Qt 5.2 or greater to build this program.")
 }
 
+#
+# Check that pkg-config is installed (qmake error messages are misleading, if not)
+#
+
+!system(bash pkg-config-check.sh):error("pkg-config is not installed")
+
 TEMPLATE = app
 QT += widgets network
 CONFIG	+= qt c++11
