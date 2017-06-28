@@ -163,6 +163,8 @@ QMAKE_CXXFLAGS_RELEASE += -O3 -s
 QMAKE_LFLAGS_RELEASE += -s
 QMAKE_CXXFLAGS_DEBUG += -Dcimg_verbosity=3
 
+unix { DEFINES += cimg_use_vt100 }
+
 CONFIG(release, debug|release) {
     message(Release build)
     DEFINES += QT_NO_DEBUG_OUTPUT
