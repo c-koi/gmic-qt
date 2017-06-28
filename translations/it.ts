@@ -337,12 +337,12 @@
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="85"/>
-        <source>2cd ouput</source>
+        <source>2nd ouput</source>
         <translation type="unfinished">3^ immagine {2c?}</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="88"/>
-        <source>1st -&gt; 2cd ouput</source>
+        <source>1st -&gt; 2nd ouput</source>
         <translation type="unfinished">1^ -&gt; 3^ immagine {1s?} {2c?}</translation>
     </message>
     <message>

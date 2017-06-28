@@ -82,10 +82,10 @@ InOutPanel::InOutPanel(QWidget *parent) :
   ui->previewMode->addItem(tr("Preview mode..."),NoSelection);
   ui->previewMode->insertSeparator(1);
   ui->previewMode->addItem(tr("1st ouput (default)"),GmicQt::FirstOutput);
-  ui->previewMode->addItem(tr("2cd ouput"),GmicQt::SecondOutput);
+  ui->previewMode->addItem(tr("2nd ouput"),GmicQt::SecondOutput);
   ui->previewMode->addItem(tr("3rd ouput"),GmicQt::ThirdOutput);
   ui->previewMode->addItem(tr("4th ouput"),GmicQt::FourthOutput);
-  ui->previewMode->addItem(tr("1st -> 2cd ouput"),GmicQt::First2SecondOutput);
+  ui->previewMode->addItem(tr("1st -> 2nd ouput"),GmicQt::First2SecondOutput);
   ui->previewMode->addItem(tr("1st -> 3rd ouput"),GmicQt::First2ThirdOutput);
   ui->previewMode->addItem(tr("1st -> 4th ouput"),GmicQt::First2FourthOutput);
   ui->previewMode->addItem(tr("All ouputs"),GmicQt::AllOutputs);
