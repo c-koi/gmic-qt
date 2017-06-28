@@ -938,7 +938,9 @@ MainWindow::loadSettings()
   QPoint position = settings.value("Config/MainWindowPosition",QPoint()).toPoint();
   QRect r = settings.value("Config/MainWindowRect",QRect()).toRect();
   _showMaximized = settings.value("Config/MainWindowMaximized",false).toBool();
-  if ( ! _showMaximized  ) {
+  if ( _showMaximized  ) {
+    ui->pbFullscreen->setChecked(true);
+  } else {
     if ( r.isValid() ) {
       setGeometry(r);
       move(position);
