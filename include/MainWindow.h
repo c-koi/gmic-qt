@@ -111,6 +111,7 @@ protected:
   void activateFilter(QModelIndex index,
                       bool resetZoom,
                       const QList<QString> & values = QList<QString>() );
+  void setNoFilter();
   FiltersTreeAbstractFilterItem * selectedFilterItem();
   void setPreviewPosition(PreviewPosition position);
   QImage buildPreviewImage(const cimg_library::CImgList<gmic_pixel_type> & images);

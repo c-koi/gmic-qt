@@ -306,22 +306,8 @@ void MainWindow::onUpdateDownloadsFinished(bool ok)
     }
   }
 
-  QString searchText = ui->searchField->text();
-  if ( ! searchText.isEmpty() && _selectedAbstractFilterItem ) {
-    QString hash = _selectedAbstractFilterItem->hash();
-    _selectedAbstractFilterItem = nullptr;
-    buildFiltersTree();
-    search(searchText);
-    _selectedAbstractFilterItem = findFilter(hash);
-    if ( _selectedAbstractFilterItem ) {
-      QModelIndex index = _selectedAbstractFilterItem->index();
-      ui->filtersTree->setCurrentIndex(index);
-      ui->filtersTree->scrollTo(index,QAbstractItemView::PositionAtCenter);
-      activateFilter(index,false);
-    }
-  } else {
-    buildFiltersTree();
-  }
+  buildFiltersTree();
+
   ui->filtersTree->update();
   ui->tbUpdateFilters->setEnabled(true);
   if ( _selectedAbstractFilterItem ) {
@@ -347,16 +333,6 @@ void MainWindow::buildFiltersTree()
   loadFaves(withVisibility);
   _filtersTreeModel.invisibleRootItem()->sortChildren(0);
 
-  // Select previously selected filter
-  if ( !currentHash.isEmpty() ) {
-    FiltersTreeFilterItem * item = findFilter(currentHash);
-    if ( item ) {
-      ui->filtersTree->setCurrentIndex(item->index());
-      ui->filtersTree->scrollTo(item->index(),QAbstractItemView::PositionAtCenter);
-      activateFilter(item->index(),false);
-    }
-  }
-
   if ( withVisibility ) {
     // Adjust column sizes
     QStandardItem * headerItem = _filtersTreeModel.horizontalHeaderItem(1);
@@ -375,6 +351,23 @@ void MainWindow::buildFiltersTree()
     } while (FiltersTreeAbstractItem::cleanupFolders(_filtersTreeModel.invisibleRootItem()));
   }
   restoreExpandedFolders();
+
+  // Restore display of search results
+  QString searchText = ui->searchField->text();
+  if ( !searchText.isEmpty() ) {
+    search(searchText);
+  }
+
+  // Select previously selected filter
+  _selectedAbstractFilterItem = currentHash.isEmpty() ? nullptr : findFilter(currentHash);
+  if ( _selectedAbstractFilterItem ) {
+    ui->filtersTree->setCurrentIndex(_selectedAbstractFilterItem->index());
+    ui->filtersTree->scrollTo(_selectedAbstractFilterItem->index(),QAbstractItemView::PositionAtCenter);
+    activateFilter(_selectedAbstractFilterItem->index(),false);
+  } else {
+    setNoFilter();
+    ui->previewWidget->sendUpdateRequest();
+  }
 }
 
 void MainWindow::startupUpdateFinished(bool ok)
@@ -1211,18 +1204,26 @@ MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QStrin
     showZoomWarningIfNeeded();
     _okButtonShouldApply = true;
     ui->tbResetParameters->setVisible(true);
+    ui->tbRemoveFave->setEnabled(faveItem != nullptr);
+    ui->tbRenameFave->setEnabled(faveItem != nullptr);
   } else {
-    ui->filterParams->setNoFilter();
-    ui->inOutSelector->disable();
-    ui->inOutSelector->setState(InOutPanel::State::Unspecified,false);
-    ui->filterName->setVisible(false);
-    ui->tbAddFave->setEnabled(false);
-    ui->tbResetParameters->setVisible(false);
-    ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
-    _okButtonShouldApply = false;
+    setNoFilter();
   }
-  ui->tbRemoveFave->setEnabled(faveItem != nullptr);
-  ui->tbRenameFave->setEnabled(faveItem != nullptr);
+}
+
+void MainWindow::setNoFilter()
+{
+  ui->filterParams->setNoFilter();
+  ui->inOutSelector->disable();
+  ui->inOutSelector->setState(InOutPanel::State::Unspecified,false);
+  ui->filterName->setVisible(false);
+  ui->tbAddFave->setEnabled(false);
+  ui->tbResetParameters->setVisible(false);
+  ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
+  _okButtonShouldApply = false;
+
+  ui->tbRemoveFave->setEnabled(false);
+  ui->tbRenameFave->setEnabled(false);
 }
 
 FiltersTreeAbstractFilterItem *
@@ -1250,7 +1251,7 @@ MainWindow::currentTreeIndexToAbstractFilter(QModelIndex index)
 FiltersTreeAbstractFilterItem *
 MainWindow::selectedFilterItem()
 {
-  // Get filter item even if checkbox is selected
+  // Get filter item even if it is the checkbox which is actually selected
   QModelIndex index = ui->filtersTree->currentIndex();
   QStandardItem * item = _currentFiltersTreeModel->itemFromIndex(index);
   if ( item ) {
