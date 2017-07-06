@@ -197,7 +197,9 @@ PreviewWidget::sendUpdateRequest()
 
 bool PreviewWidget::isAtDefaultZoom() const
 {
-  return (_previewFactor == GmicQt::PreviewFactorAny) || (std::abs(_currentZoomFactor - defaultZoomFactor()) < 0.05);
+  return (_previewFactor == GmicQt::PreviewFactorAny)
+      || (std::abs(_currentZoomFactor - defaultZoomFactor()) < 0.05)
+      || ((_previewFactor == GmicQt::PreviewFactorActualSize) && (_currentZoomFactor >= 1.0));
 }
 
 double PreviewWidget::currentZoomFactor() const

@@ -400,7 +400,9 @@ void MainWindow::onZoomOut()
 void MainWindow::showZoomWarningIfNeeded()
 {
   FiltersTreeAbstractFilterItem * item = _selectedAbstractFilterItem;
-  if ( item && !item->isAccurateIfZoomed() && !ui->previewWidget->isAtDefaultZoom() ) {
+  if ( item &&
+       !item->isAccurateIfZoomed() &&
+       !ui->previewWidget->isAtDefaultZoom() ) {
     ui->labelWarning->setPixmap(QPixmap(":/images/warning.png"));
   } else {
     ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
