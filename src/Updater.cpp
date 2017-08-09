@@ -77,7 +77,7 @@ void Updater::updateSources(bool useNetwork)
   cimg_library::CImgList<char> names;
   QString command = QString("%1-gui_filter_sources %2").arg(prefix).arg(useNetwork);
   try {
-    gmic(command.toLatin1().constData(),gptSources,names,0,true);
+    gmic(command.toLocal8Bit().constData(),gptSources,names,0,true);
   } catch (...) {
   }
 

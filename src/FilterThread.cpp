@@ -154,15 +154,14 @@ FilterThread::run()
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {
-      std::fprintf(cimg::output(),"\n[gmic_qt] Command: %s\n",
-                   fullCommandLine.toLatin1().constData());
+      std::fprintf(cimg::output(),"\n[gmic_qt] Command: %s\n",fullCommandLine.toLocal8Bit().constData());
       std::fflush(cimg::output());
     }
 
-    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("-v - %1").arg(_environment).toLatin1().constData(),
+    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("-v - %1").arg(_environment).toLocal8Bit().constData(),
                       GmicStdLibParser::GmicStdlib.constData(),true);
     gmicInstance.set_variable("_host",GmicQt::HostApplicationShortname,'=');
-    gmicInstance.run(fullCommandLine.toLatin1().constData(),
+    gmicInstance.run(fullCommandLine.toLocal8Bit().constData(),
                      *_images,
                      *_imageNames,
                      &_gmicProgress,
@@ -175,7 +174,7 @@ FilterThread::run()
     _errorMessage = message;
     if (_messageMode > GmicQt::Quiet) {
       std::fprintf(cimg::output(),"\n[gmic_qt]./error/ When running command '%s', this error occured:\n%s\n",
-                   fullCommandLine.toLatin1().constData(),
+                   fullCommandLine.toLocal8Bit().constData(),
                    message);
       std::fflush(cimg::output());
     }

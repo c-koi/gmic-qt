@@ -173,7 +173,7 @@ void HeadlessProcessor::onProcessingFinished()
                               QString("[G'MIC] %1: %2")
                               .arg(_filterThread->name())
                               .arg(_filterThread->fullCommand())
-                              .toLatin1().constData()
+                              .toLocal8Bit().constData()
                             : 0);
     }
   }

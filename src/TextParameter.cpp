@@ -88,7 +88,6 @@ TextParameter::textValue() const
 {
   QString text = _multiline ? _textEdit->text() : _lineEdit->text();
   text.replace(QChar('"'),QString("\\\""));
-  //return QString("\"\\\"\\\"\"");
   return QString("\"%1\"").arg(text);
 }
 

@@ -158,7 +158,7 @@ int main(int argc, char * argv[])
       gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
       return launchPlugin();
     } else {
-      std::cerr << "Could not open file " << filename.toLatin1().constData() << "\n";
+      std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
       return 1;
     }
   } else {
