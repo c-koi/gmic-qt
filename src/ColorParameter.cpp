@@ -33,6 +33,7 @@
 #include <QFontMetrics>
 #include <QColorDialog>
 #include <QPainter>
+#include <QDebug>
 #include <cstdio>
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
@@ -123,9 +124,10 @@ void ColorParameter::initFromText(const char *text, int & textLength)
   QList<QString> list = parseText("color",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> channels = list[1].split(",");
-  int r = channels[0].toInt();
-  int g = channels[1].toInt();
-  int b = channels[2].toInt();
+  const int n = channels.size();
+  int r = (n > 0 ) ? channels[0].toInt() : 255;
+  int g = (n >= 2 ) ? channels[1].toInt() : 255;
+  int b = (n >= 3 ) ? channels[2].toInt() : 255;
   if (channels.size() == 4) {
     int a = channels[3].toInt();
     _default = _value = QColor(r,g,b,a);
