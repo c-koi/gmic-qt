@@ -86,26 +86,25 @@ QString
 ColorParameter::textValue() const
 {
   const QColor & c = _value;
-  if (_alphaChannel)
+  if (_alphaChannel) {
     return QString("%1,%2,%3,%4").arg(c.red()).arg(c.green()).arg(c.blue()).arg(c.alpha());
-  else
+  } else {
     return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
+  }
 }
 
 void
 ColorParameter::setValue(const QString & value)
 {
   QStringList list = value.split(",");
-  int red = list[0].toInt();
-  int green = list[1].toInt();
-  int blue = list[2].toInt();
-  if (list.size() == 4) {
-    int alpha = list[3].toInt();
+  const int red = list[0].toInt();
+  const int green = list[1].toInt();
+  const int blue = list[2].toInt();
+  if ((list.size() == 4) && _alphaChannel) {
+    const int alpha = list[3].toInt();
     _value = QColor(red,green,blue,alpha);
-    _alphaChannel = true;
   } else {
     _value = QColor(red,green,blue);
-    _alphaChannel = false;
   }
   if (_button) {
     updateButtonColor();
