@@ -311,11 +311,11 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     break;
   case GmicQt::ActiveAndAbove:
     if (activeLayerID >= 0) {
-      layers.push_back(activeLayerID);
       const int * p = std::find(begLayers,endLayers,activeLayerID);
       if ( p > begLayers ) {
         layers.push_back(*(p-1));
       }
+      layers.push_back(activeLayerID);
     }
     break;
   case GmicQt::AllVisibles:
@@ -426,11 +426,11 @@ void gmic_qt_get_cropped_images( gmic_list<float> & images,
     break;
   case GmicQt::ActiveAndAbove:
     if (active_layer_id >= 0) {
-      inputLayers.push_back(active_layer_id);
       const int * p = std::find(layers,end_layers,active_layer_id);
       if ( p > layers ) {
         inputLayers.push_back(*(p-1));
       }
+      inputLayers.push_back(active_layer_id);
     }
     break;
   case GmicQt::AllVisibles:
