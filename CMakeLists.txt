@@ -117,7 +117,8 @@ if (CURL_FOUND)
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
         ${CURL_LIBRARIES}
-)        
+    )        
+endif()
 
 add_definitions(-Dgmic_build)
 add_definitions(-Dcimg_use_abort)
