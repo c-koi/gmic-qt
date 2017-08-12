@@ -36,13 +36,37 @@
 
  * Available at [gmic.eu](http://gmic.eu)
 
+
 ### Build instructions
+
+By default, the gimp integration plugin is built.
+
+#### QMake
+
+qmake is simple to use but only really works in an environment where bash is available.
 
 ```sh
 git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib.h
 cd gmic-qt
-qmake [HOST=none|gimp]
+qmake [HOST=none|gimp|krita]
 make
 ```
+
+#### CMake
+
+cmake works on all platforms. The first part is the same and requires make and wget to be available. If you don't have all dependencies, cmake will warn you which ones are missing. Note that the minimum cmake version is 3.1.
+
+git clone https://github.com/dtschump/gmic.git
+git clone https://github.com/c-koi/gmic-qt.git
+make -C gmic/src CImg.h gmic_stdlib.h
+cd gmic-qt
+
+Then make a build directory:
+
+mkdir build
+cd build
+
+cmake .. [-DGMIC_QT_HOST=none|gimp|krita] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
+make
