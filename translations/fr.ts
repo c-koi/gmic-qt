@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Original French translation done by Sébastien Fourey -->
+
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
