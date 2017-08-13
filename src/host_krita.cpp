@@ -263,7 +263,7 @@ void gmic_qt_output_images( gmic_list<float> & images,
         }
 
         m->lock();
-        memcpy(m->data(), gimg._data, m->size());
+        memcpy(m->data(), gimg._data, gimg._width * gimg._height * gimg._spectrum * sizeof(float));
         m->unlock();
 
         QString layerName((const char *const)imageNames[i]);
