@@ -26,6 +26,12 @@ if (${PRERELEASE})
     add_definitions(-Dgmic_prelease=${PRERELEASE_DATE})
 endif()
 
+option(DRMINGW "Set to ON enables the drmingw debugger.")
+if (${DRMINGW})
+    add_definitions(-DDRMINGW)
+endif()
+
+
 
 # Required packages
 

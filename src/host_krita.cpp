@@ -17,6 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#include <QStandardPaths>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -263,7 +264,7 @@ void gmic_qt_output_images( gmic_list<float> & images,
         }
 
         m->lock();
-        memcpy(m->data(), gimg._data, m->size());
+        memcpy(m->data(), gimg._data, gimg._width * gimg._height * gimg._spectrum * sizeof(float));
         m->unlock();
 
         QString layerName((const char *const)imageNames[i]);
@@ -287,9 +288,37 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & )
 {
 
 }
+#if defined Q_OS_WIN
+namespace
+{
+void tryInitDrMingw()
+{
+    wchar_t path[MAX_PATH];
+    QString pathStr = QCoreApplication::applicationDirPath().replace(L'/', L'\\') + QStringLiteral("\\exchndl.dll");
+    if (pathStr.size() > MAX_PATH - 1) {
+        return;
+    }
+    int pathLen = pathStr.toWCharArray(path);
+    path[pathLen] = L'\0'; // toWCharArray doesn't add NULL terminator
+    HMODULE hMod = LoadLibraryW(path);
+    if (!hMod) {
+        return;
+    }
+    // No need to call ExcHndlInit since the crash handler is installed on DllMain
+    auto myExcHndlSetLogFileNameA = reinterpret_cast<BOOL (APIENTRY *)(const char *)>(GetProcAddress(hMod, "ExcHndlSetLogFileNameA"));
+    if (!myExcHndlSetLogFileNameA) {
+        return;
+    }
+    // Set the log file path to %LocalAppData%\kritacrash.log
+    QString logFile = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation).replace(L'/', L'\\') + QStringLiteral("\\gmic_krita_qt_crash.log");
+    myExcHndlSetLogFileNameA(logFile.toLocal8Bit());
+}
+} // namespace
+#endif
 
 int main(int argc, char *argv[])
 {
+
     bool headless = false;
     {
         QCommandLineParser parser;
@@ -308,7 +337,13 @@ int main(int argc, char *argv[])
 
             }
         }
+#if defined Q_OS_WIN
+#if defined DRMINGW
+        tryInitDrMingw();
+#endif
+#endif
     }
+
     qWarning() << "gmic-qt: socket Key:" << socketKey;
     int r = 0;
     if (headless) {
