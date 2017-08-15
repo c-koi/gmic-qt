@@ -171,6 +171,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebIn
 else()
     message("Release build")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
     
 include_directories(${CMAKE_SOURCE_DIR}/include ${GMIC_PATH})
