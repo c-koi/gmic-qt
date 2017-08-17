@@ -54,8 +54,6 @@ DialogSettings::DialogSettings(QWidget * parent):
 
   ui->pbUpdate->setIcon(LOAD_ICON("view-refresh"));
 
-  loadSettings();
-
   ui->cbUpdatePeriodicity->addItem(tr("Never"),QVariant( INTERNET_NEVER_UPDATE_PERIODICITY ));
   ui->cbUpdatePeriodicity->addItem(tr("Daily"),QVariant(24));
   ui->cbUpdatePeriodicity->addItem(tr("Weekly"),QVariant(7*24));
@@ -72,8 +70,9 @@ DialogSettings::DialogSettings(QWidget * parent):
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
-  ui->rbDarkTheme->setChecked(_darkThemeEnabled);
-  ui->rbDefaultTheme->setChecked(!_darkThemeEnabled);
+  const bool savedDarkTheme = QSettings().value("Config/DarkTheme",false).toBool();
+  ui->rbDarkTheme->setChecked(savedDarkTheme);
+  ui->rbDefaultTheme->setChecked(!savedDarkTheme);
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
   ui->cbNativeColorDialogs->setToolTip(tr("Check to use Native/OS color dialog, uncheck to use Qt's"));
 
@@ -132,7 +131,6 @@ void DialogSettings::loadSettings()
   _darkThemeEnabled = settings.value("Config/DarkTheme",false).toBool();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs",false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY,INTERNET_NEVER_UPDATE_PERIODICITY).toInt();
-
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue",QDir::homePath()).toString();
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath",QDir::homePath()).toString();
 }
@@ -140,7 +138,6 @@ void DialogSettings::loadSettings()
 void DialogSettings::saveSettings(QSettings & settings)
 {
   settings.setValue("Config/PreviewPosition",(_previewPosition==MainWindow::PreviewOnLeft)?"Left":"Right");
-  settings.setValue("Config/DarkTheme",_darkThemeEnabled);
   settings.setValue("Config/NativeColorDialogs",_nativeColorDialogs);
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY,_updatePeriodicity);
   settings.setValue("FolderParameterDefaultValue",FolderParameterDefaultValue);
@@ -156,6 +153,24 @@ void DialogSettings::saveSettings(QSettings & settings)
 MainWindow::PreviewPosition DialogSettings::previewPosition()
 {
   return _previewPosition;
+}
+
+void DialogSettings::onOk()
+{
+  done(QDialog::Accepted);
+}
+
+void DialogSettings::done(int r)
+{
+  QSettings settings;
+  saveSettings(settings);
+  settings.setValue("Config/DarkTheme",ui->rbDarkTheme->isChecked());
+  QDialog::done(r);
+}
+
+void DialogSettings::enableUpdateButton()
+{
+  ui->pbUpdate->setEnabled(true);
 }
 
 void DialogSettings::onRadioLeftPreviewToggled(bool on)
@@ -176,19 +191,8 @@ void DialogSettings::onUpdateClicked()
   }
 }
 
-void DialogSettings::onOk()
+void DialogSettings::onDarkThemeToggled(bool )
 {
-  done(QDialog::Accepted);
-}
-
-void DialogSettings::enableUpdateButton()
-{
-  ui->pbUpdate->setEnabled(true);
-}
-
-void DialogSettings::onDarkThemeToggled(bool on)
-{
-  _darkThemeEnabled = on;
 }
 
 void DialogSettings::onUpdatePeriodicityChanged(int )
@@ -199,13 +203,6 @@ void DialogSettings::onUpdatePeriodicityChanged(int )
 void DialogSettings::onColorDialogsToggled(bool on)
 {
   _nativeColorDialogs = on;
-}
-
-void DialogSettings::done(int r)
-{
-  QSettings settings;
-  saveSettings(settings);
-  QDialog::done(r);
 }
 
 bool DialogSettings::darkThemeEnabled()
