@@ -187,7 +187,7 @@ void get_output_layer_props(const char * const s,
   }
 
   // Read output positions.
-  QRegExp posRe("pos\\(\\s*(\\d*)[^)](\\d*)\\s*\\)");
+  QRegExp posRe("pos\\(\\s*(-?\\d*)[^)](-?\\d*)\\s*\\)");
   if ( posRe.indexIn(str) != -1 ) {
     QString xStr = posRe.cap(1);
     QString yStr = posRe.cap(2);
