@@ -36,7 +36,7 @@ endif()
 # Required packages
 
 #
-# Qt5 
+# Qt5
 #
 find_package(Qt5 ${MIN_QT_VERSION}
         REQUIRED COMPONENTS
@@ -96,13 +96,13 @@ set_package_properties(OpenMP PROPERTIES
     URL "http://openmp.org/wp/"
     TYPE OPTIONAL
     PURPOSE "Optionally used by gmic-qt")
-    
+
 if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8.3 AND OPENMP_FOUND)
     message("G'Mic: using OpenMP")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     add_definitions(-Dcimg_use_openmp)
     add_definitions(-fopenmp)
-endif()  
+endif()
 
 
 #
@@ -123,7 +123,7 @@ if (CURL_FOUND)
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
         ${CURL_LIBRARIES}
-    )        
+    )
 endif()
 
 add_definitions(-Dgmic_build)
@@ -142,7 +142,7 @@ if (UNIX AND NOT APPLE)
         ${gmic_qt_LIBRARIES}
         X11 # XXX: Search for X11: Wayland is coming!
     )
-        
+
 endif()
 
 if (APPLE)
@@ -163,131 +163,147 @@ if (WINDOWS)
     )
 endif()
 
-if (CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     message("Debug build")
     add_definitions(-D_GMIC_QT_DEBUG_)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}  -fsanitize=address") 
-else()
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}  -fsanitize=address")
+elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     message("Release build")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
+    string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+    string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
+elseif (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    message("Release build with debug info")
+    add_definitions(-DQT_NO_DEBUG_OUTPUT)
+    string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+    string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+    set_source_files_properties(${GMIC_PATH}/gmic.cpp PROPERTIES COMPILE_FLAGS "-O3")
+    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O2")
+else()
+    message(FATAL_ERROR "Build type not recognized (${CMAKE_BUILD_TYPE})")
 endif()
-    
+
 include_directories(${CMAKE_SOURCE_DIR}/include ${GMIC_PATH})
-    
-set (gmic_qt_SRCS 
+
+set (gmic_qt_SRCS
 
     include/ProgressInfoWidget.h
-    include/FilterThread.h 
-    include/MultilineTextParameterWidget.h 
-    include/MainWindow.h 
-    include/ProgressInfoWindow.h 
-    include/BoolParameter.h  
-    include/FiltersTreeFilterItem.h 
-    include/ConstParameter.h 
-    include/FiltersTreeAbstractFilterItem.h 
-    include/LinkParameter.h 
-    include/Common.h 
-    include/PreviewWidget.h 
-    include/ButtonParameter.h 
-    include/ChoiceParameter.h 
-    include/IntParameter.h 
-    include/SearchFieldWidget.h 
-    include/FolderParameter.h 
-    include/ImageTools.h 
-    include/SeparatorParameter.h 
-    include/GmicStdlibParser.h 
-    include/gmic_qt.h 
-    include/FiltersTreeItemDelegate.h 
-    include/NoteParameter.h 
-    include/DialogSettings.h 
-    include/TextParameter.h 
-    include/host.h 
-    include/ParametersCache.h 
-    include/FiltersTreeAbstractItem.h 
-    include/AbstractParameter.h 
-    include/FloatParameter.h 
-    include/ImageConverter.h 
-    include/ColorParameter.h 
-    include/FiltersTreeFaveItem.h 
-    include/Updater.h 
-    include/FiltersTreeFolderItem.h 
-    include/FilterParamsWidget.h 
-    include/InOutPanel.h 
-    include/ClickableLabel.h 
-    include/FileParameter.h 
-    include/HeadlessProcessor.h 
-    include/FiltersVisibilityMap.h 
-    include/HtmlTranslator.h 
-    include/StoredFave.h 
+    include/FilterThread.h
+    include/MultilineTextParameterWidget.h
+    include/MainWindow.h
+    include/ProgressInfoWindow.h
+    include/BoolParameter.h
+    include/FiltersTreeFilterItem.h
+    include/ConstParameter.h
+    include/FiltersTreeAbstractFilterItem.h
+    include/LinkParameter.h
+    include/Common.h
+    include/PreviewWidget.h
+    include/ButtonParameter.h
+    include/ChoiceParameter.h
+    include/IntParameter.h
+    include/SearchFieldWidget.h
+    include/FolderParameter.h
+    include/ImageTools.h
+    include/SeparatorParameter.h
+    include/GmicStdlibParser.h
+    include/gmic_qt.h
+    include/FiltersTreeItemDelegate.h
+    include/NoteParameter.h
+    include/DialogSettings.h
+    include/TextParameter.h
+    include/host.h
+    include/ParametersCache.h
+    include/FiltersTreeAbstractItem.h
+    include/AbstractParameter.h
+    include/FloatParameter.h
+    include/ImageConverter.h
+    include/ColorParameter.h
+    include/FiltersTreeFaveItem.h
+    include/Updater.h
+    include/FiltersTreeFolderItem.h
+    include/FilterParamsWidget.h
+    include/InOutPanel.h
+    include/ClickableLabel.h
+    include/FileParameter.h
+    include/HeadlessProcessor.h
+    include/FiltersVisibilityMap.h
+    include/HtmlTranslator.h
+    include/StoredFave.h
     include/ZoomLevelSelector.h
     ${GMIC_PATH}/gmic.h
 
-    src/FolderParameter.cpp 
-    src/ParametersCache.cpp 
-    src/gmic_qt.cpp 
-    src/TextParameter.cpp 
-    src/ColorParameter.cpp  
-    src/FilterParamsWidget.cpp 
-    src/FiltersTreeFaveItem.cpp 
-    src/FiltersTreeAbstractItem.cpp 
-    src/FileParameter.cpp 
-    src/GmicStdlibParser.cpp 
-    src/ImageTools.cpp 
-    src/FiltersTreeFolderItem.cpp 
-    src/ProgressInfoWindow.cpp 
-    src/IntParameter.cpp 
-    src/LayersExtentProxy.cpp 
-    src/FiltersTreeItemDelegate.cpp 
-    src/FilterThread.cpp 
-    src/SeparatorParameter.cpp 
-    src/NoteParameter.cpp 
-    src/MainWindow.cpp  
-    src/ConstParameter.cpp 
-    src/ImageConverter.cpp 
-    src/BoolParameter.cpp 
-    src/DialogSettings.cpp 
-    src/ButtonParameter.cpp 
-    src/FloatParameter.cpp 
-    src/ProgressInfoWidget.cpp 
-    src/AbstractParameter.cpp 
-    src/PreviewWidget.cpp 
-    src/ClickableLabel.cpp 
-    src/FiltersTreeAbstractFilterItem.cpp 
-    src/InOutPanel.cpp 
-    src/LinkParameter.cpp 
-    src/ChoiceParameter.cpp 
-    src/FiltersTreeFilterItem.cpp  
-    src/MultilineTextParameterWidget.cpp 
-    src/SearchFieldWidget.cpp 
-    src/Updater.cpp 
-    src/HeadlessProcessor.cpp 
-    src/FiltersVisibilityMap.cpp 
-    src/HtmlTranslator.cpp 
-    src/StoredFave.cpp 
+    src/FolderParameter.cpp
+    src/ParametersCache.cpp
+    src/gmic_qt.cpp
+    src/TextParameter.cpp
+    src/ColorParameter.cpp
+    src/FilterParamsWidget.cpp
+    src/FiltersTreeFaveItem.cpp
+    src/FiltersTreeAbstractItem.cpp
+    src/FileParameter.cpp
+    src/GmicStdlibParser.cpp
+    src/ImageTools.cpp
+    src/FiltersTreeFolderItem.cpp
+    src/ProgressInfoWindow.cpp
+    src/IntParameter.cpp
+    src/LayersExtentProxy.cpp
+    src/FiltersTreeItemDelegate.cpp
+    src/FilterThread.cpp
+    src/SeparatorParameter.cpp
+    src/NoteParameter.cpp
+    src/MainWindow.cpp
+    src/ConstParameter.cpp
+    src/ImageConverter.cpp
+    src/BoolParameter.cpp
+    src/DialogSettings.cpp
+    src/ButtonParameter.cpp
+    src/FloatParameter.cpp
+    src/ProgressInfoWidget.cpp
+    src/AbstractParameter.cpp
+    src/PreviewWidget.cpp
+    src/ClickableLabel.cpp
+    src/FiltersTreeAbstractFilterItem.cpp
+    src/InOutPanel.cpp
+    src/LinkParameter.cpp
+    src/ChoiceParameter.cpp
+    src/FiltersTreeFilterItem.cpp
+    src/MultilineTextParameterWidget.cpp
+    src/SearchFieldWidget.cpp
+    src/Updater.cpp
+    src/HeadlessProcessor.cpp
+    src/FiltersVisibilityMap.cpp
+    src/HtmlTranslator.cpp
+    src/StoredFave.cpp
     src/ZoomLevelSelector.cpp
     ${GMIC_PATH}/gmic.cpp
 )
 
 qt5_wrap_ui(gmic_qt_SRCS
-    ui/inoutpanel.ui 
-    ui/multilinetextparameterwidget.ui 
-    ui/progressinfowindow.ui 
-    ui/dialogsettings.ui 
-    ui/progressinfowidget.ui 
-    ui/mainwindow.ui 
-    ui/SearchFieldWidget.ui 
-    ui/headlessprogressdialog.ui 
+    ui/inoutpanel.ui
+    ui/multilinetextparameterwidget.ui
+    ui/progressinfowindow.ui
+    ui/dialogsettings.ui
+    ui/progressinfowidget.ui
+    ui/mainwindow.ui
+    ui/SearchFieldWidget.ui
+    ui/headlessprogressdialog.ui
     ui/zoomlevelselector.ui
-)    
+)
 
 qt5_create_translation(
     qmic_qt_QM
-    
+
     ${CMAKE_SOURCE_DIR}/translations
-    
+
     ${gmic_qt_SRCS}
-    
+
     translations/cs.ts
     translations/de.ts
     translations/es.ts
@@ -304,19 +320,19 @@ qt5_create_translation(
 )
 
 install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR/translations})
-    
+
 set(gmic_qt_QRC
     gmic_qt.qrc
     translations.qrc
-)   
-    
+)
+
 if (${GMIC_QT_HOST} STREQUAL "gimp")
 
     find_package(Gimp2 REQUIRED)
     find_package(Cairo REQUIRED)
     find_package(GTK2 REQUIRED)
     include_directories(${GIMP2_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS} ${GTK2_INCLUDE_DIRS})
-    
+
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/host_gimp.cpp)
     add_definitions(-DGMIC_HOST=gimp_qt -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
@@ -326,9 +342,9 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
         ${GIMP2_LIBRARIES}
         ${gmic_qt_LIBRARIES}
     )
-    
+
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
-    
+
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/host_krita.cpp)
     add_definitions(-DGMIC_HOST=krita)
     add_executable(gmic_krita_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
@@ -337,9 +353,9 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
     PRIVATE
         ${gmic_qt_LIBRARIES}
     )
-        
+
 elseif (${GMIC_QT_HOST} STREQUAL "none")
-    
+
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/host_none.cpp include/standalone/ImageDialog.h src/standalone/ImageDialog.cpp)
     add_definitions(-DGMIC_HOST=stantalone)
     add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
@@ -348,7 +364,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "none")
     PRIVATE
         ${gmic_qt_LIBRARIES}
     )
-    
+
 else()
     message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita or none")
 endif()
