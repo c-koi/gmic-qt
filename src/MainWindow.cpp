@@ -662,6 +662,7 @@ MainWindow::processImage()
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(*_gmicImages,imageNames,-1,-1,-1,-1,ui->inOutSelector->inputMode());
   Q_ASSERT_X(_selectedAbstractFilterItem,"MainWindow::processImage()","No filter selected");
+  ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   _filterThread = new FilterThread(this,
                                    _lastFilterName = _selectedAbstractFilterItem->plainText(),
                                    _lastAppliedCommand = ui->filterParams->command(),

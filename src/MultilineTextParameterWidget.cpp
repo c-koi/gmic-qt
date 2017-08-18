@@ -26,6 +26,8 @@
 #include "ui_multilinetextparameterwidget.h"
 #include <QEvent>
 #include <QKeyEvent>
+#include <QDebug>
+#include "Common.h"
 
 MultilineTextParameterWidget::MultilineTextParameterWidget(QString name, QString value, QWidget *parent) :
   QWidget(parent),
