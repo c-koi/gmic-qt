@@ -559,18 +559,19 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
                                                GIMP_RGBA_IMAGE };
 
   // Get output layers dimensions and check if input/output layers have compatible dimensions.
-  unsigned int max_width = 0, max_height = 0, max_spectrum = 0;
+  unsigned int max_spectrum = 0;
+  struct Position {
+    gint x,y;
+    Position():x(0),y(0){}
+  } top_left,bottom_right;
   cimglist_for(images,l) {
     if (images[l].is_empty()) {
       images.remove(l--);
       continue;
     } // Discard possible empty images.
-    if (images[l]._width>max_width) {
-      max_width = images[l]._width;
-    }
-    if (images[l]._height>max_height) {
-      max_height = images[l]._height;
-    }
+
+    bottom_right.x = std::max(bottom_right.x,(gint)images[l]._width);
+    bottom_right.y = std::max(bottom_right.y,(gint)images[l]._height);
     if (images[l]._spectrum>max_spectrum) {
       max_spectrum = images[l]._spectrum;
     }
@@ -665,8 +666,8 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
     } else { // Indirect replacement: create new layers.
       gimp_selection_none(gmic_qt_gimp_image_id);
       const int layer_pos = _gimp_image_get_item_position(gmic_qt_gimp_image_id,inputLayers[0]);
-      max_width = max_height = 0;
-
+      top_left.x = top_left.y = 0;
+      bottom_right.x = bottom_right.y = 0;
       for (unsigned int p = 0; p < images.size(); ++p) {
         if (images[p]) {
           layer_posx = layer_posy = 0;
@@ -693,12 +694,10 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
             layer_posx = 0;
             layer_posy = 0;
           }
-          if (layer_posx + images[p]._width>max_width) {
-            max_width = layer_posx + images[p]._width;
-          }
-          if (layer_posy + images[p]._height>max_height) {
-            max_height = layer_posy + images[p]._height;
-          }
+          top_left.x = std::min(top_left.x,layer_posx);
+          top_left.y = std::min(top_left.y,layer_posy);
+          bottom_right.x = std::max(bottom_right.x,(gint)(layer_posx + images[p]._width));
+          bottom_right.y = std::max(bottom_right.y,(gint)(layer_posy + images[p]._height));
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
           if (gimp_image_base_type(gmic_qt_gimp_image_id)==GIMP_GRAY) {
             GmicQt::calibrate_image(img,(img.spectrum()==1 || img.spectrum()==3)?1:2,false);
@@ -739,11 +738,13 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
           img.assign();
         }
       }
+      const unsigned int max_width = bottom_right.x - top_left.x;
+      const unsigned int max_height = bottom_right.y - top_left.y;
       for (unsigned int p = images._width; p < inputLayers.size(); ++p) {
         gimp_image_remove_layer(gmic_qt_gimp_image_id,inputLayers[p]);
       }
       if ((unsigned int)image_nb_layers == inputLayers.size()) {
-        gimp_image_resize(gmic_qt_gimp_image_id,max_width,max_height,0,0);
+        gimp_image_resize(gmic_qt_gimp_image_id,max_width,max_height,-top_left.x,-top_left.y);
       } else {
         gimp_image_resize(gmic_qt_gimp_image_id,std::max(image_width,max_width),std::max(image_height,max_height),0,0);
       }
@@ -754,7 +755,8 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
     if (active_layer_id >= 0) {
       gimp_image_undo_group_start(gmic_qt_gimp_image_id);
       gint top_layer_id = 0, layer_id = 0;
-      max_width = max_height = 0;
+      top_left.x = top_left.y = 0;
+      bottom_right.x = bottom_right.y = 0;
       for (unsigned int p = 0; p < images.size(); ++p) {
         if (images[p]) {
           layer_blendmode = GIMP_NORMAL_MODE;
@@ -769,12 +771,10 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
             layer_name.assign();
           }
           get_output_layer_props(imageNames[p],layer_blendmode,layer_opacity,layer_posx,layer_posy,layer_name);
-          if (layer_posx + images[p]._width>max_width) {
-            max_width = layer_posx + images[p]._width;
-          }
-          if (layer_posy + images[p]._height>max_height) {
-            max_height = layer_posy + images[p]._height;
-          }
+          top_left.x = std::min(top_left.x,layer_posx);
+          top_left.y = std::min(top_left.y,layer_posy);
+          bottom_right.x = std::max(bottom_right.x,(gint)(layer_posx + images[p]._width));
+          bottom_right.y = std::max(bottom_right.y,(gint)(layer_posy + images[p]._height));
 
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
           if (gimp_image_base_type(gmic_qt_gimp_image_id)==GIMP_GRAY) {
@@ -817,10 +817,12 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
 #endif
           img.assign();
         }
+        const unsigned int max_width = bottom_right.x - top_left.x;
+        const unsigned int max_height = bottom_right.y - top_left.y;
         const unsigned int Mw = std::max(image_width,max_width);
         const unsigned int Mh = std::max(image_height,max_height);
         if (Mw && Mh) {
-          gimp_image_resize(gmic_qt_gimp_image_id,Mw,Mh,0,0);
+          gimp_image_resize(gmic_qt_gimp_image_id,Mw,Mh,-top_left.x,-top_left.y);
         }
         if (outputMode == GmicQt::NewLayers) {
           gimp_image_set_active_layer(gmic_qt_gimp_image_id,active_layer_id);
@@ -832,6 +834,8 @@ void gmic_qt_output_images( gmic_list<gmic_pixel_type> & images,
     }
   } else if (outputMode == GmicQt::NewImage && images.size() ) {
     const gint active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
+    const unsigned int max_width = (unsigned int) bottom_right.x;
+    const unsigned int max_height = (unsigned int) bottom_right.y;
     if (active_layer_id>=0) {
 #if (GIMP_MAJOR_VERSION<2) || ((GIMP_MAJOR_VERSION==2) && (GIMP_MINOR_VERSION<=8))
       const int nimage_id = gimp_image_new(max_width,max_height,max_spectrum<=2?GIMP_GRAY:GIMP_RGB);
