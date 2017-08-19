@@ -189,6 +189,8 @@ MainWindow::MainWindow(QWidget *parent) :
   QSize layersExtents = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtents);
   makeConnections();
+
+  _previewRandomSeed = cimg_library::cimg::srand();
 }
 
 MainWindow::~MainWindow()
@@ -603,6 +605,7 @@ MainWindow::onPreviewUpdateRequested()
             this,SLOT(onPreviewThreadFinished()));
     _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
     _okButtonShouldApply = true;
+    _previewRandomSeed = cimg_library::cimg::srand();
     _filterThread->start();
   }
 }
@@ -680,6 +683,7 @@ MainWindow::processImage()
     w->setEnabled(false);
   }
 
+  cimg_library::cimg::srand(_previewRandomSeed);
   _filterThread->start();
 }
 

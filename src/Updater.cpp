@@ -72,7 +72,6 @@ void Updater::updateSources(bool useNetwork)
   } else {
     prefix = "-v - ";
   }
-
   cimg_library::CImgList<gmic_pixel_type> gptSources;
   cimg_library::CImgList<char> names;
   QString command = QString("%1-gui_filter_sources %2").arg(prefix).arg(useNetwork);
@@ -80,7 +79,6 @@ void Updater::updateSources(bool useNetwork)
     gmic(command.toLocal8Bit().constData(),gptSources,names,0,true);
   } catch (...) {
   }
-
   cimg_library::CImgList<char> sources;
   gptSources.move_to(sources);
   cimglist_for(sources,l) {
