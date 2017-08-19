@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QRegExp>
+#include <QString>
 #include <algorithm>
 #include <limits>
 #include "host.h"

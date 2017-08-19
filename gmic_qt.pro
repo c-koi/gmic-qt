@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = gimp }
+!defined(HOST,var) { HOST = none }
 
 !defined(PRERELEASE, var) {
 

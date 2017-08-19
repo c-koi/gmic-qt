@@ -58,20 +58,21 @@ const float PreviewFactorAny = -1.0f;
 const float PreviewFactorFullImage = 1.0f;
 const float PreviewFactorActualSize = 0.0f;
 
-const char * path_rc(bool create)
+const QString & path_rc(bool create)
 {
-  const char * path = gmic::path_rc();
-  QFileInfo dir(path);
+  QString qpath = QString::fromLocal8Bit(gmic::path_rc());
+  QFileInfo dir(qpath);
+  static QString result;
   if ( dir.isDir() ) {
-    return path;
+    result = qpath;
+    return result;
   }
-  if ( ! create ) {
-    return nullptr;
+  if ( ! create || ! gmic::init_rc() ) {
+    result.clear();
+  } else {
+    result = QString::fromLocal8Bit(gmic::path_rc());
   }
-  if ( ! gmic::init_rc() ) {
-    return nullptr;
-  }
-  return gmic::path_rc();
+  return result;
 }
 
 unsigned int host_app_pid()
@@ -124,7 +125,7 @@ int launchPlugin()
     QStringList translations;
     translations << "fr" << "de" << "es" << "zh" << "nl"
                  << "cs" << "it" << "id" << "ua" << "ru"
-     << "pl" << "pt" << "ja";
+                 << "pl" << "pt" << "ja";
     if ( translations.contains(lang) ) {
       QTranslator * translator = new QTranslator(&app);
       translator->load(QString(":/translations/%1.qm").arg(lang));

@@ -90,7 +90,7 @@ void Updater::updateSources(bool useNetwork)
     } else {
       str.columns(0,str.width());
     }
-    QString source(str);
+    QString source = QString::fromLocal8Bit(str);
     _sources << source;
     _sourceIsStdLib[source] = isStdlib;
   }
