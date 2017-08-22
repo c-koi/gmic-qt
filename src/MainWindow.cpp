@@ -189,6 +189,8 @@ MainWindow::MainWindow(QWidget *parent) :
   QSize layersExtents = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtents);
   makeConnections();
+
+  _previewRandomSeed = cimg_library::cimg::srand();
 }
 
 MainWindow::~MainWindow()
@@ -603,6 +605,7 @@ MainWindow::onPreviewUpdateRequested()
             this,SLOT(onPreviewThreadFinished()));
     _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
     _okButtonShouldApply = true;
+    _previewRandomSeed = cimg_library::cimg::srand();
     _filterThread->start();
   }
 }
@@ -662,6 +665,7 @@ MainWindow::processImage()
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(*_gmicImages,imageNames,-1,-1,-1,-1,ui->inOutSelector->inputMode());
   Q_ASSERT_X(_selectedAbstractFilterItem,"MainWindow::processImage()","No filter selected");
+  ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   _filterThread = new FilterThread(this,
                                    _lastFilterName = _selectedAbstractFilterItem->plainText(),
                                    _lastAppliedCommand = ui->filterParams->command(),
@@ -679,6 +683,7 @@ MainWindow::processImage()
     w->setEnabled(false);
   }
 
+  cimg_library::cimg::srand(_previewRandomSeed);
   _filterThread->start();
 }
 

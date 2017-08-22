@@ -17,7 +17,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">ダイアログ</translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="28"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="78"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
-        <translation>チェックすると、システムに標準搭載された色選択ダイアログを使用します。チェックを外すと、Qt の色選択ダイアログを使用します。</translation>
+        <translation type="unfinished">チェックすると、システムに標準搭載された色選択ダイアログを使用します。チェックを外すと、Qt の色選択ダイアログを使用します</translation>
     </message>
 </context>
 <context>
@@ -144,7 +144,7 @@
     <message>
         <location filename="../src/FilterParamsWidget.cpp" line="144"/>
         <source>&lt;i&gt;Error parsing filter parameters&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;i&gt;フィルタパラメータをパース中のエラー&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
@@ -160,7 +160,7 @@
     <message>
         <location filename="../ui/headlessprogressdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">ダイアログ</translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../src/InOutPanel.cpp" line="64"/>
         <source>In place (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のレイヤー (デフォルト)</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="65"/>
@@ -283,7 +283,7 @@
     <message>
         <location filename="../src/InOutPanel.cpp" line="72"/>
         <source>Quiet (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>なし (デフォルト)</translation>
     </message>
     <message>
         <location filename="../src/InOutPanel.cpp" line="73"/>
@@ -391,7 +391,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="142"/>
         <source>Selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>選択モード</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="486"/>
@@ -401,7 +401,7 @@
     <message>
         <location filename="../ui/mainwindow.ui" line="218"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="323"/>
@@ -446,32 +446,32 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="115"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>ズームイン</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="116"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>ズームアウト</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="117"/>
         <source>Reset zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>拡大率をリセット</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
-        <translation type="unfinished"></translation>
+        <translation>警告: プレビューは実際の処理結果と異なる場合があります (拡大率が変更されています)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="120"/>
         <source>Add fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りに追加</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="122"/>
         <source>Reset parameters to default values</source>
-        <translation type="unfinished"></translation>
+        <translation>パラメータの値を初期化</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="125"/>
@@ -481,17 +481,17 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Rename fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りの名前を変更</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="129"/>
         <source>Remove fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りから削除</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="133"/>
         <source>Expand/Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>すべて展開/すべて畳む</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="135"/>
@@ -537,12 +537,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="1426"/>
         <source>Import faves</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りをインポート</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1427"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>以下のファイルからお気に入りをインポートしますか？&lt;br/&gt;%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1431"/>
@@ -552,7 +552,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="1690"/>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>確認</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1691"/>
@@ -666,7 +666,7 @@
     <message>
         <location filename="../src/GmicStdlibParser.cpp" line="62"/>
         <source>Visible</source>
-        <translation type="unfinished"></translation>
+        <translation>一覧に表示</translation>
     </message>
     <message>
         <location filename="../src/GmicStdlibParser.cpp" line="233"/>
@@ -679,7 +679,7 @@
     <message>
         <location filename="../ui/SearchFieldWidget.ui" line="20"/>
         <source>Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>フレーム</translation>
     </message>
     <message>
         <location filename="../src/SearchFieldWidget.cpp" line="78"/>
@@ -730,7 +730,7 @@
     <message>
         <location filename="../ui/zoomlevelselector.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">GMIC</translation>
+        <translation>フォーム</translation>
     </message>
 </context>
 </TS>

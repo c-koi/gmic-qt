@@ -29,6 +29,8 @@
 #define GMIC_QT_ORGANISATION_DOMAIN "greyc.fr"
 #define GMIC_QT_APPLICATION_NAME "gmic_qt"
 
+class QString;
+
 namespace GmicQt {
 enum InputMode {
   NoInput,
@@ -79,11 +81,10 @@ enum PreviewMode {
   UnspecifiedPreviewMode = 100
 };
 extern const PreviewMode DefaultPreviewMode;
-
 extern const float PreviewFactorAny;
 extern const float PreviewFactorFullImage;
 extern const float PreviewFactorActualSize;
-const char * path_rc(bool create);
+const QString & path_rc(bool create);
 unsigned int host_app_pid();
 }
 

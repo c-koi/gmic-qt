@@ -184,9 +184,9 @@ private:
   bool _showMaximized;
   bool _lastExecutionOK;
   bool _newSession;
+  unsigned int _previewRandomSeed;
 
   static const QString FilterTreePathSeparator;
-
   QVector<QWidget*> _filterUpdateWidgets;
 };
 
