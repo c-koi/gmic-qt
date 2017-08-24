@@ -156,10 +156,10 @@ endif()
 if (WINDOWS)
     add_definitions(-Dcimg_display=2)
     add_definitions(-DPSAPI_VERSION=1)
-    add_definitions(-Dcimg_appname=gmic)
+    add_definitions(-Dcimg_appname=\"gmic\")
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
-        windows pthread psapi gdi32
+        pthread psapi gdi32
     )
 endif()
 
