@@ -48,6 +48,7 @@ equals( HOST, "gimp" ) {
 
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_rng
+DEFINES += cimg_appname="\\\"gmic\\\""
 
 !defined(GMIC_PATH,var) {
   GMIC_PATH = ../gmic/src
@@ -69,7 +70,6 @@ win32 {
  DEFINES += _IS_WINDOWS_
  LIBS += -mwindows -lpthread -DPSAPI_VERSION=1 -lpsapi -lgdi32
  DEFINES += cimg_display=2
- DEFINES += cimg_appname="\\\"gmic\\\""
 }
 
 linux {
