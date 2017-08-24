@@ -156,6 +156,7 @@ endif()
 if (WINDOWS)
     add_definitions(-Dcimg_display=2)
     add_definitions(-DPSAPI_VERSION=1)
+    add_definitions(-Dcimg_appname=\"gmic\")
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
         pthread psapi gdi32
