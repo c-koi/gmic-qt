@@ -132,6 +132,7 @@ add_definitions(-Dgmic_is_parallel)
 add_definitions(-Dcimg_use_rng)
 add_definitions(-Dgmic_gui)
 add_definitions(-Dcimg_use_abort)
+add_definitions(-Dcimg_appname=\"gmic\")
 
 if (UNIX AND NOT APPLE)
     add_definitions(-Dcimg_display=1)
@@ -156,7 +157,6 @@ endif()
 if (WINDOWS)
     add_definitions(-Dcimg_display=2)
     add_definitions(-DPSAPI_VERSION=1)
-    add_definitions(-Dcimg_appname=\"gmic\")
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
         pthread psapi gdi32
