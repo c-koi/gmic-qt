@@ -8,6 +8,7 @@
         <file>translations/it.qm</file>
         <file>translations/nl.qm</file>
         <file>translations/zh.qm</file>
+	<file>translations/zh_tw.qm</file>
         <file>translations/ru.qm</file>
         <file>translations/ua.qm</file>
         <file>translations/pl.qm</file>

@@ -128,7 +128,12 @@ int launchPlugin()
                  << "pl" << "pt" << "ja";
     if ( translations.contains(lang) ) {
       QTranslator * translator = new QTranslator(&app);
-      translator->load(QString(":/translations/%1.qm").arg(lang));
+      // Check for traditional Chinese (following https://stackoverflow.com/a/4894634)
+      if ( ( lang == "zh" ) && ( languages.front().endsWith("TW") || languages.front().endsWith("HK") ) ) {
+        translator->load(":/translations/zh_tw.qm");
+      } else {
+        translator->load(QString(":/translations/%1.qm").arg(lang));
+      }
       app.installTranslator(translator);
     }
   }
