@@ -154,7 +154,7 @@ if (APPLE)
     add_definitions(-mmacosx-version-min=10.9 -Wno-macro-redefined -Wno-deprecated-register)
 endif()
 
-if (WINDOWS)
+if (WIN32)
     add_definitions(-Dcimg_display=2)
     add_definitions(-DPSAPI_VERSION=1)
     set(gmic_qt_LIBRARIES
