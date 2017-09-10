@@ -115,7 +115,18 @@ AbstractParameter::createFromText(const char *text, int & length, QString & erro
     result->initFromText(text,length);
   } else {
     if ( !line.isEmpty() ) {
-      error = QString("AbstractParameter::createFromtext(): Parse error: %1").arg(line);
+      QRegExp nameRegExp("^[^=]*\\s*=");
+      if ( nameRegExp.indexIn(line) == 0 ) {
+        QString name = nameRegExp.cap(0).remove(QRegExp("=$"));
+        QRegExp typeRegExp("^[^=]*\\s*=\\s*_?([^\\( ]*)\\s*\\(");
+        if ( typeRegExp.indexIn(line) == 0) {
+          error = "Parameter name: " + name + "\n"
+              + "Type <" + typeRegExp.cap(1) + "> is not recognized\n"
+              + error;
+        } else {
+          error = "Parameter name: " + name + "\n" + error;
+        }
+      }
     }
   }
   return result;

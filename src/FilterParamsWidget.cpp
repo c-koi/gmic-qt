@@ -99,6 +99,7 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
       delete p;
     }
     _presetParameters.clear();
+    error = QString("Parameter #%1\n%2").arg(_actualParametersCount+1).arg(error);
     _actualParametersCount = 0;
     _command = "skip";
     _previewCommand = "skip";
@@ -140,17 +141,21 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
     if ( error.isEmpty() ) {
       _labelNoParams = new QLabel(tr("<i>No parameters</i>"),this);
       _labelNoParams->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+      _labelNoParams->setTextFormat(Qt::RichText);
     } else {
-      _labelNoParams = new QLabel(tr("<i>Error parsing filter parameters</i>"),this);
-      _labelNoParams->setToolTip(error);
+      QString errorMessage;
+      errorMessage += tr("Error parsing filter parameters\n\n");
       QString text = error;
       if ( text.size() > 250 ) {
         text.truncate(250);
         text += "...";
       }
+      errorMessage += text;
+      _labelNoParams = new QLabel(errorMessage,this);
       _labelNoParams->setToolTip(text);
       _labelNoParams->setWordWrap(true);
       _labelNoParams->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
+      _labelNoParams->setTextFormat(Qt::PlainText);
     }
     grid->addWidget(_labelNoParams,0,0,4,3);
   }
