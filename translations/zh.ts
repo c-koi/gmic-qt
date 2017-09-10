@@ -7,7 +7,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/ColorParameter.cpp" line="143"/>
+        <location filename="../src/ColorParameter.cpp" line="144"/>
         <source>Select color</source>
         <translation>选择颜色</translation>
     </message>
@@ -20,17 +20,17 @@
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="28"/>
+        <location filename="../ui/dialogsettings.ui" line="22"/>
         <source>Internet updates</source>
         <translation>因特网更新</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="37"/>
+        <location filename="../ui/dialogsettings.ui" line="31"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="22"/>
+        <location filename="../ui/dialogsettings.ui" line="41"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
@@ -66,16 +66,21 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="148"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="160"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="154"/>
+        <location filename="../ui/dialogsettings.ui" line="166"/>
         <source>Use native color dialog</source>
         <translation>使用原生颜色对话框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="183"/>
+        <location filename="../ui/dialogsettings.ui" line="195"/>
         <source>&amp;Ok</source>
         <translation>确定(&amp;O)</translation>
     </message>
@@ -85,37 +90,37 @@
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="59"/>
+        <location filename="../src/DialogSettings.cpp" line="57"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="60"/>
+        <location filename="../src/DialogSettings.cpp" line="58"/>
         <source>Daily</source>
         <translation>每日</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="61"/>
+        <location filename="../src/DialogSettings.cpp" line="59"/>
         <source>Weekly</source>
         <translation>每周</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="62"/>
+        <location filename="../src/DialogSettings.cpp" line="60"/>
         <source>Every 2 weeks</source>
         <translation>每隔两周</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="63"/>
+        <location filename="../src/DialogSettings.cpp" line="61"/>
         <source>Monthly</source>
         <translation>每月</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="65"/>
+        <location filename="../src/DialogSettings.cpp" line="63"/>
         <source>At launch (debug)</source>
         <translation>启动时 (调试)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="78"/>
+        <location filename="../src/DialogSettings.cpp" line="77"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>选择以便使用原生/系统颜色对话框，取消选择以便使用 Qt</translation>
     </message>
@@ -123,7 +128,9 @@
 <context>
     <name>FileParameter</name>
     <message>
-        <location filename="../src/FileParameter.cpp" line="131"/>
+        <location filename="../src/FileParameter.cpp" line="150"/>
+        <location filename="../src/FileParameter.cpp" line="157"/>
+        <location filename="../src/FileParameter.cpp" line="164"/>
         <source>Select a file</source>
         <translation>选择一个文件</translation>
     </message>
@@ -132,18 +139,20 @@
     <name>FilterParamsWidget</name>
     <message>
         <location filename="../src/FilterParamsWidget.cpp" line="45"/>
-        <location filename="../src/FilterParamsWidget.cpp" line="166"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="172"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
         <translation>&lt;i&gt;选择一个滤镜&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParamsWidget.cpp" line="141"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="142"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
         <translation>&lt;i&gt;无参数&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParamsWidget.cpp" line="144"/>
-        <source>&lt;i&gt;Error parsing filter parameters&lt;/i&gt;</source>
+        <location filename="../src/FilterParamsWidget.cpp" line="147"/>
+        <source>Error parsing filter parameters
+
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -372,6 +381,19 @@
     </message>
 </context>
 <context>
+    <name>LanguageSelectionWidget</name>
+    <message>
+        <location filename="../ui/languageselectionwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">GMIC</translation>
+    </message>
+    <message>
+        <location filename="../ui/languageselectionwidget.ui" line="38"/>
+        <source>&lt;i&gt;(Restart needed)&lt;/i&gt;</source>
+        <translation>&lt;i&gt;(必须重启)&lt;/I&gt;</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/mainwindow.ui" line="14"/>
@@ -499,63 +521,63 @@
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;诺曼底大学 (http://www.unicaen.fr)&lt;br/&gt;法国国立卡昂高等工程师学院 (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="301"/>
+        <location filename="../src/MainWindow.cpp" line="305"/>
         <source>Update completed</source>
         <translation>更新完成</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="301"/>
-        <location filename="../src/MainWindow.cpp" line="303"/>
+        <location filename="../src/MainWindow.cpp" line="305"/>
+        <location filename="../src/MainWindow.cpp" line="307"/>
         <source>Filter definitions have been updated.</source>
         <translation>滤镜定义已更新。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="375"/>
+        <location filename="../src/MainWindow.cpp" line="388"/>
         <source>Filter definitions have been updated</source>
         <translation>滤镜定义已更新</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="440"/>
+        <location filename="../src/MainWindow.cpp" line="458"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>这次更新由于以下错误&lt;br/&gt;不能完成:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="446"/>
+        <location filename="../src/MainWindow.cpp" line="464"/>
         <source>Update error</source>
         <translation>更新错误</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="697"/>
+        <location filename="../src/MainWindow.cpp" line="715"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="766"/>
+        <location filename="../src/MainWindow.cpp" line="788"/>
         <source>Available filters (%1)</source>
         <translation>可用滤镜 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1426"/>
+        <location filename="../src/MainWindow.cpp" line="1465"/>
         <source>Import faves</source>
         <translation>导入收藏</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1427"/>
+        <location filename="../src/MainWindow.cpp" line="1466"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>你要从下面文件导入收藏吗?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1431"/>
+        <location filename="../src/MainWindow.cpp" line="1470"/>
         <source>Don&apos;t ask again</source>
         <translation>别再问</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1690"/>
+        <location filename="../src/MainWindow.cpp" line="1729"/>
         <source>Confirmation</source>
         <translation>确认</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1691"/>
+        <location filename="../src/MainWindow.cpp" line="1730"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>gmic 命令正在运行。&lt;br&gt;你真的想要关闭插件吗?</translation>
     </message>
@@ -573,7 +595,7 @@
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/MultilineTextParameterWidget.cpp" line="38"/>
+        <location filename="../src/MultilineTextParameterWidget.cpp" line="40"/>
         <source>Ctrl+Return</source>
         <translation>Ctrl+Return</translation>
     </message>
@@ -649,12 +671,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/host_none.cpp" line="172"/>
+        <location filename="../src/host_none.cpp" line="173"/>
         <source>Select an image to open...</source>
         <translation>选择一幅图片打开...</translation>
     </message>
     <message>
-        <location filename="../src/host_none.cpp" line="174"/>
+        <location filename="../src/host_none.cpp" line="175"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>PNG &amp; JPG 文件 (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
@@ -695,32 +717,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="190"/>
+        <location filename="../src/Updater.cpp" line="188"/>
         <source>Could not read/decompress %1</source>
         <translation>无法读取/解压缩 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="181"/>
+        <location filename="../src/Updater.cpp" line="179"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>下载错误 %1 (空文件?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="196"/>
+        <location filename="../src/Updater.cpp" line="194"/>
         <source>Error creating file %1</source>
         <translation>创建文件错误 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="200"/>
+        <location filename="../src/Updater.cpp" line="198"/>
         <source>Error writing file %1</source>
         <translation>写入文件错误 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="211"/>
+        <location filename="../src/Updater.cpp" line="209"/>
         <source>Error downloading %1</source>
         <translation>下载错误 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="234"/>
+        <location filename="../src/Updater.cpp" line="232"/>
         <source>Download timeout: %1</source>
         <translation>下载超时: %1</translation>
     </message>

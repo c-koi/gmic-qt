@@ -7,7 +7,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/ColorParameter.cpp" line="143"/>
+        <location filename="../src/ColorParameter.cpp" line="144"/>
         <source>Select color</source>
         <translation>Выбрать цвет</translation>
     </message>
@@ -20,17 +20,17 @@
         <translation>Диалоговое окно</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="28"/>
+        <location filename="../ui/dialogsettings.ui" line="22"/>
         <source>Internet updates</source>
         <translation>Обновления из Интернета</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="37"/>
+        <location filename="../ui/dialogsettings.ui" line="31"/>
         <source>Update now</source>
         <translation>Обновить сейчас</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="22"/>
+        <location filename="../ui/dialogsettings.ui" line="41"/>
         <source>Layout</source>
         <translation>Расположение элементов</translation>
     </message>
@@ -66,16 +66,21 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="148"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="160"/>
         <source>Dialogs</source>
         <translation>Диалоговые окна</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="154"/>
+        <location filename="../ui/dialogsettings.ui" line="166"/>
         <source>Use native color dialog</source>
         <translation>Использовать родной цвет</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="183"/>
+        <location filename="../ui/dialogsettings.ui" line="195"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -85,37 +90,37 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="59"/>
+        <location filename="../src/DialogSettings.cpp" line="57"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="60"/>
+        <location filename="../src/DialogSettings.cpp" line="58"/>
         <source>Daily</source>
         <translation>Ежедневно</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="61"/>
+        <location filename="../src/DialogSettings.cpp" line="59"/>
         <source>Weekly</source>
         <translation>Еженедельно</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="62"/>
+        <location filename="../src/DialogSettings.cpp" line="60"/>
         <source>Every 2 weeks</source>
         <translation>Каждые 2 недели</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="63"/>
+        <location filename="../src/DialogSettings.cpp" line="61"/>
         <source>Monthly</source>
         <translation>Ежемесячно</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="65"/>
+        <location filename="../src/DialogSettings.cpp" line="63"/>
         <source>At launch (debug)</source>
         <translation>При запуске (debug)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="78"/>
+        <location filename="../src/DialogSettings.cpp" line="77"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Вкл. для родных/ОС настроек цвета диалогового окна, Выкл. для QT</translation>
     </message>
@@ -123,7 +128,9 @@
 <context>
     <name>FileParameter</name>
     <message>
-        <location filename="../src/FileParameter.cpp" line="131"/>
+        <location filename="../src/FileParameter.cpp" line="150"/>
+        <location filename="../src/FileParameter.cpp" line="157"/>
+        <location filename="../src/FileParameter.cpp" line="164"/>
         <source>Select a file</source>
         <translation>Выбрать файл</translation>
     </message>
@@ -132,18 +139,20 @@
     <name>FilterParamsWidget</name>
     <message>
         <location filename="../src/FilterParamsWidget.cpp" line="45"/>
-        <location filename="../src/FilterParamsWidget.cpp" line="166"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="172"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
         <translation>&lt;i&gt;Выбрать фильтр&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParamsWidget.cpp" line="141"/>
+        <location filename="../src/FilterParamsWidget.cpp" line="142"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
         <translation>&lt;i&gt;Параметры отсутствуют&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParamsWidget.cpp" line="144"/>
-        <source>&lt;i&gt;Error parsing filter parameters&lt;/i&gt;</source>
+        <location filename="../src/FilterParamsWidget.cpp" line="147"/>
+        <source>Error parsing filter parameters
+
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -372,6 +381,19 @@
     </message>
 </context>
 <context>
+    <name>LanguageSelectionWidget</name>
+    <message>
+        <location filename="../ui/languageselectionwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">GMIC</translation>
+    </message>
+    <message>
+        <location filename="../ui/languageselectionwidget.ui" line="38"/>
+        <source>&lt;i&gt;(Restart needed)&lt;/i&gt;</source>
+        <translation>&lt;i&gt;(Требуется перезапуск)&lt;/i&gt;</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/mainwindow.ui" line="14"/>
@@ -499,63 +521,63 @@
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Университет Нормандии (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="301"/>
+        <location filename="../src/MainWindow.cpp" line="305"/>
         <source>Update completed</source>
         <translation>Обновление завершено</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="301"/>
-        <location filename="../src/MainWindow.cpp" line="303"/>
+        <location filename="../src/MainWindow.cpp" line="305"/>
+        <location filename="../src/MainWindow.cpp" line="307"/>
         <source>Filter definitions have been updated.</source>
         <translation>Определения фильтров обновлены.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="375"/>
+        <location filename="../src/MainWindow.cpp" line="388"/>
         <source>Filter definitions have been updated</source>
         <translation>Определения фильтров обновлены</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="440"/>
+        <location filename="../src/MainWindow.cpp" line="458"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Не удалось обновить&lt;br/&gt;по следующим причинам:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="446"/>
+        <location filename="../src/MainWindow.cpp" line="464"/>
         <source>Update error</source>
         <translation>Ошибка обновления</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="697"/>
+        <location filename="../src/MainWindow.cpp" line="715"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="766"/>
+        <location filename="../src/MainWindow.cpp" line="788"/>
         <source>Available filters (%1)</source>
         <translation>Доступные фильтры (%1)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1426"/>
+        <location filename="../src/MainWindow.cpp" line="1465"/>
         <source>Import faves</source>
         <translation>Импорт избранного</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1427"/>
+        <location filename="../src/MainWindow.cpp" line="1466"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Вы хотите импортировать избранные из следующего файла?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1431"/>
+        <location filename="../src/MainWindow.cpp" line="1470"/>
         <source>Don&apos;t ask again</source>
         <translation>Больше не спрашивать</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1690"/>
+        <location filename="../src/MainWindow.cpp" line="1729"/>
         <source>Confirmation</source>
         <translation>Подтвердить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1691"/>
+        <location filename="../src/MainWindow.cpp" line="1730"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Обрабатывается команда gmic.&lt;br&gt;Вы действительно хотите закрыть плагин?</translation>
     </message>
@@ -573,7 +595,7 @@
         <translation>Обновить</translation>
     </message>
     <message>
-        <location filename="../src/MultilineTextParameterWidget.cpp" line="38"/>
+        <location filename="../src/MultilineTextParameterWidget.cpp" line="40"/>
         <source>Ctrl+Return</source>
         <translation>Ctrl+Enter</translation>
     </message>
@@ -649,12 +671,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/host_none.cpp" line="172"/>
+        <location filename="../src/host_none.cpp" line="173"/>
         <source>Select an image to open...</source>
         <translation>Выберите изображение...</translation>
     </message>
     <message>
-        <location filename="../src/host_none.cpp" line="174"/>
+        <location filename="../src/host_none.cpp" line="175"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>PNG- и JPG- файлы (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
@@ -695,32 +717,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="190"/>
+        <location filename="../src/Updater.cpp" line="188"/>
         <source>Could not read/decompress %1</source>
         <translation>Ошибка чтения/распаковки %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="181"/>
+        <location filename="../src/Updater.cpp" line="179"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Ошибка скачивания %1 (Пустой файл?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="196"/>
+        <location filename="../src/Updater.cpp" line="194"/>
         <source>Error creating file %1</source>
         <translation>Ошибка создания файла %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="200"/>
+        <location filename="../src/Updater.cpp" line="198"/>
         <source>Error writing file %1</source>
         <translation>Ошибка записи файла %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="211"/>
+        <location filename="../src/Updater.cpp" line="209"/>
         <source>Error downloading %1</source>
         <translation>Ошибка скачивания %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="234"/>
+        <location filename="../src/Updater.cpp" line="232"/>
         <source>Download timeout: %1</source>
         <translation>Тайм-аут загрузки: %1</translation>
     </message>
