@@ -31,6 +31,7 @@
 #include "Updater.h"
 
 bool DialogSettings::_darkThemeEnabled;
+QString DialogSettings::_languageCode;
 bool DialogSettings::_nativeColorDialogs;
 MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
@@ -101,6 +102,7 @@ DialogSettings::DialogSettings(QWidget * parent):
   connect(ui->rbDarkTheme,SIGNAL(toggled(bool)),
           this,SLOT(onDarkThemeToggled(bool)));
 
+  ui->languageSelector->selectLanguage(_languageCode);
   if ( _darkThemeEnabled ) {
     QPalette p = ui->cbNativeColorDialogs->palette();
     p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
@@ -129,6 +131,7 @@ void DialogSettings::loadSettings()
     _previewPosition = MainWindow::PreviewOnRight;
   }
   _darkThemeEnabled = settings.value("Config/DarkTheme",false).toBool();
+  _languageCode = settings.value("Config/LanguageCode",QString()).toString();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs",false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY,INTERNET_NEVER_UPDATE_PERIODICITY).toInt();
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue",QDir::homePath()).toString();
@@ -165,6 +168,7 @@ void DialogSettings::done(int r)
   QSettings settings;
   saveSettings(settings);
   settings.setValue("Config/DarkTheme",ui->rbDarkTheme->isChecked());
+  settings.setValue("Config/LanguageCode",ui->languageSelector->selectedLanguageCode());
   QDialog::done(r);
 }
 
@@ -208,6 +212,11 @@ void DialogSettings::onColorDialogsToggled(bool on)
 bool DialogSettings::darkThemeEnabled()
 {
   return _darkThemeEnabled;
+}
+
+QString DialogSettings::languageCode()
+{
+  return _languageCode;
 }
 
 bool DialogSettings::nativeColorDialogs()

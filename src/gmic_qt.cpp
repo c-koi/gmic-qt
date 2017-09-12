@@ -35,6 +35,7 @@
 #include "Updater.h"
 #include "MainWindow.h"
 #include "ProgressInfoWindow.h"
+#include "LanguageSelectionWidget.h"
 #include "HeadlessProcessor.h"
 #include "Common.h"
 #include "gmic.h"
@@ -118,24 +119,12 @@ int launchPlugin()
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
 
-  // Translate according to current locale
-  QList<QString> languages = QLocale().uiLanguages();
-  if ( languages.size() ) {
-    QString lang = languages.front().split("-").front();
-    QStringList translations;
-    translations << "fr" << "de" << "es" << "zh" << "nl"
-                 << "cs" << "it" << "id" << "ua" << "ru"
-                 << "pl" << "pt" << "ja";
-    if ( translations.contains(lang) ) {
-      QTranslator * translator = new QTranslator(&app);
-      // Check for traditional Chinese (following https://stackoverflow.com/a/4894634)
-      if ( ( lang == "zh" ) && ( languages.front().endsWith("TW") || languages.front().endsWith("HK") ) ) {
-        translator->load(":/translations/zh_tw.qm");
-      } else {
-        translator->load(QString(":/translations/%1.qm").arg(lang));
-      }
-      app.installTranslator(translator);
-    }
+  // Translate according to current locale or configured language
+  QString lang = LanguageSelectionWidget::configuredTranslator();
+  if ( !lang.isEmpty() && (lang != "en") ) {
+    QTranslator * translator = new QTranslator(&app);
+    translator->load(QString(":/translations/%1.qm").arg(lang));
+    app.installTranslator(translator);
   }
 
   Updater::setInstanceParent(&app);

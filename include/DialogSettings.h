@@ -45,6 +45,7 @@ public:
   ~DialogSettings();
   static MainWindow::PreviewPosition previewPosition();
   static bool darkThemeEnabled();
+  static QString languageCode();
   static bool nativeColorDialogs();
   static void saveSettings(QSettings &);
   static void loadSettings();
@@ -67,6 +68,7 @@ public slots:
 private:
   Ui::DialogSettings *ui;
   static bool _darkThemeEnabled;
+  static QString _languageCode;
   static bool _nativeColorDialogs;
   static MainWindow::PreviewPosition _previewPosition;
   static int _updatePeriodicity;
