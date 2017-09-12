@@ -237,6 +237,7 @@ set (gmic_qt_SRCS
     include/HtmlTranslator.h
     include/StoredFave.h
     include/ZoomLevelSelector.h
+    include/LanguageSelectionWidget.h
     ${GMIC_PATH}/gmic.h
 
     src/FolderParameter.cpp
@@ -282,6 +283,7 @@ set (gmic_qt_SRCS
     src/HtmlTranslator.cpp
     src/StoredFave.cpp
     src/ZoomLevelSelector.cpp
+    src/LanguageSelectionWidget.cpp
     ${GMIC_PATH}/gmic.cpp
 )
 
@@ -295,6 +297,7 @@ qt5_wrap_ui(gmic_qt_SRCS
     ui/SearchFieldWidget.ui
     ui/headlessprogressdialog.ui
     ui/zoomlevelselector.ui
+    ui/languageselectionwidget.ui
 )
 
 qt5_create_translation(
