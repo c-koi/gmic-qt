@@ -1574,6 +1574,10 @@ MainWindow::onRemoveFave()
       _filtersTreeModelSelection.removeRow(item->row(),item->index().parent());
     }
     saveFaves();
+    _selectedAbstractFilterItem = selectedFilterItem();
+    if ( _selectedAbstractFilterItem ) {
+      onFilterClicked(_selectedAbstractFilterItem->index());
+    }
   }
   if ( faveFolder(FullModel)->rowCount() == 0) {
     removeFaveFolder();
