@@ -569,6 +569,7 @@ MainWindow::onPreviewUpdateRequested()
   if ( !_selectedAbstractFilterItem || ui->filterParams->previewCommand().isEmpty() || ui->filterParams->previewCommand() == "_none_" ) {
     ui->previewWidget->displayOriginalImage();
   } else {
+    ui->tbUpdateFilters->setEnabled(false);
     _gmicImages->assign(1);
     double x,y,w,h;
     ui->previewWidget->normalizedVisibleRect(x,y,w,h);
@@ -613,6 +614,7 @@ MainWindow::onPreviewUpdateRequested()
 void MainWindow::onPreviewThreadFinished()
 {
   if ( !_filterThread ) {
+    ui->tbUpdateFilters->setEnabled(true);
     return;
   }
   QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
@@ -647,6 +649,7 @@ void MainWindow::onPreviewThreadFinished()
   ui->previewWidget->savePreview();
   _filterThread->deleteLater();
   _filterThread = 0;
+  ui->tbUpdateFilters->setEnabled(true);
 }
 
 void
