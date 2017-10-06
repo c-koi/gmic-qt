@@ -161,7 +161,7 @@ void PreviewWidget::resizeEvent(QResizeEvent * e)
 {
   _pendingResize = true;
   e->accept();
-  if ( ! (e->size().width() * e->size().height()) ) {
+  if ( ! e->size().width() || ! e->size().height() ) {
     return;
   }
   if ( isAtFullZoom() ) {
@@ -219,7 +219,7 @@ bool PreviewWidget::event(QEvent *event)
 {
   if ( event->type() == QEvent::WindowActivate && _pendingResize ) {
     _pendingResize = false;
-    if ( width() * height() ) {
+    if ( width() && height() ) {
       updateVisibleRect();
       sendUpdateRequest();
     }
@@ -232,7 +232,7 @@ bool PreviewWidget::eventFilter(QObject * , QEvent *event)
   if ( (event->type() == QEvent::MouseButtonRelease || event->type() == QEvent::NonClientAreaMouseButtonRelease)
        && _pendingResize ) {
     _pendingResize = false;
-    if ( width() * height() ) {
+    if ( width() && height() ) {
       updateVisibleRect();
       sendUpdateRequest();
     }
