@@ -66,15 +66,15 @@ void Updater::updateSources(bool useNetwork)
   // Build sources map
   QString prefix;
   if ( _outputMessageMode >= GmicQt::DebugConsole ) {
-    prefix = "-debug ";
+    prefix = "debug ";
   } else if (  _outputMessageMode >= GmicQt::VerboseLayerName ) {
-    prefix = "-v -99 ";
+    prefix = "v -99 ";
   } else {
-    prefix = "-v - ";
+    prefix = "v - ";
   }
   cimg_library::CImgList<gmic_pixel_type> gptSources;
   cimg_library::CImgList<char> names;
-  QString command = QString("%1-gui_filter_sources %2").arg(prefix).arg(useNetwork);
+  QString command = QString("%1gui_filter_sources %2").arg(prefix).arg(useNetwork);
   try {
     gmic(command.toLocal8Bit().constData(),gptSources,names,0,true);
   } catch (...) {

@@ -1103,7 +1103,7 @@ QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & image
   if (preview_input_images.size()  > 1) {
     try {
       cimg_library::CImgList<char> preview_images_names;
-      gmic("-v - -gui_preview",
+      gmic("v - gui_preview",
            preview_input_images,
            preview_images_names,
            GmicStdLibParser::GmicStdlib.constData(),
