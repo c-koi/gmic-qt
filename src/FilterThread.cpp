@@ -120,7 +120,7 @@ QString FilterThread::name() const
 
 QString FilterThread::fullCommand() const
 {
-  return QString("-%1 %2").arg(_command).arg(_arguments);
+  return QString("%1 %2").arg(_command).arg(_arguments);
 }
 
 void
@@ -142,15 +142,15 @@ FilterThread::run()
   QString fullCommandLine;
   try {
     if ( _messageMode == GmicQt::Quiet ) {
-      fullCommandLine = QString("-v -");
+      fullCommandLine = QString("v -");
     } else if ( _messageMode >= GmicQt::VerboseLayerName && _messageMode <= GmicQt::VerboseLogFile ) {
-      fullCommandLine = QString("-v -99");
+      fullCommandLine = QString("v -99");
     } else if ( _messageMode == GmicQt::VeryVerboseConsole || _messageMode == GmicQt::VeryVerboseLogFile  ) {
-      fullCommandLine = QString("-v 0");
+      fullCommandLine = QString("v 0");
     } else if ( _messageMode == GmicQt::DebugConsole || _messageMode == GmicQt::DebugLogFile  ) {
-      fullCommandLine = QString("-debug") ;
+      fullCommandLine = QString("debug") ;
     }
-    fullCommandLine += QString(" -%1 %2").arg(_command).arg(_arguments);
+    fullCommandLine += QString(" %1 %2").arg(_command).arg(_arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {
@@ -158,7 +158,7 @@ FilterThread::run()
       std::fflush(cimg::output());
     }
 
-    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("-v - %1").arg(_environment).toLocal8Bit().constData(),
+    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(),
                       GmicStdLibParser::GmicStdlib.constData(),true);
     gmicInstance.set_variable("_host",GmicQt::HostApplicationShortname,'=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(),
