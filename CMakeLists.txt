@@ -331,10 +331,9 @@ set(gmic_qt_QRC
 
 if (${GMIC_QT_HOST} STREQUAL "gimp")
 
-    find_package(Gimp2 REQUIRED)
-    find_package(Cairo REQUIRED)
-    find_package(GTK2 REQUIRED)
-    include_directories(${GIMP2_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS} ${GTK2_INCLUDE_DIRS})
+    execute_process(COMMAND gimptool-2.0 --libs-noui OUTPUT_VARIABLE GIMP2_LIBRARIES OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(COMMAND gimptool-2.0 --cflags-noui OUTPUT_VARIABLE GIMP2_INCLUDE_DIRS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GIMP2_INCLUDE_DIRS}")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/host_gimp.cpp)
     add_definitions(-DGMIC_HOST=gimp_qt -DGIMP_DISABLE_DEPRECATED)
@@ -360,7 +359,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/host_none.cpp include/standalone/ImageDialog.h src/standalone/ImageDialog.cpp)
-    add_definitions(-DGMIC_HOST=stantalone)
+    add_definitions(-DGMIC_HOST=standalone)
     add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
         target_link_libraries(
         gmic_qt
