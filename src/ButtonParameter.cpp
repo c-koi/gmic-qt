@@ -28,6 +28,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QDebug>
 #include <Qt>
 #include "HtmlTranslator.h"
 
@@ -64,14 +65,14 @@ ButtonParameter::textValue() const
 }
 
 void
-ButtonParameter::clear()
+ButtonParameter::setValue(const QString & s)
 {
-  _value = false;
+  _value = (s == "1");
 }
 
-void
-ButtonParameter::setValue(const QString & )
+void ButtonParameter::clear()
 {
+  _value = false;
 }
 
 void

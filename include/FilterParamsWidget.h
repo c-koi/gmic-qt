@@ -53,6 +53,7 @@ public:
   QString filterName() const;
   int actualParametersCount() const;
   QString filterHash() const;
+  void clearButtonParameters() const;
 
 public slots:
   void updateValueString(bool notify = true);

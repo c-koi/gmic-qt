@@ -40,8 +40,8 @@ public:
   ~ButtonParameter();
   void addTo(QWidget *, int row);
   QString textValue() const;
-  void clear();
   void setValue(const QString &);
+  void clear() override;
   void reset();
   void initFromText(const char * text, int & textLength);
 public slots:

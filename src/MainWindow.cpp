@@ -604,6 +604,7 @@ MainWindow::onPreviewUpdateRequested()
     _filterThread->setInputImages(*_gmicImages,imageNames);
     connect(_filterThread,SIGNAL(finished()),
             this,SLOT(onPreviewThreadFinished()));
+    ui->filterParams->clearButtonParameters();
     _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
     _okButtonShouldApply = true;
     _previewRandomSeed = cimg_library::cimg::srand();
@@ -680,6 +681,7 @@ MainWindow::processImage()
           this,SLOT(onApplyThreadFinished()));
   _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
   ui->progressInfoWidget->startAnimationAndShow(_filterThread,true);
+  ui->filterParams->clearButtonParameters();
 
   // Disable most of the GUI
   for (QWidget * w : _filterUpdateWidgets) {

@@ -38,8 +38,8 @@ public:
   virtual void addTo(QWidget *, int row) = 0;
   virtual QString textValue() const = 0;
   virtual QString unquotedTextValue() const;
-  virtual void clear();
   virtual void setValue(const QString & value) = 0;
+  virtual void clear();
   virtual void reset() = 0;
   static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = 0);
   virtual void initFromText(const char * text, int & textLength) = 0;

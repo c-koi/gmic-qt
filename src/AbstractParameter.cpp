@@ -57,7 +57,8 @@ AbstractParameter::isVisible() const
   return true;
 }
 
-bool AbstractParameter::isActualParameter() const
+bool
+AbstractParameter::isActualParameter() const
 {
   return _actualParameter;
 }
@@ -68,10 +69,9 @@ AbstractParameter::unquotedTextValue() const
   return textValue();
 }
 
-void
-AbstractParameter::clear()
+void AbstractParameter::clear()
 {
-  // Do nothing except for ButtonParameter::clear()
+  // Used to clear the value of a ButtonParameter
 }
 
 AbstractParameter *
