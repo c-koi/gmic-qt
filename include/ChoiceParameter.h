@@ -36,11 +36,11 @@ class ChoiceParameter : public AbstractParameter {
 public:
   ChoiceParameter(QObject * parent = 0);
   ~ChoiceParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString &);
-  void reset();
-  void initFromText(const char * text, int & textLength);
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString &) override;
+  void reset() override;
+  void initFromText(const char * text, int & textLength) override;
 public slots:
   void onComboBoxIndexChanged(int);
 signals:

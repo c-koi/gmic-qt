@@ -38,12 +38,12 @@ class ButtonParameter : public AbstractParameter {
 public:
   ButtonParameter(QObject * parent = 0);
   ~ButtonParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString &);
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString &) override;
   void clear() override;
-  void reset();
-  void initFromText(const char * text, int & textLength);
+  void reset() override;
+  void initFromText(const char * text, int & textLength) override;
 public slots:
   void onPushButtonClicked(bool);
 signals:

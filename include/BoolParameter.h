@@ -35,11 +35,11 @@ class BoolParameter : public AbstractParameter {
 public:
   BoolParameter(QObject * parent = 0);
   ~BoolParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void initFromText(const char * text, int & textLength);
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void initFromText(const char * text, int & textLength) override;
 public slots:
   void onCheckBoxChanged(bool);
 signals:
