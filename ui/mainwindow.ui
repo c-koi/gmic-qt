@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>914</width>
-    <height>512</height>
+    <width>997</width>
+    <height>486</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTreeView" name="filtersTree">
+        <widget class="TreeView" name="filtersTree">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -243,8 +243,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>120</width>
-            <height>407</height>
+            <width>132</width>
+            <height>381</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -579,6 +579,11 @@
    <extends>QWidget</extends>
    <header>ZoomLevelSelector.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TreeView</class>
+   <extends>QTreeView</extends>
+   <header>TreeView.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

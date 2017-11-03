@@ -477,6 +477,8 @@ void MainWindow::makeConnections()
 
   connect(ui->filtersTree,SIGNAL(clicked(QModelIndex)),
           this,SLOT(onFilterClicked(QModelIndex)));
+  connect(ui->filtersTree,SIGNAL(returnKeyPressed()),
+          this,SLOT(onReturnKeyPressedInFiltersTree()));
 
   connect(ui->pbOk,SIGNAL(clicked(bool)),
           this,SLOT(onOkClicked()));
@@ -538,6 +540,26 @@ void MainWindow::makeConnections()
 
   connect(&_filtersTreeModel,SIGNAL(itemChanged(QStandardItem*)),
           this,SLOT(onFiltersTreeItemChanged(QStandardItem*)));
+}
+
+void
+MainWindow::onReturnKeyPressedInFiltersTree()
+{
+  FiltersTreeAbstractFilterItem * item = selectedFilterItem();
+  if ( item ) {
+    onFilterClicked(item->index());
+  } else {
+    QModelIndex index = ui->filtersTree->currentIndex();
+    QStandardItem * item = _currentFiltersTreeModel->itemFromIndex(index);
+    FiltersTreeFolderItem * folder = item ? dynamic_cast<FiltersTreeFolderItem *>(item) : nullptr;
+    if ( folder ) {
+      if ( ui->filtersTree->isExpanded(index) ) {
+        ui->filtersTree->collapse(index);
+      } else {
+        ui->filtersTree->expand(index);
+      }
+    }
+  }
 }
 
 void

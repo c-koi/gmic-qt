@@ -68,6 +68,7 @@ public:
 public slots:
   void onUpdateDownloadsFinished(bool ok);
   void onFilterClicked(QModelIndex);
+  void onReturnKeyPressedInFiltersTree();
   void onApplyClicked();
   void onPreviewUpdateRequested();
   void onPreviewThreadFinished();
