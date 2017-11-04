@@ -238,6 +238,7 @@ set (gmic_qt_SRCS
     include/StoredFave.h
     include/ZoomLevelSelector.h
     include/LanguageSelectionWidget.h
+    include/TreeView.h
     ${GMIC_PATH}/gmic.h
 
     src/FolderParameter.cpp
@@ -284,6 +285,7 @@ set (gmic_qt_SRCS
     src/StoredFave.cpp
     src/ZoomLevelSelector.cpp
     src/LanguageSelectionWidget.cpp
+    src/TreeView.cpp
     ${GMIC_PATH}/gmic.cpp
 )
 
