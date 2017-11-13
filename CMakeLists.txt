@@ -194,9 +194,10 @@ if (UNIX AND NOT APPLE)
     add_definitions(-D_IS_LINUX_)
     add_definitions(-Dcimg_use_vt100)
     add_definitions(-D_IS_UNIX_)
+    find_package(X11)
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
-        X11 # XXX: Search for X11: Wayland is coming!
+        ${X11_LIBRARIES} # XXX: Search for X11: Wayland is coming!
     )
 
 endif()
