@@ -87,6 +87,17 @@ message( GMIC PATH $$GMIC_PATH )
   message("gmic_stdlib.h found")
 }
 
+# Make sure CImg and gmic are the same version
+GMIC_VERSION = $$system(bash check_versions.sh $$GMIC_PATH gmic)
+CIMG_VERSION = $$system(bash check_versions.sh $$GMIC_PATH CImg)
+message("G'MIC version is " $$GMIC_VERSION)
+message("CImg version is " $$CIMG_VERSION)
+!system(bash check_versions.sh $$GMIC_PATH check):{
+   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'CImg.h' (" $$CIMG_VERSION ") mismatch")
+}
+
+
+
 !isEmpty(PRERELEASE) {
   message( Prerelease date is $$PRERELEASE )
   DEFINES += gmic_prerelease="\\\"$$PRERELEASE\\\""
