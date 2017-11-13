@@ -53,8 +53,39 @@ DEFINES += cimg_appname="\\\"gmic\\\""
 !defined(GMIC_PATH,var) {
   GMIC_PATH = ../gmic/src
 }
-
 message( GMIC PATH $$GMIC_PATH )
+
+!exists( $$GMIC_PATH/gmic.cpp ) {
+ error("G'MIC repository is missing (" $$GMIC_PATH ")")
+}
+
+#
+# Make sure CImg.h is in G'MIC source tree
+#
+!exists( $$GMIC_PATH/CImg.h ) {
+  message( "CImg.h is missing. Trying to get it..." )
+  !system(make -C $$GMIC_PATH CImg.h) {
+    error("Could not get CImg.h from G'MIC repository")
+  }
+  !exists($$GMIC_PATH/CImg.h) {
+    error("Could not get CImg.h from G'MIC repository")
+  }
+  message("CImg.h found")
+}
+
+#
+# Make sure gmic_stdlib.h is in G'MIC source tree
+#
+!exists( $$GMIC_PATH/gmic_stdlib.h ) {
+  message( "gmic_stdlib.h is missing. Trying to get it..." )
+  !system(make -C $$GMIC_PATH gmic_stdlib.h) {
+    error("Could not get gmic_stdlib.h from G'MIC repository")
+  }
+  !exists($$GMIC_PATH/gmic_stdlib.h) {
+    error("Could not get gmic_stdlib.h from G'MIC repository")
+  }
+  message("gmic_stdlib.h found")
+}
 
 !isEmpty(PRERELEASE) {
   message( Prerelease date is $$PRERELEASE )
@@ -134,6 +165,8 @@ HEADERS +=  include/ProgressInfoWidget.h include/FilterThread.h include/Multilin
     include/TreeView.h
 
 HEADERS += $$GMIC_PATH/gmic.h
+HEADERS += $$GMIC_PATH/CImg.h
+HEADERS += $$GMIC_PATH/gmic_stdlib.h
 
 SOURCES +=  src/FolderParameter.cpp src/ParametersCache.cpp src/gmic_qt.cpp src/TextParameter.cpp src/ColorParameter.cpp  src/FilterParamsWidget.cpp src/FiltersTreeFaveItem.cpp src/FiltersTreeAbstractItem.cpp src/FileParameter.cpp src/GmicStdlibParser.cpp src/ImageTools.cpp src/FiltersTreeFolderItem.cpp src/ProgressInfoWindow.cpp src/IntParameter.cpp src/LayersExtentProxy.cpp src/FiltersTreeItemDelegate.cpp src/FilterThread.cpp src/SeparatorParameter.cpp src/NoteParameter.cpp src/MainWindow.cpp  src/ConstParameter.cpp src/ImageConverter.cpp src/BoolParameter.cpp src/DialogSettings.cpp src/ButtonParameter.cpp src/FloatParameter.cpp src/ProgressInfoWidget.cpp src/AbstractParameter.cpp src/PreviewWidget.cpp src/ClickableLabel.cpp src/FiltersTreeAbstractFilterItem.cpp src/InOutPanel.cpp src/LinkParameter.cpp src/ChoiceParameter.cpp src/FiltersTreeFilterItem.cpp  src/MultilineTextParameterWidget.cpp src/SearchFieldWidget.cpp src/Updater.cpp src/HeadlessProcessor.cpp src/FiltersVisibilityMap.cpp src/HtmlTranslator.cpp src/StoredFave.cpp src/ZoomLevelSelector.cpp \
     src/LanguageSelectionWidget.cpp \
