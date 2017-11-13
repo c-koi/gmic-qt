@@ -17,7 +17,44 @@ set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be bui
 message("Building version:" ${GMIC_QT_HOST})
 
 set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
-message("G'Mic path: " ${GMIC_PATH})
+message("G'MIC path: " ${GMIC_PATH})
+
+#
+# Look for G'MIC repository
+#
+get_filename_component(GMIC_ABSOLUTE_PATH ${GMIC_PATH} ABSOLUTE BASEDIR ${CMAKE_SOURCE_DIR})
+if (EXISTS ${GMIC_ABSOLUTE_PATH}/gmic.cpp)
+  message("Found G'MIC repository")
+else()
+  get_filename_component(TARGET_CLONE_DIR ${GMIC_ABSOLUTE_PATH}/.. ABSOLUTE)
+  message("")
+  message("Cannot find G'MIC repository in " ${GMIC_ABSOLUTE_PATH} )
+  message("")
+  message("You should try:")
+  message("")
+  message("   git clone https://github.com/dtschump/gmic.git " ${TARGET_CLONE_DIR}/gmic )
+  message("")
+  message(FATAL_ERROR "G'MIC repository not found")
+endif()
+
+#
+# Look for CImg.h and gmic_stdlib.h
+#
+set(GMIC_FILES CImg.h gmic_stdlib.h)
+foreach(F ${GMIC_FILES})
+  if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
+    message("Found " ${GMIC_PATH}/${F})
+  else()
+    message(${F} " not found")
+    execute_process(COMMAND make -C ${GMIC_ABSOLUTE_PATH} ${F})
+    if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
+      message("Found " ${GMIC_PATH}/${F})
+    else()
+      message(FATAL_ERROR "Cannot obtain " ${GMIC_PATH}/${F})
+    endif()
+  endif()
+endforeach()
+
 
 option(PRERELEASE "Set to ON makes this a prelease build")
 if (${PRERELEASE})
@@ -240,6 +277,8 @@ set (gmic_qt_SRCS
     include/LanguageSelectionWidget.h
     include/TreeView.h
     ${GMIC_PATH}/gmic.h
+    ${GMIC_PATH}/CImg.h
+    ${GMIC_PATH}/gmic_stdlib.h
 
     src/FolderParameter.cpp
     src/ParametersCache.cpp
