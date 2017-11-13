@@ -34,7 +34,7 @@ else()
   message("")
   message("   git clone https://github.com/dtschump/gmic.git " ${TARGET_CLONE_DIR}/gmic )
   message("")
-  message(FATAL_ERROR "G'MIC repository not found")
+  message(FATAL_ERROR "\nG'MIC repository not found")
 endif()
 
 #
@@ -50,10 +50,28 @@ foreach(F ${GMIC_FILES})
     if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
       message("Found " ${GMIC_PATH}/${F})
     else()
-      message(FATAL_ERROR "Cannot obtain " ${GMIC_PATH}/${F})
+      message(FATAL_ERROR "\nCannot obtain " ${GMIC_PATH}/${F})
     endif()
   endif()
 endforeach()
+
+#
+# Ensure that gmic and CImg are the same version
+#
+execute_process(COMMAND grep "cimg_version "  ${GMIC_ABSOLUTE_PATH}/CImg.h  OUTPUT_VARIABLE CIMG_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+string(REGEX REPLACE ".*cimg_version " "" CIMG_VERSION ${CIMG_VERSION})
+message("CImg version is[" ${CIMG_VERSION} "]")
+
+execute_process(COMMAND grep "gmic_version "  ${GMIC_ABSOLUTE_PATH}/gmic.h  OUTPUT_VARIABLE GMIC_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+string(REGEX REPLACE ".*gmic_version " "" GMIC_VERSION ${GMIC_VERSION})
+message("G'MIC version is[" ${GMIC_VERSION} "]")
+
+if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
+  message(FATAL_ERROR "\nVersion numbers of files 'gmic.h' (" ${GMIC_VERSION} ") and 'CImg.h' ("${CIMG_VERSION} ") mismatch")
+endif()
+
+
+
 
 
 option(PRERELEASE "Set to ON makes this a prelease build")
