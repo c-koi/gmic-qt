@@ -19,6 +19,9 @@ message("Building version:" ${GMIC_QT_HOST})
 set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
 message("G'MIC path: " ${GMIC_PATH})
 
+option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
+set (GMIC_LIB_PATH "${GMIC_PATH}/.." CACHE STRING "Define the path to the GMIC shared library")
+
 #
 # Look for G'MIC repository
 #
@@ -344,8 +347,21 @@ set (gmic_qt_SRCS
     src/ZoomLevelSelector.cpp
     src/LanguageSelectionWidget.cpp
     src/TreeView.cpp
-    ${GMIC_PATH}/gmic.cpp
 )
+
+if(ENABLE_DYNAMIC_LINKING)
+  set(CMAKE_SKIP_RPATH TRUE)
+  set(gmic_qt_LIBRARIES
+    ${gmic_qt_LIBRARIES}
+    "gmic"
+    )
+  link_directories(${GMIC_LIB_PATH})
+else(ENABLE_DYNAMIC_LINKING)
+  set(gmic_qt_SRCS
+    ${gmic_qt_SRCS}
+    ${GMIC_PATH}/gmic.cpp
+    )
+endif(ENABLE_DYNAMIC_LINKING)
 
 qt5_wrap_ui(gmic_qt_SRCS
     ui/inoutpanel.ui
