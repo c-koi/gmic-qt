@@ -110,16 +110,21 @@ IntParameter::reset()
   connectSliderSpinBox();
 }
 
-void
+bool
 IntParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("int",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> values = list[1].split(QChar(','));
-  _default = values[0].toInt();
-  _min = values[1].toInt();
-  _max = values[2].toInt();
+  if ( values.size() != 3 ) {
+    return false;
+  }
+  bool ok1, ok2, ok3;
+  _default = values[0].toInt(&ok1);
+  _min = values[1].toInt(&ok2);
+  _max = values[2].toInt(&ok3);
   _value = _default;
+  return ok1 && ok2 && ok3;
 }
 
 void

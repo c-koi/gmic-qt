@@ -119,11 +119,10 @@ TextParameter::reset()
   _value = _default;
 }
 
-void TextParameter::initFromText(const char * text, int & textLength)
+bool TextParameter::initFromText(const char * text, int & textLength)
 {
   QStringList list = parseText("text",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
-
   QString value = list[1];
   _multiline = false;
   QRegExp re("^\\s*(0|1)\\s*,");
@@ -135,4 +134,5 @@ void TextParameter::initFromText(const char * text, int & textLength)
   value.replace(QString("\\\\"),QString("\\"));
   value.replace(QString("\\n"),QString("\n"));
   _value = _default = value;
+  return true;
 }

@@ -85,12 +85,15 @@ ChoiceParameter::reset()
   _value = _default;
 }
 
-void ChoiceParameter::initFromText(const char * text, int & textLength)
+bool ChoiceParameter::initFromText(const char * text, int & textLength)
 {
   QStringList list = parseText("choice",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   _choices = list[1].split(QChar(','));
   bool ok;
+  if ( _choices.isEmpty() ) {
+    return false;
+  }
   _default = _choices[0].toInt(&ok);
   if ( ! ok ) {
     _default = 0;
@@ -104,6 +107,7 @@ void ChoiceParameter::initFromText(const char * text, int & textLength)
     ++it;
   }
   _value = _default;
+  return true;
 }
 
 void

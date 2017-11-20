@@ -102,7 +102,7 @@ FolderParameter::reset()
   setValue(_default);
 }
 
-void FolderParameter::initFromText(const char * text, int & textLength)
+bool FolderParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("folder",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
@@ -117,6 +117,7 @@ void FolderParameter::initFromText(const char * text, int & textLength)
   } else {
     _default = _value = list[1];
   }
+  return true;
 }
 
 void

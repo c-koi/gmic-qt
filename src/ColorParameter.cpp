@@ -118,22 +118,24 @@ ColorParameter::reset()
   updateButtonColor();
 }
 
-void ColorParameter::initFromText(const char *text, int & textLength)
+bool ColorParameter::initFromText(const char *text, int & textLength)
 {
   QList<QString> list = parseText("color",text,textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> channels = list[1].split(",");
   const int n = channels.size();
-  int r = (n > 0 ) ? channels[0].toInt() : 255;
-  int g = (n >= 2 ) ? channels[1].toInt() : 255;
-  int b = (n >= 3 ) ? channels[2].toInt() : 255;
+  bool okR = true, okG = true, okB = true, okA = true;
+  int r = (n > 0 ) ? channels[0].toInt(&okR) : 0;
+  int g = (n >= 2 ) ? channels[1].toInt(&okG) : 0;
+  int b = (n >= 3 ) ? channels[2].toInt(&okB) : 0;
   if (channels.size() == 4) {
-    int a = channels[3].toInt();
+    int a = channels[3].toInt(&okA);
     _default = _value = QColor(r,g,b,a);
     _alphaChannel = true;
   } else {
     _default = _value = QColor(r,g,b);
   }
+  return okR && okG && okB && okA;
 }
 
 void

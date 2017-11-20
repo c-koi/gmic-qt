@@ -43,7 +43,7 @@ public:
   void setValue(const QString &) override;
   void clear() override;
   void reset() override;
-  void initFromText(const char * text, int & textLength) override;
+  bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onPushButtonClicked(bool);
 signals:

@@ -71,8 +71,9 @@ SeparatorParameter::reset()
 {
 }
 
-void SeparatorParameter::initFromText(const char * text, int & textLength)
+bool SeparatorParameter::initFromText(const char * text, int & textLength)
 {
   QStringList list = parseText("separator",text,textLength);
   unused(list);
+  return true;
 }

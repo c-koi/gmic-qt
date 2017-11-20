@@ -42,7 +42,7 @@ public:
   virtual void clear();
   virtual void reset() = 0;
   static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = 0);
-  virtual void initFromText(const char * text, int & textLength) = 0;
+  virtual bool initFromText(const char * text, int & textLength) = 0;
 
 signals:
   void valueChanged();

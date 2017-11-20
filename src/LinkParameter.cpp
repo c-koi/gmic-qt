@@ -75,14 +75,18 @@ LinkParameter::reset()
 {
 }
 
-void
+bool
 LinkParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("link",text,textLength);
   QList<QString> values = list[1].split(QChar(','));
 
   if ( values.size() == 3 ) {
-    float a = values[0].toFloat();
+    bool ok;
+    float a = values[0].toFloat(&ok);
+    if ( !ok ) {
+      return false;
+    }
     if ( a == 0.0f ) {
       _alignment = Qt::AlignLeft;
     } else if ( a == 1.0f ) {
@@ -103,9 +107,13 @@ LinkParameter::initFromText(const char * text, int & textLength)
   if ( values.size() == 1 ) {
     _url = values[0].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
   }
+  if ( ! values.size() ) {
+    return false;
+  }
   if ( _text.isEmpty() ) {
     _text = _url;
   }
+  return true;
 }
 
 void

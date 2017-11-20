@@ -87,14 +87,14 @@ ButtonParameter::onPushButtonClicked(bool )
   emit valueChanged();
 }
 
-void
+bool
 ButtonParameter::initFromText(const char *text, int & textLength)
 {
   QList<QString> list = parseText("button",text,textLength);
   _text = HtmlTranslator::html2txt(list[0]);
   QString & alignment = list[1];
   if ( alignment.isEmpty() ) {
-    return;
+    return true;
   } else {
     float a = alignment.toFloat();
     if ( a == 0.0f ) {
@@ -105,4 +105,5 @@ ButtonParameter::initFromText(const char *text, int & textLength)
       _alignment = Qt::AlignCenter;
     }
   }
+  return true;
 }

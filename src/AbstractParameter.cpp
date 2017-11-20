@@ -112,7 +112,17 @@ AbstractParameter::createFromText(const char *text, int & length, QString & erro
     result = new ButtonParameter(parent);
   }
   if ( result ) {
-    result->initFromText(text,length);
+    if ( ! result->initFromText(text,length) ) {
+      delete result;
+      result = nullptr;
+      if ( !line.isEmpty() ) {
+        QRegExp nameRegExp("^[^=]*\\s*=");
+        if ( nameRegExp.indexIn(line) == 0 ) {
+          QString name = nameRegExp.cap(0).remove(QRegExp("=$"));
+          error = "Parameter name: " + name + "\n" + error;
+        }
+      }
+    }
   } else {
     if ( !line.isEmpty() ) {
       QRegExp nameRegExp("^[^=]*\\s*=");

@@ -74,7 +74,7 @@ NoteParameter::reset()
 {
 }
 
-void
+bool
 NoteParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("note",text,textLength);
@@ -98,6 +98,7 @@ NoteParameter::initFromText(const char * text, int & textLength)
   _text.replace(QRegExp("color\\s*=\\s*\""),QString("style=\"color:"));
   _text.replace(QRegExp("foreground\\s*=\\s*\""),QString("style=\"color:"));
   _text = HtmlTranslator::fromUtf8Escapes(_text);
+  return true;
 }
 
 

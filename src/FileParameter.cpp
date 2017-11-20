@@ -107,7 +107,7 @@ FileParameter::reset()
   setValue(_default);
 }
 
-void FileParameter::initFromText(const char * text, int & textLength)
+bool FileParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list;
   if ( matchType("filein",text) ) {
@@ -127,6 +127,7 @@ void FileParameter::initFromText(const char * text, int & textLength)
     list[1].remove(0,1);
   }
   _default = _value = list[1];
+  return true;
 }
 
 void

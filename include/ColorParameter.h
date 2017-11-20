@@ -44,7 +44,7 @@ public:
   QString textValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
-  void initFromText(const char * text, int & textLength) override;
+  bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onButtonPressed();
 signals:
