@@ -158,7 +158,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->messageLabel->setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
 
   ui->filterParams->setNoFilter();
-  _processingAction = NoAction;
+  _pendingActionAfterCurrentProcessing = NoAction;
   ui->inOutSelector->disable();
   ui->splitter->setChildrenCollapsible(false);
 
@@ -640,6 +640,10 @@ void MainWindow::onPreviewThreadFinished()
     ui->tbUpdateFilters->setEnabled(true);
     return;
   }
+  if ( _pendingActionAfterCurrentProcessing == CloseAction ) {
+    _filterThread->deleteLater();
+    close();
+  }
   QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
   if ( ! list.isEmpty() ) {
     ui->filterParams->setValues(list,false);
@@ -742,7 +746,7 @@ MainWindow::onApplyThreadFinished()
     QMessageBox::warning(this,tr("Error"),_filterThread->errorMessage(),QMessageBox::Close);
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
-    if ( ( _processingAction == OkAction || _processingAction == ApplyAction ) && !_filterThread->aborted() ) {
+    if ( ( _pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == ApplyAction ) && !_filterThread->aborted() ) {
       gmic_qt_output_images(images,
                             _filterThread->imageNames(),
                             ui->inOutSelector->outputMode(),
@@ -756,7 +760,7 @@ MainWindow::onApplyThreadFinished()
   }
   _filterThread->deleteLater();
   _filterThread = 0;
-  if ( ( _processingAction == OkAction || _processingAction == CloseAction ) ) {
+  if ( ( _pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction ) ) {
     close();
   } else {
     LayersExtentProxy::clearCache();
@@ -820,7 +824,7 @@ void MainWindow::search(QString text)
 void
 MainWindow::onApplyClicked()
 {
-  _processingAction = ApplyAction;
+  _pendingActionAfterCurrentProcessing = ApplyAction;
   processImage();
 }
 
@@ -831,7 +835,7 @@ MainWindow::onOkClicked()
     close();
   }
   if ( _okButtonShouldApply ) {
-    _processingAction = OkAction;
+    _pendingActionAfterCurrentProcessing = OkAction;
     processImage();
   } else {
     close();
@@ -842,7 +846,7 @@ void
 MainWindow::onCloseClicked()
 {
   if ( _filterThread && confirmAbortProcessingOnCloseRequest() ) {
-    _processingAction = CloseAction;
+    _pendingActionAfterCurrentProcessing = CloseAction;
     if (_filterThread) {
       _filterThread->abortGmic();
     }
@@ -855,7 +859,7 @@ void
 MainWindow::onCancelProcess()
 {
   if ( _filterThread && _filterThread->isRunning() ) {
-    _processingAction = NoAction;
+    _pendingActionAfterCurrentProcessing = NoAction;
     _filterThread->abortGmic();
   }
 }
@@ -1766,10 +1770,10 @@ bool MainWindow::confirmAbortProcessingOnCloseRequest()
 
 void MainWindow::closeEvent(QCloseEvent * e)
 {
-  if ( _filterThread ) {
+  if ( _filterThread && _pendingActionAfterCurrentProcessing != CloseAction ) {
     if ( confirmAbortProcessingOnCloseRequest() ) {
       _filterThread->abortGmic();
-      _processingAction = CloseAction;
+      _pendingActionAfterCurrentProcessing = CloseAction;
     }
     e->ignore();
   } else {

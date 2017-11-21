@@ -166,7 +166,7 @@ private:
   static const int MINIMAL_SEARCH_LENGTH = 1;
   FILE * _logFile;
 
-  ProcessingAction _processingAction;
+  ProcessingAction _pendingActionAfterCurrentProcessing;
   PreviewPosition _previewPosition = PreviewOnRight;
   bool _okButtonShouldApply = false;
 
