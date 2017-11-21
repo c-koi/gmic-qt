@@ -149,7 +149,7 @@ ColorParameter::onButtonPressed()
   if ( color.isValid() ) {
     _value = color;
     updateButtonColor();
-    emit valueChanged();
+    notifyIfRelevant();
   }
 }
 

@@ -132,7 +132,7 @@ IntParameter::timerEvent(QTimerEvent * e)
 {
   killTimer(e->timerId());
   _timerId = 0;
-  emit valueChanged();
+  notifyIfRelevant();
 }
 
 void IntParameter::onSliderMoved(int value)

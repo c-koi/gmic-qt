@@ -84,7 +84,7 @@ void
 ButtonParameter::onPushButtonClicked(bool )
 {
   _value = true;
-  emit valueChanged();
+  notifyIfRelevant();
 }
 
 bool

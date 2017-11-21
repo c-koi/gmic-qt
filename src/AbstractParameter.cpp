@@ -42,8 +42,8 @@
 
 AbstractParameter::AbstractParameter(QObject *parent, bool actualParameter)
   : QObject(parent),
-    _update(true),
-    _actualParameter(actualParameter)
+    _actualParameter(actualParameter),
+    _update(true)
 {
 }
 
@@ -179,4 +179,11 @@ bool AbstractParameter::matchType(const QString & type, const char * text) const
 {
   return QString(text).contains(QRegExp(QString("^[^=]*\\s*=\\s*_?%1\\s*.").arg(type),
                                         Qt::CaseInsensitive));
+}
+
+void AbstractParameter::notifyIfRelevant()
+{
+  if ( _update ) {
+    emit valueChanged();
+  }
 }

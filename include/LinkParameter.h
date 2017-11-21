@@ -31,7 +31,6 @@ class QLabel;
 
 class LinkParameter : public AbstractParameter {
   Q_OBJECT
-
 public:
   LinkParameter(QObject * parent = 0);
   ~LinkParameter();
@@ -40,13 +39,8 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
-
 public slots:
   void onLinkActivated(const QString & link);
-
-signals:
-  void valueChanged();
-
 private:
   QLabel * _label;
   QString _text;

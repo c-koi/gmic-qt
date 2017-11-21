@@ -33,7 +33,6 @@ class QLabel;
 
 class FloatParameter : public AbstractParameter {
   Q_OBJECT
-
 public:
   FloatParameter(QObject * parent = 0);
   ~FloatParameter();
@@ -42,18 +41,12 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
-
 protected:
   void timerEvent(QTimerEvent *event) override;
-
 public slots:
   void onSliderMoved(int);
   void onSliderValueChanged(int);
   void onSpinBoxChanged(double);
-
-signals:
-  void valueChanged();
-
 private:
   void connectSliderSpinBox();
   void disconnectSliderSpinBox();

@@ -188,5 +188,5 @@ FileParameter::onButtonPressed()
     QFontMetrics fm(_button->font());
     _button->setText(fm.elidedText(QFileInfo(_value).fileName(),Qt::ElideRight,w));
   }
-  emit valueChanged();
+  notifyIfRelevant();
 }

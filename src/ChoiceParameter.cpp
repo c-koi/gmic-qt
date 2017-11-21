@@ -114,5 +114,5 @@ void
 ChoiceParameter::onComboBoxIndexChanged(int i)
 {
   _value = i;
-  emit valueChanged();
+  notifyIfRelevant();
 }

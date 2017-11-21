@@ -36,7 +36,6 @@ class MultilineTextParameterWidget;
 
 class TextParameter : public AbstractParameter {
   Q_OBJECT
-
 public:
   TextParameter(QObject * parent = 0);
   ~TextParameter();
@@ -46,10 +45,8 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
-
-signals:
-  void valueChanged();
-
+private slots:
+  void onValueChanged();
 private:
   QString _name;
   QString _default;

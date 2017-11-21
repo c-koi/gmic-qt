@@ -131,5 +131,5 @@ FolderParameter::onButtonPressed()
     DialogSettings::FolderParameterDefaultValue = path;
     setValue(path);
   }
-  emit valueChanged();
+  notifyIfRelevant();
 }

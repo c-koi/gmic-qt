@@ -67,18 +67,18 @@ TextParameter::addTo(QWidget * widget, int row)
     _textEdit = new MultilineTextParameterWidget(_name,_value,widget);
     grid->addWidget(_textEdit,row,0,1,3);
     connect(_textEdit,SIGNAL(valueChanged()),
-            this,SIGNAL(valueChanged()));
+            this, SLOT(onValueChanged()));
   } else {
     grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
     _lineEdit = new QLineEdit(_value,widget);
     _textEdit = 0;
     grid->addWidget(_lineEdit,row,1,1,2);
     connect( _lineEdit, SIGNAL(editingFinished()),
-            this, SIGNAL(valueChanged()));
+             this, SLOT(onValueChanged()));
 #if QT_VERSION >= 0x050200
     _updateAction = _lineEdit->addAction(LOAD_ICON("view-refresh"),QLineEdit::TrailingPosition);
     connect(_updateAction,SIGNAL(triggered(bool)),
-            this,SIGNAL(valueChanged()));
+            this, SLOT(onValueChanged()));
 #endif
   }
 }
@@ -135,4 +135,9 @@ bool TextParameter::initFromText(const char * text, int & textLength)
   value.replace(QString("\\n"),QString("\n"));
   _value = _default = value;
   return true;
+}
+
+void TextParameter::onValueChanged()
+{
+  notifyIfRelevant();
 }

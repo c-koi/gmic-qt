@@ -43,8 +43,6 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onButtonPressed();
-signals:
-  void valueChanged();
 private:
   QString _name;
   QString _default;

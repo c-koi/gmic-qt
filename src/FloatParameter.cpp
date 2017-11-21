@@ -143,7 +143,7 @@ FloatParameter::timerEvent(QTimerEvent *event)
 {
   killTimer(event->timerId());
   _timerId = 0;
-  emit valueChanged();
+  notifyIfRelevant();
 }
 
 void FloatParameter::onSliderMoved(int value)

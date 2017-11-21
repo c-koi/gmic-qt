@@ -29,6 +29,7 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QPalette>
+#include <QDebug>
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
@@ -93,7 +94,7 @@ void
 BoolParameter::onCheckBoxChanged(bool on)
 {
   _value = on;
-  emit valueChanged();
+  notifyIfRelevant();
 }
 
 bool

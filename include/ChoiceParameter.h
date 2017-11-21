@@ -43,8 +43,6 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onComboBoxIndexChanged(int);
-signals:
-  void valueChanged();
 private:
   QString _name;
   int _default;

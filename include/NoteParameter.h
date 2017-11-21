@@ -40,8 +40,6 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onLinkActivated(const QString &link);
-signals:
-  void valueChanged();
 private:
   QLabel * _label;
   QString _text;

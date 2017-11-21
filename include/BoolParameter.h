@@ -42,8 +42,6 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onCheckBoxChanged(bool);
-signals:
-  void valueChanged();
 private:
   QString _name;
   bool _default;
