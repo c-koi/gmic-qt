@@ -217,6 +217,9 @@ MainWindow::~MainWindow()
   delete _gmicImages;
   qDeleteAll(_hiddenFaves);
   _hiddenFaves.clear();
+  if ( _unfinishedAbortedThreads.size() ) {
+    qWarning() << QString("Error: ~MainWindow(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size());
+  }
 }
 
 void MainWindow::setIcons()
@@ -578,14 +581,7 @@ MainWindow::onPreviewUpdateRequested()
   }
 
   if ( _filterThread ) {
-    _filterThread->disconnect(this);
-    _filterThread->abortGmic();
-    _filterThread = 0;
-
-    _waitingCursorTimer.stop();
-    if ( QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor ) {
-      QApplication::restoreOverrideCursor();
-    }
+    abortCurrentFilterThread();
   }
 
   if ( !_selectedAbstractFilterItem || ui->filterParams->previewCommand().isEmpty() || ui->filterParams->previewCommand() == "_none_" ) {
@@ -669,10 +665,10 @@ void MainWindow::onPreviewThreadFinished()
     ui->previewWidget->setPreviewImage(buildPreviewImage(images));
   }
 
+  _waitingCursorTimer.stop();
   if ( QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor ) {
     QApplication::restoreOverrideCursor();
   }
-  _waitingCursorTimer.stop();
   ui->previewWidget->savePreview();
   _filterThread->deleteLater();
   _filterThread = 0;
@@ -684,9 +680,7 @@ MainWindow::processImage()
 {
   // Abort any already running thread
   if ( _filterThread ) {
-    _filterThread->disconnect(this);
-    _filterThread->abortGmic();
-    _filterThread = 0;
+    abortCurrentFilterThread();
   }
   if ( !_selectedAbstractFilterItem || ui->filterParams->command().isEmpty() || ui->filterParams->command() == "_none_" ) {
     return;
@@ -747,6 +741,7 @@ MainWindow::onApplyThreadFinished()
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if ( ( _pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == ApplyAction ) && !_filterThread->aborted() ) {
+      SHOW(_filterThread);
       gmic_qt_output_images(images,
                             _filterThread->imageNames(),
                             ui->inOutSelector->outputMode(),
@@ -1157,6 +1152,16 @@ QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & image
   return qimage;
 }
 
+void MainWindow::abortCurrentFilterThread()
+{
+  _filterThread->disconnect(this);
+  connect(_filterThread,SIGNAL(finished()),
+          this,SLOT(onAbortedThreadFinished()));
+  _unfinishedAbortedThreads.push_back(_filterThread);
+  _filterThread->abortGmic();
+  _filterThread = 0;
+}
+
 void MainWindow::onFiltersTreeItemChanged(QStandardItem * item)
 {
   if ( ! item->isCheckable() ) {
@@ -1175,6 +1180,15 @@ void MainWindow::onFiltersTreeItemChanged(QStandardItem * item)
   }
   // Force an update of the view by triggering a call of QStandardItem::emitDataChanged()
   leftItem->setData(leftItem->data());
+}
+
+void MainWindow::onAbortedThreadFinished()
+{
+  FilterThread * thread = dynamic_cast<FilterThread*>(sender());
+  if ( _unfinishedAbortedThreads.contains(thread) ) {
+    _unfinishedAbortedThreads.removeOne(thread);
+    thread->deleteLater();
+  }
 }
 
 bool MainWindow::filtersSelectionMode()

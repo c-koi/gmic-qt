@@ -117,9 +117,12 @@ protected:
   void setPreviewPosition(PreviewPosition position);
   QImage buildPreviewImage(const cimg_library::CImgList<gmic_pixel_type> & images);
 
+  void abortCurrentFilterThread();
+
 private slots:
 
   void onFiltersTreeItemChanged(QStandardItem *);
+  void onAbortedThreadFinished();
 
 private:
 
@@ -161,6 +164,7 @@ private:
   FiltersTreeAbstractFilterItem * _selectedAbstractFilterItem;
   cimg_library::CImgList<float> * _gmicImages;
   FilterThread * _filterThread;
+  QList<FilterThread*> _unfinishedAbortedThreads;
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
   static const int MINIMAL_SEARCH_LENGTH = 1;
