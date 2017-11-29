@@ -432,7 +432,7 @@ void MainWindow::onFiltersSelectionModeToggled(bool on)
 
 void MainWindow::onPreviewCheckBoxToggled(bool on)
 {
-  if ( !on ) {
+  if ( !on && _filterThread ) {
     abortCurrentFilterThread();
   }
   ui->previewWidget->enablePreview(on);
@@ -588,11 +588,9 @@ MainWindow::onPreviewUpdateRequested()
     ui->previewWidget->invalidateSavedPreview();
     return;
   }
-
   if ( _filterThread ) {
     abortCurrentFilterThread();
   }
-
   if ( !_selectedAbstractFilterItem || ui->filterParams->previewCommand().isEmpty() || ui->filterParams->previewCommand() == "_none_" ) {
     ui->previewWidget->displayOriginalImage();
   } else {
@@ -1169,7 +1167,6 @@ void MainWindow::abortCurrentFilterThread()
   _unfinishedAbortedThreads.push_back(_filterThread);
   _filterThread->abortGmic();
   _filterThread = 0;
-
   _waitingCursorTimer.stop();
   if ( QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor ) {
     QApplication::restoreOverrideCursor();
