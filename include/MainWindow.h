@@ -96,6 +96,7 @@ public slots:
   void showZoomWarningIfNeeded();
   void updateZoomLabel(double );
   void onFiltersSelectionModeToggled(bool);
+  void onPreviewCheckBoxToggled(bool);
 
 protected:
 

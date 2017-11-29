@@ -430,6 +430,14 @@ void MainWindow::onFiltersSelectionModeToggled(bool on)
   buildFiltersTree();
 }
 
+void MainWindow::onPreviewCheckBoxToggled(bool on)
+{
+  if ( !on ) {
+    abortCurrentFilterThread();
+  }
+  ui->previewWidget->enablePreview(on);
+}
+
 void MainWindow::clearMessage()
 {
   if ( !_messageTimerID ) {
@@ -529,7 +537,8 @@ void MainWindow::makeConnections()
           ui->previewWidget,SLOT(sendUpdateRequest()));
 
   connect(ui->cbPreview,SIGNAL(toggled(bool)),
-          ui->previewWidget,SLOT(enablePreview(bool)));
+          this,SLOT(onPreviewCheckBoxToggled(bool)));
+
   connect(ui->searchField,SIGNAL(textChanged(QString)),
           this,SLOT(search(QString)));
 
@@ -1160,6 +1169,11 @@ void MainWindow::abortCurrentFilterThread()
   _unfinishedAbortedThreads.push_back(_filterThread);
   _filterThread->abortGmic();
   _filterThread = 0;
+
+  _waitingCursorTimer.stop();
+  if ( QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor ) {
+    QApplication::restoreOverrideCursor();
+  }
 }
 
 void MainWindow::onFiltersTreeItemChanged(QStandardItem * item)
