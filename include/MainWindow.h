@@ -110,9 +110,7 @@ protected:
   void makeConnections();
   void processImage();
   QString faveUniqueName(const QString & name, QStandardItem * toBeIgnored = nullptr);
-  void activateFilter(QModelIndex index,
-                      bool resetZoom,
-                      const QList<QString> & values = QList<QString>() );
+  void activateFilter(QModelIndex index, bool resetZoom);
   void setNoFilter();
   FiltersTreeAbstractFilterItem * selectedFilterItem();
   void setPreviewPosition(PreviewPosition position);

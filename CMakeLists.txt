@@ -295,6 +295,7 @@ set (gmic_qt_SRCS
   include/FilterParameters/NoteParameter.h
   include/FilterParameters/SeparatorParameter.h
   include/FilterParameters/TextParameter.h
+  include/FilterParameters/FilterParametersWidget.h
   include/Host/host.h
 
   ${GMIC_PATH}/gmic.h
@@ -346,6 +347,7 @@ set (gmic_qt_SRCS
   src/FilterParameters/NoteParameter.cpp
   src/FilterParameters/SeparatorParameter.cpp
   src/FilterParameters/TextParameter.cpp
+  src/FilterParameters/FilterParametersWidget.cpp
 
   ${GMIC_PATH}/gmic.cpp
 )

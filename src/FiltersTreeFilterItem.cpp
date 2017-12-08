@@ -26,7 +26,6 @@
 #include <QCryptographicHash>
 #include <QDebug>
 #include "Common.h"
-#include <QTextDocument>
 
 FiltersTreeFilterItem::FiltersTreeFilterItem(const QString & name,
                                              const QString & command,

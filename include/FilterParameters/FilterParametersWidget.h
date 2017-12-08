@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FilterParamsWidget.h
+ *  @file FilterParametersWidget.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -35,15 +35,15 @@ class AbstractParameter;
 class QLabel;
 class FiltersTreeAbstractFilterItem;
 
-class FilterParamsWidget : public QWidget {
+class FilterParametersWidget : public QWidget {
   Q_OBJECT
 
 public:
-  FilterParamsWidget(QWidget * parent = 0);
+  FilterParametersWidget(QWidget * parent = 0);
   void build( const FiltersTreeAbstractFilterItem *  item,
               const QList<QString> & values );
   void setNoFilter();
-  virtual ~FilterParamsWidget();
+  virtual ~FilterParametersWidget();
   const QString & valueString() const;
   QStringList valueStringList() const;
   void setValues(const QStringList &, bool notify);

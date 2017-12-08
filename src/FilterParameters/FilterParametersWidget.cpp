@@ -22,18 +22,17 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "Common.h"
-#include "FilterParamsWidget.h"
-#include "FilterParameters/AbstractParameter.h"
 #include <QGridLayout>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QDebug>
-#include "ParametersCache.h"
+#include "Common.h"
+#include "FilterParameters/AbstractParameter.h"
 #include "FiltersTreeAbstractFilterItem.h"
 #include "FiltersTreeFaveItem.h"
+#include "FilterParameters/FilterParametersWidget.h"
 
-FilterParamsWidget::FilterParamsWidget(QWidget * parent)
+FilterParametersWidget::FilterParametersWidget(QWidget * parent)
   : QWidget(parent),
     _valueString(""),
     _labelNoParams(0),
@@ -50,7 +49,7 @@ FilterParamsWidget::FilterParamsWidget(QWidget * parent)
 }
 
 void
-FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList<QString> & values)
+FilterParametersWidget::build(const FiltersTreeAbstractFilterItem *item, const QList<QString> & values)
 {
   _filterName = item->name();
   _command = item->command();
@@ -60,20 +59,6 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
   delete layout();
   QGridLayout * grid = new QGridLayout(this);
   grid->setRowStretch(1,2);
-
-  QList<QString> savedValues;
-
-  if ( values.isEmpty() ) {
-    savedValues = ParametersCache::getValues(item->hash());
-    if ( savedValues.isEmpty() ) {
-      const FiltersTreeFaveItem * fave = dynamic_cast<const FiltersTreeFaveItem*>(item);
-      if ( fave ) {
-        savedValues = fave->defaultValues();
-      }
-    }
-  } else {
-    savedValues = values;
-  }
 
   AbstractParameter * parameter;
   QByteArray rawText = item->parameters().toLatin1();
@@ -106,12 +91,13 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
   }
 
   // Restore saved values
-  if ( savedValues.size() && (_actualParametersCount == savedValues.size()) ) {
+  if ( values.size() && (_actualParametersCount == values.size()) ) {
     QVector<AbstractParameter*>::iterator it = _presetParameters.begin();
+    QList<QString>::const_iterator itValue = values.cbegin();
     while (it != _presetParameters.end()) {
       if ((*it)->isActualParameter() ) {
-        (*it)->setValue(savedValues.front());
-        savedValues.pop_front();
+        (*it)->setValue(*itValue);
+        ++itValue;
       }
       ++it;
     }
@@ -162,7 +148,7 @@ FilterParamsWidget::build(const FiltersTreeAbstractFilterItem *item, const QList
   updateValueString(false);
 }
 
-void FilterParamsWidget::setNoFilter()
+void FilterParametersWidget::setNoFilter()
 {
   clear();
   delete layout();
@@ -179,19 +165,19 @@ void FilterParamsWidget::setNoFilter()
   _filterHash.clear();
 }
 
-FilterParamsWidget::~FilterParamsWidget()
+FilterParametersWidget::~FilterParametersWidget()
 {
   clear();
 }
 
 const QString &
-FilterParamsWidget::valueString() const
+FilterParametersWidget::valueString() const
 {
   return _valueString;
 }
 
 QStringList
-FilterParamsWidget::valueStringList() const
+FilterParametersWidget::valueStringList() const
 {
   QStringList list;
   for (int i = 0; i < _presetParameters.size(); ++i) {
@@ -203,7 +189,7 @@ FilterParamsWidget::valueStringList() const
 }
 
 void
-FilterParamsWidget::setValues(const QStringList & list, bool notify)
+FilterParametersWidget::setValues(const QStringList & list, bool notify)
 {
   if (_actualParametersCount != list.size()) {
     return;
@@ -217,7 +203,7 @@ FilterParamsWidget::setValues(const QStringList & list, bool notify)
 }
 
 void
-FilterParamsWidget::reset(bool notify)
+FilterParametersWidget::reset(bool notify)
 {
   for (int i = 0; i < _presetParameters.size(); ++i) {
     if ( _presetParameters[i]->isActualParameter() ) {
@@ -227,35 +213,35 @@ FilterParamsWidget::reset(bool notify)
   updateValueString(notify);
 }
 
-QString FilterParamsWidget::command() const
+QString FilterParametersWidget::command() const
 {
   return _command;
 }
 
-QString FilterParamsWidget::previewCommand() const
+QString FilterParametersWidget::previewCommand() const
 {
   return _previewCommand;
 }
 
 QString
-FilterParamsWidget::filterName() const
+FilterParametersWidget::filterName() const
 {
   return _filterName;
 }
 
 int
-FilterParamsWidget::actualParametersCount() const
+FilterParametersWidget::actualParametersCount() const
 {
   return _actualParametersCount;
 }
 
-QString FilterParamsWidget::filterHash() const
+QString FilterParametersWidget::filterHash() const
 {
   return _filterHash;
 }
 
 void
-FilterParamsWidget::updateValueString(bool notify)
+FilterParametersWidget::updateValueString(bool notify)
 {
   _valueString.clear();
   bool firstParameter = true;
@@ -277,7 +263,7 @@ FilterParamsWidget::updateValueString(bool notify)
 }
 
 void
-FilterParamsWidget::clear()
+FilterParametersWidget::clear()
 {
   QVector<AbstractParameter*>::iterator it = _presetParameters.begin();
   while (it != _presetParameters.end()) {
@@ -294,7 +280,7 @@ FilterParamsWidget::clear()
   _paddingWidget = 0;
 }
 
-void FilterParamsWidget::clearButtonParameters() const
+void FilterParametersWidget::clearButtonParameters() const
 {
   for (int i = 0; i < _presetParameters.size(); ++i) {
     if ( _presetParameters[i]->isActualParameter() ) {

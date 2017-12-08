@@ -1249,7 +1249,7 @@ MainWindow::faveUniqueName(const QString & name, QStandardItem * toBeIgnored)
 }
 
 void
-MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QString> & values)
+MainWindow::activateFilter(QModelIndex index, bool resetZoom)
 {
   _selectedAbstractFilterItem = currentTreeIndexToAbstractFilter(index);
   FiltersTreeAbstractFilterItem * & filterItem  = _selectedAbstractFilterItem;
@@ -1257,7 +1257,11 @@ MainWindow::activateFilter(QModelIndex index, bool resetZoom, const QList<QStrin
   saveCurrentParameters();
 
   if ( filterItem ) {
-    ui->filterParams->build(filterItem,values);
+    QList<QString> savedValues = ParametersCache::getValues(filterItem->hash());
+    if ( savedValues.isEmpty() && faveItem ) {
+        savedValues = faveItem->defaultValues();
+    }
+    ui->filterParams->build(filterItem,savedValues);
     ui->filterName->setText(QString("<b>%1</b>").arg(filterItem->text()));
     ui->inOutSelector->enable();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filterItem->hash()),false);
@@ -1610,7 +1614,7 @@ MainWindow::onAddFave()
 
     ui->filtersTree->setCurrentIndex(fave->index());
     ui->filtersTree->scrollTo(fave->index(),QAbstractItemView::PositionAtCenter);
-    activateFilter(fave->index(),false,QList<QString>());
+    activateFilter(fave->index(),false);
 
     saveFaves();
   }

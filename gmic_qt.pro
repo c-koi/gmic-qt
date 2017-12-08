@@ -174,7 +174,6 @@ HEADERS +=  \
   include/ClickableLabel.h \
   include/Common.h \
   include/DialogSettings.h \
-  include/FilterParamsWidget.h \
   include/FiltersTreeAbstractFilterItem.h \
   include/FiltersTreeAbstractItem.h \
   include/FiltersTreeFaveItem.h \
@@ -217,6 +216,7 @@ HEADERS +=  \
   include/FilterParameters/NoteParameter.h \
   include/FilterParameters/SeparatorParameter.h \
   include/FilterParameters/TextParameter.h \
+  include/FilterParameters/FilterParametersWidget.h \
   include/Host/host.h
 
 HEADERS += $$GMIC_PATH/gmic.h
@@ -226,7 +226,6 @@ HEADERS += $$GMIC_PATH/gmic_stdlib.h
 SOURCES += \
   src/ClickableLabel.cpp \
   src/DialogSettings.cpp \
-  src/FilterParamsWidget.cpp \
   src/FiltersTreeAbstractFilterItem.cpp \
   src/FiltersTreeAbstractItem.cpp \
   src/FiltersTreeFaveItem.cpp \
@@ -268,7 +267,8 @@ SOURCES += \
   src/FilterParameters/MultilineTextParameterWidget.cpp \
   src/FilterParameters/NoteParameter.cpp \
   src/FilterParameters/SeparatorParameter.cpp \
-  src/FilterParameters/TextParameter.cpp
+  src/FilterParameters/TextParameter.cpp \
+  src/FilterParameters/FilterParametersWidget.cpp
 
 SOURCES += $$GMIC_PATH/gmic.cpp
 
