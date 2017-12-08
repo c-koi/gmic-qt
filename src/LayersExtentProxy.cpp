@@ -23,7 +23,7 @@
  *
  */
 #include "LayersExtentProxy.h"
-#include "host.h"
+#include "Host/host.h"
 
 int LayersExtentProxy::_width = -1;
 int LayersExtentProxy::_height = -1;

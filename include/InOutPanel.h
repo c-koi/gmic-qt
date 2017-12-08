@@ -28,7 +28,7 @@
 #include <QGroupBox>
 #include <QJsonObject>
 #include "gmic_qt.h"
-#include "host.h"
+#include "Host/host.h"
 
 namespace Ui {
 class InOutPanel;

@@ -22,12 +22,12 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "MultilineTextParameterWidget.h"
-#include "ui_multilinetextparameterwidget.h"
+#include <QDebug>
 #include <QEvent>
 #include <QKeyEvent>
-#include <QDebug>
 #include "Common.h"
+#include "FilterParameters/MultilineTextParameterWidget.h"
+#include "ui_multilinetextparameterwidget.h"
 
 MultilineTextParameterWidget::MultilineTextParameterWidget(QString name, QString value, QWidget *parent) :
   QWidget(parent),

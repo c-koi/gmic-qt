@@ -22,13 +22,13 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "NoteParameter.h"
-#include "Common.h"
-#include <QLabel>
 #include <QDebug>
-#include <QGridLayout>
 #include <QDesktopServices>
+#include <QGridLayout>
+#include <QLabel>
 #include <QUrl>
+#include "Common.h"
+#include "FilterParameters/NoteParameter.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
@@ -107,4 +107,3 @@ NoteParameter::onLinkActivated(const QString & link)
 {
   QDesktopServices::openUrl(QUrl(link));
 }
-

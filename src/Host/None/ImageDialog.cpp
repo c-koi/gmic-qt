@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "standalone/ImageDialog.h"
+#include "Host/None/ImageDialog.h"
 #include "gmic.h"
 
 ImageView::ImageView(QWidget * parent):QWidget(parent)

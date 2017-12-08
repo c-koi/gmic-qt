@@ -22,15 +22,14 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ButtonParameter.h"
-#include "Common.h"
 #include <QWidget>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QLabel>
 #include <QDebug>
-#include <Qt>
+#include "Common.h"
 #include "HtmlTranslator.h"
+#include "FilterParameters/ButtonParameter.h"
 
 ButtonParameter::ButtonParameter(QObject *parent)
   : AbstractParameter(parent,true),

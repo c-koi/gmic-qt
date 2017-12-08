@@ -22,8 +22,6 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "FileParameter.h"
-#include "Common.h"
 #include <QWidget>
 #include <QDebug>
 #include <QGridLayout>
@@ -33,8 +31,10 @@
 #include <QFileInfo>
 #include <QFontMetrics>
 #include <QApplication>
+#include "Common.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
+#include "FilterParameters/FileParameter.h"
 
 FileParameter::FileParameter(QObject *parent)
   : AbstractParameter(parent,true),

@@ -22,14 +22,14 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "BoolParameter.h"
-#include "Common.h"
-#include <QWidget>
-#include <QGridLayout>
 #include <QCheckBox>
+#include <QDebug>
+#include <QGridLayout>
 #include <QLabel>
 #include <QPalette>
-#include <QDebug>
+#include <QWidget>
+#include "Common.h"
+#include "FilterParameters/BoolParameter.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 

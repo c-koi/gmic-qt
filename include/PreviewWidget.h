@@ -31,7 +31,7 @@
 #include <QRect>
 #include <QImage>
 #include <QMutex>
-#include "host.h"
+#include "Host/host.h"
 
 namespace cimg_library {
  template<typename T> struct CImgList;

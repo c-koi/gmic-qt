@@ -64,7 +64,7 @@
 #include "GmicStdlibParser.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
-#include "host.h"
+#include "Host/host.h"
 #include "gmic.h"
 
 //

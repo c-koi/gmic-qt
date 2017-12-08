@@ -22,13 +22,13 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ChoiceParameter.h"
-#include "Common.h"
 #include <QWidget>
 #include <QGridLayout>
 #include <QComboBox>
 #include <QLabel>
+#include "Common.h"
 #include "HtmlTranslator.h"
+#include "FilterParameters/ChoiceParameter.h"
 
 ChoiceParameter::ChoiceParameter(QObject * parent)
   : AbstractParameter(parent,true),

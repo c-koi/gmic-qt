@@ -29,7 +29,7 @@
 #include <QString>
 #include <algorithm>
 #include <limits>
-#include "host.h"
+#include "Host/host.h"
 #include "gmic_qt.h"
 #include "ImageTools.h"
 #include "Common.h"

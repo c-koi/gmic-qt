@@ -22,11 +22,11 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ConstParameter.h"
-#include "Common.h"
 #include <QString>
 #include <QStringList>
+#include "Common.h"
 #include "HtmlTranslator.h"
+#include "FilterParameters/ConstParameter.h"
 
 ConstParameter::ConstParameter(QObject *parent)
   : AbstractParameter(parent,true)

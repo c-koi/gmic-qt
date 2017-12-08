@@ -31,11 +31,11 @@
 #include <QRegularExpression>
 #include <algorithm>
 #include <iostream>
-#include "host.h"
+#include "Host/host.h"
 #include "gmic_qt.h"
 #include "Common.h"
 #include "ImageConverter.h"
-#include "standalone/ImageDialog.h"
+#include "Host/None/ImageDialog.h"
 #include "gmic.h"
 
 #ifdef _GMIC_QT_DEBUG_

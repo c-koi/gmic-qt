@@ -24,12 +24,12 @@
  */
 #include "Common.h"
 #include "FilterParamsWidget.h"
-#include "AbstractParameter.h"
+#include "FilterParameters/AbstractParameter.h"
 #include <QGridLayout>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QDebug>
-#include <ParametersCache.h>
+#include "ParametersCache.h"
 #include "FiltersTreeAbstractFilterItem.h"
 #include "FiltersTreeFaveItem.h"
 

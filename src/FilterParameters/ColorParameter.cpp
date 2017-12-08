@@ -22,21 +22,21 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ColorParameter.h"
-#include "Common.h"
-#include <QWidget>
 #include <QApplication>
-#include <QGridLayout>
-#include <QPushButton>
-#include <QLabel>
+#include <QColorDialog>
+#include <QDebug>
 #include <QFont>
 #include <QFontMetrics>
-#include <QColorDialog>
+#include <QGridLayout>
+#include <QLabel>
 #include <QPainter>
-#include <QDebug>
+#include <QPushButton>
+#include <QWidget>
 #include <cstdio>
+#include "Common.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
+#include "FilterParameters/ColorParameter.h"
 
 ColorParameter::ColorParameter(QObject * parent)
   : AbstractParameter(parent,true),

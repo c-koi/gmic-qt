@@ -22,15 +22,15 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "LinkParameter.h"
-#include "Common.h"
+#include <QDebug>
+#include <QDesktopServices>
+#include <QGridLayout>
+#include <QLabel>
 #include <QString>
 #include <QUrl>
-#include <QLabel>
-#include <QGridLayout>
-#include <QDesktopServices>
-#include <QDebug>
+#include "Common.h"
 #include "HtmlTranslator.h"
+#include "FilterParameters/LinkParameter.h"
 
 LinkParameter::LinkParameter(QObject *parent)
   : AbstractParameter(parent,false),

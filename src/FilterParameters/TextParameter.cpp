@@ -22,19 +22,19 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "TextParameter.h"
-#include "Common.h"
-#include <QWidget>
+#include <QAction>
+#include <QDebug>
 #include <QGridLayout>
+#include <QIcon>
+#include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
-#include <QLabel>
-#include <QIcon>
-#include <QAction>
-#include "MultilineTextParameterWidget.h"
+#include <QWidget>
+#include "Common.h"
 #include "DialogSettings.h"
+#include "FilterParameters/MultilineTextParameterWidget.h"
+#include "FilterParameters/TextParameter.h"
 #include "HtmlTranslator.h"
-#include <QDebug>
 
 TextParameter::TextParameter(QObject *parent)
   : AbstractParameter(parent,true),

@@ -22,19 +22,19 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "FolderParameter.h"
-#include "Common.h"
-#include <QWidget>
 #include <QDebug>
-#include <QRegExp>
-#include <QGridLayout>
-#include <QLabel>
 #include <QFileDialog>
-#include <QPushButton>
 #include <QFileInfo>
 #include <QFontMetrics>
-#include "HtmlTranslator.h"
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QRegExp>
+#include <QWidget>
+#include "Common.h"
 #include "DialogSettings.h"
+#include "HtmlTranslator.h"
+#include "FilterParameters/FolderParameter.h"
 
 FolderParameter::FolderParameter(QObject *parent)
   : AbstractParameter(parent,true),

@@ -22,11 +22,11 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "SeparatorParameter.h"
-#include "Common.h"
 #include <QFrame>
 #include <QSizePolicy>
 #include <QGridLayout>
+#include "Common.h"
+#include "FilterParameters/SeparatorParameter.h"
 
 SeparatorParameter::SeparatorParameter(QObject *parent)
   : AbstractParameter(parent,false),
