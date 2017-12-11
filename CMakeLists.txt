@@ -252,7 +252,6 @@ set (gmic_qt_SRCS
   include/ClickableLabel.h
   include/Common.h
   include/DialogSettings.h
-  include/FilterParamsWidget.h
   include/FiltersTreeAbstractFilterItem.h
   include/FiltersTreeAbstractItem.h
   include/FiltersTreeFaveItem.h
@@ -304,7 +303,6 @@ set (gmic_qt_SRCS
 
   src/ClickableLabel.cpp
   src/DialogSettings.cpp
-  src/FilterParamsWidget.cpp
   src/FiltersTreeAbstractFilterItem.cpp
   src/FiltersTreeAbstractItem.cpp
   src/FiltersTreeFaveItem.cpp
