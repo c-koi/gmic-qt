@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FiltersTreeFilterItem.h
+ *  @file LanguageSelectionWidget.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,32 +22,36 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSTREEFILTERITEM_H_
-#define _GMIC_QT_FILTERSTREEFILTERITEM_H_
+#ifndef LANGUAGESELECTIONWIDGET_H
+#define LANGUAGESELECTIONWIDGET_H
 
-#include <QList>
+#include <QWidget>
+#include <QMap>
 #include <QString>
-#include <QStandardItem>
-#include <QStringList>
-#include "FiltersTreeAbstractFilterItem.h"
 
-class FiltersTreeFilterItem : public FiltersTreeAbstractFilterItem
+namespace Ui {
+class LanguageSelectionWidget;
+}
+
+class LanguageSelectionWidget : public QWidget
 {
+  Q_OBJECT
 public:
-  FiltersTreeFilterItem(const QString & name,
-                        const QString & command,
-                        const QString & previewCommand,
-                        float previewFactor,
-                        bool accurateIfZoomed );
-  ~FiltersTreeFilterItem();
-  FiltersTreeAbstractItem * deepClone(const QStringList &) const override;
-  FiltersTreeAbstractItem * deepClone() const override;
-  void setWarningFlag(bool);
-  bool isWarning() const override;
-protected:
-  void updateHash() override;
+  explicit LanguageSelectionWidget(QWidget *parent = 0);
+  ~LanguageSelectionWidget();
+  QString selectedLanguageCode();
+
+  static const QMap<QString,QString> & availableLanguages();
+  static QString configuredTranslator();
+  static QString systemDefaultAndAvailableLanguageCode();
+
+public slots:
+  void selectLanguage(const QString & code);
+
 private:
-  bool _isWarning;
+  Ui::LanguageSelectionWidget *ui;
+  const QMap<QString,QString> & _code2name;
+  bool _systemDefaultIsAvailable;
 };
 
-#endif // _GMIC_QT_FILTERSTREEFILTERITEM_H_
+#endif // LANGUAGESELECTIONWIDGET_H

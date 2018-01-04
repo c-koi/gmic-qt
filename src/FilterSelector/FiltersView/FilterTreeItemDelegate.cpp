@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FiltersTreeItemDelegate.cpp
+ *  @file FilterTreeItemDelegate.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,21 +22,22 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "FiltersTreeItemDelegate.h"
-#include "FiltersTreeAbstractFilterItem.h"
-#include "DialogSettings.h"
 #include <QTextDocument>
 #include <QColor>
 #include <QPalette>
 #include <QPainter>
 #include <QDebug>
+#include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
+#include "FilterSelector/FiltersView/FilterTreeItem.h"
+#include "DialogSettings.h"
+#include "FilterTreeItemDelegate.h"
 
-FiltersTreeItemDelegate::FiltersTreeItemDelegate(QObject *parent)
+FilterTreeItemDelegate::FilterTreeItemDelegate(QObject *parent)
   : QStyledItemDelegate(parent)
 {
 }
 
-void FiltersTreeItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
+void FilterTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
   QStyleOptionViewItem options = option;
   initStyleOption(&options, index);
@@ -46,7 +47,7 @@ void FiltersTreeItemDelegate::paint(QPainter* painter, const QStyleOptionViewIte
   Q_ASSERT_X(model,"FiltersTreeItemDelegate::paint()","No model");
   const QStandardItem * item = model->itemFromIndex(index);
   Q_ASSERT_X(item,"FiltersTreeItemDelegate::paint()","No item");
-  const FiltersTreeAbstractFilterItem * filter = dynamic_cast<const FiltersTreeAbstractFilterItem*>(item);
+  const FilterTreeItem * filter = dynamic_cast<const FilterTreeItem*>(item);
 
   QTextDocument doc;
   if ( !item->isCheckable() && filter && !filter->isVisible() ) {
@@ -64,7 +65,7 @@ void FiltersTreeItemDelegate::paint(QPainter* painter, const QStyleOptionViewIte
   painter->restore();
 }
 
-QSize FiltersTreeItemDelegate::sizeHint( const QStyleOptionViewItem & option, const QModelIndex & index ) const
+QSize FilterTreeItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
   QStyleOptionViewItem options = option;
   initStyleOption(&options, index);
@@ -75,3 +76,4 @@ QSize FiltersTreeItemDelegate::sizeHint( const QStyleOptionViewItem & option, co
   doc.setTextWidth(options.rect.width());
   return QSize(doc.idealWidth(), doc.size().height());
 }
+

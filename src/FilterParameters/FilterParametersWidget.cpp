@@ -28,8 +28,6 @@
 #include <QDebug>
 #include "Common.h"
 #include "FilterParameters/AbstractParameter.h"
-#include "FiltersTreeAbstractFilterItem.h"
-#include "FiltersTreeFaveItem.h"
 #include "FilterParameters/FilterParametersWidget.h"
 
 FilterParametersWidget::FilterParametersWidget(QWidget * parent)
@@ -48,26 +46,27 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent)
   _filterHash.clear();
 }
 
-void
-FilterParametersWidget::build(const FiltersTreeAbstractFilterItem *item, const QList<QString> & values)
+bool
+FilterParametersWidget::build(const QString & name,
+                              const QString & hash,
+                              const QString & parameters,
+                              const QList<QString> & values)
 {
-  _filterName = item->name();
-  _command = item->command();
-  _previewCommand = item->previewCommand();
-  _filterHash = item->hash();
+  _filterName = name;
+  _filterHash = hash;
   clear();
   delete layout();
   QGridLayout * grid = new QGridLayout(this);
   grid->setRowStretch(1,2);
 
-  AbstractParameter * parameter;
-  QByteArray rawText = item->parameters().toLatin1();
+  QByteArray rawText = parameters.toLatin1();
   const char * cstr = rawText.constData();
   int length;
 
   // Build parameters and count actual ones
   _actualParametersCount = 0;
   QString error;
+  AbstractParameter * parameter;
   do {
     parameter = AbstractParameter::createFromText(cstr,length,error,this);
     if (parameter) {
@@ -86,8 +85,6 @@ FilterParametersWidget::build(const FiltersTreeAbstractFilterItem *item, const Q
     _presetParameters.clear();
     error = QString("Parameter #%1\n%2").arg(_actualParametersCount+1).arg(error);
     _actualParametersCount = 0;
-    _command = "skip";
-    _previewCommand = "skip";
   }
 
   // Restore saved values
@@ -146,6 +143,7 @@ FilterParametersWidget::build(const FiltersTreeAbstractFilterItem *item, const Q
     grid->addWidget(_labelNoParams,0,0,4,3);
   }
   updateValueString(false);
+  return error.isEmpty();
 }
 
 void FilterParametersWidget::setNoFilter()
@@ -160,8 +158,6 @@ void FilterParametersWidget::setNoFilter()
   grid->addWidget(_labelNoParams,0,0,4,3);
 
   _valueString.clear();
-  _command.clear();
-  _previewCommand.clear();
   _filterHash.clear();
 }
 
@@ -211,16 +207,6 @@ FilterParametersWidget::reset(bool notify)
     }
   }
   updateValueString(notify);
-}
-
-QString FilterParametersWidget::command() const
-{
-  return _command;
-}
-
-QString FilterParametersWidget::previewCommand() const
-{
-  return _previewCommand;
 }
 
 QString

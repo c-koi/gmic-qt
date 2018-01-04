@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FiltersTreeFolderItem.h
+ *  @file FilterTreeFolder.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,38 +22,24 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSTREEFOLDERITEM_H_
-#define _GMIC_QT_FILTERSTREEFOLDERITEM_H_
-
-#include <QList>
-#include <QString>
+#ifndef _GMIC_QT_FILTERTREEFOLDER_H_
+#define _GMIC_QT_FILTERTREEFOLDER_H_
 #include <QStandardItem>
-#include <QStringList>
-#include "FiltersTreeAbstractItem.h"
+#include <QString>
+#include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
 
-class FiltersTreeFolderItem : public FiltersTreeAbstractItem
-{
-
+class FilterTreeFolder : public FilterTreeAbstractItem {
 public:
-  enum FolderType { NormalFolder, FaveFolder };
-
-  FiltersTreeFolderItem(const QString & name,
-                        FolderType folderType);
-  ~FiltersTreeFolderItem();
-  bool isFaveFolder() const;
-  void setWarningFlag(bool);
-  bool isWarning() const override;
-  FiltersTreeAbstractItem * deepClone(const QStringList &) const override;
-  FiltersTreeAbstractItem * deepClone() const override;
-
-  void setItemsVisibility(bool visible);
+  FilterTreeFolder(QString text);
+  void setFaveFolderFlag(bool);
   bool isFullyUnchecked();
+  bool isFaveFolder() const;
+  bool operator<(const QStandardItem & other) const override;
   void applyVisibilityStatusToFolderContents();
-
+  void setItemsVisibility(bool visible);
 private:
-  QString _plainText;
-  const bool _isFaveFolder;
-  bool _isWarning;
+  bool _isFaveFolder;
 };
 
-#endif // _GMIC_QT_FILTERSTREEFOLDERITEM_H_
+
+#endif // _GMIC_QT_FILTERTREEFOLDER_H_

@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file ClickableLabel.cpp
+ *  @file TreeView.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,18 +22,23 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ClickableLabel.h"
-#include <QMouseEvent>
+#ifndef _GMIC_QT_TREEVIEW_H_
+#define _GMIC_QT_TREEVIEW_H_
 
-ClickableLabel::ClickableLabel(QWidget *parent)
-  : QLabel(parent)
-{
+#include <QWidget>
+#include <QTreeView>
+#include "Common.h"
+#include <QDebug>
 
-}
+class TreeView : public QTreeView {
+  Q_OBJECT
+public:
+  TreeView(QWidget * parent = 0);
+  ~TreeView();
+  void keyPressEvent(QKeyEvent *event) override;
+signals:
+  void returnKeyPressed();
+private:
+};
 
-void ClickableLabel::mousePressEvent(QMouseEvent *e)
-{
-  if ( e->buttons() & Qt::LeftButton ) {
-    emit clicked();
-  }
-}
+#endif // _GMIC_QT_TREEVIEW_H_

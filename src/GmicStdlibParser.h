@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FiltersTreeItemDelegate.h
+ *  @file GmicStdLibParser.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,18 +22,23 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSTREEITEMDELEGATE_H_
-#define _GMIC_QT_FILTERSTREEITEMDELEGATE_H_
+#ifndef _GMIC_QT_GMICSTDLIBPARSER_H_
+#define _GMIC_QT_GMICSTDLIBPARSER_H_
 
-#include <QStyledItemDelegate>
+#include <QByteArray>
 
-class FiltersTreeItemDelegate : public QStyledItemDelegate
+class QTreeView;
+class QStandardItemModel;
+class QStandardItem;
+class QStringList;
+class FiltersTreeAbstractItem;
+class GmicStdLibParser
 {
 public:
-  FiltersTreeItemDelegate(QObject * parent);
-protected:
-  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
-  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+  GmicStdLibParser();
+  static void loadStdLib();
+  static QByteArray GmicStdlib;
+  static QStringList parseStatus(QString );
 };
 
-#endif // _GMIC_QT_FILTERSTREEITEMDELEGATE_H_
+#endif // _GMIC_QT_GMICSTDLIBPARSER_H_

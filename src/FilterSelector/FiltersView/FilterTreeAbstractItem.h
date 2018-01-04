@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdLibParser.h
+ *  @file FilterTreeAbstractItem.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,28 +22,27 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GMICSTDLIBPARSER_H_
-#define _GMIC_QT_GMICSTDLIBPARSER_H_
+#ifndef _GMIC_QT_FILTERTREEABSTRACTITEM_H_
+#define _GMIC_QT_FILTERTREEABSTRACTITEM_H_
+#include <QStandardItem>
 
-#include <QByteArray>
-
-class QTreeView;
-class QStandardItemModel;
-class QStandardItem;
-class QStringList;
-class FiltersTreeAbstractItem;
-class GmicStdLibParser
-{
+class FilterTreeAbstractItem : public QStandardItem {
 public:
-  GmicStdLibParser();
-  static void buildFiltersTree(QStandardItemModel & model, bool withVisibility);
-  static void saveFiltersVisibility(QStandardItem * );
-  static void loadStdLib();
-  static QByteArray GmicStdlib;
-  static QStringList parseStatus(QString );
-  static void addStandardItemWithCheckBox(QStandardItem * folder,
-                                          FiltersTreeAbstractItem * item,
-                                          bool itemIsVisible);
+  FilterTreeAbstractItem(QString text);
+  ~FilterTreeAbstractItem();
+  void setVisibilityItem(QStandardItem * item);
+  const QString & plainText() const;
+  bool isWarning() const;
+  bool isVisible() const;
+  void setVisibility(bool flag);
+  QList<QString> path() const;
+  static QString removeWarningPrefix(QString folderName);
+protected:
+  QStandardItem * _visibilityItem;
+private:
+  static const QChar WarningPrefix;
+  QString _plainText;
+  bool _isWarning;
 };
 
-#endif // _GMIC_QT_GMICSTDLIBPARSER_H_
+#endif // _GMIC_QT_FILTERTREEABSTRACTITEM_H_

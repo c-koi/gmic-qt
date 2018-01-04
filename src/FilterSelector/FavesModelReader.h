@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file TreeView.h
+ *  @file FavesModelReader.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,24 +22,23 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_TREEVIEW_H_
-#define _GMIC_QT_TREEVIEW_H_
+#ifndef _GMIC_QT_FAVESMODELREADER_H_
+#define _GMIC_QT_FAVESMODELREADER_H_
+#include <QJsonObject>
+#include "FilterSelector/FavesModel.h"
 
-#include <QWidget>
-#include <QTreeView>
-#include "Common.h"
-#include <QDebug>
+class QByteArray;
 
-class TreeView : public QTreeView {
-  Q_OBJECT
+class FavesModelReader {
 public:
-  TreeView(QWidget * parent = 0);
-  ~TreeView();
-  void keyPressEvent(QKeyEvent *event) override;
-signals:
-  void returnKeyPressed();
-
+  FavesModelReader(FavesModel & model);
+  void importFavesFromGmicGTK();
+  void loadFaves();
+  static QString gmicGTKFavesFilename();
+  static bool gmicGTKFaveFileAvailable();
 private:
+  static FavesModel::Fave jsonObjectToFave(const QJsonObject & object);
+  FavesModel & _model;
 };
 
-#endif // _GMIC_QT_TREEVIEW_H_
+#endif // _GMIC_QT_FAVESMODELREADER_H_

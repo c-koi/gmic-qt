@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file ClickableLabel.cpp
+ *  @file FilterTreeItemDelegate.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,18 +22,17 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ClickableLabel.h"
-#include <QMouseEvent>
+#ifndef _GMIC_QT_FILTERTREEITEMDELEGATE_H_
+#define _GMIC_QT_FILTERTREEITEMDELEGATE_H_
 
-ClickableLabel::ClickableLabel(QWidget *parent)
-  : QLabel(parent)
-{
+#include <QStyledItemDelegate>
 
-}
+class FilterTreeItemDelegate : public QStyledItemDelegate {
+public:
+  FilterTreeItemDelegate(QObject * parent);
+protected:
+  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
+  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+};
 
-void ClickableLabel::mousePressEvent(QMouseEvent *e)
-{
-  if ( e->buttons() & Qt::LeftButton ) {
-    emit clicked();
-  }
-}
+#endif // _GMIC_QT_FILTERTREEITEMDELEGATE_H_

@@ -33,14 +33,13 @@
 #include <QModelIndex>
 class AbstractParameter;
 class QLabel;
-class FiltersTreeAbstractFilterItem;
 
 class FilterParametersWidget : public QWidget {
   Q_OBJECT
 
 public:
   FilterParametersWidget(QWidget * parent = 0);
-  void build( const FiltersTreeAbstractFilterItem *  item,
+  bool build(const QString &name, const QString &hash, const QString &parameters,
               const QList<QString> & values );
   void setNoFilter();
   virtual ~FilterParametersWidget();
@@ -48,8 +47,6 @@ public:
   QStringList valueStringList() const;
   void setValues(const QStringList &, bool notify);
   void reset(bool notify);
-  QString command() const;
-  QString previewCommand() const;
   QString filterName() const;
   int actualParametersCount() const;
   QString filterHash() const;
@@ -68,8 +65,6 @@ protected:
   QString _valueString;
   QLabel * _labelNoParams;
   QWidget * _paddingWidget;
-  QString _command;
-  QString _previewCommand;
   QString _filterName;
   QString _filterHash;
 };

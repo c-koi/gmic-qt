@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file StoredFave.cpp
+ *  @file FavesModelReader.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,82 +22,59 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "StoredFave.h"
-#include "FiltersTreeAbstractFilterItem.h"
+#include <QBuffer>
+#include <QList>
+#include <QString>
+#include <QLocale>
 #include <QFileInfo>
 #include <QSettings>
 #include <QRegularExpression>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QJsonArray>
 #include <QDebug>
-#include "FiltersTreeFaveItem.h"
-#include "Common.h"
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonValue>
 #include "gmic_qt.h"
+#include "Common.h"
+#include "FilterSelector/FavesModelReader.h"
+#include "FilterSelector/FavesModel.h"
 #include "gmic.h"
 
-StoredFave::StoredFave(QString name,
-                       QString originalName,
-                       QString command,
-                       QString previewCommand,
-                       QStringList defaultParameters)
-  : _name(name),
-    _originalName(originalName),
-    _command(command),
-    _previewCommand(previewCommand),
-    _defaultParameters(defaultParameters)
+FavesModelReader::FavesModelReader(FavesModel & model)
+  :_model(model)
 {
 }
 
-StoredFave::StoredFave(const FiltersTreeFaveItem * fave)
-  : _name(fave->name()),
-    _originalName(fave->originalFilterName()),
-    _command(fave->command()),
-    _previewCommand(fave->previewCommand()),
-    _defaultParameters(fave->defaultValues())
+bool FavesModelReader::gmicGTKFaveFileAvailable()
 {
+  QFileInfo info(gmicGTKFavesFilename());
+  return info.isReadable();
 }
 
-QString StoredFave::originalFilterHash()
+FavesModel::Fave FavesModelReader::jsonObjectToFave(const QJsonObject & object)
 {
-  return FiltersTreeAbstractFilterItem::computeHash(_originalName,_command,_previewCommand);
-}
-
-QTextStream & StoredFave::flush(QTextStream & stream) const
-{
-  QList<QString> list;
-  list.append(_name);
-  list.append(_originalName);
-  list.append(_command);
-  list.append(_previewCommand);
-  list.append(_defaultParameters);
-  for ( QString & str : list ) {
-    str.replace(QString("{"),QChar(gmic_lbrace));
-    str.replace(QString("}"),QChar(gmic_rbrace));
-    str.replace(QChar(10),QChar(gmic_newline));
-    str.replace(QChar(13),"");
-    stream << "{" << str << "}";
+  FavesModel::Fave fave;
+  fave.setName(object.value("Name").toString(""));
+  fave.setOriginalName(object.value("originalName").toString(""));
+  fave.setCommand(object.value("command").toString(""));
+  fave.setPreviewCommand(object.value("preview").toString());
+  QStringList defaultParameters;
+  QJsonArray array = object.value("defaultParameters").toArray();
+  for ( const QJsonValue & value : array ) {
+    defaultParameters.push_back(value.toString());
   }
-  stream << "\n";
-  return stream;
+  fave.setDefaultValues(defaultParameters);
+  fave.build();
+  return fave;
 }
 
-QTextStream & operator<<(QTextStream & stream, const StoredFave & fave)
+void FavesModelReader::importFavesFromGmicGTK()
 {
-  return fave.flush(stream);
-}
-
-QList<StoredFave> StoredFave::importFaves()
-{
-  QList<StoredFave> faves;
-  QString filename = QString("%1%2").arg(GmicQt::path_rc(false)).arg("gimp_faves");
+  QString filename = gmicGTKFavesFilename();
   QFile file(filename);
   if  ( file.open(QIODevice::ReadOnly) ) {
     QString line;
     int lineNumber = 1;
     while ( ! (line = file.readLine()).isEmpty() ) {
-
       line = line.trimmed();
       line.replace(QRegExp("^."),"").replace(QRegExp(".$"),"");
       QList<QString> list = line.split("}{");
@@ -106,14 +83,18 @@ QList<StoredFave> StoredFave::importFaves()
         str.replace(QChar(gmic_rbrace),QString("}"));
       }
       if ( list.size() >= 4 ) {
-        QString name = list.front();
-        QString originalName = list[1];
-        QString command = list[2];
-        command.replace(QRegularExpression("^gimp_"),"fx_");
-        QString previewCommand = list[3];
-        previewCommand.replace(QRegularExpression("^gimp_"),"fx_");
-        list.pop_front(); list.pop_front(); list.pop_front(); list.pop_front();
-        faves.push_back(StoredFave(name,originalName,command,previewCommand,list));
+        FavesModel::Fave fave;
+        fave.setName(list.front());
+        fave.setOriginalName(list[1]);
+        fave.setCommand(list[2].replace(QRegularExpression("^gimp_"),"fx_"));
+        fave.setPreviewCommand(list[3].replace(QRegularExpression("^gimp_"),"fx_"));
+        list.pop_front();
+        list.pop_front();
+        list.pop_front();
+        list.pop_front();
+        fave.setDefaultValues(list);
+        fave.build();
+        _model.addFave(fave);
       } else {
         std::cerr << "[gmic-qt] Error: Import failed for fave at gimp_faves:" << lineNumber << "\n";
       }
@@ -122,13 +103,10 @@ QList<StoredFave> StoredFave::importFaves()
   } else {
     qWarning() << "[gmic-qt] Error: Import failed. Cannot open" << filename;
   }
-  return faves;
 }
 
-QList<StoredFave> StoredFave::readFaves()
+void FavesModelReader::loadFaves()
 {
-  QList<StoredFave> faves;
-
   // Read JSON faves if file exists
   QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves.json"));
   QFile jsonFile(jsonFilename);
@@ -140,7 +118,7 @@ QList<StoredFave> StoredFave::readFaves()
       if ( parseError.error == QJsonParseError::NoError ) {
         QJsonArray array = document.array();
         for ( const QJsonValue & value : array ) {
-          faves.push_back(StoredFave::fromJSONObject(value.toObject()));
+          _model.addFave(jsonObjectToFave(value.toObject()));
         }
       } else {
         qWarning() << "[gmic-qt] Error loading faves (parse error) : " << jsonFilename;
@@ -149,7 +127,7 @@ QList<StoredFave> StoredFave::readFaves()
     } else {
       qWarning() << "[gmic-qt] Error: Faves loading failed: Cannot open" << jsonFilename;
     }
-    return faves;
+    return;
   }
 
   // Read old 2.0.0 prerelease file format if no JSON was found
@@ -170,12 +148,18 @@ QList<StoredFave> StoredFave::readFaves()
             str.replace(QChar(gmic_newline),QString("\n"));
           }
           if ( list.size() >= 4 ) {
-            QString name = list.front();
-            QString originalName = list[1];
-            QString command = list[2];
-            QString previewCommand = list[3];
-            list.pop_front(); list.pop_front(); list.pop_front(); list.pop_front();
-            faves.push_back(StoredFave(name,originalName,command,previewCommand,list));
+            FavesModel::Fave fave;
+            fave.setName(list.front());
+            fave.setOriginalName(list[1]);
+            fave.setCommand(list[2]);
+            fave.setPreviewCommand(list[3]);
+            list.pop_front();
+            list.pop_front();
+            list.pop_front();
+            list.pop_front();
+            fave.setDefaultValues(list);
+            fave.build();
+            _model.addFave(fave);
           } else {
             std::cerr << "[gmic-qt] Error: Loading failed for fave at gmic_qt_faves:" << lineNumber << "\n";
           }
@@ -186,35 +170,9 @@ QList<StoredFave> StoredFave::readFaves()
       qWarning() << "[gmic-qt] Error: Loading failed. Cannot open" << filename;
     }
   }
-  return faves;
 }
 
-QJsonObject StoredFave::toJSONObject() const
+QString FavesModelReader::gmicGTKFavesFilename()
 {
-  QJsonObject object;
-  object["Name"] = _name;
-  object["originalName"] =_originalName;
-  object["command"] =_command;
-  object["preview"] = _previewCommand;
-  QJsonArray array;
-  for ( const QString & str : _defaultParameters ) {
-    array.push_back(str);
-  }
-  object["defaultParameters"] = array;
-  return object;
-}
-
-StoredFave StoredFave::fromJSONObject(const QJsonObject & object)
-{
-  QString name = object.value("Name").toString("");
-  QString originalName = object.value("originalName").toString("");
-  QString command = object.value("command").toString("");
-  QString previewCommand = object.value("preview").toString();
-
-  QStringList defaultParameters;
-  QJsonArray array = object.value("defaultParameters").toArray();
-  for ( const QJsonValue & value : array ) {
-    defaultParameters.push_back(value.toString());
-  }
-  return StoredFave(name,originalName,command,previewCommand,defaultParameters);
+  return QString("%1%2").arg(GmicQt::path_rc(false)).arg("gimp_faves");
 }

@@ -125,6 +125,7 @@ equals( HOST, "gimp") {
  SOURCES += src/Host/Gimp/host_gimp.cpp
  DEFINES += GMIC_HOST=gimp_qt
  DEFINES += GIMP_DISABLE_DEPRECATED
+ DEPENDPATH += $$PWD/src/Host/Gimp
  message(Target host software is GIMP)
 }
 
@@ -134,7 +135,8 @@ equals( HOST, "none") {
  DEFINES += GMIC_HOST=standalone
  SOURCES += src/Host/None/host_none.cpp
  SOURCES += src/Host/None/ImageDialog.cpp
- HEADERS += include/Host/None/ImageDialog.h
+ HEADERS += src/Host/None/ImageDialog.h
+ DEPENDPATH += $$PWD/src/Host/None
  message(Building standalone version)
 }
 
@@ -142,6 +144,7 @@ equals( HOST, "krita") {
  TARGET = gmic_krita_qt
  SOURCES += src/Host/Krita/host_krita.cpp
  DEFINES += GMIC_HOST=krita
+ DEPENDPATH += $$PWD/src/Host/Krita
  message(Target host software is Krita)
 }
 
@@ -167,57 +170,65 @@ openmp {
 
 DEFINES += gmic_gui gmic_build gmic_is_parallel cimg_use_abort
 
-INCLUDEPATH	+= $$PWD $$PWD/include $$GMIC_PATH
-DEPENDPATH += $$PWD/include $$PWD/include/FilterParameters $$PWD/include/Host $$PWD/images
+INCLUDEPATH	+= $$PWD $$PWD/src $$GMIC_PATH
+DEPENDPATH += $$PWD/src \
+              $$PWD/src/Host \
+              $$PWD/src/FilterParameters \
+              $$PWD/src/FilterSelector \
+              $$PWD/src/FilterSelector/FiltersView \
 
 HEADERS +=  \
-  include/ClickableLabel.h \
-  include/Common.h \
-  include/DialogSettings.h \
-  include/FiltersTreeAbstractFilterItem.h \
-  include/FiltersTreeAbstractItem.h \
-  include/FiltersTreeFaveItem.h \
-  include/FiltersTreeFilterItem.h \
-  include/FiltersTreeFolderItem.h \
-  include/FiltersTreeItemDelegate.h \
-  include/FiltersVisibilityMap.h \
-  include/FilterThread.h \
-  include/gmic_qt.h \
-  include/GmicStdlibParser.h \
-  include/HeadlessProcessor.h \
-  include/HtmlTranslator.h \
-  include/ImageConverter.h \
-  include/ImageTools.h \
-  include/InOutPanel.h \
-  include/LanguageSelectionWidget.h \
-  include/LayersExtentProxy.h \
-  include/MainWindow.h \
-  include/ParametersCache.h \
-  include/PreviewWidget.h \
-  include/ProgressInfoWidget.h \
-  include/ProgressInfoWindow.h \
-  include/SearchFieldWidget.h \
-  include/StoredFave.h \
-  include/TreeView.h \
-  include/Updater.h \
-  include/ZoomLevelSelector.h \
-  include/FilterParameters/AbstractParameter.h \
-  include/FilterParameters/BoolParameter.h \
-  include/FilterParameters/ButtonParameter.h \
-  include/FilterParameters/ChoiceParameter.h \
-  include/FilterParameters/ColorParameter.h \
-  include/FilterParameters/ConstParameter.h \
-  include/FilterParameters/FileParameter.h \
-  include/FilterParameters/FloatParameter.h \
-  include/FilterParameters/FolderParameter.h \
-  include/FilterParameters/IntParameter.h \
-  include/FilterParameters/LinkParameter.h \
-  include/FilterParameters/MultilineTextParameterWidget.h \
-  include/FilterParameters/NoteParameter.h \
-  include/FilterParameters/SeparatorParameter.h \
-  include/FilterParameters/TextParameter.h \
-  include/FilterParameters/FilterParametersWidget.h \
-  include/Host/host.h
+  src/ClickableLabel.h \
+  src/Common.h \
+  src/DialogSettings.h \
+  src/FilterParameters/AbstractParameter.h \
+  src/FilterParameters/BoolParameter.h \
+  src/FilterParameters/ButtonParameter.h \
+  src/FilterParameters/ChoiceParameter.h \
+  src/FilterParameters/ColorParameter.h \
+  src/FilterParameters/ConstParameter.h \
+  src/FilterParameters/FileParameter.h \
+  src/FilterParameters/FilterParametersWidget.h \
+  src/FilterParameters/FloatParameter.h \
+  src/FilterParameters/FolderParameter.h \
+  src/FilterParameters/IntParameter.h \
+  src/FilterParameters/LinkParameter.h \
+  src/FilterParameters/MultilineTextParameterWidget.h \
+  src/FilterParameters/NoteParameter.h \
+  src/FilterParameters/SeparatorParameter.h \
+  src/FilterParameters/TextParameter.h \
+  src/FilterSelector/FiltersModel.h \
+  src/FilterSelector/FiltersModelReader.h \
+  src/FilterSelector/FiltersPresenter.h \
+  src/FilterSelector/FiltersView/FiltersView.h \
+  src/FilterSelector/FiltersView/TreeView.h \
+  src/FiltersVisibilityMap.h \
+  src/FilterThread.h \
+  src/gmic_qt.h \
+  src/GmicStdlibParser.h \
+  src/HeadlessProcessor.h \
+  src/Host/host.h \
+  src/HtmlTranslator.h \
+  src/ImageConverter.h \
+  src/ImageTools.h \
+  src/InOutPanel.h \
+  src/LanguageSelectionWidget.h \
+  src/LayersExtentProxy.h \
+  src/MainWindow.h \
+  src/ParametersCache.h \
+  src/PreviewWidget.h \
+  src/ProgressInfoWidget.h \
+  src/ProgressInfoWindow.h \
+  src/SearchFieldWidget.h \
+  src/Updater.h \
+  src/ZoomLevelSelector.h \
+  src/FilterSelector/FiltersView/FilterTreeFolder.h \
+  src/FilterSelector/FiltersView/FilterTreeItem.h \
+  src/FilterSelector/FavesModel.h \
+  src/FilterSelector/FavesModelReader.h \
+  src/FilterSelector/FiltersView/FilterTreeAbstractItem.h \
+  src/FilterSelector/FiltersView/FilterTreeItemDelegate.h \
+  src/FilterSelector/FavesModelWriter.h
 
 HEADERS += $$GMIC_PATH/gmic.h
 HEADERS += $$GMIC_PATH/CImg.h
@@ -226,12 +237,27 @@ HEADERS += $$GMIC_PATH/gmic_stdlib.h
 SOURCES += \
   src/ClickableLabel.cpp \
   src/DialogSettings.cpp \
-  src/FiltersTreeAbstractFilterItem.cpp \
-  src/FiltersTreeAbstractItem.cpp \
-  src/FiltersTreeFaveItem.cpp \
-  src/FiltersTreeFilterItem.cpp \
-  src/FiltersTreeFolderItem.cpp \
-  src/FiltersTreeItemDelegate.cpp \
+  src/FilterParameters/AbstractParameter.cpp \
+  src/FilterParameters/BoolParameter.cpp \
+  src/FilterParameters/ButtonParameter.cpp \
+  src/FilterParameters/ChoiceParameter.cpp \
+  src/FilterParameters/ColorParameter.cpp \
+  src/FilterParameters/ConstParameter.cpp \
+  src/FilterParameters/FileParameter.cpp \
+  src/FilterParameters/FilterParametersWidget.cpp \
+  src/FilterParameters/FloatParameter.cpp \
+  src/FilterParameters/FolderParameter.cpp \
+  src/FilterParameters/IntParameter.cpp \
+  src/FilterParameters/LinkParameter.cpp \
+  src/FilterParameters/MultilineTextParameterWidget.cpp \
+  src/FilterParameters/NoteParameter.cpp \
+  src/FilterParameters/SeparatorParameter.cpp \
+  src/FilterParameters/TextParameter.cpp \
+  src/FilterSelector/FiltersModel.cpp \
+  src/FilterSelector/FiltersModelReader.cpp \
+  src/FilterSelector/FiltersPresenter.cpp \
+  src/FilterSelector/FiltersView/FiltersView.cpp \
+  src/FilterSelector/FiltersView/TreeView.cpp \
   src/FiltersVisibilityMap.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
@@ -249,31 +275,21 @@ SOURCES += \
   src/ProgressInfoWidget.cpp \
   src/ProgressInfoWindow.cpp \
   src/SearchFieldWidget.cpp \
-  src/StoredFave.cpp \
-  src/TreeView.cpp \
   src/Updater.cpp \
   src/ZoomLevelSelector.cpp \
-  src/FilterParameters/AbstractParameter.cpp \
-  src/FilterParameters/BoolParameter.cpp \
-  src/FilterParameters/ButtonParameter.cpp \
-  src/FilterParameters/ChoiceParameter.cpp \
-  src/FilterParameters/ColorParameter.cpp \
-  src/FilterParameters/ConstParameter.cpp \
-  src/FilterParameters/FileParameter.cpp \
-  src/FilterParameters/FloatParameter.cpp \
-  src/FilterParameters/FolderParameter.cpp \
-  src/FilterParameters/IntParameter.cpp \
-  src/FilterParameters/LinkParameter.cpp \
-  src/FilterParameters/MultilineTextParameterWidget.cpp \
-  src/FilterParameters/NoteParameter.cpp \
-  src/FilterParameters/SeparatorParameter.cpp \
-  src/FilterParameters/TextParameter.cpp \
-  src/FilterParameters/FilterParametersWidget.cpp
+  src/FilterSelector/FiltersView/FilterTreeItem.cpp \
+  src/FilterSelector/FiltersView/FilterTreeFolder.cpp \
+  src/FilterSelector/FavesModel.cpp \
+  src/FilterSelector/FavesModelReader.cpp \
+  src/FilterSelector/FiltersView/FilterTreeAbstractItem.cpp \
+  src/FilterSelector/FiltersView/FilterTreeItemDelegate.cpp \
+  src/FilterSelector/FavesModelWriter.cpp
 
 SOURCES += $$GMIC_PATH/gmic.cpp
 
 # ALL_FORMS
-FORMS +=  ui/inoutpanel.ui ui/multilinetextparameterwidget.ui ui/progressinfowindow.ui ui/dialogsettings.ui ui/progressinfowidget.ui ui/mainwindow.ui ui/SearchFieldWidget.ui ui/headlessprogressdialog.ui ui/zoomlevelselector.ui ui/languageselectionwidget.ui
+FORMS +=  ui/inoutpanel.ui ui/multilinetextparameterwidget.ui ui/progressinfowindow.ui ui/dialogsettings.ui ui/progressinfowidget.ui ui/mainwindow.ui ui/SearchFieldWidget.ui ui/headlessprogressdialog.ui ui/zoomlevelselector.ui ui/languageselectionwidget.ui \
+    ui/filtersview.ui
 
 RESOURCES = gmic_qt.qrc translations.qrc
 

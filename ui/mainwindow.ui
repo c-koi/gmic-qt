@@ -41,26 +41,7 @@
         </widget>
        </item>
        <item>
-        <widget class="TreeView" name="filtersTree">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QAbstractScrollArea::AdjustToContents</enum>
-         </property>
-        </widget>
+        <widget class="FiltersView" name="filtersView" native="true"/>
        </item>
        <item>
         <widget class="QWidget" name="widget_2" native="true">
@@ -581,13 +562,13 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TreeView</class>
-   <extends>QTreeView</extends>
-   <header>TreeView.h</header>
+   <class>FiltersView</class>
+   <extends>QWidget</extends>
+   <header>FilterSelector/FiltersView/FiltersView.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>filtersTree</tabstop>
   <tabstop>scrollAreaParameters</tabstop>
   <tabstop>previewWidget</tabstop>
   <tabstop>cbPreview</tabstop>

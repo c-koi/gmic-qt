@@ -14,7 +14,11 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita or none.")
-message("Building version:" ${GMIC_QT_HOST})
+if (${GMIC_QT_HOST} STREQUAL "none")
+  message("Building standalone version.")
+else()
+  message("Building for target host application: " ${GMIC_QT_HOST})
+endif()
 
 set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
 message("G'MIC path: " ${GMIC_PATH})
@@ -60,11 +64,11 @@ endforeach()
 #
 execute_process(COMMAND grep "cimg_version "  ${GMIC_ABSOLUTE_PATH}/CImg.h  OUTPUT_VARIABLE CIMG_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 string(REGEX REPLACE ".*cimg_version " "" CIMG_VERSION ${CIMG_VERSION})
-message("CImg version is[" ${CIMG_VERSION} "]")
+message("CImg version is [" ${CIMG_VERSION} "]")
 
 execute_process(COMMAND grep "gmic_version "  ${GMIC_ABSOLUTE_PATH}/gmic.h  OUTPUT_VARIABLE GMIC_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 string(REGEX REPLACE ".*gmic_version " "" GMIC_VERSION ${GMIC_VERSION})
-message("G'MIC version is[" ${GMIC_VERSION} "]")
+message("G'MIC version is [" ${GMIC_VERSION} "]")
 
 if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
   message(FATAL_ERROR "\nVersion numbers of files 'gmic.h' (" ${GMIC_VERSION} ") and 'CImg.h' ("${CIMG_VERSION} ") mismatch")
@@ -245,57 +249,61 @@ else()
     message(FATAL_ERROR "Build type not recognized (${CMAKE_BUILD_TYPE})")
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/include ${GMIC_PATH})
+include_directories(${CMAKE_SOURCE_DIR}/src ${GMIC_PATH})
 
 set (gmic_qt_SRCS
 
-  include/ClickableLabel.h
-  include/Common.h
-  include/DialogSettings.h
-  include/FiltersTreeAbstractFilterItem.h
-  include/FiltersTreeAbstractItem.h
-  include/FiltersTreeFaveItem.h
-  include/FiltersTreeFilterItem.h
-  include/FiltersTreeFolderItem.h
-  include/FiltersTreeItemDelegate.h
-  include/FiltersVisibilityMap.h
-  include/FilterThread.h
-  include/gmic_qt.h
-  include/GmicStdlibParser.h
-  include/HeadlessProcessor.h
-  include/HtmlTranslator.h
-  include/ImageConverter.h
-  include/ImageTools.h
-  include/InOutPanel.h
-  include/LanguageSelectionWidget.h
-  include/LayersExtentProxy.h
-  include/MainWindow.h
-  include/ParametersCache.h
-  include/PreviewWidget.h
-  include/ProgressInfoWidget.h
-  include/ProgressInfoWindow.h
-  include/SearchFieldWidget.h
-  include/StoredFave.h
-  include/TreeView.h
-  include/Updater.h
-  include/ZoomLevelSelector.h
-  include/FilterParameters/AbstractParameter.h
-  include/FilterParameters/BoolParameter.h
-  include/FilterParameters/ButtonParameter.h
-  include/FilterParameters/ChoiceParameter.h
-  include/FilterParameters/ColorParameter.h
-  include/FilterParameters/ConstParameter.h
-  include/FilterParameters/FileParameter.h
-  include/FilterParameters/FloatParameter.h
-  include/FilterParameters/FolderParameter.h
-  include/FilterParameters/IntParameter.h
-  include/FilterParameters/LinkParameter.h
-  include/FilterParameters/MultilineTextParameterWidget.h
-  include/FilterParameters/NoteParameter.h
-  include/FilterParameters/SeparatorParameter.h
-  include/FilterParameters/TextParameter.h
-  include/FilterParameters/FilterParametersWidget.h
-  include/Host/host.h
+  src/ClickableLabel.h
+  src/Common.h
+  src/DialogSettings.h
+  src/FilterParameters/AbstractParameter.h
+  src/FilterParameters/BoolParameter.h
+  src/FilterParameters/ButtonParameter.h
+  src/FilterParameters/ChoiceParameter.h
+  src/FilterParameters/ColorParameter.h
+  src/FilterParameters/ConstParameter.h
+  src/FilterParameters/FileParameter.h
+  src/FilterParameters/FilterParametersWidget.h
+  src/FilterParameters/FloatParameter.h
+  src/FilterParameters/FolderParameter.h
+  src/FilterParameters/IntParameter.h
+  src/FilterParameters/LinkParameter.h
+  src/FilterParameters/MultilineTextParameterWidget.h
+  src/FilterParameters/NoteParameter.h
+  src/FilterParameters/SeparatorParameter.h
+  src/FilterParameters/TextParameter.h
+  src/FilterSelector/FiltersModel.h
+  src/FilterSelector/FiltersModelReader.h
+  src/FilterSelector/FiltersPresenter.h
+  src/FilterSelector/FiltersView/FiltersView.h
+  src/FilterSelector/FiltersView/TreeView.h
+  src/FiltersVisibilityMap.h
+  src/FilterThread.h
+  src/gmic_qt.h
+  src/GmicStdlibParser.h
+  src/HeadlessProcessor.h
+  src/Host/host.h
+  src/HtmlTranslator.h
+  src/ImageConverter.h
+  src/ImageTools.h
+  src/InOutPanel.h
+  src/LanguageSelectionWidget.h
+  src/LayersExtentProxy.h
+  src/MainWindow.h
+  src/ParametersCache.h
+  src/PreviewWidget.h
+  src/ProgressInfoWidget.h
+  src/ProgressInfoWindow.h
+  src/SearchFieldWidget.h
+  src/Updater.h
+  src/ZoomLevelSelector.h
+  src/FilterSelector/FiltersView/FilterTreeFolder.h
+  src/FilterSelector/FiltersView/FilterTreeItem.h
+  src/FilterSelector/FavesModel.h
+  src/FilterSelector/FavesModelReader.h
+  src/FilterSelector/FiltersView/FilterTreeAbstractItem.h
+  src/FilterSelector/FiltersView/FilterTreeItemDelegate.h
+  src/FilterSelector/FavesModelWriter.h
 
   ${GMIC_PATH}/gmic.h
   ${GMIC_PATH}/CImg.h
@@ -303,12 +311,27 @@ set (gmic_qt_SRCS
 
   src/ClickableLabel.cpp
   src/DialogSettings.cpp
-  src/FiltersTreeAbstractFilterItem.cpp
-  src/FiltersTreeAbstractItem.cpp
-  src/FiltersTreeFaveItem.cpp
-  src/FiltersTreeFilterItem.cpp
-  src/FiltersTreeFolderItem.cpp
-  src/FiltersTreeItemDelegate.cpp
+  src/FilterParameters/AbstractParameter.cpp
+  src/FilterParameters/BoolParameter.cpp
+  src/FilterParameters/ButtonParameter.cpp
+  src/FilterParameters/ChoiceParameter.cpp
+  src/FilterParameters/ColorParameter.cpp
+  src/FilterParameters/ConstParameter.cpp
+  src/FilterParameters/FileParameter.cpp
+  src/FilterParameters/FilterParametersWidget.cpp
+  src/FilterParameters/FloatParameter.cpp
+  src/FilterParameters/FolderParameter.cpp
+  src/FilterParameters/IntParameter.cpp
+  src/FilterParameters/LinkParameter.cpp
+  src/FilterParameters/MultilineTextParameterWidget.cpp
+  src/FilterParameters/NoteParameter.cpp
+  src/FilterParameters/SeparatorParameter.cpp
+  src/FilterParameters/TextParameter.cpp
+  src/FilterSelector/FiltersModel.cpp
+  src/FilterSelector/FiltersModelReader.cpp
+  src/FilterSelector/FiltersPresenter.cpp
+  src/FilterSelector/FiltersView/FiltersView.cpp
+  src/FilterSelector/FiltersView/TreeView.cpp
   src/FiltersVisibilityMap.cpp
   src/FilterThread.cpp
   src/gmic_qt.cpp
@@ -326,50 +349,53 @@ set (gmic_qt_SRCS
   src/ProgressInfoWidget.cpp
   src/ProgressInfoWindow.cpp
   src/SearchFieldWidget.cpp
-  src/StoredFave.cpp
-  src/TreeView.cpp
   src/Updater.cpp
   src/ZoomLevelSelector.cpp
-  src/FilterParameters/AbstractParameter.cpp
-  src/FilterParameters/BoolParameter.cpp
-  src/FilterParameters/ButtonParameter.cpp
-  src/FilterParameters/ChoiceParameter.cpp
-  src/FilterParameters/ColorParameter.cpp
-  src/FilterParameters/ConstParameter.cpp
-  src/FilterParameters/FileParameter.cpp
-  src/FilterParameters/FloatParameter.cpp
-  src/FilterParameters/FolderParameter.cpp
-  src/FilterParameters/IntParameter.cpp
-  src/FilterParameters/LinkParameter.cpp
-  src/FilterParameters/MultilineTextParameterWidget.cpp
-  src/FilterParameters/NoteParameter.cpp
-  src/FilterParameters/SeparatorParameter.cpp
-  src/FilterParameters/TextParameter.cpp
-  src/FilterParameters/FilterParametersWidget.cpp
+  src/FilterSelector/FiltersView/FilterTreeItem.cpp
+  src/FilterSelector/FiltersView/FilterTreeFolder.cpp
+  src/FilterSelector/FavesModel.cpp
+  src/FilterSelector/FavesModelReader.cpp
+  src/FilterSelector/FiltersView/FilterTreeAbstractItem.cpp
+  src/FilterSelector/FiltersView/FilterTreeItemDelegate.cpp
+  src/FilterSelector/FavesModelWriter.cpp
 
   ${GMIC_PATH}/gmic.cpp
 )
 
 qt5_wrap_ui(gmic_qt_SRCS
-    ui/inoutpanel.ui
-    ui/multilinetextparameterwidget.ui
-    ui/progressinfowindow.ui
-    ui/dialogsettings.ui
-    ui/progressinfowidget.ui
-    ui/mainwindow.ui
-    ui/SearchFieldWidget.ui
-    ui/headlessprogressdialog.ui
-    ui/zoomlevelselector.ui
-    ui/languageselectionwidget.ui
+  ui/dialogsettings.ui
+  ui/filtersview.ui
+  ui/headlessprogressdialog.ui
+  ui/inoutpanel.ui
+  ui/languageselectionwidget.ui
+  ui/mainwindow.ui
+  ui/multilinetextparameterwidget.ui
+  ui/progressinfowidget.ui
+  ui/progressinfowindow.ui
+  ui/SearchFieldWidget.ui
+  ui/zoomlevelselector.ui
 )
 
-qt5_create_translation(
-    qmic_qt_QM
+# qt5_create_translation(
+#     qmic_qt_QM
+#     ${CMAKE_SOURCE_DIR}/translations
+#     ${gmic_qt_SRCS}
+#     translations/cs.ts
+#     translations/de.ts
+#     translations/es.ts
+#     translations/fr.ts
+#     translations/id.ts
+#     translations/it.ts
+#     translations/nl.ts
+#     translations/pl.ts
+#     translations/pt.ts
+#     translations/ru.ts
+#     translations/ua.ts
+#     translations/ja.ts
+#     translations/zh.ts
+# )
 
-    ${CMAKE_SOURCE_DIR}/translations
-
-    ${gmic_qt_SRCS}
-
+qt5_add_translation(gmic_qt_QM
     translations/cs.ts
     translations/de.ts
     translations/es.ts
@@ -383,9 +409,9 @@ qt5_create_translation(
     translations/ua.ts
     translations/ja.ts
     translations/zh.ts
-)
+  )
 
-install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR/translations})
+install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
 
 set(gmic_qt_QRC
     gmic_qt.qrc
@@ -415,20 +441,16 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
     add_executable(gmic_krita_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
         gmic_krita_qt
-    PRIVATE
+	PRIVATE
         ${gmic_qt_LIBRARIES}
-    )
+	)
 
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
-    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/None/host_none.cpp include/Host/None/ImageDialog.h src/Host/None/ImageDialog.cpp)
+    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/None/host_none.cpp src/Host/None/ImageDialog.h src/Host/None/ImageDialog.cpp)
     add_definitions(-DGMIC_HOST=standalone)
     add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
-        target_link_libraries(
-        gmic_qt
-    PRIVATE
-        ${gmic_qt_LIBRARIES}
-    )
+    target_link_libraries(gmic_qt PRIVATE ${gmic_qt_LIBRARIES})
 
 else()
     message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita or none")

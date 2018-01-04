@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file TreeView.cpp
+ *  @file FiltersModelReader.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,22 +22,18 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "TreeView.h"
-#include <QKeyEvent>
+#ifndef _GMIC_QT_FILTERSMODELREADER_H_
+#define _GMIC_QT_FILTERSMODELREADER_H_
+#include "FilterSelector/FiltersModel.h"
 
-TreeView::TreeView(QWidget *parent)
-  :QTreeView(parent)
-{
-}
+class QByteArray;
 
-void TreeView::keyPressEvent(QKeyEvent *event)
-{
-  if ( event->key() == Qt::Key_Enter ||  event->key() == Qt::Key_Return ) {
-    emit returnKeyPressed();
-  }
-  QTreeView::keyPressEvent(event);
-}
+class FiltersModelReader {
+public:
+  FiltersModelReader(FiltersModel & model);
+  void parseFiltersDefinitions(QByteArray & stdlibArray);
+private:
+  FiltersModel & _model;
+};
 
-TreeView::~TreeView()
-{
-}
+#endif // _GMIC_QT_FILTERSMODELREADER_H_

@@ -25,23 +25,24 @@
 #ifndef _GMIC_QT_MAINWINDOW_H_
 #define _GMIC_QT_MAINWINDOW_H_
 
-#include <QPalette>
-#include <QWidget>
-#include <QStandardItemModel>
-#include <QModelIndex>
 #include <QList>
+#include <QModelIndex>
+#include <QPalette>
+#include <QStandardItemModel>
 #include <QString>
 #include <QTimer>
-#include "StoredFave.h"
+#include <QWidget>
 #include "Common.h"
 #include "gmic_qt.h"
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
-namespace cimg_library {
-template<typename T> struct CImgList;
+namespace cimg_library
+{
+template <typename T> struct CImgList;
 }
 
 class FiltersTreeFolderItem;
@@ -51,15 +52,19 @@ class FiltersTreeFaveItem;
 class QResizeEvent;
 class Updater;
 class FilterThread;
+class FiltersPresenter;
 
-class MainWindow : public QWidget
-{
+class MainWindow : public QWidget {
   Q_OBJECT
 
 public:
-  enum PreviewPosition { PreviewOnLeft, PreviewOnRight };
+  enum PreviewPosition
+  {
+    PreviewOnLeft,
+    PreviewOnRight
+  };
 
-  explicit MainWindow(QWidget *parent = 0);
+  explicit MainWindow(QWidget * parent = 0);
   ~MainWindow();
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
 
@@ -67,8 +72,6 @@ public:
 
 public slots:
   void onUpdateDownloadsFinished(bool ok);
-  void onFilterClicked(QModelIndex);
-  void onReturnKeyPressedInFiltersTree();
   void onApplyClicked();
   void onPreviewUpdateRequested();
   void onPreviewThreadFinished();
@@ -86,7 +89,6 @@ public slots:
   void onAddFave();
   void onRemoveFave();
   void onRenameFave();
-  void onRenameFaveFinished(QWidget * editor);
   void onOutputMessageModeChanged(GmicQt::OutputMessageMode);
   void onToggleFullScreen(bool on);
   void onSettingsClicked();
@@ -94,13 +96,14 @@ public slots:
   void onZoomIn();
   void onZoomOut();
   void showZoomWarningIfNeeded();
-  void updateZoomLabel(double );
+  void updateZoomLabel(double);
   void onFiltersSelectionModeToggled(bool);
   void onPreviewCheckBoxToggled(bool);
 
-protected:
+  void onFilterSelectionChanged();
 
-  void timerEvent(QTimerEvent*);
+protected:
+  void timerEvent(QTimerEvent *);
   void closeEvent(QCloseEvent * e);
   void showEvent(QShowEvent *);
   void resizeEvent(QResizeEvent *);
@@ -109,10 +112,8 @@ protected:
   void showUpdateErrors();
   void makeConnections();
   void processImage();
-  QString faveUniqueName(const QString & name, QStandardItem * toBeIgnored = nullptr);
-  void activateFilter(QModelIndex index, bool resetZoom);
+  void activateFilter(bool resetZoom);
   void setNoFilter();
-  FiltersTreeAbstractFilterItem * selectedFilterItem();
   void setPreviewPosition(PreviewPosition position);
   QImage buildPreviewImage(const cimg_library::CImgList<gmic_pixel_type> & images);
 
@@ -120,50 +121,37 @@ protected:
 
 private slots:
 
-  void onFiltersTreeItemChanged(QStandardItem *);
   void onAbortedThreadFinished();
 
 private:
-
   bool filtersSelectionMode();
   void clearMessage();
   void showMessage(QString text, int ms = 2000);
   void setIcons();
   bool confirmAbortProcessingOnCloseRequest();
-  enum ModelType { FullModel, SelectionModel };
-  FiltersTreeFolderItem * faveFolder( ModelType modelType );
-  FiltersTreeFaveItem * findFave( const QString & hash, ModelType modelType );
-  FiltersTreeFilterItem * findFilter( const QString & hash, ModelType modelType );
-  FiltersTreeFilterItem * findFilter( const QString & hash );
-  FiltersTreeAbstractFilterItem * currentTreeIndexToAbstractFilter( QModelIndex index );
-  void addFaveFolder();
-  void removeFaveFolder();
-  void loadFaves(bool withVisibility);
-  bool importFaves();
-  void saveFaves();
+  enum ModelType
+  {
+    FullModel,
+    SelectionModel
+  };
+  bool askUserForGTKFavesImport();
   void buildFiltersTree();
 
-  void backupExpandedFoldersPaths();
-  void expandedFolderPaths(QStandardItem * item, QStringList & list);
-  void restoreExpandedFolders();
-  void restoreExpandedFolders(QStandardItem * item);
+  enum ProcessingAction
+  {
+    NoAction,
+    OkAction,
+    CloseAction,
+    ApplyAction
+  };
 
-  QStringList _expandedFoldersPaths;
-
-  QString treeIndexToPath(const QModelIndex );
-  QModelIndex treePathToIndex(const QString path);
-  QModelIndex treePathToIndex(const QString path, QStandardItem *);
-
-  enum ProcessingAction { NoAction, OkAction, CloseAction, ApplyAction };
-
-  Ui::MainWindow *ui;
+  Ui::MainWindow * ui;
   QStandardItemModel _filtersTreeModel;
   QStandardItemModel _filtersTreeModelSelection;
   QStandardItemModel * _currentFiltersTreeModel;
-  FiltersTreeAbstractFilterItem * _selectedAbstractFilterItem;
   cimg_library::CImgList<float> * _gmicImages;
   FilterThread * _filterThread;
-  QList<FilterThread*> _unfinishedAbortedThreads;
+  QList<FilterThread *> _unfinishedAbortedThreads;
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
   static const int MINIMAL_SEARCH_LENGTH = 1;
@@ -178,9 +166,6 @@ private:
   QString _lastFilterName;
   GmicQt::OutputMessageMode _lastAppliedCommandOutputMessageMode;
 
-  QList<StoredFave> _importedFaves;
-  QList<FiltersTreeFaveItem*> _hiddenFaves;
-
   QIcon _expandIcon;
   QIcon _collapseIcon;
   QIcon * _expandCollapseIcon;
@@ -191,8 +176,9 @@ private:
   unsigned int _previewRandomSeed;
 
   static const QString FilterTreePathSeparator;
-  QVector<QWidget*> _filterUpdateWidgets;
+  QVector<QWidget *> _filterUpdateWidgets;
+  FiltersPresenter * _filtersPresenter;
+  bool _gtkFavesShouldBeImported;
 };
-
 
 #endif // _GMIC_QT_MAINWINDOW_H_

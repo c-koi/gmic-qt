@@ -22,228 +22,21 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "GmicStdlibParser.h"
-#include "Common.h"
 #include <QDebug>
 #include <QFile>
 #include <QStringList>
 #include <QList>
-#include <QVector>
-#include <QList>
 #include <QString>
-#include <QRegExp>
-#include <QBuffer>
-#include <QTreeView>
-#include <QStandardItem>
-#include "FiltersTreeAbstractItem.h"
-#include "FiltersTreeFolderItem.h"
-#include "FiltersTreeFilterItem.h"
-#include "FiltersVisibilityMap.h"
 #include "gmic.h"
+#include "Common.h"
+#include "GmicStdlibParser.h"
+
+// TODO : Change name of this class!
 
 QByteArray GmicStdLibParser::GmicStdlib;
 
 GmicStdLibParser::GmicStdLibParser()
 {
-}
-
-void GmicStdLibParser::buildFiltersTree(QStandardItemModel & model, bool withVisibility)
-{
-  if ( GmicStdlib.isEmpty() ) {
-    loadStdLib();
-  }
-  QBuffer stdlib(&GmicStdlib);
-  stdlib.open(QBuffer::ReadOnly);
-  QList<QStandardItem*> treeFoldersStack;
-  QList<QString> filterPath;
-
-  model.setHorizontalHeaderItem(0,new QStandardItem(QObject::tr("Available filters")));
-  if ( withVisibility ) {
-    model.setHorizontalHeaderItem(1,new QStandardItem(QObject::tr("Visible")));
-  }
-  treeFoldersStack.push_back(model.invisibleRootItem());
-
-  QString language;
-  QList<QString> languages = QLocale().uiLanguages();
-  if ( languages.size() ) {
-    language = languages.front().split("-").front();
-  } else {
-    language = "void";
-  }
-  if ( ! GmicStdlib.contains(QString("#@gui_%1").arg(language).toLocal8Bit()) ) {
-    language = "en";
-  }
-
-  // Use _en locale if not localization for the language is found.
-
-  QString buffer = stdlib.readLine(4096);
-  QString line;
-
-  QRegExp folderRegexpNoLanguage("^..gui[ ][^:]+$");
-  QRegExp folderRegexpLanguage( QString("^..gui_%1[ ][^:]+$").arg(language));
-
-  QRegExp filterRegexpNoLanguage("^..gui[ ][^:]+[ ]*:.*");
-  QRegExp filterRegexpLanguage( QString("^..gui_%1[ ][^:]+[ ]*:.*").arg(language));
-
-  int maxDepth = 1;
-  const QChar WarningPrefix('!');
-  do {
-    line = buffer.trimmed();
-    if ( line.startsWith("#@gui") ) {
-      if ( folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line) ) {
-        //
-        // A folder
-        //
-        QString folderName = line;
-        folderName.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "" );
-
-        while ( folderName.startsWith("_") && (treeFoldersStack.size() > 1) ) {
-          folderName.remove(0,1);
-          treeFoldersStack.pop_back();
-          filterPath.pop_back();
-        }
-        while ( folderName.startsWith("_") ) {
-          folderName.remove(0,1);
-        }
-        const bool warning = folderName.startsWith(WarningPrefix);
-        if ( warning ) {
-          folderName.remove(0,1);
-        }
-        if ( ! folderName.isEmpty() ) {
-          // Does this folder already exists
-          FiltersTreeFolderItem * folderItem = 0;
-          {
-            QStandardItem * parentFolder = treeFoldersStack.last();
-            int n = parentFolder->rowCount();
-            for (int i = 0; i < n && !folderItem; ++i) {
-              FiltersTreeFolderItem * folder  = dynamic_cast<FiltersTreeFolderItem*>(parentFolder->child(i));
-              if (folder && folder->name() == folderName) {
-                folderItem = folder;
-              }
-            }
-          }
-          if ( ! folderItem ) {
-            // Not found, so create and append it
-            folderItem = new FiltersTreeFolderItem(folderName,FiltersTreeFolderItem::NormalFolder);
-            folderItem->setWarningFlag(warning);
-
-            // Add visibility checkbox, if needed
-            if ( withVisibility && folderItem->plainText() != QString("About") ) {
-              addStandardItemWithCheckBox(treeFoldersStack.back(),folderItem,true);
-            } else {
-              // Invisible and empty folders will be removed later
-              treeFoldersStack.last()->appendRow(folderItem);
-            }
-          }
-          treeFoldersStack.push_back(folderItem);
-          filterPath.push_back(folderName);
-        }
-        maxDepth = std::max( maxDepth, treeFoldersStack.size() );
-        buffer = stdlib.readLine(4096);
-      } else if ( filterRegexpNoLanguage.exactMatch(line) || filterRegexpLanguage.exactMatch(line) ) {
-        //
-        // A filter
-        //
-        QString filterName = line;
-        filterName.replace( QRegExp("[ ]*:.*$"), "" );
-        filterName.replace( QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "" );
-
-        const bool warning = filterName.startsWith(WarningPrefix);
-        if ( warning ) {
-          filterName.remove(0,1);
-        }
-
-        QString filterCommands = line;
-        filterCommands.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"),"");
-
-        QList<QString> commands = filterCommands.split(",");
-
-        QString filterCommand = commands[0].trimmed();
-        if ( commands.size() == 0) {
-          commands.push_back("_none_");
-        }
-        if ( commands.size() == 1) {
-          commands.push_back(commands.front());
-        }
-        QList<QString> preview = commands[1].trimmed().split("(");
-        float previewFactor = GmicQt::PreviewFactorAny;
-        bool accurateIfZoomed = true;
-        if ( preview.size() >= 2 ) {
-          if (preview[1].endsWith("+")) {
-            accurateIfZoomed = true;
-            preview[1].chop(1);
-          } else {
-            accurateIfZoomed = false;
-          }
-          previewFactor = preview[1].replace(QRegExp("\\).*"),"").toFloat();
-        }
-        QString filterPreviewCommand = preview[0].trimmed();
-        FiltersTreeFilterItem * filterItem = new FiltersTreeFilterItem(filterName,
-                                                                       filterCommand,
-                                                                       filterPreviewCommand,
-                                                                       previewFactor,
-                                                                       accurateIfZoomed);
-        filterItem->setWarningFlag(warning);
-
-        // Add visibility checkbox, if needed
-        bool filterIsVisible = FiltersVisibilityMap::filterIsVisible(filterItem->hash());
-        FiltersTreeFolderItem * parentFolder = dynamic_cast<FiltersTreeFolderItem*>(treeFoldersStack.back());
-        bool isInAboutFolder = (parentFolder && (parentFolder->plainText() == QString("About")));
-        if ( withVisibility && !isInAboutFolder ) {
-          addStandardItemWithCheckBox(treeFoldersStack.back(),filterItem,filterIsVisible);
-        } else {
-          if ( filterIsVisible ) {
-            treeFoldersStack.back()->appendRow(filterItem);
-          }
-        }
-
-        QString start = line;
-        start.replace(QRegExp(" .*")," :");
-
-        // Read parameters
-        QString parameters;
-        do {
-          buffer = stdlib.readLine(4096);
-          if ( buffer.startsWith(start) ) {
-            QString parameterLine = buffer;
-            parameterLine.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
-            parameters += parameterLine;
-          }
-        } while ( (buffer.startsWith(start)
-                   || buffer.startsWith("#")
-                   || (buffer.trimmed().isEmpty() && ! stdlib.atEnd()))
-                  && !folderRegexpNoLanguage.exactMatch(buffer)
-                  && !folderRegexpLanguage.exactMatch(buffer)
-                  && !filterRegexpNoLanguage.exactMatch(buffer)
-                  && !filterRegexpLanguage.exactMatch(buffer));
-        filterItem->setParameters(parameters);
-
-        if ( !withVisibility && !filterIsVisible ) {
-          delete filterItem;
-        }
-      } else {
-        buffer = stdlib.readLine(4096);
-      }
-    } else {
-      buffer = stdlib.readLine(4096);
-    }
-  } while ( ! buffer.isEmpty() );
-
-  int count = FiltersTreeAbstractItem::countLeaves(model.invisibleRootItem());
-  model.setHorizontalHeaderItem(0,new QStandardItem(QString(QObject::tr("Available filters (%1)")).arg(count)));
-}
-
-void GmicStdLibParser::saveFiltersVisibility(QStandardItem * item)
-{
-  FiltersTreeAbstractFilterItem * filter = dynamic_cast<FiltersTreeAbstractFilterItem*>(item);
-  if ( filter ) {
-    FiltersVisibilityMap::setVisibility(filter->hash(),filter->isVisible());
-    return;
-  }
-  int rows = item->rowCount();
-  for (int row = 0; row < rows; ++row) {
-    saveFiltersVisibility(item->child(row));
-  }
 }
 
 void
@@ -268,17 +61,4 @@ QStringList GmicStdLibParser::parseStatus(QString str)
   list[0].replace(QChar(24),QString());
   list.back().replace(QChar(25),QString());
   return list;
-}
-
-void GmicStdLibParser::addStandardItemWithCheckBox(QStandardItem * folder, FiltersTreeAbstractItem * item, bool itemIsVisible)
-{
-  QList<QStandardItem*> items;
-  items.push_back(item);
-  QStandardItem * checkBox = new QStandardItem;
-  checkBox->setCheckable(true);
-  checkBox->setEditable(false);
-  checkBox->setCheckState(itemIsVisible?Qt::Checked:Qt::Unchecked);
-  item->setVisibilityItem(checkBox);
-  items.push_back(checkBox);
-  folder->appendRow(items);
 }

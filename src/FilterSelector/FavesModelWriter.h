@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file ClickableLabel.cpp
+ *  @file FavesModelWriter.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,18 +22,20 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ClickableLabel.h"
-#include <QMouseEvent>
+#ifndef _GMIC_QT_FAVESMODELWRITER_H_
+#define _GMIC_QT_FAVESMODELWRITER_H_
+#include <QJsonObject>
+#include "FilterSelector/FavesModel.h"
 
-ClickableLabel::ClickableLabel(QWidget *parent)
-  : QLabel(parent)
-{
+class QByteArray;
 
-}
-
-void ClickableLabel::mousePressEvent(QMouseEvent *e)
-{
-  if ( e->buttons() & Qt::LeftButton ) {
-    emit clicked();
-  }
-}
+class FavesModelWriter {
+public:
+  FavesModelWriter(const FavesModel & model);
+  ~FavesModelWriter();
+  void writeFaves();
+private:
+  static QJsonObject faveToJsonObject(const FavesModel::Fave & fave);
+  const FavesModel & _model;
+};
+#endif // _GMIC_QT_FAVESMODELWRITER_H_
