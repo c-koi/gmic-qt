@@ -58,11 +58,11 @@ endforeach()
 #
 # Ensure that gmic and CImg are the same version
 #
-execute_process(COMMAND grep "cimg_version "  ${GMIC_ABSOLUTE_PATH}/CImg.h  OUTPUT_VARIABLE CIMG_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+file(STRINGS ${GMIC_ABSOLUTE_PATH}/CImg.h CIMG_VERSION REGEX "cimg_version ")
 string(REGEX REPLACE ".*cimg_version " "" CIMG_VERSION ${CIMG_VERSION})
 message("CImg version is[" ${CIMG_VERSION} "]")
 
-execute_process(COMMAND grep "gmic_version "  ${GMIC_ABSOLUTE_PATH}/gmic.h  OUTPUT_VARIABLE GMIC_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+file(STRINGS ${GMIC_ABSOLUTE_PATH}/gmic.h GMIC_VERSION REGEX "gmic_version ")
 string(REGEX REPLACE ".*gmic_version " "" GMIC_VERSION ${GMIC_VERSION})
 message("G'MIC version is[" ${GMIC_VERSION} "]")
 
