@@ -23,39 +23,32 @@
  *
  */
 #include "ProgressInfoWindow.h"
-#include "ui_progressinfowindow.h"
 #include <QCloseEvent>
-#include <QMessageBox>
 #include <QDesktopWidget>
+#include <QMessageBox>
 #include <QSettings>
 #include "Common.h"
-#include "GmicStdlibParser.h"
 #include "FilterThread.h"
+#include "GmicStdlibParser.h"
 #include "HeadlessProcessor.h"
 #include "Updater.h"
+#include "ui_progressinfowindow.h"
 #include "gmic.h"
 
-ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) :
-  QMainWindow(0),
-  ui(new Ui::ProgressInfoWindow),
-  _processor(processor)
+ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWindow(0), ui(new Ui::ProgressInfoWindow), _processor(processor)
 {
   ui->setupUi(this);
   setWindowTitle("G'MIC-Qt Plug-in progression");
   processor->setProgressWindowFlag(true);
 
   ui->label->setText(QString("%1").arg(processor->filterName()));
-  ui->progressBar->setRange(0,100);
+  ui->progressBar->setRange(0, 100);
   ui->progressBar->setValue(100);
   ui->info->setText("");
-  connect(processor,SIGNAL(singleShotTimeout()),
-          this,SLOT(show()));
-  connect(ui->pbCancel,SIGNAL(clicked(bool)),
-          this,SLOT(onCancelClicked(bool)));
-  connect(processor,SIGNAL(progression(float,int,ulong)),
-          this,SLOT(onProgress(float,int,ulong)));
-  connect(processor,SIGNAL(done(QString)),
-          this,SLOT(onProcessingFinished(QString)));
+  connect(processor, SIGNAL(singleShotTimeout()), this, SLOT(show()));
+  connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked(bool)));
+  connect(processor, SIGNAL(progression(float, int, ulong)), this, SLOT(onProgress(float, int, ulong)));
+  connect(processor, SIGNAL(done(QString)), this, SLOT(onProcessingFinished(QString)));
   _isShown = false;
 }
 
@@ -77,7 +70,7 @@ void ProgressInfoWindow::closeEvent(QCloseEvent * event)
   event->accept();
 }
 
-void ProgressInfoWindow::onCancelClicked(bool )
+void ProgressInfoWindow::onCancelClicked(bool)
 {
   ui->pbCancel->setEnabled(false);
   _processor->cancel();
@@ -85,7 +78,7 @@ void ProgressInfoWindow::onCancelClicked(bool )
 
 void ProgressInfoWindow::onProgress(float progress, int duration, unsigned long memory)
 {
-  if ( !_isShown ) {
+  if (!_isShown) {
     return;
   }
   if (progress >= 0) {
@@ -96,27 +89,27 @@ void ProgressInfoWindow::onProgress(float progress, int duration, unsigned long 
     ui->progressBar->setTextVisible(false);
     int value = ui->progressBar->value();
     value += 20;
-    if (value > 100 ) {
-      ui->progressBar->setValue( value - 100 );
+    if (value > 100) {
+      ui->progressBar->setValue(value - 100);
       ui->progressBar->setInvertedAppearance(!ui->progressBar->invertedAppearance());
     } else {
-      ui->progressBar->setValue( value  );
+      ui->progressBar->setValue(value);
     }
   }
   QString durationStr;
   if (duration >= 60000) {
     durationStr = QTime::fromMSecsSinceStartOfDay(duration).toString("HH:mm:ss");
   } else {
-    durationStr = QString(tr("%1 seconds")).arg(duration/1000);
+    durationStr = QString(tr("%1 seconds")).arg(duration / 1000);
   }
   QString memoryStr;
   unsigned long kiB = memory / 1024;
-  if ( kiB >= 1024 ) {
-    memoryStr = QString("%1 MiB").arg(kiB/1024);
+  if (kiB >= 1024) {
+    memoryStr = QString("%1 MiB").arg(kiB / 1024);
   } else {
     memoryStr = QString("%1 KiB").arg(kiB);
   }
-  if ( kiB ) {
+  if (kiB) {
     ui->info->setText(QString(tr("[Processing %1 | %2]")).arg(durationStr).arg(memoryStr));
   } else {
     ui->info->setText(QString(tr("[Processing %1]")).arg(durationStr));
@@ -126,7 +119,7 @@ void ProgressInfoWindow::onProgress(float progress, int duration, unsigned long 
 void ProgressInfoWindow::onProcessingFinished(QString errorMessage)
 {
   if (!errorMessage.isEmpty()) {
-    QMessageBox::warning(this,"Error",errorMessage,QMessageBox::Close);
+    QMessageBox::warning(this, "Error", errorMessage, QMessageBox::Close);
   }
   close();
 }

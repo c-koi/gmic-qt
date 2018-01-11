@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_FILTERSPRESENTER_H_
 #define _GMIC_QT_FILTERSPRESENTER_H_
 #include <QObject>
-#include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FavesModel.h"
+#include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
 
 class QSettings;
@@ -34,9 +34,8 @@ class QSettings;
 class FiltersPresenter : public QObject {
   Q_OBJECT
 public:
-
   struct Filter {
-    QString name; // TODO : Is this one ever used?
+    QString name;
     QString plainTextName;
     QString command;
     QString previewCommand;
@@ -90,7 +89,6 @@ private slots:
   void onFilterChanged(QString hash);
 
 private:
-
   void setCurrentFilter(QString hash);
 
   FiltersModel _filtersModel;

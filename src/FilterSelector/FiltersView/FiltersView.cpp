@@ -22,25 +22,22 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterSelector/FiltersView/FiltersView.h"
 #include <QDebug>
 #include <QLineEdit>
-#include <QStringList>
-#include <QStandardItem>
 #include <QSettings>
+#include <QStandardItem>
+#include <QStringList>
 #include "Common.h"
-#include "FiltersVisibilityMap.h"
-#include "FilterSelector/FiltersView/FiltersView.h"
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
 #include "FilterSelector/FiltersView/FilterTreeItemDelegate.h"
+#include "FiltersVisibilityMap.h"
 #include "ui_filtersview.h"
 
 const QString FiltersView::FilterTreePathSeparator("\t");
 
-FiltersView::FiltersView(QWidget * parent)
-  : QWidget(parent),
-    ui(new Ui::FiltersView),
-    _isInSelectionMode(false)
+FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::FiltersView), _isInSelectionMode(false)
 {
   ui->setupUi(this);
   ui->treeView->setModel(&_emptyModel);
@@ -49,16 +46,12 @@ FiltersView::FiltersView(QWidget * parent)
   FilterTreeItemDelegate * delegate = new FilterTreeItemDelegate(ui->treeView);
   ui->treeView->setItemDelegate(delegate);
   ui->treeView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
-  ui->treeView->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+  ui->treeView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-  connect(delegate,SIGNAL(commitData(QWidget*)),
-          this,SLOT(onRenameFaveFinished(QWidget*)));
-  connect(ui->treeView,SIGNAL(returnKeyPressed()),
-          this,SLOT(onReturnKeyPressedInFiltersTree()));
-  connect(ui->treeView,SIGNAL(clicked(QModelIndex)),
-          this,SLOT(onItemClicked(QModelIndex)));
-  connect(&_model,SIGNAL(itemChanged(QStandardItem*)),
-          this,SLOT(onItemChanged(QStandardItem*)));
+  connect(delegate, SIGNAL(commitData(QWidget *)), this, SLOT(onRenameFaveFinished(QWidget *)));
+  connect(ui->treeView, SIGNAL(returnKeyPressed()), this, SLOT(onReturnKeyPressedInFiltersTree()));
+  connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
+  connect(&_model, SIGNAL(itemChanged(QStandardItem *)), this, SLOT(onItemChanged(QStandardItem *)));
 }
 
 FiltersView::~FiltersView()
@@ -70,7 +63,7 @@ void FiltersView::enableModel()
 {
   if (_isInSelectionMode) {
     uncheckFullyUncheckedFolders();
-    _model.setHorizontalHeaderItem(1,new QStandardItem(QObject::tr("Visible"))); // TODO : factorize
+    _model.setHorizontalHeaderItem(1, new QStandardItem(QObject::tr("Visible")));
     _model.setColumnCount(2);
   }
   ui->treeView->setModel(&_model);
@@ -80,8 +73,8 @@ void FiltersView::enableModel()
     QFont font;
     QFontMetrics fm(font);
     int w = fm.width(title);
-    ui->treeView->setColumnWidth(0, ui->treeView->width() - 2 * w );
-    ui->treeView->setColumnWidth(1,  w);
+    ui->treeView->setColumnWidth(0, ui->treeView->width() - 2 * w);
+    ui->treeView->setColumnWidth(1, w);
   }
 }
 
@@ -92,7 +85,7 @@ void FiltersView::disableModel()
 
 void FiltersView::createFolder(const QList<QString> & path)
 {
-  createFolder(_model.invisibleRootItem(),path);
+  createFolder(_model.invisibleRootItem(), path);
 }
 
 void FiltersView::addFilter(const QString & text, const QString & hash, const QList<QString> path, bool warning)
@@ -102,14 +95,14 @@ void FiltersView::addFilter(const QString & text, const QString & hash, const QL
     return;
   }
   QStandardItem * folder = getFolderFromPath(path);
-  if ( !folder ) {
-    folder = createFolder(_model.invisibleRootItem(),path);
+  if (!folder) {
+    folder = createFolder(_model.invisibleRootItem(), path);
   }
   FilterTreeItem * item = new FilterTreeItem(text);
   item->setHash(hash);
   item->setWarningFlag(warning);
   if (_isInSelectionMode) {
-    addStandardItemWithCheckbox(folder,item);
+    addStandardItemWithCheckbox(folder, item);
     item->setVisibility(filterIsVisible);
   } else {
     folder->appendRow(item);
@@ -122,7 +115,7 @@ void FiltersView::addFave(const QString & text, const QString & hash)
   if (!_isInSelectionMode && !faveIsVisible) {
     return;
   }
-  if ( !_faveFolder ) {
+  if (!_faveFolder) {
     createFaveFolder();
   }
   FilterTreeItem * item = new FilterTreeItem(text);
@@ -130,7 +123,7 @@ void FiltersView::addFave(const QString & text, const QString & hash)
   item->setWarningFlag(false);
   item->setFaveFlag(true);
   if (_isInSelectionMode) {
-    addStandardItemWithCheckbox(_faveFolder,item);
+    addStandardItemWithCheckbox(_faveFolder, item);
     item->setVisibility(faveIsVisible);
   } else {
     _faveFolder->appendRow(item);
@@ -144,8 +137,7 @@ void FiltersView::selectFave(const QString & hash)
     FilterTreeItem * fave = findFave(hash);
     if (fave) {
       ui->treeView->setCurrentIndex(fave->index());
-      ui->treeView->scrollTo(fave->index(),
-                             QAbstractItemView::PositionAtCenter);
+      ui->treeView->scrollTo(fave->index(), QAbstractItemView::PositionAtCenter);
     }
   }
 }
@@ -155,11 +147,10 @@ void FiltersView::selectActualFilter(const QString & hash, const QList<QString> 
   QStandardItem * folder = getFolderFromPath(path);
   if (folder) {
     for (int row = 0; row < folder->rowCount(); ++row) {
-      FilterTreeItem * filter = dynamic_cast<FilterTreeItem*>(folder->child(row));
+      FilterTreeItem * filter = dynamic_cast<FilterTreeItem *>(folder->child(row));
       if (filter && (filter->hash() == hash)) {
         ui->treeView->setCurrentIndex(filter->index());
-        ui->treeView->scrollTo(filter->index(),
-                               QAbstractItemView::PositionAtCenter);
+        ui->treeView->scrollTo(filter->index(), QAbstractItemView::PositionAtCenter);
         return;
       }
     }
@@ -170,7 +161,7 @@ void FiltersView::removeFave(const QString & hash)
 {
   FilterTreeItem * fave = findFave(hash);
   if (fave) {
-    _model.removeRow(fave->row(),fave->index().parent());
+    _model.removeRow(fave->row(), fave->index().parent());
     if (_faveFolder->rowCount() == 0) {
       removeFaveFolder();
     }
@@ -180,7 +171,7 @@ void FiltersView::removeFave(const QString & hash)
 void FiltersView::clear()
 {
   removeFaveFolder();
-  _model.invisibleRootItem()->removeRows(0,_model.invisibleRootItem()->rowCount());
+  _model.invisibleRootItem()->removeRows(0, _model.invisibleRootItem()->rowCount());
   _model.setColumnCount(1);
   _cachedFolder = _model.invisibleRootItem();
   _cachedFolderPath.clear();
@@ -198,9 +189,7 @@ void FiltersView::sortFaves()
   }
 }
 
-void FiltersView::updateFaveItem(const QString & currentHash,
-                                 const QString & newHash,
-                                 const QString & newName)
+void FiltersView::updateFaveItem(const QString & currentHash, const QString & newHash, const QString & newName)
 {
   FilterTreeItem * item = findFave(currentHash);
   if (!item) {
@@ -212,10 +201,7 @@ void FiltersView::updateFaveItem(const QString & currentHash,
 
 void FiltersView::setHeader(const QString & header)
 {
-  _model.setHorizontalHeaderItem(0,new QStandardItem(header));
-  if (_isInSelectionMode) {
-    _model.setHorizontalHeaderItem(1,new QStandardItem(QObject::tr("Visible")));
-  }
+  _model.setHorizontalHeaderItem(0, new QStandardItem(header));
 }
 
 FilterTreeItem * FiltersView::selectedItem() const
@@ -223,17 +209,17 @@ FilterTreeItem * FiltersView::selectedItem() const
   // Get filter item even if it is the checkbox which is actually selected
   QModelIndex index = ui->treeView->currentIndex();
   QStandardItem * item = _model.itemFromIndex(index);
-  if ( item ) {
+  if (item) {
     int row = index.row();
     QStandardItem * parentFolder = item->parent();
     // parent is 0 for top level items
-    if ( !parentFolder ) {
+    if (!parentFolder) {
       parentFolder = _model.invisibleRootItem();
     }
-    QStandardItem * leftItem = parentFolder->child(row,0);
-    if ( leftItem ) {
-      FilterTreeItem * item = dynamic_cast<FilterTreeItem*>(leftItem);
-      if ( item ) {
+    QStandardItem * leftItem = parentFolder->child(row, 0);
+    if (leftItem) {
+      FilterTreeItem * item = dynamic_cast<FilterTreeItem *>(leftItem);
+      if (item) {
         return item;
       }
     }
@@ -253,7 +239,7 @@ void FiltersView::preserveExpandedFolders()
     return;
   }
   _expandedFolderPaths.clear();
-  preserveExpandedFolders(_model.invisibleRootItem(),_expandedFolderPaths);
+  preserveExpandedFolders(_model.invisibleRootItem(), _expandedFolderPaths);
 }
 
 void FiltersView::restoreExpandedFolders()
@@ -269,8 +255,7 @@ void FiltersView::loadSettings(const QSettings & settings)
   FiltersVisibilityMap::load();
   // TODO : Check this
   // ??? This will not be overwritten by the first call of backupExpandedFoldersPaths()
-  _expandedFolderPaths = settings.value("Config/ExpandedFolders",
-                                        QStringList()).toStringList();
+  _expandedFolderPaths = settings.value("Config/ExpandedFolders", QStringList()).toStringList();
 }
 
 void FiltersView::saveSettings(QSettings & settings)
@@ -279,7 +264,7 @@ void FiltersView::saveSettings(QSettings & settings)
     saveFiltersVisibility(_model.invisibleRootItem());
   }
   preserveExpandedFolders();
-  settings.setValue("Config/ExpandedFolders",QStringList(_expandedFolderPaths));
+  settings.setValue("Config/ExpandedFolders", QStringList(_expandedFolderPaths));
   FiltersVisibilityMap::save();
 }
 
@@ -290,7 +275,7 @@ void FiltersView::enableSelectionMode()
 
 void FiltersView::disableSelectionMode()
 {
-  _model.setHorizontalHeaderItem(1,nullptr);
+  _model.setHorizontalHeaderItem(1, nullptr);
   _isInSelectionMode = false;
   saveFiltersVisibility(_model.invisibleRootItem());
 }
@@ -309,9 +294,9 @@ void FiltersView::restoreExpandedFolders(QStandardItem * folder)
 {
   int rows = folder->rowCount();
   for (int row = 0; row < rows; ++row) {
-    FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder*>(folder->child(row));
-    if ( subFolder ) {
-      if ( _expandedFolderPaths.contains(subFolder->path().join(FilterTreePathSeparator)) ) {
+    FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder *>(folder->child(row));
+    if (subFolder) {
+      if (_expandedFolderPaths.contains(subFolder->path().join(FilterTreePathSeparator))) {
         ui->treeView->expand(subFolder->index());
       } else {
         ui->treeView->collapse(subFolder->index());
@@ -348,26 +333,26 @@ void FiltersView::expandFaveFolder()
 
 void FiltersView::onRenameFaveFinished(QWidget * editor)
 {
-  QLineEdit * lineEdit = dynamic_cast<QLineEdit*>(editor);
-  Q_ASSERT_X(lineEdit,"Rename Fave","Editor is not a QLineEdit!");
+  QLineEdit * lineEdit = dynamic_cast<QLineEdit *>(editor);
+  Q_ASSERT_X(lineEdit, "Rename Fave", "Editor is not a QLineEdit!");
   FilterTreeItem * item = selectedItem();
-  if ( !item ) {
+  if (!item) {
     return;
   }
-  emit faveRenamed(item->hash(),lineEdit->text());
+  emit faveRenamed(item->hash(), lineEdit->text());
 }
 
 void FiltersView::onReturnKeyPressedInFiltersTree()
 {
   FilterTreeItem * item = selectedItem();
-  if ( item ) {
+  if (item) {
     emit filterSelected(item->hash());
   } else {
     QModelIndex index = ui->treeView->currentIndex();
     QStandardItem * item = _model.itemFromIndex(index);
-    FilterTreeFolder * folder = item ? dynamic_cast<FilterTreeFolder*>(item) : nullptr;
-    if ( folder ) {
-      if ( ui->treeView->isExpanded(index) ) {
+    FilterTreeFolder * folder = item ? dynamic_cast<FilterTreeFolder *>(item) : nullptr;
+    if (folder) {
+      if (ui->treeView->isExpanded(index)) {
         ui->treeView->collapse(index);
       } else {
         ui->treeView->expand(index);
@@ -377,30 +362,30 @@ void FiltersView::onReturnKeyPressedInFiltersTree()
   }
 }
 
-void FiltersView::onItemClicked(QModelIndex )
+void FiltersView::onItemClicked(QModelIndex)
 {
   FilterTreeItem * item = selectedItem();
-  if ( item ) {
+  if (item) {
     emit filterSelected(item->hash());
   } else {
     emit filterSelected(QString());
   }
 }
 
-void FiltersView::onItemChanged(QStandardItem *item)
+void FiltersView::onItemChanged(QStandardItem * item)
 {
-  if ( ! item->isCheckable() ) {
+  if (!item->isCheckable()) {
     return;
   }
   int row = item->index().row();
   QStandardItem * parentFolder = item->parent();
-  if ( !parentFolder ) {
+  if (!parentFolder) {
     // parent is 0 for top level items
     parentFolder = _model.invisibleRootItem();
   }
   QStandardItem * leftItem = parentFolder->child(row);
-  FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder*>(leftItem);
-  if ( folder ) {
+  FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder *>(leftItem);
+  if (folder) {
     folder->applyVisibilityStatusToFolderContents();
   }
   // Force an update of the view by triggering a call of
@@ -412,10 +397,10 @@ void FiltersView::uncheckFullyUncheckedFolders(QStandardItem * folder)
 {
   int rows = folder->rowCount();
   for (int row = 0; row < rows; ++row) {
-    FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder*>(folder->child(row));
-    if ( subFolder ) {
+    FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder *>(folder->child(row));
+    if (subFolder) {
       uncheckFullyUncheckedFolders(subFolder);
-      if ( subFolder->isFullyUnchecked() ) {
+      if (subFolder->isFullyUnchecked()) {
         subFolder->setVisibility(false);
       }
     }
@@ -426,12 +411,12 @@ void FiltersView::preserveExpandedFolders(QStandardItem * folder, QList<QString>
 {
   int rows = folder->rowCount();
   for (int row = 0; row < rows; ++row) {
-    FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder*>(folder->child(row));
+    FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder *>(folder->child(row));
     if (subFolder) {
       if (ui->treeView->isExpanded(subFolder->index())) {
         list.push_back(subFolder->path().join(FilterTreePathSeparator));
       }
-      preserveExpandedFolders(subFolder,list);
+      preserveExpandedFolders(subFolder, list);
     }
   }
 }
@@ -449,17 +434,16 @@ void FiltersView::createFaveFolder()
 
 void FiltersView::removeFaveFolder()
 {
-  if ( !_faveFolder ) {
+  if (!_faveFolder) {
     return;
   }
   _model.invisibleRootItem()->removeRow(_faveFolder->row());
   _faveFolder = 0;
 }
 
-void FiltersView::addStandardItemWithCheckbox(QStandardItem * folder,
-                                              FilterTreeAbstractItem * item)
+void FiltersView::addStandardItemWithCheckbox(QStandardItem * folder, FilterTreeAbstractItem * item)
 {
-  QList<QStandardItem*> items;
+  QList<QStandardItem *> items;
   items.push_back(item);
   QStandardItem * checkBox = new QStandardItem;
   checkBox->setCheckable(true);
@@ -481,44 +465,42 @@ QStandardItem * FiltersView::getFolderFromPath(QList<QString> path)
 
 QStandardItem * FiltersView::createFolder(QStandardItem * parent, QList<QString> path)
 {
-  Q_ASSERT_X(parent,"FiltersView", "Create folder path in null parent");
+  Q_ASSERT_X(parent, "FiltersView", "Create folder path in null parent");
   if (path.size() == 0) {
     return parent;
   } else {
     // Look for already existing base folder in parent
     for (int row = 0; row < parent->rowCount(); ++row) {
-      FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder*>(parent->child(row));
-      if (folder
-          && (folder->text() == FilterTreeAbstractItem::removeWarningPrefix(path.front()))) {
+      FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder *>(parent->child(row));
+      if (folder && (folder->text() == FilterTreeAbstractItem::removeWarningPrefix(path.front()))) {
         path.pop_front();
-        return createFolder(folder,path);
+        return createFolder(folder, path);
       }
     }
     // Folder does not exist, we create it
     FilterTreeFolder * folder = new FilterTreeFolder(path.front());
     path.pop_front();
     if (_isInSelectionMode) {
-      addStandardItemWithCheckbox(parent,folder);
+      addStandardItemWithCheckbox(parent, folder);
       folder->setVisibility(true);
     } else {
       parent->appendRow(folder);
     }
-    return createFolder(folder,path);
+    return createFolder(folder, path);
   }
 }
 
 QStandardItem * FiltersView::getFolderFromPath(QStandardItem * parent, QList<QString> path)
 {
-  Q_ASSERT_X(parent,"FiltersView", "Get folder path from null parent");
+  Q_ASSERT_X(parent, "FiltersView", "Get folder path from null parent");
   if (path.isEmpty()) {
     return parent;
   }
   for (int row = 0; row < parent->rowCount(); ++row) {
-    FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder*>(parent->child(row));
-    if (folder
-        && (folder->text() == FilterTreeAbstractItem::removeWarningPrefix(path.front()))) {
+    FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder *>(parent->child(row));
+    if (folder && (folder->text() == FilterTreeAbstractItem::removeWarningPrefix(path.front()))) {
       path.pop_front();
-      return getFolderFromPath(folder,path);
+      return getFolderFromPath(folder, path);
     }
   }
   return 0;
@@ -526,10 +508,9 @@ QStandardItem * FiltersView::getFolderFromPath(QStandardItem * parent, QList<QSt
 
 void FiltersView::saveFiltersVisibility(QStandardItem * item)
 {
-  FilterTreeItem* filterItem = dynamic_cast<FilterTreeItem*>(item);
-  if ( filterItem ) {
-    FiltersVisibilityMap::setVisibility(filterItem->hash(),
-                                        filterItem->isVisible());
+  FilterTreeItem * filterItem = dynamic_cast<FilterTreeItem *>(item);
+  if (filterItem) {
+    FiltersVisibilityMap::setVisibility(filterItem->hash(), filterItem->isVisible());
     return;
   }
   int rows = item->rowCount();
@@ -542,7 +523,7 @@ FilterTreeItem * FiltersView::findFave(const QString & hash)
 {
   const int count = _faveFolder->rowCount();
   for (int faveIndex = 0; faveIndex < count; ++faveIndex) {
-    FilterTreeItem * item = static_cast<FilterTreeItem*>(_faveFolder->child(faveIndex));
+    FilterTreeItem * item = static_cast<FilterTreeItem *>(_faveFolder->child(faveIndex));
     if (item->hash() == hash) {
       return item;
     }

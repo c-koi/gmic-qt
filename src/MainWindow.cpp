@@ -309,10 +309,8 @@ void MainWindow::buildFiltersTree()
   _filtersPresenter->toggleSelectionMode(withVisibility);
   _filtersPresenter->applySearchCriterion(searchText);
 
-  // TODO : Remove empty folders
-  // restoreExpandedFolders();
+  // TODO : restoreExpandedFolders();
 
-  // TODO : Select previously selected filter (Done)
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     setNoFilter();
     ui->previewWidget->sendUpdateRequest();
@@ -364,10 +362,8 @@ void MainWindow::updateZoomLabel(double zoom)
 
 void MainWindow::onFiltersSelectionModeToggled(bool on)
 {
-  // TODO : Leave this or not?
   _filtersPresenter->toggleSelectionMode(on);
   _filtersPresenter->applySearchCriterion(ui->searchField->text());
-  // buildFiltersTree();
 }
 
 void MainWindow::onPreviewCheckBoxToggled(bool on)
@@ -1057,8 +1053,6 @@ void MainWindow::showEvent(QShowEvent * event)
   }
   _filtersPresenter->selectFilterFromHash(hash, false);
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
-    // Expand the fave folder
-    // TODO : Check that this is working
     _filtersPresenter->expandFaveFolder();
     ui->previewWidget->setPreviewFactor(GmicQt::PreviewFactorFullImage, true);
   } else {
@@ -1114,18 +1108,10 @@ void MainWindow::onAddFave()
     ParametersCache::setValues(faveHash, ui->filterParams->valueStringList());
     ParametersCache::setInputOutputState(faveHash, ui->inOutSelector->state());
   }
-
-  // TODO :  activateFilter(fave->index(),false);
 }
 void MainWindow::onRemoveFave()
 {
   _filtersPresenter->removeSelectedFave();
-  // TODO : Check this somewhere
-  //  if ( faveFolder(FullModel)->rowCount() == 0) {
-  //    removeFaveFolder();
-  //    ui->tbRemoveFave->setEnabled(false);
-  //    ui->tbRenameFave->setEnabled(false);
-  //  }
 }
 
 void MainWindow::onRenameFave()

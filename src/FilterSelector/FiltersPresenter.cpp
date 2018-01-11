@@ -129,7 +129,6 @@ void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues)
   size_t filterIndex = _filtersModel.getFilterIndexFromHash(_currentFilter.hash);
   if (filterIndex != FiltersModel::NoIndex) {
     const FiltersModel::Filter & filter = _filtersModel.getFilter(filterIndex);
-    SHOW("ADD A FILTER AS A FAVE");
     fave.setName(_favesModel.uniqueName(filter.name(), QString()));
     fave.setCommand(filter.command());
     fave.setPreviewCommand(filter.previewCommand());
@@ -138,9 +137,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues)
   } else {
     FavesModel::const_iterator faveIterator = _favesModel.findFaveFromHash(_currentFilter.hash);
     if (faveIterator != _favesModel.cend()) {
-      SHOW("ADD A FAVE AS A FAVE");
       const FavesModel::Fave & originalFave = *faveIterator;
-      SHOW(originalFave.toString());
       fave.setName(_favesModel.uniqueName(originalFave.name(), QString()));
       fave.setCommand(originalFave.command());
       fave.setPreviewCommand(originalFave.previewCommand());
@@ -261,12 +258,10 @@ void FiltersPresenter::onFaveRenamed(QString hash, QString newName)
   FavesModel::Fave fave = _favesModel.getFaveFromHash(hash);
   _favesModel.removeFave(hash);
   if (newName.isEmpty()) {
-    QString originalName;
     if (_filtersModel.contains(fave.originalHash())) {
       const FiltersModel::Filter & originalFilter = _filtersModel.getFilterFromHash(fave.originalHash());
       newName = _favesModel.uniqueName(originalFilter.name(), QString());
     } else {
-      // TODO : On empty string this is always used !!
       newName = _favesModel.uniqueName("Unknown filter", QString());
     }
   } else {

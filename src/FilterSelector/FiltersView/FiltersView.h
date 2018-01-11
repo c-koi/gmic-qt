@@ -25,14 +25,15 @@
 #ifndef _GMIC_QT_FILTERSVIEW_H_
 #define _GMIC_QT_FILTERSVIEW_H_
 
-#include <QWidget>
-#include <QStandardItemModel>
-#include <QModelIndex>
 #include <QList>
+#include <QModelIndex>
+#include <QStandardItemModel>
 #include <QString>
+#include <QWidget>
 
-namespace Ui {
-    class FiltersView;
+namespace Ui
+{
+class FiltersView;
 }
 
 class FilterTreeFolder;
@@ -56,9 +57,7 @@ public:
   void clear();
   void sort();
   void sortFaves();
-  void updateFaveItem(const QString & currentHash,
-                      const QString & newHash,
-                      const QString & newName);
+  void updateFaveItem(const QString & currentHash, const QString & newHash, const QString & newName);
   void setHeader(const QString & header);
   FilterTreeItem * selectedItem() const;
   QString selectedFilterHash() const;
@@ -87,7 +86,6 @@ public slots:
   void expandFaveFolder();
 
 private slots:
-  // TODO : Complete this
   void onRenameFaveFinished(QWidget * editor);
   void onReturnKeyPressedInFiltersTree();
   void onItemClicked(QModelIndex index);
@@ -99,8 +97,7 @@ private:
   void restoreExpandedFolders(QStandardItem * folder);
   void createFaveFolder();
   void removeFaveFolder();
-  void addStandardItemWithCheckbox(QStandardItem * folder,
-                                    FilterTreeAbstractItem * item);
+  void addStandardItemWithCheckbox(QStandardItem * folder, FilterTreeAbstractItem * item);
   QStandardItem * getFolderFromPath(QList<QString> path);
   QStandardItem * createFolder(QStandardItem * parent, QList<QString> path);
   FilterTreeItem * findFave(const QString & hash);

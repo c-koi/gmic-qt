@@ -22,43 +22,38 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QBuffer>
-#include <QList>
-#include <QString>
-#include <QLocale>
-#include <QFileInfo>
-#include <QSettings>
-#include <QRegularExpression>
-#include <QDebug>
-#include "gmic_qt.h"
-#include "Common.h"
 #include "FilterSelector/FiltersModelReader.h"
+#include <QBuffer>
+#include <QDebug>
+#include <QFileInfo>
+#include <QList>
+#include <QLocale>
+#include <QRegularExpression>
+#include <QSettings>
+#include <QString>
+#include "Common.h"
 #include "FilterSelector/FiltersModel.h"
+#include "gmic_qt.h"
 #include "gmic.h"
 
-FiltersModelReader::FiltersModelReader(FiltersModel & model)
-  :_model(model)
+FiltersModelReader::FiltersModelReader(FiltersModel & model) : _model(model)
 {
 }
 
 void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
 {
-  // TODO : Move this
-  //  if ( GmicStdlib.isEmpty() ) {
-  //    loadStdLib();
-  //  }
   QBuffer stdlib(&stdlibArray);
   stdlib.open(QBuffer::ReadOnly);
   QList<QString> filterPath;
 
   QString language;
   QList<QString> languages = QLocale().uiLanguages();
-  if ( languages.size() ) {
+  if (languages.size()) {
     language = languages.front().split("-").front();
   } else {
     language = "void";
   }
-  if ( ! stdlibArray.contains(QString("#@gui_%1").arg(language).toLocal8Bit()) ) {
+  if (!stdlibArray.contains(QString("#@gui_%1").arg(language).toLocal8Bit())) {
     language = "en";
   }
 
@@ -68,70 +63,69 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
   QString line;
 
   QRegExp folderRegexpNoLanguage("^..gui[ ][^:]+$");
-  QRegExp folderRegexpLanguage( QString("^..gui_%1[ ][^:]+$").arg(language));
+  QRegExp folderRegexpLanguage(QString("^..gui_%1[ ][^:]+$").arg(language));
 
   QRegExp filterRegexpNoLanguage("^..gui[ ][^:]+[ ]*:.*");
-  QRegExp filterRegexpLanguage( QString("^..gui_%1[ ][^:]+[ ]*:.*").arg(language));
+  QRegExp filterRegexpLanguage(QString("^..gui_%1[ ][^:]+[ ]*:.*").arg(language));
 
   const QChar WarningPrefix('!');
   do {
     line = buffer.trimmed();
-    if ( line.startsWith("#@gui") ) {
-      if ( folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line) ) {
+    if (line.startsWith("#@gui")) {
+      if (folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line)) {
         //
         // A folder
         //
         QString folderName = line;
-        folderName.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "" );
+        folderName.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "");
 
-        while ( folderName.startsWith("_") && filterPath.size() ) {
-          folderName.remove(0,1);
+        while (folderName.startsWith("_") && filterPath.size()) {
+          folderName.remove(0, 1);
           filterPath.pop_back();
         }
-        while ( folderName.startsWith("_") ) {
-          folderName.remove(0,1);
+        while (folderName.startsWith("_")) {
+          folderName.remove(0, 1);
         }
-        // TODO : A folder name may be a warning
-        if ( ! folderName.isEmpty() ) {
+        if (!folderName.isEmpty()) {
           filterPath.push_back(folderName);
         }
         buffer = stdlib.readLine(4096);
-      } else if ( filterRegexpNoLanguage.exactMatch(line) || filterRegexpLanguage.exactMatch(line) ) {
+      } else if (filterRegexpNoLanguage.exactMatch(line) || filterRegexpLanguage.exactMatch(line)) {
         //
         // A filter
         //
         QString filterName = line;
-        filterName.replace( QRegExp("[ ]*:.*$"), "" );
-        filterName.replace( QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "" );
+        filterName.replace(QRegExp("[ ]*:.*$"), "");
+        filterName.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "");
 
         const bool warning = filterName.startsWith(WarningPrefix);
-        if ( warning ) {
-          filterName.remove(0,1);
+        if (warning) {
+          filterName.remove(0, 1);
         }
 
         QString filterCommands = line;
-        filterCommands.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"),"");
+        filterCommands.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"), "");
 
         QList<QString> commands = filterCommands.split(",");
 
         QString filterCommand = commands[0].trimmed();
-        if ( commands.size() == 0) {
+        if (commands.size() == 0) {
           commands.push_back("_none_");
         }
-        if ( commands.size() == 1) {
+        if (commands.size() == 1) {
           commands.push_back(commands.front());
         }
         QList<QString> preview = commands[1].trimmed().split("(");
         float previewFactor = GmicQt::PreviewFactorAny;
         bool accurateIfZoomed = true;
-        if ( preview.size() >= 2 ) {
+        if (preview.size() >= 2) {
           if (preview[1].endsWith("+")) {
             accurateIfZoomed = true;
             preview[1].chop(1);
           } else {
             accurateIfZoomed = false;
           }
-          previewFactor = preview[1].replace(QRegExp("\\).*"),"").toFloat();
+          previewFactor = preview[1].replace(QRegExp("\\).*"), "").toFloat();
         }
         QString filterPreviewCommand = preview[0].trimmed();
 
@@ -143,24 +137,19 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         // filterItem->setWarningFlag(warning);
 
         QString start = line;
-        start.replace(QRegExp(" .*")," :");
+        start.replace(QRegExp(" .*"), " :");
 
         // Read parameters
         QString parameters;
         do {
           buffer = stdlib.readLine(4096);
-          if ( buffer.startsWith(start) ) {
+          if (buffer.startsWith(start)) {
             QString parameterLine = buffer;
             parameterLine.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
             parameters += parameterLine;
           }
-        } while ( (buffer.startsWith(start)
-                   || buffer.startsWith("#")
-                   || (buffer.trimmed().isEmpty() && ! stdlib.atEnd()))
-                  && !folderRegexpNoLanguage.exactMatch(buffer)
-                  && !folderRegexpLanguage.exactMatch(buffer)
-                  && !filterRegexpNoLanguage.exactMatch(buffer)
-                  && !filterRegexpLanguage.exactMatch(buffer));
+        } while ((buffer.startsWith(start) || buffer.startsWith("#") || (buffer.trimmed().isEmpty() && !stdlib.atEnd())) && !folderRegexpNoLanguage.exactMatch(buffer) &&
+                 !folderRegexpLanguage.exactMatch(buffer) && !filterRegexpNoLanguage.exactMatch(buffer) && !filterRegexpLanguage.exactMatch(buffer));
 
         FiltersModel::Filter filter;
         filter.setName(filterName);
@@ -180,6 +169,5 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
     } else {
       buffer = stdlib.readLine(4096);
     }
-  } while ( ! buffer.isEmpty() );
-
+  } while (!buffer.isEmpty());
 }
