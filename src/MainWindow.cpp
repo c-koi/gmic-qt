@@ -486,10 +486,10 @@ void MainWindow::onPreviewUpdateRequested()
     QImage scaled;
     for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
       gmic_image<float> & image = (*_gmicImages)[i];
-      ImageConverter::convert(image, qimage);
-      scaled = qimage.scaled(image.width() * zoomFactor, image.height() * zoomFactor);
-      ImageConverter::convert(scaled, image);
-      //  image.resize(image.width()*zoomFactor,image.height()*zoomFactor,1,-100,1);
+      //      ImageConverter::convert(image, qimage);
+      //      scaled = qimage.scaled(std::round(image.width() * zoomFactor), std::round(image.height() * zoomFactor));
+      //      ImageConverter::convert(scaled, image);
+      image.resize(std::round(image.width() * zoomFactor), std::round(image.height() * zoomFactor), 1, -100, 1);
     }
   }
   QString env = ui->inOutSelector->gmicEnvString();
