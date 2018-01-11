@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ZoomLevelSelector.h"
+#include "Widgets/ZoomLevelSelector.h"
 #include <QDebug>
 #include <QLineEdit>
 #include <cmath>

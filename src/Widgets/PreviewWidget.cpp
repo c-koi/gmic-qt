@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "PreviewWidget.h"
+#include "Widgets/PreviewWidget.h"
 #include <QApplication>
 #include <QComboBox>
 #include <QDebug>

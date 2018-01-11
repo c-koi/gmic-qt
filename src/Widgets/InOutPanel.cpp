@@ -22,13 +22,12 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "InOutPanel.h"
+#include "Widgets/InOutPanel.h"
 #include <QDebug>
 #include <QPalette>
 #include <QSettings>
 #include <cstdio>
 #include "ui_inoutpanel.h"
-#include "gmic.h"
 
 const InOutPanel::State InOutPanel::State::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode, GmicQt::UnspecifiedPreviewMode, GmicQt::UnspecifiedOutputMessageMode);
 /*

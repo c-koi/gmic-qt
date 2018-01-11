@@ -528,7 +528,7 @@
   <customwidget>
    <class>ProgressInfoWidget</class>
    <extends>QWidget</extends>
-   <header>ProgressInfoWidget.h</header>
+   <header>Widgets/ProgressInfoWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -540,7 +540,7 @@
   <customwidget>
    <class>PreviewWidget</class>
    <extends>QWidget</extends>
-   <header>PreviewWidget.h</header>
+   <header>Widgets/PreviewWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -552,13 +552,13 @@
   <customwidget>
    <class>InOutPanel</class>
    <extends>QGroupBox</extends>
-   <header>InOutPanel.h</header>
+   <header>Widgets/InOutPanel.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ZoomLevelSelector</class>
    <extends>QWidget</extends>
-   <header>ZoomLevelSelector.h</header>
+   <header>Widgets/ZoomLevelSelector.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

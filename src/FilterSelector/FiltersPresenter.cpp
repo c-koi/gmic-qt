@@ -31,8 +31,8 @@
 #include "FilterSelector/FiltersModelReader.h"
 #include "FiltersVisibilityMap.h"
 #include "GmicStdlib.h"
-#include "InOutPanel.h"
 #include "ParametersCache.h"
+#include "Widgets/InOutPanel.h"
 
 FiltersPresenter::FiltersPresenter(QObject * parent) : QObject(parent)
 {

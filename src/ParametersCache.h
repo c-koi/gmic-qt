@@ -28,7 +28,8 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include "InOutPanel.h"
+#include "Widgets/InOutPanel.h"
+// TODO : Invert the dependency ParamCache ---> InOutPanel
 
 class ParametersCache {
 public:

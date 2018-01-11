@@ -286,17 +286,13 @@ set (gmic_qt_SRCS
   src/HtmlTranslator.h
   src/ImageConverter.h
   src/ImageTools.h
-  src/InOutPanel.h
   src/LanguageSelectionWidget.h
   src/LayersExtentProxy.h
   src/MainWindow.h
   src/ParametersCache.h
-  src/PreviewWidget.h
-  src/ProgressInfoWidget.h
   src/ProgressInfoWindow.h
   src/SearchFieldWidget.h
   src/Updater.h
-  src/ZoomLevelSelector.h
   src/FilterSelector/FiltersView/FilterTreeFolder.h
   src/FilterSelector/FiltersView/FilterTreeItem.h
   src/FilterSelector/FavesModel.h
@@ -304,6 +300,10 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/FilterTreeAbstractItem.h
   src/FilterSelector/FiltersView/FilterTreeItemDelegate.h
   src/FilterSelector/FavesModelWriter.h
+  src/Widgets/ProgressInfoWidget.h
+  src/Widgets/PreviewWidget.h
+  src/Widgets/InOutPanel.h
+  src/Widgets/ZoomLevelSelector.h
 
   ${GMIC_PATH}/gmic.h
   ${GMIC_PATH}/CImg.h
@@ -340,17 +340,13 @@ set (gmic_qt_SRCS
   src/HtmlTranslator.cpp
   src/ImageConverter.cpp
   src/ImageTools.cpp
-  src/InOutPanel.cpp
   src/LanguageSelectionWidget.cpp
   src/LayersExtentProxy.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
-  src/PreviewWidget.cpp
-  src/ProgressInfoWidget.cpp
   src/ProgressInfoWindow.cpp
   src/SearchFieldWidget.cpp
   src/Updater.cpp
-  src/ZoomLevelSelector.cpp
   src/FilterSelector/FiltersView/FilterTreeItem.cpp
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp
   src/FilterSelector/FavesModel.cpp
@@ -358,6 +354,10 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/FilterTreeAbstractItem.cpp
   src/FilterSelector/FiltersView/FilterTreeItemDelegate.cpp
   src/FilterSelector/FavesModelWriter.cpp
+  src/Widgets/PreviewWidget.cpp
+  src/Widgets/ProgressInfoWidget.cpp
+  src/Widgets/InOutPanel.cpp
+  src/Widgets/ZoomLevelSelector.cpp
 
   ${GMIC_PATH}/gmic.cpp
 )

@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "ProgressInfoWidget.h"
+#include "Widgets/ProgressInfoWidget.h"
 #include <QDesktopWidget>
 #include <QFile>
 #include "DialogSettings.h"
