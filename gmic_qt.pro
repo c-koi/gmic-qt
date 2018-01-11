@@ -1,10 +1,10 @@
 #
 # Set HOST variable to define target host software.
-# Possible values are "none" or "gimp" (or hopefully some day "krita")
+# Possible values are "none", "gimp", and "krita"
 #
 #
 
-!defined(HOST,var) { HOST = gimp }
+!defined(HOST,var) { HOST = none }
 
 !defined(PRERELEASE, var) {
 
@@ -12,6 +12,9 @@
 
    PRERELEASE = $$system(bash pre_version.sh)
 }
+
+# Possible values are "gcc" or "clang"
+!defined(COMPILER,var) { COMPILER = gcc }
 
 #
 #
@@ -58,6 +61,13 @@ message( GMIC PATH $$GMIC_PATH )
 !exists( $$GMIC_PATH/gmic.cpp ) {
  error("G'MIC repository is missing (" $$GMIC_PATH ")")
 }
+
+equals( COMPILER, "clang" ) {
+ message("Compiler is clang++")
+ QMAKE_CXX = clang++
+ QMAKE_LINK = clang++
+}
+
 
 #
 # Make sure CImg.h is in G'MIC source tree
@@ -152,6 +162,10 @@ equals( HOST, "krita") {
 !macx:*g++* {
     CONFIG += openmp
 }
+!macx:equals(COMPILER,"clang") {
+    CONFIG += openmp
+}
+
 
 # use qmake CONFIG+=openmp ... to force using openmp
 # For example, on OS X with GCC 4.8 installed:
@@ -159,13 +173,22 @@ equals( HOST, "krita") {
 # Notes:
 #  - the compiler name is g++-4.8 on Homebrew and g++-mp-4.8 on MacPorts
 #  - we use the unsupported/macx-clang config because macx-g++ uses arch flags that are not recognized by GNU GCC
-openmp {
-    message(OpenMP enabled)
+openmp:equals(COMPILER,"gcc") {
+    message("OpenMP enabled, with g++")
     DEFINES += cimg_use_openmp
     QMAKE_CXXFLAGS_DEBUG += -fopenmp
     QMAKE_CXXFLAGS_RELEASE += -fopenmp
     QMAKE_LFLAGS_DEBUG += -fopenmp
     QMAKE_LFLAGS_RELEASE += -fopenmp
+}
+
+openmp:equals(COMPILER,"clang") {
+    message("OpenMP enabled, with clang++")
+    DEFINES += cimg_use_openmp
+    QMAKE_CXXFLAGS_DEBUG += -fopenmp=libomp -I/usr/lib/gcc/x86_64-redhat-linux/7/include/
+    QMAKE_CXXFLAGS_RELEASE += -fopenmp=libomp  -I/usr/lib/gcc/x86_64-redhat-linux/7/include/
+    QMAKE_LFLAGS_DEBUG += -fopenmp=libomp
+    QMAKE_LFLAGS_RELEASE += -fopenmp=libomp
 }
 
 DEFINES += gmic_gui gmic_build gmic_is_parallel cimg_use_abort
@@ -202,7 +225,7 @@ HEADERS +=  \
   src/FilterSelector/FiltersPresenter.h \
   src/FilterSelector/FiltersView/FiltersView.h \
   src/FilterSelector/FiltersView/TreeView.h \
-  src/FiltersVisibilityMap.h \
+  src/FilterSelector/FiltersVisibilityMap.h \
   src/FilterThread.h \
   src/gmic_qt.h \
   src/GmicStdlibParser.h \
@@ -258,7 +281,7 @@ SOURCES += \
   src/FilterSelector/FiltersPresenter.cpp \
   src/FilterSelector/FiltersView/FiltersView.cpp \
   src/FilterSelector/FiltersView/TreeView.cpp \
-  src/FiltersVisibilityMap.cpp \
+  src/FilterSelector/FiltersVisibilityMap.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
   src/GmicStdlibParser.cpp \
@@ -288,8 +311,17 @@ SOURCES += \
 SOURCES += $$GMIC_PATH/gmic.cpp
 
 # ALL_FORMS
-FORMS +=  ui/inoutpanel.ui ui/multilinetextparameterwidget.ui ui/progressinfowindow.ui ui/dialogsettings.ui ui/progressinfowidget.ui ui/mainwindow.ui ui/SearchFieldWidget.ui ui/headlessprogressdialog.ui ui/zoomlevelselector.ui ui/languageselectionwidget.ui \
-    ui/filtersview.ui
+FORMS +=  ui/inoutpanel.ui \
+          ui/multilinetextparameterwidget.ui \
+          ui/progressinfowindow.ui \
+          ui/dialogsettings.ui \
+          ui/progressinfowidget.ui \
+          ui/mainwindow.ui \
+          ui/SearchFieldWidget.ui \
+          ui/headlessprogressdialog.ui \
+          ui/zoomlevelselector.ui \
+          ui/languageselectionwidget.ui \
+          ui/filtersview.ui
 
 RESOURCES = gmic_qt.qrc translations.qrc
 

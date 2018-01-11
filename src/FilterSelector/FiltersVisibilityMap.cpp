@@ -29,7 +29,6 @@
 #include <QDebug>
 #include <QFile>
 #include "Common.h"
-#include "gmic_qt.h"
 
 QSet<QString> FiltersVisibilityMap::_hiddenFilters;
 

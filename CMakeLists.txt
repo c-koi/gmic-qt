@@ -277,7 +277,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersPresenter.h
   src/FilterSelector/FiltersView/FiltersView.h
   src/FilterSelector/FiltersView/TreeView.h
-  src/FiltersVisibilityMap.h
+  src/FilterSelector/FiltersVisibilityMap.h
   src/FilterThread.h
   src/gmic_qt.h
   src/GmicStdlibParser.h
@@ -332,7 +332,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersPresenter.cpp
   src/FilterSelector/FiltersView/FiltersView.cpp
   src/FilterSelector/FiltersView/TreeView.cpp
-  src/FiltersVisibilityMap.cpp
+  src/FilterSelector/FiltersVisibilityMap.cpp
   src/FilterThread.cpp
   src/gmic_qt.cpp
   src/GmicStdlibParser.cpp

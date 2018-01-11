@@ -32,7 +32,7 @@
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
 #include "FilterSelector/FiltersView/FilterTreeItemDelegate.h"
-#include "FiltersVisibilityMap.h"
+#include "FilterSelector/FiltersVisibilityMap.h"
 #include "ui_filtersview.h"
 
 const QString FiltersView::FilterTreePathSeparator("\t");
