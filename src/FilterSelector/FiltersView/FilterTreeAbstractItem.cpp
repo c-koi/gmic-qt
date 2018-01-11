@@ -31,13 +31,13 @@ FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
 {
   _visibilityItem = 0;
   if (text.startsWith(WarningPrefix)) {
-    text.remove(0,1);
+    text.remove(0, 1);
     _isWarning = true;
   } else {
     _isWarning = false;
   }
   setText(text);
-  _plainText = HtmlTranslator::html2txt(text,true);
+  _plainText = HtmlTranslator::html2txt(text, true);
 }
 
 FilterTreeAbstractItem::~FilterTreeAbstractItem()
@@ -61,7 +61,7 @@ bool FilterTreeAbstractItem::isWarning() const
 
 bool FilterTreeAbstractItem::isVisible() const
 {
-  if ( _visibilityItem ) {
+  if (_visibilityItem) {
     return _visibilityItem->checkState() == Qt::Checked;
   } else {
     return true;
@@ -71,7 +71,7 @@ bool FilterTreeAbstractItem::isVisible() const
 void FilterTreeAbstractItem::setVisibility(bool flag)
 {
   if (_visibilityItem) {
-    _visibilityItem->setCheckState(flag?Qt::Checked:Qt::Unchecked);
+    _visibilityItem->setCheckState(flag ? Qt::Checked : Qt::Unchecked);
   }
 }
 
@@ -79,10 +79,10 @@ QList<QString> FilterTreeAbstractItem::path() const
 {
   QList<QString> result;
   result.push_back(text());
-  const FilterTreeAbstractItem * parentFolder = dynamic_cast<FilterTreeAbstractItem*>(parent());
-  while ( parentFolder ) {
+  const FilterTreeAbstractItem * parentFolder = dynamic_cast<FilterTreeAbstractItem *>(parent());
+  while (parentFolder) {
     result.push_front(parentFolder->text());
-    parentFolder = dynamic_cast<FilterTreeAbstractItem*>(parentFolder->parent());
+    parentFolder = dynamic_cast<FilterTreeAbstractItem *>(parentFolder->parent());
   }
   return result;
 }
@@ -90,7 +90,7 @@ QList<QString> FilterTreeAbstractItem::path() const
 QString FilterTreeAbstractItem::removeWarningPrefix(QString folderName)
 {
   if (folderName.startsWith(WarningPrefix)) {
-    folderName.remove(0,1);
+    folderName.remove(0, 1);
   }
   return folderName;
 }

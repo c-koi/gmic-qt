@@ -32,6 +32,7 @@ class FiltersModelReader {
 public:
   FiltersModelReader(FiltersModel & model);
   void parseFiltersDefinitions(QByteArray & stdlibArray);
+
 private:
   FiltersModel & _model;
 };

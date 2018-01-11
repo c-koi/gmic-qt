@@ -26,13 +26,14 @@
 #define _GMIC_QT_HTMLTRANSLATOR_H_
 
 #include <QString>
-#include<QTextDocument>
+#include <QTextDocument>
 
 class HtmlTranslator {
 public:
-  static QString html2txt(const QString &  str, bool force = false);
-  static bool hasHtmlEntities(const QString &  str);
-  static QString fromUtf8Escapes(const QString &str);
+  static QString html2txt(const QString & str, bool force = false);
+  static bool hasHtmlEntities(const QString & str);
+  static QString fromUtf8Escapes(const QString & str);
+
 private:
   static QTextDocument _document;
 };

@@ -22,15 +22,13 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QFrame>
-#include <QSizePolicy>
-#include <QGridLayout>
-#include "Common.h"
 #include "FilterParameters/SeparatorParameter.h"
+#include <QFrame>
+#include <QGridLayout>
+#include <QSizePolicy>
+#include "Common.h"
 
-SeparatorParameter::SeparatorParameter(QObject *parent)
-  : AbstractParameter(parent,false),
-    _frame(0)
+SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(0)
 {
 }
 
@@ -39,11 +37,11 @@ SeparatorParameter::~SeparatorParameter()
   delete _frame;
 }
 
-void
-SeparatorParameter::addTo(QWidget * widget, int row)
+void SeparatorParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _frame;
   _frame = new QFrame(widget);
   QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -53,11 +51,10 @@ SeparatorParameter::addTo(QWidget * widget, int row)
   _frame->setSizePolicy(sizePolicy);
   _frame->setFrameShape(QFrame::HLine);
   _frame->setFrameShadow(QFrame::Sunken);
-  grid->addWidget(_frame,row,0,1,3);
+  grid->addWidget(_frame, row, 0, 1, 3);
 }
 
-QString
-SeparatorParameter::textValue() const
+QString SeparatorParameter::textValue() const
 {
   return QString::null;
 }
@@ -66,14 +63,13 @@ void SeparatorParameter::setValue(const QString &)
 {
 }
 
-void
-SeparatorParameter::reset()
+void SeparatorParameter::reset()
 {
 }
 
 bool SeparatorParameter::initFromText(const char * text, int & textLength)
 {
-  QStringList list = parseText("separator",text,textLength);
+  QStringList list = parseText("separator", text, textLength);
   unused(list);
   return true;
 }

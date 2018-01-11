@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_FOLDERPARAMETER_H_
 #define _GMIC_QT_FOLDERPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QString>
+#include "AbstractParameter.h"
 class QLabel;
 class QPushButton;
 
@@ -43,6 +43,7 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onButtonPressed();
+
 private:
   QString _name;
   QString _default;

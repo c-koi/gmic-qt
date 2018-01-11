@@ -34,38 +34,33 @@ class QImage;
 class QSemaphore;
 #include <QApplication>
 #include <QColor>
+#include <QFile>
 #include <QFont>
 #include <QFontMetrics>
+#include <QImage>
 #include <QMutex>
 #include <QPainter>
-#include <QImage>
 #include <QTime>
-#include <QFile>
 
 #include "Common.h"
-#include "gmic_qt.h"
 #include "Host/host.h"
+#include "gmic_qt.h"
 
-namespace cimg_library {
-template<typename T> struct CImgList;
+namespace cimg_library
+{
+template <typename T> struct CImgList;
 }
 
 class FilterThread : public QThread {
   Q_OBJECT
 
 public:
-  FilterThread(QObject * parent,
-               const QString & name,
-               const QString & command,
-               const QString & arguments,
-               const QString & environment,
-               GmicQt::OutputMessageMode mode);
+  FilterThread(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
 
   virtual ~FilterThread();
   void run();
   void setArguments(const QString &);
-  void setInputImages( const cimg_library::CImgList<float> & list,
-                       const cimg_library::CImgList<char> & imageNames );
+  void setInputImages(const cimg_library::CImgList<float> & list, const cimg_library::CImgList<char> & imageNames);
   const cimg_library::CImgList<float> & images() const;
   const cimg_library::CImgList<char> & imageNames() const;
   QString gmicStatus() const;

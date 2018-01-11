@@ -25,30 +25,28 @@
 #include "Host/None/ImageDialog.h"
 #include "gmic.h"
 
-ImageView::ImageView(QWidget * parent):QWidget(parent)
+ImageView::ImageView(QWidget * parent) : QWidget(parent)
 {
 }
 
 void ImageView::setImage(const cimg_library::CImg<gmic_pixel_type> & image)
 {
-  ImageConverter::convert(image,_image);
-  setMinimumSize(std::min(640,image.width()),
-                 std::min(480,image.height()));
+  ImageConverter::convert(image, _image);
+  setMinimumSize(std::min(640, image.width()), std::min(480, image.height()));
 }
 
-void ImageView::setImage(const QImage & image) {
+void ImageView::setImage(const QImage & image)
+{
   _image = image;
-  setMinimumSize(std::min(640,image.width()),
-                 std::min(480,image.height()));
+  setMinimumSize(std::min(640, image.width()), std::min(480, image.height()));
 }
 
-void ImageView::save(const QString &filename)
+void ImageView::save(const QString & filename)
 {
   _image.save(filename);
 }
 
-ImageDialog::ImageDialog(QWidget *parent)
-  : QDialog(parent)
+ImageDialog::ImageDialog(QWidget * parent) : QDialog(parent)
 {
   QVBoxLayout * vbox = new QVBoxLayout(this);
 
@@ -60,12 +58,10 @@ ImageDialog::ImageDialog(QWidget *parent)
   QHBoxLayout * hbox = new QHBoxLayout;
   vbox->addLayout(hbox);
   _closeButton = new QPushButton("Close");
-  connect(_closeButton,SIGNAL(clicked(bool)),
-          this,SLOT(onCloseClicked(bool)));
+  connect(_closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked(bool)));
   hbox->addWidget(_closeButton);
   _saveButton = new QPushButton("Save as...");
-  connect(_saveButton,SIGNAL(clicked(bool)),
-          this,SLOT(onSaveAs()));
+  connect(_saveButton, SIGNAL(clicked(bool)), this, SLOT(onSaveAs()));
   hbox->addWidget(_saveButton);
 }
 
@@ -73,20 +69,19 @@ void ImageDialog::addImage(const cimg_library::CImg<float> & image, QString name
 {
   ImageView * view = new ImageView(_tabWidget);
   view->setImage(image);
-  _tabWidget->addTab(view,name);
-  _tabWidget->setCurrentIndex(_tabWidget->count()-1);
+  _tabWidget->addTab(view, name);
+  _tabWidget->setCurrentIndex(_tabWidget->count() - 1);
 }
 
 void ImageDialog::onSaveAs()
 {
-  QString filename = QFileDialog::getSaveFileName(this,"Save image as...",QString(),"PNG file (*.png);;JPEG file (*.jpg)");
-  if ( ! filename.isEmpty() ) {
-    ImageView * view = dynamic_cast<ImageView*>(_tabWidget->currentWidget());
-    if ( view ) {
+  QString filename = QFileDialog::getSaveFileName(this, "Save image as...", QString(), "PNG file (*.png);;JPEG file (*.jpg)");
+  if (!filename.isEmpty()) {
+    ImageView * view = dynamic_cast<ImageView *>(_tabWidget->currentWidget());
+    if (view) {
       view->save(filename);
     }
   }
-
 }
 
 void ImageDialog::onCloseClicked(bool)
@@ -98,11 +93,11 @@ void ImageView::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   QImage displayed;
-  if ( _image.width() / _image.height() > width() / height() ) {
+  if (_image.width() / _image.height() > width() / height()) {
     displayed = _image.scaledToWidth(width());
-    p.drawImage(0,(height()-displayed.height())/2,displayed);
+    p.drawImage(0, (height() - displayed.height()) / 2, displayed);
   } else {
     displayed = _image.scaledToHeight(height());
-    p.drawImage((width()-displayed.width())/2,0,displayed);
+    p.drawImage((width() - displayed.width()) / 2, 0, displayed);
   }
 }

@@ -22,6 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/ColorParameter.h"
 #include <QApplication>
 #include <QColorDialog>
 #include <QDebug>
@@ -36,16 +37,8 @@
 #include "Common.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
-#include "FilterParameters/ColorParameter.h"
 
-ColorParameter::ColorParameter(QObject * parent)
-  : AbstractParameter(parent,true),
-    _default(0,0,0,0),
-    _value(_default),
-    _alphaChannel(false),
-    _label(0),
-    _button(0),
-    _dialog(0)
+ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(0), _button(0), _dialog(0)
 {
 }
 
@@ -56,11 +49,11 @@ ColorParameter::~ColorParameter()
   delete _dialog;
 }
 
-void
-ColorParameter::addTo(QWidget * widget, int row)
+void ColorParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (!grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _button;
   delete _label;
 
@@ -69,21 +62,19 @@ ColorParameter::addTo(QWidget * widget, int row)
 
   QFontMetrics fm(widget->font());
   QRect r = fm.boundingRect("CLR");
-  _pixmap = QPixmap(r.width(),r.height());
-  _button->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Preferred);
+  _pixmap = QPixmap(r.width(), r.height());
+  _button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
 
   _button->setIconSize(_pixmap.size());
 
   updateButtonColor();
 
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_button,row,1,1,1);
-  connect(_button, SIGNAL(clicked()),
-          this, SLOT(onButtonPressed()));
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_button, row, 1, 1, 1);
+  connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-QString
-ColorParameter::textValue() const
+QString ColorParameter::textValue() const
 {
   const QColor & c = _value;
   if (_alphaChannel) {
@@ -93,8 +84,7 @@ ColorParameter::textValue() const
   }
 }
 
-void
-ColorParameter::setValue(const QString & value)
+void ColorParameter::setValue(const QString & value)
 {
   QStringList list = value.split(",");
   const int red = list[0].toInt();
@@ -102,51 +92,47 @@ ColorParameter::setValue(const QString & value)
   const int blue = list[2].toInt();
   if ((list.size() == 4) && _alphaChannel) {
     const int alpha = list[3].toInt();
-    _value = QColor(red,green,blue,alpha);
+    _value = QColor(red, green, blue, alpha);
   } else {
-    _value = QColor(red,green,blue);
+    _value = QColor(red, green, blue);
   }
   if (_button) {
     updateButtonColor();
   }
 }
 
-void
-ColorParameter::reset()
+void ColorParameter::reset()
 {
   _value = _default;
   updateButtonColor();
 }
 
-bool ColorParameter::initFromText(const char *text, int & textLength)
+bool ColorParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("color",text,textLength);
+  QList<QString> list = parseText("color", text, textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> channels = list[1].split(",");
   const int n = channels.size();
   bool okR = true, okG = true, okB = true, okA = true;
-  int r = (n > 0 ) ? channels[0].toInt(&okR) : 0;
-  int g = (n >= 2 ) ? channels[1].toInt(&okG) : 0;
-  int b = (n >= 3 ) ? channels[2].toInt(&okB) : 0;
+  int r = (n > 0) ? channels[0].toInt(&okR) : 0;
+  int g = (n >= 2) ? channels[1].toInt(&okG) : 0;
+  int b = (n >= 3) ? channels[2].toInt(&okB) : 0;
   if (channels.size() == 4) {
     int a = channels[3].toInt(&okA);
-    _default = _value = QColor(r,g,b,a);
+    _default = _value = QColor(r, g, b, a);
     _alphaChannel = true;
   } else {
-    _default = _value = QColor(r,g,b);
+    _default = _value = QColor(r, g, b);
   }
   return okR && okG && okB && okA;
 }
 
-void
-ColorParameter::onButtonPressed()
+void ColorParameter::onButtonPressed()
 {
-  QColor color = QColorDialog::getColor(_value,
-                                        QApplication::activeWindow(),
-                                        tr("Select color"),
-                                        (DialogSettings::nativeColorDialogs()?QColorDialog::ColorDialogOptions():QColorDialog::DontUseNativeDialog)
-                                        | (_alphaChannel ? QColorDialog::ShowAlphaChannel : QColorDialog::ColorDialogOptions()));
-  if ( color.isValid() ) {
+  QColor color = QColorDialog::getColor(_value, QApplication::activeWindow(), tr("Select color"),
+                                        (DialogSettings::nativeColorDialogs() ? QColorDialog::ColorDialogOptions() : QColorDialog::DontUseNativeDialog) |
+                                            (_alphaChannel ? QColorDialog::ShowAlphaChannel : QColorDialog::ColorDialogOptions()));
+  if (color.isValid()) {
     _value = color;
     updateButtonColor();
     notifyIfRelevant();
@@ -158,10 +144,10 @@ void ColorParameter::updateButtonColor()
   QPainter painter(&_pixmap);
   QColor color(_value);
   if (_alphaChannel) {
-    painter.drawImage(0,0,QImage(":resources/transparency.png"));
+    painter.drawImage(0, 0, QImage(":resources/transparency.png"));
   }
   painter.setBrush(color);
   painter.setPen(Qt::black);
-  painter.drawRect(0,0,_pixmap.width()-1,_pixmap.height()-1);
+  painter.drawRect(0, 0, _pixmap.width() - 1, _pixmap.height() - 1);
   _button->setIcon(_pixmap);
 }

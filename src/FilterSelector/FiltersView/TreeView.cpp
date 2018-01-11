@@ -22,17 +22,16 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QKeyEvent>
 #include "TreeView.h"
+#include <QKeyEvent>
 
-TreeView::TreeView(QWidget *parent)
-  :QTreeView(parent)
+TreeView::TreeView(QWidget * parent) : QTreeView(parent)
 {
 }
 
-void TreeView::keyPressEvent(QKeyEvent *event)
+void TreeView::keyPressEvent(QKeyEvent * event)
 {
-  if ( event->key() == Qt::Key_Enter ||  event->key() == Qt::Key_Return ) {
+  if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
     emit returnKeyPressed();
   }
   QTreeView::keyPressEvent(event);

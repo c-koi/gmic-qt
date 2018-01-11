@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_FLOATPARAMETER_H_
 #define _GMIC_QT_FLOATPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QString>
+#include "AbstractParameter.h"
 class QDoubleSpinBox;
 class QSlider;
 class QLabel;
@@ -41,12 +41,14 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
+
 protected:
-  void timerEvent(QTimerEvent *event) override;
+  void timerEvent(QTimerEvent * event) override;
 public slots:
   void onSliderMoved(int);
   void onSliderValueChanged(int);
   void onSpinBoxChanged(double);
+
 private:
   void connectSliderSpinBox();
   void disconnectSliderSpinBox();

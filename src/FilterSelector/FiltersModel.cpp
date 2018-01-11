@@ -22,11 +22,11 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterSelector/FiltersModel.h"
 #include <QCryptographicHash>
 #include <QDebug>
 #include <limits>
 #include "HtmlTranslator.h"
-#include "FilterSelector/FiltersModel.h"
 #include "gmic_qt.h"
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
@@ -47,7 +47,7 @@ void FiltersModel::clear()
 void FiltersModel::addFilter(const FiltersModel::Filter & filter)
 {
   _filters.push_back(filter);
-  _hash2filterIndex[filter.hash()] = _filters.size()-1;
+  _hash2filterIndex[filter.hash()] = _filters.size() - 1;
 }
 
 void FiltersModel::flush()
@@ -82,9 +82,9 @@ const FiltersModel::Filter & FiltersModel::getFilter(size_t index) const
   return _filters[index];
 }
 
-size_t FiltersModel::getFilterIndexFromHash(const QString &hash)
+size_t FiltersModel::getFilterIndexFromHash(const QString & hash)
 {
-  QMap<QString,size_t>::iterator it = _hash2filterIndex.find(hash);
+  QMap<QString, size_t>::iterator it = _hash2filterIndex.find(hash);
   if (it == _hash2filterIndex.end()) {
     return NoIndex;
   }
@@ -93,9 +93,7 @@ size_t FiltersModel::getFilterIndexFromHash(const QString &hash)
 
 const FiltersModel::Filter & FiltersModel::getFilterFromHash(const QString & hash)
 {
-  Q_ASSERT_X(_hash2filterIndex.contains(hash),
-             "FiltersModel::getFilterFromHash()",
-             "Hash not found");
+  Q_ASSERT_X(_hash2filterIndex.contains(hash), "FiltersModel::getFilterFromHash()", "Hash not found");
   size_t index = _hash2filterIndex.find(hash).value();
   return _filters[index];
 }
@@ -115,7 +113,7 @@ FiltersModel::Filter::Filter()
 FiltersModel::Filter & FiltersModel::Filter::setName(QString name)
 {
   _name = name;
-  _plainText = HtmlTranslator::html2txt(name,true);
+  _plainText = HtmlTranslator::html2txt(name, true);
   return *this;
 }
 
@@ -155,7 +153,7 @@ FiltersModel::Filter & FiltersModel::Filter::setPath(const QList<QString> & path
   return *this;
 }
 
-FiltersModel::Filter &FiltersModel::Filter::setWarningFlag(bool flag)
+FiltersModel::Filter & FiltersModel::Filter::setWarningFlag(bool flag)
 {
   _isWarning = flag;
   return *this;
@@ -185,7 +183,7 @@ QString FiltersModel::Filter::plainText() const
   return _plainText;
 }
 
-const QList<QString> &FiltersModel::Filter::path() const
+const QList<QString> & FiltersModel::Filter::path() const
 {
   return _path;
 }
@@ -234,10 +232,10 @@ bool FiltersModel::Filter::matchKeywords(const QList<QString> & keywords) const
     bool keywordInPath = false;
     QList<QString>::const_iterator itPath = _path.cbegin();
     while (itPath != _path.cend() && !keywordInPath) {
-      keywordInPath = itPath->contains(keyword,Qt::CaseInsensitive);
+      keywordInPath = itPath->contains(keyword, Qt::CaseInsensitive);
       ++itPath;
     }
-    if (!keywordInPath && !_plainText.contains(keyword,Qt::CaseInsensitive)) {
+    if (!keywordInPath && !_plainText.contains(keyword, Qt::CaseInsensitive)) {
       return false;
     }
     ++itKeyword;

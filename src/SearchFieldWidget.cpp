@@ -22,19 +22,17 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "Common.h"
 #include "SearchFieldWidget.h"
-#include "ui_SearchFieldWidget.h"
-#include <QIcon>
-#include <QToolButton>
-#include <QHBoxLayout>
-#include <QLineEdit>
 #include <QFrame>
+#include <QHBoxLayout>
+#include <QIcon>
+#include <QLineEdit>
+#include <QToolButton>
+#include "Common.h"
 #include "DialogSettings.h"
+#include "ui_SearchFieldWidget.h"
 
-SearchFieldWidget::SearchFieldWidget(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::SearchFieldWidget)
+SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new Ui::SearchFieldWidget)
 {
   ui->setupUi(this);
   _clearIcon = LOAD_ICON("edit-clear");
@@ -42,15 +40,14 @@ SearchFieldWidget::SearchFieldWidget(QWidget *parent) :
   _empty = true;
 
 #if QT_VERSION >= 0x050200
-  QHBoxLayout * hbox = dynamic_cast<QHBoxLayout*>(layout());
-  if ( hbox ) {
+  QHBoxLayout * hbox = dynamic_cast<QHBoxLayout *>(layout());
+  if (hbox) {
     hbox->setMargin(0);
     hbox->setSpacing(0);
   }
   hbox->addWidget(_lineEdit = new QLineEdit(this));
-  _action = _lineEdit->addAction(LOAD_ICON("edit-find"),QLineEdit::TrailingPosition);
-  connect(_action,SIGNAL(triggered(bool)),
-          _lineEdit,SLOT(clear()));
+  _action = _lineEdit->addAction(LOAD_ICON("edit-find"), QLineEdit::TrailingPosition);
+  connect(_action, SIGNAL(triggered(bool)), _lineEdit, SLOT(clear()));
 #else
   QFrame * frame = new QFrame(this);
   layout()->addWidget(frame);
@@ -68,15 +65,12 @@ SearchFieldWidget::SearchFieldWidget(QWidget *parent) :
   _button->setStyleSheet("border:none");
   _lineEdit->setFrame(false);
   _button->setIcon(_findIcon);
-  connect(_button,SIGNAL(clicked(bool)),
-          _lineEdit,SLOT(clear()));
+  connect(_button, SIGNAL(clicked(bool)), _lineEdit, SLOT(clear()));
 #endif
-  connect(_lineEdit,SIGNAL(textChanged(QString)),
-          this,SIGNAL(textChanged(QString)));
-  connect(_lineEdit,SIGNAL(textChanged(QString)),
-          this,SLOT(onTextChanged(QString)));
+  connect(_lineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
+  connect(_lineEdit, SIGNAL(textChanged(QString)), this, SLOT(onTextChanged(QString)));
   _lineEdit->setPlaceholderText(tr("Search"));
-  _lineEdit->setToolTip(tr("Search in filters list (%1)").arg(QKeySequence(QKeySequence::Find).toString()) );
+  _lineEdit->setToolTip(tr("Search in filters list (%1)").arg(QKeySequence(QKeySequence::Find).toString()));
   setFocusProxy(_lineEdit);
 }
 
@@ -90,25 +84,24 @@ QString SearchFieldWidget::text() const
   return _lineEdit->text();
 }
 
-void
-SearchFieldWidget::onTextChanged(QString str)
+void SearchFieldWidget::onTextChanged(QString str)
 {
 #if QT_VERSION >= 0x050200
-  if ( str.isEmpty() ) {
+  if (str.isEmpty()) {
     _empty = true;
     _action->setIcon(_findIcon);
   } else {
-    if ( _empty ) {
+    if (_empty) {
       _action->setIcon(_clearIcon);
     }
     _empty = false;
   }
 #else
-  if ( str.isEmpty() ) {
+  if (str.isEmpty()) {
     _empty = true;
     _button->setIcon(_findIcon);
   } else {
-    if ( _empty ) {
+    if (_empty) {
       _button->setIcon(_clearIcon);
       _empty = false;
     }

@@ -22,13 +22,12 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QDebug>
 #include "FilterTreeItem.h"
-#include "HtmlTranslator.h"
+#include <QDebug>
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
+#include "HtmlTranslator.h"
 
-FilterTreeItem::FilterTreeItem(QString text)
-  : FilterTreeAbstractItem(text)
+FilterTreeItem::FilterTreeItem(QString text) : FilterTreeAbstractItem(text)
 {
   _isWarning = false;
   _isFave = false;
@@ -68,29 +67,29 @@ QString FilterTreeItem::hash() const
 
 bool FilterTreeItem::operator<(const QStandardItem & other) const
 {
-  const FilterTreeFolder * otherFolder = dynamic_cast<const FilterTreeFolder*>(&other);
-  const FilterTreeItem * otherItem = dynamic_cast<const FilterTreeItem*>(&other);
-  Q_ASSERT_X(otherFolder||otherItem,"FilterTreeItem::operator<","Wrong item types");
+  const FilterTreeFolder * otherFolder = dynamic_cast<const FilterTreeFolder *>(&other);
+  const FilterTreeItem * otherItem = dynamic_cast<const FilterTreeItem *>(&other);
+  Q_ASSERT_X(otherFolder || otherItem, "FilterTreeItem::operator<", "Wrong item types");
   bool otherIsWarning = (otherFolder && otherFolder->isWarning()) || (otherItem && otherItem->isWarning());
   bool otherIsFaveFolder = otherFolder && otherFolder->isFaveFolder();
 
   // Warnings first
-  if ( _isWarning && !otherIsWarning ) {
+  if (_isWarning && !otherIsWarning) {
     return true;
   }
-  if ( !_isWarning && otherIsWarning ) {
+  if (!_isWarning && otherIsWarning) {
     return false;
   }
   // Then fave folder
-  if ( otherIsFaveFolder ) {
+  if (otherIsFaveFolder) {
     return false;
   }
   // Then folders
-  if ( otherFolder ) {
+  if (otherFolder) {
     return false;
   }
   // Other cases follow lexicographic order
-  if ( otherFolder ) {
+  if (otherFolder) {
     return plainText().localeAwareCompare(otherFolder->plainText()) < 0;
   } else {
     return plainText().localeAwareCompare(otherItem->plainText()) < 0;

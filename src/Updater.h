@@ -25,30 +25,28 @@
 #ifndef _GMIC_QT_UPDATER_H_
 #define _GMIC_QT_UPDATER_H_
 
-#include <QObject>
-#include <QString>
+#include <QApplication>
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <QList>
-#include <QSet>
 #include <QMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QObject>
+#include <QSet>
 #include <QSettings>
-#include <QNetworkReply>
-#include <QFile>
-#include <QFileInfo>
-#include <QDateTime>
-#include <QDir>
+#include <QString>
 #include <QTemporaryFile>
-#include <QApplication>
 #include <QTimer>
 
 #include "gmic_qt.h"
-class Updater : public QObject
-{
+class Updater : public QObject {
   Q_OBJECT
 
 public:
-  static void setInstanceParent( QObject * parent );
+  static void setInstanceParent(QObject * parent);
   static Updater * getInstance();
   static void setOutputMessageMode(GmicQt::OutputMessageMode mode);
   ~Updater();
@@ -73,24 +71,22 @@ public:
 
   bool someNetworkUpdateAchieved() const;
 
-
   void updateSources(bool useNetwork);
 
 signals:
   void downloadsFinished(bool ok);
 
 public slots:
-  void onNetworkReplyFinished(QNetworkReply*);
+  void onNetworkReplyFinished(QNetworkReply *);
   void notifyAllDowloadsOK();
   void onDownloadsTimeout();
 
 protected:
-  void processReply(QNetworkReply *reply);
+  void processReply(QNetworkReply * reply);
 
 private:
-
   static QString localFilename(QString url);
-  bool isStdlib( const QString & source ) const;
+  bool isStdlib(const QString & source) const;
 
   explicit Updater(QObject * parent);
   static QByteArray cimgzDecompress(QByteArray array);
@@ -101,8 +97,8 @@ private:
 
   QNetworkAccessManager * _networkAccessManager;
   QList<QString> _sources;
-  QMap<QString,bool> _sourceIsStdLib;
-  QSet<QNetworkReply*> _pendingReplies;
+  QMap<QString, bool> _sourceIsStdLib;
+  QSet<QNetworkReply *> _pendingReplies;
   QList<QString> _errorMessages;
   bool _someNetworkUpdatesAchieved;
 };

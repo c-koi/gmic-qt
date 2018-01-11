@@ -25,41 +25,36 @@
 #ifndef _GMIC_QT_HEADLESSPROCESSOR_H_
 #define _GMIC_QT_HEADLESSPROCESSOR_H_
 
-
-#include <QTimer>
 #include <QObject>
 #include <QString>
+#include <QTimer>
 #include "gmic_qt.h"
 
 class FilterThread;
 
-namespace cimg_library {
-template<typename T> struct CImgList;
+namespace cimg_library
+{
+template <typename T> struct CImgList;
 }
 
-class HeadlessProcessor : public QObject
-{
+class HeadlessProcessor : public QObject {
   Q_OBJECT
 
 public:
-
   /**
    * @brief Construct a headless processor a given command and arguments
    *        (e.g. GIMP script mode)
    *
    * @param parent
    */
-  explicit HeadlessProcessor(QObject *parent,
-                             const char * command,
-                             GmicQt::InputMode inputMode,
-                             GmicQt::OutputMode outputMode);
+  explicit HeadlessProcessor(QObject * parent, const char * command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode);
 
   /**
    * @brief Construct a headless processor using last execution parameters
    *
    * @param parent
    */
-  explicit HeadlessProcessor(QObject *parent = 0);
+  explicit HeadlessProcessor(QObject * parent = 0);
 
   ~HeadlessProcessor();
   QString command() const;
@@ -75,6 +70,7 @@ signals:
   void singleShotTimeout();
   void done(QString errorMessage);
   void progression(float progress, int duration, unsigned long memory);
+
 private:
   FilterThread * _filterThread;
   cimg_library::CImgList<float> * _gmicImages;

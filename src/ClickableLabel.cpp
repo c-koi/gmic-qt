@@ -25,15 +25,13 @@
 #include "ClickableLabel.h"
 #include <QMouseEvent>
 
-ClickableLabel::ClickableLabel(QWidget *parent)
-  : QLabel(parent)
+ClickableLabel::ClickableLabel(QWidget * parent) : QLabel(parent)
 {
-
 }
 
-void ClickableLabel::mousePressEvent(QMouseEvent *e)
+void ClickableLabel::mousePressEvent(QMouseEvent * e)
 {
-  if ( e->buttons() & Qt::LeftButton ) {
+  if (e->buttons() & Qt::LeftButton) {
     emit clicked();
   }
 }

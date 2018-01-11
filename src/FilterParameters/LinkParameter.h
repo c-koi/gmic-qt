@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_LINKPARAMETER_H_
 #define _GMIC_QT_LINKPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <Qt>
+#include "AbstractParameter.h"
 class QLabel;
 
 class LinkParameter : public AbstractParameter {
@@ -41,6 +41,7 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onLinkActivated(const QString & link);
+
 private:
   QLabel * _label;
   QString _text;

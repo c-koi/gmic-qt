@@ -45,5 +45,4 @@ private:
   bool _isWarning;
 };
 
-
 #endif // _GMIC_QT_FILTERTREEITEM_H_

@@ -25,9 +25,9 @@
 #ifndef _GMIC_QT_CHOICEPARAMETER_H_
 #define _GMIC_QT_CHOICEPARAMETER_H_
 
-#include "AbstractParameter.h"
-#include <QString>
 #include <QList>
+#include <QString>
+#include "AbstractParameter.h"
 class QComboBox;
 class QLabel;
 
@@ -43,12 +43,13 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onComboBoxIndexChanged(int);
+
 private:
   QString _name;
   int _default;
   int _value;
   QLabel * _label;
-  QComboBox* _comboBox;
+  QComboBox * _comboBox;
   QList<QString> _choices;
 };
 

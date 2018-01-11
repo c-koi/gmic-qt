@@ -32,17 +32,22 @@
 #define GMIC_QT_XSTRINGIFY(X) GMIC_QT_STRINGIFY(X)
 
 #ifdef _GMIC_QT_DEBUG_
-#define ENTERING qWarning() <<  "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
-#define TRACE qWarning() <<  "[" << __PRETTY_FUNCTION__ << "]"
+#define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
+#define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
 #define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << "]" << #V << "=" << (V)
-#define SHOW(V) qWarning() << #V <<  "=" << (V)
+#define SHOW(V) qWarning() << #V << "=" << (V)
 #else
 #define ENTERING while (false)
-#define TRACE while (false) qWarning() <<  ""
-#define TSHOW(V) while(false) qWarning() <<  ""
-#define SHOW(V) while(false) qWarning() <<  ""
+#define TRACE                                                                                                                                                                                          \
+  while (false)                                                                                                                                                                                        \
+  qWarning() << ""
+#define TSHOW(V)                                                                                                                                                                                       \
+  while (false)                                                                                                                                                                                        \
+  qWarning() << ""
+#define SHOW(V)                                                                                                                                                                                        \
+  while (false)                                                                                                                                                                                        \
+  qWarning() << ""
 #endif
-
 
 #ifndef gmic_pixel_type
 #define gmic_pixel_type float
@@ -50,7 +55,9 @@
 
 #define gmic_pixel_type_str GMIC_QT_XSTRINGIFY(gmic_pixel_type)
 
-template<typename T> inline void unused(const T&, ...) {}
+template <typename T> inline void unused(const T &, ...)
+{
+}
 
 #define SLIDER_MIN_WIDTH 60
 #define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
@@ -66,6 +73,6 @@ template<typename T> inline void unused(const T&, ...) {}
 #define PREVIEW_MAX_ZOOM_FACTOR 40.0
 
 //#define LOAD_ICON( NAME ) ( GmicQt::DarkThemeEnabled ? QIcon(":/icons/dark/" NAME ".png") : QIcon::fromTheme( NAME , QIcon(":/icons/" NAME ".png") ) )
-#define LOAD_ICON( NAME ) ( DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png") )
+#define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
 
 #endif // _GMIC_QT_COMMON_H

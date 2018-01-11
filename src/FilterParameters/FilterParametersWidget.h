@@ -25,12 +25,12 @@
 #ifndef _GMIC_QT_FILTERPARAMSWIDGET_H_
 #define _GMIC_QT_FILTERPARAMSWIDGET_H_
 
-#include <QWidget>
-#include <QVector>
-#include <QPushButton>
-#include <QStringList>
 #include <QGroupBox>
 #include <QModelIndex>
+#include <QPushButton>
+#include <QStringList>
+#include <QVector>
+#include <QWidget>
 class AbstractParameter;
 class QLabel;
 
@@ -39,8 +39,7 @@ class FilterParametersWidget : public QWidget {
 
 public:
   FilterParametersWidget(QWidget * parent = 0);
-  bool build(const QString &name, const QString &hash, const QString &parameters,
-              const QList<QString> & values );
+  bool build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values);
   void setNoFilter();
   virtual ~FilterParametersWidget();
   const QString & valueString() const;
@@ -60,7 +59,7 @@ signals:
 
 protected:
   void clear();
-  QVector<AbstractParameter*> _presetParameters;
+  QVector<AbstractParameter *> _presetParameters;
   int _actualParametersCount;
   QString _valueString;
   QLabel * _labelNoParams;

@@ -27,10 +27,8 @@
 
 #include <QSet>
 
-class FiltersVisibilityMap
-{
+class FiltersVisibilityMap {
 public:
-
   static bool filterIsVisible(const QString & hash);
   static void setVisibility(const QString & hash, bool visible);
   static void load();

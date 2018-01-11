@@ -22,6 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/IntParameter.h"
 #include <DialogSettings.h>
 #include <QGridLayout>
 #include <QLabel>
@@ -32,17 +33,8 @@
 #include <QWidget>
 #include "Common.h"
 #include "HtmlTranslator.h"
-#include "FilterParameters/IntParameter.h"
 
-IntParameter::IntParameter(QObject * parent)
-  : AbstractParameter(parent,true),
-    _min(0),
-    _max(0),
-    _default(0),
-    _value(0),
-    _label(0),
-    _slider(0),
-    _spinBox(0)
+IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(0), _slider(0), _spinBox(0)
 {
   _timerId = 0;
   _connected = false;
@@ -55,41 +47,39 @@ IntParameter::~IntParameter()
   delete _label;
 }
 
-void
-IntParameter::addTo(QWidget * widget, int row)
+void IntParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _spinBox;
   delete _slider;
   delete _label;
-  _slider = new QSlider(Qt::Horizontal,widget);
+  _slider = new QSlider(Qt::Horizontal, widget);
   _slider->setMinimumWidth(SLIDER_MIN_WIDTH);
-  _slider->setRange(_min,_max);
+  _slider->setRange(_min, _max);
   _slider->setValue(_value);
   _spinBox = new QSpinBox(widget);
-  _spinBox->setRange(_min,_max);
+  _spinBox->setRange(_min, _max);
   _spinBox->setValue(_value);
-  if ( DialogSettings::darkThemeEnabled() ) {
+  if (DialogSettings::darkThemeEnabled()) {
     QPalette p = _slider->palette();
-    p.setColor(QPalette::Button, QColor(100,100,100));
-    p.setColor(QPalette::Highlight, QColor(130,130,130));
+    p.setColor(QPalette::Button, QColor(100, 100, 100));
+    p.setColor(QPalette::Highlight, QColor(130, 130, 130));
     _slider->setPalette(p);
   }
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_slider,row,1,1,1);
-  grid->addWidget(_spinBox,row,2,1,1);
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_slider, row, 1, 1, 1);
+  grid->addWidget(_spinBox, row, 2, 1, 1);
   connectSliderSpinBox();
 }
 
-QString
-IntParameter::textValue() const
+QString IntParameter::textValue() const
 {
   return _spinBox->text();
 }
 
-void
-IntParameter::setValue(const QString & value)
+void IntParameter::setValue(const QString & value)
 {
   _value = value.toInt();
   if (_spinBox) {
@@ -100,8 +90,7 @@ IntParameter::setValue(const QString & value)
   }
 }
 
-void
-IntParameter::reset()
+void IntParameter::reset()
 {
   disconnectSliderSpinBox();
   _slider->setValue(_default);
@@ -110,13 +99,12 @@ IntParameter::reset()
   connectSliderSpinBox();
 }
 
-bool
-IntParameter::initFromText(const char * text, int & textLength)
+bool IntParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("int",text,textLength);
+  QList<QString> list = parseText("int", text, textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> values = list[1].split(QChar(','));
-  if ( values.size() != 3 ) {
+  if (values.size() != 3) {
     return false;
   }
   bool ok1, ok2, ok3;
@@ -127,8 +115,7 @@ IntParameter::initFromText(const char * text, int & textLength)
   return ok1 && ok2 && ok3;
 }
 
-void
-IntParameter::timerEvent(QTimerEvent * e)
+void IntParameter::timerEvent(QTimerEvent * e)
 {
   killTimer(e->timerId());
   _timerId = 0;
@@ -149,12 +136,11 @@ void IntParameter::onSliderValueChanged(int value)
   }
 }
 
-void
-IntParameter::onSpinBoxChanged(int i)
+void IntParameter::onSpinBoxChanged(int i)
 {
   _value = i;
   _slider->setValue(i);
-  if ( _timerId ) {
+  if (_timerId) {
     killTimer(_timerId);
   }
   _timerId = startTimer(UPDATE_DELAY);
@@ -162,21 +148,18 @@ IntParameter::onSpinBoxChanged(int i)
 
 void IntParameter::connectSliderSpinBox()
 {
-  if ( _connected ) {
+  if (_connected) {
     return;
   }
-  connect(_slider, SIGNAL(sliderMoved(int)),
-          this, SLOT(onSliderMoved(int)));
-  connect(_slider, SIGNAL(valueChanged(int)),
-          this, SLOT(onSliderValueChanged(int)));
-  connect(_spinBox, SIGNAL(valueChanged(int)),
-          this, SLOT(onSpinBoxChanged(int)));
+  connect(_slider, SIGNAL(sliderMoved(int)), this, SLOT(onSliderMoved(int)));
+  connect(_slider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
+  connect(_spinBox, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxChanged(int)));
   _connected = true;
 }
 
 void IntParameter::disconnectSliderSpinBox()
 {
-  if ( !_connected ) {
+  if (!_connected) {
     return;
   }
   _slider->disconnect(this);

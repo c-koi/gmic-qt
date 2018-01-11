@@ -24,10 +24,11 @@
  */
 #ifndef _GMIC_QT_SEARCHFIELDWIDGET_H_
 #define _GMIC_QT_SEARCHFIELDWIDGET_H_
-#include <QWidget>
 #include <QIcon>
+#include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class SearchFieldWidget;
 }
 
@@ -35,11 +36,10 @@ class QAction;
 class QLineEdit;
 class QToolButton;
 
-class SearchFieldWidget : public QWidget
-{
+class SearchFieldWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit SearchFieldWidget(QWidget *parent = 0);
+  explicit SearchFieldWidget(QWidget * parent = 0);
   ~SearchFieldWidget();
   QString text() const;
 public slots:
@@ -48,8 +48,9 @@ signals:
   void textChanged(QString);
 private slots:
   void onTextChanged(QString);
+
 private:
-  Ui::SearchFieldWidget *ui;
+  Ui::SearchFieldWidget * ui;
   bool _empty;
   QIcon _clearIcon;
   QIcon _findIcon;

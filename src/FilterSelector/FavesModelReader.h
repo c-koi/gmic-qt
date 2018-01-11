@@ -36,6 +36,7 @@ public:
   void loadFaves();
   static QString gmicGTKFavesFilename();
   static bool gmicGTKFaveFileAvailable();
+
 private:
   static FavesModel::Fave jsonObjectToFave(const QJsonObject & object);
   FavesModel & _model;

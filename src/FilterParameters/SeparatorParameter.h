@@ -38,6 +38,7 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
+
 private:
   QFrame * _frame;
 };

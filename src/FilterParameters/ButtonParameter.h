@@ -25,9 +25,9 @@
 #ifndef _GMIC_QT_BUTTONPARAMETER_H_
 #define _GMIC_QT_BUTTONPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QString>
 #include <Qt>
+#include "AbstractParameter.h"
 
 class QWidget;
 class QPushButton;
@@ -46,12 +46,12 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onPushButtonClicked(bool);
+
 private:
   bool _value;
   QString _text;
   QPushButton * _pushButton;
   Qt::AlignmentFlag _alignment;
 };
-
 
 #endif // _GMIC_QT_BUTTONPARAMETER_H_

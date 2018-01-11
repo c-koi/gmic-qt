@@ -22,24 +22,21 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/MultilineTextParameterWidget.h"
 #include <QDebug>
 #include <QEvent>
 #include <QKeyEvent>
 #include "Common.h"
-#include "FilterParameters/MultilineTextParameterWidget.h"
 #include "ui_multilinetextparameterwidget.h"
 
-MultilineTextParameterWidget::MultilineTextParameterWidget(QString name, QString value, QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::MultilineTextParameterWidget)
+MultilineTextParameterWidget::MultilineTextParameterWidget(QString name, QString value, QWidget * parent) : QWidget(parent), ui(new Ui::MultilineTextParameterWidget)
 {
   ui->setupUi(this);
   ui->textEdit->document()->setPlainText(value);
   ui->textEdit->installEventFilter(this);
   ui->label->setText(name);
   ui->pbUpdate->setToolTip(tr("Ctrl+Return"));
-  connect(ui->pbUpdate,SIGNAL(clicked(bool)),
-          this,SLOT(onUpdate(bool)));
+  connect(ui->pbUpdate, SIGNAL(clicked(bool)), this, SLOT(onUpdate(bool)));
 }
 
 MultilineTextParameterWidget::~MultilineTextParameterWidget()
@@ -62,13 +59,11 @@ void MultilineTextParameterWidget::onUpdate(bool)
   emit valueChanged();
 }
 
-bool MultilineTextParameterWidget::eventFilter(QObject *obj, QEvent *event)
+bool MultilineTextParameterWidget::eventFilter(QObject * obj, QEvent * event)
 {
   if (event->type() == QEvent::KeyPress) {
     QKeyEvent * keyEvent = static_cast<QKeyEvent *>(event);
-    if ( keyEvent->modifiers() & Qt::ControlModifier
-         && ( keyEvent->key() == Qt::Key_Enter
-              || keyEvent->key() == Qt::Key_Return ) ) {
+    if (keyEvent->modifiers() & Qt::ControlModifier && (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return)) {
       onUpdate(true);
       return true;
     }

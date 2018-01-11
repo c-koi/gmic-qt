@@ -22,25 +22,24 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterSelector/FavesModelReader.h"
 #include <QBuffer>
-#include <QList>
-#include <QString>
-#include <QLocale>
-#include <QFileInfo>
-#include <QSettings>
-#include <QRegularExpression>
 #include <QDebug>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonValue>
-#include "gmic_qt.h"
+#include <QList>
+#include <QLocale>
+#include <QRegularExpression>
+#include <QSettings>
+#include <QString>
 #include "Common.h"
-#include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FavesModel.h"
+#include "gmic_qt.h"
 #include "gmic.h"
 
-FavesModelReader::FavesModelReader(FavesModel & model)
-  :_model(model)
+FavesModelReader::FavesModelReader(FavesModel & model) : _model(model)
 {
 }
 
@@ -59,7 +58,7 @@ FavesModel::Fave FavesModelReader::jsonObjectToFave(const QJsonObject & object)
   fave.setPreviewCommand(object.value("preview").toString());
   QStringList defaultParameters;
   QJsonArray array = object.value("defaultParameters").toArray();
-  for ( const QJsonValue & value : array ) {
+  for (const QJsonValue & value : array) {
     defaultParameters.push_back(value.toString());
   }
   fave.setDefaultValues(defaultParameters);
@@ -71,23 +70,23 @@ void FavesModelReader::importFavesFromGmicGTK()
 {
   QString filename = gmicGTKFavesFilename();
   QFile file(filename);
-  if  ( file.open(QIODevice::ReadOnly) ) {
+  if (file.open(QIODevice::ReadOnly)) {
     QString line;
     int lineNumber = 1;
-    while ( ! (line = file.readLine()).isEmpty() ) {
+    while (!(line = file.readLine()).isEmpty()) {
       line = line.trimmed();
-      line.replace(QRegExp("^."),"").replace(QRegExp(".$"),"");
+      line.replace(QRegExp("^."), "").replace(QRegExp(".$"), "");
       QList<QString> list = line.split("}{");
-      for ( QString & str : list ) {
-        str.replace(QChar(gmic_lbrace),QString("{"));
-        str.replace(QChar(gmic_rbrace),QString("}"));
+      for (QString & str : list) {
+        str.replace(QChar(gmic_lbrace), QString("{"));
+        str.replace(QChar(gmic_rbrace), QString("}"));
       }
-      if ( list.size() >= 4 ) {
+      if (list.size() >= 4) {
         FavesModel::Fave fave;
         fave.setName(list.front());
         fave.setOriginalName(list[1]);
-        fave.setCommand(list[2].replace(QRegularExpression("^gimp_"),"fx_"));
-        fave.setPreviewCommand(list[3].replace(QRegularExpression("^gimp_"),"fx_"));
+        fave.setCommand(list[2].replace(QRegularExpression("^gimp_"), "fx_"));
+        fave.setPreviewCommand(list[3].replace(QRegularExpression("^gimp_"), "fx_"));
         list.pop_front();
         list.pop_front();
         list.pop_front();
@@ -110,14 +109,14 @@ void FavesModelReader::loadFaves()
   // Read JSON faves if file exists
   QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves.json"));
   QFile jsonFile(jsonFilename);
-  if ( jsonFile.exists() ) {
-    if ( jsonFile.open(QIODevice::ReadOnly) ) {
+  if (jsonFile.exists()) {
+    if (jsonFile.open(QIODevice::ReadOnly)) {
       QJsonDocument document;
       QJsonParseError parseError;
-      document = QJsonDocument::fromJson(jsonFile.readAll(),&parseError);
-      if ( parseError.error == QJsonParseError::NoError ) {
+      document = QJsonDocument::fromJson(jsonFile.readAll(), &parseError);
+      if (parseError.error == QJsonParseError::NoError) {
         QJsonArray array = document.array();
-        for ( const QJsonValue & value : array ) {
+        for (const QJsonValue & value : array) {
           _model.addFave(jsonObjectToFave(value.toObject()));
         }
       } else {
@@ -133,21 +132,21 @@ void FavesModelReader::loadFaves()
   // Read old 2.0.0 prerelease file format if no JSON was found
   QString filename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves"));
   QFile file(filename);
-  if ( file.exists() ) {
-    if  ( file.open(QIODevice::ReadOnly) ) {
+  if (file.exists()) {
+    if (file.open(QIODevice::ReadOnly)) {
       QString line;
       int lineNumber = 1;
-      while ( ! (line = file.readLine()).isEmpty() ) {
+      while (!(line = file.readLine()).isEmpty()) {
         line = line.trimmed();
-        if ( line.startsWith("{") ) {
-          line.replace(QRegExp("^."),"").replace(QRegExp(".$"),"");
+        if (line.startsWith("{")) {
+          line.replace(QRegExp("^."), "").replace(QRegExp(".$"), "");
           QList<QString> list = line.split("}{");
-          for ( QString & str : list ) {
-            str.replace(QChar(gmic_lbrace),QString("{"));
-            str.replace(QChar(gmic_rbrace),QString("}"));
-            str.replace(QChar(gmic_newline),QString("\n"));
+          for (QString & str : list) {
+            str.replace(QChar(gmic_lbrace), QString("{"));
+            str.replace(QChar(gmic_rbrace), QString("}"));
+            str.replace(QChar(gmic_newline), QString("\n"));
           }
-          if ( list.size() >= 4 ) {
+          if (list.size() >= 4) {
             FavesModel::Fave fave;
             fave.setName(list.front());
             fave.setOriginalName(list[1]);

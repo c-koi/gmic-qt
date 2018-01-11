@@ -22,19 +22,17 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/NoteParameter.h"
 #include <QDebug>
 #include <QDesktopServices>
 #include <QGridLayout>
 #include <QLabel>
 #include <QUrl>
 #include "Common.h"
-#include "FilterParameters/NoteParameter.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-NoteParameter::NoteParameter(QObject *parent)
-  : AbstractParameter(parent,false),
-    _label(0)
+NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent, false), _label(0)
 {
 }
 
@@ -43,67 +41,53 @@ NoteParameter::~NoteParameter()
   delete _label;
 }
 
-void
-NoteParameter::addTo(QWidget * widget, int row)
+void NoteParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _label;
-  _label = new QLabel(_text,widget);
+  _label = new QLabel(_text, widget);
   _label->setTextFormat(Qt::RichText);
-  _label->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+  _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   _label->setWordWrap(true);
-  connect(_label, SIGNAL(linkActivated(QString)),
-          this, SLOT(onLinkActivated(QString)));
-  grid->addWidget(_label,row,0,1,3);
+  connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
+  grid->addWidget(_label, row, 0, 1, 3);
 }
 
-QString
-NoteParameter::textValue() const
+QString NoteParameter::textValue() const
 {
   return QString::null;
 }
 
-void
-NoteParameter::setValue(const QString &)
+void NoteParameter::setValue(const QString &)
 {
 }
 
-void
-NoteParameter::reset()
+void NoteParameter::reset()
 {
 }
 
-bool
-NoteParameter::initFromText(const char * text, int & textLength)
+bool NoteParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("note",text,textLength);
-  _text = list[1].trimmed()
-      .remove(QRegExp("^\""))
-      .remove(QRegExp("\"$"))
-      .replace(QString("\\\""),"\"");
-  _text.replace(QString("\\n"),"<br/>");
+  QList<QString> list = parseText("note", text, textLength);
+  _text = list[1].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$")).replace(QString("\\\""), "\"");
+  _text.replace(QString("\\n"), "<br/>");
 
-  if ( DialogSettings::darkThemeEnabled() ) {
-    _text.replace(QRegExp("color\\s*=\\s*\"purple\""),
-                  QString("color=\"#ff00ff\""));
-    _text.replace(QRegExp("foreground\\s*=\\s*\"purple\""),
-                  QString("foreground=\"#ff00ff\""));
-    _text.replace(QRegExp("color\\s*=\\s*\"blue\""),
-                  QString("color=\"#9b9bff\""));
-    _text.replace(QRegExp("foreground\\s*=\\s*\"blue\""),
-                  QString("foreground=\"#9b9bff\""));
+  if (DialogSettings::darkThemeEnabled()) {
+    _text.replace(QRegExp("color\\s*=\\s*\"purple\""), QString("color=\"#ff00ff\""));
+    _text.replace(QRegExp("foreground\\s*=\\s*\"purple\""), QString("foreground=\"#ff00ff\""));
+    _text.replace(QRegExp("color\\s*=\\s*\"blue\""), QString("color=\"#9b9bff\""));
+    _text.replace(QRegExp("foreground\\s*=\\s*\"blue\""), QString("foreground=\"#9b9bff\""));
   }
 
-  _text.replace(QRegExp("color\\s*=\\s*\""),QString("style=\"color:"));
-  _text.replace(QRegExp("foreground\\s*=\\s*\""),QString("style=\"color:"));
+  _text.replace(QRegExp("color\\s*=\\s*\""), QString("style=\"color:"));
+  _text.replace(QRegExp("foreground\\s*=\\s*\""), QString("style=\"color:"));
   _text = HtmlTranslator::fromUtf8Escapes(_text);
   return true;
 }
 
-
-void
-NoteParameter::onLinkActivated(const QString & link)
+void NoteParameter::onLinkActivated(const QString & link)
 {
   QDesktopServices::openUrl(QUrl(link));
 }

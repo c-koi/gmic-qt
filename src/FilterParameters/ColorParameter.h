@@ -25,11 +25,11 @@
 #ifndef _GMIC_QT_COLORPARAMETER_H_
 #define _GMIC_QT_COLORPARAMETER_H_
 
-#include "AbstractParameter.h"
-#include <QString>
 #include <QColor>
-#include <QPixmap>
 #include <QColorDialog>
+#include <QPixmap>
+#include <QString>
+#include "AbstractParameter.h"
 class QSpinBox;
 class QSlider;
 class QLabel;
@@ -47,6 +47,7 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onButtonPressed();
+
 private:
   void updateButtonColor();
   QString _name;

@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_BOOLPARAMETER_H_
 #define _GMIC_QT_BOOLPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QString>
+#include "AbstractParameter.h"
 class QCheckBox;
 class QLabel;
 
@@ -42,6 +42,7 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onCheckBoxChanged(bool);
+
 private:
   QString _name;
   bool _default;

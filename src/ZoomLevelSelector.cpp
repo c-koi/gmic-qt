@@ -22,26 +22,24 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "Common.h"
 #include "ZoomLevelSelector.h"
-#include "ui_zoomlevelselector.h"
 #include <QDebug>
 #include <QLineEdit>
 #include <cmath>
+#include "Common.h"
+#include "ui_zoomlevelselector.h"
 
-ZoomLevelSelector::ZoomLevelSelector(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::ZoomLevelSelector)
+ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new Ui::ZoomLevelSelector)
 {
   ui->setupUi(this);
   ui->comboBox->setEditable(true);
-  QStringList values = { "1000 %", "800 %", "400 %", "200 %", "150 %", "100 %", "66.7 %", "50 %", "25 %", "12.5 %" };
+  QStringList values = {"1000 %", "800 %", "400 %", "200 %", "150 %", "100 %", "66.7 %", "50 %", "25 %", "12.5 %"};
 
   QString maxStr = values.front();
   maxStr.remove(" %");
   int max = maxStr.toInt();
   double previewMax = PREVIEW_MAX_ZOOM_FACTOR;
-  while ( max < previewMax * 100) {
+  while (max < previewMax * 100) {
     max += 1000;
     values.push_front(QString::number(max) + " %");
   }
@@ -52,10 +50,8 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget *parent) :
   ui->comboBox->setCompleter(nullptr);
   _notificationsEnabled = true;
 
-  connect(ui->comboBox->lineEdit(),SIGNAL(editingFinished()),
-          this,SLOT(onComboBoxEditingFinished()));
-  connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),
-          this,SLOT(onComboIndexChanged(int)));
+  connect(ui->comboBox->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onComboBoxEditingFinished()));
+  connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged(int)));
 }
 
 ZoomLevelSelector::~ZoomLevelSelector()
@@ -65,24 +61,24 @@ ZoomLevelSelector::~ZoomLevelSelector()
 
 void ZoomLevelSelector::display(double zoom)
 {
-  bool decimals = static_cast<int>(zoom*10000) % 100 ;
+  bool decimals = static_cast<int>(zoom * 10000) % 100;
   QString text;
   if (decimals && zoom < 1) {
-    text = QString("%L1 %").arg(zoom*100.0,0,'f',2);
+    text = QString("%L1 %").arg(zoom * 100.0, 0, 'f', 2);
   } else {
-    text = QString("%1 %").arg(static_cast<int>(zoom*100));
+    text = QString("%1 %").arg(static_cast<int>(zoom * 100));
   }
 
   // Get closest proposed value in list
   double distanceMin = std::numeric_limits<double>::max();
   int iMin = 0;
   int count = ui->comboBox->count();
-  for ( int i = 0; i < count; ++i ) {
+  for (int i = 0; i < count; ++i) {
     QString str = ui->comboBox->itemText(i);
     str.chop(2);
     double value = str.toDouble();
-    double distance = std::fabs(value/100.0-zoom);
-    if ( distance < distanceMin ) {
+    double distance = std::fabs(value / 100.0 - zoom);
+    if (distance < distanceMin) {
       distanceMin = distance;
       iMin = i;
     }
@@ -97,25 +93,25 @@ void ZoomLevelSelector::display(double zoom)
 void ZoomLevelSelector::onComboBoxEditingFinished()
 {
   QString text = ui->comboBox->lineEdit()->text();
-  if ( text == _currentText ) {
+  if (text == _currentText) {
     // This is required because opening the combobox sends
     // an editingFinished() signal ;-(
     return;
   }
-  if ( ! text.endsWith(" %") ) {
+  if (!text.endsWith(" %")) {
     text.remove(QRegExp(" ?%?$"));
     text += " %";
   }
   ui->comboBox->lineEdit()->setText(_currentText = text);
-  if ( _notificationsEnabled ) {
+  if (_notificationsEnabled) {
     emit valueChanged(currentZoomValue());
   }
 }
 
-void ZoomLevelSelector::onComboIndexChanged(int )
+void ZoomLevelSelector::onComboIndexChanged(int)
 {
   _currentText = ui->comboBox->currentText();
-  if ( _notificationsEnabled ) {
+  if (_notificationsEnabled) {
     emit valueChanged(currentZoomValue());
   }
 }
@@ -127,10 +123,9 @@ double ZoomLevelSelector::currentZoomValue()
   return text.toDouble() / 100.0;
 }
 
-ZoomLevelValidator::ZoomLevelValidator(QObject *parent)
-  : QValidator(parent)
+ZoomLevelValidator::ZoomLevelValidator(QObject * parent) : QValidator(parent)
 {
-  _doubleValidator = new QDoubleValidator( 1e-10, PREVIEW_MAX_ZOOM_FACTOR * 100.0,3,parent);
+  _doubleValidator = new QDoubleValidator(1e-10, PREVIEW_MAX_ZOOM_FACTOR * 100.0, 3, parent);
   _doubleValidator->setNotation(QDoubleValidator::StandardNotation);
 }
 
@@ -138,5 +133,5 @@ QValidator::State ZoomLevelValidator::validate(QString & input, int & pos) const
 {
   QString str = input;
   str.remove(QRegExp(" ?%?$"));
-  return _doubleValidator->validate(str,pos);
+  return _doubleValidator->validate(str, pos);
 }

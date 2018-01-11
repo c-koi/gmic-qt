@@ -37,9 +37,9 @@ public:
   bool operator<(const QStandardItem & other) const override;
   void applyVisibilityStatusToFolderContents();
   void setItemsVisibility(bool visible);
+
 private:
   bool _isFaveFolder;
 };
-
 
 #endif // _GMIC_QT_FILTERTREEFOLDER_H_

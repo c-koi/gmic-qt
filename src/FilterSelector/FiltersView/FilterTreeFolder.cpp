@@ -22,13 +22,12 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QDebug>
 #include "FilterTreeFolder.h"
-#include "HtmlTranslator.h"
+#include <QDebug>
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
+#include "HtmlTranslator.h"
 
-FilterTreeFolder::FilterTreeFolder(QString text)
-  : FilterTreeAbstractItem(text)
+FilterTreeFolder::FilterTreeFolder(QString text) : FilterTreeAbstractItem(text)
 {
   setEditable(false);
   _isFaveFolder = false;
@@ -43,12 +42,12 @@ bool FilterTreeFolder::isFullyUnchecked()
 {
   int count = rowCount();
   for (int row = 0; row < count; ++row) {
-    FilterTreeAbstractItem * item = dynamic_cast<FilterTreeAbstractItem*>(child(row));
-    if ( item && item->isVisible() ) {
+    FilterTreeAbstractItem * item = dynamic_cast<FilterTreeAbstractItem *>(child(row));
+    if (item && item->isVisible()) {
       return false;
     }
-    FilterTreeFolder* folder = dynamic_cast<FilterTreeFolder*>(child(row));
-    if ( folder && !folder->isFullyUnchecked() ) {
+    FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder *>(child(row));
+    if (folder && !folder->isFullyUnchecked()) {
       return false;
     }
   }
@@ -57,7 +56,7 @@ bool FilterTreeFolder::isFullyUnchecked()
 
 void FilterTreeFolder::applyVisibilityStatusToFolderContents()
 {
-  if ( _visibilityItem ) {
+  if (_visibilityItem) {
     setItemsVisibility(_visibilityItem->checkState() == Qt::Checked);
   }
 }
@@ -65,9 +64,9 @@ void FilterTreeFolder::applyVisibilityStatusToFolderContents()
 void FilterTreeFolder::setItemsVisibility(bool visible)
 {
   int rows = rowCount();
-  for ( int row = 0; row < rows; ++row ) {
-    FilterTreeAbstractItem * item = dynamic_cast<FilterTreeAbstractItem*>(child(row));
-    if ( item ) {
+  for (int row = 0; row < rows; ++row) {
+    FilterTreeAbstractItem * item = dynamic_cast<FilterTreeAbstractItem *>(child(row));
+    if (item) {
       item->setVisibility(visible);
     }
   }
@@ -80,28 +79,28 @@ bool FilterTreeFolder::isFaveFolder() const
 
 bool FilterTreeFolder::operator<(const QStandardItem & other) const
 {
-  const FilterTreeFolder * otherFolder = dynamic_cast<const FilterTreeFolder*>(&other);
-  const FilterTreeItem * otherItem = dynamic_cast<const FilterTreeItem*>(&other);
-  Q_ASSERT_X(otherFolder||otherItem,"FilterTreeItem::operator<","Wrong item types");
+  const FilterTreeFolder * otherFolder = dynamic_cast<const FilterTreeFolder *>(&other);
+  const FilterTreeItem * otherItem = dynamic_cast<const FilterTreeItem *>(&other);
+  Q_ASSERT_X(otherFolder || otherItem, "FilterTreeItem::operator<", "Wrong item types");
   bool otherIsWarning = (otherFolder && otherFolder->isWarning()) || (otherItem && otherItem->isWarning());
   bool otherIsFaveFolder = otherFolder && otherFolder->isFaveFolder();
 
   // Warnings first
-  if ( isWarning() && !otherIsWarning ) {
+  if (isWarning() && !otherIsWarning) {
     return true;
   }
-  if ( !isWarning() && otherIsWarning ) {
+  if (!isWarning() && otherIsWarning) {
     return false;
   }
   // Then fave folder
-  if ( _isFaveFolder && ! otherIsFaveFolder ) {
+  if (_isFaveFolder && !otherIsFaveFolder) {
     return true;
   }
-  if ( ! _isFaveFolder && otherIsFaveFolder ) {
+  if (!_isFaveFolder && otherIsFaveFolder) {
     return false;
   }
   // Then folders
-  if ( ! otherFolder ) {
+  if (!otherFolder) {
     return true;
   }
   // Other cases follow lexicographic order
@@ -111,4 +110,3 @@ bool FilterTreeFolder::operator<(const QStandardItem & other) const
     return plainText().localeAwareCompare(otherItem->plainText()) < 0;
   }
 }
-

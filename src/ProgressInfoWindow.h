@@ -26,24 +26,25 @@
 #define _GMIC_QT_PROGRESSINFOWINDOW_H_
 
 #include <QMainWindow>
-#include <QTimer>
 #include <QString>
+#include <QTimer>
 #include "gmic_qt.h"
 
 class FilterThread;
 
-namespace Ui {
+namespace Ui
+{
 class ProgressInfoWindow;
 }
 
-namespace cimg_library {
-template<typename T> struct CImgList;
+namespace cimg_library
+{
+template <typename T> struct CImgList;
 }
 
 class HeadlessProcessor;
 
-class ProgressInfoWindow : public QMainWindow
-{
+class ProgressInfoWindow : public QMainWindow {
   Q_OBJECT
 
 public:
@@ -52,7 +53,7 @@ public:
 
 protected:
   void showEvent(QShowEvent *) override;
-  void closeEvent(QCloseEvent*) override;
+  void closeEvent(QCloseEvent *) override;
 
 public slots:
   void onCancelClicked(bool);

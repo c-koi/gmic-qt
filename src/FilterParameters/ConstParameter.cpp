@@ -22,14 +22,13 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/ConstParameter.h"
 #include <QString>
 #include <QStringList>
 #include "Common.h"
 #include "HtmlTranslator.h"
-#include "FilterParameters/ConstParameter.h"
 
-ConstParameter::ConstParameter(QObject *parent)
-  : AbstractParameter(parent,true)
+ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent, true)
 {
 }
 
@@ -37,38 +36,33 @@ ConstParameter::~ConstParameter()
 {
 }
 
-bool
-ConstParameter::isVisible() const
+bool ConstParameter::isVisible() const
 {
   return false;
 }
 
-void
-ConstParameter::addTo(QWidget *, int)
+void ConstParameter::addTo(QWidget *, int)
 {
 }
 
-QString
-ConstParameter::textValue() const
+QString ConstParameter::textValue() const
 {
   return _value;
 }
 
-void
-ConstParameter::setValue(const QString & value)
+void ConstParameter::setValue(const QString & value)
 {
   _value = value;
 }
 
-void
-ConstParameter::reset()
+void ConstParameter::reset()
 {
   _value = _default;
 }
 
 bool ConstParameter::initFromText(const char * text, int & textLength)
 {
-  QStringList list = parseText("value",text,textLength);
+  QStringList list = parseText("value", text, textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   _value = _default = list[1];
   return true;

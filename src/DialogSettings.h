@@ -25,23 +25,23 @@
 #ifndef _GMIC_QT_DIALOGSETTINGS_H_
 #define _GMIC_QT_DIALOGSETTINGS_H_
 
-#include <QDialog>
 #include <QColor>
+#include <QDialog>
 #include "MainWindow.h"
 
 class QCloseEvent;
 class QSettings;
 
-namespace Ui {
+namespace Ui
+{
 class DialogSettings;
 }
 
-class DialogSettings : public QDialog
-{
+class DialogSettings : public QDialog {
   Q_OBJECT
 
 public:
-  explicit DialogSettings(QWidget *parent = 0);
+  explicit DialogSettings(QWidget * parent = 0);
   ~DialogSettings();
   static MainWindow::PreviewPosition previewPosition();
   static bool darkThemeEnabled();
@@ -56,7 +56,7 @@ public:
   static QString FileParameterDefaultPath;
 
 public slots:
-  void onRadioLeftPreviewToggled(bool );
+  void onRadioLeftPreviewToggled(bool);
   void onUpdateClicked();
   void onOk();
   void enableUpdateButton();
@@ -66,7 +66,7 @@ public slots:
   void done(int r) override;
 
 private:
-  Ui::DialogSettings *ui;
+  Ui::DialogSettings * ui;
   static bool _darkThemeEnabled;
   static QString _languageCode;
   static bool _nativeColorDialogs;

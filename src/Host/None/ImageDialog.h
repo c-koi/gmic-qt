@@ -24,22 +24,23 @@
  */
 #ifndef _GMIC_QT_IMAGE_DIALOG_H
 #define _GMIC_QT_IMAGE_DIALOG_H
-#include <QImage>
+#include <QApplication>
 #include <QDialog>
-#include <QPainter>
 #include <QFileDialog>
 #include <QFileInfo>
-#include <QApplication>
-#include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QImage>
+#include <QPainter>
 #include <QPushButton>
 #include <QString>
 #include <QTabWidget>
-#include "ImageConverter.h"
+#include <QVBoxLayout>
 #include "Common.h"
+#include "ImageConverter.h"
 
-namespace cimg_library {
-template<typename T> struct CImg;
+namespace cimg_library
+{
+template <typename T> struct CImg;
 }
 
 class ImageView : public QWidget {
@@ -49,6 +50,7 @@ public:
   void setImage(const QImage & image);
   void save(const QString & filename);
   void paintEvent(QPaintEvent *) override;
+
 private:
   QImage _image;
 };
@@ -61,6 +63,7 @@ public:
 public slots:
   void onSaveAs();
   void onCloseClicked(bool);
+
 private:
   QPushButton * _closeButton;
   QPushButton * _saveButton;

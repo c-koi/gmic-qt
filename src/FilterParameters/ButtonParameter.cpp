@@ -22,20 +22,16 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QWidget>
-#include <QGridLayout>
-#include <QPushButton>
-#include <QLabel>
+#include "FilterParameters/ButtonParameter.h"
 #include <QDebug>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QWidget>
 #include "Common.h"
 #include "HtmlTranslator.h"
-#include "FilterParameters/ButtonParameter.h"
 
-ButtonParameter::ButtonParameter(QObject *parent)
-  : AbstractParameter(parent,true),
-    _value(false),
-    _pushButton(0),
-    _alignment(Qt::AlignHCenter)
+ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(0), _alignment(Qt::AlignHCenter)
 {
 }
 
@@ -44,27 +40,24 @@ ButtonParameter::~ButtonParameter()
   delete _pushButton;
 }
 
-void
-ButtonParameter::addTo(QWidget * widget, int row)
+void ButtonParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _pushButton;
-  _pushButton = new QPushButton(_text,widget);
-  _pushButton->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
-  grid->addWidget(_pushButton,row,0,1,3,_alignment);
-  connect(_pushButton, SIGNAL(clicked(bool)),
-          this, SLOT(onPushButtonClicked(bool)));
+  _pushButton = new QPushButton(_text, widget);
+  _pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+  grid->addWidget(_pushButton, row, 0, 1, 3, _alignment);
+  connect(_pushButton, SIGNAL(clicked(bool)), this, SLOT(onPushButtonClicked(bool)));
 }
 
-QString
-ButtonParameter::textValue() const
+QString ButtonParameter::textValue() const
 {
   return _value ? QString("1") : QString("0");
 }
 
-void
-ButtonParameter::setValue(const QString & s)
+void ButtonParameter::setValue(const QString & s)
 {
   _value = (s == "1");
 }
@@ -74,31 +67,28 @@ void ButtonParameter::clear()
   _value = false;
 }
 
-void
-ButtonParameter::reset()
+void ButtonParameter::reset()
 {
 }
 
-void
-ButtonParameter::onPushButtonClicked(bool )
+void ButtonParameter::onPushButtonClicked(bool)
 {
   _value = true;
   notifyIfRelevant();
 }
 
-bool
-ButtonParameter::initFromText(const char *text, int & textLength)
+bool ButtonParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("button",text,textLength);
+  QList<QString> list = parseText("button", text, textLength);
   _text = HtmlTranslator::html2txt(list[0]);
   QString & alignment = list[1];
-  if ( alignment.isEmpty() ) {
+  if (alignment.isEmpty()) {
     return true;
   } else {
     float a = alignment.toFloat();
-    if ( a == 0.0f ) {
+    if (a == 0.0f) {
       _alignment = Qt::AlignLeft;
-    } else if ( a == 1.0f ) {
+    } else if (a == 1.0f) {
       _alignment = Qt::AlignRight;
     } else {
       _alignment = Qt::AlignCenter;

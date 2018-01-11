@@ -27,10 +27,11 @@
 
 #include <QGroupBox>
 #include <QJsonObject>
-#include "gmic_qt.h"
 #include "Host/host.h"
+#include "gmic_qt.h"
 
-namespace Ui {
+namespace Ui
+{
 class InOutPanel;
 }
 
@@ -38,12 +39,11 @@ class QSettings;
 class QPalette;
 class FilterThread;
 
-class InOutPanel : public QGroupBox
-{
+class InOutPanel : public QGroupBox {
   Q_OBJECT
 
 public:
-  explicit InOutPanel(QWidget *parent = 0);
+  explicit InOutPanel(QWidget * parent = 0);
   ~InOutPanel();
 
 public:
@@ -68,13 +68,13 @@ public:
     GmicQt::OutputMessageMode outputMessageMode;
     // Methods
     State();
-    State(GmicQt::InputMode , GmicQt::OutputMode , GmicQt::PreviewMode , GmicQt::OutputMessageMode );
+    State(GmicQt::InputMode, GmicQt::OutputMode, GmicQt::PreviewMode, GmicQt::OutputMessageMode);
     bool isUnspecified() const;
     QJsonObject toJSONObject() const;
-    static State fromJSONObject(const QJsonObject & );
+    static State fromJSONObject(const QJsonObject &);
     static const State Unspecified;
-    bool operator==( const State & other ) const;
-    bool operator!=( const State & other ) const;
+    bool operator==(const State & other) const;
+    bool operator!=(const State & other) const;
   };
 
   State state() const;
@@ -96,7 +96,7 @@ public slots:
 
 private:
   bool _notifyValueChange;
-  Ui::InOutPanel *ui;
+  Ui::InOutPanel * ui;
   static const int NoSelection = -1;
 };
 

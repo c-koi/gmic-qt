@@ -24,11 +24,11 @@
  */
 #ifndef _GMIC_QT_FILTERSMODEL_H_
 #define _GMIC_QT_FILTERSMODEL_H_
-#include <QString>
 #include <QList>
 #include <QMap>
-#include <vector>
+#include <QString>
 #include <cstddef>
+#include <vector>
 
 class FiltersModel {
 public:
@@ -57,6 +57,7 @@ public:
     bool isWarning() const;
 
     bool matchKeywords(const QList<QString> & keywords) const;
+
   private:
     QString _name;
     QString _plainText;
@@ -72,6 +73,7 @@ public:
 
   FiltersModel();
   ~FiltersModel();
+
 public:
   void clear();
   void addFilter(const Filter & filter);
@@ -83,9 +85,10 @@ public:
   const Filter & getFilterFromHash(const QString & hash);
   bool contains(const QString & hash) const;
   static const size_t NoIndex;
+
 private:
   std::vector<Filter> _filters;
-  QMap<QString,size_t> _hash2filterIndex;
+  QMap<QString, size_t> _hash2filterIndex;
 };
 
 #endif // _GMIC_QT_FILTERSMODEL_H_

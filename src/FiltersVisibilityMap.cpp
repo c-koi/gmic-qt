@@ -23,11 +23,11 @@
  *
  */
 #include "FiltersVisibilityMap.h"
-#include <QByteArray>
 #include <QBuffer>
+#include <QByteArray>
 #include <QDataStream>
-#include <QFile>
 #include <QDebug>
+#include <QFile>
 #include "Common.h"
 #include "gmic.h"
 
@@ -35,12 +35,12 @@ QSet<QString> FiltersVisibilityMap::_hiddenFilters;
 
 bool FiltersVisibilityMap::filterIsVisible(const QString & hash)
 {
-  return ! _hiddenFilters.contains(hash);
+  return !_hiddenFilters.contains(hash);
 }
 
 void FiltersVisibilityMap::setVisibility(const QString & hash, bool visible)
 {
-  if ( visible ) {
+  if (visible) {
     _hiddenFilters.remove(hash);
   } else {
     _hiddenFilters.insert(hash);
@@ -49,13 +49,13 @@ void FiltersVisibilityMap::setVisibility(const QString & hash, bool visible)
 
 void FiltersVisibilityMap::load()
 {
-  QString path = QString("%1%2").arg( GmicQt::path_rc(false), FILTERS_VISIBILITY_FILENAME );
+  QString path = QString("%1%2").arg(GmicQt::path_rc(false), FILTERS_VISIBILITY_FILENAME);
   QFile file(path);
-  if ( file.open(QFile::ReadOnly) ) {
+  if (file.open(QFile::ReadOnly)) {
     QString line;
     do {
       line = file.readLine();
-    } while ( file.bytesAvailable() && line != QString("[Hidden filters list (compressed)]\n") );
+    } while (file.bytesAvailable() && line != QString("[Hidden filters list (compressed)]\n"));
     QByteArray data = qUncompress(file.readAll());
     QBuffer buffer(&data);
     buffer.open(QIODevice::ReadOnly);
@@ -64,7 +64,7 @@ void FiltersVisibilityMap::load()
     qint32 count = buffer.readLine().trimmed().toInt(&ok);
     if (ok) {
       QString hash;
-      while ( count-- ) {
+      while (count--) {
         hash = buffer.readLine().trimmed();
         _hiddenFilters.insert(hash);
       }
@@ -81,14 +81,14 @@ void FiltersVisibilityMap::save()
   buffer.open(QIODevice::WriteOnly);
   qint32 count = _hiddenFilters.size();
   buffer.write(QString("%1\n").arg(count).toLatin1());
-  for ( const QString & str : _hiddenFilters ) {
-    buffer.write((str+QChar('\n')).toLatin1());
+  for (const QString & str : _hiddenFilters) {
+    buffer.write((str + QChar('\n')).toLatin1());
   }
 
-  QString path = QString("%1%2").arg( GmicQt::path_rc(true), FILTERS_VISIBILITY_FILENAME );
+  QString path = QString("%1%2").arg(GmicQt::path_rc(true), FILTERS_VISIBILITY_FILENAME);
   QFile file(path);
-  if ( file.open(QFile::WriteOnly) ) {
-    file.write(QString("Version=%1.%2.%3\n").arg(gmic_version/100).arg((gmic_version/10)%10).arg(gmic_version%10).toLocal8Bit());
+  if (file.open(QFile::WriteOnly)) {
+    file.write(QString("Version=%1.%2.%3\n").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10).toLocal8Bit());
     file.write(QString("[Hidden filters list (compressed)]\n").toLocal8Bit());
     file.write(qCompress(data));
     file.close();

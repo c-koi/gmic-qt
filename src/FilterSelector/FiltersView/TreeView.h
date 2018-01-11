@@ -25,19 +25,20 @@
 #ifndef _GMIC_QT_TREEVIEW_H_
 #define _GMIC_QT_TREEVIEW_H_
 
-#include <QWidget>
-#include <QTreeView>
-#include "Common.h"
 #include <QDebug>
+#include <QTreeView>
+#include <QWidget>
+#include "Common.h"
 
 class TreeView : public QTreeView {
   Q_OBJECT
 public:
   TreeView(QWidget * parent = 0);
   ~TreeView();
-  void keyPressEvent(QKeyEvent *event) override;
+  void keyPressEvent(QKeyEvent * event) override;
 signals:
   void returnKeyPressed();
+
 private:
 };
 

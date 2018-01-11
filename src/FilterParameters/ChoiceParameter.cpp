@@ -22,20 +22,15 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QWidget>
-#include <QGridLayout>
+#include "FilterParameters/ChoiceParameter.h"
 #include <QComboBox>
+#include <QGridLayout>
 #include <QLabel>
+#include <QWidget>
 #include "Common.h"
 #include "HtmlTranslator.h"
-#include "FilterParameters/ChoiceParameter.h"
 
-ChoiceParameter::ChoiceParameter(QObject * parent)
-  : AbstractParameter(parent,true),
-    _default(0),
-    _value(0),
-    _label(0),
-    _comboBox(0)
+ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(0), _comboBox(0)
 {
 }
 
@@ -45,11 +40,11 @@ ChoiceParameter::~ChoiceParameter()
   delete _label;
 }
 
-void
-ChoiceParameter::addTo(QWidget * widget, int row)
+void ChoiceParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _comboBox;
   delete _label;
 
@@ -57,20 +52,17 @@ ChoiceParameter::addTo(QWidget * widget, int row)
   _comboBox->addItems(_choices);
   _comboBox->setCurrentIndex(_value);
 
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_comboBox,row,1,1,2);
-  connect(_comboBox, SIGNAL(currentIndexChanged(int)),
-          this, SLOT(onComboBoxIndexChanged(int)));
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_comboBox, row, 1, 1, 2);
+  connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxIndexChanged(int)));
 }
 
-QString
-ChoiceParameter::textValue() const
+QString ChoiceParameter::textValue() const
 {
   return QString("%1").arg(_comboBox->currentIndex());
 }
 
-void
-ChoiceParameter::setValue(const QString & value)
+void ChoiceParameter::setValue(const QString & value)
 {
   _value = value.toInt();
   if (_comboBox) {
@@ -78,8 +70,7 @@ ChoiceParameter::setValue(const QString & value)
   }
 }
 
-void
-ChoiceParameter::reset()
+void ChoiceParameter::reset()
 {
   _comboBox->setCurrentIndex(_default);
   _value = _default;
@@ -87,21 +78,21 @@ ChoiceParameter::reset()
 
 bool ChoiceParameter::initFromText(const char * text, int & textLength)
 {
-  QStringList list = parseText("choice",text,textLength);
+  QStringList list = parseText("choice", text, textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   _choices = list[1].split(QChar(','));
   bool ok;
-  if ( _choices.isEmpty() ) {
+  if (_choices.isEmpty()) {
     return false;
   }
   _default = _choices[0].toInt(&ok);
-  if ( ! ok ) {
+  if (!ok) {
     _default = 0;
   } else {
     _choices.pop_front();
   }
   QList<QString>::iterator it = _choices.begin();
-  while ( it != _choices.end() ) {
+  while (it != _choices.end()) {
     *it = it->trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
     *it = HtmlTranslator::html2txt(*it);
     ++it;
@@ -110,8 +101,7 @@ bool ChoiceParameter::initFromText(const char * text, int & textLength)
   return true;
 }
 
-void
-ChoiceParameter::onComboBoxIndexChanged(int i)
+void ChoiceParameter::onComboBoxIndexChanged(int i)
 {
   _value = i;
   notifyIfRelevant();

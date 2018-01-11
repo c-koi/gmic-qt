@@ -39,7 +39,8 @@ public:
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
 public slots:
-  void onLinkActivated(const QString &link);
+  void onLinkActivated(const QString & link);
+
 private:
   QLabel * _label;
   QString _text;

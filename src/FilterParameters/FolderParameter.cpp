@@ -22,6 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/FolderParameter.h"
 #include <QDebug>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -34,12 +35,8 @@
 #include "Common.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
-#include "FilterParameters/FolderParameter.h"
 
-FolderParameter::FolderParameter(QObject *parent)
-  : AbstractParameter(parent,true),
-    _label(0),
-    _button(0)
+FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0)
 {
 }
 
@@ -49,69 +46,64 @@ FolderParameter::~FolderParameter()
   delete _button;
 }
 
-void
-FolderParameter::addTo(QWidget * widget, int row)
+void FolderParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _label;
   delete _button;
 
   _button = new QPushButton(widget);
   _button->setIcon(LOAD_ICON("folder"));
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_button,row,1,1,2);
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_button, row, 1, 1, 2);
   setValue(_value);
-  connect(_button, SIGNAL(clicked()),
-          this, SLOT(onButtonPressed()));
+  connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-QString
-FolderParameter::textValue() const
+QString FolderParameter::textValue() const
 {
   return QString("\"%1\"").arg(_value);
 }
 
-QString
-FolderParameter::unquotedTextValue() const
+QString FolderParameter::unquotedTextValue() const
 {
   return _value;
 }
 
-void
-FolderParameter::setValue(const QString & value)
+void FolderParameter::setValue(const QString & value)
 {
   _value = value;
-  if ( _value.isEmpty() ) {
+  if (_value.isEmpty()) {
     _value = DialogSettings::FolderParameterDefaultValue;
-  } else if ( ! QFileInfo(_value).isDir() ) {
+  } else if (!QFileInfo(_value).isDir()) {
     _value = QDir::homePath();
   }
   QDir dir(_value);
   QDir abs(dir.absolutePath());
   if (_button) {
-    int width = _button->contentsRect().width()-10;
+    int width = _button->contentsRect().width() - 10;
     QFontMetrics fm(_button->font());
-    _button->setText(fm.elidedText(abs.dirName(),Qt::ElideRight,width));
+    _button->setText(fm.elidedText(abs.dirName(), Qt::ElideRight, width));
   }
 }
 
-void
-FolderParameter::reset()
+void FolderParameter::reset()
 {
   setValue(_default);
 }
 
 bool FolderParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("folder",text,textLength);
+  QList<QString> list = parseText("folder", text, textLength);
   _name = HtmlTranslator::html2txt(list[0]);
   QRegExp re("^\".*\"$");
-  if ( re.exactMatch(list[1]) ) {
+  if (re.exactMatch(list[1])) {
     list[1].chop(1);
-    list[1].remove(0,1);
+    list[1].remove(0, 1);
   }
-  if ( list[1].isEmpty() ) {
+  if (list[1].isEmpty()) {
     _default.clear();
     _value = DialogSettings::FolderParameterDefaultValue;
   } else {
@@ -120,11 +112,10 @@ bool FolderParameter::initFromText(const char * text, int & textLength)
   return true;
 }
 
-void
-FolderParameter::onButtonPressed()
+void FolderParameter::onButtonPressed()
 {
   QString oldValue = _value;
-  QString path = QFileDialog::getExistingDirectory(0,tr("Select a folder"),_value);
+  QString path = QFileDialog::getExistingDirectory(0, tr("Select a folder"), _value);
   if (path.isEmpty()) {
     setValue(oldValue);
   } else {

@@ -22,32 +22,21 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterThread.h"
 #include <QDebug>
 #include <iostream>
-#include "FilterThread.h"
-#include "ImageConverter.h"
 #include "GmicStdlibParser.h"
+#include "ImageConverter.h"
 #include "gmic.h"
 using namespace cimg_library;
 
-FilterThread::FilterThread(QObject *parent,
-                           const QString & name,
-                           const QString & command,
-                           const QString & arguments,
-                           const QString & environment,
-                           GmicQt::OutputMessageMode mode)
-  : QThread(parent),
-    _command(command),
-    _arguments(arguments),
-    _environment(environment),
-    _images(new cimg_library::CImgList<float>),
-    _imageNames(new cimg_library::CImgList<char>),
-    _name(name),
-    _messageMode(mode)
+FilterThread::FilterThread(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
+    : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>), _name(name),
+      _messageMode(mode)
 {
   ENTERING;
 #ifdef _IS_MACOS_
-  setStackSize(8*1024*1024);
+  setStackSize(8 * 1024 * 1024);
 #endif
 }
 
@@ -58,15 +47,12 @@ FilterThread::~FilterThread()
   delete _imageNames;
 }
 
-void
-FilterThread::setArguments(const QString & str)
+void FilterThread::setArguments(const QString & str)
 {
   _arguments = str;
 }
 
-void
-FilterThread::setInputImages(const cimg_library::CImgList<float> & list,
-                             const cimg_library::CImgList<char> & imageNames)
+void FilterThread::setInputImages(const cimg_library::CImgList<float> & list, const cimg_library::CImgList<char> & imageNames)
 {
   *_images = list;
   *_imageNames = imageNames;
@@ -82,8 +68,7 @@ const cimg_library::CImgList<char> & FilterThread::imageNames() const
   return *_imageNames;
 }
 
-QString
-FilterThread::gmicStatus() const
+QString FilterThread::gmicStatus() const
 {
   return _gmicStatus;
 }
@@ -123,14 +108,12 @@ QString FilterThread::fullCommand() const
   return QString("%1 %2").arg(_command).arg(_arguments);
 }
 
-void
-FilterThread::abortGmic()
+void FilterThread::abortGmic()
 {
   _gmicAbort = true;
 }
 
-void
-FilterThread::run()
+void FilterThread::run()
 {
   _startTime.start();
   _errorMessage.clear();
@@ -141,31 +124,26 @@ FilterThread::run()
   }
   QString fullCommandLine;
   try {
-    if ( _messageMode == GmicQt::Quiet ) {
+    if (_messageMode == GmicQt::Quiet) {
       fullCommandLine = QString("v -");
-    } else if ( _messageMode >= GmicQt::VerboseLayerName && _messageMode <= GmicQt::VerboseLogFile ) {
+    } else if (_messageMode >= GmicQt::VerboseLayerName && _messageMode <= GmicQt::VerboseLogFile) {
       fullCommandLine = QString("v -99");
-    } else if ( _messageMode == GmicQt::VeryVerboseConsole || _messageMode == GmicQt::VeryVerboseLogFile  ) {
+    } else if (_messageMode == GmicQt::VeryVerboseConsole || _messageMode == GmicQt::VeryVerboseLogFile) {
       fullCommandLine = QString("v 0");
-    } else if ( _messageMode == GmicQt::DebugConsole || _messageMode == GmicQt::DebugLogFile  ) {
-      fullCommandLine = QString("debug") ;
+    } else if (_messageMode == GmicQt::DebugConsole || _messageMode == GmicQt::DebugLogFile) {
+      fullCommandLine = QString("debug");
     }
     fullCommandLine += QString(" %1 %2").arg(_command).arg(_arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {
-      std::fprintf(cimg::output(),"\n[gmic_qt] Command: %s\n",fullCommandLine.toLocal8Bit().constData());
+      std::fprintf(cimg::output(), "\n[gmic_qt] Command: %s\n", fullCommandLine.toLocal8Bit().constData());
       std::fflush(cimg::output());
     }
 
-    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(),
-                      GmicStdLibParser::GmicStdlib.constData(),true);
-    gmicInstance.set_variable("_host",GmicQt::HostApplicationShortname,'=');
-    gmicInstance.run(fullCommandLine.toLocal8Bit().constData(),
-                     *_images,
-                     *_imageNames,
-                     &_gmicProgress,
-                     &_gmicAbort);
+    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLibParser::GmicStdlib.constData(), true);
+    gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
+    gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;
   } catch (gmic_exception & e) {
     _images->assign();
@@ -173,17 +151,14 @@ FilterThread::run()
     const char * message = e.what();
     _errorMessage = message;
     if (_messageMode > GmicQt::Quiet) {
-      std::fprintf(cimg::output(),"\n[gmic_qt]./error/ When running command '%s', this error occured:\n%s\n",
-                   fullCommandLine.toLocal8Bit().constData(),
-                   message);
+      std::fprintf(cimg::output(), "\n[gmic_qt]./error/ When running command '%s', this error occured:\n%s\n", fullCommandLine.toLocal8Bit().constData(), message);
       std::fflush(cimg::output());
     }
     _failed = true;
   }
 }
 
-void
-FilterThread::setCommand(const QString & command)
+void FilterThread::setCommand(const QString & command)
 {
   _command = command;
 }

@@ -25,20 +25,20 @@
 #ifndef _GMIC_QT_ZOOMLEVELSELECTOR_H
 #define _GMIC_QT_ZOOMLEVELSELECTOR_H
 
-#include <QWidget>
 #include <QDoubleValidator>
 #include <QPalette>
+#include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class ZoomLevelSelector;
 }
 
-class ZoomLevelSelector : public QWidget
-{
+class ZoomLevelSelector : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ZoomLevelSelector(QWidget *parent = 0);
+  explicit ZoomLevelSelector(QWidget * parent = 0);
   ~ZoomLevelSelector();
 
 public slots:
@@ -46,13 +46,13 @@ public slots:
 
 private slots:
   void onComboBoxEditingFinished();
-  void onComboIndexChanged(int );
+  void onComboIndexChanged(int);
 
 signals:
   void valueChanged(double);
 
 private:
-  Ui::ZoomLevelSelector *ui;
+  Ui::ZoomLevelSelector * ui;
   bool _notificationsEnabled;
   double currentZoomValue();
   QString _currentText;
@@ -63,6 +63,7 @@ class ZoomLevelValidator : public QValidator {
 public:
   ZoomLevelValidator(QObject * parent);
   QValidator::State validate(QString & input, int & pos) const override;
+
 private:
   QDoubleValidator * _doubleValidator;
 };

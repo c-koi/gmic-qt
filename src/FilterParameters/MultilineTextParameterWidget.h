@@ -27,15 +27,15 @@
 
 #include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class MultilineTextParameterWidget;
 }
 
-class MultilineTextParameterWidget : public QWidget
-{
+class MultilineTextParameterWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit MultilineTextParameterWidget(QString name, QString value, QWidget *parent = 0);
+  explicit MultilineTextParameterWidget(QString name, QString value, QWidget * parent = 0);
   ~MultilineTextParameterWidget();
   QString text() const;
   void setText(const QString & text);
@@ -43,10 +43,12 @@ signals:
   void valueChanged();
 public slots:
   void onUpdate(bool);
+
 protected:
-  bool eventFilter(QObject *obj, QEvent *event);
+  bool eventFilter(QObject * obj, QEvent * event);
+
 private:
-  Ui::MultilineTextParameterWidget *ui;
+  Ui::MultilineTextParameterWidget * ui;
 };
 
 #endif // _GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H

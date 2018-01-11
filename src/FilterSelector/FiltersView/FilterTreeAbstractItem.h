@@ -37,8 +37,10 @@ public:
   void setVisibility(bool flag);
   QList<QString> path() const;
   static QString removeWarningPrefix(QString folderName);
+
 protected:
   QStandardItem * _visibilityItem;
+
 private:
   static const QChar WarningPrefix;
   QString _plainText;

@@ -26,15 +26,16 @@
 #define _GMIC_QT_IMAGECONVERTER_H_
 
 class QImage;
-namespace cimg_library {
-template<typename T> struct CImg;
+namespace cimg_library
+{
+template <typename T> struct CImg;
 }
 
-class ImageConverter
-{
+class ImageConverter {
 public:
   static void convert(const cimg_library::CImg<float> & in, QImage & out);
   static void convert(const QImage & in, cimg_library::CImg<float> & out);
+
 private:
   ImageConverter() = delete;
 };

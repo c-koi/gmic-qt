@@ -31,8 +31,10 @@
 
 class QString;
 
-namespace GmicQt {
-enum InputMode {
+namespace GmicQt
+{
+enum InputMode
+{
   NoInput,
   Active,
   All,
@@ -47,7 +49,8 @@ enum InputMode {
 };
 extern const InputMode DefaultInputMode;
 
-enum OutputMode {
+enum OutputMode
+{
   InPlace,
   NewLayers,
   NewActiveLayers,
@@ -56,7 +59,8 @@ enum OutputMode {
 };
 extern const OutputMode DefaultOutputMode;
 
-enum OutputMessageMode {
+enum OutputMessageMode
+{
   Quiet,
   VerboseLayerName,
   VerboseConsole,
@@ -69,7 +73,8 @@ enum OutputMessageMode {
 };
 extern const OutputMessageMode DefaultOutputMessageMode;
 
-enum PreviewMode {
+enum PreviewMode
+{
   FirstOutput,
   SecondOutput,
   ThirdOutput,

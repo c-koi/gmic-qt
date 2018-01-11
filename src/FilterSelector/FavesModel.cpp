@@ -22,13 +22,13 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterSelector/FavesModel.h"
 #include <QCryptographicHash>
 #include <QDebug>
 #include <QString>
 #include <limits>
 #include "Common.h"
 #include "HtmlTranslator.h"
-#include "FilterSelector/FavesModel.h"
 #include "gmic_qt.h"
 
 const size_t FavesModel::NoIndex = std::numeric_limits<size_t>::max();
@@ -83,29 +83,29 @@ FavesModel::const_iterator FavesModel::findFaveFromHash(const QString & hash)
 
 const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash)
 {
-  Q_ASSERT_X(_faves.contains(hash),"getFaveFromHash","Hash not found");
+  Q_ASSERT_X(_faves.contains(hash), "getFaveFromHash", "Hash not found");
   return _faves.find(hash).value();
 }
 
 QString FavesModel::uniqueName(QString name, QString faveHashToIgnore)
 {
   QString basename(name);
-  basename.replace(QRegExp(" *\\(\\d+\\)$"),QString());
+  basename.replace(QRegExp(" *\\(\\d+\\)$"), QString());
   int iMax = -1;
   bool nameIsUnique = true;
-  QMap<QString,Fave>::const_iterator it = _faves.cbegin();
+  QMap<QString, Fave>::const_iterator it = _faves.cbegin();
   while (it != _faves.cend()) {
     SHOW(it.value().name());
     if (it.key() != faveHashToIgnore) {
       QString faveName = it.value().name();
-      if ( faveName == name ) {
+      if (faveName == name) {
         nameIsUnique = false;
       }
       QRegExp re(" *\\((\\d+)\\)$");
-      if ( re.indexIn(faveName) != -1 ) {
-        faveName.replace(re,QString());
+      if (re.indexIn(faveName) != -1) {
+        faveName.replace(re, QString());
         if (faveName == basename) {
-          iMax = std::max(iMax,re.cap(1).toInt());
+          iMax = std::max(iMax, re.cap(1).toInt());
         }
       } else if ((basename == faveName) && (iMax == -1)) {
         iMax = 1;
@@ -122,7 +122,7 @@ QString FavesModel::uniqueName(QString name, QString faveHashToIgnore)
 FavesModel::Fave & FavesModel::Fave::setName(QString name)
 {
   _name = name;
-  _plainText = HtmlTranslator::html2txt(_name,true);
+  _plainText = HtmlTranslator::html2txt(_name, true);
   return *this;
 }
 
@@ -225,13 +225,12 @@ QString FavesModel::Fave::toString() const
       .arg(_originalHash);
 }
 
-bool FavesModel::Fave::matchKeywords(const QList<QString> &keywords) const
+bool FavesModel::Fave::matchKeywords(const QList<QString> & keywords) const
 {
   QList<QString>::const_iterator itKeyword = keywords.cbegin();
   while (itKeyword != keywords.cend()) {
     const QString & keyword = *itKeyword;
-    if (!QObject::tr(FAVE_FOLDER_TEXT).contains(keyword,Qt::CaseInsensitive)
-        && !_plainText.contains(keyword,Qt::CaseInsensitive)) {
+    if (!QObject::tr(FAVE_FOLDER_TEXT).contains(keyword, Qt::CaseInsensitive) && !_plainText.contains(keyword, Qt::CaseInsensitive)) {
       return false;
     }
     ++itKeyword;
@@ -239,7 +238,7 @@ bool FavesModel::Fave::matchKeywords(const QList<QString> &keywords) const
   return true;
 }
 
-FavesModel::const_iterator::const_iterator(const QMap<QString,FavesModel::Fave>::const_iterator & iterator)
+FavesModel::const_iterator::const_iterator(const QMap<QString, FavesModel::Fave>::const_iterator & iterator)
 {
   _mapIterator = iterator;
 }
@@ -272,7 +271,7 @@ bool FavesModel::const_iterator::operator!=(const FavesModel::const_iterator & o
   return _mapIterator != other._mapIterator;
 }
 
-bool FavesModel::const_iterator::operator==(const FavesModel::const_iterator &other)
+bool FavesModel::const_iterator::operator==(const FavesModel::const_iterator & other)
 {
   return _mapIterator == other._mapIterator;
 }

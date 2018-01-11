@@ -22,6 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "FilterParameters/BoolParameter.h"
 #include <QCheckBox>
 #include <QDebug>
 #include <QGridLayout>
@@ -29,16 +30,10 @@
 #include <QPalette>
 #include <QWidget>
 #include "Common.h"
-#include "FilterParameters/BoolParameter.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-BoolParameter::BoolParameter(QObject *parent)
-  : AbstractParameter(parent,true),
-    _default(false),
-    _value(false),
-    _label(0),
-    _checkBox(0)
+BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(0), _checkBox(0)
 {
 }
 
@@ -48,34 +43,31 @@ BoolParameter::~BoolParameter()
   delete _label;
 }
 
-void
-BoolParameter::addTo(QWidget * widget, int row)
+void BoolParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _checkBox;
   delete _label;
-  _checkBox = new QCheckBox(_name,widget);
+  _checkBox = new QCheckBox(_name, widget);
   _checkBox->setChecked(_value);
-  if ( DialogSettings::darkThemeEnabled() ) {
+  if (DialogSettings::darkThemeEnabled()) {
     QPalette p = _checkBox->palette();
     p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
     p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
     _checkBox->setPalette(p);
   }
-  grid->addWidget(_checkBox,row,0,1,3);
-  connect(_checkBox, SIGNAL(toggled(bool)),
-          this, SLOT(onCheckBoxChanged(bool)));
+  grid->addWidget(_checkBox, row, 0, 1, 3);
+  connect(_checkBox, SIGNAL(toggled(bool)), this, SLOT(onCheckBoxChanged(bool)));
 }
 
-QString
-BoolParameter::textValue() const
+QString BoolParameter::textValue() const
 {
   return _value ? "1" : "0";
 }
 
-void
-BoolParameter::setValue(const QString & value)
+void BoolParameter::setValue(const QString & value)
 {
   _value = (value == "1");
   if (_checkBox) {
@@ -83,25 +75,22 @@ BoolParameter::setValue(const QString & value)
   }
 }
 
-void
-BoolParameter::reset()
+void BoolParameter::reset()
 {
   _checkBox->setChecked(_default);
   _value = _default;
 }
 
-void
-BoolParameter::onCheckBoxChanged(bool on)
+void BoolParameter::onCheckBoxChanged(bool on)
 {
   _value = on;
   notifyIfRelevant();
 }
 
-bool
-BoolParameter::initFromText(const char *text, int & textLength)
+bool BoolParameter::initFromText(const char * text, int & textLength)
 {
-  QList<QString> list = parseText("bool",text,textLength);
+  QList<QString> list = parseText("bool", text, textLength);
   _name = HtmlTranslator::html2txt(list[0]);
-  _value = _default = ( list[1].startsWith("true") || list[1].startsWith("1") );
+  _value = _default = (list[1].startsWith("true") || list[1].startsWith("1"));
   return true;
 }

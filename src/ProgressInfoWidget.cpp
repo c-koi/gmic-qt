@@ -22,34 +22,29 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QFile>
-#include <QDesktopWidget>
-#include "ui_progressinfowidget.h"
-#include "FilterThread.h"
 #include "ProgressInfoWidget.h"
+#include <QDesktopWidget>
+#include <QFile>
 #include "DialogSettings.h"
+#include "FilterThread.h"
+#include "ui_progressinfowidget.h"
 
 #ifdef _IS_WINDOWS_
-#include <windows.h>
 #include <process.h>
 #include <psapi.h>
+#include <windows.h>
 #endif
 
-ProgressInfoWidget::ProgressInfoWidget(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::ProgressInfoWidget),
-  _filterThread(0)
+ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _filterThread(0)
 {
   ui->setupUi(this);
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
-  ui->progressBar->setRange(0,100);
+  ui->progressBar->setRange(0, 100);
   ui->tbCancel->setIcon(LOAD_ICON("process-stop"));
   _timer.setInterval(250);
-  connect(&_timer,SIGNAL(timeout()),
-          this,SLOT(onTimeOut()));
-  connect(ui->tbCancel,SIGNAL(clicked(bool)),
-          this,SLOT(onCancelClicked(bool)));
-  if ( !parent ) {
+  connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
+  connect(ui->tbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked(bool)));
+  if (!parent) {
     QRect position = frameGeometry();
     position.moveCenter(QDesktopWidget().availableGeometry().center());
     move(position.topLeft());
@@ -63,7 +58,7 @@ ProgressInfoWidget::~ProgressInfoWidget()
 
 void ProgressInfoWidget::onTimeOut()
 {
-  if ( !_filterThread ) {
+  if (!_filterThread) {
     return;
   }
   int ms = _filterThread->duration();
@@ -76,26 +71,26 @@ void ProgressInfoWidget::onTimeOut()
     ui->progressBar->setTextVisible(false);
     int value = ui->progressBar->value();
     value += 20;
-    if (value > 100 ) {
-      ui->progressBar->setValue( value - 100 );
+    if (value > 100) {
+      ui->progressBar->setValue(value - 100);
       ui->progressBar->setInvertedAppearance(!ui->progressBar->invertedAppearance());
     } else {
-      ui->progressBar->setValue( value  );
+      ui->progressBar->setValue(value);
     }
   }
   QTime duration = QTime::fromMSecsSinceStartOfDay(ms);
-  QString durationStr = (ms >= 60000) ? duration.toString("HH:mm:ss") : QString("%1 seconds").arg(ms/1000);
+  QString durationStr = (ms >= 60000) ? duration.toString("HH:mm:ss") : QString("%1 seconds").arg(ms / 1000);
 #ifdef _IS_LINUX_
   // Get memory usage
   QString memoryStr("? KiB");
   QFile status("/proc/self/status");
-  if ( status.open(QFile::ReadOnly) ) {
+  if (status.open(QFile::ReadOnly)) {
     QByteArray text = status.readAll();
-    const char * str = strstr(text.constData(),"VmRSS:");
+    const char * str = strstr(text.constData(), "VmRSS:");
     unsigned int kiB;
-    if ( str && sscanf(str + 7,"%u",&kiB) ) {
-      if ( kiB >= 1024 ) {
-        memoryStr = QString("%1 MiB").arg(kiB/1024);
+    if (str && sscanf(str + 7, "%u", &kiB)) {
+      if (kiB >= 1024) {
+        memoryStr = QString("%1 MiB").arg(kiB / 1024);
       } else {
         memoryStr = QString("%1 KiB").arg(kiB);
       }
@@ -105,12 +100,12 @@ void ProgressInfoWidget::onTimeOut()
 #elif defined(_IS_WINDOWS_)
   PROCESS_MEMORY_COUNTERS counters;
   unsigned long kiB = 0;
-  if (GetProcessMemoryInfo(GetCurrentProcess(),&counters,sizeof(counters))) {
-    kiB = static_cast<unsigned long>(counters.WorkingSetSize/1024);
+  if (GetProcessMemoryInfo(GetCurrentProcess(), &counters, sizeof(counters))) {
+    kiB = static_cast<unsigned long>(counters.WorkingSetSize / 1024);
   }
   QString memoryStr;
-  if ( kiB >= 1024 ) {
-    memoryStr = QString("%1 MiB").arg(kiB/1024);
+  if (kiB >= 1024) {
+    memoryStr = QString("%1 MiB").arg(kiB / 1024);
   } else {
     memoryStr = QString("%1 KiB").arg(kiB);
   }
@@ -118,10 +113,9 @@ void ProgressInfoWidget::onTimeOut()
 #else
   ui->label->setText(QString(tr("[Processing %1]")).arg(durationStr));
 #endif
-
 }
 
-void ProgressInfoWidget::onCancelClicked(bool )
+void ProgressInfoWidget::onCancelClicked(bool)
 {
   emit cancel();
 }

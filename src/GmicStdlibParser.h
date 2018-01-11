@@ -32,13 +32,12 @@ class QStandardItemModel;
 class QStandardItem;
 class QStringList;
 class FiltersTreeAbstractItem;
-class GmicStdLibParser
-{
+class GmicStdLibParser {
 public:
   GmicStdLibParser();
   static void loadStdLib();
   static QByteArray GmicStdlib;
-  static QStringList parseStatus(QString );
+  static QStringList parseStatus(QString);
 };
 
 #endif // _GMIC_QT_GMICSTDLIBPARSER_H_

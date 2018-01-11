@@ -22,35 +22,34 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <QTextDocument>
+#include "FilterTreeItemDelegate.h"
 #include <QColor>
-#include <QPalette>
-#include <QPainter>
 #include <QDebug>
+#include <QPainter>
+#include <QPalette>
+#include <QTextDocument>
+#include "DialogSettings.h"
 #include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
-#include "DialogSettings.h"
-#include "FilterTreeItemDelegate.h"
 
-FilterTreeItemDelegate::FilterTreeItemDelegate(QObject *parent)
-  : QStyledItemDelegate(parent)
+FilterTreeItemDelegate::FilterTreeItemDelegate(QObject * parent) : QStyledItemDelegate(parent)
 {
 }
 
-void FilterTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
   QStyleOptionViewItem options = option;
   initStyleOption(&options, index);
   painter->save();
 
-  const QStandardItemModel * model = dynamic_cast<const QStandardItemModel*>(index.model());
-  Q_ASSERT_X(model,"FiltersTreeItemDelegate::paint()","No model");
+  const QStandardItemModel * model = dynamic_cast<const QStandardItemModel *>(index.model());
+  Q_ASSERT_X(model, "FiltersTreeItemDelegate::paint()", "No model");
   const QStandardItem * item = model->itemFromIndex(index);
-  Q_ASSERT_X(item,"FiltersTreeItemDelegate::paint()","No item");
-  const FilterTreeItem * filter = dynamic_cast<const FilterTreeItem*>(item);
+  Q_ASSERT_X(item, "FiltersTreeItemDelegate::paint()", "No item");
+  const FilterTreeItem * filter = dynamic_cast<const FilterTreeItem *>(item);
 
   QTextDocument doc;
-  if ( !item->isCheckable() && filter && !filter->isVisible() ) {
+  if (!item->isCheckable() && filter && !filter->isVisible()) {
     QColor textColor;
     textColor = DialogSettings::UnselectedFilterTextColor;
     doc.setHtml(QString("<span style=\"color:%1\">%2</span>").arg(textColor.name()).arg(options.text));
@@ -65,15 +64,13 @@ void FilterTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem
   painter->restore();
 }
 
-QSize FilterTreeItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+QSize FilterTreeItemDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
   QStyleOptionViewItem options = option;
   initStyleOption(&options, index);
-
 
   QTextDocument doc;
   doc.setHtml(options.text);
   doc.setTextWidth(options.rect.width());
   return QSize(doc.idealWidth(), doc.size().height());
 }
-

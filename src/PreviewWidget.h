@@ -25,48 +25,48 @@
 #ifndef _GMIC_QT_PREVIEWWIDGET_H_
 #define _GMIC_QT_PREVIEWWIDGET_H_
 
-#include <QWidget>
-#include <QPixmap>
-#include <QSize>
-#include <QRect>
 #include <QImage>
 #include <QMutex>
+#include <QPixmap>
+#include <QRect>
+#include <QSize>
+#include <QWidget>
 #include "Host/host.h"
 
-namespace cimg_library {
- template<typename T> struct CImgList;
+namespace cimg_library
+{
+template <typename T> struct CImgList;
 }
 
-class PreviewWidget : public QWidget
-{
+class PreviewWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit PreviewWidget(QWidget *parent = 0);
+  explicit PreviewWidget(QWidget * parent = 0);
   ~PreviewWidget();
-  void setFullImageSize(const QSize & );
+  void setFullImageSize(const QSize &);
   void normalizedVisibleRect(double & x, double & y, double & width, double & height) const;
   bool isAtDefaultZoom() const;
   bool isAtFullZoom() const;
-  void updateImageNames( cimg_library::CImgList<char> & imageNames, GmicQt::InputMode mode);
+  void updateImageNames(cimg_library::CImgList<char> & imageNames, GmicQt::InputMode mode);
   double currentZoomFactor() const;
   void updateVisibleRect();
   void centerVisibleRect();
-  void setPreviewImage(const QImage & );
+  void setPreviewImage(const QImage &);
   const QImage & image() const;
-  void translateNormalized(double dx, double dy );
+  void translateNormalized(double dx, double dy);
   void translateFullImage(double dx, double dy);
 
 protected:
-  void resizeEvent (QResizeEvent *) override;
-  void timerEvent(QTimerEvent*) override;
-  bool event(QEvent *event) override;
-  void wheelEvent(QWheelEvent *event) override;
-  void mouseMoveEvent(QMouseEvent *e) override;
-  void mouseReleaseEvent(QMouseEvent *e) override;
-  void mousePressEvent(QMouseEvent *e) override;
-  void paintEvent(QPaintEvent *e) override;
-  bool eventFilter(QObject *, QEvent *event) override;
+  void resizeEvent(QResizeEvent *) override;
+  void timerEvent(QTimerEvent *) override;
+  bool event(QEvent * event) override;
+  void wheelEvent(QWheelEvent * event) override;
+  void mouseMoveEvent(QMouseEvent * e) override;
+  void mouseReleaseEvent(QMouseEvent * e) override;
+  void mousePressEvent(QMouseEvent * e) override;
+  void paintEvent(QPaintEvent * e) override;
+  bool eventFilter(QObject *, QEvent * event) override;
 
 signals:
   void previewUpdateRequested();
@@ -119,8 +119,8 @@ private:
     double y;
     double w;
     double h;
-    bool operator!=(const PreviewPosition & ) const;
-    bool operator==(const PreviewPosition & ) const;
+    bool operator!=(const PreviewPosition &) const;
+    bool operator==(const PreviewPosition &) const;
     bool isFull() const;
     static const PreviewPosition Full;
   };

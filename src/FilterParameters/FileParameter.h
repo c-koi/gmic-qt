@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_FILEPARAMETER_H_
 #define _GMIC_QT_FILEPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QString>
+#include "AbstractParameter.h"
 class QLabel;
 class QPushButton;
 
@@ -43,8 +43,14 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 public slots:
   void onButtonPressed();
+
 private:
-  enum DialogMode { InputMode, OutputMode, InputOutputMode };
+  enum DialogMode
+  {
+    InputMode,
+    OutputMode,
+    InputOutputMode
+  };
   QString _name;
   QString _default;
   QString _value;

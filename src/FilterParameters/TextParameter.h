@@ -25,8 +25,8 @@
 #ifndef _GMIC_QT_TEXTPARAMETER_H_
 #define _GMIC_QT_TEXTPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QString>
+#include "AbstractParameter.h"
 
 class QLineEdit;
 class QLabel;
@@ -47,6 +47,7 @@ public:
   bool initFromText(const char * text, int & textLength) override;
 private slots:
   void onValueChanged();
+
 private:
   QString _name;
   QString _default;

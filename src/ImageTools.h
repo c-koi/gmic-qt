@@ -27,15 +27,15 @@
 
 #include "Common.h"
 
-namespace cimg_library {
-template<typename T> struct CImg;
+namespace cimg_library
+{
+template <typename T> struct CImg;
 }
 
-namespace GmicQt {
-template<typename T>
-void image2uchar(cimg_library::CImg<T>& img);
-template<typename T>
-void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
+namespace GmicQt
+{
+template <typename T> void image2uchar(cimg_library::CImg<T> & img);
+template <typename T> void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
 }
 
 #endif // _GMIC_QT_IMAGETOOLS_H

@@ -45,11 +45,13 @@ public:
   virtual bool initFromText(const char * text, int & textLength) = 0;
 signals:
   void valueChanged();
+
 protected:
   QStringList parseText(const QString & type, const char * text, int & length);
   bool matchType(const QString & type, const char * text) const;
   void notifyIfRelevant();
   const bool _actualParameter;
+
 private:
   bool _update;
 };

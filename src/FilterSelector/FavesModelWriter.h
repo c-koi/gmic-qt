@@ -34,6 +34,7 @@ public:
   FavesModelWriter(const FavesModel & model);
   ~FavesModelWriter();
   void writeFaves();
+
 private:
   static QJsonObject faveToJsonObject(const FavesModel::Fave & fave);
   const FavesModel & _model;

@@ -24,9 +24,9 @@
  */
 #ifndef _GMIC_QT_FAVESMODEL_H_
 #define _GMIC_QT_FAVESMODEL_H_
-#include <QString>
 #include <QList>
 #include <QMap>
+#include <QString>
 #include <cstddef>
 
 class FavesModel {
@@ -51,6 +51,7 @@ public:
     QList<QString> defaultValues() const;
     QString toString() const;
     bool matchKeywords(const QList<QString> & keywords) const;
+
   private:
     QString _name;
     QString _plainText;
@@ -64,15 +65,16 @@ public:
 
   class const_iterator {
   public:
-    const_iterator(const QMap<QString,Fave>::const_iterator & iterator);
+    const_iterator(const QMap<QString, Fave>::const_iterator & iterator);
     const Fave & operator*() const;
     const_iterator & operator++();
     const_iterator operator++(int);
     const Fave * operator->();
     bool operator!=(const FavesModel::const_iterator & other);
     bool operator==(const FavesModel::const_iterator & other);
+
   private:
-    QMap<QString,Fave>::const_iterator _mapIterator;
+    QMap<QString, Fave>::const_iterator _mapIterator;
   };
 
   FavesModel();
@@ -80,17 +82,18 @@ public:
   inline const_iterator cbegin() const;
   inline const_iterator cend() const;
   void clear();
-  void addFave(const Fave & );
+  void addFave(const Fave &);
   void removeFave(const QString & hash);
   bool contains(const QString & hash) const;
   void flush() const;
   size_t faveCount() const;
   const_iterator findFaveFromHash(const QString &);
-  const Fave & getFaveFromHash(const QString &hash);
+  const Fave & getFaveFromHash(const QString & hash);
   QString uniqueName(QString name, QString faveHashToIgnore);
   static const size_t NoIndex;
+
 private:
-  QMap<QString,Fave> _faves;
+  QMap<QString, Fave> _faves;
 };
 
 /*

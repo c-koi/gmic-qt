@@ -28,16 +28,16 @@
 #include <QTimer>
 
 class FilterThread;
-namespace Ui {
+namespace Ui
+{
 class ProgressInfoWidget;
 }
 
-class ProgressInfoWidget : public QWidget
-{
+class ProgressInfoWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ProgressInfoWidget(QWidget *parent = 0);
+  explicit ProgressInfoWidget(QWidget * parent = 0);
   ~ProgressInfoWidget();
 
 public slots:
@@ -50,7 +50,7 @@ signals:
   void cancel();
 
 private:
-  Ui::ProgressInfoWidget *ui;
+  Ui::ProgressInfoWidget * ui;
   FilterThread * _filterThread;
   QTimer _timer;
 };
