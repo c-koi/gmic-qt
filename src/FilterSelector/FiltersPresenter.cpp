@@ -160,8 +160,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues)
 void FiltersPresenter::applySearchCriterion(const QString & text)
 {
   static QString previousText;
-  // TODO : backup/restore folding
-  if (!text.isEmpty() && previousText.isEmpty()) {
+  if ((!text.isEmpty() && previousText.isEmpty()) || (text.isEmpty() && previousText.isEmpty())) {
     _filtersView->preserveExpandedFolders();
   }
   QList<QString> keywords = text.split(QChar(' '), QString::SkipEmptyParts);

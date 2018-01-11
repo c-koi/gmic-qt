@@ -307,8 +307,6 @@ void MainWindow::buildFiltersTree()
   _filtersPresenter->toggleSelectionMode(withVisibility);
   _filtersPresenter->applySearchCriterion(searchText);
 
-  // TODO : restoreExpandedFolders();
-
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     setNoFilter();
     ui->previewWidget->sendUpdateRequest();

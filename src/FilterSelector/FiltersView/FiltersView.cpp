@@ -235,7 +235,7 @@ QString FiltersView::selectedFilterHash() const
 
 void FiltersView::preserveExpandedFolders()
 {
-  if (_isInSelectionMode || (ui->treeView->model() == &_emptyModel)) {
+  if (ui->treeView->model() == &_emptyModel) {
     return;
   }
   _expandedFolderPaths.clear();
@@ -244,9 +244,6 @@ void FiltersView::preserveExpandedFolders()
 
 void FiltersView::restoreExpandedFolders()
 {
-  if (_isInSelectionMode) {
-    return;
-  }
   expandFolders(_expandedFolderPaths, _model.invisibleRootItem());
 }
 
