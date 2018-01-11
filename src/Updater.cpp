@@ -26,7 +26,7 @@
 #include <QDebug>
 #include <iostream>
 #include "Common.h"
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 

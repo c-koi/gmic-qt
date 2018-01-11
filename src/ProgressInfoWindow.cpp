@@ -29,7 +29,7 @@
 #include <QSettings>
 #include "Common.h"
 #include "FilterThread.h"
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include "HeadlessProcessor.h"
 #include "Updater.h"
 #include "ui_progressinfowindow.h"

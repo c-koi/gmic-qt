@@ -25,7 +25,7 @@
 #include "FilterThread.h"
 #include <QDebug>
 #include <iostream>
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include "ImageConverter.h"
 #include "gmic.h"
 using namespace cimg_library;

@@ -27,7 +27,7 @@
 #include <QSettings>
 #include "Common.h"
 #include "FilterThread.h"
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include "Updater.h"
 #include "gmic.h"
 

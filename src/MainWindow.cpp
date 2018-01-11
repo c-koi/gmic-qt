@@ -54,7 +54,7 @@
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
 #include "FilterThread.h"
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
 #include "ImageTools.h"

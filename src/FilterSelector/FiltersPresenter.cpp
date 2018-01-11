@@ -30,7 +30,7 @@
 #include "FilterSelector/FavesModelWriter.h"
 #include "FilterSelector/FiltersModelReader.h"
 #include "FiltersVisibilityMap.h"
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include "InOutPanel.h"
 #include "ParametersCache.h"
 
