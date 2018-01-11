@@ -73,6 +73,8 @@ public:
 
   void adjustViewSize();
   void expandFaveFolder();
+  void expandPreviousSessionExpandedFolders();
+
   void expandAll();
   void collapseAll();
 

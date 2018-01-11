@@ -24,6 +24,7 @@
  */
 #include "FilterSelector/FiltersPresenter.h"
 #include <QDebug>
+#include <QSettings>
 #include "Common.h"
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FavesModelWriter.h"
@@ -222,6 +223,12 @@ void FiltersPresenter::adjustViewSize()
 void FiltersPresenter::expandFaveFolder()
 {
   _filtersView->expandFaveFolder();
+}
+
+void FiltersPresenter::expandPreviousSessionExpandedFolders()
+{
+  QList<QString> expandedFolderPaths = QSettings().value("Config/ExpandedFolders", QStringList()).toStringList();
+  _filtersView->expandFolders(expandedFolderPaths);
 }
 
 void FiltersPresenter::expandAll()

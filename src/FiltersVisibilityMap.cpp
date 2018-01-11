@@ -29,7 +29,7 @@
 #include <QDebug>
 #include <QFile>
 #include "Common.h"
-#include "gmic.h"
+#include "gmic_qt.h"
 
 QSet<QString> FiltersVisibilityMap::_hiddenFilters;
 
@@ -88,7 +88,7 @@ void FiltersVisibilityMap::save()
   QString path = QString("%1%2").arg(GmicQt::path_rc(true), FILTERS_VISIBILITY_FILENAME);
   QFile file(path);
   if (file.open(QFile::WriteOnly)) {
-    file.write(QString("Version=%1.%2.%3\n").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10).toLocal8Bit());
+    file.write(QString("Version=%1\n").arg(GmicQt::gmicVersionString()).toLocal8Bit());
     file.write(QString("[Hidden filters list (compressed)]\n").toLocal8Bit());
     file.write(qCompress(data));
     file.close();

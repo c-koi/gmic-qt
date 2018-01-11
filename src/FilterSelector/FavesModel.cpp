@@ -48,8 +48,6 @@ void FavesModel::clear()
 
 void FavesModel::addFave(const FavesModel::Fave & fave)
 {
-  ENTERING;
-  SHOW(fave.toString());
   _faves[fave.hash()] = fave;
 }
 

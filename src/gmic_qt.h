@@ -90,6 +90,7 @@ extern const float PreviewFactorAny;
 extern const float PreviewFactorFullImage;
 extern const float PreviewFactorActualSize;
 const QString & path_rc(bool create);
+const QString & gmicVersionString();
 unsigned int host_app_pid();
 }
 

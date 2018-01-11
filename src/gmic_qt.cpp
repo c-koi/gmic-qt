@@ -101,6 +101,12 @@ unsigned int host_app_pid()
   return 0;
 #endif
 }
+
+const QString & gmicVersionString()
+{
+  static QString value = QString("%1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10);
+  return value;
+}
 }
 
 int launchPlugin()

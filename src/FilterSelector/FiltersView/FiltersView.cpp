@@ -247,15 +247,12 @@ void FiltersView::restoreExpandedFolders()
   if (_isInSelectionMode) {
     return;
   }
-  restoreExpandedFolders(_model.invisibleRootItem());
+  expandFolders(_expandedFolderPaths, _model.invisibleRootItem());
 }
 
-void FiltersView::loadSettings(const QSettings & settings)
+void FiltersView::loadSettings(const QSettings &)
 {
   FiltersVisibilityMap::load();
-  // TODO : Check this
-  // ??? This will not be overwritten by the first call of backupExpandedFoldersPaths()
-  _expandedFolderPaths = settings.value("Config/ExpandedFolders", QStringList()).toStringList();
 }
 
 void FiltersView::saveSettings(QSettings & settings)
@@ -290,18 +287,23 @@ void FiltersView::adjustTreeSize()
   ui->treeView->adjustSize();
 }
 
-void FiltersView::restoreExpandedFolders(QStandardItem * folder)
+void FiltersView::expandFolders(QList<QString> & folderPaths)
+{
+  expandFolders(folderPaths, _model.invisibleRootItem());
+}
+
+void FiltersView::expandFolders(const QList<QString> & folderPaths, QStandardItem * folder)
 {
   int rows = folder->rowCount();
   for (int row = 0; row < rows; ++row) {
     FilterTreeFolder * subFolder = dynamic_cast<FilterTreeFolder *>(folder->child(row));
     if (subFolder) {
-      if (_expandedFolderPaths.contains(subFolder->path().join(FilterTreePathSeparator))) {
+      if (folderPaths.contains(subFolder->path().join(FilterTreePathSeparator))) {
         ui->treeView->expand(subFolder->index());
       } else {
         ui->treeView->collapse(subFolder->index());
       }
-      restoreExpandedFolders(subFolder);
+      expandFolders(folderPaths, subFolder);
     }
   }
 }

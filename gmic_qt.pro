@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = none }
+!defined(HOST,var) { HOST = krita }
 
 !defined(PRERELEASE, var) {
 

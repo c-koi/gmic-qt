@@ -162,7 +162,7 @@ int main(int argc, char * argv[])
   } else {
     QApplication app(argc, argv);
     QWidget mainWidget;
-    mainWidget.setWindowTitle(QString("G'MIC-Qt - %1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10));
+    mainWidget.setWindowTitle(QString("G'MIC-Qt - %1").arg(GmicQt::gmicVersionString()));
     QRect position = mainWidget.frameGeometry();
     position.moveCenter(QDesktopWidget().availableGeometry().center());
     mainWidget.move(position.topLeft());

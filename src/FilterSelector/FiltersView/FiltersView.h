@@ -72,8 +72,8 @@ public:
   void disableSelectionMode();
 
   void uncheckFullyUncheckedFolders();
-
   void adjustTreeSize();
+  void expandFolders(QList<QString> & folderPaths);
 
 signals:
   void filterSelected(QString hash);
@@ -92,9 +92,9 @@ private slots:
   void onItemChanged(QStandardItem * item);
 
 private:
+  void expandFolders(const QList<QString> & folderPaths, QStandardItem * folder);
   void uncheckFullyUncheckedFolders(QStandardItem * folder);
   void preserveExpandedFolders(QStandardItem * folder, QList<QString> & list);
-  void restoreExpandedFolders(QStandardItem * folder);
   void createFaveFolder();
   void removeFaveFolder();
   void addStandardItemWithCheckbox(QStandardItem * folder, FilterTreeAbstractItem * item);

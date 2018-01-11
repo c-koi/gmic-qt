@@ -22,12 +22,12 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <libgimp/gimp.h>
 #include <QDebug>
 #include <QFileInfo>
 #include <QRegExp>
 #include <QString>
 #include <algorithm>
-#include <libgimp/gimp.h>
 #include <limits>
 #include "Common.h"
 #include "Host/host.h"
@@ -912,7 +912,7 @@ void gmic_qt_query()
                                       {GIMP_PDB_STRING, (gchar *)"command", (gchar *)"G'MIC command string, when non-interactive"}};
 
   const char name[] = "plug-in-gmic-qt";
-  QByteArray blurb = QString("G'MIC-Qt (%1.%2.%3)").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10).toLatin1();
+  QByteArray blurb = QString("G'MIC-Qt (%1)").arg(GmicQt::gmicVersionString()).toLatin1();
   QByteArray path("G'MIC-Qt...");
   path.prepend("_");
   gimp_install_procedure(name,                      // name
