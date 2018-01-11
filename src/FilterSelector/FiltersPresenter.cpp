@@ -93,11 +93,11 @@ void FiltersPresenter::clear()
 void FiltersPresenter::readFilters()
 {
   _filtersModel.clear();
-  if (GmicStdLibParser::GmicStdlib.isEmpty()) {
-    GmicStdLibParser::loadStdLib();
+  if (GmicStdLib::Array.isEmpty()) {
+    GmicStdLib::loadStdLib();
   }
   FiltersModelReader filterModelReader(_filtersModel);
-  filterModelReader.parseFiltersDefinitions(GmicStdLibParser::GmicStdlib);
+  filterModelReader.parseFiltersDefinitions(GmicStdLib::Array);
 }
 
 void FiltersPresenter::readFaves()

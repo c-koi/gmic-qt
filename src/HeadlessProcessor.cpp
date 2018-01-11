@@ -81,7 +81,7 @@ void HeadlessProcessor::startProcessing()
 {
   _singleShotTimer.start();
   Updater::getInstance()->updateSources(false);
-  GmicStdLibParser::GmicStdlib = Updater::getInstance()->buildFullStdlib();
+  GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   _gmicImages->assign();
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
@@ -143,7 +143,7 @@ void HeadlessProcessor::onProcessingFinished()
 {
   QString errorMessage;
   _timer.stop();
-  QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
+  QStringList list = _filterThread->gmicStatus();
   if (!list.isEmpty()) {
     QSettings settings;
     QString params = list.join(",");

@@ -63,7 +63,7 @@ public:
   void setInputImages(const cimg_library::CImgList<float> & list, const cimg_library::CImgList<char> & imageNames);
   const cimg_library::CImgList<float> & images() const;
   const cimg_library::CImgList<char> & imageNames() const;
-  QString gmicStatus() const;
+  QStringList gmicStatus() const;
   QString errorMessage() const;
   bool failed() const;
   bool aborted() const;

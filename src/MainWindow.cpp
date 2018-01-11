@@ -288,7 +288,7 @@ void MainWindow::onUpdateDownloadsFinished(bool ok)
 void MainWindow::buildFiltersTree()
 {
   saveCurrentParameters();
-  GmicStdLibParser::GmicStdlib = Updater::getInstance()->buildFullStdlib();
+  GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   const bool withVisibility = filtersSelectionMode();
   //  GmicStdLibParser::buildFiltersTree(_filtersTreeModel,withVisibility);
 
@@ -515,7 +515,7 @@ void MainWindow::onPreviewThreadFinished()
     _filterThread->deleteLater();
     close();
   }
-  QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
+  QStringList list = _filterThread->gmicStatus();
   if (!list.isEmpty()) {
     ui->filterParams->setValues(list, false);
   }
@@ -586,7 +586,7 @@ void MainWindow::onApplyThreadFinished()
   }
   ui->previewWidget->update();
 
-  QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
+  QStringList list = _filterThread->gmicStatus();
   if (!list.isEmpty()) {
     ui->filterParams->setValues(list, false);
   }
@@ -935,7 +935,7 @@ QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & image
   if (preview_input_images.size() > 1) {
     try {
       cimg_library::CImgList<char> preview_images_names;
-      gmic("v - gui_preview", preview_input_images, preview_images_names, GmicStdLibParser::GmicStdlib.constData(), true);
+      gmic("v - gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
       if (preview_input_images.size() >= 1) {
         ImageConverter::convert(preview_input_images.front(), qimage);
         return qimage;

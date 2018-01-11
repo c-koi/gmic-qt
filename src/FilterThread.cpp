@@ -68,9 +68,17 @@ const cimg_library::CImgList<char> & FilterThread::imageNames() const
   return *_imageNames;
 }
 
-QString FilterThread::gmicStatus() const
+QStringList FilterThread::gmicStatus() const
 {
-  return _gmicStatus;
+  if (!_gmicStatus.startsWith(QChar(24)) || !_gmicStatus.endsWith(QChar(25))) {
+    return QStringList();
+  }
+  QList<QString> list = _gmicStatus.split(QString("%1%2").arg(QChar(25)).arg(QChar(24)));
+  if (list.size()) {
+    list[0].remove(0, 1);
+    list.back().chop(1);
+  }
+  return list;
 }
 
 QString FilterThread::errorMessage() const
@@ -141,7 +149,7 @@ void FilterThread::run()
       std::fflush(cimg::output());
     }
 
-    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLibParser::GmicStdlib.constData(), true);
+    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true);
     gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;

@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdLibParser.h
+ *  @file GmicStdLib.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,22 +22,16 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GMICSTDLIBPARSER_H_
-#define _GMIC_QT_GMICSTDLIBPARSER_H_
+#ifndef _GMIC_QT_GMICSTDLIB_H_
+#define _GMIC_QT_GMICSTDLIB_H_
 
 #include <QByteArray>
 
-class QTreeView;
-class QStandardItemModel;
-class QStandardItem;
-class QStringList;
-class FiltersTreeAbstractItem;
-class GmicStdLibParser {
+class GmicStdLib {
 public:
-  GmicStdLibParser();
+  GmicStdLib() = delete;
   static void loadStdLib();
-  static QByteArray GmicStdlib;
-  static QStringList parseStatus(QString);
+  static QByteArray Array;
 };
 
-#endif // _GMIC_QT_GMICSTDLIBPARSER_H_
+#endif // _GMIC_QT_GMICSTDLIB_H_

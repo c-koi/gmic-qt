@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdlibParser.cpp
+ *  @file GmicStdlib.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "GmicStdlibParser.h"
+#include "GmicStdlib.h"
 #include <QDebug>
 #include <QFile>
 #include <QList>
@@ -31,33 +31,16 @@
 #include "Common.h"
 #include "gmic.h"
 
-// TODO : Change name of this class!
+QByteArray GmicStdLib::Array;
 
-QByteArray GmicStdLibParser::GmicStdlib;
-
-GmicStdLibParser::GmicStdLibParser()
-{
-}
-
-void GmicStdLibParser::loadStdLib()
+void GmicStdLib::loadStdLib()
 {
   QFile stdlib(QString("%1update%2.gmic").arg(GmicQt::path_rc(false)).arg(gmic_version));
   if (!stdlib.open(QFile::ReadOnly)) {
     gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-    GmicStdlib = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
-    GmicStdlib[GmicStdlib.size() - 1] = '\n';
+    Array = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
+    Array[Array.size() - 1] = '\n';
   } else {
-    GmicStdlib = stdlib.readAll();
+    Array = stdlib.readAll();
   }
-}
-
-QStringList GmicStdLibParser::parseStatus(QString str)
-{
-  if (!str.startsWith(QChar(24)) || !str.endsWith(QChar(25))) {
-    return QStringList();
-  }
-  QList<QString> list = str.split(QString("%1%2").arg(QChar(25)).arg(QChar(24)));
-  list[0].replace(QChar(24), QString());
-  list.back().replace(QChar(25), QString());
-  return list;
 }

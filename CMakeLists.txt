@@ -280,7 +280,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersVisibilityMap.h
   src/FilterThread.h
   src/gmic_qt.h
-  src/GmicStdlibParser.h
+  src/GmicStdlib.h
   src/HeadlessProcessor.h
   src/Host/host.h
   src/HtmlTranslator.h
@@ -335,7 +335,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersVisibilityMap.cpp
   src/FilterThread.cpp
   src/gmic_qt.cpp
-  src/GmicStdlibParser.cpp
+  src/GmicStdlib.cpp
   src/HeadlessProcessor.cpp
   src/HtmlTranslator.cpp
   src/ImageConverter.cpp
