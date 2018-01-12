@@ -44,6 +44,7 @@ public:
   explicit DialogSettings(QWidget * parent = 0);
   ~DialogSettings();
   static MainWindow::PreviewPosition previewPosition();
+  static bool logosAreVisible();
   static bool darkThemeEnabled();
   static QString languageCode();
   static bool nativeColorDialogs();
@@ -64,6 +65,7 @@ public slots:
   void onUpdatePeriodicityChanged(int i);
   void onColorDialogsToggled(bool);
   void done(int r) override;
+  void onLogosVisibleToggled(bool);
 
 private:
   Ui::DialogSettings * ui;
@@ -72,6 +74,7 @@ private:
   static bool _nativeColorDialogs;
   static MainWindow::PreviewPosition _previewPosition;
   static int _updatePeriodicity;
+  static bool _logosAreVisible;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_

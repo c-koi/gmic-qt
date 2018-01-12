@@ -33,6 +33,7 @@
 bool DialogSettings::_darkThemeEnabled;
 QString DialogSettings::_languageCode;
 bool DialogSettings::_nativeColorDialogs;
+bool DialogSettings::_logosAreVisible;
 MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
 
@@ -76,6 +77,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   ui->rbDefaultTheme->setChecked(!savedDarkTheme);
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
   ui->cbNativeColorDialogs->setToolTip(tr("Check to use Native/OS color dialog, uncheck to use Qt's"));
+  ui->cbShowLogos->setChecked(_logosAreVisible);
 
   connect(ui->pbOk, SIGNAL(clicked()), this, SLOT(onOk()));
   connect(ui->rbLeftPreview, SIGNAL(toggled(bool)), this, SLOT(onRadioLeftPreviewToggled(bool)));
@@ -91,6 +93,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   connect(Updater::getInstance(), SIGNAL(downloadsFinished(bool)), this, SLOT(enableUpdateButton()));
 
   connect(ui->rbDarkTheme, SIGNAL(toggled(bool)), this, SLOT(onDarkThemeToggled(bool)));
+
+  connect(ui->cbShowLogos, SIGNAL(toggled(bool)), this, SLOT(onLogosVisibleToggled(bool)));
 
   ui->languageSelector->selectLanguage(_languageCode);
   if (_darkThemeEnabled) {
@@ -126,6 +130,7 @@ void DialogSettings::loadSettings()
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_NEVER_UPDATE_PERIODICITY).toInt();
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue", QDir::homePath()).toString();
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath", QDir::homePath()).toString();
+  _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
 }
 
 void DialogSettings::saveSettings(QSettings & settings)
@@ -135,6 +140,7 @@ void DialogSettings::saveSettings(QSettings & settings)
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY, _updatePeriodicity);
   settings.setValue("FolderParameterDefaultValue", FolderParameterDefaultValue);
   settings.setValue("FileParameterDefaultPath", FileParameterDefaultPath);
+  settings.setValue("LogosAreVisible", _logosAreVisible);
 
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
@@ -146,6 +152,11 @@ void DialogSettings::saveSettings(QSettings & settings)
 MainWindow::PreviewPosition DialogSettings::previewPosition()
 {
   return _previewPosition;
+}
+
+bool DialogSettings::logosAreVisible()
+{
+  return _logosAreVisible;
 }
 
 void DialogSettings::onOk()
@@ -160,6 +171,11 @@ void DialogSettings::done(int r)
   settings.setValue("Config/DarkTheme", ui->rbDarkTheme->isChecked());
   settings.setValue("Config/LanguageCode", ui->languageSelector->selectedLanguageCode());
   QDialog::done(r);
+}
+
+void DialogSettings::onLogosVisibleToggled(bool on)
+{
+  _logosAreVisible = on;
 }
 
 void DialogSettings::enableUpdateButton()

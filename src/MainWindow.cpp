@@ -780,6 +780,9 @@ void MainWindow::loadSettings()
   if (DialogSettings::darkThemeEnabled()) {
     setDarkTheme();
   }
+  if (!DialogSettings::logosAreVisible()) {
+    ui->logosPanel->hide();
+  }
 
   // Mainwindow geometry
   QPoint position = settings.value("Config/MainWindowPosition", QPoint()).toPoint();
@@ -831,15 +834,24 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   if (layout) {
     layout->removeWidget(ui->inOutSelector);
     layout->removeWidget(ui->belowPreviewPadding);
-    layout->removeWidget(ui->logosLabel);
     if (position == MainWindow::PreviewOnLeft) {
-      layout->addWidget(ui->logosLabel);
       layout->addWidget(ui->belowPreviewPadding);
       layout->addWidget(ui->inOutSelector);
     } else {
       layout->addWidget(ui->inOutSelector);
       layout->addWidget(ui->belowPreviewPadding);
+    }
+  }
+  layout = dynamic_cast<QHBoxLayout *>(ui->logosPanel->layout());
+  if (layout) {
+    layout->removeWidget(ui->logosLabel);
+    layout->removeWidget(ui->logosPadding);
+    if (position == MainWindow::PreviewOnLeft) {
+      layout->addWidget(ui->logosPadding);
       layout->addWidget(ui->logosLabel);
+    } else {
+      layout->addWidget(ui->logosLabel);
+      layout->addWidget(ui->logosPadding);
     }
   }
 
@@ -876,8 +888,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   preview->show();
   list->show();
   params->show();
-
-  ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignRight : Qt::AlignLeft));
+  ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignLeft : Qt::AlignRight));
 }
 
 QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & images)
@@ -1175,6 +1186,11 @@ void MainWindow::onSettingsClicked()
       splitterSizes.push_back(previewWidth);
     }
     ui->splitter->setSizes(splitterSizes);
+  }
+  if (DialogSettings::logosAreVisible()) {
+    ui->logosPanel->show();
+  } else {
+    ui->logosPanel->hide();
   }
 }
 
