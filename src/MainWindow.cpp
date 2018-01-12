@@ -783,7 +783,7 @@ void MainWindow::loadSettings()
     setDarkTheme();
   }
   if (!DialogSettings::logosAreVisible()) {
-    ui->logosPanel->hide();
+    ui->logosLabel->hide();
   }
 
   // Mainwindow geometry
@@ -836,24 +836,15 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   if (layout) {
     layout->removeWidget(ui->inOutSelector);
     layout->removeWidget(ui->belowPreviewPadding);
-    if (position == MainWindow::PreviewOnLeft) {
-      layout->addWidget(ui->belowPreviewPadding);
-      layout->addWidget(ui->inOutSelector);
-    } else {
-      layout->addWidget(ui->inOutSelector);
-      layout->addWidget(ui->belowPreviewPadding);
-    }
-  }
-  layout = dynamic_cast<QHBoxLayout *>(ui->logosPanel->layout());
-  if (layout) {
     layout->removeWidget(ui->logosLabel);
-    layout->removeWidget(ui->logosPadding);
     if (position == MainWindow::PreviewOnLeft) {
-      layout->addWidget(ui->logosPadding);
       layout->addWidget(ui->logosLabel);
+      layout->addWidget(ui->belowPreviewPadding);
+      layout->addWidget(ui->inOutSelector);
     } else {
+      layout->addWidget(ui->inOutSelector);
+      layout->addWidget(ui->belowPreviewPadding);
       layout->addWidget(ui->logosLabel);
-      layout->addWidget(ui->logosPadding);
     }
   }
 
@@ -890,7 +881,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   preview->show();
   list->show();
   params->show();
-  ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignLeft : Qt::AlignRight));
+  ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignRight : Qt::AlignLeft));
 }
 
 QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & images)
@@ -1190,9 +1181,9 @@ void MainWindow::onSettingsClicked()
     ui->splitter->setSizes(splitterSizes);
   }
   if (DialogSettings::logosAreVisible()) {
-    ui->logosPanel->show();
+    ui->logosLabel->show();
   } else {
-    ui->logosPanel->hide();
+    ui->logosLabel->hide();
   }
 }
 
