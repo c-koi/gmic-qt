@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "LanguageSelectionWidget.h"
+#include "Widgets/LanguageSelectionWidget.h"
 #include <QDebug>
 #include <QLocale>
 #include <QSettings>

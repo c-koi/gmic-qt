@@ -234,12 +234,9 @@ HEADERS +=  \
   src/HtmlTranslator.h \
   src/ImageConverter.h \
   src/ImageTools.h \
-  src/LanguageSelectionWidget.h \
   src/LayersExtentProxy.h \
   src/MainWindow.h \
   src/ParametersCache.h \
-  src/ProgressInfoWindow.h \
-  src/SearchFieldWidget.h \
   src/Updater.h \
   src/FilterSelector/FiltersView/FilterTreeFolder.h \
   src/FilterSelector/FiltersView/FilterTreeItem.h \
@@ -251,7 +248,10 @@ HEADERS +=  \
   src/Widgets/PreviewWidget.h \
   src/Widgets/ProgressInfoWidget.h \
   src/Widgets/InOutPanel.h \
-  src/Widgets/ZoomLevelSelector.h
+  src/Widgets/ZoomLevelSelector.h \
+  src/Widgets/SearchFieldWidget.h \
+  src/Widgets/LanguageSelectionWidget.h \
+  src/Widgets/ProgressInfoWindow.h
 
 
 HEADERS += $$GMIC_PATH/gmic.h
@@ -290,12 +290,9 @@ SOURCES += \
   src/HtmlTranslator.cpp \
   src/ImageConverter.cpp \
   src/ImageTools.cpp \
-  src/LanguageSelectionWidget.cpp \
   src/LayersExtentProxy.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
-  src/ProgressInfoWindow.cpp \
-  src/SearchFieldWidget.cpp \
   src/Updater.cpp \
   src/FilterSelector/FiltersView/FilterTreeItem.cpp \
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp \
@@ -307,7 +304,10 @@ SOURCES += \
   src/Widgets/PreviewWidget.cpp \
   src/Widgets/ProgressInfoWidget.cpp \
   src/Widgets/InOutPanel.cpp \
-  src/Widgets/ZoomLevelSelector.cpp
+  src/Widgets/ZoomLevelSelector.cpp \
+  src/Widgets/SearchFieldWidget.cpp \
+  src/Widgets/LanguageSelectionWidget.cpp \
+  src/Widgets/ProgressInfoWindow.cpp
 
 
 SOURCES += $$GMIC_PATH/gmic.cpp

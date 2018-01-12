@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "SearchFieldWidget.h"
+#include "Widgets/SearchFieldWidget.h"
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QIcon>

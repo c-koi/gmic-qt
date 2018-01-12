@@ -209,7 +209,7 @@
   <customwidget>
    <class>LanguageSelectionWidget</class>
    <extends>QWidget</extends>
-   <header>LanguageSelectionWidget.h</header>
+   <header>Widgets/LanguageSelectionWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

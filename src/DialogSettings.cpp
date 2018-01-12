@@ -43,6 +43,8 @@ QColor DialogSettings::UnselectedFilterTextColor;
 QString DialogSettings::FolderParameterDefaultValue;
 QString DialogSettings::FileParameterDefaultPath;
 
+// TODO : Make DialogSetting a view of Settings class
+
 DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::DialogSettings)
 {
   ui->setupUi(this);

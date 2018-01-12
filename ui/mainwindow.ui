@@ -546,7 +546,7 @@
   <customwidget>
    <class>SearchFieldWidget</class>
    <extends>QWidget</extends>
-   <header>SearchFieldWidget.h</header>
+   <header>Widgets/SearchFieldWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

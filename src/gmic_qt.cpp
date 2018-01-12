@@ -34,10 +34,10 @@
 #include <cstring>
 #include "Common.h"
 #include "HeadlessProcessor.h"
-#include "LanguageSelectionWidget.h"
 #include "MainWindow.h"
-#include "ProgressInfoWindow.h"
 #include "Updater.h"
+#include "Widgets/LanguageSelectionWidget.h"
+#include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
