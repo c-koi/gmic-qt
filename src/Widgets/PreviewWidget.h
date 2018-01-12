@@ -31,11 +31,13 @@
 #include <QRect>
 #include <QSize>
 #include <QWidget>
+#include <memory>
 #include "Host/host.h"
 
 namespace cimg_library
 {
 template <typename T> struct CImgList;
+template <typename T> struct CImg;
 }
 
 class PreviewWidget : public QWidget {
@@ -90,7 +92,6 @@ public slots:
    */
   void setPreviewFactor(float filterFactor, bool reset);
   void displayOriginalImage();
-  QImage originalImage();
   void onPreviewParametersChanged();
   void enablePreview(bool);
   void invalidateSavedPreview();
@@ -98,6 +99,7 @@ public slots:
   void restorePreview();
 
 private:
+  void originalImage(cimg_library::CImg<float> & image);
   double defaultZoomFactor() const;
   QImage _image;
   QImage _savedPreview;
@@ -136,10 +138,10 @@ private:
   QPoint _mousePosition;
   QPixmap _transparentBackground;
   bool _paintOriginalImage;
-  QSize _originaImageSize;
+  QSize _originalImageSize;
   QSize _originaImageScaledSize;
 
-  QImage _cachedOriginalImage;
+  std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
   PreviewPosition _cachedOriginalImagePosition;
   PreviewPosition _positionAtUpdateRequest;
 };

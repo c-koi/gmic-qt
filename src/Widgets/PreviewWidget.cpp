@@ -38,7 +38,7 @@
 
 const PreviewWidget::PreviewPosition PreviewWidget::PreviewPosition::Full{0.0, 0.0, 1.0, 1.0};
 
-PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
+PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOriginalImage(new gmic_image<float>())
 {
   setAutoFillBackground(false);
   _transparency.load(":resources/transparency.png");
@@ -106,11 +106,12 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
 {
   QPainter painter(this);
   if (_paintOriginalImage) {
-    _image = originalImage();
-    _originaImageSize = _image.size();
+    gmic_image<float> image;
+    originalImage(image);
+    _originalImageSize = QSize(image.width(), image.height());
     if (_currentZoomFactor > 1.0) {
-      _originaImageScaledSize = _originaImageSize;
-      QSize imageSize(_image.width() * _currentZoomFactor, _image.height() * _currentZoomFactor);
+      _originaImageScaledSize = _originalImageSize;
+      QSize imageSize(std::round(image.width() * _currentZoomFactor), std::round(image.height() * _currentZoomFactor));
       int left, top;
       if (imageSize.height() > height()) {
         top = -(int)(((_visibleRect.y * _fullImageSize.height()) - std::floor(_visibleRect.y * _fullImageSize.height())) * _currentZoomFactor);
@@ -124,9 +125,16 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
       }
       _imagePosition = QRect(QPoint(left, top), imageSize);
     } else {
-      _originaImageScaledSize = QSize(_image.width() * _currentZoomFactor, _image.height() * _currentZoomFactor);
+      _originaImageScaledSize = QSize(std::round(image.width() * _currentZoomFactor), std::round(image.height() * _currentZoomFactor));
       _imagePosition = QRect(QPoint(std::max(0, (width() - _originaImageScaledSize.width()) / 2), std::max(0, (height() - _originaImageScaledSize.height()) / 2)), _originaImageScaledSize);
     }
+
+    image.resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1);
+    ImageConverter::convert(image, _image);
+    if (_image.hasAlphaChannel()) {
+      painter.fillRect(_imagePosition, QBrush(_transparency));
+    }
+    painter.drawImage(_imagePosition, _image);
   } else {
     // Display the preview
 
@@ -141,11 +149,12 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     /*
      *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
      */
+
+    if (_image.hasAlphaChannel()) {
+      painter.fillRect(_imagePosition, QBrush(_transparency));
+    }
+    painter.drawImage(_imagePosition, _image);
   }
-  if (_image.hasAlphaChannel()) {
-    painter.fillRect(_imagePosition, QBrush(_transparency));
-  }
-  painter.drawImage(_imagePosition, _image);
   e->accept();
 }
 
@@ -489,20 +498,20 @@ void PreviewWidget::displayOriginalImage()
   update();
 }
 
-QImage PreviewWidget::originalImage()
+void PreviewWidget::originalImage(cimg_library::CImg<float> & image)
 {
   if (_visibleRect == _cachedOriginalImagePosition) {
-    return _cachedOriginalImage;
+    image = *_cachedOriginalImage;
   }
   gmic_list<float> images;
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(images, imageNames, _visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h, GmicQt::Active);
   if (images.size() > 0) {
     gmic_qt_apply_color_profile(images[0]);
-    ImageConverter::convert(images[0], _cachedOriginalImage);
+    _cachedOriginalImage->swap(images[0]);
     _cachedOriginalImagePosition = _visibleRect;
   }
-  return _cachedOriginalImage;
+  image = *_cachedOriginalImage;
 }
 
 void PreviewWidget::onPreviewParametersChanged()

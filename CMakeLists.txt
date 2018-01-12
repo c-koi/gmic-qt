@@ -7,6 +7,7 @@ LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 include(FeatureSummary)
 
 set(CMAKE_CXX_STANDARD 11)
+add_definitions(-Dcimg_use_cpp11=1)
 set(MIN_QT_VERSION 5.2.0)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC OFF)
