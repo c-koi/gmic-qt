@@ -494,6 +494,8 @@ void MainWindow::onPreviewUpdateRequested()
   }
   QString env = ui->inOutSelector->gmicEnvString();
   env += QString(" _preview_width=%1 _preview_height=%2").arg(ui->previewWidget->width()).arg(ui->previewWidget->height());
+  const int timeout = DialogSettings::previewTimeout();
+  env += QString(" _gmic_gui_timeout=%1").arg(timeout);
   const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
   _filterThread = new FilterThread(this, currentFilter.plainTextName, currentFilter.previewCommand, ui->filterParams->valueString(), env, ui->inOutSelector->outputMessageMode());
   _filterThread->setInputImages(*_gmicImages, imageNames);

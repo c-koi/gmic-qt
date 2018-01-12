@@ -43,6 +43,7 @@ QColor DialogSettings::UnselectedFilterTextColor;
 
 QString DialogSettings::FolderParameterDefaultValue;
 QString DialogSettings::FileParameterDefaultPath;
+int DialogSettings::_previewTimeout = 16;
 
 // TODO : Make DialogSetting a view of Settings class
 
@@ -70,6 +71,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     }
   }
 
+  ui->sbPreviewTimeout->setRange(1, 360);
+
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
   const bool savedDarkTheme = QSettings().value("Config/DarkTheme", false).toBool();
@@ -78,6 +81,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
   ui->cbNativeColorDialogs->setToolTip(tr("Check to use Native/OS color dialog, uncheck to use Qt's"));
   ui->cbShowLogos->setChecked(_logosAreVisible);
+  ui->sbPreviewTimeout->setValue(_previewTimeout);
 
   connect(ui->pbOk, SIGNAL(clicked()), this, SLOT(onOk()));
   connect(ui->rbLeftPreview, SIGNAL(toggled(bool)), this, SLOT(onRadioLeftPreviewToggled(bool)));
@@ -95,6 +99,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   connect(ui->rbDarkTheme, SIGNAL(toggled(bool)), this, SLOT(onDarkThemeToggled(bool)));
 
   connect(ui->cbShowLogos, SIGNAL(toggled(bool)), this, SLOT(onLogosVisibleToggled(bool)));
+
+  connect(ui->sbPreviewTimeout, SIGNAL(valueChanged(int)), this, SLOT(onPreviewTimeoutChange(int)));
 
   ui->languageSelector->selectLanguage(_languageCode);
   if (_darkThemeEnabled) {
@@ -131,6 +137,12 @@ void DialogSettings::loadSettings()
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue", QDir::homePath()).toString();
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath", QDir::homePath()).toString();
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
+  _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
+}
+
+int DialogSettings::previewTimeout()
+{
+  return _previewTimeout;
 }
 
 void DialogSettings::saveSettings(QSettings & settings)
@@ -141,6 +153,7 @@ void DialogSettings::saveSettings(QSettings & settings)
   settings.setValue("FolderParameterDefaultValue", FolderParameterDefaultValue);
   settings.setValue("FileParameterDefaultPath", FileParameterDefaultPath);
   settings.setValue("LogosAreVisible", _logosAreVisible);
+  settings.setValue("PreviewTimeout", _previewTimeout);
 
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
@@ -176,6 +189,11 @@ void DialogSettings::done(int r)
 void DialogSettings::onLogosVisibleToggled(bool on)
 {
   _logosAreVisible = on;
+}
+
+void DialogSettings::onPreviewTimeoutChange(int value)
+{
+  _previewTimeout = value;
 }
 
 void DialogSettings::enableUpdateButton()

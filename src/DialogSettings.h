@@ -55,6 +55,7 @@ public:
   static QColor UnselectedFilterTextColor;
   static QString FolderParameterDefaultValue;
   static QString FileParameterDefaultPath;
+  static int previewTimeout();
 
 public slots:
   void onRadioLeftPreviewToggled(bool);
@@ -66,6 +67,7 @@ public slots:
   void onColorDialogsToggled(bool);
   void done(int r) override;
   void onLogosVisibleToggled(bool);
+  void onPreviewTimeoutChange(int);
 
 private:
   Ui::DialogSettings * ui;
@@ -75,6 +77,7 @@ private:
   static MainWindow::PreviewPosition _previewPosition;
   static int _updatePeriodicity;
   static bool _logosAreVisible;
+  static int _previewTimeout;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_
