@@ -113,6 +113,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     ui->rbDefaultTheme->setPalette(p);
     ui->rbLeftPreview->setPalette(p);
     ui->rbRightPreview->setPalette(p);
+    ui->cbShowLogos->setPalette(p);
   }
   ui->pbOk->setFocus();
 }
