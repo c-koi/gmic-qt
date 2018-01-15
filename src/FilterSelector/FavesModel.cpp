@@ -93,7 +93,6 @@ QString FavesModel::uniqueName(QString name, QString faveHashToIgnore)
   bool nameIsUnique = true;
   QMap<QString, Fave>::const_iterator it = _faves.cbegin();
   while (it != _faves.cend()) {
-    SHOW(it.value().name());
     if (it.key() != faveHashToIgnore) {
       QString faveName = it.value().name();
       if (faveName == name) {

@@ -28,6 +28,7 @@
 #include "FilterSelector/FavesModel.h"
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
+#include "gmic_qt.h"
 
 class QSettings;
 
@@ -60,7 +61,7 @@ public:
   void readFaves();
   void importGmicGTKFaves();
   void saveFaves();
-  void addSelectedFilterAsNewFave(QList<QString> defaultValues);
+  void addSelectedFilterAsNewFave(QList<QString> defaultValues, GmicQt::InputOutputState inOutState);
 
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);

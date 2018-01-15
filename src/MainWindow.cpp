@@ -1018,7 +1018,7 @@ void MainWindow::setNoFilter()
 {
   ui->filterParams->setNoFilter();
   ui->inOutSelector->disable();
-  ui->inOutSelector->setState(InOutPanel::State::Unspecified, false);
+  ui->inOutSelector->setState(GmicQt::InputOutputState::Unspecified, false);
   ui->filterName->setVisible(false);
   ui->tbAddFave->setEnabled(false);
   ui->tbResetParameters->setVisible(false);
@@ -1102,13 +1102,7 @@ void MainWindow::onAddFave()
     return;
   }
   saveCurrentParameters();
-
-  _filtersPresenter->addSelectedFilterAsNewFave(ui->filterParams->valueStringList());
-  QString faveHash = _filtersPresenter->currentFilter().hash;
-  if (!faveHash.isEmpty()) {
-    ParametersCache::setValues(faveHash, ui->filterParams->valueStringList());
-    ParametersCache::setInputOutputState(faveHash, ui->inOutSelector->state());
-  }
+  _filtersPresenter->addSelectedFilterAsNewFave(ui->filterParams->valueStringList(), ui->inOutSelector->state());
 }
 void MainWindow::onRemoveFave()
 {

@@ -118,7 +118,7 @@ void FiltersPresenter::saveFaves()
   favesModelWriter.writeFaves();
 }
 
-void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues)
+void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues, GmicQt::InputOutputState inOutState)
 {
   if (_currentFilter.hash.isEmpty() || (!_filtersModel.contains(_currentFilter.hash) && !_favesModel.contains(_currentFilter.hash))) {
     return;
@@ -150,6 +150,8 @@ void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues)
   fave.build();
   FiltersVisibilityMap::setVisibility(fave.hash(), true);
   _favesModel.addFave(fave);
+  ParametersCache::setValues(fave.hash(), defaultValues);
+  ParametersCache::setInputOutputState(fave.hash(), inOutState);
   _filtersView->addFave(fave.name(), fave.hash());
   _filtersView->sortFaves();
   _filtersView->selectFave(fave.hash());
@@ -279,7 +281,7 @@ void FiltersPresenter::onFaveRenamed(QString hash, QString newName)
 
   // Move parameters
   QList<QString> values = ParametersCache::getValues(hash);
-  InOutPanel::State inOutState = ParametersCache::getInputOutputState(hash);
+  GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(hash);
   ParametersCache::remove(hash);
   ParametersCache::setValues(fave.hash(), values);
   ParametersCache::setInputOutputState(fave.hash(), inOutState);

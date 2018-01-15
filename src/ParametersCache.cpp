@@ -34,7 +34,7 @@
 #include "gmic.h"
 
 QHash<QString, QList<QString>> ParametersCache::_parametersCache;
-QHash<QString, InOutPanel::State> ParametersCache::_inOutPanelStates;
+QHash<QString, GmicQt::InputOutputState> ParametersCache::_inOutPanelStates;
 
 void ParametersCache::load(bool loadFiltersParameters)
 {
@@ -77,7 +77,7 @@ void ParametersCache::load(bool loadFiltersParameters)
           // Retrieve Input/Output state
           if (!state.isUndefined()) {
             QJsonObject stateObject = state.toObject();
-            _inOutPanelStates[hash] = InOutPanel::State::fromJSONObject(stateObject);
+            _inOutPanelStates[hash] = GmicQt::InputOutputState::fromJSONObject(stateObject);
           }
           ++itFilter;
         }
@@ -115,10 +115,12 @@ void ParametersCache::save()
 
   // Add Input/Ouput states
 
-  QHash<QString, InOutPanel::State>::iterator itState = _inOutPanelStates.begin();
+  QHash<QString, GmicQt::InputOutputState>::iterator itState = _inOutPanelStates.begin();
   while (itState != _inOutPanelStates.end()) {
     QJsonObject filterObject;
-    filterObject.insert("in_out_state", itState.value().toJSONObject());
+    QJsonObject jsonState;
+    itState.value().toJSONObject(jsonState);
+    filterObject.insert("in_out_state", jsonState);
     documentObject.insert(itState.key(), filterObject);
     ++itState;
   }
@@ -190,16 +192,16 @@ void ParametersCache::remove(const QString & hash)
   _inOutPanelStates.remove(hash);
 }
 
-InOutPanel::State ParametersCache::getInputOutputState(const QString & hash)
+GmicQt::InputOutputState ParametersCache::getInputOutputState(const QString & hash)
 {
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
   } else {
-    return InOutPanel::State::Unspecified;
+    return GmicQt::InputOutputState::Unspecified;
   }
 }
 
-void ParametersCache::setInputOutputState(const QString & hash, const InOutPanel::State & state)
+void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state)
 {
   if (state.isUnspecified()) {
     _inOutPanelStates.remove(hash);
@@ -226,7 +228,7 @@ void ParametersCache::cleanup(const QSet<QString> & hashesToKeep)
   obsoleteHashes.clear();
 
   // Build set of no longer used In/Out states
-  QHash<QString, InOutPanel::State>::iterator itState = _inOutPanelStates.begin();
+  QHash<QString, GmicQt::InputOutputState>::iterator itState = _inOutPanelStates.begin();
   while (itState != _inOutPanelStates.end()) {
     if (!hashesToKeep.contains(itState.key())) {
       obsoleteHashes.insert(itState.key());

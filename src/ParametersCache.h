@@ -28,8 +28,7 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include "Widgets/InOutPanel.h"
-// TODO : Invert the dependency ParamCache ---> InOutPanel
+#include "gmic_qt.h"
 
 class ParametersCache {
 public:
@@ -39,14 +38,14 @@ public:
   static QList<QString> getValues(const QString & hash);
   static void remove(const QString & hash);
 
-  static InOutPanel::State getInputOutputState(const QString & hash);
-  static void setInputOutputState(const QString & hash, const InOutPanel::State &);
+  static GmicQt::InputOutputState getInputOutputState(const QString & hash);
+  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState &);
 
   static void cleanup(const QSet<QString> & hashesToKeep);
 
 private:
   static QHash<QString, QList<QString>> _parametersCache;
-  static QHash<QString, InOutPanel::State> _inOutPanelStates;
+  static QHash<QString, GmicQt::InputOutputState> _inOutPanelStates;
 };
 
 #endif // _GMIC_QT_PARAMETERSCACHE_H
