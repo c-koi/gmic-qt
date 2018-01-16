@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>157</width>
-    <height>162</height>
+    <width>457</width>
+    <height>215</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>GroupBox</string>
@@ -16,18 +22,74 @@
   <property name="title">
    <string>Input / Output</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="1,10">
+   <item row="0" column="1">
+    <widget class="QComboBox" name="inputLayers">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="outputMode">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="outputMessages">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="previewMode">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
-    <widget class="QComboBox" name="inputLayers"/>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Input layers</string>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QComboBox" name="outputMode"/>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Output mode</string>
+     </property>
+    </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QComboBox" name="outputMessages"/>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Output messages</string>
+     </property>
+    </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QComboBox" name="previewMode"/>
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Preview mode</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

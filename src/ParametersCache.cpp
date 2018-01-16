@@ -197,13 +197,13 @@ GmicQt::InputOutputState ParametersCache::getInputOutputState(const QString & ha
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
   } else {
-    return GmicQt::InputOutputState::Unspecified;
+    return GmicQt::InputOutputState::Default;
   }
 }
 
 void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state)
 {
-  if (state.isUnspecified()) {
+  if (state.isDefault()) {
     _inOutPanelStates.remove(hash);
     return;
   }

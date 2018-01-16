@@ -95,10 +95,10 @@ struct InputOutputState {
 
   InputOutputState();
   InputOutputState(InputMode, OutputMode, PreviewMode, OutputMessageMode);
-  bool isUnspecified() const;
+  bool isDefault() const;
   void toJSONObject(QJsonObject &) const;
   static InputOutputState fromJSONObject(const QJsonObject &);
-  static const InputOutputState Unspecified;
+  static const InputOutputState Default;
   bool operator==(const InputOutputState & other) const;
   bool operator!=(const InputOutputState & other) const;
 };

@@ -169,6 +169,9 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   makeConnections();
 
   _previewRandomSeed = cimg_library::cimg::srand();
+
+  // TODO : Remove
+  // ui->logosLabel->setStyleSheet("QWidget { background-color: red }");
 }
 
 MainWindow::~MainWindow()
@@ -834,15 +837,15 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
 
   QHBoxLayout * layout = dynamic_cast<QHBoxLayout *>(ui->belowPreviewWidget->layout());
   if (layout) {
-    layout->removeWidget(ui->inOutSelector);
+    // layout->removeWidget(ui->inOutSelector);
     layout->removeWidget(ui->belowPreviewPadding);
     layout->removeWidget(ui->logosLabel);
     if (position == MainWindow::PreviewOnLeft) {
       layout->addWidget(ui->logosLabel);
       layout->addWidget(ui->belowPreviewPadding);
-      layout->addWidget(ui->inOutSelector);
+      // layout->addWidget(ui->inOutSelector);
     } else {
-      layout->addWidget(ui->inOutSelector);
+      // layout->addWidget(ui->inOutSelector);
       layout->addWidget(ui->belowPreviewPadding);
       layout->addWidget(ui->logosLabel);
     }
@@ -999,7 +1002,9 @@ void MainWindow::activateFilter(bool resetZoom)
       _filtersPresenter->setInvalidFilter();
     }
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
+    // ui->inOutSelector->enable(); // TODO : Remove
     ui->inOutSelector->enable();
+    ui->inOutSelector->show();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
@@ -1018,7 +1023,8 @@ void MainWindow::setNoFilter()
 {
   ui->filterParams->setNoFilter();
   ui->inOutSelector->disable();
-  ui->inOutSelector->setState(GmicQt::InputOutputState::Unspecified, false);
+  ui->inOutSelector->hide(); // TODO : Remove this
+  ui->inOutSelector->setState(GmicQt::InputOutputState::Default, false);
   ui->filterName->setVisible(false);
   ui->tbAddFave->setEnabled(false);
   ui->tbResetParameters->setVisible(false);

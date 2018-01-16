@@ -213,192 +213,193 @@
         <translation>Entrada / Saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="41"/>
+        <location filename="../ui/inoutpanel.ui" line="35"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="40"/>
         <source>Input layers</source>
         <translation>Camadas de entrada</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="42"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="41"/>
         <source>Input layers...</source>
         <translation>Camadas de entrada...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="44"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="43"/>
         <source>None</source>
         <translation>Nenhuma</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="45"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="44"/>
         <source>Active (default)</source>
         <translation>Ativa (padrão)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="46"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="45"/>
         <source>All</source>
         <translation>Todas</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="47"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="46"/>
         <source>Active and below</source>
         <translation>Ativa e abaixo</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="48"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="47"/>
         <source>Active and above</source>
         <translation>Ativa e acima</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="49"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="48"/>
         <source>All visible</source>
         <translation>Todas as visíveis</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="50"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="49"/>
         <source>All invisible</source>
         <translation>Todas as invisíveis</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="51"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="50"/>
         <source>All visible (decr.)</source>
         <translation>Todas as visíveis (decresc.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="52"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="51"/>
         <source>All invisible (decr.)</source>
         <translation>Todas as invisíveis (decresc.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="52"/>
         <source>All (decr.)</source>
         <translation>Todas (decresc.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
         <source>Output mode</source>
         <translation>Modo de saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="56"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
         <source>Output mode...</source>
         <translation>Modo de saída...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
         <source>In place (default)</source>
         <translation>No sitio (padrão)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
         <source>New layer(s)</source>
         <translation>Nova(s) camada(s)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
         <source>New active layer(s)</source>
         <translation>Nova(s) camada(s) ativa(s)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
         <source>New image</source>
         <translation>Nova imagem</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
         <source>Output messages</source>
         <translation>Mensagens de saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
         <source>Output messages...</source>
         <translation>Mensagens de saída...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
         <source>Quiet (default)</source>
         <translation>Silêncioso (padrão)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
         <source>Verbose (layer name)</source>
         <translation>Modo verboso (nome da camada)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
         <source>Verbose (console)</source>
         <translation>Modo verboso (consola)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
         <source>Verbose (log file)</source>
         <translation>Modo verboso (ficheiro de registro)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>Very verbose (console)</source>
         <translation>Modo muito verboso (consola)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
         <source>Very verbose (log file)</source>
         <translation>Modo muito verboso (ficheiro de registro)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
         <source>Debug (console)</source>
         <translation>Depurar erros (consola)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="73"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
         <source>Debug (log file)</source>
         <translation>Depurar erros (ficheiro de registro)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="75"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="74"/>
         <source>Preview mode</source>
         <translation>Modo pre-visualização</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="76"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="75"/>
         <source>Preview mode...</source>
         <translation>Modo pre-visualização...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="78"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="77"/>
         <source>1st ouput (default)</source>
         <translation>1a saída (padrão)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="79"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="78"/>
         <source>2nd ouput</source>
         <translation>2a saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="80"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="79"/>
         <source>3rd ouput</source>
         <translation>3a saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="81"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="80"/>
         <source>4th ouput</source>
         <translation>4a saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="82"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="81"/>
         <source>1st -&gt; 2nd ouput</source>
         <translation>1a -&gt; 2a saídas</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="83"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="82"/>
         <source>1st -&gt; 3rd ouput</source>
         <translation>1a -&gt; 3a saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="84"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="83"/>
         <source>1st -&gt; 4th ouput</source>
         <translation>1a -&gt; 4a saída</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="85"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="84"/>
         <source>All ouputs</source>
         <translation>Todas as saídas</translation>
     </message>
@@ -444,7 +445,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="505"/>
+        <location filename="../ui/mainwindow.ui" line="479"/>
         <source>TextLabel</source>
         <translation>Rótulo de texto</translation>
     </message>
@@ -464,32 +465,32 @@
         <translation>Previsualização</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="457"/>
+        <location filename="../ui/mainwindow.ui" line="412"/>
         <source>Input / Output</source>
         <translation>Entrada / Saída</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="489"/>
+        <location filename="../ui/mainwindow.ui" line="463"/>
         <source>Settings...</source>
         <translation>Configuração...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="518"/>
+        <location filename="../ui/mainwindow.ui" line="492"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="531"/>
+        <location filename="../ui/mainwindow.ui" line="505"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Tela cheia</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="544"/>
+        <location filename="../ui/mainwindow.ui" line="518"/>
         <source>&amp;Apply</source>
         <translation>&amp;Aplicar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="557"/>
+        <location filename="../ui/mainwindow.ui" line="531"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -549,58 +550,58 @@
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Universidad da Normandia (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="274"/>
+        <location filename="../src/MainWindow.cpp" line="276"/>
         <source>Update completed</source>
         <translation>Atualização concluída</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="274"/>
         <location filename="../src/MainWindow.cpp" line="276"/>
+        <location filename="../src/MainWindow.cpp" line="278"/>
         <source>Filter definitions have been updated.</source>
         <translation>As definições dos filtros foram atualizados.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="330"/>
+        <location filename="../src/MainWindow.cpp" line="332"/>
         <source>Filter definitions have been updated</source>
         <translation>As definições dos filtros foram atualizados</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="407"/>
+        <location filename="../src/MainWindow.cpp" line="409"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>A actualização não foi possível&lt;br&gt;devido aos seguintes erros:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="413"/>
+        <location filename="../src/MainWindow.cpp" line="415"/>
         <source>Update error</source>
         <translation>Erro na actualização</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="606"/>
+        <location filename="../src/MainWindow.cpp" line="608"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1087"/>
+        <location filename="../src/MainWindow.cpp" line="1080"/>
         <source>Import faves</source>
         <translation>Importar favoritos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1087"/>
+        <location filename="../src/MainWindow.cpp" line="1080"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Deseja importar favoritos do arquivo abaixo?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1090"/>
+        <location filename="../src/MainWindow.cpp" line="1083"/>
         <source>Don&apos;t ask again</source>
         <translation>No volvar a perguntar</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1201"/>
+        <location filename="../src/MainWindow.cpp" line="1188"/>
         <source>Confirmation</source>
         <translation>Confirmar</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1201"/>
+        <location filename="../src/MainWindow.cpp" line="1188"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Um comando do gmic está sendo executado.&apos;exÃ©cution.&lt;br&gt;Desejas realmente fechar o plug-in?</translation>
     </message>

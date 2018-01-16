@@ -56,7 +56,7 @@ const InputMode DefaultInputMode = Active;
 const OutputMode DefaultOutputMode = InPlace;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
 const PreviewMode DefaultPreviewMode = FirstOutput;
-const InputOutputState InputOutputState::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode, GmicQt::UnspecifiedPreviewMode, GmicQt::UnspecifiedOutputMessageMode);
+const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode, GmicQt::DefaultOutputMessageMode);
 
 const float PreviewFactorAny = -1.0f;
 const float PreviewFactorFullImage = 1.0f;
@@ -129,24 +129,24 @@ bool InputOutputState::operator!=(const InputOutputState & other) const
   return inputMode != other.inputMode || outputMode != other.outputMode || previewMode != other.previewMode || outputMessageMode != other.outputMessageMode;
 }
 
-bool InputOutputState::isUnspecified() const
+bool InputOutputState::isDefault() const
 {
-  return inputMode == UnspecifiedInputMode && outputMode == UnspecifiedOutputMode && previewMode == UnspecifiedPreviewMode && outputMessageMode == UnspecifiedOutputMessageMode;
+  return (inputMode == GmicQt::DefaultInputMode) && (outputMode == GmicQt::DefaultOutputMode) && (previewMode == GmicQt::DefaultPreviewMode) && (outputMessageMode == GmicQt::DefaultOutputMessageMode);
 }
 
 void InputOutputState::toJSONObject(QJsonObject & object) const
 {
   object = QJsonObject();
-  if (inputMode != UnspecifiedInputMode) {
+  if (inputMode != DefaultInputMode) {
     object.insert("InputLayers", inputMode);
   }
-  if (outputMode != UnspecifiedOutputMode) {
+  if (outputMode != DefaultOutputMode) {
     object.insert("OutputMode", outputMode);
   }
-  if (previewMode != UnspecifiedPreviewMode) {
+  if (previewMode != DefaultPreviewMode) {
     object.insert("PreviewMode", previewMode);
   }
-  if (outputMessageMode != UnspecifiedOutputMessageMode) {
+  if (outputMessageMode != DefaultOutputMessageMode) {
     object.insert("OutputMessages", outputMessageMode);
   }
 }
