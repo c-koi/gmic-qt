@@ -130,27 +130,18 @@ void InOutPanel::setInputMode(GmicQt::InputMode mode)
 void InOutPanel::setOutputMode(GmicQt::OutputMode mode)
 {
   int index = ui->outputMode->findData(mode);
-  if (index == -1) {
-    std::cerr << "Error: " << __PRETTY_FUNCTION__ << " : wrong argument value (" << mode << ").\n";
-  }
   ui->outputMode->setCurrentIndex((index == -1) ? ui->outputMode->findData(GmicQt::DefaultOutputMode) : index);
 }
 
 void InOutPanel::setPreviewMode(GmicQt::PreviewMode mode)
 {
   int index = ui->previewMode->findData(mode);
-  if (index == -1) {
-    std::cerr << "Error: " << __PRETTY_FUNCTION__ << " : wrong argument value (" << mode << ").\n";
-  }
   ui->previewMode->setCurrentIndex((index == -1) ? ui->previewMode->findData(GmicQt::DefaultPreviewMode) : index);
 }
 
 void InOutPanel::setOutputMessageMode(GmicQt::OutputMessageMode mode)
 {
   int index = ui->outputMessages->findData(mode);
-  if (index == -1) {
-    std::cerr << "Error: " << __PRETTY_FUNCTION__ << " : wrong argument value (" << mode << ").\n";
-  }
   ui->outputMessages->setCurrentIndex((index == -1) ? ui->outputMessages->findData(GmicQt::DefaultOutputMessageMode) : index);
 }
 
@@ -215,10 +206,10 @@ void InOutPanel::setState(const GmicQt::InputOutputState & state, bool notify)
     disableNotifications();
   }
 
-  ui->inputLayers->setCurrentIndex(ui->inputLayers->findData(state.inputMode));
-  ui->outputMode->setCurrentIndex(ui->outputMode->findData(state.outputMode));
-  ui->outputMessages->setCurrentIndex(ui->outputMessages->findData(state.outputMessageMode));
-  ui->previewMode->setCurrentIndex(ui->previewMode->findData(state.previewMode));
+  setInputMode(state.inputMode);
+  setOutputMode(state.outputMode);
+  setOutputMessageMode(state.outputMessageMode);
+  setPreviewMode(state.previewMode);
 
   if (savedNotificationStatus) {
     enableNotifications();
