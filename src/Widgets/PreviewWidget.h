@@ -101,7 +101,10 @@ public slots:
   void disableRightClick();
 
 private:
-  void originalImage(cimg_library::CImg<float> & image);
+  void getOriginalImageCrop(cimg_library::CImg<float> & image);
+  void updateCachedOriginalImageCrop();
+  void updateOriginalImagePosition();
+  QSize originalImageCropSize();
   double defaultZoomFactor() const;
   cimg_library::CImg<float> * _image;
   cimg_library::CImg<float> * _savedPreview;

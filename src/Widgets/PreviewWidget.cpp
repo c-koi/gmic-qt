@@ -60,6 +60,7 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   _paintOriginalImage = true;
   qApp->installEventFilter(this);
   _rightClickEnabled = false;
+  _originalImageSize = QSize(-1, -1);
 }
 
 PreviewWidget::~PreviewWidget()
@@ -79,6 +80,7 @@ void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
     return;
   }
   *_image = image;
+  updateOriginalImagePosition();
   _paintOriginalImage = false;
   if (isAtFullZoom()) {
     _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
@@ -109,39 +111,48 @@ void PreviewWidget::centerVisibleRect()
   _visibleRect.y = std::max(0.0, (1.0 - _visibleRect.h) / 2.0);
 }
 
+void PreviewWidget::updateOriginalImagePosition()
+{
+  QSize size = originalImageCropSize();
+  if (size == _originalImageSize) {
+    return;
+  }
+  _originalImageSize = size;
+  if (_currentZoomFactor > 1.0) {
+    _originaImageScaledSize = _originalImageSize;
+    QSize imageSize(std::round(_originalImageSize.width() * _currentZoomFactor), std::round(_originalImageSize.height() * _currentZoomFactor));
+    int left, top;
+    if (imageSize.height() > height()) {
+      top = -(int)(((_visibleRect.y * _fullImageSize.height()) - std::floor(_visibleRect.y * _fullImageSize.height())) * _currentZoomFactor);
+    } else {
+      top = (height() - imageSize.height()) / 2;
+    }
+    if (imageSize.width() > width()) {
+      left = -(int)(((_visibleRect.x * _fullImageSize.width()) - std::floor(_visibleRect.x * _fullImageSize.width())) * _currentZoomFactor);
+    } else {
+      left = (width() - imageSize.width()) / 2;
+    }
+    _imagePosition = QRect(QPoint(left, top), imageSize);
+  } else {
+    _originaImageScaledSize = QSize(std::round(_originalImageSize.width() * _currentZoomFactor), std::round(_originalImageSize.height() * _currentZoomFactor));
+    _imagePosition = QRect(QPoint(std::max(0, (width() - _originaImageScaledSize.width()) / 2), std::max(0, (height() - _originaImageScaledSize.height()) / 2)), _originaImageScaledSize);
+  }
+}
+
 void PreviewWidget::paintEvent(QPaintEvent * e)
 {
   QPainter painter(this);
   QImage qimage;
   if (_paintOriginalImage) {
     gmic_image<float> image;
-    originalImage(image);
-    _originalImageSize = QSize(image.width(), image.height());
-    if (_currentZoomFactor > 1.0) {
-      _originaImageScaledSize = _originalImageSize;
-      QSize imageSize(std::round(image.width() * _currentZoomFactor), std::round(image.height() * _currentZoomFactor));
-      int left, top;
-      if (imageSize.height() > height()) {
-        top = -(int)(((_visibleRect.y * _fullImageSize.height()) - std::floor(_visibleRect.y * _fullImageSize.height())) * _currentZoomFactor);
-      } else {
-        top = (height() - imageSize.height()) / 2;
-      }
-      if (imageSize.width() > width()) {
-        left = -(int)(((_visibleRect.x * _fullImageSize.width()) - std::floor(_visibleRect.x * _fullImageSize.width())) * _currentZoomFactor);
-      } else {
-        left = (width() - imageSize.width()) / 2;
-      }
-      _imagePosition = QRect(QPoint(left, top), imageSize);
-    } else {
-      _originaImageScaledSize = QSize(std::round(image.width() * _currentZoomFactor), std::round(image.height() * _currentZoomFactor));
-      _imagePosition = QRect(QPoint(std::max(0, (width() - _originaImageScaledSize.width()) / 2), std::max(0, (height() - _originaImageScaledSize.height()) / 2)), _originaImageScaledSize);
-    }
+    getOriginalImageCrop(image);
+    updateOriginalImagePosition();
     image.resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1);
-    _image->swap(image); // TODO : Simplify
+    //_image->swap(image); // TODO : Simplify
     if (hasAlphaChannel(*_image)) {
       painter.fillRect(_imagePosition, QBrush(_transparency));
     }
-    ImageConverter::convert(*_image, qimage);
+    ImageConverter::convert(image, qimage);
     painter.drawImage(_imagePosition, qimage);
     SHOW(_imagePosition);
   } else {
@@ -275,9 +286,7 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
   if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
       savePreview();
-      _paintOriginalImage = true;
-      _image->assign();
-      update();
+      displayOriginalImage();
     }
     e->accept();
     return;
@@ -509,11 +518,16 @@ void PreviewWidget::displayOriginalImage()
   update();
 }
 
-void PreviewWidget::originalImage(cimg_library::CImg<float> & image)
+QSize PreviewWidget::originalImageCropSize()
 {
-  if (_visibleRect == _cachedOriginalImagePosition) {
-    image = *_cachedOriginalImage;
+  if (_visibleRect != _cachedOriginalImagePosition) {
+    updateCachedOriginalImageCrop();
   }
+  return QSize(_cachedOriginalImage->width(), _cachedOriginalImage->height());
+}
+
+void PreviewWidget::updateCachedOriginalImageCrop()
+{
   gmic_list<float> images;
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(images, imageNames, _visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h, GmicQt::Active);
@@ -522,6 +536,14 @@ void PreviewWidget::originalImage(cimg_library::CImg<float> & image)
     _cachedOriginalImage->swap(images[0]);
     _cachedOriginalImagePosition = _visibleRect;
   }
+}
+
+void PreviewWidget::getOriginalImageCrop(cimg_library::CImg<float> & image)
+{
+  if (_visibleRect == _cachedOriginalImagePosition) {
+    image = *_cachedOriginalImage;
+  }
+  updateCachedOriginalImageCrop();
   image = *_cachedOriginalImage;
 }
 
