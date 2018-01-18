@@ -25,7 +25,7 @@
 #ifndef _GMIC_QT_INOUTPANEL_H
 #define _GMIC_QT_INOUTPANEL_H
 
-#include <QGroupBox>
+#include <QWidget>
 #include "Host/host.h"
 #include "gmic_qt.h"
 
@@ -38,7 +38,7 @@ class QSettings;
 class QPalette;
 class FilterThread;
 
-class InOutPanel : public QGroupBox {
+class InOutPanel : public QWidget {
   Q_OBJECT
 
 public:
@@ -76,6 +76,7 @@ public slots:
   void onOutputModeSelected(int);
   void onOutputMessageSelected(int);
   void onPreviewModeSelected(int);
+  void onResetButtonClicked();
 
 private:
   bool _notifyValueChange;

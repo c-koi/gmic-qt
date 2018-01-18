@@ -27,15 +27,19 @@
 #include <QPalette>
 #include <QSettings>
 #include <cstdio>
+#include "DialogSettings.h"
 #include "ui_inoutpanel.h"
 
 /*
  * InOutPanel methods
  */
 
-InOutPanel::InOutPanel(QWidget * parent) : QGroupBox(parent), ui(new Ui::InOutPanel)
+InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPanel)
 {
   ui->setupUi(this);
+
+  ui->topLabel->setStyleSheet("QLabel { font-weight: bold }");
+  ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
 
   ui->inputLayers->setToolTip(tr("Input layers"));
   QString dummy1(tr("Input layers..."));
@@ -83,6 +87,7 @@ InOutPanel::InOutPanel(QWidget * parent) : QGroupBox(parent), ui(new Ui::InOutPa
   connect(ui->outputMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputModeSelected(int)));
   connect(ui->outputMessages, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputMessageSelected(int)));
   connect(ui->previewMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onPreviewModeSelected(int)));
+  connect(ui->tbReset, SIGNAL(clicked(bool)), this, SLOT(onResetButtonClicked()));
 
   _notifyValueChange = true;
 }
@@ -176,6 +181,11 @@ void InOutPanel::onPreviewModeSelected(int)
   if (_notifyValueChange) {
     emit previewModeChanged(previewMode());
   }
+}
+
+void InOutPanel::onResetButtonClicked()
+{
+  setState(GmicQt::InputOutputState::Default, true);
 }
 
 void InOutPanel::disableNotifications()

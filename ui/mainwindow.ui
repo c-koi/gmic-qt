@@ -224,8 +224,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>184</width>
-            <height>338</height>
+            <width>132</width>
+            <height>365</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -247,15 +247,15 @@
         </widget>
        </item>
        <item>
-        <widget class="InOutPanel" name="inOutSelector">
+        <widget class="InOutPanel" name="inOutSelector" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title">
-          <string>Input / Output</string>
+         <property name="autoFillBackground">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -562,12 +562,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>InOutPanel</class>
-   <extends>QGroupBox</extends>
-   <header>Widgets/InOutPanel.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ZoomLevelSelector</class>
    <extends>QWidget</extends>
    <header>Widgets/ZoomLevelSelector.h</header>
@@ -577,6 +571,12 @@
    <class>FiltersView</class>
    <extends>QWidget</extends>
    <header>FilterSelector/FiltersView/FiltersView.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>InOutPanel</class>
+   <extends>QWidget</extends>
+   <header>Widgets/InOutPanel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
