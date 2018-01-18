@@ -99,8 +99,8 @@ public slots:
   void updateZoomLabel(double);
   void onFiltersSelectionModeToggled(bool);
   void onPreviewCheckBoxToggled(bool);
-
   void onFilterSelectionChanged();
+  void onEscapeKeyPressed();
 
 protected:
   void timerEvent(QTimerEvent *);

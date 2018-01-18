@@ -113,7 +113,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->tbRemoveFave->setToolTip(tr("Remove fave"));
   ui->tbRemoveFave->setEnabled(false);
   ui->pbFullscreen->setCheckable(true);
-  ui->pbCancel->setShortcut(QKeySequence(Qt::Key_Escape));
+
   ui->tbExpandCollapse->setToolTip(tr("Expand/Collapse all"));
 
   ui->logosLabel->setToolTip(tr("G'MIC (http://gmic.eu)<br/>"
@@ -167,6 +167,12 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ParametersCache::load(!_newSession);
 
   setIcons();
+
+  QAction * escAction = new QAction(this);
+  escAction->setShortcut(QKeySequence(Qt::Key_Escape));
+  escAction->setShortcutContext(Qt::ApplicationShortcut);
+  connect(escAction, SIGNAL(triggered(bool)), this, SLOT(onEscapeKeyPressed()));
+  addAction(escAction);
 
   LayersExtentProxy::clearCache();
   QSize layersExtents = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
@@ -378,6 +384,15 @@ void MainWindow::onFilterSelectionChanged()
 {
   activateFilter(false);
   ui->previewWidget->sendUpdateRequest();
+}
+
+void MainWindow::onEscapeKeyPressed()
+{
+  ui->searchField->clear();
+  if (_filterThread) {
+    abortCurrentFilterThread();
+    ui->previewWidget->displayOriginalImage();
+  }
 }
 
 void MainWindow::clearMessage()
