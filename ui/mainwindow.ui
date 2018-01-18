@@ -177,7 +177,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0">
+      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0,0">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
@@ -225,7 +225,7 @@
             <x>0</x>
             <y>0</y>
             <width>132</width>
-            <height>365</height>
+            <height>356</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -244,6 +244,13 @@
            </item>
           </layout>
          </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
         </widget>
        </item>
        <item>
