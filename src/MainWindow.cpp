@@ -485,13 +485,8 @@ void MainWindow::onPreviewUpdateRequested()
   ui->previewWidget->updateImageNames(imageNames, inputMode);
   double zoomFactor = ui->previewWidget->currentZoomFactor();
   if (zoomFactor < 1.0) {
-    QImage qimage;
-    QImage scaled;
     for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
       gmic_image<float> & image = (*_gmicImages)[i];
-      //      ImageConverter::convert(image, qimage);
-      //      scaled = qimage.scaled(std::round(image.width() * zoomFactor), std::round(image.height() * zoomFactor));
-      //      ImageConverter::convert(scaled, image);
       image.resize(std::round(image.width() * zoomFactor), std::round(image.height() * zoomFactor), 1, -100, 1);
     }
   }
@@ -525,20 +520,26 @@ void MainWindow::onPreviewThreadFinished()
     ui->filterParams->setValues(list, false);
   }
   if (_filterThread->failed()) {
-    QImage image = ui->previewWidget->image();
-    image = image.scaled(ui->previewWidget->width(), ui->previewWidget->height(), Qt::KeepAspectRatio);
-    QPainter painter(&image);
-    painter.fillRect(image.rect(), QColor(40, 40, 40, 200));
+    gmic_image<float> image = ui->previewWidget->image();
+    QSize size = QSize(image.width(), image.height()).scaled(ui->previewWidget->size(), Qt::KeepAspectRatio);
+    image.resize(size.width(), size.height(), 1, -100, 1);
+    QImage qimage;
+    ImageConverter::convert(image, qimage);
+    QPainter painter(&qimage);
+    painter.fillRect(qimage.rect(), QColor(40, 40, 40, 200));
     painter.setPen(Qt::green);
-    painter.drawText(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, _filterThread->errorMessage());
+    painter.drawText(qimage.rect(), Qt::AlignCenter | Qt::TextWordWrap, _filterThread->errorMessage());
     painter.end();
+    ImageConverter::convert(qimage, image);
     ui->previewWidget->setPreviewImage(image);
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     for (unsigned int i = 0; i < images.size(); ++i) {
       gmic_qt_apply_color_profile(images[i]);
     }
-    ui->previewWidget->setPreviewImage(buildPreviewImage(images));
+    gmic_image<float> image;
+    GmicQt::buildPreviewImage(images, image, ui->inOutSelector->previewMode(), ui->previewWidget->width(), ui->previewWidget->height());
+    ui->previewWidget->setPreviewImage(image);
   }
 
   _waitingCursorTimer.stop();
@@ -887,81 +888,6 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignRight : Qt::AlignLeft));
 }
 
-QImage MainWindow::buildPreviewImage(const cimg_library::CImgList<float> & images)
-{
-  QImage qimage;
-  cimg_library::CImgList<gmic_pixel_type> preview_input_images;
-  switch (ui->inOutSelector->previewMode()) {
-  case GmicQt::FirstOutput:
-    if (images && images.size() > 0) {
-      preview_input_images.push_back(images[0]);
-    }
-    break;
-  case GmicQt::SecondOutput:
-    if (images && images.size() > 1) {
-      preview_input_images.push_back(images[1]);
-    }
-    break;
-  case GmicQt::ThirdOutput:
-    if (images && images.size() > 2) {
-      preview_input_images.push_back(images[2]);
-    }
-    break;
-  case GmicQt::FourthOutput:
-    if (images && images.size() > 3) {
-      preview_input_images.push_back(images[3]);
-    }
-    break;
-  case GmicQt::First2SecondOutput: {
-    preview_input_images.push_back(images[0]);
-    preview_input_images.push_back(images[1]);
-  } break;
-  case GmicQt::First2ThirdOutput: {
-    for (int i = 0; i < 3; ++i) {
-      preview_input_images.push_back(images[i]);
-    }
-  } break;
-  case GmicQt::First2FourthOutput: {
-    for (int i = 0; i < 4; ++i) {
-      preview_input_images.push_back(images[i]);
-    }
-  } break;
-  case GmicQt::AllOutputs:
-  default:
-    preview_input_images = images;
-  }
-
-  int spectrum = 0;
-  cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }
-  spectrum += (spectrum == 1 || spectrum == 3);
-  cimglist_for(preview_input_images, l) { GmicQt::calibrate_image(preview_input_images[l], spectrum, true); }
-  if (preview_input_images.size() == 1) {
-    ImageConverter::convert(preview_input_images.front(), qimage);
-    return qimage;
-  }
-  if (preview_input_images.size() > 1) {
-    try {
-      cimg_library::CImgList<char> preview_images_names;
-      gmic("v - gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
-      if (preview_input_images.size() >= 1) {
-        ImageConverter::convert(preview_input_images.front(), qimage);
-        return qimage;
-      }
-    } catch (...) {
-      qimage = QImage(ui->previewWidget->size(), QImage::Format_ARGB32);
-      QPainter painter(&qimage);
-      painter.fillRect(qimage.rect(), QColor(40, 40, 40, 200));
-      painter.setPen(Qt::green);
-      painter.drawText(qimage.rect(), Qt::AlignCenter | Qt::TextWordWrap, "Preview error (handling preview mode)");
-      painter.end();
-      return qimage;
-    }
-  }
-  qimage = QImage(10, 10, QImage::Format_ARGB32);
-  qimage.fill(Qt::black);
-  return qimage;
-}
-
 void MainWindow::abortCurrentFilterThread()
 {
   _filterThread->disconnect(this);
@@ -993,7 +919,9 @@ void MainWindow::activateFilter(bool resetZoom)
 {
   saveCurrentParameters();
   const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
-  if (not filter.hash.isEmpty()) {
+  if (filter.hash.isEmpty()) {
+    setNoFilter();
+  } else {
     QList<QString> savedValues = ParametersCache::getValues(filter.hash);
     if (savedValues.isEmpty() && filter.isAFave) {
       savedValues = filter.defaultParameterValues;
@@ -1002,28 +930,26 @@ void MainWindow::activateFilter(bool resetZoom)
       _filtersPresenter->setInvalidFilter();
     }
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
-    // ui->inOutSelector->enable(); // TODO : Remove
     ui->inOutSelector->enable();
     ui->inOutSelector->show();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
+    ui->previewWidget->enableRightClick();
     showZoomWarningIfNeeded();
     _okButtonShouldApply = true;
     ui->tbResetParameters->setVisible(true);
     ui->tbRemoveFave->setEnabled(filter.isAFave);
     ui->tbRenameFave->setEnabled(filter.isAFave);
-  } else {
-    setNoFilter();
   }
 }
 
 void MainWindow::setNoFilter()
 {
   ui->filterParams->setNoFilter();
-  ui->inOutSelector->disable();
-  ui->inOutSelector->hide(); // TODO : Remove this
+  ui->previewWidget->disableRightClick();
+  ui->inOutSelector->hide();
   ui->inOutSelector->setState(GmicQt::InputOutputState::Default, false);
   ui->filterName->setVisible(false);
   ui->tbAddFave->setEnabled(false);

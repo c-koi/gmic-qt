@@ -45,7 +45,7 @@ QString DialogSettings::FolderParameterDefaultValue;
 QString DialogSettings::FileParameterDefaultPath;
 int DialogSettings::_previewTimeout = 16;
 
-// TODO : Make DialogSetting a view of Settings class
+// TODO : Make DialogSetting a view of a Settings class
 
 DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::DialogSettings)
 {

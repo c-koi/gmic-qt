@@ -33,6 +33,7 @@
 #include <functional>
 #include "Common.h"
 #include "ImageConverter.h"
+#include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "gmic.h"
 
@@ -41,6 +42,10 @@ const PreviewWidget::PreviewPosition PreviewWidget::PreviewPosition::Full{0.0, 0
 PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOriginalImage(new gmic_image<float>())
 {
   setAutoFillBackground(false);
+  _image = new cimg_library::CImg<float>;
+  _image->assign();
+  _savedPreview = new cimg_library::CImg<float>;
+  _savedPreview->assign();
   _transparency.load(":resources/transparency.png");
 
   _visibleRect = PreviewPosition::Full;
@@ -53,25 +58,27 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   _timerID = 0;
   _savedPreviewIsValid = false;
   _paintOriginalImage = true;
-
   qApp->installEventFilter(this);
+  _rightClickEnabled = false;
 }
 
 PreviewWidget::~PreviewWidget()
 {
+  delete _image;
+  delete _savedPreview;
 }
 
-const QImage & PreviewWidget::image() const
+const cimg_library::CImg<float> & PreviewWidget::image() const
 {
-  return _image;
+  return *_image;
 }
 
-void PreviewWidget::setPreviewImage(const QImage & image)
+void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
 {
   if (_visibleRect != _positionAtUpdateRequest) {
     return;
   }
-  _image = image;
+  *_image = image;
   _paintOriginalImage = false;
   if (isAtFullZoom()) {
     _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
@@ -83,7 +90,7 @@ void PreviewWidget::setPreviewImage(const QImage & image)
 void PreviewWidget::setFullImageSize(const QSize & size)
 {
   _fullImageSize = size;
-  _image = QImage();
+  _image->assign();
   _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
   updateVisibleRect();
 }
@@ -105,6 +112,7 @@ void PreviewWidget::centerVisibleRect()
 void PreviewWidget::paintEvent(QPaintEvent * e)
 {
   QPainter painter(this);
+  QImage qimage;
   if (_paintOriginalImage) {
     gmic_image<float> image;
     originalImage(image);
@@ -128,21 +136,22 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
       _originaImageScaledSize = QSize(std::round(image.width() * _currentZoomFactor), std::round(image.height() * _currentZoomFactor));
       _imagePosition = QRect(QPoint(std::max(0, (width() - _originaImageScaledSize.width()) / 2), std::max(0, (height() - _originaImageScaledSize.height()) / 2)), _originaImageScaledSize);
     }
-
     image.resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1);
-    ImageConverter::convert(image, _image);
-    if (_image.hasAlphaChannel()) {
+    _image->swap(image); // TODO : Simplify
+    if (hasAlphaChannel(*_image)) {
       painter.fillRect(_imagePosition, QBrush(_transparency));
     }
-    painter.drawImage(_imagePosition, _image);
+    ImageConverter::convert(*_image, qimage);
+    painter.drawImage(_imagePosition, qimage);
+    SHOW(_imagePosition);
   } else {
     // Display the preview
 
     //  If preview image has a size different from the original image crop, or
     //  we are at "full image" zoom of an image smaller than the widget,
     //  then the image should fit the widget size.
-    if ((_image.size() != _originaImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
-      QSize imageSize = _image.size().scaled(width(), height(), Qt::KeepAspectRatio);
+    if ((QSize(_image->width(), _image->height()) != _originaImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
+      QSize imageSize = QSize(_image->width(), _image->height()).scaled(width(), height(), Qt::KeepAspectRatio);
       _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), std::max(0, (height() - imageSize.height()) / 2)), imageSize);
       _originaImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
     }
@@ -150,10 +159,12 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
      *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
      */
 
-    if (_image.hasAlphaChannel()) {
+    if (hasAlphaChannel(*_image)) {
       painter.fillRect(_imagePosition, QBrush(_transparency));
     }
-    painter.drawImage(_imagePosition, _image);
+    ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
+    painter.drawImage(_imagePosition, qimage);
+    SHOW(_imagePosition);
   }
   e->accept();
 }
@@ -261,11 +272,11 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
     return;
   }
 
-  if (e->button() == Qt::RightButton) {
+  if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
       savePreview();
       _paintOriginalImage = true;
-      _image = QImage();
+      _image->assign();
       update();
     }
     e->accept();
@@ -288,7 +299,7 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
     return;
   }
 
-  if (e->button() == Qt::RightButton) {
+  if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
       restorePreview();
       _paintOriginalImage = false;
@@ -301,18 +312,18 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 
 void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
 {
-  if (!(e->buttons() & Qt::LeftButton)) {
-    e->ignore();
-    return;
-  }
-  if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
-    QPoint move = _mousePosition - e->pos();
-    if (move.manhattanLength()) {
-      onMouseTranslationInImage(move);
-      _mousePosition = e->pos();
+  if (e->buttons() & Qt::LeftButton) {
+    if (!isAtFullZoom() && (_mousePosition != QPoint(-1, -1))) {
+      QPoint move = _mousePosition - e->pos();
+      if (move.manhattanLength()) {
+        onMouseTranslationInImage(move);
+        _mousePosition = e->pos();
+      }
     }
+    e->accept();
+  } else {
+    e->ignore();
   }
-  e->accept();
 }
 
 bool PreviewWidget::isAtFullZoom() const
@@ -546,13 +557,23 @@ void PreviewWidget::invalidateSavedPreview()
 
 void PreviewWidget::savePreview()
 {
-  _savedPreview = _image;
+  *_savedPreview = *_image;
   _savedPreviewIsValid = true;
 }
 
 void PreviewWidget::restorePreview()
 {
-  _image = _savedPreview;
+  *_image = *_savedPreview;
+}
+
+void PreviewWidget::enableRightClick()
+{
+  _rightClickEnabled = true;
+}
+
+void PreviewWidget::disableRightClick()
+{
+  _rightClickEnabled = false;
 }
 
 bool PreviewWidget::PreviewPosition::operator!=(const PreviewPosition & other) const

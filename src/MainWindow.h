@@ -115,8 +115,6 @@ protected:
   void activateFilter(bool resetZoom);
   void setNoFilter();
   void setPreviewPosition(PreviewPosition position);
-  QImage buildPreviewImage(const cimg_library::CImgList<gmic_pixel_type> & images);
-
   void abortCurrentFilterThread();
 
 private slots:

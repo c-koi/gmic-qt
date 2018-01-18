@@ -23,6 +23,10 @@
  *
  */
 #include "ImageTools.h"
+#include <QImage>
+#include <QPainter>
+#include "GmicStdlib.h"
+#include "ImageConverter.h"
 #include "gmic.h"
 
 /*
@@ -32,6 +36,80 @@
 
 namespace GmicQt
 {
+
+void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, GmicQt::PreviewMode previewMode, int previewWidth, int previewHeight)
+{
+  cimg_library::CImgList<gmic_pixel_type> preview_input_images;
+  switch (previewMode) {
+  case GmicQt::FirstOutput:
+    if (images && images.size() > 0) {
+      preview_input_images.push_back(images[0]);
+    }
+    break;
+  case GmicQt::SecondOutput:
+    if (images && images.size() > 1) {
+      preview_input_images.push_back(images[1]);
+    }
+    break;
+  case GmicQt::ThirdOutput:
+    if (images && images.size() > 2) {
+      preview_input_images.push_back(images[2]);
+    }
+    break;
+  case GmicQt::FourthOutput:
+    if (images && images.size() > 3) {
+      preview_input_images.push_back(images[3]);
+    }
+    break;
+  case GmicQt::First2SecondOutput: {
+    preview_input_images.push_back(images[0]);
+    preview_input_images.push_back(images[1]);
+  } break;
+  case GmicQt::First2ThirdOutput: {
+    for (int i = 0; i < 3; ++i) {
+      preview_input_images.push_back(images[i]);
+    }
+  } break;
+  case GmicQt::First2FourthOutput: {
+    for (int i = 0; i < 4; ++i) {
+      preview_input_images.push_back(images[i]);
+    }
+  } break;
+  case GmicQt::AllOutputs:
+  default:
+    preview_input_images = images;
+  }
+
+  int spectrum = 0;
+  cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }
+  spectrum += (spectrum == 1 || spectrum == 3);
+  cimglist_for(preview_input_images, l) { GmicQt::calibrate_image(preview_input_images[l], spectrum, true); }
+  if (preview_input_images.size() == 1) {
+    result.swap(preview_input_images.front());
+    return;
+  }
+  if (preview_input_images.size() > 1) {
+    try {
+      cimg_library::CImgList<char> preview_images_names;
+      gmic("v - gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
+      if (preview_input_images.size() >= 1) {
+        result.swap(preview_input_images.front());
+        return;
+      }
+    } catch (...) {
+      QImage qimage(QSize(previewWidth, previewHeight), QImage::Format_ARGB32);
+      QPainter painter(&qimage);
+      painter.fillRect(qimage.rect(), QColor(40, 40, 40, 200));
+      painter.setPen(Qt::green);
+      painter.drawText(qimage.rect(), Qt::AlignCenter | Qt::TextWordWrap, "Preview error (handling preview mode)");
+      painter.end();
+      ImageConverter::convert(qimage, result);
+      return;
+    }
+  }
+  result.assign(10, 10, 1, 3, 0.0f);
+  return;
+}
 
 template <typename T> void image2uchar(cimg_library::CImg<T> & img)
 {
@@ -216,3 +294,11 @@ template void image2uchar(cimg_library::CImg<unsigned char> & img);
 template void calibrate_image(cimg_library::CImg<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
 template void calibrate_image(cimg_library::CImg<unsigned char> & img, const int spectrum, const bool is_preview);
 }
+
+template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
+{
+  return image.spectrum() == 2 || image.spectrum() == 4;
+}
+
+template bool hasAlphaChannel(const cimg_library::CImg<float> &);
+template bool hasAlphaChannel(const cimg_library::CImg<unsigned char> &);

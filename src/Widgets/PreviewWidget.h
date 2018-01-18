@@ -54,8 +54,8 @@ public:
   double currentZoomFactor() const;
   void updateVisibleRect();
   void centerVisibleRect();
-  void setPreviewImage(const QImage &);
-  const QImage & image() const;
+  void setPreviewImage(const cimg_library::CImg<float> & image);
+  const cimg_library::CImg<float> & image() const;
   void translateNormalized(double dx, double dy);
   void translateFullImage(double dx, double dy);
 
@@ -97,12 +97,14 @@ public slots:
   void invalidateSavedPreview();
   void savePreview();
   void restorePreview();
+  void enableRightClick();
+  void disableRightClick();
 
 private:
   void originalImage(cimg_library::CImg<float> & image);
   double defaultZoomFactor() const;
-  QImage _image;
-  QImage _savedPreview;
+  cimg_library::CImg<float> * _image;
+  cimg_library::CImg<float> * _savedPreview;
   QSize _fullImageSize;
   double _currentZoomFactor;
 
@@ -140,7 +142,7 @@ private:
   bool _paintOriginalImage;
   QSize _originalImageSize;
   QSize _originaImageScaledSize;
-
+  bool _rightClickEnabled;
   std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
   PreviewPosition _cachedOriginalImagePosition;
   PreviewPosition _positionAtUpdateRequest;
