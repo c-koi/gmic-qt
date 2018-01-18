@@ -154,7 +154,6 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     }
     ImageConverter::convert(image, qimage);
     painter.drawImage(_imagePosition, qimage);
-    SHOW(_imagePosition);
   } else {
     // Display the preview
 
@@ -175,7 +174,6 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     }
     ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
     painter.drawImage(_imagePosition, qimage);
-    SHOW(_imagePosition);
   }
   e->accept();
 }

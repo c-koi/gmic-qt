@@ -236,6 +236,7 @@ HEADERS +=  \
   src/ImageConverter.h \
   src/ImageTools.h \
   src/LayersExtentProxy.h \
+  src/Logger.h \
   src/MainWindow.h \
   src/ParametersCache.h \
   src/Updater.h \
@@ -292,6 +293,7 @@ SOURCES += \
   src/ImageConverter.cpp \
   src/ImageTools.cpp \
   src/LayersExtentProxy.cpp \
+  src/Logger.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
   src/Updater.cpp \

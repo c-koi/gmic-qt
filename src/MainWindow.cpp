@@ -59,6 +59,7 @@
 #include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
+#include "Logger.h"
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "ui_mainwindow.h"
@@ -73,7 +74,6 @@ const QString MainWindow::FilterTreePathSeparator("\t");
 MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindow), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>), _filterThread(0)
 {
   ui->setupUi(this);
-  _logFile = 0;
   _messageTimerID = 0;
   _gtkFavesShouldBeImported = false;
   _lastAppliedCommandOutputMessageMode = GmicQt::UnspecifiedOutputMessageMode;
@@ -183,9 +183,7 @@ MainWindow::~MainWindow()
   saveCurrentParameters();
   ParametersCache::save();
   saveSettings();
-  if (_logFile) {
-    fclose(_logFile);
-  }
+  Logger::setMode(Logger::StandardOutput); // Close log file, if necessary
   delete ui;
   delete _gmicImages;
   if (_unfinishedAbortedThreads.size()) {
@@ -933,6 +931,7 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->inOutSelector->enable();
     ui->inOutSelector->show();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
+    Logger::setMode(ui->inOutSelector->outputMessageMode());
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
@@ -971,12 +970,15 @@ void MainWindow::showEvent(QShowEvent * event)
   ui->searchField->setFocus();
   first = false;
 
+  if (_newSession) {
+    Logger::clear();
+  }
+
   if (QSettings().value(FAVES_IMPORT_KEY, false).toBool() || !FavesModelReader::gmicGTKFaveFileAvailable()) {
     _gtkFavesShouldBeImported = false;
   } else {
     _gtkFavesShouldBeImported = askUserForGTKFavesImport();
   }
-
   buildFiltersTree();
 
   // Retrieve and select previously selected filter
@@ -1048,17 +1050,7 @@ void MainWindow::onRenameFave()
 
 void MainWindow::onOutputMessageModeChanged(GmicQt::OutputMessageMode mode)
 {
-  if (mode == GmicQt::VerboseLogFile || mode == GmicQt::VeryVerboseLogFile || mode == GmicQt::DebugLogFile) {
-    QString filename = QString("%1gmic_qt_log").arg(GmicQt::path_rc(true));
-    _logFile = fopen(filename.toLocal8Bit().constData(), "a");
-    cimg_library::cimg::output(_logFile ? _logFile : stdout);
-  } else {
-    if (_logFile) {
-      std::fclose(_logFile);
-      _logFile = 0;
-    }
-    cimg_library::cimg::output(stdout);
-  }
+  Logger::setMode(mode);
   ui->previewWidget->sendUpdateRequest();
 }
 

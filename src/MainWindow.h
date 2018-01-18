@@ -153,7 +153,6 @@ private:
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
   static const int MINIMAL_SEARCH_LENGTH = 1;
-  FILE * _logFile;
 
   ProcessingAction _pendingActionAfterCurrentProcessing;
   PreviewPosition _previewPosition = PreviewOnRight;
