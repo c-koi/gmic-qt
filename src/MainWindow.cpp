@@ -151,6 +151,11 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
   addAction(searchAction);
 
+  ui->splitter->setHandleWidth(6);
+  ui->verticalSplitter->setHandleWidth(6);
+  ui->verticalSplitter->setStretchFactor(0, 5);
+  ui->verticalSplitter->setStretchFactor(0, 1);
+
   QPalette p = qApp->palette();
   DialogSettings::UnselectedFilterTextColor = p.color(QPalette::Disabled, QPalette::WindowText);
 
@@ -169,9 +174,6 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   makeConnections();
 
   _previewRandomSeed = cimg_library::cimg::srand();
-
-  // TODO : Remove
-  // ui->logosLabel->setStyleSheet("QWidget { background-color: red }");
 }
 
 MainWindow::~MainWindow()
@@ -256,6 +258,7 @@ void MainWindow::setDarkTheme()
                       "QComboBox:editable { background: #505050; } "
                       "QProgressBar { background: #505050; }";
   qApp->setStyleSheet(css);
+  ui->inOutSelector->setDarkTheme();
 
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
@@ -759,10 +762,13 @@ void MainWindow::saveSettings()
   settings.setValue("Config/ShowAllFilters", filtersSelectionMode());
   settings.setValue("LastExecution/ExitedNormally", true);
   settings.setValue("LastExecution/HostApplicationID", GmicQt::host_app_pid());
-  QList<int> spliterSizes = ui->splitter->sizes();
-  for (int i = 0; i < spliterSizes.size(); ++i) {
-    settings.setValue(QString("Config/PanelSize%1").arg(i), spliterSizes.at(i));
+  QList<int> splitterSizes = ui->splitter->sizes();
+  for (int i = 0; i < splitterSizes.size(); ++i) {
+    settings.setValue(QString("Config/PanelSize%1").arg(i), splitterSizes.at(i));
   }
+  splitterSizes = ui->verticalSplitter->sizes();
+  settings.setValue(QString("Config/VerticalSplitterSize0"), splitterSizes.at(0));
+  settings.setValue(QString("Config/VerticalSplitterSize1"), splitterSizes.at(1));
   settings.setValue(REFRESH_USING_INTERNET_KEY, ui->cbInternetUpdate->isChecked());
 }
 
@@ -899,6 +905,24 @@ void MainWindow::abortCurrentFilterThread()
   }
 }
 
+void MainWindow::adjustVerticalSplitter()
+{
+  QList<int> sizes;
+  QSettings settings;
+  sizes.push_back(settings.value(QString("Config/VerticalSplitterSize0"), -1).toInt());
+  sizes.push_back(settings.value(QString("Config/VerticalSplitterSize1"), -1).toInt());
+  if ((sizes.front() != -1) && (sizes.back() != -1)) {
+    ui->verticalSplitter->setSizes(sizes);
+  } else {
+    int h1 = ui->inOutSelector->sizeHint().height();
+    int h = ui->verticalSplitter->height();
+    sizes.clear();
+    sizes.push_back(h - h1);
+    sizes.push_back(h1);
+    ui->verticalSplitter->setSizes(sizes);
+  }
+}
+
 void MainWindow::onAbortedThreadFinished()
 {
   FilterThread * thread = dynamic_cast<FilterThread *>(sender());
@@ -967,8 +991,9 @@ void MainWindow::showEvent(QShowEvent * event)
   if (!first) {
     return;
   }
-  ui->searchField->setFocus();
   first = false;
+  ui->searchField->setFocus();
+  adjustVerticalSplitter();
 
   if (_newSession) {
     Logger::clear();

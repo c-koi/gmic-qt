@@ -188,6 +188,11 @@ void InOutPanel::onResetButtonClicked()
   setState(GmicQt::InputOutputState::Default, true);
 }
 
+void InOutPanel::setDarkTheme()
+{
+  ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
+}
+
 void InOutPanel::disableNotifications()
 {
   _notifyValueChange = false;

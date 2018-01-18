@@ -117,6 +117,8 @@ protected:
   void setPreviewPosition(PreviewPosition position);
   void abortCurrentFilterThread();
 
+  void adjustVerticalSplitter();
+
 private slots:
 
   void onAbortedThreadFinished();

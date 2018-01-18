@@ -77,6 +77,7 @@ public slots:
   void onOutputMessageSelected(int);
   void onPreviewModeSelected(int);
   void onResetButtonClicked();
+  void setDarkTheme();
 
 private:
   bool _notifyValueChange;

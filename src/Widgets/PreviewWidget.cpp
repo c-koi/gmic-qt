@@ -148,8 +148,7 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     getOriginalImageCrop(image);
     updateOriginalImagePosition();
     image.resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1);
-    //_image->swap(image); // TODO : Simplify
-    if (hasAlphaChannel(*_image)) {
+    if (hasAlphaChannel(image)) {
       painter.fillRect(_imagePosition, QBrush(_transparency));
     }
     ImageConverter::convert(image, qimage);
