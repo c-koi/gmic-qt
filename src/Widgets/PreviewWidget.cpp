@@ -114,9 +114,6 @@ void PreviewWidget::centerVisibleRect()
 void PreviewWidget::updateOriginalImagePosition()
 {
   QSize size = originalImageCropSize();
-  if (size == _originalImageSize) {
-    return;
-  }
   _originalImageSize = size;
   if (_currentZoomFactor > 1.0) {
     _originaImageScaledSize = _originalImageSize;
@@ -244,7 +241,7 @@ bool PreviewWidget::event(QEvent * event)
 
 bool PreviewWidget::eventFilter(QObject *, QEvent * event)
 {
-  if ((event->type() == QEvent::MouseButtonRelease || event->type() == QEvent::NonClientAreaMouseButtonRelease) && _pendingResize) {
+  if (((event->type() == QEvent::MouseButtonRelease) || (event->type() == QEvent::NonClientAreaMouseButtonRelease)) && _pendingResize) {
     _pendingResize = false;
     if (width() && height()) {
       updateVisibleRect();
