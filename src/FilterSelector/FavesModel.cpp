@@ -63,9 +63,9 @@ bool FavesModel::contains(const QString & hash) const
 
 void FavesModel::flush() const
 {
-  qInfo() << "Faves\n=======";
+  qDebug() << "Faves\n=======";
   for (const Fave & fave : _faves) {
-    qInfo() << fave.name();
+    qDebug() << fave.name();
   }
 }
 

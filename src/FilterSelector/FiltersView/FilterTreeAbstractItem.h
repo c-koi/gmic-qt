@@ -25,6 +25,7 @@
 #ifndef _GMIC_QT_FILTERTREEABSTRACTITEM_H_
 #define _GMIC_QT_FILTERTREEABSTRACTITEM_H_
 #include <QStandardItem>
+#include <QStringList>
 
 class FilterTreeAbstractItem : public QStandardItem {
 public:
@@ -35,7 +36,7 @@ public:
   bool isWarning() const;
   bool isVisible() const;
   void setVisibility(bool flag);
-  QList<QString> path() const;
+  QStringList path() const;
   static QString removeWarningPrefix(QString folderName);
 
 protected:

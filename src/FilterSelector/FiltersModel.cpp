@@ -52,9 +52,9 @@ void FiltersModel::addFilter(const FiltersModel::Filter & filter)
 
 void FiltersModel::flush()
 {
-  qInfo() << "Filters\n=======";
+  qDebug() << "Filters\n=======";
   for (const Filter & filter : _filters) {
-    qInfo() << "[" << filter.path() << "]" << filter.name();
+    qDebug() << "[" << filter.path() << "]" << filter.name();
   }
 }
 

@@ -75,9 +75,9 @@ void FilterTreeAbstractItem::setVisibility(bool flag)
   }
 }
 
-QList<QString> FilterTreeAbstractItem::path() const
+QStringList FilterTreeAbstractItem::path() const
 {
-  QList<QString> result;
+  QStringList result;
   result.push_back(text());
   const FilterTreeAbstractItem * parentFolder = dynamic_cast<FilterTreeAbstractItem *>(parent());
   while (parentFolder) {
