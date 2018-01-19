@@ -145,7 +145,7 @@
              <pixmap resource="../gmic_qt.qrc">:/images/preview_right.png</pixmap>
             </property>
             <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -182,7 +182,7 @@
              <pixmap resource="../gmic_qt.qrc">:/images/preview_left.png</pixmap>
             </property>
             <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
