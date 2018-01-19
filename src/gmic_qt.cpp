@@ -42,8 +42,8 @@
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
-#include <tlhelp32.h>
 #include <windows.h>
+#include <tlhelp32.h>
 #endif
 #ifdef _IS_LINUX_
 #include <unistd.h>

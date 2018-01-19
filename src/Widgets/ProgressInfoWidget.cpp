@@ -30,9 +30,9 @@
 #include "ui_progressinfowidget.h"
 
 #ifdef _IS_WINDOWS_
+#include <windows.h>
 #include <process.h>
 #include <psapi.h>
-#include <windows.h>
 #endif
 
 ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _filterThread(0)
