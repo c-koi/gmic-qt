@@ -562,7 +562,6 @@ void MainWindow::onPreviewThreadFinished()
   if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
     QApplication::restoreOverrideCursor();
   }
-  ui->previewWidget->savePreview();
   _filterThread->deleteLater();
   _filterThread = 0;
   ui->tbUpdateFilters->setEnabled(true);

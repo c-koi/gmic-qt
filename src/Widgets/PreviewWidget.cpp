@@ -80,6 +80,8 @@ void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
     return;
   }
   *_image = image;
+  *_savedPreview = image;
+  _savedPreviewIsValid = true;
   updateOriginalImagePosition();
   _paintOriginalImage = false;
   if (isAtFullZoom()) {
@@ -279,7 +281,6 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 
   if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
-      savePreview();
       displayOriginalImage();
     }
     e->accept();
@@ -304,9 +305,13 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 
   if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
-      restorePreview();
-      _paintOriginalImage = false;
-      update();
+      if (_savedPreviewIsValid) {
+        restorePreview();
+        _paintOriginalImage = false;
+        update();
+      } else {
+        displayOriginalImage();
+      }
     }
     e->accept();
     return;
@@ -548,6 +553,7 @@ void PreviewWidget::onPreviewParametersChanged()
   }
   displayOriginalImage();
   _timerID = startTimer(RESIZE_DELAY);
+  _savedPreviewIsValid = false;
 }
 
 void PreviewWidget::enablePreview(bool on)
@@ -569,12 +575,6 @@ void PreviewWidget::enablePreview(bool on)
 void PreviewWidget::invalidateSavedPreview()
 {
   _savedPreviewIsValid = false;
-}
-
-void PreviewWidget::savePreview()
-{
-  *_savedPreview = *_image;
-  _savedPreviewIsValid = true;
 }
 
 void PreviewWidget::restorePreview()

@@ -95,7 +95,6 @@ public slots:
   void onPreviewParametersChanged();
   void enablePreview(bool);
   void invalidateSavedPreview();
-  void savePreview();
   void restorePreview();
   void enableRightClick();
   void disableRightClick();
