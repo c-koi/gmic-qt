@@ -23,7 +23,7 @@
  *
  */
 #include "LayersExtentProxy.h"
-#include "host.h"
+#include "Host/host.h"
 
 int LayersExtentProxy::_width = -1;
 int LayersExtentProxy::_height = -1;
@@ -32,14 +32,14 @@ GmicQt::InputMode LayersExtentProxy::_inputMode = GmicQt::All;
 QSize LayersExtentProxy::getExtent(GmicQt::InputMode mode)
 {
   QSize size;
-  getExtent(mode,size.rwidth(),size.rheight());
+  getExtent(mode, size.rwidth(), size.rheight());
   return size;
 }
 
 void LayersExtentProxy::getExtent(GmicQt::InputMode mode, int & width, int & height)
 {
-  if ( mode != _inputMode || _width == -1 || _height == -1 ) {
-    gmic_qt_get_layers_extent(&_width,&_height,mode);
+  if (mode != _inputMode || _width == -1 || _height == -1) {
+    gmic_qt_get_layers_extent(&_width, &_height, mode);
     width = _width;
     height = _height;
   } else {

@@ -14,3 +14,4 @@ gmic_gimp_qt
 gmic_krita_qt
 gmic_qt
 CMakeLists.txt.user
+.rsync-exclude

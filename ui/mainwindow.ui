@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>997</width>
-    <height>486</height>
+    <width>1100</width>
+    <height>731</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,26 +41,7 @@
         </widget>
        </item>
        <item>
-        <widget class="TreeView" name="filtersTree">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QAbstractScrollArea::AdjustToContents</enum>
-         </property>
-        </widget>
+        <widget class="FiltersView" name="filtersView" native="true"/>
        </item>
        <item>
         <widget class="QWidget" name="widget_2" native="true">
@@ -196,72 +177,138 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <widget class="QLabel" name="filterName">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="tbResetParameters">
-           <property name="text">
-            <string>...</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QScrollArea" name="scrollAreaParameters">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <widget class="QSplitter" name="verticalSplitter">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAsNeeded</enum>
+         <property name="handleWidth">
+          <number>6</number>
          </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QAbstractScrollArea::AdjustToContents</enum>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>132</width>
-            <height>381</height>
-           </rect>
+         <widget class="QWidget" name="widget_3" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>150</height>
+           </size>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
-            <widget class="FilterParamsWidget" name="filterParams" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="filterName">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="tbResetParameters">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QScrollArea" name="scrollAreaParameters">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
+             <property name="horizontalScrollBarPolicy">
+              <enum>Qt::ScrollBarAsNeeded</enum>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>150</width>
+                <height>470</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="FilterParametersWidget" name="filterParams" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>9</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
           </layout>
+         </widget>
+         <widget class="InOutPanel" name="inOutSelector" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
          </widget>
         </widget>
        </item>
@@ -406,20 +453,19 @@
        </item>
        <item>
         <widget class="QWidget" name="belowPreviewWidget" native="true">
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="InOutPanel" name="inOutSelector">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="title">
-             <string>Input / Output</string>
-            </property>
-           </widget>
-          </item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QWidget" name="belowPreviewPadding" native="true">
             <property name="sizePolicy">
@@ -547,48 +593,47 @@
   <customwidget>
    <class>ProgressInfoWidget</class>
    <extends>QWidget</extends>
-   <header>ProgressInfoWidget.h</header>
+   <header>Widgets/ProgressInfoWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>FilterParamsWidget</class>
+   <class>FilterParametersWidget</class>
    <extends>QWidget</extends>
-   <header>FilterParamsWidget.h</header>
+   <header>FilterParameters/FilterParametersWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>PreviewWidget</class>
    <extends>QWidget</extends>
-   <header>PreviewWidget.h</header>
+   <header>Widgets/PreviewWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>SearchFieldWidget</class>
    <extends>QWidget</extends>
-   <header>SearchFieldWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>InOutPanel</class>
-   <extends>QGroupBox</extends>
-   <header>InOutPanel.h</header>
+   <header>Widgets/SearchFieldWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ZoomLevelSelector</class>
    <extends>QWidget</extends>
-   <header>ZoomLevelSelector.h</header>
+   <header>Widgets/ZoomLevelSelector.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TreeView</class>
-   <extends>QTreeView</extends>
-   <header>TreeView.h</header>
+   <class>FiltersView</class>
+   <extends>QWidget</extends>
+   <header>FilterSelector/FiltersView/FiltersView.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>InOutPanel</class>
+   <extends>QWidget</extends>
+   <header>Widgets/InOutPanel.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>filtersTree</tabstop>
-  <tabstop>scrollAreaParameters</tabstop>
   <tabstop>previewWidget</tabstop>
   <tabstop>cbPreview</tabstop>
   <tabstop>tbZoomIn</tabstop>
