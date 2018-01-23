@@ -781,9 +781,11 @@ void MainWindow::saveSettings()
     settings.setValue(QString("Config/PanelSize%1").arg(i), splitterSizes.at(i));
   }
   splitterSizes = ui->verticalSplitter->sizes();
-  settings.setValue(QString("Config/VerticalSplitterSize0"), splitterSizes.at(0));
-  settings.setValue(QString("Config/VerticalSplitterSize1"), splitterSizes.at(1));
+  settings.setValue(QString("Config/VerticalSplitterSizeTop"), splitterSizes.at(0));
+  settings.setValue(QString("Config/VerticalSplitterSizeBottom"), splitterSizes.at(1));
   settings.setValue(REFRESH_USING_INTERNET_KEY, ui->cbInternetUpdate->isChecked());
+  settings.remove("Config/VerticalSplitterSize0");
+  settings.remove("Config/VerticalSplitterSize1");
 }
 
 void MainWindow::loadSettings()
@@ -923,13 +925,13 @@ void MainWindow::adjustVerticalSplitter()
 {
   QList<int> sizes;
   QSettings settings;
-  sizes.push_back(settings.value(QString("Config/VerticalSplitterSize0"), -1).toInt());
-  sizes.push_back(settings.value(QString("Config/VerticalSplitterSize1"), -1).toInt());
+  sizes.push_back(settings.value(QString("Config/VerticalSplitterSizeTop"), -1).toInt());
+  sizes.push_back(settings.value(QString("Config/VerticalSplitterSizeBottom"), -1).toInt());
   if ((sizes.front() != -1) && (sizes.back() != -1)) {
     ui->verticalSplitter->setSizes(sizes);
   } else {
-    int h1 = ui->inOutSelector->sizeHint().height();
-    int h = ui->verticalSplitter->height();
+    int h1 = std::max(ui->inOutSelector->sizeHint().height(), 75);
+    int h = std::max(ui->verticalSplitter->height(), 150);
     sizes.clear();
     sizes.push_back(h - h1);
     sizes.push_back(h1);
