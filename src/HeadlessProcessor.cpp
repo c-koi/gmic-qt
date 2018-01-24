@@ -23,23 +23,22 @@
  *
  */
 #include "HeadlessProcessor.h"
-#include <QSettings>
 #include <QDebug>
-#include "Updater.h"
+#include <QSettings>
 #include "Common.h"
-#include "GmicStdlibParser.h"
 #include "FilterThread.h"
+#include "GmicStdlib.h"
+#include "Updater.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
+#include <windows.h>
 #include <process.h>
 #include <psapi.h>
 #endif
 
-HeadlessProcessor::HeadlessProcessor(QObject *parent, const char *command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode)
-  : QObject(parent),
-    _filterThread(0),
-    _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
+HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode)
+    : QObject(parent), _filterThread(0), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   _filterName = "Custom command";
   _lastCommand = "skip 0";
@@ -50,31 +49,27 @@ HeadlessProcessor::HeadlessProcessor(QObject *parent, const char *command, GmicQ
   _lastEnvironment.clear();
 
   _timer.setInterval(250);
-  connect(&_timer,SIGNAL(timeout()),
-          this,SLOT(onTimeout()));
+  connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
   _hasProgressWindow = false;
 }
 
-HeadlessProcessor::HeadlessProcessor(QObject *parent)
-  : QObject(parent),
-    _filterThread(0),
-    _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
+HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filterThread(0), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   QSettings settings;
   _filterName = settings.value(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname)).toString();
   _lastCommand = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
   _lastArguments = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
-  _outputMessageMode = (GmicQt::OutputMessageMode) settings.value(QString("LastExecution/host_%1/OutputMessageMode").arg(GmicQt::HostApplicationShortname),GmicQt::Quiet).toInt();
-  _inputMode = (GmicQt::InputMode) settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname),GmicQt::InputMode::Active).toInt();;
-  _outputMode = (GmicQt::OutputMode) settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname),GmicQt::OutputMode::InPlace).toInt();;
+  _outputMessageMode = (GmicQt::OutputMessageMode)settings.value(QString("LastExecution/host_%1/OutputMessageMode").arg(GmicQt::HostApplicationShortname), GmicQt::Quiet).toInt();
+  _inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
+  ;
+  _outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
+  ;
   _lastEnvironment = settings.value(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname), QString()).toString();
   _timer.setInterval(250);
-  connect(&_timer,SIGNAL(timeout()),
-          this,SLOT(onTimeout()));
+  connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
   _singleShotTimer.setInterval(750);
   _singleShotTimer.setSingleShot(true);
-  connect(&_singleShotTimer,SIGNAL(timeout()),
-          this,SIGNAL(singleShotTimeout()));
+  connect(&_singleShotTimer, SIGNAL(timeout()), this, SIGNAL(singleShotTimeout()));
   _hasProgressWindow = false;
 }
 
@@ -87,22 +82,16 @@ void HeadlessProcessor::startProcessing()
 {
   _singleShotTimer.start();
   Updater::getInstance()->updateSources(false);
-  GmicStdLibParser::GmicStdlib = Updater::getInstance()->buildFullStdlib();
+  GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   _gmicImages->assign();
   gmic_list<char> imageNames;
-  gmic_qt_get_cropped_images(*_gmicImages,imageNames,-1,-1,-1,-1,_inputMode);
-  if ( !_hasProgressWindow ) {
+  gmic_qt_get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
+  if (!_hasProgressWindow) {
     gmic_qt_show_message(QString("G'MIC: %1").arg(_lastArguments).toUtf8().constData());
   }
-  _filterThread = new FilterThread(this,
-                                   _filterName,
-                                   _lastCommand,
-                                   _lastArguments,
-                                   _lastEnvironment,
-                                   _outputMessageMode);
-  _filterThread->setInputImages(*_gmicImages,imageNames);
-  connect(_filterThread,SIGNAL(finished()),
-          this,SLOT(onProcessingFinished()));
+  _filterThread = new FilterThread(this, _filterName, _lastCommand, _lastArguments, _lastEnvironment, _outputMessageMode);
+  _filterThread->setInputImages(*_gmicImages, imageNames);
+  connect(_filterThread, SIGNAL(finished()), this, SLOT(onProcessingFinished()));
   _timer.start();
   _filterThread->start();
 }
@@ -124,7 +113,7 @@ void HeadlessProcessor::setProgressWindowFlag(bool value)
 
 void HeadlessProcessor::onTimeout()
 {
-  if ( !_filterThread ) {
+  if (!_filterThread) {
     return;
   }
   float progress = _filterThread->progress();
@@ -132,56 +121,49 @@ void HeadlessProcessor::onTimeout()
   unsigned long memory = 0;
 #if defined(_IS_LINUX_)
   QFile status("/proc/self/status");
-  if ( status.open(QFile::ReadOnly) ) {
+  if (status.open(QFile::ReadOnly)) {
     QByteArray text = status.readAll();
-    const char * str = strstr(text.constData(),"VmRSS:");
+    const char * str = strstr(text.constData(), "VmRSS:");
     unsigned int kiB = 0;
-    if ( str && sscanf(str + 7,"%u",&kiB) ) {
+    if (str && sscanf(str + 7, "%u", &kiB)) {
       memory = 1024 * (unsigned long)kiB;
     }
   }
 #elif defined(_IS_WINDOWS_)
   PROCESS_MEMORY_COUNTERS counters;
-  if (GetProcessMemoryInfo(GetCurrentProcess(),&counters,sizeof(counters))) {
+  if (GetProcessMemoryInfo(GetCurrentProcess(), &counters, sizeof(counters))) {
     memory = static_cast<unsigned long>(counters.WorkingSetSize);
   }
 #else
-  // TODO: MACOS
+// TODO: MACOS
 #endif
-  emit progression(progress,ms,memory);
+  emit progression(progress, ms, memory);
 }
 
 void HeadlessProcessor::onProcessingFinished()
 {
   QString errorMessage;
   _timer.stop();
-  QStringList list = GmicStdLibParser::parseStatus(_filterThread->gmicStatus());
-  if ( ! list.isEmpty() ) {
+  QStringList list = _filterThread->gmicStatus();
+  if (!list.isEmpty()) {
     QSettings settings;
     QString params = list.join(",");
-    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname),params);
+    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), params);
   }
-  if ( _filterThread->failed() ) {
+  if (_filterThread->failed()) {
     errorMessage = _filterThread->errorMessage();
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
-    if ( !_filterThread->aborted() ) {
-      gmic_qt_output_images(images,
-                            _filterThread->imageNames(),
-                            _outputMode,
-                            (_outputMessageMode == GmicQt::VerboseLayerName) ?
-                              QString("[G'MIC] %1: %2")
-                              .arg(_filterThread->name())
-                              .arg(_filterThread->fullCommand())
-                              .toLocal8Bit().constData()
-                            : 0);
+    if (!_filterThread->aborted()) {
+      gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode,
+                            (_outputMessageMode == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData() : 0);
     }
   }
   _filterThread->deleteLater();
   _filterThread = 0;
   _singleShotTimer.stop();
   emit done(errorMessage);
-  if ( !_hasProgressWindow && !errorMessage.isEmpty() ) {
+  if (!_hasProgressWindow && !errorMessage.isEmpty()) {
     qWarning() << "Error:" << errorMessage;
   }
   qApp->exit(0);
@@ -189,7 +171,7 @@ void HeadlessProcessor::onProcessingFinished()
 
 void HeadlessProcessor::cancel()
 {
-  if ( _filterThread ) {
+  if (_filterThread) {
     _filterThread->abortGmic();
   }
 }

@@ -22,18 +22,16 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "include/ClickableLabel.h"
+#include "ClickableLabel.h"
 #include <QMouseEvent>
 
-ClickableLabel::ClickableLabel(QWidget *parent)
-  : QLabel(parent)
+ClickableLabel::ClickableLabel(QWidget * parent) : QLabel(parent)
 {
-
 }
 
-void ClickableLabel::mousePressEvent(QMouseEvent *e)
+void ClickableLabel::mousePressEvent(QMouseEvent * e)
 {
-  if ( e->buttons() & Qt::LeftButton ) {
+  if (e->buttons() & Qt::LeftButton) {
     emit clicked();
   }
 }

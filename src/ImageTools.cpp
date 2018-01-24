@@ -23,6 +23,10 @@
  *
  */
 #include "ImageTools.h"
+#include <QImage>
+#include <QPainter>
+#include "GmicStdlib.h"
+#include "ImageConverter.h"
 #include "gmic.h"
 
 /*
@@ -30,51 +34,125 @@
  * of the GTK version of the gmic plug-in for GIMP by David Tschumperl\'e.
  */
 
-namespace GmicQt {
+namespace GmicQt
+{
 
-template<typename T>
-void image2uchar(cimg_library::CImg<T> & img) {
+void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, GmicQt::PreviewMode previewMode, int previewWidth, int previewHeight)
+{
+  cimg_library::CImgList<gmic_pixel_type> preview_input_images;
+  switch (previewMode) {
+  case GmicQt::FirstOutput:
+    if (images && images.size() > 0) {
+      preview_input_images.push_back(images[0]);
+    }
+    break;
+  case GmicQt::SecondOutput:
+    if (images && images.size() > 1) {
+      preview_input_images.push_back(images[1]);
+    }
+    break;
+  case GmicQt::ThirdOutput:
+    if (images && images.size() > 2) {
+      preview_input_images.push_back(images[2]);
+    }
+    break;
+  case GmicQt::FourthOutput:
+    if (images && images.size() > 3) {
+      preview_input_images.push_back(images[3]);
+    }
+    break;
+  case GmicQt::First2SecondOutput: {
+    preview_input_images.push_back(images[0]);
+    preview_input_images.push_back(images[1]);
+  } break;
+  case GmicQt::First2ThirdOutput: {
+    for (int i = 0; i < 3; ++i) {
+      preview_input_images.push_back(images[i]);
+    }
+  } break;
+  case GmicQt::First2FourthOutput: {
+    for (int i = 0; i < 4; ++i) {
+      preview_input_images.push_back(images[i]);
+    }
+  } break;
+  case GmicQt::AllOutputs:
+  default:
+    preview_input_images = images;
+  }
+
+  int spectrum = 0;
+  cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }
+  spectrum += (spectrum == 1 || spectrum == 3);
+  cimglist_for(preview_input_images, l) { GmicQt::calibrate_image(preview_input_images[l], spectrum, true); }
+  if (preview_input_images.size() == 1) {
+    result.swap(preview_input_images.front());
+    return;
+  }
+  if (preview_input_images.size() > 1) {
+    try {
+      cimg_library::CImgList<char> preview_images_names;
+      gmic("v - gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
+      if (preview_input_images.size() >= 1) {
+        result.swap(preview_input_images.front());
+        return;
+      }
+    } catch (...) {
+      QImage qimage(QSize(previewWidth, previewHeight), QImage::Format_ARGB32);
+      QPainter painter(&qimage);
+      painter.fillRect(qimage.rect(), QColor(40, 40, 40, 200));
+      painter.setPen(Qt::green);
+      painter.drawText(qimage.rect(), Qt::AlignCenter | Qt::TextWordWrap, "Preview error (handling preview mode)");
+      painter.end();
+      ImageConverter::convert(qimage, result);
+      return;
+    }
+  }
+  result.assign(10, 10, 1, 3, 0.0f);
+  return;
+}
+
+template <typename T> void image2uchar(cimg_library::CImg<T> & img)
+{
   unsigned int len = img.width() * img.height();
-  unsigned char * dst = reinterpret_cast<unsigned char*>(img.data());
+  unsigned char * dst = reinterpret_cast<unsigned char *>(img.data());
   switch (img.spectrum()) {
-  case 1 : {
-    const T * src = img.data(0,0,0,0);
+  case 1: {
+    const T * src = img.data(0, 0, 0, 0);
     while (len--) {
       *dst++ = static_cast<unsigned char>(*src++);
     }
-  }
-    break;
-  case 2 : {
-    const T * srcG = img.data(0,0,0,0);
-    const T * srcA = img.data(0,0,0,1);
+  } break;
+  case 2: {
+    const T * srcG = img.data(0, 0, 0, 0);
+    const T * srcA = img.data(0, 0, 0, 1);
     while (len--) {
       dst[0] = static_cast<unsigned char>(*srcG++);
       dst[1] = static_cast<unsigned char>(*srcA++);
       dst += 2;
     }
   } break;
-  case 3 : {
-    const T * srcR = img.data(0,0,0,0);
-    const T * srcG = img.data(0,0,0,1);
-    const T * srcB = img.data(0,0,0,2);
+  case 3: {
+    const T * srcR = img.data(0, 0, 0, 0);
+    const T * srcG = img.data(0, 0, 0, 1);
+    const T * srcB = img.data(0, 0, 0, 2);
     while (len--) {
       dst[0] = static_cast<unsigned char>(*srcR++);
       dst[1] = static_cast<unsigned char>(*srcG++);
       dst[2] = static_cast<unsigned char>(*srcB++);
-      dst+=3;
+      dst += 3;
     }
   } break;
-  case 4 : {
-    const T * srcR = img.data(0,0,0,0);
-    const T * srcG = img.data(0,0,0,1);
-    const T * srcB = img.data(0,0,0,2);
-    const T * srcA = img.data(0,0,0,3);
+  case 4: {
+    const T * srcR = img.data(0, 0, 0, 0);
+    const T * srcG = img.data(0, 0, 0, 1);
+    const T * srcB = img.data(0, 0, 0, 2);
+    const T * srcA = img.data(0, 0, 0, 3);
     while (len--) {
       dst[0] = static_cast<unsigned char>(*srcR++);
       dst[1] = static_cast<unsigned char>(*srcG++);
       dst[2] = static_cast<unsigned char>(*srcB++);
       dst[3] = static_cast<unsigned char>(*srcA++);
-      dst+=4;
+      dst += 4;
     }
   } break;
   default:
@@ -84,125 +162,143 @@ void image2uchar(cimg_library::CImg<T> & img) {
 
 // Calibrate any image to fit the required number of channels (GRAY,GRAYA, RGB or RGBA).
 //---------------------------------------------------------------------------------------
-template<typename T>
-void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview) {
-  if (!img || !spectrum) return;
+template <typename T> void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview)
+{
+  if (!img || !spectrum)
+    return;
   switch (spectrum) {
-  case 1 : // To GRAY
+  case 1: // To GRAY
     switch (img.spectrum()) {
-    case 1 : // from GRAY
+    case 1: // from GRAY
       break;
-    case 2 : // from GRAYA
+    case 2: // from GRAYA
       if (is_preview) {
-        T *ptr_r = img.data(0,0,0,0), *ptr_a = img.data(0,0,0,1);
-        cimg_forXY(img,x,y) {
-          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x^y)&8)<<3);
-          *ptr_r = (T)((a*(unsigned int)*ptr_r + (255 - a)*i)>>8);
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 1);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
           ++ptr_r;
         }
       }
       img.channel(0);
       break;
-    case 3 : // from RGB
-      (img.get_shared_channel(0)+=img.get_shared_channel(1)+=img.get_shared_channel(2))/=3;
+    case 3: // from RGB
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
       img.channel(0);
       break;
-    case 4 : // from RGBA
-      (img.get_shared_channel(0)+=img.get_shared_channel(1)+=img.get_shared_channel(2))/=3;
+    case 4: // from RGBA
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
       if (is_preview) {
-        T *ptr_r = img.data(0,0,0,0), *ptr_a = img.data(0,0,0,3);
-        cimg_forXY(img,x,y) {
-          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x^y)&8)<<3);
-          *ptr_r = (T)((a*(unsigned int)*ptr_r + (255 - a)*i)>>8);
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 3);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
           ++ptr_r;
         }
       }
       img.channel(0);
       break;
-    default : // from multi-channel (>4)
+    default: // from multi-channel (>4)
       img.channel(0);
-    } break;
+    }
+    break;
 
   case 2: // To GRAYA
     switch (img.spectrum()) {
     case 1: // from GRAY
-      img.resize(-100,-100,1,2,0).get_shared_channel(1).fill(255);
+      img.resize(-100, -100, 1, 2, 0).get_shared_channel(1).fill(255);
       break;
     case 2: // from GRAYA
       break;
     case 3: // from RGB
-      (img.get_shared_channel(0)+=img.get_shared_channel(1)+=img.get_shared_channel(2))/=3;
-      img.channels(0,1).get_shared_channel(1).fill(255);
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
+      img.channels(0, 1).get_shared_channel(1).fill(255);
       break;
     case 4: // from RGBA
-      (img.get_shared_channel(0)+=img.get_shared_channel(1)+=img.get_shared_channel(2))/=3;
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
       img.get_shared_channel(1) = img.get_shared_channel(3);
-      img.channels(0,1);
+      img.channels(0, 1);
       break;
     default: // from multi-channel (>4)
-      img.channels(0,1);
-    } break;
+      img.channels(0, 1);
+    }
+    break;
 
   case 3: // to RGB
     switch (img.spectrum()) {
     case 1: // from GRAY
-      img.resize(-100,-100,1,3);
+      img.resize(-100, -100, 1, 3);
       break;
     case 2: // from GRAYA
       if (is_preview) {
-        T *ptr_r = img.data(0,0,0,0), *ptr_a = img.data(0,0,0,1);
-        cimg_forXY(img,x,y) {
-          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x^y)&8)<<3);
-          *ptr_r = (T)((a*(unsigned int)*ptr_r + (255 - a)*i)>>8);
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 1);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
           ++ptr_r;
         }
       }
-      img.channel(0).resize(-100,-100,1,3);
+      img.channel(0).resize(-100, -100, 1, 3);
       break;
     case 3: // from RGB
       break;
     case 4: // from RGBA
       if (is_preview) {
-        T *ptr_r = img.data(0,0,0,0), *ptr_g = img.data(0,0,0,1),
-            *ptr_b = img.data(0,0,0,2), *ptr_a = img.data(0,0,0,3);
-        cimg_forXY(img,x,y) {
-          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x^y)&8)<<3);
-          *ptr_r = (T)((a*(unsigned int)*ptr_r + (255 - a)*i)>>8);
-          *ptr_g = (T)((a*(unsigned int)*ptr_g + (255 - a)*i)>>8);
-          *ptr_b = (T)((a*(unsigned int)*ptr_b + (255 - a)*i)>>8);
-          ++ptr_r; ++ptr_g; ++ptr_b;
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_g = img.data(0, 0, 0, 1), *ptr_b = img.data(0, 0, 0, 2), *ptr_a = img.data(0, 0, 0, 3);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
+          *ptr_g = (T)((a * (unsigned int)*ptr_g + (255 - a) * i) >> 8);
+          *ptr_b = (T)((a * (unsigned int)*ptr_b + (255 - a) * i) >> 8);
+          ++ptr_r;
+          ++ptr_g;
+          ++ptr_b;
         }
       }
-      img.channels(0,2);
+      img.channels(0, 2);
       break;
     default: // from multi-channel (>4)
-      img.channels(0,2);
-    } break;
+      img.channels(0, 2);
+    }
+    break;
 
   case 4: // to RGBA
     switch (img.spectrum()) {
     case 1: // from GRAY
-      img.resize(-100,-100,1,4).get_shared_channel(3).fill(255);
+      img.resize(-100, -100, 1, 4).get_shared_channel(3).fill(255);
       break;
     case 2: // from GRAYA
-      img.resize(-100,-100,1,4,0);
+      img.resize(-100, -100, 1, 4, 0);
       img.get_shared_channel(3) = img.get_shared_channel(1);
       img.get_shared_channel(1) = img.get_shared_channel(0);
       img.get_shared_channel(2) = img.get_shared_channel(0);
       break;
     case 3: // from RGB
-      img.resize(-100,-100,1,4,0).get_shared_channel(3).fill(255);
+      img.resize(-100, -100, 1, 4, 0).get_shared_channel(3).fill(255);
       break;
     case 4: // from RGBA
       break;
     default: // from multi-channel (>4)
-      img.channels(0,3);
-    } break;
+      img.channels(0, 3);
+    }
+    break;
   }
 }
 
-template void image2uchar(cimg_library::CImg<gmic_pixel_type>& img);
-template void image2uchar(cimg_library::CImg<unsigned char>& img);
+template void image2uchar(cimg_library::CImg<gmic_pixel_type> & img);
+template void image2uchar(cimg_library::CImg<unsigned char> & img);
 template void calibrate_image(cimg_library::CImg<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
 template void calibrate_image(cimg_library::CImg<unsigned char> & img, const int spectrum, const bool is_preview);
 }
+
+template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
+{
+  return image.spectrum() == 2 || image.spectrum() == 4;
+}
+
+template bool hasAlphaChannel(const cimg_library::CImg<float> &);
+template bool hasAlphaChannel(const cimg_library::CImg<unsigned char> &);

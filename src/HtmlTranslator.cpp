@@ -24,8 +24,8 @@
  */
 
 #include "HtmlTranslator.h"
-#include <QRegularExpression>
 #include <QDebug>
+#include <QRegularExpression>
 #include "CImg.h"
 #include "Common.h"
 
@@ -33,19 +33,18 @@ QTextDocument HtmlTranslator::_document;
 
 QString HtmlTranslator::html2txt(const QString & str, bool force)
 {
-  if ( force || hasHtmlEntities(str) ) {
+  if (force || hasHtmlEntities(str)) {
     _document.setHtml(str);
     return fromUtf8Escapes(_document.toPlainText());
   } else {
-    return fromUtf8Escapes(str);;
+    return fromUtf8Escapes(str);
+    ;
   }
 }
 
 bool HtmlTranslator::hasHtmlEntities(const QString & str)
 {
-  return str.contains(QRegularExpression("&[a-zA-Z]+;"))
-      || str.contains(QRegularExpression("&#x?[0-9A-Fa-f]+;"))
-      || str.contains(QRegularExpression("<[a-zA-Z]*>"));
+  return str.contains(QRegularExpression("&[a-zA-Z]+;")) || str.contains(QRegularExpression("&#x?[0-9A-Fa-f]+;")) || str.contains(QRegularExpression("<[a-zA-Z]*>"));
 }
 
 QString HtmlTranslator::fromUtf8Escapes(const QString & str)
@@ -54,4 +53,3 @@ QString HtmlTranslator::fromUtf8Escapes(const QString & str)
   cimg_library::cimg::strunescape(ba.data());
   return QString::fromUtf8(ba);
 }
-
