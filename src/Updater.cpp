@@ -94,7 +94,15 @@ void Updater::updateSources(bool useNetwork)
     _sources << source;
     _sourceIsStdLib[source] = isStdlib;
   }
+
+  // TODO : For testing purpose
+  //  _sources.clear();
+  //  _sourceIsStdLib.clear();
+  //  _sources.push_back("http://localhost:2222/update218.gmic");
+  //  _sourceIsStdLib["http://localhost:2222/update218.gmic"] = true;
+
   SHOW(_sources);
+  SHOW(_sourceIsStdLib);
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
@@ -122,7 +130,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
     emit downloadsFinished(true);
     _networkAccessManager->deleteLater();
   } else {
-    QTimer::singleShot(timeout * 1000, this, SLOT(onDownloadsTimeout()));
+    QTimer::singleShot(timeout * 1000, this, SLOT(cancelAllPendingDownloads()));
   }
 }
 
@@ -222,7 +230,7 @@ void Updater::notifyAllDowloadsOK()
   emit downloadsFinished(true);
 }
 
-void Updater::onDownloadsTimeout()
+void Updater::cancelAllPendingDownloads()
 {
   // Make a copy because aborting will call onNetworkReplyFinished, and
   // thus modify the _pendingReplies set.

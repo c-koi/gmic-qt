@@ -40,19 +40,38 @@ public:
   explicit ProgressInfoWidget(QWidget * parent = 0);
   ~ProgressInfoWidget();
 
+  enum Mode
+  {
+    FilterThreadMode,
+    FiltersUpdateMode
+  };
+
+  Mode mode() const;
+
+  bool hasBeenCanceled() const;
+
 public slots:
   void onTimeOut();
   void onCancelClicked(bool);
   void stopAnimationAndHide();
-  void startAnimationAndShow(FilterThread * thread, bool showCancelButton);
+  void startFilterThreadAnimationAndShow(FilterThread * thread, bool showCancelButton);
+  void startFiltersUpdateAnimationAndShow();
 
 signals:
   void cancel();
 
 private:
+  void updateThreadInformation();
+  void updateUpdateProgression();
+
   Ui::ProgressInfoWidget * ui;
   FilterThread * _filterThread;
   QTimer _timer;
+  QTimer _showingTimer;
+  Mode _mode;
+  bool _canceled;
+  bool _growing;
+  static const int AnimationStep = 10;
 };
 
 #endif // _GMIC_QT_PROGRESSINFOWIDGET_H_

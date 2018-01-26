@@ -38,10 +38,12 @@
 ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _filterThread(0)
 {
   ui->setupUi(this);
+  _mode = FilterThreadMode;
+  _canceled = false;
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
   ui->progressBar->setRange(0, 100);
   ui->tbCancel->setIcon(LOAD_ICON("process-stop"));
-  _timer.setInterval(250);
+  ui->tbCancel->setToolTip(tr("Abort"));
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
   connect(ui->tbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked(bool)));
   if (!parent) {
@@ -49,6 +51,12 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
     position.moveCenter(QDesktopWidget().availableGeometry().center());
     move(position.topLeft());
   }
+
+  _showingTimer.setSingleShot(true);
+  _showingTimer.setInterval(1000);
+  connect(&_showingTimer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
+  connect(&_showingTimer, SIGNAL(timeout()), &_timer, SLOT(start()));
+  connect(&_showingTimer, SIGNAL(timeout()), this, SLOT(show()));
 }
 
 ProgressInfoWidget::~ProgressInfoWidget()
@@ -56,11 +64,92 @@ ProgressInfoWidget::~ProgressInfoWidget()
   delete ui;
 }
 
+ProgressInfoWidget::Mode ProgressInfoWidget::mode() const
+{
+  return _mode;
+}
+
+bool ProgressInfoWidget::hasBeenCanceled() const
+{
+  return _canceled;
+}
+
 void ProgressInfoWidget::onTimeOut()
 {
-  if (!_filterThread) {
-    return;
+  if (_mode == FilterThreadMode && _filterThread) {
+    updateThreadInformation();
+  } else if (_mode == FiltersUpdateMode) {
+    updateUpdateProgression();
   }
+}
+
+void ProgressInfoWidget::onCancelClicked(bool)
+{
+  _canceled = true;
+  emit cancel();
+}
+
+void ProgressInfoWidget::stopAnimationAndHide()
+{
+  _filterThread = 0;
+  _timer.stop();
+  _showingTimer.stop();
+  hide();
+}
+
+void ProgressInfoWidget::startFilterThreadAnimationAndShow(FilterThread * thread, bool showCancelButton)
+{
+  layout()->removeWidget(ui->tbCancel);
+  layout()->removeWidget(ui->progressBar);
+  layout()->removeWidget(ui->label);
+  layout()->addWidget(ui->progressBar);
+  layout()->addWidget(ui->tbCancel);
+  layout()->addWidget(ui->label);
+
+  _filterThread = thread;
+  _canceled = false;
+  _mode = FilterThreadMode;
+  ui->progressBar->setRange(0, 100);
+  ui->progressBar->setValue(0);
+  ui->progressBar->setInvertedAppearance(false);
+  onTimeOut();
+  _timer.setInterval(250);
+  _timer.start();
+  ui->tbCancel->setVisible(showCancelButton);
+  show();
+}
+
+void ProgressInfoWidget::startFiltersUpdateAnimationAndShow()
+{
+
+  layout()->removeWidget(ui->tbCancel);
+  layout()->removeWidget(ui->progressBar);
+  layout()->removeWidget(ui->label);
+  layout()->addWidget(ui->label);
+  layout()->addWidget(ui->tbCancel);
+  layout()->addWidget(ui->progressBar);
+
+  _mode = FiltersUpdateMode;
+  _canceled = false;
+  // ui->progressBar->setRange(0, 0);
+  ui->progressBar->setValue(AnimationStep);
+  ui->progressBar->setTextVisible(false);
+  ui->progressBar->setInvertedAppearance(false);
+  ui->label->setText(tr("Updating filters..."));
+  _timer.setInterval(75);
+
+  _growing = true;
+  ui->tbCancel->setVisible(true);
+
+  _showingTimer.start();
+  // Connected to :
+  // 1. onTimeOut();
+  // 2. _timer.start();
+  // 3. show();
+}
+
+void ProgressInfoWidget::updateThreadInformation()
+{
   int ms = _filterThread->duration();
   float progress = _filterThread->progress();
   if (progress >= 0) {
@@ -115,24 +204,27 @@ void ProgressInfoWidget::onTimeOut()
 #endif
 }
 
-void ProgressInfoWidget::onCancelClicked(bool)
+void ProgressInfoWidget::updateUpdateProgression()
 {
-  emit cancel();
-}
-
-void ProgressInfoWidget::stopAnimationAndHide()
-{
-  _filterThread = 0;
-  _timer.stop();
-  hide();
-}
-
-void ProgressInfoWidget::startAnimationAndShow(FilterThread * thread, bool showCancelButton)
-{
-  _filterThread = thread;
-  ui->progressBar->setValue(0);
-  onTimeOut();
-  _timer.start();
-  ui->tbCancel->setVisible(showCancelButton);
-  show();
+  int value = ui->progressBar->value();
+  if (_growing) {
+    value += AnimationStep;
+    if (value >= 100) {
+      value = 100 - AnimationStep;
+      ui->progressBar->setInvertedAppearance(!ui->progressBar->invertedAppearance());
+      ui->progressBar->setValue(value);
+      _growing = false;
+    } else {
+      ui->progressBar->setValue(value);
+    }
+  } else {
+    value -= AnimationStep;
+    if (value <= 0) {
+      value = AnimationStep;
+      ui->progressBar->setValue(value);
+      _growing = true;
+    } else {
+      ui->progressBar->setValue(value);
+    }
+  }
 }

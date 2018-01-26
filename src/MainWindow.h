@@ -81,7 +81,7 @@ public slots:
   void search(QString);
   void onOkClicked();
   void onCloseClicked();
-  void onCancelProcess();
+  void onProgressionWidgetCancelClicked();
   void onReset();
   void onPreviewZoomReset();
   void onUpdateFiltersClicked();

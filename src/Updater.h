@@ -79,7 +79,7 @@ signals:
 public slots:
   void onNetworkReplyFinished(QNetworkReply *);
   void notifyAllDowloadsOK();
-  void onDownloadsTimeout();
+  void cancelAllPendingDownloads();
 
 protected:
   void processReply(QNetworkReply * reply);

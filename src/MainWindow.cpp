@@ -271,14 +271,21 @@ void MainWindow::setDarkTheme()
 
 void MainWindow::updateFiltersFromSources(int ageLimit, bool useNetwork)
 {
+  if (useNetwork) {
+    ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
+  }
   connect(Updater::getInstance(), SIGNAL(downloadsFinished(bool)), this, SLOT(onUpdateDownloadsFinished(bool)), Qt::UniqueConnection);
   Updater::getInstance()->startUpdate(ageLimit, 60, useNetwork);
 }
 
 void MainWindow::onUpdateDownloadsFinished(bool ok)
 {
+  ui->progressInfoWidget->stopAnimationAndHide();
+
   if (!ok) {
-    showUpdateErrors();
+    if (!ui->progressInfoWidget->hasBeenCanceled()) {
+      showUpdateErrors();
+    }
   } else {
     if (ui->cbInternetUpdate->isChecked()) {
       QMessageBox::information(this, tr("Update completed"), tr("Filter definitions have been updated."));
@@ -300,7 +307,6 @@ void MainWindow::buildFiltersTree()
   saveCurrentParameters();
   GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   const bool withVisibility = filtersSelectionMode();
-  //  GmicStdLibParser::buildFiltersTree(_filtersTreeModel,withVisibility);
 
   // TODO : Is this the right place?
   _filtersPresenter->clear();
@@ -473,7 +479,7 @@ void MainWindow::makeConnections()
   connect(ui->searchField, SIGNAL(textChanged(QString)), this, SLOT(search(QString)));
 
   connect(ui->tbExpandCollapse, SIGNAL(clicked(bool)), this, SLOT(expandOrCollapseFolders()));
-  connect(ui->progressInfoWidget, SIGNAL(cancel()), this, SLOT(onCancelProcess()));
+  connect(ui->progressInfoWidget, SIGNAL(cancel()), this, SLOT(onProgressionWidgetCancelClicked()));
 
   connect(ui->tbSelectionMode, SIGNAL(toggled(bool)), this, SLOT(onFiltersSelectionModeToggled(bool)));
 }
@@ -586,7 +592,7 @@ void MainWindow::processImage()
   _filterThread->setInputImages(*_gmicImages, imageNames);
   connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()));
   _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
-  ui->progressInfoWidget->startAnimationAndShow(_filterThread, true);
+  ui->progressInfoWidget->startFilterThreadAnimationAndShow(_filterThread, true);
   ui->filterParams->clearButtonParameters();
 
   // Disable most of the GUI
@@ -701,11 +707,16 @@ void MainWindow::onCloseClicked()
   }
 }
 
-void MainWindow::onCancelProcess()
+void MainWindow::onProgressionWidgetCancelClicked()
 {
-  if (_filterThread && _filterThread->isRunning()) {
-    _pendingActionAfterCurrentProcessing = NoAction;
-    _filterThread->abortGmic();
+  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::FilterThreadMode) {
+    if (_filterThread && _filterThread->isRunning()) {
+      _pendingActionAfterCurrentProcessing = NoAction;
+      _filterThread->abortGmic();
+    }
+  }
+  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::FiltersUpdateMode) {
+    Updater::getInstance()->cancelAllPendingDownloads();
   }
 }
 
@@ -858,15 +869,12 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
 
   QHBoxLayout * layout = dynamic_cast<QHBoxLayout *>(ui->belowPreviewWidget->layout());
   if (layout) {
-    // layout->removeWidget(ui->inOutSelector);
     layout->removeWidget(ui->belowPreviewPadding);
     layout->removeWidget(ui->logosLabel);
     if (position == MainWindow::PreviewOnLeft) {
       layout->addWidget(ui->logosLabel);
       layout->addWidget(ui->belowPreviewPadding);
-      // layout->addWidget(ui->inOutSelector);
     } else {
-      // layout->addWidget(ui->inOutSelector);
       layout->addWidget(ui->belowPreviewPadding);
       layout->addWidget(ui->logosLabel);
     }
