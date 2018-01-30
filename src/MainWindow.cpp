@@ -23,33 +23,22 @@
  *
  */
 #include "MainWindow.h"
-#include <DialogSettings.h>
-#include <QAbstractItemModel>
 #include <QAction>
 #include <QCursor>
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QEvent>
-#include <QFile>
-#include <QFileInfo>
-#include <QFont>
-#include <QFontMetrics>
-#include <QInputDialog>
-#include <QJsonArray>
-#include <QJsonDocument>
 #include <QKeySequence>
-#include <QList>
 #include <QMessageBox>
-#include <QPainter>
+#include <QPalette>
 #include <QSettings>
 #include <QShowEvent>
 #include <QStyleFactory>
-#include <QTextDocument>
-#include <QTextStream>
 #include <cassert>
 #include <iostream>
 #include <typeinfo>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
@@ -68,8 +57,6 @@
 //
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
 //
-
-const QString MainWindow::FilterTreePathSeparator("\t");
 
 MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindow), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>), _filterThread(0)
 {
@@ -130,8 +117,6 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(&_waitingCursorTimer, SIGNAL(timeout()), this, SLOT(showWaitingCursor()));
 
   ui->cbPreview->setChecked(true);
-
-  _currentFiltersTreeModel = &_filtersTreeModel;
 
   ui->filterName->setTextFormat(Qt::RichText);
   ui->filterName->setVisible(false);
@@ -767,6 +752,8 @@ void MainWindow::saveSettings()
   settings.remove("InputLayers");
   settings.remove("OutputMode");
   settings.remove("PreviewMode");
+  settings.remove("Config/VerticalSplitterSize0");
+  settings.remove("Config/VerticalSplitterSize1");
 
   // Save all settings
 
@@ -795,8 +782,6 @@ void MainWindow::saveSettings()
   settings.setValue(QString("Config/VerticalSplitterSizeTop"), splitterSizes.at(0));
   settings.setValue(QString("Config/VerticalSplitterSizeBottom"), splitterSizes.at(1));
   settings.setValue(REFRESH_USING_INTERNET_KEY, ui->cbInternetUpdate->isChecked());
-  settings.remove("Config/VerticalSplitterSize0");
-  settings.remove("Config/VerticalSplitterSize1");
 }
 
 void MainWindow::loadSettings()

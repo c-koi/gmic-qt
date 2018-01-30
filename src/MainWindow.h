@@ -25,10 +25,8 @@
 #ifndef _GMIC_QT_MAINWINDOW_H_
 #define _GMIC_QT_MAINWINDOW_H_
 
+#include <QIcon>
 #include <QList>
-#include <QModelIndex>
-#include <QPalette>
-#include <QStandardItemModel>
 #include <QString>
 #include <QTimer>
 #include <QWidget>
@@ -146,15 +144,11 @@ private:
   };
 
   Ui::MainWindow * ui;
-  QStandardItemModel _filtersTreeModel;
-  QStandardItemModel _filtersTreeModelSelection;
-  QStandardItemModel * _currentFiltersTreeModel;
   cimg_library::CImgList<float> * _gmicImages;
   FilterThread * _filterThread;
   QList<FilterThread *> _unfinishedAbortedThreads;
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
-  static const int MINIMAL_SEARCH_LENGTH = 1;
 
   ProcessingAction _pendingActionAfterCurrentProcessing;
   PreviewPosition _previewPosition = PreviewOnRight;
@@ -174,7 +168,6 @@ private:
   bool _newSession;
   unsigned int _previewRandomSeed;
 
-  static const QString FilterTreePathSeparator;
   QVector<QWidget *> _filterUpdateWidgets;
   FiltersPresenter * _filtersPresenter;
   bool _gtkFavesShouldBeImported;
