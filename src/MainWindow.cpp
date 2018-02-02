@@ -753,6 +753,8 @@ void MainWindow::saveSettings()
   settings.remove("PreviewMode");
   settings.remove("Config/VerticalSplitterSize0");
   settings.remove("Config/VerticalSplitterSize1");
+  settings.remove("Config/VerticalSplitterSizeTop");
+  settings.remove("Config/VerticalSplitterSizeBottom");
 
   // Save all settings
 
@@ -779,8 +781,8 @@ void MainWindow::saveSettings()
   }
   splitterSizes = ui->verticalSplitter->sizes();
   if (!_filtersPresenter->currentFilter().isNoFilter() && !_filtersPresenter->currentFilter().isInvalid()) {
-    settings.setValue(QString("Config/VerticalSplitterSizeTop"), splitterSizes.at(0));
-    settings.setValue(QString("Config/VerticalSplitterSizeBottom"), splitterSizes.at(1));
+    settings.setValue(QString("Config/ParamsVerticalSplitterSizeTop"), splitterSizes.at(0));
+    settings.setValue(QString("Config/ParamsVerticalSplitterSizeBottom"), splitterSizes.at(1));
   }
   settings.setValue(REFRESH_USING_INTERNET_KEY, ui->cbInternetUpdate->isChecked());
 }
@@ -919,8 +921,8 @@ void MainWindow::adjustVerticalSplitter()
 {
   QList<int> sizes;
   QSettings settings;
-  sizes.push_back(settings.value(QString("Config/VerticalSplitterSizeTop"), -1).toInt());
-  sizes.push_back(settings.value(QString("Config/VerticalSplitterSizeBottom"), -1).toInt());
+  sizes.push_back(settings.value(QString("Config/ParamsVerticalSplitterSizeTop"), -1).toInt());
+  sizes.push_back(settings.value(QString("Config/ParamsVerticalSplitterSizeBottom"), -1).toInt());
   if ((sizes.front() != -1) && (sizes.back() != -1)) {
     ui->verticalSplitter->setSizes(sizes);
   } else {
