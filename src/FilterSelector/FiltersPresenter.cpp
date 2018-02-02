@@ -216,6 +216,11 @@ void FiltersPresenter::setInvalidFilter()
   _currentFilter.previewCommand = "skip";
 }
 
+bool FiltersPresenter::isInvalidFilter() const
+{
+  return _currentFilter.isInvalid();
+}
+
 void FiltersPresenter::adjustViewSize()
 {
   _filtersView->adjustTreeSize();
@@ -358,6 +363,18 @@ void FiltersPresenter::Filter::clear()
   plainTextName.clear();
   previewFactor = GmicQt::PreviewFactorAny;
   isAFave = false;
+}
+
+void FiltersPresenter::Filter::setInvalid()
+{
+  clear();
+  command = "skip";
+  previewCommand = "skip";
+}
+
+bool FiltersPresenter::Filter::isInvalid() const
+{
+  return hash.isEmpty() && (command == "skip") && (previewCommand == "skip");
 }
 
 bool FiltersPresenter::Filter::isNoFilter() const

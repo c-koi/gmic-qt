@@ -47,6 +47,8 @@ public:
     float previewFactor;
     bool isAFave;
     void clear();
+    void setInvalid();
+    bool isInvalid() const;
     bool isNoFilter() const;
   };
 
@@ -71,6 +73,7 @@ public:
   void saveSettings(QSettings & settings);
 
   void setInvalidFilter();
+  bool isInvalidFilter() const;
 
   void adjustViewSize();
   void expandFaveFolder();

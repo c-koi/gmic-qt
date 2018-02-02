@@ -617,7 +617,6 @@ void MainWindow::onApplyThreadFinished()
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == ApplyAction) && !_filterThread->aborted()) {
-      SHOW(_filterThread);
       gmic_qt_output_images(
           images, _filterThread->imageNames(), ui->inOutSelector->outputMode(),
           (ui->inOutSelector->outputMessageMode() == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData() : 0);
@@ -779,8 +778,10 @@ void MainWindow::saveSettings()
     settings.setValue(QString("Config/PanelSize%1").arg(i), splitterSizes.at(i));
   }
   splitterSizes = ui->verticalSplitter->sizes();
-  settings.setValue(QString("Config/VerticalSplitterSizeTop"), splitterSizes.at(0));
-  settings.setValue(QString("Config/VerticalSplitterSizeBottom"), splitterSizes.at(1));
+  if (!_filtersPresenter->currentFilter().isNoFilter() && !_filtersPresenter->currentFilter().isInvalid()) {
+    settings.setValue(QString("Config/VerticalSplitterSizeTop"), splitterSizes.at(0));
+    settings.setValue(QString("Config/VerticalSplitterSizeBottom"), splitterSizes.at(1));
+  }
   settings.setValue(REFRESH_USING_INTERNET_KEY, ui->cbInternetUpdate->isChecked());
 }
 
@@ -957,7 +958,7 @@ void MainWindow::activateFilter(bool resetZoom)
     if (savedValues.isEmpty() && filter.isAFave) {
       savedValues = filter.defaultParameterValues;
     }
-    if (not ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues)) {
+    if (!ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues)) {
       _filtersPresenter->setInvalidFilter();
     }
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
