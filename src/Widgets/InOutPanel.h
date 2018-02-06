@@ -27,6 +27,7 @@
 
 #include <QWidget>
 #include "Host/host.h"
+#include "InputOutputState.h"
 #include "gmic_qt.h"
 
 namespace Ui

@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file ParametersCache.h
+ *  @file InputOutputState.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,30 +22,30 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_PARAMETERSCACHE_H
-#define _GMIC_QT_PARAMETERSCACHE_H
+#ifndef _GMIC_QT_INPUTOUTPUTSTATE_H_
+#define _GMIC_QT_INPUTOUTPUTSTATE_H_
 
-#include <QHash>
-#include <QList>
-#include <QString>
-#include "InputOutputState.h"
+#include "gmic_qt.h"
 
-class ParametersCache {
-public:
-  static void load(bool loadFiltersParameters);
-  static void save();
-  static void setValues(const QString & hash, const QList<QString> & values);
-  static QList<QString> getValues(const QString & hash);
-  static void remove(const QString & hash);
+class QJsonObject;
 
-  static GmicQt::InputOutputState getInputOutputState(const QString & hash);
-  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState &);
+namespace GmicQt
+{
+struct InputOutputState {
+  InputMode inputMode;
+  OutputMode outputMode;
+  PreviewMode previewMode;
+  OutputMessageMode outputMessageMode;
 
-  static void cleanup(const QSet<QString> & hashesToKeep);
-
-private:
-  static QHash<QString, QList<QString>> _parametersCache;
-  static QHash<QString, GmicQt::InputOutputState> _inOutPanelStates;
+  InputOutputState();
+  InputOutputState(InputMode, OutputMode, PreviewMode, OutputMessageMode);
+  bool isDefault() const;
+  void toJSONObject(QJsonObject &) const;
+  static InputOutputState fromJSONObject(const QJsonObject &);
+  static const InputOutputState Default;
+  bool operator==(const InputOutputState & other) const;
+  bool operator!=(const InputOutputState & other) const;
 };
+}
 
-#endif // _GMIC_QT_PARAMETERSCACHE_H
+#endif // _GMIC_QT_INPUTOUTPUTSTATE_H_

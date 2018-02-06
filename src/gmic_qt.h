@@ -30,7 +30,6 @@
 #define GMIC_QT_APPLICATION_NAME "gmic_qt"
 
 class QString;
-class QJsonObject;
 
 namespace GmicQt
 {
@@ -85,22 +84,6 @@ enum PreviewMode
   First2FourthOutput,
   AllOutputs,
   UnspecifiedPreviewMode = 100
-};
-
-struct InputOutputState {
-  InputMode inputMode;
-  OutputMode outputMode;
-  PreviewMode previewMode;
-  OutputMessageMode outputMessageMode;
-
-  InputOutputState();
-  InputOutputState(InputMode, OutputMode, PreviewMode, OutputMessageMode);
-  bool isDefault() const;
-  void toJSONObject(QJsonObject &) const;
-  static InputOutputState fromJSONObject(const QJsonObject &);
-  static const InputOutputState Default;
-  bool operator==(const InputOutputState & other) const;
-  bool operator!=(const InputOutputState & other) const;
 };
 
 extern const PreviewMode DefaultPreviewMode;

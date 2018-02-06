@@ -25,7 +25,6 @@
 #include "gmic_qt.h"
 #include <QApplication>
 #include <QDebug>
-#include <QJsonObject>
 #include <QList>
 #include <QLocale>
 #include <QSettings>
@@ -56,7 +55,6 @@ const InputMode DefaultInputMode = Active;
 const OutputMode DefaultOutputMode = InPlace;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
 const PreviewMode DefaultPreviewMode = FirstOutput;
-const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode, GmicQt::DefaultOutputMessageMode);
 
 const float PreviewFactorAny = -1.0f;
 const float PreviewFactorFullImage = 1.0f;
@@ -108,57 +106,6 @@ const QString & gmicVersionString()
 {
   static QString value = QString("%1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10);
   return value;
-}
-
-InputOutputState::InputOutputState() : inputMode(UnspecifiedInputMode), outputMode(UnspecifiedOutputMode), previewMode(GmicQt::UnspecifiedPreviewMode), outputMessageMode(UnspecifiedOutputMessageMode)
-{
-}
-
-InputOutputState::InputOutputState(InputMode inputMode, OutputMode outputMode, PreviewMode previewMode, OutputMessageMode outputMessageMode)
-    : inputMode(inputMode), outputMode(outputMode), previewMode(previewMode), outputMessageMode(outputMessageMode)
-{
-}
-
-bool InputOutputState::operator==(const InputOutputState & other) const
-{
-  return inputMode == other.inputMode && outputMode == other.outputMode && previewMode == other.previewMode && outputMessageMode == other.outputMessageMode;
-}
-
-bool InputOutputState::operator!=(const InputOutputState & other) const
-{
-  return inputMode != other.inputMode || outputMode != other.outputMode || previewMode != other.previewMode || outputMessageMode != other.outputMessageMode;
-}
-
-bool InputOutputState::isDefault() const
-{
-  return (inputMode == GmicQt::DefaultInputMode) && (outputMode == GmicQt::DefaultOutputMode) && (previewMode == GmicQt::DefaultPreviewMode) && (outputMessageMode == GmicQt::DefaultOutputMessageMode);
-}
-
-void InputOutputState::toJSONObject(QJsonObject & object) const
-{
-  object = QJsonObject();
-  if (inputMode != DefaultInputMode) {
-    object.insert("InputLayers", inputMode);
-  }
-  if (outputMode != DefaultOutputMode) {
-    object.insert("OutputMode", outputMode);
-  }
-  if (previewMode != DefaultPreviewMode) {
-    object.insert("PreviewMode", previewMode);
-  }
-  if (outputMessageMode != DefaultOutputMessageMode) {
-    object.insert("OutputMessages", outputMessageMode);
-  }
-}
-
-InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
-{
-  GmicQt::InputOutputState state;
-  state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(UnspecifiedInputMode));
-  state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(UnspecifiedOutputMode));
-  state.previewMode = static_cast<PreviewMode>(object.value("PreviewMode").toInt(UnspecifiedPreviewMode));
-  state.outputMessageMode = static_cast<OutputMessageMode>(object.value("OutputMessages").toInt(UnspecifiedOutputMessageMode));
-  return state;
 }
 }
 

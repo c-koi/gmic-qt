@@ -287,6 +287,7 @@ set (gmic_qt_SRCS
   src/HtmlTranslator.h
   src/ImageConverter.h
   src/ImageTools.h
+  src/InputOutputState.h
   src/LayersExtentProxy.h
   src/Logger.h
   src/MainWindow.h
@@ -342,6 +343,7 @@ set (gmic_qt_SRCS
   src/HtmlTranslator.cpp
   src/ImageConverter.cpp
   src/ImageTools.cpp
+  src/InputOutputState.cpp
   src/LayersExtentProxy.cpp
   src/Logger.cpp
   src/MainWindow.cpp

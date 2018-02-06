@@ -28,7 +28,7 @@
 #include "FilterSelector/FavesModel.h"
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
-#include "gmic_qt.h"
+#include "InputOutputState.h"
 
 class QSettings;
 
