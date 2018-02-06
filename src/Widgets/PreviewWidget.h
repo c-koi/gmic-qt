@@ -58,6 +58,7 @@ public:
   const cimg_library::CImg<float> & image() const;
   void translateNormalized(double dx, double dy);
   void translateFullImage(double dx, double dy);
+  void setPreviewEnabled(bool on);
 
 protected:
   void resizeEvent(QResizeEvent *) override;
@@ -93,11 +94,11 @@ public slots:
   void setPreviewFactor(float filterFactor, bool reset);
   void displayOriginalImage();
   void onPreviewParametersChanged();
-  void enablePreview(bool);
   void invalidateSavedPreview();
   void restorePreview();
   void enableRightClick();
   void disableRightClick();
+  void onPreviewToggled(bool on);
 
 private:
   void getOriginalImageCrop(cimg_library::CImg<float> & image);

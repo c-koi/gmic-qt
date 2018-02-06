@@ -580,7 +580,7 @@ void PreviewWidget::onPreviewParametersChanged()
   _savedPreviewIsValid = false;
 }
 
-void PreviewWidget::enablePreview(bool on)
+void PreviewWidget::onPreviewToggled(bool on)
 {
   _previewEnabled = on;
   if (on) {
@@ -594,6 +594,11 @@ void PreviewWidget::enablePreview(bool on)
   } else {
     displayOriginalImage();
   }
+}
+
+void PreviewWidget::setPreviewEnabled(bool on)
+{
+  _previewEnabled = on;
 }
 
 void PreviewWidget::invalidateSavedPreview()

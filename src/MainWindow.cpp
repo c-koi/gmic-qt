@@ -116,8 +116,6 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   _waitingCursorTimer.setSingleShot(true);
   connect(&_waitingCursorTimer, SIGNAL(timeout()), this, SLOT(showWaitingCursor()));
 
-  ui->cbPreview->setChecked(true);
-
   ui->filterName->setTextFormat(Qt::RichText);
   ui->filterName->setVisible(false);
 
@@ -369,7 +367,7 @@ void MainWindow::onPreviewCheckBoxToggled(bool on)
   if (!on && _filterThread) {
     abortCurrentFilterThread();
   }
-  ui->previewWidget->enablePreview(on);
+  ui->previewWidget->onPreviewToggled(on);
 }
 
 void MainWindow::onFilterSelectionChanged()
@@ -774,6 +772,7 @@ void MainWindow::saveSettings()
   settings.setValue("Config/MainWindowRect", rect());
   settings.setValue("Config/MainWindowMaximized", isMaximized());
   settings.setValue("Config/ShowAllFilters", filtersSelectionMode());
+  settings.setValue("Config/PreviewEnabled", ui->cbPreview->isChecked());
   settings.setValue("LastExecution/ExitedNormally", true);
   settings.setValue("LastExecution/HostApplicationID", GmicQt::host_app_pid());
   QList<int> splitterSizes = ui->splitter->sizes();
@@ -798,6 +797,10 @@ void MainWindow::loadSettings()
   _newSession = GmicQt::host_app_pid() != settings.value("LastExecution/HostApplicationID", 0).toUInt();
   settings.setValue("LastExecution/ExitedNormally", false);
   ui->inOutSelector->reset();
+
+  bool previewEnabled = settings.value("Config/PreviewEnabled", true).toBool();
+  ui->cbPreview->setChecked(previewEnabled);
+  ui->previewWidget->setPreviewEnabled(previewEnabled);
 
   // Preview position
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {

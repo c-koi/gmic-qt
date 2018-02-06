@@ -34,6 +34,7 @@ FilterThread::FilterThread(QObject * parent, const QString & name, const QString
     : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>), _name(name),
       _messageMode(mode)
 {
+  ENTERING;
 #ifdef _IS_MACOS_
   setStackSize(8 * 1024 * 1024);
 #endif
