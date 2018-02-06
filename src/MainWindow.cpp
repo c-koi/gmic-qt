@@ -160,8 +160,9 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   addAction(escAction);
 
   LayersExtentProxy::clearCache();
-  QSize layersExtents = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
-  ui->previewWidget->setFullImageSize(layersExtents);
+  QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
+  ui->previewWidget->setFullImageSize(layersExtent);
+
   makeConnections();
 
   _previewRandomSeed = cimg_library::cimg::srand();
@@ -1003,6 +1004,7 @@ void MainWindow::showEvent(QShowEvent * event)
   if (!first) {
     return;
   }
+
   first = false;
   ui->searchField->setFocus();
   adjustVerticalSplitter();

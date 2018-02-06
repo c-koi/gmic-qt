@@ -105,6 +105,7 @@ private:
   void updateOriginalImagePosition();
   QSize originalImageCropSize();
   double defaultZoomFactor() const;
+  void saveVisibleCenter();
   cimg_library::CImg<float> * _image;
   cimg_library::CImg<float> * _savedPreview;
   QSize _fullImageSize;
@@ -120,20 +121,32 @@ private:
   int _timerID;
   bool _previewEnabled;
 
-  struct PreviewPosition {
+  struct PreviewPoint {
+    double x, y;
+    bool isValid() const;
+    bool operator!=(const PreviewPoint &) const;
+    bool operator==(const PreviewPoint &) const;
+  };
+
+  struct PreviewRect {
     double x;
     double y;
     double w;
     double h;
-    bool operator!=(const PreviewPosition &) const;
-    bool operator==(const PreviewPosition &) const;
+    bool operator!=(const PreviewRect &) const;
+    bool operator==(const PreviewRect &) const;
     bool isFull() const;
-    static const PreviewPosition Full;
+    PreviewPoint center() const;
+    PreviewPoint topLeft() const;
+    void moveCenter(const PreviewPoint & p);
+    void moveToCenter();
+    static const PreviewRect Full;
   };
 
   static const int RESIZE_DELAY = 400;
 
-  PreviewPosition _visibleRect;
+  PreviewRect _visibleRect;
+  PreviewPoint _savedVisibleCenter;
 
   bool _pendingResize;
   QPixmap _transparency;
@@ -146,8 +159,8 @@ private:
   QSize _originaImageScaledSize;
   bool _rightClickEnabled;
   std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
-  PreviewPosition _cachedOriginalImagePosition;
-  PreviewPosition _positionAtUpdateRequest;
+  PreviewRect _cachedOriginalImagePosition;
+  PreviewRect _positionAtUpdateRequest;
 };
 
 #endif // _GMIC_QT_PREVIEWWIDGET_H_

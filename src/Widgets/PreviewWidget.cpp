@@ -37,7 +37,7 @@
 #include "LayersExtentProxy.h"
 #include "gmic.h"
 
-const PreviewWidget::PreviewPosition PreviewWidget::PreviewPosition::Full{0.0, 0.0, 1.0, 1.0};
+const PreviewWidget::PreviewRect PreviewWidget::PreviewRect::Full{0.0, 0.0, 1.0, 1.0};
 
 PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOriginalImage(new gmic_image<float>())
 {
@@ -48,9 +48,11 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   _savedPreview->assign();
   _transparency.load(":resources/transparency.png");
 
-  _visibleRect = PreviewPosition::Full;
+  _visibleRect = PreviewRect::Full;
+  saveVisibleCenter();
+
   _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
-  _positionAtUpdateRequest = PreviewPosition::Full;
+  _positionAtUpdateRequest = PreviewRect::Full;
 
   _pendingResize = false;
   _previewEnabled = true;
@@ -97,6 +99,7 @@ void PreviewWidget::setFullImageSize(const QSize & size)
   _image->assign();
   _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
   updateVisibleRect();
+  saveVisibleCenter();
 }
 
 void PreviewWidget::updateVisibleRect()
@@ -109,8 +112,7 @@ void PreviewWidget::updateVisibleRect()
 
 void PreviewWidget::centerVisibleRect()
 {
-  _visibleRect.x = std::max(0.0, (1.0 - _visibleRect.w) / 2.0);
-  _visibleRect.y = std::max(0.0, (1.0 - _visibleRect.h) / 2.0);
+  _visibleRect.moveToCenter();
 }
 
 void PreviewWidget::updateOriginalImagePosition()
@@ -188,6 +190,7 @@ void PreviewWidget::resizeEvent(QResizeEvent * e)
     emit zoomChanged(_currentZoomFactor);
   } else {
     updateVisibleRect();
+    saveVisibleCenter();
   }
   if (QApplication::topLevelWidgets().size() && QApplication::topLevelWidgets().at(0)->isMaximized()) {
     sendUpdateRequest();
@@ -235,6 +238,7 @@ bool PreviewWidget::event(QEvent * event)
     _pendingResize = false;
     if (width() && height()) {
       updateVisibleRect();
+      saveVisibleCenter();
       sendUpdateRequest();
     }
   }
@@ -247,6 +251,7 @@ bool PreviewWidget::eventFilter(QObject *, QEvent * event)
     _pendingResize = false;
     if (width() && height()) {
       updateVisibleRect();
+      saveVisibleCenter();
       sendUpdateRequest();
     }
   }
@@ -387,7 +392,11 @@ void PreviewWidget::translateNormalized(double dx, double dy)
 
 void PreviewWidget::translateFullImage(double dx, double dy)
 {
+  PreviewPoint previousPosition = _visibleRect.topLeft();
   translateNormalized(dx / _fullImageSize.width(), dy / _fullImageSize.height());
+  if (_visibleRect.topLeft() != previousPosition) {
+    saveVisibleCenter();
+  }
 }
 
 void PreviewWidget::zoomIn()
@@ -402,7 +411,7 @@ void PreviewWidget::zoomOut()
 
 void PreviewWidget::zoomFullImage()
 {
-  _visibleRect = PreviewPosition::Full;
+  _visibleRect = PreviewRect::Full;
   _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
   onPreviewParametersChanged();
   emit zoomChanged(_currentZoomFactor);
@@ -429,6 +438,7 @@ void PreviewWidget::zoomIn(QPoint p, int steps)
   double newMouseX = p.x() / (_currentZoomFactor * _fullImageSize.width()) + _visibleRect.x;
   double newMouseY = p.y() / (_currentZoomFactor * _fullImageSize.height()) + _visibleRect.y;
   translateNormalized(mouseX - newMouseX, mouseY - newMouseY);
+  saveVisibleCenter();
   onPreviewParametersChanged();
   emit zoomChanged(_currentZoomFactor);
 }
@@ -450,6 +460,7 @@ void PreviewWidget::zoomOut(QPoint p, int steps)
   double newMouseX = p.x() / (_currentZoomFactor * _fullImageSize.width()) + _visibleRect.x;
   double newMouseY = p.y() / (_currentZoomFactor * _fullImageSize.height()) + _visibleRect.y;
   translateNormalized(mouseX - newMouseX, mouseY - newMouseY);
+  saveVisibleCenter();
   onPreviewParametersChanged();
   emit zoomChanged(_currentZoomFactor);
 }
@@ -478,6 +489,7 @@ void PreviewWidget::setZoomLevel(double zoom)
   double newMouseX = p.x() / (_currentZoomFactor * _fullImageSize.width()) + _visibleRect.x;
   double newMouseY = p.y() / (_currentZoomFactor * _fullImageSize.height()) + _visibleRect.y;
   translateNormalized(mouseX - newMouseX, mouseY - newMouseY);
+  saveVisibleCenter();
   onPreviewParametersChanged();
   emit zoomChanged(_currentZoomFactor);
 }
@@ -493,20 +505,32 @@ double PreviewWidget::defaultZoomFactor() const
   return 1.0; // We suppose GmicQt::PreviewFactorActualSize
 }
 
+void PreviewWidget::saveVisibleCenter()
+{
+  _savedVisibleCenter = _visibleRect.center();
+}
+
 void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
 {
   _previewFactor = filterFactor;
   if ((_previewFactor == GmicQt::PreviewFactorFullImage) || ((_previewFactor == GmicQt::PreviewFactorAny) && reset)) {
     _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
-    _visibleRect = PreviewWidget::PreviewPosition::Full;
+    _visibleRect = PreviewWidget::PreviewRect::Full;
   } else if ((_previewFactor == GmicQt::PreviewFactorAny) && !reset) {
     updateVisibleRect();
+    _visibleRect.moveCenter(_savedVisibleCenter);
   } else {
     _currentZoomFactor = defaultZoomFactor();
     updateVisibleRect();
-    if (_previewFactor == GmicQt::PreviewFactorActualSize) {
-      centerVisibleRect();
+    if (reset) {
+      _visibleRect.moveToCenter();
+    } else {
+      _visibleRect.moveCenter(_savedVisibleCenter);
     }
+    // TODO : Remove
+    //    if (_previewFactor == GmicQt::PreviewFactorActualSize) {
+    //      centerVisibleRect();
+    //    }
   }
   emit zoomChanged(_currentZoomFactor);
 }
@@ -592,17 +616,62 @@ void PreviewWidget::disableRightClick()
   _rightClickEnabled = false;
 }
 
-bool PreviewWidget::PreviewPosition::operator!=(const PreviewPosition & other) const
+bool PreviewWidget::PreviewRect::operator!=(const PreviewRect & other) const
 {
   return (x != other.x) || (y != other.y) || (w != other.w) || (h != other.h);
 }
 
-bool PreviewWidget::PreviewPosition::operator==(const PreviewPosition & other) const
+bool PreviewWidget::PreviewRect::operator==(const PreviewRect & other) const
 {
   return (x == other.x) && (y == other.y) && (w == other.w) && (h == other.h);
 }
 
-bool PreviewWidget::PreviewPosition::isFull() const
+bool PreviewWidget::PreviewRect::isFull() const
 {
-  return (*this) == PreviewPosition::Full;
+  return (*this) == PreviewRect::Full;
+}
+
+PreviewWidget::PreviewPoint PreviewWidget::PreviewRect::center() const
+{
+  PreviewPoint p;
+  p.x = x + w / 2.0;
+  p.y = y + h / 2.0;
+  return p;
+}
+
+PreviewWidget::PreviewPoint PreviewWidget::PreviewRect::topLeft() const
+{
+  PreviewPoint p;
+  p.x = x;
+  p.y = y;
+  return p;
+}
+
+void PreviewWidget::PreviewRect::moveCenter(const PreviewWidget::PreviewPoint & p)
+{
+  const double halfWidth = w / 2.0;
+  const double halfHeight = h / 2.0;
+  x = std::min(std::max(0.0, p.x - halfWidth), 1.0 - w);
+  y = std::min(std::max(0.0, p.y - halfHeight), 1.0 - h);
+}
+
+void PreviewWidget::PreviewRect::moveToCenter()
+{
+  x = std::max(0.0, (1.0 - w) / 2.0);
+  y = std::max(0.0, (1.0 - h) / 2.0);
+}
+
+bool PreviewWidget::PreviewPoint::isValid() const
+{
+  return (x >= 0.0) && (x <= 1.0) && (y >= 0.0) && (y <= 1.0);
+}
+
+bool PreviewWidget::PreviewPoint::operator!=(const PreviewWidget::PreviewPoint & other) const
+{
+  return (x != other.x) || (y != other.y);
+}
+
+bool PreviewWidget::PreviewPoint::operator==(const PreviewWidget::PreviewPoint & other) const
+{
+  return (x == other.x) && (y == other.y);
 }
