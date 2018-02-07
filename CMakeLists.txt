@@ -294,6 +294,7 @@ set (gmic_qt_SRCS
   src/MainWindow.h
   src/ParametersCache.h
   src/PreviewMode.h
+  src/TimeLogger.h
   src/Updater.h
   src/Utils.h
   src/FilterSelector/FiltersView/FilterTreeFolder.h
@@ -316,6 +317,7 @@ set (gmic_qt_SRCS
   ${GMIC_PATH}/gmic_stdlib.h
 
   src/ClickableLabel.cpp
+  src/Common.cpp
   src/DialogSettings.cpp
   src/FilterParameters/AbstractParameter.cpp
   src/FilterParameters/BoolParameter.cpp
@@ -353,6 +355,7 @@ set (gmic_qt_SRCS
   src/MainWindow.cpp
   src/ParametersCache.cpp
   src/PreviewMode.cpp
+  src/TimeLogger.cpp
   src/Updater.cpp
   src/Utils.cpp
   src/FilterSelector/FiltersView/FilterTreeItem.cpp

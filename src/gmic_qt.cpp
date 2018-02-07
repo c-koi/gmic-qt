@@ -56,6 +56,7 @@ const QString & gmicVersionString()
 
 int launchPlugin()
 {
+  TIMING;
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
   char * dummy_argv[1] = {dummy_app_name};
@@ -91,6 +92,7 @@ int launchPlugin()
   MainWindow mainWindow;
   QObject::connect(updater, SIGNAL(downloadsFinished(bool)), &mainWindow, SLOT(startupUpdateFinished(bool)));
   updater->startUpdate(ageLimit, 4, ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY);
+  TIMING;
   return app.exec();
 }
 

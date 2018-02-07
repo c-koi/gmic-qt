@@ -107,6 +107,7 @@ void Updater::updateSources(bool useNetwork)
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
 {
+  TIMING;
   updateSources(useNetwork);
   _errorMessages.clear();
   _networkAccessManager = new QNetworkAccessManager(this);
@@ -132,6 +133,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
   } else {
     QTimer::singleShot(timeout * 1000, this, SLOT(cancelAllPendingDownloads()));
   }
+  TIMING;
 }
 
 QList<QString> Updater::remotesThatNeedUpdate(int ageLimit) const
@@ -210,6 +212,7 @@ void Updater::processReply(QNetworkReply * reply)
 
 void Updater::onNetworkReplyFinished(QNetworkReply * reply)
 {
+  TIMING;
   if (reply->error() == QNetworkReply::NoError) {
     processReply(reply);
   } else {
@@ -232,6 +235,7 @@ void Updater::notifyAllDowloadsOK()
 
 void Updater::cancelAllPendingDownloads()
 {
+  TIMING;
   // Make a copy because aborting will call onNetworkReplyFinished, and
   // thus modify the _pendingReplies set.
   QSet<QNetworkReply *> replies = _pendingReplies;

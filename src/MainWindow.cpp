@@ -62,6 +62,7 @@
 
 MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindow), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>), _filterThread(0)
 {
+  TIMING;
   ui->setupUi(this);
   _messageTimerID = 0;
   _gtkFavesShouldBeImported = false;
@@ -682,6 +683,7 @@ void MainWindow::onOkClicked()
 
 void MainWindow::onCloseClicked()
 {
+  TIMING;
   if (_filterThread && confirmAbortProcessingOnCloseRequest()) {
     _pendingActionAfterCurrentProcessing = CloseAction;
     if (_filterThread) {
@@ -1004,6 +1006,7 @@ void MainWindow::setNoFilter()
 
 void MainWindow::showEvent(QShowEvent * event)
 {
+  TIMING;
   static bool first = true;
   event->accept();
   if (!first) {

@@ -26,6 +26,7 @@
 #define _GMIC_QT_COMMON_H_
 
 #include <iostream>
+#include "TimeLogger.h"
 
 #ifdef _GMIC_QT_DEBUG_
 #define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
@@ -51,5 +52,18 @@ template <typename T> inline void unused(const T &, ...)
 
 //#define LOAD_ICON( NAME ) ( GmicQt::DarkThemeEnabled ? QIcon(":/icons/dark/" NAME ".png") : QIcon::fromTheme( NAME , QIcon(":/icons/" NAME ".png") ) )
 #define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
+
+void timing(const char * function, int line, const char * filename);
+
+#ifdef _TIMING_ENABLED_
+#define TIMING TimeLogger::getInstance()->step(__PRETTY_FUNCTION__, __LINE__, __FILE__);
+#else
+#define TIMING                                                                                                                                                                                         \
+  if (false)                                                                                                                                                                                           \
+  std::cout << ""
+#define TIMING_CLOSE                                                                                                                                                                                   \
+  if (false)                                                                                                                                                                                           \
+  std::cout << ""
+#endif
 
 #endif // _GMIC_QT_COMMON_H

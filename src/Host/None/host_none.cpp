@@ -145,6 +145,7 @@ void gmic_qt_show_message(const char * message)
 
 int main(int argc, char * argv[])
 {
+  TIMING;
   QString filename;
   if (argc == 2) {
     filename = argv[1];

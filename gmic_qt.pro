@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = none }
+!defined(HOST,var) { HOST = gimp }
 
 !defined(PRERELEASE, var) {
 
@@ -20,6 +20,9 @@
 #
 #
 #
+
+# For debugging purpose
+!defined(TIMING,var) { TIMING = off }
 
 #
 # Check Qt version (>= 5.2)
@@ -53,6 +56,11 @@ DEFINES += cimg_use_cpp11=1
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_rng
 DEFINES += cimg_appname="\\\"gmic\\\""
+
+equals( TIMING, "on" ) {
+DEFINES += _TIMING_ENABLED_
+message(Timing is enabled)
+}
 
 !defined(GMIC_PATH,var) {
   GMIC_PATH = ../gmic/src
@@ -242,6 +250,7 @@ HEADERS +=  \
   src/MainWindow.h \
   src/ParametersCache.h \
   src/PreviewMode.h \
+  src/TimeLogger.h \
   src/Updater.h \
   src/Utils.h \
   src/FilterSelector/FiltersView/FilterTreeFolder.h \
@@ -266,6 +275,7 @@ HEADERS += $$GMIC_PATH/gmic_stdlib.h
 
 SOURCES += \
   src/ClickableLabel.cpp \
+  src/Common.cpp \
   src/DialogSettings.cpp \
   src/FilterParameters/AbstractParameter.cpp \
   src/FilterParameters/BoolParameter.cpp \
@@ -303,6 +313,7 @@ SOURCES += \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
   src/PreviewMode.cpp \
+  src/TimeLogger.cpp \
   src/Updater.cpp \
   src/Utils.cpp \
   src/FilterSelector/FiltersView/FilterTreeItem.cpp \
@@ -370,8 +381,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
-#SEB    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-#SEB    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui
