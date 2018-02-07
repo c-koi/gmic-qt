@@ -73,20 +73,6 @@ enum OutputMessageMode
 };
 extern const OutputMessageMode DefaultOutputMessageMode;
 
-enum PreviewMode
-{
-  FirstOutput,
-  SecondOutput,
-  ThirdOutput,
-  FourthOutput,
-  First2SecondOutput,
-  First2ThirdOutput,
-  First2FourthOutput,
-  AllOutputs,
-  UnspecifiedPreviewMode = 100
-};
-
-extern const PreviewMode DefaultPreviewMode;
 extern const float PreviewFactorAny;
 extern const float PreviewFactorFullImage;
 extern const float PreviewFactorActualSize;

@@ -50,11 +50,9 @@
 
 namespace GmicQt
 {
-
 const InputMode DefaultInputMode = Active;
 const OutputMode DefaultOutputMode = InPlace;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
-const PreviewMode DefaultPreviewMode = FirstOutput;
 
 const float PreviewFactorAny = -1.0f;
 const float PreviewFactorFullImage = 1.0f;

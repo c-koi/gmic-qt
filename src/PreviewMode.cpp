@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file ImageTools.h
+ *  @file PreviewMode.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,26 +22,10 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_IMAGETOOLS_H
-#define _GMIC_QT_IMAGETOOLS_H
 
-#include "Common.h"
 #include "PreviewMode.h"
-
-namespace cimg_library
-{
-template <typename T> struct CImg;
-template <typename T> struct CImgList;
-}
 
 namespace GmicQt
 {
-template <typename T> void image2uchar(cimg_library::CImg<T> & img);
-template <typename T> void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
-
-void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, GmicQt::PreviewMode previewMode, int previewWidth, int previewHeight);
+const PreviewMode DefaultPreviewMode = FirstOutput;
 }
-
-template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image);
-
-#endif // _GMIC_QT_IMAGETOOLS_H

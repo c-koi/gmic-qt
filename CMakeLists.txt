@@ -292,6 +292,7 @@ set (gmic_qt_SRCS
   src/Logger.h
   src/MainWindow.h
   src/ParametersCache.h
+  src/PreviewMode.h
   src/Updater.h
   src/FilterSelector/FiltersView/FilterTreeFolder.h
   src/FilterSelector/FiltersView/FilterTreeItem.h
@@ -348,6 +349,7 @@ set (gmic_qt_SRCS
   src/Logger.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
+  src/PreviewMode.cpp
   src/Updater.cpp
   src/FilterSelector/FiltersView/FilterTreeItem.cpp
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp
