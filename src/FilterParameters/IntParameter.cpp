@@ -30,8 +30,8 @@
 #include <QSpinBox>
 #include <QTimerEvent>
 #include <QWidget>
-#include "Common.h"
 #include "DialogSettings.h"
+#include "Globals.h"
 #include "HtmlTranslator.h"
 
 IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(0), _slider(0), _spinBox(0)

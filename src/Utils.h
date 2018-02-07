@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdlib.cpp
+ *  @file Utils.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,26 +22,15 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "GmicStdlib.h"
-#include <QDebug>
-#include <QFile>
-#include <QList>
-#include <QString>
-#include <QStringList>
-#include "Common.h"
-#include "Utils.h"
-#include "gmic.h"
+#ifndef _GMIC_QT_UTILS_H_
+#define _GMIC_QT_UTILS_H_
 
-QByteArray GmicStdLib::Array;
+class QString;
 
-void GmicStdLib::loadStdLib()
+namespace GmicQt
 {
-  QFile stdlib(QString("%1update%2.gmic").arg(GmicQt::path_rc(false)).arg(gmic_version));
-  if (!stdlib.open(QFile::ReadOnly)) {
-    gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-    Array = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
-    Array[Array.size() - 1] = '\n';
-  } else {
-    Array = stdlib.readAll();
-  }
+const QString & path_rc(bool create);
+unsigned int host_app_pid();
 }
+
+#endif // _GMIC_QT_UTILS_H_

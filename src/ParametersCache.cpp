@@ -30,7 +30,9 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include "Common.h"
+#include <iostream>
+#include "Globals.h"
+#include "Utils.h"
 #include "gmic.h"
 
 QHash<QString, QList<QString>> ParametersCache::_parametersCache;

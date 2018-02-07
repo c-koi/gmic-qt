@@ -43,6 +43,7 @@
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
 #include "FilterThread.h"
+#include "Globals.h"
 #include "GmicStdlib.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
@@ -51,6 +52,7 @@
 #include "Logger.h"
 #include "ParametersCache.h"
 #include "Updater.h"
+#include "Utils.h"
 #include "ui_mainwindow.h"
 #include "gmic.h"
 

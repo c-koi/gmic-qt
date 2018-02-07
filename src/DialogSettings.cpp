@@ -27,6 +27,7 @@
 #include <QSettings>
 #include <limits>
 #include "Common.h"
+#include "Globals.h"
 #include "Updater.h"
 #include "ui_dialogsettings.h"
 

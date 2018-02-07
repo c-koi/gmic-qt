@@ -25,9 +25,13 @@
 #ifndef _GMIC_QT_GMIC_QT_H_
 #define _GMIC_QT_GMIC_QT_H_
 
-#define GMIC_QT_ORGANISATION_NAME "GREYC"
-#define GMIC_QT_ORGANISATION_DOMAIN "greyc.fr"
-#define GMIC_QT_APPLICATION_NAME "gmic_qt"
+#ifndef gmic_pixel_type
+#define gmic_pixel_type float
+#endif
+
+#define GMIC_QT_STRINGIFY(X) #X
+#define GMIC_QT_XSTRINGIFY(X) GMIC_QT_STRINGIFY(X)
+#define gmic_pixel_type_str GMIC_QT_XSTRINGIFY(gmic_pixel_type)
 
 class QString;
 
@@ -73,12 +77,7 @@ enum OutputMessageMode
 };
 extern const OutputMessageMode DefaultOutputMessageMode;
 
-extern const float PreviewFactorAny;
-extern const float PreviewFactorFullImage;
-extern const float PreviewFactorActualSize;
-const QString & path_rc(bool create);
 const QString & gmicVersionString();
-unsigned int host_app_pid();
 }
 
 int launchPlugin();

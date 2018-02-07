@@ -28,6 +28,7 @@
 #include <QString>
 #include <limits>
 #include "Common.h"
+#include "Globals.h"
 #include "HtmlTranslator.h"
 #include "gmic_qt.h"
 

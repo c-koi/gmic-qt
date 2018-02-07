@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdlib.cpp
+ *  @file Globals.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,26 +22,12 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "GmicStdlib.h"
-#include <QDebug>
-#include <QFile>
-#include <QList>
-#include <QString>
-#include <QStringList>
-#include "Common.h"
-#include "Utils.h"
-#include "gmic.h"
 
-QByteArray GmicStdLib::Array;
+#include "Globals.h"
 
-void GmicStdLib::loadStdLib()
+namespace GmicQt
 {
-  QFile stdlib(QString("%1update%2.gmic").arg(GmicQt::path_rc(false)).arg(gmic_version));
-  if (!stdlib.open(QFile::ReadOnly)) {
-    gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-    Array = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
-    Array[Array.size() - 1] = '\n';
-  } else {
-    Array = stdlib.readAll();
-  }
+const float PreviewFactorAny = -1.0f;
+const float PreviewFactorFullImage = 1.0f;
+const float PreviewFactorActualSize = 0.0f;
 }

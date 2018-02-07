@@ -26,10 +26,6 @@
 #define _GMIC_QT_COMMON_H_
 
 #include <iostream>
-#include "gmic_qt.h"
-
-#define GMIC_QT_STRINGIFY(X) #X
-#define GMIC_QT_XSTRINGIFY(X) GMIC_QT_STRINGIFY(X)
 
 #ifdef _GMIC_QT_DEBUG_
 #define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
@@ -49,28 +45,9 @@
   qWarning() << ""
 #endif
 
-#ifndef gmic_pixel_type
-#define gmic_pixel_type float
-#endif
-
-#define gmic_pixel_type_str GMIC_QT_XSTRINGIFY(gmic_pixel_type)
-
 template <typename T> inline void unused(const T &, ...)
 {
 }
-
-#define SLIDER_MIN_WIDTH 60
-#define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
-#define FILTERS_VISIBILITY_FILENAME "gmic_qt_visibility.dat"
-
-#define FAVE_FOLDER_TEXT "<b>Faves</b>"
-#define FAVES_IMPORT_KEY "Faves/ImportedGTK179"
-
-#define REFRESH_USING_INTERNET_KEY "Config/RefreshInternetUpdate"
-#define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
-#define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()
-
-#define PREVIEW_MAX_ZOOM_FACTOR 40.0
 
 //#define LOAD_ICON( NAME ) ( GmicQt::DarkThemeEnabled ? QIcon(":/icons/dark/" NAME ".png") : QIcon::fromTheme( NAME , QIcon(":/icons/" NAME ".png") ) )
 #define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))

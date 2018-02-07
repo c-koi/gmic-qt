@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = gimp }
+!defined(HOST,var) { HOST = none }
 
 !defined(PRERELEASE, var) {
 
@@ -229,6 +229,7 @@ HEADERS +=  \
   src/FilterSelector/FiltersVisibilityMap.h \
   src/FilterThread.h \
   src/gmic_qt.h \
+  src/Globals.h \
   src/GmicStdlib.h \
   src/HeadlessProcessor.h \
   src/Host/host.h \
@@ -242,6 +243,7 @@ HEADERS +=  \
   src/ParametersCache.h \
   src/PreviewMode.h \
   src/Updater.h \
+  src/Utils.h \
   src/FilterSelector/FiltersView/FilterTreeFolder.h \
   src/FilterSelector/FiltersView/FilterTreeItem.h \
   src/FilterSelector/FavesModel.h \
@@ -289,6 +291,7 @@ SOURCES += \
   src/FilterSelector/FiltersVisibilityMap.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
+  src/Globals.cpp \
   src/GmicStdlib.cpp \
   src/HeadlessProcessor.cpp \
   src/HtmlTranslator.cpp \
@@ -301,6 +304,7 @@ SOURCES += \
   src/ParametersCache.cpp \
   src/PreviewMode.cpp \
   src/Updater.cpp \
+  src/Utils.cpp \
   src/FilterSelector/FiltersView/FilterTreeItem.cpp \
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp \
   src/FilterSelector/FavesModel.cpp \
@@ -366,8 +370,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
-    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+#SEB    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+#SEB    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui

@@ -54,6 +54,9 @@
 //#define DEFAULT_IMAGE "local/audio-speakers-top.png"
 #endif
 
+#define STRINGIFY(X) #X
+#define XSTRINGIFY(X) STRINGIFY(X)
+
 namespace gmic_qt_standalone
 {
 QImage input_image;
@@ -63,7 +66,7 @@ QString image_filename;
 namespace GmicQt
 {
 const QString HostApplicationName;
-const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
 }
 
 void gmic_qt_get_image_size(int * x, int * y)

@@ -33,6 +33,7 @@
 #include <QTranslator>
 #include <cstring>
 #include "Common.h"
+#include "Globals.h"
 #include "HeadlessProcessor.h"
 #include "MainWindow.h"
 #include "Updater.h"
@@ -40,65 +41,11 @@
 #include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
 
-#ifdef _IS_WINDOWS_
-#include <windows.h>
-#include <tlhelp32.h>
-#endif
-#ifdef _IS_LINUX_
-#include <unistd.h>
-#endif
-
 namespace GmicQt
 {
 const InputMode DefaultInputMode = Active;
 const OutputMode DefaultOutputMode = InPlace;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
-
-const float PreviewFactorAny = -1.0f;
-const float PreviewFactorFullImage = 1.0f;
-const float PreviewFactorActualSize = 0.0f;
-
-const QString & path_rc(bool create)
-{
-  QString qpath = QString::fromLocal8Bit(gmic::path_rc());
-  QFileInfo dir(qpath);
-  static QString result;
-  if (dir.isDir()) {
-    result = qpath;
-    return result;
-  }
-  if (!create || !gmic::init_rc()) {
-    result.clear();
-  } else {
-    result = QString::fromLocal8Bit(gmic::path_rc());
-  }
-  return result;
-}
-
-unsigned int host_app_pid()
-{
-#if defined(_IS_LINUX_)
-  return static_cast<int>(getppid());
-#elif defined(_IS_WINDOWS_)
-  HANDLE h = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-  PROCESSENTRY32 pe;
-  memset(&pe, 0, sizeof(PROCESSENTRY32));
-  pe.dwSize = sizeof(PROCESSENTRY32);
-  DWORD pid = GetCurrentProcessId();
-  if (Process32First(h, &pe)) {
-    do {
-      if (pe.th32ProcessID == pid) {
-        CloseHandle(h);
-        return static_cast<unsigned int>(pe.th32ParentProcessID);
-      }
-    } while (Process32Next(h, &pe));
-  }
-  CloseHandle(h);
-  return static_cast<unsigned int>(pid); // Process own id if no parent was found
-#else
-  return 0;
-#endif
-}
 
 const QString & gmicVersionString()
 {

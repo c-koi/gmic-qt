@@ -33,6 +33,7 @@
 #include <QString>
 #include "Common.h"
 #include "FilterSelector/FiltersModel.h"
+#include "Globals.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 

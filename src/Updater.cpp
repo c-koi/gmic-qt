@@ -27,7 +27,7 @@
 #include <iostream>
 #include "Common.h"
 #include "GmicStdlib.h"
-#include "gmic_qt.h"
+#include "Utils.h"
 #include "gmic.h"
 
 Updater * Updater::_instance = 0;

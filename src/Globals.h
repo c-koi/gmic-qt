@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdlib.cpp
+ *  @file Globals.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,26 +22,31 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "GmicStdlib.h"
-#include <QDebug>
-#include <QFile>
-#include <QList>
-#include <QString>
-#include <QStringList>
-#include "Common.h"
-#include "Utils.h"
-#include "gmic.h"
+#ifndef _GMIC_QT_GLOBALS_H_
+#define _GMIC_QT_GLOBALS_H_
 
-QByteArray GmicStdLib::Array;
+#define GMIC_QT_ORGANISATION_NAME "GREYC"
+#define GMIC_QT_ORGANISATION_DOMAIN "greyc.fr"
+#define GMIC_QT_APPLICATION_NAME "gmic_qt"
 
-void GmicStdLib::loadStdLib()
+namespace GmicQt
 {
-  QFile stdlib(QString("%1update%2.gmic").arg(GmicQt::path_rc(false)).arg(gmic_version));
-  if (!stdlib.open(QFile::ReadOnly)) {
-    gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-    Array = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
-    Array[Array.size() - 1] = '\n';
-  } else {
-    Array = stdlib.readAll();
-  }
+extern const float PreviewFactorAny;
+extern const float PreviewFactorFullImage;
+extern const float PreviewFactorActualSize;
 }
+
+#define SLIDER_MIN_WIDTH 60
+#define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
+#define FILTERS_VISIBILITY_FILENAME "gmic_qt_visibility.dat"
+
+#define FAVE_FOLDER_TEXT "<b>Faves</b>"
+#define FAVES_IMPORT_KEY "Faves/ImportedGTK179"
+
+#define REFRESH_USING_INTERNET_KEY "Config/RefreshInternetUpdate"
+#define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
+#define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()
+
+#define PREVIEW_MAX_ZOOM_FACTOR 40.0
+
+#endif // _GMIC_QT_GLOBALS_H_

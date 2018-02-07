@@ -27,6 +27,7 @@
 #include <QLineEdit>
 #include <cmath>
 #include "Common.h"
+#include "Globals.h"
 #include "ui_zoomlevelselector.h"
 
 ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new Ui::ZoomLevelSelector)

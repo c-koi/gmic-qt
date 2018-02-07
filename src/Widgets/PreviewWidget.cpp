@@ -32,9 +32,11 @@
 #include <algorithm>
 #include <functional>
 #include "Common.h"
+#include "Globals.h"
 #include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
+#include "Utils.h"
 #include "gmic.h"
 
 const PreviewWidget::PreviewRect PreviewWidget::PreviewRect::Full{0.0, 0.0, 1.0, 1.0};

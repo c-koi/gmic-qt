@@ -24,6 +24,7 @@
  */
 #include "Logger.h"
 #include <QString>
+#include "Utils.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 

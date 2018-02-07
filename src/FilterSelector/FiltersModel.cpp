@@ -26,6 +26,7 @@
 #include <QCryptographicHash>
 #include <QDebug>
 #include <limits>
+#include "Globals.h"
 #include "HtmlTranslator.h"
 #include "gmic_qt.h"
 

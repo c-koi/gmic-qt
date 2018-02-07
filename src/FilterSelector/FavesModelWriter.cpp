@@ -30,7 +30,7 @@
 #include <QString>
 #include <QTextStream>
 #include <iostream>
-#include "gmic_qt.h"
+#include "Utils.h"
 
 FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model)
 {

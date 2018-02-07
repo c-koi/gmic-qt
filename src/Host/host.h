@@ -24,16 +24,17 @@
  */
 #ifndef _GMIC_QT_HOST_H_
 #define _GMIC_QT_HOST_H_
-#include "Common.h"
-#include "gmic_qt.h"
 #include <QString>
+#include "gmic_qt.h"
 
-namespace cimg_library {
-template<typename T> struct CImg;
-template<typename T> struct CImgList;
+namespace cimg_library
+{
+template <typename T> struct CImg;
+template <typename T> struct CImgList;
 }
 
-namespace GmicQt {
+namespace GmicQt
+{
 extern const QString HostApplicationName;
 extern const char * HostApplicationShortname;
 }
@@ -55,7 +56,7 @@ void gmic_qt_get_image_size(int * width, int * height);
  * @param[out] width
  * @param[out] height
  */
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode );
+void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode);
 
 /**
  * @brief Get a list of (cropped) image layers from host software.
@@ -74,13 +75,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode );
  * @param height Normalized height of the layers w.r.t. image/extends height
  * @param mode Input mode
  */
-void gmic_qt_get_cropped_images( cimg_library::CImgList<gmic_pixel_type> & images,
-                                 cimg_library::CImgList<char> & imageNames,
-                                 double x,
-                                 double y,
-                                 double width,
-                                 double height,
-                                 GmicQt::InputMode mode);
+void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode);
 
 /**
  * @brief Send a list of new image layers to the host application according to
@@ -91,10 +86,7 @@ void gmic_qt_get_cropped_images( cimg_library::CImgList<gmic_pixel_type> & image
  * @param mode Output mode (\see gmic_qt.cpp)
  * @param verboseLayersLabel Name used for all layers in VerboseLayerName mode, otherwise null.
  */
-void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images,
-                           const cimg_library::CImgList<char> & imageNames,
-                           GmicQt::OutputMode mode,
-                           const char * verboseLayersLabel = nullptr);
+void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel = nullptr);
 
 /**
  * @brief Apply a color profile to a given image

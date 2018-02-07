@@ -36,7 +36,7 @@
 #include <QString>
 #include "Common.h"
 #include "FilterSelector/FavesModel.h"
-#include "gmic_qt.h"
+#include "Utils.h"
 #include "gmic.h"
 
 FavesModelReader::FavesModelReader(FavesModel & model) : _model(model)
