@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
 {
   TIMING;
   ui->setupUi(this);
+  TIMING;
   _messageTimerID = 0;
   _gtkFavesShouldBeImported = false;
   _lastAppliedCommandOutputMessageMode = GmicQt::UnspecifiedOutputMessageMode;
@@ -148,12 +149,12 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   _filtersPresenter = new FiltersPresenter(this);
   _filtersPresenter->setFiltersView(ui->filtersView);
 
+  TIMING;
   loadSettings();
-
+  TIMING;
   ParametersCache::load(!_newSession);
-
+  TIMING;
   setIcons();
-
   QAction * escAction = new QAction(this);
   escAction->setShortcut(QKeySequence(Qt::Key_Escape));
   escAction->setShortcutContext(Qt::ApplicationShortcut);
@@ -164,9 +165,11 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtent);
 
+  TIMING;
   makeConnections();
 
   _previewRandomSeed = cimg_library::cimg::srand();
+  TIMING;
 }
 
 MainWindow::~MainWindow()
