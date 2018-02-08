@@ -40,13 +40,20 @@
 #include <QString>
 #include <QTemporaryFile>
 #include <QTimer>
+#include <memory>
 
 #include "gmic_qt.h"
 class Updater : public QObject {
   Q_OBJECT
 
 public:
-  static void setInstanceParent(QObject * parent);
+  enum UpdateStatus
+  {
+    UpdateSuccessful,
+    SomeUpdatesFailed,
+    UpdateNotNecessary
+  };
+
   static Updater * getInstance();
   static void setOutputMessageMode(GmicQt::OutputMessageMode mode);
   ~Updater();
@@ -74,7 +81,7 @@ public:
   void updateSources(bool useNetwork);
 
 signals:
-  void downloadsFinished(bool ok);
+  void updateIsDone(int status);
 
 public slots:
   void onNetworkReplyFinished(QNetworkReply *);
@@ -91,8 +98,7 @@ private:
   explicit Updater(QObject * parent);
   static QByteArray cimgzDecompress(QByteArray array);
   static QByteArray cimgzDecompressFile(QString filename);
-  static Updater * _instance;
-  static QObject * _instanceParent;
+  static std::unique_ptr<Updater> _instance;
   static GmicQt::OutputMessageMode _outputMessageMode;
 
   QNetworkAccessManager * _networkAccessManager;

@@ -53,7 +53,7 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   }
 
   _showingTimer.setSingleShot(true);
-  _showingTimer.setInterval(1000);
+  _showingTimer.setInterval(500);
   connect(&_showingTimer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
   connect(&_showingTimer, SIGNAL(timeout()), &_timer, SLOT(start()));
   connect(&_showingTimer, SIGNAL(timeout()), this, SLOT(show()));

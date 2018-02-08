@@ -144,6 +144,7 @@ void PreviewWidget::updateOriginalImagePosition()
 
 void PreviewWidget::paintEvent(QPaintEvent * e)
 {
+  TIMING;
   QPainter painter(this);
   QImage qimage;
   if (_paintOriginalImage) {
@@ -182,7 +183,9 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
 
 void PreviewWidget::resizeEvent(QResizeEvent * e)
 {
-  _pendingResize = true;
+  if (isVisible()) {
+    _pendingResize = true;
+  }
   e->accept();
   if (!e->size().width() || !e->size().height()) {
     return;

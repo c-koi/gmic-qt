@@ -79,19 +79,14 @@ int launchPlugin()
     translator->load(QString(":/translations/%1.qm").arg(lang));
     app.installTranslator(translator);
   }
-
-  Updater::setInstanceParent(&app);
-  int ageLimit;
-  {
-    QSettings settings;
-    GmicQt::OutputMessageMode mode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageModeValue", GmicQt::Quiet).toInt());
-    Updater::setOutputMessageMode(mode);
-    ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, 0).toInt();
-  }
-  Updater * updater = Updater::getInstance();
+  TIMING;
   MainWindow mainWindow;
-  QObject::connect(updater, SIGNAL(downloadsFinished(bool)), &mainWindow, SLOT(startupUpdateFinished(bool)));
-  updater->startUpdate(ageLimit, 4, ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY);
+  TIMING;
+  if (QSettings().value("Config/MainWindowMaximized", false).toBool()) {
+    mainWindow.showMaximized();
+  } else {
+    mainWindow.show();
+  }
   TIMING;
   return app.exec();
 }
@@ -110,7 +105,6 @@ int launchPluginHeadlessUsingLastParameters()
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-  Updater::setInstanceParent(&app);
   HeadlessProcessor processor;
   ProgressInfoWindow progressWindow(&processor);
   if (processor.command().isEmpty()) {
@@ -134,7 +128,6 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-  Updater::setInstanceParent(&app);
   HeadlessProcessor headlessProcessor(&app, command, input, output);
   QTimer idle;
   idle.setInterval(0);

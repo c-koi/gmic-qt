@@ -31,6 +31,7 @@
 #include <QTimer>
 #include <QWidget>
 #include "Common.h"
+#include "Updater.h"
 #include "gmic_qt.h"
 
 namespace Ui
@@ -69,7 +70,7 @@ public:
   void setDarkTheme();
 
 public slots:
-  void onUpdateDownloadsFinished(bool ok);
+  void onUpdateDownloadsFinished(int status);
   void onApplyClicked();
   void onPreviewUpdateRequested();
   void onPreviewThreadFinished();
@@ -90,7 +91,7 @@ public slots:
   void onOutputMessageModeChanged(GmicQt::OutputMessageMode);
   void onToggleFullScreen(bool on);
   void onSettingsClicked();
-  void startupUpdateFinished(bool);
+  void onStartupFiltersUpdateFinished(int);
   void onZoomIn();
   void onZoomOut();
   void showZoomWarningIfNeeded();
@@ -163,7 +164,6 @@ private:
   QIcon _collapseIcon;
   QIcon * _expandCollapseIcon;
   int _messageTimerID;
-  bool _showMaximized;
   bool _lastExecutionOK;
   bool _newSession;
   unsigned int _previewRandomSeed;

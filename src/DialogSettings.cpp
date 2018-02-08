@@ -95,7 +95,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   connect(ui->cbNativeColorDialogs, SIGNAL(toggled(bool)), this, SLOT(onColorDialogsToggled(bool)));
 
-  connect(Updater::getInstance(), SIGNAL(downloadsFinished(bool)), this, SLOT(enableUpdateButton()));
+  connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(enableUpdateButton()));
 
   connect(ui->rbDarkTheme, SIGNAL(toggled(bool)), this, SLOT(onDarkThemeToggled(bool)));
 

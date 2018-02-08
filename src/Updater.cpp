@@ -30,8 +30,7 @@
 #include "Utils.h"
 #include "gmic.h"
 
-Updater * Updater::_instance = 0;
-QObject * Updater::_instanceParent = 0;
+std::unique_ptr<Updater> Updater::_instance = std::unique_ptr<Updater>(nullptr);
 GmicQt::OutputMessageMode Updater::_outputMessageMode = GmicQt::Quiet;
 
 Updater::Updater(QObject * parent) : QObject(parent)
@@ -42,16 +41,10 @@ Updater::Updater(QObject * parent) : QObject(parent)
 
 Updater * Updater::getInstance()
 {
-  if (_instance) {
-    return _instance;
+  if (!_instance.get()) {
+    _instance = std::unique_ptr<Updater>(new Updater(nullptr));
   }
-  Q_ASSERT_X(_instanceParent, "Updater::getInstance()", "Error: Parent is missing for Updater instance creation.");
-  return _instance = new Updater(_instanceParent);
-}
-
-void Updater::setInstanceParent(QObject * parent)
-{
-  _instanceParent = parent;
+  return _instance.get();
 }
 
 Updater::~Updater()
@@ -98,11 +91,11 @@ void Updater::updateSources(bool useNetwork)
   // TODO : For testing purpose
   //  _sources.clear();
   //  _sourceIsStdLib.clear();
-  //  _sources.push_back("http://localhost:2222/update218.gmic");
-  //  _sourceIsStdLib["http://localhost:2222/update218.gmic"] = true;
+  //  _sources.push_back("http://localhost:2222/update220.gmic");
+  //  _sourceIsStdLib["http://localhost:2222/update220.gmic"] = true;
 
   SHOW(_sources);
-  SHOW(_sourceIsStdLib);
+  // SHOW(_sourceIsStdLib);
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
@@ -114,7 +107,6 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
   connect(_networkAccessManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(onNetworkReplyFinished(QNetworkReply *)));
   _someNetworkUpdatesAchieved = false;
   if (useNetwork) {
-    TRACE << "Internet update";
     QDateTime limit = QDateTime::currentDateTime().addSecs(-3600 * (qint64)ageLimit);
     for (QString str : _sources) {
       if (str.startsWith("http://") || str.startsWith("https://")) {
@@ -128,7 +120,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
     }
   }
   if (_pendingReplies.isEmpty()) {
-    emit downloadsFinished(true);
+    emit updateIsDone(UpdateNotNecessary);
     _networkAccessManager->deleteLater();
   } else {
     QTimer::singleShot(timeout * 1000, this, SLOT(cancelAllPendingDownloads()));
@@ -220,7 +212,11 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
   }
   _pendingReplies.remove(reply);
   if (_pendingReplies.isEmpty()) {
-    emit downloadsFinished(_errorMessages.isEmpty());
+    if (_errorMessages.isEmpty()) {
+      emit updateIsDone(UpdateSuccessful);
+    } else {
+      emit updateIsDone(SomeUpdatesFailed);
+    }
     _networkAccessManager->deleteLater();
     _networkAccessManager = 0;
   }
@@ -230,7 +226,7 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
 void Updater::notifyAllDowloadsOK()
 {
   _errorMessages.clear();
-  emit downloadsFinished(true);
+  emit updateIsDone(UpdateSuccessful);
 }
 
 void Updater::cancelAllPendingDownloads()

@@ -261,28 +261,29 @@ void MainWindow::updateFiltersFromSources(int ageLimit, bool useNetwork)
   if (useNetwork) {
     ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
   }
-  connect(Updater::getInstance(), SIGNAL(downloadsFinished(bool)), this, SLOT(onUpdateDownloadsFinished(bool)), Qt::UniqueConnection);
+  connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onUpdateDownloadsFinished(int)), Qt::UniqueConnection);
   Updater::getInstance()->startUpdate(ageLimit, 60, useNetwork);
 }
 
-void MainWindow::onUpdateDownloadsFinished(bool ok)
+void MainWindow::onUpdateDownloadsFinished(int status)
 {
   ui->progressInfoWidget->stopAnimationAndHide();
 
-  if (!ok) {
+  if (status == Updater::SomeUpdatesFailed) {
     if (!ui->progressInfoWidget->hasBeenCanceled()) {
       showUpdateErrors();
     }
-  } else {
+  } else if (status == Updater::UpdateSuccessful) {
     if (ui->cbInternetUpdate->isChecked()) {
       QMessageBox::information(this, tr("Update completed"), tr("Filter definitions have been updated."));
     } else {
       showMessage(tr("Filter definitions have been updated."), 3000);
     }
+  } else if (status == Updater::UpdateNotNecessary) {
+    showMessage(tr("No download was needed."), 3000);
   }
 
   buildFiltersTree();
-
   ui->tbUpdateFilters->setEnabled(true);
   if (!_filtersPresenter->currentFilter().hash.isEmpty()) {
     ui->previewWidget->sendUpdateRequest();
@@ -318,20 +319,49 @@ void MainWindow::buildFiltersTree()
   }
 }
 
-void MainWindow::startupUpdateFinished(bool ok)
+void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
-  QObject::disconnect(Updater::getInstance(), SIGNAL(downloadsFinished(bool)), this, SLOT(startupUpdateFinished(bool)));
-  if (_showMaximized) {
-    show();
-    showMaximized();
-  } else {
-    show();
-  }
-  if (!ok) {
+  QObject::disconnect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+
+  ui->progressInfoWidget->stopAnimationAndHide();
+  if (status == Updater::SomeUpdatesFailed) {
     showUpdateErrors();
-  } else if (Updater::getInstance()->someNetworkUpdateAchieved()) {
-    showMessage(tr("Filter definitions have been updated"), 4000);
+  } else if (status == Updater::UpdateSuccessful) {
+    if (Updater::getInstance()->someNetworkUpdateAchieved()) {
+      showMessage(tr("Filter definitions have been updated"), 4000);
+    }
+  } else if (status == Updater::UpdateNotNecessary) {
   }
+
+  if (QSettings().value(FAVES_IMPORT_KEY, false).toBool() || !FavesModelReader::gmicGTKFaveFileAvailable()) {
+    _gtkFavesShouldBeImported = false;
+  } else {
+    _gtkFavesShouldBeImported = askUserForGTKFavesImport();
+  }
+  buildFiltersTree();
+
+  ui->searchField->setFocus();
+
+  // Retrieve and select previously selected filter
+  QString hash = QSettings().value("SelectedFilter", QString()).toString();
+  if (_newSession || !_lastExecutionOK) {
+    hash.clear();
+  }
+  _filtersPresenter->selectFilterFromHash(hash, false);
+  if (_filtersPresenter->currentFilter().hash.isEmpty()) {
+    _filtersPresenter->expandFaveFolder();
+    _filtersPresenter->adjustViewSize();
+    ui->previewWidget->setPreviewFactor(GmicQt::PreviewFactorFullImage, true);
+  } else {
+    _filtersPresenter->adjustViewSize();
+    activateFilter(true);
+    if (ui->cbPreview->isChecked()) { // TODO : Check that two update request cannot be sent
+      ui->previewWidget->sendUpdateRequest();
+    }
+  }
+  // Preview update is triggered when PreviewWidget receives
+  // the WindowActivate Event (while pendingResize is true
+  // after the very first resize event).
 }
 
 void MainWindow::onZoomIn()
@@ -410,8 +440,10 @@ void MainWindow::timerEvent(QTimerEvent * e)
 void MainWindow::showMessage(QString text, int ms)
 {
   clearMessage();
-  ui->messageLabel->setText(text);
-  _messageTimerID = startTimer(ms);
+  if (!text.isEmpty() && ms) {
+    ui->messageLabel->setText(text);
+    _messageTimerID = startTimer(ms);
+  }
 }
 
 void MainWindow::showUpdateErrors()
@@ -736,7 +768,7 @@ void MainWindow::onUpdateFiltersClicked()
 void MainWindow::saveCurrentParameters()
 {
   QString hash = ui->filterParams->filterHash();
-  if (!hash.isEmpty()) {
+  if (!hash.isEmpty() && (hash == ui->filterParams->filterHash())) {
     ParametersCache::setValues(hash, ui->filterParams->valueStringList());
     ParametersCache::setInputOutputState(hash, ui->inOutSelector->state());
   }
@@ -820,8 +852,7 @@ void MainWindow::loadSettings()
   // Mainwindow geometry
   QPoint position = settings.value("Config/MainWindowPosition", QPoint()).toPoint();
   QRect r = settings.value("Config/MainWindowRect", QRect()).toRect();
-  _showMaximized = settings.value("Config/MainWindowMaximized", false).toBool();
-  if (_showMaximized) {
+  if (settings.value("Config/MainWindowMaximized", false).toBool()) {
     ui->pbFullscreen->setChecked(true);
   } else {
     if (r.isValid()) {
@@ -1012,38 +1043,23 @@ void MainWindow::showEvent(QShowEvent * event)
   if (!first) {
     return;
   }
-
   first = false;
-  ui->searchField->setFocus();
   adjustVerticalSplitter();
-
   if (_newSession) {
     Logger::clear();
   }
 
-  if (QSettings().value(FAVES_IMPORT_KEY, false).toBool() || !FavesModelReader::gmicGTKFaveFileAvailable()) {
-    _gtkFavesShouldBeImported = false;
-  } else {
-    _gtkFavesShouldBeImported = askUserForGTKFavesImport();
+  QObject::connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+  int ageLimit;
+  {
+    QSettings settings;
+    GmicQt::OutputMessageMode mode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageModeValue", GmicQt::Quiet).toInt());
+    Updater::setOutputMessageMode(mode);
+    ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, 0).toInt();
   }
-  buildFiltersTree();
-
-  // Retrieve and select previously selected filter
-  QString hash = QSettings().value("SelectedFilter", QString()).toString();
-  if (_newSession || !_lastExecutionOK) {
-    hash.clear();
-  }
-  _filtersPresenter->selectFilterFromHash(hash, false);
-  if (_filtersPresenter->currentFilter().hash.isEmpty()) {
-    _filtersPresenter->expandFaveFolder();
-    ui->previewWidget->setPreviewFactor(GmicQt::PreviewFactorFullImage, true);
-  } else {
-    activateFilter(true);
-  }
-  _filtersPresenter->adjustViewSize();
-  // Preview update is triggered when PreviewWidget receives
-  // the WindowActivate Event (while pendingResize is true
-  // after the very first resize event).
+  const bool useNetwork = ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY;
+  ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
+  Updater::getInstance()->startUpdate(ageLimit, 4, useNetwork);
 }
 
 void MainWindow::resizeEvent(QResizeEvent * e)

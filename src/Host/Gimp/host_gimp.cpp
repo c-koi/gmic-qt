@@ -871,6 +871,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
  */
 void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam * param, gint * nreturn_vals, GimpParam ** return_vals)
 {
+  TIMING;
 #if (GIMP_MAJOR_VERSION == 2 && GIMP_MINOR_VERSION > 8) || (GIMP_MAJOR_VERSION >= 3)
   gegl_init(NULL, NULL);
   gimp_plugin_enable_precision();
