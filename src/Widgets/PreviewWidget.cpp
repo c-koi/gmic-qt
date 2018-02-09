@@ -54,7 +54,6 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   saveVisibleCenter();
 
   _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
-  _positionAtUpdateRequest = PreviewRect::Full;
 
   _pendingResize = false;
   _previewEnabled = true;
@@ -80,9 +79,6 @@ const cimg_library::CImg<float> & PreviewWidget::image() const
 
 void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
 {
-  if (_visibleRect != _positionAtUpdateRequest) {
-    return;
-  }
   *_image = image;
   *_savedPreview = image;
   _savedPreviewIsValid = true;
@@ -215,7 +211,6 @@ void PreviewWidget::normalizedVisibleRect(double & x, double & y, double & width
 void PreviewWidget::sendUpdateRequest()
 {
   invalidateSavedPreview();
-  _positionAtUpdateRequest = _visibleRect;
   emit previewUpdateRequested();
 }
 
@@ -228,13 +223,6 @@ bool PreviewWidget::isAtDefaultZoom() const
 double PreviewWidget::currentZoomFactor() const
 {
   return _currentZoomFactor;
-}
-
-void PreviewWidget::timerEvent(QTimerEvent * e)
-{
-  killTimer(e->timerId());
-  _timerID = 0;
-  sendUpdateRequest();
 }
 
 bool PreviewWidget::event(QEvent * event)
@@ -384,15 +372,10 @@ void PreviewWidget::updateImageNames(gmic_list<char> & imageNames, GmicQt::Input
 void PreviewWidget::onMouseTranslationInImage(QPoint shift)
 {
   if (shift.manhattanLength()) {
+    emit previewVisibleRectIsChanging();
     translateFullImage(shift.x() / _currentZoomFactor, shift.y() / _currentZoomFactor);
     displayOriginalImage();
   }
-}
-
-void PreviewWidget::translateNormalized(double dx, double dy)
-{
-  _visibleRect.x = std::max(0.0, std::min(1.0 - _visibleRect.w, _visibleRect.x + dx));
-  _visibleRect.y = std::max(0.0, std::min(1.0 - _visibleRect.h, _visibleRect.y + dy));
 }
 
 void PreviewWidget::translateFullImage(double dx, double dy)
@@ -402,6 +385,12 @@ void PreviewWidget::translateFullImage(double dx, double dy)
   if (_visibleRect.topLeft() != previousPosition) {
     saveVisibleCenter();
   }
+}
+
+void PreviewWidget::translateNormalized(double dx, double dy)
+{
+  _visibleRect.x = std::max(0.0, std::min(1.0 - _visibleRect.w, _visibleRect.x + dx));
+  _visibleRect.y = std::max(0.0, std::min(1.0 - _visibleRect.h, _visibleRect.y + dy));
 }
 
 void PreviewWidget::zoomIn()
@@ -577,12 +566,20 @@ void PreviewWidget::getOriginalImageCrop(cimg_library::CImg<float> & image)
 
 void PreviewWidget::onPreviewParametersChanged()
 {
+  emit previewVisibleRectIsChanging();
   if (_timerID) {
     killTimer(_timerID);
   }
   displayOriginalImage();
   _timerID = startTimer(RESIZE_DELAY);
   _savedPreviewIsValid = false;
+}
+
+void PreviewWidget::timerEvent(QTimerEvent * e)
+{
+  killTimer(e->timerId());
+  _timerID = 0;
+  sendUpdateRequest();
 }
 
 void PreviewWidget::onPreviewToggled(bool on)

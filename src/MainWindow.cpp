@@ -358,7 +358,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   } else {
     _filtersPresenter->adjustViewSize();
     activateFilter(true);
-    if (ui->cbPreview->isChecked()) { // TODO : Check that two update request cannot be sent
+    if (ui->cbPreview->isChecked()) {
       ui->previewWidget->sendUpdateRequest();
     }
   }
@@ -400,7 +400,7 @@ void MainWindow::onFiltersSelectionModeToggled(bool on)
 
 void MainWindow::onPreviewCheckBoxToggled(bool on)
 {
-  if (!on && _filterThread) {
+  if (!on) {
     abortCurrentFilterThread();
   }
   ui->previewWidget->onPreviewToggled(on);
@@ -466,6 +466,7 @@ void MainWindow::makeConnections()
 
   connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(showZoomWarningIfNeeded()));
   connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(updateZoomLabel(double)));
+  connect(ui->previewWidget, SIGNAL(previewVisibleRectIsChanging()), this, SLOT(abortCurrentFilterThread()));
 
   connect(_filtersPresenter, SIGNAL(filterSelectionChanged()), this, SLOT(onFilterSelectionChanged()));
 
@@ -512,9 +513,8 @@ void MainWindow::onPreviewUpdateRequested()
     ui->previewWidget->invalidateSavedPreview();
     return;
   }
-  if (_filterThread) {
-    abortCurrentFilterThread();
-  }
+  abortCurrentFilterThread();
+
   if (_filtersPresenter->currentFilter().isNoFilter()) {
     ui->previewWidget->displayOriginalImage();
     return;
@@ -598,9 +598,7 @@ void MainWindow::onPreviewThreadFinished()
 void MainWindow::processImage()
 {
   // Abort any already running thread
-  if (_filterThread) {
-    abortCurrentFilterThread();
-  }
+  abortCurrentFilterThread();
   if (_filtersPresenter->currentFilter().isNoFilter()) {
     return;
   }
@@ -948,6 +946,10 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
 
 void MainWindow::abortCurrentFilterThread()
 {
+  if (!_filterThread) {
+    return;
+  }
+  ENTERING;
   _filterThread->disconnect(this);
   connect(_filterThread, SIGNAL(finished()), this, SLOT(onAbortedThreadFinished()));
   _unfinishedAbortedThreads.push_back(_filterThread);

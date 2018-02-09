@@ -72,6 +72,7 @@ protected:
   bool eventFilter(QObject *, QEvent * event) override;
 
 signals:
+  void previewVisibleRectIsChanging();
   void previewUpdateRequested();
   void zoomChanged(double zoom);
 
@@ -161,7 +162,6 @@ private:
   bool _rightClickEnabled;
   std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
   PreviewRect _cachedOriginalImagePosition;
-  PreviewRect _positionAtUpdateRequest;
 };
 
 #endif // _GMIC_QT_PREVIEWWIDGET_H_

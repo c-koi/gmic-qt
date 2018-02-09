@@ -114,13 +114,13 @@ protected:
   void activateFilter(bool resetZoom);
   void setNoFilter();
   void setPreviewPosition(PreviewPosition position);
-  void abortCurrentFilterThread();
 
   void adjustVerticalSplitter();
 
 private slots:
 
   void onAbortedThreadFinished();
+  void abortCurrentFilterThread();
 
 private:
   bool filtersSelectionMode();
