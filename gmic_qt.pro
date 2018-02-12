@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = none }
+!defined(HOST,var) { HOST = gimp }
 
 !defined(PRERELEASE, var) {
 
@@ -383,8 +383,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
-#SEB    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-#SEB    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui
