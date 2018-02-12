@@ -26,7 +26,7 @@
 #include <QDesktopWidget>
 #include <QFile>
 #include "DialogSettings.h"
-#include "FilterThread.h"
+#include "GmicProcessor.h"
 #include "ui_progressinfowidget.h"
 
 #ifdef _IS_WINDOWS_
@@ -35,10 +35,10 @@
 #include <psapi.h>
 #endif
 
-ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _filterThread(0)
+ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _gmicProcessor(nullptr)
 {
   ui->setupUi(this);
-  _mode = FilterThreadMode;
+  _mode = GmicProcessingMode;
   _canceled = false;
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
   ui->progressBar->setRange(0, 100);
@@ -74,9 +74,14 @@ bool ProgressInfoWidget::hasBeenCanceled() const
   return _canceled;
 }
 
+void ProgressInfoWidget::setGmicProcessor(const GmicProcessor * processor)
+{
+  _gmicProcessor = processor;
+}
+
 void ProgressInfoWidget::onTimeOut()
 {
-  if (_mode == FilterThreadMode && _filterThread) {
+  if (_mode == GmicProcessingMode) {
     updateThreadInformation();
   } else if (_mode == FiltersUpdateMode) {
     updateUpdateProgression();
@@ -91,13 +96,12 @@ void ProgressInfoWidget::onCancelClicked(bool)
 
 void ProgressInfoWidget::stopAnimationAndHide()
 {
-  _filterThread = 0;
   _timer.stop();
   _showingTimer.stop();
   hide();
 }
 
-void ProgressInfoWidget::startFilterThreadAnimationAndShow(FilterThread * thread, bool showCancelButton)
+void ProgressInfoWidget::startFilterThreadAnimationAndShow(bool showCancelButton)
 {
   layout()->removeWidget(ui->tbCancel);
   layout()->removeWidget(ui->progressBar);
@@ -106,9 +110,8 @@ void ProgressInfoWidget::startFilterThreadAnimationAndShow(FilterThread * thread
   layout()->addWidget(ui->tbCancel);
   layout()->addWidget(ui->label);
 
-  _filterThread = thread;
   _canceled = false;
-  _mode = FilterThreadMode;
+  _mode = GmicProcessingMode;
   ui->progressBar->setRange(0, 100);
   ui->progressBar->setValue(0);
   ui->progressBar->setInvertedAppearance(false);
@@ -150,8 +153,8 @@ void ProgressInfoWidget::startFiltersUpdateAnimationAndShow()
 
 void ProgressInfoWidget::updateThreadInformation()
 {
-  int ms = _filterThread->duration();
-  float progress = _filterThread->progress();
+  int ms = _gmicProcessor->duration();
+  float progress = _gmicProcessor->progress();
   if (progress >= 0) {
     ui->progressBar->setInvertedAppearance(false);
     ui->progressBar->setTextVisible(true);

@@ -60,7 +60,9 @@ public:
   virtual ~FilterThread();
   void run();
   void setArguments(const QString &);
-  void setInputImages(const cimg_library::CImgList<float> & list, const cimg_library::CImgList<char> & imageNames);
+  void setInputImages(const cimg_library::CImgList<float> & list);
+  void setImageNames(const cimg_library::CImgList<char> & imageNames);
+  void swapImages(cimg_library::CImgList<float> & images);
   const cimg_library::CImgList<float> & images() const;
   const cimg_library::CImgList<char> & imageNames() const;
   QStringList gmicStatus() const;

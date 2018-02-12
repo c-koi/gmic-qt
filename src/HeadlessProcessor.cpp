@@ -90,7 +90,9 @@ void HeadlessProcessor::startProcessing()
     gmic_qt_show_message(QString("G'MIC: %1").arg(_lastArguments).toUtf8().constData());
   }
   _filterThread = new FilterThread(this, _filterName, _lastCommand, _lastArguments, _lastEnvironment, _outputMessageMode);
-  _filterThread->setInputImages(*_gmicImages, imageNames);
+  _filterThread->swapImages(*_gmicImages);
+  _filterThread->setImageNames(imageNames);
+
   connect(_filterThread, SIGNAL(finished()), this, SLOT(onProcessingFinished()));
   _timer.start();
   _filterThread->start();

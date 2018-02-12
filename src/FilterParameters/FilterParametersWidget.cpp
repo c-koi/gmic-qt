@@ -175,7 +175,7 @@ QStringList FilterParametersWidget::valueStringList() const
 
 void FilterParametersWidget::setValues(const QStringList & list, bool notify)
 {
-  if (_actualParametersCount != list.size()) {
+  if (list.isEmpty() || _actualParametersCount != list.size()) {
     return;
   }
   for (int i = 0, j = 0; i < _presetParameters.size(); ++i) {

@@ -52,7 +52,6 @@ public:
   GmicQt::PreviewMode previewMode() const;
   GmicQt::OutputMessageMode outputMessageMode() const;
   void reset();
-  QString gmicEnvString() const;
 
   void disableNotifications();
   void enableNotifications();

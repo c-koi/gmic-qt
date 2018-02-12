@@ -283,6 +283,7 @@ set (gmic_qt_SRCS
   src/Globals.h
   src/gmic_qt.h
   src/GmicStdlib.h
+  src/GmicProcessor.h
   src/HeadlessProcessor.h
   src/Host/host.h
   src/HtmlTranslator.h
@@ -345,6 +346,7 @@ set (gmic_qt_SRCS
   src/gmic_qt.cpp
   src/Globals.cpp
   src/GmicStdlib.cpp
+  src/GmicProcessor.cpp
   src/HeadlessProcessor.cpp
   src/HtmlTranslator.cpp
   src/ImageConverter.cpp

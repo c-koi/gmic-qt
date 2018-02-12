@@ -42,12 +42,8 @@
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
-#include "FilterThread.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
-#include "Host/host.h"
-#include "ImageConverter.h"
-#include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
 #include "ParametersCache.h"
@@ -60,14 +56,13 @@
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
 //
 
-MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindow), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>), _filterThread(0)
+MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindow)
 {
   TIMING;
   ui->setupUi(this);
   TIMING;
   _messageTimerID = 0;
   _gtkFavesShouldBeImported = false;
-  _lastAppliedCommandOutputMessageMode = GmicQt::UnspecifiedOutputMessageMode;
 #ifdef gmic_prerelease
 #define BETA_SUFFIX "_pre#" gmic_prerelease
 #else
@@ -117,9 +112,6 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->tbSelectionMode->setToolTip(tr("Selection mode"));
   ui->tbSelectionMode->setCheckable(true);
 
-  _waitingCursorTimer.setSingleShot(true);
-  connect(&_waitingCursorTimer, SIGNAL(timeout()), this, SLOT(showWaitingCursor()));
-
   ui->filterName->setTextFormat(Qt::RichText);
   ui->filterName->setVisible(false);
 
@@ -149,6 +141,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   _filtersPresenter = new FiltersPresenter(this);
   _filtersPresenter->setFiltersView(ui->filtersView);
 
+  ui->progressInfoWidget->setGmicProcessor(&_processor);
+
   TIMING;
   loadSettings();
   TIMING;
@@ -167,8 +161,6 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
 
   TIMING;
   makeConnections();
-
-  _previewRandomSeed = cimg_library::cimg::srand();
   TIMING;
 }
 
@@ -183,10 +175,6 @@ MainWindow::~MainWindow()
   saveSettings();
   Logger::setMode(Logger::StandardOutput); // Close log file, if necessary
   delete ui;
-  delete _gmicImages;
-  if (_unfinishedAbortedThreads.size()) {
-    qWarning() << QString("Error: ~MainWindow(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size());
-  }
 }
 
 void MainWindow::setIcons()
@@ -401,7 +389,7 @@ void MainWindow::onFiltersSelectionModeToggled(bool on)
 void MainWindow::onPreviewCheckBoxToggled(bool on)
 {
   if (!on) {
-    abortCurrentFilterThread();
+    _processor.cancel();
   }
   ui->previewWidget->onPreviewToggled(on);
 }
@@ -415,8 +403,8 @@ void MainWindow::onFilterSelectionChanged()
 void MainWindow::onEscapeKeyPressed()
 {
   ui->searchField->clear();
-  if (_filterThread) {
-    abortCurrentFilterThread();
+  if (_processor.isProcessing()) {
+    _processor.cancel();
     ui->previewWidget->displayOriginalImage();
   }
 }
@@ -466,7 +454,7 @@ void MainWindow::makeConnections()
 
   connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(showZoomWarningIfNeeded()));
   connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(updateZoomLabel(double)));
-  connect(ui->previewWidget, SIGNAL(previewVisibleRectIsChanging()), this, SLOT(abortCurrentFilterThread()));
+  connect(ui->previewWidget, SIGNAL(previewVisibleRectIsChanging()), &_processor, SLOT(cancel()));
 
   connect(_filtersPresenter, SIGNAL(filterSelectionChanged()), this, SLOT(onFilterSelectionChanged()));
 
@@ -505,6 +493,11 @@ void MainWindow::makeConnections()
   connect(ui->progressInfoWidget, SIGNAL(cancel()), this, SLOT(onProgressionWidgetCancelClicked()));
 
   connect(ui->tbSelectionMode, SIGNAL(toggled(bool)), this, SLOT(onFiltersSelectionModeToggled(bool)));
+
+  connect(&_processor, SIGNAL(previewImageAvailable()), this, SLOT(onPreviewImageAvailable()));
+  connect(&_processor, SIGNAL(previewCommandFailed(QString)), this, SLOT(onPreviewError(QString)));
+  connect(&_processor, SIGNAL(fullImageProcessingFailed(QString)), this, SLOT(onFullImageProcessingError(QString)));
+  connect(&_processor, SIGNAL(fullImageProcessingDone()), this, SLOT(onFullImageProcessingDone()));
 }
 
 void MainWindow::onPreviewUpdateRequested()
@@ -513,152 +506,102 @@ void MainWindow::onPreviewUpdateRequested()
     ui->previewWidget->invalidateSavedPreview();
     return;
   }
-  abortCurrentFilterThread();
-
+  _processor.init();
   if (_filtersPresenter->currentFilter().isNoFilter()) {
     ui->previewWidget->displayOriginalImage();
     return;
   }
   ui->tbUpdateFilters->setEnabled(false);
-  _gmicImages->assign(1);
-  double x, y, w, h;
-  ui->previewWidget->normalizedVisibleRect(x, y, w, h);
-  GmicQt::InputMode inputMode = ui->inOutSelector->inputMode();
-  gmic_list<char> imageNames;
-  gmic_qt_get_cropped_images(*_gmicImages, imageNames, x, y, w, h, inputMode);
-  ui->previewWidget->updateImageNames(imageNames, inputMode);
-  double zoomFactor = ui->previewWidget->currentZoomFactor();
-  if (zoomFactor < 1.0) {
-    for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
-      gmic_image<float> & image = (*_gmicImages)[i];
-      image.resize(std::round(image.width() * zoomFactor), std::round(image.height() * zoomFactor), 1, -100, 1);
-    }
-  }
-  QString env = ui->inOutSelector->gmicEnvString();
-  env += QString(" _preview_width=%1 _preview_height=%2").arg(ui->previewWidget->width()).arg(ui->previewWidget->height());
-  const int timeout = DialogSettings::previewTimeout();
-  env += QString(" _preview_timeout=%1").arg(timeout);
+
   const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
-  _filterThread = new FilterThread(this, currentFilter.plainTextName, currentFilter.previewCommand, ui->filterParams->valueString(), env, ui->inOutSelector->outputMessageMode());
-  _filterThread->setInputImages(*_gmicImages, imageNames);
-  connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()));
+  GmicProcessor::FilterContext context;
+  context.requestType = GmicProcessor::FilterContext::PreviewProcessing;
+  GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
+  ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
+  context.inputOutputState = ui->inOutSelector->state();
+  ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
+  context.zoomFactor = ui->previewWidget->currentZoomFactor();
+  context.previewWidth = ui->previewWidget->width();
+  context.previewHeight = ui->previewWidget->height();
+  context.previewTimeout = DialogSettings::previewTimeout();
+  context.filterName = currentFilter.plainTextName;
+  context.filterCommand = currentFilter.previewCommand;
+  context.filterArguments = ui->filterParams->valueString();
+  _processor.setContext(context);
+  _processor.execute();
+
   ui->filterParams->clearButtonParameters();
-  _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
   _okButtonShouldApply = true;
-  _previewRandomSeed = cimg_library::cimg::srand();
-  _filterThread->start();
 }
 
-void MainWindow::onPreviewThreadFinished()
+void MainWindow::onPreviewImageAvailable()
 {
-  if (!_filterThread) {
-    ui->tbUpdateFilters->setEnabled(true);
-    return;
-  }
+  ui->filterParams->setValues(_processor.gmicStatus(), false);
+  ui->previewWidget->setPreviewImage(_processor.previewImage());
+  ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
-    _filterThread->deleteLater();
     close();
   }
-  QStringList list = _filterThread->gmicStatus();
-  if (!list.isEmpty()) {
-    ui->filterParams->setValues(list, false);
-  }
-  if (_filterThread->failed()) {
-    gmic_image<float> image = ui->previewWidget->image();
-    QSize size = QSize(image.width(), image.height()).scaled(ui->previewWidget->size(), Qt::KeepAspectRatio);
-    image.resize(size.width(), size.height(), 1, -100, 1);
-    QImage qimage;
-    ImageConverter::convert(image, qimage);
-    QPainter painter(&qimage);
-    painter.fillRect(qimage.rect(), QColor(40, 40, 40, 200));
-    painter.setPen(Qt::green);
-    painter.drawText(qimage.rect(), Qt::AlignCenter | Qt::TextWordWrap, _filterThread->errorMessage());
-    painter.end();
-    ImageConverter::convert(qimage, image);
-    ui->previewWidget->setPreviewImage(image);
-  } else {
-    gmic_list<gmic_pixel_type> images = _filterThread->images();
-    for (unsigned int i = 0; i < images.size(); ++i) {
-      gmic_qt_apply_color_profile(images[i]);
-    }
-    gmic_image<float> image;
-    GmicQt::buildPreviewImage(images, image, ui->inOutSelector->previewMode(), ui->previewWidget->width(), ui->previewWidget->height());
-    ui->previewWidget->setPreviewImage(image);
-  }
+}
 
-  _waitingCursorTimer.stop();
-  if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
-    QApplication::restoreOverrideCursor();
-  }
-  _filterThread->deleteLater();
-  _filterThread = 0;
+void MainWindow::onPreviewError(QString message)
+{
+  ui->previewWidget->setPreviewErrorMessage(message);
   ui->tbUpdateFilters->setEnabled(true);
+  if (_pendingActionAfterCurrentProcessing == CloseAction) {
+    close();
+  }
 }
 
 void MainWindow::processImage()
 {
   // Abort any already running thread
-  abortCurrentFilterThread();
-  if (_filtersPresenter->currentFilter().isNoFilter()) {
+  _processor.init();
+  const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
+  if (currentFilter.isNoFilter()) {
     return;
   }
-  _gmicImages->assign();
-  gmic_list<char> imageNames;
-  gmic_qt_get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, ui->inOutSelector->inputMode());
-  ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
-  const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
-  _filterThread = new FilterThread(this, _lastFilterName = currentFilter.plainTextName, _lastAppliedCommand = currentFilter.command, _lastAppliedCommandArguments = ui->filterParams->valueString(),
-                                   ui->inOutSelector->gmicEnvString(), _lastAppliedCommandOutputMessageMode = ui->inOutSelector->outputMessageMode());
-  _filterThread->setInputImages(*_gmicImages, imageNames);
-  connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()));
-  _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
-  ui->progressInfoWidget->startFilterThreadAnimationAndShow(_filterThread, true);
-  ui->filterParams->clearButtonParameters();
 
+  ui->progressInfoWidget->startFilterThreadAnimationAndShow(true);
   // Disable most of the GUI
   for (QWidget * w : _filterUpdateWidgets) {
     w->setEnabled(false);
   }
 
-  cimg_library::cimg::srand(_previewRandomSeed);
-  _filterThread->start();
+  GmicProcessor::FilterContext context;
+  context.requestType = GmicProcessor::FilterContext::FullImageProcessing;
+  GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
+  rect.x = rect.y = rect.w = rect.h = -1;
+  context.inputOutputState = ui->inOutSelector->state();
+  context.filterName = currentFilter.plainTextName;
+  context.filterCommand = currentFilter.command;
+  ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
+  context.filterArguments = ui->filterParams->valueString();
+  ui->filterParams->clearButtonParameters();
+  _processor.setContext(context);
+  _processor.execute();
 }
 
-void MainWindow::onApplyThreadFinished()
+void MainWindow::onFullImageProcessingError(QString message)
 {
   ui->progressInfoWidget->stopAnimationAndHide();
-  // Re-enable the GUI
+  QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
+  for (QWidget * w : _filterUpdateWidgets) {
+    w->setEnabled(true);
+  }
+  if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
+    close();
+  }
+}
+
+void MainWindow::onFullImageProcessingDone()
+{
+  ui->progressInfoWidget->stopAnimationAndHide();
   for (QWidget * w : _filterUpdateWidgets) {
     w->setEnabled(true);
   }
   ui->previewWidget->update();
-
-  QStringList list = _filterThread->gmicStatus();
-  if (!list.isEmpty()) {
-    ui->filterParams->setValues(list, false);
-  }
-
-  if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
-    QApplication::restoreOverrideCursor();
-  }
-  _waitingCursorTimer.stop();
-
-  if (_filterThread->failed()) {
-    _lastAppliedCommand.clear();
-    _lastFilterName.clear();
-    _lastAppliedCommandArguments.clear();
-    _lastAppliedCommandOutputMessageMode = GmicQt::Quiet;
-    QMessageBox::warning(this, tr("Error"), _filterThread->errorMessage(), QMessageBox::Close);
-  } else {
-    gmic_list<gmic_pixel_type> images = _filterThread->images();
-    if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == ApplyAction) && !_filterThread->aborted()) {
-      gmic_qt_output_images(
-          images, _filterThread->imageNames(), ui->inOutSelector->outputMode(),
-          (ui->inOutSelector->outputMessageMode() == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData() : 0);
-    }
-  }
-  _filterThread->deleteLater();
-  _filterThread = 0;
+  ui->filterParams->setValues(_processor.gmicStatus(), false);
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
     close();
   } else {
@@ -667,13 +610,6 @@ void MainWindow::onApplyThreadFinished()
     ui->previewWidget->setFullImageSize(extent);
     ui->previewWidget->sendUpdateRequest();
     _okButtonShouldApply = false;
-  }
-}
-
-void MainWindow::showWaitingCursor()
-{
-  if (_filterThread && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor)) {
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   }
 }
 
@@ -717,11 +653,9 @@ void MainWindow::onOkClicked()
 void MainWindow::onCloseClicked()
 {
   TIMING;
-  if (_filterThread && confirmAbortProcessingOnCloseRequest()) {
+  if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     _pendingActionAfterCurrentProcessing = CloseAction;
-    if (_filterThread) {
-      _filterThread->abortGmic();
-    }
+    _processor.cancel();
   } else {
     close();
   }
@@ -729,10 +663,14 @@ void MainWindow::onCloseClicked()
 
 void MainWindow::onProgressionWidgetCancelClicked()
 {
-  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::FilterThreadMode) {
-    if (_filterThread && _filterThread->isRunning()) {
+  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::GmicProcessingMode) {
+    if (_processor.isProcessing()) {
       _pendingActionAfterCurrentProcessing = NoAction;
-      _filterThread->abortGmic();
+      _processor.cancel();
+      ui->progressInfoWidget->stopAnimationAndHide();
+      for (QWidget * w : _filterUpdateWidgets) {
+        w->setEnabled(true);
+      }
     }
   }
   if (ui->progressInfoWidget->mode() == ProgressInfoWidget::FiltersUpdateMode) {
@@ -796,14 +734,7 @@ void MainWindow::saveSettings()
 
   DialogSettings::saveSettings(settings);
   settings.setValue("LastExecution/gmic_version", gmic_version);
-  settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
-  settings.setValue(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname), _lastFilterName);
-  settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
-  settings.setValue(QString("LastExecution/host_%1/OutputMessageMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandOutputMessageMode);
-  settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), ui->inOutSelector->inputMode());
-  settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), ui->inOutSelector->outputMode());
-  settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), ui->inOutSelector->previewMode());
-  settings.setValue(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname), ui->inOutSelector->gmicEnvString());
+  _processor.saveSettings(settings);
   settings.setValue("SelectedFilter", _filtersPresenter->currentFilter().hash);
   settings.setValue("Config/MainWindowPosition", frameGeometry().topLeft());
   settings.setValue("Config/MainWindowRect", rect());
@@ -944,23 +875,6 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignRight : Qt::AlignLeft));
 }
 
-void MainWindow::abortCurrentFilterThread()
-{
-  if (!_filterThread) {
-    return;
-  }
-  ENTERING;
-  _filterThread->disconnect(this);
-  connect(_filterThread, SIGNAL(finished()), this, SLOT(onAbortedThreadFinished()));
-  _unfinishedAbortedThreads.push_back(_filterThread);
-  _filterThread->abortGmic();
-  _filterThread = 0;
-  _waitingCursorTimer.stop();
-  if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
-    QApplication::restoreOverrideCursor();
-  }
-}
-
 void MainWindow::adjustVerticalSplitter()
 {
   QList<int> sizes;
@@ -976,15 +890,6 @@ void MainWindow::adjustVerticalSplitter()
     sizes.push_back(h - h1);
     sizes.push_back(h1);
     ui->verticalSplitter->setSizes(sizes);
-  }
-}
-
-void MainWindow::onAbortedThreadFinished()
-{
-  FilterThread * thread = dynamic_cast<FilterThread *>(sender());
-  if (_unfinishedAbortedThreads.contains(thread)) {
-    _unfinishedAbortedThreads.removeOne(thread);
-    thread->deleteLater();
   }
 }
 
@@ -1181,10 +1086,10 @@ bool MainWindow::confirmAbortProcessingOnCloseRequest()
 
 void MainWindow::closeEvent(QCloseEvent * e)
 {
-  if (_filterThread && _pendingActionAfterCurrentProcessing != CloseAction) {
+  if (_processor.isProcessing() && _pendingActionAfterCurrentProcessing != CloseAction) {
     if (confirmAbortProcessingOnCloseRequest()) {
-      _filterThread->abortGmic();
       _pendingActionAfterCurrentProcessing = CloseAction;
+      _processor.cancel();
     }
     e->ignore();
   } else {

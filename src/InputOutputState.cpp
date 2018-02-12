@@ -30,6 +30,7 @@ namespace GmicQt
 {
 
 const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode, GmicQt::DefaultOutputMessageMode);
+const InputOutputState InputOutputState::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode, GmicQt::UnspecifiedPreviewMode, GmicQt::UnspecifiedOutputMessageMode);
 
 InputOutputState::InputOutputState() : inputMode(UnspecifiedInputMode), outputMode(UnspecifiedOutputMode), previewMode(GmicQt::UnspecifiedPreviewMode), outputMessageMode(UnspecifiedOutputMessageMode)
 {

@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = gimp }
+!defined(HOST,var) { HOST = none }
 
 !defined(PRERELEASE, var) {
 
@@ -239,6 +239,7 @@ HEADERS +=  \
   src/gmic_qt.h \
   src/Globals.h \
   src/GmicStdlib.h \
+  src/GmicProcessor.h \
   src/HeadlessProcessor.h \
   src/Host/host.h \
   src/HtmlTranslator.h \
@@ -303,6 +304,7 @@ SOURCES += \
   src/gmic_qt.cpp \
   src/Globals.cpp \
   src/GmicStdlib.cpp \
+  src/GmicProcessor.cpp \
   src/HeadlessProcessor.cpp \
   src/HtmlTranslator.cpp \
   src/ImageConverter.cpp \
@@ -381,8 +383,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
-    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+#SEB    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+#SEB    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui

@@ -50,11 +50,13 @@ public:
   void normalizedVisibleRect(double & x, double & y, double & width, double & height) const;
   bool isAtDefaultZoom() const;
   bool isAtFullZoom() const;
+  void getPositionStringCorrection(double & xFactor, double & yFactor) const;
   void updateImageNames(cimg_library::CImgList<char> & imageNames, GmicQt::InputMode mode);
   double currentZoomFactor() const;
   void updateVisibleRect();
   void centerVisibleRect();
   void setPreviewImage(const cimg_library::CImg<float> & image);
+  void setPreviewErrorMessage(const QString &);
   const cimg_library::CImg<float> & image() const;
   void translateNormalized(double dx, double dy);
   void translateFullImage(double dx, double dy);
@@ -162,6 +164,7 @@ private:
   bool _rightClickEnabled;
   std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
   PreviewRect _cachedOriginalImagePosition;
+  QString _errorMessage;
 };
 
 #endif // _GMIC_QT_PREVIEWWIDGET_H_

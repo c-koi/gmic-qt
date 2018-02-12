@@ -44,6 +44,7 @@ struct InputOutputState {
   void toJSONObject(QJsonObject &) const;
   static InputOutputState fromJSONObject(const QJsonObject &);
   static const InputOutputState Default;
+  static const InputOutputState Unspecified;
   bool operator==(const InputOutputState & other) const;
   bool operator!=(const InputOutputState & other) const;
 };

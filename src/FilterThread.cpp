@@ -51,10 +51,19 @@ void FilterThread::setArguments(const QString & str)
   _arguments = str;
 }
 
-void FilterThread::setInputImages(const cimg_library::CImgList<float> & list, const cimg_library::CImgList<char> & imageNames)
+void FilterThread::setImageNames(const cimg_library::CImgList<char> & imageNames)
+{
+  *_imageNames = imageNames;
+}
+
+void FilterThread::swapImages(cimg_library::CImgList<float> & images)
+{
+  _images->swap(images);
+}
+
+void FilterThread::setInputImages(const cimg_library::CImgList<float> & list)
 {
   *_images = list;
-  *_imageNames = imageNames;
 }
 
 const cimg_library::CImgList<float> & FilterThread::images() const
@@ -125,7 +134,7 @@ void FilterThread::run()
   _startTime.start();
   _errorMessage.clear();
   _failed = false;
-  if (!_images) {
+  if (!*_images) {
     _images->assign(1);
     _imageNames->assign(1);
   }

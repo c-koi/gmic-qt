@@ -31,8 +31,8 @@
 #include <QTimer>
 #include <QWidget>
 #include "Common.h"
+#include "GmicProcessor.h"
 #include "Updater.h"
-#include "gmic_qt.h"
 
 namespace Ui
 {
@@ -73,9 +73,7 @@ public slots:
   void onUpdateDownloadsFinished(int status);
   void onApplyClicked();
   void onPreviewUpdateRequested();
-  void onPreviewThreadFinished();
-  void onApplyThreadFinished();
-  void showWaitingCursor();
+  void onFullImageProcessingDone();
   void expandOrCollapseFolders();
   void search(QString);
   void onOkClicked();
@@ -100,6 +98,8 @@ public slots:
   void onPreviewCheckBoxToggled(bool);
   void onFilterSelectionChanged();
   void onEscapeKeyPressed();
+  void onPreviewImageAvailable();
+  void onPreviewError(QString message);
 
 protected:
   void timerEvent(QTimerEvent *);
@@ -119,8 +119,7 @@ protected:
 
 private slots:
 
-  void onAbortedThreadFinished();
-  void abortCurrentFilterThread();
+  void onFullImageProcessingError(QString message);
 
 private:
   bool filtersSelectionMode();
@@ -145,32 +144,20 @@ private:
   };
 
   Ui::MainWindow * ui;
-  cimg_library::CImgList<float> * _gmicImages;
-  FilterThread * _filterThread;
-  QList<FilterThread *> _unfinishedAbortedThreads;
-  QTimer _waitingCursorTimer;
-  static const int WAITING_CURSOR_DELAY = 200;
 
   ProcessingAction _pendingActionAfterCurrentProcessing;
   PreviewPosition _previewPosition = PreviewOnRight;
   bool _okButtonShouldApply = false;
-
-  QString _lastAppliedCommand;
-  QString _lastAppliedCommandArguments;
-  QString _lastFilterName;
-  GmicQt::OutputMessageMode _lastAppliedCommandOutputMessageMode;
-
   QIcon _expandIcon;
   QIcon _collapseIcon;
   QIcon * _expandCollapseIcon;
   int _messageTimerID;
   bool _lastExecutionOK;
   bool _newSession;
-  unsigned int _previewRandomSeed;
-
+  bool _gtkFavesShouldBeImported;
   QVector<QWidget *> _filterUpdateWidgets;
   FiltersPresenter * _filtersPresenter;
-  bool _gtkFavesShouldBeImported;
+  GmicProcessor _processor;
 };
 
 #endif // _GMIC_QT_MAINWINDOW_H_

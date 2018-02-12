@@ -121,11 +121,6 @@ GmicQt::OutputMessageMode InOutPanel::outputMessageMode() const
   return static_cast<GmicQt::OutputMessageMode>(mode);
 }
 
-QString InOutPanel::gmicEnvString() const
-{
-  return QString("_input_layers=%1 _output_mode=%2 _output_messages=%3 _preview_mode=%4").arg(inputMode()).arg(outputMode()).arg(outputMessageMode()).arg(previewMode());
-}
-
 void InOutPanel::setInputMode(GmicQt::InputMode mode)
 {
   int index = ui->inputLayers->findData(mode);

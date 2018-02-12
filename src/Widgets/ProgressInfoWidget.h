@@ -27,7 +27,7 @@
 #include <QMainWindow>
 #include <QTimer>
 
-class FilterThread;
+class GmicProcessor;
 namespace Ui
 {
 class ProgressInfoWidget;
@@ -42,19 +42,20 @@ public:
 
   enum Mode
   {
-    FilterThreadMode,
+    GmicProcessingMode,
     FiltersUpdateMode
   };
 
   Mode mode() const;
 
   bool hasBeenCanceled() const;
+  void setGmicProcessor(const GmicProcessor * processor);
 
 public slots:
   void onTimeOut();
   void onCancelClicked(bool);
   void stopAnimationAndHide();
-  void startFilterThreadAnimationAndShow(FilterThread * thread, bool showCancelButton);
+  void startFilterThreadAnimationAndShow(bool showCancelButton);
   void startFiltersUpdateAnimationAndShow();
 
 signals:
@@ -65,7 +66,7 @@ private:
   void updateUpdateProgression();
 
   Ui::ProgressInfoWidget * ui;
-  FilterThread * _filterThread;
+  const GmicProcessor * _gmicProcessor;
   QTimer _timer;
   QTimer _showingTimer;
   Mode _mode;

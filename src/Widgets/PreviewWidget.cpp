@@ -79,6 +79,7 @@ const cimg_library::CImg<float> & PreviewWidget::image() const
 
 void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
 {
+  _errorMessage.clear();
   *_image = image;
   *_savedPreview = image;
   _savedPreviewIsValid = true;
@@ -91,10 +92,16 @@ void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
   update();
 }
 
+void PreviewWidget::setPreviewErrorMessage(const QString & message)
+{
+  _errorMessage = message;
+  _paintOriginalImage = false;
+  update();
+}
+
 void PreviewWidget::setFullImageSize(const QSize & size)
 {
   _fullImageSize = size;
-  _image->assign();
   _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
   updateVisibleRect();
   saveVisibleCenter();
@@ -173,6 +180,11 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     }
     ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
     painter.drawImage(_imagePosition, qimage);
+    if (!_errorMessage.isEmpty()) { // TODO : Check this
+      painter.fillRect(_imagePosition, QColor(40, 40, 40, 200));
+      painter.setPen(Qt::green);
+      painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
+    }
   }
   e->accept();
 }
@@ -345,14 +357,20 @@ void PreviewWidget::abortUpdateTimer()
   }
 }
 
+void PreviewWidget::getPositionStringCorrection(double & xFactor, double & yFactor) const
+{
+  xFactor = _currentZoomFactor * (_visibleRect.w * _fullImageSize.width());
+  yFactor = _currentZoomFactor * (_visibleRect.h * _fullImageSize.height());
+}
+
 void PreviewWidget::updateImageNames(gmic_list<char> & imageNames, GmicQt::InputMode mode)
 {
+  const float xFactor = _currentZoomFactor * (_visibleRect.w * _fullImageSize.width());
+  const float yFactor = _currentZoomFactor * (_visibleRect.h * _fullImageSize.height());
+
   int maxWidth;
   int maxHeight;
   LayersExtentProxy::getExtent(mode, maxWidth, maxHeight);
-  float xFactor = (_visibleRect.w * _fullImageSize.width()) / (float)maxWidth;
-  float yFactor = (_visibleRect.h * _fullImageSize.height()) / (float)maxHeight;
-
   for (size_t i = 0; i < imageNames.size(); ++i) {
     gmic_image<char> & name = imageNames[i];
     QString str((const char *)name);
@@ -360,8 +378,8 @@ void PreviewWidget::updateImageNames(gmic_list<char> & imageNames, GmicQt::Input
     if (str.contains(position) && position.matchedLength() > 0) {
       int xPos = position.cap(1).toInt();
       int yPos = position.cap(3).toInt();
-      int newXPos = (int)(xPos * xFactor * _currentZoomFactor);
-      int newYPos = (int)(yPos * yFactor * _currentZoomFactor);
+      int newXPos = (int)(xPos * (xFactor / (float)maxWidth));
+      int newYPos = (int)(yPos * (yFactor / (float)maxHeight));
       str.replace(position.cap(0), QString("pos(%1%2%3)").arg(newXPos).arg(position.cap(2)).arg(newYPos));
       name.resize(str.size() + 1);
       std::memcpy(name.data(), str.toLatin1().constData(), name.width());
@@ -521,10 +539,6 @@ void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
     } else {
       _visibleRect.moveCenter(_savedVisibleCenter);
     }
-    // TODO : Remove
-    //    if (_previewFactor == GmicQt::PreviewFactorActualSize) {
-    //      centerVisibleRect();
-    //    }
   }
   emit zoomChanged(_currentZoomFactor);
 }
