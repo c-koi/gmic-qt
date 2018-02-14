@@ -53,7 +53,7 @@ public:
 
 public slots:
   void onTimeOut();
-  void onCancelClicked(bool);
+  void onCancelClicked();
   void stopAnimationAndHide();
   void startFilterThreadAnimationAndShow(bool showCancelButton);
   void startFiltersUpdateAnimationAndShow();

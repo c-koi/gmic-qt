@@ -105,6 +105,11 @@ void GmicProcessor::execute()
   _filterThread->start();
 }
 
+bool GmicProcessor::isProcessingFullImage() const
+{
+  return _filterContext.requestType == FilterContext::FullImageProcessing;
+}
+
 bool GmicProcessor::isProcessing() const
 {
   return _filterThread;

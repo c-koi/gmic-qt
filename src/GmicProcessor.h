@@ -75,6 +75,8 @@ public:
   void setContext(const FilterContext & context);
   void execute();
 
+  bool isProcessingFullImage() const;
+
   bool isProcessing() const;
   bool hasUnfinishedAbortedThreads() const;
 

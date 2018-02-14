@@ -45,7 +45,7 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   ui->tbCancel->setIcon(LOAD_ICON("process-stop"));
   ui->tbCancel->setToolTip(tr("Abort"));
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
-  connect(ui->tbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked(bool)));
+  connect(ui->tbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
   if (!parent) {
     QRect position = frameGeometry();
     position.moveCenter(QDesktopWidget().availableGeometry().center());
@@ -88,7 +88,7 @@ void ProgressInfoWidget::onTimeOut()
   }
 }
 
-void ProgressInfoWidget::onCancelClicked(bool)
+void ProgressInfoWidget::onCancelClicked()
 {
   _canceled = true;
   emit cancel();

@@ -402,10 +402,14 @@ void MainWindow::onFilterSelectionChanged()
 
 void MainWindow::onEscapeKeyPressed()
 {
-  ui->searchField->clear();
   if (_processor.isProcessing()) {
-    _processor.cancel();
-    ui->previewWidget->displayOriginalImage();
+    if (_processor.isProcessingFullImage()) {
+      ui->progressInfoWidget->onCancelClicked();
+    } else {
+      ui->searchField->clear();
+      _processor.cancel();
+      ui->previewWidget->displayOriginalImage();
+    }
   }
 }
 
