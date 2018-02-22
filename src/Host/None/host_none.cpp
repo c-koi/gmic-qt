@@ -45,11 +45,11 @@
 //#define DEFAULT_IMAGE "local/space-shuttle-transp.png"
 //#define DEFAULT_IMAGE "local/bug.jpg"
 //#define DEFAULT_IMAGE "local/crop_inktober.jpg"
-#define DEFAULT_IMAGE "local/lena.png"
+//#define DEFAULT_IMAGE "local/lena.png"
 //#define DEFAULT_IMAGE "local/transp.png"
 //#define DEFAULT_IMAGE "local/small_lena.png"
 //#define DEFAULT_IMAGE "local/ken.jpg"
-//#define DEFAULT_IMAGE "local/ferrari.jpg"
+#define DEFAULT_IMAGE "local/ferrari.jpg"
 //#define DEFAULT_IMAGE "local/audio-speakers.png"
 //#define DEFAULT_IMAGE "local/audio-speakers-top.png"
 #endif
@@ -182,6 +182,4 @@ int main(int argc, char * argv[])
   }
 }
 
-void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> &)
-{
-}
+void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> &) {}

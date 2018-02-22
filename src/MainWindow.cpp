@@ -79,8 +79,9 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
-  _filterUpdateWidgets = {ui->previewWidget,   ui->tbZoomIn,     ui->tbZoomOut,  ui->tbZoomReset, ui->filtersView, ui->filterParams,
-                          ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings, ui->pbOk,        ui->pbApply};
+  _filterUpdateWidgets = {ui->previewWidget,   ui->tbZoomIn,     ui->tbZoomOut,  ui->tbZoomReset,  ui->zoomLevelSelector, ui->filtersView,   ui->filterParams,
+                          ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings, ui->pbOk,         ui->pbApply,           ui->inOutSelector, ui->tbResetParameters,
+                          ui->searchField,     ui->cbPreview,    ui->tbAddFave,  ui->tbRemoveFave, ui->tbRenameFave};
 
   ui->tbZoomIn->setToolTip(tr("Zoom in"));
   ui->tbZoomOut->setToolTip(tr("Zoom out"));
