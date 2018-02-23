@@ -57,7 +57,7 @@ public slots:
   void stopAnimationAndHide();
   void startFilterThreadAnimationAndShow(bool showCancelButton);
   void startFiltersUpdateAnimationAndShow();
-
+  void showBusyIndicator();
 signals:
   void cancel();
 

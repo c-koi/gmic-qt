@@ -170,7 +170,7 @@ GmicProcessor::~GmicProcessor()
   delete _gmicImages;
   delete _previewImage;
   if (_unfinishedAbortedThreads.size()) {
-    qWarning() << QString("Error: ~MainWindow(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size());
+    qWarning() << QString("Error: ~GmicProcessor(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size());
   }
 }
 

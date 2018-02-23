@@ -151,6 +151,11 @@ void ProgressInfoWidget::startFiltersUpdateAnimationAndShow()
   // 3. show();
 }
 
+void ProgressInfoWidget::showBusyIndicator()
+{
+  ui->progressBar->setRange(0, 0);
+}
+
 void ProgressInfoWidget::updateThreadInformation()
 {
   int ms = _gmicProcessor->duration();

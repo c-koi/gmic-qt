@@ -181,7 +181,7 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
     painter.drawImage(_imagePosition, qimage);
     if (!_errorMessage.isEmpty()) { // TODO : Check this
-      painter.fillRect(_imagePosition, QColor(40, 40, 40, 200));
+      painter.fillRect(_imagePosition, QColor(40, 40, 40, 150));
       painter.setPen(Qt::green);
       painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
     }
