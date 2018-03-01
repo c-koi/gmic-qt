@@ -24,6 +24,8 @@
  */
 #include "Updater.h"
 #include <QDebug>
+#include <QNetworkRequest>
+#include <QUrl>
 #include <iostream>
 #include "Common.h"
 #include "GmicStdlib.h"
@@ -112,7 +114,24 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
         QFileInfo info(filename);
         if (!info.exists() || info.lastModified() < limit) {
           TRACE << "Downloading" << str << "to" << filename;
-          _pendingReplies.insert(_networkAccessManager->get(QNetworkRequest(QUrl(str))));
+          QUrl url(str);
+          QNetworkRequest request(url);
+          request.setHeader(QNetworkRequest::UserAgentHeader, GmicQt::pluginFullName());
+          // PRIVACY NOTICE (to be displayed in one of the "About" filters of the plugin
+          //
+          // PRIVACY NOTICE
+          // This plugin may download up-to-date filter definitions from the gmic.eu server.
+          // It is the case when first launched after a fresh installation, and periodically
+          // with a frequency which can be set in the settings dialog.
+          // The user should be aware that the following information may be retrieved
+          // from the server logs: IP address of the client; date and time of the request;
+          // as well as a short string, supplied through the HTTP protocol "User Agent" header
+          // field, which describes the full plugin version as shown in the window title
+          // (e.g. "G'MIC-Qt for GIMP 2.8 - Linux 64 bits - 2.2.1_pre#180301").
+          //
+          // Note that this information may solely be used for purely anonymous
+          // statistical purposes.
+          _pendingReplies.insert(_networkAccessManager->get(request));
         }
       }
     }

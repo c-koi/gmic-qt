@@ -31,6 +31,7 @@ namespace GmicQt
 {
 const QString & path_rc(bool create);
 unsigned int host_app_pid();
+const QString & pluginFullName();
 }
 
 #endif // _GMIC_QT_UTILS_H_

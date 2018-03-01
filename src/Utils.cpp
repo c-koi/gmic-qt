@@ -26,6 +26,8 @@
 #include "Utils.h"
 #include <QFileInfo>
 #include <QString>
+#include "Host/host.h"
+#include "gmic_qt.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
@@ -78,5 +80,23 @@ unsigned int host_app_pid()
 #else
   return 0;
 #endif
+}
+
+const QString & pluginFullName()
+{
+#ifdef gmic_prerelease
+#define BETA_SUFFIX "_pre#" gmic_prerelease
+#else
+#define BETA_SUFFIX ""
+#endif
+  static QString result;
+  if (result.isEmpty()) {
+    result = QString("G'MIC-Qt %1- %2 %3 bits - %4" BETA_SUFFIX)
+                 .arg(GmicQt::HostApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(GmicQt::HostApplicationName))
+                 .arg(cimg_library::cimg::stros())
+                 .arg(sizeof(void *) == 8 ? 64 : 32)
+                 .arg(GmicQt::gmicVersionString());
+  }
+  return result;
 }
 }

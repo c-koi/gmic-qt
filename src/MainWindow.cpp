@@ -63,17 +63,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   TIMING;
   _messageTimerID = 0;
   _gtkFavesShouldBeImported = false;
-#ifdef gmic_prerelease
-#define BETA_SUFFIX "_pre#" gmic_prerelease
-#else
-#define BETA_SUFFIX ""
-#endif
 
-  setWindowTitle(QString("G'MIC-Qt %1- %2 %3 bits - %4" BETA_SUFFIX)
-                     .arg(GmicQt::HostApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(GmicQt::HostApplicationName))
-                     .arg(cimg_library::cimg::stros())
-                     .arg(sizeof(void *) == 8 ? 64 : 32)
-                     .arg(GmicQt::gmicVersionString()));
+  setWindowTitle(GmicQt::pluginFullName());
 
   QStringList tsp = QIcon::themeSearchPaths();
   tsp.append(QString("/usr/share/icons/gnome"));
