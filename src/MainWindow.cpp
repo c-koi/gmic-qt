@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
 
   ui->progressInfoWidget->hide();
   ui->messageLabel->setText(QString());
-  ui->messageLabel->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
+  ui->messageLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
   ui->filterParams->setNoFilter();
   _pendingActionAfterCurrentProcessing = NoAction;
@@ -863,7 +863,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
     list = ui->splitter->widget(1);
     params = ui->splitter->widget(2);
   } else {
-    ui->messageLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    ui->messageLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     list = ui->splitter->widget(0);
     params = ui->splitter->widget(1);
     preview = ui->splitter->widget(2);
@@ -979,7 +979,7 @@ void MainWindow::showEvent(QShowEvent * event)
     QSettings settings;
     GmicQt::OutputMessageMode mode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageModeValue", GmicQt::Quiet).toInt());
     Updater::setOutputMessageMode(mode);
-    ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, 0).toInt();
+    ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
   }
   const bool useNetwork = ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY;
   ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();

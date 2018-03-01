@@ -135,7 +135,7 @@ void DialogSettings::loadSettings()
   _darkThemeEnabled = settings.value("Config/DarkTheme", false).toBool();
   _languageCode = settings.value("Config/LanguageCode", QString()).toString();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
-  _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_NEVER_UPDATE_PERIODICITY).toInt();
+  _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue", QDir::homePath()).toString();
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath", QDir::homePath()).toString();
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
@@ -221,9 +221,7 @@ void DialogSettings::onUpdateClicked()
   }
 }
 
-void DialogSettings::onDarkThemeToggled(bool)
-{
-}
+void DialogSettings::onDarkThemeToggled(bool) {}
 
 void DialogSettings::onUpdatePeriodicityChanged(int)
 {
