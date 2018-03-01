@@ -47,9 +47,7 @@ Updater * Updater::getInstance()
   return _instance.get();
 }
 
-Updater::~Updater()
-{
-}
+Updater::~Updater() {}
 
 void Updater::updateSources(bool useNetwork)
 {

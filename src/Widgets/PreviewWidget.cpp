@@ -122,8 +122,7 @@ void PreviewWidget::centerVisibleRect()
 
 void PreviewWidget::updateOriginalImagePosition()
 {
-  QSize size = originalImageCropSize();
-  _originalImageSize = size;
+  _originalImageSize = originalImageCropSize();
   if (_currentZoomFactor > 1.0) {
     _originaImageScaledSize = _originalImageSize;
     QSize imageSize(std::round(_originalImageSize.width() * _currentZoomFactor), std::round(_originalImageSize.height() * _currentZoomFactor));
@@ -166,8 +165,14 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
     //  If preview image has a size different from the original image crop, or
     //  we are at "full image" zoom of an image smaller than the widget,
     //  then the image should fit the widget size.
-    if ((QSize(_image->width(), _image->height()) != _originaImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
-      QSize imageSize = QSize(_image->width(), _image->height()).scaled(width(), height(), Qt::KeepAspectRatio);
+    const QSize previewImageSize(_image->width(), _image->height());
+    if ((previewImageSize != _originaImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
+      QSize imageSize;
+      if (previewImageSize != _originaImageScaledSize) {
+        imageSize = previewImageSize.scaled(width(), height(), Qt::KeepAspectRatio);
+      } else {
+        imageSize = QSize(std::round(_originalImageSize.width() * _currentZoomFactor), std::round(_originalImageSize.height() * _currentZoomFactor));
+      }
       _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), std::max(0, (height() - imageSize.height()) / 2)), imageSize);
       _originaImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
     }
@@ -313,7 +318,7 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
     return;
   }
 
-  if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
+  if (_rightClickEnabled && _paintOriginalImage && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
       if (_savedPreviewIsValid) {
         restorePreview();

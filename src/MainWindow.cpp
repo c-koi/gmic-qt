@@ -543,6 +543,7 @@ void MainWindow::onPreviewImageAvailable()
 {
   ui->filterParams->setValues(_processor.gmicStatus(), false);
   ui->previewWidget->setPreviewImage(_processor.previewImage());
+  ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
     close();
@@ -933,7 +934,7 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
-    ui->previewWidget->enableRightClick();
+    // ui->previewWidget->enableRightClick();
     showZoomWarningIfNeeded();
     _okButtonShouldApply = true;
     ui->tbResetParameters->setVisible(true);
