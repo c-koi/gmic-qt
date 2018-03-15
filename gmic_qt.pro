@@ -57,19 +57,28 @@ DEFINES += cimg_use_fftw3 cimg_use_zlib
 DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_rng
 DEFINES += cimg_appname="\\\"gmic\\\""
 
-equals( TIMING, "on" ) {
+equals(TIMING, "on") {
 DEFINES += _TIMING_ENABLED_
 message(Timing is enabled)
 }
 
-!defined(GMIC_PATH,var) {
+defined(GMIC_PATH, var) {
+  message("GMIC_PATH is set ("$$GMIC_PATH")")
+}
+!defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
+  message(GMIC_PATH was not set: Found gmic sources in ../src)
+  GMIC_PATH = ../src
+}
+!defined(GMIC_PATH, var):exists(../gmic/src/gmic.cpp) {
+  message(GMIC_PATH was not set: Found gmic sources in ../gmic/src)
   GMIC_PATH = ../gmic/src
 }
-message( GMIC PATH $$GMIC_PATH )
-
-!exists( $$GMIC_PATH/gmic.cpp ) {
- error("G'MIC repository is missing (" $$GMIC_PATH ")")
+defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
+ error("G'MIC repository was not found ("$$GMIC_PATH")")
 }
+
+message("G'MIC repository was found ("$$GMIC_PATH")")
+
 
 equals( COMPILER, "clang" ) {
  message("Compiler is clang++")
