@@ -21,7 +21,12 @@ else()
   message("Building for target host application: " ${GMIC_QT_HOST})
 endif()
 
-set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
+if(EXISTS "../src/gmic.cpp")
+  set (GMIC_PATH "../src" CACHE STRING "Define the path to the gmic headers")
+else()
+  set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
+endif()
+
 message("G'MIC path: " ${GMIC_PATH})
 
 option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
