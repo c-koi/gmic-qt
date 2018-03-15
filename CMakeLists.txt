@@ -25,7 +25,7 @@ set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
 message("G'MIC path: " ${GMIC_PATH})
 
 option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
-set (GMIC_LIB_PATH "${GMIC_PATH}/.." CACHE STRING "Define the path to the GMIC shared library")
+set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shared library")
 
 #
 # Look for G'MIC repository
@@ -390,7 +390,7 @@ if(ENABLE_DYNAMIC_LINKING)
 else(ENABLE_DYNAMIC_LINKING)
   set(gmic_qt_SRCS
     ${gmic_qt_SRCS}
-  ${GMIC_PATH}/gmic.cpp
+    ${GMIC_PATH}/gmic.cpp
     )
 endif(ENABLE_DYNAMIC_LINKING)
 
@@ -460,11 +460,11 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
     add_definitions(-DGMIC_HOST=gimp_qt -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
-        gmic_gimp_qt
-    PRIVATE
-        ${GIMP2_LIBRARIES}
-        ${gmic_qt_LIBRARIES}
-    )
+      gmic_gimp_qt
+      PRIVATE
+      ${GIMP2_LIBRARIES}
+      ${gmic_qt_LIBRARIES}
+      )
 
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
@@ -472,10 +472,10 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
     add_definitions(-DGMIC_HOST=krita)
     add_executable(gmic_krita_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
-        gmic_krita_qt
-	PRIVATE
-        ${gmic_qt_LIBRARIES}
-	)
+      gmic_krita_qt
+      PRIVATE
+      ${gmic_qt_LIBRARIES}
+      )
 
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
