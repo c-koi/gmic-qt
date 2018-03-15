@@ -6,10 +6,10 @@
 
 !defined(HOST,var) { HOST = gimp }
 
+!defined(GMIC_DYNAMIC_LINKING,var) { GMIC_DYNAMIC_LINKING = off }
+
 !defined(PRERELEASE, var) {
-
 # calling 'date' directly crashes on MSYS2!
-
    PRERELEASE = $$system(bash pre_version.sh)
 }
 
@@ -333,8 +333,14 @@ SOURCES += \
   src/Widgets/LanguageSelectionWidget.cpp \
   src/Widgets/ProgressInfoWindow.cpp
 
+equals(GMIC_DYNAMIC_LINKING, "on" ) {
+  message(Dynamic linking with libgmic)
+  LIBS += $$GMIC_PATH/libgmic.so
+}
 
-SOURCES += $$GMIC_PATH/gmic.cpp
+equals(GMIC_DYNAMIC_LINKING, "off" ) {
+   SOURCES += $$GMIC_PATH/gmic.cpp
+}
 
 # ALL_FORMS
 FORMS +=  ui/inoutpanel.ui \
