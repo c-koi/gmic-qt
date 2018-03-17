@@ -364,7 +364,10 @@ FORMS +=  ui/inoutpanel.ui \
           ui/languageselectionwidget.ui \
           ui/filtersview.ui
 
-RESOURCES = gmic_qt.qrc translations.qrc
+RESOURCES += gmic_qt.qrc translations.qrc
+equals( HOST, "none") {
+ RESOURCES += standalone.qrc
+}
 
 TRANSLATIONS = \
 translations/cs.ts \

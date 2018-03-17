@@ -137,7 +137,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
     }
   }
   if (_pendingReplies.isEmpty()) {
-    emit updateIsDone(UpdateNotNecessary);
+    QTimer::singleShot(0, this, SLOT(onUpdateNotNecessary())); // While GUI is Idle
     _networkAccessManager->deleteLater();
   } else {
     QTimer::singleShot(timeout * 1000, this, SLOT(cancelAllPendingDownloads()));
@@ -256,6 +256,11 @@ void Updater::cancelAllPendingDownloads()
     _errorMessages << QString(tr("Download timeout: %1")).arg(reply->request().url().toString());
     reply->abort();
   }
+}
+
+void Updater::onUpdateNotNecessary()
+{
+  emit updateIsDone(UpdateNotNecessary);
 }
 
 QByteArray Updater::cimgzDecompress(QByteArray array)

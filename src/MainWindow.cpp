@@ -322,8 +322,15 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
     _gtkFavesShouldBeImported = askUserForGTKFavesImport();
   }
   buildFiltersTree();
-
   ui->searchField->setFocus();
+
+  // Let the standalone version load an image, if necessary (not pretty)
+  if (GmicQt::HostApplicationName.isEmpty()) {
+    LayersExtentProxy::clearCache();
+    QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
+    ui->previewWidget->setFullImageSize(extent);
+    ui->previewWidget->update();
+  }
 
   // Retrieve and select previously selected filter
   QString hash = QSettings().value("SelectedFilter", QString()).toString();
@@ -649,7 +656,6 @@ void MainWindow::onOkClicked()
 
 void MainWindow::onCloseClicked()
 {
-  ENTERING;
   TIMING;
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     if (_processor.isProcessing()) {
@@ -963,7 +969,6 @@ void MainWindow::showEvent(QShowEvent * event)
   if (_newSession) {
     Logger::clear();
   }
-
   QObject::connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
   int ageLimit;
   {
@@ -972,7 +977,7 @@ void MainWindow::showEvent(QShowEvent * event)
     Updater::setOutputMessageMode(mode);
     ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
   }
-  const bool useNetwork = ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY;
+  const bool useNetwork = (ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY);
   ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
   Updater::getInstance()->startUpdate(ageLimit, 4, useNetwork);
 }

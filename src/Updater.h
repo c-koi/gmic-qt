@@ -87,6 +87,7 @@ public slots:
   void onNetworkReplyFinished(QNetworkReply *);
   void notifyAllDowloadsOK();
   void cancelAllPendingDownloads();
+  void onUpdateNotNecessary();
 
 protected:
   void processReply(QNetworkReply * reply);

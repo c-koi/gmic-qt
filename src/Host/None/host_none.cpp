@@ -27,7 +27,9 @@
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QFileInfo>
-#include <QProcess>
+#include <QFont>
+#include <QMessageBox>
+#include <QPainter>
 #include <QRegularExpression>
 #include <algorithm>
 #include <iostream>
@@ -35,6 +37,7 @@
 #include "Host/None/ImageDialog.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
+#include "MainWindow.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
@@ -44,7 +47,7 @@
 //#define DEFAULT_IMAGE "local/space-shuttle.png"
 //#define DEFAULT_IMAGE "local/space-shuttle-transp.png"
 //#define DEFAULT_IMAGE "local/bug.jpg"
-#define DEFAULT_IMAGE "local/bug2.jpg"
+//#define DEFAULT_IMAGE "local/bug2.jpg"
 //#define DEFAULT_IMAGE "local/crop_inktober.jpg"
 //#define DEFAULT_IMAGE "local/lena.png"
 //#define DEFAULT_IMAGE "local/transp.png"
@@ -62,6 +65,41 @@ namespace gmic_qt_standalone
 {
 QImage input_image;
 QString image_filename;
+QWidget * visibleMainWindow()
+{
+  for (QWidget * w : QApplication::topLevelWidgets()) {
+    if ((typeid(*w) == typeid(MainWindow)) && (w->isVisible())) {
+      return w;
+    }
+  }
+  return nullptr;
+}
+void askForImageFilename()
+{
+  QWidget * mainWidget = visibleMainWindow();
+  Q_ASSERT_X(mainWidget, __PRETTY_FUNCTION__, "No top level window yet");
+  QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", QObject::tr("PNG & JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)"), nullptr);
+  if (!filename.isEmpty() && QFileInfo(filename).isReadable() && input_image.load(filename)) {
+    input_image = input_image.convertToFormat(QImage::Format_ARGB32);
+    image_filename = QFileInfo(filename).fileName();
+  } else {
+    if (!filename.isEmpty()) {
+      QMessageBox::warning(mainWidget, QObject::tr("Error"), QObject::tr("Could not open file."));
+    }
+    input_image.load(":/resources/gmicky.png");
+    input_image = input_image.convertToFormat(QImage::Format_ARGB32);
+    image_filename = QObject::tr("Default image");
+  }
+}
+const QImage & transparentImage()
+{
+  static QImage image;
+  if (image.isNull()) {
+    image = QImage(640, 480, QImage::Format_ARGB32);
+    image.fill(QColor(0, 0, 0, 0));
+  }
+  return image;
+}
 }
 
 namespace GmicQt
@@ -72,8 +110,20 @@ const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
 
 void gmic_qt_get_image_size(int * x, int * y)
 {
-  *x = gmic_qt_standalone::input_image.width();
-  *y = gmic_qt_standalone::input_image.height();
+  // TSHOW(gmic_qt_standalone::visibleMainWindow());
+  if (gmic_qt_standalone::input_image.isNull()) {
+    if (gmic_qt_standalone::visibleMainWindow()) {
+      gmic_qt_standalone::askForImageFilename();
+      *x = gmic_qt_standalone::input_image.width();
+      *y = gmic_qt_standalone::input_image.height();
+    } else {
+      *x = 640;
+      *y = 480;
+    }
+  } else {
+    *x = gmic_qt_standalone::input_image.width();
+    *y = gmic_qt_standalone::input_image.height();
+  }
 }
 
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
@@ -83,7 +133,8 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
 
 void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
-  QImage & input_image = gmic_qt_standalone::input_image;
+  const QImage & input_image = gmic_qt_standalone::input_image.isNull() ? gmic_qt_standalone::transparentImage() : gmic_qt_standalone::input_image;
+
   const bool entireImage = x < 0 && y < 0 && width < 0 && height < 0;
   if (entireImage) {
     x = 0.0;
@@ -156,28 +207,15 @@ int main(int argc, char * argv[])
     filename = DEFAULT_IMAGE;
   }
 #endif
-  if (!filename.isEmpty()) {
+  if (filename.isEmpty()) {
+    return launchPlugin();
+  } else {
     if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
       gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
       gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
       return launchPlugin();
     } else {
       std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
-      return 1;
-    }
-  } else {
-    QApplication app(argc, argv);
-    QWidget mainWidget;
-    mainWidget.setWindowTitle(QString("G'MIC-Qt - %1").arg(GmicQt::gmicVersionString()));
-    QRect position = mainWidget.frameGeometry();
-    position.moveCenter(QDesktopWidget().availableGeometry().center());
-    mainWidget.move(position.topLeft());
-    mainWidget.show();
-    QString filename = QFileDialog::getOpenFileName(&mainWidget, QObject::tr("Select an image to open..."), ".", QObject::tr("PNG & JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)"), nullptr);
-    mainWidget.hide();
-    if (!filename.isEmpty() && QFileInfo(filename).isReadable()) {
-      return QProcess::execute(app.applicationFilePath(), QStringList() << filename);
-    } else {
       return 1;
     }
   }

@@ -23,6 +23,8 @@
  *
  */
 #include "LayersExtentProxy.h"
+#include <QDebug>
+#include "Common.h"
 #include "Host/host.h"
 
 int LayersExtentProxy::_width = -1;
