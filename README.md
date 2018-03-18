@@ -36,6 +36,10 @@
 
  * Available at [gmic.eu](http://gmic.eu)
 
+### Tavis CI last build status
+
+ * Master branch (Linux) [![Build Status](https://api.travis-ci.org/c-koi/gmic-qt.svg?branch=master)](https://travis-ci.org/c-koi/gmic-qt)
+ * Devel branch (Linux) [![Build Status](https://api.travis-ci.org/c-koi/gmic-qt.svg?branch=devel)](https://travis-ci.org/c-koi/gmic-qt)
 
 ### Build instructions
 

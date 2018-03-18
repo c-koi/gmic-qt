@@ -1,8 +1,11 @@
 #!/bin/bash
 set -ev
 
-BUILD_TYPE=Release
-#BUILD_TYPE=Debug
+if [ "${TRAVIS_BRANCH}" = devel ]; then
+    BUILD_TYPE=Debug
+else
+    BUILD_TYPE=Release
+fi
 
 cmake --version
 

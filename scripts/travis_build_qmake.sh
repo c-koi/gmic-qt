@@ -1,8 +1,11 @@
 #!/bin/bash
 set -ev
 
-#config=debug
-config=release
+if [ "${TRAVIS_BRANCH}" = devel ]; then
+    config=debug
+else
+    config=release
+fi
 
 qmake --version
 
