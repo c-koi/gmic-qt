@@ -1,0 +1,64 @@
+language: cpp
+
+git:
+  depth: 1
+
+os:
+  - linux
+# - osx
+
+branches:
+  only:
+    - master
+    - devel
+
+compiler:
+  - gcc
+
+matrix:
+  include:
+    - os: linux
+      env:
+        - BUILD="qmake" GMIC_HOST="all"
+    - os: linux
+      env:
+        - BUILD="cmake" GMIC_HOST="none"
+    - os: linux
+      env:
+        - BUILD="cmake" GMIC_HOST="gimp"
+    - os: linux
+      env:
+        - BUILD="cmake" GMIC_HOST="krita"
+  fast_finish: true
+#    - os: osx
+#      osx_image: xcode8.3
+#      env:
+#        - MATRIX_EVAL="brew update"
+
+before_install:
+  - date -u
+  - uname -a
+  - git clone --depth=1 https://github.com/dtschump/gmic.git gmic-clone
+  - make -C gmic-clone/src CImg.h gmic_stdlib.h
+  - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
+        sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp;
+        sudo apt-get update;
+    fi;
+
+install:
+  - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
+       sudo apt-get install gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0-dev qt5-default qt5-qmake qtbase5-dev qttools5-dev;
+    fi;
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+       brew install fftw curl qt55;
+    fi;
+
+script:
+  - g++ --version
+  - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
+       travis_wait 45 ./scripts/travis_build_${BUILD}.sh;
+    fi;
+
+
+# sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-${GCC_VERSION} 90;
+#  - eval "${MATRIX_EVAL}"
