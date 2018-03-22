@@ -53,7 +53,7 @@
 //#define DEFAULT_IMAGE "local/transp.png"
 //#define DEFAULT_IMAGE "local/small_lena.png"
 //#define DEFAULT_IMAGE "local/ken.jpg"
-//#define DEFAULT_IMAGE "local/ferrari.jpg"
+#define DEFAULT_IMAGE "local/ferrari.jpg"
 //#define DEFAULT_IMAGE "local/audio-speakers.png"
 //#define DEFAULT_IMAGE "local/audio-speakers-top.png"
 #endif

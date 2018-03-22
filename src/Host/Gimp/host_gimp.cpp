@@ -29,6 +29,8 @@
 #include <QString>
 #include <algorithm>
 #include <limits>
+#include <stack>
+#include <vector>
 #include "Common.h"
 #include "Host/host.h"
 #include "ImageTools.h"
@@ -225,7 +227,37 @@ void get_output_layer_props(const char * const s, GimpLayerModeEffects & blendmo
     }
   }
 }
+
+const int * get_gimp_layers_flat_list(int imageId, int * count)
+{
+  static std::vector<int> layersId;
+  std::stack<int> idStack;
+
+  int layersCount = 0;
+  const int * layers = gimp_image_get_layers(imageId, &layersCount);
+  for (int i = layersCount - 1; i >= 0; --i) {
+    idStack.push(layers[i]);
+  }
+
+  layersId.clear();
+  while (!idStack.empty()) {
+    if (gimp_item_is_group(idStack.top())) {
+      int childCount = 0;
+      const int * children = gimp_item_get_children(idStack.top(), &childCount);
+      idStack.pop();
+      for (int i = childCount - 1; i >= 0; --i) {
+        idStack.push(children[i]);
+      }
+    } else {
+      layersId.push_back(idStack.top());
+      idStack.pop();
+    }
+  }
+  *count = layersId.size();
+  return layersId.data();
 }
+
+} // namespace
 
 void gmic_qt_show_message(const char * message)
 {
@@ -279,10 +311,15 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<float> & image)
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
 {
   int layersCount = 0;
-  const int * begLayers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
+  // const int * begLayers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
+  const int * begLayers = get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   const int * endLayers = begLayers + layersCount;
   int activeLayerID = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
+
   if (gimp_item_is_group(activeLayerID)) {
+    // FIXME : Handle this.
+    *width = 0;
+    *height = 0;
     return;
   }
   // Buil list of input layers IDs
@@ -352,7 +389,7 @@ void gmic_qt_get_image_size(int * width, int * height)
   *width = 0;
   *height = 0;
   int layersCount = 0;
-  gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
+  get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   if (layersCount > 0) {
     int active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
     if (active_layer_id >= 0) {
@@ -370,7 +407,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   using cimg_library::CImg;
   using cimg_library::CImgList;
   int layersCount = 0;
-  const int * layers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
+  const int * layers = get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   const int * end_layers = layers + layersCount;
   int active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
 
@@ -551,7 +588,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
   }
 
   int image_nb_layers = 0;
-  gimp_image_get_layers(gmic_qt_gimp_image_id, &image_nb_layers);
+  get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &image_nb_layers);
   unsigned int image_width = 0, image_height = 0;
   if (inputLayers.size()) {
     image_width = gimp_image_width(gmic_qt_gimp_image_id);
@@ -905,11 +942,13 @@ void gmic_qt_query()
   static const GimpParamDef args[] = {{GIMP_PDB_INT32, (gchar *)"run_mode", (gchar *)"Interactive, non-interactive"},
                                       {GIMP_PDB_IMAGE, (gchar *)"image", (gchar *)"Input image"},
                                       {GIMP_PDB_DRAWABLE, (gchar *)"drawable", (gchar *)"Input drawable (unused)"},
-                                      {GIMP_PDB_INT32, (gchar *)"input", (gchar *)"Input layers mode, when non-interactive"
-                                                                                  " (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles,"
-                                                                                  " 7=all visibles (decr.), 8=all invisibles (decr.), 9=all (decr.))"},
-                                      {GIMP_PDB_INT32, (gchar *)"output", (gchar *)"Output mode, when non-interactive "
-                                                                                   "(0=in place,1=new layers,2=new active layers,3=new image)"},
+                                      {GIMP_PDB_INT32, (gchar *)"input",
+                                       (gchar *)"Input layers mode, when non-interactive"
+                                                " (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles,"
+                                                " 7=all visibles (decr.), 8=all invisibles (decr.), 9=all (decr.))"},
+                                      {GIMP_PDB_INT32, (gchar *)"output",
+                                       (gchar *)"Output mode, when non-interactive "
+                                                "(0=in place,1=new layers,2=new active layers,3=new image)"},
                                       {GIMP_PDB_STRING, (gchar *)"command", (gchar *)"G'MIC command string, when non-interactive"}};
 
   const char name[] = "plug-in-gmic-qt";
