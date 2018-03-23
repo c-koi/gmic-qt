@@ -160,9 +160,7 @@ void InOutPanel::onInputModeSelected(int)
   }
 }
 
-void InOutPanel::onOutputModeSelected(int)
-{
-}
+void InOutPanel::onOutputModeSelected(int) {}
 
 void InOutPanel::onOutputMessageSelected(int)
 {

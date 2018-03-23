@@ -134,10 +134,6 @@ void FilterThread::run()
   _startTime.start();
   _errorMessage.clear();
   _failed = false;
-  if (!*_images) {
-    _images->assign(1);
-    _imageNames->assign(1);
-  }
   QString fullCommandLine;
   try {
     if (_messageMode == GmicQt::Quiet) {

@@ -107,7 +107,7 @@ void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_librar
       return;
     }
   }
-  result.assign(10, 10, 1, 3, 0.0f);
+  result.assign();
   return;
 }
 

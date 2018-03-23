@@ -316,19 +316,13 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
   const int * endLayers = begLayers + layersCount;
   int activeLayerID = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
 
-  if (gimp_item_is_group(activeLayerID)) {
-    // FIXME : Handle this.
-    *width = 0;
-    *height = 0;
-    return;
-  }
   // Buil list of input layers IDs
   std::vector<int> layers;
   switch (mode) {
   case GmicQt::NoInput:
     break;
   case GmicQt::Active:
-    if (activeLayerID >= 0) {
+    if ((activeLayerID >= 0) && !gimp_item_is_group(activeLayerID)) {
       layers.push_back(activeLayerID);
     }
     break;
@@ -337,7 +331,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     layers.assign(begLayers, endLayers);
     break;
   case GmicQt::ActiveAndBelow:
-    if (activeLayerID >= 0) {
+    if ((activeLayerID >= 0) && !gimp_item_is_group(activeLayerID)) {
       layers.push_back(activeLayerID);
       const int * p = std::find(begLayers, endLayers, activeLayerID);
       if (p < endLayers - 1) {
@@ -346,7 +340,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     }
     break;
   case GmicQt::ActiveAndAbove:
-    if (activeLayerID >= 0) {
+    if ((activeLayerID >= 0) && !gimp_item_is_group(activeLayerID)) {
       const int * p = std::find(begLayers, endLayers, activeLayerID);
       if (p > begLayers) {
         layers.push_back(*(p - 1));
@@ -410,12 +404,6 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   const int * layers = get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   const int * end_layers = layers + layersCount;
   int active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
-
-  //  if (gimp_item_is_group(active_layer_id)) {
-  //    images.assign();
-  //    imageNames.assign();
-  //    return;
-  //  }
 
   const bool entireImage = (x < 0 && y < 0 && width < 0 && height < 0) || (x == 0.0 && y == 0 && width == 1 && height == 0);
   if (entireImage) {

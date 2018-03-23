@@ -382,3 +382,17 @@ bool FiltersPresenter::Filter::isNoFilter() const
 {
   return hash.isEmpty() || previewCommand.isEmpty() || (previewCommand == "_none_");
 }
+
+const char * FiltersPresenter::Filter::previewFactorString() const
+{
+  if (previewFactor == GmicQt::PreviewFactorActualSize) {
+    return "ActualSize";
+  }
+  if (previewFactor == GmicQt::PreviewFactorAny) {
+    return "Any";
+  }
+  if (previewFactor == GmicQt::PreviewFactorFullImage) {
+    return "FullImage";
+  }
+  return "float value";
+}

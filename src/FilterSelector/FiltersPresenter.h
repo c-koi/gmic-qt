@@ -50,6 +50,7 @@ public:
     void setInvalid();
     bool isInvalid() const;
     bool isNoFilter() const;
+    const char * previewFactorString() const;
   };
 
   FiltersPresenter(QObject * parent);

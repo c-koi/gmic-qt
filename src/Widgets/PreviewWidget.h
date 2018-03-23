@@ -47,6 +47,7 @@ public:
   explicit PreviewWidget(QWidget * parent = 0);
   ~PreviewWidget();
   void setFullImageSize(const QSize &);
+  void updateFullImageSizeIfDifferent(const QSize &);
   void normalizedVisibleRect(double & x, double & y, double & width, double & height) const;
   bool isAtDefaultZoom() const;
   bool isAtFullZoom() const;
@@ -103,6 +104,8 @@ public slots:
   void onPreviewToggled(bool on);
 
 private:
+  void paintPreview(QPainter &);
+  void paintOriginalImage(QPainter &);
   void getOriginalImageCrop(cimg_library::CImg<float> & image);
   void updateCachedOriginalImageCrop();
   void updateOriginalImagePosition();

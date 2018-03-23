@@ -86,7 +86,11 @@ void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
   updateOriginalImagePosition();
   _paintOriginalImage = false;
   if (isAtFullZoom()) {
-    _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
+    if (_fullImageSize.isNull()) {
+      _currentZoomFactor = 1.0;
+    } else {
+      _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
+    }
     emit zoomChanged(_currentZoomFactor);
   }
   update();
@@ -107,12 +111,26 @@ void PreviewWidget::setFullImageSize(const QSize & size)
   saveVisibleCenter();
 }
 
+void PreviewWidget::updateFullImageSizeIfDifferent(const QSize & size)
+{
+  if (size != _fullImageSize) {
+    setFullImageSize(size);
+  } else {
+    // Make sure the cached image is no longer used, even if its size is the same
+    _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
+  }
+}
+
 void PreviewWidget::updateVisibleRect()
 {
-  _visibleRect.w = std::min(1.0, (width() / (_currentZoomFactor * _fullImageSize.width())));
-  _visibleRect.h = std::min(1.0, (height() / (_currentZoomFactor * _fullImageSize.height())));
-  _visibleRect.x = std::min(_visibleRect.x, 1.0 - _visibleRect.w);
-  _visibleRect.y = std::min(_visibleRect.y, 1.0 - _visibleRect.h);
+  if (_fullImageSize.isNull()) {
+    _visibleRect = PreviewRect::Full;
+  } else {
+    _visibleRect.w = std::min(1.0, (width() / (_currentZoomFactor * _fullImageSize.width())));
+    _visibleRect.h = std::min(1.0, (height() / (_currentZoomFactor * _fullImageSize.height())));
+    _visibleRect.x = std::min(_visibleRect.x, 1.0 - _visibleRect.w);
+    _visibleRect.y = std::min(_visibleRect.y, 1.0 - _visibleRect.h);
+  }
 }
 
 void PreviewWidget::centerVisibleRect()
@@ -122,6 +140,12 @@ void PreviewWidget::centerVisibleRect()
 
 void PreviewWidget::updateOriginalImagePosition()
 {
+  if (_fullImageSize.isNull()) {
+    _originalImageSize = QSize(0, 0);
+    _originaImageScaledSize = QSize(0, 0);
+    _imagePosition = rect();
+    return;
+  }
   _originalImageSize = originalImageCropSize();
   if (_currentZoomFactor > 1.0) {
     _originaImageScaledSize = _originalImageSize;
@@ -144,52 +168,70 @@ void PreviewWidget::updateOriginalImagePosition()
   }
 }
 
-void PreviewWidget::paintEvent(QPaintEvent * e)
+void PreviewWidget::paintPreview(QPainter & painter)
 {
-  TIMING;
-  QPainter painter(this);
+  if (!_image->width() && !_image->height()) {
+    painter.fillRect(rect(), QBrush(_transparency));
+    return;
+  }
+  /*  If preview image has a size different from the original image crop, or
+   *  we are at "full image" zoom of an image smaller than the widget,
+   *  then the image should fit the widget size.
+   */
+  const QSize previewImageSize(_image->width(), _image->height());
+  if ((previewImageSize != _originaImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
+    QSize imageSize;
+    if (previewImageSize != _originaImageScaledSize) {
+      imageSize = previewImageSize.scaled(width(), height(), Qt::KeepAspectRatio);
+    } else {
+      imageSize = QSize(std::round(_originalImageSize.width() * _currentZoomFactor), std::round(_originalImageSize.height() * _currentZoomFactor));
+    }
+    _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), std::max(0, (height() - imageSize.height()) / 2)), imageSize);
+    _originaImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
+  }
+  /*
+   *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
+   */
+
+  if (hasAlphaChannel(*_image)) {
+    painter.fillRect(_imagePosition, QBrush(_transparency));
+  }
   QImage qimage;
-  if (_paintOriginalImage) {
-    gmic_image<float> image;
-    getOriginalImageCrop(image);
-    updateOriginalImagePosition();
+  ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
+  painter.drawImage(_imagePosition, qimage);
+  if (!_errorMessage.isEmpty()) { // TODO : Check this
+    painter.fillRect(_imagePosition, QColor(40, 40, 40, 150));
+    painter.setPen(Qt::green);
+    painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
+  }
+}
+
+void PreviewWidget::paintOriginalImage(QPainter & painter)
+{
+  gmic_image<float> image;
+  getOriginalImageCrop(image);
+  updateOriginalImagePosition();
+  if (!image.width() && !image.height()) {
+    painter.fillRect(rect(), QBrush(_transparency));
+  } else {
     image.resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1);
     if (hasAlphaChannel(image)) {
       painter.fillRect(_imagePosition, QBrush(_transparency));
     }
+    QImage qimage;
     ImageConverter::convert(image, qimage);
     painter.drawImage(_imagePosition, qimage);
+  }
+}
+
+void PreviewWidget::paintEvent(QPaintEvent * e)
+{
+  TIMING;
+  QPainter painter(this);
+  if (_paintOriginalImage) {
+    paintOriginalImage(painter);
   } else {
-    // Display the preview
-
-    //  If preview image has a size different from the original image crop, or
-    //  we are at "full image" zoom of an image smaller than the widget,
-    //  then the image should fit the widget size.
-    const QSize previewImageSize(_image->width(), _image->height());
-    if ((previewImageSize != _originaImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
-      QSize imageSize;
-      if (previewImageSize != _originaImageScaledSize) {
-        imageSize = previewImageSize.scaled(width(), height(), Qt::KeepAspectRatio);
-      } else {
-        imageSize = QSize(std::round(_originalImageSize.width() * _currentZoomFactor), std::round(_originalImageSize.height() * _currentZoomFactor));
-      }
-      _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), std::max(0, (height() - imageSize.height()) / 2)), imageSize);
-      _originaImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
-    }
-    /*
-     *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
-     */
-
-    if (hasAlphaChannel(*_image)) {
-      painter.fillRect(_imagePosition, QBrush(_transparency));
-    }
-    ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
-    painter.drawImage(_imagePosition, qimage);
-    if (!_errorMessage.isEmpty()) { // TODO : Check this
-      painter.fillRect(_imagePosition, QColor(40, 40, 40, 150));
-      painter.setPen(Qt::green);
-      painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
-    }
+    paintPreview(painter);
   }
   e->accept();
 }
@@ -204,7 +246,11 @@ void PreviewWidget::resizeEvent(QResizeEvent * e)
     return;
   }
   if (isAtFullZoom()) {
-    _currentZoomFactor = std::min(e->size().width() / (double)_fullImageSize.width(), e->size().height() / (double)_fullImageSize.height());
+    if (_fullImageSize.isNull()) {
+      _currentZoomFactor = 1.0;
+    } else {
+      _currentZoomFactor = std::min(e->size().width() / (double)_fullImageSize.width(), e->size().height() / (double)_fullImageSize.height());
+    }
     emit zoomChanged(_currentZoomFactor);
   } else {
     updateVisibleRect();
@@ -380,9 +426,11 @@ void PreviewWidget::onMouseTranslationInImage(QPoint shift)
 void PreviewWidget::translateFullImage(double dx, double dy)
 {
   PreviewPoint previousPosition = _visibleRect.topLeft();
-  translateNormalized(dx / _fullImageSize.width(), dy / _fullImageSize.height());
-  if (_visibleRect.topLeft() != previousPosition) {
-    saveVisibleCenter();
+  if (!_fullImageSize.isNull()) {
+    translateNormalized(dx / _fullImageSize.width(), dy / _fullImageSize.height());
+    if (_visibleRect.topLeft() != previousPosition) {
+      saveVisibleCenter();
+    }
   }
 }
 
@@ -405,13 +453,20 @@ void PreviewWidget::zoomOut()
 void PreviewWidget::zoomFullImage()
 {
   _visibleRect = PreviewRect::Full;
-  _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
+  if (_fullImageSize.isNull()) {
+    _currentZoomFactor = 1.0;
+  } else {
+    _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
+  }
   onPreviewParametersChanged();
   emit zoomChanged(_currentZoomFactor);
 }
 
 void PreviewWidget::zoomIn(QPoint p, int steps)
 {
+  if (_fullImageSize.isNull()) {
+    return;
+  }
   double previousZoomFactor = _currentZoomFactor;
   if (_currentZoomFactor >= PREVIEW_MAX_ZOOM_FACTOR) {
     return;
@@ -438,7 +493,7 @@ void PreviewWidget::zoomIn(QPoint p, int steps)
 
 void PreviewWidget::zoomOut(QPoint p, int steps)
 {
-  if (isAtFullZoom()) {
+  if (isAtFullZoom() || _fullImageSize.isNull()) {
     return;
   }
   double mouseX = p.x() / (_currentZoomFactor * _fullImageSize.width()) + _visibleRect.x;
@@ -460,7 +515,7 @@ void PreviewWidget::zoomOut(QPoint p, int steps)
 
 void PreviewWidget::setZoomLevel(double zoom)
 {
-  if (zoom == _currentZoomFactor) {
+  if ((zoom == _currentZoomFactor) || _fullImageSize.isNull()) {
     return;
   }
   if ((zoom > PREVIEW_MAX_ZOOM_FACTOR) || (isAtFullZoom() && (zoom < _currentZoomFactor))) {
@@ -489,6 +544,9 @@ void PreviewWidget::setZoomLevel(double zoom)
 
 double PreviewWidget::defaultZoomFactor() const
 {
+  if (_fullImageSize.isNull()) {
+    return 1.0;
+  }
   if (_previewFactor == GmicQt::PreviewFactorFullImage) {
     return std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
   }
@@ -506,9 +564,15 @@ void PreviewWidget::saveVisibleCenter()
 void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
 {
   _previewFactor = filterFactor;
+  if (_fullImageSize.isNull()) {
+    _visibleRect = PreviewRect::Full;
+    _currentZoomFactor = 1.0;
+    emit zoomChanged(_currentZoomFactor);
+    return;
+  }
   if ((_previewFactor == GmicQt::PreviewFactorFullImage) || ((_previewFactor == GmicQt::PreviewFactorAny) && reset)) {
     _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
-    _visibleRect = PreviewWidget::PreviewRect::Full;
+    _visibleRect = PreviewRect::Full;
   } else if ((_previewFactor == GmicQt::PreviewFactorAny) && !reset) {
     updateVisibleRect();
     _visibleRect.moveCenter(_savedVisibleCenter);
@@ -547,6 +611,9 @@ void PreviewWidget::updateCachedOriginalImageCrop()
     gmic_qt_apply_color_profile(images[0]);
     _cachedOriginalImage->swap(images[0]);
     _cachedOriginalImagePosition = _visibleRect;
+  } else {
+    _cachedOriginalImage->assign();
+    _cachedOriginalImagePosition = PreviewRect::Full;
   }
 }
 
@@ -554,6 +621,7 @@ void PreviewWidget::getOriginalImageCrop(cimg_library::CImg<float> & image)
 {
   if (_visibleRect == _cachedOriginalImagePosition) {
     image = *_cachedOriginalImage;
+    return;
   }
   updateCachedOriginalImageCrop();
   image = *_cachedOriginalImage;

@@ -484,7 +484,7 @@ void MainWindow::makeConnections()
   connect(ui->tbRemoveFave, SIGNAL(clicked(bool)), this, SLOT(onRemoveFave()));
   connect(ui->tbRenameFave, SIGNAL(clicked(bool)), this, SLOT(onRenameFave()));
 
-  connect(ui->inOutSelector, SIGNAL(inputModeChanged(GmicQt::InputMode)), ui->previewWidget, SLOT(sendUpdateRequest()));
+  connect(ui->inOutSelector, SIGNAL(inputModeChanged(GmicQt::InputMode)), this, SLOT(onInputModeChanged(GmicQt::InputMode)));
   connect(ui->inOutSelector, SIGNAL(outputMessageModeChanged(GmicQt::OutputMessageMode)), this, SLOT(onOutputMessageModeChanged(GmicQt::OutputMessageMode)));
   connect(ui->inOutSelector, SIGNAL(previewModeChanged(GmicQt::PreviewMode)), ui->previewWidget, SLOT(sendUpdateRequest()));
 
@@ -598,6 +598,12 @@ void MainWindow::onFullImageProcessingError(QString message)
   }
 }
 
+void MainWindow::onInputModeChanged(GmicQt::InputMode mode)
+{
+  ui->previewWidget->setFullImageSize(LayersExtentProxy::getExtent(mode));
+  ui->previewWidget->sendUpdateRequest();
+}
+
 void MainWindow::onFullImageProcessingDone()
 {
   ui->progressInfoWidget->stopAnimationAndHide();
@@ -611,7 +617,7 @@ void MainWindow::onFullImageProcessingDone()
   } else {
     LayersExtentProxy::clearCache();
     QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
-    ui->previewWidget->setFullImageSize(extent);
+    ui->previewWidget->updateFullImageSizeIfDifferent(extent); // FIXME: updateIfDifferent ?
     ui->previewWidget->sendUpdateRequest();
     _okButtonShouldApply = false;
   }
@@ -927,11 +933,12 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->inOutSelector->enable();
     ui->inOutSelector->show();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
+    ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
     Logger::setMode(ui->inOutSelector->outputMessageMode());
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
+    // SHOW(filter.previewFactorString());
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
-    // ui->previewWidget->enableRightClick();
     showZoomWarningIfNeeded();
     _okButtonShouldApply = true;
     ui->tbResetParameters->setVisible(true);

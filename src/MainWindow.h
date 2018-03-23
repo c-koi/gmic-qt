@@ -120,6 +120,7 @@ protected:
 private slots:
 
   void onFullImageProcessingError(QString message);
+  void onInputModeChanged(GmicQt::InputMode);
 
 private:
   bool filtersSelectionMode();
