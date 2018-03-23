@@ -411,11 +411,11 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   const int * end_layers = layers + layersCount;
   int active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
 
-  if (gimp_item_is_group(active_layer_id)) {
-    images.assign();
-    imageNames.assign();
-    return;
-  }
+  //  if (gimp_item_is_group(active_layer_id)) {
+  //    images.assign();
+  //    imageNames.assign();
+  //    return;
+  //  }
 
   const bool entireImage = (x < 0 && y < 0 && width < 0 && height < 0) || (x == 0.0 && y == 0 && width == 1 && height == 0);
   if (entireImage) {
@@ -431,7 +431,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   case GmicQt::NoInput:
     break;
   case GmicQt::Active:
-    if (active_layer_id >= 0) {
+    if ((active_layer_id >= 0) && !gimp_item_is_group(active_layer_id)) {
       inputLayers.push_back(active_layer_id);
     }
     break;
@@ -443,7 +443,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     }
     break;
   case GmicQt::ActiveAndBelow:
-    if (active_layer_id >= 0) {
+    if ((active_layer_id >= 0) && !gimp_item_is_group(active_layer_id)) {
       inputLayers.push_back(active_layer_id);
       const int * p = std::find(layers, end_layers, active_layer_id);
       if (p < end_layers - 1) {
@@ -452,7 +452,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     }
     break;
   case GmicQt::ActiveAndAbove:
-    if (active_layer_id >= 0) {
+    if ((active_layer_id >= 0) && !gimp_item_is_group(active_layer_id)) {
       const int * p = std::find(layers, end_layers, active_layer_id);
       if (p > layers) {
         inputLayers.push_back(*(p - 1));
