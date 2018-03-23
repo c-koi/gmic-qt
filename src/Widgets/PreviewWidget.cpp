@@ -368,30 +368,6 @@ void PreviewWidget::getPositionStringCorrection(double & xFactor, double & yFact
   yFactor = _currentZoomFactor * (_visibleRect.h * _fullImageSize.height());
 }
 
-void PreviewWidget::updateImageNames(gmic_list<char> & imageNames, GmicQt::InputMode mode)
-{
-  const float xFactor = _currentZoomFactor * (_visibleRect.w * _fullImageSize.width());
-  const float yFactor = _currentZoomFactor * (_visibleRect.h * _fullImageSize.height());
-
-  int maxWidth;
-  int maxHeight;
-  LayersExtentProxy::getExtent(mode, maxWidth, maxHeight);
-  for (size_t i = 0; i < imageNames.size(); ++i) {
-    gmic_image<char> & name = imageNames[i];
-    QString str((const char *)name);
-    QRegExp position("pos\\((\\d*)([^0-9]*)(\\d*)\\)");
-    if (str.contains(position) && position.matchedLength() > 0) {
-      int xPos = position.cap(1).toInt();
-      int yPos = position.cap(3).toInt();
-      int newXPos = (int)(xPos * (xFactor / (float)maxWidth));
-      int newYPos = (int)(yPos * (yFactor / (float)maxHeight));
-      str.replace(position.cap(0), QString("pos(%1%2%3)").arg(newXPos).arg(position.cap(2)).arg(newYPos));
-      name.resize(str.size() + 1);
-      std::memcpy(name.data(), str.toLatin1().constData(), name.width());
-    }
-  }
-}
-
 void PreviewWidget::onMouseTranslationInImage(QPoint shift)
 {
   if (shift.manhattanLength()) {

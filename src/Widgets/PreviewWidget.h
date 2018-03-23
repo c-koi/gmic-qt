@@ -51,7 +51,6 @@ public:
   bool isAtDefaultZoom() const;
   bool isAtFullZoom() const;
   void getPositionStringCorrection(double & xFactor, double & yFactor) const;
-  void updateImageNames(cimg_library::CImgList<char> & imageNames, GmicQt::InputMode mode);
   double currentZoomFactor() const;
   void updateVisibleRect();
   void centerVisibleRect();
