@@ -329,7 +329,7 @@ void PreviewWidget::wheelEvent(QWheelEvent * event)
 
 void PreviewWidget::mousePressEvent(QMouseEvent * e)
 {
-  if (e->button() == Qt::LeftButton) {
+  if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
     if (_imagePosition.contains(e->pos())) {
       _mousePosition = e->pos();
       abortUpdateTimer();
@@ -353,7 +353,7 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 
 void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 {
-  if (e->button() == Qt::LeftButton) {
+  if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
     if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
       QPoint move = _mousePosition - e->pos();
       onMouseTranslationInImage(move);
@@ -381,7 +381,7 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 
 void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
 {
-  if (e->buttons() & Qt::LeftButton) {
+  if (e->buttons() & (Qt::LeftButton | Qt::MiddleButton)) {
     if (!isAtFullZoom() && (_mousePosition != QPoint(-1, -1))) {
       QPoint move = _mousePosition - e->pos();
       if (move.manhattanLength()) {
