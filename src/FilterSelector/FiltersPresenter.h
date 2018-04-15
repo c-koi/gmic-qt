@@ -94,6 +94,7 @@ public slots:
 
 private slots:
   void onFilterChanged(QString hash);
+  void removeFave(QString hash);
 
 private:
   void setCurrentFilter(QString hash);

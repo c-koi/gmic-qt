@@ -224,6 +224,7 @@ void MainWindow::setDarkTheme()
 
   const QString css = "QTreeView { background: #505050; }"
                       "QLineEdit { background: #505050; }"
+                      "QMenu { background: #505050; }"
                       "QTextEdit { background: #505050; }"
                       "QSpinBox  { background: #505050; }"
                       "QDoubleSpinBox { background: #505050; }"

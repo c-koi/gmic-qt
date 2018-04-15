@@ -53,6 +53,7 @@ void FiltersPresenter::setFiltersView(FiltersView * filtersView)
   _filtersView = filtersView;
   connect(_filtersView, SIGNAL(filterSelected(QString)), this, SLOT(onFilterChanged(QString)));
   connect(_filtersView, SIGNAL(faveRenamed(QString, QString)), this, SLOT(onFaveRenamed(QString, QString)));
+  connect(_filtersView, SIGNAL(faveRemovalRequested(QString)), this, SLOT(removeFave(QString)));
 }
 
 void FiltersPresenter::rebuildFilterView()
@@ -251,14 +252,7 @@ void FiltersPresenter::collapseAll()
 void FiltersPresenter::removeSelectedFave()
 {
   QString hash = _filtersView->selectedFilterHash();
-  if (hash.isEmpty() || !_favesModel.contains(hash)) {
-    return;
-  }
-  ParametersCache::remove(hash);
-  _favesModel.removeFave(hash);
-  _filtersView->removeFave(hash);
-  saveFaves();
-  onFilterChanged(_filtersView->selectedFilterHash());
+  removeFave(hash);
 }
 
 void FiltersPresenter::editSelectedFaveName()
@@ -311,6 +305,18 @@ void FiltersPresenter::onFilterChanged(QString hash)
 {
   setCurrentFilter(hash);
   emit filterSelectionChanged();
+}
+
+void FiltersPresenter::removeFave(QString hash)
+{
+  if (hash.isEmpty() || !_favesModel.contains(hash)) {
+    return;
+  }
+  ParametersCache::remove(hash);
+  _favesModel.removeFave(hash);
+  _filtersView->removeFave(hash);
+  saveFaves();
+  onFilterChanged(_filtersView->selectedFilterHash());
 }
 
 void FiltersPresenter::setCurrentFilter(QString hash)

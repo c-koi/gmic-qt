@@ -25,7 +25,9 @@
 #ifndef _GMIC_QT_FILTERSVIEW_H_
 #define _GMIC_QT_FILTERSVIEW_H_
 
+#include <QAction>
 #include <QList>
+#include <QMenu>
 #include <QModelIndex>
 #include <QStandardItemModel>
 #include <QString>
@@ -75,23 +77,30 @@ public:
   void adjustTreeSize();
   void expandFolders(QList<QString> & folderPaths);
 
+  bool eventFilter(QObject * watched, QEvent * event);
+
 signals:
   void filterSelected(QString hash);
   void faveRenamed(QString hash, QString newName);
+  void faveRemovalRequested(QString hash);
 
 public slots:
   void editSelectedFaveName();
   void expandAll();
   void collapseAll();
   void expandFaveFolder();
+  void onCustomContextMenu(const QPoint & point);
 
 private slots:
   void onRenameFaveFinished(QWidget * editor);
   void onReturnKeyPressedInFiltersTree();
   void onItemClicked(QModelIndex index);
   void onItemChanged(QStandardItem * item);
+  void onContextMenuRemoveFave();
+  void onContextMenuRenameFave();
 
 private:
+  FilterTreeItem * filterTreeItemFromIndex(QModelIndex index) const;
   void expandFolders(const QList<QString> & folderPaths, QStandardItem * folder);
   void uncheckFullyUncheckedFolders(QStandardItem * folder);
   void preserveExpandedFolders(QStandardItem * folder, QList<QString> & list);
@@ -113,6 +122,7 @@ private:
   QList<QString> _expandedFolderPaths;
   static const QString FilterTreePathSeparator;
   bool _isInSelectionMode;
+  QMenu * _contextMenu;
 };
 
 #endif // _GMIC_QT_FILTERSVIEW_H_

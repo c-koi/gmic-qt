@@ -25,6 +25,7 @@
 #include "FilterSelector/FiltersView/FiltersView.h"
 #include <QDebug>
 #include <QLineEdit>
+#include <QMessageBox>
 #include <QSettings>
 #include <QStandardItem>
 #include <QStringList>
@@ -53,6 +54,17 @@ FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::Filters
   connect(ui->treeView, SIGNAL(returnKeyPressed()), this, SLOT(onReturnKeyPressedInFiltersTree()));
   connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
   connect(&_model, SIGNAL(itemChanged(QStandardItem *)), this, SLOT(onItemChanged(QStandardItem *)));
+
+  ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomContextMenu(QPoint)));
+  _contextMenu = new QMenu(this);
+  QAction * action;
+  action = _contextMenu->addAction(tr("Rename fave"));
+  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRenameFave()));
+  action = _contextMenu->addAction(tr("Remove fave"));
+  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRemoveFave()));
+
+  ui->treeView->installEventFilter(this);
 }
 
 FiltersView::~FiltersView()
@@ -207,8 +219,16 @@ void FiltersView::setHeader(const QString & header)
 
 FilterTreeItem * FiltersView::selectedItem() const
 {
-  // Get filter item even if it is the checkbox which is actually selected
   QModelIndex index = ui->treeView->currentIndex();
+  return filterTreeItemFromIndex(index);
+}
+
+FilterTreeItem * FiltersView::filterTreeItemFromIndex(QModelIndex index) const
+{
+  // Get filter item even if it is the checkbox which is actually selected
+  if (!index.isValid()) {
+    return nullptr;
+  }
   QStandardItem * item = _model.itemFromIndex(index);
   if (item) {
     int row = index.row();
@@ -225,7 +245,7 @@ FilterTreeItem * FiltersView::selectedItem() const
       }
     }
   }
-  return 0;
+  return nullptr;
 }
 
 QString FiltersView::selectedFilterHash() const
@@ -290,6 +310,28 @@ void FiltersView::expandFolders(QList<QString> & folderPaths)
   expandFolders(folderPaths, _model.invisibleRootItem());
 }
 
+bool FiltersView::eventFilter(QObject * watched, QEvent * event)
+{
+  if (watched != ui->treeView) {
+    return QObject::eventFilter(watched, event);
+  }
+  if (event->type() == QEvent::KeyPress) {
+    QKeyEvent * keyEvent = static_cast<QKeyEvent *>(event);
+    if (keyEvent->key() == Qt::Key_Delete) {
+      FilterTreeItem * item = selectedItem();
+      if (item && item->isFave()) {
+        QMessageBox::StandardButton button;
+        button = QMessageBox::question(this, tr("Remove fave"), QString(tr("Do you really want to remove the following fave ?\n\n%1\n")).arg(item->text()));
+        if (button == QMessageBox::Yes) {
+          emit faveRemovalRequested(item->hash());
+          return true;
+        }
+      }
+    }
+  }
+  return QObject::eventFilter(watched, event);
+}
+
 void FiltersView::expandFolders(const QList<QString> & folderPaths, QStandardItem * folder)
 {
   int rows = folder->rowCount();
@@ -329,6 +371,19 @@ void FiltersView::expandFaveFolder()
   if (_faveFolder) {
     ui->treeView->expand(_faveFolder->index());
   }
+}
+
+void FiltersView::onCustomContextMenu(const QPoint & point)
+{
+  QModelIndex index = ui->treeView->indexAt(point);
+  if (!index.isValid()) {
+    return;
+  }
+  FilterTreeItem * item = filterTreeItemFromIndex(index);
+  if (!item || !item->isFave()) {
+    return;
+  }
+  _contextMenu->exec(ui->treeView->mapToGlobal(point));
 }
 
 void FiltersView::onRenameFaveFinished(QWidget * editor)
@@ -391,6 +446,16 @@ void FiltersView::onItemChanged(QStandardItem * item)
   // Force an update of the view by triggering a call of
   // QStandardItem::emitDataChanged()
   leftItem->setData(leftItem->data());
+}
+
+void FiltersView::onContextMenuRemoveFave()
+{
+  emit faveRemovalRequested(selectedFilterHash());
+}
+
+void FiltersView::onContextMenuRenameFave()
+{
+  editSelectedFaveName();
 }
 
 void FiltersView::uncheckFullyUncheckedFolders(QStandardItem * folder)

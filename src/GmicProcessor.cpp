@@ -176,6 +176,8 @@ GmicProcessor::~GmicProcessor()
 
 void GmicProcessor::onPreviewThreadFinished()
 {
+  SHOW(_filterThread);
+  SHOW(sender());
   Q_ASSERT_X(_filterThread, __PRETTY_FUNCTION__, "No filter thread");
   Q_ASSERT_X(_filterThread == sender(), __PRETTY_FUNCTION__, "Wrong sender");
   if (_filterThread->failed()) {
