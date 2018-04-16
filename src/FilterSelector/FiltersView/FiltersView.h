@@ -83,6 +83,7 @@ signals:
   void filterSelected(QString hash);
   void faveRenamed(QString hash, QString newName);
   void faveRemovalRequested(QString hash);
+  void faveAdditionRequested(QString hash);
 
 public slots:
   void editSelectedFaveName();
@@ -98,6 +99,7 @@ private slots:
   void onItemChanged(QStandardItem * item);
   void onContextMenuRemoveFave();
   void onContextMenuRenameFave();
+  void onContextMenuAddFave();
 
 private:
   FilterTreeItem * filterTreeItemFromIndex(QModelIndex index) const;
@@ -122,7 +124,8 @@ private:
   QList<QString> _expandedFolderPaths;
   static const QString FilterTreePathSeparator;
   bool _isInSelectionMode;
-  QMenu * _contextMenu;
+  QMenu * _faveContextMenu;
+  QMenu * _filterContextMenu;
 };
 
 #endif // _GMIC_QT_FILTERSVIEW_H_

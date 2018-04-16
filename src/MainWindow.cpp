@@ -482,6 +482,7 @@ void MainWindow::makeConnections()
   connect(ui->tbZoomReset, SIGNAL(clicked(bool)), this, SLOT(onPreviewZoomReset()));
 
   connect(ui->tbAddFave, SIGNAL(clicked(bool)), this, SLOT(onAddFave()));
+  connect(_filtersPresenter, SIGNAL(faveAdditionRequested(QString)), this, SLOT(onAddFave()));
   connect(ui->tbRemoveFave, SIGNAL(clicked(bool)), this, SLOT(onRemoveFave()));
   connect(ui->tbRenameFave, SIGNAL(clicked(bool)), this, SLOT(onRenameFave()));
 

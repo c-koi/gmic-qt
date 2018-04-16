@@ -85,6 +85,7 @@ public:
 
 signals:
   void filterSelectionChanged();
+  void faveAdditionRequested(QString);
 
 public slots:
   void removeSelectedFave();

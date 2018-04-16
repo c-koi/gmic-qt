@@ -57,12 +57,18 @@ FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::Filters
 
   ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomContextMenu(QPoint)));
-  _contextMenu = new QMenu(this);
+  _faveContextMenu = new QMenu(this);
   QAction * action;
-  action = _contextMenu->addAction(tr("Rename fave"));
+  action = _faveContextMenu->addAction(tr("Rename fave"));
   connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRenameFave()));
-  action = _contextMenu->addAction(tr("Remove fave"));
+  action = _faveContextMenu->addAction(tr("Remove fave"));
   connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRemoveFave()));
+  action = _faveContextMenu->addAction(tr("Clone fave"));
+  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
+
+  _filterContextMenu = new QMenu(this);
+  action = _filterContextMenu->addAction(tr("Add fave"));
+  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
 
   ui->treeView->installEventFilter(this);
 }
@@ -380,10 +386,15 @@ void FiltersView::onCustomContextMenu(const QPoint & point)
     return;
   }
   FilterTreeItem * item = filterTreeItemFromIndex(index);
-  if (!item || !item->isFave()) {
+  if (!item) {
     return;
   }
-  _contextMenu->exec(ui->treeView->mapToGlobal(point));
+  onItemClicked(index);
+  if (item->isFave()) {
+    _faveContextMenu->exec(ui->treeView->mapToGlobal(point));
+  } else {
+    _filterContextMenu->exec(ui->treeView->mapToGlobal(point));
+  }
 }
 
 void FiltersView::onRenameFaveFinished(QWidget * editor)
@@ -417,9 +428,9 @@ void FiltersView::onReturnKeyPressedInFiltersTree()
   }
 }
 
-void FiltersView::onItemClicked(QModelIndex)
+void FiltersView::onItemClicked(QModelIndex index)
 {
-  FilterTreeItem * item = selectedItem();
+  FilterTreeItem * item = filterTreeItemFromIndex(index);
   if (item) {
     emit filterSelected(item->hash());
   } else {
@@ -456,6 +467,11 @@ void FiltersView::onContextMenuRemoveFave()
 void FiltersView::onContextMenuRenameFave()
 {
   editSelectedFaveName();
+}
+
+void FiltersView::onContextMenuAddFave()
+{
+  emit faveAdditionRequested(selectedFilterHash());
 }
 
 void FiltersView::uncheckFullyUncheckedFolders(QStandardItem * folder)
