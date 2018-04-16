@@ -24,6 +24,8 @@
  */
 #include "FilterSelector/FiltersView/FiltersView.h"
 #include <QDebug>
+#include <QEvent>
+#include <QKeyEvent>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QSettings>

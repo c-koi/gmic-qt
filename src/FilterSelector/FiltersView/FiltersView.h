@@ -42,6 +42,7 @@ class FilterTreeFolder;
 class FilterTreeItem;
 class FilterTreeAbstractItem;
 class QSettings;
+class QEvent;
 
 class FiltersView : public QWidget {
   Q_OBJECT
