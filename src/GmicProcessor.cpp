@@ -88,7 +88,7 @@ void GmicProcessor::execute()
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.inputOutputState.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
-    connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()));
+    connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()), Qt::QueuedConnection);
     _previewRandomSeed = cimg_library::cimg::srand();
   } else if (_filterContext.requestType == FilterContext::FullImageProcessing) {
     _lastAppliedFilterName = _filterContext.filterName;
@@ -99,7 +99,7 @@ void GmicProcessor::execute()
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.inputOutputState.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
-    connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()));
+    connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()), Qt::QueuedConnection);
     cimg_library::cimg::srand(_previewRandomSeed);
   }
   _filterThread->start();
@@ -176,10 +176,10 @@ GmicProcessor::~GmicProcessor()
 
 void GmicProcessor::onPreviewThreadFinished()
 {
-  SHOW(_filterThread);
-  SHOW(sender());
   Q_ASSERT_X(_filterThread, __PRETTY_FUNCTION__, "No filter thread");
-  Q_ASSERT_X(_filterThread == sender(), __PRETTY_FUNCTION__, "Wrong sender");
+  if (_filterThread->isRunning()) {
+    return;
+  }
   if (_filterThread->failed()) {
     _gmicStatus.clear();
     _gmicImages->assign();
@@ -206,8 +206,10 @@ void GmicProcessor::onPreviewThreadFinished()
 void GmicProcessor::onApplyThreadFinished()
 {
   Q_ASSERT_X(_filterThread, __PRETTY_FUNCTION__, "No filter thread");
-  Q_ASSERT_X(_filterThread == sender(), __PRETTY_FUNCTION__, "Wrong sender");
   Q_ASSERT_X(!_filterThread->aborted(), __PRETTY_FUNCTION__, "Aborted thread!");
+  if (_filterThread->isRunning()) {
+    return;
+  }
   _gmicStatus = _filterThread->gmicStatus();
   hideWaitingCursor();
 

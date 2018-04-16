@@ -28,6 +28,7 @@
 #include <QList>
 #include <QObject>
 #include <QSettings>
+#include <QSignalMapper>
 #include <QStringList>
 #include <QTimer>
 #include "InputOutputState.h"
@@ -114,6 +115,7 @@ private:
   cimg_library::CImgList<float> * _gmicImages;
   cimg_library::CImg<float> * _previewImage;
   QList<FilterThread *> _unfinishedAbortedThreads;
+
   unsigned int _previewRandomSeed;
   QStringList _gmicStatus;
   QTimer _waitingCursorTimer;

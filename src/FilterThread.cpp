@@ -152,7 +152,6 @@ void FilterThread::run()
       std::fprintf(cimg::output(), "\n[gmic_qt] Command: %s\n", fullCommandLine.toLocal8Bit().constData());
       std::fflush(cimg::output());
     }
-
     gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true);
     gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);

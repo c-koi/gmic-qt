@@ -346,7 +346,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   } else {
     _filtersPresenter->adjustViewSize();
     activateFilter(true);
-    if (ui->cbPreview->isChecked()) {
+    if (ui->cbPreview->isChecked() && (status == Updater::UpdateSuccessful)) {
       ui->previewWidget->sendUpdateRequest();
     }
   }
@@ -938,7 +938,6 @@ void MainWindow::activateFilter(bool resetZoom)
     Logger::setMode(ui->inOutSelector->outputMessageMode());
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
-    // SHOW(filter.previewFactorString());
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
     showZoomWarningIfNeeded();
     _okButtonShouldApply = true;
