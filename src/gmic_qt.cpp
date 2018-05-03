@@ -64,6 +64,7 @@ int launchPlugin()
 #ifdef _IS_WINDOWS_
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
+  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
   QApplication app(dummy_argc, dummy_argv);
   app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
@@ -99,6 +100,8 @@ int launchPluginHeadlessUsingLastParameters()
 #ifdef _IS_WINDOWS_
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
+  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+
   QApplication app(dummy_argc, dummy_argv);
   app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
   QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
@@ -123,6 +126,8 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
 #ifdef _IS_WINDOWS_
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
+  QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+
   QCoreApplication app(dummy_argc, dummy_argv);
   QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
