@@ -27,6 +27,8 @@
 #include <iostream>
 #include "GmicStdlib.h"
 #include "ImageConverter.h"
+#include "Logger.h"
+#include "Utils.h"
 #include "gmic.h"
 using namespace cimg_library;
 
@@ -124,6 +126,11 @@ QString FilterThread::fullCommand() const
   return QString("%1 %2").arg(_command).arg(_arguments);
 }
 
+void FilterThread::setLogSuffix(const QString & text)
+{
+  _logSuffix = text;
+}
+
 void FilterThread::abortGmic()
 {
   _gmicAbort = true;
@@ -149,11 +156,11 @@ void FilterThread::run()
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {
-      std::fprintf(cimg::output(), "\n[gmic_qt] Command: %s\n", fullCommandLine.toLocal8Bit().constData());
-      std::fflush(cimg::output());
+      Logger::log(QString("\n[%1]%2 %3\n").arg(GmicQt::pluginCodeName()).arg(_logSuffix).arg(fullCommandLine));
     }
     gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true);
     gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
+    gmicInstance.set_variable("_tk", "qt", '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;
   } catch (gmic_exception & e) {
@@ -162,14 +169,8 @@ void FilterThread::run()
     const char * message = e.what();
     _errorMessage = message;
     if (_messageMode > GmicQt::Quiet) {
-      std::fprintf(cimg::output(), "\n[gmic_qt]./error/ When running command '%s', this error occured:\n%s\n", fullCommandLine.toLocal8Bit().constData(), message);
-      std::fflush(cimg::output());
+      Logger::log(QString("\n[%1]./error/ When running command '%2', this error occured:\n%3\n").arg(GmicQt::pluginCodeName()).arg(fullCommandLine).arg(message));
     }
     _failed = true;
   }
-}
-
-void FilterThread::setCommand(const QString & command)
-{
-  _command = command;
 }

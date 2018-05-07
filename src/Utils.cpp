@@ -99,4 +99,14 @@ const QString & pluginFullName()
   }
   return result;
 }
+
+const QString & pluginCodeName()
+{
+  static QString result;
+  if (result.isEmpty()) {
+    result = GmicQt::HostApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(GmicQt::HostApplicationShortname).toLower());
+  }
+  return result;
 }
+
+} // namespace GmicQt

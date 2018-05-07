@@ -28,6 +28,8 @@
 #include <cstdio>
 #include "gmic_qt.h"
 
+class QString;
+
 class Logger {
 public:
   enum Mode
@@ -40,6 +42,7 @@ public:
   static void setMode(const GmicQt::OutputMessageMode mode);
   static void clear();
   static void close();
+  static void log(const QString & message);
   Logger() = delete;
 
 private:

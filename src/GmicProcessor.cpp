@@ -88,6 +88,7 @@ void GmicProcessor::execute()
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.inputOutputState.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
+    _filterThread->setLogSuffix("./preview/");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()), Qt::QueuedConnection);
     _previewRandomSeed = cimg_library::cimg::srand();
   } else if (_filterContext.requestType == FilterContext::FullImageProcessing) {
@@ -99,6 +100,7 @@ void GmicProcessor::execute()
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.inputOutputState.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
+    _filterThread->setLogSuffix("./apply/");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()), Qt::QueuedConnection);
     cimg_library::cimg::srand(_previewRandomSeed);
   }

@@ -151,7 +151,7 @@ linux {
 equals( HOST, "gimp") {
  TARGET = gmic_gimp_qt
  SOURCES += src/Host/Gimp/host_gimp.cpp
- DEFINES += GMIC_HOST=gimp_qt
+ DEFINES += GMIC_HOST=gimp
  DEFINES += GIMP_DISABLE_DEPRECATED
  DEPENDPATH += $$PWD/src/Host/Gimp
  message(Target host software is GIMP)

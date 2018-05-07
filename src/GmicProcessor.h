@@ -40,7 +40,7 @@ namespace cimg_library
 {
 template <typename T> struct CImgList;
 template <typename T> struct CImg;
-}
+} // namespace cimg_library
 
 class GmicProcessor : public QObject {
   Q_OBJECT
@@ -89,6 +89,7 @@ public:
 
   int duration() const;
   float progress() const;
+
 public slots:
   void cancel();
 

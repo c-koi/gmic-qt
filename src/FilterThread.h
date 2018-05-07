@@ -72,6 +72,7 @@ public:
   float progress() const;
   QString name() const;
   QString fullCommand() const;
+  void setLogSuffix(const QString & text);
 
 public slots:
   void abortGmic();
@@ -83,7 +84,6 @@ protected:
   void run() override;
 
 private:
-  void setCommand(const QString & command);
   QString _command;
   QString _arguments;
   QString _environment;
@@ -95,6 +95,7 @@ private:
   float _gmicProgress;
   QString _errorMessage;
   QString _name;
+  QString _logSuffix;
   GmicQt::OutputMessageMode _messageMode;
   QTime _startTime;
 };
