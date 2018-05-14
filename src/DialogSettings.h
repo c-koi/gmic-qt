@@ -28,6 +28,7 @@
 #include <QColor>
 #include <QDialog>
 #include "MainWindow.h"
+#include "gmic_qt.h"
 
 class QCloseEvent;
 class QSettings;
@@ -56,6 +57,7 @@ public:
   static QString FolderParameterDefaultValue;
   static QString FileParameterDefaultPath;
   static int previewTimeout();
+  static GmicQt::OutputMessageMode outputMessageMode();
 
 public slots:
   void onRadioLeftPreviewToggled(bool);
@@ -68,6 +70,7 @@ public slots:
   void done(int r) override;
   void onLogosVisibleToggled(bool);
   void onPreviewTimeoutChange(int);
+  void onOutputMessageModeChanged(int);
 
 private:
   Ui::DialogSettings * ui;
@@ -78,6 +81,7 @@ private:
   static int _updatePeriodicity;
   static bool _logosAreVisible;
   static int _previewTimeout;
+  static GmicQt::OutputMessageMode _outputMessageMode;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_

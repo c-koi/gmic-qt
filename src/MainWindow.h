@@ -86,7 +86,6 @@ public slots:
   void onAddFave();
   void onRemoveFave();
   void onRenameFave();
-  void onOutputMessageModeChanged(GmicQt::OutputMessageMode);
   void onToggleFullScreen(bool on);
   void onSettingsClicked();
   void onStartupFiltersUpdateFinished(int);

@@ -42,7 +42,6 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
 
   ui->inputLayers->setToolTip(tr("Input layers"));
-  QString dummy1(tr("Input layers..."));
   ui->inputLayers->addItem(tr("None"), GmicQt::NoInput);
   ui->inputLayers->addItem(tr("Active (default)"), GmicQt::Active);
   ui->inputLayers->addItem(tr("All"), GmicQt::All);
@@ -55,25 +54,12 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   ui->inputLayers->addItem(tr("All (decr.)"), GmicQt::AllDesc);
 
   ui->outputMode->setToolTip(tr("Output mode"));
-  QString dummy2(tr("Output mode..."));
   ui->outputMode->addItem(tr("In place (default)"), GmicQt::InPlace);
   ui->outputMode->addItem(tr("New layer(s)"), GmicQt::NewLayers);
   ui->outputMode->addItem(tr("New active layer(s)"), GmicQt::NewActiveLayers);
   ui->outputMode->addItem(tr("New image"), GmicQt::NewImage);
 
-  ui->outputMessages->setToolTip(tr("Output messages"));
-  QString dummy3(tr("Output messages..."));
-  ui->outputMessages->addItem(tr("Quiet (default)"), GmicQt::Quiet);
-  ui->outputMessages->addItem(tr("Verbose (layer name)"), GmicQt::VerboseLayerName);
-  ui->outputMessages->addItem(tr("Verbose (console)"), GmicQt::VerboseConsole);
-  ui->outputMessages->addItem(tr("Verbose (log file)"), GmicQt::VerboseLogFile);
-  ui->outputMessages->addItem(tr("Very verbose (console)"), GmicQt::VeryVerboseConsole);
-  ui->outputMessages->addItem(tr("Very verbose (log file)"), GmicQt::VeryVerboseLogFile);
-  ui->outputMessages->addItem(tr("Debug (console)"), GmicQt::DebugConsole);
-  ui->outputMessages->addItem(tr("Debug (log file)"), GmicQt::DebugLogFile);
-
   ui->previewMode->setToolTip(tr("Preview mode"));
-  QString dummy4(tr("Preview mode..."));
   ui->previewMode->addItem(tr("1st ouput (default)"), GmicQt::FirstOutput);
   ui->previewMode->addItem(tr("2nd ouput"), GmicQt::SecondOutput);
   ui->previewMode->addItem(tr("3rd ouput"), GmicQt::ThirdOutput);
@@ -85,7 +71,6 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
 
   connect(ui->inputLayers, SIGNAL(currentIndexChanged(int)), this, SLOT(onInputModeSelected(int)));
   connect(ui->outputMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputModeSelected(int)));
-  connect(ui->outputMessages, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputMessageSelected(int)));
   connect(ui->previewMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onPreviewModeSelected(int)));
   connect(ui->tbReset, SIGNAL(clicked(bool)), this, SLOT(onResetButtonClicked()));
 
@@ -115,12 +100,6 @@ GmicQt::PreviewMode InOutPanel::previewMode() const
   return static_cast<GmicQt::PreviewMode>(mode);
 }
 
-GmicQt::OutputMessageMode InOutPanel::outputMessageMode() const
-{
-  int mode = ui->outputMessages->currentData().toInt();
-  return static_cast<GmicQt::OutputMessageMode>(mode);
-}
-
 void InOutPanel::setInputMode(GmicQt::InputMode mode)
 {
   int index = ui->inputLayers->findData(mode);
@@ -139,15 +118,8 @@ void InOutPanel::setPreviewMode(GmicQt::PreviewMode mode)
   ui->previewMode->setCurrentIndex((index == -1) ? ui->previewMode->findData(GmicQt::DefaultPreviewMode) : index);
 }
 
-void InOutPanel::setOutputMessageMode(GmicQt::OutputMessageMode mode)
-{
-  int index = ui->outputMessages->findData(mode);
-  ui->outputMessages->setCurrentIndex((index == -1) ? ui->outputMessages->findData(GmicQt::DefaultOutputMessageMode) : index);
-}
-
 void InOutPanel::reset()
 {
-  ui->outputMessages->setCurrentIndex(ui->outputMessages->findData(GmicQt::DefaultOutputMessageMode));
   ui->inputLayers->setCurrentIndex(ui->inputLayers->findData(GmicQt::DefaultInputMode));
   ui->outputMode->setCurrentIndex(ui->outputMode->findData(GmicQt::DefaultOutputMode));
   ui->previewMode->setCurrentIndex(ui->previewMode->findData(GmicQt::DefaultPreviewMode));
@@ -161,13 +133,6 @@ void InOutPanel::onInputModeSelected(int)
 }
 
 void InOutPanel::onOutputModeSelected(int) {}
-
-void InOutPanel::onOutputMessageSelected(int)
-{
-  if (_notifyValueChange) {
-    emit outputMessageModeChanged(outputMessageMode());
-  }
-}
 
 void InOutPanel::onPreviewModeSelected(int)
 {
@@ -202,7 +167,7 @@ void InOutPanel::enableNotifications()
 
 GmicQt::InputOutputState InOutPanel::state() const
 {
-  return GmicQt::InputOutputState(inputMode(), outputMode(), previewMode(), outputMessageMode());
+  return GmicQt::InputOutputState(inputMode(), outputMode(), previewMode());
 }
 
 void InOutPanel::setState(const GmicQt::InputOutputState & state, bool notify)
@@ -216,7 +181,6 @@ void InOutPanel::setState(const GmicQt::InputOutputState & state, bool notify)
 
   setInputMode(state.inputMode);
   setOutputMode(state.outputMode);
-  setOutputMessageMode(state.outputMessageMode);
   setPreviewMode(state.previewMode);
 
   if (savedNotificationStatus) {
@@ -230,7 +194,6 @@ void InOutPanel::disable()
 {
   ui->inputLayers->setEnabled(false);
   ui->outputMode->setEnabled(false);
-  ui->outputMessages->setEnabled(false);
   ui->previewMode->setEnabled(false);
 }
 
@@ -238,6 +201,5 @@ void InOutPanel::enable()
 {
   ui->inputLayers->setEnabled(true);
   ui->outputMode->setEnabled(true);
-  ui->outputMessages->setEnabled(true);
   ui->previewMode->setEnabled(true);
 }

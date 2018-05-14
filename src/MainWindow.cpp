@@ -313,7 +313,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
     showUpdateErrors();
   } else if (status == Updater::UpdateSuccessful) {
     if (Updater::getInstance()->someNetworkUpdateAchieved()) {
-      showMessage(tr("Filter definitions have been updated"), 4000);
+      showMessage(tr("Filter definitions have been updated."), 4000);
     }
   } else if (status == Updater::UpdateNotNecessary) {
   }
@@ -488,7 +488,6 @@ void MainWindow::makeConnections()
   connect(ui->tbRenameFave, SIGNAL(clicked(bool)), this, SLOT(onRenameFave()));
 
   connect(ui->inOutSelector, SIGNAL(inputModeChanged(GmicQt::InputMode)), this, SLOT(onInputModeChanged(GmicQt::InputMode)));
-  connect(ui->inOutSelector, SIGNAL(outputMessageModeChanged(GmicQt::OutputMessageMode)), this, SLOT(onOutputMessageModeChanged(GmicQt::OutputMessageMode)));
   connect(ui->inOutSelector, SIGNAL(previewModeChanged(GmicQt::PreviewMode)), ui->previewWidget, SLOT(sendUpdateRequest()));
 
   connect(ui->cbPreview, SIGNAL(toggled(bool)), this, SLOT(onPreviewCheckBoxToggled(bool)));
@@ -525,6 +524,7 @@ void MainWindow::onPreviewUpdateRequested()
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
   context.inputOutputState = ui->inOutSelector->state();
+  context.outputMessageMode = DialogSettings::outputMessageMode();
   ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
   context.zoomFactor = ui->previewWidget->currentZoomFactor();
   context.previewWidth = ui->previewWidget->width();
@@ -580,6 +580,7 @@ void MainWindow::processImage()
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   rect.x = rect.y = rect.w = rect.h = -1;
   context.inputOutputState = ui->inOutSelector->state();
+  context.outputMessageMode = DialogSettings::outputMessageMode();
   context.filterName = currentFilter.plainTextName;
   context.filterCommand = currentFilter.command;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
@@ -937,7 +938,7 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->inOutSelector->show();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
     ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
-    Logger::setMode(ui->inOutSelector->outputMessageMode());
+    Logger::setMode(DialogSettings::outputMessageMode());
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
@@ -979,11 +980,10 @@ void MainWindow::showEvent(QShowEvent * event)
     Logger::clear();
   }
   QObject::connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+  Updater::setOutputMessageMode(DialogSettings::outputMessageMode());
   int ageLimit;
   {
     QSettings settings;
-    GmicQt::OutputMessageMode mode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageModeValue", GmicQt::Quiet).toInt());
-    Updater::setOutputMessageMode(mode);
     ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
   }
   const bool useNetwork = (ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY);
@@ -1038,12 +1038,6 @@ void MainWindow::onRemoveFave()
 void MainWindow::onRenameFave()
 {
   _filtersPresenter->editSelectedFaveName();
-}
-
-void MainWindow::onOutputMessageModeChanged(GmicQt::OutputMessageMode mode)
-{
-  Logger::setMode(mode);
-  ui->previewWidget->sendUpdateRequest();
 }
 
 void MainWindow::onToggleFullScreen(bool on)

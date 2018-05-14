@@ -20,27 +20,27 @@
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="90"/>
+        <location filename="../ui/dialogsettings.ui" line="102"/>
         <source>Internet updates</source>
         <translation>因特网更新</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="99"/>
+        <location filename="../ui/dialogsettings.ui" line="111"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="128"/>
+        <location filename="../ui/dialogsettings.ui" line="140"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="192"/>
+        <location filename="../ui/dialogsettings.ui" line="204"/>
         <source>Preview on the &amp;left</source>
         <translation>在左边预览(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="155"/>
+        <location filename="../ui/dialogsettings.ui" line="167"/>
         <source>Pre&amp;view on right side</source>
         <translation>在右边预览(&amp;V)</translation>
     </message>
@@ -71,71 +71,122 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="72"/>
+        <location filename="../src/DialogSettings.cpp" line="77"/>
+        <source>Output messages</source>
+        <translation>输出信息</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="84"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="78"/>
+        <location filename="../ui/dialogsettings.ui" line="90"/>
         <source>Use native color dialog</source>
         <translation>使用原生颜色对话框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="109"/>
+        <location filename="../ui/dialogsettings.ui" line="121"/>
         <source>Preview</source>
-        <translation type="unfinished">预览</translation>
+        <translation>预览</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="115"/>
+        <location filename="../ui/dialogsettings.ui" line="127"/>
         <source>Timeout (seconds)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="164"/>
+        <location filename="../ui/dialogsettings.ui" line="176"/>
         <source>Show institution logos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="228"/>
+        <location filename="../ui/dialogsettings.ui" line="240"/>
         <source>&amp;Ok</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="55"/>
+        <location filename="../src/DialogSettings.cpp" line="57"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="61"/>
+        <location filename="../src/DialogSettings.cpp" line="63"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="62"/>
+        <location filename="../src/DialogSettings.cpp" line="64"/>
         <source>Daily</source>
         <translation>每日</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="63"/>
+        <location filename="../src/DialogSettings.cpp" line="65"/>
         <source>Weekly</source>
         <translation>每周</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="64"/>
+        <location filename="../src/DialogSettings.cpp" line="66"/>
         <source>Every 2 weeks</source>
         <translation>每隔两周</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="65"/>
+        <location filename="../src/DialogSettings.cpp" line="67"/>
         <source>Monthly</source>
         <translation>每月</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="67"/>
+        <location filename="../src/DialogSettings.cpp" line="69"/>
         <source>At launch (debug)</source>
         <translation>启动时 (调试)</translation>
     </message>
     <message>
+        <location filename="../src/DialogSettings.cpp" line="78"/>
+        <source>Output messages...</source>
+        <translation>输出信息...</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="79"/>
+        <source>Quiet (default)</source>
+        <translation>静默 (默认)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="80"/>
+        <source>Verbose (layer name)</source>
+        <translation>冗长 (层名)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="81"/>
+        <source>Verbose (console)</source>
+        <translation>冗长 (控制台)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="82"/>
+        <source>Verbose (log file)</source>
+        <translation>冗长 (日志文件)</translation>
+    </message>
+    <message>
         <location filename="../src/DialogSettings.cpp" line="83"/>
+        <source>Very verbose (console)</source>
+        <translation>很冗长 (控制台)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="84"/>
+        <source>Very verbose (log file)</source>
+        <translation>很冗长 (日志文件)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="85"/>
+        <source>Debug (console)</source>
+        <translation>调试 (控制台)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
+        <source>Debug (log file)</source>
+        <translation>调试 (日志文件)</translation>
+    </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="102"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>选择以便使用原生/系统颜色对话框，取消选择以便使用 Qt</translation>
     </message>
@@ -156,12 +207,12 @@
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="38"/>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="147"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
-        <translation type="unfinished">&lt;i&gt;选择一个滤镜&lt;/i&gt;</translation>
+        <translation>&lt;i&gt;选择一个滤镜&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="116"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
-        <translation type="unfinished">&lt;i&gt;无参数&lt;/i&gt;</translation>
+        <translation>&lt;i&gt;无参数&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="121"/>
@@ -176,7 +227,36 @@
     <message>
         <location filename="../ui/filtersview.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">GMIC</translation>
+        <translation>GMIC</translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="64"/>
+        <source>Rename fave</source>
+        <translation>重命名收藏</translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="66"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="332"/>
+        <source>Remove fave</source>
+        <translation>移除收藏</translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="68"/>
+        <source>Clone fave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="72"/>
+        <source>Add fave</source>
+        <translation>添加收藏</translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="332"/>
+        <source>Do you really want to remove the following fave?
+
+%1
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -220,189 +300,128 @@
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="45"/>
-        <source>Input layers...</source>
-        <translation>输入层...</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="46"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="47"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="46"/>
         <source>Active (default)</source>
         <translation>活动 (默认)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="48"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="47"/>
         <source>All</source>
         <translation>全部</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="49"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="48"/>
         <source>Active and below</source>
         <translation>活动及其下面</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="50"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="49"/>
         <source>Active and above</source>
         <translation>活动及其上面</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="51"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="50"/>
         <source>All visible</source>
         <translation>全部可见</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="52"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="51"/>
         <source>All invisible</source>
         <translation>全部不可见</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="52"/>
         <source>All visible (decr.)</source>
         <translation>全部可见 (decr.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
         <source>All invisible (decr.)</source>
         <translation>全部不可见 (decr.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
         <source>All (decr.)</source>
         <translation>全部 (decr.)</translation>
     </message>
     <message>
         <location filename="../ui/inoutpanel.ui" line="158"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="56"/>
         <source>Output mode</source>
         <translation>输出模式</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
-        <source>Output mode...</source>
-        <translation>输出模式...</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
         <source>In place (default)</source>
         <translation>就地 (默认)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
         <source>New layer(s)</source>
         <translation>新建层</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
         <source>New active layer(s)</source>
         <translation>新建活动层</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
         <source>New image</source>
         <translation>新建图像</translation>
     </message>
     <message>
         <location filename="../ui/inoutpanel.ui" line="89"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
         <source>Output messages</source>
         <translation>输出信息</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
-        <source>Output messages...</source>
-        <translation>输出信息...</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
-        <source>Quiet (default)</source>
-        <translation>静默 (默认)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
-        <source>Verbose (layer name)</source>
-        <translation>冗长 (层名)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
-        <source>Verbose (console)</source>
-        <translation>冗长 (控制台)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
-        <source>Verbose (log file)</source>
-        <translation>冗长 (日志文件)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
-        <source>Very verbose (console)</source>
-        <translation>很冗长 (控制台)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
-        <source>Very verbose (log file)</source>
-        <translation>很冗长 (日志文件)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
-        <source>Debug (console)</source>
-        <translation>调试 (控制台)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="73"/>
-        <source>Debug (log file)</source>
-        <translation>调试 (日志文件)</translation>
-    </message>
-    <message>
         <location filename="../ui/inoutpanel.ui" line="135"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="75"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
         <source>Preview mode</source>
         <translation>预览模式</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="76"/>
-        <source>Preview mode...</source>
-        <translation>预览模式...</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="77"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
         <source>1st ouput (default)</source>
         <translation>第一个输出 (默认)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="78"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
         <source>2nd ouput</source>
         <translation>第二个输出</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="79"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
         <source>3rd ouput</source>
         <translation>第三个输出</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="80"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
         <source>4th ouput</source>
         <translation>第四个输出</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="81"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
         <source>1st -&gt; 2nd ouput</source>
         <translation>第一 -&gt; 第二个输出</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="82"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
         <source>1st -&gt; 3rd ouput</source>
         <translation>第一 -&gt; 第三个输出</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="83"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>1st -&gt; 4th ouput</source>
         <translation>第一 -&gt; 第四个输出</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="84"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
         <source>All ouputs</source>
         <translation>全部输出</translation>
     </message>
@@ -412,7 +431,7 @@
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">GMIC</translation>
+        <translation>GMIC</translation>
     </message>
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="38"/>
@@ -443,7 +462,7 @@
         <translation>因特网</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="113"/>
+        <location filename="../src/MainWindow.cpp" line="104"/>
         <source>Selection mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -493,80 +512,76 @@
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="86"/>
+        <location filename="../src/MainWindow.cpp" line="77"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="78"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="88"/>
+        <location filename="../src/MainWindow.cpp" line="79"/>
         <source>Reset zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="90"/>
+        <location filename="../src/MainWindow.cpp" line="81"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
+        <location filename="../src/MainWindow.cpp" line="82"/>
         <source>Add fave</source>
         <translation>添加收藏</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="93"/>
+        <location filename="../src/MainWindow.cpp" line="84"/>
         <source>Reset parameters to default values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="96"/>
+        <location filename="../src/MainWindow.cpp" line="87"/>
         <source>Update filters</source>
         <translation>更新滤镜</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="98"/>
+        <location filename="../src/MainWindow.cpp" line="89"/>
         <source>Rename fave</source>
         <translation>重命名收藏</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="100"/>
+        <location filename="../src/MainWindow.cpp" line="91"/>
         <source>Remove fave</source>
         <translation>移除收藏</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
+        <location filename="../src/MainWindow.cpp" line="95"/>
         <source>Expand/Collapse all</source>
         <translation>全部展开/折叠</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="106"/>
+        <location filename="../src/MainWindow.cpp" line="97"/>
         <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;诺曼底大学 (http://www.unicaen.fr)&lt;br/&gt;法国国立卡昂高等工程师学院 (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="270"/>
+        <location filename="../src/MainWindow.cpp" line="263"/>
         <source>Update completed</source>
         <translation>更新完成</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="270"/>
-        <location filename="../src/MainWindow.cpp" line="272"/>
+        <location filename="../src/MainWindow.cpp" line="263"/>
+        <location filename="../src/MainWindow.cpp" line="265"/>
+        <location filename="../src/MainWindow.cpp" line="316"/>
         <source>Filter definitions have been updated.</source>
         <translation>滤镜定义已更新。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="275"/>
+        <location filename="../src/MainWindow.cpp" line="268"/>
         <source>No download was needed.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="323"/>
-        <source>Filter definitions have been updated</source>
-        <translation>滤镜定义已更新</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="447"/>
@@ -579,27 +594,27 @@
         <translation>更新错误</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="593"/>
+        <location filename="../src/MainWindow.cpp" line="596"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="667"/>
+        <location filename="../src/MainWindow.cpp" line="675"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="998"/>
+        <location filename="../src/MainWindow.cpp" line="1004"/>
         <source>Import faves</source>
         <translation>导入收藏</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="998"/>
+        <location filename="../src/MainWindow.cpp" line="1004"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>你要从下面文件导入收藏吗?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1001"/>
+        <location filename="../src/MainWindow.cpp" line="1007"/>
         <source>Don&apos;t ask again</source>
         <translation>别再问</translation>
     </message>
@@ -709,22 +724,37 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="175"/>
+        <location filename="../src/Host/None/host_none.cpp" line="81"/>
         <source>Select an image to open...</source>
         <translation>选择一幅图片打开...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="175"/>
+        <location filename="../src/Host/None/host_none.cpp" line="81"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>PNG &amp; JPG 文件 (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="67"/>
+        <location filename="../src/Host/None/host_none.cpp" line="87"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/host_none.cpp" line="87"/>
+        <source>Could not open file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/host_none.cpp" line="91"/>
+        <source>Default image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="87"/>
         <source>Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="83"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="85"/>
         <source>Available filters (%1)</source>
         <translation>可用滤镜 (%1)</translation>
     </message>
@@ -750,32 +780,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="189"/>
+        <location filename="../src/Updater.cpp" line="206"/>
         <source>Could not read/decompress %1</source>
         <translation>无法读取/解压缩 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="180"/>
+        <location filename="../src/Updater.cpp" line="197"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>下载错误 %1 (空文件?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="195"/>
+        <location filename="../src/Updater.cpp" line="212"/>
         <source>Error creating file %1</source>
         <translation>创建文件错误 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="199"/>
+        <location filename="../src/Updater.cpp" line="216"/>
         <source>Error writing file %1</source>
         <translation>写入文件错误 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="211"/>
+        <location filename="../src/Updater.cpp" line="228"/>
         <source>Error downloading %1</source>
         <translation>下载错误 %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="239"/>
+        <location filename="../src/Updater.cpp" line="256"/>
         <source>Download timeout: %1</source>
         <translation>下载超时: %1</translation>
     </message>
@@ -785,7 +815,7 @@
     <message>
         <location filename="../ui/zoomlevelselector.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">GMIC</translation>
+        <translation>GMIC</translation>
     </message>
 </context>
 </TS>

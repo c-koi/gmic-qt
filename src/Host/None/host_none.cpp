@@ -49,11 +49,11 @@
 //#define DEFAULT_IMAGE "local/bug.jpg"
 //#define DEFAULT_IMAGE "local/bug2.jpg"
 //#define DEFAULT_IMAGE "local/crop_inktober.jpg"
-//#define DEFAULT_IMAGE "local/lena.png"
+#define DEFAULT_IMAGE "local/lena.png"
 //#define DEFAULT_IMAGE "local/transp.png"
 //#define DEFAULT_IMAGE "local/small_lena.png"
 //#define DEFAULT_IMAGE "local/ken.jpg"
-#define DEFAULT_IMAGE "local/ferrari.jpg"
+//#define DEFAULT_IMAGE "local/ferrari.jpg"
 //#define DEFAULT_IMAGE "local/audio-speakers.png"
 //#define DEFAULT_IMAGE "local/audio-speakers-top.png"
 #endif
@@ -100,13 +100,13 @@ const QImage & transparentImage()
   }
   return image;
 }
-}
+} // namespace gmic_qt_standalone
 
 namespace GmicQt
 {
 const QString HostApplicationName;
 const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
-}
+} // namespace GmicQt
 
 void gmic_qt_get_image_size(int * x, int * y)
 {

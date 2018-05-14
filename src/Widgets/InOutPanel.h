@@ -58,7 +58,6 @@ public:
   void setInputMode(GmicQt::InputMode mode);
   void setOutputMode(GmicQt::OutputMode mode);
   void setPreviewMode(GmicQt::PreviewMode mode);
-  void setOutputMessageMode(GmicQt::OutputMessageMode mode);
 
   GmicQt::InputOutputState state() const;
   void setState(const GmicQt::InputOutputState & state, bool notify);
@@ -68,13 +67,11 @@ public:
 
 signals:
   void inputModeChanged(GmicQt::InputMode);
-  void outputMessageModeChanged(GmicQt::OutputMessageMode);
   void previewModeChanged(GmicQt::PreviewMode);
 
 public slots:
   void onInputModeSelected(int);
   void onOutputModeSelected(int);
-  void onOutputMessageSelected(int);
   void onPreviewModeSelected(int);
   void onResetButtonClicked();
   void setDarkTheme();

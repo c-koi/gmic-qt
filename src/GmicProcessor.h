@@ -61,6 +61,7 @@ public:
     RequestType requestType;
     VisibleRect visibleRect;
     GmicQt::InputOutputState inputOutputState;
+    GmicQt::OutputMessageMode outputMessageMode;
     PositionStringCorrection positionStringCorrection;
     double zoomFactor;
     int previewWidth;

@@ -28,6 +28,7 @@
 #include <limits>
 #include "Common.h"
 #include "Globals.h"
+#include "Logger.h"
 #include "Updater.h"
 #include "ui_dialogsettings.h"
 
@@ -37,6 +38,7 @@ bool DialogSettings::_nativeColorDialogs;
 bool DialogSettings::_logosAreVisible;
 MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
+GmicQt::OutputMessageMode DialogSettings::_outputMessageMode;
 
 const QColor DialogSettings::CheckBoxBaseColor(83, 83, 83);
 const QColor DialogSettings::CheckBoxTextColor(255, 255, 255);
@@ -72,6 +74,23 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     }
   }
 
+  ui->outputMessages->setToolTip(tr("Output messages"));
+  QString dummy3(tr("Output messages..."));
+  ui->outputMessages->addItem(tr("Quiet (default)"), GmicQt::Quiet);
+  ui->outputMessages->addItem(tr("Verbose (layer name)"), GmicQt::VerboseLayerName);
+  ui->outputMessages->addItem(tr("Verbose (console)"), GmicQt::VerboseConsole);
+  ui->outputMessages->addItem(tr("Verbose (log file)"), GmicQt::VerboseLogFile);
+  ui->outputMessages->addItem(tr("Very verbose (console)"), GmicQt::VeryVerboseConsole);
+  ui->outputMessages->addItem(tr("Very verbose (log file)"), GmicQt::VeryVerboseLogFile);
+  ui->outputMessages->addItem(tr("Debug (console)"), GmicQt::DebugConsole);
+  ui->outputMessages->addItem(tr("Debug (log file)"), GmicQt::DebugLogFile);
+  for (int index = 0; index < ui->outputMessages->count(); ++index) {
+    if (ui->outputMessages->itemData(index) == _outputMessageMode) {
+      ui->outputMessages->setCurrentIndex(index);
+      break;
+    }
+  }
+
   ui->sbPreviewTimeout->setRange(1, 360);
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
@@ -102,6 +121,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   connect(ui->cbShowLogos, SIGNAL(toggled(bool)), this, SLOT(onLogosVisibleToggled(bool)));
 
   connect(ui->sbPreviewTimeout, SIGNAL(valueChanged(int)), this, SLOT(onPreviewTimeoutChange(int)));
+
+  connect(ui->outputMessages, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputMessageModeChanged(int)));
 
   ui->languageSelector->selectLanguage(_languageCode);
   if (_darkThemeEnabled) {
@@ -140,11 +161,17 @@ void DialogSettings::loadSettings()
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath", QDir::homePath()).toString();
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
+  _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
 }
 
 int DialogSettings::previewTimeout()
 {
   return _previewTimeout;
+}
+
+GmicQt::OutputMessageMode DialogSettings::outputMessageMode()
+{
+  return _outputMessageMode;
 }
 
 void DialogSettings::saveSettings(QSettings & settings)
@@ -156,6 +183,7 @@ void DialogSettings::saveSettings(QSettings & settings)
   settings.setValue("FileParameterDefaultPath", FileParameterDefaultPath);
   settings.setValue("LogosAreVisible", _logosAreVisible);
   settings.setValue("PreviewTimeout", _previewTimeout);
+  settings.setValue("OutputMessageMode", _outputMessageMode);
 
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
@@ -196,6 +224,12 @@ void DialogSettings::onLogosVisibleToggled(bool on)
 void DialogSettings::onPreviewTimeoutChange(int value)
 {
   _previewTimeout = value;
+}
+
+void DialogSettings::onOutputMessageModeChanged(int)
+{
+  _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(ui->outputMessages->currentData().toInt());
+  Logger::setMode(_outputMessageMode);
 }
 
 void DialogSettings::enableUpdateButton()
