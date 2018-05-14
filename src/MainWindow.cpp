@@ -232,6 +232,7 @@ void MainWindow::setDarkTheme()
                       "QToolButton:checked { background: #383838; }"
                       "QToolButton:pressed { background: #383838; }"
                       "QComboBox QAbstractItemView { background: #505050; } "
+                      "QGroupBox { border: 1px solid #808080; margin-top: 4ex; } "
                       "QFileDialog QAbstractItemView { background: #505050; } "
                       "QComboBox:editable { background: #505050; } "
                       "QProgressBar { background: #505050; }";
