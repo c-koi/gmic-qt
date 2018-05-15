@@ -348,7 +348,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   } else {
     _filtersPresenter->adjustViewSize();
     activateFilter(true);
-    if (ui->cbPreview->isChecked() && (status == Updater::UpdateSuccessful)) {
+    if (ui->cbPreview->isChecked()) {
       ui->previewWidget->sendUpdateRequest();
     }
   }
