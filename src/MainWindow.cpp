@@ -702,11 +702,11 @@ void MainWindow::onProgressionWidgetCancelClicked()
 
 void MainWindow::onReset()
 {
-  if (_filtersPresenter->currentFilter().hash.isEmpty() && _filtersPresenter->currentFilter().isAFave) {
+  if (!_filtersPresenter->currentFilter().hash.isEmpty() && _filtersPresenter->currentFilter().isAFave) {
     ui->filterParams->setValues(_filtersPresenter->currentFilter().defaultParameterValues, true);
     return;
   }
-  if (not _filtersPresenter->currentFilter().isNoFilter()) {
+  if (!_filtersPresenter->currentFilter().isNoFilter()) {
     ui->filterParams->reset(true);
   }
 }
