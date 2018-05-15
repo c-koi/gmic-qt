@@ -1085,10 +1085,20 @@ void MainWindow::onSettingsClicked()
     }
     ui->splitter->setSizes(splitterSizes);
   }
+  bool shouldUpdatePreview = false;
   if (DialogSettings::logosAreVisible()) {
-    ui->logosLabel->show();
+    if (!ui->logosLabel->isVisible()) {
+      shouldUpdatePreview = true;
+      ui->logosLabel->show();
+    }
   } else {
-    ui->logosLabel->hide();
+    if (ui->logosLabel->isVisible()) {
+      shouldUpdatePreview = true;
+      ui->logosLabel->hide();
+    }
+  }
+  if (shouldUpdatePreview) {
+    ui->previewWidget->sendUpdateRequest();
   }
 }
 
