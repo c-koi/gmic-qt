@@ -604,7 +604,7 @@ void FiltersView::saveFiltersVisibility(QStandardItem * item)
 
 FilterTreeItem * FiltersView::findFave(const QString & hash)
 {
-  const int count = _faveFolder->rowCount();
+  const int count = _faveFolder ? _faveFolder->rowCount() : 0;
   for (int faveIndex = 0; faveIndex < count; ++faveIndex) {
     FilterTreeItem * item = static_cast<FilterTreeItem *>(_faveFolder->child(faveIndex));
     if (item->hash() == hash) {
