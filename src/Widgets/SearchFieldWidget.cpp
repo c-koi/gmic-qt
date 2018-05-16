@@ -27,6 +27,8 @@
 #include <QHBoxLayout>
 #include <QIcon>
 #include <QLineEdit>
+#include <QRegExp>
+#include <QRegExpValidator>
 #include <QToolButton>
 #include "Common.h"
 #include "DialogSettings.h"
@@ -72,6 +74,9 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   _lineEdit->setPlaceholderText(tr("Search"));
   _lineEdit->setToolTip(tr("Search in filters list (%1)").arg(QKeySequence(QKeySequence::Find).toString()));
   setFocusProxy(_lineEdit);
+
+  QRegExpValidator * validator = new QRegExpValidator(QRegExp("[^/].*"), this);
+  _lineEdit->setValidator(validator);
 }
 
 SearchFieldWidget::~SearchFieldWidget()

@@ -122,6 +122,12 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
   addAction(searchAction);
 
+  searchAction = new QAction(this);
+  searchAction->setShortcut(QKeySequence("/"));
+  searchAction->setShortcutContext(Qt::ApplicationShortcut);
+  connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
+  addAction(searchAction);
+
   ui->splitter->setHandleWidth(6);
   ui->verticalSplitter->setHandleWidth(6);
   ui->verticalSplitter->setStretchFactor(0, 5);
