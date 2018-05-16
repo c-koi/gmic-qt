@@ -26,19 +26,16 @@
 #include <QCryptographicHash>
 #include <QDebug>
 #include <limits>
+#include "Common.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "gmic_qt.h"
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
 
-FiltersModel::FiltersModel()
-{
-}
+FiltersModel::FiltersModel() {}
 
-FiltersModel::~FiltersModel()
-{
-}
+FiltersModel::~FiltersModel() {}
 
 void FiltersModel::clear()
 {
@@ -151,6 +148,10 @@ FiltersModel::Filter & FiltersModel::Filter::setAccurateIfZoomed(bool accurate)
 FiltersModel::Filter & FiltersModel::Filter::setPath(const QList<QString> & path)
 {
   _path = path;
+  _plainPath.clear();
+  for (const QString & str : _path) {
+    _plainPath.push_back(HtmlTranslator::html2txt(str, true));
+  }
   return *this;
 }
 
@@ -231,8 +232,8 @@ bool FiltersModel::Filter::matchKeywords(const QList<QString> & keywords) const
     // Check that this keyword is present, either in filter name or in its path
     const QString & keyword = *itKeyword;
     bool keywordInPath = false;
-    QList<QString>::const_iterator itPath = _path.cbegin();
-    while (itPath != _path.cend() && !keywordInPath) {
+    QList<QString>::const_iterator itPath = _plainPath.cbegin();
+    while (itPath != _plainPath.cend() && !keywordInPath) {
       keywordInPath = itPath->contains(keyword, Qt::CaseInsensitive);
       ++itPath;
     }

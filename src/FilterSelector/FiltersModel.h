@@ -62,6 +62,7 @@ public:
     QString _name;
     QString _plainText;
     QList<QString> _path;
+    QList<QString> _plainPath;
     QString _command;
     QString _previewCommand;
     QString _parameters;

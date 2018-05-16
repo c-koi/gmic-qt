@@ -34,13 +34,9 @@
 
 const size_t FavesModel::NoIndex = std::numeric_limits<size_t>::max();
 
-FavesModel::FavesModel()
-{
-}
+FavesModel::FavesModel() {}
 
-FavesModel::~FavesModel()
-{
-}
+FavesModel::~FavesModel() {}
 
 void FavesModel::clear()
 {
@@ -225,10 +221,11 @@ QString FavesModel::Fave::toString() const
 
 bool FavesModel::Fave::matchKeywords(const QList<QString> & keywords) const
 {
+  static const QString faveFolderPlainText = HtmlTranslator::html2txt(QObject::tr(FAVE_FOLDER_TEXT));
   QList<QString>::const_iterator itKeyword = keywords.cbegin();
   while (itKeyword != keywords.cend()) {
     const QString & keyword = *itKeyword;
-    if (!QObject::tr(FAVE_FOLDER_TEXT).contains(keyword, Qt::CaseInsensitive) && !_plainText.contains(keyword, Qt::CaseInsensitive)) {
+    if (!faveFolderPlainText.contains(keyword, Qt::CaseInsensitive) && !_plainText.contains(keyword, Qt::CaseInsensitive)) {
       return false;
     }
     ++itKeyword;
