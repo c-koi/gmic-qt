@@ -410,11 +410,11 @@ void MainWindow::onFilterSelectionChanged()
 
 void MainWindow::onEscapeKeyPressed()
 {
+  ui->searchField->clear();
   if (_processor.isProcessing()) {
     if (_processor.isProcessingFullImage()) {
       ui->progressInfoWidget->onCancelClicked();
     } else {
-      ui->searchField->clear();
       _processor.cancel();
       ui->previewWidget->displayOriginalImage();
     }
