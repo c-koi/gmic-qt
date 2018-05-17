@@ -59,7 +59,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   _filterName = settings.value(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname)).toString();
   _lastCommand = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
   _lastArguments = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
-  _outputMessageMode = (GmicQt::OutputMessageMode)settings.value(QString("OutputMessageMode").arg(GmicQt::HostApplicationShortname), GmicQt::Quiet).toInt();
+  _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
   _inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   _outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
   _lastEnvironment = settings.value(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname), QString()).toString();
