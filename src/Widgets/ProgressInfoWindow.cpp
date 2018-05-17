@@ -23,12 +23,16 @@
  *
  */
 #include "ProgressInfoWindow.h"
+#include <QApplication>
 #include <QCloseEvent>
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QSettings>
+#include <QStyleFactory>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "FilterThread.h"
+#include "Globals.h"
 #include "GmicStdlib.h"
 #include "HeadlessProcessor.h"
 #include "Updater.h"
@@ -50,6 +54,10 @@ ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWin
   connect(processor, SIGNAL(progression(float, int, ulong)), this, SLOT(onProgress(float, int, ulong)));
   connect(processor, SIGNAL(done(QString)), this, SLOT(onProcessingFinished(QString)));
   _isShown = false;
+
+  if (QSettings().value(DARK_THEME_KEY, false).toBool()) {
+    setDarkTheme();
+  }
 }
 
 ProgressInfoWindow::~ProgressInfoWindow()
@@ -68,6 +76,29 @@ void ProgressInfoWindow::showEvent(QShowEvent *)
 void ProgressInfoWindow::closeEvent(QCloseEvent * event)
 {
   event->accept();
+}
+
+void ProgressInfoWindow::setDarkTheme()
+{
+  qApp->setStyle(QStyleFactory::create("Fusion"));
+  QPalette p = qApp->palette();
+  p.setColor(QPalette::Window, QColor(53, 53, 53));
+  p.setColor(QPalette::Button, QColor(73, 73, 73));
+  p.setColor(QPalette::Highlight, QColor(110, 110, 110));
+  p.setColor(QPalette::Text, QColor(255, 255, 255));
+  p.setColor(QPalette::ButtonText, QColor(255, 255, 255));
+  p.setColor(QPalette::WindowText, QColor(255, 255, 255));
+  QColor linkColor(100, 100, 100);
+  linkColor = linkColor.lighter();
+  p.setColor(QPalette::Link, linkColor);
+  p.setColor(QPalette::LinkVisited, linkColor);
+
+  p.setColor(QPalette::Disabled, QPalette::Button, QColor(53, 53, 53));
+  p.setColor(QPalette::Disabled, QPalette::Window, QColor(53, 53, 53));
+  p.setColor(QPalette::Disabled, QPalette::Text, QColor(110, 110, 110));
+  p.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(110, 110, 110));
+  p.setColor(QPalette::Disabled, QPalette::WindowText, QColor(110, 110, 110));
+  qApp->setPalette(p);
 }
 
 void ProgressInfoWindow::onCancelClicked(bool)

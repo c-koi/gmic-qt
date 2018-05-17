@@ -95,7 +95,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
-  const bool savedDarkTheme = QSettings().value("Config/DarkTheme", false).toBool();
+  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, false).toBool();
   ui->rbDarkTheme->setChecked(savedDarkTheme);
   ui->rbDefaultTheme->setChecked(!savedDarkTheme);
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
@@ -153,7 +153,7 @@ void DialogSettings::loadSettings()
   } else {
     _previewPosition = MainWindow::PreviewOnRight;
   }
-  _darkThemeEnabled = settings.value("Config/DarkTheme", false).toBool();
+  _darkThemeEnabled = settings.value(DARK_THEME_KEY, false).toBool();
   _languageCode = settings.value("Config/LanguageCode", QString()).toString();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
@@ -211,7 +211,7 @@ void DialogSettings::done(int r)
 {
   QSettings settings;
   saveSettings(settings);
-  settings.setValue("Config/DarkTheme", ui->rbDarkTheme->isChecked());
+  settings.setValue(DARK_THEME_KEY, ui->rbDarkTheme->isChecked());
   settings.setValue("Config/LanguageCode", ui->languageSelector->selectedLanguageCode());
   QDialog::done(r);
 }

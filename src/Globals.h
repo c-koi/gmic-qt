@@ -34,7 +34,7 @@ namespace GmicQt
 extern const float PreviewFactorAny;
 extern const float PreviewFactorFullImage;
 extern const float PreviewFactorActualSize;
-}
+} // namespace GmicQt
 
 #define SLIDER_MIN_WIDTH 60
 #define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
@@ -43,6 +43,7 @@ extern const float PreviewFactorActualSize;
 #define FAVE_FOLDER_TEXT "<b>Faves</b>"
 #define FAVES_IMPORT_KEY "Faves/ImportedGTK179"
 
+#define DARK_THEME_KEY "Config/DarkTheme"
 #define REFRESH_USING_INTERNET_KEY "Config/RefreshInternetUpdate"
 #define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
 #define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()

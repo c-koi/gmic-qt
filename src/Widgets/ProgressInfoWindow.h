@@ -54,6 +54,7 @@ public:
 protected:
   void showEvent(QShowEvent *) override;
   void closeEvent(QCloseEvent *) override;
+  void setDarkTheme();
 
 public slots:
   void onCancelClicked(bool);
