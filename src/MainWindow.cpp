@@ -417,6 +417,7 @@ void MainWindow::onEscapeKeyPressed()
     } else {
       _processor.cancel();
       ui->previewWidget->displayOriginalImage();
+      ui->tbUpdateFilters->setEnabled(true);
     }
   }
 }
