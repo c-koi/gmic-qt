@@ -170,6 +170,14 @@ void PreviewWidget::updateOriginalImagePosition()
 
 void PreviewWidget::paintPreview(QPainter & painter)
 {
+  if (!_errorMessage.isEmpty()) {
+    paintOriginalImage(painter);
+    painter.fillRect(_imagePosition, QColor(40, 40, 40, 150));
+    painter.setPen(Qt::green);
+    painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
+    return;
+  }
+
   if (!_image->width() && !_image->height()) {
     painter.fillRect(rect(), QBrush(_transparency));
     return;
@@ -199,11 +207,6 @@ void PreviewWidget::paintPreview(QPainter & painter)
   QImage qimage;
   ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
   painter.drawImage(_imagePosition, qimage);
-  if (!_errorMessage.isEmpty()) { // TODO : Check this
-    painter.fillRect(_imagePosition, QColor(40, 40, 40, 150));
-    painter.setPen(Qt::green);
-    painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
-  }
 }
 
 void PreviewWidget::paintOriginalImage(QPainter & painter)
