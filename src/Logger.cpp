@@ -73,6 +73,6 @@ void Logger::clear()
 
 void Logger::log(const QString & message)
 {
-  std::fprintf(cimg_library::cimg::output(), message.toLocal8Bit().constData());
+  std::fprintf(cimg_library::cimg::output(), "%s", message.toLocal8Bit().constData());
   std::fflush(cimg_library::cimg::output());
 }
