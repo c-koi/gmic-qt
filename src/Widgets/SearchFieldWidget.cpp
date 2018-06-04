@@ -23,6 +23,7 @@
  *
  */
 #include "Widgets/SearchFieldWidget.h"
+#include <QAction>
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QIcon>
