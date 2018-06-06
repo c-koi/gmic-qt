@@ -249,11 +249,12 @@ void FilterParametersWidget::clear()
   _paddingWidget = 0;
 }
 
-void FilterParametersWidget::clearButtonParameters() const
+void FilterParametersWidget::clearButtonParameters()
 {
   for (int i = 0; i < _presetParameters.size(); ++i) {
     if (_presetParameters[i]->isActualParameter()) {
       _presetParameters[i]->clear();
     }
   }
+  updateValueString(false);
 }
