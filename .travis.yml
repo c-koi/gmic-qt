@@ -35,10 +35,13 @@ matrix:
 #      env:
 #        - MATRIX_EVAL="brew update"
 
+#  GMIC blessed repo has been moved to Framagit (June 2018)
+#  - git clone --depth=1 https://github.com/dtschump/gmic.git gmic-clone
+
 before_install:
   - date -u
   - uname -a
-  - git clone --depth=1 https://github.com/dtschump/gmic.git gmic-clone
+  - git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone
   - make -C gmic-clone/src CImg.h gmic_stdlib.h
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
         sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp;
