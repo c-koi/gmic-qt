@@ -143,15 +143,7 @@ void FilterThread::run()
   _failed = false;
   QString fullCommandLine;
   try {
-    if (_messageMode == GmicQt::Quiet) {
-      fullCommandLine = QString("v -");
-    } else if (_messageMode >= GmicQt::VerboseLayerName && _messageMode <= GmicQt::VerboseLogFile) {
-      fullCommandLine = QString("v -99");
-    } else if (_messageMode == GmicQt::VeryVerboseConsole || _messageMode == GmicQt::VeryVerboseLogFile) {
-      fullCommandLine = QString("v 0");
-    } else if (_messageMode == GmicQt::DebugConsole || _messageMode == GmicQt::DebugLogFile) {
-      fullCommandLine = QString("debug");
-    }
+    fullCommandLine = QString::fromLocal8Bit(GmicQt::commandFromOutputMessageMode(_messageMode));
     fullCommandLine += QString(" %1 %2").arg(_command).arg(_arguments);
     _gmicAbort = false;
     _gmicProgress = -1;

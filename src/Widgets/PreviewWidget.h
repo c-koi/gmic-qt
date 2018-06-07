@@ -38,7 +38,7 @@ namespace cimg_library
 {
 template <typename T> struct CImgList;
 template <typename T> struct CImg;
-}
+} // namespace cimg_library
 
 class PreviewWidget : public QWidget {
   Q_OBJECT
@@ -56,6 +56,8 @@ public:
   void updateVisibleRect();
   void centerVisibleRect();
   void setPreviewImage(const cimg_library::CImg<float> & image);
+  void setOverlayMessage(const QString &);
+  void clearOverlayMessage();
   void setPreviewErrorMessage(const QString &);
   const cimg_library::CImg<float> & image() const;
   void translateNormalized(double dx, double dy);
@@ -109,6 +111,8 @@ private:
   void getOriginalImageCrop(cimg_library::CImg<float> & image);
   void updateCachedOriginalImageCrop();
   void updateOriginalImagePosition();
+  void updateErrorImage();
+
   QSize originalImageCropSize();
   double defaultZoomFactor() const;
   void saveVisibleCenter();
@@ -167,6 +171,8 @@ private:
   std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
   PreviewRect _cachedOriginalImagePosition;
   QString _errorMessage;
+  QString _overlayMessage;
+  QImage _errorImage;
 };
 
 #endif // _GMIC_QT_PREVIEWWIDGET_H_

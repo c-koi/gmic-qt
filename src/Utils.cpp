@@ -27,7 +27,6 @@
 #include <QFileInfo>
 #include <QString>
 #include "Host/host.h"
-#include "gmic_qt.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
@@ -107,6 +106,21 @@ const QString & pluginCodeName()
     result = GmicQt::HostApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(GmicQt::HostApplicationShortname).toLower());
   }
   return result;
+}
+
+const char * commandFromOutputMessageMode(OutputMessageMode mode)
+{
+  static const char commands[][6] = {"v -", "v -99", "v 0", "debug"};
+  if (mode == GmicQt::Quiet) {
+    return commands[0];
+  } else if (mode >= GmicQt::VerboseLayerName && mode <= GmicQt::VerboseLogFile) {
+    return commands[1];
+  } else if (mode == GmicQt::VeryVerboseConsole || mode == GmicQt::VeryVerboseLogFile) {
+    return commands[2];
+  } else if (mode == GmicQt::DebugConsole || mode == GmicQt::DebugLogFile) {
+    return commands[3];
+  }
+  return commands[0];
 }
 
 } // namespace GmicQt

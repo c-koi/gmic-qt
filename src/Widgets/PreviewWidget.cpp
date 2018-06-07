@@ -32,7 +32,9 @@
 #include <algorithm>
 #include <functional>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "Globals.h"
+#include "GmicStdlib.h"
 #include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
@@ -80,6 +82,8 @@ const cimg_library::CImg<float> & PreviewWidget::image() const
 void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
 {
   _errorMessage.clear();
+  _errorImage = QImage();
+  _overlayMessage.clear();
   *_image = image;
   *_savedPreview = image;
   _savedPreviewIsValid = true;
@@ -96,9 +100,24 @@ void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
   update();
 }
 
+void PreviewWidget::setOverlayMessage(const QString & message)
+{
+  _overlayMessage = message;
+  _paintOriginalImage = false;
+  update();
+}
+
+void PreviewWidget::clearOverlayMessage()
+{
+  _overlayMessage.clear();
+  _paintOriginalImage = false;
+  update();
+}
+
 void PreviewWidget::setPreviewErrorMessage(const QString & message)
 {
   _errorMessage = message;
+  _errorImage = QImage();
   _paintOriginalImage = false;
   update();
 }
@@ -168,13 +187,57 @@ void PreviewWidget::updateOriginalImagePosition()
   }
 }
 
+void PreviewWidget::updateErrorImage()
+{
+  cimg_library::CImgList<float> images;
+  cimg_library::CImgList<char> imageNames;
+  images.assign();
+  imageNames.assign();
+  gmic_image<float> image;
+  getOriginalImageCrop(image);
+  image.move_to(images);
+  QString fullCommandLine = QString::fromLocal8Bit(GmicQt::commandFromOutputMessageMode(DialogSettings::outputMessageMode()));
+  fullCommandLine += QString(" _host=%1 _tk=qt").arg(GmicQt::HostApplicationShortname);
+  fullCommandLine += QString(" _preview_width=%1").arg(width());
+  fullCommandLine += QString(" _preview_height=%1").arg(height());
+  fullCommandLine += QString(" gui_error_preview \"%2\"").arg(_errorMessage);
+  try {
+    gmic(fullCommandLine.toLocal8Bit().constData(), images, imageNames, GmicStdLib::Array.constData(), true);
+  } catch (...) {
+    images.assign();
+    imageNames.assign();
+  }
+  if (!images.size() || !images.front()) {
+    _errorImage = QImage(size(), QImage::Format_ARGB32);
+    _errorImage.fill(QColor(40, 40, 40));
+    QPainter painter(&_errorImage);
+    painter.setPen(Qt::green);
+    painter.drawText(QRect(0, 0, _errorImage.width(), _errorImage.height()), Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
+    return;
+  }
+  QImage qimage;
+  ImageConverter::convert(images.front(), qimage);
+  if (qimage.size() != size()) {
+    _errorImage = qimage.scaled(_imagePosition.size());
+  } else {
+    _errorImage = qimage;
+  }
+}
+
 void PreviewWidget::paintPreview(QPainter & painter)
 {
-  if (!_errorMessage.isEmpty()) {
+  if (!_overlayMessage.isEmpty()) {
     paintOriginalImage(painter);
     painter.fillRect(_imagePosition, QColor(40, 40, 40, 150));
     painter.setPen(Qt::green);
-    painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _errorMessage);
+    painter.drawText(_imagePosition, Qt::AlignCenter | Qt::TextWordWrap, _overlayMessage);
+    return;
+  }
+  if (!_errorMessage.isEmpty()) {
+    if (_errorImage.isNull() || (_errorImage.size() != size())) {
+      updateErrorImage();
+    }
+    painter.drawImage(0, 0, _errorImage);
     return;
   }
 

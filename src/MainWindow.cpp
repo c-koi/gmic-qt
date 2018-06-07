@@ -680,7 +680,7 @@ void MainWindow::onCloseClicked()
       _pendingActionAfterCurrentProcessing = CloseAction;
       connect(&_processor, SIGNAL(noMoreUnfinishedJobs()), this, SLOT(close()));
       ui->progressInfoWidget->showBusyIndicator();
-      ui->previewWidget->setPreviewErrorMessage(tr("Waiting for cancelled jobs..."));
+      ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
       _processor.cancel();
     } else {
       close();

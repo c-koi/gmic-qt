@@ -25,6 +25,7 @@
 #ifndef _GMIC_QT_UTILS_H_
 #define _GMIC_QT_UTILS_H_
 
+#include "gmic_qt.h"
 class QString;
 
 namespace GmicQt
@@ -33,6 +34,7 @@ const QString & path_rc(bool create);
 unsigned int host_app_pid();
 const QString & pluginFullName();
 const QString & pluginCodeName();
+const char * commandFromOutputMessageMode(OutputMessageMode mode);
 } // namespace GmicQt
 
 #endif // _GMIC_QT_UTILS_H_
