@@ -118,6 +118,7 @@ void PreviewWidget::setPreviewErrorMessage(const QString & message)
 {
   _errorMessage = message;
   _errorImage = QImage();
+  updateErrorImage();
   _paintOriginalImage = false;
   update();
 }
@@ -218,7 +219,7 @@ void PreviewWidget::updateErrorImage()
   QImage qimage;
   ImageConverter::convert(images.front(), qimage);
   if (qimage.size() != size()) {
-    _errorImage = qimage.scaled(_imagePosition.size());
+    _errorImage = qimage.scaled(size());
   } else {
     _errorImage = qimage;
   }
@@ -432,7 +433,10 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 
   if (_rightClickEnabled && _paintOriginalImage && (e->button() == Qt::RightButton)) {
     if (_previewEnabled) {
-      if (_savedPreviewIsValid) {
+      if (!_errorImage.isNull()) {
+        _paintOriginalImage = false;
+        update();
+      } else if (_savedPreviewIsValid) {
         restorePreview();
         _paintOriginalImage = false;
         update();

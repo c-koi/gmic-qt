@@ -562,6 +562,7 @@ void MainWindow::onPreviewImageAvailable()
 void MainWindow::onPreviewError(QString message)
 {
   ui->previewWidget->setPreviewErrorMessage(message);
+  ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
     close();
