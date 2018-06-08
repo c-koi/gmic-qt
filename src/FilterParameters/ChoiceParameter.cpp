@@ -30,9 +30,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(0), _comboBox(0)
-{
-}
+ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(0), _comboBox(0) {}
 
 ChoiceParameter::~ChoiceParameter()
 {
@@ -56,6 +54,10 @@ void ChoiceParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_comboBox, row, 1, 1, 2);
   connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxIndexChanged(int)));
 }
+
+void ChoiceParameter::addToKeypointList(KeypointList &) const {}
+
+void ChoiceParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 QString ChoiceParameter::textValue() const
 {

@@ -32,9 +32,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent, false), _label(0)
-{
-}
+NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent, false), _label(0) {}
 
 NoteParameter::~NoteParameter()
 {
@@ -55,18 +53,18 @@ void NoteParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_label, row, 0, 1, 3);
 }
 
+void NoteParameter::addToKeypointList(KeypointList &) const {}
+
+void NoteParameter::extractPositionFromKeypointList(KeypointList &) {}
+
 QString NoteParameter::textValue() const
 {
   return QString::null;
 }
 
-void NoteParameter::setValue(const QString &)
-{
-}
+void NoteParameter::setValue(const QString &) {}
 
-void NoteParameter::reset()
-{
-}
+void NoteParameter::reset() {}
 
 bool NoteParameter::initFromText(const char * text, int & textLength)
 {

@@ -276,7 +276,9 @@ HEADERS +=  \
   src/Widgets/ZoomLevelSelector.h \
   src/Widgets/SearchFieldWidget.h \
   src/Widgets/LanguageSelectionWidget.h \
-  src/Widgets/ProgressInfoWindow.h
+  src/Widgets/ProgressInfoWindow.h \
+    src/KeypointList.h \
+    src/FilterParameters/PointParameter.h
 
 
 HEADERS += $$GMIC_PATH/gmic.h
@@ -340,7 +342,9 @@ SOURCES += \
   src/Widgets/ZoomLevelSelector.cpp \
   src/Widgets/SearchFieldWidget.cpp \
   src/Widgets/LanguageSelectionWidget.cpp \
-  src/Widgets/ProgressInfoWindow.cpp
+  src/Widgets/ProgressInfoWindow.cpp \
+    src/KeypointList.cpp \
+    src/FilterParameters/PointParameter.cpp
 
 equals(GMIC_DYNAMIC_LINKING, "on" ) {
   message(Dynamic linking with libgmic)

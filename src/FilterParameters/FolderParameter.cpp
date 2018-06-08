@@ -36,9 +36,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0)
-{
-}
+FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0) {}
 
 FolderParameter::~FolderParameter()
 {
@@ -61,6 +59,10 @@ void FolderParameter::addTo(QWidget * widget, int row)
   setValue(_value);
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
+
+void FolderParameter::addToKeypointList(KeypointList &) const {}
+
+void FolderParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 QString FolderParameter::textValue() const
 {

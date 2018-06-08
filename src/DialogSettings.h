@@ -27,6 +27,7 @@
 
 #include <QColor>
 #include <QDialog>
+#include <QIcon>
 #include "MainWindow.h"
 #include "gmic_qt.h"
 
@@ -58,7 +59,8 @@ public:
   static QString FileParameterDefaultPath;
   static int previewTimeout();
   static GmicQt::OutputMessageMode outputMessageMode();
-
+  static QIcon AddIcon;
+  static QIcon RemoveIcon;
 public slots:
   void onRadioLeftPreviewToggled(bool);
   void onUpdateClicked();

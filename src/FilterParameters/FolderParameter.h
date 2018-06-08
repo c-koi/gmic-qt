@@ -36,6 +36,8 @@ public:
   FolderParameter(QObject * parent = 0);
   ~FolderParameter();
   void addTo(QWidget *, int row) override;
+  void addToKeypointList(KeypointList &) const override;
+  void extractPositionFromKeypointList(KeypointList &) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;
   void setValue(const QString & value) override;

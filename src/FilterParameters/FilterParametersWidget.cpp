@@ -40,6 +40,7 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   grid->addWidget(_labelNoParams, 0, 0, 4, 3);
   _actualParametersCount = 0;
   _filterHash.clear();
+  _hasKeypoints = false;
 }
 
 bool FilterParametersWidget::build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values)
@@ -103,6 +104,15 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
     connect(*it, SIGNAL(valueChanged()), this, SLOT(updateValueString()));
     ++it;
   }
+
+  // Retrieve a dummy keypoint list
+  KeypointList keypoints;
+  it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    (*it)->addToKeypointList(keypoints);
+    ++it;
+  }
+  _hasKeypoints = !keypoints.isEmpty();
 
   if (row > 0) {
     delete _labelNoParams;
@@ -257,4 +267,31 @@ void FilterParametersWidget::clearButtonParameters()
     }
   }
   updateValueString(false);
+}
+
+KeypointList FilterParametersWidget::keypoints() const
+{
+  KeypointList list;
+  if (!_hasKeypoints) {
+    return list;
+  }
+  QVector<AbstractParameter *>::const_iterator it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    (*it)->addToKeypointList(list);
+    ++it;
+  }
+  return list;
+}
+
+void FilterParametersWidget::setKeypoints(KeypointList list)
+{
+  Q_ASSERT_X((list.isEmpty() || _hasKeypoints), __PRETTY_FUNCTION__, "Keypoint list mismatch");
+  if (!_hasKeypoints) {
+    return;
+  }
+  QVector<AbstractParameter *>::const_iterator it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    (*it)->extractPositionFromKeypointList(list);
+    ++it;
+  }
 }

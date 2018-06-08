@@ -28,9 +28,7 @@
 #include <QSizePolicy>
 #include "Common.h"
 
-SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(0)
-{
-}
+SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(0) {}
 
 SeparatorParameter::~SeparatorParameter()
 {
@@ -54,18 +52,18 @@ void SeparatorParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_frame, row, 0, 1, 3);
 }
 
+void SeparatorParameter::addToKeypointList(KeypointList &) const {}
+
+void SeparatorParameter::extractPositionFromKeypointList(KeypointList &) {}
+
 QString SeparatorParameter::textValue() const
 {
   return QString::null;
 }
 
-void SeparatorParameter::setValue(const QString &)
-{
-}
+void SeparatorParameter::setValue(const QString &) {}
 
-void SeparatorParameter::reset()
-{
-}
+void SeparatorParameter::reset() {}
 
 bool SeparatorParameter::initFromText(const char * text, int & textLength)
 {

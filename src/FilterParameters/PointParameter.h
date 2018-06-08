@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file LinkParameter.h
+ *  @file PointParameter.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,18 +22,27 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_LINKPARAMETER_H_
-#define _GMIC_QT_LINKPARAMETER_H_
+#ifndef _GMIC_QT_POINTPARAMETER_H_
+#define _GMIC_QT_POINTPARAMETER_H_
 
-#include <Qt>
+#include <QColor>
+#include <QColorDialog>
+#include <QDoubleSpinBox>
+#include <QPixmap>
+#include <QPointF>
+#include <QString>
+#include <QToolButton>
 #include "AbstractParameter.h"
+class QSpinBox;
+class QSlider;
 class QLabel;
+class QPushButton;
 
-class LinkParameter : public AbstractParameter {
+class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  LinkParameter(QObject * parent = 0);
-  ~LinkParameter();
+  PointParameter(QObject * parent = 0);
+  ~PointParameter();
   void addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
@@ -42,13 +51,28 @@ public:
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
 public slots:
-  void onLinkActivated(const QString & link);
+
+private slots:
+  void onSpinBoxChanged();
+  void onRemoveButtonToggled(bool);
 
 private:
+  QString _name;
+  QPointF _defaultPosition;
+  QPointF _position;
+  QColor _color;
+  bool _removable;
+  bool _burst;
+  int _id;
+
   QLabel * _label;
-  QString _text;
-  QString _url;
-  Qt::AlignmentFlag _alignment;
+  QLabel * _colorLabel;
+  QLabel * _labelX;
+  QLabel * _labelY;
+  QDoubleSpinBox * _spinBoxX;
+  QDoubleSpinBox * _spinBoxY;
+  QToolButton * _removeButton;
+  QWidget * _rowCell;
 };
 
-#endif // _GMIC_QT_LINKPARAMETER_H_
+#endif // _GMIC_QT_POINTPARAMETER_H_

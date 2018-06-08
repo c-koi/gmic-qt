@@ -31,9 +31,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(0), _alignment(Qt::AlignHCenter)
-{
-}
+ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(0), _alignment(Qt::AlignHCenter) {}
 
 ButtonParameter::~ButtonParameter()
 {
@@ -52,6 +50,10 @@ void ButtonParameter::addTo(QWidget * widget, int row)
   connect(_pushButton, SIGNAL(clicked(bool)), this, SLOT(onPushButtonClicked(bool)));
 }
 
+void ButtonParameter::addToKeypointList(KeypointList &) const {}
+
+void ButtonParameter::extractPositionFromKeypointList(KeypointList &) {}
+
 QString ButtonParameter::textValue() const
 {
   return _value ? QString("1") : QString("0");
@@ -67,9 +69,7 @@ void ButtonParameter::clear()
   _value = false;
 }
 
-void ButtonParameter::reset()
-{
-}
+void ButtonParameter::reset() {}
 
 void ButtonParameter::onPushButtonClicked(bool)
 {

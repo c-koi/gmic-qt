@@ -37,16 +37,13 @@
 #include "FilterParameters/IntParameter.h"
 #include "FilterParameters/LinkParameter.h"
 #include "FilterParameters/NoteParameter.h"
+#include "FilterParameters/PointParameter.h"
 #include "FilterParameters/SeparatorParameter.h"
 #include "FilterParameters/TextParameter.h"
 
-AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : QObject(parent), _actualParameter(actualParameter), _update(true)
-{
-}
+AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : QObject(parent), _actualParameter(actualParameter), _update(true) {}
 
-AbstractParameter::~AbstractParameter()
-{
-}
+AbstractParameter::~AbstractParameter() {}
 
 bool AbstractParameter::isVisible() const
 {
@@ -102,6 +99,8 @@ AbstractParameter * AbstractParameter::createFromText(const char * text, int & l
     result = new ConstParameter(parent);
   } else if (QRegExp(PREFIX "button", Qt::CaseInsensitive).indexIn(line) == 0) {
     result = new ButtonParameter(parent);
+  } else if (QRegExp(PREFIX "point", Qt::CaseInsensitive).indexIn(line) == 0) {
+    result = new PointParameter(parent);
   }
   if (result) {
     if (!result->initFromText(text, length)) {

@@ -37,6 +37,8 @@ public:
   FloatParameter(QObject * parent = 0);
   ~FloatParameter();
   void addTo(QWidget *, int row) override;
+  void addToKeypointList(KeypointList &) const override;
+  void extractPositionFromKeypointList(KeypointList &) override;
   QString textValue() const override;
   void setValue(const QString & value) override;
   void reset() override;

@@ -38,9 +38,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(0), _button(0), _dialog(0)
-{
-}
+ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(0), _button(0), _dialog(0) {}
 
 ColorParameter::~ColorParameter()
 {
@@ -73,6 +71,10 @@ void ColorParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_button, row, 1, 1, 1);
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
+
+void ColorParameter::addToKeypointList(KeypointList &) const {}
+
+void ColorParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 QString ColorParameter::textValue() const
 {

@@ -36,9 +36,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0), _dialogMode(InputOutputMode)
-{
-}
+FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0), _dialogMode(InputOutputMode) {}
 
 FileParameter::~FileParameter()
 {
@@ -68,6 +66,10 @@ void FileParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_button, row, 1, 1, 2);
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
+
+void FileParameter::addToKeypointList(KeypointList &) const {}
+
+void FileParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 QString FileParameter::textValue() const
 {

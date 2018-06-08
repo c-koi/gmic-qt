@@ -31,6 +31,7 @@
 #include <QStringList>
 #include <QVector>
 #include <QWidget>
+#include "KeypointList.h"
 class AbstractParameter;
 class QLabel;
 
@@ -50,6 +51,8 @@ public:
   int actualParametersCount() const;
   QString filterHash() const;
   void clearButtonParameters();
+  KeypointList keypoints() const;
+  void setKeypoints(KeypointList list);
 
 public slots:
   void updateValueString(bool notify = true);
@@ -66,6 +69,7 @@ protected:
   QWidget * _paddingWidget;
   QString _filterName;
   QString _filterHash;
+  bool _hasKeypoints;
 };
 
 #endif // _GMIC_QT_FILTERPARAMSWIDGET_H_

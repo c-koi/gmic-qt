@@ -33,9 +33,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(0), _checkBox(0)
-{
-}
+BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(0), _checkBox(0) {}
 
 BoolParameter::~BoolParameter()
 {
@@ -61,6 +59,10 @@ void BoolParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_checkBox, row, 0, 1, 3);
   connect(_checkBox, SIGNAL(toggled(bool)), this, SLOT(onCheckBoxChanged(bool)));
 }
+
+void BoolParameter::addToKeypointList(KeypointList &) const {}
+
+void BoolParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 QString BoolParameter::textValue() const
 {

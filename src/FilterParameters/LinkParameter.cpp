@@ -32,9 +32,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent, false), _label(0), _alignment(Qt::AlignLeft)
-{
-}
+LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent, false), _label(0), _alignment(Qt::AlignLeft) {}
 
 LinkParameter::~LinkParameter()
 {
@@ -55,18 +53,18 @@ void LinkParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_label, row, 0, 1, 3);
 }
 
+void LinkParameter::addToKeypointList(KeypointList &) const {}
+
+void LinkParameter::extractPositionFromKeypointList(KeypointList &) {}
+
 QString LinkParameter::textValue() const
 {
   return QString::null;
 }
 
-void LinkParameter::setValue(const QString &)
-{
-}
+void LinkParameter::setValue(const QString &) {}
 
-void LinkParameter::reset()
-{
-}
+void LinkParameter::reset() {}
 
 bool LinkParameter::initFromText(const char * text, int & textLength)
 {

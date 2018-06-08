@@ -48,6 +48,9 @@ QString DialogSettings::FolderParameterDefaultValue;
 QString DialogSettings::FileParameterDefaultPath;
 int DialogSettings::_previewTimeout = 16;
 
+QIcon DialogSettings::AddIcon;
+QIcon DialogSettings::RemoveIcon;
+
 // TODO : Make DialogSetting a view of a Settings class
 
 DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::DialogSettings)
@@ -162,6 +165,8 @@ void DialogSettings::loadSettings()
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
   _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
+  AddIcon = LOAD_ICON("list-add");
+  RemoveIcon = LOAD_ICON("list-remove");
 }
 
 int DialogSettings::previewTimeout()

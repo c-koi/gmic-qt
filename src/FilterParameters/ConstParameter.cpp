@@ -28,22 +28,20 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent, true)
-{
-}
+ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent, true) {}
 
-ConstParameter::~ConstParameter()
-{
-}
+ConstParameter::~ConstParameter() {}
 
 bool ConstParameter::isVisible() const
 {
   return false;
 }
 
-void ConstParameter::addTo(QWidget *, int)
-{
-}
+void ConstParameter::addTo(QWidget *, int) {}
+
+void ConstParameter::addToKeypointList(KeypointList &) const {}
+
+void ConstParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 QString ConstParameter::textValue() const
 {
