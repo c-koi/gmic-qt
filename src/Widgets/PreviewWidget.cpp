@@ -66,6 +66,7 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   qApp->installEventFilter(this);
   _rightClickEnabled = false;
   _originalImageSize = QSize(-1, -1);
+  _movedKeypointIndex = -1;
 }
 
 PreviewWidget::~PreviewWidget()
@@ -225,6 +226,57 @@ void PreviewWidget::updateErrorImage()
   }
 }
 
+void PreviewWidget::paintKeypoints(QPainter & painter)
+{
+  QPen pen;
+  pen.setColor(Qt::black);
+  pen.setWidth(2);
+  painter.setRenderHint(QPainter::Antialiasing, true);
+  painter.setPen(pen);
+  KeypointList::iterator it = _keypoints.begin();
+  while (it != _keypoints.end()) {
+    if (!it->isNaN()) {
+      QPoint center = keypointToPointInWidget(*it);
+      QRect r(0, 0, 11, 11);
+      r.moveCenter(center);
+      painter.setBrush(it->color);
+      painter.drawEllipse(r);
+    }
+    ++it;
+  }
+}
+
+int PreviewWidget::keypointUnderMouse(const QPoint & p)
+{
+  KeypointList::iterator it = _keypoints.begin();
+  int index = 0;
+  while (it != _keypoints.end()) {
+    if (!it->isNaN()) {
+      const KeypointList::Keypoint & kp = *it;
+      QPoint center = keypointToPointInWidget(kp);
+      if ((center - p).manhattanLength() < 8) {
+        return index;
+      }
+    }
+    ++it;
+    ++index;
+  }
+  return -1;
+}
+
+QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp) const
+{
+  return QPoint(std::round(_imagePosition.left() + _imagePosition.width() * (kp.x / 100.0f)), std::round(_imagePosition.top() + _imagePosition.height() * (kp.y / 100.0f)));
+}
+
+QPointF PreviewWidget::pointInWidgetToKeypointPosition(const QPoint & p) const
+{
+  QPointF result(100.0 * (p.x() - _imagePosition.left()) / (float)_imagePosition.width(), 100.0 * (p.y() - _imagePosition.top()) / (float)_imagePosition.height());
+  result.rx() = std::min(100.0, std::max(0.0, result.x()));
+  result.ry() = std::min(100.0, std::max(0.0, result.y()));
+  return result;
+}
+
 void PreviewWidget::paintPreview(QPainter & painter)
 {
   if (!_overlayMessage.isEmpty()) {
@@ -271,6 +323,7 @@ void PreviewWidget::paintPreview(QPainter & painter)
   QImage qimage;
   ImageConverter::convert(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
   painter.drawImage(_imagePosition, qimage);
+  paintKeypoints(painter);
 }
 
 void PreviewWidget::paintOriginalImage(QPainter & painter)
@@ -398,7 +451,13 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 {
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
     if (_imagePosition.contains(e->pos())) {
-      _mousePosition = e->pos();
+      int index = keypointUnderMouse(e->pos());
+      if (index != -1) {
+        // TODO: Remove KeypointList::Keypoint kp = _keypoints[index];
+        _movedKeypointIndex = index;
+      } else {
+        _mousePosition = e->pos();
+      }
       abortUpdateTimer();
     } else {
       _mousePosition = QPoint(-1, -1);
@@ -426,6 +485,16 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
       onMouseTranslationInImage(move);
       sendUpdateRequest();
       _mousePosition = QPoint(-1, -1);
+    }
+    if (_movedKeypointIndex != -1) {
+      QPointF p = pointInWidgetToKeypointPosition(e->pos());
+      KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
+      SHOW(p);
+      kp.x = p.x();
+      kp.y = p.y();
+      emit keypointPositionsChanged(true);
+      // update();
+      _movedKeypointIndex = -1;
     }
     e->accept();
     return;
@@ -458,6 +527,15 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
         onMouseTranslationInImage(move);
         _mousePosition = e->pos();
       }
+    }
+    if (_movedKeypointIndex != -1) {
+      QPointF p = pointInWidgetToKeypointPosition(e->pos());
+      SHOW(p);
+      KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
+      kp.x = p.x();
+      kp.y = p.y();
+      emit keypointPositionsChanged(kp.burst);
+      update();
     }
     e->accept();
   } else {
@@ -734,6 +812,17 @@ void PreviewWidget::onPreviewToggled(bool on)
 void PreviewWidget::setPreviewEnabled(bool on)
 {
   _previewEnabled = on;
+}
+
+const KeypointList & PreviewWidget::keypoints() const
+{
+  return _keypoints;
+}
+
+void PreviewWidget::setKeypoints(const KeypointList & keypoints)
+{
+  _keypoints = keypoints;
+  update();
 }
 
 void PreviewWidget::invalidateSavedPreview()

@@ -51,7 +51,7 @@ public:
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
 public slots:
-
+  void enableNotifications(bool);
 private slots:
   void onSpinBoxChanged();
   void onRemoveButtonToggled(bool);
@@ -73,6 +73,7 @@ private:
   QDoubleSpinBox * _spinBoxY;
   QToolButton * _removeButton;
   QWidget * _rowCell;
+  bool _notificationEnabled;
 };
 
 #endif // _GMIC_QT_POINTPARAMETER_H_

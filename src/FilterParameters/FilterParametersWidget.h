@@ -52,7 +52,8 @@ public:
   QString filterHash() const;
   void clearButtonParameters();
   KeypointList keypoints() const;
-  void setKeypoints(KeypointList list);
+  void setKeypoints(KeypointList list, bool notify);
+  bool hasKeypoints() const;
 
 public slots:
   void updateValueString(bool notify = true);

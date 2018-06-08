@@ -482,9 +482,10 @@ void MainWindow::makeConnections()
 
   connect(ui->pbFullscreen, SIGNAL(toggled(bool)), this, SLOT(onToggleFullScreen(bool)));
 
-  connect(ui->filterParams, SIGNAL(valueChanged()), ui->previewWidget, SLOT(sendUpdateRequest()));
+  connect(ui->filterParams, SIGNAL(valueChanged()), this, SLOT(onParametersChanged()));
 
   connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
+  connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(bool)), this, SLOT(onPreviewKeypointsMoved(bool)));
 
   connect(ui->tbZoomIn, SIGNAL(clicked(bool)), this, SLOT(onZoomIn()));
   connect(ui->tbZoomOut, SIGNAL(clicked(bool)), this, SLOT(onZoomOut()));
@@ -548,6 +549,11 @@ void MainWindow::onPreviewUpdateRequested()
   _okButtonShouldApply = true;
 }
 
+void MainWindow::onPreviewKeypointsMoved(bool notify)
+{
+  ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), notify);
+}
+
 void MainWindow::onPreviewImageAvailable()
 {
   ui->filterParams->setValues(_processor.gmicStatus(), false);
@@ -567,6 +573,14 @@ void MainWindow::onPreviewError(QString message)
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
     close();
   }
+}
+
+void MainWindow::onParametersChanged()
+{
+  if (ui->filterParams->hasKeypoints()) {
+    ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
+  }
+  ui->previewWidget->sendUpdateRequest();
 }
 
 void MainWindow::processImage()
@@ -941,6 +955,9 @@ void MainWindow::activateFilter(bool resetZoom)
     }
     if (!ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues)) {
       _filtersPresenter->setInvalidFilter();
+      ui->previewWidget->setKeypoints(KeypointList());
+    } else {
+      ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
     }
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
     ui->inOutSelector->enable();

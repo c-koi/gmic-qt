@@ -283,7 +283,7 @@ KeypointList FilterParametersWidget::keypoints() const
   return list;
 }
 
-void FilterParametersWidget::setKeypoints(KeypointList list)
+void FilterParametersWidget::setKeypoints(KeypointList list, bool notify)
 {
   Q_ASSERT_X((list.isEmpty() || _hasKeypoints), __PRETTY_FUNCTION__, "Keypoint list mismatch");
   if (!_hasKeypoints) {
@@ -294,4 +294,13 @@ void FilterParametersWidget::setKeypoints(KeypointList list)
     (*it)->extractPositionFromKeypointList(list);
     ++it;
   }
+  updateValueString();
+  if (notify) {
+    emit valueChanged();
+  }
+}
+
+bool FilterParametersWidget::hasKeypoints() const
+{
+  return _hasKeypoints;
 }

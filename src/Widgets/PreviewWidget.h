@@ -33,6 +33,7 @@
 #include <QWidget>
 #include <memory>
 #include "Host/host.h"
+#include "KeypointList.h"
 
 namespace cimg_library
 {
@@ -64,6 +65,9 @@ public:
   void translateFullImage(double dx, double dy);
   void setPreviewEnabled(bool on);
 
+  const KeypointList & keypoints() const;
+  void setKeypoints(const KeypointList &);
+
 protected:
   void resizeEvent(QResizeEvent *) override;
   void timerEvent(QTimerEvent *) override;
@@ -74,10 +78,14 @@ protected:
   void mousePressEvent(QMouseEvent * e) override;
   void paintEvent(QPaintEvent * e) override;
   bool eventFilter(QObject *, QEvent * event) override;
-
+  void paintKeypoints(QPainter & painter);
+  int keypointUnderMouse(const QPoint & p);
+  QPoint keypointToPointInWidget(const KeypointList::Keypoint & kp) const;
+  QPointF pointInWidgetToKeypointPosition(const QPoint &) const;
 signals:
   void previewVisibleRectIsChanging();
   void previewUpdateRequested();
+  void keypointPositionsChanged(bool notify);
   void zoomChanged(double zoom);
 
 public slots:
@@ -173,6 +181,8 @@ private:
   QString _errorMessage;
   QString _overlayMessage;
   QImage _errorImage;
+  KeypointList _keypoints;
+  int _movedKeypointIndex;
 };
 
 #endif // _GMIC_QT_PREVIEWWIDGET_H_

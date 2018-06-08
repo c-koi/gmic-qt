@@ -51,6 +51,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _spinBoxY = nullptr;
   _removeButton = nullptr;
   _rowCell = nullptr;
+  _notificationEnabled = false;
 }
 
 PointParameter::~PointParameter()
@@ -120,10 +121,16 @@ void PointParameter::addToKeypointList(KeypointList & list) const
 void PointParameter::extractPositionFromKeypointList(KeypointList & list)
 {
   Q_ASSERT_X(!list.isEmpty(), __PRETTY_FUNCTION__, "Keypoint list is empty");
+  enableNotifications(false);
   KeypointList::Keypoint kp = list.front();
   _position.setX(kp.x);
   _position.setY(kp.y);
+  if (_spinBoxX) {
+    _spinBoxX->setValue(kp.x);
+    _spinBoxY->setValue(kp.y);
+  }
   list.pop_front();
+  enableNotifications(true);
 }
 
 QString PointParameter::textValue() const
@@ -249,10 +256,17 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   return true;
 }
 
+void PointParameter::enableNotifications(bool on)
+{
+  _notificationEnabled = on;
+}
+
 void PointParameter::onSpinBoxChanged()
 {
   _position = QPointF(_spinBoxX->value(), _spinBoxY->value());
-  notifyIfRelevant();
+  if (_notificationEnabled) {
+    notifyIfRelevant();
+  }
 }
 
 void PointParameter::onRemoveButtonToggled(bool on)

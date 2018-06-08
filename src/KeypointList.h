@@ -39,6 +39,7 @@ public:
     bool burst;
     Keypoint(float x, float y, QColor color, bool removable, bool burst);
     Keypoint(QPointF point, QColor color, bool removable, bool burst);
+    bool isNaN() const;
   };
 
   KeypointList();
@@ -50,6 +51,11 @@ public:
   bool isRemovable(int n) const;
   bool allowsBusrt(int n) const;
 
+  typedef std::deque<Keypoint>::iterator iterator;
+  typedef std::deque<Keypoint>::const_iterator const_iterator;
+
+  Keypoint & operator[](std::deque<Keypoint>::size_type index) { return _keypoints[index]; }
+  const Keypoint & operator[](std::deque<Keypoint>::size_type index) const { return _keypoints[index]; }
   void pop_front() { _keypoints.pop_front(); }
   const Keypoint & front() { return _keypoints.front(); }
   const Keypoint & front() const { return _keypoints.front(); }

@@ -73,6 +73,7 @@ public slots:
   void onUpdateDownloadsFinished(int status);
   void onApplyClicked();
   void onPreviewUpdateRequested();
+  void onPreviewKeypointsMoved(bool notify);
   void onFullImageProcessingDone();
   void expandOrCollapseFolders();
   void search(QString);
@@ -99,6 +100,7 @@ public slots:
   void onEscapeKeyPressed();
   void onPreviewImageAvailable();
   void onPreviewError(QString message);
+  void onParametersChanged();
 
 protected:
   void timerEvent(QTimerEvent *);

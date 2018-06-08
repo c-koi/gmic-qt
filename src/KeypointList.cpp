@@ -24,6 +24,7 @@
  */
 
 #include "KeypointList.h"
+#include <cmath>
 
 KeypointList::KeypointList() {}
 
@@ -66,3 +67,8 @@ bool KeypointList::allowsBusrt(int n) const
 KeypointList::Keypoint::Keypoint(float x, float y, QColor color, bool removable, bool burst) : x(x), y(y), color(color), removable(removable), burst(burst) {}
 
 KeypointList::Keypoint::Keypoint(QPointF point, QColor color, bool removable, bool burst) : x((float)point.x()), y((float)point.y()), color(color), removable(removable), burst(burst) {}
+
+bool KeypointList::Keypoint::isNaN() const
+{
+  return std::isnan(x) || std::isnan(y);
+}
