@@ -177,6 +177,7 @@ GmicProcessor::~GmicProcessor()
 
 void GmicProcessor::onPreviewThreadFinished()
 {
+  ENTERING;
   Q_ASSERT_X(_filterThread, __PRETTY_FUNCTION__, "No filter thread");
   if (_filterThread->isRunning()) {
     return;
@@ -238,6 +239,7 @@ void GmicProcessor::onApplyThreadFinished()
 
 void GmicProcessor::onAbortedThreadFinished()
 {
+  TSHOW(_unfinishedAbortedThreads.size());
   FilterThread * thread = dynamic_cast<FilterThread *>(sender());
   if (_unfinishedAbortedThreads.contains(thread)) {
     _unfinishedAbortedThreads.removeOne(thread);
@@ -257,6 +259,7 @@ void GmicProcessor::showWaitingCursor()
 
 void GmicProcessor::hideWaitingCursor()
 {
+  ENTERING;
   _waitingCursorTimer.stop();
   if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
     QApplication::restoreOverrideCursor();

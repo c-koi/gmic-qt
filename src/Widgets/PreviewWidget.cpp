@@ -453,8 +453,9 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
     if (_imagePosition.contains(e->pos())) {
       int index = keypointUnderMouse(e->pos());
       if (index != -1) {
-        // TODO: Remove KeypointList::Keypoint kp = _keypoints[index];
+        // KeypointList::Keypoint kp = _keypoints[index]; // TODO: Remove
         _movedKeypointIndex = index;
+        _keypointTimestamp = e->timestamp();
       } else {
         _mousePosition = e->pos();
       }
@@ -492,9 +493,9 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
       SHOW(p);
       kp.x = p.x();
       kp.y = p.y();
+      _movedKeypointIndex = -1;
       emit keypointPositionsChanged(true);
       // update();
-      _movedKeypointIndex = -1;
     }
     e->accept();
     return;
@@ -530,12 +531,18 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
     }
     if (_movedKeypointIndex != -1) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
-      SHOW(p);
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.x = p.x();
       kp.y = p.y();
-      emit keypointPositionsChanged(kp.burst);
+      SHOW(p);
+      SHOW(kp.burst);
       update();
+      if (kp.burst) {
+        emit keypointPositionsChanged(e->timestamp() - _keypointTimestamp > 20);
+        _keypointTimestamp = e->timestamp();
+      } else {
+        emit keypointPositionsChanged(false);
+      }
     }
     e->accept();
   } else {

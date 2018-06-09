@@ -183,6 +183,7 @@ private:
   QImage _errorImage;
   KeypointList _keypoints;
   int _movedKeypointIndex;
+  unsigned long _keypointTimestamp;
 };
 
 #endif // _GMIC_QT_PREVIEWWIDGET_H_

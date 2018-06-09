@@ -51,7 +51,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _spinBoxY = nullptr;
   _removeButton = nullptr;
   _rowCell = nullptr;
-  _notificationEnabled = false;
+  _notificationEnabled = true;
 }
 
 PointParameter::~PointParameter()
@@ -170,7 +170,11 @@ void PointParameter::setValue(const QString & value)
 
 void PointParameter::reset()
 {
-  _position = _defaultPosition;
+  enableNotifications(false);
+  _spinBoxX->setValue(_defaultPosition.rx());
+  _spinBoxY->setValue(_defaultPosition.ry());
+  enableNotifications(true);
+  onSpinBoxChanged();
 }
 
 // P = point(x,y,removable{0,1},burst{0,1},r,g,b,a)

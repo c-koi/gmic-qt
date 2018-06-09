@@ -483,7 +483,6 @@ void MainWindow::makeConnections()
   connect(ui->pbFullscreen, SIGNAL(toggled(bool)), this, SLOT(onToggleFullScreen(bool)));
 
   connect(ui->filterParams, SIGNAL(valueChanged()), this, SLOT(onParametersChanged()));
-
   connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
   connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(bool)), this, SLOT(onPreviewKeypointsMoved(bool)));
 
@@ -516,6 +515,7 @@ void MainWindow::makeConnections()
 
 void MainWindow::onPreviewUpdateRequested()
 {
+  ENTERING;
   if (!ui->cbPreview->isChecked()) {
     ui->previewWidget->invalidateSavedPreview();
     return;
@@ -551,6 +551,8 @@ void MainWindow::onPreviewUpdateRequested()
 
 void MainWindow::onPreviewKeypointsMoved(bool notify)
 {
+  ENTERING;
+  TSHOW(notify);
   ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), notify);
 }
 
@@ -577,6 +579,7 @@ void MainWindow::onPreviewError(QString message)
 
 void MainWindow::onParametersChanged()
 {
+  ENTERING;
   if (ui->filterParams->hasKeypoints()) {
     ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
   }

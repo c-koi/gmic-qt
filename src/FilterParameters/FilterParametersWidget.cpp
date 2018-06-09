@@ -294,10 +294,7 @@ void FilterParametersWidget::setKeypoints(KeypointList list, bool notify)
     (*it)->extractPositionFromKeypointList(list);
     ++it;
   }
-  updateValueString();
-  if (notify) {
-    emit valueChanged();
-  }
+  updateValueString(notify);
 }
 
 bool FilterParametersWidget::hasKeypoints() const
