@@ -66,7 +66,7 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   qApp->installEventFilter(this);
   _rightClickEnabled = false;
   _originalImageSize = QSize(-1, -1);
-  _movedKeypointOrigin = QPoint(-1,-1);
+  _movedKeypointOrigin = QPoint(-1, -1);
   _movedKeypointIndex = -1;
 }
 
@@ -241,7 +241,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
       QPoint realCenter = keypointToPointInWidget(*it);
       QRect r(0, 0, 11, 11);
       r.moveCenter(center);
-      if ( center == realCenter ) {
+      if (center == realCenter) {
         painter.setBrush(it->color);
         pen.setStyle(Qt::SolidLine);
       } else {
@@ -282,8 +282,8 @@ QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp)
 QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const
 {
   QPoint p = keypointToPointInWidget(kp);
-  p.rx() = std::max(_imagePosition.left()+1, std::min(p.x(), _imagePosition.left() + _imagePosition.width()-2));
-  p.ry() = std::max(_imagePosition.top()+1, std::min(p.y(), _imagePosition.top() + _imagePosition.height()-2));
+  p.rx() = std::max(_imagePosition.left() + 1, std::min(p.x(), _imagePosition.left() + _imagePosition.width() - 2));
+  p.ry() = std::max(_imagePosition.top() + 1, std::min(p.y(), _imagePosition.top() + _imagePosition.height() - 2));
   return p;
 }
 
@@ -515,22 +515,23 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       _movedKeypointIndex = -1;
-      if (kp.burst) {
-        emit keypointPositionsChanged(KeypointBurstEvent);
-      } else {
-        emit keypointPositionsChanged(KeypointMouseReleaseEvent);
-      }
+      // TODO: Check that this is OK
+      //      if (kp.burst) {
+      //        emit keypointPositionsChanged(KeypointBurstEvent, e->timestamp());
+      //      } else {
+      emit keypointPositionsChanged(KeypointMouseReleaseEvent, e->timestamp());
+      //      }
     }
     e->accept();
     return;
   }
 
-  if ( e->button()== Qt::RightButton) {
+  if (e->button() == Qt::RightButton) {
     if (_movedKeypointIndex != -1 && (_movedKeypointOrigin != e->pos())) {
-      emit keypointPositionsChanged(KeypointMouseReleaseEvent);
+      emit keypointPositionsChanged(KeypointMouseReleaseEvent, e->timestamp());
     }
     _movedKeypointIndex = -1;
-    _movedKeypointOrigin = QPoint(-1,-1);
+    _movedKeypointOrigin = QPoint(-1, -1);
   }
 
   if (_rightClickEnabled && _paintOriginalImage && (e->button() == Qt::RightButton)) {
@@ -571,20 +572,20 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
         if (e->timestamp() - _keypointTimestamp > 15) {
           flags |= KeypointBurstEvent;
         }
-        emit keypointPositionsChanged(flags);
+        emit keypointPositionsChanged(flags, e->timestamp());
         _keypointTimestamp = e->timestamp();
       } else {
-        emit keypointPositionsChanged(0);
+        emit keypointPositionsChanged(0, e->timestamp());
       }
     }
     e->accept();
-  } else if (e->buttons() & Qt::RightButton){
+  } else if (e->buttons() & Qt::RightButton) {
     if (_movedKeypointIndex != -1) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       update();
-      emit keypointPositionsChanged(0);
+      emit keypointPositionsChanged(0, e->timestamp());
     }
   } else {
     e->ignore();

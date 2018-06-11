@@ -88,7 +88,7 @@ protected:
 signals:
   void previewVisibleRectIsChanging();
   void previewUpdateRequested();
-  void keypointPositionsChanged(unsigned int flags);
+  void keypointPositionsChanged(unsigned int flags, unsigned long time);
   void zoomChanged(double zoom);
 
 public slots:

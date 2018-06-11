@@ -93,6 +93,9 @@ public:
   int duration() const;
   float progress() const;
 
+  int lastSynchronousExecutionDurationMS() const;
+  void resetLastSynchronousExecutionDurationMS();
+
 public slots:
   void cancel();
 
@@ -131,6 +134,7 @@ private:
   QString _lastAppliedCommandArguments;
   QString _lastAppliedCommandEnv;
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
+  int _lastSynchronousExecutionDurationMS;
 };
 
 #endif // _GMIC_QT_GMICPROCESSOR_H_

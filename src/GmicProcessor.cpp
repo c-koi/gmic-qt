@@ -48,6 +48,7 @@ GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
   connect(&_waitingCursorTimer, SIGNAL(timeout()), this, SLOT(showWaitingCursor()));
   _previewRandomSeed = cimg_library::cimg::srand();
   _lastAppliedCommandInOutState = GmicQt::InputOutputState::Unspecified;
+  _lastSynchronousExecutionDurationMS = 0;
 }
 
 void GmicProcessor::init()
@@ -95,8 +96,11 @@ void GmicProcessor::execute()
     runner.setImageNames(imageNames);
     runner.setLogSuffix("./preview/");
     _previewRandomSeed = cimg_library::cimg::srand();
+    QTime time;
+    time.start();
     runner.run();
     manageSynchonousRunner(runner);
+    _lastSynchronousExecutionDurationMS = time.elapsed();
   } else if (_filterContext.requestType == FilterContext::PreviewProcessing) {
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
@@ -147,6 +151,16 @@ float GmicProcessor::progress() const
   } else {
     return 0.0f;
   }
+}
+
+int GmicProcessor::lastSynchronousExecutionDurationMS() const
+{
+  return _lastSynchronousExecutionDurationMS;
+}
+
+void GmicProcessor::resetLastSynchronousExecutionDurationMS()
+{
+  _lastSynchronousExecutionDurationMS = 0;
 }
 
 void GmicProcessor::cancel()

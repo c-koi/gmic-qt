@@ -74,7 +74,7 @@ public slots:
   void onApplyClicked();
   void onPreviewUpdateRequested(bool synchronous);
   void onPreviewUpdateRequested();
-  void onPreviewKeypointsMoved(unsigned int flags);
+  void onPreviewKeypointsEvent(unsigned int flags, unsigned long time);
   void onFullImageProcessingDone();
   void expandOrCollapseFolders();
   void search(QString);
@@ -161,6 +161,7 @@ private:
   QVector<QWidget *> _filterUpdateWidgets;
   FiltersPresenter * _filtersPresenter;
   GmicProcessor _processor;
+  ulong _lastPreviewKeypointBurstUpdateTime;
 };
 
 #endif // _GMIC_QT_MAINWINDOW_H_

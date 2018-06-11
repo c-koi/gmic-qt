@@ -224,7 +224,6 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   bool xNaN = true;
   bool yNaN = true;
 
-
   if (params.size() >= 1) {
     x = params[0].toFloat(&ok);
     xNaN = (params[0].toUpper() == "NAN");
@@ -271,7 +270,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
       return false;
     }
   }
-  TSHOW(_removed);
+
   if (params.size() >= 4) {
     bool burst = params[3].toInt(&ok);
     if (!ok) {
@@ -361,7 +360,7 @@ void PointParameter::onRemoveButtonToggled(bool on)
 
 int PointParameter::randomChannel()
 {
-  int value = (_randomSeed/65536) % 256;
+  int value = (_randomSeed / 65536) % 256;
   _randomSeed = _randomSeed * 1103515245 + 12345;
   return value;
 }
@@ -396,7 +395,7 @@ void PointParameter::pickColorFromDefaultColormap()
 {
   switch (_defaultColorNextIndex) {
   case 0:
-    _color.setRgb(255,255,255,255);
+    _color.setRgb(255, 255, 255, 255);
     break;
   case 1:
     _color = Qt::red;
@@ -405,7 +404,7 @@ void PointParameter::pickColorFromDefaultColormap()
     _color = Qt::green;
     break;
   case 3:
-    _color.setRgb(64,64,255,255);
+    _color.setRgb(64, 64, 255, 255);
     break;
   case 4:
     _color = Qt::cyan;
@@ -417,7 +416,7 @@ void PointParameter::pickColorFromDefaultColormap()
     _color = Qt::yellow;
     break;
   default:
-    _color.setRgb(randomChannel(),randomChannel(),randomChannel());
+    _color.setRgb(randomChannel(), randomChannel(), randomChannel());
   }
   ++_defaultColorNextIndex;
 }

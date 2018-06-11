@@ -157,6 +157,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtent);
 
+  _lastPreviewKeypointBurstUpdateTime = 0;
+
   TIMING;
   makeConnections();
   TIMING;
@@ -484,7 +486,7 @@ void MainWindow::makeConnections()
 
   connect(ui->filterParams, SIGNAL(valueChanged()), this, SLOT(onParametersChanged()));
   connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
-  connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(unsigned int)), this, SLOT(onPreviewKeypointsMoved(unsigned int)));
+  connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(unsigned int, unsigned long)), this, SLOT(onPreviewKeypointsEvent(unsigned int, unsigned long)));
 
   connect(ui->tbZoomIn, SIGNAL(clicked(bool)), this, SLOT(onZoomIn()));
   connect(ui->tbZoomOut, SIGNAL(clicked(bool)), this, SLOT(onZoomOut()));
@@ -553,18 +555,22 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   _okButtonShouldApply = true;
 }
 
-void MainWindow::onPreviewKeypointsMoved(unsigned int flags)
+void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
 {
-  // TSHOW(flags);
   if (flags & PreviewWidget::KeypointMouseReleaseEvent) {
     ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), true);
+    _lastPreviewKeypointBurstUpdateTime = 0;
+    _processor.resetLastSynchronousExecutionDurationMS();
   } else {
     ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
     if (flags & PreviewWidget::KeypointBurstEvent) {
-      onPreviewUpdateRequested(true);
+      ulong msSinceLastBurstEvent = time - _lastPreviewKeypointBurstUpdateTime;
+      if (msSinceLastBurstEvent >= (ulong)_processor.lastSynchronousExecutionDurationMS()) {
+        onPreviewUpdateRequested(true);
+        _lastPreviewKeypointBurstUpdateTime = time;
+      }
     }
   }
-  // ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), notify);
 }
 
 void MainWindow::onPreviewImageAvailable()
