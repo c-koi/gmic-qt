@@ -25,6 +25,7 @@
 
 #include "KeypointList.h"
 #include <cmath>
+#include <cstring>
 
 KeypointList::KeypointList() {}
 
@@ -75,11 +76,26 @@ KeypointList::Keypoint::Keypoint(QColor color, bool removable, bool burst) : col
 
 bool KeypointList::Keypoint::isNaN() const
 {
-  return std::isnan(x) || std::isnan(y);
+  if (sizeof(float) == 4) {
+    unsigned int ix, iy;
+    std::memcpy(&ix, &x, sizeof(float));
+    std::memcpy(&iy, &y, sizeof(float));
+    return ((ix & 0x7fffffff) > 0x7f800000) || ((iy & 0x7fffffff) > 0x7f800000);
+  }
+#ifdef isnan
+  return (isnan(x) || isnan(y));
+#else
+  return !(x == x) || !(y == y);
+#endif
 }
 
 KeypointList::Keypoint & KeypointList::Keypoint::setNaN()
 {
-  x = y = std::nanf("50");
+#ifdef NAN
+  x = y = (float)NAN;
+#else
+  const double nanValue = -std::sqrt(-1.0);
+  x = y = (float)nanValue;
+#endif
   return *this;
 }
