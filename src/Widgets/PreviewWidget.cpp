@@ -66,6 +66,7 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   qApp->installEventFilter(this);
   _rightClickEnabled = false;
   _originalImageSize = QSize(-1, -1);
+  _movedKeypointOrigin = QPoint(-1,-1);
   _movedKeypointIndex = -1;
 }
 
@@ -360,6 +361,7 @@ void PreviewWidget::paintOriginalImage(QPainter & painter)
     QImage qimage;
     ImageConverter::convert(image, qimage);
     painter.drawImage(_imagePosition, qimage);
+    paintKeypoints(painter);
   }
 }
 
@@ -472,7 +474,6 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
     if (_imagePosition.contains(e->pos())) {
       int index = keypointUnderMouse(e->pos());
       if (index != -1) {
-        // KeypointList::Keypoint kp = _keypoints[index]; // TODO: Remove
         _movedKeypointIndex = index;
         _keypointTimestamp = e->timestamp();
       } else {
@@ -487,6 +488,10 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
   }
 
   if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
+    if (_imagePosition.contains(e->pos())) {
+      _movedKeypointIndex = keypointUnderMouse(e->pos());
+      _movedKeypointOrigin = e->pos();
+    }
     if (_previewEnabled) {
       displayOriginalImage();
     }
@@ -519,6 +524,14 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
     }
     e->accept();
     return;
+  }
+
+  if ( e->button()== Qt::RightButton) {
+    if (_movedKeypointIndex != -1 && (_movedKeypointOrigin != e->pos())) {
+      emit keypointPositionsChanged(KeypointMouseReleaseEvent);
+    }
+    _movedKeypointIndex = -1;
+    _movedKeypointOrigin = QPoint(-1,-1);
   }
 
   if (_rightClickEnabled && _paintOriginalImage && (e->button() == Qt::RightButton)) {
@@ -566,6 +579,14 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
       }
     }
     e->accept();
+  } else if (e->buttons() & Qt::RightButton){
+    if (_movedKeypointIndex != -1) {
+      QPointF p = pointInWidgetToKeypointPosition(e->pos());
+      KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
+      kp.setPosition(p);
+      update();
+      emit keypointPositionsChanged(0);
+    }
   } else {
     e->ignore();
   }

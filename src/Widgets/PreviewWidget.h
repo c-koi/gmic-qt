@@ -192,6 +192,7 @@ private:
   QImage _errorImage;
   KeypointList _keypoints;
   int _movedKeypointIndex;
+  QPoint _movedKeypointOrigin;
   unsigned long _keypointTimestamp;
 };
 
