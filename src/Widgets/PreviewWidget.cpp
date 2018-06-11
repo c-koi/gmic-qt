@@ -314,6 +314,7 @@ void PreviewWidget::paintPreview(QPainter & painter)
 
   if (!_image->width() && !_image->height()) {
     painter.fillRect(rect(), QBrush(_transparency));
+    paintKeypoints(painter);
     return;
   }
   /*  If preview image has a size different from the original image crop, or
