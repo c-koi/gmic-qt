@@ -52,6 +52,8 @@ public:
   bool initFromText(const char * text, int & textLength) override;
   void setRemoved(bool on);
 
+  static void resetDefaultColorIndex();
+
 public slots:
   void enableNotifications(bool);
 
@@ -60,8 +62,10 @@ private slots:
   void onRemoveButtonToggled(bool);
 
 private:
+  static int randomChannel();
   void connectSpinboxes();
   void disconnectSpinboxes();
+  void pickColorFromDefaultColormap();
   QString _name;
   QPointF _defaultPosition;
   QPointF _position;
@@ -80,6 +84,8 @@ private:
   bool _removed;
   QWidget * _rowCell;
   bool _notificationEnabled;
+  static int _defaultColorNextIndex;
+  static unsigned long _randomSeed;
 };
 
 #endif // _GMIC_QT_POINTPARAMETER_H_

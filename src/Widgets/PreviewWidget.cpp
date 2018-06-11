@@ -237,9 +237,16 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   while (it != _keypoints.end()) {
     if (!it->isNaN()) {
       QPoint center = keypointToVisiblePointInWidget(*it);
+      QPoint realCenter = keypointToPointInWidget(*it);
       QRect r(0, 0, 11, 11);
       r.moveCenter(center);
-      painter.setBrush(it->color);
+      if ( center == realCenter ) {
+        painter.setBrush(it->color);
+        pen.setStyle(Qt::SolidLine);
+      } else {
+        painter.setBrush(it->color.darker(150));
+        pen.setStyle(Qt::DotLine);
+      }
       pen.setColor(QColor(0, 0, 0, it->color.alpha()));
       painter.setPen(pen);
       painter.drawEllipse(r);
@@ -257,7 +264,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
       QPoint center = keypointToVisiblePointInWidget(kp);
-      if ((center - p).manhattanLength() < 8) {
+      if ((center - p).manhattanLength() < 10) {
         foundIndex = index;
       }
     }
@@ -275,8 +282,8 @@ QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp)
 QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const
 {
   QPoint p = keypointToPointInWidget(kp);
-  p.rx() = std::max(_imagePosition.left(), std::min(p.x(), _imagePosition.left() + _imagePosition.width()));
-  p.ry() = std::max(_imagePosition.top(), std::min(p.y(), _imagePosition.top() + _imagePosition.height()));
+  p.rx() = std::max(_imagePosition.left()+1, std::min(p.x(), _imagePosition.left() + _imagePosition.width()-2));
+  p.ry() = std::max(_imagePosition.top()+1, std::min(p.y(), _imagePosition.top() + _imagePosition.height()-2));
   return p;
 }
 

@@ -29,6 +29,7 @@
 #include <QVBoxLayout>
 #include "Common.h"
 #include "FilterParameters/AbstractParameter.h"
+#include "FilterParameters/PointParameter.h"
 
 FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(parent), _valueString(""), _labelNoParams(0), _paddingWidget(0)
 {
@@ -55,6 +56,8 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   QByteArray rawText = parameters.toLatin1();
   const char * cstr = rawText.constData();
   int length;
+
+  PointParameter::resetDefaultColorIndex();
 
   // Build parameters and count actual ones
   _actualParametersCount = 0;

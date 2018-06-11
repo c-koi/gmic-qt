@@ -42,6 +42,9 @@
 #include "HtmlTranslator.h"
 #include "KeypointList.h"
 
+int PointParameter::_defaultColorNextIndex = 0;
+unsigned long PointParameter::_randomSeed = 12345;
+
 PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, true), _defaultPosition(0, 0), _position(0, 0), _removable(false), _burst(false)
 {
   _label = nullptr;
@@ -215,30 +218,60 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   _burst = false;
   _removable = false;
 
+  float x = 50.0;
+  float y = 50.0;
+  _removed = false;
+  bool xNaN = true;
+  bool yNaN = true;
+
+
   if (params.size() >= 1) {
-    float x = params[0].toFloat(&ok);
+    x = params[0].toFloat(&ok);
+    xNaN = (params[0].toUpper() == "NAN");
     if (!ok) {
       return false;
     }
-    _defaultPosition.setX(x);
+    if (xNaN) {
+      x = 50.0;
+    }
   }
 
   if (params.size() >= 2) {
-    float y = params[1].toFloat(&ok);
+    y = params[1].toFloat(&ok);
+    yNaN = (params[1].toUpper() == "NAN");
     if (!ok) {
       return false;
     }
-    _defaultPosition.setY(y);
+    if (yNaN) {
+      y = 50.0;
+    }
   }
 
+  _defaultPosition.setX(x);
+  _defaultPosition.setY(y);
+  _removed = (xNaN || yNaN);
+
   if (params.size() >= 3) {
-    bool removable = params[2].toInt(&ok);
+    int removable = params[2].toInt(&ok);
     if (!ok) {
+      return false;
+    }
+    switch (removable) {
+    case -1:
+      _removable = _removed = true;
+      break;
+    case 0:
+      _removable = false;
+      break;
+    case 1:
+      _removable = true;
+      break;
+    default:
       return false;
     }
     _removable = removable;
   }
-
+  TSHOW(_removed);
   if (params.size() >= 4) {
     bool burst = params[3].toInt(&ok);
     if (!ok) {
@@ -255,6 +288,8 @@ bool PointParameter::initFromText(const char * text, int & textLength)
     _color.setRed(red);
     _color.setGreen(red);
     _color.setBlue(red);
+  } else {
+    pickColorFromDefaultColormap();
   }
 
   if (params.size() >= 6) {
@@ -312,10 +347,23 @@ void PointParameter::setRemoved(bool on)
   }
 }
 
+void PointParameter::resetDefaultColorIndex()
+{
+  _defaultColorNextIndex = 0;
+  _randomSeed = 12345;
+}
+
 void PointParameter::onRemoveButtonToggled(bool on)
 {
   setRemoved(on);
   notifyIfRelevant();
+}
+
+int PointParameter::randomChannel()
+{
+  int value = (_randomSeed/65536) % 256;
+  _randomSeed = _randomSeed * 1103515245 + 12345;
+  return value;
 }
 
 void PointParameter::connectSpinboxes()
@@ -342,4 +390,34 @@ void PointParameter::disconnectSpinboxes()
     _removeButton->disconnect(this);
   }
   _connected = false;
+}
+
+void PointParameter::pickColorFromDefaultColormap()
+{
+  switch (_defaultColorNextIndex) {
+  case 0:
+    _color.setRgb(255,255,255,255);
+    break;
+  case 1:
+    _color = Qt::red;
+    break;
+  case 2:
+    _color = Qt::green;
+    break;
+  case 3:
+    _color.setRgb(64,64,255,255);
+    break;
+  case 4:
+    _color = Qt::cyan;
+    break;
+  case 5:
+    _color = Qt::magenta;
+    break;
+  case 6:
+    _color = Qt::yellow;
+    break;
+  default:
+    _color.setRgb(randomChannel(),randomChannel(),randomChannel());
+  }
+  ++_defaultColorNextIndex;
 }
