@@ -279,6 +279,7 @@ set (gmic_qt_SRCS
   src/FilterParameters/LinkParameter.h
   src/FilterParameters/MultilineTextParameterWidget.h
   src/FilterParameters/NoteParameter.h
+  src/FilterParameters/PointParameter.h
   src/FilterParameters/SeparatorParameter.h
   src/FilterParameters/TextParameter.h
   src/FilterSelector/FiltersModel.h
@@ -287,6 +288,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/FiltersView.h
   src/FilterSelector/FiltersView/TreeView.h
   src/FilterSelector/FiltersVisibilityMap.h
+  src/FilterSyncRunner.h
   src/FilterThread.h
   src/Globals.h
   src/gmic_qt.h
@@ -298,6 +300,7 @@ set (gmic_qt_SRCS
   src/ImageConverter.h
   src/ImageTools.h
   src/InputOutputState.h
+  src/KeypointList.h
   src/LayersExtentProxy.h
   src/Logger.h
   src/MainWindow.h
@@ -342,6 +345,7 @@ set (gmic_qt_SRCS
   src/FilterParameters/LinkParameter.cpp
   src/FilterParameters/MultilineTextParameterWidget.cpp
   src/FilterParameters/NoteParameter.cpp
+  src/FilterParameters/PointParameter.cpp
   src/FilterParameters/SeparatorParameter.cpp
   src/FilterParameters/TextParameter.cpp
   src/FilterSelector/FiltersModel.cpp
@@ -350,6 +354,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/FiltersView.cpp
   src/FilterSelector/FiltersView/TreeView.cpp
   src/FilterSelector/FiltersVisibilityMap.cpp
+  src/FilterSyncRunner.cpp
   src/FilterThread.cpp
   src/gmic_qt.cpp
   src/Globals.cpp
@@ -360,6 +365,7 @@ set (gmic_qt_SRCS
   src/ImageConverter.cpp
   src/ImageTools.cpp
   src/InputOutputState.cpp
+  src/KeypointList.cpp
   src/LayersExtentProxy.cpp
   src/Logger.cpp
   src/MainWindow.cpp
@@ -382,7 +388,6 @@ set (gmic_qt_SRCS
   src/Widgets/SearchFieldWidget.cpp
   src/Widgets/LanguageSelectionWidget.cpp
   src/Widgets/ProgressInfoWindow.cpp
-
 )
 
 if(ENABLE_DYNAMIC_LINKING)

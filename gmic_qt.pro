@@ -277,9 +277,9 @@ HEADERS +=  \
   src/Widgets/SearchFieldWidget.h \
   src/Widgets/LanguageSelectionWidget.h \
   src/Widgets/ProgressInfoWindow.h \
-    src/KeypointList.h \
-    src/FilterParameters/PointParameter.h \
-    src/FilterSyncRunner.h
+  src/KeypointList.h \
+  src/FilterParameters/PointParameter.h \
+  src/FilterSyncRunner.h
 
 
 HEADERS += $$GMIC_PATH/gmic.h
@@ -304,6 +304,7 @@ SOURCES += \
   src/FilterParameters/LinkParameter.cpp \
   src/FilterParameters/MultilineTextParameterWidget.cpp \
   src/FilterParameters/NoteParameter.cpp \
+  src/FilterParameters/PointParameter.cpp \
   src/FilterParameters/SeparatorParameter.cpp \
   src/FilterParameters/TextParameter.cpp \
   src/FilterSelector/FiltersModel.cpp \
@@ -312,6 +313,7 @@ SOURCES += \
   src/FilterSelector/FiltersView/FiltersView.cpp \
   src/FilterSelector/FiltersView/TreeView.cpp \
   src/FilterSelector/FiltersVisibilityMap.cpp \
+  src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
   src/Globals.cpp \
@@ -322,6 +324,7 @@ SOURCES += \
   src/ImageConverter.cpp \
   src/ImageTools.cpp \
   src/InputOutputState.cpp \
+  src/KeypointList.cpp \
   src/LayersExtentProxy.cpp \
   src/Logger.cpp \
   src/MainWindow.cpp \
@@ -343,10 +346,8 @@ SOURCES += \
   src/Widgets/ZoomLevelSelector.cpp \
   src/Widgets/SearchFieldWidget.cpp \
   src/Widgets/LanguageSelectionWidget.cpp \
-  src/Widgets/ProgressInfoWindow.cpp \
-    src/KeypointList.cpp \
-    src/FilterParameters/PointParameter.cpp \
-    src/FilterSyncRunner.cpp
+  src/Widgets/ProgressInfoWindow.cpp
+
 
 equals(GMIC_DYNAMIC_LINKING, "on" ) {
   message(Dynamic linking with libgmic)
