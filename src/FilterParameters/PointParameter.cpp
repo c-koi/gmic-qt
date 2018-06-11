@@ -136,12 +136,7 @@ void PointParameter::extractPositionFromKeypointList(KeypointList & list)
   Q_ASSERT_X(!list.isEmpty(), __PRETTY_FUNCTION__, "Keypoint list is empty");
   enableNotifications(false);
   KeypointList::Keypoint kp = list.front();
-  if (kp.isNaN()) {
-    setRemoved(true);
-    if (_removeButton && !_removeButton->isChecked()) {
-      _removeButton->setChecked(true);
-    }
-  } else {
+  if (!kp.isNaN()) {
     _position.setX(kp.x);
     _position.setY(kp.y);
     if (_spinBoxX) {
@@ -199,6 +194,7 @@ void PointParameter::reset()
   enableNotifications(false);
   _spinBoxX->setValue(_defaultPosition.rx());
   _spinBoxY->setValue(_defaultPosition.ry());
+
   if (_removeButton && _removable) {
     _removeButton->setChecked((_removed = _defaultRemovedStatus));
   }

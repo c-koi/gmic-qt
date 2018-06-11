@@ -37,6 +37,7 @@ public:
     QColor color;
     bool removable;
     bool burst;
+
     Keypoint(float x, float y, QColor color, bool removable, bool burst);
     Keypoint(QPointF point, QColor color, bool removable, bool burst);
     Keypoint(QColor color, bool removable, bool burst);

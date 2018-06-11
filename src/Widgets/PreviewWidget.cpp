@@ -486,17 +486,8 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
   }
 
   if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
-    int index = keypointUnderMouse(e->pos());
-    if (index != -1) {
-      KeypointList::Keypoint & kp = _keypoints[index];
-      if (kp.removable) {
-        kp.setNaN();
-        emit keypointPositionsChanged(KeypointMouseReleaseEvent);
-      }
-    } else {
-      if (_previewEnabled) {
-        displayOriginalImage();
-      }
+    if (_previewEnabled) {
+      displayOriginalImage();
     }
     e->accept();
     return;
