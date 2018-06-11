@@ -24,12 +24,14 @@
  */
 
 #include "GmicProcessor.h"
+#include <QApplication>
 #include <QDebug>
 #include <QPainter>
 #include <QRegExp>
 #include <QSize>
 #include <QString>
 #include <cstring>
+#include "FilterSyncRunner.h"
 #include "FilterThread.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
@@ -81,16 +83,28 @@ void GmicProcessor::execute()
   env += QString(" _output_mode=%1").arg(io.outputMode);
   env += QString(" _output_messages=%1").arg(_filterContext.outputMessageMode);
   env += QString(" _preview_mode=%1").arg(io.previewMode);
-  if (_filterContext.requestType == FilterContext::PreviewProcessing) {
+  if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
     env += QString(" _preview_width=%1").arg(_filterContext.previewWidth);
     env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
+  }
+
+  if (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing) {
+    FilterSyncRunner runner(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    runner.swapImages(*_gmicImages);
+    runner.setImageNames(imageNames);
+    runner.setLogSuffix("./preview/");
+    _previewRandomSeed = cimg_library::cimg::srand();
+    runner.run();
+    manageSynchonousRunner(runner);
+  } else if (_filterContext.requestType == FilterContext::PreviewProcessing) {
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("./preview/");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()), Qt::QueuedConnection);
     _previewRandomSeed = cimg_library::cimg::srand();
+    _filterThread->start();
   } else if (_filterContext.requestType == FilterContext::FullImageProcessing) {
     _lastAppliedFilterName = _filterContext.filterName;
     _lastAppliedCommand = _filterContext.filterCommand;
@@ -103,8 +117,8 @@ void GmicProcessor::execute()
     _filterThread->setLogSuffix("./apply/");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()), Qt::QueuedConnection);
     cimg_library::cimg::srand(_previewRandomSeed);
+    _filterThread->start();
   }
-  _filterThread->start();
 }
 
 bool GmicProcessor::isProcessingFullImage() const
@@ -177,7 +191,6 @@ GmicProcessor::~GmicProcessor()
 
 void GmicProcessor::onPreviewThreadFinished()
 {
-  ENTERING;
   Q_ASSERT_X(_filterThread, __PRETTY_FUNCTION__, "No filter thread");
   if (_filterThread->isRunning()) {
     return;
@@ -239,7 +252,7 @@ void GmicProcessor::onApplyThreadFinished()
 
 void GmicProcessor::onAbortedThreadFinished()
 {
-  TSHOW(_unfinishedAbortedThreads.size());
+  // TSHOW(_unfinishedAbortedThreads.size());
   FilterThread * thread = dynamic_cast<FilterThread *>(sender());
   if (_unfinishedAbortedThreads.contains(thread)) {
     _unfinishedAbortedThreads.removeOne(thread);
@@ -259,7 +272,6 @@ void GmicProcessor::showWaitingCursor()
 
 void GmicProcessor::hideWaitingCursor()
 {
-  ENTERING;
   _waitingCursorTimer.stop();
   if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
     QApplication::restoreOverrideCursor();
@@ -303,4 +315,25 @@ void GmicProcessor::abortCurrentFilterThread()
   if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
     QApplication::restoreOverrideCursor();
   }
+}
+
+void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
+{
+  if (runner.failed()) {
+    _gmicStatus.clear();
+    _gmicImages->assign();
+    QString message = _filterThread->errorMessage();
+    hideWaitingCursor();
+    emit previewCommandFailed(message);
+    return;
+  }
+  _gmicStatus = runner.gmicStatus();
+  _gmicImages->assign();
+  runner.swapImages(*_gmicImages);
+  for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
+    gmic_qt_apply_color_profile((*_gmicImages)[i]);
+  }
+  GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.inputOutputState.previewMode, _filterContext.previewWidth, _filterContext.previewHeight);
+  hideWaitingCursor();
+  emit previewImageAvailable();
 }

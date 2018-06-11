@@ -35,6 +35,7 @@
 #include <QPushButton>
 #include <QSpacerItem>
 #include <QWidget>
+#include <cmath>
 #include <cstdio>
 #include "Common.h"
 #include "DialogSettings.h"
@@ -52,6 +53,8 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _removeButton = nullptr;
   _rowCell = nullptr;
   _notificationEnabled = true;
+  _connected = false;
+  setRemoved(false);
 }
 
 PointParameter::~PointParameter()
@@ -86,6 +89,9 @@ void PointParameter::addTo(QWidget * widget, int row)
   }
   painter.drawRect(0, 0, pixmap.width() - 1, pixmap.height() - 1);
   _colorLabel->setPixmap(pixmap);
+  if (_burst) {
+    _colorLabel->setToolTip("Burst");
+  }
 
   hbox->addWidget(_labelX = new QLabel("X", _rowCell));
   hbox->addWidget(_spinBoxX = new QDoubleSpinBox(_rowCell));
@@ -94,28 +100,31 @@ void PointParameter::addTo(QWidget * widget, int row)
   if (_removable) {
     hbox->addWidget(_removeButton = new QToolButton(_rowCell));
     _removeButton->setCheckable(true);
-    _removeButton->setChecked(false);
+    _removeButton->setChecked(_removed);
     _removeButton->setIcon(DialogSettings::RemoveIcon);
-    connect(_removeButton, SIGNAL(toggled(bool)), this, SLOT(onRemoveButtonToggled(bool)));
   } else {
     _removeButton = nullptr;
-    hbox->addSpacerItem(new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed));
   }
-  _spinBoxX->setRange(0, 100);
-  _spinBoxY->setRange(0, 100);
+  hbox->addSpacerItem(new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed));
+  _spinBoxX->setRange(-200.0, 300.0);
+  _spinBoxY->setRange(-200.0, 300.0);
   _spinBoxX->setValue(_position.x());
   _spinBoxY->setValue(_position.y());
 
   grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   grid->addWidget(_rowCell, row, 1, 1, 2);
 
-  connect(_spinBoxX, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
-  connect(_spinBoxY, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
+  setRemoved(_removed);
+  connectSpinboxes();
 }
 
 void PointParameter::addToKeypointList(KeypointList & list) const
 {
-  list.add(KeypointList::Keypoint(_position.x(), _position.y(), _color, _removable, _burst));
+  if (_removable && _removed) {
+    list.add(KeypointList::Keypoint(_color, _removable, _burst));
+  } else {
+    list.add(KeypointList::Keypoint(_position.x(), _position.y(), _color, _removable, _burst));
+  }
 }
 
 void PointParameter::extractPositionFromKeypointList(KeypointList & list)
@@ -123,11 +132,18 @@ void PointParameter::extractPositionFromKeypointList(KeypointList & list)
   Q_ASSERT_X(!list.isEmpty(), __PRETTY_FUNCTION__, "Keypoint list is empty");
   enableNotifications(false);
   KeypointList::Keypoint kp = list.front();
-  _position.setX(kp.x);
-  _position.setY(kp.y);
-  if (_spinBoxX) {
-    _spinBoxX->setValue(kp.x);
-    _spinBoxY->setValue(kp.y);
+  if (kp.isNaN()) {
+    setRemoved(true);
+    if (_removeButton && !_removeButton->isChecked()) {
+      _removeButton->setChecked(true);
+    }
+  } else {
+    _position.setX(kp.x);
+    _position.setY(kp.y);
+    if (_spinBoxX) {
+      _spinBoxX->setValue(kp.x);
+      _spinBoxY->setValue(kp.y);
+    }
   }
   list.pop_front();
   enableNotifications(true);
@@ -135,7 +151,7 @@ void PointParameter::extractPositionFromKeypointList(KeypointList & list)
 
 QString PointParameter::textValue() const
 {
-  if (_removable && _removeButton->isChecked()) {
+  if (_removed) {
     return "nan,nan";
   } else {
     return QString("%1,%2").arg(_position.x()).arg(_position.y());
@@ -157,13 +173,19 @@ void PointParameter::setValue(const QString & value)
     if (ok && !yNaN) {
       _position.setY(y);
     }
-    if (_removable && _removeButton) {
-      if (_removeButton->isChecked() && !xNaN && !yNaN) {
-        _removeButton->setChecked(false);
+    _removed = (_removable && xNaN && yNaN);
+
+    if (_spinBoxX) {
+      disconnectSpinboxes();
+      if (_removeButton) {
+        setRemoved(_removed);
+        _removeButton->setChecked(_removed);
       }
-      if (!_removeButton->isChecked() && xNaN && yNaN) {
-        _removeButton->setChecked(true);
+      if (!_removed) {
+        _spinBoxX->setValue(_position.x());
+        _spinBoxY->setValue(_position.y());
       }
+      connectSpinboxes();
     }
   }
 }
@@ -210,43 +232,46 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   }
 
   if (params.size() >= 3) {
-    bool r = params[2].toInt(&ok);
+    bool removable = params[2].toInt(&ok);
     if (!ok) {
       return false;
     }
-    _removable = r;
+    _removable = removable;
   }
 
   if (params.size() >= 4) {
-    bool b = params[3].toInt(&ok);
+    bool burst = params[3].toInt(&ok);
     if (!ok) {
       return false;
     }
-    _burst = b;
+    _burst = burst;
   }
 
   if (params.size() >= 5) {
-    int r = params[4].toInt(&ok);
+    int red = params[4].toInt(&ok);
     if (!ok) {
       return false;
     }
-    _color.setRed(r);
+    _color.setRed(red);
+    _color.setGreen(red);
+    _color.setBlue(red);
   }
 
   if (params.size() >= 6) {
-    int g = params[5].toInt(&ok);
+    int green = params[5].toInt(&ok);
     if (!ok) {
       return false;
     }
-    _color.setGreen(g);
+    _color.setGreen(green);
+    _color.setBlue(0);
   }
 
   if (params.size() >= 7) {
-    int b = params[6].toInt(&ok);
+    int blue = params[6].toInt(&ok);
     if (!ok) {
       return false;
     }
-    _color.setBlue(b);
+    _color.setBlue(blue);
   }
 
   if (params.size() >= 8) {
@@ -273,12 +298,48 @@ void PointParameter::onSpinBoxChanged()
   }
 }
 
+void PointParameter::setRemoved(bool on)
+{
+  _removed = on;
+  if (_spinBoxX) {
+    _spinBoxX->setDisabled(on);
+    _spinBoxY->setDisabled(on);
+    _labelX->setDisabled(on);
+    _labelY->setDisabled(on);
+    if (_removeButton) {
+      _removeButton->setIcon(on ? DialogSettings::AddIcon : DialogSettings::RemoveIcon);
+    }
+  }
+}
+
 void PointParameter::onRemoveButtonToggled(bool on)
 {
-  _spinBoxX->setDisabled(on);
-  _spinBoxY->setDisabled(on);
-  _labelX->setDisabled(on);
-  _labelY->setDisabled(on);
-  _removeButton->setIcon(on ? DialogSettings::AddIcon : DialogSettings::RemoveIcon);
+  setRemoved(on);
   notifyIfRelevant();
+}
+
+void PointParameter::connectSpinboxes()
+{
+  if (_connected) {
+    return;
+  }
+  connect(_spinBoxX, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
+  connect(_spinBoxY, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
+  if (_removable && _removeButton) {
+    connect(_removeButton, SIGNAL(toggled(bool)), this, SLOT(onRemoveButtonToggled(bool)));
+  }
+  _connected = true;
+}
+
+void PointParameter::disconnectSpinboxes()
+{
+  if (!_connected) {
+    return;
+  }
+  _spinBoxX->disconnect(this);
+  _spinBoxY->disconnect(this);
+  if (_removable && _removeButton) {
+    _removeButton->disconnect(this);
+  }
+  _connected = false;
 }

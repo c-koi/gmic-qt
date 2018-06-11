@@ -50,20 +50,24 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
+  void setRemoved(bool on);
+
 public slots:
   void enableNotifications(bool);
+
 private slots:
   void onSpinBoxChanged();
   void onRemoveButtonToggled(bool);
 
 private:
+  void connectSpinboxes();
+  void disconnectSpinboxes();
   QString _name;
   QPointF _defaultPosition;
   QPointF _position;
   QColor _color;
   bool _removable;
   bool _burst;
-  int _id;
 
   QLabel * _label;
   QLabel * _colorLabel;
@@ -72,6 +76,8 @@ private:
   QDoubleSpinBox * _spinBoxX;
   QDoubleSpinBox * _spinBoxY;
   QToolButton * _removeButton;
+  bool _connected;
+  bool _removed;
   QWidget * _rowCell;
   bool _notificationEnabled;
 };

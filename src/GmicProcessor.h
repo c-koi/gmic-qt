@@ -35,6 +35,7 @@
 #include "PreviewMode.h"
 #include "gmic_qt.h"
 class FilterThread;
+class FilterSyncRunner;
 
 namespace cimg_library
 {
@@ -48,6 +49,7 @@ public:
   struct FilterContext {
     enum RequestType
     {
+      SynchronousPreviewProcessing,
       PreviewProcessing,
       FullImageProcessing
     };
@@ -111,6 +113,7 @@ private slots:
 private:
   void updateImageNames(cimg_library::CImgList<char> & imageNames);
   void abortCurrentFilterThread();
+  void manageSynchonousRunner(FilterSyncRunner & thread);
 
   FilterThread * _filterThread;
   FilterContext _filterContext;

@@ -68,7 +68,18 @@ KeypointList::Keypoint::Keypoint(float x, float y, QColor color, bool removable,
 
 KeypointList::Keypoint::Keypoint(QPointF point, QColor color, bool removable, bool burst) : x((float)point.x()), y((float)point.y()), color(color), removable(removable), burst(burst) {}
 
+KeypointList::Keypoint::Keypoint(QColor color, bool removable, bool burst) : color(color), removable(removable), burst(burst)
+{
+  setNaN();
+}
+
 bool KeypointList::Keypoint::isNaN() const
 {
   return std::isnan(x) || std::isnan(y);
+}
+
+KeypointList::Keypoint & KeypointList::Keypoint::setNaN()
+{
+  x = y = std::nanf("50");
+  return *this;
 }

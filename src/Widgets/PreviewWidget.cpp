@@ -236,10 +236,12 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   KeypointList::iterator it = _keypoints.begin();
   while (it != _keypoints.end()) {
     if (!it->isNaN()) {
-      QPoint center = keypointToPointInWidget(*it);
+      QPoint center = keypointToVisiblePointInWidget(*it);
       QRect r(0, 0, 11, 11);
       r.moveCenter(center);
       painter.setBrush(it->color);
+      pen.setColor(QColor(0, 0, 0, it->color.alpha()));
+      painter.setPen(pen);
       painter.drawEllipse(r);
     }
     ++it;
@@ -250,18 +252,19 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
 {
   KeypointList::iterator it = _keypoints.begin();
   int index = 0;
+  int foundIndex = -1;
   while (it != _keypoints.end()) {
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
-      QPoint center = keypointToPointInWidget(kp);
+      QPoint center = keypointToVisiblePointInWidget(kp);
       if ((center - p).manhattanLength() < 8) {
-        return index;
+        foundIndex = index;
       }
     }
     ++it;
     ++index;
   }
-  return -1;
+  return foundIndex;
 }
 
 QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp) const
@@ -269,11 +272,19 @@ QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp)
   return QPoint(std::round(_imagePosition.left() + _imagePosition.width() * (kp.x / 100.0f)), std::round(_imagePosition.top() + _imagePosition.height() * (kp.y / 100.0f)));
 }
 
+QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const
+{
+  QPoint p = keypointToPointInWidget(kp);
+  p.rx() = std::max(_imagePosition.left(), std::min(p.x(), _imagePosition.left() + _imagePosition.width()));
+  p.ry() = std::max(_imagePosition.top(), std::min(p.y(), _imagePosition.top() + _imagePosition.height()));
+  return p;
+}
+
 QPointF PreviewWidget::pointInWidgetToKeypointPosition(const QPoint & p) const
 {
   QPointF result(100.0 * (p.x() - _imagePosition.left()) / (float)_imagePosition.width(), 100.0 * (p.y() - _imagePosition.top()) / (float)_imagePosition.height());
-  result.rx() = std::min(100.0, std::max(0.0, result.x()));
-  result.ry() = std::min(100.0, std::max(0.0, result.y()));
+  result.rx() = std::min(300.0, std::max(-200.0, result.x()));
+  result.ry() = std::min(300.0, std::max(-200.0, result.y()));
   return result;
 }
 
@@ -468,8 +479,17 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
   }
 
   if (_rightClickEnabled && (e->button() == Qt::RightButton)) {
-    if (_previewEnabled) {
-      displayOriginalImage();
+    int index = keypointUnderMouse(e->pos());
+    if (index != -1) {
+      KeypointList::Keypoint & kp = _keypoints[index];
+      if (kp.removable) {
+        kp.setNaN();
+        emit keypointPositionsChanged(KeypointMouseReleaseEvent);
+      }
+    } else {
+      if (_previewEnabled) {
+        displayOriginalImage();
+      }
     }
     e->accept();
     return;
@@ -490,12 +510,13 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
     if (_movedKeypointIndex != -1) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
-      SHOW(p);
-      kp.x = p.x();
-      kp.y = p.y();
+      kp.setPosition(p);
       _movedKeypointIndex = -1;
-      emit keypointPositionsChanged(true);
-      // update();
+      if (kp.burst) {
+        emit keypointPositionsChanged(KeypointBurstEvent);
+      } else {
+        emit keypointPositionsChanged(KeypointMouseReleaseEvent);
+      }
     }
     e->accept();
     return;
@@ -532,16 +553,17 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
     if (_movedKeypointIndex != -1) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
-      kp.x = p.x();
-      kp.y = p.y();
-      SHOW(p);
-      SHOW(kp.burst);
+      kp.setPosition(p);
       update();
       if (kp.burst) {
-        emit keypointPositionsChanged(e->timestamp() - _keypointTimestamp > 20);
+        unsigned char flags = 0;
+        if (e->timestamp() - _keypointTimestamp > 15) {
+          flags |= KeypointBurstEvent;
+        }
+        emit keypointPositionsChanged(flags);
         _keypointTimestamp = e->timestamp();
       } else {
-        emit keypointPositionsChanged(false);
+        emit keypointPositionsChanged(0);
       }
     }
     e->accept();

@@ -72,8 +72,9 @@ public:
 public slots:
   void onUpdateDownloadsFinished(int status);
   void onApplyClicked();
+  void onPreviewUpdateRequested(bool synchronous);
   void onPreviewUpdateRequested();
-  void onPreviewKeypointsMoved(bool notify);
+  void onPreviewKeypointsMoved(unsigned int flags);
   void onFullImageProcessingDone();
   void expandOrCollapseFolders();
   void search(QString);

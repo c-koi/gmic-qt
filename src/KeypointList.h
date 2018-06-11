@@ -39,7 +39,11 @@ public:
     bool burst;
     Keypoint(float x, float y, QColor color, bool removable, bool burst);
     Keypoint(QPointF point, QColor color, bool removable, bool burst);
+    Keypoint(QColor color, bool removable, bool burst);
     bool isNaN() const;
+    Keypoint & setNaN();
+    inline void setPosition(float x, float y);
+    inline void setPosition(const QPointF & p);
   };
 
   KeypointList();
@@ -67,5 +71,17 @@ public:
 private:
   std::deque<Keypoint> _keypoints;
 };
+
+void KeypointList::Keypoint::setPosition(float x, float y)
+{
+  KeypointList::Keypoint::x = x;
+  KeypointList::Keypoint::y = y;
+}
+
+void KeypointList::Keypoint::setPosition(const QPointF & point)
+{
+  KeypointList::Keypoint::x = (float)point.x();
+  KeypointList::Keypoint::y = (float)point.y();
+}
 
 #endif // _GMIC_QT_KEYPOINTLIST_H_

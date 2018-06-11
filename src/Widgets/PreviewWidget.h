@@ -68,6 +68,12 @@ public:
   const KeypointList & keypoints() const;
   void setKeypoints(const KeypointList &);
 
+  enum KeypointMotionFlags
+  {
+    KeypointBurstEvent = 1,
+    KeypointMouseReleaseEvent = 2
+  };
+
 protected:
   void resizeEvent(QResizeEvent *) override;
   void timerEvent(QTimerEvent *) override;
@@ -78,14 +84,11 @@ protected:
   void mousePressEvent(QMouseEvent * e) override;
   void paintEvent(QPaintEvent * e) override;
   bool eventFilter(QObject *, QEvent * event) override;
-  void paintKeypoints(QPainter & painter);
-  int keypointUnderMouse(const QPoint & p);
-  QPoint keypointToPointInWidget(const KeypointList::Keypoint & kp) const;
-  QPointF pointInWidgetToKeypointPosition(const QPoint &) const;
+
 signals:
   void previewVisibleRectIsChanging();
   void previewUpdateRequested();
-  void keypointPositionsChanged(bool notify);
+  void keypointPositionsChanged(unsigned int flags);
   void zoomChanged(double zoom);
 
 public slots:
@@ -120,6 +123,12 @@ private:
   void updateCachedOriginalImageCrop();
   void updateOriginalImagePosition();
   void updateErrorImage();
+
+  void paintKeypoints(QPainter & painter);
+  int keypointUnderMouse(const QPoint & p);
+  QPoint keypointToPointInWidget(const KeypointList::Keypoint & kp) const;
+  QPoint keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const;
+  QPointF pointInWidgetToKeypointPosition(const QPoint &) const;
 
   QSize originalImageCropSize();
   double defaultZoomFactor() const;

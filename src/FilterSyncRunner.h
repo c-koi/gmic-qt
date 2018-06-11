@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FilterThread.h
+ *  @file FilterSyncRunner.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,29 +22,30 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT__FILTERTHREAD_H_
-#define _GMIC_QT__FILTERTHREAD_H_
+#ifndef _GMIC_QT_FILTERSYNCRUNNER_H_
+#define _GMIC_QT_FILTERSYNCRUNNER_H_
 
+#include <QObject>
 #include <QString>
-#include <QThread>
 #include <QTime>
 
 #include "Common.h"
 #include "Host/host.h"
 #include "gmic_qt.h"
 
+class QObject;
+
 namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
 
-class FilterThread : public QThread {
+class FilterSyncRunner : public QObject {
   Q_OBJECT
-
 public:
-  FilterThread(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterSyncRunner(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
 
-  virtual ~FilterThread();
+  virtual ~FilterSyncRunner();
   void setArguments(const QString &);
   void setInputImages(const cimg_library::CImgList<float> & list);
   void setImageNames(const cimg_library::CImgList<char> & imageNames);
@@ -60,15 +61,8 @@ public:
   QString name() const;
   QString fullCommand() const;
   void setLogSuffix(const QString & text);
-
-public slots:
+  void run();
   void abortGmic();
-
-signals:
-  void done();
-
-protected:
-  void run() override;
 
 private:
   QString _command;
@@ -87,4 +81,4 @@ private:
   QTime _startTime;
 };
 
-#endif // _GMIC_QT__FILTERTHREAD_H_
+#endif // _GMIC_QT_FILTERSYNCRUNNER_H_

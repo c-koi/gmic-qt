@@ -484,7 +484,7 @@ void MainWindow::makeConnections()
 
   connect(ui->filterParams, SIGNAL(valueChanged()), this, SLOT(onParametersChanged()));
   connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
-  connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(bool)), this, SLOT(onPreviewKeypointsMoved(bool)));
+  connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(unsigned int)), this, SLOT(onPreviewKeypointsMoved(unsigned int)));
 
   connect(ui->tbZoomIn, SIGNAL(clicked(bool)), this, SLOT(onZoomIn()));
   connect(ui->tbZoomOut, SIGNAL(clicked(bool)), this, SLOT(onZoomOut()));
@@ -515,7 +515,11 @@ void MainWindow::makeConnections()
 
 void MainWindow::onPreviewUpdateRequested()
 {
-  ENTERING;
+  onPreviewUpdateRequested(false);
+}
+
+void MainWindow::onPreviewUpdateRequested(bool synchronous)
+{
   if (!ui->cbPreview->isChecked()) {
     ui->previewWidget->invalidateSavedPreview();
     return;
@@ -529,7 +533,7 @@ void MainWindow::onPreviewUpdateRequested()
 
   const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
   GmicProcessor::FilterContext context;
-  context.requestType = GmicProcessor::FilterContext::PreviewProcessing;
+  context.requestType = synchronous ? GmicProcessor::FilterContext::SynchronousPreviewProcessing : GmicProcessor::FilterContext::PreviewProcessing;
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
   context.inputOutputState = ui->inOutSelector->state();
@@ -549,11 +553,18 @@ void MainWindow::onPreviewUpdateRequested()
   _okButtonShouldApply = true;
 }
 
-void MainWindow::onPreviewKeypointsMoved(bool notify)
+void MainWindow::onPreviewKeypointsMoved(unsigned int flags)
 {
-  ENTERING;
-  TSHOW(notify);
-  ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), notify);
+  // TSHOW(flags);
+  if (flags & PreviewWidget::KeypointMouseReleaseEvent) {
+    ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), true);
+  } else {
+    ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
+    if (flags & PreviewWidget::KeypointBurstEvent) {
+      onPreviewUpdateRequested(true);
+    }
+  }
+  // ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), notify);
 }
 
 void MainWindow::onPreviewImageAvailable()
@@ -579,7 +590,6 @@ void MainWindow::onPreviewError(QString message)
 
 void MainWindow::onParametersChanged()
 {
-  ENTERING;
   if (ui->filterParams->hasKeypoints()) {
     ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
   }
