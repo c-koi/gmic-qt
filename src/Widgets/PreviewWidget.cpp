@@ -38,6 +38,7 @@
 #include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
+#include "Logger.h"
 #include "Utils.h"
 #include "gmic.h"
 
@@ -239,6 +240,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
     if (!it->isNaN()) {
       QPoint center = keypointToVisiblePointInWidget(*it);
       QPoint realCenter = keypointToPointInWidget(*it);
+      Logger::log(QString("center=%1,%2 real=%3,%4\n").arg(center.x()).arg(center.y()).arg(realCenter.x()).arg(realCenter.y()));
       QRect r(0, 0, 11, 11);
       r.moveCenter(center);
       if (center == realCenter) {
