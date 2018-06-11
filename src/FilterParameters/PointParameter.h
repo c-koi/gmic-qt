@@ -68,6 +68,7 @@ private:
   void pickColorFromDefaultColormap();
   QString _name;
   QPointF _defaultPosition;
+  bool _defaultRemovedStatus;
   QPointF _position;
   QColor _color;
   bool _removable;

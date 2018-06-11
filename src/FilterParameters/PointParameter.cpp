@@ -57,6 +57,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _rowCell = nullptr;
   _notificationEnabled = true;
   _connected = false;
+  _defaultRemovedStatus = false;
   setRemoved(false);
 }
 
@@ -198,6 +199,9 @@ void PointParameter::reset()
   enableNotifications(false);
   _spinBoxX->setValue(_defaultPosition.rx());
   _spinBoxY->setValue(_defaultPosition.ry());
+  if (_removeButton && _removable) {
+    _removeButton->setChecked((_removed = _defaultRemovedStatus));
+  }
   enableNotifications(true);
   onSpinBoxChanged();
 }
@@ -249,7 +253,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
 
   _defaultPosition.setX(x);
   _defaultPosition.setY(y);
-  _removed = (xNaN || yNaN);
+  _removed = _defaultRemovedStatus = (xNaN || yNaN);
 
   if (params.size() >= 3) {
     int removable = params[2].toInt(&ok);
@@ -258,18 +262,18 @@ bool PointParameter::initFromText(const char * text, int & textLength)
     }
     switch (removable) {
     case -1:
-      _removable = _removed = true;
+      _removable = _removed = _defaultRemovedStatus = true;
       break;
     case 0:
-      _removable = false;
+      _removable = _removed = false;
       break;
     case 1:
       _removable = true;
+      _defaultRemovedStatus = _removed = (xNaN && yNaN);
       break;
     default:
       return false;
     }
-    _removable = removable;
   }
   TSHOW(_removed);
   if (params.size() >= 4) {
