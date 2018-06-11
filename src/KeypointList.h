@@ -58,16 +58,22 @@ public:
 
   typedef std::deque<Keypoint>::iterator iterator;
   typedef std::deque<Keypoint>::const_iterator const_iterator;
+  typedef std::deque<Keypoint>::reverse_iterator reverse_iterator;
+  typedef std::deque<Keypoint>::const_reverse_iterator const_reverse_iterator;
 
   Keypoint & operator[](std::deque<Keypoint>::size_type index) { return _keypoints[index]; }
   const Keypoint & operator[](std::deque<Keypoint>::size_type index) const { return _keypoints[index]; }
   void pop_front() { _keypoints.pop_front(); }
   const Keypoint & front() { return _keypoints.front(); }
   const Keypoint & front() const { return _keypoints.front(); }
-  std::deque<Keypoint>::iterator begin() { return _keypoints.begin(); }
-  std::deque<Keypoint>::iterator end() { return _keypoints.end(); }
-  std::deque<Keypoint>::const_iterator cbegin() const { return _keypoints.cbegin(); }
-  std::deque<Keypoint>::const_iterator cend() const { return _keypoints.cend(); }
+  iterator begin() { return _keypoints.begin(); }
+  iterator end() { return _keypoints.end(); }
+  const_iterator cbegin() const { return _keypoints.cbegin(); }
+  const_iterator cend() const { return _keypoints.cend(); }
+  reverse_iterator rbegin() { return _keypoints.rbegin(); }
+  reverse_iterator rend() { return _keypoints.rend(); }
+  const_reverse_iterator rbegin() const { return _keypoints.crbegin(); }
+  const_reverse_iterator rend() const { return _keypoints.crend(); }
 
 private:
   std::deque<Keypoint> _keypoints;

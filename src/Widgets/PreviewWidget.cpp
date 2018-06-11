@@ -234,8 +234,8 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   pen.setWidth(2);
   painter.setRenderHint(QPainter::Antialiasing, true);
   painter.setPen(pen);
-  KeypointList::iterator it = _keypoints.begin();
-  while (it != _keypoints.end()) {
+  KeypointList::reverse_iterator it = _keypoints.rbegin();
+  while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
       QPoint center = keypointToVisiblePointInWidget(*it);
       QPoint realCenter = keypointToPointInWidget(*it);
@@ -260,19 +260,18 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
 {
   KeypointList::iterator it = _keypoints.begin();
   int index = 0;
-  int foundIndex = -1;
   while (it != _keypoints.end()) {
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
       QPoint center = keypointToVisiblePointInWidget(kp);
       if ((center - p).manhattanLength() < 10) {
-        foundIndex = index;
+        return index;
       }
     }
     ++it;
     ++index;
   }
-  return foundIndex;
+  return -1;
 }
 
 QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp) const
