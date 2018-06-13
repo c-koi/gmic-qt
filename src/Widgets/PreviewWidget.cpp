@@ -240,18 +240,19 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   KeypointList::reverse_iterator it = _keypoints.rbegin();
   while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
-      const int & radius = it->radius;
-      QPoint visibleCenter = keypointToVisiblePointInWidget(*it);
-      QPoint realCenter = keypointToPointInWidget(*it);
+      const KeypointList::Keypoint & kp = *it;
+      const int & radius = kp.actualRadiusFromPreviewSize(_imagePosition.size());
+      QPoint visibleCenter = keypointToVisiblePointInWidget(kp);
+      QPoint realCenter = keypointToPointInWidget(kp);
       QRect r(visibleCenter.x() - radius, visibleCenter.y() - radius, 2 * radius, 2 * radius);
       if (adjustedImagePosition.contains(realCenter, false)) {
-        painter.setBrush(it->color);
+        painter.setBrush(kp.color);
         pen.setStyle(Qt::SolidLine);
       } else {
-        painter.setBrush(it->color.darker(150));
+        painter.setBrush(kp.color.darker(150));
         pen.setStyle(Qt::DotLine);
       }
-      pen.setColor(QColor(0, 0, 0, it->color.alpha()));
+      pen.setColor(QColor(0, 0, 0, kp.color.alpha()));
       painter.setPen(pen);
       painter.drawEllipse(r);
 #ifdef _GMIC_QT_DEBUG_
@@ -270,7 +271,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
       QPoint center = keypointToVisiblePointInWidget(kp);
-      if (roundedDistance(center, p) <= (kp.radius + 2)) {
+      if (roundedDistance(center, p) <= (kp.actualRadiusFromPreviewSize(_imagePosition.size()) + 2)) {
         return index;
       }
     }

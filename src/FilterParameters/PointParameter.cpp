@@ -318,7 +318,14 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   }
 
   if (params.size() >= 9) {
-    int radius = params[8].toInt(&ok);
+    QString s = params[8].trimmed();
+    float radius;
+    if (s.endsWith("%")) {
+      s.chop(1);
+      radius = -s.toFloat(&ok);
+    } else {
+      radius = s.toFloat(&ok);
+    }
     if (!ok) {
       return false;
     }

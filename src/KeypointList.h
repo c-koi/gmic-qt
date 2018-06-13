@@ -27,6 +27,8 @@
 
 #include <QColor>
 #include <QPointF>
+#include <QSize>
+#include <cmath>
 #include <deque>
 
 class KeypointList {
@@ -37,16 +39,18 @@ public:
     QColor color;
     bool removable;
     bool burst;
-    int radius;
+    float radius; /* A negative value is a percentage of the preview diagonal */
 
-    Keypoint(float x, float y, QColor color, bool removable, bool burst, int radius);
-    Keypoint(QPointF point, QColor color, bool removable, bool burst, int radius);
-    Keypoint(QColor color, bool removable, bool burst, int radius);
+    Keypoint(float x, float y, QColor color, bool removable, bool burst, float radius);
+    Keypoint(QPointF point, QColor color, bool removable, bool burst, float radius);
+    Keypoint(QColor color, bool removable, bool burst, float radius);
     bool isNaN() const;
     Keypoint & setNaN();
     inline void setPosition(float x, float y);
     inline void setPosition(const QPointF & p);
     static const int DefaultRadius = 6;
+
+    inline int actualRadiusFromPreviewSize(const QSize & size) const;
   };
 
   KeypointList();
@@ -93,6 +97,15 @@ void KeypointList::Keypoint::setPosition(const QPointF & point)
 {
   KeypointList::Keypoint::x = (float)point.x();
   KeypointList::Keypoint::y = (float)point.y();
+}
+
+int KeypointList::Keypoint::actualRadiusFromPreviewSize(const QSize & size) const
+{
+  if (radius >= 0) {
+    return radius;
+  } else {
+    return std::round(-radius * (std::sqrt(size.width() * size.width() + size.height() * size.height())) / 100.0);
+  }
 }
 
 #endif // _GMIC_QT_KEYPOINTLIST_H_
