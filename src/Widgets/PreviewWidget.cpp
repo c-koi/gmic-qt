@@ -461,6 +461,13 @@ bool PreviewWidget::eventFilter(QObject *, QEvent * event)
   return false;
 }
 
+void PreviewWidget::leaveEvent(QEvent *)
+{
+  if (QApplication::overrideCursor() && (QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
+    QApplication::restoreOverrideCursor();
+  }
+}
+
 void PreviewWidget::wheelEvent(QWheelEvent * event)
 {
   double degrees = event->angleDelta().y() / 8.0;
@@ -511,9 +518,9 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 {
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
-    if (QApplication::overrideCursor() && (QApplication::overrideCursor()->shape() == Qt::CrossCursor)) {
-      QApplication::restoreOverrideCursor();
-    }
+    //    if (QApplication::overrideCursor() && (QApplication::overrideCursor()->shape() == Qt::CrossCursor)) {
+    //      QApplication::restoreOverrideCursor();
+    //    }
     if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
       QPoint move = _mousePosition - e->pos();
       onMouseTranslationInImage(move);

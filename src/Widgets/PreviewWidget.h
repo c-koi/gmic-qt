@@ -25,6 +25,7 @@
 #ifndef _GMIC_QT_PREVIEWWIDGET_H_
 #define _GMIC_QT_PREVIEWWIDGET_H_
 
+#include <QFocusEvent>
 #include <QImage>
 #include <QMutex>
 #include <QPixmap>
@@ -84,6 +85,7 @@ protected:
   void mousePressEvent(QMouseEvent * e) override;
   void paintEvent(QPaintEvent * e) override;
   bool eventFilter(QObject *, QEvent * event) override;
+  void leaveEvent(QEvent *);
 
 signals:
   void previewVisibleRectIsChanging();
