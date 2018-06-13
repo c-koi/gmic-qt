@@ -199,7 +199,6 @@ void PointParameter::reset()
     _removeButton->setChecked((_removed = _defaultRemovedStatus));
   }
   enableNotifications(true);
-  onSpinBoxChanged();
 }
 
 // P = point(x,y,removable{0,1},burst{0,1},r,g,b,a)
