@@ -235,14 +235,15 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   pen.setWidth(2);
   painter.setRenderHint(QPainter::Antialiasing, true);
   painter.setPen(pen);
+  QRect adjustedImagePosition = _imagePosition.adjusted(0, 0, 1, 1);
   KeypointList::reverse_iterator it = _keypoints.rbegin();
   while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
-      QPoint center = keypointToVisiblePointInWidget(*it);
+      QPoint visibleCenter = keypointToVisiblePointInWidget(*it);
       QPoint realCenter = keypointToPointInWidget(*it);
       QRect r(0, 0, 11, 11);
-      r.moveCenter(center);
-      if (_imagePosition.contains(realCenter, false)) {
+      r.moveCenter(visibleCenter);
+      if (adjustedImagePosition.contains(realCenter, false)) {
         painter.setBrush(it->color);
         pen.setStyle(Qt::SolidLine);
       } else {
@@ -265,7 +266,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
       QPoint center = keypointToVisiblePointInWidget(kp);
-      if ((center - p).manhattanLength() < 10) {
+      if ((center - p).manhattanLength() < 16) {
         return index;
       }
     }
@@ -283,8 +284,8 @@ QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp)
 QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const
 {
   QPoint p = keypointToPointInWidget(kp);
-  p.rx() = std::max(_imagePosition.left() + 1, std::min(p.x(), _imagePosition.left() + _imagePosition.width() - 2));
-  p.ry() = std::max(_imagePosition.top() + 1, std::min(p.y(), _imagePosition.top() + _imagePosition.height() - 2));
+  p.rx() = std::max(std::max(_imagePosition.left(), 0), std::min(p.x(), std::min(rect().left() + rect().width(), _imagePosition.left() + _imagePosition.width())));
+  p.ry() = std::max(std::max(_imagePosition.top(), 0), std::min(p.y(), std::min(rect().top() + rect().height(), _imagePosition.top() + _imagePosition.height())));
   return p;
 }
 
@@ -471,14 +472,14 @@ void PreviewWidget::wheelEvent(QWheelEvent * event)
 void PreviewWidget::mousePressEvent(QMouseEvent * e)
 {
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
-    if (_imagePosition.contains(e->pos())) {
-      int index = keypointUnderMouse(e->pos());
-      if (index != -1) {
-        _movedKeypointIndex = index;
-        _keypointTimestamp = e->timestamp();
-      } else {
-        _mousePosition = e->pos();
-      }
+    int index = keypointUnderMouse(e->pos());
+    if (index != -1) {
+      _movedKeypointIndex = index;
+      _keypointTimestamp = e->timestamp();
+      abortUpdateTimer();
+      _mousePosition = QPoint(-1, -1);
+    } else if (_imagePosition.contains(e->pos())) {
+      _mousePosition = e->pos();
       abortUpdateTimer();
     } else {
       _mousePosition = QPoint(-1, -1);

@@ -60,9 +60,11 @@ public:
   typedef std::deque<Keypoint>::const_iterator const_iterator;
   typedef std::deque<Keypoint>::reverse_iterator reverse_iterator;
   typedef std::deque<Keypoint>::const_reverse_iterator const_reverse_iterator;
+  typedef std::deque<Keypoint>::size_type size_type;
 
-  Keypoint & operator[](std::deque<Keypoint>::size_type index) { return _keypoints[index]; }
-  const Keypoint & operator[](std::deque<Keypoint>::size_type index) const { return _keypoints[index]; }
+  size_type size() const { return _keypoints.size(); }
+  Keypoint & operator[](size_type index) { return _keypoints[index]; }
+  const Keypoint & operator[](size_type index) const { return _keypoints[index]; }
   void pop_front() { _keypoints.pop_front(); }
   const Keypoint & front() { return _keypoints.front(); }
   const Keypoint & front() const { return _keypoints.front(); }
