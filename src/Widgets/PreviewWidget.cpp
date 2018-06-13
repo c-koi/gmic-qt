@@ -474,6 +474,7 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
     int index = keypointUnderMouse(e->pos());
     if (index != -1) {
+      QApplication::setOverrideCursor(Qt::CrossCursor);
       _movedKeypointIndex = index;
       _keypointTimestamp = e->timestamp();
       abortUpdateTimer();
@@ -505,7 +506,13 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 
 void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 {
+
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
+
+    if (QApplication::overrideCursor()->shape() == Qt::CrossCursor) {
+      QApplication::restoreOverrideCursor();
+    }
+
     if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
       QPoint move = _mousePosition - e->pos();
       onMouseTranslationInImage(move);
