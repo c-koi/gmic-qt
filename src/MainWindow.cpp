@@ -576,6 +576,10 @@ void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
 void MainWindow::onPreviewImageAvailable()
 {
   ui->filterParams->setValues(_processor.gmicStatus(), false);
+  // Make sure keypoint positions are synchronized with gmic status
+  if (ui->filterParams->hasKeypoints()) {
+    ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
+  }
   ui->previewWidget->setPreviewImage(_processor.previewImage());
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
