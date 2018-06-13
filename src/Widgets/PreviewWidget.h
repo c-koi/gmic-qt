@@ -171,7 +171,7 @@ private:
   };
 
   static const int RESIZE_DELAY = 400;
-
+  static int roundedDistance(const QPoint & p1, const QPoint & p2);
   PreviewRect _visibleRect;
   PreviewPoint _savedVisibleCenter;
 

@@ -69,6 +69,7 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
   _originalImageSize = QSize(-1, -1);
   _movedKeypointOrigin = QPoint(-1, -1);
   _movedKeypointIndex = -1;
+  setMouseTracking(false);
 }
 
 PreviewWidget::~PreviewWidget()
@@ -241,8 +242,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
     if (!it->isNaN()) {
       QPoint visibleCenter = keypointToVisiblePointInWidget(*it);
       QPoint realCenter = keypointToPointInWidget(*it);
-      QRect r(0, 0, 11, 11);
-      r.moveCenter(visibleCenter);
+      QRect r(visibleCenter.x() - 6, visibleCenter.y() - 6, 12, 12);
       if (adjustedImagePosition.contains(realCenter, false)) {
         painter.setBrush(it->color);
         pen.setStyle(Qt::SolidLine);
@@ -253,6 +253,9 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
       pen.setColor(QColor(0, 0, 0, it->color.alpha()));
       painter.setPen(pen);
       painter.drawEllipse(r);
+#ifdef _GMIC_QT_DEBUG_
+      painter.drawPoint(visibleCenter);
+#endif
     }
     ++it;
   }
@@ -266,7 +269,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
       QPoint center = keypointToVisiblePointInWidget(kp);
-      if ((center - p).manhattanLength() < 16) {
+      if (roundedDistance(center, p) <= 8) {
         return index;
       }
     }
@@ -474,7 +477,6 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
     int index = keypointUnderMouse(e->pos());
     if (index != -1) {
-      QApplication::setOverrideCursor(Qt::CrossCursor);
       _movedKeypointIndex = index;
       _keypointTimestamp = e->timestamp();
       abortUpdateTimer();
@@ -506,13 +508,10 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 
 void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 {
-
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
-
-    if (QApplication::overrideCursor()->shape() == Qt::CrossCursor) {
+    if (QApplication::overrideCursor() && (QApplication::overrideCursor()->shape() == Qt::CrossCursor)) {
       QApplication::restoreOverrideCursor();
     }
-
     if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
       QPoint move = _mousePosition - e->pos();
       onMouseTranslationInImage(move);
@@ -524,12 +523,7 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       _movedKeypointIndex = -1;
-      // TODO: Check that this is OK
-      //      if (kp.burst) {
-      //        emit keypointPositionsChanged(KeypointBurstEvent, e->timestamp());
-      //      } else {
       emit keypointPositionsChanged(KeypointMouseReleaseEvent, e->timestamp());
-      //      }
     }
     e->accept();
     return;
@@ -563,6 +557,16 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 
 void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
 {
+  if (hasMouseTracking() && (_movedKeypointIndex == -1)) {
+    int index = keypointUnderMouse(e->pos());
+    if ((index != -1) && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
+      SHOW("PUSH");
+      QApplication::setOverrideCursor(Qt::PointingHandCursor);
+    } else if ((index == -1) && QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor) {
+      SHOW("POP");
+      QApplication::restoreOverrideCursor();
+    }
+  }
   if (e->buttons() & (Qt::LeftButton | Qt::MiddleButton)) {
     if (!isAtFullZoom() && (_mousePosition != QPoint(-1, -1))) {
       QPoint move = _mousePosition - e->pos();
@@ -767,6 +771,13 @@ void PreviewWidget::saveVisibleCenter()
   _savedVisibleCenter = _visibleRect.center();
 }
 
+int PreviewWidget::roundedDistance(const QPoint & p1, const QPoint & p2)
+{
+  const double dx = p1.x() - p2.x();
+  const double dy = p1.y() - p2.y();
+  return (int)std::round(std::sqrt(dx * dx + dy * dy));
+}
+
 void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
 {
   _previewFactor = filterFactor;
@@ -880,6 +891,7 @@ const KeypointList & PreviewWidget::keypoints() const
 void PreviewWidget::setKeypoints(const KeypointList & keypoints)
 {
   _keypoints = keypoints;
+  setMouseTracking(_keypoints.size());
   update();
 }
 
