@@ -37,14 +37,16 @@ public:
     QColor color;
     bool removable;
     bool burst;
+    int radius;
 
-    Keypoint(float x, float y, QColor color, bool removable, bool burst);
-    Keypoint(QPointF point, QColor color, bool removable, bool burst);
-    Keypoint(QColor color, bool removable, bool burst);
+    Keypoint(float x, float y, QColor color, bool removable, bool burst, int radius);
+    Keypoint(QPointF point, QColor color, bool removable, bool burst, int radius);
+    Keypoint(QColor color, bool removable, bool burst, int radius);
     bool isNaN() const;
     Keypoint & setNaN();
     inline void setPosition(float x, float y);
     inline void setPosition(const QPointF & p);
+    static const int DefaultRadius = 6;
   };
 
   KeypointList();

@@ -65,11 +65,14 @@ bool KeypointList::allowsBusrt(int n) const
   return _keypoints[n].burst;
 }
 
-KeypointList::Keypoint::Keypoint(float x, float y, QColor color, bool removable, bool burst) : x(x), y(y), color(color), removable(removable), burst(burst) {}
+KeypointList::Keypoint::Keypoint(float x, float y, QColor color, bool removable, bool burst, int radius) : x(x), y(y), color(color), removable(removable), burst(burst), radius(radius) {}
 
-KeypointList::Keypoint::Keypoint(QPointF point, QColor color, bool removable, bool burst) : x((float)point.x()), y((float)point.y()), color(color), removable(removable), burst(burst) {}
+KeypointList::Keypoint::Keypoint(QPointF point, QColor color, bool removable, bool burst, int radius)
+    : x((float)point.x()), y((float)point.y()), color(color), removable(removable), burst(burst), radius(radius)
+{
+}
 
-KeypointList::Keypoint::Keypoint(QColor color, bool removable, bool burst) : color(color), removable(removable), burst(burst)
+KeypointList::Keypoint::Keypoint(QColor color, bool removable, bool burst, int radius) : color(color), removable(removable), burst(burst), radius(radius)
 {
   setNaN();
 }

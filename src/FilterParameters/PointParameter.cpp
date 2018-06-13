@@ -58,6 +58,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _notificationEnabled = true;
   _connected = false;
   _defaultRemovedStatus = false;
+  _radius = KeypointList::Keypoint::DefaultRadius;
   setRemoved(false);
 }
 
@@ -86,9 +87,9 @@ void PointParameter::addTo(QWidget * widget, int row)
   _colorLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
   QPixmap pixmap(r.width(), r.height());
   QPainter painter(&pixmap);
-  painter.setBrush(_color);
+  painter.setBrush(_color.alpha() > 0 ? _color : QColor(_color.red(), _color.green(), _color.blue()));
   painter.setPen(Qt::black);
-  if (_color.alpha() != 255) {
+  if (_color.alpha() != 255 && _color.alpha()) {
     painter.drawImage(0, 0, QImage(":resources/transparency.png"));
   }
   painter.drawRect(0, 0, pixmap.width() - 1, pixmap.height() - 1);
@@ -125,9 +126,9 @@ void PointParameter::addTo(QWidget * widget, int row)
 void PointParameter::addToKeypointList(KeypointList & list) const
 {
   if (_removable && _removed) {
-    list.add(KeypointList::Keypoint(_color, _removable, _burst));
+    list.add(KeypointList::Keypoint(_color, _removable, _burst, _radius));
   } else {
-    list.add(KeypointList::Keypoint(_position.x(), _position.y(), _color, _removable, _burst));
+    list.add(KeypointList::Keypoint(_position.x(), _position.y(), _color, _removable, _burst, _radius));
   }
 }
 
@@ -201,7 +202,7 @@ void PointParameter::reset()
   enableNotifications(true);
 }
 
-// P = point(x,y,removable{0,1},burst{0,1},r,g,b,a)
+// P = point(x,y,removable{0,1},burst{0,1},r,g,b,a,radius)
 bool PointParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("point", text, textLength);
@@ -216,6 +217,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   _color.setRgb(255, 255, 255, 255);
   _burst = false;
   _removable = false;
+  _radius = KeypointList::Keypoint::DefaultRadius;
 
   float x = 50.0;
   float y = 50.0;
@@ -314,6 +316,15 @@ bool PointParameter::initFromText(const char * text, int & textLength)
     }
     _color.setAlpha(alpha);
   }
+
+  if (params.size() >= 9) {
+    int radius = params[8].toInt(&ok);
+    if (!ok) {
+      return false;
+    }
+    _radius = radius;
+  }
+
   _position = _defaultPosition;
   return true;
 }

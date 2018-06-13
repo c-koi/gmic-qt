@@ -73,6 +73,7 @@ private:
   QColor _color;
   bool _removable;
   bool _burst;
+  int _radius;
 
   QLabel * _label;
   QLabel * _colorLabel;

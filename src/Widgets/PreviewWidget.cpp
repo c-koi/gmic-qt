@@ -240,9 +240,10 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   KeypointList::reverse_iterator it = _keypoints.rbegin();
   while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
+      const int & radius = it->radius;
       QPoint visibleCenter = keypointToVisiblePointInWidget(*it);
       QPoint realCenter = keypointToPointInWidget(*it);
-      QRect r(visibleCenter.x() - 6, visibleCenter.y() - 6, 12, 12);
+      QRect r(visibleCenter.x() - radius, visibleCenter.y() - radius, 2 * radius, 2 * radius);
       if (adjustedImagePosition.contains(realCenter, false)) {
         painter.setBrush(it->color);
         pen.setStyle(Qt::SolidLine);
@@ -269,7 +270,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
       QPoint center = keypointToVisiblePointInWidget(kp);
-      if (roundedDistance(center, p) <= 8) {
+      if (roundedDistance(center, p) <= (kp.radius + 2)) {
         return index;
       }
     }
@@ -560,10 +561,8 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
   if (hasMouseTracking() && (_movedKeypointIndex == -1)) {
     int index = keypointUnderMouse(e->pos());
     if ((index != -1) && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
-      SHOW("PUSH");
       QApplication::setOverrideCursor(Qt::PointingHandCursor);
     } else if ((index == -1) && QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor) {
-      SHOW("POP");
       QApplication::restoreOverrideCursor();
     }
   }
