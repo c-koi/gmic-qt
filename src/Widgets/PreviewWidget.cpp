@@ -236,7 +236,8 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
   pen.setWidth(2);
   painter.setRenderHint(QPainter::Antialiasing, true);
   painter.setPen(pen);
-  QRect adjustedImagePosition = _imagePosition.adjusted(0, 0, 1, 1);
+
+  QRect visibleRect = rect() & _imagePosition;
   KeypointList::reverse_iterator it = _keypoints.rbegin();
   while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
@@ -245,7 +246,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
       QPoint visibleCenter = keypointToVisiblePointInWidget(kp);
       QPoint realCenter = keypointToPointInWidget(kp);
       QRect r(visibleCenter.x() - radius, visibleCenter.y() - radius, 2 * radius, 2 * radius);
-      if (adjustedImagePosition.contains(realCenter, false)) {
+      if (visibleRect.contains(realCenter, false)) {
         painter.setBrush(kp.color);
         pen.setStyle(Qt::SolidLine);
       } else {
@@ -283,7 +284,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
 
 QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp) const
 {
-  return QPoint(std::round(_imagePosition.left() + _imagePosition.width() * (kp.x / 100.0f)), std::round(_imagePosition.top() + _imagePosition.height() * (kp.y / 100.0f)));
+  return QPoint(std::round(_imagePosition.left() + (_imagePosition.width() - 1) * (kp.x / 100.0f)), std::round(_imagePosition.top() + (_imagePosition.height() - 1) * (kp.y / 100.0f)));
 }
 
 QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const
@@ -296,7 +297,7 @@ QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoin
 
 QPointF PreviewWidget::pointInWidgetToKeypointPosition(const QPoint & p) const
 {
-  QPointF result(100.0 * (p.x() - _imagePosition.left()) / (float)_imagePosition.width(), 100.0 * (p.y() - _imagePosition.top()) / (float)_imagePosition.height());
+  QPointF result(100.0 * (p.x() - _imagePosition.left()) / (float)(_imagePosition.width() - 1), 100.0 * (p.y() - _imagePosition.top()) / (float)(_imagePosition.height() - 1));
   result.rx() = std::min(300.0, std::max(-200.0, result.x()));
   result.ry() = std::min(300.0, std::max(-200.0, result.y()));
   return result;
@@ -568,7 +569,7 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
 {
   if (hasMouseTracking() && (_movedKeypointIndex == -1)) {
     int index = keypointUnderMouse(e->pos());
-    if ((index != -1) && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
+    if ((_mousePosition == QPoint(-1, -1)) && (index != -1) && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
       QApplication::setOverrideCursor(Qt::PointingHandCursor);
     } else if ((index == -1) && QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor) {
       QApplication::restoreOverrideCursor();
