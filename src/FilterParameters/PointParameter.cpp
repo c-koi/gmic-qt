@@ -87,11 +87,8 @@ void PointParameter::addTo(QWidget * widget, int row)
   _colorLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
   QPixmap pixmap(r.width(), r.height());
   QPainter painter(&pixmap);
-  painter.setBrush(_color.alpha() > 0 ? _color : QColor(_color.red(), _color.green(), _color.blue()));
+  painter.setBrush(QColor(_color.red(), _color.green(), _color.blue()));
   painter.setPen(Qt::black);
-  if (_color.alpha() != 255 && _color.alpha()) {
-    painter.drawImage(0, 0, QImage(":resources/transparency.png"));
-  }
   painter.drawRect(0, 0, pixmap.width() - 1, pixmap.height() - 1);
   _colorLabel->setPixmap(pixmap);
   if (_burst) {
