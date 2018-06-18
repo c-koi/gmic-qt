@@ -385,7 +385,12 @@ bool FiltersPresenter::Filter::isInvalid() const
   return hash.isEmpty() && (command == "skip") && (previewCommand == "skip");
 }
 
-bool FiltersPresenter::Filter::isNoFilter() const
+bool FiltersPresenter::Filter::isNoApplyFilter() const
+{
+  return hash.isEmpty() || command.isEmpty() || (command == "_none_");
+}
+
+bool FiltersPresenter::Filter::isNoPreviewFilter() const
 {
   return hash.isEmpty() || previewCommand.isEmpty() || (previewCommand == "_none_");
 }

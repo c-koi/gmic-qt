@@ -527,7 +527,7 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
     return;
   }
   _processor.init();
-  if (_filtersPresenter->currentFilter().isNoFilter()) {
+  if (_filtersPresenter->currentFilter().isNoPreviewFilter()) {
     ui->previewWidget->displayOriginalImage();
     return;
   }
@@ -612,7 +612,7 @@ void MainWindow::processImage()
   // Abort any already running thread
   _processor.init();
   const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
-  if (currentFilter.isNoFilter()) {
+  if (currentFilter.isNoApplyFilter()) {
     return;
   }
 
@@ -702,7 +702,7 @@ void MainWindow::onApplyClicked()
 
 void MainWindow::onOkClicked()
 {
-  if (_filtersPresenter->currentFilter().isNoFilter()) {
+  if (_filtersPresenter->currentFilter().isNoApplyFilter()) {
     close();
   }
   if (_okButtonShouldApply) {
@@ -754,7 +754,7 @@ void MainWindow::onReset()
     ui->filterParams->setValues(_filtersPresenter->currentFilter().defaultParameterValues, true);
     return;
   }
-  if (!_filtersPresenter->currentFilter().isNoFilter()) {
+  if (!_filtersPresenter->currentFilter().isNoPreviewFilter()) {
     ui->filterParams->reset(true);
   }
 }
@@ -818,7 +818,7 @@ void MainWindow::saveSettings()
     settings.setValue(QString("Config/PanelSize%1").arg(i), splitterSizes.at(i));
   }
   splitterSizes = ui->verticalSplitter->sizes();
-  if (!_filtersPresenter->currentFilter().isNoFilter() && !_filtersPresenter->currentFilter().isInvalid()) {
+  if (!_filtersPresenter->currentFilter().hash.isEmpty() && !_filtersPresenter->currentFilter().isInvalid()) {
     settings.setValue(QString("Config/ParamsVerticalSplitterSizeTop"), splitterSizes.at(0));
     settings.setValue(QString("Config/ParamsVerticalSplitterSizeBottom"), splitterSizes.at(1));
   }

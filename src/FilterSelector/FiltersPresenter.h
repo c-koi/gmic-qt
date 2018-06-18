@@ -49,7 +49,8 @@ public:
     void clear();
     void setInvalid();
     bool isInvalid() const;
-    bool isNoFilter() const;
+    bool isNoApplyFilter() const;
+    bool isNoPreviewFilter() const;
     const char * previewFactorString() const;
   };
 
