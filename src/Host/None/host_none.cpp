@@ -50,7 +50,7 @@
 //#define DEFAULT_IMAGE "local/bug2.jpg"
 //#define DEFAULT_IMAGE "local/crop_inktober.jpg"
 //#define DEFAULT_IMAGE "local/lena.png"
-#define DEFAULT_IMAGE "local/lena_border.png"
+//#define DEFAULT_IMAGE "local/lena_border.png"
 //#define DEFAULT_IMAGE "local/transp.png"
 //#define DEFAULT_IMAGE "local/small_lena.png"
 //#define DEFAULT_IMAGE "local/ken.jpg"
@@ -185,6 +185,8 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
       dialog->addImage(images[i], name);
     }
     dialog->exec();
+    gmic_qt_standalone::input_image = dialog->currentImage();
+    gmic_qt_standalone::image_filename = QString((const char *)imageNames[dialog->currentImageIndex()]);
     delete dialog;
   }
   unused(mode);

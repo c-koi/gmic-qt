@@ -52,6 +52,7 @@ public:
   void setImage(const QImage & image);
   void save(const QString & filename);
   void paintEvent(QPaintEvent *) override;
+  const QImage & image() const;
 
 private:
   QImage _image;
@@ -62,6 +63,9 @@ class ImageDialog : public QDialog {
 public:
   ImageDialog(QWidget * parent);
   void addImage(const cimg_library::CImg<gmic_pixel_type> & image, QString name);
+  const QImage & currentImage() const;
+  int currentImageIndex() const;
+
 public slots:
   void onSaveAs();
   void onCloseClicked(bool);

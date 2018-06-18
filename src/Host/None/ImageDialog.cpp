@@ -25,9 +25,7 @@
 #include "Host/None/ImageDialog.h"
 #include "gmic.h"
 
-ImageView::ImageView(QWidget * parent) : QWidget(parent)
-{
-}
+ImageView::ImageView(QWidget * parent) : QWidget(parent) {}
 
 void ImageView::setImage(const cimg_library::CImg<gmic_pixel_type> & image)
 {
@@ -73,6 +71,19 @@ void ImageDialog::addImage(const cimg_library::CImg<float> & image, QString name
   _tabWidget->setCurrentIndex(_tabWidget->count() - 1);
 }
 
+const QImage & ImageDialog::currentImage() const
+{
+  QWidget * widget = _tabWidget->currentWidget();
+  ImageView * view = dynamic_cast<ImageView *>(widget);
+  Q_ASSERT_X(view, __FUNCTION__, "Widget is not an ImageView");
+  return view->image();
+}
+
+int ImageDialog::currentImageIndex() const
+{
+  return _tabWidget->currentIndex();
+}
+
 void ImageDialog::onSaveAs()
 {
   QString filename = QFileDialog::getSaveFileName(this, "Save image as...", QString(), "PNG file (*.png);;JPEG file (*.jpg)");
@@ -100,4 +111,9 @@ void ImageView::paintEvent(QPaintEvent *)
     displayed = _image.scaledToHeight(height());
     p.drawImage((width() - displayed.width()) / 2, 0, displayed);
   }
+}
+
+const QImage & ImageView::image() const
+{
+  return _image;
 }
