@@ -29,6 +29,7 @@
 #include <QLocale>
 #include <QSettings>
 #include <QString>
+#include <QThread>
 #include <QTimer>
 #include <QTranslator>
 #include <cstring>
@@ -52,7 +53,7 @@ const QString & gmicVersionString()
   static QString value = QString("%1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10);
   return value;
 }
-}
+} // namespace GmicQt
 
 int launchPlugin()
 {

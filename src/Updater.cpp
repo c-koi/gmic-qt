@@ -70,6 +70,7 @@ void Updater::updateSources(bool useNetwork)
   try {
     gmic(command.toLocal8Bit().constData(), gptSources, names, 0, true);
   } catch (...) {
+    gptSources.assign();
   }
   cimg_library::CImgList<char> sources;
   gptSources.move_to(sources);
@@ -88,14 +89,13 @@ void Updater::updateSources(bool useNetwork)
     _sourceIsStdLib[source] = isStdlib;
   }
 
-  // TODO : For testing purpose
+  // NOTE : For testing purpose
   //  _sources.clear();
   //  _sourceIsStdLib.clear();
   //  _sources.push_back("http://localhost:2222/update220.gmic");
   //  _sourceIsStdLib["http://localhost:2222/update220.gmic"] = true;
 
   SHOW(_sources);
-  // SHOW(_sourceIsStdLib);
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)

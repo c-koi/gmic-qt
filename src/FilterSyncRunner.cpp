@@ -22,9 +22,9 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 #include "FilterSyncRunner.h"
 #include <QDebug>
+#include <QThread>
 #include <iostream>
 #include "GmicStdlib.h"
 #include "ImageConverter.h"
@@ -38,7 +38,11 @@ FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & name, const
       _messageMode(mode)
 {
 #ifdef _IS_MACOS_
-  setStackSize(8 * 1024 * 1024);
+  static bool stackSize8MB = false;
+  if (!stackSize8MB) {
+    QThread::currentThread()->setStackSize(8 * 1024 * 1024);
+    stackSize8MB = true;
+  }
 #endif
 }
 
