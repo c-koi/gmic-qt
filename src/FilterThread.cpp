@@ -87,6 +87,12 @@ QStringList FilterThread::gmicStatus() const
   if (list.size()) {
     list[0].remove(0, 1);
     list.back().chop(1);
+    QList<QString>::iterator it = list.begin();
+    while (it != list.end()) {
+      QByteArray array = it->toLocal8Bit();
+      gmic::strreplace_fw(array.data());
+      *it++ = array;
+    }
   }
   return list;
 }

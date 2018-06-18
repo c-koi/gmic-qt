@@ -74,6 +74,7 @@ public:
     QString filterName;
     QString filterCommand;
     QString filterArguments;
+    QString filterHash;
   };
 
   GmicProcessor(QObject * parent = nullptr);

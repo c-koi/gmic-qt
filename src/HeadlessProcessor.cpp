@@ -30,6 +30,7 @@
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
+#include "ParametersCache.h"
 #include "Updater.h"
 #include "gmic.h"
 
@@ -39,6 +40,13 @@
 #include <psapi.h>
 #endif
 
+/**
+ * @brief HeadlessProcessor::HeadlessProcessor
+ * @param parent
+ * @param command
+ * @param inputMode
+ * @param outputMode
+ */
 HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode)
     : QObject(parent), _filterThread(0), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
@@ -53,8 +61,13 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
   _timer.setInterval(250);
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
   _hasProgressWindow = false;
+  ParametersCache::load(true);
 }
 
+/**
+ * @brief HeadlessProcessor::HeadlessProcessor using "last parameters" from config file
+ * @param parent
+ */
 HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filterThread(0), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   QSettings settings;
@@ -78,6 +91,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   _singleShotTimer.setSingleShot(true);
   connect(&_singleShotTimer, SIGNAL(timeout()), this, SIGNAL(singleShotTimeout()));
   _hasProgressWindow = false;
+  ParametersCache::load(true);
 }
 
 HeadlessProcessor::~HeadlessProcessor()
@@ -159,6 +173,9 @@ void HeadlessProcessor::onProcessingFinished()
     settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), status);
     QString lastArguments = FilterParametersWidget::flattenParameterList(status, _gmicStatusQuotedParameters);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), lastArguments);
+    QString hash = settings.value(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname)).toString();
+    ParametersCache::setValues(hash, status);
+    ParametersCache::save();
   }
   if (_filterThread->failed()) {
     errorMessage = _filterThread->errorMessage();

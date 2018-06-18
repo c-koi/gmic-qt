@@ -190,8 +190,10 @@ const QStringList & GmicProcessor::gmicStatus() const
 
 void GmicProcessor::saveSettings(QSettings & settings)
 {
+  ENTERING;
   settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
   settings.setValue(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterName);
+  settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _filterContext.filterHash);
   settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
   settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandGmicStatus);
   settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), _gmicStatusQuotedParameters);
@@ -227,6 +229,7 @@ void GmicProcessor::onPreviewThreadFinished()
     return;
   }
   _gmicStatus = _filterThread->gmicStatus();
+  SHOW(_gmicStatus);
   _gmicImages->assign();
   _filterThread->swapImages(*_gmicImages);
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
