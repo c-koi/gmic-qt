@@ -47,12 +47,15 @@ public slots:
   void onComboBoxIndexChanged(int);
 
 private:
+  void connectComboBox();
+  void disconnectComboBox();
   QString _name;
   int _default;
   int _value;
   QLabel * _label;
   QComboBox * _comboBox;
   QList<QString> _choices;
+  bool _connected;
 };
 
 #endif // _GMIC_QT_CHOICEPARAMETER_H_

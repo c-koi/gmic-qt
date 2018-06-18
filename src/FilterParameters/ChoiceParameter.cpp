@@ -30,7 +30,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(0), _comboBox(0) {}
+ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(0), _comboBox(0), _connected(false) {}
 
 ChoiceParameter::~ChoiceParameter()
 {
@@ -52,7 +52,7 @@ void ChoiceParameter::addTo(QWidget * widget, int row)
 
   grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   grid->addWidget(_comboBox, row, 1, 1, 2);
-  connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxIndexChanged(int)));
+  connectComboBox();
 }
 
 void ChoiceParameter::addToKeypointList(KeypointList &) const {}
@@ -68,14 +68,18 @@ void ChoiceParameter::setValue(const QString & value)
 {
   _value = value.toInt();
   if (_comboBox) {
+    disconnectComboBox();
     _comboBox->setCurrentIndex(_value);
+    connectComboBox();
   }
 }
 
 void ChoiceParameter::reset()
 {
+  disconnectComboBox();
   _comboBox->setCurrentIndex(_default);
   _value = _default;
+  connectComboBox();
 }
 
 bool ChoiceParameter::initFromText(const char * text, int & textLength)
@@ -107,4 +111,22 @@ void ChoiceParameter::onComboBoxIndexChanged(int i)
 {
   _value = i;
   notifyIfRelevant();
+}
+
+void ChoiceParameter::connectComboBox()
+{
+  if (_connected) {
+    return;
+  }
+  connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxIndexChanged(int)));
+  _connected = true;
+}
+
+void ChoiceParameter::disconnectComboBox()
+{
+  if (!_connected) {
+    return;
+  }
+  _comboBox->disconnect(this);
+  _connected = false;
 }

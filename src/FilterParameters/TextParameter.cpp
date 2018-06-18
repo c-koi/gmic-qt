@@ -36,7 +36,7 @@
 #include "FilterParameters/MultilineTextParameterWidget.h"
 #include "HtmlTranslator.h"
 
-TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _lineEdit(0), _textEdit(0), _multiline(false)
+TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _lineEdit(0), _textEdit(0), _multiline(false), _connected(false)
 {
   _updateAction = 0;
 }
@@ -61,18 +61,16 @@ void TextParameter::addTo(QWidget * widget, int row)
     _lineEdit = 0;
     _textEdit = new MultilineTextParameterWidget(_name, _value, widget);
     grid->addWidget(_textEdit, row, 0, 1, 3);
-    connect(_textEdit, SIGNAL(valueChanged()), this, SLOT(onValueChanged()));
   } else {
     grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
     _lineEdit = new QLineEdit(_value, widget);
     _textEdit = 0;
     grid->addWidget(_lineEdit, row, 1, 1, 2);
-    connect(_lineEdit, SIGNAL(editingFinished()), this, SLOT(onValueChanged()));
 #if QT_VERSION >= 0x050200
     _updateAction = _lineEdit->addAction(LOAD_ICON("view-refresh"), QLineEdit::TrailingPosition);
-    connect(_updateAction, SIGNAL(triggered(bool)), this, SLOT(onValueChanged()));
 #endif
   }
+  connectEditor();
 }
 
 void TextParameter::addToKeypointList(KeypointList &) const {}
@@ -95,9 +93,13 @@ void TextParameter::setValue(const QString & value)
 {
   _value = value;
   if (_multiline && _textEdit) {
+    disconnectEditor();
     _textEdit->setText(_value);
+    connectEditor();
   } else if (_lineEdit) {
+    disconnectEditor();
     _lineEdit->setText(_value);
+    connectEditor();
   }
 }
 
@@ -132,4 +134,36 @@ bool TextParameter::initFromText(const char * text, int & textLength)
 void TextParameter::onValueChanged()
 {
   notifyIfRelevant();
+}
+
+void TextParameter::connectEditor()
+{
+  if (_connected) {
+    return;
+  }
+  if (_multiline) {
+    connect(_textEdit, SIGNAL(valueChanged()), this, SLOT(onValueChanged()));
+  } else {
+    connect(_lineEdit, SIGNAL(editingFinished()), this, SLOT(onValueChanged()));
+#if QT_VERSION >= 0x050200
+    connect(_updateAction, SIGNAL(triggered(bool)), this, SLOT(onValueChanged()));
+#endif
+  }
+  _connected = true;
+}
+
+void TextParameter::disconnectEditor()
+{
+  if (!_connected) {
+    return;
+  }
+  if (_multiline) {
+    _textEdit->disconnect(this);
+  } else {
+    _lineEdit->disconnect(this);
+#if QT_VERSION >= 0x050200
+    _updateAction->disconnect(this);
+#endif
+  }
+  _connected = false;
 }

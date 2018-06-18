@@ -47,10 +47,13 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
+
 private slots:
   void onValueChanged();
 
 private:
+  void connectEditor();
+  void disconnectEditor();
   QString _name;
   QString _default;
   QString _value;
@@ -59,6 +62,7 @@ private:
   MultilineTextParameterWidget * _textEdit;
   QAction * _updateAction;
   bool _multiline;
+  bool _connected;
 };
 
 #endif // _GMIC_QT_TEXTPARAMETER_H_

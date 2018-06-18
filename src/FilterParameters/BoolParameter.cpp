@@ -33,7 +33,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(0), _checkBox(0) {}
+BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(0), _checkBox(0), _connected(false) {}
 
 BoolParameter::~BoolParameter()
 {
@@ -57,7 +57,7 @@ void BoolParameter::addTo(QWidget * widget, int row)
     _checkBox->setPalette(p);
   }
   grid->addWidget(_checkBox, row, 0, 1, 3);
-  connect(_checkBox, SIGNAL(toggled(bool)), this, SLOT(onCheckBoxChanged(bool)));
+  connectCheckBox();
 }
 
 void BoolParameter::addToKeypointList(KeypointList &) const {}
@@ -87,6 +87,24 @@ void BoolParameter::onCheckBoxChanged(bool on)
 {
   _value = on;
   notifyIfRelevant();
+}
+
+void BoolParameter::connectCheckBox()
+{
+  if (_connected) {
+    return;
+  }
+  connect(_checkBox, SIGNAL(toggled(bool)), this, SLOT(onCheckBoxChanged(bool)));
+  _connected = true;
+}
+
+void BoolParameter::disconnectCheckBox()
+{
+  if (!_connected) {
+    return;
+  }
+  _checkBox->disconnect(this);
+  _connected = false;
 }
 
 bool BoolParameter::initFromText(const char * text, int & textLength)

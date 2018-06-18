@@ -46,11 +46,14 @@ public slots:
   void onCheckBoxChanged(bool);
 
 private:
+  void connectCheckBox();
+  void disconnectCheckBox();
   QString _name;
   bool _default;
   bool _value;
   QLabel * _label;
   QCheckBox * _checkBox;
+  bool _connected;
 };
 
 #endif // _GMIC_QT_BOOLPARAMETER_H_
