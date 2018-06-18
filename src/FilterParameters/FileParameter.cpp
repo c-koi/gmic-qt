@@ -123,6 +123,11 @@ bool FileParameter::initFromText(const char * text, int & textLength)
   return true;
 }
 
+bool FileParameter::isQuoted() const
+{
+  return true;
+}
+
 void FileParameter::onButtonPressed()
 {
   QString folder;

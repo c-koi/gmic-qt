@@ -61,6 +61,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Build parameters and count actual ones
   _actualParametersCount = 0;
+  _quotedParameters.clear();
   QString error;
   AbstractParameter * parameter;
   do {
@@ -69,6 +70,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
       _presetParameters.push_back(parameter);
       if (parameter->isActualParameter()) {
         _actualParametersCount += 1;
+        _quotedParameters += (parameter->isQuoted() ? "1" : "0");
       }
     }
     cstr += length;
@@ -303,4 +305,32 @@ void FilterParametersWidget::setKeypoints(KeypointList list, bool notify)
 bool FilterParametersWidget::hasKeypoints() const
 {
   return _hasKeypoints;
+}
+
+const QString & FilterParametersWidget::quotedParameters() const
+{
+  return _quotedParameters;
+}
+
+QString FilterParametersWidget::flattenParameterList(const QList<QString> & list, const QString & quoted)
+{
+  QString result;
+  if ((list.size() != quoted.size()) || !list.size()) {
+    return result;
+  }
+  QList<QString>::const_iterator itList = list.begin();
+  QString::const_iterator itQuoted = quoted.begin();
+  if (*itQuoted++ == QChar('1')) {
+    result += QString("\"%1\"").arg(*itList++);
+  } else {
+    result += *itList++;
+  }
+  while (itList != list.end()) {
+    if (*itQuoted++ == QChar('1')) {
+      result += QString(",\"%1\"").arg(*itList++);
+    } else {
+      result += QString(",%1").arg(*itList++);
+    }
+  }
+  return result;
 }

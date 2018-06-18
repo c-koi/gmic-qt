@@ -114,6 +114,11 @@ bool FolderParameter::initFromText(const char * text, int & textLength)
   return true;
 }
 
+bool FolderParameter::isQuoted() const
+{
+  return true;
+}
+
 void FolderParameter::onButtonPressed()
 {
   QString oldValue = _value;

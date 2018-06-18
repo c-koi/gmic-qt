@@ -84,6 +84,7 @@ private:
   QString _lastEnvironment;
   bool _hasProgressWindow;
   QTimer _singleShotTimer;
+  QString _gmicStatusQuotedParameters;
 };
 
 #endif // _GMIC_QT_HEADLESSPROCESSOR_H_

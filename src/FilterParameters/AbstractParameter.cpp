@@ -60,6 +60,11 @@ QString AbstractParameter::unquotedTextValue() const
   return textValue();
 }
 
+bool AbstractParameter::isQuoted() const
+{
+  return false;
+}
+
 void AbstractParameter::clear()
 {
   // Used to clear the value of a ButtonParameter

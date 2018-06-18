@@ -131,6 +131,11 @@ bool TextParameter::initFromText(const char * text, int & textLength)
   return true;
 }
 
+bool TextParameter::isQuoted() const
+{
+  return true;
+}
+
 void TextParameter::onValueChanged()
 {
   notifyIfRelevant();

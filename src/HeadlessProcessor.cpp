@@ -25,7 +25,9 @@
 #include "HeadlessProcessor.h"
 #include <QDebug>
 #include <QSettings>
+#include <QStringList>
 #include "Common.h"
+#include "FilterParameters/FilterParametersWidget.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
 #include "Updater.h"
@@ -59,6 +61,13 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   _filterName = settings.value(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname)).toString();
   _lastCommand = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
   _lastArguments = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
+
+  QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
+  _gmicStatusQuotedParameters = settings.value(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname)).toString();
+  if (!lastAppliedCommandGmicStatus.isEmpty()) {
+    _lastArguments = FilterParametersWidget::flattenParameterList(lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
+  }
+
   _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
   _inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   _outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
@@ -142,13 +151,14 @@ void HeadlessProcessor::onTimeout()
 
 void HeadlessProcessor::onProcessingFinished()
 {
-  QString errorMessage;
   _timer.stop();
-  QStringList list = _filterThread->gmicStatus();
-  if (!list.isEmpty()) {
+  QString errorMessage;
+  QStringList status = _filterThread->gmicStatus();
+  if (!status.isEmpty()) {
     QSettings settings;
-    QString params = list.join(",");
-    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), params);
+    settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), status);
+    QString lastArguments = FilterParametersWidget::flattenParameterList(status, _gmicStatusQuotedParameters);
+    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), lastArguments);
   }
   if (_filterThread->failed()) {
     errorMessage = _filterThread->errorMessage();

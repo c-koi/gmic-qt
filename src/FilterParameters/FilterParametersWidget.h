@@ -54,6 +54,9 @@ public:
   KeypointList keypoints() const;
   void setKeypoints(KeypointList list, bool notify);
   bool hasKeypoints() const;
+  const QString & quotedParameters() const;
+
+  static QString flattenParameterList(const QList<QString> & list, const QString & quoted);
 
 public slots:
   void updateValueString(bool notify = true);
@@ -71,6 +74,7 @@ protected:
   QString _filterName;
   QString _filterHash;
   bool _hasKeypoints;
+  QString _quotedParameters;
 };
 
 #endif // _GMIC_QT_FILTERPARAMSWIDGET_H_

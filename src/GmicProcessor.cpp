@@ -163,6 +163,11 @@ void GmicProcessor::resetLastSynchronousExecutionDurationMS()
   _lastSynchronousExecutionDurationMS = 0;
 }
 
+void GmicProcessor::setGmicStatusQuotedParameters(const QString & v)
+{
+  _gmicStatusQuotedParameters = v;
+}
+
 void GmicProcessor::cancel()
 {
   abortCurrentFilterThread();
@@ -188,6 +193,8 @@ void GmicProcessor::saveSettings(QSettings & settings)
   settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
   settings.setValue(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterName);
   settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
+  settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandGmicStatus);
+  settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), _gmicStatusQuotedParameters);
   settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
   settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
   settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.previewMode);
@@ -260,6 +267,7 @@ void GmicProcessor::onApplyThreadFinished()
     }
     _filterThread->deleteLater();
     _filterThread = nullptr;
+    _lastAppliedCommandGmicStatus = _gmicStatus;
     emit fullImageProcessingDone();
   }
 }

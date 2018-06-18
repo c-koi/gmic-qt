@@ -29,8 +29,10 @@
 #include <QObject>
 #include <QSettings>
 #include <QSignalMapper>
+#include <QString>
 #include <QStringList>
 #include <QTimer>
+#include <QVector>
 #include "InputOutputState.h"
 #include "PreviewMode.h"
 #include "gmic_qt.h"
@@ -96,6 +98,8 @@ public:
   int lastSynchronousExecutionDurationMS() const;
   void resetLastSynchronousExecutionDurationMS();
 
+  void setGmicStatusQuotedParameters(const QString & v);
+
 public slots:
   void cancel();
 
@@ -132,6 +136,8 @@ private:
   QString _lastAppliedFilterName;
   QString _lastAppliedCommand;
   QString _lastAppliedCommandArguments;
+  QStringList _lastAppliedCommandGmicStatus;
+  QString _gmicStatusQuotedParameters;
   QString _lastAppliedCommandEnv;
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
   int _lastSynchronousExecutionDurationMS;
