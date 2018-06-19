@@ -51,4 +51,6 @@ extern const float PreviewFactorActualSize;
 
 #define PREVIEW_MAX_ZOOM_FACTOR 40.0
 
+#define KEYPOINTS_INTERACTIVE_DELAY_MS 150
+
 #endif // _GMIC_QT_GLOBALS_H_

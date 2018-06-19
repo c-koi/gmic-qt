@@ -229,7 +229,6 @@ void GmicProcessor::onPreviewThreadFinished()
     return;
   }
   _gmicStatus = _filterThread->gmicStatus();
-  SHOW(_gmicStatus);
   _gmicImages->assign();
   _filterThread->swapImages(*_gmicImages);
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {

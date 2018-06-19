@@ -566,7 +566,7 @@ void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
     ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
     if (flags & PreviewWidget::KeypointBurstEvent) {
       ulong msSinceLastBurstEvent = time - _lastPreviewKeypointBurstUpdateTime;
-      if (msSinceLastBurstEvent >= (ulong)_processor.lastSynchronousExecutionDurationMS()) {
+      if (((ulong)_processor.lastSynchronousExecutionDurationMS() <= KEYPOINTS_INTERACTIVE_DELAY_MS) && (msSinceLastBurstEvent >= (ulong)_processor.lastSynchronousExecutionDurationMS())) {
         onPreviewUpdateRequested(true);
         _lastPreviewKeypointBurstUpdateTime = time;
       }
