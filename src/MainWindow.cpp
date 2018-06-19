@@ -162,6 +162,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   TIMING;
   makeConnections();
   TIMING;
+  _keypointBurstEnabled = true;
 }
 
 MainWindow::~MainWindow()
@@ -564,9 +565,10 @@ void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
     _processor.resetLastSynchronousExecutionDurationMS();
   } else {
     ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
-    if (flags & PreviewWidget::KeypointBurstEvent) {
+    if ((flags & PreviewWidget::KeypointBurstEvent) && _keypointBurstEnabled) {
       ulong msSinceLastBurstEvent = time - _lastPreviewKeypointBurstUpdateTime;
-      if (((ulong)_processor.lastSynchronousExecutionDurationMS() <= KEYPOINTS_INTERACTIVE_DELAY_MS) && (msSinceLastBurstEvent >= (ulong)_processor.lastSynchronousExecutionDurationMS())) {
+      _keypointBurstEnabled = ((ulong)_processor.lastSynchronousExecutionDurationMS() <= KEYPOINTS_INTERACTIVE_DELAY_MS);
+      if (_keypointBurstEnabled && (msSinceLastBurstEvent >= (ulong)_processor.lastSynchronousExecutionDurationMS())) {
         onPreviewUpdateRequested(true);
         _lastPreviewKeypointBurstUpdateTime = time;
       }
@@ -972,6 +974,7 @@ void MainWindow::activateFilter(bool resetZoom)
 {
   saveCurrentParameters();
   const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
+  _keypointBurstEnabled = true;
   if (filter.hash.isEmpty()) {
     setNoFilter();
   } else {
