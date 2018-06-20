@@ -993,7 +993,6 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->inOutSelector->show();
     ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
     ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
-    Logger::setMode(DialogSettings::outputMessageMode());
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
@@ -1035,6 +1034,7 @@ void MainWindow::showEvent(QShowEvent * event)
     Logger::clear();
   }
   QObject::connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+  Logger::setMode(DialogSettings::outputMessageMode());
   Updater::setOutputMessageMode(DialogSettings::outputMessageMode());
   int ageLimit;
   {

@@ -29,6 +29,7 @@
 #include <iostream>
 #include "Common.h"
 #include "GmicStdlib.h"
+#include "Logger.h"
 #include "Utils.h"
 #include "gmic.h"
 
