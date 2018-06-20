@@ -37,6 +37,7 @@
 #include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
+#include "OverrideCursor.h"
 #include "gmic.h"
 
 GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
@@ -289,17 +290,15 @@ void GmicProcessor::onAbortedThreadFinished()
 
 void GmicProcessor::showWaitingCursor()
 {
-  if (_filterThread && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor)) {
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  if (_filterThread) {
+    OverrideCursor::setWaiting(true);
   }
 }
 
 void GmicProcessor::hideWaitingCursor()
 {
   _waitingCursorTimer.stop();
-  if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
-    QApplication::restoreOverrideCursor();
-  }
+  OverrideCursor::setWaiting(false);
 }
 
 void GmicProcessor::updateImageNames(gmic_list<char> & imageNames)
@@ -336,9 +335,7 @@ void GmicProcessor::abortCurrentFilterThread()
   _filterThread->abortGmic();
   _filterThread = 0;
   _waitingCursorTimer.stop();
-  if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor) {
-    QApplication::restoreOverrideCursor();
-  }
+  OverrideCursor::setWaiting(false);
 }
 
 void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)

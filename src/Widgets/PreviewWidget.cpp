@@ -39,6 +39,7 @@
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
+#include "OverrideCursor.h"
 #include "Utils.h"
 #include "gmic.h"
 
@@ -465,9 +466,7 @@ bool PreviewWidget::eventFilter(QObject *, QEvent * event)
 
 void PreviewWidget::leaveEvent(QEvent *)
 {
-  if (QApplication::overrideCursor() && (QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
-    QApplication::restoreOverrideCursor();
-  }
+  OverrideCursor::setWaiting(false);
 }
 
 void PreviewWidget::wheelEvent(QWheelEvent * event)
@@ -570,11 +569,7 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
 {
   if (hasMouseTracking() && (_movedKeypointIndex == -1)) {
     int index = keypointUnderMouse(e->pos());
-    if ((_mousePosition == QPoint(-1, -1)) && (index != -1) && !(QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor)) {
-      QApplication::setOverrideCursor(Qt::PointingHandCursor);
-    } else if ((index == -1) && QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor) {
-      QApplication::restoreOverrideCursor();
-    }
+    OverrideCursor::setPointingHand((_mousePosition == QPoint(-1, -1)) && (index != -1));
   }
   if (e->buttons() & (Qt::LeftButton | Qt::MiddleButton)) {
     if (!isAtFullZoom() && (_mousePosition != QPoint(-1, -1))) {

@@ -221,6 +221,7 @@ DEPENDPATH += $$PWD/src \
 HEADERS +=  \
   src/ClickableLabel.h \
   src/Common.h \
+  src/OverrideCursor.h \
   src/DialogSettings.h \
   src/FilterParameters/AbstractParameter.h \
   src/FilterParameters/BoolParameter.h \
@@ -289,6 +290,7 @@ HEADERS += $$GMIC_PATH/gmic_stdlib.h
 SOURCES += \
   src/ClickableLabel.cpp \
   src/Common.cpp \
+  src/OverrideCursor.cpp \
   src/DialogSettings.cpp \
   src/FilterParameters/AbstractParameter.cpp \
   src/FilterParameters/BoolParameter.cpp \
