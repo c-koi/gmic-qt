@@ -317,6 +317,7 @@ void PreviewWidget::paintPreview(QPainter & painter)
       updateErrorImage();
     }
     painter.drawImage(0, 0, _errorImage);
+    paintKeypoints(painter);
     return;
   }
 
