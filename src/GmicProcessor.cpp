@@ -346,7 +346,7 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
   if (runner.failed()) {
     _gmicStatus.clear();
     _gmicImages->assign();
-    QString message = _filterThread->errorMessage();
+    QString message = runner.errorMessage();
     hideWaitingCursor();
     emit previewCommandFailed(message);
     return;
