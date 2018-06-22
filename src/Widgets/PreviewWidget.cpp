@@ -240,7 +240,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
 
   QRect visibleRect = rect() & _imagePosition;
   KeypointList::reverse_iterator it = _keypoints.rbegin();
-  int index = 0;
+  int index = _keypoints.size() - 1;
   while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
@@ -267,7 +267,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
 #endif
     }
     ++it;
-    ++index;
+    --index;
   }
 }
 
