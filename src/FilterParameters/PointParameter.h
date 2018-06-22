@@ -76,6 +76,7 @@ private:
   bool _burst;
   int _radius;
   bool _visible;
+  bool _keepOpacityWhenSelected;
 
   QLabel * _label;
   QLabel * _colorLabel;

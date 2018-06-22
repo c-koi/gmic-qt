@@ -191,7 +191,6 @@ const QStringList & GmicProcessor::gmicStatus() const
 
 void GmicProcessor::saveSettings(QSettings & settings)
 {
-  ENTERING;
   settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
   settings.setValue(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterName);
   settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _filterContext.filterHash);

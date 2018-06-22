@@ -240,6 +240,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
 
   QRect visibleRect = rect() & _imagePosition;
   KeypointList::reverse_iterator it = _keypoints.rbegin();
+  int index = 0;
   while (it != _keypoints.rend()) {
     if (!it->isNaN()) {
       const KeypointList::Keypoint & kp = *it;
@@ -247,14 +248,18 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
       QPoint visibleCenter = keypointToVisiblePointInWidget(kp);
       QPoint realCenter = keypointToPointInWidget(kp);
       QRect r(visibleCenter.x() - radius, visibleCenter.y() - radius, 2 * radius, 2 * radius);
+      QColor brushColor = kp.color;
+      if ((index == _movedKeypointIndex) && !kp.keepOpacityWhenSelected) {
+        brushColor.setAlpha(255);
+      }
       if (visibleRect.contains(realCenter, false)) {
-        painter.setBrush(kp.color);
+        painter.setBrush(brushColor);
         pen.setStyle(Qt::SolidLine);
       } else {
-        painter.setBrush(kp.color.darker(150));
+        painter.setBrush(brushColor.darker(150));
         pen.setStyle(Qt::DotLine);
       }
-      pen.setColor(QColor(0, 0, 0, kp.color.alpha()));
+      pen.setColor(QColor(0, 0, 0, brushColor.alpha()));
       painter.setPen(pen);
       painter.drawEllipse(r);
 #ifdef _GMIC_QT_DEBUG_
@@ -262,6 +267,7 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
 #endif
     }
     ++it;
+    ++index;
   }
 }
 
@@ -491,6 +497,9 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
       _keypointTimestamp = e->timestamp();
       abortUpdateTimer();
       _mousePosition = QPoint(-1, -1);
+      if (!_keypoints[index].keepOpacityWhenSelected) {
+        update();
+      }
     } else if (_imagePosition.contains(e->pos())) {
       _mousePosition = e->pos();
       abortUpdateTimer();
@@ -583,7 +592,7 @@ void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
-      update();
+      repaint();
       if (kp.burst) {
         unsigned char flags = 0;
         if (e->timestamp() - _keypointTimestamp > 15) {

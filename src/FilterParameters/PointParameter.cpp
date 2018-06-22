@@ -37,6 +37,7 @@
 #include <QWidget>
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include "Common.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
@@ -60,6 +61,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _defaultRemovedStatus = false;
   _radius = KeypointList::Keypoint::DefaultRadius;
   _visible = true;
+  _keepOpacityWhenSelected = false;
   setRemoved(false);
 }
 
@@ -129,9 +131,9 @@ void PointParameter::addTo(QWidget * widget, int row)
 void PointParameter::addToKeypointList(KeypointList & list) const
 {
   if (_removable && _removed) {
-    list.add(KeypointList::Keypoint(_color, _removable, _burst, _radius));
+    list.add(KeypointList::Keypoint(_color, _removable, _burst, _radius, _keepOpacityWhenSelected));
   } else {
-    list.add(KeypointList::Keypoint(_position.x(), _position.y(), _color, _removable, _burst, _radius));
+    list.add(KeypointList::Keypoint(_position.x(), _position.y(), _color, _removable, _burst, _radius, _keepOpacityWhenSelected));
   }
 }
 
@@ -205,7 +207,7 @@ void PointParameter::reset()
   enableNotifications(true);
 }
 
-// P = point(x,y,removable{0,1},burst{0,1},r,g,b,a,radius)
+// P = point(x,y,removable{(0),1},burst{(0),1},r,g,b,a{negative->keepOpacityWhenSelected},radius,widget_visible{0|(1)})
 bool PointParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("point", text, textLength);
@@ -222,6 +224,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   _removable = false;
   _radius = KeypointList::Keypoint::DefaultRadius;
   _visible = true;
+  _keepOpacityWhenSelected = false;
 
   float x = 50.0;
   float y = 50.0;
@@ -318,7 +321,10 @@ bool PointParameter::initFromText(const char * text, int & textLength)
     if (!ok) {
       return false;
     }
-    _color.setAlpha(alpha);
+    if (params[7].trimmed().startsWith("-") || (alpha < 0)) {
+      _keepOpacityWhenSelected = true;
+    }
+    _color.setAlpha(std::abs(alpha));
   }
 
   if (params.size() >= 9) {

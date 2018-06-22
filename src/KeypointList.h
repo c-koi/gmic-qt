@@ -36,14 +36,15 @@ public:
   struct Keypoint {
     float x;
     float y;
-    QColor color;
+    QColor color; /* A negative alpha means "Keep opacity while moved" */
     bool removable;
     bool burst;
     float radius; /* A negative value is a percentage of the preview diagonal */
+    bool keepOpacityWhenSelected;
 
-    Keypoint(float x, float y, QColor color, bool removable, bool burst, float radius);
-    Keypoint(QPointF point, QColor color, bool removable, bool burst, float radius);
-    Keypoint(QColor color, bool removable, bool burst, float radius);
+    Keypoint(float x, float y, QColor color, bool removable, bool burst, float radius, bool keepOpacityWhenSelected);
+    Keypoint(QPointF point, QColor color, bool removable, bool burst, float radius, bool keepOpacityWhenSelected);
+    Keypoint(QColor color, bool removable, bool burst, float radius, bool keepOpacityWhenSelected);
     bool isNaN() const;
     Keypoint & setNaN();
     inline void setPosition(float x, float y);
@@ -67,10 +68,12 @@ public:
   typedef std::deque<Keypoint>::reverse_iterator reverse_iterator;
   typedef std::deque<Keypoint>::const_reverse_iterator const_reverse_iterator;
   typedef std::deque<Keypoint>::size_type size_type;
+  typedef std::deque<Keypoint>::reference reference;
+  typedef std::deque<Keypoint>::const_reference const_reference;
 
   size_type size() const { return _keypoints.size(); }
-  Keypoint & operator[](size_type index) { return _keypoints[index]; }
-  const Keypoint & operator[](size_type index) const { return _keypoints[index]; }
+  reference operator[](size_type index) { return _keypoints[index]; }
+  const_reference operator[](size_type index) const { return _keypoints[index]; }
   void pop_front() { _keypoints.pop_front(); }
   const Keypoint & front() { return _keypoints.front(); }
   const Keypoint & front() const { return _keypoints.front(); }
