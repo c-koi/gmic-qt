@@ -78,6 +78,9 @@ bool PointParameter::isVisible() const
 
 void PointParameter::addTo(QWidget * widget, int row)
 {
+  if (!_visible) {
+    return;
+  }
   QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
   if (!grid) {
     return;
@@ -198,9 +201,10 @@ void PointParameter::setValue(const QString & value)
 void PointParameter::reset()
 {
   enableNotifications(false);
-  _spinBoxX->setValue(_defaultPosition.rx());
-  _spinBoxY->setValue(_defaultPosition.ry());
-
+  if (_spinBoxX) {
+    _spinBoxX->setValue(_defaultPosition.rx());
+    _spinBoxY->setValue(_defaultPosition.ry());
+  }
   if (_removeButton && _removable) {
     _removeButton->setChecked((_removed = _defaultRemovedStatus));
   }
@@ -398,7 +402,7 @@ int PointParameter::randomChannel()
 
 void PointParameter::connectSpinboxes()
 {
-  if (_connected) {
+  if (_connected || !_spinBoxX) {
     return;
   }
   connect(_spinBoxX, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
@@ -411,7 +415,7 @@ void PointParameter::connectSpinboxes()
 
 void PointParameter::disconnectSpinboxes()
 {
-  if (!_connected) {
+  if (!_connected || !_spinBoxX) {
     return;
   }
   _spinBoxX->disconnect(this);
