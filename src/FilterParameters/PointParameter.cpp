@@ -59,6 +59,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _connected = false;
   _defaultRemovedStatus = false;
   _radius = KeypointList::Keypoint::DefaultRadius;
+  _visible = true;
   setRemoved(false);
 }
 
@@ -66,6 +67,11 @@ PointParameter::~PointParameter()
 {
   delete _label;
   delete _rowCell;
+}
+
+bool PointParameter::isVisible() const
+{
+  return _visible;
 }
 
 void PointParameter::addTo(QWidget * widget, int row)
@@ -215,6 +221,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   _burst = false;
   _removable = false;
   _radius = KeypointList::Keypoint::DefaultRadius;
+  _visible = true;
 
   float x = 50.0;
   float y = 50.0;
@@ -327,6 +334,10 @@ bool PointParameter::initFromText(const char * text, int & textLength)
       return false;
     }
     _radius = radius;
+  }
+
+  if ((params.size() >= 10) && (params[9].trimmed() == "0")) {
+    _visible = false;
   }
 
   _position = _defaultPosition;

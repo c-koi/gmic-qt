@@ -43,6 +43,7 @@ class PointParameter : public AbstractParameter {
 public:
   PointParameter(QObject * parent = 0);
   ~PointParameter();
+  bool isVisible() const override;
   void addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
@@ -74,6 +75,7 @@ private:
   bool _removable;
   bool _burst;
   int _radius;
+  bool _visible;
 
   QLabel * _label;
   QLabel * _colorLabel;
