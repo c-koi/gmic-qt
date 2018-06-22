@@ -47,7 +47,7 @@ public:
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
-  bool isQuoted() const;
+  bool isQuoted() const override;
 
 private slots:
   void onValueChanged();

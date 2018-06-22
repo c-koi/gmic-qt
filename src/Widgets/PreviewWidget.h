@@ -85,7 +85,7 @@ protected:
   void mousePressEvent(QMouseEvent * e) override;
   void paintEvent(QPaintEvent * e) override;
   bool eventFilter(QObject *, QEvent * event) override;
-  void leaveEvent(QEvent *);
+  void leaveEvent(QEvent *) override;
 
 signals:
   void previewVisibleRectIsChanging();
