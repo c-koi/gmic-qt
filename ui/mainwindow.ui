@@ -291,7 +291,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="Line" name="line">
+            <widget class="Line" name="vSplitterLine">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>

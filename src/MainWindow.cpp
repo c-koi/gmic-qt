@@ -247,7 +247,7 @@ void MainWindow::setDarkTheme()
                       "QProgressBar { background: #505050; }";
   qApp->setStyleSheet(css);
   ui->inOutSelector->setDarkTheme();
-
+  ui->vSplitterLine->setStyleSheet("QFrame{ border-top: 0px none #a0a0a0; border-bottom: 1px solid rgb(160,160,160);}");
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
 

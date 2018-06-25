@@ -102,11 +102,12 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   int row = 0;
   QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
   while (it != _presetParameters.end()) {
-    if ((*it)->isVisible()) {
-      (*it)->addTo(this, row++);
+    AbstractParameter * parameter = *it;
+    if (parameter->isVisible()) {
+      parameter->addTo(this, row++);
       grid->setRowStretch(row - 1, 0);
     }
-    connect(*it, SIGNAL(valueChanged()), this, SLOT(updateValueString()));
+    connect(parameter, SIGNAL(valueChanged()), this, SLOT(updateValueString()));
     ++it;
   }
 
