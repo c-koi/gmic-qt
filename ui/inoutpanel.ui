@@ -58,6 +58,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
      <property name="sizeAdjustPolicy">
       <enum>QAbstractScrollArea::AdjustIgnored</enum>
      </property>
@@ -72,8 +75,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>461</width>
-        <height>152</height>
+        <width>463</width>
+        <height>142</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
