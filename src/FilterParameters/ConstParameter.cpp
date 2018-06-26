@@ -39,10 +39,6 @@ bool ConstParameter::isVisible() const
 
 void ConstParameter::addTo(QWidget *, int) {}
 
-void ConstParameter::addToKeypointList(KeypointList &) const {}
-
-void ConstParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString ConstParameter::textValue() const
 {
   return _value;

@@ -39,8 +39,6 @@ public:
   ButtonParameter(QObject * parent = 0);
   ~ButtonParameter();
   void addTo(QWidget *, int row) override;
-  void addToKeypointList(KeypointList &) const override;
-  void extractPositionFromKeypointList(KeypointList &) override;
   QString textValue() const override;
   void setValue(const QString &) override;
   void clear() override;

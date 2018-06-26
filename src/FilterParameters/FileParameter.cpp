@@ -67,10 +67,6 @@ void FileParameter::addTo(QWidget * widget, int row)
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-void FileParameter::addToKeypointList(KeypointList &) const {}
-
-void FileParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString FileParameter::textValue() const
 {
   return QString("\"%1\"").arg(_value);

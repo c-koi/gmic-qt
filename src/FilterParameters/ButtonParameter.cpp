@@ -50,10 +50,6 @@ void ButtonParameter::addTo(QWidget * widget, int row)
   connect(_pushButton, SIGNAL(clicked(bool)), this, SLOT(onPushButtonClicked(bool)));
 }
 
-void ButtonParameter::addToKeypointList(KeypointList &) const {}
-
-void ButtonParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString ButtonParameter::textValue() const
 {
   return _value ? QString("1") : QString("0");

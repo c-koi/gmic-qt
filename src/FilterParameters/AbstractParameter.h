@@ -44,8 +44,8 @@ public:
   virtual void clear();
   virtual void reset() = 0;
 
-  virtual void addToKeypointList(KeypointList &) const = 0;
-  virtual void extractPositionFromKeypointList(KeypointList &) = 0;
+  virtual void addToKeypointList(KeypointList &) const;
+  virtual void extractPositionFromKeypointList(KeypointList &);
 
   static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = 0);
   virtual bool initFromText(const char * text, int & textLength) = 0;

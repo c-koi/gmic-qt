@@ -36,8 +36,6 @@ public:
   FileParameter(QObject * parent = 0);
   ~FileParameter();
   void addTo(QWidget *, int row) override;
-  virtual void addToKeypointList(KeypointList &) const override;
-  void extractPositionFromKeypointList(KeypointList &) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;
   void setValue(const QString & value) override;

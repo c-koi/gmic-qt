@@ -53,10 +53,6 @@ void LinkParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_label, row, 0, 1, 3);
 }
 
-void LinkParameter::addToKeypointList(KeypointList &) const {}
-
-void LinkParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString LinkParameter::textValue() const
 {
   return QString::null;

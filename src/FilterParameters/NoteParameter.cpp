@@ -53,10 +53,6 @@ void NoteParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_label, row, 0, 1, 3);
 }
 
-void NoteParameter::addToKeypointList(KeypointList &) const {}
-
-void NoteParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString NoteParameter::textValue() const
 {
   return QString::null;

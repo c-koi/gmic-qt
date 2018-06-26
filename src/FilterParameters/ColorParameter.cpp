@@ -72,10 +72,6 @@ void ColorParameter::addTo(QWidget * widget, int row)
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-void ColorParameter::addToKeypointList(KeypointList &) const {}
-
-void ColorParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString ColorParameter::textValue() const
 {
   const QColor & c = _value;

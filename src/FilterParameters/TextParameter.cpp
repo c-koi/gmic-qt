@@ -73,10 +73,6 @@ void TextParameter::addTo(QWidget * widget, int row)
   connectEditor();
 }
 
-void TextParameter::addToKeypointList(KeypointList &) const {}
-
-void TextParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString TextParameter::textValue() const
 {
   QString text = _multiline ? _textEdit->text() : _lineEdit->text();

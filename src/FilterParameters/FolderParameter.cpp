@@ -60,10 +60,6 @@ void FolderParameter::addTo(QWidget * widget, int row)
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-void FolderParameter::addToKeypointList(KeypointList &) const {}
-
-void FolderParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString FolderParameter::textValue() const
 {
   return QString("\"%1\"").arg(_value);

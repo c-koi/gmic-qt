@@ -55,10 +55,6 @@ void ChoiceParameter::addTo(QWidget * widget, int row)
   connectComboBox();
 }
 
-void ChoiceParameter::addToKeypointList(KeypointList &) const {}
-
-void ChoiceParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString ChoiceParameter::textValue() const
 {
   return QString("%1").arg(_comboBox->currentIndex());

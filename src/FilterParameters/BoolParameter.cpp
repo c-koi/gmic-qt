@@ -60,10 +60,6 @@ void BoolParameter::addTo(QWidget * widget, int row)
   connectCheckBox();
 }
 
-void BoolParameter::addToKeypointList(KeypointList &) const {}
-
-void BoolParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString BoolParameter::textValue() const
 {
   return _value ? "1" : "0";

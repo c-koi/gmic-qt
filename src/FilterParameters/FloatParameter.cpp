@@ -79,10 +79,6 @@ void FloatParameter::addTo(QWidget * widget, int row)
   connectSliderSpinBox();
 }
 
-void FloatParameter::addToKeypointList(KeypointList &) const {}
-
-void FloatParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString FloatParameter::textValue() const
 {
   QLocale currentLocale;

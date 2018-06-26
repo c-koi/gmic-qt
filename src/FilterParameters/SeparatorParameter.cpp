@@ -56,10 +56,6 @@ void SeparatorParameter::addTo(QWidget * widget, int row)
   grid->addWidget(_frame, row, 0, 1, 3);
 }
 
-void SeparatorParameter::addToKeypointList(KeypointList &) const {}
-
-void SeparatorParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString SeparatorParameter::textValue() const
 {
   return QString::null;

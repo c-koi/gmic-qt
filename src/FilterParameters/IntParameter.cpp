@@ -74,10 +74,6 @@ void IntParameter::addTo(QWidget * widget, int row)
   connectSliderSpinBox();
 }
 
-void IntParameter::addToKeypointList(KeypointList &) const {}
-
-void IntParameter::extractPositionFromKeypointList(KeypointList &) {}
-
 QString IntParameter::textValue() const
 {
   return _spinBox->text();
