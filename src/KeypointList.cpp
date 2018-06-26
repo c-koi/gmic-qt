@@ -60,11 +60,6 @@ bool KeypointList::isRemovable(int n) const
   return _keypoints[n].removable;
 }
 
-bool KeypointList::allowsBusrt(int n) const
-{
-  return _keypoints[n].burst;
-}
-
 KeypointList::Keypoint::Keypoint(float x, float y, QColor color, bool removable, bool burst, float radius, bool keepOpacityWhenSelected)
     : x(x), y(y), color(color), removable(removable), burst(burst), radius(radius), keepOpacityWhenSelected(keepOpacityWhenSelected)
 {

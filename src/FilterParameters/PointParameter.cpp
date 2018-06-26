@@ -102,9 +102,6 @@ void PointParameter::addTo(QWidget * widget, int row)
   painter.setPen(Qt::black);
   painter.drawRect(0, 0, pixmap.width() - 1, pixmap.height() - 1);
   _colorLabel->setPixmap(pixmap);
-  if (_burst) {
-    _colorLabel->setToolTip("Burst");
-  }
 
   hbox->addWidget(_labelX = new QLabel("X", _rowCell));
   hbox->addWidget(_spinBoxX = new QDoubleSpinBox(_rowCell));

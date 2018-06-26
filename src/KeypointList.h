@@ -61,7 +61,6 @@ public:
   QPointF position(int n) const;
   QColor color(int n) const;
   bool isRemovable(int n) const;
-  bool allowsBusrt(int n) const;
 
   typedef std::deque<Keypoint>::iterator iterator;
   typedef std::deque<Keypoint>::const_iterator const_iterator;
