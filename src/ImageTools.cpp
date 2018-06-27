@@ -23,6 +23,7 @@
  *
  */
 #include "ImageTools.h"
+#include <QDebug>
 #include <QImage>
 #include <QPainter>
 #include "GmicStdlib.h"
@@ -293,7 +294,7 @@ template void image2uchar(cimg_library::CImg<gmic_pixel_type> & img);
 template void image2uchar(cimg_library::CImg<unsigned char> & img);
 template void calibrate_image(cimg_library::CImg<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
 template void calibrate_image(cimg_library::CImg<unsigned char> & img, const int spectrum, const bool is_preview);
-}
+} // namespace GmicQt
 
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
 {

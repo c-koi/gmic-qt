@@ -718,6 +718,7 @@ void MainWindow::onOkClicked()
 void MainWindow::onCloseClicked()
 {
   TIMING;
+  ENTERING;
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     if (_processor.isProcessing()) {
       _pendingActionAfterCurrentProcessing = CloseAction;
@@ -1008,6 +1009,7 @@ void MainWindow::setNoFilter()
 {
   ui->filterParams->setNoFilter();
   ui->previewWidget->disableRightClick();
+  ui->previewWidget->setKeypoints(KeypointList());
   ui->inOutSelector->hide();
   ui->inOutSelector->setState(GmicQt::InputOutputState::Default, false);
   ui->filterName->setVisible(false);

@@ -30,11 +30,13 @@
 
 #ifdef _GMIC_QT_DEBUG_
 #define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
+#define LEAVING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Leaving>>"
 #define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
 #define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << "]" << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
 #else
 #define ENTERING while (false)
+#define LEAVING while (false)
 #define TRACE                                                                                                                                                                                          \
   while (false)                                                                                                                                                                                        \
   qWarning() << ""
@@ -46,9 +48,7 @@
   qWarning() << ""
 #endif
 
-template <typename T> inline void unused(const T &, ...)
-{
-}
+template <typename T> inline void unused(const T &, ...) {}
 
 //#define LOAD_ICON( NAME ) ( GmicQt::DarkThemeEnabled ? QIcon(":/icons/dark/" NAME ".png") : QIcon::fromTheme( NAME , QIcon(":/icons/" NAME ".png") ) )
 #define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
