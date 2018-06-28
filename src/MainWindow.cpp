@@ -122,6 +122,12 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
   addAction(searchAction);
 
+  QAction * togglePreviewAction = new QAction(this);
+  togglePreviewAction->setShortcut(QKeySequence("Ctrl+P"));
+  togglePreviewAction->setShortcutContext(Qt::ApplicationShortcut);
+  connect(togglePreviewAction, SIGNAL(triggered(bool)), ui->cbPreview, SLOT(toggle()));
+  addAction(togglePreviewAction);
+
   searchAction = new QAction(this);
   searchAction->setShortcut(QKeySequence("/"));
   searchAction->setShortcutContext(Qt::ApplicationShortcut);
