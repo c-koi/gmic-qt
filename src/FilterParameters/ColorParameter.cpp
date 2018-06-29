@@ -114,7 +114,7 @@ bool ColorParameter::initFromText(const char * text, int & textLength)
   bool okR = true, okG = true, okB = true, okA = true;
   int r = (n > 0) ? channels[0].toInt(&okR) : 0;
   int g = (n >= 2) ? channels[1].toInt(&okG) : r;
-  int b = (n >= 3) ? channels[2].toInt(&okB) : g;
+  int b = (n >= 3) ? channels[2].toInt(&okB) : (n == 1) ? r : 0;
   if (channels.size() == 4) {
     int a = channels[3].toInt(&okA);
     _default = _value = QColor(r, g, b, a);
