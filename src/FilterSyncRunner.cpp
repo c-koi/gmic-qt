@@ -142,7 +142,6 @@ void FilterSyncRunner::abortGmic()
 
 void FilterSyncRunner::run()
 {
-  // ENTERING;
   _startTime.start();
   _errorMessage.clear();
   _failed = false;

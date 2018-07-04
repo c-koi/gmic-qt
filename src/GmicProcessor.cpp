@@ -69,7 +69,7 @@ void GmicProcessor::execute()
   FilterContext::VisibleRect & rect = _filterContext.visibleRect;
   _gmicImages->assign();
   gmic_qt_get_cropped_images(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode);
-  if (_filterContext.requestType == FilterContext::PreviewProcessing) {
+  if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
     updateImageNames(imageNames);
     const double & zoomFactor = _filterContext.zoomFactor;
     if (zoomFactor < 1.0) {
@@ -90,7 +90,6 @@ void GmicProcessor::execute()
     env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
-
   if (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing) {
     FilterSyncRunner runner(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);

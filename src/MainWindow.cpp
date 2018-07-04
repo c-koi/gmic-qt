@@ -724,7 +724,6 @@ void MainWindow::onOkClicked()
 void MainWindow::onCloseClicked()
 {
   TIMING;
-  ENTERING;
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     if (_processor.isProcessing()) {
       _pendingActionAfterCurrentProcessing = CloseAction;
