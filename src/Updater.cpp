@@ -113,7 +113,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
       if (str.startsWith("http://") || str.startsWith("https://")) {
         QString filename = localFilename(str);
         QFileInfo info(filename);
-        if (!info.exists() || info.lastModified() < limit) {
+        if (!info.exists() || (info.lastModified() < limit)) {
           TRACE << "Downloading" << str << "to" << filename;
           QUrl url(str);
           QNetworkRequest request(url);

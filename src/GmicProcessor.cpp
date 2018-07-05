@@ -31,6 +31,7 @@
 #include <QSize>
 #include <QString>
 #include <cstring>
+#include "CroppedImageListProxy.h"
 #include "FilterSyncRunner.h"
 #include "FilterThread.h"
 #include "Host/host.h"
@@ -68,7 +69,7 @@ void GmicProcessor::execute()
   gmic_list<char> imageNames;
   FilterContext::VisibleRect & rect = _filterContext.visibleRect;
   _gmicImages->assign();
-  gmic_qt_get_cropped_images(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode);
+  CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode);
   if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
     updateImageNames(imageNames);
     const double & zoomFactor = _filterContext.zoomFactor;

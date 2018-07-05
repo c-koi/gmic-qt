@@ -289,6 +289,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/FiltersView.h
   src/FilterSelector/FiltersView/TreeView.h
   src/FilterSelector/FiltersVisibilityMap.h
+  src/CroppedImageListProxy.h
   src/FilterSyncRunner.h
   src/FilterThread.h
   src/Globals.h
@@ -356,6 +357,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/FiltersView.cpp
   src/FilterSelector/FiltersView/TreeView.cpp
   src/FilterSelector/FiltersVisibilityMap.cpp
+  src/CroppedImageListProxy.cpp
   src/FilterSyncRunner.cpp
   src/FilterThread.cpp
   src/gmic_qt.cpp

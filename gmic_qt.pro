@@ -237,6 +237,7 @@ HEADERS +=  \
   src/FilterParameters/LinkParameter.h \
   src/FilterParameters/MultilineTextParameterWidget.h \
   src/FilterParameters/NoteParameter.h \
+  src/FilterParameters/PointParameter.h \
   src/FilterParameters/SeparatorParameter.h \
   src/FilterParameters/TextParameter.h \
   src/FilterSelector/FiltersModel.h \
@@ -245,6 +246,8 @@ HEADERS +=  \
   src/FilterSelector/FiltersView/FiltersView.h \
   src/FilterSelector/FiltersView/TreeView.h \
   src/FilterSelector/FiltersVisibilityMap.h \
+  src/CroppedImageListProxy.h \
+  src/FilterSyncRunner.h \
   src/FilterThread.h \
   src/gmic_qt.h \
   src/Globals.h \
@@ -278,9 +281,7 @@ HEADERS +=  \
   src/Widgets/SearchFieldWidget.h \
   src/Widgets/LanguageSelectionWidget.h \
   src/Widgets/ProgressInfoWindow.h \
-  src/KeypointList.h \
-  src/FilterParameters/PointParameter.h \
-  src/FilterSyncRunner.h
+  src/KeypointList.h
 
 
 HEADERS += $$GMIC_PATH/gmic.h
@@ -315,6 +316,7 @@ SOURCES += \
   src/FilterSelector/FiltersView/FiltersView.cpp \
   src/FilterSelector/FiltersView/TreeView.cpp \
   src/FilterSelector/FiltersVisibilityMap.cpp \
+  src/CroppedImageListProxy.cpp \
   src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
