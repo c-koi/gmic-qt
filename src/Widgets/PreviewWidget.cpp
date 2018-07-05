@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <functional>
 #include "Common.h"
+#include "CroppedActiveLayerProxy.h"
 #include "DialogSettings.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
@@ -45,7 +46,7 @@
 
 const PreviewWidget::PreviewRect PreviewWidget::PreviewRect::Full{0.0, 0.0, 1.0, 1.0};
 
-PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOriginalImage(new gmic_image<float>())
+PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
 {
   setAutoFillBackground(false);
   _image = new cimg_library::CImg<float>;
@@ -56,8 +57,6 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent), _cachedOrigina
 
   _visibleRect = PreviewRect::Full;
   saveVisibleCenter();
-
-  _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
 
   _pendingResize = false;
   _previewEnabled = true;
@@ -131,7 +130,7 @@ void PreviewWidget::setPreviewErrorMessage(const QString & message)
 void PreviewWidget::setFullImageSize(const QSize & size)
 {
   _fullImageSize = size;
-  _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
+  CroppedActiveLayerProxy::clear();
   updateVisibleRect();
   saveVisibleCenter();
 }
@@ -141,8 +140,7 @@ void PreviewWidget::updateFullImageSizeIfDifferent(const QSize & size)
   if (size != _fullImageSize) {
     setFullImageSize(size);
   } else {
-    // Make sure the cached image is no longer used, even if its size is the same
-    _cachedOriginalImagePosition = {-1.0, -1.0, -1.0, -1.0};
+    CroppedActiveLayerProxy::clear();
   }
 }
 
@@ -826,35 +824,12 @@ void PreviewWidget::displayOriginalImage()
 
 QSize PreviewWidget::originalImageCropSize()
 {
-  if (_visibleRect != _cachedOriginalImagePosition) {
-    updateCachedOriginalImageCrop();
-  }
-  return QSize(_cachedOriginalImage->width(), _cachedOriginalImage->height());
-}
-
-void PreviewWidget::updateCachedOriginalImageCrop()
-{
-  gmic_list<float> images;
-  gmic_list<char> imageNames;
-  gmic_qt_get_cropped_images(images, imageNames, _visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h, GmicQt::Active);
-  if (images.size() > 0) {
-    gmic_qt_apply_color_profile(images[0]);
-    _cachedOriginalImage->swap(images[0]);
-    _cachedOriginalImagePosition = _visibleRect;
-  } else {
-    _cachedOriginalImage->assign();
-    _cachedOriginalImagePosition = PreviewRect::Full;
-  }
+  return CroppedActiveLayerProxy::getSize(_visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h);
 }
 
 void PreviewWidget::getOriginalImageCrop(cimg_library::CImg<float> & image)
 {
-  if (_visibleRect == _cachedOriginalImagePosition) {
-    image = *_cachedOriginalImage;
-    return;
-  }
-  updateCachedOriginalImageCrop();
-  image = *_cachedOriginalImage;
+  CroppedActiveLayerProxy::get(image, _visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h);
 }
 
 void PreviewWidget::onPreviewParametersChanged()

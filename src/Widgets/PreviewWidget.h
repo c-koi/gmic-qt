@@ -122,7 +122,6 @@ private:
   void paintPreview(QPainter &);
   void paintOriginalImage(QPainter &);
   void getOriginalImageCrop(cimg_library::CImg<float> & image);
-  void updateCachedOriginalImageCrop();
   void updateOriginalImagePosition();
   void updateErrorImage();
 
@@ -187,8 +186,6 @@ private:
   QSize _originalImageSize;
   QSize _originaImageScaledSize;
   bool _rightClickEnabled;
-  std::unique_ptr<cimg_library::CImg<float>> _cachedOriginalImage;
-  PreviewRect _cachedOriginalImagePosition;
   QString _errorMessage;
   QString _overlayMessage;
   QImage _errorImage;

@@ -247,6 +247,7 @@ HEADERS +=  \
   src/FilterSelector/FiltersView/TreeView.h \
   src/FilterSelector/FiltersVisibilityMap.h \
   src/CroppedImageListProxy.h \
+  src/CroppedActiveLayerProxy.h \
   src/FilterSyncRunner.h \
   src/FilterThread.h \
   src/gmic_qt.h \
@@ -317,6 +318,7 @@ SOURCES += \
   src/FilterSelector/FiltersView/TreeView.cpp \
   src/FilterSelector/FiltersVisibilityMap.cpp \
   src/CroppedImageListProxy.cpp \
+  src/CroppedActiveLayerProxy.cpp \
   src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
