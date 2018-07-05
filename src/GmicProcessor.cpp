@@ -70,16 +70,11 @@ void GmicProcessor::execute()
   gmic_list<char> imageNames;
   FilterContext::VisibleRect & rect = _filterContext.visibleRect;
   _gmicImages->assign();
-  CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode);
   if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
+    CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode, _filterContext.zoomFactor);
     updateImageNames(imageNames);
-    const double & zoomFactor = _filterContext.zoomFactor;
-    if (zoomFactor < 1.0) {
-      for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
-        gmic_image<float> & image = (*_gmicImages)[i];
-        image.resize(std::round(image.width() * zoomFactor), std::round(image.height() * zoomFactor), 1, -100, 1);
-      }
-    }
+  } else {
+    CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode, 1.0);
   }
   _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
   const GmicQt::InputOutputState & io = _filterContext.inputOutputState;
