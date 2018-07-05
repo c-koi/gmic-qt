@@ -31,7 +31,7 @@ class LayersExtentProxy {
 public:
   static void getExtent(GmicQt::InputMode mode, int & width, int & height);
   static QSize getExtent(GmicQt::InputMode mode);
-  static void clearCache();
+  static void clear();
 
 private:
   LayersExtentProxy() = delete;

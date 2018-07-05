@@ -268,7 +268,7 @@ void GmicProcessor::onApplyThreadFinished()
     } else {
       gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, 0);
     }
-    LayersExtentProxy::clearCache();
+    LayersExtentProxy::clear();
     CroppedActiveLayerProxy::clear();
     CroppedImageListProxy::clear();
     _filterThread->deleteLater();

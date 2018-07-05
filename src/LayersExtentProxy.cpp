@@ -51,7 +51,7 @@ void LayersExtentProxy::getExtent(GmicQt::InputMode mode, int & width, int & hei
   _inputMode = mode;
 }
 
-void LayersExtentProxy::clearCache()
+void LayersExtentProxy::clear()
 {
   _width = _height = -1;
 }

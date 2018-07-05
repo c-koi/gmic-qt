@@ -159,7 +159,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(escAction, SIGNAL(triggered(bool)), this, SLOT(onEscapeKeyPressed()));
   addAction(escAction);
 
-  LayersExtentProxy::clearCache();
+  LayersExtentProxy::clear();
   QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtent);
 
@@ -344,7 +344,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
 
   // Let the standalone version load an image, if necessary (not pretty)
   if (GmicQt::HostApplicationName.isEmpty()) {
-    LayersExtentProxy::clearCache();
+    LayersExtentProxy::clear();
     QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
     ui->previewWidget->setFullImageSize(extent);
     ui->previewWidget->update();
