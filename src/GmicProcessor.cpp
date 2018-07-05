@@ -31,6 +31,7 @@
 #include <QSize>
 #include <QString>
 #include <cstring>
+#include "CroppedActiveLayerProxy.h"
 #include "CroppedImageListProxy.h"
 #include "FilterSyncRunner.h"
 #include "FilterThread.h"
@@ -267,6 +268,9 @@ void GmicProcessor::onApplyThreadFinished()
     } else {
       gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, 0);
     }
+    LayersExtentProxy::clearCache();
+    CroppedActiveLayerProxy::clear();
+    CroppedImageListProxy::clear();
     _filterThread->deleteLater();
     _filterThread = nullptr;
     _lastAppliedCommandGmicStatus = _gmicStatus;
@@ -276,7 +280,6 @@ void GmicProcessor::onApplyThreadFinished()
 
 void GmicProcessor::onAbortedThreadFinished()
 {
-  // TSHOW(_unfinishedAbortedThreads.size());
   FilterThread * thread = dynamic_cast<FilterThread *>(sender());
   if (_unfinishedAbortedThreads.contains(thread)) {
     _unfinishedAbortedThreads.removeOne(thread);

@@ -676,7 +676,7 @@ void MainWindow::onFullImageProcessingDone()
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
     close();
   } else {
-    LayersExtentProxy::clearCache();
+    // Extent cache has been cleared by the GmicProcessor
     QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
     ui->previewWidget->updateFullImageSizeIfDifferent(extent); // FIXME: updateIfDifferent ?
     ui->previewWidget->sendUpdateRequest();
