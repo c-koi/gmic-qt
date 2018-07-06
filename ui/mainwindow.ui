@@ -261,7 +261,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>153</width>
+                <width>179</width>
                 <height>472</height>
                </rect>
               </property>
@@ -397,64 +397,12 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="labelWarning">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="../gmic_qt.qrc">:/images/warning.png</pixmap>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="tbZoomOut">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="ZoomLevelSelector" name="zoomLevelSelector" native="true">
            <property name="minimumSize">
             <size>
-             <width>20</width>
+             <width>40</width>
              <height>0</height>
             </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="tbZoomIn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="tbZoomReset">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
            </property>
           </widget>
          </item>
@@ -645,15 +593,11 @@
  <tabstops>
   <tabstop>previewWidget</tabstop>
   <tabstop>cbPreview</tabstop>
-  <tabstop>tbZoomIn</tabstop>
-  <tabstop>tbZoomReset</tabstop>
   <tabstop>pbCancel</tabstop>
   <tabstop>pbFullscreen</tabstop>
   <tabstop>pbApply</tabstop>
   <tabstop>pbOk</tabstop>
  </tabstops>
- <resources>
-  <include location="../gmic_qt.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -34,8 +34,10 @@
 #include <QTranslator>
 #include <cstring>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "Globals.h"
 #include "HeadlessProcessor.h"
+#include "Logger.h"
 #include "MainWindow.h"
 #include "Updater.h"
 #include "Widgets/LanguageSelectionWidget.h"
@@ -72,6 +74,7 @@ int launchPlugin()
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+  DialogSettings::loadSettings();
 
   // Translate according to current locale or configured language
   QString lang = LanguageSelectionWidget::configuredTranslator();
@@ -106,6 +109,10 @@ int launchPluginHeadlessUsingLastParameters()
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+
+  DialogSettings::loadSettings();
+  Logger::setMode(DialogSettings::outputMessageMode());
+
   HeadlessProcessor processor;
   ProgressInfoWindow progressWindow(&processor);
   if (processor.command().isEmpty()) {
@@ -129,6 +136,10 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+
+  DialogSettings::loadSettings();
+  Logger::setMode(DialogSettings::outputMessageMode());
+
   HeadlessProcessor headlessProcessor(&app, command, input, output);
   QTimer idle;
   idle.setInterval(0);

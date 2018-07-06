@@ -326,6 +326,7 @@ set (gmic_qt_SRCS
   src/Widgets/SearchFieldWidget.h
   src/Widgets/LanguageSelectionWidget.h
   src/Widgets/ProgressInfoWindow.h
+  src/ZoomConstraint.h
 
   ${GMIC_PATH}/gmic.h
   ${GMIC_PATH}/CImg.h

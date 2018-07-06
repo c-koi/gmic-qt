@@ -260,6 +260,7 @@ HEADERS +=  \
   src/ImageConverter.h \
   src/ImageTools.h \
   src/InputOutputState.h \
+  src/KeypointList.h \
   src/LayersExtentProxy.h \
   src/Logger.h \
   src/MainWindow.h \
@@ -268,6 +269,7 @@ HEADERS +=  \
   src/TimeLogger.h \
   src/Updater.h \
   src/Utils.h \
+  src/ZoomConstraint.h \
   src/FilterSelector/FiltersView/FilterTreeFolder.h \
   src/FilterSelector/FiltersView/FilterTreeItem.h \
   src/FilterSelector/FavesModel.h \
@@ -281,8 +283,7 @@ HEADERS +=  \
   src/Widgets/ZoomLevelSelector.h \
   src/Widgets/SearchFieldWidget.h \
   src/Widgets/LanguageSelectionWidget.h \
-  src/Widgets/ProgressInfoWindow.h \
-  src/KeypointList.h
+  src/Widgets/ProgressInfoWindow.h
 
 
 HEADERS += $$GMIC_PATH/gmic.h

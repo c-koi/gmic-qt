@@ -27,6 +27,7 @@
 #include <QLineEdit>
 #include <cmath>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "Globals.h"
 #include "ui_zoomlevelselector.h"
 
@@ -34,8 +35,55 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new
 {
   ui->setupUi(this);
   ui->comboBox->setEditable(true);
-  QStringList values = {"1000 %", "800 %", "400 %", "200 %", "150 %", "100 %", "66.7 %", "50 %", "25 %", "12.5 %"};
 
+  ui->comboBox->setInsertPolicy(QComboBox::NoInsert);
+  ui->comboBox->setValidator(new ZoomLevelValidator(ui->comboBox));
+  ui->comboBox->setCompleter(nullptr);
+  _notificationsEnabled = true;
+
+  ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
+  ui->labelWarning->setToolTip(QString());
+
+  ui->tbZoomIn->setToolTip(tr("Zoom in"));
+  ui->tbZoomOut->setToolTip(tr("Zoom out"));
+  ui->tbZoomReset->setToolTip(tr("Reset zoom"));
+  ui->tbZoomOut->setIcon(LOAD_ICON("zoom-out"));
+  ui->tbZoomIn->setIcon(LOAD_ICON("zoom-in"));
+  ui->tbZoomReset->setIcon(LOAD_ICON("view-refresh"));
+
+  connect(ui->comboBox->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onComboBoxEditingFinished()));
+  connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged(int)));
+
+  connect(ui->tbZoomIn, SIGNAL(clicked(bool)), this, SIGNAL(zoomIn()));
+  connect(ui->tbZoomOut, SIGNAL(clicked(bool)), this, SIGNAL(zoomOut()));
+  connect(ui->tbZoomReset, SIGNAL(clicked(bool)), this, SIGNAL(zoomReset()));
+  setZoomConstraint(ZoomConstraint::Any);
+}
+
+ZoomLevelSelector::~ZoomLevelSelector()
+{
+  delete ui;
+}
+
+void ZoomLevelSelector::setZoomConstraint(ZoomConstraint constraint)
+{
+  _zoomConstraint = constraint;
+  _notificationsEnabled = false;
+
+  setEnabled(_zoomConstraint != ZoomConstraint::Fixed);
+
+  double currentValue = currentZoomValue();
+
+  QStringList values = {"1000 %", "800 %", "400 %", "200 %", "150 %", "100 %", "66.7 %", "50 %", "25 %", "12.5 %"};
+  if (_zoomConstraint == ZoomConstraint::OneOrMore) {
+    values.pop_back();
+    values.pop_back();
+    values.pop_back();
+    values.pop_back();
+    if (currentValue <= 1.0) {
+      currentValue = 1.0;
+    }
+  }
   QString maxStr = values.front();
   maxStr.remove(" %");
   int max = maxStr.toInt();
@@ -44,20 +92,12 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new
     max += 1000;
     values.push_front(QString::number(max) + " %");
   }
-
+  ui->comboBox->clear();
   ui->comboBox->addItems(values);
-  ui->comboBox->setInsertPolicy(QComboBox::NoInsert);
-  ui->comboBox->setValidator(new ZoomLevelValidator(ui->comboBox));
-  ui->comboBox->setCompleter(nullptr);
+
+  display(currentValue);
+
   _notificationsEnabled = true;
-
-  connect(ui->comboBox->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onComboBoxEditingFinished()));
-  connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged(int)));
-}
-
-ZoomLevelSelector::~ZoomLevelSelector()
-{
-  delete ui;
 }
 
 void ZoomLevelSelector::display(double zoom)
@@ -91,6 +131,17 @@ void ZoomLevelSelector::display(double zoom)
   _notificationsEnabled = true;
 }
 
+void ZoomLevelSelector::showWarning(bool on)
+{
+  if (on) {
+    ui->labelWarning->setPixmap(QPixmap(":/images/warning.png"));
+    ui->labelWarning->setToolTip(tr("Warning: Preview may be inaccurate (zoom factor has been modified)"));
+  } else {
+    ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
+    ui->labelWarning->setToolTip(QString());
+  }
+}
+
 void ZoomLevelSelector::onComboBoxEditingFinished()
 {
   QString text = ui->comboBox->lineEdit()->text();
@@ -103,7 +154,14 @@ void ZoomLevelSelector::onComboBoxEditingFinished()
     text.remove(QRegExp(" ?%?$"));
     text += " %";
   }
-  ui->comboBox->lineEdit()->setText(_currentText = text);
+  QString digits = text;
+  digits.remove(" %");
+  double value = digits.toDouble();
+  if ((_zoomConstraint == ZoomConstraint::OneOrMore) && (value < 100.0)) {
+    ui->comboBox->lineEdit()->setText(_currentText = "100 %");
+  } else {
+    ui->comboBox->lineEdit()->setText(_currentText = text);
+  }
   if (_notificationsEnabled) {
     emit valueChanged(currentZoomValue());
   }

@@ -28,6 +28,7 @@
 #include <QDoubleValidator>
 #include <QPalette>
 #include <QWidget>
+#include "ZoomConstraint.h"
 
 namespace Ui
 {
@@ -41,8 +42,11 @@ public:
   explicit ZoomLevelSelector(QWidget * parent = 0);
   ~ZoomLevelSelector();
 
+  void setZoomConstraint(ZoomConstraint constraint);
+
 public slots:
   void display(double zoom);
+  void showWarning(bool on);
 
 private slots:
   void onComboBoxEditingFinished();
@@ -50,12 +54,16 @@ private slots:
 
 signals:
   void valueChanged(double);
+  void zoomIn();
+  void zoomOut();
+  void zoomReset();
 
 private:
   Ui::ZoomLevelSelector * ui;
   bool _notificationsEnabled;
   double currentZoomValue();
   QString _currentText;
+  ZoomConstraint _zoomConstraint;
 };
 
 class ZoomLevelValidator : public QValidator {

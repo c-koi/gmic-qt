@@ -39,6 +39,7 @@ bool DialogSettings::_logosAreVisible;
 MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
 GmicQt::OutputMessageMode DialogSettings::_outputMessageMode;
+bool DialogSettings::_previewZoomAlwaysEnabled = false;
 
 const QColor DialogSettings::CheckBoxBaseColor(83, 83, 83);
 const QColor DialogSettings::CheckBoxTextColor(255, 255, 255);
@@ -106,6 +107,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   ui->cbShowLogos->setChecked(_logosAreVisible);
   ui->sbPreviewTimeout->setValue(_previewTimeout);
 
+  ui->cbPreviewZoom->setChecked(_previewZoomAlwaysEnabled);
+
   connect(ui->pbOk, SIGNAL(clicked()), this, SLOT(onOk()));
   connect(ui->rbLeftPreview, SIGNAL(toggled(bool)), this, SLOT(onRadioLeftPreviewToggled(bool)));
   connect(ui->pbUpdate, SIGNAL(clicked(bool)), this, SLOT(onUpdateClicked()));
@@ -123,6 +126,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   connect(ui->cbShowLogos, SIGNAL(toggled(bool)), this, SLOT(onLogosVisibleToggled(bool)));
 
+  connect(ui->cbPreviewZoom, SIGNAL(toggled(bool)), this, SLOT(onPreviewZoomToggled(bool)));
+
   connect(ui->sbPreviewTimeout, SIGNAL(valueChanged(int)), this, SLOT(onPreviewTimeoutChange(int)));
 
   connect(ui->outputMessages, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputMessageModeChanged(int)));
@@ -133,6 +138,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
     p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
     ui->cbNativeColorDialogs->setPalette(p);
+    ui->cbPreviewZoom->setPalette(p);
     ui->cbUpdatePeriodicity->setPalette(p);
     ui->rbDarkTheme->setPalette(p);
     ui->rbDefaultTheme->setPalette(p);
@@ -164,9 +170,15 @@ void DialogSettings::loadSettings()
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath", QDir::homePath()).toString();
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
+  _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
   _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
   AddIcon = LOAD_ICON("list-add");
   RemoveIcon = LOAD_ICON("list-remove");
+}
+
+bool DialogSettings::previewZoomAlwaysEnabled()
+{
+  return _previewZoomAlwaysEnabled;
 }
 
 int DialogSettings::previewTimeout()
@@ -189,7 +201,7 @@ void DialogSettings::saveSettings(QSettings & settings)
   settings.setValue("LogosAreVisible", _logosAreVisible);
   settings.setValue("PreviewTimeout", _previewTimeout);
   settings.setValue("OutputMessageMode", _outputMessageMode);
-
+  settings.setValue("AlwaysEnablePreviewZoom", _previewZoomAlwaysEnabled);
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
   settings.remove("Config/UseFaveOutputMode");
@@ -235,6 +247,11 @@ void DialogSettings::onOutputMessageModeChanged(int)
 {
   _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(ui->outputMessages->currentData().toInt());
   Logger::setMode(_outputMessageMode);
+}
+
+void DialogSettings::onPreviewZoomToggled(bool on)
+{
+  _previewZoomAlwaysEnabled = on;
 }
 
 void DialogSettings::enableUpdateButton()

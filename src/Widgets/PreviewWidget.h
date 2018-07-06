@@ -35,6 +35,7 @@
 #include <memory>
 #include "Host/host.h"
 #include "KeypointList.h"
+#include "ZoomConstraint.h"
 
 namespace cimg_library
 {
@@ -55,6 +56,7 @@ public:
   bool isAtFullZoom() const;
   void getPositionStringCorrection(double & xFactor, double & yFactor) const;
   double currentZoomFactor() const;
+  double defaultZoomFactor() const;
   void updateVisibleRect();
   void centerVisibleRect();
   void setPreviewImage(const cimg_library::CImg<float> & image);
@@ -74,6 +76,9 @@ public:
     KeypointBurstEvent = 1,
     KeypointMouseReleaseEvent = 2
   };
+
+  void setZoomConstraint(ZoomConstraint constraint);
+  ZoomConstraint zoomConstraint() const;
 
 protected:
   void resizeEvent(QResizeEvent *) override;
@@ -132,12 +137,12 @@ private:
   QPointF pointInWidgetToKeypointPosition(const QPoint &) const;
 
   QSize originalImageCropSize();
-  double defaultZoomFactor() const;
   void saveVisibleCenter();
   cimg_library::CImg<float> * _image;
   cimg_library::CImg<float> * _savedPreview;
   QSize _fullImageSize;
   double _currentZoomFactor;
+  ZoomConstraint _zoomConstraint;
 
   /*
    * (0) for a 1:1 preview

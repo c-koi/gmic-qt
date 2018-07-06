@@ -125,6 +125,7 @@ private slots:
   void onInputModeChanged(GmicQt::InputMode);
 
 private:
+  void setZoomConstraint();
   bool filtersSelectionMode();
   void clearMessage();
   void showMessage(QString text, int ms = 2000);

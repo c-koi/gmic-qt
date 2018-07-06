@@ -52,6 +52,7 @@ public:
   static bool nativeColorDialogs();
   static void saveSettings(QSettings &);
   static void loadSettings();
+  static bool previewZoomAlwaysEnabled();
   static const QColor CheckBoxTextColor;
   static const QColor CheckBoxBaseColor;
   static QColor UnselectedFilterTextColor;
@@ -61,6 +62,7 @@ public:
   static GmicQt::OutputMessageMode outputMessageMode();
   static QIcon AddIcon;
   static QIcon RemoveIcon;
+
 public slots:
   void onRadioLeftPreviewToggled(bool);
   void onUpdateClicked();
@@ -73,6 +75,7 @@ public slots:
   void onLogosVisibleToggled(bool);
   void onPreviewTimeoutChange(int);
   void onOutputMessageModeChanged(int);
+  void onPreviewZoomToggled(bool);
 
 private:
   Ui::DialogSettings * ui;
@@ -84,6 +87,7 @@ private:
   static bool _logosAreVisible;
   static int _previewTimeout;
   static GmicQt::OutputMessageMode _outputMessageMode;
+  static bool _previewZoomAlwaysEnabled;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_

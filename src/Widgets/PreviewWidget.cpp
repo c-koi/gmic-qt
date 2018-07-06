@@ -61,6 +61,7 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
   _pendingResize = false;
   _previewEnabled = true;
   _currentZoomFactor = 1.0;
+  _zoomConstraint = ZoomConstraint::Any;
   _timerID = 0;
   _savedPreviewIsValid = false;
   _paintOriginalImage = true;
@@ -476,7 +477,6 @@ void PreviewWidget::leaveEvent(QEvent *)
 void PreviewWidget::wheelEvent(QWheelEvent * event)
 {
   double degrees = event->angleDelta().y() / 8.0;
-  // int steps = static_cast<int>(std::fabs(degrees) / 15.0);
   int steps = static_cast<int>(std::fabs(degrees) / 15.0);
   if (degrees > 0.0) {
     zoomIn(event->pos() - _imagePosition.topLeft(), steps);
@@ -685,7 +685,7 @@ void PreviewWidget::zoomFullImage()
 
 void PreviewWidget::zoomIn(QPoint p, int steps)
 {
-  if (_fullImageSize.isNull()) {
+  if (_fullImageSize.isNull() || (_zoomConstraint == ZoomConstraint::Fixed)) {
     return;
   }
   double previousZoomFactor = _currentZoomFactor;
@@ -714,13 +714,16 @@ void PreviewWidget::zoomIn(QPoint p, int steps)
 
 void PreviewWidget::zoomOut(QPoint p, int steps)
 {
-  if (isAtFullZoom() || _fullImageSize.isNull()) {
+  if ((_zoomConstraint == ZoomConstraint::Fixed) || ((_zoomConstraint == ZoomConstraint::OneOrMore) && (_currentZoomFactor <= 1.0)) || isAtFullZoom() || _fullImageSize.isNull()) {
     return;
   }
   double mouseX = p.x() / (_currentZoomFactor * _fullImageSize.width()) + _visibleRect.x;
   double mouseY = p.y() / (_currentZoomFactor * _fullImageSize.height()) + _visibleRect.y;
   while (steps--) {
     _currentZoomFactor /= 1.2;
+  }
+  if ((_zoomConstraint == ZoomConstraint::OneOrMore) && (_currentZoomFactor <= 1.0)) {
+    _currentZoomFactor = 1.0;
   }
   updateVisibleRect();
   if (isAtFullZoom()) {
@@ -738,6 +741,9 @@ void PreviewWidget::setZoomLevel(double zoom)
 {
   if ((zoom == _currentZoomFactor) || _fullImageSize.isNull()) {
     return;
+  }
+  if ((_zoomConstraint == ZoomConstraint::OneOrMore) && (zoom <= 1.0)) {
+    zoom = 1.0;
   }
   if ((zoom > PREVIEW_MAX_ZOOM_FACTOR) || (isAtFullZoom() && (zoom < _currentZoomFactor))) {
     emit zoomChanged(_currentZoomFactor);
@@ -881,6 +887,16 @@ void PreviewWidget::setKeypoints(const KeypointList & keypoints)
   _keypoints = keypoints;
   setMouseTracking(_keypoints.size());
   update();
+}
+
+void PreviewWidget::setZoomConstraint(ZoomConstraint constraint)
+{
+  _zoomConstraint = constraint;
+}
+
+ZoomConstraint PreviewWidget::zoomConstraint() const
+{
+  return _zoomConstraint;
 }
 
 void PreviewWidget::invalidateSavedPreview()

@@ -70,15 +70,10 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
-  _filterUpdateWidgets = {ui->previewWidget,   ui->tbZoomIn,     ui->tbZoomOut,  ui->tbZoomReset,  ui->zoomLevelSelector, ui->filtersView,      ui->filterParams,
-                          ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings, ui->pbOk,         ui->pbApply,           ui->inOutSelector,    ui->tbResetParameters,
-                          ui->searchField,     ui->cbPreview,    ui->tbAddFave,  ui->tbRemoveFave, ui->tbRenameFave,      ui->tbExpandCollapse, ui->tbSelectionMode};
+  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,      ui->filterParams,      ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
+                          ui->pbOk,          ui->pbApply,           ui->inOutSelector,    ui->tbResetParameters, ui->searchField,     ui->cbPreview,    ui->tbAddFave,
+                          ui->tbRemoveFave,  ui->tbRenameFave,      ui->tbExpandCollapse, ui->tbSelectionMode};
 
-  ui->tbZoomIn->setToolTip(tr("Zoom in"));
-  ui->tbZoomOut->setToolTip(tr("Zoom out"));
-  ui->tbZoomReset->setToolTip(tr("Reset zoom"));
-
-  ui->labelWarning->setToolTip(tr("Warning: Preview may be inaccurate (zoom factor has been modified)"));
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
@@ -189,9 +184,6 @@ void MainWindow::setIcons()
   ui->tbRenameFave->setIcon(QIcon(":/resources/rename.png"));
   ui->pbSettings->setIcon(LOAD_ICON("package_settings"));
   ui->pbFullscreen->setIcon(LOAD_ICON("view-fullscreen"));
-  ui->tbZoomOut->setIcon(LOAD_ICON("zoom-out"));
-  ui->tbZoomIn->setIcon(LOAD_ICON("zoom-in"));
-  ui->tbZoomReset->setIcon(LOAD_ICON("view-refresh"));
   ui->tbUpdateFilters->setIcon(LOAD_ICON("view-refresh"));
   ui->pbApply->setIcon(LOAD_ICON("system-run"));
   ui->pbOk->setIcon(LOAD_ICON("insert-image"));
@@ -204,8 +196,6 @@ void MainWindow::setIcons()
   _collapseIcon = LOAD_ICON("draw-arrow-up");
   _expandCollapseIcon = &_expandIcon;
   ui->tbExpandCollapse->setIcon(_expandIcon);
-
-  ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
 }
 
 void MainWindow::setDarkTheme()
@@ -385,11 +375,7 @@ void MainWindow::onZoomOut()
 void MainWindow::showZoomWarningIfNeeded()
 {
   const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
-  if (!currentFilter.hash.isEmpty() && !currentFilter.isAccurateIfZoomed && !ui->previewWidget->isAtDefaultZoom()) {
-    ui->labelWarning->setPixmap(QPixmap(":/images/warning.png"));
-  } else {
-    ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
-  }
+  ui->zoomLevelSelector->showWarning(!currentFilter.hash.isEmpty() && !currentFilter.isAccurateIfZoomed && !ui->previewWidget->isAtDefaultZoom());
 }
 
 void MainWindow::updateZoomLabel(double zoom)
@@ -495,9 +481,9 @@ void MainWindow::makeConnections()
   connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
   connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(unsigned int, unsigned long)), this, SLOT(onPreviewKeypointsEvent(unsigned int, unsigned long)));
 
-  connect(ui->tbZoomIn, SIGNAL(clicked(bool)), this, SLOT(onZoomIn()));
-  connect(ui->tbZoomOut, SIGNAL(clicked(bool)), this, SLOT(onZoomOut()));
-  connect(ui->tbZoomReset, SIGNAL(clicked(bool)), this, SLOT(onPreviewZoomReset()));
+  connect(ui->zoomLevelSelector, SIGNAL(zoomIn()), this, SLOT(onZoomIn()));
+  connect(ui->zoomLevelSelector, SIGNAL(zoomOut()), this, SLOT(onZoomOut()));
+  connect(ui->zoomLevelSelector, SIGNAL(zoomReset()), this, SLOT(onPreviewZoomReset()));
 
   connect(ui->tbAddFave, SIGNAL(clicked(bool)), this, SLOT(onAddFave()));
   connect(_filtersPresenter, SIGNAL(faveAdditionRequested(QString)), this, SLOT(onAddFave()));
@@ -665,6 +651,23 @@ void MainWindow::onInputModeChanged(GmicQt::InputMode mode)
   ui->previewWidget->sendUpdateRequest();
 }
 
+void MainWindow::setZoomConstraint()
+{
+  const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
+
+  ZoomConstraint constraint;
+  if (currentFilter.hash.isEmpty() || currentFilter.isAccurateIfZoomed || DialogSettings::previewZoomAlwaysEnabled() || (currentFilter.previewFactor == GmicQt::PreviewFactorAny)) {
+    constraint = ZoomConstraint::Any;
+  } else if (currentFilter.previewFactor == GmicQt::PreviewFactorActualSize) {
+    constraint = ZoomConstraint::OneOrMore;
+  } else {
+    constraint = ZoomConstraint::Fixed;
+  }
+  showZoomWarningIfNeeded();
+  ui->zoomLevelSelector->setZoomConstraint(constraint);
+  ui->previewWidget->setZoomConstraint(constraint);
+}
+
 void MainWindow::onFullImageProcessingDone()
 {
   ui->progressInfoWidget->stopAnimationAndHide();
@@ -772,7 +775,7 @@ void MainWindow::onPreviewZoomReset()
   if (!_filtersPresenter->currentFilter().hash.isEmpty()) {
     ui->previewWidget->setPreviewFactor(_filtersPresenter->currentFilter().previewFactor, true);
     ui->previewWidget->sendUpdateRequest();
-    ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
+    ui->zoomLevelSelector->showWarning(false);
   }
 }
 
@@ -836,7 +839,6 @@ void MainWindow::saveSettings()
 void MainWindow::loadSettings()
 {
   QSettings settings;
-  DialogSettings::loadSettings();
   _filtersPresenter->loadSettings(settings);
 
   _lastExecutionOK = settings.value("LastExecution/ExitedNormally", true).toBool();
@@ -1002,7 +1004,7 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);
     ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
-    showZoomWarningIfNeeded();
+    setZoomConstraint();
     _okButtonShouldApply = true;
     ui->tbResetParameters->setVisible(true);
     ui->tbRemoveFave->setEnabled(filter.isAFave);
@@ -1020,7 +1022,7 @@ void MainWindow::setNoFilter()
   ui->filterName->setVisible(false);
   ui->tbAddFave->setEnabled(false);
   ui->tbResetParameters->setVisible(false);
-  ui->labelWarning->setPixmap(QPixmap(":/images/no_warning.png"));
+  ui->zoomLevelSelector->showWarning(false);
   _okButtonShouldApply = false;
 
   ui->tbRemoveFave->setEnabled(false);
@@ -1161,6 +1163,19 @@ void MainWindow::onSettingsClicked()
   if (shouldUpdatePreview) {
     ui->previewWidget->sendUpdateRequest();
   }
+  // Manage zoom constraints
+  setZoomConstraint();
+  if (!DialogSettings::previewZoomAlwaysEnabled()) {
+    const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
+    if (((ui->previewWidget->zoomConstraint() == ZoomConstraint::Fixed) && (ui->previewWidget->defaultZoomFactor() != ui->previewWidget->currentZoomFactor())) ||
+        ((ui->previewWidget->zoomConstraint() == ZoomConstraint::OneOrMore) && (ui->previewWidget->currentZoomFactor() < 1.0))) {
+      ui->previewWidget->setPreviewFactor(filter.previewFactor, true);
+      if (ui->cbPreview->isChecked()) {
+        ui->previewWidget->sendUpdateRequest();
+      }
+    }
+  }
+  showZoomWarningIfNeeded();
 }
 
 bool MainWindow::confirmAbortProcessingOnCloseRequest()
