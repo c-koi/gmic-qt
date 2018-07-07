@@ -111,7 +111,7 @@ void ZoomLevelSelector::setZoomConstraint(ZoomConstraint constraint)
   _notificationsEnabled = true;
 }
 
-void ZoomLevelSelector::display(double zoom)
+void ZoomLevelSelector::display(const double zoom)
 {
   bool decimals = static_cast<int>(zoom * 10000) % 100;
   QString text;
@@ -135,6 +135,13 @@ void ZoomLevelSelector::display(double zoom)
       iMin = i;
     }
   }
+
+  ui->tbZoomOut->setEnabled(((_zoomConstraint == ZoomConstraint::OneOrMore) && (zoom > 1.0)) || (_zoomConstraint == ZoomConstraint::Any));
+
+  if (_zoomConstraint == ZoomConstraint::Any || _zoomConstraint == ZoomConstraint::OneOrMore) {
+    ui->tbZoomIn->setEnabled(zoom != PREVIEW_MAX_ZOOM_FACTOR);
+  }
+
   _notificationsEnabled = false;
   ui->comboBox->setCurrentIndex(iMin);
   ui->comboBox->setEditText(text);

@@ -45,7 +45,7 @@ public:
   void setZoomConstraint(ZoomConstraint constraint);
 
 public slots:
-  void display(double zoom);
+  void display(const double zoom);
   void showWarning(bool on);
 
 private slots:
