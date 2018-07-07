@@ -214,11 +214,15 @@ void MainWindow::setDarkTheme()
   p.setColor(QPalette::Link, linkColor);
   p.setColor(QPalette::LinkVisited, linkColor);
 
-  p.setColor(QPalette::Disabled, QPalette::Button, QColor(53, 53, 53));
-  p.setColor(QPalette::Disabled, QPalette::Window, QColor(53, 53, 53));
-  p.setColor(QPalette::Disabled, QPalette::Text, QColor(110, 110, 110));
-  p.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(110, 110, 110));
-  p.setColor(QPalette::Disabled, QPalette::WindowText, QColor(110, 110, 110));
+  const QColor disabledGray(40, 40, 40);
+  const QColor disabledTextGray(128, 128, 128);
+  p.setColor(QPalette::Disabled, QPalette::Window, disabledGray);
+  p.setColor(QPalette::Disabled, QPalette::Base, disabledGray);
+  p.setColor(QPalette::Disabled, QPalette::AlternateBase, disabledGray);
+  p.setColor(QPalette::Disabled, QPalette::Button, disabledGray);
+  p.setColor(QPalette::Disabled, QPalette::Text, disabledTextGray);
+  p.setColor(QPalette::Disabled, QPalette::ButtonText, disabledTextGray);
+  p.setColor(QPalette::Disabled, QPalette::WindowText, disabledTextGray);
   qApp->setPalette(p);
 
   p = ui->cbInternetUpdate->palette();
@@ -654,7 +658,6 @@ void MainWindow::onInputModeChanged(GmicQt::InputMode mode)
 void MainWindow::setZoomConstraint()
 {
   const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
-
   ZoomConstraint constraint;
   if (currentFilter.hash.isEmpty() || currentFilter.isAccurateIfZoomed || DialogSettings::previewZoomAlwaysEnabled() || (currentFilter.previewFactor == GmicQt::PreviewFactorAny)) {
     constraint = ZoomConstraint::Any;

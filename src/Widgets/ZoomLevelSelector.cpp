@@ -47,9 +47,22 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new
   ui->tbZoomIn->setToolTip(tr("Zoom in"));
   ui->tbZoomOut->setToolTip(tr("Zoom out"));
   ui->tbZoomReset->setToolTip(tr("Reset zoom"));
-  ui->tbZoomOut->setIcon(LOAD_ICON("zoom-out"));
-  ui->tbZoomIn->setIcon(LOAD_ICON("zoom-in"));
-  ui->tbZoomReset->setIcon(LOAD_ICON("view-refresh"));
+
+  QPixmap pixZoomIn = LOAD_PIXMAP("zoom-in");
+  QPixmap pixZoomOut = LOAD_PIXMAP("zoom-out");
+  QPixmap pixZoomReset = LOAD_PIXMAP("view-refresh");
+  QIcon iconZoomIn(pixZoomIn);
+  QIcon iconZoomOut(pixZoomOut);
+  QIcon iconZoomReset(pixZoomReset);
+  if (DialogSettings::darkThemeEnabled()) {
+    iconZoomIn.addPixmap(darkerPixmap(pixZoomIn), QIcon::Disabled, QIcon::Off);
+    iconZoomOut.addPixmap(darkerPixmap(pixZoomOut), QIcon::Disabled, QIcon::Off);
+    iconZoomReset.addPixmap(darkerPixmap(pixZoomReset), QIcon::Disabled, QIcon::Off);
+    ui->comboBox->setStyleSheet("QComboBox::disabled { background: rgb(40,40,40); } ");
+  }
+  ui->tbZoomIn->setIcon(iconZoomIn);
+  ui->tbZoomOut->setIcon(iconZoomOut);
+  ui->tbZoomReset->setIcon(iconZoomReset);
 
   connect(ui->comboBox->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onComboBoxEditingFinished()));
   connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged(int)));
@@ -69,9 +82,7 @@ void ZoomLevelSelector::setZoomConstraint(ZoomConstraint constraint)
 {
   _zoomConstraint = constraint;
   _notificationsEnabled = false;
-
   setEnabled(_zoomConstraint != ZoomConstraint::Fixed);
-
   double currentValue = currentZoomValue();
 
   QStringList values = {"1000 %", "800 %", "400 %", "200 %", "150 %", "100 %", "66.7 %", "50 %", "25 %", "12.5 %"};
@@ -180,6 +191,27 @@ double ZoomLevelSelector::currentZoomValue()
   QString text = ui->comboBox->currentText();
   text.remove(" %");
   return text.toDouble() / 100.0;
+}
+
+QPixmap ZoomLevelSelector::darkerPixmap(const QPixmap & pixmap)
+{
+  QImage image = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
+  for (int row = 0; row < image.height(); ++row) {
+    QRgb * pixel = (QRgb *)image.scanLine(row);
+    const QRgb * limit = pixel + image.width();
+    while (pixel != limit) {
+      QColor color;
+      if (qAlpha(*pixel) != 0) {
+        color.setRed((int)(0.4 * qRed(*pixel)));
+        color.setGreen((int)(0.4 * qGreen(*pixel)));
+        color.setBlue((int)(0.4 * qBlue(*pixel)));
+      } else {
+        color.setRgb(0, 0, 0, 0);
+      }
+      *pixel++ = color.rgba();
+    }
+  }
+  return QPixmap::fromImage(image);
 }
 
 ZoomLevelValidator::ZoomLevelValidator(QObject * parent) : QValidator(parent)

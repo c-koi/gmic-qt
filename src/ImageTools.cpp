@@ -303,3 +303,26 @@ template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
 
 template bool hasAlphaChannel(const cimg_library::CImg<float> &);
 template bool hasAlphaChannel(const cimg_library::CImg<unsigned char> &);
+
+QPixmap darkerPixmap(const QPixmap & pixmap)
+{
+  static int i = 0;
+  QImage image = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
+  image.save(QString("/tmp/icon%1.png").arg(i++));
+  for (int row = 0; row < image.height(); ++row) {
+    QRgb * pixel = (QRgb *)image.scanLine(row);
+    const QRgb * limit = pixel + image.width();
+    while (pixel != limit) {
+      QColor color;
+      if (qAlpha(*pixel) != 0) {
+        color.setRed((int)(0.4 * qRed(*pixel)));
+        color.setGreen((int)(0.4 * qGreen(*pixel)));
+        color.setBlue((int)(0.4 * qBlue(*pixel)));
+      } else {
+        color.setRgb(0, 0, 0, 0);
+      }
+      *pixel++ = color.rgba();
+    }
+  }
+  return QPixmap::fromImage(image);
+}

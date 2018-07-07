@@ -64,6 +64,8 @@ private:
   double currentZoomValue();
   QString _currentText;
   ZoomConstraint _zoomConstraint;
+
+  static QPixmap darkerPixmap(const QPixmap & pixmap);
 };
 
 class ZoomLevelValidator : public QValidator {
