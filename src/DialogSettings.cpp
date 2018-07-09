@@ -28,6 +28,7 @@
 #include <limits>
 #include "Common.h"
 #include "Globals.h"
+#include "IconLoader.h"
 #include "Logger.h"
 #include "Updater.h"
 #include "ui_dialogsettings.h"

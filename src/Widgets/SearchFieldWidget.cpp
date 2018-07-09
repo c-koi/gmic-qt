@@ -33,6 +33,7 @@
 #include <QToolButton>
 #include "Common.h"
 #include "DialogSettings.h"
+#include "IconLoader.h"
 #include "ui_SearchFieldWidget.h"
 
 SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new Ui::SearchFieldWidget)

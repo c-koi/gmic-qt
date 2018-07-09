@@ -69,7 +69,6 @@ private:
   QString _currentText;
   ZoomConstraint _zoomConstraint;
   const PreviewWidget * _previewWidget;
-  static QPixmap darkerPixmap(const QPixmap & pixmap);
 };
 
 class ZoomLevelValidator : public QValidator {

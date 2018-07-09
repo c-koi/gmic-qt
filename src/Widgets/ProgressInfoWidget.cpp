@@ -27,6 +27,7 @@
 #include <QFile>
 #include "DialogSettings.h"
 #include "GmicProcessor.h"
+#include "IconLoader.h"
 #include "ui_progressinfowidget.h"
 
 #ifdef _IS_WINDOWS_

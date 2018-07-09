@@ -50,10 +50,6 @@
 
 template <typename T> inline void unused(const T &, ...) {}
 
-//#define LOAD_ICON( NAME ) ( GmicQt::DarkThemeEnabled ? QIcon(":/icons/dark/" NAME ".png") : QIcon::fromTheme( NAME , QIcon(":/icons/" NAME ".png") ) )
-#define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
-#define LOAD_PIXMAP(NAME) (DialogSettings::darkThemeEnabled() ? QPixmap(":/icons/dark/" NAME ".png") : QPixmap(":/icons/" NAME ".png"))
-
 #ifdef _TIMING_ENABLED_
 #define TIMING TimeLogger::getInstance()->step(__PRETTY_FUNCTION__, __LINE__, __FILE__);
 #else

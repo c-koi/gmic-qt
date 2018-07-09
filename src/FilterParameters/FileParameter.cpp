@@ -35,6 +35,7 @@
 #include "Common.h"
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
+#include "IconLoader.h"
 
 FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0), _dialogMode(InputOutputMode) {}
 

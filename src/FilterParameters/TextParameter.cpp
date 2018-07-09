@@ -35,6 +35,7 @@
 #include "DialogSettings.h"
 #include "FilterParameters/MultilineTextParameterWidget.h"
 #include "HtmlTranslator.h"
+#include "IconLoader.h"
 
 TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _lineEdit(0), _textEdit(0), _multiline(false), _connected(false)
 {

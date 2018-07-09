@@ -29,6 +29,7 @@
 #include "Common.h"
 #include "DialogSettings.h"
 #include "Globals.h"
+#include "IconLoader.h"
 #include "PreviewWidget.h"
 #include "ui_zoomlevelselector.h"
 
@@ -51,21 +52,9 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new
   ui->tbZoomOut->setToolTip(tr("Zoom out"));
   ui->tbZoomReset->setToolTip(tr("Reset zoom"));
 
-  QPixmap pixZoomIn = LOAD_PIXMAP("zoom-in");
-  QPixmap pixZoomOut = LOAD_PIXMAP("zoom-out");
-  QPixmap pixZoomReset = LOAD_PIXMAP("view-refresh");
-  QIcon iconZoomIn(pixZoomIn);
-  QIcon iconZoomOut(pixZoomOut);
-  QIcon iconZoomReset(pixZoomReset);
-  if (DialogSettings::darkThemeEnabled()) {
-    iconZoomIn.addPixmap(darkerPixmap(pixZoomIn), QIcon::Disabled, QIcon::Off);
-    iconZoomOut.addPixmap(darkerPixmap(pixZoomOut), QIcon::Disabled, QIcon::Off);
-    iconZoomReset.addPixmap(darkerPixmap(pixZoomReset), QIcon::Disabled, QIcon::Off);
-    ui->comboBox->setStyleSheet("QComboBox::disabled { background: rgb(40,40,40); } ");
-  }
-  ui->tbZoomIn->setIcon(iconZoomIn);
-  ui->tbZoomOut->setIcon(iconZoomOut);
-  ui->tbZoomReset->setIcon(iconZoomReset);
+  ui->tbZoomIn->setIcon(LOAD_ICON("zoom-in"));
+  ui->tbZoomOut->setIcon(LOAD_ICON("zoom-out"));
+  ui->tbZoomReset->setIcon(LOAD_ICON("view-refresh"));
 
   connect(ui->comboBox->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onComboBoxEditingFinished()));
   connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged(int)));
@@ -206,25 +195,6 @@ double ZoomLevelSelector::currentZoomValue()
   QString text = ui->comboBox->currentText();
   text.remove(" %");
   return text.toDouble() / 100.0;
-}
-
-QPixmap ZoomLevelSelector::darkerPixmap(const QPixmap & pixmap)
-{
-  QImage image = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
-  for (int row = 0; row < image.height(); ++row) {
-    QRgb * pixel = (QRgb *)image.scanLine(row);
-    const QRgb * limit = pixel + image.width();
-    while (pixel != limit) {
-      QRgb grayed;
-      if (qAlpha(*pixel) != 0) {
-        grayed = qRgba((int)(0.4 * qRed(*pixel)), (int)(0.4 * qGreen(*pixel)), (int)(0.4 * qBlue(*pixel)), (int)(0.4 * qAlpha((*pixel))));
-      } else {
-        grayed = qRgba(0, 0, 0, 0);
-      }
-      *pixel++ = grayed;
-    }
-  }
-  return QPixmap::fromImage(image);
 }
 
 ZoomLevelValidator::ZoomLevelValidator(QObject * parent) : QValidator(parent)

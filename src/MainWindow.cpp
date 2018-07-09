@@ -44,6 +44,7 @@
 #include "FilterSelector/FiltersVisibilityMap.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
+#include "IconLoader.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
 #include "ParametersCache.h"
@@ -182,7 +183,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setIcons()
 {
-  ui->tbRenameFave->setIcon(QIcon(":/resources/rename.png"));
+  ui->tbRenameFave->setIcon(LOAD_ICON("rename"));
   ui->pbSettings->setIcon(LOAD_ICON("package_settings"));
   ui->pbFullscreen->setIcon(LOAD_ICON("view-fullscreen"));
   ui->tbUpdateFilters->setIcon(LOAD_ICON("view-refresh"));
@@ -245,6 +246,7 @@ void MainWindow::setDarkTheme()
                       "QGroupBox { border: 1px solid #808080; margin-top: 4ex; } "
                       "QFileDialog QAbstractItemView { background: #505050; } "
                       "QComboBox:editable { background: #505050; } "
+                      "QComboBox::disabled { background: rgb(40,40,40); } "
                       "QProgressBar { background: #505050; }";
   qApp->setStyleSheet(css);
   ui->inOutSelector->setDarkTheme();
