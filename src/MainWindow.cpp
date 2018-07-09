@@ -111,6 +111,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->inOutSelector->disable();
   ui->splitter->setChildrenCollapsible(false);
 
+  ui->zoomLevelSelector->setPreviewWidget(ui->previewWidget);
+
   QAction * searchAction = new QAction(this);
   searchAction->setShortcut(QKeySequence::Find);
   searchAction->setShortcutContext(Qt::ApplicationShortcut);
@@ -157,7 +159,6 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   LayersExtentProxy::clear();
   QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtent);
-
   _lastPreviewKeypointBurstUpdateTime = 0;
 
   TIMING;
@@ -366,16 +367,6 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   // after the very first resize event).
 }
 
-void MainWindow::onZoomIn()
-{
-  ui->previewWidget->zoomIn();
-}
-
-void MainWindow::onZoomOut()
-{
-  ui->previewWidget->zoomOut();
-}
-
 void MainWindow::showZoomWarningIfNeeded()
 {
   const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
@@ -485,8 +476,8 @@ void MainWindow::makeConnections()
   connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
   connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(unsigned int, unsigned long)), this, SLOT(onPreviewKeypointsEvent(unsigned int, unsigned long)));
 
-  connect(ui->zoomLevelSelector, SIGNAL(zoomIn()), this, SLOT(onZoomIn()));
-  connect(ui->zoomLevelSelector, SIGNAL(zoomOut()), this, SLOT(onZoomOut()));
+  connect(ui->zoomLevelSelector, SIGNAL(zoomIn()), ui->previewWidget, SLOT(zoomIn()));
+  connect(ui->zoomLevelSelector, SIGNAL(zoomOut()), ui->previewWidget, SLOT(zoomOut()));
   connect(ui->zoomLevelSelector, SIGNAL(zoomReset()), this, SLOT(onPreviewZoomReset()));
 
   connect(ui->tbAddFave, SIGNAL(clicked(bool)), this, SLOT(onAddFave()));

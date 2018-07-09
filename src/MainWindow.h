@@ -91,8 +91,6 @@ public slots:
   void onToggleFullScreen(bool on);
   void onSettingsClicked();
   void onStartupFiltersUpdateFinished(int);
-  void onZoomIn();
-  void onZoomOut();
   void showZoomWarningIfNeeded();
   void updateZoomLabel(double);
   void onFiltersSelectionModeToggled(bool);

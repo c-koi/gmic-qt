@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = gimp }
+!defined(HOST,var) { HOST = none }
 
 !defined(GMIC_DYNAMIC_LINKING,var) { GMIC_DYNAMIC_LINKING = off }
 
@@ -257,6 +257,7 @@ HEADERS +=  \
   src/HeadlessProcessor.h \
   src/Host/host.h \
   src/HtmlTranslator.h \
+  src/IconLoader.h \
   src/ImageConverter.h \
   src/ImageTools.h \
   src/InputOutputState.h \
@@ -328,6 +329,7 @@ SOURCES += \
   src/GmicProcessor.cpp \
   src/HeadlessProcessor.cpp \
   src/HtmlTranslator.cpp \
+  src/IconLoader.cpp \
   src/ImageConverter.cpp \
   src/ImageTools.cpp \
   src/InputOutputState.cpp \
@@ -415,8 +417,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
-    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+#SEB    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+#SEB    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui

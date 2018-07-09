@@ -29,11 +29,14 @@
 #include "Common.h"
 #include "DialogSettings.h"
 #include "Globals.h"
+#include "PreviewWidget.h"
 #include "ui_zoomlevelselector.h"
 
 ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new Ui::ZoomLevelSelector)
 {
   ui->setupUi(this);
+  _previewWidget = nullptr;
+
   ui->comboBox->setEditable(true);
 
   ui->comboBox->setInsertPolicy(QComboBox::NoInsert);
@@ -111,6 +114,11 @@ void ZoomLevelSelector::setZoomConstraint(ZoomConstraint constraint)
   _notificationsEnabled = true;
 }
 
+void ZoomLevelSelector::setPreviewWidget(const PreviewWidget * widget)
+{
+  _previewWidget = widget;
+}
+
 void ZoomLevelSelector::display(const double zoom)
 {
   bool decimals = static_cast<int>(zoom * 10000) % 100;
@@ -136,7 +144,7 @@ void ZoomLevelSelector::display(const double zoom)
     }
   }
 
-  ui->tbZoomOut->setEnabled(((_zoomConstraint == ZoomConstraint::OneOrMore) && (zoom > 1.0)) || (_zoomConstraint == ZoomConstraint::Any));
+  ui->tbZoomOut->setEnabled((!_previewWidget || !_previewWidget->isAtFullZoom()) && (((_zoomConstraint == ZoomConstraint::OneOrMore) && (zoom > 1.0)) || (_zoomConstraint == ZoomConstraint::Any)));
 
   if (_zoomConstraint == ZoomConstraint::Any || _zoomConstraint == ZoomConstraint::OneOrMore) {
     ui->tbZoomIn->setEnabled(zoom != PREVIEW_MAX_ZOOM_FACTOR);
@@ -207,15 +215,13 @@ QPixmap ZoomLevelSelector::darkerPixmap(const QPixmap & pixmap)
     QRgb * pixel = (QRgb *)image.scanLine(row);
     const QRgb * limit = pixel + image.width();
     while (pixel != limit) {
-      QColor color;
+      QRgb grayed;
       if (qAlpha(*pixel) != 0) {
-        color.setRed((int)(0.4 * qRed(*pixel)));
-        color.setGreen((int)(0.4 * qGreen(*pixel)));
-        color.setBlue((int)(0.4 * qBlue(*pixel)));
+        grayed = qRgba((int)(0.4 * qRed(*pixel)), (int)(0.4 * qGreen(*pixel)), (int)(0.4 * qBlue(*pixel)), (int)(0.4 * qAlpha((*pixel))));
       } else {
-        color.setRgb(0, 0, 0, 0);
+        grayed = qRgba(0, 0, 0, 0);
       }
-      *pixel++ = color.rgba();
+      *pixel++ = grayed;
     }
   }
   return QPixmap::fromImage(image);

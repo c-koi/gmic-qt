@@ -35,6 +35,8 @@ namespace Ui
 class ZoomLevelSelector;
 }
 
+class PreviewWidget;
+
 class ZoomLevelSelector : public QWidget {
   Q_OBJECT
 
@@ -43,6 +45,8 @@ public:
   ~ZoomLevelSelector();
 
   void setZoomConstraint(ZoomConstraint constraint);
+
+  void setPreviewWidget(const PreviewWidget *);
 
 public slots:
   void display(const double zoom);
@@ -64,7 +68,7 @@ private:
   double currentZoomValue();
   QString _currentText;
   ZoomConstraint _zoomConstraint;
-
+  const PreviewWidget * _previewWidget;
   static QPixmap darkerPixmap(const QPixmap & pixmap);
 };
 
