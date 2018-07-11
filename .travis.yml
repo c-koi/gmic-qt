@@ -50,7 +50,7 @@ before_install:
 
 install:
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
-       sudo apt-get install gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0-dev qt5-default qt5-qmake qtbase5-dev qttools5-dev;
+       sudo apt-get install --allow-unauthenticated gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0-dev qt5-default qt5-qmake qtbase5-dev qttools5-dev;
     fi;
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
        brew install fftw curl qt55;
