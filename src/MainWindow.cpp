@@ -186,7 +186,7 @@ void MainWindow::setIcons()
   ui->tbRenameFave->setIcon(LOAD_ICON("rename"));
   ui->pbSettings->setIcon(LOAD_ICON("package_settings"));
   ui->pbFullscreen->setIcon(LOAD_ICON("view-fullscreen"));
-  ui->tbUpdateFilters->setIcon(LOAD_ICON("view-refresh"));
+  ui->tbUpdateFilters->setIcon(LOAD_ICON_NO_DARKENED("view-refresh"));
   ui->pbApply->setIcon(LOAD_ICON("system-run"));
   ui->pbOk->setIcon(LOAD_ICON("insert-image"));
   ui->tbResetParameters->setIcon(LOAD_ICON("view-refresh"));

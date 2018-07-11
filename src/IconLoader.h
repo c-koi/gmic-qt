@@ -31,6 +31,7 @@
 class QString;
 
 #define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? IconLoader::getForDarkTheme(NAME) : QIcon(":/icons/" NAME ".png"))
+#define LOAD_ICON_NO_DARKENED(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
 
 class IconLoader {
 public:
