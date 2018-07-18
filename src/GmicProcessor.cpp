@@ -256,6 +256,9 @@ void GmicProcessor::onApplyThreadFinished()
     _filterThread = nullptr;
     emit fullImageProcessingFailed(message);
   } else {
+    if (GmicQt::HostApplicationName.isEmpty()) {
+      emit aboutToSendImagesToHost();
+    }
     _filterThread->swapImages(*_gmicImages);
     if (_filterContext.outputMessageMode == GmicQt::VerboseLayerName) {
       QString label = QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand());

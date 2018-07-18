@@ -503,6 +503,7 @@ void MainWindow::makeConnections()
   connect(&_processor, SIGNAL(previewCommandFailed(QString)), this, SLOT(onPreviewError(QString)));
   connect(&_processor, SIGNAL(fullImageProcessingFailed(QString)), this, SLOT(onFullImageProcessingError(QString)));
   connect(&_processor, SIGNAL(fullImageProcessingDone()), this, SLOT(onFullImageProcessingDone()));
+  connect(&_processor, SIGNAL(aboutToSendImagesToHost()), ui->progressInfoWidget, SLOT(stopAnimationAndHide()));
 }
 
 void MainWindow::onPreviewUpdateRequested()

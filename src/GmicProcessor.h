@@ -110,6 +110,7 @@ signals:
   void previewImageAvailable();
   void fullImageProcessingDone(); // TODO : Use for exemple to close the window
   void noMoreUnfinishedJobs();
+  void aboutToSendImagesToHost();
 
 private slots:
   void onPreviewThreadFinished();
