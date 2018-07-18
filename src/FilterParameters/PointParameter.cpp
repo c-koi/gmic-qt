@@ -197,6 +197,7 @@ void PointParameter::setValue(const QString & value)
 
 void PointParameter::reset()
 {
+  _position = _defaultPosition;
   enableNotifications(false);
   if (_spinBoxX) {
     _spinBoxX->setValue(_defaultPosition.rx());
