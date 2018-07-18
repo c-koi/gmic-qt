@@ -23,6 +23,7 @@
  *
  */
 #include "Host/None/ImageDialog.h"
+#include <QDebug>
 #include "gmic.h"
 
 ImageView::ImageView(QWidget * parent) : QWidget(parent) {}
@@ -86,7 +87,14 @@ int ImageDialog::currentImageIndex() const
 
 void ImageDialog::onSaveAs()
 {
-  QString filename = QFileDialog::getSaveFileName(this, "Save image as...", QString(), "PNG file (*.png);;JPEG file (*.jpg)");
+  QString selectedFilter;
+  QString filename = QFileDialog::getSaveFileName(this, "Save image as...", QString(), "PNG file (*.png);;JPEG file (*.jpg)", &selectedFilter);
+  QString extension = selectedFilter.split("*").back();
+  extension.chop(1);
+  const QString upper = filename.toUpper();
+  if (!upper.endsWith(".PNG") && !upper.endsWith(".JPG") && !upper.endsWith(".JPEG")) {
+    filename += extension;
+  }
   if (!filename.isEmpty()) {
     ImageView * view = dynamic_cast<ImageView *>(_tabWidget->currentWidget());
     if (view) {
