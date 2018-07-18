@@ -112,7 +112,7 @@ void ImageView::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   QImage displayed;
-  if (_image.width() / _image.height() > width() / height()) {
+  if ((_image.width() / (float)_image.height()) > (width() / (float)height())) {
     displayed = _image.scaledToWidth(width());
     p.drawImage(0, (height() - displayed.height()) / 2, displayed);
   } else {
