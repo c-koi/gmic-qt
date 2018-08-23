@@ -173,8 +173,11 @@ void DialogSettings::loadSettings()
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
   _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
-  AddIcon = LOAD_ICON("list-add");
-  RemoveIcon = LOAD_ICON("list-remove");
+  // Do not try to create pixmaps if not a GUI application (headlesss mode)
+  if (typeid(*qApp) != typeid(QCoreApplication)) {
+    AddIcon = LOAD_ICON("list-add");
+    RemoveIcon = LOAD_ICON("list-remove");
+  }
 }
 
 bool DialogSettings::previewZoomAlwaysEnabled()
