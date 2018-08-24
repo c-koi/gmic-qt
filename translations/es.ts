@@ -543,8 +543,8 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="87"/>
-        <source>Update filters</source>
-        <translation>Actualizar filtros</translation>
+        <source>Update filters (Ctrl+R / F5)</source>
+        <translation>Actualizar filtros (Ctrl+R / F5)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="89"/>

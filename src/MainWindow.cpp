@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
   ui->tbResetParameters->setVisible(false);
 
-  ui->tbUpdateFilters->setToolTip(tr("Update filters"));
+  ui->tbUpdateFilters->setToolTip(tr("Update filters (Ctrl+R / F5)"));
 
   ui->tbRenameFave->setToolTip(tr("Rename fave"));
   ui->tbRenameFave->setEnabled(false);
@@ -131,6 +131,13 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   searchAction->setShortcutContext(Qt::ApplicationShortcut);
   connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
   addAction(searchAction);
+
+  ui->tbUpdateFilters->setShortcut(QKeySequence("Ctrl+R"));
+  QAction * updateFiltersAction = new QAction(this);
+  updateFiltersAction->setShortcut(QKeySequence("F5"));
+  updateFiltersAction->setShortcutContext(Qt::ApplicationShortcut);
+  connect(updateFiltersAction, SIGNAL(triggered(bool)), ui->tbUpdateFilters, SLOT(click()));
+  addAction(updateFiltersAction);
 
   ui->splitter->setHandleWidth(6);
   ui->verticalSplitter->setHandleWidth(6);
