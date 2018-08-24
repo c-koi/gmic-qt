@@ -45,7 +45,6 @@ inline unsigned char float2uchar_bounded(const float & in)
 
 void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
 {
-  ENTERING;
   Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
 
   out = QImage(in.width(), in.height(), QImage::Format_RGB888);

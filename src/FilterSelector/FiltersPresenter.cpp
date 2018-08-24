@@ -330,10 +330,7 @@ void FiltersPresenter::setCurrentFilter(QString hash)
     if (_filtersModel.contains(originalHash)) {
       const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(originalHash);
       _currentFilter.command = fave.command();
-      _currentFilter.defaultParameterValues = ParametersCache::getValues(hash);
-      if (_currentFilter.defaultParameterValues.isEmpty()) {
-        _currentFilter.defaultParameterValues = fave.defaultValues();
-      }
+      _currentFilter.defaultParameterValues = fave.defaultValues();
       _currentFilter.hash = hash;
       _currentFilter.isAFave = true;
       _currentFilter.name = fave.name();
