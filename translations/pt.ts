@@ -387,42 +387,42 @@
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
-        <source>1st ouput (default)</source>
+        <source>1st output (default)</source>
         <translation>1a saída (padrão)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
-        <source>2nd ouput</source>
+        <source>2nd output</source>
         <translation>2a saída</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
-        <source>3rd ouput</source>
+        <source>3rd output</source>
         <translation>3a saída</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
-        <source>4th ouput</source>
+        <source>4th output</source>
         <translation>4a saída</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
-        <source>1st -&gt; 2nd ouput</source>
+        <source>1st -&gt; 2nd output</source>
         <translation>1a -&gt; 2a saídas</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
-        <source>1st -&gt; 3rd ouput</source>
+        <source>1st -&gt; 3rd output</source>
         <translation>1a -&gt; 3a saída</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
-        <source>1st -&gt; 4th ouput</source>
+        <source>1st -&gt; 4th output</source>
         <translation>1a -&gt; 4a saída</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
-        <source>All ouputs</source>
+        <source>All outputs</source>
         <translation>Todas as saídas</translation>
     </message>
 </context>

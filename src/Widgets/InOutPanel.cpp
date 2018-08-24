@@ -61,14 +61,14 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   ui->outputMode->addItem(tr("New image"), GmicQt::NewImage);
 
   ui->previewMode->setToolTip(tr("Preview mode"));
-  ui->previewMode->addItem(tr("1st ouput (default)"), GmicQt::FirstOutput);
-  ui->previewMode->addItem(tr("2nd ouput"), GmicQt::SecondOutput);
-  ui->previewMode->addItem(tr("3rd ouput"), GmicQt::ThirdOutput);
-  ui->previewMode->addItem(tr("4th ouput"), GmicQt::FourthOutput);
-  ui->previewMode->addItem(tr("1st -> 2nd ouput"), GmicQt::First2SecondOutput);
-  ui->previewMode->addItem(tr("1st -> 3rd ouput"), GmicQt::First2ThirdOutput);
-  ui->previewMode->addItem(tr("1st -> 4th ouput"), GmicQt::First2FourthOutput);
-  ui->previewMode->addItem(tr("All ouputs"), GmicQt::AllOutputs);
+  ui->previewMode->addItem(tr("1st output (default)"), GmicQt::FirstOutput);
+  ui->previewMode->addItem(tr("2nd output"), GmicQt::SecondOutput);
+  ui->previewMode->addItem(tr("3rd output"), GmicQt::ThirdOutput);
+  ui->previewMode->addItem(tr("4th output"), GmicQt::FourthOutput);
+  ui->previewMode->addItem(tr("1st -> 2nd output"), GmicQt::First2SecondOutput);
+  ui->previewMode->addItem(tr("1st -> 3rd output"), GmicQt::First2ThirdOutput);
+  ui->previewMode->addItem(tr("1st -> 4th output"), GmicQt::First2FourthOutput);
+  ui->previewMode->addItem(tr("All outputs"), GmicQt::AllOutputs);
 
   connect(ui->inputLayers, SIGNAL(currentIndexChanged(int)), this, SLOT(onInputModeSelected(int)));
   connect(ui->outputMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputModeSelected(int)));

@@ -390,42 +390,42 @@
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
-        <source>1st ouput (default)</source>
+        <source>1st output (default)</source>
         <translation>Erste Ausgabe (Standard)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
-        <source>2nd ouput</source>
+        <source>2nd output</source>
         <translation>Zweite Ausgabe</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
-        <source>3rd ouput</source>
+        <source>3rd output</source>
         <translation>Dritte Ausgabe</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
-        <source>4th ouput</source>
+        <source>4th output</source>
         <translation>Vierte Ausgabe</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
-        <source>1st -&gt; 2nd ouput</source>
+        <source>1st -&gt; 2nd output</source>
         <translation>Erste bis zweite Ausgabe</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
-        <source>1st -&gt; 3rd ouput</source>
+        <source>1st -&gt; 3rd output</source>
         <translation>Erste bis dritte Ausgabe</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
-        <source>1st -&gt; 4th ouput</source>
+        <source>1st -&gt; 4th output</source>
         <translation>Erste bis vierte Ausgabe</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
-        <source>All ouputs</source>
+        <source>All outputs</source>
         <translation>Alle Ausgaben</translation>
     </message>
 </context>

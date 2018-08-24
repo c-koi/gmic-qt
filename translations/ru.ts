@@ -387,42 +387,42 @@
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
-        <source>1st ouput (default)</source>
+        <source>1st output (default)</source>
         <translation>1й вывод (по умолчанию)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
-        <source>2nd ouput</source>
+        <source>2nd output</source>
         <translation>2й вывод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
-        <source>3rd ouput</source>
+        <source>3rd output</source>
         <translation>3й вывод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
-        <source>4th ouput</source>
+        <source>4th output</source>
         <translation>4й вывод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
-        <source>1st -&gt; 2nd ouput</source>
+        <source>1st -&gt; 2nd output</source>
         <translation>с 1 до 2 вывод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
-        <source>1st -&gt; 3rd ouput</source>
+        <source>1st -&gt; 3rd output</source>
         <translation>с 1 до 3 вывод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
-        <source>1st -&gt; 4th ouput</source>
+        <source>1st -&gt; 4th output</source>
         <translation>с 1 по 4 вывод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
-        <source>All ouputs</source>
+        <source>All outputs</source>
         <translation>Все выводы</translation>
     </message>
 </context>

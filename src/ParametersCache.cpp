@@ -115,7 +115,7 @@ void ParametersCache::save()
 
   QJsonObject documentObject;
 
-  // Add Input/Ouput states
+  // Add Input/Output states
 
   QHash<QString, GmicQt::InputOutputState>::iterator itState = _inOutPanelStates.begin();
   while (itState != _inOutPanelStates.end()) {
