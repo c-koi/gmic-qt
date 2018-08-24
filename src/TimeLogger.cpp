@@ -24,6 +24,7 @@
  */
 
 #include "TimeLogger.h"
+#include <QDebug>
 #include <QString>
 #include <cassert>
 #include "CImg.h"
@@ -42,6 +43,7 @@ TimeLogger::TimeLogger()
 
 TimeLogger::~TimeLogger()
 {
+  ENTERING;
   fclose(_file);
 }
 

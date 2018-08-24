@@ -51,12 +51,9 @@
 template <typename T> inline void unused(const T &, ...) {}
 
 #ifdef _TIMING_ENABLED_
-#define TIMING TimeLogger::getInstance()->step(__PRETTY_FUNCTION__, __LINE__, __FILE__);
+#define TIMING TimeLogger::getInstance()->step(__PRETTY_FUNCTION__, __LINE__, __FILE__)
 #else
 #define TIMING                                                                                                                                                                                         \
-  if (false)                                                                                                                                                                                           \
-  std::cout << ""
-#define TIMING_CLOSE                                                                                                                                                                                   \
   if (false)                                                                                                                                                                                           \
   std::cout << ""
 #endif

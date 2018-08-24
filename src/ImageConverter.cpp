@@ -35,12 +35,18 @@ inline bool archIsLittleEndian()
   const int x = 1;
   return (*reinterpret_cast<const unsigned char *>(&x));
 }
+
+inline unsigned char float2uchar_bounded(const float & in)
+{
+  return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : in);
 }
+
+} // namespace
 
 void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
 {
+  ENTERING;
   Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
-  ;
 
   out = QImage(in.width(), in.height(), QImage::Format_RGB888);
 
@@ -76,9 +82,9 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
       int n = in.width();
       unsigned char * dst = out.scanLine(y);
       while (n--) {
-        dst[0] = static_cast<unsigned char>(*srcR++);
-        dst[1] = static_cast<unsigned char>(*srcG++);
-        dst[2] = static_cast<unsigned char>(*srcB++);
+        dst[0] = float2uchar_bounded(*srcR++);
+        dst[1] = float2uchar_bounded(*srcG++);
+        dst[2] = float2uchar_bounded(*srcB++);
         dst += 3;
       }
     }
@@ -93,10 +99,10 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
         int n = in.width();
         unsigned char * dst = out.scanLine(y);
         while (n--) {
-          dst[0] = static_cast<unsigned char>(*srcB++);
-          dst[1] = static_cast<unsigned char>(*srcG++);
-          dst[2] = static_cast<unsigned char>(*srcR++);
-          dst[3] = static_cast<unsigned char>(*srcA++);
+          dst[0] = float2uchar_bounded(*srcB++);
+          dst[1] = float2uchar_bounded(*srcG++);
+          dst[2] = float2uchar_bounded(*srcR++);
+          dst[3] = float2uchar_bounded(*srcA++);
           dst += 4;
         }
       }
@@ -105,10 +111,10 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
         int n = in.width();
         unsigned char * dst = out.scanLine(y);
         while (n--) {
-          dst[0] = static_cast<unsigned char>(*srcA++);
-          dst[1] = static_cast<unsigned char>(*srcR++);
-          dst[2] = static_cast<unsigned char>(*srcG++);
-          dst[3] = static_cast<unsigned char>(*srcB++);
+          dst[0] = float2uchar_bounded(*srcA++);
+          dst[1] = float2uchar_bounded(*srcR++);
+          dst[2] = float2uchar_bounded(*srcG++);
+          dst[3] = float2uchar_bounded(*srcB++);
           dst += 4;
         }
       }
@@ -125,8 +131,8 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
         int n = in.width();
         unsigned char * dst = out.scanLine(y);
         while (n--) {
-          dst[2] = dst[1] = dst[0] = static_cast<unsigned char>(*src++);
-          dst[3] = static_cast<unsigned char>(*srcA++);
+          dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
+          dst[3] = float2uchar_bounded(*srcA++);
           dst += 4;
         }
       }
@@ -135,8 +141,8 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
         int n = in.width();
         unsigned char * dst = out.scanLine(y);
         while (n--) {
-          dst[1] = dst[2] = dst[3] = static_cast<unsigned char>(*src++);
-          dst[0] = static_cast<unsigned char>(*srcA++);
+          dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
+          dst[0] = float2uchar_bounded(*srcA++);
           dst += 4;
         }
       }
@@ -156,9 +162,9 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
       }
 #else
       while (n--) {
-        dst[0] = static_cast<unsigned char>(*src);
-        dst[1] = static_cast<unsigned char>(*src);
-        dst[2] = static_cast<unsigned char>(*src);
+        dst[0] = float2uchar_bounded(*src);
+        dst[1] = float2uchar_bounded(*src);
+        dst[2] = float2uchar_bounded(*src);
         ++src;
         dst += 3;
       }
