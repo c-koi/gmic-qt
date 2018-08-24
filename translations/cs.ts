@@ -387,42 +387,42 @@
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
-        <source>1st ouput (default)</source>
+        <source>1st output (default)</source>
         <translation>1. výstup (výchozí)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
-        <source>2nd ouput</source>
+        <source>2nd output</source>
         <translation>2. výstup</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
-        <source>3rd ouput</source>
+        <source>3rd output</source>
         <translation>3. výstup</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
-        <source>4th ouput</source>
+        <source>4th output</source>
         <translation>4. výstup</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
-        <source>1st -&gt; 2nd ouput</source>
+        <source>1st -&gt; 2nd output</source>
         <translation>1. -&gt; 2. výstup</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
-        <source>1st -&gt; 3rd ouput</source>
+        <source>1st -&gt; 3rd output</source>
         <translation>1. -&gt; 3. výstup</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
-        <source>1st -&gt; 4th ouput</source>
+        <source>1st -&gt; 4th output</source>
         <translation>1. -&gt; 4. výstup</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
-        <source>All ouputs</source>
+        <source>All outputs</source>
         <translation>Všechny výstupy</translation>
     </message>
 </context>
