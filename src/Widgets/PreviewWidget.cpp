@@ -381,7 +381,6 @@ void PreviewWidget::paintOriginalImage(QPainter & painter)
 
 void PreviewWidget::paintEvent(QPaintEvent * e)
 {
-  TIMING;
   QPainter painter(this);
   if (_paintOriginalImage) {
     paintOriginalImage(painter);

@@ -161,7 +161,6 @@ private:
   FiltersPresenter * _filtersPresenter;
   GmicProcessor _processor;
   ulong _lastPreviewKeypointBurstUpdateTime;
-  bool _keypointBurstEnabled;
 };
 
 #endif // _GMIC_QT_MAINWINDOW_H_

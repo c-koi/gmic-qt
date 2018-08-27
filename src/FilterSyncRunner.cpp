@@ -110,11 +110,6 @@ bool FilterSyncRunner::aborted() const
   return _gmicAbort;
 }
 
-int FilterSyncRunner::duration() const
-{
-  return _startTime.elapsed();
-}
-
 float FilterSyncRunner::progress() const
 {
   return _gmicProgress;
@@ -142,7 +137,6 @@ void FilterSyncRunner::abortGmic()
 
 void FilterSyncRunner::run()
 {
-  _startTime.start();
   _errorMessage.clear();
   _failed = false;
   QString fullCommandLine;

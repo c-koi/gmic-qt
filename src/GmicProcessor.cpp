@@ -35,6 +35,7 @@
 #include "CroppedImageListProxy.h"
 #include "FilterSyncRunner.h"
 #include "FilterThread.h"
+#include "Globals.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
 #include "ImageTools.h"
@@ -51,7 +52,7 @@ GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
   connect(&_waitingCursorTimer, SIGNAL(timeout()), this, SLOT(showWaitingCursor()));
   _previewRandomSeed = cimg_library::cimg::srand();
   _lastAppliedCommandInOutState = GmicQt::InputOutputState::Unspecified;
-  _lastSynchronousExecutionDurationMS = 0;
+  _filterExecutionTime.start();
 }
 
 void GmicProcessor::init()
@@ -93,11 +94,10 @@ void GmicProcessor::execute()
     runner.setImageNames(imageNames);
     runner.setLogSuffix("./preview/");
     _previewRandomSeed = cimg_library::cimg::srand();
-    QTime time;
-    time.start();
+    _filterExecutionTime.restart();
     runner.run();
     manageSynchonousRunner(runner);
-    _lastSynchronousExecutionDurationMS = time.elapsed();
+    recordPreviewFilterExecutionDurationMS(_filterExecutionTime.elapsed());
   } else if (_filterContext.requestType == FilterContext::PreviewProcessing) {
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
@@ -105,6 +105,7 @@ void GmicProcessor::execute()
     _filterThread->setLogSuffix("./preview/");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()), Qt::QueuedConnection);
     _previewRandomSeed = cimg_library::cimg::srand();
+    _filterExecutionTime.restart();
     _filterThread->start();
   } else if (_filterContext.requestType == FilterContext::FullImageProcessing) {
     _lastAppliedFilterName = _filterContext.filterName;
@@ -132,6 +133,11 @@ bool GmicProcessor::isProcessing() const
   return _filterThread;
 }
 
+bool GmicProcessor::isIdle() const
+{
+  return !_filterThread;
+}
+
 int GmicProcessor::duration() const
 {
   if (_filterThread) {
@@ -150,14 +156,40 @@ float GmicProcessor::progress() const
   }
 }
 
-int GmicProcessor::lastSynchronousExecutionDurationMS() const
+int GmicProcessor::lastPreviewFilterExecutionDurationMS() const
 {
-  return _lastSynchronousExecutionDurationMS;
+  if (_lastFilterPreviewExecutionDurations.empty()) {
+    return 0;
+  } else {
+    return _lastFilterPreviewExecutionDurations.back();
+  }
 }
 
-void GmicProcessor::resetLastSynchronousExecutionDurationMS()
+void GmicProcessor::resetLastPreviewFilterExecutionDurations()
 {
-  _lastSynchronousExecutionDurationMS = 0;
+  _lastFilterPreviewExecutionDurations.clear();
+}
+
+void GmicProcessor::recordPreviewFilterExecutionDurationMS(int duration)
+{
+  _lastFilterPreviewExecutionDurations.push_back(duration);
+  while (_lastFilterPreviewExecutionDurations.size() >= KEYPOINTS_INTERACTIVE_AVERAGING_COUNT) {
+    _lastFilterPreviewExecutionDurations.pop_front();
+  }
+}
+
+int GmicProcessor::averagePreviewFilterExecutionDuration() const
+{
+  if (_lastFilterPreviewExecutionDurations.empty()) {
+    return 0;
+  }
+  int count = 0;
+  float sum = 0;
+  for (int duration : _lastFilterPreviewExecutionDurations) {
+    sum += duration;
+    ++count;
+  }
+  return static_cast<int>(sum / count);
 }
 
 void GmicProcessor::setGmicStatusQuotedParameters(const QString & v)
@@ -235,6 +267,7 @@ void GmicProcessor::onPreviewThreadFinished()
   _filterThread = nullptr;
   hideWaitingCursor();
   emit previewImageAvailable();
+  recordPreviewFilterExecutionDurationMS(_filterExecutionTime.elapsed());
 }
 
 void GmicProcessor::onApplyThreadFinished()

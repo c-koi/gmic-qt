@@ -43,7 +43,6 @@ TimeLogger::TimeLogger()
 
 TimeLogger::~TimeLogger()
 {
-  ENTERING;
   fclose(_file);
 }
 

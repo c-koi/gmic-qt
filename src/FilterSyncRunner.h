@@ -56,7 +56,6 @@ public:
   QString errorMessage() const;
   bool failed() const;
   bool aborted() const;
-  int duration() const;
   float progress() const;
   QString name() const;
   QString fullCommand() const;
@@ -78,7 +77,6 @@ private:
   QString _name;
   QString _logSuffix;
   GmicQt::OutputMessageMode _messageMode;
-  QTime _startTime;
 };
 
 #endif // _GMIC_QT_FILTERSYNCRUNNER_H_

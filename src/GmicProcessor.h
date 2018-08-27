@@ -31,8 +31,10 @@
 #include <QSignalMapper>
 #include <QString>
 #include <QStringList>
+#include <QTime>
 #include <QTimer>
 #include <QVector>
+#include <deque>
 #include "InputOutputState.h"
 #include "PreviewMode.h"
 #include "gmic_qt.h"
@@ -85,6 +87,7 @@ public:
   bool isProcessingFullImage() const;
 
   bool isProcessing() const;
+  bool isIdle() const;
   bool hasUnfinishedAbortedThreads() const;
 
   const cimg_library::CImg<float> & previewImage() const;
@@ -96,8 +99,10 @@ public:
   int duration() const;
   float progress() const;
 
-  int lastSynchronousExecutionDurationMS() const;
-  void resetLastSynchronousExecutionDurationMS();
+  int lastPreviewFilterExecutionDurationMS() const;
+  void resetLastPreviewFilterExecutionDurations();
+  void recordPreviewFilterExecutionDurationMS(int duration);
+  int averagePreviewFilterExecutionDuration() const;
 
   void setGmicStatusQuotedParameters(const QString & v);
 
@@ -142,7 +147,8 @@ private:
   QString _gmicStatusQuotedParameters;
   QString _lastAppliedCommandEnv;
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
-  int _lastSynchronousExecutionDurationMS;
+  QTime _filterExecutionTime;
+  std::deque<int> _lastFilterPreviewExecutionDurations;
 };
 
 #endif // _GMIC_QT_GMICPROCESSOR_H_
