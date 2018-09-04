@@ -189,7 +189,7 @@ void FiltersPresenter::selectFilterFromHash(QString hash, bool notify)
     const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(hash);
     _filtersView->selectActualFilter(hash, filter.path());
   } else {
-    return;
+    hash.clear();
   }
   setCurrentFilter(hash);
   if (notify) {

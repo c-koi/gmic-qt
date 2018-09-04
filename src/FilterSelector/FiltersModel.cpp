@@ -40,6 +40,7 @@ FiltersModel::~FiltersModel() {}
 void FiltersModel::clear()
 {
   _filters.clear();
+  _hash2filterIndex.clear();
 }
 
 void FiltersModel::addFilter(const FiltersModel::Filter & filter)
