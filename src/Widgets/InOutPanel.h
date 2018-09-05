@@ -62,6 +62,7 @@ public:
   GmicQt::InputOutputState state() const;
   void setState(const GmicQt::InputOutputState & state, bool notify);
 
+  void setEnabled(bool);
   void disable();
   void enable();
 

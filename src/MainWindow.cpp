@@ -71,9 +71,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
-  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,      ui->filterParams,      ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
-                          ui->pbOk,          ui->pbApply,           ui->inOutSelector,    ui->tbResetParameters, ui->searchField,     ui->cbPreview,    ui->tbAddFave,
-                          ui->tbRemoveFave,  ui->tbRenameFave,      ui->tbExpandCollapse, ui->tbSelectionMode};
+  _filterUpdateWidgets = {ui->previewWidget,     ui->zoomLevelSelector, ui->filtersView, ui->filterParams, ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,       ui->pbOk,           ui->pbApply,
+                          ui->tbResetParameters, ui->searchField,       ui->cbPreview,   ui->tbAddFave,    ui->tbRemoveFave,    ui->tbRenameFave, ui->tbExpandCollapse, ui->tbSelectionMode};
 
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
@@ -616,10 +615,7 @@ void MainWindow::processImage()
   }
 
   ui->progressInfoWidget->startFilterThreadAnimationAndShow(true);
-  // Disable most of the GUI
-  for (QWidget * w : _filterUpdateWidgets) {
-    w->setEnabled(false);
-  }
+  enableWidgetList(false);
 
   GmicProcessor::FilterContext context;
   context.requestType = GmicProcessor::FilterContext::FullImageProcessing;
@@ -642,9 +638,7 @@ void MainWindow::onFullImageProcessingError(QString message)
 {
   ui->progressInfoWidget->stopAnimationAndHide();
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
-  for (QWidget * w : _filterUpdateWidgets) {
-    w->setEnabled(true);
-  }
+  enableWidgetList(true);
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
     close();
   }
@@ -675,9 +669,7 @@ void MainWindow::setZoomConstraint()
 void MainWindow::onFullImageProcessingDone()
 {
   ui->progressInfoWidget->stopAnimationAndHide();
-  for (QWidget * w : _filterUpdateWidgets) {
-    w->setEnabled(true);
-  }
+  enableWidgetList(true);
   ui->previewWidget->update();
   ui->filterParams->setValues(_processor.gmicStatus(), false);
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
@@ -753,9 +745,7 @@ void MainWindow::onProgressionWidgetCancelClicked()
       _pendingActionAfterCurrentProcessing = NoAction;
       _processor.cancel();
       ui->progressInfoWidget->stopAnimationAndHide();
-      for (QWidget * w : _filterUpdateWidgets) {
-        w->setEnabled(true);
-      }
+      enableWidgetList(true);
     }
   }
   if (ui->progressInfoWidget->mode() == ProgressInfoWidget::FiltersUpdateMode) {
@@ -1187,6 +1177,14 @@ bool MainWindow::confirmAbortProcessingOnCloseRequest()
 {
   int button = QMessageBox::question(this, tr("Confirmation"), tr("A gmic command is running.<br>Do you really want to close the plugin?"), QMessageBox::Yes, QMessageBox::No);
   return (button == QMessageBox::Yes);
+}
+
+void MainWindow::enableWidgetList(bool on)
+{
+  for (QWidget * w : _filterUpdateWidgets) {
+    w->setEnabled(on);
+  }
+  ui->inOutSelector->setEnabled(on);
 }
 
 void MainWindow::closeEvent(QCloseEvent * e)

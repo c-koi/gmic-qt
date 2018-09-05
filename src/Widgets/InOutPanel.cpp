@@ -191,16 +191,19 @@ void InOutPanel::setState(const GmicQt::InputOutputState & state, bool notify)
   }
 }
 
+void InOutPanel::setEnabled(bool on)
+{
+  ui->inputLayers->setEnabled(on);
+  ui->outputMode->setEnabled(on);
+  ui->previewMode->setEnabled(on);
+}
+
 void InOutPanel::disable()
 {
-  ui->inputLayers->setEnabled(false);
-  ui->outputMode->setEnabled(false);
-  ui->previewMode->setEnabled(false);
+  setEnabled(false);
 }
 
 void InOutPanel::enable()
 {
-  ui->inputLayers->setEnabled(true);
-  ui->outputMode->setEnabled(true);
-  ui->previewMode->setEnabled(true);
+  setEnabled(true);
 }

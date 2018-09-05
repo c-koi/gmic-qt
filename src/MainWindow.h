@@ -129,6 +129,7 @@ private:
   void showMessage(QString text, int ms = 2000);
   void setIcons();
   bool confirmAbortProcessingOnCloseRequest();
+  void enableWidgetList(bool on);
   enum ModelType
   {
     FullModel,
