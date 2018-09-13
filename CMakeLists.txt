@@ -236,6 +236,9 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+SET(CMAKE_INSTALL_RPATH "$ORIGIN/")
+
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     message("Debug build")
     add_definitions(-D_GMIC_QT_DEBUG_)
