@@ -427,26 +427,8 @@ qt5_wrap_ui(gmic_qt_SRCS
   ui/zoomlevelselector.ui
 )
 
-# qt5_create_translation(
-#     qmic_qt_QM
-#     ${CMAKE_SOURCE_DIR}/translations
-#     ${gmic_qt_SRCS}
-#     translations/cs.ts
-#     translations/de.ts
-#     translations/es.ts
-#     translations/fr.ts
-#     translations/id.ts
-#     translations/it.ts
-#     translations/nl.ts
-#     translations/pl.ts
-#     translations/pt.ts
-#     translations/ru.ts
-#     translations/ua.ts
-#     translations/ja.ts
-#     translations/zh.ts
-# )
+set(gmic_translation_files
 
-qt5_add_translation(gmic_qt_QM
     translations/cs.ts
     translations/de.ts
     translations/es.ts
@@ -460,6 +442,19 @@ qt5_add_translation(gmic_qt_QM
     translations/ua.ts
     translations/ja.ts
     translations/zh.ts
+)
+
+set_source_files_properties(${gmic_translation_files} PROPERTIES OUTPUT_LOCATION translations)
+
+# qt5_create_translation(
+#     qmic_qt_QM
+#     ${CMAKE_SOURCE_DIR}/translations
+#     ${gmic_qt_SRCS}
+#     ${gmic_translation_files}
+# )
+
+qt5_add_translation(gmic_qt_QM
+    ${gmic_translation_files}
   )
 
 install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
