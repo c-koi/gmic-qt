@@ -34,12 +34,12 @@
 #include "Common.h"
 #include "FilterSelector/FiltersModel.h"
 #include "Globals.h"
+#include "Logger.h"
+#include "Utils.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
-FiltersModelReader::FiltersModelReader(FiltersModel & model) : _model(model)
-{
-}
+FiltersModelReader::FiltersModelReader(FiltersModel & model) : _model(model) {}
 
 void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
 {
@@ -69,11 +69,19 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
   QRegExp filterRegexpNoLanguage("^..gui[ ][^:]+[ ]*:.*");
   QRegExp filterRegexpLanguage(QString("^..gui_%1[ ][^:]+[ ]*:.*").arg(language));
 
+  QRegExp hideCommandRegExp(QString("^..gui_%1[ ]+hide\\((.*)\\)").arg(language));
+
+  QVector<QString> hiddenPaths;
+
   const QChar WarningPrefix('!');
   do {
     line = buffer.trimmed();
     if (line.startsWith("#@gui")) {
-      if (folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line)) {
+      if (hideCommandRegExp.exactMatch(line)) {
+        QString path = hideCommandRegExp.cap(1);
+        hiddenPaths.push_back(path);
+        buffer = stdlib.readLine(4096);
+      } else if (folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line)) {
         //
         // A folder
         //
@@ -163,7 +171,6 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         filter.setWarningFlag(warning);
         filter.build();
         _model.addFilter(filter);
-
       } else {
         buffer = stdlib.readLine(4096);
       }
@@ -171,4 +178,14 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
       buffer = stdlib.readLine(4096);
     }
   } while (!buffer.isEmpty());
+
+  // Remove hidden filters from the model
+  for (const QString & path : hiddenPaths) {
+    const size_t count = _model.filterCount();
+    QList<QString> pathList = path.split("/", QString::SkipEmptyParts);
+    _model.removePath(pathList);
+    if (_model.filterCount() == count) {
+      Logger::log(QString("[%1]./warning/ While hidding filter, name or path not found: \"%2\"\n").arg(GmicQt::pluginCodeName()).arg(path));
+    }
+  }
 }

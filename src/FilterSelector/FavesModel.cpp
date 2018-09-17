@@ -256,17 +256,17 @@ FavesModel::const_iterator FavesModel::const_iterator::operator++(int)
   return current;
 }
 
-const FavesModel::Fave * FavesModel::const_iterator::operator->()
+const FavesModel::Fave * FavesModel::const_iterator::operator->() const
 {
   return &(_mapIterator.value());
 }
 
-bool FavesModel::const_iterator::operator!=(const FavesModel::const_iterator & other)
+bool FavesModel::const_iterator::operator!=(const FavesModel::const_iterator & other) const
 {
   return _mapIterator != other._mapIterator;
 }
 
-bool FavesModel::const_iterator::operator==(const FavesModel::const_iterator & other)
+bool FavesModel::const_iterator::operator==(const FavesModel::const_iterator & other) const
 {
   return _mapIterator == other._mapIterator;
 }

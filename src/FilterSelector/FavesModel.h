@@ -69,9 +69,9 @@ public:
     const Fave & operator*() const;
     const_iterator & operator++();
     const_iterator operator++(int);
-    const Fave * operator->();
-    bool operator!=(const FavesModel::const_iterator & other);
-    bool operator==(const FavesModel::const_iterator & other);
+    const Fave * operator->() const;
+    bool operator!=(const FavesModel::const_iterator & other) const;
+    bool operator==(const FavesModel::const_iterator & other) const;
 
   private:
     QMap<QString, Fave>::const_iterator _mapIterator;

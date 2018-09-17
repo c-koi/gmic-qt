@@ -39,34 +39,32 @@ FiltersModel::~FiltersModel() {}
 
 void FiltersModel::clear()
 {
-  _filters.clear();
-  _hash2filterIndex.clear();
+  _hash2filter.clear();
 }
 
 void FiltersModel::addFilter(const FiltersModel::Filter & filter)
 {
-  _filters.push_back(filter);
-  _hash2filterIndex[filter.hash()] = _filters.size() - 1;
+  _hash2filter[filter.hash()] = filter;
 }
 
 void FiltersModel::flush()
 {
   qDebug() << "Filters\n=======";
-  for (const Filter & filter : _filters) {
+  for (const Filter & filter : (*this)) {
     qDebug() << "[" << filter.path() << "]" << filter.name();
   }
 }
 
 size_t FiltersModel::filterCount() const
 {
-  return _filters.size();
+  return _hash2filter.size();
 }
 
 size_t FiltersModel::notTestingFilterCount() const
 {
-  std::vector<Filter>::const_iterator it = _filters.cbegin();
+  const_iterator it = cbegin();
   size_t result = 0;
-  while (it != _filters.cend()) {
+  while (it != cend()) {
     const QList<QString> & path = it->path();
     if (!path.startsWith("<b>Testing</b>")) {
       ++result;
@@ -76,30 +74,28 @@ size_t FiltersModel::notTestingFilterCount() const
   return result;
 }
 
-const FiltersModel::Filter & FiltersModel::getFilter(size_t index) const
+const FiltersModel::Filter & FiltersModel::getFilterFromHash(const QString & hash) const
 {
-  return _filters[index];
-}
-
-size_t FiltersModel::getFilterIndexFromHash(const QString & hash)
-{
-  QMap<QString, size_t>::iterator it = _hash2filterIndex.find(hash);
-  if (it == _hash2filterIndex.end()) {
-    return NoIndex;
-  }
-  return it.value();
-}
-
-const FiltersModel::Filter & FiltersModel::getFilterFromHash(const QString & hash)
-{
-  Q_ASSERT_X(_hash2filterIndex.contains(hash), "FiltersModel::getFilterFromHash()", "Hash not found");
-  size_t index = _hash2filterIndex.find(hash).value();
-  return _filters[index];
+  Q_ASSERT_X(_hash2filter.contains(hash), "FiltersModel::getFilterFromHash()", "Hash not found");
+  return _hash2filter.find(hash).value();
 }
 
 bool FiltersModel::contains(const QString & hash) const
 {
-  return (_hash2filterIndex.find(hash) != _hash2filterIndex.cend());
+  return (_hash2filter.find(hash) != _hash2filter.cend());
+}
+
+void FiltersModel::removePath(const QList<QString> & path)
+{
+  QList<QString> matchingHashes;
+  for (const Filter & filter : (*this)) {
+    if (filter.matchFullPath(path)) {
+      matchingHashes.push_back(filter.hash());
+    }
+  }
+  for (const QString & hash : matchingHashes) {
+    _hash2filter.remove(hash);
+  }
 }
 
 FiltersModel::Filter::Filter()
@@ -244,4 +240,53 @@ bool FiltersModel::Filter::matchKeywords(const QList<QString> & keywords) const
     ++itKeyword;
   }
   return true;
+}
+
+bool FiltersModel::Filter::matchFullPath(const QList<QString> & pathToMatch) const
+{
+  QList<QString>::const_iterator it = _plainPath.cbegin();
+  QList<QString>::const_iterator itToMatch = pathToMatch.cbegin();
+  while ((it != _plainPath.cend()) && (itToMatch != pathToMatch.cend()) && (*it == *itToMatch)) {
+    ++it;
+    ++itToMatch;
+  }
+  return (itToMatch == pathToMatch.cend()) || ((it == _plainPath.cend()) && (itToMatch != pathToMatch.cend()) && (_plainText == *itToMatch));
+}
+
+FiltersModel::const_iterator::const_iterator(const QMap<QString, Filter>::const_iterator & iterator)
+{
+  _mapIterator = iterator;
+}
+
+const FiltersModel::Filter & FiltersModel::const_iterator::operator*() const
+{
+  return _mapIterator.value();
+}
+
+FiltersModel::const_iterator & FiltersModel::const_iterator::operator++()
+{
+  ++_mapIterator;
+  return *this;
+}
+
+FiltersModel::const_iterator FiltersModel::const_iterator::operator++(int)
+{
+  FiltersModel::const_iterator current(*this);
+  ++(*this);
+  return current;
+}
+
+const FiltersModel::Filter * FiltersModel::const_iterator::operator->() const
+{
+  return &(_mapIterator.value());
+}
+
+bool FiltersModel::const_iterator::operator!=(const FiltersModel::const_iterator & other) const
+{
+  return _mapIterator != other._mapIterator;
+}
+
+bool FiltersModel::const_iterator::operator==(const FiltersModel::const_iterator & other) const
+{
+  return _mapIterator == other._mapIterator;
 }

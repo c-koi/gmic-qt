@@ -66,9 +66,7 @@ void FiltersPresenter::rebuildFilterViewWithSelection(QList<QString> keywords)
 {
   _filtersView->clear();
   _filtersView->disableModel();
-  size_t filterCount = _filtersModel.filterCount();
-  for (size_t filterIndex = 0; filterIndex < filterCount; ++filterIndex) {
-    FiltersModel::Filter filter = _filtersModel.getFilter(filterIndex);
+  for (const FiltersModel::Filter & filter : _filtersModel) {
     if (filter.matchKeywords(keywords)) {
       _filtersView->addFilter(filter.name(), filter.hash(), filter.path(), filter.isWarning());
     }
@@ -130,9 +128,8 @@ void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues, 
   FavesModel::Fave fave;
   fave.setDefaultValues(defaultValues);
 
-  size_t filterIndex = _filtersModel.getFilterIndexFromHash(_currentFilter.hash);
-  if (filterIndex != FiltersModel::NoIndex) {
-    const FiltersModel::Filter & filter = _filtersModel.getFilter(filterIndex);
+  if (_filtersModel.contains(_currentFilter.hash)) {
+    const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(_currentFilter.hash);
     fave.setName(_favesModel.uniqueName(filter.name(), QString()));
     fave.setCommand(filter.command());
     fave.setPreviewCommand(filter.previewCommand());

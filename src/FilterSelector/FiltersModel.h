@@ -57,6 +57,7 @@ public:
     bool isWarning() const;
 
     bool matchKeywords(const QList<QString> & keywords) const;
+    bool matchFullPath(const QList<QString> & path) const;
 
   private:
     QString _name;
@@ -81,15 +82,33 @@ public:
   void flush();
   size_t filterCount() const;
   size_t notTestingFilterCount() const;
-  const Filter & getFilter(size_t index) const;
-  size_t getFilterIndexFromHash(const QString & hash);
-  const Filter & getFilterFromHash(const QString & hash);
+  const Filter & getFilterFromHash(const QString & hash) const;
   bool contains(const QString & hash) const;
   static const size_t NoIndex;
 
+  void removePath(const QList<QString> & path);
+
+  class const_iterator {
+  public:
+    const_iterator(const QMap<QString, Filter>::const_iterator & iterator);
+    const Filter & operator*() const;
+    const_iterator & operator++();
+    const_iterator operator++(int);
+    const Filter * operator->() const;
+    bool operator!=(const FiltersModel::const_iterator & other) const;
+    bool operator==(const FiltersModel::const_iterator & other) const;
+
+  private:
+    QMap<QString, Filter>::const_iterator _mapIterator;
+  };
+
+  const_iterator begin() const { return _hash2filter.cbegin(); }
+  const_iterator end() const { return _hash2filter.cend(); }
+  const_iterator cbegin() const { return _hash2filter.cbegin(); }
+  const_iterator cend() const { return _hash2filter.cend(); }
+
 private:
-  std::vector<Filter> _filters;
-  QMap<QString, size_t> _hash2filterIndex;
+  QMap<QString, Filter> _hash2filter;
 };
 
 #endif // _GMIC_QT_FILTERSMODEL_H_
