@@ -112,6 +112,13 @@ int launchPluginHeadlessUsingLastParameters()
 
   DialogSettings::loadSettings();
   Logger::setMode(DialogSettings::outputMessageMode());
+  // Translate according to current locale or configured language
+  QString lang = LanguageSelectionWidget::configuredTranslator();
+  if (!lang.isEmpty() && (lang != "en")) {
+    QTranslator * translator = new QTranslator(&app);
+    translator->load(QString(":/translations/%1.qm").arg(lang));
+    app.installTranslator(translator);
+  }
 
   HeadlessProcessor processor;
   ProgressInfoWindow progressWindow(&processor);

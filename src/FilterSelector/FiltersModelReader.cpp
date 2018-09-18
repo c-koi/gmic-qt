@@ -36,6 +36,7 @@
 #include "Globals.h"
 #include "Logger.h"
 #include "Utils.h"
+#include "Widgets/LanguageSelectionWidget.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
@@ -47,29 +48,26 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
   stdlib.open(QBuffer::ReadOnly);
   QList<QString> filterPath;
 
-  QString language;
-  QList<QString> languages = QLocale().uiLanguages();
-  if (languages.size()) {
-    language = languages.front().split("-").front();
-  } else {
+  QString language = LanguageSelectionWidget::configuredTranslator();
+  if (language.isEmpty()) {
     language = "void";
-  }
-  if (!stdlibArray.contains(QString("#@gui_%1").arg(language).toLocal8Bit())) {
-    language = "en";
   }
 
   // Use _en locale if not localization for the language is found.
+  if (!stdlibArray.startsWith(QString("#@gui_%1").arg(language).toLocal8Bit()) && !stdlibArray.contains(QString("\n#@gui_%1").arg(language).toLocal8Bit())) {
+    language = "en";
+  }
 
   QString buffer = stdlib.readLine(4096);
   QString line;
 
-  QRegExp folderRegexpNoLanguage("^..gui[ ][^:]+$");
-  QRegExp folderRegexpLanguage(QString("^..gui_%1[ ][^:]+$").arg(language));
+  QRegExp folderRegexpNoLanguage("^#@gui[ ][^:]+$");
+  QRegExp folderRegexpLanguage(QString("^#@gui_%1[ ][^:]+$").arg(language));
 
-  QRegExp filterRegexpNoLanguage("^..gui[ ][^:]+[ ]*:.*");
-  QRegExp filterRegexpLanguage(QString("^..gui_%1[ ][^:]+[ ]*:.*").arg(language));
+  QRegExp filterRegexpNoLanguage("^#@gui[ ][^:]+[ ]*:.*");
+  QRegExp filterRegexpLanguage(QString("^#@gui_%1[ ][^:]+[ ]*:.*").arg(language));
 
-  QRegExp hideCommandRegExp(QString("^..gui_%1[ ]+hide\\((.*)\\)").arg(language));
+  QRegExp hideCommandRegExp(QString("^#@gui_%1[ ]+hide\\((.*)\\)").arg(language));
 
   QVector<QString> hiddenPaths;
 
@@ -86,7 +84,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         // A folder
         //
         QString folderName = line;
-        folderName.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "");
+        folderName.replace(QRegExp("^#@gui[_a-zA-Z]{0,3}[ ]"), "");
 
         while (folderName.startsWith("_") && filterPath.size()) {
           folderName.remove(0, 1);
@@ -105,7 +103,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         //
         QString filterName = line;
         filterName.replace(QRegExp("[ ]*:.*$"), "");
-        filterName.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]"), "");
+        filterName.replace(QRegExp("^#@gui[_a-zA-Z]{0,3}[ ]"), "");
 
         const bool warning = filterName.startsWith(WarningPrefix);
         if (warning) {
@@ -113,7 +111,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         }
 
         QString filterCommands = line;
-        filterCommands.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"), "");
+        filterCommands.replace(QRegExp("^#@gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"), "");
 
         QList<QString> commands = filterCommands.split(",");
 
@@ -154,7 +152,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
           buffer = stdlib.readLine(4096);
           if (buffer.startsWith(start)) {
             QString parameterLine = buffer;
-            parameterLine.replace(QRegExp("^..gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
+            parameterLine.replace(QRegExp("^#@gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
             parameters += parameterLine;
           }
         } while ((buffer.startsWith(start) || buffer.startsWith("#") || (buffer.trimmed().isEmpty() && !stdlib.atEnd())) && !folderRegexpNoLanguage.exactMatch(buffer) &&
