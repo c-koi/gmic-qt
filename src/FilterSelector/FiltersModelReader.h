@@ -24,9 +24,11 @@
  */
 #ifndef _GMIC_QT_FILTERSMODELREADER_H_
 #define _GMIC_QT_FILTERSMODELREADER_H_
+#include <QString>
 #include "FilterSelector/FiltersModel.h"
 
 class QByteArray;
+class QBuffer;
 
 class FiltersModelReader {
 public:
@@ -35,6 +37,7 @@ public:
 
 private:
   FiltersModel & _model;
+  static QString readBufferLine(QBuffer &);
 };
 
 #endif // _GMIC_QT_FILTERSMODELREADER_H_
