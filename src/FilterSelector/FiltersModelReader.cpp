@@ -42,6 +42,8 @@
 
 FiltersModelReader::FiltersModelReader(FiltersModel & model) : _model(model) {}
 
+#define MAXIMUM_LINE_LENGTH (4 * 1024 * 1024)
+
 void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
 {
   QBuffer stdlib(&stdlibArray);
@@ -58,7 +60,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
     language = "en";
   }
 
-  QString buffer = stdlib.readLine(4096);
+  QString buffer = stdlib.readLine(MAXIMUM_LINE_LENGTH);
   QString line;
 
   QRegExp folderRegexpNoLanguage("^#@gui[ ][^:]+$");
@@ -78,7 +80,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
       if (hideCommandRegExp.exactMatch(line)) {
         QString path = hideCommandRegExp.cap(1);
         hiddenPaths.push_back(path);
-        buffer = stdlib.readLine(4096);
+        buffer = stdlib.readLine(MAXIMUM_LINE_LENGTH);
       } else if (folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line)) {
         //
         // A folder
@@ -96,7 +98,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         if (!folderName.isEmpty()) {
           filterPath.push_back(folderName);
         }
-        buffer = stdlib.readLine(4096);
+        buffer = stdlib.readLine(MAXIMUM_LINE_LENGTH);
       } else if (filterRegexpNoLanguage.exactMatch(line) || filterRegexpLanguage.exactMatch(line)) {
         //
         // A filter
@@ -149,7 +151,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         // Read parameters
         QString parameters;
         do {
-          buffer = stdlib.readLine(4096);
+          buffer = stdlib.readLine(MAXIMUM_LINE_LENGTH);
           if (buffer.startsWith(start)) {
             QString parameterLine = buffer;
             parameterLine.replace(QRegExp("^#@gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
@@ -170,10 +172,10 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         filter.build();
         _model.addFilter(filter);
       } else {
-        buffer = stdlib.readLine(4096);
+        buffer = stdlib.readLine(MAXIMUM_LINE_LENGTH);
       }
     } else {
-      buffer = stdlib.readLine(4096);
+      buffer = stdlib.readLine(MAXIMUM_LINE_LENGTH);
     }
   } while (!buffer.isEmpty());
 

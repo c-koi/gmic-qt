@@ -143,7 +143,7 @@ AbstractParameter * AbstractParameter::createFromText(const char * text, int & l
 QStringList AbstractParameter::parseText(const QString & type, const char * text, int & length)
 {
   QStringList result;
-  QString str = text;
+  const QString str = text;
   result << str.left(str.indexOf("=")).trimmed();
 
   QRegExp re(QString("^[^=]*\\s*=\\s*(_?)%1\\s*(.)").arg(type), Qt::CaseInsensitive);
