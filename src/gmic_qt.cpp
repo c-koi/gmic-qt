@@ -44,9 +44,9 @@
 #include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
 #ifdef _IS_MACOS_
-#include <stdlib.h>
 #include <libgen.h>
 #include <mach-o/dyld.h>
+#include <stdlib.h>
 #endif
 
 namespace GmicQt
@@ -67,11 +67,12 @@ int launchPlugin()
   TIMING;
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
+
 #ifdef _IS_WINDOWS_
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
 
-  char* fullexname = NULL;
+  char * fullexname = nullptr;
 #ifdef _IS_MACOS_
   {
     char exname[2048] = {0};
@@ -79,28 +80,32 @@ int launchPlugin()
     uint32_t size = sizeof(exname);
     if (_NSGetExecutablePath(exname, &size) == 0) {
       printf("executable path is %s\n", exname);
-      fullexname = realpath(exname,NULL);
+      fullexname = realpath(exname, nullptr);
       printf("full executable name is %s\n", fullexname);
-      if( fullexname ) {
-        char* fullpath = dirname(fullexname);
+      if (fullexname) {
+        char * fullpath = dirname(fullexname);
         printf("full executable path is %s\n", fullpath);
-        if( fullpath ) {
+        if (fullpath) {
           char pluginpath[2048] = {0};
-          strncpy( pluginpath, fullpath, 2047);
-          strncat( pluginpath, "/GMIC/plugins/:", 2047);
-          char* envpath = getenv("QT_PLUGIN_PATH");
-          if( envpath ) strncat( pluginpath, envpath, 2047);
+          strncpy(pluginpath, fullpath, 2047);
+          strncat(pluginpath, "/GMIC/plugins/:", 2047);
+          char * envpath = getenv("QT_PLUGIN_PATH");
+          if (envpath) {
+            strncat(pluginpath, envpath, 2047);
+          }
           printf("plugins path is %s\n", pluginpath);
           setenv("QT_PLUGIN_PATH", pluginpath, 1);
         }
       }
-    } else
-      printf("buffer too small; need size %u\n", size);
-
+    } else {
+      fprintf(stderr, "buffer too small; need size %u\n", size);
+    }
     setenv("QT_DEBUG_PLUGINS", "1", 1);
   }
 #endif
-  if( !fullexname ) fullexname = dummy_app_name;
+  if (!fullexname) {
+    fullexname = dummy_app_name;
+  }
   char * dummy_argv[1] = {fullexname};
 
   QApplication app(dummy_argc, dummy_argv);
