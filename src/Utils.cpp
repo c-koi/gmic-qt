@@ -163,7 +163,7 @@ void downcaseCommandTitle(QString & title)
     title.replace(it.key(), it.value().length(), it.value());
     ++it;
   }
-  title.front() = title.front().toUpper();
+  title[0] = title[0].toUpper();
 }
 
 } // namespace GmicQt
