@@ -32,7 +32,9 @@
 #include "FiltersVisibilityMap.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
+#include "Logger.h"
 #include "ParametersCache.h"
+#include "Utils.h"
 #include "Widgets/InOutPanel.h"
 
 FiltersPresenter::FiltersPresenter(QObject * parent) : QObject(parent)
@@ -105,6 +107,53 @@ void FiltersPresenter::readFaves()
 {
   FavesModelReader favesModelReader(_favesModel);
   favesModelReader.loadFaves();
+}
+
+void FiltersPresenter::restoreFaveHashLinksRelease236()
+{
+  if (QSettings().value("Faves/RelinkedFrom236", false).toBool()) {
+    return;
+  }
+  unsigned int unknownFaveCount = 0;
+  FavesModel::const_iterator itFave = _favesModel.cbegin();
+  while (itFave != _favesModel.cend()) {
+    unknownFaveCount += !(_filtersModel.contains(itFave->originalHash()));
+    ++itFave;
+  }
+  if (!unknownFaveCount) {
+    return;
+  }
+  FavesModel formerFaveModel = _favesModel;
+  itFave = formerFaveModel.cbegin();
+  bool someFavesHaveBeenRelinked = false;
+  while (itFave != formerFaveModel.cend()) {
+    const FavesModel::Fave & fave = *itFave;
+    if (!_filtersModel.contains(fave.originalHash())) {
+      FiltersModel::const_iterator itFilter = _filtersModel.cbegin();
+      while ((itFilter != _filtersModel.cend()) && (itFilter->hash236() != fave.originalHash())) {
+        ++itFilter;
+      }
+      if (itFilter != _filtersModel.cend()) {
+        _favesModel.removeFave(fave.hash());
+        FavesModel::Fave newFave = fave;
+        newFave.setOriginalHash(itFilter->hash());
+        newFave.setOriginalName(itFilter->name());
+        _favesModel.addFave(newFave);
+        QString message = QString("\n[%1]./information/ Fave '%2' has been relinked to filter '%3'\n").arg(GmicQt::pluginCodeName()).arg(fave.name()).arg(itFilter->name());
+        Logger::log(message);
+        someFavesHaveBeenRelinked = true;
+      } else {
+        QString message = QString("\n[%1]./warning/ Could not associate Fave '%2' to an existing filter\n").arg(GmicQt::pluginCodeName()).arg(fave.name());
+        Logger::log(message);
+      }
+    }
+    ++itFave;
+  }
+
+  if (someFavesHaveBeenRelinked) {
+    saveFaves();
+    QSettings().setValue("Faves/RelinkedFrom236", true);
+  }
 }
 
 void FiltersPresenter::importGmicGTKFaves()

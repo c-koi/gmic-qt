@@ -49,6 +49,7 @@ public:
     QString plainText() const;
     const QList<QString> & path() const;
     QString hash() const;
+    QString hash236() const;
     QString command() const;
     QString previewCommand() const;
     QString parameters() const;

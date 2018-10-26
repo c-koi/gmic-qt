@@ -29,6 +29,7 @@
 #include "Common.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
+#include "Utils.h"
 #include "gmic_qt.h"
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
@@ -190,6 +191,17 @@ const QList<QString> & FiltersModel::Filter::path() const
 QString FiltersModel::Filter::hash() const
 {
   return _hash;
+}
+
+QString FiltersModel::Filter::hash236() const
+{
+  QCryptographicHash hash(QCryptographicHash::Md5);
+  QString lowerName(_name);
+  GmicQt::downcaseCommandTitle(lowerName);
+  hash.addData(lowerName.toLocal8Bit());
+  hash.addData(_command.toLocal8Bit());
+  hash.addData(_previewCommand.toLocal8Bit());
+  return hash.result().toHex();
 }
 
 QString FiltersModel::Filter::command() const

@@ -35,6 +35,7 @@ unsigned int host_app_pid();
 const QString & pluginFullName();
 const QString & pluginCodeName();
 const char * commandFromOutputMessageMode(OutputMessageMode mode);
+void downcaseCommandTitle(QString & title);
 } // namespace GmicQt
 
 #endif // _GMIC_QT_UTILS_H_

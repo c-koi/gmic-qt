@@ -63,6 +63,15 @@ public:
   void clear();
   void readFilters();
   void readFaves();
+  /**
+   * @brief restoreFaveHashLinksRelease236
+   * Starting with release 240 of gmic, filter name capitalization has been normalized.
+   * For exemple : "Add grain" became "Add Grain"
+   * As a consequence, links between faves and filters based on hashes (computed in part
+   * from the name) were broken.
+   * This method tries to restore the links in the case when 4 faves or more are broken.
+   */
+  void restoreFaveHashLinksRelease236();
   void importGmicGTKFaves();
   void saveFaves();
   void addSelectedFilterAsNewFave(QList<QString> defaultValues, GmicQt::InputOutputState inOutState);
