@@ -54,7 +54,7 @@ namespace GmicQt
 {
 const QString HostApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
 const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
-}
+} // namespace GmicQt
 
 namespace
 {
@@ -521,8 +521,10 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     } else {
       gimp_drawable_offsets(inputLayers[l], &xPos, &yPos);
     }
+    QString noParenthesisName(gimp_item_get_name(inputLayers[l]));
+    noParenthesisName.replace(QChar('('), QChar(21)).replace(QChar(')'), QChar(22));
 
-    QString name = QString("mode(%1),opacity(%2),pos(%3,%4),name(%5)").arg(blendingMode2String(blendMode)).arg(opacity).arg(xPos).arg(yPos).arg(gimp_item_get_name(inputLayers[l]));
+    QString name = QString("mode(%1),opacity(%2),pos(%3,%4),name(%5)").arg(blendingMode2String(blendMode)).arg(opacity).arg(xPos).arg(yPos).arg(noParenthesisName);
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[l]);
 #if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
