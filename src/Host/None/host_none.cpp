@@ -154,7 +154,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     QString noParenthesisName(gmic_qt_standalone::image_filename);
     noParenthesisName.replace(QChar('('), QChar(21)).replace(QChar(')'), QChar(22));
 
-    QString name = QString("pos(0,0),name(%1)").arg(noClosingParenthesisName);
+    QString name = QString("pos(0,0),name(%1)").arg(noParenthesisName);
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[0]);
 
