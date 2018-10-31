@@ -111,9 +111,6 @@ void FiltersPresenter::readFaves()
 
 void FiltersPresenter::restoreFaveHashLinksRelease236()
 {
-  if (QSettings().value("Faves/RelinkedFrom236", false).toBool()) {
-    return;
-  }
   unsigned int unknownFaveCount = 0;
   FavesModel::const_iterator itFave = _favesModel.cbegin();
   while (itFave != _favesModel.cend()) {
@@ -149,10 +146,8 @@ void FiltersPresenter::restoreFaveHashLinksRelease236()
     }
     ++itFave;
   }
-
   if (someFavesHaveBeenRelinked) {
     saveFaves();
-    QSettings().setValue("Faves/RelinkedFrom236", true);
   }
 }
 
