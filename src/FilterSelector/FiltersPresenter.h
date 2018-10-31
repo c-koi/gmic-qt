@@ -63,6 +63,8 @@ public:
   void clear();
   void readFilters();
   void readFaves();
+
+  bool allFavesAreValid() const;
   /**
    * @brief restoreFaveHashLinksRelease236
    * Starting with release 240 of gmic, filter name capitalization has been normalized.
@@ -71,7 +73,7 @@ public:
    * from the name) were broken.
    * This method tries to restore the links in the case when 4 faves or more are broken.
    */
-  void restoreFaveHashLinksRelease236();
+  void restoreFaveHashLinksAfterCaseChange();
   void importGmicGTKFaves();
   void saveFaves();
   void addSelectedFilterAsNewFave(QList<QString> defaultValues, GmicQt::InputOutputState inOutState);

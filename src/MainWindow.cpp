@@ -303,7 +303,7 @@ void MainWindow::buildFiltersTree()
   _filtersPresenter->clear();
   _filtersPresenter->readFilters();
   _filtersPresenter->readFaves();
-  _filtersPresenter->restoreFaveHashLinksRelease236(); // TODO : Remove, some day!
+  _filtersPresenter->restoreFaveHashLinksAfterCaseChange(); // TODO : Remove, some day!
   if (_gtkFavesShouldBeImported) {
     _filtersPresenter->importGmicGTKFaves();
     _filtersPresenter->saveFaves();

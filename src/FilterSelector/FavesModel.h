@@ -79,6 +79,8 @@ public:
 
   FavesModel();
   ~FavesModel();
+  inline const_iterator begin() const;
+  inline const_iterator end() const;
   inline const_iterator cbegin() const;
   inline const_iterator cend() const;
   void clear();
@@ -106,6 +108,15 @@ FavesModel::const_iterator FavesModel::cbegin() const
 }
 
 FavesModel::const_iterator FavesModel::cend() const
+{
+  return FavesModel::const_iterator(_faves.end());
+}
+FavesModel::const_iterator FavesModel::begin() const
+{
+  return FavesModel::const_iterator(_faves.cbegin());
+}
+
+FavesModel::const_iterator FavesModel::end() const
 {
   return FavesModel::const_iterator(_faves.end());
 }

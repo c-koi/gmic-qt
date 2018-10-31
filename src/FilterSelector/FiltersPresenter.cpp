@@ -109,22 +109,26 @@ void FiltersPresenter::readFaves()
   favesModelReader.loadFaves();
 }
 
-void FiltersPresenter::restoreFaveHashLinksRelease236()
+bool FiltersPresenter::allFavesAreValid() const
 {
-  unsigned int unknownFaveCount = 0;
-  FavesModel::const_iterator itFave = _favesModel.cbegin();
-  while (itFave != _favesModel.cend()) {
-    unknownFaveCount += !(_filtersModel.contains(itFave->originalHash()));
-    ++itFave;
+  for (const FavesModel::Fave & fave : _favesModel) {
+    if (!_filtersModel.contains(fave.originalHash())) {
+      return false;
+    }
   }
-  if (!unknownFaveCount) {
+  return true;
+}
+
+void FiltersPresenter::restoreFaveHashLinksAfterCaseChange()
+{
+  if (allFavesAreValid()) {
     return;
   }
   FavesModel formerFaveModel = _favesModel;
-  itFave = formerFaveModel.cbegin();
+  FavesModel::const_iterator itFormerFave = formerFaveModel.cbegin();
   bool someFavesHaveBeenRelinked = false;
-  while (itFave != formerFaveModel.cend()) {
-    const FavesModel::Fave & fave = *itFave;
+  while (itFormerFave != formerFaveModel.cend()) {
+    const FavesModel::Fave & fave = *itFormerFave;
     if (!_filtersModel.contains(fave.originalHash())) {
       FiltersModel::const_iterator itFilter = _filtersModel.cbegin();
       while ((itFilter != _filtersModel.cend()) && (itFilter->hash236() != fave.originalHash())) {
@@ -144,7 +148,7 @@ void FiltersPresenter::restoreFaveHashLinksRelease236()
         Logger::log(message);
       }
     }
-    ++itFave;
+    ++itFormerFave;
   }
   if (someFavesHaveBeenRelinked) {
     saveFaves();
