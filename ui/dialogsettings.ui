@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="interface">
       <attribute name="title">
@@ -255,6 +255,13 @@
          <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
            <widget class="QComboBox" name="outputMessages"/>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbNotifyFailedUpdate">
+            <property name="text">
+             <string>Notify when scheduled update fails</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

@@ -41,6 +41,7 @@ MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
 GmicQt::OutputMessageMode DialogSettings::_outputMessageMode;
 bool DialogSettings::_previewZoomAlwaysEnabled = false;
+bool DialogSettings::_notifyFailedStartupUpdate = true;
 
 const QColor DialogSettings::CheckBoxBaseColor(83, 83, 83);
 const QColor DialogSettings::CheckBoxTextColor(255, 255, 255);
@@ -107,8 +108,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   ui->cbNativeColorDialogs->setToolTip(tr("Check to use Native/OS color dialog, uncheck to use Qt's"));
   ui->cbShowLogos->setChecked(_logosAreVisible);
   ui->sbPreviewTimeout->setValue(_previewTimeout);
-
   ui->cbPreviewZoom->setChecked(_previewZoomAlwaysEnabled);
+  ui->cbNotifyFailedUpdate->setChecked(_notifyFailedStartupUpdate);
 
   connect(ui->pbOk, SIGNAL(clicked()), this, SLOT(onOk()));
   connect(ui->rbLeftPreview, SIGNAL(toggled(bool)), this, SLOT(onRadioLeftPreviewToggled(bool)));
@@ -133,6 +134,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   connect(ui->outputMessages, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputMessageModeChanged(int)));
 
+  connect(ui->cbNotifyFailedUpdate, SIGNAL(toggled(bool)), this, SLOT(onNotifyStartupUpdateFailedToggle(bool)));
+
   ui->languageSelector->selectLanguage(_languageCode);
   if (_darkThemeEnabled) {
     QPalette p = ui->cbNativeColorDialogs->palette();
@@ -146,8 +149,10 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     ui->rbLeftPreview->setPalette(p);
     ui->rbRightPreview->setPalette(p);
     ui->cbShowLogos->setPalette(p);
+    ui->cbNotifyFailedUpdate->setPalette(p);
   }
   ui->pbOk->setFocus();
+  ui->tabWidget->setCurrentIndex(0);
 }
 
 DialogSettings::~DialogSettings()
@@ -173,6 +178,7 @@ void DialogSettings::loadSettings()
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
   _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
+  _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
   // Do not try to create pixmaps if not a GUI application (headlesss mode)
   if (typeid(*qApp) != typeid(QCoreApplication)) {
     AddIcon = LOAD_ICON("list-add");
@@ -183,6 +189,11 @@ void DialogSettings::loadSettings()
 bool DialogSettings::previewZoomAlwaysEnabled()
 {
   return _previewZoomAlwaysEnabled;
+}
+
+bool DialogSettings::notifyFailedStartupUpdate()
+{
+  return _notifyFailedStartupUpdate;
 }
 
 int DialogSettings::previewTimeout()
@@ -211,6 +222,7 @@ void DialogSettings::saveSettings(QSettings & settings)
   settings.remove("Config/UseFaveOutputMode");
   settings.remove("Config/UseFaveOutputMessages");
   settings.remove("Config/UseFavePreviewMode");
+  settings.setValue("Config/NotifyIfStartupUpdateFails", _notifyFailedStartupUpdate);
 }
 
 MainWindow::PreviewPosition DialogSettings::previewPosition()
@@ -256,6 +268,11 @@ void DialogSettings::onOutputMessageModeChanged(int)
 void DialogSettings::onPreviewZoomToggled(bool on)
 {
   _previewZoomAlwaysEnabled = on;
+}
+
+void DialogSettings::onNotifyStartupUpdateFailedToggle(bool on)
+{
+  _notifyFailedStartupUpdate = on;
 }
 
 void DialogSettings::enableUpdateButton()

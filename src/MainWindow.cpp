@@ -329,7 +329,9 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
 
   ui->progressInfoWidget->stopAnimationAndHide();
   if (status == Updater::SomeUpdatesFailed) {
-    showUpdateErrors();
+    if (DialogSettings::notifyFailedStartupUpdate()) {
+      showMessage(tr("Filters update could not be achieved"), 3000);
+    }
   } else if (status == Updater::UpdateSuccessful) {
     if (Updater::getInstance()->someNetworkUpdateAchieved()) {
       showMessage(tr("Filter definitions have been updated."), 4000);

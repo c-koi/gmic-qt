@@ -53,6 +53,7 @@ public:
   static void saveSettings(QSettings &);
   static void loadSettings();
   static bool previewZoomAlwaysEnabled();
+  static bool notifyFailedStartupUpdate();
   static const QColor CheckBoxTextColor;
   static const QColor CheckBoxBaseColor;
   static QColor UnselectedFilterTextColor;
@@ -76,6 +77,7 @@ public slots:
   void onPreviewTimeoutChange(int);
   void onOutputMessageModeChanged(int);
   void onPreviewZoomToggled(bool);
+  void onNotifyStartupUpdateFailedToggle(bool);
 
 private:
   Ui::DialogSettings * ui;
@@ -88,6 +90,7 @@ private:
   static int _previewTimeout;
   static GmicQt::OutputMessageMode _outputMessageMode;
   static bool _previewZoomAlwaysEnabled;
+  static bool _notifyFailedStartupUpdate;
 };
 
 #endif // _GMIC_QT_DIALOGSETTINGS_H_
