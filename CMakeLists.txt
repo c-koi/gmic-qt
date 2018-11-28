@@ -80,7 +80,7 @@ string(REGEX REPLACE ".*gmic_version " "" GMIC_VERSION ${GMIC_VERSION})
 message("G'MIC version is [" ${GMIC_VERSION} "]")
 
 if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
-  message(FATAL_ERROR "\nVersion numbers of files 'gmic.h' (" ${GMIC_VERSION} ") and 'CImg.h' ("${CIMG_VERSION} ") mismatch")
+  message(FATAL_ERROR "\nVersion numbers of files 'gmic.h' (" ${GMIC_VERSION} ") and 'CImg.h' (" ${CIMG_VERSION} ") mismatch")
 endif()
 
 
