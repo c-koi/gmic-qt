@@ -78,7 +78,7 @@ enum OutputMessageMode
 extern const OutputMessageMode DefaultOutputMessageMode;
 
 const QString & gmicVersionString();
-}
+} // namespace GmicQt
 
 int launchPlugin();
 

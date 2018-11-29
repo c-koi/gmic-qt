@@ -114,7 +114,7 @@ int launchPlugin()
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-  DialogSettings::loadSettings();
+  DialogSettings::loadSettings(GmicQt::GuiApplication);
 
   // Translate according to current locale or configured language
   QString lang = LanguageSelectionWidget::configuredTranslator();
@@ -140,6 +140,7 @@ int launchPluginHeadlessUsingLastParameters()
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
   char * dummy_argv[1] = {dummy_app_name};
+
 #ifdef _IS_WINDOWS_
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
@@ -150,7 +151,7 @@ int launchPluginHeadlessUsingLastParameters()
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
 
-  DialogSettings::loadSettings();
+  DialogSettings::loadSettings(GmicQt::GuiApplication);
   Logger::setMode(DialogSettings::outputMessageMode());
   // Translate according to current locale or configured language
   QString lang = LanguageSelectionWidget::configuredTranslator();
@@ -174,6 +175,7 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
   char * dummy_argv[1] = {dummy_app_name};
+
 #ifdef _IS_WINDOWS_
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
@@ -183,7 +185,7 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
 
-  DialogSettings::loadSettings();
+  DialogSettings::loadSettings(GmicQt::NonGuiApplication);
   Logger::setMode(DialogSettings::outputMessageMode());
 
   HeadlessProcessor headlessProcessor(&app, command, input, output);

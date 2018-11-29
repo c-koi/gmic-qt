@@ -160,7 +160,7 @@ DialogSettings::~DialogSettings()
   delete ui;
 }
 
-void DialogSettings::loadSettings()
+void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
 {
   QSettings settings;
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
@@ -179,8 +179,7 @@ void DialogSettings::loadSettings()
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
   _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
-  // Do not try to create pixmaps if not a GUI application (headlesss mode)
-  if (typeid(*qApp) != typeid(QCoreApplication)) {
+  if (applicationType == GmicQt::GuiApplication) {
     AddIcon = LOAD_ICON("list-add");
     RemoveIcon = LOAD_ICON("list-remove");
   }

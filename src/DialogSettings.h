@@ -39,6 +39,15 @@ namespace Ui
 class DialogSettings;
 }
 
+namespace GmicQt
+{
+enum ApplicationType
+{
+  GuiApplication,
+  NonGuiApplication
+};
+}
+
 class DialogSettings : public QDialog {
   Q_OBJECT
 
@@ -51,7 +60,7 @@ public:
   static QString languageCode();
   static bool nativeColorDialogs();
   static void saveSettings(QSettings &);
-  static void loadSettings();
+  static void loadSettings(GmicQt::ApplicationType applicationType);
   static bool previewZoomAlwaysEnabled();
   static bool notifyFailedStartupUpdate();
   static const QColor CheckBoxTextColor;
