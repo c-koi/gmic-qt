@@ -70,7 +70,7 @@ ZoomLevelSelector::~ZoomLevelSelector()
   delete ui;
 }
 
-void ZoomLevelSelector::setZoomConstraint(ZoomConstraint constraint)
+void ZoomLevelSelector::setZoomConstraint(const ZoomConstraint & constraint)
 {
   _zoomConstraint = constraint;
   _notificationsEnabled = false;

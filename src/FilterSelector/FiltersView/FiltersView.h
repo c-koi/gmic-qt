@@ -52,7 +52,7 @@ public:
   void enableModel();
   void disableModel();
   void createFolder(const QList<QString> & path);
-  void addFilter(const QString & text, const QString & hash, const QList<QString> path, bool warning);
+  void addFilter(const QString & text, const QString & hash, const QList<QString> & path, bool warning);
   void addFave(const QString & text, const QString & hash);
   void selectFave(const QString & hash);
   void selectActualFilter(const QString & hash, const QList<QString> & path);
@@ -110,11 +110,11 @@ private:
   void createFaveFolder();
   void removeFaveFolder();
   void addStandardItemWithCheckbox(QStandardItem * folder, FilterTreeAbstractItem * item);
-  QStandardItem * getFolderFromPath(QList<QString> path);
+  QStandardItem * getFolderFromPath(const QList<QString> & path);
   QStandardItem * createFolder(QStandardItem * parent, QList<QString> path);
   FilterTreeItem * findFave(const QString & hash);
   static QStandardItem * getFolderFromPath(QStandardItem * parent, QList<QString> path);
-  static void saveFiltersVisibility(QStandardItem * folder);
+  static void saveFiltersVisibility(QStandardItem * item);
   Ui::FiltersView * ui;
 
   QStandardItemModel _model;

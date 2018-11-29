@@ -35,10 +35,9 @@ std::unique_ptr<TimeLogger> TimeLogger::_instance = nullptr;
 
 TimeLogger::TimeLogger()
 {
-  char filename[1024];
-  sprintf(filename, "%stiming_log.txt", GmicQt::path_rc(true).toLocal8Bit().constData());
-  _file = fopen(filename, "w");
-  assert(_file);
+  QString filename = GmicQt::path_rc(true) + "timing_log.txt";
+  _file = fopen(filename.toLocal8Bit().constData(), "w");
+  Q_ASSERT_X(_file, __PRETTY_FUNCTION__, "Cannot open log file");
 }
 
 TimeLogger::~TimeLogger()

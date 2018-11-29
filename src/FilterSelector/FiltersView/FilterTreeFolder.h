@@ -30,7 +30,7 @@
 
 class FilterTreeFolder : public FilterTreeAbstractItem {
 public:
-  FilterTreeFolder(QString text);
+  FilterTreeFolder(const QString & text);
   void setFaveFolderFlag(bool);
   bool isFullyUnchecked();
   bool isFaveFolder() const;

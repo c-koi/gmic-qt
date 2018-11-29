@@ -37,7 +37,7 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
-FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0), _dialogMode(InputOutputMode) {}
+FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _button(nullptr), _dialogMode(InputOutputMode) {}
 
 FileParameter::~FileParameter()
 {
@@ -47,9 +47,10 @@ FileParameter::~FileParameter()
 
 void FileParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _label;
   delete _button;
 
@@ -147,7 +148,7 @@ void FileParameter::onButtonPressed()
     filename = QFileDialog::getSaveFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr);
     break;
   case InputOutputMode: {
-    QFileDialog dialog(0, tr("Select a file"), folder, QString());
+    QFileDialog dialog(dynamic_cast<QWidget *>(parent()), tr("Select a file"), folder, QString());
     dialog.setOptions(QFileDialog::DontConfirmOverwrite | QFileDialog::DontUseNativeDialog);
     dialog.setFileMode(QFileDialog::AnyFile);
     if (!_value.isEmpty()) {

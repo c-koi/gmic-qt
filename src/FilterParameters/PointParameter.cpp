@@ -62,6 +62,7 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _radius = KeypointList::Keypoint::DefaultRadius;
   _visible = true;
   _keepOpacityWhenSelected = false;
+  _removed = false;
   setRemoved(false);
 }
 
@@ -81,7 +82,7 @@ void PointParameter::addTo(QWidget * widget, int row)
   if (!_visible) {
     return;
   }
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
   if (!grid) {
     return;
   }
@@ -89,7 +90,7 @@ void PointParameter::addTo(QWidget * widget, int row)
   delete _rowCell;
 
   _rowCell = new QWidget(widget);
-  QHBoxLayout * hbox = new QHBoxLayout(_rowCell);
+  auto hbox = new QHBoxLayout(_rowCell);
   hbox->setMargin(0);
   hbox->addWidget(_colorLabel = new QLabel(_rowCell));
 
@@ -161,9 +162,8 @@ QString PointParameter::textValue() const
 {
   if (_removed) {
     return "nan,nan";
-  } else {
-    return QString("%1,%2").arg(_position.x()).arg(_position.y());
   }
+  return QString("%1,%2").arg(_position.x()).arg(_position.y());
 }
 
 void PointParameter::setValue(const QString & value)
@@ -237,7 +237,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   bool xNaN = true;
   bool yNaN = true;
 
-  if (params.size() >= 1) {
+  if (!params.isEmpty()) {
     x = params[0].toFloat(&ok);
     xNaN = (params[0].toUpper() == "NAN");
     if (!ok) {
@@ -344,7 +344,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
     if (!ok) {
       return false;
     }
-    _radius = radius;
+    _radius = static_cast<int>(radius);
   }
 
   if ((params.size() >= 10) && (params[9].trimmed() == "0")) {

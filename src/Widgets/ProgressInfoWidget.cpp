@@ -41,6 +41,7 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   ui->setupUi(this);
   _mode = GmicProcessingMode;
   _canceled = false;
+  _growing = true;
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
   ui->progressBar->setRange(0, 100);
   ui->tbCancel->setIcon(LOAD_ICON("process-stop"));

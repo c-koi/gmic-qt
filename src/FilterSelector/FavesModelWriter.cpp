@@ -36,9 +36,7 @@ FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model)
 {
 }
 
-FavesModelWriter::~FavesModelWriter()
-{
-}
+FavesModelWriter::~FavesModelWriter() = default;
 
 void FavesModelWriter::writeFaves()
 {

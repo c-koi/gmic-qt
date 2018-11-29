@@ -36,6 +36,9 @@ FilterThread::FilterThread(QObject * parent, const QString & name, const QString
     : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>), _name(name),
       _messageMode(mode)
 {
+  _gmicAbort = false;
+  _failed = false;
+  _gmicProgress = 0.0f;
   // ENTERING;
 #ifdef _IS_MACOS_
   setStackSize(8 * 1024 * 1024);
@@ -84,7 +87,7 @@ QStringList FilterThread::gmicStatus() const
     return QStringList();
   }
   QList<QString> list = _gmicStatus.split(QString("%1%2").arg(QChar(25)).arg(QChar(24)));
-  if (list.size()) {
+  if (!list.isEmpty()) {
     list[0].remove(0, 1);
     list.back().chop(1);
     QList<QString>::iterator it = list.begin();
@@ -156,7 +159,7 @@ void FilterThread::run()
     if (_messageMode > GmicQt::Quiet) {
       Logger::log(QString("\n[%1]%2 %3\n").arg(GmicQt::pluginCodeName()).arg(_logSuffix).arg(fullCommandLine));
     }
-    gmic gmicInstance(_environment.isEmpty() ? 0 : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true);
+    gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("v - %1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true);
     gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
     gmicInstance.set_variable("_tk", "qt", '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);

@@ -35,7 +35,7 @@ class MultilineTextParameterWidget;
 class MultilineTextParameterWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit MultilineTextParameterWidget(QString name, QString value, QWidget * parent = 0);
+  explicit MultilineTextParameterWidget(const QString & name, const QString & value, QWidget * parent = nullptr);
   ~MultilineTextParameterWidget();
   QString text() const;
   void setText(const QString & text);

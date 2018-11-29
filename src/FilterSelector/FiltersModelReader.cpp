@@ -87,7 +87,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         QString folderName = line;
         folderName.replace(QRegExp("^#@gui[_a-zA-Z]{0,3}[ ]"), "");
 
-        while (folderName.startsWith("_") && filterPath.size()) {
+        while (folderName.startsWith("_") && !filterPath.isEmpty()) {
           folderName.remove(0, 1);
           filterPath.pop_back();
         }
@@ -117,7 +117,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         QList<QString> commands = filterCommands.split(",");
 
         QString filterCommand = commands[0].trimmed();
-        if (commands.size() == 0) {
+        if (commands.isEmpty()) {
           commands.push_back("_none_");
         }
         if (commands.size() == 1) {

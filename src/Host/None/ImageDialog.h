@@ -62,7 +62,7 @@ class ImageDialog : public QDialog {
   Q_OBJECT
 public:
   ImageDialog(QWidget * parent);
-  void addImage(const cimg_library::CImg<gmic_pixel_type> & image, QString name);
+  void addImage(const cimg_library::CImg<gmic_pixel_type> & image, const QString & name);
   const QImage & currentImage() const;
   int currentImageIndex() const;
 

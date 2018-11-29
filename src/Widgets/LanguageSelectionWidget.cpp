@@ -100,13 +100,14 @@ QString LanguageSelectionWidget::configuredTranslator()
 QString LanguageSelectionWidget::systemDefaultAndAvailableLanguageCode()
 {
   QList<QString> languages = QLocale().uiLanguages();
-  if (languages.size()) {
+  if (!languages.isEmpty()) {
     QString lang = languages.front().split("-").front();
     QMap<QString, QString> map = availableLanguages();
     // Check for traditional Chinese (following https://stackoverflow.com/a/4894634)
     if ((lang == "zh") && (languages.front().endsWith("TW") || languages.front().endsWith("HK"))) {
       return QString("zh_tw");
-    } else if (map.find(lang) != map.end()) {
+    }
+    if (map.find(lang) != map.end()) {
       return lang;
     }
   }
@@ -122,9 +123,8 @@ void LanguageSelectionWidget::selectLanguage(const QString & code)
     if (_systemDefaultIsAvailable) {
       ui->comboBox->setCurrentIndex(0);
       return;
-    } else {
-      lang = "en";
     }
+    lang = "en";
   } else {
     if (_code2name.find(code) != _code2name.end()) {
       lang = code;

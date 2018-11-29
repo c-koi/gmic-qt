@@ -44,7 +44,7 @@ public:
   explicit ZoomLevelSelector(QWidget * parent = 0);
   ~ZoomLevelSelector();
 
-  void setZoomConstraint(ZoomConstraint constraint);
+  void setZoomConstraint(const ZoomConstraint & constraint);
 
   void setPreviewWidget(const PreviewWidget *);
 

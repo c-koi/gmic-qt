@@ -39,7 +39,7 @@
 
 FiltersPresenter::FiltersPresenter(QObject * parent) : QObject(parent)
 {
-  _filtersView = 0;
+  _filtersView = nullptr;
 }
 
 FiltersPresenter::~FiltersPresenter()
@@ -64,7 +64,7 @@ void FiltersPresenter::rebuildFilterView()
   rebuildFilterViewWithSelection(QList<QString>());
 }
 
-void FiltersPresenter::rebuildFilterViewWithSelection(QList<QString> keywords)
+void FiltersPresenter::rebuildFilterViewWithSelection(const QList<QString> & keywords)
 {
   _filtersView->clear();
   _filtersView->disableModel();
@@ -167,7 +167,7 @@ void FiltersPresenter::saveFaves()
   favesModelWriter.writeFaves();
 }
 
-void FiltersPresenter::addSelectedFilterAsNewFave(QList<QString> defaultValues, GmicQt::InputOutputState inOutState)
+void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & defaultValues, GmicQt::InputOutputState inOutState)
 {
   if (_currentFilter.hash.isEmpty() || (!_filtersModel.contains(_currentFilter.hash) && !_favesModel.contains(_currentFilter.hash))) {
     return;
@@ -306,11 +306,12 @@ void FiltersPresenter::editSelectedFaveName()
   _filtersView->editSelectedFaveName();
 }
 
-void FiltersPresenter::onFaveRenamed(QString hash, QString newName)
+void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
 {
   Q_ASSERT_X(_favesModel.contains(hash), "onFaveRenamed()", "Hash not found");
   FavesModel::Fave fave = _favesModel.getFaveFromHash(hash);
   _favesModel.removeFave(hash);
+  QString newName = name;
   if (newName.isEmpty()) {
     if (_filtersModel.contains(fave.originalHash())) {
       const FiltersModel::Filter & originalFilter = _filtersModel.getFilterFromHash(fave.originalHash());
@@ -347,13 +348,13 @@ void FiltersPresenter::toggleSelectionMode(bool on)
   }
 }
 
-void FiltersPresenter::onFilterChanged(QString hash)
+void FiltersPresenter::onFilterChanged(const QString & hash)
 {
   setCurrentFilter(hash);
   emit filterSelectionChanged();
 }
 
-void FiltersPresenter::removeFave(QString hash)
+void FiltersPresenter::removeFave(const QString & hash)
 {
   if (hash.isEmpty() || !_favesModel.contains(hash)) {
     return;
@@ -365,7 +366,7 @@ void FiltersPresenter::removeFave(QString hash)
   onFilterChanged(_filtersView->selectedFilterHash());
 }
 
-void FiltersPresenter::setCurrentFilter(QString hash)
+void FiltersPresenter::setCurrentFilter(const QString & hash)
 {
   if (hash.isEmpty()) {
     _currentFilter.clear();

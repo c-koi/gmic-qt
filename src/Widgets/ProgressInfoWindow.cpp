@@ -39,7 +39,7 @@
 #include "ui_progressinfowindow.h"
 #include "gmic.h"
 
-ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWindow(0), ui(new Ui::ProgressInfoWindow), _processor(processor)
+ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWindow(nullptr), ui(new Ui::ProgressInfoWindow), _processor(processor)
 {
   ui->setupUi(this);
   setWindowTitle("G'MIC-Qt Plug-in progression");
@@ -147,7 +147,7 @@ void ProgressInfoWindow::onProgress(float progress, int duration, unsigned long 
   }
 }
 
-void ProgressInfoWindow::onProcessingFinished(QString errorMessage)
+void ProgressInfoWindow::onProcessingFinished(const QString & errorMessage)
 {
   if (!errorMessage.isEmpty()) {
     QMessageBox::warning(this, "Error", errorMessage, QMessageBox::Close);

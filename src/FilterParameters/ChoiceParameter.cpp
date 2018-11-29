@@ -30,7 +30,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(0), _comboBox(0), _connected(false) {}
+ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(nullptr), _comboBox(nullptr), _connected(false) {}
 
 ChoiceParameter::~ChoiceParameter()
 {
@@ -40,9 +40,10 @@ ChoiceParameter::~ChoiceParameter()
 
 void ChoiceParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _comboBox;
   delete _label;
 

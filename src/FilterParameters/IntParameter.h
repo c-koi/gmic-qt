@@ -34,7 +34,7 @@ class QLabel;
 class IntParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  IntParameter(QObject * parent = 0);
+  IntParameter(QObject * parent = nullptr);
   ~IntParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

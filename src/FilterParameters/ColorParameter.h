@@ -38,7 +38,7 @@ class QPushButton;
 class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ColorParameter(QObject * parent = 0);
+  ColorParameter(QObject * parent = nullptr);
   ~ColorParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

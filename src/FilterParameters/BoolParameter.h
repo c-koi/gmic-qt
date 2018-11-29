@@ -33,7 +33,7 @@ class QLabel;
 class BoolParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  BoolParameter(QObject * parent = 0);
+  BoolParameter(QObject * parent = nullptr);
   ~BoolParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

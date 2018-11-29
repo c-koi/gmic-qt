@@ -29,7 +29,7 @@ const QChar FilterTreeAbstractItem::WarningPrefix('!');
 
 FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
 {
-  _visibilityItem = 0;
+  _visibilityItem = nullptr;
   if (text.startsWith(WarningPrefix)) {
     text.remove(0, 1);
     _isWarning = true;
@@ -40,9 +40,7 @@ FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
   _plainText = HtmlTranslator::html2txt(text, true);
 }
 
-FilterTreeAbstractItem::~FilterTreeAbstractItem()
-{
-}
+FilterTreeAbstractItem::~FilterTreeAbstractItem() = default;
 
 void FilterTreeAbstractItem::setVisibilityItem(QStandardItem * item)
 {
@@ -63,9 +61,8 @@ bool FilterTreeAbstractItem::isVisible() const
 {
   if (_visibilityItem) {
     return _visibilityItem->checkState() == Qt::Checked;
-  } else {
-    return true;
   }
+  return true;
 }
 
 void FilterTreeAbstractItem::setVisibility(bool flag)

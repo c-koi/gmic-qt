@@ -37,7 +37,7 @@ class MultilineTextParameterWidget;
 class TextParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  TextParameter(QObject * parent = 0);
+  TextParameter(QObject * parent = nullptr);
   ~TextParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

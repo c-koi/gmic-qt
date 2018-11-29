@@ -58,7 +58,7 @@ FavesModel::Fave FavesModelReader::jsonObjectToFave(const QJsonObject & object)
   fave.setPreviewCommand(object.value("preview").toString());
   QStringList defaultParameters;
   QJsonArray array = object.value("defaultParameters").toArray();
-  for (const QJsonValue & value : array) {
+  for (const QJsonValueRef & value : array) {
     defaultParameters.push_back(value.toString());
   }
   fave.setDefaultValues(defaultParameters);
@@ -116,7 +116,7 @@ void FavesModelReader::loadFaves()
       document = QJsonDocument::fromJson(jsonFile.readAll(), &parseError);
       if (parseError.error == QJsonParseError::NoError) {
         QJsonArray array = document.array();
-        for (const QJsonValue & value : array) {
+        for (const QJsonValueRef & value : array) {
           _model.addFave(jsonObjectToFave(value.toObject()));
         }
       } else {

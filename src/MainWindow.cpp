@@ -65,8 +65,11 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   _messageTimerID = 0;
   _gtkFavesShouldBeImported = false;
 
-  setWindowTitle(GmicQt::pluginFullName());
+  _lastExecutionOK = true; // Overwritten by loadSettings()
+  _expandCollapseIcon = nullptr;
+  _newSession = true; // Overwritten by loadSettings()
 
+  setWindowTitle(GmicQt::pluginFullName());
   QStringList tsp = QIcon::themeSearchPaths();
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
@@ -113,13 +116,13 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
 
   ui->zoomLevelSelector->setPreviewWidget(ui->previewWidget);
 
-  QAction * searchAction = new QAction(this);
+  auto searchAction = new QAction(this);
   searchAction->setShortcut(QKeySequence::Find);
   searchAction->setShortcutContext(Qt::ApplicationShortcut);
   connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
   addAction(searchAction);
 
-  QAction * togglePreviewAction = new QAction(this);
+  auto togglePreviewAction = new QAction(this);
   togglePreviewAction->setShortcut(QKeySequence("Ctrl+P"));
   togglePreviewAction->setShortcutContext(Qt::ApplicationShortcut);
   connect(togglePreviewAction, SIGNAL(triggered(bool)), ui->cbPreview, SLOT(toggle()));
@@ -132,7 +135,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   addAction(searchAction);
 
   ui->tbUpdateFilters->setShortcut(QKeySequence("Ctrl+R"));
-  QAction * updateFiltersAction = new QAction(this);
+  auto updateFiltersAction = new QAction(this);
   updateFiltersAction->setShortcut(QKeySequence("F5"));
   updateFiltersAction->setShortcutContext(Qt::ApplicationShortcut);
   connect(updateFiltersAction, SIGNAL(triggered(bool)), ui->tbUpdateFilters, SLOT(click()));
@@ -143,7 +146,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->verticalSplitter->setStretchFactor(0, 5);
   ui->verticalSplitter->setStretchFactor(0, 1);
 
-  QPalette p = qApp->palette();
+  QPalette p = QGuiApplication::palette();
   DialogSettings::UnselectedFilterTextColor = p.color(QPalette::Disabled, QPalette::WindowText);
 
   _filtersPresenter = new FiltersPresenter(this);
@@ -441,7 +444,7 @@ void MainWindow::timerEvent(QTimerEvent * e)
   e->ignore();
 }
 
-void MainWindow::showMessage(QString text, int ms)
+void MainWindow::showMessage(const QString & text, int ms)
 {
   clearMessage();
   if (!text.isEmpty() && ms) {
@@ -455,7 +458,7 @@ void MainWindow::showUpdateErrors()
   QString message(tr("The update could not be achieved<br>"
                      "because of the following errors:<br>"));
   QList<QString> errors = Updater::getInstance()->errorMessages();
-  for (QString s : errors) {
+  for (const QString s : errors) {
     message += QString("<br/>%1").arg(s);
   }
   QMessageBox::information(this, tr("Update error"), message);
@@ -563,7 +566,7 @@ void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
   } else {
     ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
     if ((flags & PreviewWidget::KeypointBurstEvent)) {
-      const ulong t = (ulong)_processor.lastPreviewFilterExecutionDurationMS();
+      const auto t = static_cast<ulong>(_processor.lastPreviewFilterExecutionDurationMS());
       const bool keypointBurstEnabled = (t <= KEYPOINTS_INTERACTIVE_LOWER_DELAY_MS) ||
                                         ((t <= KEYPOINTS_INTERACTIVE_UPPER_DELAY_MS) && ((ulong)_processor.averagePreviewFilterExecutionDuration() <= KEYPOINTS_INTERACTIVE_MIDDLE_DELAY_MS));
       ulong msSinceLastBurstEvent = time - _lastPreviewKeypointBurstUpdateTime;
@@ -590,7 +593,7 @@ void MainWindow::onPreviewImageAvailable()
   }
 }
 
-void MainWindow::onPreviewError(QString message)
+void MainWindow::onPreviewError(const QString & message)
 {
   ui->previewWidget->setPreviewErrorMessage(message);
   ui->previewWidget->enableRightClick();
@@ -637,7 +640,7 @@ void MainWindow::processImage()
   _processor.execute();
 }
 
-void MainWindow::onFullImageProcessingError(QString message)
+void MainWindow::onFullImageProcessingError(const QString & message)
 {
   ui->progressInfoWidget->stopAnimationAndHide();
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
@@ -699,7 +702,7 @@ void MainWindow::expandOrCollapseFolders()
   }
 }
 
-void MainWindow::search(QString text)
+void MainWindow::search(const QString & text)
 {
   _filtersPresenter->applySearchCriterion(text);
 }
@@ -870,12 +873,12 @@ void MainWindow::loadSettings()
     } else {
       QDesktopWidget desktop;
       QRect screenSize = desktop.availableGeometry();
-      screenSize.setWidth(screenSize.width() * 0.66);
-      screenSize.setHeight(screenSize.height() * 0.66);
+      screenSize.setWidth(static_cast<int>(screenSize.width() * 0.66));
+      screenSize.setHeight(static_cast<int>(screenSize.height() * 0.66));
       screenSize.moveCenter(desktop.availableGeometry().center());
       setGeometry(screenSize);
       int w = screenSize.width();
-      ui->splitter->setSizes(QList<int>() << (w * 0.4) << (w * 0.2) << (w * 0.4));
+      ui->splitter->setSizes(QList<int>() << static_cast<int>(w * 0.4) << static_cast<int>(w * 0.2) << static_cast<int>(w * 0.4));
     }
   }
 
@@ -903,7 +906,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   }
   _previewPosition = position;
 
-  QHBoxLayout * layout = dynamic_cast<QHBoxLayout *>(ui->belowPreviewWidget->layout());
+  auto layout = dynamic_cast<QHBoxLayout *>(ui->belowPreviewWidget->layout());
   if (layout) {
     layout->removeWidget(ui->belowPreviewPadding);
     layout->removeWidget(ui->logosLabel);
@@ -1132,7 +1135,7 @@ void MainWindow::onSettingsClicked()
   DialogSettings dialog(this);
   dialog.exec();
   bool previewPositionChanged = (_previewPosition != DialogSettings::previewPosition());
-  setPreviewPosition(dialog.previewPosition());
+  setPreviewPosition(DialogSettings::previewPosition());
   if (previewPositionChanged) {
     splitterSizes.clear();
     if (_previewPosition == PreviewOnLeft) {

@@ -59,7 +59,7 @@ protected:
 public slots:
   void onCancelClicked(bool);
   void onProgress(float progress, int duration, unsigned long memory);
-  void onProcessingFinished(QString errorMessage);
+  void onProcessingFinished(const QString & errorMessage);
 
 private:
   Ui::ProgressInfoWindow * ui;

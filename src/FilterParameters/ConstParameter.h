@@ -31,7 +31,7 @@ class QLabel;
 class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ConstParameter(QObject * parent = 0);
+  ConstParameter(QObject * parent = nullptr);
   ~ConstParameter();
   bool isVisible() const override;
   void addTo(QWidget *, int row) override;

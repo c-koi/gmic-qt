@@ -69,7 +69,7 @@ void ParametersCache::load(bool loadFiltersParameters)
             if (!parameters.isUndefined()) {
               QJsonArray array = parameters.toArray();
               QStringList values;
-              for (const QJsonValue & v : array) {
+              for (const QJsonValueRef & v : array) {
                 values.push_back(v.toString());
               }
               _parametersCache[hash] = values;
@@ -162,7 +162,7 @@ void ParametersCache::save()
     jsonFile.close();
     if (count != -1) {
       // Remove obsolete 2.0.0 pre-release files
-      QString path = GmicQt::path_rc(true);
+      const QString & path = GmicQt::path_rc(true);
       QFile::remove(path + "gmic_qt_parameters.dat");
       QFile::remove(path + "gmic_qt_parameters.json");
       QFile::remove(path + "gmic_qt_parameters.json.bak");
@@ -183,9 +183,8 @@ QList<QString> ParametersCache::getValues(const QString & hash)
 {
   if (_parametersCache.count(hash)) {
     return _parametersCache[hash];
-  } else {
-    return QList<QString>();
   }
+  return QList<QString>();
 }
 
 void ParametersCache::remove(const QString & hash)
@@ -198,9 +197,8 @@ GmicQt::InputOutputState ParametersCache::getInputOutputState(const QString & ha
 {
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
-  } else {
-    return GmicQt::InputOutputState::Default;
   }
+  return GmicQt::InputOutputState::Default;
 }
 
 void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state)

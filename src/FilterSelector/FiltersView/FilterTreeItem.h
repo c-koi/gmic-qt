@@ -30,7 +30,7 @@
 
 class FilterTreeItem : public FilterTreeAbstractItem {
 public:
-  FilterTreeItem(QString text);
+  FilterTreeItem(const QString & text);
   void setHash(const QString & hash);
   void setWarningFlag(bool flag);
   void setFaveFlag(bool flag);

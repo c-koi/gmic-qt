@@ -47,7 +47,7 @@ public slots:
 signals:
   void textChanged(QString);
 private slots:
-  void onTextChanged(QString);
+  void onTextChanged(const QString &);
 
 private:
   Ui::SearchFieldWidget * ui;

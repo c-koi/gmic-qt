@@ -37,6 +37,4 @@ void TreeView::keyPressEvent(QKeyEvent * event)
   QTreeView::keyPressEvent(event);
 }
 
-TreeView::~TreeView()
-{
-}
+TreeView::~TreeView() = default;

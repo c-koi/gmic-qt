@@ -97,8 +97,8 @@ private:
   bool isStdlib(const QString & source) const;
 
   explicit Updater(QObject * parent);
-  static QByteArray cimgzDecompress(QByteArray array);
-  static QByteArray cimgzDecompressFile(QString filename);
+  static QByteArray cimgzDecompress(const QByteArray & array);
+  static QByteArray cimgzDecompressFile(const QString & filename);
   static std::unique_ptr<Updater> _instance;
   static GmicQt::OutputMessageMode _outputMessageMode;
 

@@ -77,7 +77,7 @@ public:
     KeypointMouseReleaseEvent = 2
   };
 
-  void setZoomConstraint(ZoomConstraint constraint);
+  void setZoomConstraint(const ZoomConstraint & constraint);
   ZoomConstraint zoomConstraint() const;
 
 protected:

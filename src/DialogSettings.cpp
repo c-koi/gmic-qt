@@ -291,7 +291,7 @@ void DialogSettings::onRadioLeftPreviewToggled(bool on)
 
 void DialogSettings::onUpdateClicked()
 {
-  MainWindow * mainWindow = dynamic_cast<MainWindow *>(parent());
+  auto mainWindow = dynamic_cast<MainWindow *>(parent());
   if (mainWindow) {
     ui->pbUpdate->setEnabled(false);
     mainWindow->updateFiltersFromSources(0, true);

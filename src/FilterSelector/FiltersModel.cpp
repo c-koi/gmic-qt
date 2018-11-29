@@ -34,9 +34,9 @@
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
 
-FiltersModel::FiltersModel() {}
+FiltersModel::FiltersModel() = default;
 
-FiltersModel::~FiltersModel() {}
+FiltersModel::~FiltersModel() = default;
 
 void FiltersModel::clear()
 {
@@ -106,26 +106,26 @@ FiltersModel::Filter::Filter()
   _isWarning = false;
 }
 
-FiltersModel::Filter & FiltersModel::Filter::setName(QString name)
+FiltersModel::Filter & FiltersModel::Filter::setName(const QString & name)
 {
   _name = name;
   _plainText = HtmlTranslator::html2txt(name, true);
   return *this;
 }
 
-FiltersModel::Filter & FiltersModel::Filter::setCommand(QString command)
+FiltersModel::Filter & FiltersModel::Filter::setCommand(const QString & command)
 {
   _command = command;
   return *this;
 }
 
-FiltersModel::Filter & FiltersModel::Filter::setPreviewCommand(QString previewCommand)
+FiltersModel::Filter & FiltersModel::Filter::setPreviewCommand(const QString & previewCommand)
 {
   _previewCommand = previewCommand;
   return *this;
 }
 
-FiltersModel::Filter & FiltersModel::Filter::setParameters(QString parameters)
+FiltersModel::Filter & FiltersModel::Filter::setParameters(const QString & parameters)
 {
   _parameters = parameters;
   return *this;

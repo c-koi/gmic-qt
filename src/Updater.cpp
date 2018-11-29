@@ -38,7 +38,7 @@ GmicQt::OutputMessageMode Updater::_outputMessageMode = GmicQt::Quiet;
 
 Updater::Updater(QObject * parent) : QObject(parent)
 {
-  _networkAccessManager = 0;
+  _networkAccessManager = nullptr;
   _someNetworkUpdatesAchieved = false;
 }
 
@@ -50,7 +50,7 @@ Updater * Updater::getInstance()
   return _instance.get();
 }
 
-Updater::~Updater() {}
+Updater::~Updater() = default;
 
 void Updater::updateSources(bool useNetwork)
 {
@@ -69,7 +69,7 @@ void Updater::updateSources(bool useNetwork)
   cimg_library::CImgList<char> names;
   QString command = QString("%1gui_filter_sources %2").arg(prefix).arg(useNetwork);
   try {
-    gmic(command.toLocal8Bit().constData(), gptSources, names, 0, true);
+    gmic(command.toLocal8Bit().constData(), gptSources, names, nullptr, true);
   } catch (...) {
     gptSources.assign();
   }
@@ -109,7 +109,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
   _someNetworkUpdatesAchieved = false;
   if (useNetwork) {
     QDateTime limit = QDateTime::currentDateTime().addSecs(-3600 * (qint64)ageLimit);
-    for (QString str : _sources) {
+    for (const QString & str : _sources) {
       if (str.startsWith("http://") || str.startsWith("https://")) {
         QString filename = localFilename(str);
         QFileInfo info(filename);
@@ -150,7 +150,7 @@ QList<QString> Updater::remotesThatNeedUpdate(int ageLimit) const
 {
   QDateTime limit = QDateTime::currentDateTime().addSecs(-3600 * ageLimit);
   QList<QString> list;
-  for (QString str : _sources) {
+  for (const QString & str : _sources) {
     if (str.startsWith("http://") || str.startsWith("https://")) {
       QString filename = localFilename(str);
       QFileInfo info(filename);
@@ -165,7 +165,7 @@ QList<QString> Updater::remotesThatNeedUpdate(int ageLimit) const
 bool Updater::someUpdatesNeeded(int ageLimit) const
 {
   QDateTime limit = QDateTime::currentDateTime().addSecs(-3600 * ageLimit);
-  for (QString str : _sources) {
+  for (const QString & str : _sources) {
     if (str.startsWith("http://") || str.startsWith("https://")) {
       QString filename = localFilename(str);
       QFileInfo info(filename);
@@ -199,7 +199,7 @@ void Updater::processReply(QNetworkReply * reply)
     return;
   }
   if (!array.startsWith("#@gmic")) {
-    TRACE << "Decompressing reply from" << url;
+    TRACE << QString("Decompressing reply from") << url;
     QByteArray tmp = cimgzDecompress(array);
     array = tmp;
   }
@@ -236,7 +236,7 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
       emit updateIsDone(SomeUpdatesFailed);
     }
     _networkAccessManager->deleteLater();
-    _networkAccessManager = 0;
+    _networkAccessManager = nullptr;
   }
   reply->deleteLater();
 }
@@ -264,7 +264,7 @@ void Updater::onUpdateNotNecessary()
   emit updateIsDone(UpdateNotNecessary);
 }
 
-QByteArray Updater::cimgzDecompress(QByteArray array)
+QByteArray Updater::cimgzDecompress(const QByteArray & array)
 {
   QTemporaryFile tmpZ(QDir::tempPath() + QDir::separator() + "gmic_qt_update_XXXXXX_cimgz");
   if (!tmpZ.open()) {
@@ -289,7 +289,7 @@ QByteArray Updater::cimgzDecompress(QByteArray array)
   return QByteArray((char *)buffer.data(), buffer.size());
 }
 
-QByteArray Updater::cimgzDecompressFile(QString filename)
+QByteArray Updater::cimgzDecompressFile(const QString & filename)
 {
   cimg_library::CImg<unsigned char> buffer;
   try {
@@ -306,9 +306,8 @@ QString Updater::localFilename(QString url)
   if (url.startsWith("http://") || url.startsWith("https://")) {
     QUrl u(url);
     return QString("%1%2").arg(GmicQt::path_rc(true)).arg(u.fileName());
-  } else {
-    return url;
   }
+  return url;
 }
 
 bool Updater::isStdlib(const QString & source) const
@@ -335,7 +334,7 @@ QByteArray Updater::buildFullStdlib() const
     result.append(tmp);
     return result;
   }
-  for (QString source : _sources) {
+  for (const QString & source : _sources) {
     QString filename = localFilename(source);
     QFile file(filename);
     if (file.open(QFile::ReadOnly)) {

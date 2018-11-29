@@ -33,7 +33,7 @@ class QPushButton;
 class FolderParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FolderParameter(QObject * parent = 0);
+  FolderParameter(QObject * parent = nullptr);
   ~FolderParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

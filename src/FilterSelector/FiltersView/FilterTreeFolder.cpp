@@ -27,7 +27,7 @@
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
 #include "HtmlTranslator.h"
 
-FilterTreeFolder::FilterTreeFolder(QString text) : FilterTreeAbstractItem(text)
+FilterTreeFolder::FilterTreeFolder(const QString & text) : FilterTreeAbstractItem(text)
 {
   setEditable(false);
   _isFaveFolder = false;
@@ -42,11 +42,11 @@ bool FilterTreeFolder::isFullyUnchecked()
 {
   int count = rowCount();
   for (int row = 0; row < count; ++row) {
-    FilterTreeAbstractItem * item = dynamic_cast<FilterTreeAbstractItem *>(child(row));
+    auto item = dynamic_cast<FilterTreeAbstractItem *>(child(row));
     if (item && item->isVisible()) {
       return false;
     }
-    FilterTreeFolder * folder = dynamic_cast<FilterTreeFolder *>(child(row));
+    auto folder = dynamic_cast<FilterTreeFolder *>(child(row));
     if (folder && !folder->isFullyUnchecked()) {
       return false;
     }
@@ -65,7 +65,7 @@ void FilterTreeFolder::setItemsVisibility(bool visible)
 {
   int rows = rowCount();
   for (int row = 0; row < rows; ++row) {
-    FilterTreeAbstractItem * item = dynamic_cast<FilterTreeAbstractItem *>(child(row));
+    auto item = dynamic_cast<FilterTreeAbstractItem *>(child(row));
     if (item) {
       item->setVisibility(visible);
     }
@@ -79,8 +79,8 @@ bool FilterTreeFolder::isFaveFolder() const
 
 bool FilterTreeFolder::operator<(const QStandardItem & other) const
 {
-  const FilterTreeFolder * otherFolder = dynamic_cast<const FilterTreeFolder *>(&other);
-  const FilterTreeItem * otherItem = dynamic_cast<const FilterTreeItem *>(&other);
+  auto otherFolder = dynamic_cast<const FilterTreeFolder *>(&other);
+  auto otherItem = dynamic_cast<const FilterTreeItem *>(&other);
   Q_ASSERT_X(otherFolder || otherItem, "FilterTreeItem::operator<", "Wrong item types");
   bool otherIsWarning = (otherFolder && otherFolder->isWarning()) || (otherItem && otherItem->isWarning());
   bool otherIsFaveFolder = otherFolder && otherFolder->isFaveFolder();
@@ -106,7 +106,6 @@ bool FilterTreeFolder::operator<(const QStandardItem & other) const
   // Other cases follow lexicographic order
   if (otherFolder) {
     return plainText().localeAwareCompare(otherFolder->plainText()) < 0;
-  } else {
-    return plainText().localeAwareCompare(otherItem->plainText()) < 0;
   }
+  return plainText().localeAwareCompare(otherItem->plainText()) < 0;
 }

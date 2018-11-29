@@ -31,10 +31,10 @@
 #include "FilterParameters/AbstractParameter.h"
 #include "FilterParameters/PointParameter.h"
 
-FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(parent), _valueString(""), _labelNoParams(0), _paddingWidget(0)
+FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(parent), _valueString(""), _labelNoParams(nullptr), _paddingWidget(nullptr)
 {
   delete layout();
-  QGridLayout * grid = new QGridLayout(this);
+  auto grid = new QGridLayout(this);
   grid->setRowStretch(1, 2);
   _labelNoParams = new QLabel(tr("<i>Select a filter</i>"), this);
   _labelNoParams->setAlignment(Qt::AlignHCenter | Qt::AlignCenter);
@@ -50,7 +50,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   _filterHash = hash;
   clear();
   delete layout();
-  QGridLayout * grid = new QGridLayout(this);
+  auto grid = new QGridLayout(this);
   grid->setRowStretch(1, 2);
 
   QByteArray rawText = parameters.toLatin1();
@@ -70,7 +70,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
       _presetParameters.push_back(parameter);
       if (parameter->isActualParameter()) {
         _actualParametersCount += 1;
-        _quotedParameters += (parameter->isQuoted() ? "1" : "0");
+        _quotedParameters += (parameter->isQuoted() ? QString("1") : QString("0"));
       }
     }
     cstr += length;
@@ -86,7 +86,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   }
 
   // Restore saved values
-  if (values.size() && (_actualParametersCount == values.size())) {
+  if ((!values.isEmpty()) && (_actualParametersCount == values.size())) {
     QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
     QList<QString>::const_iterator itValue = values.cbegin();
     while (it != _presetParameters.end()) {
@@ -122,7 +122,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   if (row > 0) {
     delete _labelNoParams;
-    _labelNoParams = 0;
+    _labelNoParams = nullptr;
     _paddingWidget = new QWidget(this);
     _paddingWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     grid->addWidget(_paddingWidget, row++, 0, 1, 3);
@@ -157,7 +157,7 @@ void FilterParametersWidget::setNoFilter()
 {
   clear();
   delete layout();
-  QGridLayout * grid = new QGridLayout(this);
+  auto grid = new QGridLayout(this);
   grid->setRowStretch(1, 2);
 
   _labelNoParams = new QLabel(tr("<i>Select a filter</i>"), this);
@@ -181,9 +181,9 @@ const QString & FilterParametersWidget::valueString() const
 QStringList FilterParametersWidget::valueStringList() const
 {
   QStringList list;
-  for (int i = 0; i < _presetParameters.size(); ++i) {
-    if (_presetParameters[i]->isActualParameter()) {
-      list.append(_presetParameters[i]->unquotedTextValue());
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      list.append(param->unquotedTextValue());
     }
   }
   return list;
@@ -194,9 +194,10 @@ void FilterParametersWidget::setValues(const QStringList & list, bool notify)
   if (list.isEmpty() || _actualParametersCount != list.size()) {
     return;
   }
-  for (int i = 0, j = 0; i < _presetParameters.size(); ++i) {
-    if (_presetParameters[i]->isActualParameter()) {
-      _presetParameters[i]->setValue(list[j++]);
+  int j = 0;
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      param->setValue(list[j++]);
     }
   }
   updateValueString(notify);
@@ -204,9 +205,9 @@ void FilterParametersWidget::setValues(const QStringList & list, bool notify)
 
 void FilterParametersWidget::reset(bool notify)
 {
-  for (int i = 0; i < _presetParameters.size(); ++i) {
-    if (_presetParameters[i]->isActualParameter()) {
-      _presetParameters[i]->reset();
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      param->reset();
     }
   }
   updateValueString(notify);
@@ -231,9 +232,9 @@ void FilterParametersWidget::updateValueString(bool notify)
 {
   _valueString.clear();
   bool firstParameter = true;
-  for (int i = 0; i < _presetParameters.size(); ++i) {
-    if (_presetParameters[i]->isActualParameter()) {
-      QString str = _presetParameters[i]->textValue();
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      QString str = param->textValue();
       if (!str.isNull()) {
         if (!firstParameter) {
           _valueString += ",";
@@ -259,17 +260,17 @@ void FilterParametersWidget::clear()
   _actualParametersCount = 0;
 
   delete _labelNoParams;
-  _labelNoParams = 0;
+  _labelNoParams = nullptr;
 
   delete _paddingWidget;
-  _paddingWidget = 0;
+  _paddingWidget = nullptr;
 }
 
 void FilterParametersWidget::clearButtonParameters()
 {
-  for (int i = 0; i < _presetParameters.size(); ++i) {
-    if (_presetParameters[i]->isActualParameter()) {
-      _presetParameters[i]->clear();
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      param->clear();
     }
   }
   updateValueString(false);
@@ -316,7 +317,7 @@ const QString & FilterParametersWidget::quotedParameters() const
 QString FilterParametersWidget::flattenParameterList(const QList<QString> & list, const QString & quoted)
 {
   QString result;
-  if ((list.size() != quoted.size()) || !list.size()) {
+  if ((list.size() != quoted.size()) || list.isEmpty()) {
     return result;
   }
   QList<QString>::const_iterator itList = list.begin();

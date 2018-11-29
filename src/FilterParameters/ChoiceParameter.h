@@ -34,7 +34,7 @@ class QLabel;
 class ChoiceParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ChoiceParameter(QObject * parent = 0);
+  ChoiceParameter(QObject * parent = nullptr);
   ~ChoiceParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

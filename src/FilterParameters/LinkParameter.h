@@ -32,7 +32,7 @@ class QLabel;
 class LinkParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  LinkParameter(QObject * parent = 0);
+  LinkParameter(QObject * parent = nullptr);
   ~LinkParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

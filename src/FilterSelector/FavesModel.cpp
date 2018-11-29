@@ -34,9 +34,9 @@
 
 const size_t FavesModel::NoIndex = std::numeric_limits<size_t>::max();
 
-FavesModel::FavesModel() {}
+FavesModel::FavesModel() = default;
 
-FavesModel::~FavesModel() {}
+FavesModel::~FavesModel() = default;
 
 void FavesModel::clear()
 {
@@ -73,7 +73,7 @@ size_t FavesModel::faveCount() const
 
 FavesModel::const_iterator FavesModel::findFaveFromHash(const QString & hash)
 {
-  return FavesModel::const_iterator(_faves.find(hash));
+  return {_faves.find(hash)};
 }
 
 const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash)
@@ -82,10 +82,10 @@ const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash)
   return _faves.find(hash).value();
 }
 
-QString FavesModel::uniqueName(QString name, QString faveHashToIgnore)
+QString FavesModel::uniqueName(const QString & name, const QString & faveHashToIgnore)
 {
   QString basename(name);
-  basename.replace(QRegExp(" *\\(\\d+\\)$"), QString());
+  basename.replace(QRegExp(R"~( *\(\d+\)$)~"), QString());
   int iMax = -1;
   bool nameIsUnique = true;
   QMap<QString, Fave>::const_iterator it = _faves.cbegin();
@@ -95,7 +95,7 @@ QString FavesModel::uniqueName(QString name, QString faveHashToIgnore)
       if (faveName == name) {
         nameIsUnique = false;
       }
-      QRegExp re(" *\\((\\d+)\\)$");
+      QRegExp re(R"~( *\((\d+)\)$)~");
       if (re.indexIn(faveName) != -1) {
         faveName.replace(re, QString());
         if (faveName == basename) {
@@ -113,38 +113,38 @@ QString FavesModel::uniqueName(QString name, QString faveHashToIgnore)
   return QString("%1 (%2)").arg(basename).arg(iMax + 1);
 }
 
-FavesModel::Fave & FavesModel::Fave::setName(QString name)
+FavesModel::Fave & FavesModel::Fave::setName(const QString & name)
 {
   _name = name;
   _plainText = HtmlTranslator::html2txt(_name, true);
   return *this;
 }
 
-FavesModel::Fave & FavesModel::Fave::setOriginalName(QString name)
+FavesModel::Fave & FavesModel::Fave::setOriginalName(const QString & name)
 {
   _originalName = name;
   return *this;
 }
 
-FavesModel::Fave & FavesModel::Fave::setCommand(QString command)
+FavesModel::Fave & FavesModel::Fave::setCommand(const QString & command)
 {
   _command = command;
   return *this;
 }
 
-FavesModel::Fave & FavesModel::Fave::setPreviewCommand(QString command)
+FavesModel::Fave & FavesModel::Fave::setPreviewCommand(const QString & command)
 {
   _previewCommand = command;
   return *this;
 }
 
-FavesModel::Fave & FavesModel::Fave::setOriginalHash(QString hash)
+FavesModel::Fave & FavesModel::Fave::setOriginalHash(const QString & hash)
 {
   _originalHash = hash;
   return *this;
 }
 
-FavesModel::Fave & FavesModel::Fave::setDefaultValues(QList<QString> defaultValues)
+FavesModel::Fave & FavesModel::Fave::setDefaultValues(const QList<QString> & defaultValues)
 {
   _defaultValues = defaultValues;
   return *this;

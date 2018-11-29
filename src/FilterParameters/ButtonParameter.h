@@ -36,7 +36,7 @@ class QLabel;
 class ButtonParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ButtonParameter(QObject * parent = 0);
+  ButtonParameter(QObject * parent = nullptr);
   ~ButtonParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

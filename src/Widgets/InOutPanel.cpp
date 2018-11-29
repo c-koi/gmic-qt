@@ -168,7 +168,7 @@ void InOutPanel::enableNotifications()
 
 GmicQt::InputOutputState InOutPanel::state() const
 {
-  return GmicQt::InputOutputState(inputMode(), outputMode(), previewMode());
+  return {inputMode(), outputMode(), previewMode()};
 }
 
 void InOutPanel::setState(const GmicQt::InputOutputState & state, bool notify)

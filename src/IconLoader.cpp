@@ -38,7 +38,7 @@ QPixmap IconLoader::darkerPixmap(const QPixmap & pixmap)
 {
   QImage image = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
   for (int row = 0; row < image.height(); ++row) {
-    QRgb * pixel = (QRgb *)image.scanLine(row);
+    auto pixel = reinterpret_cast<QRgb *>(image.scanLine(row));
     const QRgb * limit = pixel + image.width();
     while (pixel != limit) {
       QRgb grayed;

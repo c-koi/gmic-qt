@@ -37,9 +37,9 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
-TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _lineEdit(0), _textEdit(0), _multiline(false), _connected(false)
+TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _lineEdit(nullptr), _textEdit(nullptr), _multiline(false), _connected(false)
 {
-  _updateAction = 0;
+  _updateAction = nullptr;
 }
 
 TextParameter::~TextParameter()
@@ -51,21 +51,22 @@ TextParameter::~TextParameter()
 
 void TextParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _label;
   delete _lineEdit;
   delete _textEdit;
   if (_multiline) {
-    _label = 0;
-    _lineEdit = 0;
+    _label = nullptr;
+    _lineEdit = nullptr;
     _textEdit = new MultilineTextParameterWidget(_name, _value, widget);
     grid->addWidget(_textEdit, row, 0, 1, 3);
   } else {
     grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
     _lineEdit = new QLineEdit(_value, widget);
-    _textEdit = 0;
+    _textEdit = nullptr;
     grid->addWidget(_lineEdit, row, 1, 1, 2);
 #if QT_VERSION >= 0x050200
     _updateAction = _lineEdit->addAction(LOAD_ICON("view-refresh"), QLineEdit::TrailingPosition);

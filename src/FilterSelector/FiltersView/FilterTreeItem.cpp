@@ -27,7 +27,7 @@
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "HtmlTranslator.h"
 
-FilterTreeItem::FilterTreeItem(QString text) : FilterTreeAbstractItem(text)
+FilterTreeItem::FilterTreeItem(const QString & text) : FilterTreeAbstractItem(text)
 {
   _isWarning = false;
   _isFave = false;
@@ -67,8 +67,8 @@ QString FilterTreeItem::hash() const
 
 bool FilterTreeItem::operator<(const QStandardItem & other) const
 {
-  const FilterTreeFolder * otherFolder = dynamic_cast<const FilterTreeFolder *>(&other);
-  const FilterTreeItem * otherItem = dynamic_cast<const FilterTreeItem *>(&other);
+  auto otherFolder = dynamic_cast<const FilterTreeFolder *>(&other);
+  auto otherItem = dynamic_cast<const FilterTreeItem *>(&other);
   Q_ASSERT_X(otherFolder || otherItem, "FilterTreeItem::operator<", "Wrong item types");
   bool otherIsWarning = (otherFolder && otherFolder->isWarning()) || (otherItem && otherItem->isWarning());
   bool otherIsFaveFolder = otherFolder && otherFolder->isFaveFolder();
@@ -91,7 +91,6 @@ bool FilterTreeItem::operator<(const QStandardItem & other) const
   // Other cases follow lexicographic order
   if (otherFolder) {
     return plainText().localeAwareCompare(otherFolder->plainText()) < 0;
-  } else {
-    return plainText().localeAwareCompare(otherItem->plainText()) < 0;
   }
+  return plainText().localeAwareCompare(otherItem->plainText()) < 0;
 }

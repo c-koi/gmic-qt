@@ -29,7 +29,7 @@
 #include "Common.h"
 #include "ui_multilinetextparameterwidget.h"
 
-MultilineTextParameterWidget::MultilineTextParameterWidget(QString name, QString value, QWidget * parent) : QWidget(parent), ui(new Ui::MultilineTextParameterWidget)
+MultilineTextParameterWidget::MultilineTextParameterWidget(const QString & name, const QString & value, QWidget * parent) : QWidget(parent), ui(new Ui::MultilineTextParameterWidget)
 {
   ui->setupUi(this);
   ui->textEdit->document()->setPlainText(value);
@@ -62,8 +62,8 @@ void MultilineTextParameterWidget::onUpdate(bool)
 bool MultilineTextParameterWidget::eventFilter(QObject * obj, QEvent * event)
 {
   if (event->type() == QEvent::KeyPress) {
-    QKeyEvent * keyEvent = static_cast<QKeyEvent *>(event);
-    if (keyEvent->modifiers() & Qt::ControlModifier && (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return)) {
+    auto keyEvent = dynamic_cast<QKeyEvent *>(event);
+    if (keyEvent && (keyEvent->modifiers() & Qt::ControlModifier) && (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return)) {
       onUpdate(true);
       return true;
     }

@@ -31,7 +31,7 @@ class QLabel;
 class NoteParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  NoteParameter(QObject * parent = 0);
+  NoteParameter(QObject * parent = nullptr);
   ~NoteParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

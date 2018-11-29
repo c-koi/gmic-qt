@@ -33,12 +33,12 @@ class FavesModel {
 public:
   class Fave {
   public:
-    Fave & setName(QString name);
-    Fave & setOriginalName(QString name);
-    Fave & setCommand(QString command);
-    Fave & setPreviewCommand(QString command);
-    Fave & setOriginalHash(QString hash);
-    Fave & setDefaultValues(QList<QString> defaultValues);
+    Fave & setName(const QString & name);
+    Fave & setOriginalName(const QString & name);
+    Fave & setCommand(const QString & command);
+    Fave & setPreviewCommand(const QString & command);
+    Fave & setOriginalHash(const QString & hash);
+    Fave & setDefaultValues(const QList<QString> & defaultValues);
     Fave & build();
 
     QString name() const;
@@ -91,7 +91,7 @@ public:
   size_t faveCount() const;
   const_iterator findFaveFromHash(const QString &);
   const Fave & getFaveFromHash(const QString & hash);
-  QString uniqueName(QString name, QString faveHashToIgnore);
+  QString uniqueName(const QString & name, const QString & faveHashToIgnore);
   static const size_t NoIndex;
 
 private:

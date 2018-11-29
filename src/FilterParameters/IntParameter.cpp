@@ -34,7 +34,7 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 
-IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(0), _slider(0), _spinBox(0)
+IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
 {
   _timerId = 0;
   _connected = false;
@@ -49,9 +49,10 @@ IntParameter::~IntParameter()
 
 void IntParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _spinBox;
   delete _slider;
   delete _label;

@@ -58,7 +58,7 @@ public:
   ~FiltersPresenter();
   void setFiltersView(FiltersView * filtersView);
   void rebuildFilterView();
-  void rebuildFilterViewWithSelection(QList<QString> keywords);
+  void rebuildFilterViewWithSelection(const QList<QString> & keywords);
 
   void clear();
   void readFilters();
@@ -76,7 +76,7 @@ public:
   void restoreFaveHashLinksAfterCaseChange();
   void importGmicGTKFaves();
   void saveFaves();
-  void addSelectedFilterAsNewFave(QList<QString> defaultValues, GmicQt::InputOutputState inOutState);
+  void addSelectedFilterAsNewFave(const QList<QString> & defaultValues, GmicQt::InputOutputState inOutState);
 
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);
@@ -102,15 +102,15 @@ signals:
 public slots:
   void removeSelectedFave();
   void editSelectedFaveName();
-  void onFaveRenamed(QString hash, QString newName);
+  void onFaveRenamed(const QString & hash, const QString & name);
   void toggleSelectionMode(bool on);
 
 private slots:
-  void onFilterChanged(QString hash);
-  void removeFave(QString hash);
+  void onFilterChanged(const QString & hash);
+  void removeFave(const QString & hash);
 
 private:
-  void setCurrentFilter(QString hash);
+  void setCurrentFilter(const QString & hash);
 
   FiltersModel _filtersModel;
   FavesModel _favesModel;

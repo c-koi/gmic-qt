@@ -31,7 +31,7 @@ class QFrame;
 class SeparatorParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  SeparatorParameter(QObject * parent = 0);
+  SeparatorParameter(QObject * parent = nullptr);
   ~SeparatorParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

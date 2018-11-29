@@ -33,7 +33,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(0), _checkBox(0), _connected(false) {}
+BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(nullptr), _checkBox(nullptr), _connected(false) {}
 
 BoolParameter::~BoolParameter()
 {
@@ -43,9 +43,10 @@ BoolParameter::~BoolParameter()
 
 void BoolParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _checkBox;
   delete _label;
   _checkBox = new QCheckBox(_name, widget);
@@ -62,7 +63,7 @@ void BoolParameter::addTo(QWidget * widget, int row)
 
 QString BoolParameter::textValue() const
 {
-  return _value ? "1" : "0";
+  return _value ? QString("1") : QString("0");
 }
 
 void BoolParameter::setValue(const QString & value)

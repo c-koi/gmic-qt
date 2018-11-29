@@ -29,7 +29,7 @@
 #include "Common.h"
 #include "DialogSettings.h"
 
-SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(0) {}
+SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(nullptr) {}
 
 SeparatorParameter::~SeparatorParameter()
 {
@@ -38,9 +38,10 @@ SeparatorParameter::~SeparatorParameter()
 
 void SeparatorParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _frame;
   _frame = new QFrame(widget);
   QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);

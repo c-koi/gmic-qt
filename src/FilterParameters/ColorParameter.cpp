@@ -38,7 +38,7 @@
 #include "DialogSettings.h"
 #include "HtmlTranslator.h"
 
-ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(0), _button(0), _dialog(0) {}
+ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(nullptr), _button(nullptr), _dialog(nullptr) {}
 
 ColorParameter::~ColorParameter()
 {
@@ -49,9 +49,10 @@ ColorParameter::~ColorParameter()
 
 void ColorParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _button;
   delete _label;
 
@@ -77,9 +78,8 @@ QString ColorParameter::textValue() const
   const QColor & c = _value;
   if (_alphaChannel) {
     return QString("%1,%2,%3,%4").arg(c.red()).arg(c.green()).arg(c.blue()).arg(c.alpha());
-  } else {
-    return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
   }
+  return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
 }
 
 void ColorParameter::setValue(const QString & value)

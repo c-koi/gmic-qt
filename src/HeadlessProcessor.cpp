@@ -48,7 +48,7 @@
  * @param outputMode
  */
 HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode)
-    : QObject(parent), _filterThread(0), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
+    : QObject(parent), _filterThread(nullptr), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   _filterName = "Custom command";
   _lastCommand = "skip 0";
@@ -68,7 +68,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
  * @brief HeadlessProcessor::HeadlessProcessor using "last parameters" from config file
  * @param parent
  */
-HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filterThread(0), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
+HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filterThread(nullptr), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   QSettings settings;
   _filterName = settings.value(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname)).toString();
@@ -183,17 +183,17 @@ void HeadlessProcessor::onProcessingFinished()
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if (!_filterThread->aborted()) {
       gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode,
-                            (_outputMessageMode == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData() : 0);
+                            (_outputMessageMode == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData() : nullptr);
     }
   }
   _filterThread->deleteLater();
-  _filterThread = 0;
+  _filterThread = nullptr;
   _singleShotTimer.stop();
   emit done(errorMessage);
   if (!_hasProgressWindow && !errorMessage.isEmpty()) {
     qWarning() << "Error:" << errorMessage;
   }
-  qApp->exit(0);
+  QCoreApplication::exit(0);
 }
 
 void HeadlessProcessor::cancel()

@@ -142,27 +142,24 @@ int GmicProcessor::duration() const
 {
   if (_filterThread) {
     return _filterThread->duration();
-  } else {
-    return 0;
   }
+  return 0;
 }
 
 float GmicProcessor::progress() const
 {
   if (_filterThread) {
     return _filterThread->progress();
-  } else {
-    return 0.0f;
   }
+  return 0.0f;
 }
 
 int GmicProcessor::lastPreviewFilterExecutionDurationMS() const
 {
   if (_lastFilterPreviewExecutionDurations.empty()) {
     return 0;
-  } else {
-    return _lastFilterPreviewExecutionDurations.back();
   }
+  return _lastFilterPreviewExecutionDurations.back();
 }
 
 void GmicProcessor::resetLastPreviewFilterExecutionDurations()
@@ -204,7 +201,7 @@ void GmicProcessor::cancel()
 
 bool GmicProcessor::hasUnfinishedAbortedThreads() const
 {
-  return _unfinishedAbortedThreads.size();
+  return !_unfinishedAbortedThreads.isEmpty();
 }
 
 const cimg_library::CImg<float> & GmicProcessor::previewImage() const
@@ -235,7 +232,7 @@ GmicProcessor::~GmicProcessor()
 {
   delete _gmicImages;
   delete _previewImage;
-  if (_unfinishedAbortedThreads.size()) {
+  if (!_unfinishedAbortedThreads.isEmpty()) {
     qWarning() << QString("Error: ~GmicProcessor(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size());
   }
 }
@@ -311,7 +308,7 @@ void GmicProcessor::onApplyThreadFinished()
 
 void GmicProcessor::onAbortedThreadFinished()
 {
-  FilterThread * thread = dynamic_cast<FilterThread *>(sender());
+  auto thread = dynamic_cast<FilterThread *>(sender());
   if (_unfinishedAbortedThreads.contains(thread)) {
     _unfinishedAbortedThreads.removeOne(thread);
     thread->deleteLater();
@@ -366,7 +363,7 @@ void GmicProcessor::abortCurrentFilterThread()
   connect(_filterThread, SIGNAL(finished()), this, SLOT(onAbortedThreadFinished()));
   _unfinishedAbortedThreads.push_back(_filterThread);
   _filterThread->abortGmic();
-  _filterThread = 0;
+  _filterThread = nullptr;
   _waitingCursorTimer.stop();
   OverrideCursor::setWaiting(false);
 }

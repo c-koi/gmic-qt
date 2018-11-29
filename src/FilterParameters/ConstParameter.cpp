@@ -30,7 +30,7 @@
 
 ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent, true) {}
 
-ConstParameter::~ConstParameter() {}
+ConstParameter::~ConstParameter() = default;
 
 bool ConstParameter::isVisible() const
 {

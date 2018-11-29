@@ -44,7 +44,7 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   _empty = true;
 
 #if QT_VERSION >= 0x050200
-  QHBoxLayout * hbox = dynamic_cast<QHBoxLayout *>(layout());
+  auto hbox = dynamic_cast<QHBoxLayout *>(layout());
   if (hbox) {
     hbox->setMargin(0);
     hbox->setSpacing(0);
@@ -91,7 +91,7 @@ QString SearchFieldWidget::text() const
   return _lineEdit->text();
 }
 
-void SearchFieldWidget::onTextChanged(QString str)
+void SearchFieldWidget::onTextChanged(const QString & str)
 {
 #if QT_VERSION >= 0x050200
   if (str.isEmpty()) {

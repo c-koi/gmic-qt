@@ -109,7 +109,7 @@ int launchPlugin()
   char * dummy_argv[1] = {fullexname};
 
   QApplication app(dummy_argc, dummy_argv);
-  app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
+  QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
   QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
@@ -119,9 +119,9 @@ int launchPlugin()
   // Translate according to current locale or configured language
   QString lang = LanguageSelectionWidget::configuredTranslator();
   if (!lang.isEmpty() && (lang != "en")) {
-    QTranslator * translator = new QTranslator(&app);
+    auto translator = new QTranslator(&app);
     translator->load(QString(":/translations/%1.qm").arg(lang));
-    app.installTranslator(translator);
+    QApplication::installTranslator(translator);
   }
   TIMING;
   MainWindow mainWindow;
@@ -132,7 +132,7 @@ int launchPlugin()
     mainWindow.show();
   }
   TIMING;
-  return app.exec();
+  return QApplication::exec();
 }
 
 int launchPluginHeadlessUsingLastParameters()
@@ -144,7 +144,7 @@ int launchPluginHeadlessUsingLastParameters()
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
 #endif
   QApplication app(dummy_argc, dummy_argv);
-  app.setWindowIcon(QIcon(":resources/gmic_hat.png"));
+  QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
   QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
@@ -155,19 +155,18 @@ int launchPluginHeadlessUsingLastParameters()
   // Translate according to current locale or configured language
   QString lang = LanguageSelectionWidget::configuredTranslator();
   if (!lang.isEmpty() && (lang != "en")) {
-    QTranslator * translator = new QTranslator(&app);
+    auto translator = new QTranslator(&app);
     translator->load(QString(":/translations/%1.qm").arg(lang));
-    app.installTranslator(translator);
+    QCoreApplication::installTranslator(translator);
   }
 
   HeadlessProcessor processor;
   ProgressInfoWindow progressWindow(&processor);
   if (processor.command().isEmpty()) {
     return 0;
-  } else {
-    processor.startProcessing();
-    return app.exec();
   }
+  processor.startProcessing();
+  return QApplication::exec();
 }
 
 int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output)
@@ -193,5 +192,5 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   idle.setSingleShot(true);
   QObject::connect(&idle, SIGNAL(timeout()), &headlessProcessor, SLOT(startProcessing()));
   idle.start();
-  return app.exec();
+  return QCoreApplication::exec();
 }

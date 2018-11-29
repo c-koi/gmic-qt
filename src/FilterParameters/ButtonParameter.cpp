@@ -31,7 +31,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(0), _alignment(Qt::AlignHCenter) {}
+ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(nullptr), _alignment(Qt::AlignHCenter) {}
 
 ButtonParameter::~ButtonParameter()
 {
@@ -40,9 +40,10 @@ ButtonParameter::~ButtonParameter()
 
 void ButtonParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _pushButton;
   _pushButton = new QPushButton(_text, widget);
   _pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -80,15 +81,14 @@ bool ButtonParameter::initFromText(const char * text, int & textLength)
   QString & alignment = list[1];
   if (alignment.isEmpty()) {
     return true;
+  }
+  float a = alignment.toFloat();
+  if (a == 0.0f) {
+    _alignment = Qt::AlignLeft;
+  } else if (a == 1.0f) {
+    _alignment = Qt::AlignRight;
   } else {
-    float a = alignment.toFloat();
-    if (a == 0.0f) {
-      _alignment = Qt::AlignLeft;
-    } else if (a == 1.0f) {
-      _alignment = Qt::AlignRight;
-    } else {
-      _alignment = Qt::AlignCenter;
-    }
+    _alignment = Qt::AlignCenter;
   }
   return true;
 }

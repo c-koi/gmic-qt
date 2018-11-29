@@ -33,7 +33,7 @@ class QPushButton;
 class FileParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FileParameter(QObject * parent = 0);
+  FileParameter(QObject * parent = nullptr);
   ~FileParameter();
   void addTo(QWidget *, int row) override;
   QString textValue() const override;

@@ -35,10 +35,10 @@ public:
   class Filter {
   public:
     Filter();
-    Filter & setName(QString name);
-    Filter & setCommand(QString command);
-    Filter & setPreviewCommand(QString previewCommand);
-    Filter & setParameters(QString parameters);
+    Filter & setName(const QString & name);
+    Filter & setCommand(const QString & command);
+    Filter & setPreviewCommand(const QString & previewCommand);
+    Filter & setParameters(const QString & parameters);
     Filter & setPreviewFactor(float factor);
     Filter & setAccurateIfZoomed(bool accurate);
     Filter & setPath(const QList<QString> & path);

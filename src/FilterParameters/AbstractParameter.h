@@ -47,7 +47,7 @@ public:
   virtual void addToKeypointList(KeypointList &) const;
   virtual void extractPositionFromKeypointList(KeypointList &);
 
-  static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = 0);
+  static AbstractParameter * createFromText(const char * text, int & length, QString & error, QWidget * parent = nullptr);
   virtual bool initFromText(const char * text, int & textLength) = 0;
 signals:
   void valueChanged();

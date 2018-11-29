@@ -109,13 +109,12 @@ void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_librar
     }
   }
   result.assign();
-  return;
 }
 
 template <typename T> void image2uchar(cimg_library::CImg<T> & img)
 {
   unsigned int len = img.width() * img.height();
-  unsigned char * dst = reinterpret_cast<unsigned char *>(img.data());
+  auto dst = reinterpret_cast<unsigned char *>(img.data());
   switch (img.spectrum()) {
   case 1: {
     const T * src = img.data(0, 0, 0, 0);
@@ -310,7 +309,7 @@ QPixmap darkerPixmap(const QPixmap & pixmap)
   QImage image = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
   image.save(QString("/tmp/icon%1.png").arg(i++));
   for (int row = 0; row < image.height(); ++row) {
-    QRgb * pixel = (QRgb *)image.scanLine(row);
+    auto pixel = reinterpret_cast<QRgb *>(image.scanLine(row));
     const QRgb * limit = pixel + image.width();
     while (pixel != limit) {
       QColor color;

@@ -109,21 +109,21 @@ const QString HostApplicationName;
 const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
 } // namespace GmicQt
 
-void gmic_qt_get_image_size(int * x, int * y)
+void gmic_qt_get_image_size(int * width, int * height)
 {
   // TSHOW(gmic_qt_standalone::visibleMainWindow());
   if (gmic_qt_standalone::input_image.isNull()) {
     if (gmic_qt_standalone::visibleMainWindow()) {
       gmic_qt_standalone::askForImageFilename();
-      *x = gmic_qt_standalone::input_image.width();
-      *y = gmic_qt_standalone::input_image.height();
+      *width = gmic_qt_standalone::input_image.width();
+      *height = gmic_qt_standalone::input_image.height();
     } else {
-      *x = 640;
-      *y = 480;
+      *width = 640;
+      *height = 480;
     }
   } else {
-    *x = gmic_qt_standalone::input_image.width();
-    *y = gmic_qt_standalone::input_image.height();
+    *width = gmic_qt_standalone::input_image.width();
+    *height = gmic_qt_standalone::input_image.height();
   }
 }
 
@@ -147,23 +147,23 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     images.assign();
     imageNames.assign();
     return;
-  } else {
-    images.assign(1);
-    imageNames.assign(1);
-
-    QString noParenthesisName(gmic_qt_standalone::image_filename);
-    noParenthesisName.replace(QChar('('), QChar(21)).replace(QChar(')'), QChar(22));
-
-    QString name = QString("pos(0,0),name(%1)").arg(noParenthesisName);
-    QByteArray ba = name.toUtf8();
-    gmic_image<char>::string(ba.constData()).move_to(imageNames[0]);
-
-    const int ix = static_cast<int>(entireImage ? 0 : std::floor(x * input_image.width()));
-    const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image.height()));
-    const int iw = entireImage ? input_image.width() : std::min(input_image.width() - ix, static_cast<int>(1 + std::ceil(width * input_image.width())));
-    const int ih = entireImage ? input_image.height() : std::min(input_image.height() - iy, static_cast<int>(1 + std::ceil(height * input_image.height())));
-    ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
   }
+
+  images.assign(1);
+  imageNames.assign(1);
+
+  QString noParenthesisName(gmic_qt_standalone::image_filename);
+  noParenthesisName.replace(QChar('('), QChar(21)).replace(QChar(')'), QChar(22));
+
+  QString name = QString("pos(0,0),name(%1)").arg(noParenthesisName);
+  QByteArray ba = name.toUtf8();
+  gmic_image<char>::string(ba.constData()).move_to(imageNames[0]);
+
+  const int ix = static_cast<int>(entireImage ? 0 : std::floor(x * input_image.width()));
+  const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image.height()));
+  const int iw = entireImage ? input_image.width() : std::min(input_image.width() - ix, static_cast<int>(1 + std::ceil(width * input_image.width())));
+  const int ih = entireImage ? input_image.height() : std::min(input_image.height() - iy, static_cast<int>(1 + std::ceil(height * input_image.height())));
+  ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
 }
 
 void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel)
@@ -215,16 +215,14 @@ int main(int argc, char * argv[])
 #endif
   if (filename.isEmpty()) {
     return launchPlugin();
-  } else {
-    if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
-      gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
-      gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
-      return launchPlugin();
-    } else {
-      std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
-      return 1;
-    }
   }
+  if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
+    gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
+    gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
+    return launchPlugin();
+  }
+  std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
+  return 1;
 }
 
 void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> &) {}

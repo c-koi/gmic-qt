@@ -36,10 +36,8 @@ QString HtmlTranslator::html2txt(const QString & str, bool force)
   if (force || hasHtmlEntities(str)) {
     _document.setHtml(str);
     return fromUtf8Escapes(_document.toPlainText());
-  } else {
-    return fromUtf8Escapes(str);
-    ;
   }
+  return fromUtf8Escapes(str);
 }
 
 bool HtmlTranslator::hasHtmlEntities(const QString & str)

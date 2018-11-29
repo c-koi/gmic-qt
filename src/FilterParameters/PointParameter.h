@@ -41,7 +41,7 @@ class QPushButton;
 class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  PointParameter(QObject * parent = 0);
+  PointParameter(QObject * parent = nullptr);
   ~PointParameter();
   bool isVisible() const override;
   void addTo(QWidget *, int row) override;

@@ -38,7 +38,7 @@ inline bool archIsLittleEndian()
 
 inline unsigned char float2uchar_bounded(const float & in)
 {
-  return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : in);
+  return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
 }
 
 } // namespace

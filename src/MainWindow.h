@@ -77,7 +77,7 @@ public slots:
   void onPreviewKeypointsEvent(unsigned int flags, unsigned long time);
   void onFullImageProcessingDone();
   void expandOrCollapseFolders();
-  void search(QString);
+  void search(const QString &);
   void onOkClicked();
   void onCloseClicked();
   void onProgressionWidgetCancelClicked();
@@ -98,14 +98,14 @@ public slots:
   void onFilterSelectionChanged();
   void onEscapeKeyPressed();
   void onPreviewImageAvailable();
-  void onPreviewError(QString message);
+  void onPreviewError(const QString & message);
   void onParametersChanged();
 
 protected:
-  void timerEvent(QTimerEvent *);
-  void closeEvent(QCloseEvent * e);
-  void showEvent(QShowEvent *);
-  void resizeEvent(QResizeEvent *);
+  void timerEvent(QTimerEvent *) override;
+  void closeEvent(QCloseEvent * e) override;
+  void showEvent(QShowEvent *) override;
+  void resizeEvent(QResizeEvent *) override;
   void saveSettings();
   void loadSettings();
   void showUpdateErrors();
@@ -119,14 +119,14 @@ protected:
 
 private slots:
 
-  void onFullImageProcessingError(QString message);
+  void onFullImageProcessingError(const QString & message);
   void onInputModeChanged(GmicQt::InputMode);
 
 private:
   void setZoomConstraint();
   bool filtersSelectionMode();
   void clearMessage();
-  void showMessage(QString text, int ms = 2000);
+  void showMessage(const QString & text, int ms = 2000);
   void setIcons();
   bool confirmAbortProcessingOnCloseRequest();
   void enableWidgetList(bool on);

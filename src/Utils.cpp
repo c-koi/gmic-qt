@@ -115,15 +115,18 @@ const char * commandFromOutputMessageMode(OutputMessageMode mode)
 {
   static const char commands[][6] = {"v -", "v -99", "v 0", "debug"};
   if (mode == GmicQt::Quiet) {
-    return commands[0];
-  } else if (mode >= GmicQt::VerboseLayerName && mode <= GmicQt::VerboseLogFile) {
-    return commands[1];
-  } else if (mode == GmicQt::VeryVerboseConsole || mode == GmicQt::VeryVerboseLogFile) {
-    return commands[2];
-  } else if (mode == GmicQt::DebugConsole || mode == GmicQt::DebugLogFile) {
-    return commands[3];
+    return static_cast<const char *>(commands[0]);
   }
-  return commands[0];
+  if (mode >= GmicQt::VerboseLayerName && mode <= GmicQt::VerboseLogFile) {
+    return static_cast<const char *>(commands[1]);
+  }
+  if (mode == GmicQt::VeryVerboseConsole || mode == GmicQt::VeryVerboseLogFile) {
+    return static_cast<const char *>(commands[2]);
+  }
+  if (mode == GmicQt::DebugConsole || mode == GmicQt::DebugLogFile) {
+    return static_cast<const char *>(commands[3]);
+  }
+  return static_cast<const char *>(commands[0]);
 }
 
 void downcaseCommandTitle(QString & title)

@@ -37,7 +37,7 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
-FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent, true), _label(0), _button(0) {}
+FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _button(nullptr) {}
 
 FolderParameter::~FolderParameter()
 {
@@ -47,7 +47,7 @@ FolderParameter::~FolderParameter()
 
 void FolderParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
   if (!grid)
     return;
   delete _label;
@@ -119,7 +119,7 @@ bool FolderParameter::isQuoted() const
 void FolderParameter::onButtonPressed()
 {
   QString oldValue = _value;
-  QString path = QFileDialog::getExistingDirectory(0, tr("Select a folder"), _value);
+  QString path = QFileDialog::getExistingDirectory(dynamic_cast<QWidget *>(parent()), tr("Select a folder"), _value);
   if (path.isEmpty()) {
     setValue(oldValue);
   } else {

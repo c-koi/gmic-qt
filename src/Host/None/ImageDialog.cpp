@@ -47,14 +47,14 @@ void ImageView::save(const QString & filename)
 
 ImageDialog::ImageDialog(QWidget * parent) : QDialog(parent)
 {
-  QVBoxLayout * vbox = new QVBoxLayout(this);
+  auto vbox = new QVBoxLayout(this);
 
   _tabWidget = new QTabWidget(this);
   vbox->addWidget(_tabWidget);
 
   _tabWidget->setElideMode(Qt::ElideRight);
 
-  QHBoxLayout * hbox = new QHBoxLayout;
+  auto hbox = new QHBoxLayout;
   vbox->addLayout(hbox);
   _closeButton = new QPushButton("Close");
   connect(_closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked(bool)));
@@ -64,9 +64,9 @@ ImageDialog::ImageDialog(QWidget * parent) : QDialog(parent)
   hbox->addWidget(_saveButton);
 }
 
-void ImageDialog::addImage(const cimg_library::CImg<float> & image, QString name)
+void ImageDialog::addImage(const cimg_library::CImg<float> & image, const QString & name)
 {
-  ImageView * view = new ImageView(_tabWidget);
+  auto view = new ImageView(_tabWidget);
   view->setImage(image);
   _tabWidget->addTab(view, name);
   _tabWidget->setCurrentIndex(_tabWidget->count() - 1);
@@ -75,7 +75,7 @@ void ImageDialog::addImage(const cimg_library::CImg<float> & image, QString name
 const QImage & ImageDialog::currentImage() const
 {
   QWidget * widget = _tabWidget->currentWidget();
-  ImageView * view = dynamic_cast<ImageView *>(widget);
+  auto view = dynamic_cast<ImageView *>(widget);
   Q_ASSERT_X(view, __FUNCTION__, "Widget is not an ImageView");
   return view->image();
 }
@@ -96,7 +96,7 @@ void ImageDialog::onSaveAs()
     filename += extension;
   }
   if (!filename.isEmpty()) {
-    ImageView * view = dynamic_cast<ImageView *>(_tabWidget->currentWidget());
+    auto view = dynamic_cast<ImageView *>(_tabWidget->currentWidget());
     if (view) {
       view->save(filename);
     }

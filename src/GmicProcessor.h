@@ -127,7 +127,7 @@ private slots:
 private:
   void updateImageNames(cimg_library::CImgList<char> & imageNames);
   void abortCurrentFilterThread();
-  void manageSynchonousRunner(FilterSyncRunner & thread);
+  void manageSynchonousRunner(FilterSyncRunner & runner);
 
   FilterThread * _filterThread;
   FilterContext _filterContext;

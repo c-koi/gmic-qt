@@ -32,7 +32,7 @@
 #include "Common.h"
 #include "HtmlTranslator.h"
 
-LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent, false), _label(0), _alignment(Qt::AlignLeft) {}
+LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent, false), _label(nullptr), _alignment(Qt::AlignLeft) {}
 
 LinkParameter::~LinkParameter()
 {
@@ -41,9 +41,10 @@ LinkParameter::~LinkParameter()
 
 void LinkParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid)
+  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid) {
     return;
+  }
   delete _label;
   _label = new QLabel(QString("<a href=\"%2\">%1</a>").arg(_text).arg(_url), widget);
   _label->setAlignment(_alignment);
@@ -93,7 +94,7 @@ bool LinkParameter::initFromText(const char * text, int & textLength)
   if (values.size() == 1) {
     _url = values[0].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
   }
-  if (!values.size()) {
+  if (values.isEmpty()) {
     return false;
   }
   if (_text.isEmpty()) {

@@ -27,7 +27,7 @@
 #include <cmath>
 #include <cstring>
 
-KeypointList::KeypointList() {}
+KeypointList::KeypointList() = default;
 
 void KeypointList::add(const KeypointList::Keypoint & keypoint)
 {
@@ -47,7 +47,7 @@ void KeypointList::clear()
 QPointF KeypointList::position(int n) const
 {
   const Keypoint & kp = _keypoints[n];
-  return QPointF(kp.x, kp.y);
+  return {kp.x, kp.y};
 }
 
 QColor KeypointList::color(int n) const

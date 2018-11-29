@@ -42,11 +42,11 @@ void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewIte
   initStyleOption(&options, index);
   painter->save();
 
-  const QStandardItemModel * model = dynamic_cast<const QStandardItemModel *>(index.model());
+  auto model = dynamic_cast<const QStandardItemModel *>(index.model());
   Q_ASSERT_X(model, "FiltersTreeItemDelegate::paint()", "No model");
   const QStandardItem * item = model->itemFromIndex(index);
   Q_ASSERT_X(item, "FiltersTreeItemDelegate::paint()", "No item");
-  const FilterTreeItem * filter = dynamic_cast<const FilterTreeItem *>(item);
+  auto filter = dynamic_cast<const FilterTreeItem *>(item);
 
   QTextDocument doc;
   if (!item->isCheckable() && filter && !filter->isVisible()) {
@@ -72,5 +72,5 @@ QSize FilterTreeItemDelegate::sizeHint(const QStyleOptionViewItem & option, cons
   QTextDocument doc;
   doc.setHtml(options.text);
   doc.setTextWidth(options.rect.width());
-  return QSize(doc.idealWidth(), doc.size().height());
+  return {static_cast<int>(doc.idealWidth()), static_cast<int>(doc.size().height())};
 }
