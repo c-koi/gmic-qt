@@ -25,6 +25,7 @@
 #include "Updater.h"
 #include <QDebug>
 #include <QNetworkRequest>
+#include <QTextStream>
 #include <QUrl>
 #include <iostream>
 #include "Common.h"
@@ -223,10 +224,15 @@ void Updater::processReply(QNetworkReply * reply)
 void Updater::onNetworkReplyFinished(QNetworkReply * reply)
 {
   TIMING;
-  if (reply->error() == QNetworkReply::NoError) {
+  QNetworkReply::NetworkError error = reply->error();
+  if (error == QNetworkReply::NoError) {
     processReply(reply);
   } else {
-    _errorMessages << QString(tr("Error downloading %1")).arg(reply->request().url().toString());
+    QString str;
+    QDebug d(&str);
+    d << error;
+    str = str.trimmed();
+    _errorMessages << QString(tr("Error downloading %1<br/>Error %2: %3")).arg(reply->request().url().toString()).arg(static_cast<int>(error)).arg(str);
   }
   _pendingReplies.remove(reply);
   if (_pendingReplies.isEmpty()) {
