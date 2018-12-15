@@ -501,8 +501,19 @@ elseif (${GMIC_QT_HOST} STREQUAL "none")
     add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
     target_link_libraries(gmic_qt PRIVATE ${gmic_qt_LIBRARIES})
 
+elseif (${GMIC_QT_HOST} STREQUAL "paintdotnet")
+
+    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/PaintDotNet/host_paintdotnet.cpp)
+    add_definitions(-DGMIC_HOST=paintdotnet)
+    add_executable(gmic_paintdotnet_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
+    target_link_libraries(
+      gmic_paintdotnet_qt
+      PRIVATE
+      ${gmic_qt_LIBRARIES}
+      )
+
 else()
-    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita or none")
+    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita, none or paintdotnet")
 endif()
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
