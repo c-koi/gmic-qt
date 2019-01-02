@@ -54,7 +54,7 @@ equals( HOST, "gimp" ) {
 
 DEFINES += cimg_use_cpp11=1
 DEFINES += cimg_use_fftw3 cimg_use_zlib
-DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_rng
+DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png
 DEFINES += cimg_appname="\\\"gmic\\\""
 
 equals(TIMING, "on") {
