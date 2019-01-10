@@ -267,7 +267,7 @@ void gmic_qt_output_images( gmic_list<float> & images,
         memcpy(m->data(), gimg._data, gimg._width * gimg._height * gimg._spectrum * sizeof(float));
         m->unlock();
 
-        QString layerName((const char *const)imageNames[i]);
+        QString layerName((const char *)imageNames[i]);
 
         message += "layer=" + m->key() + ","
                 + layerName.toUtf8().toHex() + ","
@@ -289,6 +289,7 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & )
 
 }
 #if defined Q_OS_WIN
+#if defined DRMINGW
 namespace
 {
 void tryInitDrMingw()
@@ -314,7 +315,8 @@ void tryInitDrMingw()
     myExcHndlSetLogFileNameA(logFile.toLocal8Bit());
 }
 } // namespace
-#endif
+#endif // DRMINGW
+#endif // Q_OS_WIN
 
 int main(int argc, char *argv[])
 {
