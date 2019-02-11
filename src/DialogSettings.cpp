@@ -28,6 +28,7 @@
 #include <limits>
 #include "Common.h"
 #include "Globals.h"
+#include "Host/host.h"
 #include "IconLoader.h"
 #include "Logger.h"
 #include "Updater.h"
@@ -101,7 +102,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
-  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, false).toBool();
+  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, GmicQt::DarkThemeIsDefault).toBool();
   ui->rbDarkTheme->setChecked(savedDarkTheme);
   ui->rbDefaultTheme->setChecked(!savedDarkTheme);
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
@@ -168,7 +169,7 @@ void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
   } else {
     _previewPosition = MainWindow::PreviewOnRight;
   }
-  _darkThemeEnabled = settings.value(DARK_THEME_KEY, false).toBool();
+  _darkThemeEnabled = settings.value(DARK_THEME_KEY, GmicQt::DarkThemeIsDefault).toBool();
   _languageCode = settings.value("Config/LanguageCode", QString()).toString();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();

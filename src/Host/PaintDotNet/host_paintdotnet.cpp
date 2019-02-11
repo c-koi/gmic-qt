@@ -41,6 +41,7 @@ namespace GmicQt
 {
 	const QString HostApplicationName = QString("Paint.NET");
 	const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+        const bool DarkThemeIsDefault = false;
 }
 
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)

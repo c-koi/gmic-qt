@@ -54,6 +54,12 @@ namespace GmicQt
 {
 const QString HostApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
 const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+const bool DarkThemeIsDefault = false;
+#else
+const bool DarkThemeIsDefault = true;
+#endif
+
 } // namespace GmicQt
 
 namespace

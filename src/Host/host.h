@@ -31,13 +31,14 @@ namespace cimg_library
 {
 template <typename T> struct CImg;
 template <typename T> struct CImgList;
-}
+} // namespace cimg_library
 
 namespace GmicQt
 {
 extern const QString HostApplicationName;
 extern const char * HostApplicationShortname;
-}
+extern const bool DarkThemeIsDefault;
+} // namespace GmicQt
 
 /**
  * @brief gmic_qt_get_image_size

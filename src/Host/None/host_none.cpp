@@ -107,6 +107,7 @@ namespace GmicQt
 {
 const QString HostApplicationName;
 const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
+const bool DarkThemeIsDefault = false;
 } // namespace GmicQt
 
 void gmic_qt_get_image_size(int * width, int * height)

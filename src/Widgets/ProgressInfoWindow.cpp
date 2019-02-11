@@ -55,7 +55,7 @@ ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWin
   connect(processor, SIGNAL(done(QString)), this, SLOT(onProcessingFinished(QString)));
   _isShown = false;
 
-  if (QSettings().value(DARK_THEME_KEY, false).toBool()) {
+  if (DialogSettings::darkThemeEnabled()) {
     setDarkTheme();
   }
 }

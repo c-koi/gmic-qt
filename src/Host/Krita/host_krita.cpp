@@ -60,6 +60,7 @@
 namespace GmicQt {
 const QString HostApplicationName = QString("Krita");
 const char *HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+const bool DarkThemeIsDefault = true;
 }
 
 static QString socketKey = "gmic-krita";
