@@ -95,6 +95,8 @@ public:
   void expandAll();
   void collapseAll();
 
+  const QString & errorMessage() const;
+
 signals:
   void filterSelectionChanged();
   void faveAdditionRequested(QString);
@@ -116,6 +118,7 @@ private:
   FavesModel _favesModel;
   FiltersView * _filtersView;
   Filter _currentFilter;
+  QString _errorMessage;
 };
 
 #endif // _GMIC_QT_FILTERSPRESENTER_H_

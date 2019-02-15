@@ -153,14 +153,18 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   return error.isEmpty();
 }
 
-void FilterParametersWidget::setNoFilter()
+void FilterParametersWidget::setNoFilter(const QString & message)
 {
   clear();
   delete layout();
   auto grid = new QGridLayout(this);
   grid->setRowStretch(1, 2);
 
-  _labelNoParams = new QLabel(tr("<i>Select a filter</i>"), this);
+  if (message.isEmpty()) {
+    _labelNoParams = new QLabel(tr("<i>Select a filter</i>"), this);
+  } else {
+    _labelNoParams = new QLabel(QString("<i>%1</i>").arg(message), this);
+  }
   _labelNoParams->setAlignment(Qt::AlignHCenter | Qt::AlignCenter);
   grid->addWidget(_labelNoParams, 0, 0, 4, 3);
 

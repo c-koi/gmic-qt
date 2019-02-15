@@ -1015,7 +1015,7 @@ void MainWindow::activateFilter(bool resetZoom)
 
 void MainWindow::setNoFilter()
 {
-  ui->filterParams->setNoFilter();
+  ui->filterParams->setNoFilter(_filtersPresenter->errorMessage());
   ui->previewWidget->disableRightClick();
   ui->previewWidget->setKeypoints(KeypointList());
   ui->inOutSelector->hide();

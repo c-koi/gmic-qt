@@ -259,9 +259,7 @@ void FiltersPresenter::saveSettings(QSettings & settings)
 
 void FiltersPresenter::setInvalidFilter()
 {
-  _currentFilter.clear();
-  _currentFilter.command = "skip";
-  _currentFilter.previewCommand = "skip";
+  _currentFilter.setInvalid();
 }
 
 bool FiltersPresenter::isInvalidFilter() const
@@ -293,6 +291,11 @@ void FiltersPresenter::expandAll()
 void FiltersPresenter::collapseAll()
 {
   _filtersView->collapseAll();
+}
+
+const QString & FiltersPresenter::errorMessage() const
+{
+  return _errorMessage;
 }
 
 void FiltersPresenter::removeSelectedFave()
@@ -368,6 +371,7 @@ void FiltersPresenter::removeFave(const QString & hash)
 
 void FiltersPresenter::setCurrentFilter(const QString & hash)
 {
+  _errorMessage.clear();
   if (hash.isEmpty()) {
     _currentFilter.clear();
   } else if (_favesModel.contains(hash)) {
@@ -385,6 +389,9 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
       _currentFilter.previewCommand = fave.previewCommand();
       _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
       _currentFilter.previewFactor = filter.previewFactor();
+    } else {
+      setInvalidFilter();
+      _errorMessage = tr("Cannot find this fave's original filter\n");
     }
   } else if (_filtersModel.contains(hash)) {
     const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(hash);

@@ -41,7 +41,7 @@ class FilterParametersWidget : public QWidget {
 public:
   FilterParametersWidget(QWidget * parent = nullptr);
   bool build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values);
-  void setNoFilter();
+  void setNoFilter(const QString & message = QString::null);
   virtual ~FilterParametersWidget();
   const QString & valueString() const;
   QStringList valueStringList() const;
