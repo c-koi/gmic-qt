@@ -3,7 +3,7 @@
 *  editors, offering hundreds of filters thanks to the underlying G'MIC
 *  image processing framework.
 *
-*  Copyright (C) 2018 Nicholas Hayes
+*  Copyright (C) 2018, 2019 Nicholas Hayes
 *
 *  G'MIC-Qt is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -22,19 +22,47 @@
 
 #include <QImage>
 #include <QString>
-#include <QVector>
+#include <QDebug>
+#include <QUUid>
 #include <iostream>
+#include <memory>
+#include <vector>
 #include "Common.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
 #include "gmic_qt.h"
 #include "gmic.h"
+#include <Windows.h>
+
+struct HandleCloser
+{
+    void operator()(void* pointer)
+    {
+        if (pointer)
+        {
+            CloseHandle(pointer);
+        }
+    }
+};
+
+struct MappedFileViewCloser
+{
+    void operator()(void* pointer)
+    {
+        if (pointer)
+        {
+            UnmapViewOfFile(pointer);
+        }
+    }
+};
+
+typedef std::unique_ptr<void, HandleCloser> ScopedFileMapping;
+typedef std::unique_ptr<void, MappedFileViewCloser> ScopedFileMappingView;
 
 namespace host_paintdotnet
 {
-    QVector<QImage> layerImages;
-
-    QString outputImagePath;
+    QString pipeName;
+    std::vector<ScopedFileMapping> sharedMemory;
 }
 
 namespace GmicQt
@@ -44,13 +72,200 @@ namespace GmicQt
     const bool DarkThemeIsDefault = false;
 }
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
+namespace
 {
-    // Paint.NET layers are all the same size.
-    const QImage firstLayer = host_paintdotnet::layerImages.at(0);
+    class ScopedCreateFile : public std::unique_ptr<void, HandleCloser>
+    {
+    public:
+        ScopedCreateFile(HANDLE handle) : std::unique_ptr<void, HandleCloser>(handle == INVALID_HANDLE_VALUE ? nullptr : handle)
+        {
+        }
+    };
 
-    *width = firstLayer.width();
-    *height = firstLayer.height();
+    BOOL ReadFileBlocking(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPOVERLAPPED lpOverlapped)
+    {
+        DWORD totalBytesRead = 0;
+        do
+        {
+            if (!ReadFile(hFile, lpBuffer, nNumberOfBytesToRead, nullptr, lpOverlapped))
+            {
+                DWORD error = GetLastError();
+                switch (error)
+                {
+                case ERROR_SUCCESS:
+                case ERROR_IO_PENDING:
+                    break;
+                default:
+                    return FALSE;
+                }
+            }
+
+            DWORD bytesRead = 0;
+
+            if (GetOverlappedResult(hFile, lpOverlapped, &bytesRead, TRUE))
+            {
+                ResetEvent(lpOverlapped->hEvent);
+            }
+            else
+            {
+                return FALSE;
+            }
+
+            totalBytesRead += bytesRead;
+        } while (totalBytesRead < nNumberOfBytesToRead);
+
+        return TRUE;
+    }
+
+    BOOL WriteFileBlocking(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPOVERLAPPED lpOverlapped)
+    {
+        DWORD totalBytesWritten = 0;
+        do
+        {
+            if (!WriteFile(hFile, lpBuffer, nNumberOfBytesToWrite, nullptr, lpOverlapped))
+            {
+                DWORD error = GetLastError();
+                switch (error)
+                {
+                case ERROR_SUCCESS:
+                case ERROR_IO_PENDING:
+                    break;
+                default:
+                    return FALSE;
+                }
+            }
+
+            DWORD bytesWritten = 0;
+
+            if (GetOverlappedResult(hFile, lpOverlapped, &bytesWritten, TRUE))
+            {
+                ResetEvent(lpOverlapped->hEvent);
+            }
+            else
+            {
+                return FALSE;
+            }
+
+            totalBytesWritten += bytesWritten;
+        } while (totalBytesWritten < nNumberOfBytesToWrite);
+
+        return TRUE;
+    }
+
+    QByteArray SendMessageSynchronously(QByteArray message)
+    {
+        QByteArray reply;
+
+        ScopedCreateFile handle(CreateFileW(reinterpret_cast<LPCWSTR>(host_paintdotnet::pipeName.utf16()),
+                                            GENERIC_READ | GENERIC_WRITE,
+                                            0,
+                                            nullptr,
+                                            OPEN_EXISTING,
+                                            FILE_FLAG_OVERLAPPED,
+                                            nullptr));
+
+        if (!handle)
+        {
+            qWarning() << "Could not open the Paint.NET pipe handle. GetLastError=" << GetLastError();
+
+            return reply;
+        }
+
+        OVERLAPPED overlapped = {};
+        overlapped.hEvent = CreateEventW(nullptr, TRUE, FALSE, nullptr);
+
+        if (!overlapped.hEvent)
+        {
+            qWarning() << "Could not create the overlapped.hEvent handle. GetLastError=" << GetLastError();
+
+            return reply;
+        }
+
+        // Write the message.
+
+        const int messageLength = message.length();
+
+        if (!WriteFileBlocking(handle.get(), &messageLength, sizeof(int), &overlapped))
+        {
+            qWarning() << "WriteFileBlocking(1) failed GetLastError=" << GetLastError();
+
+            CloseHandle(overlapped.hEvent);
+
+            return reply;
+        }
+
+        if (!WriteFileBlocking(handle.get(), message.data(), static_cast<DWORD>(messageLength), &overlapped))
+        {
+            qWarning() << "WriteFileBlocking(2) failed GetLastError=" << GetLastError();
+
+            CloseHandle(overlapped.hEvent);
+
+            return reply;
+        }
+
+        // Read the reply.
+
+        int bytesRemaining = 0;
+
+        if (!ReadFileBlocking(handle.get(), &bytesRemaining, sizeof(int), &overlapped))
+        {
+            qWarning() << "ReadFileBlocking(1) failed GetLastError=" << GetLastError();
+
+            CloseHandle(overlapped.hEvent);
+
+            return reply;
+        }
+
+        if (bytesRemaining > 0)
+        {
+            reply.resize(bytesRemaining);
+
+            if (!ReadFileBlocking(handle.get(), reply.data(), static_cast<DWORD>(bytesRemaining), &overlapped))
+            {
+                qWarning() << "ReadFileBlocking(2) failed GetLastError=" << GetLastError();
+
+                CloseHandle(overlapped.hEvent);
+
+                return reply;
+            }
+        }
+
+        // Send a message to Paint.NET that all data has been read.
+
+        static const char done[] = "done";
+        constexpr DWORD doneLength = sizeof(done) / sizeof(done[0]);
+
+        WriteFileBlocking(handle.get(), done, doneLength, &overlapped);
+
+        CloseHandle(overlapped.hEvent);
+
+        return reply;
+    }
+}
+
+void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+{
+    if (mode == GmicQt::NoInput)
+    {
+        *width = 0;
+        *height = 0;
+        return;
+    }
+
+    QString getMaxLayerSizeCommand = QString("command=gmic_qt_get_max_layer_size\nmode=%1\n").arg(mode);
+
+    QString reply = QString::fromUtf8(SendMessageSynchronously(getMaxLayerSizeCommand.toUtf8()));
+
+    if (reply.length() > 0)
+    {
+        QStringList items = reply.split(',', QString::SkipEmptyParts);
+
+        if (items.length() == 2)
+        {
+            *width = items[0].toInt();
+            *height = items[1].toInt();
+        }
+    }
 }
 
 void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
@@ -71,46 +286,158 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
         height = 1.0;
     }
 
-    const int layerCount = host_paintdotnet::layerImages.count();
+    QString getImagesCommand = QString("command=gmic_qt_get_cropped_images\nmode=%1\ncroprect=%2,%3,%4,%5\n").arg(mode).arg(x).arg(y).arg(width).arg(height);
+
+    QString reply = QString::fromUtf8(SendMessageSynchronously(getImagesCommand.toUtf8()));
+
+    QStringList layers = reply.split('\n', QString::SkipEmptyParts);
+
+    const int layerCount = layers.length();
 
     images.assign(layerCount);
     imageNames.assign(layerCount);
 
-    for (int i = 0; i < layerCount; i++)
+    for (int i = 0; i < layerCount; ++i)
     {
-        QString layerName = QString("pos(0,0),name(layer%1)").arg(i);
+        QString layerName = QString("layer%1").arg(i);
         QByteArray layerNameBytes = layerName.toUtf8();
         gmic_image<char>::string(layerNameBytes.constData()).move_to(imageNames[i]);
     }
 
-    int imageWidth;
-    int imageHeight;
-    gmic_qt_get_layers_extent(&imageWidth, &imageHeight, mode);
-
-    const int ix = entireImage ? 0 : static_cast<int>(std::floor(x * imageWidth));
-    const int iy = entireImage ? 0 : static_cast<int>(std::floor(y * imageHeight));
-    const int iw = entireImage ? imageWidth : std::min(imageWidth - ix, static_cast<int>(1 + std::ceil(width * imageWidth)));
-    const int ih = entireImage ? imageHeight : std::min(imageHeight - iy, static_cast<int>(1 + std::ceil(height * imageHeight)));
-
-    for (int i = 0; i < layerCount; i++)
+    for (int i = 0; i < layerCount; ++i)
     {
-        ImageConverter::convert(host_paintdotnet::layerImages.at(i).copy(ix, iy, iw, ih), images[i]);
+        QStringList layerData = layers[i].split(',', QString::SkipEmptyParts);
+        if (layerData.length() != 4)
+        {
+            return;
+        }
+
+        LPCWSTR fileMappingName = reinterpret_cast<LPCWSTR>(layerData[0].utf16());
+        const qint32 width = layerData[1].toInt();
+        const qint32 height = layerData[2].toInt();
+        const qint32 stride = layerData[3].toInt();
+
+        ScopedFileMapping fileMappingObject(OpenFileMappingW(FILE_MAP_READ, FALSE, fileMappingName));
+
+        if (fileMappingObject)
+        {
+            const size_t imageDataSize = static_cast<size_t>(stride) * static_cast<size_t>(height);
+
+            ScopedFileMappingView mappedData(MapViewOfFile(fileMappingObject.get(), FILE_MAP_READ, 0, 0, imageDataSize));
+
+            if (mappedData)
+            {
+                const quint8* scan0 = static_cast<const quint8*>(mappedData.get());
+                cimg_library::CImg<float>& dest = images[i];
+
+                dest.assign(width, height, 1, 4);
+                float* dstR = dest.data(0, 0, 0, 0);
+                float* dstG = dest.data(0, 0, 0, 1);
+                float* dstB = dest.data(0, 0, 0, 2);
+                float* dstA = dest.data(0, 0, 0, 3);
+
+                for (qint32 y = 0; y < height; ++y)
+                {
+                    const quint8* src = scan0 + (y * stride);
+
+                    for (qint32 x = 0; x < width; ++x)
+                    {
+                        *dstB++ = static_cast<float>(src[0]);
+                        *dstG++ = static_cast<float>(src[1]);
+                        *dstR++ = static_cast<float>(src[2]);
+                        *dstA++ = static_cast<float>(src[3]);
+
+                        src += 4;
+                    }
+                }
+            }
+            else
+            {
+                qWarning() << "MapViewOfFile failed GetLastError=" << GetLastError();
+                return;
+            }
+        }
+        else
+        {
+            qWarning() << "OpenFileMappingW failed GetLastError=" << GetLastError();
+            return;
+        }
     }
+
+    SendMessageSynchronously("command=gmic_qt_release_shared_memory");
 }
 
 void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel)
 {
     unused(imageNames);
-    unused(mode);
     unused(verboseLayersLabel);
 
     if (images.size() > 0)
     {
+        for (size_t i = 0; i < host_paintdotnet::sharedMemory.size(); ++i)
+        {
+            host_paintdotnet::sharedMemory[i].release();
+        }
+        host_paintdotnet::sharedMemory.clear();
+
+        QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg(mode);
+
         QImage outputImage;
 
         ImageConverter::convert(images[0], outputImage);
 
-        outputImage.save(host_paintdotnet::outputImagePath);
+        if (outputImage.format() != QImage::Format_ARGB32)
+        {
+            outputImage = outputImage.convertToFormat(QImage::Format_ARGB32);
+        }
+
+        QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));
+
+        const qint64 imageSizeInBytes = outputImage.sizeInBytes();
+
+        const DWORD capacityHigh = static_cast<DWORD>((imageSizeInBytes >> 32) & 0xFFFFFFFF);
+        const DWORD capacityLow = static_cast<DWORD>(imageSizeInBytes & 0x00000000FFFFFFFF);
+
+        ScopedFileMapping fileMappingObject(CreateFileMappingW(INVALID_HANDLE_VALUE,
+                                                               nullptr,
+                                                               PAGE_READWRITE,
+                                                               capacityHigh,
+                                                               capacityLow,
+                                                               reinterpret_cast<LPCWSTR>(mappingName.utf16())));
+        if (fileMappingObject)
+        {
+            ScopedFileMappingView mappedData(MapViewOfFile(fileMappingObject.get(), FILE_MAP_ALL_ACCESS, 0, 0, static_cast<size_t>(imageSizeInBytes)));
+
+            if (mappedData)
+            {
+                memcpy_s(mappedData.get(), static_cast<size_t>(imageSizeInBytes), outputImage.bits(), static_cast<size_t>(imageSizeInBytes));
+
+                // Manually release the mapped data to ensue it is committed before the parent file mapping handle
+                // is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
+
+                mappedData.release();
+
+                outputImagesCommand += "layer=" + mappingName + ","
+                    + QString::number(outputImage.width()) + ","
+                    + QString::number(outputImage.height()) + ","
+                    + QString::number(outputImage.bytesPerLine()) + "\n";
+
+
+                host_paintdotnet::sharedMemory.push_back(std::move(fileMappingObject));
+            }
+            else
+            {
+                qWarning() << "MapViewOfFile failed GetLastError=" << GetLastError();
+                return;
+            }
+        }
+        else
+        {
+            qWarning() << "CreateFileMappingW failed GetLastError=" << GetLastError();
+            return;
+        }
+
+        SendMessageSynchronously(outputImagesCommand.toUtf8());
     }
 }
 
@@ -126,66 +453,42 @@ void gmic_qt_show_message(const char * message)
 
 int main(int argc, char *argv[])
 {
-    QString firstLayerImagePath;
-    QString secondLayerImagePath;
     bool useLastParameters = false;
 
-    if (argc >= 4)
+    if (argc >= 3 && strcmp(argv[1], ".PDN") == 0)
     {
-        firstLayerImagePath = argv[1];
-        secondLayerImagePath = argv[2];
-        host_paintdotnet::outputImagePath = argv[3];
-        if (argc == 5)
+        host_paintdotnet::pipeName = argv[2];
+        if (argc == 4)
         {
-            useLastParameters = strcmp(argv[4], "reapply") == 0;
+            useLastParameters = strcmp(argv[3], "reapply") == 0;
         }
     }
     else
     {
-        std::cerr << "Usage: gmic_paintdotnet_qt first_image second_image output_image\n";
         return 1;
     }
 
-    if (firstLayerImagePath.isEmpty())
+    if (host_paintdotnet::pipeName.isEmpty())
     {
-        std::cerr << "Input filename is an empty string.\n";
-        return 1;
+        return 2;
     }
 
-    if (host_paintdotnet::outputImagePath.isEmpty())
+    int exitCode = 0;
+
+    if (useLastParameters)
     {
-        std::cerr << "Output filename is an empty string.\n";
-        return 1;
+        exitCode = launchPluginHeadlessUsingLastParameters();
+    }
+    else
+    {
+        exitCode = launchPlugin();
     }
 
-    QImage firstLayer(firstLayerImagePath);
-
-    if (!firstLayer.isNull())
+    for (size_t i = 0; i < host_paintdotnet::sharedMemory.size(); ++i)
     {
-        host_paintdotnet::layerImages.append(firstLayer.convertToFormat(QImage::Format_ARGB32));
-
-        // Paint.NET can optionally pass a second image for the filters that require two layers.
-
-        if (!secondLayerImagePath.isEmpty())
-        {
-            QImage secondLayer(secondLayerImagePath);
-
-            if (!secondLayer.isNull())
-            {
-                host_paintdotnet::layerImages.append(secondLayer.convertToFormat(QImage::Format_ARGB32));
-            }
-        }
-
-        if (useLastParameters)
-        {
-            return launchPluginHeadlessUsingLastParameters();
-        }
-        else
-        {
-            return launchPlugin();
-        }
+        host_paintdotnet::sharedMemory[i].release();
     }
+    host_paintdotnet::sharedMemory.clear();
 
-    std::cerr << "Unable to load the input image" << firstLayerImagePath.toLocal8Bit().constData() << "\n";
-    return 1;
+    return exitCode;
 }
