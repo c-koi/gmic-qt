@@ -20,7 +20,6 @@
 *
 */
 
-#include <QImage>
 #include <QString>
 #include <QDebug>
 #include <QUUid>
@@ -29,7 +28,6 @@
 #include <vector>
 #include "Common.h"
 #include "Host/host.h"
-#include "ImageConverter.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 #include <Windows.h>
@@ -241,6 +239,11 @@ namespace
 
         return reply;
     }
+
+    inline quint8 Float2Uint8Clamped(const float& value)
+    {
+        return value < 0.0f ? 0 : value > 255.0f ? 255 : static_cast<quint8>(value);
+    }
 }
 
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
@@ -382,18 +385,15 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
 
         QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg(mode);
 
-        QImage outputImage;
-
-        ImageConverter::convert(images[0], outputImage);
-
-        if (outputImage.format() != QImage::Format_ARGB32)
-        {
-            outputImage = outputImage.convertToFormat(QImage::Format_ARGB32);
-        }
-
         QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));
 
-        const qint64 imageSizeInBytes = outputImage.sizeInBytes();
+
+        const cimg_library::CImg<float>& out = images[0];
+
+        const int width = out.width();
+        const int height = out.height();
+
+        const qint64 imageSizeInBytes = static_cast<qint64>(width) * static_cast<qint64>(height) * 4;
 
         const DWORD capacityHigh = static_cast<DWORD>((imageSizeInBytes >> 32) & 0xFFFFFFFF);
         const DWORD capacityLow = static_cast<DWORD>(imageSizeInBytes & 0x00000000FFFFFFFF);
@@ -410,7 +410,92 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
 
             if (mappedData)
             {
-                memcpy_s(mappedData.get(), static_cast<size_t>(imageSizeInBytes), outputImage.bits(), static_cast<size_t>(imageSizeInBytes));
+                quint8* scan0 = static_cast<quint8*>(mappedData.get());
+                const int stride = width * 4;
+
+                if (out.spectrum() == 3)
+                {
+                    const float* srcR = out.data(0, 0, 0, 0);
+                    const float* srcG = out.data(0, 0, 0, 1);
+                    const float* srcB = out.data(0, 0, 0, 2);
+
+                    for (int y = 0; y < height; ++y)
+                    {
+                        quint8* dst = scan0 + (y * stride);
+
+                        for (int x = 0; x < width; ++x)
+                        {
+                            dst[0] = Float2Uint8Clamped(*srcB++);
+                            dst[1] = Float2Uint8Clamped(*srcG++);
+                            dst[2] = Float2Uint8Clamped(*srcR++);
+                            dst[3] = 255;
+
+                            dst += 4;
+                        }
+                    }
+                }
+                else if (out.spectrum() == 4)
+                {
+                    const float* srcR = out.data(0, 0, 0, 0);
+                    const float* srcG = out.data(0, 0, 0, 1);
+                    const float* srcB = out.data(0, 0, 0, 2);
+                    const float* srcA = out.data(0, 0, 0, 3);
+
+                    for (int y = 0; y < height; ++y)
+                    {
+                        quint8* dst = scan0 + (y * stride);
+
+                        for (int x = 0; x < width; ++x)
+                        {
+                            dst[0] = Float2Uint8Clamped(*srcB++);
+                            dst[1] = Float2Uint8Clamped(*srcG++);
+                            dst[2] = Float2Uint8Clamped(*srcR++);
+                            dst[3] = Float2Uint8Clamped(*srcA++);
+
+                            dst += 4;
+                        }
+                    }
+                }
+                else if (out.spectrum() == 2)
+                {
+                    const float* srcGray = out.data(0, 0, 0, 0);
+                    const float* srcAlpha = out.data(0, 0, 0, 1);
+
+                    for (int y = 0; y < height; ++y)
+                    {
+                        quint8* dst = scan0 + (y * stride);
+
+                        for (int x = 0; x < width; ++x)
+                        {
+                            dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
+                            dst[3] = Float2Uint8Clamped(*srcAlpha++);
+
+                            dst += 4;
+                        }
+                    }
+                }
+                else if (out.spectrum() == 1)
+                {
+                    const float* srcGray = out.data(0, 0, 0, 0);
+
+                    for (int y = 0; y < height; ++y)
+                    {
+                        quint8* dst = scan0 + (y * stride);
+
+                        for (int x = 0; x < width; ++x)
+                        {
+                            dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
+                            dst[3] = 255;
+
+                            dst += 4;
+                        }
+                    }
+                }
+                else
+                {
+                    qWarning() << "The image must have between 1 and 4 channels. Actual value=" << out.spectrum();
+                    return;
+                }
 
                 // Manually release the mapped data to ensue it is committed before the parent file mapping handle
                 // is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
@@ -418,9 +503,9 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
                 mappedData.release();
 
                 outputImagesCommand += "layer=" + mappingName + ","
-                    + QString::number(outputImage.width()) + ","
-                    + QString::number(outputImage.height()) + ","
-                    + QString::number(outputImage.bytesPerLine()) + "\n";
+                    + QString::number(width) + ","
+                    + QString::number(height) + ","
+                    + QString::number(stride) + "\n";
 
 
                 host_paintdotnet::sharedMemory.push_back(std::move(fileMappingObject));
