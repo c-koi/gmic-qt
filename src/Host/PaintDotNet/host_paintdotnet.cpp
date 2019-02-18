@@ -22,8 +22,10 @@
 
 #include <QString>
 #include <QDebug>
+#include <QDataStream>
 #include <QUUid>
 #include <iostream>
+#include <limits>
 #include <memory>
 #include <vector>
 #include "Common.h"
@@ -557,6 +559,22 @@ int main(int argc, char *argv[])
     {
         return 2;
     }
+
+    // Check that the layer data length is within the limit for the size_t type on 32-bit builds.
+    // This prevents an overflow when calculating the total image size if the image is larger than 4GB.
+#if defined(_M_IX86) || defined(__i386__)
+    quint64 maxDataLength = 0;
+
+    QString message = QString("command=gmic_qt_get_max_layer_data_length");
+    QDataStream stream(SendMessageSynchronously(message.toUtf8()));
+    stream.setByteOrder(QDataStream::ByteOrder::LittleEndian);
+    stream >> maxDataLength;
+
+    if (maxDataLength > std::numeric_limits<size_t>::max())
+    {
+        return 3;
+    }
+#endif
 
     int exitCode = 0;
 
