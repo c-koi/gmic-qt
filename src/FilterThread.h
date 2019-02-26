@@ -61,6 +61,9 @@ public:
   QString fullCommand() const;
   void setLogSuffix(const QString & text);
 
+  static QStringList status2StringList(const QString &);
+  static QList<int> status2Visibilities(const QString &);
+
 public slots:
   void abortGmic();
 

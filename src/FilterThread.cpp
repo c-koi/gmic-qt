@@ -81,15 +81,20 @@ const cimg_library::CImgList<char> & FilterThread::imageNames() const
   return *_imageNames;
 }
 
-QStringList FilterThread::gmicStatus() const
+QStringList FilterThread::status2StringList(const QString & status)
 {
-  if (!_gmicStatus.startsWith(QChar(24)) || !_gmicStatus.endsWith(QChar(25))) {
+  // Check if status matches something like "{...}{...}_1{...}_0"
+  if (!status.startsWith(QChar(24)) || (QRegExp(QString("%1(_[012])?$").arg(QChar(25))).indexIn(status) == -1)) {
     return QStringList();
   }
-  QList<QString> list = _gmicStatus.split(QString("%1%2").arg(QChar(25)).arg(QChar(24)));
+  QList<QString> list = status.split(QRegExp(QString("%1(_[012])?%2").arg(QChar(25)).arg(QChar(24))));
   if (!list.isEmpty()) {
     list[0].remove(0, 1);
-    list.back().chop(1);
+    if (QRegExp(QChar(25) + QString("_[012]$")).indexIn(list.back()) != -1) {
+      list.back().chop(3);
+    } else {
+      list.back().chop(1);
+    }
     QList<QString>::iterator it = list.begin();
     while (it != list.end()) {
       QByteArray array = it->toLocal8Bit();
@@ -97,7 +102,42 @@ QStringList FilterThread::gmicStatus() const
       *it++ = array;
     }
   }
+  SHOW(list);
+  SHOW(status2Visibilities(status));
   return list;
+}
+
+QList<int> FilterThread::status2Visibilities(const QString & status)
+{
+  // Check if status matches something like "{...}{...}_1{...}_0"
+  if (!status.startsWith(QChar(24)) || (QRegExp(QString("%1(_[012])?$").arg(QChar(25))).indexIn(status) == -1)) {
+    return QList<int>();
+  }
+  QByteArray ba = status.toLocal8Bit();
+  const char * pc = ba.constData();
+  const char * limit = pc + ba.size();
+
+  QList<int> result;
+
+  while (pc < limit) {
+    if (*pc == 25) {
+      if (pc < limit - 2 && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2') {
+        result.push_back(pc[2] - '0');
+        pc += 3;
+      } else {
+        result.push_back(-1);
+        ++pc;
+      }
+    } else {
+      ++pc;
+    }
+  }
+  return result;
+}
+
+QStringList FilterThread::gmicStatus() const
+{
+  return status2StringList(_gmicStatus);
 }
 
 QString FilterThread::errorMessage() const

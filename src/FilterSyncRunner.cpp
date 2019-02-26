@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QThread>
 #include <iostream>
+#include "FilterThread.h"
 #include "GmicStdlib.h"
 #include "ImageConverter.h"
 #include "Logger.h"
@@ -87,15 +88,7 @@ const cimg_library::CImgList<char> & FilterSyncRunner::imageNames() const
 
 QStringList FilterSyncRunner::gmicStatus() const
 {
-  if (!_gmicStatus.startsWith(QChar(24)) || !_gmicStatus.endsWith(QChar(25))) {
-    return QStringList();
-  }
-  QList<QString> list = _gmicStatus.split(QString("%1%2").arg(QChar(25)).arg(QChar(24)));
-  if (!list.isEmpty()) {
-    list[0].remove(0, 1);
-    list.back().chop(1);
-  }
-  return list;
+  return FilterThread::status2StringList(_gmicStatus);
 }
 
 QString FilterSyncRunner::errorMessage() const
