@@ -34,7 +34,7 @@
 #include "gmic.h"
 #include <Windows.h>
 
-struct HandleCloser
+struct KernelHandleCloser
 {
     void operator()(void* pointer)
     {
@@ -56,7 +56,7 @@ struct MappedFileViewCloser
     }
 };
 
-typedef std::unique_ptr<void, HandleCloser> ScopedFileMapping;
+typedef std::unique_ptr<void, KernelHandleCloser> ScopedFileMapping;
 typedef std::unique_ptr<void, MappedFileViewCloser> ScopedFileMappingView;
 
 namespace host_paintdotnet
@@ -74,10 +74,10 @@ namespace GmicQt
 
 namespace
 {
-    class ScopedCreateFile : public std::unique_ptr<void, HandleCloser>
+    class ScopedCreateFile : public std::unique_ptr<void, KernelHandleCloser>
     {
     public:
-        ScopedCreateFile(HANDLE handle) : std::unique_ptr<void, HandleCloser>(handle == INVALID_HANDLE_VALUE ? nullptr : handle)
+        ScopedCreateFile(HANDLE handle) : std::unique_ptr<void, KernelHandleCloser>(handle == INVALID_HANDLE_VALUE ? nullptr : handle)
         {
         }
     };
