@@ -7,7 +7,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/FilterParameters/ColorParameter.cpp" line="132"/>
+        <location filename="../src/FilterParameters/ColorParameter.cpp" line="130"/>
         <source>Select color</source>
         <translation>Vyberte barvu</translation>
     </message>
@@ -20,173 +20,198 @@
         <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="102"/>
+        <location filename="../ui/dialogsettings.ui" line="221"/>
         <source>Internet updates</source>
         <translation>Online aktualizace</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="111"/>
+        <location filename="../ui/dialogsettings.ui" line="230"/>
         <source>Update now</source>
         <translation>Aktualizovat nyní</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="140"/>
+        <location filename="../ui/dialogsettings.ui" line="30"/>
         <source>Layout</source>
         <translation>Rozvržení</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="204"/>
+        <location filename="../ui/dialogsettings.ui" line="24"/>
+        <source>Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="64"/>
         <source>Preview on the &amp;left</source>
         <translation>Náhled &amp;vlevo</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="167"/>
+        <location filename="../ui/dialogsettings.ui" line="94"/>
         <source>Pre&amp;view on right side</source>
         <translation>Náhled &amp;vpravo</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="24"/>
+        <location filename="../ui/dialogsettings.ui" line="113"/>
         <source>Theme</source>
         <translation>Téma</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="30"/>
+        <location filename="../ui/dialogsettings.ui" line="119"/>
         <source>&amp;Default</source>
         <translation>&amp;Výchozí</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="37"/>
+        <location filename="../ui/dialogsettings.ui" line="126"/>
         <source>Dar&amp;k</source>
         <translation>&amp;Tmavé</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="50"/>
+        <location filename="../ui/dialogsettings.ui" line="139"/>
         <source>&lt;i&gt;(Restart needed)&lt;/I&gt;</source>
         <translation>&lt;i&gt;(vyžaduje restart)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="60"/>
+        <location filename="../ui/dialogsettings.ui" line="149"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="72"/>
-        <location filename="../src/DialogSettings.cpp" line="77"/>
+        <location filename="../ui/dialogsettings.ui" line="179"/>
+        <source>Always enable preview zooming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="186"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Warning: preview may be inaccurate&lt;br/&gt;if checked.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="215"/>
+        <source>Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="253"/>
+        <location filename="../src/DialogSettings.cpp" line="84"/>
         <source>Output messages</source>
         <translation type="unfinished">Výstupní zprávy</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="84"/>
+        <location filename="../ui/dialogsettings.ui" line="196"/>
         <source>Dialogs</source>
         <translation>Dialogy</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="90"/>
+        <location filename="../ui/dialogsettings.ui" line="202"/>
         <source>Use native color dialog</source>
         <translation>Použít nativní dialog barev</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="121"/>
+        <location filename="../ui/dialogsettings.ui" line="163"/>
         <source>Preview</source>
         <translation type="unfinished">Náhled</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="127"/>
+        <location filename="../ui/dialogsettings.ui" line="169"/>
         <source>Timeout (seconds)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="176"/>
+        <location filename="../ui/dialogsettings.ui" line="36"/>
         <source>Show institution logos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="240"/>
+        <location filename="../ui/dialogsettings.ui" line="262"/>
+        <source>Notify when scheduled update fails</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="304"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="57"/>
+        <location filename="../src/DialogSettings.cpp" line="64"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="63"/>
+        <location filename="../src/DialogSettings.cpp" line="70"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="64"/>
+        <location filename="../src/DialogSettings.cpp" line="71"/>
         <source>Daily</source>
         <translation>Denně</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="65"/>
+        <location filename="../src/DialogSettings.cpp" line="72"/>
         <source>Weekly</source>
         <translation>Týdně</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="66"/>
+        <location filename="../src/DialogSettings.cpp" line="73"/>
         <source>Every 2 weeks</source>
         <translation>Každé 2 týdny</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="67"/>
+        <location filename="../src/DialogSettings.cpp" line="74"/>
         <source>Monthly</source>
         <translation>Měsíčně</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="69"/>
+        <location filename="../src/DialogSettings.cpp" line="76"/>
         <source>At launch (debug)</source>
         <translation>Při startu (ladění)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="78"/>
+        <location filename="../src/DialogSettings.cpp" line="85"/>
         <source>Output messages...</source>
         <translation>Výstupní zprávy...</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="79"/>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Quiet (default)</source>
         <translation>Tichý (výchozí)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="80"/>
+        <location filename="../src/DialogSettings.cpp" line="87"/>
         <source>Verbose (layer name)</source>
         <translation>Upovídaný (název vrstvy)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="81"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Verbose (console)</source>
         <translation>Upovídaný (konzole)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="82"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Verbose (log file)</source>
         <translation>Upovídaný (soubor záznamů)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="83"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Very verbose (console)</source>
         <translation>Velmi upovídaný (konzole)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="84"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Very verbose (log file)</source>
         <translation>Velmi upovídaný (soubor záznamů)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="85"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Debug (console)</source>
         <translation>Ladění (konzole)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="86"/>
+        <location filename="../src/DialogSettings.cpp" line="93"/>
         <source>Debug (log file)</source>
         <translation>Ladění (soubor záznamů)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="102"/>
+        <location filename="../src/DialogSettings.cpp" line="109"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Zaškrtněte pro použití nativního/OS dialogu barev, odškrtněte pro použití Qt dialogu</translation>
     </message>
@@ -194,9 +219,9 @@
 <context>
     <name>FileParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="140"/>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="143"/>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="146"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="145"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="148"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="151"/>
         <source>Select a file</source>
         <translation>Vyberte soubor</translation>
     </message>
@@ -204,20 +229,29 @@
 <context>
     <name>FilterParametersWidget</name>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="38"/>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="147"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="39"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="164"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
         <translation>&lt;i&gt;Vyberte filtr&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="116"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="132"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
         <translation>&lt;i&gt;Žádné parametry&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="121"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="137"/>
         <source>Error parsing filter parameters
 
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FiltersPresenter</name>
+    <message>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="394"/>
+        <source>Cannot find this fave&apos;s original filter
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -262,7 +296,7 @@
 <context>
     <name>FolderParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FolderParameter.cpp" line="118"/>
+        <location filename="../src/FilterParameters/FolderParameter.cpp" line="122"/>
         <source>Select a folder</source>
         <translation>Vyberte složku</translation>
     </message>
@@ -293,135 +327,130 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/inoutpanel.ui" line="112"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="44"/>
+        <location filename="../ui/inoutpanel.ui" line="102"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="45"/>
         <source>Input layers</source>
         <translation>Vstupní vrstvy</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="45"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="46"/>
         <source>None</source>
         <translation>Žádné</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="46"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="47"/>
         <source>Active (default)</source>
         <translation>Aktivní (výchozí)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="47"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="48"/>
         <source>All</source>
         <translation>Vše</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="48"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="49"/>
         <source>Active and below</source>
         <translation>Aktivní a níže</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="49"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="50"/>
         <source>Active and above</source>
         <translation>Aktivní a výše</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="50"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="51"/>
         <source>All visible</source>
         <translation>Všechny viditelné</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="51"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="52"/>
         <source>All invisible</source>
         <translation>Všechny neviditelné</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="52"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
         <source>All visible (decr.)</source>
         <translation>Všechny viditelné (sestup.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
         <source>All invisible (decr.)</source>
         <translation>Všechny neviditelné (sestup.)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
         <source>All (decr.)</source>
         <translation>Všechny (sestup.)</translation>
     </message>
     <message>
-        <location filename="../ui/inoutpanel.ui" line="158"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="56"/>
+        <location filename="../ui/inoutpanel.ui" line="138"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
         <source>Output mode</source>
         <translation>Režim výstupu</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
         <source>In place (default)</source>
         <translation>V místě (výchozí)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
         <source>New layer(s)</source>
         <translation>Nová vrstva(y)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
         <source>New active layer(s)</source>
         <translation>Nová aktivní vrstva(y)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
         <source>New image</source>
         <translation>Nový obrázek</translation>
     </message>
     <message>
-        <location filename="../ui/inoutpanel.ui" line="89"/>
-        <source>Output messages</source>
-        <translation>Výstupní zprávy</translation>
-    </message>
-    <message>
-        <location filename="../ui/inoutpanel.ui" line="135"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
+        <location filename="../ui/inoutpanel.ui" line="125"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
         <source>Preview mode</source>
         <translation>Režim náhledu</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
         <source>1st output (default)</source>
         <translation>1. výstup (výchozí)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
         <source>2nd output</source>
         <translation>2. výstup</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
         <source>3rd output</source>
         <translation>3. výstup</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
         <source>4th output</source>
         <translation>4. výstup</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
         <source>1st -&gt; 2nd output</source>
         <translation>1. -&gt; 2. výstup</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>1st -&gt; 3rd output</source>
         <translation>1. -&gt; 3. výstup</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
         <source>1st -&gt; 4th output</source>
         <translation>1. -&gt; 4. výstup</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
         <source>All outputs</source>
         <translation>Všechny výstupy</translation>
     </message>
@@ -452,179 +481,164 @@
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
+        <location filename="../ui/mainwindow.ui" line="161"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stáhnout definice filtrů ze vzdálených zdrojů&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="158"/>
+        <location filename="../ui/mainwindow.ui" line="164"/>
         <source>Internet</source>
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
+        <location filename="../src/MainWindow.cpp" line="102"/>
         <source>Selection mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="532"/>
+        <location filename="../ui/mainwindow.ui" line="489"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="227"/>
+        <location filename="../ui/mainwindow.ui" line="233"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="370"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zapnout/vypnout náhled&lt;br/&gt;(klik pravým tlačítkem myši na náhled pro přepnutí)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../ui/mainwindow.ui" line="379"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="373"/>
+        <location filename="../ui/mainwindow.ui" line="382"/>
         <source>Preview</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="516"/>
+        <location filename="../ui/mainwindow.ui" line="473"/>
         <source>Settings...</source>
         <translation>Nastavení...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="545"/>
+        <location filename="../ui/mainwindow.ui" line="502"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Storno</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="558"/>
+        <location filename="../ui/mainwindow.ui" line="515"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Celá obrazovka</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="571"/>
+        <location filename="../ui/mainwindow.ui" line="528"/>
         <source>&amp;Apply</source>
         <translation>&amp;Použít</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="584"/>
+        <location filename="../ui/mainwindow.ui" line="541"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="77"/>
-        <source>Zoom in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="78"/>
-        <source>Zoom out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="79"/>
-        <source>Reset zoom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="81"/>
-        <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="82"/>
+        <location filename="../src/MainWindow.cpp" line="80"/>
         <source>Add fave</source>
         <translation>Přidat oblíbený</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="84"/>
+        <location filename="../src/MainWindow.cpp" line="82"/>
         <source>Reset parameters to default values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="85"/>
         <source>Update filters (Ctrl+R / F5)</source>
         <translation>Aktualizovat filtry (Ctrl+R / F5)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="89"/>
+        <location filename="../src/MainWindow.cpp" line="87"/>
         <source>Rename fave</source>
         <translation>Přejmenovat oblíbený</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
+        <location filename="../src/MainWindow.cpp" line="89"/>
         <source>Remove fave</source>
         <translation>Odstranit oblíbený</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="95"/>
+        <location filename="../src/MainWindow.cpp" line="93"/>
         <source>Expand/Collapse all</source>
         <translation>Rozbalit/Sbalit vše</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="97"/>
+        <location filename="../src/MainWindow.cpp" line="95"/>
         <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="263"/>
+        <location filename="../src/MainWindow.cpp" line="284"/>
         <source>Update completed</source>
         <translation>Aktualizace dokončena</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="263"/>
-        <location filename="../src/MainWindow.cpp" line="265"/>
-        <location filename="../src/MainWindow.cpp" line="316"/>
+        <location filename="../src/MainWindow.cpp" line="284"/>
+        <location filename="../src/MainWindow.cpp" line="286"/>
+        <location filename="../src/MainWindow.cpp" line="340"/>
         <source>Filter definitions have been updated.</source>
         <translation>Definice filtrů byly aktualizovány.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="268"/>
+        <location filename="../src/MainWindow.cpp" line="289"/>
         <source>No download was needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="447"/>
+        <location filename="../src/MainWindow.cpp" line="336"/>
+        <source>Filters update could not be achieved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="458"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Aktualizace nemohla být provedena&lt;br/&gt;kvůli následujícím chybám:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="453"/>
+        <location filename="../src/MainWindow.cpp" line="464"/>
         <source>Update error</source>
         <translation>Chyba aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="596"/>
+        <location filename="../src/MainWindow.cpp" line="646"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="675"/>
+        <location filename="../src/MainWindow.cpp" line="737"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1004"/>
+        <location filename="../src/MainWindow.cpp" line="1069"/>
         <source>Import faves</source>
         <translation>Importovat oblíbené</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1004"/>
+        <location filename="../src/MainWindow.cpp" line="1069"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Chcete importovat oblíbené ze souboru níže?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1007"/>
+        <location filename="../src/MainWindow.cpp" line="1072"/>
         <source>Don&apos;t ask again</source>
         <translation>Znovu už se neptat</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1096"/>
+        <location filename="../src/MainWindow.cpp" line="1184"/>
         <source>Confirmation</source>
         <translation>Potvrzení</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1096"/>
+        <location filename="../src/MainWindow.cpp" line="1184"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Gmic příkaz stále běží.&lt;br&gt;Opravdu chcete zavřít plugin?</translation>
     </message>
@@ -656,7 +670,7 @@
     </message>
     <message>
         <location filename="../ui/progressinfowidget.ui" line="48"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="46"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="48"/>
         <source>Abort</source>
         <translation>Zrušit</translation>
     </message>
@@ -666,23 +680,23 @@
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="43"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="45"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="141"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="143"/>
         <source>Updating filters...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="196"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="209"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="198"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="211"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Zpracování %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="211"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
         <source>[Processing %1]</source>
         <translation>[Zpracování %1]</translation>
     </message>
@@ -706,17 +720,17 @@
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="103"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="134"/>
         <source>%1 seconds</source>
         <translation>%1 sekund</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="113"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="144"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Zpracování %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="115"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="146"/>
         <source>[Processing %1]</source>
         <translation>[Zpracování %1]</translation>
     </message>
@@ -724,27 +738,27 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="81"/>
+        <location filename="../src/Host/None/host_none.cpp" line="82"/>
         <source>Select an image to open...</source>
         <translation>Vyberte obrázek k otevření...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="81"/>
+        <location filename="../src/Host/None/host_none.cpp" line="82"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>Soubory PNG &amp; JPG (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="87"/>
+        <location filename="../src/Host/None/host_none.cpp" line="88"/>
         <source>Error</source>
         <translation type="unfinished">Chyba</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="87"/>
+        <location filename="../src/Host/None/host_none.cpp" line="88"/>
         <source>Could not open file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="91"/>
+        <location filename="../src/Host/None/host_none.cpp" line="92"/>
         <source>Default image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -767,12 +781,12 @@
         <translation>Frame</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/SearchFieldWidget.cpp" line="72"/>
+        <location filename="../src/Widgets/SearchFieldWidget.cpp" line="76"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/SearchFieldWidget.cpp" line="73"/>
+        <location filename="../src/Widgets/SearchFieldWidget.cpp" line="77"/>
         <source>Search in filters list (%1)</source>
         <translation>Hledat v seznamu filtrů (%1)</translation>
     </message>
@@ -780,32 +794,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="206"/>
+        <location filename="../src/Updater.cpp" line="208"/>
         <source>Could not read/decompress %1</source>
         <translation>Nemohu přečíst/dekomprimovat %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="197"/>
+        <location filename="../src/Updater.cpp" line="199"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Chyba stahování %1 (prázdný soubor?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="212"/>
+        <location filename="../src/Updater.cpp" line="214"/>
         <source>Error creating file %1</source>
         <translation>Chyba vytváření souboru %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="216"/>
+        <location filename="../src/Updater.cpp" line="218"/>
         <source>Error writing file %1</source>
         <translation>Chyba zapisování souboru %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="228"/>
-        <source>Error downloading %1</source>
-        <translation>Chyba stahování %1</translation>
+        <location filename="../src/Updater.cpp" line="235"/>
+        <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="256"/>
+        <location filename="../src/Updater.cpp" line="268"/>
         <source>Download timeout: %1</source>
         <translation>Stahování zrušeno (časový limit překročen): %1</translation>
     </message>
@@ -813,9 +827,29 @@
 <context>
     <name>ZoomLevelSelector</name>
     <message>
-        <location filename="../ui/zoomlevelselector.ui" line="14"/>
+        <location filename="../ui/zoomlevelselector.ui" line="20"/>
         <source>Form</source>
         <translation type="unfinished">GMIC</translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="51"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="52"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="53"/>
+        <source>Reset zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="153"/>
+        <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
