@@ -4,7 +4,7 @@
 ### Purpose
 
  G'MIC-Qt is a versatile front-end to the image processing framework
- [G'MIC](http://gmic.eu).  It is in fact a plugin for
+ [G'MIC](https://gmic.eu).  It is in fact a plugin for
  [GIMP](http://gimp.org) and [Krita](https://krita.org), as well as a standalone application.
 
 ### Authors
@@ -34,7 +34,7 @@
 
 ### Official (pre-release) binary packages
 
- * Available at [gmic.eu](http://gmic.eu)
+ * Available at [gmic.eu](https://gmic.eu)
 
 ### Tavis CI last build status
 

@@ -572,8 +572,8 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="95"/>
-        <source>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
-        <translation>G&apos;MIC (http://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Университет Нормандии (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
+        <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Normandy University (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</source>
+        <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (http://www.greyc.fr)&lt;br/&gt;CNRS (http://www.cnrs.fr)&lt;br/&gt;Университет Нормандии (http://www.unicaen.fr)&lt;br/&gt;Ensicaen (http://www.ensicaen.fr)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="284"/>

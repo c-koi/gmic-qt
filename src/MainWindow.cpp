@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
 
   ui->tbExpandCollapse->setToolTip(tr("Expand/Collapse all"));
 
-  ui->logosLabel->setToolTip(tr("G'MIC (http://gmic.eu)<br/>"
+  ui->logosLabel->setToolTip(tr("G'MIC (https://gmic.eu)<br/>"
                                 "GREYC (http://www.greyc.fr)<br/>"
                                 "CNRS (http://www.cnrs.fr)<br/>"
                                 "Normandy University (http://www.unicaen.fr)<br/>"
