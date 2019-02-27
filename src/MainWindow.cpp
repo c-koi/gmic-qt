@@ -93,10 +93,10 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->tbExpandCollapse->setToolTip(tr("Expand/Collapse all"));
 
   ui->logosLabel->setToolTip(tr("G'MIC (https://gmic.eu)<br/>"
-                                "GREYC (http://www.greyc.fr)<br/>"
-                                "CNRS (http://www.cnrs.fr)<br/>"
-                                "Normandy University (http://www.unicaen.fr)<br/>"
-                                "Ensicaen (http://www.ensicaen.fr)"));
+                                "GREYC (https://www.greyc.fr)<br/>"
+                                "CNRS (https://www.cnrs.fr)<br/>"
+                                "Normandy University (https://www.unicaen.fr)<br/>"
+                                "Ensicaen (https://www.ensicaen.fr)"));
   ui->logosLabel->setPixmap(QPixmap(":resources/logos.png"));
 
   ui->tbSelectionMode->setToolTip(tr("Selection mode"));
