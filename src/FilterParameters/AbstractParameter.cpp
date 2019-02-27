@@ -41,7 +41,11 @@
 #include "FilterParameters/SeparatorParameter.h"
 #include "FilterParameters/TextParameter.h"
 
-AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : QObject(parent), _actualParameter(actualParameter), _update(true) {}
+AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : QObject(parent), _actualParameter(actualParameter)
+{
+  _update = true;
+  _defaultVisibilityState = VisibleParameter;
+}
 
 AbstractParameter::~AbstractParameter() {}
 
@@ -140,6 +144,11 @@ AbstractParameter * AbstractParameter::createFromText(const char * text, int & l
   return result;
 }
 
+AbstractParameter::VisibilityState AbstractParameter::defaultVisibilityState() const
+{
+  return _defaultVisibilityState;
+}
+
 QStringList AbstractParameter::parseText(const QString & type, const char * text, int & length)
 {
   QStringList result;
@@ -165,6 +174,12 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
   }
   QString values = str.mid(prefixLength, -1).left(end - (text + prefixLength)).trimmed();
   length = 1 + end - text;
+
+  if (text[length] == '_' && text[length + 1] >= '0' && text[length + 1] <= '2') {
+    _defaultVisibilityState = static_cast<VisibilityState>(text[length + 1] - '0');
+    length += 2;
+  }
+
   while (text[length] && (text[length] == ',' || str[length].isSpace())) {
     ++length;
   }

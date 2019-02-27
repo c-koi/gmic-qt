@@ -49,6 +49,16 @@ public:
 
   static AbstractParameter * createFromText(const char * text, int & length, QString & error, QWidget * parent = nullptr);
   virtual bool initFromText(const char * text, int & textLength) = 0;
+
+  enum VisibilityState
+  {
+    HiddenParameter = 0,
+    DisabledParameter = 1,
+    VisibleParameter = 2
+  };
+
+  virtual VisibilityState defaultVisibilityState() const;
+
 signals:
   void valueChanged();
 
@@ -57,6 +67,7 @@ protected:
   bool matchType(const QString & type, const char * text) const;
   void notifyIfRelevant();
   const bool _actualParameter;
+  VisibilityState _defaultVisibilityState;
 
 private:
   bool _update;
