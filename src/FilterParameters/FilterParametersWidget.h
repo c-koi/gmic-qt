@@ -26,6 +26,7 @@
 #define _GMIC_QT_FILTERPARAMSWIDGET_H_
 
 #include <QGroupBox>
+#include <QList>
 #include <QModelIndex>
 #include <QPushButton>
 #include <QStringList>
@@ -46,6 +47,8 @@ public:
   const QString & valueString() const;
   QStringList valueStringList() const;
   void setValues(const QStringList &, bool notify);
+  void setVisibilityStates(const QList<int> states);
+  void applyDefaultVisibilityStates();
   void reset(bool notify);
   QString filterName() const;
   int actualParametersCount() const;

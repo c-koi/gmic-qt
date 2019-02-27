@@ -102,8 +102,6 @@ QStringList FilterThread::status2StringList(const QString & status)
       *it++ = array;
     }
   }
-  SHOW(list);
-  SHOW(status2Visibilities(status));
   return list;
 }
 
@@ -138,6 +136,11 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
 QStringList FilterThread::gmicStatus() const
 {
   return status2StringList(_gmicStatus);
+}
+
+QList<int> FilterThread::parametersVisibilityStates() const
+{
+  return status2Visibilities(_gmicStatus);
 }
 
 QString FilterThread::errorMessage() const

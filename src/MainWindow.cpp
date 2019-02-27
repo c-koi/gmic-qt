@@ -254,7 +254,6 @@ void MainWindow::setDarkTheme()
                       "QGroupBox { border: 1px solid #808080; margin-top: 4ex; } "
                       "QFileDialog QAbstractItemView { background: #505050; } "
                       "QComboBox:editable { background: #505050; } "
-                      "QComboBox::disabled { background: rgb(40,40,40); } "
                       "QProgressBar { background: #505050; }";
   qApp->setStyleSheet(css);
   ui->inOutSelector->setDarkTheme();
@@ -581,6 +580,7 @@ void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
 void MainWindow::onPreviewImageAvailable()
 {
   ui->filterParams->setValues(_processor.gmicStatus(), false);
+  ui->filterParams->setVisibilityStates(_processor.parametersVisibilityStates());
   // Make sure keypoint positions are synchronized with gmic status
   if (ui->filterParams->hasKeypoints()) {
     ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
@@ -678,6 +678,7 @@ void MainWindow::onFullImageProcessingDone()
   enableWidgetList(true);
   ui->previewWidget->update();
   ui->filterParams->setValues(_processor.gmicStatus(), false);
+  ui->filterParams->setVisibilityStates(_processor.parametersVisibilityStates());
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
     close();
   } else {
@@ -763,6 +764,7 @@ void MainWindow::onReset()
 {
   if (!_filtersPresenter->currentFilter().hash.isEmpty() && _filtersPresenter->currentFilter().isAFave) {
     ui->filterParams->setValues(_filtersPresenter->currentFilter().defaultParameterValues, true);
+    ui->filterParams->applyDefaultVisibilityStates(); // TODO: Fix this
     return;
   }
   if (!_filtersPresenter->currentFilter().isNoPreviewFilter()) {

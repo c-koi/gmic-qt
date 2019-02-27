@@ -40,14 +40,15 @@ ButtonParameter::~ButtonParameter()
 
 void ButtonParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _pushButton;
   _pushButton = new QPushButton(_text, widget);
   _pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-  grid->addWidget(_pushButton, row, 0, 1, 3, _alignment);
+  _grid->addWidget(_pushButton, row, 0, 1, 3, _alignment);
   connect(_pushButton, SIGNAL(clicked(bool)), this, SLOT(onPushButtonClicked(bool)));
 }
 

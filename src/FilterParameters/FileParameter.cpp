@@ -47,10 +47,11 @@ FileParameter::~FileParameter()
 
 void FileParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _label;
   delete _button;
 
@@ -64,8 +65,8 @@ void FileParameter::addTo(QWidget * widget, int row)
   }
   _button = new QPushButton(buttonText, widget);
   _button->setIcon(LOAD_ICON("document-open"));
-  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
-  grid->addWidget(_button, row, 1, 1, 2);
+  _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  _grid->addWidget(_button, row, 1, 1, 2);
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 

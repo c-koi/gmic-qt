@@ -92,6 +92,7 @@ public:
 
   const cimg_library::CImg<float> & previewImage() const;
   const QStringList & gmicStatus() const;
+  const QList<int> & parametersVisibilityStates() const;
 
   void saveSettings(QSettings & settings);
   ~GmicProcessor();
@@ -137,6 +138,7 @@ private:
 
   unsigned int _previewRandomSeed;
   QStringList _gmicStatus;
+  QList<int> _parametersVisibilityStates;
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
 

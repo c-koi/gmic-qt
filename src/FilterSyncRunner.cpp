@@ -91,6 +91,11 @@ QStringList FilterSyncRunner::gmicStatus() const
   return FilterThread::status2StringList(_gmicStatus);
 }
 
+QList<int> FilterSyncRunner::parametersVisibilityStates() const
+{
+  return FilterThread::status2Visibilities(_gmicStatus);
+}
+
 QString FilterSyncRunner::errorMessage() const
 {
   return _errorMessage;

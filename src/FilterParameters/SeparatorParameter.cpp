@@ -38,10 +38,11 @@ SeparatorParameter::~SeparatorParameter()
 
 void SeparatorParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _frame;
   _frame = new QFrame(widget);
   QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -54,7 +55,7 @@ void SeparatorParameter::addTo(QWidget * widget, int row)
   if (DialogSettings::darkThemeEnabled()) {
     _frame->setStyleSheet("QFrame{ border-top: 0px none #a0a0a0; border-bottom: 2px solid rgb(160,160,160);}");
   }
-  grid->addWidget(_frame, row, 0, 1, 3);
+  _grid->addWidget(_frame, row, 0, 1, 3);
 }
 
 QString SeparatorParameter::textValue() const

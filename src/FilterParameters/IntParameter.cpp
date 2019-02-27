@@ -49,10 +49,11 @@ IntParameter::~IntParameter()
 
 void IntParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _spinBox;
   delete _slider;
   delete _label;
@@ -69,9 +70,9 @@ void IntParameter::addTo(QWidget * widget, int row)
     p.setColor(QPalette::Highlight, QColor(130, 130, 130));
     _slider->setPalette(p);
   }
-  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
-  grid->addWidget(_slider, row, 1, 1, 1);
-  grid->addWidget(_spinBox, row, 2, 1, 1);
+  _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  _grid->addWidget(_slider, row, 1, 1, 1);
+  _grid->addWidget(_spinBox, row, 2, 1, 1);
   connectSliderSpinBox();
 }
 

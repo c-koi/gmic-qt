@@ -41,17 +41,18 @@ NoteParameter::~NoteParameter()
 
 void NoteParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _label;
   _label = new QLabel(_text, widget);
   _label->setTextFormat(Qt::RichText);
   _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   _label->setWordWrap(true);
   connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
-  grid->addWidget(_label, row, 0, 1, 3);
+  _grid->addWidget(_label, row, 0, 1, 3);
 }
 
 QString NoteParameter::textValue() const

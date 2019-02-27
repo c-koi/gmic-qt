@@ -248,6 +248,7 @@ void GmicProcessor::onPreviewThreadFinished()
   }
   if (_filterThread->failed()) {
     _gmicStatus.clear();
+    _parametersVisibilityStates.clear();
     _gmicImages->assign();
     QString message = _filterThread->errorMessage();
     _filterThread->deleteLater();
@@ -257,6 +258,7 @@ void GmicProcessor::onPreviewThreadFinished()
     return;
   }
   _gmicStatus = _filterThread->gmicStatus();
+  _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   _gmicImages->assign();
   _filterThread->swapImages(*_gmicImages);
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
@@ -278,6 +280,7 @@ void GmicProcessor::onApplyThreadFinished()
     return;
   }
   _gmicStatus = _filterThread->gmicStatus();
+  _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   hideWaitingCursor();
 
   if (_filterThread->failed()) {
@@ -304,7 +307,7 @@ void GmicProcessor::onApplyThreadFinished()
     CroppedImageListProxy::clear();
     _filterThread->deleteLater();
     _filterThread = nullptr;
-    _lastAppliedCommandGmicStatus = _gmicStatus;
+    _lastAppliedCommandGmicStatus = _gmicStatus; // TODO : save visibility states?
     emit fullImageProcessingDone();
   }
 }
@@ -382,6 +385,7 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
     return;
   }
   _gmicStatus = runner.gmicStatus();
+  _parametersVisibilityStates = runner.parametersVisibilityStates();
   _gmicImages->assign();
   runner.swapImages(*_gmicImages);
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
@@ -390,4 +394,9 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
   GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.inputOutputState.previewMode, _filterContext.previewWidth, _filterContext.previewHeight);
   hideWaitingCursor();
   emit previewImageAvailable();
+}
+
+const QList<int> & GmicProcessor::parametersVisibilityStates() const
+{
+  return _parametersVisibilityStates;
 }

@@ -27,6 +27,7 @@
 
 #include <QObject>
 class KeypointList;
+class QGridLayout;
 
 class AbstractParameter : public QObject {
   Q_OBJECT
@@ -58,6 +59,7 @@ public:
   };
 
   virtual VisibilityState defaultVisibilityState() const;
+  void setVisibilityState(VisibilityState state);
 
 signals:
   void valueChanged();
@@ -68,6 +70,8 @@ protected:
   void notifyIfRelevant();
   const bool _actualParameter;
   VisibilityState _defaultVisibilityState;
+  QGridLayout * _grid;
+  int _row;
 
 private:
   bool _update;

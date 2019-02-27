@@ -111,6 +111,8 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
     ++it;
   }
 
+  applyDefaultVisibilityStates();
+
   // Retrieve a dummy keypoint list
   KeypointList keypoints;
   it = _presetParameters.begin();
@@ -196,15 +198,34 @@ QStringList FilterParametersWidget::valueStringList() const
 void FilterParametersWidget::setValues(const QStringList & list, bool notify)
 {
   if (list.isEmpty() || _actualParametersCount != list.size()) {
+    TRACE << "Wrong number of values" << list << "expecting" << _actualParametersCount;
     return;
   }
-  int j = 0;
+  auto itValue = list.begin();
   for (AbstractParameter * param : _presetParameters) {
     if (param->isActualParameter()) {
-      param->setValue(list[j++]);
+      param->setValue(*itValue++);
     }
   }
   updateValueString(notify);
+}
+
+void FilterParametersWidget::setVisibilityStates(const QList<int> states)
+{
+  if (states.isEmpty() || _actualParametersCount != states.size()) {
+    TRACE << "Wrong number of states" << states << "expecting" << _actualParametersCount;
+    return;
+  }
+  auto itState = states.begin();
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      if (param->isVisible()) {
+        param->setVisibilityState(static_cast<AbstractParameter::VisibilityState>(*itState++));
+      } else {
+        ++itState;
+      }
+    }
+  }
 }
 
 void FilterParametersWidget::reset(bool notify)
@@ -214,6 +235,7 @@ void FilterParametersWidget::reset(bool notify)
       param->reset();
     }
   }
+  applyDefaultVisibilityStates();
   updateValueString(notify);
 }
 
@@ -268,6 +290,18 @@ void FilterParametersWidget::clear()
 
   delete _paddingWidget;
   _paddingWidget = nullptr;
+}
+
+void FilterParametersWidget::applyDefaultVisibilityStates()
+{
+  QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    AbstractParameter * parameter = *it;
+    if (parameter->isActualParameter() && parameter->isVisible()) {
+      parameter->setVisibilityState(parameter->defaultVisibilityState());
+    }
+    ++it;
+  }
 }
 
 void FilterParametersWidget::clearButtonParameters()

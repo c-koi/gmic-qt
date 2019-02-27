@@ -24,6 +24,7 @@
  */
 #include "FilterParameters/AbstractParameter.h"
 #include <QDebug>
+#include <QGridLayout>
 #include <cstring>
 #include "Common.h"
 #include "FilterParameters/BoolParameter.h"
@@ -45,6 +46,8 @@ AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : Q
 {
   _update = true;
   _defaultVisibilityState = VisibleParameter;
+  _row = -1;
+  _grid = nullptr;
 }
 
 AbstractParameter::~AbstractParameter() {}
@@ -147,6 +150,32 @@ AbstractParameter * AbstractParameter::createFromText(const char * text, int & l
 AbstractParameter::VisibilityState AbstractParameter::defaultVisibilityState() const
 {
   return _defaultVisibilityState;
+}
+
+void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState state)
+{
+  if (!_grid || _row == -1) {
+    return;
+  }
+  for (int col = 0; col < 5; ++col) {
+    QLayoutItem * item = _grid->itemAtPosition(_row, col);
+    if (item) {
+      auto widget = item->widget();
+      switch (state) {
+      case VisibleParameter:
+        widget->setEnabled(true);
+        widget->show();
+        break;
+      case DisabledParameter:
+        widget->setEnabled(false);
+        widget->show();
+        break;
+      case HiddenParameter:
+        widget->hide();
+        break;
+      }
+    }
+  }
 }
 
 QStringList AbstractParameter::parseText(const QString & type, const char * text, int & length)

@@ -43,10 +43,11 @@ BoolParameter::~BoolParameter()
 
 void BoolParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _checkBox;
   delete _label;
   _checkBox = new QCheckBox(_name, widget);
@@ -57,7 +58,7 @@ void BoolParameter::addTo(QWidget * widget, int row)
     p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
     _checkBox->setPalette(p);
   }
-  grid->addWidget(_checkBox, row, 0, 1, 3);
+  _grid->addWidget(_checkBox, row, 0, 1, 3);
   connectCheckBox();
 }
 

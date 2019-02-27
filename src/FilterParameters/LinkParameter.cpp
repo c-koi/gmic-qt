@@ -41,17 +41,18 @@ LinkParameter::~LinkParameter()
 
 void LinkParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _label;
   _label = new QLabel(QString("<a href=\"%2\">%1</a>").arg(_text).arg(_url), widget);
   _label->setAlignment(_alignment);
   _label->setTextFormat(Qt::RichText);
   _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
-  grid->addWidget(_label, row, 0, 1, 3);
+  _grid->addWidget(_label, row, 0, 1, 3);
 }
 
 QString LinkParameter::textValue() const

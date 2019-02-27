@@ -53,6 +53,7 @@ public:
   const cimg_library::CImgList<float> & images() const;
   const cimg_library::CImgList<char> & imageNames() const;
   QStringList gmicStatus() const;
+  QList<int> parametersVisibilityStates() const;
   QString errorMessage() const;
   bool failed() const;
   bool aborted() const;

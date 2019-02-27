@@ -82,10 +82,11 @@ void PointParameter::addTo(QWidget * widget, int row)
   if (!_visible) {
     return;
   }
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _label;
   delete _rowCell;
 
@@ -121,8 +122,8 @@ void PointParameter::addTo(QWidget * widget, int row)
   _spinBoxY->setRange(-200.0, 300.0);
   _spinBoxX->setValue(_position.x());
   _spinBoxY->setValue(_position.y());
-  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
-  grid->addWidget(_rowCell, row, 1, 1, 2);
+  _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  _grid->addWidget(_rowCell, row, 1, 1, 2);
 
 #ifdef _GMIC_QT_DEBUG_
   _label->setToolTip(QString("Burst: %1").arg(_burst ? "on" : "off"));

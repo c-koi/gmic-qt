@@ -40,10 +40,11 @@ ChoiceParameter::~ChoiceParameter()
 
 void ChoiceParameter::addTo(QWidget * widget, int row)
 {
-  auto grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!grid) {
+  _grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!_grid) {
     return;
   }
+  _row = row;
   delete _comboBox;
   delete _label;
 
@@ -51,8 +52,8 @@ void ChoiceParameter::addTo(QWidget * widget, int row)
   _comboBox->addItems(_choices);
   _comboBox->setCurrentIndex(_value);
 
-  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
-  grid->addWidget(_comboBox, row, 1, 1, 2);
+  _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  _grid->addWidget(_comboBox, row, 1, 1, 2);
   connectComboBox();
 }
 
