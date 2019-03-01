@@ -91,7 +91,7 @@ option(PRERELEASE "Set to ON makes this a prelease build")
 if (${PRERELEASE})
     string(TIMESTAMP PRERELEASE_DATE %y%m%d)
     message("Prelease date is " ${PRERELEASE_DATE})
-    add_definitions(-Dgmic_prelease=${PRERELEASE_DATE})
+    add_definitions(-Dgmic_prerelease="${PRERELEASE_DATE}")
 endif()
 
 option(DRMINGW "Set to ON enables the drmingw debugger.")
