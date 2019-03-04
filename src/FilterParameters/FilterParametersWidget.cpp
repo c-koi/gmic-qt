@@ -111,7 +111,11 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
     ++it;
   }
 
-  setVisibilityStates(visibilityStates);
+  if (visibilityStates.isEmpty()) {
+    applyDefaultVisibilityStates();
+  } else {
+    setVisibilityStates(visibilityStates);
+  }
 
   // Retrieve a dummy keypoint list
   KeypointList keypoints;
