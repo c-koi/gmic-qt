@@ -53,6 +53,7 @@ public:
 
   enum VisibilityState
   {
+    UnspecifiedVisibilityState = -1,
     HiddenParameter = 0,
     DisabledParameter = 1,
     VisibleParameter = 2

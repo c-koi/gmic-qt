@@ -123,7 +123,7 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
         result.push_back(pc[2] - '0');
         pc += 3;
       } else {
-        result.push_back(AbstractParameter::VisibleParameter);
+        result.push_back(AbstractParameter::UnspecifiedVisibilityState);
         ++pc;
       }
     } else {
