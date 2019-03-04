@@ -39,9 +39,7 @@
 #include "Utils.h"
 #include "gmic.h"
 
-FavesModelReader::FavesModelReader(FavesModel & model) : _model(model)
-{
-}
+FavesModelReader::FavesModelReader(FavesModel & model) : _model(model) {}
 
 bool FavesModelReader::gmicGTKFaveFileAvailable()
 {
@@ -62,6 +60,12 @@ FavesModel::Fave FavesModelReader::jsonObjectToFave(const QJsonObject & object)
     defaultParameters.push_back(value.toString());
   }
   fave.setDefaultValues(defaultParameters);
+  QList<int> defaultVisibilities;
+  array = object.value("defaultVisibilities").toArray();
+  for (const QJsonValueRef & value : array) {
+    defaultVisibilities.push_back(value.toInt());
+  }
+  fave.setDefaultVisibilities(defaultVisibilities);
   fave.build();
   return fave;
 }

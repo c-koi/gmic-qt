@@ -39,16 +39,18 @@ public:
     Fave & setPreviewCommand(const QString & command);
     Fave & setOriginalHash(const QString & hash);
     Fave & setDefaultValues(const QList<QString> & defaultValues);
+    Fave & setDefaultVisibilities(const QList<int> & defaultVisibilityStates);
     Fave & build();
 
-    QString name() const;
-    QString plainText() const;
-    QString originalName() const;
-    QString originalHash() const;
-    QString command() const;
-    QString previewCommand() const;
-    QString hash() const;
-    QList<QString> defaultValues() const;
+    const QString & name() const;
+    const QString & plainText() const;
+    const QString & originalName() const;
+    const QString & originalHash() const;
+    const QString & command() const;
+    const QString & previewCommand() const;
+    const QString & hash() const;
+    const QList<QString> & defaultValues() const;
+    const QList<int> & defaultVisibilityStates() const;
     QString toString() const;
     bool matchKeywords(const QList<QString> & keywords) const;
 
@@ -61,6 +63,7 @@ public:
     QString _hash;
     QString _originalHash;
     QList<QString> _defaultValues;
+    QList<int> _defaultVisibilityStates;
   };
 
   class const_iterator {

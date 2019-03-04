@@ -763,8 +763,8 @@ void MainWindow::onProgressionWidgetCancelClicked()
 void MainWindow::onReset()
 {
   if (!_filtersPresenter->currentFilter().hash.isEmpty() && _filtersPresenter->currentFilter().isAFave) {
+    ui->filterParams->setVisibilityStates(_filtersPresenter->currentFilter().defaultVisibilityStates);
     ui->filterParams->setValues(_filtersPresenter->currentFilter().defaultParameterValues, true);
-    ui->filterParams->applyDefaultVisibilityStates(); // TODO: Fix this
     return;
   }
   if (!_filtersPresenter->currentFilter().isNoPreviewFilter()) {
@@ -792,6 +792,7 @@ void MainWindow::saveCurrentParameters()
   QString hash = ui->filterParams->filterHash();
   if (!hash.isEmpty() && (hash == ui->filterParams->filterHash())) {
     ParametersCache::setValues(hash, ui->filterParams->valueStringList());
+    ParametersCache::setVisibilityStates(hash, ui->filterParams->visibilityStates());
     ParametersCache::setInputOutputState(hash, ui->inOutSelector->state());
   }
 }
@@ -993,7 +994,11 @@ void MainWindow::activateFilter(bool resetZoom)
     if (savedValues.isEmpty() && filter.isAFave) {
       savedValues = filter.defaultParameterValues;
     }
-    if (!ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues)) {
+    QList<int> savedVisibilityStates = ParametersCache::getVisibilityStates(filter.hash);
+    if (savedVisibilityStates.isEmpty() && filter.isAFave) {
+      savedVisibilityStates = filter.defaultVisibilityStates;
+    }
+    if (!ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues, savedVisibilityStates)) {
       _filtersPresenter->setInvalidFilter();
       ui->previewWidget->setKeypoints(KeypointList());
     } else {
@@ -1095,7 +1100,7 @@ void MainWindow::onAddFave()
     return;
   }
   saveCurrentParameters();
-  _filtersPresenter->addSelectedFilterAsNewFave(ui->filterParams->valueStringList(), ui->inOutSelector->state());
+  _filtersPresenter->addSelectedFilterAsNewFave(ui->filterParams->valueStringList(), ui->filterParams->visibilityStates(), ui->inOutSelector->state());
 }
 void MainWindow::onRemoveFave()
 {

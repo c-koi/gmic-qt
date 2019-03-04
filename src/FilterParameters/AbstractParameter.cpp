@@ -46,6 +46,7 @@ AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : Q
 {
   _update = true;
   _defaultVisibilityState = VisibleParameter;
+  _visibilityState = VisibleParameter;
   _row = -1;
   _grid = nullptr;
 }
@@ -157,6 +158,7 @@ void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState st
   if (!_grid || _row == -1) {
     return;
   }
+  _visibilityState = state;
   for (int col = 0; col < 5; ++col) {
     QLayoutItem * item = _grid->itemAtPosition(_row, col);
     if (item) {
@@ -176,6 +178,11 @@ void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState st
       }
     }
   }
+}
+
+AbstractParameter::VisibilityState AbstractParameter::visibilityState() const
+{
+  return _visibilityState;
 }
 
 QStringList AbstractParameter::parseText(const QString & type, const char * text, int & length)
@@ -208,7 +215,6 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
     _defaultVisibilityState = static_cast<VisibilityState>(text[length + 1] - '0');
     length += 2;
   }
-
   while (text[length] && (text[length] == ',' || str[length].isSpace())) {
     ++length;
   }

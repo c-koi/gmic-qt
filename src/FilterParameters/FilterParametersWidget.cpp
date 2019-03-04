@@ -44,7 +44,7 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   _hasKeypoints = false;
 }
 
-bool FilterParametersWidget::build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values)
+bool FilterParametersWidget::build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values, const QList<int> & visibilityStates)
 {
   _filterName = name;
   _filterHash = hash;
@@ -111,7 +111,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
     ++it;
   }
 
-  applyDefaultVisibilityStates();
+  setVisibilityStates(visibilityStates);
 
   // Retrieve a dummy keypoint list
   KeypointList keypoints;
@@ -197,7 +197,10 @@ QStringList FilterParametersWidget::valueStringList() const
 
 void FilterParametersWidget::setValues(const QStringList & list, bool notify)
 {
-  if (list.isEmpty() || _actualParametersCount != list.size()) {
+  if (list.isEmpty()) {
+    return;
+  }
+  if (_actualParametersCount != list.size()) {
     TRACE << "Wrong number of values" << list << "expecting" << _actualParametersCount;
     return;
   }
@@ -212,7 +215,10 @@ void FilterParametersWidget::setValues(const QStringList & list, bool notify)
 
 void FilterParametersWidget::setVisibilityStates(const QList<int> states)
 {
-  if (states.isEmpty() || _actualParametersCount != states.size()) {
+  if (states.isEmpty()) {
+    return;
+  }
+  if (_actualParametersCount != states.size()) {
     TRACE << "Wrong number of states" << states << "expecting" << _actualParametersCount;
     return;
   }
@@ -226,6 +232,17 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> states)
       }
     }
   }
+}
+
+QList<int> FilterParametersWidget::visibilityStates()
+{
+  QList<int> states;
+  for (AbstractParameter * param : _presetParameters) {
+    if (param->isActualParameter()) {
+      states.push_back(param->visibilityState());
+    }
+  }
+  return states;
 }
 
 void FilterParametersWidget::reset(bool notify)

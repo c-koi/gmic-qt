@@ -60,6 +60,7 @@ public:
 
   virtual VisibilityState defaultVisibilityState() const;
   void setVisibilityState(VisibilityState state);
+  VisibilityState visibilityState() const;
 
 signals:
   void valueChanged();
@@ -75,6 +76,7 @@ protected:
 
 private:
   bool _update;
+  VisibilityState _visibilityState;
 };
 
 #endif // _GMIC_QT_ABSTRACTPARAMETER_H_

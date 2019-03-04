@@ -183,7 +183,8 @@ void HeadlessProcessor::onProcessingFinished()
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if (!_filterThread->aborted()) {
       gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode,
-                            (_outputMessageMode == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData() : nullptr);
+                            (_outputMessageMode == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData()
+                                                                             : nullptr);
     }
   }
   _filterThread->deleteLater();

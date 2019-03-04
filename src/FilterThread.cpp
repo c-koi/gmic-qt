@@ -25,6 +25,7 @@
 #include "FilterThread.h"
 #include <QDebug>
 #include <iostream>
+#include "FilterParameters/AbstractParameter.h"
 #include "GmicStdlib.h"
 #include "ImageConverter.h"
 #include "Logger.h"
@@ -116,14 +117,13 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
   const char * limit = pc + ba.size();
 
   QList<int> result;
-
   while (pc < limit) {
     if (*pc == 25) {
       if (pc < limit - 2 && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2') {
         result.push_back(pc[2] - '0');
         pc += 3;
       } else {
-        result.push_back(-1);
+        result.push_back(AbstractParameter::VisibleParameter);
         ++pc;
       }
     } else {

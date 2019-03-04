@@ -31,18 +31,21 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <iostream>
+#include "Common.h"
 #include "Globals.h"
 #include "Utils.h"
 #include "gmic.h"
 
 QHash<QString, QList<QString>> ParametersCache::_parametersCache;
 QHash<QString, GmicQt::InputOutputState> ParametersCache::_inOutPanelStates;
+QHash<QString, QList<int>> ParametersCache::_visibilityStates;
 
 void ParametersCache::load(bool loadFiltersParameters)
 {
   // Load JSON file
   _parametersCache.clear();
   _inOutPanelStates.clear();
+  _visibilityStates.clear();
 
   QString jsonFilename = QString("%1%2").arg(GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME);
   QFile jsonFile(jsonFilename);
@@ -50,7 +53,18 @@ void ParametersCache::load(bool loadFiltersParameters)
     return;
   }
   if (jsonFile.open(QFile::ReadOnly)) {
+#ifdef _GMIC_QT_DEBUG_
+    QJsonDocument jsonDoc;
+    QByteArray allFile = jsonFile.readAll();
+    QByteArray ba = qUncompress(allFile);
+    if (ba.isEmpty()) {
+      jsonDoc = QJsonDocument::fromJson(allFile);
+    } else {
+      jsonDoc = QJsonDocument::fromBinaryData(ba);
+    }
+#else
     QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
+#endif
     if (jsonDoc.isNull()) {
       std::cerr << "[gmic-qt] Warning: cannot parse " << jsonFilename.toStdString() << std::endl;
       std::cerr << "[gmic-qt] Last filters parameters are lost!\n";
@@ -73,6 +87,15 @@ void ParametersCache::load(bool loadFiltersParameters)
                 values.push_back(v.toString());
               }
               _parametersCache[hash] = values;
+            }
+            QJsonValue visibilityStates = filterObject.value("visibility_states");
+            if (!visibilityStates.isUndefined()) {
+              QJsonArray array = visibilityStates.toArray();
+              QList<int> values;
+              for (const QJsonValueRef & v : array) {
+                values.push_back(v.toInt());
+              }
+              _visibilityStates[hash] = values;
             }
           }
           QJsonValue state = filterObject.value("in_out_state");
@@ -110,6 +133,12 @@ void ParametersCache::save()
   //          "OutputMode": 100,
   //          "PreviewMode": 100
   //      }
+  //      "visibility_states": [
+  //             0,
+  //             1,
+  //             2,
+  //             0
+  //      ]
   //  }
   // }
 
@@ -147,6 +176,26 @@ void ParametersCache::save()
     ++itParams;
   }
 
+  // Add visibility states
+
+  QHash<QString, QList<int>>::iterator itVisibilities = _visibilityStates.begin();
+  while (itVisibilities != _visibilityStates.end()) {
+    QJsonObject filterObject;
+    QJsonObject::iterator entry = documentObject.find(itVisibilities.key());
+    if (entry != documentObject.end()) {
+      filterObject = entry.value().toObject();
+    }
+    // Add the parameters list
+    QJsonArray array;
+    QList<int> states = itVisibilities.value();
+    for (const int & state : states) {
+      array.push_back(state);
+    }
+    filterObject.insert("visibility_states", array);
+    documentObject.insert(itVisibilities.key(), filterObject);
+    ++itVisibilities;
+  }
+
   QJsonDocument jsonDoc(documentObject);
   QString jsonFilename = QString("%1%2").arg(GmicQt::path_rc(true), PARAMETERS_CACHE_FILENAME);
   QFile jsonFile(jsonFilename);
@@ -156,7 +205,11 @@ void ParametersCache::save()
     QFile::copy(jsonFilename, bakFilename);
   }
   if (jsonFile.open(QFile::WriteOnly | QFile::Truncate)) {
+#ifdef _GMIC_QT_DEBUG_
+    qint64 count = jsonFile.write(jsonDoc.toJson());
+#else
     qint64 count = jsonFile.write(qCompress(jsonDoc.toBinaryData()));
+#endif
     // jsonFile.write(jsonDoc.toJson());
     // jsonFile.write(qCompress(jsonDoc.toBinaryData()));
     jsonFile.close();
@@ -181,10 +234,23 @@ void ParametersCache::setValues(const QString & hash, const QList<QString> & val
 
 QList<QString> ParametersCache::getValues(const QString & hash)
 {
-  if (_parametersCache.count(hash)) {
+  if (_parametersCache.contains(hash)) {
     return _parametersCache[hash];
   }
   return QList<QString>();
+}
+
+void ParametersCache::setVisibilityStates(const QString & hash, const QList<int> & states)
+{
+  _visibilityStates[hash] = states;
+}
+
+QList<int> ParametersCache::getVisibilityStates(const QString & hash)
+{
+  if (_visibilityStates.contains(hash)) {
+    return _visibilityStates[hash];
+  }
+  return QList<int>();
 }
 
 void ParametersCache::remove(const QString & hash)

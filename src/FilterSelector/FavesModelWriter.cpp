@@ -32,9 +32,7 @@
 #include <iostream>
 #include "Utils.h"
 
-FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model)
-{
-}
+FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model) {}
 
 FavesModelWriter::~FavesModelWriter() = default;
 
@@ -74,10 +72,15 @@ QJsonObject FavesModelWriter::faveToJsonObject(const FavesModel::Fave & fave)
   object["originalName"] = fave.originalName();
   object["command"] = fave.command();
   object["preview"] = fave.previewCommand();
-  QJsonArray array;
+  QJsonArray params;
   for (const QString & str : fave.defaultValues()) {
-    array.push_back(str);
+    params.push_back(str);
   }
-  object["defaultParameters"] = array;
+  object["defaultParameters"] = params;
+  QJsonArray visibilities;
+  for (const int & visibility : fave.defaultVisibilityStates()) {
+    visibilities.push_back(visibility);
+  }
+  object["defaultVisibilities"] = visibilities;
   return object;
 }
