@@ -262,6 +262,12 @@ QString FiltersView::selectedFilterHash() const
   return item ? item->hash() : QString();
 }
 
+bool FiltersView::aFaveIsSelected() const
+{
+  FilterTreeItem * item = selectedItem();
+  return item && item->isFave();
+}
+
 void FiltersView::preserveExpandedFolders()
 {
   if (ui->treeView->model() == &_emptyModel) {

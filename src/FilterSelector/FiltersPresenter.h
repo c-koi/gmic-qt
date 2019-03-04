@@ -66,6 +66,8 @@ public:
   void readFaves();
 
   bool allFavesAreValid() const;
+  bool danglingFaveIsSelected() const;
+
   /**
    * @brief restoreFaveHashLinksRelease236
    * Starting with release 240 of gmic, filter name capitalization has been normalized.

@@ -92,8 +92,8 @@ public:
   bool contains(const QString & hash) const;
   void flush() const;
   size_t faveCount() const;
-  const_iterator findFaveFromHash(const QString &);
-  const Fave & getFaveFromHash(const QString & hash);
+  const_iterator findFaveFromHash(const QString &) const;
+  const Fave & getFaveFromHash(const QString & hash) const;
   QString uniqueName(const QString & name, const QString & faveHashToIgnore);
   static const size_t NoIndex;
 

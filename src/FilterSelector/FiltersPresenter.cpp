@@ -372,6 +372,18 @@ void FiltersPresenter::removeFave(const QString & hash)
   onFilterChanged(_filtersView->selectedFilterHash());
 }
 
+bool FiltersPresenter::danglingFaveIsSelected() const
+{
+  if (!_filtersView->aFaveIsSelected()) {
+    return false;
+  }
+  QString hash = _filtersView->selectedFilterHash();
+  if (_favesModel.contains(hash)) {
+    return not _filtersModel.contains(_favesModel.getFaveFromHash(hash).originalHash());
+  }
+  return false;
+}
+
 void FiltersPresenter::setCurrentFilter(const QString & hash)
 {
   _errorMessage.clear();

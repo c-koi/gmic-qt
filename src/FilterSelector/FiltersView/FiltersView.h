@@ -64,6 +64,7 @@ public:
   void setHeader(const QString & header);
   FilterTreeItem * selectedItem() const;
   QString selectedFilterHash() const;
+  bool aFaveIsSelected() const;
 
   void preserveExpandedFolders();
   void restoreExpandedFolders();

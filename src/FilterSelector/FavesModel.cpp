@@ -71,12 +71,12 @@ size_t FavesModel::faveCount() const
   return _faves.size();
 }
 
-FavesModel::const_iterator FavesModel::findFaveFromHash(const QString & hash)
+FavesModel::const_iterator FavesModel::findFaveFromHash(const QString & hash) const
 {
   return {_faves.find(hash)};
 }
 
-const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash)
+const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash) const
 {
   Q_ASSERT_X(_faves.contains(hash), "getFaveFromHash", "Hash not found");
   return _faves.find(hash).value();
@@ -153,6 +153,7 @@ FavesModel::Fave & FavesModel::Fave::setDefaultValues(const QList<QString> & def
 FavesModel::Fave & FavesModel::Fave::setDefaultVisibilities(const QList<int> & defaultVisibilities)
 {
   _defaultVisibilityStates = defaultVisibilities;
+  return *this;
 }
 
 FavesModel::Fave & FavesModel::Fave::build()

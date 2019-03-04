@@ -1032,8 +1032,7 @@ void MainWindow::setNoFilter()
   ui->tbResetParameters->setVisible(false);
   ui->zoomLevelSelector->showWarning(false);
   _okButtonShouldApply = false;
-
-  ui->tbRemoveFave->setEnabled(false);
+  ui->tbRemoveFave->setEnabled(_filtersPresenter->danglingFaveIsSelected());
   ui->tbRenameFave->setEnabled(false);
 }
 
