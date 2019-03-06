@@ -26,6 +26,8 @@
 #define _GMIC_QT_ABSTRACTPARAMETER_H_
 
 #include <QObject>
+#include <QStringList>
+
 class KeypointList;
 class QGridLayout;
 
@@ -57,13 +59,21 @@ public:
     HiddenParameter = 0,
     DisabledParameter = 1,
     VisibleParameter = 2,
-    PropagateUp = 32,
-    PropagateDown = 64
   };
+  enum VisibilityPropagation
+  {
+    PropagateNone = 0,
+    PropagateUp = 1,
+    PropagateDown = 2,
+    PropagateUpDown = 3
+  };
+
+  static const QStringList NoValueParameters;
 
   virtual VisibilityState defaultVisibilityState() const;
   void setVisibilityState(VisibilityState state);
   VisibilityState visibilityState() const;
+  VisibilityPropagation visibilityPropagation() const;
 
 signals:
   void valueChanged();
@@ -83,6 +93,7 @@ protected:
 private:
   bool _update;
   VisibilityState _visibilityState;
+  VisibilityPropagation _visibilityPropagation;
 };
 
 #endif // _GMIC_QT_ABSTRACTPARAMETER_H_

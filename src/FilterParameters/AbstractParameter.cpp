@@ -41,12 +41,16 @@
 #include "FilterParameters/PointParameter.h"
 #include "FilterParameters/SeparatorParameter.h"
 #include "FilterParameters/TextParameter.h"
+#include "Logger.h"
+
+const QStringList AbstractParameter::NoValueParameters = {"link", "note", "separator"};
 
 AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : QObject(parent), _actualParameter(actualParameter)
 {
   _update = true;
   _defaultVisibilityState = VisibleParameter;
   _visibilityState = VisibleParameter;
+  _visibilityPropagation = PropagateNone;
   _row = -1;
   _grid = nullptr;
 }
@@ -192,6 +196,11 @@ AbstractParameter::VisibilityState AbstractParameter::visibilityState() const
   return _visibilityState;
 }
 
+AbstractParameter::VisibilityPropagation AbstractParameter::visibilityPropagation() const
+{
+  return _visibilityPropagation;
+}
+
 QStringList AbstractParameter::parseText(const QString & type, const char * text, int & length)
 {
   QStringList result;
@@ -223,22 +232,28 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
 
   if (text[length] == '_' && text[length + 1] >= '0' && text[length + 1] <= '2') {
     _defaultVisibilityState = static_cast<VisibilityState>(text[length + 1] - '0');
+    _visibilityPropagation = PropagateNone;
     switch (text[length + 2]) {
     case '-':
-      _defaultVisibilityState = static_cast<VisibilityState>(_defaultVisibilityState | PropagateUp);
+      _visibilityPropagation = PropagateUp;
       length += 3;
       break;
     case '+':
-      _defaultVisibilityState = static_cast<VisibilityState>(_defaultVisibilityState | PropagateDown);
+      _visibilityPropagation = PropagateDown;
       length += 3;
       break;
     case '*':
-      _defaultVisibilityState = static_cast<VisibilityState>(_defaultVisibilityState | PropagateUp | PropagateDown);
+      _visibilityPropagation = PropagateUpDown;
       length += 3;
       break;
     default:
       length += 2;
       break;
+    }
+    if (NoValueParameters.contains(type)) {
+      Logger::log(QString("[gmic-qt] Warning: %1 parameter should not define visibilities. Ignored.").arg(result.first()));
+      _defaultVisibilityState = AbstractParameter::VisibleParameter;
+      _visibilityPropagation = PropagateNone;
     }
   }
   while (text[length] && (text[length] == ',' || str[length].isSpace())) {

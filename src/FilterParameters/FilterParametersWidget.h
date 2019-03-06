@@ -49,6 +49,8 @@ public:
   void setValues(const QStringList &, bool notify);
   void setVisibilityStates(const QList<int> states);
   QList<int> visibilityStates();
+  QList<int> defaultVisibilityStates();
+
   void applyDefaultVisibilityStates();
   void reset(bool notify);
   QString filterName() const;
