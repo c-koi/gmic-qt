@@ -226,14 +226,51 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> states)
     TRACE << "Wrong number of states" << states << "expecting" << _actualParametersCount;
     return;
   }
-  auto itState = states.begin();
-  for (AbstractParameter * param : _presetParameters) {
-    if (param->isActualParameter()) {
-      if (param->isVisible()) {
-        param->setVisibilityState(static_cast<AbstractParameter::VisibilityState>(*itState++));
-      } else {
+
+  // Fill a table of new states for all parameters, including no-value ones
+  QVector<AbstractParameter::VisibilityState> newVisibilityStates(_presetParameters.size(), AbstractParameter::UnspecifiedVisibilityState);
+  {
+    auto itState = states.begin();
+    for (int n = 0; n < _presetParameters.size(); ++n) {
+      AbstractParameter * parameter = _presetParameters[n];
+      if (parameter->isActualParameter()) {
+        if (parameter->isVisible()) {
+          newVisibilityStates[n] = static_cast<AbstractParameter::VisibilityState>(*itState);
+        } else {
+          newVisibilityStates[n] = parameter->defaultVisibilityState();
+        }
         ++itState;
       }
+    }
+  }
+  // Propagate if necessary
+  for (int n = 0; n < _presetParameters.size(); ++n) {
+    AbstractParameter * parameter = _presetParameters[n];
+    if (parameter->isActualParameter() && parameter->isVisible()) {
+      AbstractParameter::VisibilityState state = newVisibilityStates[n];
+      if (state == AbstractParameter::UnspecifiedVisibilityState) {
+        state = parameter->defaultVisibilityState();
+      }
+      const AbstractParameter::VisibilityState maskedState = static_cast<AbstractParameter::VisibilityState>(state & 3);
+      if (state & AbstractParameter::PropagateUp) {
+        int i = n - 1;
+        while ((i >= 0) && !_presetParameters[i]->isActualParameter()) {
+          newVisibilityStates[i++] = maskedState;
+        }
+      }
+      if (state & AbstractParameter::PropagateDown) {
+        int i = n + 1;
+        while ((i < _presetParameters.size()) && !_presetParameters[i]->isActualParameter()) {
+          newVisibilityStates[i++] = maskedState;
+        }
+      }
+    }
+  }
+
+  for (int n = 0; n < _presetParameters.size(); ++n) {
+    AbstractParameter * const parameter = _presetParameters[n];
+    if (parameter->isVisible()) {
+      parameter->setVisibilityState(newVisibilityStates[n]);
     }
   }
 }
@@ -318,7 +355,7 @@ void FilterParametersWidget::applyDefaultVisibilityStates()
   QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
   while (it != _presetParameters.end()) {
     AbstractParameter * parameter = *it;
-    if (parameter->isActualParameter() && parameter->isVisible()) {
+    if (parameter->isVisible()) {
       parameter->setVisibilityState(parameter->defaultVisibilityState());
     }
     ++it;

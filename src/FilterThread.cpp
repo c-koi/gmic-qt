@@ -85,17 +85,16 @@ const cimg_library::CImgList<char> & FilterThread::imageNames() const
 QStringList FilterThread::status2StringList(const QString & status)
 {
   // Check if status matches something like "{...}{...}_1{...}_0"
-  if (!status.startsWith(QChar(24)) || (QRegExp(QString("%1(_[012])?$").arg(QChar(25))).indexIn(status) == -1)) {
+
+  QRegExp statusRegExp(QString("^") + QChar(24) + "(.*)" + QChar(25) + QString("(_[012][+*-]?)?$"));
+  QRegExp statusSeparatorRegExp(QChar(25) + QString("(_[012][+*-]?)?") + QChar(24));
+
+  if (statusRegExp.indexIn(status) == -1) {
+    TRACE << "Warning: Incorrect status syntax " << status;
     return QStringList();
   }
-  QList<QString> list = status.split(QRegExp(QString("%1(_[012])?%2").arg(QChar(25)).arg(QChar(24))));
+  QList<QString> list = statusRegExp.cap(1).split(statusSeparatorRegExp);
   if (!list.isEmpty()) {
-    list[0].remove(0, 1);
-    if (QRegExp(QChar(25) + QString("_[012]$")).indexIn(list.back()) != -1) {
-      list.back().chop(3);
-    } else {
-      list.back().chop(1);
-    }
     QList<QString>::iterator it = list.begin();
     while (it != list.end()) {
       QByteArray array = it->toLocal8Bit();
@@ -109,7 +108,9 @@ QStringList FilterThread::status2StringList(const QString & status)
 QList<int> FilterThread::status2Visibilities(const QString & status)
 {
   // Check if status matches something like "{...}{...}_1{...}_0"
-  if (!status.startsWith(QChar(24)) || (QRegExp(QString("%1(_[012])?$").arg(QChar(25))).indexIn(status) == -1)) {
+  QRegExp statusRegExp(QString("^") + QChar(24) + "(.*)" + QChar(25) + QString("(_[012][+*-]?)?$"));
+  if (statusRegExp.indexIn(status) == -1) {
+    TRACE << "Warning: Incorrect status syntax " << status;
     return QList<int>();
   }
   QByteArray ba = status.toLocal8Bit();
@@ -120,8 +121,25 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
   while (pc < limit) {
     if (*pc == 25) {
       if (pc < limit - 2 && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2') {
-        result.push_back(pc[2] - '0');
-        pc += 3;
+        int visibilityState = pc[2] - '0';
+        switch (pc[3]) {
+        case '-':
+          visibilityState |= AbstractParameter::PropagateUp;
+          pc += 4;
+          break;
+        case '+':
+          visibilityState |= AbstractParameter::PropagateDown;
+          pc += 4;
+          break;
+        case '*':
+          visibilityState |= (AbstractParameter::PropagateUp | AbstractParameter::PropagateDown);
+          pc += 4;
+          break;
+        default:
+          pc += 3;
+          break;
+        }
+        result.push_back(visibilityState);
       } else {
         result.push_back(AbstractParameter::UnspecifiedVisibilityState);
         ++pc;

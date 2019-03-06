@@ -56,7 +56,9 @@ public:
     UnspecifiedVisibilityState = -1,
     HiddenParameter = 0,
     DisabledParameter = 1,
-    VisibleParameter = 2
+    VisibleParameter = 2,
+    PropagateUp = 32,
+    PropagateDown = 64
   };
 
   virtual VisibilityState defaultVisibilityState() const;
@@ -74,6 +76,9 @@ protected:
   VisibilityState _defaultVisibilityState;
   QGridLayout * _grid;
   int _row;
+#ifdef _GMIC_QT_DEBUG_
+  QString _debugName;
+#endif
 
 private:
   bool _update;

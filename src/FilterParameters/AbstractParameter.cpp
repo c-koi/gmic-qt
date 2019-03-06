@@ -167,7 +167,7 @@ void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState st
     QLayoutItem * item = _grid->itemAtPosition(_row, col);
     if (item) {
       auto widget = item->widget();
-      switch (state) {
+      switch (state & 3) {
       case VisibleParameter:
         widget->setEnabled(true);
         widget->show();
@@ -197,6 +197,9 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
   QStringList result;
   const QString str = text;
   result << str.left(str.indexOf("=")).trimmed();
+#ifdef _GMIC_QT_DEBUG_
+  _debugName = result.back();
+#endif
 
   QRegExp re(QString("^[^=]*\\s*=\\s*(_?)%1\\s*(.)").arg(type), Qt::CaseInsensitive);
   re.indexIn(str);
@@ -220,7 +223,23 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
 
   if (text[length] == '_' && text[length + 1] >= '0' && text[length + 1] <= '2') {
     _defaultVisibilityState = static_cast<VisibilityState>(text[length + 1] - '0');
-    length += 2;
+    switch (text[length + 2]) {
+    case '-':
+      _defaultVisibilityState = static_cast<VisibilityState>(_defaultVisibilityState | PropagateUp);
+      length += 3;
+      break;
+    case '+':
+      _defaultVisibilityState = static_cast<VisibilityState>(_defaultVisibilityState | PropagateDown);
+      length += 3;
+      break;
+    case '*':
+      _defaultVisibilityState = static_cast<VisibilityState>(_defaultVisibilityState | PropagateUp | PropagateDown);
+      length += 3;
+      break;
+    default:
+      length += 2;
+      break;
+    }
   }
   while (text[length] && (text[length] == ',' || str[length].isSpace())) {
     ++length;
