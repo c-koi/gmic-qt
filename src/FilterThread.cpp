@@ -85,8 +85,8 @@ const cimg_library::CImgList<char> & FilterThread::imageNames() const
 QStringList FilterThread::status2StringList(const QString & status)
 {
   // Check if status matches something like "{...}{...}_1{...}_0"
-  QRegExp statusRegExp(QString("^") + QChar(24) + "(.*)" + QChar(25) + QString("(_[012][+*-]?)?$"));
-  QRegExp statusSeparatorRegExp(QChar(25) + QString("(_[012][+*-]?)?") + QChar(24));
+  QRegExp statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012][+*-]?)?$"));
+  QRegExp statusSeparatorRegExp(QChar(gmic_rbrace) + QString("(_[012][+*-]?)?") + QChar(gmic_lbrace));
   if (status.isEmpty()) {
     return QStringList();
   }
@@ -112,9 +112,9 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
     return QList<int>();
   }
   // Check if status matches something like "{...}{...}_1{...}_0"
-  QRegExp statusRegExp(QString("^") + QChar(24) + "(.*)" + QChar(25) + QString("(_[012][+*-]?)?$"));
+  QRegExp statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012])?$"));
   if (!status.isEmpty() && statusRegExp.indexIn(status) == -1) {
-    TRACE << "Warning: Incorrect status syntax " << status;
+    TRACE << "Incorrect status syntax " << status;
     return QList<int>();
   }
   QByteArray ba = status.toLocal8Bit();
@@ -123,14 +123,17 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
 
   QList<int> result;
   while (pc < limit) {
-    if (*pc == 25) {
-      if (pc < limit - 2 && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2') {
+    if (*pc == gmic_rbrace) {
+      if ((pc < limit - 2) && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2' && (!pc[3] || pc[3] == gmic_lbrace)) {
         auto visibilityState = static_cast<AbstractParameter::VisibilityState>(pc[2] - '0');
         result.push_back(visibilityState);
         pc += 3;
-      } else {
+      } else if (!pc[1] || (pc[1] == gmic_lbrace)) {
         result.push_back(AbstractParameter::UnspecifiedVisibilityState);
         ++pc;
+      } else {
+        TRACE << "Ignoring status" << status;
+        return QList<int>();
       }
     } else {
       ++pc;

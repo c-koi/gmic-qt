@@ -251,7 +251,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
       break;
     }
     if (NoValueParameters.contains(type)) {
-      Logger::log(QString("[gmic-qt] Warning: %1 parameter should not define visibilities. Ignored.").arg(result.first()));
+      Logger::log(QString("[gmic-qt] Warning: %1 parameter should not define visibility. Ignored.").arg(result.first()));
       _defaultVisibilityState = AbstractParameter::VisibleParameter;
       _visibilityPropagation = PropagateNone;
     }
