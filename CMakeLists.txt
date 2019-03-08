@@ -156,6 +156,11 @@ if (CURL_FOUND)
 endif()
 
 #
+# EIGEN3
+#
+find_package (Eigen3 3.0 REQUIRED NO_MODULE)
+
+#
 # Test for OpenMP
 #
 find_package(OpenMP)
@@ -185,6 +190,7 @@ set(gmic_qt_LIBRARIES
         ${PNG_LIBRARIES}
         ${FFTW3_LIBRARIES}
         ${ZLIB_LIBRARIES}
+	Eigen3::Eigen
 )
 
 if (CURL_FOUND)
