@@ -159,6 +159,7 @@ endif()
 # EIGEN3
 #
 find_package (Eigen3 3.0 REQUIRED NO_MODULE)
+add_definitions(-Dcimg_use_eigen)
 
 #
 # Test for OpenMP
