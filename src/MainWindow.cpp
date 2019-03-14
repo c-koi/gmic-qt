@@ -219,7 +219,7 @@ void MainWindow::setDarkTheme()
   p.setColor(QPalette::Text, QColor(255, 255, 255));
   p.setColor(QPalette::ButtonText, QColor(255, 255, 255));
   p.setColor(QPalette::WindowText, QColor(255, 255, 255));
-  QColor linkColor(100, 100, 100);
+  QColor linkColor(130, 130, 150);
   linkColor = linkColor.lighter();
   p.setColor(QPalette::Link, linkColor);
   p.setColor(QPalette::LinkVisited, linkColor);
