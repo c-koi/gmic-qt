@@ -492,6 +492,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
       ${GIMP2_LIBRARIES}
       ${gmic_qt_LIBRARIES}
       )
+    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION bin)
 
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
@@ -503,6 +504,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
       PRIVATE
       ${gmic_qt_LIBRARIES}
       )
+    install(TARGETS gmic_krita_qt RUNTIME DESTINATION bin)
 
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
@@ -510,6 +512,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "none")
     add_definitions(-DGMIC_HOST=standalone)
     add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
     target_link_libraries(gmic_qt PRIVATE ${gmic_qt_LIBRARIES})
+    install(TARGETS gmic_qt RUNTIME DESTINATION bin)
 
 elseif (${GMIC_QT_HOST} STREQUAL "paintdotnet")
 
