@@ -19,10 +19,11 @@
 *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-
+#include <QApplication>
 #include <QString>
 #include <QDebug>
 #include <QDataStream>
+#include <QMessageBox>
 #include <QUUid>
 #include <iostream>
 #include <limits>
@@ -30,6 +31,7 @@
 #include <vector>
 #include "Common.h"
 #include "Host/host.h"
+#include "MainWindow.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 #include <Windows.h>
@@ -245,6 +247,27 @@ namespace
     inline quint8 Float2Uint8Clamped(const float& value)
     {
         return value < 0.0f ? 0 : value > 255.0f ? 255 : static_cast<quint8>(value);
+    }
+    
+    QWidget* GetParentWindow()
+    {
+        foreach(QWidget* widget, qApp->topLevelWidgets())
+        {
+            if (qobject_cast<MainWindow*>(widget) != nullptr && widget->isVisible())
+            {
+                return widget;
+            }
+        }
+
+        return nullptr;
+    }
+
+    void ShowWarningMessage(QString message)
+    {
+        QWidget* parent = GetParentWindow();
+        QString title = QString("G'MIC-Qt for Paint.NET");
+
+        QMessageBox::warning(parent, title, message);
     }
 }
 
@@ -524,7 +547,12 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
             return;
         }
 
-        SendMessageSynchronously(outputImagesCommand.toUtf8());
+        QByteArray reply = SendMessageSynchronously(outputImagesCommand.toUtf8());
+
+        if (reply.length() > 0)
+        {
+            ShowWarningMessage(QString::fromUtf8(reply));
+        }
     }
 }
 
