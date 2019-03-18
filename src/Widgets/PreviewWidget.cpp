@@ -187,11 +187,11 @@ void PreviewWidget::updateOriginalImagePosition()
     }
     _imagePosition = QRect(QPoint(left, top), imageSize);
   } else {
-    _originaImageScaledSize = QSize(static_cast<int>(std::round(_originalImageSize.width() * _currentZoomFactor)),
-				    static_cast<int>(std::round(_originalImageSize.height() * _currentZoomFactor)));
-    _imagePosition = QRect(QPoint(std::max(0, (width() - _originaImageScaledSize.width()) / 2),
-				  std::max(0, (height() - _originaImageScaledSize.height()) / 2)),
-			   _originaImageScaledSize);
+    _originaImageScaledSize = QSize(static_cast<int>(std::round(_originalImageSize.width() * _currentZoomFactor)), //
+                                    static_cast<int>(std::round(_originalImageSize.height() * _currentZoomFactor)));
+    _imagePosition = QRect(QPoint(std::max(0, (width() - _originaImageScaledSize.width()) / 2), //
+                                  std::max(0, (height() - _originaImageScaledSize.height()) / 2)),
+                           _originaImageScaledSize);
   }
 }
 
@@ -294,7 +294,7 @@ int PreviewWidget::keypointUnderMouse(const QPoint & p)
 QPoint PreviewWidget::keypointToPointInWidget(const KeypointList::Keypoint & kp) const
 {
   return QPoint(static_cast<int>(std::round(_imagePosition.left() + (_imagePosition.width() - 1) * (kp.x / 100.0f))),
-		static_cast<int>(std::round(_imagePosition.top() + (_imagePosition.height() - 1) * (kp.y / 100.0f))));
+                static_cast<int>(std::round(_imagePosition.top() + (_imagePosition.height() - 1) * (kp.y / 100.0f))));
 }
 
 QPoint PreviewWidget::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const
@@ -346,8 +346,8 @@ void PreviewWidget::paintPreview(QPainter & painter)
     if (previewImageSize != _originaImageScaledSize) {
       imageSize = previewImageSize.scaled(width(), height(), Qt::KeepAspectRatio);
     } else {
-      imageSize = QSize(static_cast<int>(std::round(_originalImageSize.width() * _currentZoomFactor)),
-			static_cast<int>(std::round(_originalImageSize.height() * _currentZoomFactor)));
+      imageSize = QSize(static_cast<int>(std::round(_originalImageSize.width() * _currentZoomFactor)), //
+                        static_cast<int>(std::round(_originalImageSize.height() * _currentZoomFactor)));
     }
     _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), std::max(0, (height() - imageSize.height()) / 2)), imageSize);
     _originaImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
@@ -819,6 +819,7 @@ void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
     updateVisibleRect();
     if (reset) {
       _visibleRect.moveToCenter();
+      saveVisibleCenter();
     } else {
       _visibleRect.moveCenter(_savedVisibleCenter);
     }
