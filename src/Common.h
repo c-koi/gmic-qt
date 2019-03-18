@@ -32,7 +32,7 @@
 #define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
 #define LEAVING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Leaving>>"
 #define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
-#define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << "]" << #V << "=" << (V)
+#define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << __LINE__ << "]" << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
 #else
 #define ENTERING while (false)

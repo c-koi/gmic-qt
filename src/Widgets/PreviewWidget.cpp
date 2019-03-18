@@ -811,6 +811,9 @@ void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
   if ((_previewFactor == GmicQt::PreviewFactorFullImage) || ((_previewFactor == GmicQt::PreviewFactorAny) && reset)) {
     _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
     _visibleRect = PreviewRect::Full;
+    if (reset) {
+      saveVisibleCenter();
+    }
   } else if ((_previewFactor == GmicQt::PreviewFactorAny) && !reset) {
     updateVisibleRect();
     _visibleRect.moveCenter(_savedVisibleCenter);

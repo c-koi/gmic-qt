@@ -29,7 +29,9 @@
 #include <QImage>
 #include <QMutex>
 #include <QPixmap>
+#include <QPointF>
 #include <QRect>
+#include <QRectF>
 #include <QSize>
 #include <QWidget>
 #include <memory>
@@ -159,6 +161,7 @@ private:
     bool isValid() const;
     bool operator!=(const PreviewPoint &) const;
     bool operator==(const PreviewPoint &) const;
+    QPointF toPointF() const { return QPointF((qreal)x, (qreal)y); }
   };
 
   struct PreviewRect {
@@ -173,6 +176,7 @@ private:
     PreviewPoint topLeft() const;
     void moveCenter(const PreviewPoint & p);
     void moveToCenter();
+    QRectF toRectF() const { return QRectF((qreal)x, (qreal)y, (qreal)w, (qreal)h); }
     static const PreviewRect Full;
   };
 

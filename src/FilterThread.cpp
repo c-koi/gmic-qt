@@ -91,7 +91,7 @@ QStringList FilterThread::status2StringList(const QString & status)
     return QStringList();
   }
   if (statusRegExp.indexIn(status) == -1) {
-    TRACE << "Warning: Incorrect status syntax " << status;
+    // TRACE << "Warning: Incorrect status syntax " << status;
     return QStringList();
   }
   QList<QString> list = statusRegExp.cap(1).split(statusSeparatorRegExp);
@@ -114,7 +114,7 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
   // Check if status matches something like "{...}{...}_1{...}_0"
   QRegExp statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012])?$"));
   if (!status.isEmpty() && statusRegExp.indexIn(status) == -1) {
-    TRACE << "Incorrect status syntax " << status;
+    // TRACE << "Incorrect status syntax " << status;
     return QList<int>();
   }
   QByteArray ba = status.toLocal8Bit();
@@ -132,7 +132,7 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
         result.push_back(AbstractParameter::UnspecifiedVisibilityState);
         ++pc;
       } else {
-        TRACE << "Ignoring status" << status;
+        // TRACE << "Ignoring status" << status;
         return QList<int>();
       }
     } else {
