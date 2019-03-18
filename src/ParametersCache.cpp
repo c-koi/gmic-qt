@@ -56,11 +56,10 @@ void ParametersCache::load(bool loadFiltersParameters)
 #ifdef _GMIC_QT_DEBUG_
     QJsonDocument jsonDoc;
     QByteArray allFile = jsonFile.readAll();
-    QByteArray ba = qUncompress(allFile);
-    if (ba.isEmpty()) {
+    if (allFile.startsWith("{\n")) {
       jsonDoc = QJsonDocument::fromJson(allFile);
     } else {
-      jsonDoc = QJsonDocument::fromBinaryData(ba);
+      jsonDoc = QJsonDocument::fromBinaryData(qUncompress(allFile));
     }
 #else
     QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
