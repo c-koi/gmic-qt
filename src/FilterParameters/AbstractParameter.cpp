@@ -57,11 +57,6 @@ AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : Q
 
 AbstractParameter::~AbstractParameter() {}
 
-bool AbstractParameter::isVisible() const
-{
-  return true;
-}
-
 bool AbstractParameter::isActualParameter() const
 {
   return _actualParameter;

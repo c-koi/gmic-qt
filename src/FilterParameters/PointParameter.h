@@ -43,8 +43,7 @@ class PointParameter : public AbstractParameter {
 public:
   PointParameter(QObject * parent = nullptr);
   ~PointParameter();
-  bool isVisible() const override;
-  void addTo(QWidget *, int row) override;
+  bool addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
   QString textValue() const override;
@@ -54,6 +53,8 @@ public:
   void setRemoved(bool on);
 
   static void resetDefaultColorIndex();
+
+  void setVisibilityState(AbstractParameter::VisibilityState state) override;
 
 public slots:
   void enableNotifications(bool);
@@ -67,6 +68,7 @@ private:
   void connectSpinboxes();
   void disconnectSpinboxes();
   void pickColorFromDefaultColormap();
+  void updateView();
   QString _name;
   QPointF _defaultPosition;
   bool _defaultRemovedStatus;
@@ -75,7 +77,6 @@ private:
   bool _removable;
   bool _burst;
   int _radius;
-  bool _visible;
   bool _keepOpacityWhenSelected;
 
   QLabel * _label;

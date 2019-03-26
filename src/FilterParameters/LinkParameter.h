@@ -34,7 +34,7 @@ class LinkParameter : public AbstractParameter {
 public:
   LinkParameter(QObject * parent = nullptr);
   ~LinkParameter();
-  void addTo(QWidget *, int row) override;
+  bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;
   void reset() override;

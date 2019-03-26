@@ -39,12 +39,10 @@ NoteParameter::~NoteParameter()
   delete _label;
 }
 
-void NoteParameter::addTo(QWidget * widget, int row)
+bool NoteParameter::addTo(QWidget * widget, int row)
 {
   _grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!_grid) {
-    return;
-  }
+  Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _label;
   _label = new QLabel(_text, widget);
@@ -53,6 +51,7 @@ void NoteParameter::addTo(QWidget * widget, int row)
   _label->setWordWrap(true);
   connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
   _grid->addWidget(_label, row, 0, 1, 3);
+  return true;
 }
 
 QString NoteParameter::textValue() const

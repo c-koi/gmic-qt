@@ -39,7 +39,7 @@ class TextParameter : public AbstractParameter {
 public:
   TextParameter(QObject * parent = nullptr);
   ~TextParameter();
-  void addTo(QWidget *, int row) override;
+  bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;
   void setValue(const QString & value) override;

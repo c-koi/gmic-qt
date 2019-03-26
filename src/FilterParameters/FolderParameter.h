@@ -35,7 +35,7 @@ class FolderParameter : public AbstractParameter {
 public:
   FolderParameter(QObject * parent = nullptr);
   ~FolderParameter();
-  void addTo(QWidget *, int row) override;
+  bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;
   void setValue(const QString & value) override;

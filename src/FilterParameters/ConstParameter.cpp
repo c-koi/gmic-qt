@@ -32,12 +32,10 @@ ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent, tru
 
 ConstParameter::~ConstParameter() = default;
 
-bool ConstParameter::isVisible() const
+bool ConstParameter::addTo(QWidget *, int)
 {
   return false;
 }
-
-void ConstParameter::addTo(QWidget *, int) {}
 
 QString ConstParameter::textValue() const
 {

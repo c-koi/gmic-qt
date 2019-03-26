@@ -103,9 +103,9 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
   while (it != _presetParameters.end()) {
     AbstractParameter * parameter = *it;
-    if (parameter->isVisible()) {
-      parameter->addTo(this, row++);
-      grid->setRowStretch(row - 1, 0);
+    if (parameter->addTo(this, row)) {
+      grid->setRowStretch(row, 0);
+      ++row;
     }
     connect(parameter, SIGNAL(valueChanged()), this, SLOT(updateValueString()));
     ++it;
@@ -264,9 +264,7 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
 
   for (int n = 0; n < _presetParameters.size(); ++n) {
     AbstractParameter * const parameter = _presetParameters[n];
-    if (parameter->isVisible()) {
-      parameter->setVisibilityState(newVisibilityStates[n]);
-    }
+    parameter->setVisibilityState(newVisibilityStates[n]);
   }
 }
 

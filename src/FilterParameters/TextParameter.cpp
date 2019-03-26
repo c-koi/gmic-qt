@@ -49,12 +49,10 @@ TextParameter::~TextParameter()
   delete _label;
 }
 
-void TextParameter::addTo(QWidget * widget, int row)
+bool TextParameter::addTo(QWidget * widget, int row)
 {
   _grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!_grid) {
-    return;
-  }
+  Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _label;
   delete _lineEdit;
@@ -74,6 +72,7 @@ void TextParameter::addTo(QWidget * widget, int row)
 #endif
   }
   connectEditor();
+  return true;
 }
 
 QString TextParameter::textValue() const

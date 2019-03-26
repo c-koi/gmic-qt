@@ -50,12 +50,10 @@ FloatParameter::~FloatParameter()
   delete _label;
 }
 
-void FloatParameter::addTo(QWidget * widget, int row)
+bool FloatParameter::addTo(QWidget * widget, int row)
 {
   _grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!_grid) {
-    return;
-  }
+  Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _spinBox;
   delete _slider;
@@ -79,6 +77,7 @@ void FloatParameter::addTo(QWidget * widget, int row)
   _grid->addWidget(_slider, row, 1, 1, 1);
   _grid->addWidget(_spinBox, row, 2, 1, 1);
   connectSliderSpinBox();
+  return true;
 }
 
 QString FloatParameter::textValue() const

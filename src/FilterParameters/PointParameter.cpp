@@ -60,7 +60,6 @@ PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, tru
   _connected = false;
   _defaultRemovedStatus = false;
   _radius = KeypointList::Keypoint::DefaultRadius;
-  _visible = true;
   _keepOpacityWhenSelected = false;
   _removed = false;
   setRemoved(false);
@@ -72,20 +71,10 @@ PointParameter::~PointParameter()
   delete _rowCell;
 }
 
-bool PointParameter::isVisible() const
+bool PointParameter::addTo(QWidget * widget, int row)
 {
-  return _visible;
-}
-
-void PointParameter::addTo(QWidget * widget, int row)
-{
-  if (!_visible) {
-    return;
-  }
   _grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!_grid) {
-    return;
-  }
+  Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _label;
   delete _rowCell;
@@ -131,6 +120,7 @@ void PointParameter::addTo(QWidget * widget, int row)
 
   setRemoved(_removed);
   connectSpinboxes();
+  return true;
 }
 
 void PointParameter::addToKeypointList(KeypointList & list) const
@@ -184,19 +174,33 @@ void PointParameter::setValue(const QString & value)
     }
     _removed = (_removable && xNaN && yNaN);
 
-    if (_spinBoxX) {
-      disconnectSpinboxes();
-      if (_removeButton) {
-        setRemoved(_removed);
-        _removeButton->setChecked(_removed);
-      }
-      if (!_removed) {
-        _spinBoxX->setValue(_position.x());
-        _spinBoxY->setValue(_position.y());
-      }
-      connectSpinboxes();
-    }
+    updateView();
   }
+}
+
+void PointParameter::setVisibilityState(AbstractParameter::VisibilityState state)
+{
+  AbstractParameter::setVisibilityState(state);
+  if (state & VisibleParameter) {
+    updateView();
+  }
+}
+
+void PointParameter::updateView()
+{
+  if (not _spinBoxX) {
+    return;
+  }
+  disconnectSpinboxes();
+  if (_removeButton) {
+    setRemoved(_removed);
+    _removeButton->setChecked(_removed);
+  }
+  if (!_removed) {
+    _spinBoxX->setValue(_position.x());
+    _spinBoxY->setValue(_position.y());
+  }
+  connectSpinboxes();
 }
 
 void PointParameter::reset()
@@ -229,7 +233,6 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   _burst = false;
   _removable = false;
   _radius = KeypointList::Keypoint::DefaultRadius;
-  _visible = true;
   _keepOpacityWhenSelected = false;
 
   float x = 50.0;
@@ -346,10 +349,6 @@ bool PointParameter::initFromText(const char * text, int & textLength)
       return false;
     }
     _radius = static_cast<int>(radius);
-  }
-
-  if ((params.size() >= 10) && (params[9].trimmed() == "0")) {
-    _visible = false;
   }
 
   _position = _defaultPosition;

@@ -41,12 +41,10 @@ BoolParameter::~BoolParameter()
   delete _label;
 }
 
-void BoolParameter::addTo(QWidget * widget, int row)
+bool BoolParameter::addTo(QWidget * widget, int row)
 {
   _grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!_grid) {
-    return;
-  }
+  Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _checkBox;
   delete _label;
@@ -60,6 +58,7 @@ void BoolParameter::addTo(QWidget * widget, int row)
   }
   _grid->addWidget(_checkBox, row, 0, 1, 3);
   connectCheckBox();
+  return true;
 }
 
 QString BoolParameter::textValue() const

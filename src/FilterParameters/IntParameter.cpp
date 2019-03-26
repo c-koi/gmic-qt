@@ -47,12 +47,10 @@ IntParameter::~IntParameter()
   delete _label;
 }
 
-void IntParameter::addTo(QWidget * widget, int row)
+bool IntParameter::addTo(QWidget * widget, int row)
 {
   _grid = dynamic_cast<QGridLayout *>(widget->layout());
-  if (!_grid) {
-    return;
-  }
+  Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _spinBox;
   delete _slider;
@@ -74,6 +72,7 @@ void IntParameter::addTo(QWidget * widget, int row)
   _grid->addWidget(_slider, row, 1, 1, 1);
   _grid->addWidget(_spinBox, row, 2, 1, 1);
   connectSliderSpinBox();
+  return true;
 }
 
 QString IntParameter::textValue() const
