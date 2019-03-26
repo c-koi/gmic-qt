@@ -47,7 +47,7 @@ public:
   const QString & valueString() const;
   QStringList valueStringList() const;
   void setValues(const QStringList &, bool notify);
-  void setVisibilityStates(const QList<int> states);
+  void setVisibilityStates(const QList<int> & states);
   QList<int> visibilityStates();
   QList<int> defaultVisibilityStates();
 

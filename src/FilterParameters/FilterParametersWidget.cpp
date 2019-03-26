@@ -217,7 +217,7 @@ void FilterParametersWidget::setValues(const QStringList & list, bool notify)
   updateValueString(notify);
 }
 
-void FilterParametersWidget::setVisibilityStates(const QList<int> states)
+void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
 {
   if (states.isEmpty()) {
     return;
@@ -234,11 +234,7 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> states)
     for (int n = 0; n < _presetParameters.size(); ++n) {
       AbstractParameter * parameter = _presetParameters[n];
       if (parameter->isActualParameter()) {
-        if (parameter->isVisible()) {
-          newVisibilityStates[n] = static_cast<AbstractParameter::VisibilityState>(*itState);
-        } else {
-          newVisibilityStates[n] = parameter->defaultVisibilityState();
-        }
+        newVisibilityStates[n] = static_cast<AbstractParameter::VisibilityState>(*itState);
         ++itState;
       }
     }
@@ -246,7 +242,7 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> states)
   // Propagate if necessary
   for (int n = 0; n < _presetParameters.size(); ++n) {
     AbstractParameter * parameter = _presetParameters[n];
-    if (parameter->isActualParameter() && parameter->isVisible()) {
+    if (parameter->isActualParameter()) {
       AbstractParameter::VisibilityState state = newVisibilityStates[n];
       if (state == AbstractParameter::UnspecifiedVisibilityState) {
         state = parameter->defaultVisibilityState();
