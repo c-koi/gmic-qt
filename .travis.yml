@@ -41,8 +41,6 @@ matrix:
 before_install:
   - date -u
   - uname -a
-  - git config --global http.sslVersion sslv3
-  - git config --global http.sslVerify true
   - git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone
   - make -C gmic-clone/src CImg.h gmic_stdlib.h
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
