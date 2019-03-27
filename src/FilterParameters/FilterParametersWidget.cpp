@@ -271,7 +271,7 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
 QList<int> FilterParametersWidget::visibilityStates()
 {
   QList<int> states;
-  for (AbstractParameter * param : _presetParameters) {
+  for (const AbstractParameter * const param : _presetParameters) {
     if (param->isActualParameter()) {
       states.push_back(param->visibilityState());
     }

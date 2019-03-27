@@ -154,14 +154,14 @@ AbstractParameter::VisibilityState AbstractParameter::defaultVisibilityState() c
 
 void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState state)
 {
-  if (!_grid || _row == -1) {
-    return;
-  }
   if (state == UnspecifiedVisibilityState) {
     setVisibilityState(defaultVisibilityState());
     return;
   }
   _visibilityState = state;
+  if (!_grid || _row == -1) {
+    return;
+  }
   for (int col = 0; col < 5; ++col) {
     QLayoutItem * item = _grid->itemAtPosition(_row, col);
     if (item) {

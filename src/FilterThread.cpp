@@ -132,7 +132,7 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
         result.push_back(AbstractParameter::UnspecifiedVisibilityState);
         ++pc;
       } else {
-        // TRACE << "Ignoring status" << status;
+        // TRACE << "Ignoring status" << qPrintable(status);
         return QList<int>();
       }
     } else {
