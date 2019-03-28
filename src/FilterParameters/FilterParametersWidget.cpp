@@ -48,6 +48,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 {
   _filterName = name;
   _filterHash = hash;
+  hide();
   clear();
   delete layout();
   auto grid = new QGridLayout(this);
@@ -156,6 +157,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
     grid->addWidget(_labelNoParams, 0, 0, 4, 3);
   }
   updateValueString(false);
+  show();
   return error.isEmpty();
 }
 
