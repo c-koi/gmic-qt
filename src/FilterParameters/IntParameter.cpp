@@ -59,7 +59,15 @@ bool IntParameter::addTo(QWidget * widget, int row)
   _slider->setMinimumWidth(SLIDER_MIN_WIDTH);
   _slider->setRange(_min, _max);
   _slider->setValue(_value);
-  _slider->setPageStep(1);
+
+  const int delta = 1 + _max - _min;
+  if (delta < 20) {
+    _slider->setPageStep(1);
+  } else {
+    const int fact = delta < 100 ? 10 : delta < 1000 ? 100 : delta < 10000 ? 1000 : 10000;
+    _slider->setPageStep(fact * (delta / fact) / 10);
+  }
+
   _spinBox = new QSpinBox(widget);
   _spinBox->setRange(_min, _max);
   _spinBox->setValue(_value);
