@@ -279,7 +279,7 @@ void FiltersView::preserveExpandedFolders()
 
 void FiltersView::restoreExpandedFolders()
 {
-  expandFolders(_expandedFolderPaths, _model.invisibleRootItem());
+  expandFolders(_expandedFolderPaths);
 }
 
 void FiltersView::loadSettings(const QSettings &)

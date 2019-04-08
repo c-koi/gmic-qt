@@ -59,6 +59,7 @@ bool IntParameter::addTo(QWidget * widget, int row)
   _slider->setMinimumWidth(SLIDER_MIN_WIDTH);
   _slider->setRange(_min, _max);
   _slider->setValue(_value);
+  _slider->setPageStep(1);
   _spinBox = new QSpinBox(widget);
   _spinBox->setRange(_min, _max);
   _spinBox->setValue(_value);

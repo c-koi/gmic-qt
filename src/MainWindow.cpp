@@ -291,7 +291,7 @@ void MainWindow::onUpdateDownloadsFinished(int status)
   buildFiltersTree();
   ui->tbUpdateFilters->setEnabled(true);
   if (!_filtersPresenter->currentFilter().hash.isEmpty()) {
-    ui->previewWidget->sendUpdateRequest();
+    ui->previewWidget->sendUpdateRequest(); // FIXME : Select filter
   }
 }
 
