@@ -5,7 +5,7 @@
 
  G'MIC-Qt is a versatile front-end to the image processing framework
  [G'MIC](https://gmic.eu).  It is in fact a plugin for
- [GIMP](http://gimp.org) and [Krita](https://krita.org), [Paint.NET](https://www.getpaint.net/), as well as a standalone application.
+ [GIMP](http://gimp.org), [Krita](https://krita.org), and [Paint.NET](https://www.getpaint.net/), as well as a standalone application.
 
 ### Authors
 
