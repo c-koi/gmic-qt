@@ -192,13 +192,34 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
 
 QString FiltersModelReader::readBufferLine(QBuffer & buffer)
 {
-  // QBuffer::readline(max_size) may be very slow, in debug mode, when max_size is too big (e.g. 1MB).
-  // We read large lines in multiple calls.
+  // QBuffer::readline(max_size) may be very slow, in debug mode, when max_size
+  // is too big (e.g. 1MB). We read large lines in multiple calls.
   QString result;
   QString text;
   do {
     text = buffer.readLine(1024);
     result.append(text);
   } while (!text.isEmpty() && !text.endsWith("\n"));
+
+  // Merge comment lines ending with '\'
+  while (result.startsWith("#") && result.endsWith("\\\n")) {
+    char nextLinePrefix;
+    buffer.peek(&nextLinePrefix, 1);
+    if (nextLinePrefix != '#') {
+      return result;
+    }
+    result.chop(2);
+    QString nextLine;
+    do {
+      text = buffer.readLine(1024);
+      nextLine.append(text);
+    } while (!text.isEmpty() && !text.endsWith("\n"));
+    int ignoreCount = 1;
+    const int limit = nextLine.length() - nextLine.endsWith("\n");
+    while (ignoreCount < limit && nextLine[ignoreCount] <= ' ') {
+      ++ignoreCount;
+    }
+    result.append(nextLine.rightRef(nextLine.length() - ignoreCount));
+  }
   return result;
 }
