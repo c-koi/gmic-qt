@@ -46,7 +46,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
 {
   TIMING;
   QBuffer stdlib(&stdlibArray);
-  stdlib.open(QBuffer::ReadOnly);
+  stdlib.open(QBuffer::ReadOnly | QBuffer::Text);
   QList<QString> filterPath;
 
   QString language = LanguageSelectionWidget::configuredTranslator();
