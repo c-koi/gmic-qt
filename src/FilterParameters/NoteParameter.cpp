@@ -66,6 +66,9 @@ void NoteParameter::reset() {}
 bool NoteParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("note", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _text = list[1].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$")).replace(QString("\\\""), "\"");
   _text.replace(QString("\\n"), "<br/>");
 

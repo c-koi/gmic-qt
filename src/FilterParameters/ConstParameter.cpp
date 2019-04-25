@@ -55,6 +55,9 @@ void ConstParameter::reset()
 bool ConstParameter::initFromText(const char * text, int & textLength)
 {
   QStringList list = parseText("value", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   _value = _default = list[1];
   return true;

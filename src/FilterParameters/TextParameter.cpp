@@ -114,6 +114,9 @@ void TextParameter::reset()
 bool TextParameter::initFromText(const char * text, int & textLength)
 {
   QStringList list = parseText("text", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QString value = list[1];
   _multiline = false;

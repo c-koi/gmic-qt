@@ -108,6 +108,9 @@ void ColorParameter::reset()
 bool ColorParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("color", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> channels = list[1].split(",");
   const int n = channels.size();

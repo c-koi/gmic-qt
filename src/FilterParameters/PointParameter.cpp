@@ -221,6 +221,9 @@ void PointParameter::reset()
 bool PointParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("point", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> params = list[1].split(",");
 

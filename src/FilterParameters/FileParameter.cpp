@@ -111,6 +111,9 @@ bool FileParameter::initFromText(const char * text, int & textLength)
     list = parseText("file", text, textLength);
     _dialogMode = InputOutputMode;
   }
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QRegExp re("^\".*\"$");
   if (re.exactMatch(list[1])) {

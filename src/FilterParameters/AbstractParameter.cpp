@@ -214,13 +214,17 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
   }
 
   QString open = re.cap(2);
-  const char * end = 0;
+  const char * end = nullptr;
   if (open == "(") {
     end = strstr(text + prefixLength, ")");
   } else if (open == "{") {
     end = strstr(text + prefixLength, "}");
   } else if (open == "[") {
     end = strstr(text + prefixLength, "]");
+  }
+  if (!end) {
+    Logger::log(QString("[gmic-qt] Parse error in %1 parameter.").arg(type));
+    return QStringList();
   }
   QString values = str.mid(prefixLength, -1).left(end - (text + prefixLength)).trimmed();
   length = 1 + end - text;

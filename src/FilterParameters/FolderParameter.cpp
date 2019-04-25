@@ -97,6 +97,9 @@ void FolderParameter::reset()
 bool FolderParameter::initFromText(const char * text, int & textLength)
 {
   QList<QString> list = parseText("folder", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QRegExp re("^\".*\"$");
   if (re.exactMatch(list[1])) {

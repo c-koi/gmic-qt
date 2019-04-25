@@ -113,6 +113,9 @@ bool FloatParameter::initFromText(const char * text, int & textLength)
 {
   textLength = 0;
   QList<QString> list = parseText("float", text, textLength);
+  if (list.isEmpty()) {
+    return false;
+  }
   _name = HtmlTranslator::html2txt(list[0]);
   QList<QString> values = list[1].split(QChar(','));
   if (values.size() != 3) {
