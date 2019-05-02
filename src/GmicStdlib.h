@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdLib.h
+ *  @file GmicStdlib.h
  *
  *  Copyright 2017 Sebastien Fourey
  *

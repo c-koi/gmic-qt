@@ -92,7 +92,7 @@ void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images, con
 /**
  * @brief Apply a color profile to a given image
  *
- * @param image[in,out] An image
+ * @param [in,out] images An image
  */
 void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
 
