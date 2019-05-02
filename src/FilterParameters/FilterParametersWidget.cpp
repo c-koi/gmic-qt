@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FilterParamsWidget.cpp
+ *  @file FilterParametersWidget.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *

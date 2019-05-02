@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file LayersExtendsProxy.h
+ *  @file LayersExtentProxy.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
