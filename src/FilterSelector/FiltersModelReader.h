@@ -38,6 +38,7 @@ public:
 private:
   FiltersModel & _model;
   static QString readBufferLine(QBuffer &);
+  static bool textIsPrecededBySpacesInSomeLineOfArray(const QByteArray & text, const QByteArray & array);
 };
 
 #endif // _GMIC_QT_FILTERSMODELREADER_H_

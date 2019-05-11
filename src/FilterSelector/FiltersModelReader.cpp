@@ -55,7 +55,8 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
   }
 
   // Use _en locale if no localization for the language is found.
-  if (!stdlibArray.startsWith(QString("#@gui_%1").arg(language).toLocal8Bit()) && !stdlibArray.contains(QString("\n#@gui_%1").arg(language).toLocal8Bit())) {
+  QByteArray localePrefix = QString("#@gui_%1").arg(language).toLocal8Bit();
+  if (!textIsPrecededBySpacesInSomeLineOfArray(localePrefix, stdlibArray)) {
     language = "en";
   }
 
@@ -193,6 +194,27 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
     }
   }
   TIMING;
+}
+
+bool FiltersModelReader::textIsPrecededBySpacesInSomeLineOfArray(const QByteArray & text, const QByteArray & array)
+{
+  if (text.isEmpty()) {
+    return false;
+  }
+  int from = 0;
+  int position;
+  const char * data = array.constData();
+  while ((position = array.indexOf(text, from)) != -1) {
+    int index = position - 1;
+    while ((index >= 0) && (data[index] != '\n') && (data[index] <= ' ')) {
+      --index;
+    }
+    if ((index < 0) || (data[index] == '\n')) {
+      return true;
+    }
+    from = position + 1;
+  }
+  return false;
 }
 
 QString FiltersModelReader::readBufferLine(QBuffer & buffer)
