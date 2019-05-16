@@ -159,10 +159,10 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
             parameterLine.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
             parameters += parameterLine;
           }
-        } while (((startRegexp.indexIn(buffer) == 0) || /* FIXME: buffer.startsWith("#") ||*/ (buffer.trimmed().isEmpty() && !stdlib.atEnd())) //
-                 && !folderRegexpNoLanguage.exactMatch(buffer)                                                                                 //
-                 && !folderRegexpLanguage.exactMatch(buffer)                                                                                   //
-                 && !filterRegexpNoLanguage.exactMatch(buffer)                                                                                 //
+        } while (!stdlib.atEnd()                               //
+                 && !folderRegexpNoLanguage.exactMatch(buffer) //
+                 && !folderRegexpLanguage.exactMatch(buffer)   //
+                 && !filterRegexpNoLanguage.exactMatch(buffer) //
                  && !filterRegexpLanguage.exactMatch(buffer));
 
         FiltersModel::Filter filter;
