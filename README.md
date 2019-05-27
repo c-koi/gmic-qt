@@ -9,8 +9,8 @@
 
 ### Authors
 
-  * Sébastien Fourey
-  * David Tschumperlé (G'MIC lib & original GTK-based plugin)
+  * SÃ©bastien Fourey
+  * David TschumperlÃ© (G'MIC lib & original GTK-based plugin)
 
 ### Contributors
 
@@ -22,7 +22,7 @@
  * Jan Helebrant (Czech translation)
  * Frank Tegtmeyer (German translation)
  * chroma_ghost & bazza/pixls.us (Spanish translation)
- * Sébastien Fourey (French translation)
+ * SÃ©bastien Fourey (French translation)
  * Duddy Hadiwido (Indonesian translation)
  * Francesco Riosa (Italian translation)
  * iarga / pixls.us (Dutch translation)
