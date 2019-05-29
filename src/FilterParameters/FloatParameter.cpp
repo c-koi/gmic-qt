@@ -24,7 +24,6 @@
  */
 #include "FilterParameters/FloatParameter.h"
 #include <QDebug>
-#include <QDoubleSpinBox>
 #include <QGridLayout>
 #include <QLabel>
 #include <QLocale>
@@ -34,6 +33,7 @@
 #include <QTimerEvent>
 #include <QWidget>
 #include "DialogSettings.h"
+#include "FilterParameters/CustomDoubleSpinBox.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
 
@@ -68,10 +68,10 @@ bool FloatParameter::addTo(QWidget * widget, int row)
     p.setColor(QPalette::Highlight, QColor(130, 130, 130));
     _slider->setPalette(p);
   }
-  _spinBox = new QDoubleSpinBox(widget);
+  _spinBox = new CustomDoubleSpinBox(widget);
   _spinBox->setRange(_min, _max);
   _spinBox->setValue(_value);
-  _spinBox->setDecimals(2);
+  _spinBox->setDecimals(6);
   _spinBox->setSingleStep((_max - _min) / 100.0);
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   _grid->addWidget(_slider, row, 1, 1, 1);

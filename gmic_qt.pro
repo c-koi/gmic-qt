@@ -237,6 +237,7 @@ HEADERS +=  \
   src/FilterParameters/ChoiceParameter.h \
   src/FilterParameters/ColorParameter.h \
   src/FilterParameters/ConstParameter.h \
+  src/FilterParameters/CustomDoubleSpinBox.h \
   src/FilterParameters/FileParameter.h \
   src/FilterParameters/FilterParametersWidget.h \
   src/FilterParameters/FloatParameter.h \
@@ -310,6 +311,7 @@ SOURCES += \
   src/FilterParameters/ChoiceParameter.cpp \
   src/FilterParameters/ColorParameter.cpp \
   src/FilterParameters/ConstParameter.cpp \
+  src/FilterParameters/CustomDoubleSpinBox.cpp \
   src/FilterParameters/FileParameter.cpp \
   src/FilterParameters/FilterParametersWidget.cpp \
   src/FilterParameters/FloatParameter.cpp \
