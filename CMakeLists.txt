@@ -231,6 +231,10 @@ if (WIN32)
     )
 endif()
 
+if (NOT WIN32)
+    set(gmic_qt_LIBRARIES ${gmic_qt_LIBRARIES} fftw3_threads)
+endif()
+
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
