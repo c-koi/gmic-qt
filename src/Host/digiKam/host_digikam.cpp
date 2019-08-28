@@ -52,138 +52,173 @@ namespace
 
 inline bool archIsLittleEndian()
 {
-  const int x = 1;
-  return (*reinterpret_cast<const unsigned char *>(&x));
+    const int x = 1;
+    return (*reinterpret_cast<const unsigned char *>(&x));
 }
 
-void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out)
+inline unsigned char float2uchar_bounded(const float& in)
 {
-  Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
-/*
-  out = DImg(in.width(), in.height(), QImage::Format_RGB888);
+    return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
+}
 
-  if (in.spectrum() == 4 && out.format() != QImage::Format_ARGB32) {
-    out = out.convertToFormat(QImage::Format_ARGB32);
-  }
+inline unsigned short float2ushort_bounded(const float& in)
+{
+    return (in < 0.0f) ? 0 : ((in > 65535.0f) ? 65535 : static_cast<unsigned short>(in));
+}
 
-  if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
-    out = out.convertToFormat(QImage::Format_RGB888);
-  }
+void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixteenBits)
+{
+    Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
 
-  if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
-    out = out.convertToFormat(QImage::Format_ARGB32);
-  }
+    bool alpha = (in.spectrum() == 4 || in.spectrum() == 2);
+    out        = DImg(in.width(), in.height(), sixteenBits, alpha);
 
-// Format_Grayscale8 was added in Qt 5.5.
-#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
-  if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
-    out = out.convertToFormat(QImage::Format_Grayscale8);
-  }
-#else
-  if (in.spectrum() == 1) {
-    out = out.convertToFormat(QImage::Format_RGB888);
-  }
-#endif
+    if (in.spectrum() == 4) // RGB + Alpha
+    {
+        const float* srcR = in.data(0, 0, 0, 0);
+        const float* srcG = in.data(0, 0, 0, 1);
+        const float* srcB = in.data(0, 0, 0, 2);
+        const float* srcA = in.data(0, 0, 0, 3);
+        int height        = out.height();
 
-  if (in.spectrum() == 3) {
-    const float * srcR = in.data(0, 0, 0, 0);
-    const float * srcG = in.data(0, 0, 0, 1);
-    const float * srcB = in.data(0, 0, 0, 2);
-    int height = out.height();
-    for (int y = 0; y < height; ++y) {
-      int n = in.width();
-      unsigned char * dst = out.scanLine(y);
-      while (n--) {
-        dst[0] = float2uchar_bounded(*srcR++);
-        dst[1] = float2uchar_bounded(*srcG++);
-        dst[2] = float2uchar_bounded(*srcB++);
-        dst += 3;
-      }
-    }
-  } else if (in.spectrum() == 4) {
-    const float * srcR = in.data(0, 0, 0, 0);
-    const float * srcG = in.data(0, 0, 0, 1);
-    const float * srcB = in.data(0, 0, 0, 2);
-    const float * srcA = in.data(0, 0, 0, 3);
-    int height = out.height();
-    if (archIsLittleEndian()) {
-      for (int y = 0; y < height; ++y) {
-        int n = in.width();
-        unsigned char * dst = out.scanLine(y);
-        while (n--) {
-          dst[0] = float2uchar_bounded(*srcB++);
-          dst[1] = float2uchar_bounded(*srcG++);
-          dst[2] = float2uchar_bounded(*srcR++);
-          dst[3] = float2uchar_bounded(*srcA++);
-          dst += 4;
+        for (int y = 0 ; y < height ; ++y)
+        {
+            int n = in.width();
+
+            if (sixteenBits)
+            {
+                unsigned short* dst = (unsigned short*)out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[1] = float2ushort_bounded(*srcG++);
+                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst[3] = float2ushort_bounded(*srcA++);
+                    dst   += 4;
+                }
+            }
+            else
+            {
+                unsigned char* dst = out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = float2uchar_bounded(*srcR++);
+                    dst[1] = float2uchar_bounded(*srcG++);
+                    dst[2] = float2uchar_bounded(*srcB++);
+                    dst[3] = float2uchar_bounded(*srcA++);
+                    dst   += 4;
+                }
+            }
         }
-      }
-    } else {
-      for (int y = 0; y < height; ++y) {
-        int n = in.width();
-        unsigned char * dst = out.scanLine(y);
-        while (n--) {
-          dst[0] = float2uchar_bounded(*srcA++);
-          dst[1] = float2uchar_bounded(*srcR++);
-          dst[2] = float2uchar_bounded(*srcG++);
-          dst[3] = float2uchar_bounded(*srcB++);
-          dst += 4;
-        }
-      }
     }
-  } else if (in.spectrum() == 2) {
-    //
-    // Gray + Alpha
-    //
-    const float * src = in.data(0, 0, 0, 0);
-    const float * srcA = in.data(0, 0, 0, 1);
-    int height = out.height();
-    if (archIsLittleEndian()) {
-      for (int y = 0; y < height; ++y) {
-        int n = in.width();
-        unsigned char * dst = out.scanLine(y);
-        while (n--) {
-          dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
-          dst[3] = float2uchar_bounded(*srcA++);
-          dst += 4;
+    if (in.spectrum() == 3) // RGB
+    {
+        const float* srcR = in.data(0, 0, 0, 0);
+        const float* srcG = in.data(0, 0, 0, 1);
+        const float* srcB = in.data(0, 0, 0, 2);
+        int height        = out.height();
+
+        for (int y = 0 ; y < height ; ++y)
+        {
+            int n = in.width();
+
+            if (sixteenBits)
+            {
+                unsigned short* dst = (unsigned short*)out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[1] = float2ushort_bounded(*srcG++);
+                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst[3] = 0;
+                    dst   += 4;
+                }
+            }
+            else
+            {
+                unsigned char* dst = out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = float2uchar_bounded(*srcR++);
+                    dst[1] = float2uchar_bounded(*srcG++);
+                    dst[2] = float2uchar_bounded(*srcB++);
+                    dst[3] = 0;
+                    dst   += 4;
+                }
+            }
         }
-      }
-    } else {
-      for (int y = 0; y < height; ++y) {
-        int n = in.width();
-        unsigned char * dst = out.scanLine(y);
-        while (n--) {
-          dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
-          dst[0] = float2uchar_bounded(*srcA++);
-          dst += 4;
+    }
+    else if (in.spectrum() == 2) // Gray levels + Alpha
+    {
+        const float* src  = in.data(0, 0, 0, 0);
+        const float* srcA = in.data(0, 0, 0, 1);
+        int height        = out.height();
+
+        for (int y = 0 ; y < height ; ++y)
+        {
+            int n = in.width();
+
+            if (sixteenBits)
+            {
+                unsigned short* dst = (unsigned short*)out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = dst[1] = dst[2] = float2ushort_bounded(*src++);
+                    dst[3] = float2ushort_bounded(*srcA++);
+                    dst   += 4;
+                }
+            }
+            else
+            {
+                unsigned char* dst = out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = dst[1] = dst[2] = float2uchar_bounded(*src++);
+                    dst[3] = float2uchar_bounded(*srcA++);
+                    dst   += 4;
+                }
+            }
         }
-      }
     }
-  } else {
-    //
-    // 8-bits Gray levels
-    //
-    const float * src = in.data(0, 0, 0, 0);
-    int height = out.height();
-    for (int y = 0; y < height; ++y) {
-      int n = in.width();
-      unsigned char * dst = out.scanLine(y);
-#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
-      while (n--) {
-        *dst++ = static_cast<unsigned char>(*src++);
-      }
-#else
-      while (n--) {
-        dst[0] = float2uchar_bounded(*src);
-        dst[1] = float2uchar_bounded(*src);
-        dst[2] = float2uchar_bounded(*src);
-        ++src;
-        dst += 3;
-      }
-#endif
+    else // Gray levels
+    {
+        const float* src  = in.data(0, 0, 0, 0);
+        int height        = out.height();
+
+        for (int y = 0 ; y < height ; ++y)
+        {
+            int n = in.width();
+
+            if (sixteenBits)
+            {
+                unsigned short* dst = (unsigned short*)out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = dst[1] = dst[2] = float2ushort_bounded(*src++);
+                    dst[3] = 0;
+                    dst   += 4;
+                }
+            }
+            else
+            {
+                unsigned char* dst = out.scanLine(y);
+
+                while (n--)
+                {
+                    dst[0] = dst[1] = dst[2] = float2uchar_bounded(*src++);
+                    dst[3] = 0;
+                    dst   += 4;
+                }
+            }
+        }
     }
-  }
-*/
 }
 
 void convertDImgtoCImg(const DImg& in, cimg_library::CImg<float>& out)
@@ -235,7 +270,7 @@ void convertDImgtoCImg(const DImg& in, cimg_library::CImg<float>& out)
 
 } // namespace
 
-// ----------
+// --- GMic-Qt plugin functions ----------------------
 
 void gmic_qt_get_image_size(int* width,
                             int* height)
@@ -313,20 +348,14 @@ void gmic_qt_output_images(gmic_list<float>& images,
 {
     qDebug() << "Calling gmic_qt_output_images()";
 
-/*
-    unused(imageNames);
-    unused(mode);
-    unused(verboseLayersLabel);
-
     if (images.size() > 0)
     {
-        QImage outputImage;
-
-        ImageConverter::convert(images[0], outputImage);
-
-        outputImage.save(host_paintdotnet::outputImagePath);
+        ImageIface iface;
+        DImg dest;
+        convertCImgtoDImg(images[0], dest, iface.originalSixteenBit());
+        FilterAction action(QLatin1String("GMic-Qt"), 1);
+        iface.setOriginal(QLatin1String("GMic-Qt"), action, dest);
     }
-*/
 }
 
 void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type>& images)
