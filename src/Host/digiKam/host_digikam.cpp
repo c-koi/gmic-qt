@@ -40,10 +40,202 @@ using namespace Digikam;
 
 namespace GmicQt
 {
-    const QString HostApplicationName     = QString("digiKam");
-    const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
-    const bool DarkThemeIsDefault         = false;
+    const QString HostApplicationName    = QString("digiKam");
+    const char* HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+    const bool DarkThemeIsDefault        = false;
 }
+
+// Helper method for DImg to CImg container conversions
+
+namespace
+{
+
+inline bool archIsLittleEndian()
+{
+  const int x = 1;
+  return (*reinterpret_cast<const unsigned char *>(&x));
+}
+
+void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out)
+{
+  Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
+/*
+  out = DImg(in.width(), in.height(), QImage::Format_RGB888);
+
+  if (in.spectrum() == 4 && out.format() != QImage::Format_ARGB32) {
+    out = out.convertToFormat(QImage::Format_ARGB32);
+  }
+
+  if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
+    out = out.convertToFormat(QImage::Format_RGB888);
+  }
+
+  if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
+    out = out.convertToFormat(QImage::Format_ARGB32);
+  }
+
+// Format_Grayscale8 was added in Qt 5.5.
+#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
+  if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
+    out = out.convertToFormat(QImage::Format_Grayscale8);
+  }
+#else
+  if (in.spectrum() == 1) {
+    out = out.convertToFormat(QImage::Format_RGB888);
+  }
+#endif
+
+  if (in.spectrum() == 3) {
+    const float * srcR = in.data(0, 0, 0, 0);
+    const float * srcG = in.data(0, 0, 0, 1);
+    const float * srcB = in.data(0, 0, 0, 2);
+    int height = out.height();
+    for (int y = 0; y < height; ++y) {
+      int n = in.width();
+      unsigned char * dst = out.scanLine(y);
+      while (n--) {
+        dst[0] = float2uchar_bounded(*srcR++);
+        dst[1] = float2uchar_bounded(*srcG++);
+        dst[2] = float2uchar_bounded(*srcB++);
+        dst += 3;
+      }
+    }
+  } else if (in.spectrum() == 4) {
+    const float * srcR = in.data(0, 0, 0, 0);
+    const float * srcG = in.data(0, 0, 0, 1);
+    const float * srcB = in.data(0, 0, 0, 2);
+    const float * srcA = in.data(0, 0, 0, 3);
+    int height = out.height();
+    if (archIsLittleEndian()) {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[0] = float2uchar_bounded(*srcB++);
+          dst[1] = float2uchar_bounded(*srcG++);
+          dst[2] = float2uchar_bounded(*srcR++);
+          dst[3] = float2uchar_bounded(*srcA++);
+          dst += 4;
+        }
+      }
+    } else {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[0] = float2uchar_bounded(*srcA++);
+          dst[1] = float2uchar_bounded(*srcR++);
+          dst[2] = float2uchar_bounded(*srcG++);
+          dst[3] = float2uchar_bounded(*srcB++);
+          dst += 4;
+        }
+      }
+    }
+  } else if (in.spectrum() == 2) {
+    //
+    // Gray + Alpha
+    //
+    const float * src = in.data(0, 0, 0, 0);
+    const float * srcA = in.data(0, 0, 0, 1);
+    int height = out.height();
+    if (archIsLittleEndian()) {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
+          dst[3] = float2uchar_bounded(*srcA++);
+          dst += 4;
+        }
+      }
+    } else {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
+          dst[0] = float2uchar_bounded(*srcA++);
+          dst += 4;
+        }
+      }
+    }
+  } else {
+    //
+    // 8-bits Gray levels
+    //
+    const float * src = in.data(0, 0, 0, 0);
+    int height = out.height();
+    for (int y = 0; y < height; ++y) {
+      int n = in.width();
+      unsigned char * dst = out.scanLine(y);
+#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
+      while (n--) {
+        *dst++ = static_cast<unsigned char>(*src++);
+      }
+#else
+      while (n--) {
+        dst[0] = float2uchar_bounded(*src);
+        dst[1] = float2uchar_bounded(*src);
+        dst[2] = float2uchar_bounded(*src);
+        ++src;
+        dst += 3;
+      }
+#endif
+    }
+  }
+*/
+}
+
+void convertDImgtoCImg(const DImg& in, cimg_library::CImg<float>& out)
+{
+    const int w = in.width();
+    const int h = in.height();
+    out.assign(w, h, 1, 4);
+
+    float* dstR = out.data(0, 0, 0, 0);
+    float* dstG = out.data(0, 0, 0, 1);
+    float* dstB = out.data(0, 0, 0, 2);
+    float* dstA = out.data(0, 0, 0, 3);
+
+    if (archIsLittleEndian())
+    {
+        for (int y = 0 ; y < h ; ++y)
+        {
+            const unsigned char* src = in.scanLine(y);
+            int n                    = in.width();
+
+            while (n--)
+            {
+                *dstB++ = static_cast<float>(src[0]);
+                *dstG++ = static_cast<float>(src[1]);
+                *dstR++ = static_cast<float>(src[2]);
+                *dstA++ = static_cast<float>(src[3]);
+                src    += 4;
+            }
+        }
+    }
+    else
+    {
+        for (int y = 0 ; y < h ; ++y)
+        {
+            const unsigned char* src = in.scanLine(y);
+            int n                    = in.width();
+
+            while (n--)
+            {
+                *dstA++ = static_cast<float>(src[0]);
+                *dstR++ = static_cast<float>(src[1]);
+                *dstG++ = static_cast<float>(src[2]);
+                *dstB++ = static_cast<float>(src[3]);
+                src    += 4;
+            }
+        }
+    }
+}
+
+} // namespace
+
+// ----------
 
 void gmic_qt_get_image_size(int* width,
                             int* height)
@@ -79,8 +271,15 @@ void gmic_qt_get_cropped_images(gmic_list<float>& images,
 {
     qDebug() << "Calling gmic_qt_get_cropped_images()";
 
+    if (mode == GmicQt::NoInput)
+    {
+        images.assign();
+        imageNames.assign();
+        return;
+    }
+
     ImageIface iface;
-    const QImage & input_image = iface.original()->copyQImage();
+    DImg* const input_image = iface.original();
 
     const bool entireImage = (x < 0) && (y < 0) && (width < 0) && (height < 0);
 
@@ -92,13 +291,6 @@ void gmic_qt_get_cropped_images(gmic_list<float>& images,
         height = 1.0;
     }
 
-    if (mode == GmicQt::NoInput)
-    {
-        images.assign();
-        imageNames.assign();
-        return;
-    }
-
     images.assign(1);
     imageNames.assign(1);
 
@@ -106,11 +298,12 @@ void gmic_qt_get_cropped_images(gmic_list<float>& images,
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[0]);
 
-    const int ix = static_cast<int>(entireImage ? 0 : std::floor(x * input_image.width()));
-    const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image.height()));
-    const int iw = entireImage ? input_image.width()  : std::min(input_image.width()  - ix, static_cast<int>(1 + std::ceil(width * input_image.width())));
-    const int ih = entireImage ? input_image.height() : std::min(input_image.height() - iy, static_cast<int>(1 + std::ceil(height * input_image.height())));
-    ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
+    const int ix = static_cast<int>(entireImage ? 0 : std::floor(x * input_image->width()));
+    const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image->height()));
+    const int iw = entireImage ? input_image->width()  : std::min(static_cast<int>(input_image->width()  - ix), static_cast<int>(1 + std::ceil(width  * input_image->width())));
+    const int ih = entireImage ? input_image->height() : std::min(static_cast<int>(input_image->height() - iy), static_cast<int>(1 + std::ceil(height * input_image->height())));
+
+    convertDImgtoCImg(input_image->copy(ix, iy, iw, ih), images[0]);
 }
 
 void gmic_qt_output_images(gmic_list<float>& images,
