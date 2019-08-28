@@ -17,6 +17,7 @@ fi
 cd build
 
 cmake -G "$MAKEFILES_TYPE" . \
+      -DCMAKE_BUILD_TYPE=Debug \
       -DCMAKE_INSTALL_PREFIX=/usr \
       -DGMIC_QT_HOST=digikam \
       -Wno-dev \
