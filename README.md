@@ -5,7 +5,8 @@
 
  G'MIC-Qt is a versatile front-end to the image processing framework
  [G'MIC](https://gmic.eu).  It is in fact a plugin for
- [GIMP](http://gimp.org), [Krita](https://krita.org), and [Paint.NET](https://www.getpaint.net/), as well as a standalone application.
+ [GIMP](http://gimp.org), [Krita](https://krita.org), [Paint.NET](https://www.getpaint.net/),
+ and [digiKam](https://www.digikam.org) as well as a standalone application.
 
 ### Authors
 
@@ -16,6 +17,7 @@
 
  * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, work in progress)
  * Nicholas Hayes (Paint.NET compatibility layer, work in progress)
+ * Gilles Caulier (digiKam plugin)
 
 ### Translators
 
@@ -55,7 +57,7 @@ git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib.h
 cd gmic-qt
-qmake [HOST=none|gimp|krita|paintdotnet]
+qmake [HOST=none|gimp|krita|paintdotnet|digikam]
 make
 ```
 
@@ -78,6 +80,6 @@ cd build
 ```
 
 ```sh
-cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
+cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|digikam] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
 make
 ```

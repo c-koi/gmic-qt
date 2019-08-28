@@ -3,7 +3,9 @@
 *  editors, offering hundreds of filters thanks to the underlying G'MIC
 *  image processing framework.
 *
-*  Copyright (C) 2019 Gilles Caulier
+*  Copyright (C) 2019 Gilles Caulier <caulier dot gilles at gmail dot com>
+*
+*  Description: digiKam image editor plugin for GmicQt.
 *
 *  G'MIC-Qt is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -20,16 +22,17 @@
 *
 */
 
-#include <QImage>
+// Qt includes
+
+#include <QDataStream>
 #include <QString>
-#include <QVector>
 #include <QTextStream>
 #include <QDebug>
-#include <iostream>
+
+// Local includes
+
 #include "Common.h"
 #include "Host/host.h"
-#include "ImageConverter.h"
-#include "gmic_qt.h"
 #include "gmic.h"
 
 // digiKam includes
