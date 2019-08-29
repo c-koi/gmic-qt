@@ -17,7 +17,7 @@
 
  * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, work in progress)
  * Nicholas Hayes (Paint.NET compatibility layer, work in progress)
- * Gilles Caulier (digiKam plugin)
+ * Gilles Caulier (digiKam compatibility layer)
 
 ### Translators
 
