@@ -365,11 +365,11 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type>& images)
 {
     qDebug() << "Calling gmic_qt_apply_color_profile()";
 
-    unused(images);
+    Q_UNUSED(images);
 }
 
 void gmic_qt_show_message(const char* message)
 {
     qDebug() << "Calling gmic_qt_show_message()";
-    qDebug() << "Message:" << message;
+    qDebug() << "GMic-Qt:" << message;
 }
