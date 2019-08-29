@@ -53,12 +53,6 @@ namespace GmicQt
 namespace
 {
 
-inline bool archIsLittleEndian()
-{
-    const int x = 1;
-    return (*reinterpret_cast<const unsigned char *>(&x));
-}
-
 inline unsigned char float2uchar_bounded(const float& in)
 {
     return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
@@ -69,15 +63,17 @@ inline unsigned short float2ushort_bounded(const float& in)
     return (in < 0.0f) ? 0 : ((in > 65535.0f) ? 65535 : static_cast<unsigned short>(in));
 }
 
-void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixteenBits)
+void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixteenBit)
 {
     Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
 
     bool alpha = (in.spectrum() == 4 || in.spectrum() == 2);
-    out        = DImg(in.width(), in.height(), sixteenBits, alpha);
+    out        = DImg(in.width(), in.height(), sixteenBit, alpha);
 
     if (in.spectrum() == 4) // RGB + Alpha
     {
+        qDebug() << "GMicQt: convert CImg to DImg: RGB+Alpha image" << "(" << (sixteenBit+1) * 8 << "bits)";
+
         const float* srcR = in.data(0, 0, 0, 0);
         const float* srcG = in.data(0, 0, 0, 1);
         const float* srcB = in.data(0, 0, 0, 2);
@@ -88,15 +84,15 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
         {
             int n = in.width();
 
-            if (sixteenBits)
+            if (sixteenBit)
             {
                 unsigned short* dst = (unsigned short*)out.scanLine(y);
 
                 while (n--)
                 {
-                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[2] = float2ushort_bounded(*srcR++);
                     dst[1] = float2ushort_bounded(*srcG++);
-                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst[0] = float2ushort_bounded(*srcB++);
                     dst[3] = float2ushort_bounded(*srcA++);
                     dst   += 4;
                 }
@@ -107,17 +103,19 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
 
                 while (n--)
                 {
-                    dst[0] = float2uchar_bounded(*srcR++);
+                    dst[2] = float2uchar_bounded(*srcR++);
                     dst[1] = float2uchar_bounded(*srcG++);
-                    dst[2] = float2uchar_bounded(*srcB++);
+                    dst[0] = float2uchar_bounded(*srcB++);
                     dst[3] = float2uchar_bounded(*srcA++);
                     dst   += 4;
                 }
             }
         }
     }
-    if (in.spectrum() == 3) // RGB
+    else if (in.spectrum() == 3) // RGB
     {
+        qDebug() << "GMicQt: convert CImg to DImg: RGB image" << "(" << (sixteenBit+1) * 8 << "bits)";
+
         const float* srcR = in.data(0, 0, 0, 0);
         const float* srcG = in.data(0, 0, 0, 1);
         const float* srcB = in.data(0, 0, 0, 2);
@@ -127,15 +125,15 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
         {
             int n = in.width();
 
-            if (sixteenBits)
+            if (sixteenBit)
             {
                 unsigned short* dst = (unsigned short*)out.scanLine(y);
 
                 while (n--)
                 {
-                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[2] = float2ushort_bounded(*srcR++);
                     dst[1] = float2ushort_bounded(*srcG++);
-                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst[0] = float2ushort_bounded(*srcB++);
                     dst[3] = 0;
                     dst   += 4;
                 }
@@ -146,9 +144,9 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
 
                 while (n--)
                 {
-                    dst[0] = float2uchar_bounded(*srcR++);
+                    dst[2] = float2uchar_bounded(*srcR++);
                     dst[1] = float2uchar_bounded(*srcG++);
-                    dst[2] = float2uchar_bounded(*srcB++);
+                    dst[0] = float2uchar_bounded(*srcB++);
                     dst[3] = 0;
                     dst   += 4;
                 }
@@ -157,6 +155,7 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
     }
     else if (in.spectrum() == 2) // Gray levels + Alpha
     {
+        qDebug() << "GMicQt: convert CImg to DImg: Gray+Alpha image" << "(" << (sixteenBit+1) * 8 << "bits)";
         const float* src  = in.data(0, 0, 0, 0);
         const float* srcA = in.data(0, 0, 0, 1);
         int height        = out.height();
@@ -165,7 +164,7 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
         {
             int n = in.width();
 
-            if (sixteenBits)
+            if (sixteenBit)
             {
                 unsigned short* dst = (unsigned short*)out.scanLine(y);
 
@@ -191,6 +190,8 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
     }
     else // Gray levels
     {
+        qDebug() << "GMicQt: convert CImg to DImg: Gray image" << "(" << (sixteenBit+1) * 8 << "bits)";
+
         const float* src  = in.data(0, 0, 0, 0);
         int height        = out.height();
 
@@ -198,7 +199,7 @@ void convertCImgtoDImg(const cimg_library::CImg<float>& in, DImg& out, bool sixt
         {
             int n = in.width();
 
-            if (sixteenBits)
+            if (sixteenBit)
             {
                 unsigned short* dst = (unsigned short*)out.scanLine(y);
 
@@ -235,9 +236,25 @@ void convertDImgtoCImg(const DImg& in, cimg_library::CImg<float>& out)
     float* dstB = out.data(0, 0, 0, 2);
     float* dstA = out.data(0, 0, 0, 3);
 
-    if (archIsLittleEndian())
+    qDebug() << "GMicQt: convert DImg to CImg:" << (in.sixteenBit()+1) * 8 << "bits image";
+
+    for (int y = 0 ; y < h ; ++y)
     {
-        for (int y = 0 ; y < h ; ++y)
+        if (in.sixteenBit())
+        {
+            const unsigned short* src = (unsigned short*)in.scanLine(y);
+            int n                     = in.width();
+
+            while (n--)
+            {
+                *dstB++ = static_cast<float>(src[0] / 255.0);
+                *dstG++ = static_cast<float>(src[1] / 255.0);
+                *dstR++ = static_cast<float>(src[2] / 255.0);
+                *dstA++ = static_cast<float>(src[3] / 255.0);
+                src    += 4;
+            }
+        }
+        else
         {
             const unsigned char* src = in.scanLine(y);
             int n                    = in.width();
@@ -248,23 +265,6 @@ void convertDImgtoCImg(const DImg& in, cimg_library::CImg<float>& out)
                 *dstG++ = static_cast<float>(src[1]);
                 *dstR++ = static_cast<float>(src[2]);
                 *dstA++ = static_cast<float>(src[3]);
-                src    += 4;
-            }
-        }
-    }
-    else
-    {
-        for (int y = 0 ; y < h ; ++y)
-        {
-            const unsigned char* src = in.scanLine(y);
-            int n                    = in.width();
-
-            while (n--)
-            {
-                *dstA++ = static_cast<float>(src[0]);
-                *dstR++ = static_cast<float>(src[1]);
-                *dstG++ = static_cast<float>(src[2]);
-                *dstB++ = static_cast<float>(src[3]);
                 src    += 4;
             }
         }
@@ -299,7 +299,7 @@ void gmic_qt_get_layers_extent(int* width,
     qDebug() << "H=" << *height;
 }
 
-void gmic_qt_get_cropped_images(gmic_list<float>& images,
+void gmic_qt_get_cropped_images(gmic_list<gmic_pixel_type>& images,
                                 gmic_list<char>& imageNames,
                                 double x,
                                 double y,
@@ -344,7 +344,7 @@ void gmic_qt_get_cropped_images(gmic_list<float>& images,
     convertDImgtoCImg(input_image->copy(ix, iy, iw, ih), images[0]);
 }
 
-void gmic_qt_output_images(gmic_list<float>& images,
+void gmic_qt_output_images(gmic_list<gmic_pixel_type>& images,
                            const gmic_list<char>& imageNames,
                            GmicQt::OutputMode mode,
                            const char* verboseLayersLabel)
