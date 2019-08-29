@@ -5,7 +5,8 @@
 
  G'MIC-Qt is a versatile front-end to the image processing framework
  [G'MIC](https://gmic.eu).  It is in fact a plugin for
- [GIMP](http://gimp.org), [Krita](https://krita.org), and [Paint.NET](https://www.getpaint.net/), as well as a standalone application.
+ [GIMP](http://gimp.org), [Krita](https://krita.org), [Paint.NET](https://www.getpaint.net/),
+ and [digiKam](https://www.digikam.org) as well as a standalone application.
 
 ### Authors
 
@@ -16,6 +17,7 @@
 
  * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, work in progress)
  * Nicholas Hayes (Paint.NET compatibility layer, work in progress)
+ * Gilles Caulier (digiKam compatibility layer)
 
 ### Translators
 
@@ -59,6 +61,8 @@ qmake [HOST=none|gimp|krita|paintdotnet]
 make
 ```
 
+NOTE: digikam plugin do not support qmake, use Cmake instead.
+
 #### CMake
 
 cmake works on all platforms. The first part is the same and requires make and wget to be available. If you don't have all dependencies, cmake will warn you which ones are missing. Note that the minimum cmake version is 3.1.
@@ -78,6 +82,6 @@ cd build
 ```
 
 ```sh
-cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
+cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|digikam] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
 make
 ```
