@@ -119,6 +119,9 @@ void GmicQtToolPlugin::slotGmicQt()
     }
 
     QPointer<MainWindow> mainWindow = new MainWindow(0);
+    // We want a non modal dialog here.
+    mainWindow->setWindowFlags(Qt::Tool | Qt::Dialog);
+    mainWindow->setWindowModality(Qt::ApplicationModal);
 
     if (QSettings().value("Config/MainWindowMaximized", false).toBool())
     {
