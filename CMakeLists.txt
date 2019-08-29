@@ -535,9 +535,29 @@ elseif (${GMIC_QT_HOST} STREQUAL "digikam")
                            DESCRIPTION "digiKam core library"
     )
 
-    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    # --- Manage C++ exception rules -------
+
+    string(REPLACE " -DQT_NO_EXCEPTIONS " " " CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} ")
+    string(REPLACE " -fno-exceptions "    " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    string(STRIP "${CMAKE_CXX_FLAGS}" CMAKE_CXX_FLAGS)
+
+    if (MSVC)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -EHsc")
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
+        if (WIN32)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -EHsc")
+        else()
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions")
+        endif()
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions")
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions")
     endif()
+
+    string(STRIP "${CMAKE_CXX_FLAGS}" ${CMAKE_CXX_FLAGS})
+
+    # ---
 
     include_directories($<TARGET_PROPERTY:Digikam::digikamcore,INTERFACE_INCLUDE_DIRECTORIES>/digikam)
 
