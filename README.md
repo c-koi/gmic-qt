@@ -57,9 +57,11 @@ git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib.h
 cd gmic-qt
-qmake [HOST=none|gimp|krita|paintdotnet|digikam]
+qmake [HOST=none|gimp|krita|paintdotnet]
 make
 ```
+
+NOTE: digikam plugin do not support qmake, use Cmake instead.
 
 #### CMake
 
