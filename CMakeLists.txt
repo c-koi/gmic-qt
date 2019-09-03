@@ -33,6 +33,7 @@ option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared 
 set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shared library")
 
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
+option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
 #
 # Look for G'MIC repository
@@ -143,10 +144,14 @@ include_directories(SYSTEM ${ZLIB_INCLUDE_DIRS} )
 #
 # FFTW3
 #
-find_package(FFTW3 REQUIRED)
-add_definitions(-Dcimg_use_fftw3 )
-add_definitions(-Dcimg_use_fftw3_singlethread )
-include_directories(${FFTW3_INCLUDE_DIR})
+if (ENABLE_FFTW3)
+    find_package(FFTW3)
+    if (FFTW3_FOUND)
+        add_definitions(-Dcimg_use_fftw3 )
+        add_definitions(-Dcimg_use_fftw3_singlethread )
+        include_directories(${FFTW3_INCLUDE_DIR})
+    endif()
+endif()
 
 #
 # CURL
@@ -233,7 +238,7 @@ if (WIN32)
     )
 endif()
 
-if (NOT WIN32)
+if (FFTW3_FOUND AND NOT WIN32)
     set(gmic_qt_LIBRARIES ${gmic_qt_LIBRARIES} fftw3_threads)
 endif()
 
