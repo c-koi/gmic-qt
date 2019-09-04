@@ -144,14 +144,10 @@ include_directories(SYSTEM ${ZLIB_INCLUDE_DIRS} )
 #
 # FFTW3
 #
-if (ENABLE_FFTW3)
-    find_package(FFTW3)
-    if (FFTW3_FOUND)
-        add_definitions(-Dcimg_use_fftw3 )
-        add_definitions(-Dcimg_use_fftw3_singlethread )
-        include_directories(${FFTW3_INCLUDE_DIR})
-    endif()
-endif()
+find_package(FFTW3 REQUIRED)
+add_definitions(-Dcimg_use_fftw3 )
+add_definitions(-Dcimg_use_fftw3_singlethread )
+include_directories(${FFTW3_INCLUDE_DIR})
 
 #
 # CURL
@@ -236,10 +232,6 @@ if (WIN32)
         ${gmic_qt_LIBRARIES}
         pthread psapi gdi32
     )
-endif()
-
-if (FFTW3_FOUND AND NOT WIN32)
-    set(gmic_qt_LIBRARIES ${gmic_qt_LIBRARIES} fftw3_threads)
 endif()
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -539,7 +531,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "digikam")
 
     find_package(DigikamCore "6.3.0" CONFIG REQUIRED)
 
-    set_package_properties(digikamcore PROPERTIES
+    set_package_properties(DigikamCore PROPERTIES
                            URL "http://www.digikam.org"
                            DESCRIPTION "digiKam core library"
     )
