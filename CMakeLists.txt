@@ -481,6 +481,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
 
     execute_process(COMMAND gimptool-2.0 --libs-noui OUTPUT_VARIABLE GIMP2_LIBRARIES OUTPUT_STRIP_TRAILING_WHITESPACE)
     execute_process(COMMAND gimptool-2.0 --cflags-noui OUTPUT_VARIABLE GIMP2_INCLUDE_DIRS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(COMMAND pkg-config gimp-2.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP2_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GIMP2_INCLUDE_DIRS}")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
@@ -492,7 +493,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
       ${GIMP2_LIBRARIES}
       ${gmic_qt_LIBRARIES}
       )
-    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION bin)
+    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP2_PKGLIBDIR}/plug-ins")
 
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
