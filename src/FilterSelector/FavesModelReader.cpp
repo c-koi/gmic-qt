@@ -148,7 +148,8 @@ void FavesModelReader::loadFaves()
           for (QString & str : list) {
             str.replace(QChar(gmic_lbrace), QString("{"));
             str.replace(QChar(gmic_rbrace), QString("}"));
-            str.replace(QChar(gmic_newline), QString("\n"));
+	      // (29 == gmic_newline) until gmic version 2.7.1
+            str.replace(QChar(29), QString("\n"));
           }
           if (list.size() >= 4) {
             FavesModel::Fave fave;
