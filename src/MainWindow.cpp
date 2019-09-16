@@ -1039,12 +1039,11 @@ void MainWindow::setNoFilter()
 void MainWindow::showEvent(QShowEvent * event)
 {
   TIMING;
-  static bool first = true;
   event->accept();
-  if (!first) {
+  if (_showEventReceived) {
     return;
   }
-  first = false;
+  _showEventReceived = true;
   adjustVerticalSplitter();
   if (_newSession) {
     Logger::clear();

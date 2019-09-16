@@ -150,6 +150,7 @@ private:
 
   ProcessingAction _pendingActionAfterCurrentProcessing;
   PreviewPosition _previewPosition = PreviewOnRight;
+  bool _showEventReceived = false;
   bool _okButtonShouldApply = false;
   QIcon _expandIcon;
   QIcon _collapseIcon;
