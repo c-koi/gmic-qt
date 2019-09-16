@@ -38,6 +38,8 @@
 #include <iostream>
 #include <typeinfo>
 #include "Common.h"
+#include "CroppedActiveLayerProxy.h"
+#include "CroppedImageListProxy.h"
 #include "DialogSettings.h"
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FiltersPresenter.h"
@@ -166,6 +168,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(escAction, SIGNAL(triggered(bool)), this, SLOT(onEscapeKeyPressed()));
   addAction(escAction);
 
+  CroppedImageListProxy::clear();
+  CroppedActiveLayerProxy::clear();
   LayersExtentProxy::clear();
   QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtent);
