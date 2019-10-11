@@ -201,7 +201,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images,
         }
         if (m.isAttached()) {
             if (!m.lock()) {
-                qWarning() << "\tgmic-qt: Could not lock memeory segment"  << m.error() << m.errorString();
+                qWarning() << "\tgmic-qt: Could not lock memory segment"  << m.error() << m.errorString();
             }
             //qDebug() << "Memory segment" << key << m.size() << m.constData() << m.data();
 
@@ -212,10 +212,10 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images,
             gimg.move_to(images[i]);
 
             if (!m.unlock()) {
-                qWarning() << "\tgmic-qt: Could not unlock memeory segment"  << m.error() << m.errorString();
+                qWarning() << "\tgmic-qt: Could not unlock memory segment"  << m.error() << m.errorString();
             }
             if (!m.detach()) {
-                qWarning() << "\tgmic-qt: Could not detach from memeory segment"  << m.error() << m.errorString();
+                qWarning() << "\tgmic-qt: Could not detach from memory segment"  << m.error() << m.errorString();
             }
         }
         else {

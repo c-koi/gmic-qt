@@ -163,7 +163,7 @@ void InOutPanel::enableNotifications()
 }
 
 /*
- * InOutPanel::Sate methods
+ * InOutPanel::state methods
  */
 
 GmicQt::InputOutputState InOutPanel::state() const

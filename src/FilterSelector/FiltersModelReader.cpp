@@ -190,7 +190,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
     QList<QString> pathList = path.split("/", QString::SkipEmptyParts);
     _model.removePath(pathList);
     if (_model.filterCount() == count) {
-      Logger::log(QString("[%1]./warning/ While hidding filter, name or path not found: \"%2\"\n").arg(GmicQt::pluginCodeName()).arg(path));
+      Logger::log(QString("[%1]./warning/ While hiding filter, name or path not found: \"%2\"\n").arg(GmicQt::pluginCodeName()).arg(path));
     }
   }
   TIMING;

@@ -7,7 +7,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/FilterParameters/ColorParameter.cpp" line="130"/>
+        <location filename="../src/FilterParameters/ColorParameter.cpp" line="133"/>
         <source>Select color</source>
         <translation>選取顏色</translation>
     </message>
@@ -219,9 +219,9 @@
 <context>
     <name>FileParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="145"/>
         <location filename="../src/FilterParameters/FileParameter.cpp" line="148"/>
         <location filename="../src/FilterParameters/FileParameter.cpp" line="151"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="154"/>
         <source>Select a file</source>
         <translation>選取檔案</translation>
     </message>
@@ -230,17 +230,17 @@
     <name>FilterParametersWidget</name>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="39"/>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="164"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="172"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
         <translation>&lt;i&gt;選擇濾鏡&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="132"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="139"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
         <translation>&lt;i&gt;沒有參數&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="137"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="144"/>
         <source>Error parsing filter parameters
 
 </source>
@@ -250,7 +250,7 @@
 <context>
     <name>FiltersPresenter</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="394"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="411"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
         <translation type="unfinished"></translation>
@@ -270,7 +270,7 @@
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="66"/>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="332"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
         <source>Remove fave</source>
         <translation>從最愛移除</translation>
     </message>
@@ -285,7 +285,7 @@
         <translation>加到最愛列</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="332"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -296,7 +296,7 @@
 <context>
     <name>FolderParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FolderParameter.cpp" line="122"/>
+        <location filename="../src/FilterParameters/FolderParameter.cpp" line="126"/>
         <source>Select a folder</source>
         <translation>選取資料夾</translation>
     </message>
@@ -497,7 +497,7 @@
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="379"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -536,109 +536,109 @@
         <translation>確定 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="80"/>
+        <location filename="../src/MainWindow.cpp" line="82"/>
         <source>Add fave</source>
         <translation>加到最愛列</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="82"/>
+        <location filename="../src/MainWindow.cpp" line="84"/>
         <source>Reset parameters to default values</source>
         <translation>重設參數成預設值</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="85"/>
+        <location filename="../src/MainWindow.cpp" line="87"/>
         <source>Update filters (Ctrl+R / F5)</source>
         <translation>更新濾鏡</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="89"/>
         <source>Rename fave</source>
         <translation>重新命名最愛列</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="89"/>
+        <location filename="../src/MainWindow.cpp" line="91"/>
         <source>Remove fave</source>
         <translation>從最愛移除</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="93"/>
+        <location filename="../src/MainWindow.cpp" line="95"/>
         <source>Expand/Collapse all</source>
         <translation>全部展開／折疊</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="95"/>
+        <location filename="../src/MainWindow.cpp" line="97"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="102"/>
+        <location filename="../src/MainWindow.cpp" line="104"/>
         <source>Selection mode</source>
         <translation>選取模式</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="284"/>
+        <location filename="../src/MainWindow.cpp" line="287"/>
         <source>Update completed</source>
         <translation>更新完成</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="284"/>
-        <location filename="../src/MainWindow.cpp" line="286"/>
-        <location filename="../src/MainWindow.cpp" line="340"/>
+        <location filename="../src/MainWindow.cpp" line="287"/>
+        <location filename="../src/MainWindow.cpp" line="289"/>
+        <location filename="../src/MainWindow.cpp" line="343"/>
         <source>Filter definitions have been updated.</source>
         <translation>濾鏡定義已更新。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="289"/>
+        <location filename="../src/MainWindow.cpp" line="292"/>
         <source>No download was needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="336"/>
+        <location filename="../src/MainWindow.cpp" line="339"/>
         <source>Filters update could not be achieved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="458"/>
+        <location filename="../src/MainWindow.cpp" line="461"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>這次更新由於以下错誤&lt;br/&gt;未能完成:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="464"/>
+        <location filename="../src/MainWindow.cpp" line="467"/>
         <source>Update error</source>
         <translation>更新出錯</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="646"/>
+        <location filename="../src/MainWindow.cpp" line="650"/>
         <source>Error</source>
         <translation>出錯</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="737"/>
+        <location filename="../src/MainWindow.cpp" line="742"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1069"/>
+        <location filename="../src/MainWindow.cpp" line="1078"/>
         <source>Import faves</source>
         <translation>導入最愛列</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1069"/>
+        <location filename="../src/MainWindow.cpp" line="1078"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>你要從以下文件導入最愛列嗎？&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1072"/>
+        <location filename="../src/MainWindow.cpp" line="1081"/>
         <source>Don&apos;t ask again</source>
         <translation>不要再問</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1184"/>
+        <location filename="../src/MainWindow.cpp" line="1193"/>
         <source>Confirmation</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1184"/>
+        <location filename="../src/MainWindow.cpp" line="1193"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>gmic 命令正在運行。&lt;br&gt;你確定要關閉插件嗎?</translation>
     </message>

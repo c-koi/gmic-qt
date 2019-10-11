@@ -114,7 +114,7 @@ signals:
   void previewCommandFailed(QString errorMessage);
   void fullImageProcessingFailed(QString errorMessage);
   void previewImageAvailable();
-  void fullImageProcessingDone(); // TODO : Use for exemple to close the window
+  void fullImageProcessingDone(); // TODO : Use for example to close the window
   void noMoreUnfinishedJobs();
   void aboutToSendImagesToHost();
 

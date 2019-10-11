@@ -252,7 +252,7 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
   reply->deleteLater();
 }
 
-void Updater::notifyAllDowloadsOK()
+void Updater::notifyAllDownloadsOK()
 {
   _errorMessages.clear();
   emit updateIsDone(UpdateSuccessful);
