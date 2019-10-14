@@ -73,6 +73,7 @@ const QMap<QString, QString> & LanguageSelectionWidget::availableLanguages()
     result["pl"] = QString::fromUtf8("J\xc4\x99zyk polski");
     result["pt"] = QString::fromUtf8("Portugu\xc3\xaas");
     result["ru"] = QString::fromUtf8("\xd0\xa0\xd1\x83\xd1\x81\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9");
+    result["sv"] = QString::fromUtf8("Svenska");
     result["ua"] = QString::fromUtf8("\xd0\xa3\xd0\xba\xd1\x80\xd0\xb0\xd1\x97\xd0\xbd\xd1\x81\xd1\x8c\xd0\xba\xd0\xb0");
     result["zh"] = QString::fromUtf8("\xe7\xae\x80\xe5\x8c\x96\xe5\xad\x97");
     result["zh_tw"] = QString::fromUtf8("\xe6\xad\xa3\xe9\xab\x94\xe5\xad\x97\x2f\xe7\xb9\x81\xe9\xab\x94\xe5\xad\x97");

@@ -14,5 +14,6 @@
         <file>translations/pl.qm</file>
         <file>translations/pt.qm</file>
 	<file>translations/ja.qm</file>
+	<file>translations/sv.qm</file>
     </qresource>
 </RCC>
