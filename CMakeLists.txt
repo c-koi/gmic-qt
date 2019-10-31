@@ -530,7 +530,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "digikam")
 
     include(GNUInstallDirs)
 
-    find_package(DigikamCore "6.3.0" CONFIG REQUIRED)
+    find_package(DigikamCore CONFIG REQUIRED)
 
     set_package_properties(DigikamCore PROPERTIES
                            URL "http://www.digikam.org"
