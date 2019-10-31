@@ -376,7 +376,7 @@
          <item>
           <widget class="QCheckBox" name="cbPreview">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swaping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Preview</string>

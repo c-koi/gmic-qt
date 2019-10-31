@@ -222,7 +222,7 @@ void FilterThread::run()
     const char * message = e.what();
     _errorMessage = message;
     if (_messageMode > GmicQt::Quiet) {
-      Logger::log(QString("\n[%1]./error/ When running command '%2', this error occured:\n%3\n").arg(GmicQt::pluginCodeName()).arg(fullCommandLine).arg(message));
+      Logger::log(QString("\n[%1]./error/ When running command '%2', this error occurred:\n%3\n").arg(GmicQt::pluginCodeName()).arg(fullCommandLine).arg(message));
     }
     _failed = true;
   }

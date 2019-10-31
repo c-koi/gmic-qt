@@ -322,7 +322,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
   const int * endLayers = begLayers + layersCount;
   int activeLayerID = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
 
-  // Buil list of input layers IDs
+  // Build list of input layers IDs
   std::vector<int> layers;
   switch (mode) {
   case GmicQt::NoInput:
@@ -419,7 +419,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     height = 1.0;
   }
 
-  // Buil list of input layers IDs
+  // Build list of input layers IDs
   inputLayers.clear();
   switch (mode) {
   case GmicQt::NoInput:
