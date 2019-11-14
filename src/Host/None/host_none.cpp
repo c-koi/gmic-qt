@@ -42,21 +42,7 @@
 #include "gmic.h"
 
 #ifdef _GMIC_QT_DEBUG_
-//#define DEFAULT_IMAGE "local/img_3820.png"
-//#define DEFAULT_IMAGE "local/Untitled.png"
-//#define DEFAULT_IMAGE "local/space-shuttle.png"
-//#define DEFAULT_IMAGE "local/space-shuttle-transp.png"
-//#define DEFAULT_IMAGE "local/bug.jpg"
-//#define DEFAULT_IMAGE "local/bug2.jpg"
-//#define DEFAULT_IMAGE "local/crop_inktober.jpg"
-//#define DEFAULT_IMAGE "local/lena.png"
-//#define DEFAULT_IMAGE "local/lena_border.png"
-//#define DEFAULT_IMAGE "local/transp.png"
-//#define DEFAULT_IMAGE "local/small_lena.png"
-//#define DEFAULT_IMAGE "local/ken.jpg"
-#define DEFAULT_IMAGE "local/ferrari.jpg"
-//#define DEFAULT_IMAGE "local/audio-speakers.png"
-//#define DEFAULT_IMAGE "local/audio-speakers-top.png"
+#define DEFAULT_IMAGE "local/default.png"
 #endif
 
 #define STRINGIFY(X) #X

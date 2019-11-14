@@ -530,9 +530,6 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 {
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
-    //    if (QApplication::overrideCursor() && (QApplication::overrideCursor()->shape() == Qt::CrossCursor)) {
-    //      QApplication::restoreOverrideCursor();
-    //    }
     if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
       QPoint move = _mousePosition - e->pos();
       onMouseTranslationInImage(move);
@@ -544,7 +541,8 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       _movedKeypointIndex = -1;
-      emit keypointPositionsChanged(KeypointMouseReleaseEvent, e->timestamp());
+      const unsigned char flags = KeypointMouseReleaseEvent | (kp.burst ? KeypointBurstEvent : 0);
+      emit keypointPositionsChanged(flags, e->timestamp());
     }
     e->accept();
     return;
