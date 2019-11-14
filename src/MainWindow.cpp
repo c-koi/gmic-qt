@@ -564,9 +564,12 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
 void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
 {
   if (flags & PreviewWidget::KeypointMouseReleaseEvent) {
-    ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), true);
     if (flags & PreviewWidget::KeypointBurstEvent) {
-      // Notify the filter twice so that it can guess that the button has been released
+      // Notify the filter twice (synchronously) so that it can guess that the button has been released
+      ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
+      onPreviewUpdateRequested(true);
+      onPreviewUpdateRequested(true);
+    } else {
       ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), true);
     }
     _lastPreviewKeypointBurstUpdateTime = 0;
