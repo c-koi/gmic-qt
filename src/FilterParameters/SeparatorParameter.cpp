@@ -59,7 +59,7 @@ bool SeparatorParameter::addTo(QWidget * widget, int row)
 
 QString SeparatorParameter::textValue() const
 {
-  return QString::null;
+  return QString();
 }
 
 void SeparatorParameter::setValue(const QString &) {}

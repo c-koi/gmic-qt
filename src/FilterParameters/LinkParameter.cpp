@@ -56,7 +56,7 @@ bool LinkParameter::addTo(QWidget * widget, int row)
 
 QString LinkParameter::textValue() const
 {
-  return QString::null;
+  return QString();
 }
 
 void LinkParameter::setValue(const QString &) {}
