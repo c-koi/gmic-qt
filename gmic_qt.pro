@@ -32,6 +32,8 @@ equals(QT_MAJOR_VERSION,5) {
   !greaterThan(QT_MINOR_VERSION, 1):error("You need Qt 5.2 or greater to build this program.")
 }
 
+DEFINES += QT_DEPRECATED_WARNINGS
+
 #
 # Check that pkg-config is installed (qmake error messages are misleading, if not)
 #
