@@ -416,7 +416,7 @@ translations/zh_tw.ts
 
 # PRE_TARGETDEPS +=
 
-QMAKE_CXXFLAGS_RELEASE += -Ofast -s # -O3 -s
+QMAKE_CXXFLAGS_RELEASE += -Ofast # -O3 -s
 QMAKE_LFLAGS_RELEASE += -s
 QMAKE_CXXFLAGS_DEBUG += -Dcimg_verbosity=3
 
