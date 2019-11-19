@@ -26,11 +26,12 @@
 #include <QAction>
 #include <QCursor>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QEvent>
+#include <QGuiApplication>
 #include <QKeySequence>
 #include <QMessageBox>
 #include <QPalette>
+#include <QScreen>
 #include <QSettings>
 #include <QShowEvent>
 #include <QStyleFactory>
@@ -885,14 +886,16 @@ void MainWindow::loadSettings()
       setGeometry(r);
       move(position);
     } else {
-      QDesktopWidget desktop;
-      QRect screenSize = desktop.availableGeometry();
-      screenSize.setWidth(static_cast<int>(screenSize.width() * 0.66));
-      screenSize.setHeight(static_cast<int>(screenSize.height() * 0.66));
-      screenSize.moveCenter(desktop.availableGeometry().center());
-      setGeometry(screenSize);
-      int w = screenSize.width();
-      ui->splitter->setSizes(QList<int>() << static_cast<int>(w * 0.4) << static_cast<int>(w * 0.2) << static_cast<int>(w * 0.4));
+      QList<QScreen *> screens = QGuiApplication::screens();
+      if (!screens.isEmpty()) {
+        QRect screenSize = screens.front()->geometry();
+        screenSize.setWidth(static_cast<int>(screenSize.width() * 0.66));
+        screenSize.setHeight(static_cast<int>(screenSize.height() * 0.66));
+        screenSize.moveCenter(screens.front()->geometry().center());
+        setGeometry(screenSize);
+        int w = screenSize.width();
+        ui->splitter->setSizes(QList<int>() << static_cast<int>(w * 0.4) << static_cast<int>(w * 0.2) << static_cast<int>(w * 0.4));
+      }
     }
   }
 
