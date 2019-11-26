@@ -93,7 +93,11 @@ void FiltersView::enableModel()
     QString title = QString("_%1_").arg(headerItem->text());
     QFont font;
     QFontMetrics fm(font);
+#if QT_VERSION_GTE(5,11)
     int w = fm.horizontalAdvance(title);
+#else
+    int w = fm.width(title);
+#endif
     ui->treeView->setColumnWidth(0, ui->treeView->width() - 2 * w);
     ui->treeView->setColumnWidth(1, w);
   }

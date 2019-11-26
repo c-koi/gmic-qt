@@ -58,4 +58,6 @@ template <typename T> inline void unused(const T &, ...) {}
   std::cout << ""
 #endif
 
+#define QT_VERSION_GTE(MAJOR, MINOR) (((QT_VERSION_MAJOR == MAJOR) && (QT_VERSION_MINOR >= MINOR)) || (QT_VERSION_MAJOR > MAJOR))
+
 #endif // _GMIC_QT_COMMON_H
