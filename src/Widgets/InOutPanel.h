@@ -43,7 +43,7 @@ class InOutPanel : public QWidget {
   Q_OBJECT
 
 public:
-  explicit InOutPanel(QWidget * parent = 0);
+  explicit InOutPanel(QWidget * parent = nullptr);
   ~InOutPanel();
 
 public:

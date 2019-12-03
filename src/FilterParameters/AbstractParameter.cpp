@@ -83,7 +83,7 @@ void AbstractParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 AbstractParameter * AbstractParameter::createFromText(const char * text, int & length, QString & error, QWidget * parent)
 {
-  AbstractParameter * result = 0;
+  AbstractParameter * result = nullptr;
   QString line = text;
   error.clear();
 

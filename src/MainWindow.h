@@ -63,7 +63,7 @@ public:
     PreviewOnRight
   };
 
-  explicit MainWindow(QWidget * parent = 0);
+  explicit MainWindow(QWidget * parent = nullptr);
   ~MainWindow();
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
 

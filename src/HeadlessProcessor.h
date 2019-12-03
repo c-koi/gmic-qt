@@ -54,7 +54,7 @@ public:
    *
    * @param parent
    */
-  explicit HeadlessProcessor(QObject * parent = 0);
+  explicit HeadlessProcessor(QObject * parent = nullptr);
 
   ~HeadlessProcessor();
   QString command() const;

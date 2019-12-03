@@ -39,7 +39,7 @@ class QToolButton;
 class SearchFieldWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit SearchFieldWidget(QWidget * parent = 0);
+  explicit SearchFieldWidget(QWidget * parent = nullptr);
   ~SearchFieldWidget();
   QString text() const;
 public slots:
