@@ -92,7 +92,7 @@ void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_librar
   if (preview_input_images.size() > 1) {
     try {
       cimg_library::CImgList<char> preview_images_names;
-      gmic("v - gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
+      gmic("gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
       if (preview_input_images.size() >= 1) {
         result.swap(preview_input_images.front());
         return;

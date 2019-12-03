@@ -113,20 +113,21 @@ const QString & pluginCodeName()
 
 const char * commandFromOutputMessageMode(OutputMessageMode mode)
 {
-  static const char commands[][6] = {"v -", "v -99", "v 0", "debug"};
-  if (mode == GmicQt::Quiet) {
-    return static_cast<const char *>(commands[0]);
+  switch (mode) {
+  case Quiet:
+  case VerboseLayerName:
+  case VerboseConsole:
+  case VerboseLogFile:
+  case UnspecifiedOutputMessageMode:
+    return "";
+  case VeryVerboseConsole:
+  case VeryVerboseLogFile:
+    return "v 2";
+  case DebugConsole:
+  case DebugLogFile:
+    return "debug";
   }
-  if (mode >= GmicQt::VerboseLayerName && mode <= GmicQt::VerboseLogFile) {
-    return static_cast<const char *>(commands[1]);
-  }
-  if (mode == GmicQt::VeryVerboseConsole || mode == GmicQt::VeryVerboseLogFile) {
-    return static_cast<const char *>(commands[2]);
-  }
-  if (mode == GmicQt::DebugConsole || mode == GmicQt::DebugLogFile) {
-    return static_cast<const char *>(commands[3]);
-  }
-  return static_cast<const char *>(commands[0]);
+  return "";
 }
 
 void downcaseCommandTitle(QString & title)
