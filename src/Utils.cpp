@@ -122,7 +122,7 @@ const char * commandFromOutputMessageMode(OutputMessageMode mode)
     return "";
   case VeryVerboseConsole:
   case VeryVerboseLogFile:
-    return "v 2";
+    return "v 3";
   case DebugConsole:
   case DebugLogFile:
     return "debug";
