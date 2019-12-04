@@ -170,4 +170,14 @@ void downcaseCommandTitle(QString & title)
   title[0] = title[0].toUpper();
 }
 
+void appendWithSpace(QString & str, const QString & other)
+{
+  if (str.isEmpty() || other.isEmpty()) {
+    str += other;
+    return;
+  }
+  str += QChar(' ');
+  str += other;
+}
+
 } // namespace GmicQt

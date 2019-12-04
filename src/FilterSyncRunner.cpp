@@ -123,7 +123,9 @@ QString FilterSyncRunner::name() const
 
 QString FilterSyncRunner::fullCommand() const
 {
-  return QString("%1 %2").arg(_command).arg(_arguments);
+  QString result = _command;
+  GmicQt::appendWithSpace(result, _arguments);
+  return result;
 }
 
 void FilterSyncRunner::setLogSuffix(const QString & text)
@@ -143,7 +145,8 @@ void FilterSyncRunner::run()
   QString fullCommandLine;
   try {
     fullCommandLine = QString::fromLocal8Bit(GmicQt::commandFromOutputMessageMode(_messageMode));
-    fullCommandLine += QString(" %1 %2").arg(_command).arg(_arguments);
+    GmicQt::appendWithSpace(fullCommandLine, _command);
+    GmicQt::appendWithSpace(fullCommandLine, _arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {

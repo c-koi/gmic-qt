@@ -36,6 +36,7 @@ const QString & pluginFullName();
 const QString & pluginCodeName();
 const char * commandFromOutputMessageMode(OutputMessageMode mode);
 void downcaseCommandTitle(QString & title);
+void appendWithSpace(QString & str, const QString & other);
 } // namespace GmicQt
 
 #endif // _GMIC_QT_UTILS_H_
