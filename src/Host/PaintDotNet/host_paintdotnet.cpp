@@ -404,7 +404,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
     {
         for (size_t i = 0; i < host_paintdotnet::sharedMemory.size(); ++i)
         {
-            host_paintdotnet::sharedMemory[i].release();
+            host_paintdotnet::sharedMemory[i].reset();
         }
         host_paintdotnet::sharedMemory.clear();
 
@@ -525,7 +525,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
                 // Manually release the mapped data to ensue it is committed before the parent file mapping handle
                 // is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
 
-                mappedData.release();
+                mappedData.reset();
 
                 outputImagesCommand += "layer=" + mappingName + ","
                     + QString::number(width) + ","
@@ -617,7 +617,7 @@ int main(int argc, char *argv[])
 
     for (size_t i = 0; i < host_paintdotnet::sharedMemory.size(); ++i)
     {
-        host_paintdotnet::sharedMemory[i].release();
+        host_paintdotnet::sharedMemory[i].reset();
     }
     host_paintdotnet::sharedMemory.clear();
 
