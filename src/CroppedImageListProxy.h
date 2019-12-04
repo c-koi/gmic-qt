@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CROPPEDIMAGELISTPROXY_H_
-#define _GMIC_QT_CROPPEDIMAGELISTPROXY_H_
+#ifndef GMIC_QT_CROPPEDIMAGELISTPROXY_H
+#define GMIC_QT_CROPPEDIMAGELISTPROXY_H
 
 #include <memory>
 #include "gmic_qt.h"
@@ -53,4 +53,4 @@ private:
   static double _zoom;
 };
 
-#endif // _GMIC_QT_CROPPEDIMAGELISTPROXY_H_
+#endif // GMIC_QT_CROPPEDIMAGELISTPROXY_H

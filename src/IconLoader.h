@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_ICONLOADER_H_
-#define _GMIC_QT_ICONLOADER_H_
+#ifndef GMIC_QT_ICONLOADER_H
+#define GMIC_QT_ICONLOADER_H
 
 #include <QIcon>
 #include <QPixmap>
@@ -42,4 +42,4 @@ private:
   static QPixmap darkerPixmap(const QPixmap & pixmap);
 };
 
-#endif // _GMIC_QT_ICONLOADER_H_
+#endif // GMIC_QT_ICONLOADER_H

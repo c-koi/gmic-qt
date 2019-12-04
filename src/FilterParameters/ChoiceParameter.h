@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CHOICEPARAMETER_H_
-#define _GMIC_QT_CHOICEPARAMETER_H_
+#ifndef GMIC_QT_CHOICEPARAMETER_H
+#define GMIC_QT_CHOICEPARAMETER_H
 
 #include <QList>
 #include <QString>
@@ -56,4 +56,4 @@ private:
   bool _connected;
 };
 
-#endif // _GMIC_QT_CHOICEPARAMETER_H_
+#endif // GMIC_QT_CHOICEPARAMETER_H

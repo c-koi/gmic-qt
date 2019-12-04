@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_UTILS_H_
-#define _GMIC_QT_UTILS_H_
+#ifndef GMIC_QT_UTILS_H
+#define GMIC_QT_UTILS_H
 
 #include "gmic_qt.h"
 class QString;
@@ -39,4 +39,4 @@ void downcaseCommandTitle(QString & title);
 void appendWithSpace(QString & str, const QString & other);
 } // namespace GmicQt
 
-#endif // _GMIC_QT_UTILS_H_
+#endif // GMIC_QT_UTILS_H

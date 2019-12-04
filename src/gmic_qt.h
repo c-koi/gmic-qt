@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GMIC_QT_H_
-#define _GMIC_QT_GMIC_QT_H_
+#ifndef GMIC_QT_GMIC_QT_H
+#define GMIC_QT_GMIC_QT_H
 
 #ifndef gmic_pixel_type
 #define gmic_pixel_type float
@@ -86,4 +86,4 @@ int launchPluginHeadlessUsingLastParameters();
 
 int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output);
 
-#endif // _GMIC_QT_GMIC_QT_H_
+#endif // GMIC_QT_GMIC_QT_H

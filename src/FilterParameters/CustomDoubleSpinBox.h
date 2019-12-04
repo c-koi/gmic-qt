@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CUSTOMDOUBLESPINBOX_H_
-#define _GMIC_QT_CUSTOMDOUBLESPINBOX_H_
+#ifndef GMIC_QT_CUSTOMDOUBLESPINBOX_H
+#define GMIC_QT_CUSTOMDOUBLESPINBOX_H
 
 #include <QDoubleSpinBox>
 
@@ -36,4 +36,4 @@ public:
   QString textFromValue(double value) const override;
 };
 
-#endif // _GMIC_QT_CUSTOMDOUBLESPINBOX_H_
+#endif // GMIC_QT_CUSTOMDOUBLESPINBOX_H

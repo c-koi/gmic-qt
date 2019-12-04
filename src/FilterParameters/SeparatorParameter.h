@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_SEPARATORPARAMETER_H_
-#define _GMIC_QT_SEPARATORPARAMETER_H_
+#ifndef GMIC_QT_SEPARATORPARAMETER_H
+#define GMIC_QT_SEPARATORPARAMETER_H
 
 #include "AbstractParameter.h"
 class QFrame;
@@ -43,4 +43,4 @@ private:
   QFrame * _frame;
 };
 
-#endif // _GMIC_QT_SEPARATORPARAMETER_H_
+#endif // GMIC_QT_SEPARATORPARAMETER_H

@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_OVERRIDECURSOR_H_
-#define _GMIC_QT_OVERRIDECURSOR_H_
+#ifndef GMIC_QT_OVERRIDECURSOR_H
+#define GMIC_QT_OVERRIDECURSOR_H
 
 class OverrideCursor {
 public:
@@ -40,4 +40,4 @@ private:
   static bool _pointingHand;
 };
 
-#endif // _GMIC_QT_OVERRIDECURSOR_H_
+#endif // GMIC_QT_OVERRIDECURSOR_H

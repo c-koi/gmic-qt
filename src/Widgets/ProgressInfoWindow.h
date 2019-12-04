@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_PROGRESSINFOWINDOW_H_
-#define _GMIC_QT_PROGRESSINFOWINDOW_H_
+#ifndef GMIC_QT_PROGRESSINFOWINDOW_H
+#define GMIC_QT_PROGRESSINFOWINDOW_H
 
 #include <QMainWindow>
 #include <QString>
@@ -67,4 +67,4 @@ private:
   HeadlessProcessor * _processor;
 };
 
-#endif // _GMIC_QT_PROGRESSINFOWINDOW_H_
+#endif // GMIC_QT_PROGRESSINFOWINDOW_H

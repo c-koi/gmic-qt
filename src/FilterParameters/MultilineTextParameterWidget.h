@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H_
-#define _GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H_
+#ifndef GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H
+#define GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H
 
 #include <QWidget>
 
@@ -51,4 +51,4 @@ private:
   Ui::MultilineTextParameterWidget * ui;
 };
 
-#endif // _GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H
+#endif // GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H

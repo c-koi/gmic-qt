@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_TREEVIEW_H_
-#define _GMIC_QT_TREEVIEW_H_
+#ifndef GMIC_QT_TREEVIEW_H
+#define GMIC_QT_TREEVIEW_H
 
 #include <QDebug>
 #include <QTreeView>
@@ -42,4 +42,4 @@ signals:
 private:
 };
 
-#endif // _GMIC_QT_TREEVIEW_H_
+#endif // GMIC_QT_TREEVIEW_H

@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERTREEITEMDELEGATE_H_
-#define _GMIC_QT_FILTERTREEITEMDELEGATE_H_
+#ifndef GMIC_QT_FILTERTREEITEMDELEGATE_H
+#define GMIC_QT_FILTERTREEITEMDELEGATE_H
 
 #include <QStyledItemDelegate>
 
@@ -36,4 +36,4 @@ protected:
   QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
 };
 
-#endif // _GMIC_QT_FILTERTREEITEMDELEGATE_H_
+#endif // GMIC_QT_FILTERTREEITEMDELEGATE_H

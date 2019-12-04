@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FAVESMODELREADER_H_
-#define _GMIC_QT_FAVESMODELREADER_H_
+#ifndef GMIC_QT_FAVESMODELREADER_H
+#define GMIC_QT_FAVESMODELREADER_H
 #include <QJsonObject>
 #include "FilterSelector/FavesModel.h"
 
@@ -42,4 +42,4 @@ private:
   FavesModel & _model;
 };
 
-#endif // _GMIC_QT_FAVESMODELREADER_H_
+#endif // GMIC_QT_FAVESMODELREADER_H

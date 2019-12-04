@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_LOGGER_H_
-#define _GMIC_QT_LOGGER_H_
+#ifndef GMIC_QT_LOGGER_H
+#define GMIC_QT_LOGGER_H
 
 #include <cstdio>
 #include "gmic_qt.h"
@@ -50,4 +50,4 @@ private:
   static Mode _currentMode;
 };
 
-#endif // _GMIC_QT_LOGGER_H_
+#endif // GMIC_QT_LOGGER_H

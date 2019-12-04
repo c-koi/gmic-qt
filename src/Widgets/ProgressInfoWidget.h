@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_PROGRESSINFOWIDGET_H_
-#define _GMIC_QT_PROGRESSINFOWIDGET_H_
+#ifndef GMIC_QT_PROGRESSINFOWIDGET_H
+#define GMIC_QT_PROGRESSINFOWIDGET_H
 #include <QMainWindow>
 #include <QTimer>
 
@@ -75,4 +75,4 @@ private:
   static const int AnimationStep = 10;
 };
 
-#endif // _GMIC_QT_PROGRESSINFOWIDGET_H_
+#endif // GMIC_QT_PROGRESSINFOWIDGET_H

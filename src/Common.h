@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_COMMON_H_
-#define _GMIC_QT_COMMON_H_
+#ifndef GMIC_QT_COMMON_H
+#define GMIC_QT_COMMON_H
 
 #include <iostream>
 #include "TimeLogger.h"
@@ -60,4 +60,4 @@ template <typename T> inline void unused(const T &, ...) {}
 
 #define QT_VERSION_GTE(MAJOR, MINOR) (((QT_VERSION_MAJOR == MAJOR) && (QT_VERSION_MINOR >= MINOR)) || (QT_VERSION_MAJOR > MAJOR))
 
-#endif // _GMIC_QT_COMMON_H
+#endif // GMIC_QT_COMMON_H

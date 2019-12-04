@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_DIALOGSETTINGS_H_
-#define _GMIC_QT_DIALOGSETTINGS_H_
+#ifndef GMIC_QT_DIALOGSETTINGS_H
+#define GMIC_QT_DIALOGSETTINGS_H
 
 #include <QColor>
 #include <QDialog>
@@ -102,4 +102,4 @@ private:
   static bool _notifyFailedStartupUpdate;
 };
 
-#endif // _GMIC_QT_DIALOGSETTINGS_H_
+#endif // GMIC_QT_DIALOGSETTINGS_H

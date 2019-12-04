@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_PREVIEWWIDGET_H_
-#define _GMIC_QT_PREVIEWWIDGET_H_
+#ifndef GMIC_QT_PREVIEWWIDGET_H
+#define GMIC_QT_PREVIEWWIDGET_H
 
 #include <QFocusEvent>
 #include <QImage>
@@ -204,4 +204,4 @@ private:
   unsigned long _keypointTimestamp;
 };
 
-#endif // _GMIC_QT_PREVIEWWIDGET_H_
+#endif // GMIC_QT_PREVIEWWIDGET_H

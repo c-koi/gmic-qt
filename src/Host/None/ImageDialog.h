@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_IMAGE_DIALOG_H
-#define _GMIC_QT_IMAGE_DIALOG_H
+#ifndef GMIC_QT_IMAGE_DIALOG_H
+#define GMIC_QT_IMAGE_DIALOG_H
 #include <QApplication>
 #include <QDialog>
 #include <QFileDialog>

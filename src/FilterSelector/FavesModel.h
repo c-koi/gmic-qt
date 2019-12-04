@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FAVESMODEL_H_
-#define _GMIC_QT_FAVESMODEL_H_
+#ifndef GMIC_QT_FAVESMODEL_H
+#define GMIC_QT_FAVESMODEL_H
 #include <QList>
 #include <QMap>
 #include <QString>
@@ -123,4 +123,4 @@ FavesModel::const_iterator FavesModel::end() const
 {
   return FavesModel::const_iterator(_faves.end());
 }
-#endif // _GMIC_QT_FAVESMODEL_H_
+#endif // GMIC_QT_FAVESMODEL_H

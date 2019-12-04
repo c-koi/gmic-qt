@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERPARAMSWIDGET_H_
-#define _GMIC_QT_FILTERPARAMSWIDGET_H_
+#ifndef GMIC_QT_FILTERPARAMSWIDGET_H
+#define GMIC_QT_FILTERPARAMSWIDGET_H
 
 #include <QGroupBox>
 #include <QList>
@@ -83,4 +83,4 @@ protected:
   QString _quotedParameters;
 };
 
-#endif // _GMIC_QT_FILTERPARAMSWIDGET_H_
+#endif // GMIC_QT_FILTERPARAMSWIDGET_H

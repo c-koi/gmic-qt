@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSPRESENTER_H_
-#define _GMIC_QT_FILTERSPRESENTER_H_
+#ifndef GMIC_QT_FILTERSPRESENTER_H
+#define GMIC_QT_FILTERSPRESENTER_H
 #include <QObject>
 #include "FilterSelector/FavesModel.h"
 #include "FilterSelector/FiltersModel.h"
@@ -124,4 +124,4 @@ private:
   QString _errorMessage;
 };
 
-#endif // _GMIC_QT_FILTERSPRESENTER_H_
+#endif // GMIC_QT_FILTERSPRESENTER_H

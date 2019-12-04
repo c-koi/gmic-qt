@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_BUTTONPARAMETER_H_
-#define _GMIC_QT_BUTTONPARAMETER_H_
+#ifndef GMIC_QT_BUTTONPARAMETER_H
+#define GMIC_QT_BUTTONPARAMETER_H
 
 #include <QString>
 #include <Qt>
@@ -54,4 +54,4 @@ private:
   Qt::AlignmentFlag _alignment;
 };
 
-#endif // _GMIC_QT_BUTTONPARAMETER_H_
+#endif // GMIC_QT_BUTTONPARAMETER_H

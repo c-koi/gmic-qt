@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FLOATPARAMETER_H_
-#define _GMIC_QT_FLOATPARAMETER_H_
+#ifndef GMIC_QT_FLOATPARAMETER_H
+#define GMIC_QT_FLOATPARAMETER_H
 
 #include <QString>
 #include "AbstractParameter.h"
@@ -65,4 +65,4 @@ private:
   bool _connected;
 };
 
-#endif // _GMIC_QT_FLOATPARAMETER_H_
+#endif // GMIC_QT_FLOATPARAMETER_H

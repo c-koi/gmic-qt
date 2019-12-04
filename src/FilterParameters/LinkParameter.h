@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_LINKPARAMETER_H_
-#define _GMIC_QT_LINKPARAMETER_H_
+#ifndef GMIC_QT_LINKPARAMETER_H
+#define GMIC_QT_LINKPARAMETER_H
 
 #include <Qt>
 #include "AbstractParameter.h"
@@ -49,4 +49,4 @@ private:
   Qt::AlignmentFlag _alignment;
 };
 
-#endif // _GMIC_QT_LINKPARAMETER_H_
+#endif // GMIC_QT_LINKPARAMETER_H

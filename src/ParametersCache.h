@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_PARAMETERSCACHE_H
-#define _GMIC_QT_PARAMETERSCACHE_H
+#ifndef GMIC_QT_PARAMETERSCACHE_H
+#define GMIC_QT_PARAMETERSCACHE_H
 
 #include <QHash>
 #include <QList>
@@ -51,4 +51,4 @@ private:
   static QHash<QString, QList<int>> _visibilityStates;
 };
 
-#endif // _GMIC_QT_PARAMETERSCACHE_H
+#endif // GMIC_QT_PARAMETERSCACHE_H

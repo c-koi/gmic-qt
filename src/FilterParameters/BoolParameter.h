@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_BOOLPARAMETER_H_
-#define _GMIC_QT_BOOLPARAMETER_H_
+#ifndef GMIC_QT_BOOLPARAMETER_H
+#define GMIC_QT_BOOLPARAMETER_H
 
 #include <QString>
 #include "AbstractParameter.h"
@@ -54,4 +54,4 @@ private:
   bool _connected;
 };
 
-#endif // _GMIC_QT_BOOLPARAMETER_H_
+#endif // GMIC_QT_BOOLPARAMETER_H

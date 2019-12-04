@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_INOUTPANEL_H
-#define _GMIC_QT_INOUTPANEL_H
+#ifndef GMIC_QT_INOUTPANEL_H
+#define GMIC_QT_INOUTPANEL_H
 
 #include <QWidget>
 #include "Host/host.h"
@@ -83,4 +83,4 @@ private:
   static const int NoSelection = -1;
 };
 
-#endif // _GMIC_QT_INOUTPANEL_H
+#endif // GMIC_QT_INOUTPANEL_H
