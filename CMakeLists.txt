@@ -30,6 +30,7 @@ endif()
 message("G'MIC path: " ${GMIC_PATH})
 
 option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
+option(ENABLE_CURL "Add support for curl" ON)
 set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shared library")
 
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
@@ -152,10 +153,12 @@ include_directories(${FFTW3_INCLUDE_DIR})
 #
 # CURL
 #
-find_package(CURL)
-if (CURL_FOUND)
-    add_definitions(-Dcimg_use_curl)
-    include_directories(SYSTEM ${CURL_INCLUDE_DIRS} )
+if(ENABLE_CURL)
+    find_package(CURL)
+    if (CURL_FOUND)
+        add_definitions(-Dcimg_use_curl)
+        include_directories(SYSTEM ${CURL_INCLUDE_DIRS} )
+    endif()
 endif()
 
 #
@@ -190,11 +193,13 @@ set(gmic_qt_LIBRARIES
         ${ZLIB_LIBRARIES}
 )
 
-if (CURL_FOUND)
-    set(gmic_qt_LIBRARIES
-        ${gmic_qt_LIBRARIES}
-        ${CURL_LIBRARIES}
-    )
+if(ENABLE_CURL)
+    if (CURL_FOUND)
+        set(gmic_qt_LIBRARIES
+            ${gmic_qt_LIBRARIES}
+            ${CURL_LIBRARIES}
+        )
+    endif()
 endif()
 
 add_definitions(-Dgmic_build)
