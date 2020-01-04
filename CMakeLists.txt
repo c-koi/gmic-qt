@@ -13,6 +13,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC OFF)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(EXTRA_LIBRARIES)
 
 set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet, or digikam.")
 if (${GMIC_QT_HOST} STREQUAL "none")
@@ -147,8 +148,13 @@ include_directories(SYSTEM ${ZLIB_INCLUDE_DIRS} )
 #
 find_package(FFTW3 REQUIRED)
 add_definitions(-Dcimg_use_fftw3 )
-add_definitions(-Dcimg_use_fftw3_singlethread )
 include_directories(${FFTW3_INCLUDE_DIR})
+find_library(FFTW3_THREADS_LIB fftw3_threads PATHS ${FFTW3_LIBRARY_DIRS})
+if(FFTW3_THREADS_LIB STREQUAL "FFTW3_THREADS_LIB-NOTFOUND")
+    add_definitions(-Dcimg_use_fftw3_singlethread)
+else()
+    list(APPEND EXTRA_LIBRARIES "-lfftw3_threads")
+endif()
 
 #
 # CURL
@@ -191,6 +197,7 @@ set(gmic_qt_LIBRARIES
         ${PNG_LIBRARIES}
         ${FFTW3_LIBRARIES}
         ${ZLIB_LIBRARIES}
+        ${EXTRA_LIBRARIES}
 )
 
 if(ENABLE_CURL)
