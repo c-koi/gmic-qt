@@ -140,12 +140,12 @@ void FiltersPresenter::restoreFaveHashLinksAfterCaseChange()
         newFave.setOriginalHash(itFilter->hash());
         newFave.setOriginalName(itFilter->name());
         _favesModel.addFave(newFave);
-        QString message = QString("\n[%1]./information/ Fave '%2' has been relinked to filter '%3'\n").arg(GmicQt::pluginCodeName()).arg(fave.name()).arg(itFilter->name());
-        Logger::log(message);
+        QString message = QString("Fave '%1' has been relinked to filter '%2'").arg(fave.name()).arg(itFilter->name());
+        Logger::log(message, "information", true);
         someFavesHaveBeenRelinked = true;
       } else {
-        QString message = QString("\n[%1]./warning/ Could not associate Fave '%2' to an existing filter\n").arg(GmicQt::pluginCodeName()).arg(fave.name());
-        Logger::log(message);
+        QString message = QString("Could not associate Fave '%1' to an existing filter").arg(fave.name());
+        Logger::warning(message, true);
       }
     }
     ++itFormerFave;

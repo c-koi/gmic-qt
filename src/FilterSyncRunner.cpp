@@ -150,7 +150,7 @@ void FilterSyncRunner::run()
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {
-      Logger::log(QString("\n[%1]%2 %3\n").arg(GmicQt::pluginCodeName()).arg(_logSuffix).arg(fullCommandLine));
+      Logger::log(fullCommandLine, _logSuffix, true);
     }
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true);
     gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
@@ -163,7 +163,7 @@ void FilterSyncRunner::run()
     const char * message = e.what();
     _errorMessage = message;
     if (_messageMode > GmicQt::Quiet) {
-      Logger::log(QString("\n[%1]./error/ When running command '%2', this error occurred:\n%3\n").arg(GmicQt::pluginCodeName()).arg(fullCommandLine).arg(message));
+      Logger::error(QString("When running command '%1', this error occurred:\n%2").arg(fullCommandLine).arg(message), true);
     }
     _failed = true;
   }

@@ -223,7 +223,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
     end = strstr(text + prefixLength, "]");
   }
   if (!end) {
-    Logger::log(QString("[gmic-qt] Parse error in %1 parameter.").arg(type));
+    Logger::error(QString("Parse error in %1 parameter.").arg(type));
     return QStringList();
   }
   QString values = str.mid(prefixLength, -1).left(end - (text + prefixLength)).trimmed();
@@ -250,7 +250,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
       break;
     }
     if (NoValueParameters.contains(type)) {
-      Logger::log(QString("[gmic-qt] Warning: %1 parameter should not define visibility. Ignored.").arg(result.first()));
+      Logger::warning(QString("Warning: %1 parameter should not define visibility. Ignored.").arg(result.first()));
       _defaultVisibilityState = AbstractParameter::VisibleParameter;
       _visibilityPropagation = PropagateNone;
     }

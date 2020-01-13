@@ -93,7 +93,7 @@ void GmicProcessor::execute()
     FilterSyncRunner runner(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);
     runner.setImageNames(imageNames);
-    runner.setLogSuffix("./preview/");
+    runner.setLogSuffix("preview");
     cimg_library::cimg::srand();
     _previewRandomSeed = cimg_library::cimg::_rand();
     _filterExecutionTime.restart();
@@ -104,7 +104,7 @@ void GmicProcessor::execute()
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
-    _filterThread->setLogSuffix("./preview/");
+    _filterThread->setLogSuffix("preview");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()), Qt::QueuedConnection);
     cimg_library::cimg::srand();
     _previewRandomSeed = cimg_library::cimg::_rand();
@@ -119,7 +119,7 @@ void GmicProcessor::execute()
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
-    _filterThread->setLogSuffix("./apply/");
+    _filterThread->setLogSuffix("apply");
     connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()), Qt::QueuedConnection);
     cimg_library::cimg::srand(_previewRandomSeed);
     _filterThread->start();

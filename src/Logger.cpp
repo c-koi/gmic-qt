@@ -71,8 +71,37 @@ void Logger::clear()
   setMode(mode);
 }
 
-void Logger::log(const QString & message)
+void Logger::log(const QString & message, bool space)
 {
-  std::fprintf(cimg_library::cimg::output(), "%s", message.toLocal8Bit().constData());
+  log(message, QString(), space);
+}
+
+void Logger::log(const QString & message, const QString & hint, bool space)
+{
+  QString before;
+  if (space) {
+    before = "\n";
+  }
+  QString endOfLine;
+  if (message.isEmpty() || message.back() != '\n') {
+    endOfLine = "\n";
+  }
+  QString newHint = hint.isEmpty() ? QString() : QString("./%1/").arg(hint);
+  std::fprintf(cimg_library::cimg::output(), "%s", QString("%1[%2]%3 %4%5").arg(before).arg(GmicQt::pluginCodeName()).arg(newHint).arg(message).arg(endOfLine).toLocal8Bit().constData());
   std::fflush(cimg_library::cimg::output());
+}
+
+void Logger::error(const QString & message, bool space)
+{
+  log(message, "error", space);
+}
+
+void Logger::warning(const QString & message, bool space)
+{
+  log(message, "warning", space);
+}
+
+void Logger::note(const QString & message, bool space)
+{
+  log(message, "note", space);
 }
