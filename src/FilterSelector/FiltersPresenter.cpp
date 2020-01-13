@@ -200,7 +200,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & default
   _favesModel.addFave(fave);
   ParametersCache::setValues(fave.hash(), defaultValues);
   ParametersCache::setVisibilityStates(fave.hash(), visibilityStates);
-  ParametersCache::setInputOutputState(fave.hash(), inOutState);
+  ParametersCache::setInputOutputState(fave.hash(), inOutState, _currentFilter.defaultInputMode);
   _filtersView->addFave(fave.name(), fave.hash());
   _filtersView->sortFaves();
   _filtersView->selectFave(fave.hash());
@@ -316,6 +316,13 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   Q_ASSERT_X(_favesModel.contains(hash), "onFaveRenamed()", "Hash not found");
   FavesModel::Fave fave = _favesModel.getFaveFromHash(hash);
   _favesModel.removeFave(hash);
+
+  GmicQt::InputMode defaultInputMode = GmicQt::UnspecifiedInputMode;
+  if (_filtersModel.contains(fave.originalHash())) {
+    const FiltersModel::Filter & originalFilter = _filtersModel.getFilterFromHash(fave.originalHash());
+    defaultInputMode = originalFilter.defaultInputMode();
+  }
+
   QString newName = name;
   if (newName.isEmpty()) {
     if (_filtersModel.contains(fave.originalHash())) {
@@ -327,7 +334,6 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   } else {
     newName = _favesModel.uniqueName(newName, QString());
   }
-
   fave.setName(newName);
   fave.build();
 
@@ -338,7 +344,7 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   ParametersCache::remove(hash);
   ParametersCache::setValues(fave.hash(), values);
   ParametersCache::setVisibilityStates(fave.hash(), visibilityStates);
-  ParametersCache::setInputOutputState(fave.hash(), inOutState);
+  ParametersCache::setInputOutputState(fave.hash(), inOutState, defaultInputMode);
 
   _favesModel.addFave(fave);
   _filtersView->updateFaveItem(hash, fave.hash(), fave.name());
@@ -398,6 +404,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
       _currentFilter.command = fave.command();
       _currentFilter.defaultParameterValues = fave.defaultValues();
       _currentFilter.defaultVisibilityStates = fave.defaultVisibilityStates();
+      _currentFilter.defaultInputMode = filter.defaultInputMode();
       _currentFilter.hash = hash;
       _currentFilter.isAFave = true;
       _currentFilter.name = fave.name();
@@ -415,6 +422,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
     _currentFilter.command = filter.command();
     _currentFilter.defaultParameterValues = ParametersCache::getValues(hash);
     _currentFilter.defaultVisibilityStates = ParametersCache::getVisibilityStates(hash);
+    _currentFilter.defaultInputMode = filter.defaultInputMode();
     _currentFilter.hash = hash;
     _currentFilter.isAFave = false;
     _currentFilter.name = filter.name();
@@ -438,6 +446,7 @@ void FiltersPresenter::Filter::clear()
   hash.clear();
   plainTextName.clear();
   previewFactor = GmicQt::PreviewFactorAny;
+  defaultInputMode = GmicQt::UnspecifiedInputMode;
   isAFave = false;
 }
 

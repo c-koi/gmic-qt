@@ -39,6 +39,7 @@ private:
   FiltersModel & _model;
   static QString readBufferLine(QBuffer &);
   static bool textIsPrecededBySpacesInSomeLineOfArray(const QByteArray & text, const QByteArray & array);
+  static GmicQt::InputMode symbolToInputMode(const QString & str);
 };
 
 #endif // GMIC_QT_FILTERSMODELREADER_H

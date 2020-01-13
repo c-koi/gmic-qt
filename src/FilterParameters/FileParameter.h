@@ -34,7 +34,7 @@ class FileParameter : public AbstractParameter {
   Q_OBJECT
 public:
   FileParameter(QObject * parent = nullptr);
-  ~FileParameter();
+  ~FileParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;

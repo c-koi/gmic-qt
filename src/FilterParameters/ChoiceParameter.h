@@ -35,7 +35,7 @@ class ChoiceParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ChoiceParameter(QObject * parent = nullptr);
-  ~ChoiceParameter();
+  ~ChoiceParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString &) override;

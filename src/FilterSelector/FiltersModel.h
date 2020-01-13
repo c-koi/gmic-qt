@@ -29,6 +29,7 @@
 #include <QString>
 #include <cstddef>
 #include <vector>
+#include "gmic_qt.h"
 
 class FiltersModel {
 public:
@@ -43,6 +44,7 @@ public:
     Filter & setAccurateIfZoomed(bool accurate);
     Filter & setPath(const QList<QString> & path);
     Filter & setWarningFlag(bool flag);
+    Filter & setDefaultInputMode(GmicQt::InputMode);
     Filter & build();
 
     QString name() const;
@@ -56,6 +58,7 @@ public:
     float previewFactor() const;
     bool isAccurateIfZoomed() const;
     bool isWarning() const;
+    GmicQt::InputMode defaultInputMode() const;
 
     bool matchKeywords(const QList<QString> & keywords) const;
     bool matchFullPath(const QList<QString> & path) const;
@@ -67,6 +70,7 @@ public:
     QList<QString> _plainPath;
     QString _command;
     QString _previewCommand;
+    GmicQt::InputMode _defaultInputMode;
     QString _parameters;
     float _previewFactor;
     bool _isAccurateIfZoomed;

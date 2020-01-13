@@ -29,6 +29,7 @@
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
 #include "InputOutputState.h"
+#include "gmic_qt.h"
 
 class QSettings;
 
@@ -43,6 +44,7 @@ public:
     QString parameters;
     QList<QString> defaultParameterValues;
     QList<int> defaultVisibilityStates;
+    GmicQt::InputMode defaultInputMode;
     QString hash;
     bool isAccurateIfZoomed;
     float previewFactor;

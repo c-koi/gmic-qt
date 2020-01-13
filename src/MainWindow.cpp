@@ -802,10 +802,10 @@ void MainWindow::onUpdateFiltersClicked()
 void MainWindow::saveCurrentParameters()
 {
   QString hash = ui->filterParams->filterHash();
-  if (!hash.isEmpty() && (hash == ui->filterParams->filterHash())) {
+  if (!hash.isEmpty()) {
     ParametersCache::setValues(hash, ui->filterParams->valueStringList());
     ParametersCache::setVisibilityStates(hash, ui->filterParams->visibilityStates());
-    ParametersCache::setInputOutputState(hash, ui->inOutSelector->state());
+    ParametersCache::setInputOutputState(hash, ui->inOutSelector->state(), _filtersPresenter->currentFilter().defaultInputMode);
   }
 }
 
@@ -1021,7 +1021,17 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
     ui->inOutSelector->enable();
     ui->inOutSelector->show();
-    ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
+
+    GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
+    if (inOutState.inputMode == GmicQt::UnspecifiedInputMode) {
+      if ((filter.defaultInputMode != GmicQt::UnspecifiedInputMode)) {
+        inOutState.inputMode = filter.defaultInputMode;
+      } else {
+        inOutState.inputMode = GmicQt::DefaultInputMode;
+      }
+    }
+    ui->inOutSelector->setState(inOutState, false);
+
     ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);

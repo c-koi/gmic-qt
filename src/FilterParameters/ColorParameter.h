@@ -39,7 +39,7 @@ class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ColorParameter(QObject * parent = nullptr);
-  ~ColorParameter();
+  ~ColorParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

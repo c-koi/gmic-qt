@@ -54,7 +54,7 @@ bool InputOutputState::isDefault() const
 void InputOutputState::toJSONObject(QJsonObject & object) const
 {
   object = QJsonObject();
-  if (inputMode != DefaultInputMode) {
+  if (inputMode != UnspecifiedInputMode) {
     object.insert("InputLayers", inputMode);
   }
   if (outputMode != DefaultOutputMode) {

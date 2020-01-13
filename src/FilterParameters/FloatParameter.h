@@ -35,7 +35,7 @@ class FloatParameter : public AbstractParameter {
   Q_OBJECT
 public:
   FloatParameter(QObject * parent = nullptr);
-  ~FloatParameter();
+  ~FloatParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

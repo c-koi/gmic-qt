@@ -32,7 +32,7 @@ class SeparatorParameter : public AbstractParameter {
   Q_OBJECT
 public:
   SeparatorParameter(QObject * parent = nullptr);
-  ~SeparatorParameter();
+  ~SeparatorParameter()  override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

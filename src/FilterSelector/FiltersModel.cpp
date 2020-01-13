@@ -159,6 +159,12 @@ FiltersModel::Filter & FiltersModel::Filter::setWarningFlag(bool flag)
   return *this;
 }
 
+FiltersModel::Filter & FiltersModel::Filter::setDefaultInputMode(GmicQt::InputMode mode)
+{
+  _defaultInputMode = mode;
+  return *this;
+}
+
 FiltersModel::Filter & FiltersModel::Filter::build()
 {
   //
@@ -232,6 +238,11 @@ bool FiltersModel::Filter::isAccurateIfZoomed() const
 bool FiltersModel::Filter::isWarning() const
 {
   return _isWarning;
+}
+
+GmicQt::InputMode FiltersModel::Filter::defaultInputMode() const
+{
+  return _defaultInputMode;
 }
 
 bool FiltersModel::Filter::matchKeywords(const QList<QString> & keywords) const

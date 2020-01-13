@@ -32,7 +32,7 @@ class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ConstParameter(QObject * parent = nullptr);
-  ~ConstParameter();
+  ~ConstParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

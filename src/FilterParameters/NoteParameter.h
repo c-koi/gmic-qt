@@ -32,7 +32,7 @@ class NoteParameter : public AbstractParameter {
   Q_OBJECT
 public:
   NoteParameter(QObject * parent = nullptr);
-  ~NoteParameter();
+  ~NoteParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

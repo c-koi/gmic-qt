@@ -106,7 +106,6 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         QString filterName = line;
         filterName.replace(QRegExp("[ ]*:.*$"), "");
         filterName.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"), "");
-
         const bool warning = filterName.startsWith(WarningPrefix);
         if (warning) {
           filterName.remove(0, 1);
@@ -115,8 +114,16 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         QString filterCommands = line;
         filterCommands.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"), "");
 
-        QList<QString> commands = filterCommands.split(",");
+        // Extract default input mode
+        GmicQt::InputMode defaultInputMode = GmicQt::UnspecifiedInputMode;
+        QRegExp reInputMode("\\s*:\\s*([xX.*+vViI-])\\s*$");
+        if (reInputMode.indexIn(filterCommands) != -1) {
+          QString mode = reInputMode.cap(1);
+          filterCommands.remove(reInputMode);
+          defaultInputMode = symbolToInputMode(mode);
+        }
 
+        QList<QString> commands = filterCommands.split(",");
         QString filterCommand = commands[0].trimmed();
         if (commands.isEmpty()) {
           commands.push_back("_none_");
@@ -169,6 +176,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         filter.setName(filterName);
         filter.setCommand(filterCommand);
         filter.setPreviewCommand(filterPreviewCommand);
+        filter.setDefaultInputMode(defaultInputMode);
         filter.setPreviewFactor(previewFactor);
         filter.setAccurateIfZoomed(accurateIfZoomed);
         filter.setParameters(parameters);
@@ -215,6 +223,35 @@ bool FiltersModelReader::textIsPrecededBySpacesInSomeLineOfArray(const QByteArra
     from = position + 1;
   }
   return false;
+}
+
+GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
+{
+  if (str.length() != 1) {
+    // TODO : Print a warning
+    return GmicQt::UnspecifiedInputMode;
+  }
+  switch (str.toLocal8Bit().front()) {
+  case 'x':
+  case 'X':
+    return GmicQt::NoInput;
+  case '.':
+    return GmicQt::Active;
+  case '*':
+    return GmicQt::All;
+  case '+':
+    return GmicQt::ActiveAndAbove;
+  case '-':
+    return GmicQt::ActiveAndBelow;
+  case 'V':
+  case 'v':
+    return GmicQt::AllVisibles;
+  case 'I':
+  case 'i':
+    return GmicQt::AllInvisibles;
+  default:
+    return GmicQt::UnspecifiedInputMode;
+  }
 }
 
 QString FiltersModelReader::readBufferLine(QBuffer & buffer)

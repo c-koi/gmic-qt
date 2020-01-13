@@ -34,7 +34,7 @@ class BoolParameter : public AbstractParameter {
   Q_OBJECT
 public:
   BoolParameter(QObject * parent = nullptr);
-  ~BoolParameter();
+  ~BoolParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

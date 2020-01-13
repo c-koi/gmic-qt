@@ -41,7 +41,7 @@ public:
   static void remove(const QString & hash);
 
   static GmicQt::InputOutputState getInputOutputState(const QString & hash);
-  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState &);
+  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state, const GmicQt::InputMode defaultInputMode);
 
   static void cleanup(const QSet<QString> & hashesToKeep);
 

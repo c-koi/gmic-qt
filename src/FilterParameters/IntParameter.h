@@ -35,7 +35,7 @@ class IntParameter : public AbstractParameter {
   Q_OBJECT
 public:
   IntParameter(QObject * parent = nullptr);
-  ~IntParameter();
+  ~IntParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;

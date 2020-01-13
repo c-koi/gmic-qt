@@ -144,7 +144,6 @@ void ParametersCache::save()
   QJsonObject documentObject;
 
   // Add Input/Output states
-
   QHash<QString, GmicQt::InputOutputState>::iterator itState = _inOutPanelStates.begin();
   while (itState != _inOutPanelStates.end()) {
     QJsonObject filterObject;
@@ -263,12 +262,13 @@ GmicQt::InputOutputState ParametersCache::getInputOutputState(const QString & ha
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
   }
-  return GmicQt::InputOutputState::Default;
+  return GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode);
 }
 
-void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state)
+void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state, const GmicQt::InputMode defaultInputMode)
 {
-  if (state.isDefault()) {
+  if ((state == GmicQt::InputOutputState(defaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode)) //
+      || (state == GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode))) {
     _inOutPanelStates.remove(hash);
     return;
   }
