@@ -239,9 +239,9 @@ GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
     return GmicQt::Active;
   case '*':
     return GmicQt::All;
-  case '+':
-    return GmicQt::ActiveAndAbove;
   case '-':
+    return GmicQt::ActiveAndAbove;
+  case '+':
     return GmicQt::ActiveAndBelow;
   case 'V':
   case 'v':
