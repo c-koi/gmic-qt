@@ -27,6 +27,8 @@
 #include <cmath>
 #include <cstring>
 
+const float KeypointList::Keypoint::DefaultRadius = 6.0f;
+
 KeypointList::KeypointList() = default;
 
 void KeypointList::add(const KeypointList::Keypoint & keypoint)

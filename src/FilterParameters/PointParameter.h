@@ -42,7 +42,7 @@ class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
   PointParameter(QObject * parent = nullptr);
-  ~PointParameter();
+  ~PointParameter() override;
   bool addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
@@ -76,7 +76,7 @@ private:
   QColor _color;
   bool _removable;
   bool _burst;
-  int _radius;
+  float _radius;
   bool _keepOpacityWhenSelected;
 
   QLabel * _label;

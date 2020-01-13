@@ -49,7 +49,7 @@ public:
     Keypoint & setNaN();
     inline void setPosition(float x, float y);
     inline void setPosition(const QPointF & p);
-    static const int DefaultRadius = 6;
+    static const float DefaultRadius;
 
     inline int actualRadiusFromPreviewSize(const QSize & size) const;
   };
