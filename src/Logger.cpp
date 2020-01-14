@@ -23,7 +23,10 @@
  *
  */
 #include "Logger.h"
+#include <QDebug>
 #include <QString>
+#include <QStringList>
+#include "Common.h"
 #include "Utils.h"
 #include "gmic_qt.h"
 #include "gmic.h"
@@ -78,16 +81,21 @@ void Logger::log(const QString & message, bool space)
 
 void Logger::log(const QString & message, const QString & hint, bool space)
 {
-  QString before;
+  QString text = message;
+  while (!text.isEmpty() && text.back().isSpace()) {
+    text.chop(1);
+  }
+  QStringList lines = text.split("\n", QString::KeepEmptyParts);
+
+  QString prefix = QString("[%1]").arg(GmicQt::pluginCodeName());
+  prefix += hint.isEmpty() ? " " : QString("./%1/ ").arg(hint);
+
   if (space) {
-    before = "\n";
+    std::fprintf(cimg_library::cimg::output(), "\n");
   }
-  QString endOfLine;
-  if (message.isEmpty() || message.back() != '\n') {
-    endOfLine = "\n";
+  for (const QString & line : lines) {
+    std::fprintf(cimg_library::cimg::output(), "%s\n", (prefix + line).toLocal8Bit().constData());
   }
-  QString newHint = hint.isEmpty() ? QString() : QString("./%1/").arg(hint);
-  std::fprintf(cimg_library::cimg::output(), "%s", QString("%1[%2]%3 %4%5").arg(before).arg(GmicQt::pluginCodeName()).arg(newHint).arg(message).arg(endOfLine).toLocal8Bit().constData());
   std::fflush(cimg_library::cimg::output());
 }
 

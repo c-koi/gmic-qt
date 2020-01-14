@@ -36,6 +36,7 @@
 #include <QString>
 #include "Common.h"
 #include "FilterSelector/FavesModel.h"
+#include "Logger.h"
 #include "Utils.h"
 #include "gmic.h"
 
@@ -99,12 +100,12 @@ void FavesModelReader::importFavesFromGmicGTK()
         fave.build();
         _model.addFave(fave);
       } else {
-        std::cerr << "[gmic-qt] Error: Import failed for fave at gimp_faves:" << lineNumber << "\n";
+        Logger::error(QString("Import failed for fave at %1:%2").arg(file.fileName()).arg(lineNumber));
       }
       ++lineNumber;
     }
   } else {
-    qWarning() << "[gmic-qt] Error: Import failed. Cannot open" << filename;
+    Logger::error("Import failed. Cannot open " + filename);
   }
 }
 
@@ -124,11 +125,11 @@ void FavesModelReader::loadFaves()
           _model.addFave(jsonObjectToFave(value.toObject()));
         }
       } else {
-        qWarning() << "[gmic-qt] Error loading faves (parse error) : " << jsonFilename;
-        qWarning() << "[gmic-qt]" << parseError.errorString();
+        Logger::error("Cannot load faves (parse error) : " + jsonFilename);
+        Logger::error(parseError.errorString());
       }
     } else {
-      qWarning() << "[gmic-qt] Error: Faves loading failed: Cannot open" << jsonFilename;
+      Logger::log("Faves loading failed: Cannot open " + jsonFilename);
     }
     return;
   }
@@ -148,7 +149,7 @@ void FavesModelReader::loadFaves()
           for (QString & str : list) {
             str.replace(QChar(gmic_lbrace), QString("{"));
             str.replace(QChar(gmic_rbrace), QString("}"));
-	      // (29 == gmic_newline) until gmic version 2.7.1
+            // (29 == gmic_newline) until gmic version 2.7.1
             str.replace(QChar(29), QString("\n"));
           }
           if (list.size() >= 4) {
@@ -165,13 +166,13 @@ void FavesModelReader::loadFaves()
             fave.build();
             _model.addFave(fave);
           } else {
-            std::cerr << "[gmic-qt] Error: Loading failed for fave at gmic_qt_faves:" << lineNumber << "\n";
+            Logger::log(QString("Loading failed for fave at %1:%2").arg(file.fileName()).arg(lineNumber));
           }
         }
         ++lineNumber;
       }
     } else {
-      qWarning() << "[gmic-qt] Error: Loading failed. Cannot open" << filename;
+      Logger::error("Fave loading failed. Cannot open " + filename);
     }
   }
 }

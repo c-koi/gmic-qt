@@ -33,6 +33,7 @@
 #include <iostream>
 #include "Common.h"
 #include "Globals.h"
+#include "Logger.h"
 #include "Utils.h"
 #include "gmic.h"
 
@@ -65,11 +66,11 @@ void ParametersCache::load(bool loadFiltersParameters)
     QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
 #endif
     if (jsonDoc.isNull()) {
-      std::cerr << "[gmic-qt] Warning: cannot parse " << jsonFilename.toStdString() << std::endl;
-      std::cerr << "[gmic-qt] Last filters parameters are lost!\n";
+      Logger::warning(QString("Cannot parse ") + jsonFilename);
+      Logger::warning("Last filters parameters are lost!");
     } else {
       if (!jsonDoc.isObject()) {
-        std::cerr << "[gmic-qt] Error: JSON file format is not correct (" << jsonFilename.toStdString() << ")\n";
+        Logger::error(QString("JSON file format is not correct (") + jsonFilename + ")");
       } else {
         QJsonObject documentObject = jsonDoc.object();
         QJsonObject::iterator itFilter = documentObject.begin();
@@ -108,8 +109,8 @@ void ParametersCache::load(bool loadFiltersParameters)
       }
     }
   } else {
-    std::cerr << "[gmic-qt] Error: Cannot read " << jsonFilename.toStdString() << std::endl;
-    std::cerr << "[gmic-qt] Parameters cannot be restored.\n";
+    Logger::error("Cannot read " + jsonFilename);
+    Logger::error("Parameters cannot be restored");
   }
 }
 
@@ -220,8 +221,8 @@ void ParametersCache::save()
       QFile::remove(path + "gmic_qt_parameters_json.dat");
     }
   } else {
-    std::cerr << "[gmic-qt] Error: Cannot write " << jsonFilename.toStdString() << std::endl;
-    std::cerr << "[gmic-qt] Parameters cannot be saved.\n";
+    Logger::error("Cannot write " + jsonFilename);
+    Logger::error("Parameters cannot be saved");
   }
 }
 

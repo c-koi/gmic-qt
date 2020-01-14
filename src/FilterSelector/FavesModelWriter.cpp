@@ -30,6 +30,7 @@
 #include <QString>
 #include <QTextStream>
 #include <iostream>
+#include "Logger.h"
 #include "Utils.h"
 
 FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model) {}
@@ -61,7 +62,7 @@ void FavesModelWriter::writeFaves()
       QFile::remove(obsoleteFilename + ".bak");
     }
   } else {
-    std::cerr << "[gmic_qt] Error: cannot open/create file " << jsonFilename.toStdString() << std::endl;
+    Logger::error("Cannot open/create file " + jsonFilename);
   }
 }
 
