@@ -46,9 +46,9 @@ enum InputMode
   ActiveAndAbove,
   AllVisibles,
   AllInvisibles,
-  AllVisiblesDesc,
-  AllInvisiblesDesc,
-  AllDesc,
+  AllVisiblesDesc_UNUSED,   /* Removed since 2.8.2 */
+  AllInvisiblesDesc_UNUSED, /* Removed since 2.8.2 */
+  AllDesc_UNUSED,           /* Removed since 2.8.2 */
   UnspecifiedInputMode = 100
 };
 extern const InputMode DefaultInputMode;

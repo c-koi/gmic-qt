@@ -50,9 +50,10 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   ui->inputLayers->addItem(tr("Active and above"), GmicQt::ActiveAndAbove);
   ui->inputLayers->addItem(tr("All visible"), GmicQt::AllVisibles);
   ui->inputLayers->addItem(tr("All invisible"), GmicQt::AllInvisibles);
-  ui->inputLayers->addItem(tr("All visible (decr.)"), GmicQt::AllVisiblesDesc);
-  ui->inputLayers->addItem(tr("All invisible (decr.)"), GmicQt::AllInvisiblesDesc);
-  ui->inputLayers->addItem(tr("All (decr.)"), GmicQt::AllDesc);
+  // "decr." input mode have been removed (since 2.8.2)
+  //  ui->inputLayers->addItem(tr("All visible (decr.)"), GmicQt::AllVisiblesDesc);
+  //  ui->inputLayers->addItem(tr("All invisible (decr.)"), GmicQt::AllInvisiblesDesc);
+  //  ui->inputLayers->addItem(tr("All (decr.)"), GmicQt::AllDesc);
 
   ui->outputMode->setToolTip(tr("Output mode"));
   ui->outputMode->addItem(tr("In place (default)"), GmicQt::InPlace);

@@ -26,6 +26,22 @@
 #include "InputOutputState.h"
 #include <QJsonObject>
 
+namespace
+{
+void filterObsoleteInputModes(GmicQt::InputMode & mode)
+{
+  switch (mode) {
+  case GmicQt::AllDesc_UNUSED:
+  case GmicQt::AllVisiblesDesc_UNUSED:
+  case GmicQt::AllInvisiblesDesc_UNUSED:
+    mode = GmicQt::UnspecifiedInputMode;
+    break;
+  default:
+    break;
+  }
+}
+} // namespace
+
 namespace GmicQt
 {
 
@@ -69,6 +85,7 @@ InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
 {
   GmicQt::InputOutputState state;
   state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(UnspecifiedInputMode));
+  filterObsoleteInputModes(state.inputMode);
   state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(UnspecifiedOutputMode));
   state.previewMode = static_cast<PreviewMode>(object.value("PreviewMode").toInt(UnspecifiedPreviewMode));
   return state;

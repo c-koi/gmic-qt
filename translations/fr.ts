@@ -252,7 +252,7 @@
 <context>
     <name>FiltersPresenter</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="411"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="418"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
         <translation type="unfinished"></translation>
@@ -272,7 +272,7 @@
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="66"/>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
         <source>Remove fave</source>
         <translation>Supprimer un favori</translation>
     </message>
@@ -287,7 +287,7 @@
         <translation>Ajouter un favori</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -372,89 +372,74 @@
         <translation>Tous les calques invisibles</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
-        <source>All visible (decr.)</source>
-        <translation>Tous les calques visibles (décr.)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
-        <source>All invisible (decr.)</source>
-        <translation>Tous les calques invisibles (décr.)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
-        <source>All (decr.)</source>
-        <translation>Tous (décr.)</translation>
-    </message>
-    <message>
         <location filename="../ui/inoutpanel.ui" line="138"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
         <source>Output mode</source>
         <translation>Mode de sortie</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
         <source>In place (default)</source>
         <translation>Sur place (défaut)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
         <source>New layer(s)</source>
         <translation>Nouveau(x) calque(s)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
         <source>New active layer(s)</source>
         <translation>Nouveau(x) calque(s) actif(s)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
         <source>New image</source>
         <translation>Nouvelle image</translation>
     </message>
     <message>
         <location filename="../ui/inoutpanel.ui" line="125"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
         <source>Preview mode</source>
         <translation>Mode d&apos;aperçu</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
         <source>1st output (default)</source>
         <translation>1ère image (défaut)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
         <source>2nd output</source>
         <translation>2ème image</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
         <source>3rd output</source>
         <translation>3ème image</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
         <source>4th output</source>
         <translation>4ème image</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>1st -&gt; 2nd output</source>
         <translation>1ère -&gt; 2ème image</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
         <source>1st -&gt; 3rd output</source>
         <translation>1ère -&gt; 3ème image</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
         <source>1st -&gt; 4th output</source>
         <translation>1ère -&gt; 4ème image</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
         <source>All outputs</source>
         <translation>Toutes les images</translation>
     </message>
@@ -495,7 +480,7 @@
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
+        <location filename="../src/MainWindow.cpp" line="105"/>
         <source>Selection mode</source>
         <translation>Mode sélection</translation>
     </message>
@@ -545,104 +530,104 @@
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="82"/>
+        <location filename="../src/MainWindow.cpp" line="83"/>
         <source>Add fave</source>
         <translation>Ajouter un favori</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="84"/>
+        <location filename="../src/MainWindow.cpp" line="85"/>
         <source>Reset parameters to default values</source>
         <translation>Réinitialiser les paramètres du filtre</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="88"/>
         <source>Update filters (Ctrl+R / F5)</source>
         <translation>Mettre à jour les filtres (Ctrl+R / F5)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="89"/>
+        <location filename="../src/MainWindow.cpp" line="90"/>
         <source>Rename fave</source>
         <translation>Renommer un favori</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
+        <location filename="../src/MainWindow.cpp" line="92"/>
         <source>Remove fave</source>
         <translation>Supprimer un favori</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="95"/>
+        <location filename="../src/MainWindow.cpp" line="96"/>
         <source>Expand/Collapse all</source>
         <translation>Déplier/Réduire tout</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="97"/>
+        <location filename="../src/MainWindow.cpp" line="98"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandie Université (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
+        <location filename="../src/MainWindow.cpp" line="288"/>
         <source>Update completed</source>
         <translation>Mise à jour réussie</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
-        <location filename="../src/MainWindow.cpp" line="289"/>
-        <location filename="../src/MainWindow.cpp" line="343"/>
+        <location filename="../src/MainWindow.cpp" line="288"/>
+        <location filename="../src/MainWindow.cpp" line="290"/>
+        <location filename="../src/MainWindow.cpp" line="344"/>
         <source>Filter definitions have been updated.</source>
         <translation>Les définitions de filtres ont été mises à jour.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="292"/>
+        <location filename="../src/MainWindow.cpp" line="293"/>
         <source>No download was needed.</source>
         <translation>Aucun téléchargement n&apos;était requis.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="339"/>
+        <location filename="../src/MainWindow.cpp" line="340"/>
         <source>Filters update could not be achieved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="461"/>
+        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>La mise à jour n&apos;a pas réussi en raison&lt;br/&gt;des erreurs suivantes :&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="467"/>
+        <location filename="../src/MainWindow.cpp" line="468"/>
         <source>Update error</source>
         <translation>Erreurs lors de la mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="650"/>
+        <location filename="../src/MainWindow.cpp" line="658"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="742"/>
+        <location filename="../src/MainWindow.cpp" line="750"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>En attente des traitements annulés...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1098"/>
         <source>Import faves</source>
         <translation>Importer les favoris</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1098"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Voulez-vous importer les favoris du fichier ci-dessous ?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1081"/>
+        <location filename="../src/MainWindow.cpp" line="1101"/>
         <source>Don&apos;t ask again</source>
         <translation>Ne plus me demander</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1193"/>
+        <location filename="../src/MainWindow.cpp" line="1213"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1193"/>
+        <location filename="../src/MainWindow.cpp" line="1213"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Une commande gmic est en cours d&apos;exécution.&lt;br&gt;Voulez-vous vraiment fermer le plugin ?</translation>
     </message>
@@ -674,7 +659,7 @@
     </message>
     <message>
         <location filename="../ui/progressinfowidget.ui" line="48"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="48"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="49"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
@@ -684,23 +669,23 @@
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="45"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="46"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation>Progression du greffon G&apos;MIC-Qt</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="143"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="147"/>
         <source>Updating filters...</source>
         <translation>Mise à jour des filtres...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="198"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="211"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="202"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="215"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Traitement en cours %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="217"/>
         <source>[Processing %1]</source>
         <translation>[Traitement en cours %1]</translation>
     </message>
@@ -724,17 +709,17 @@
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="134"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="138"/>
         <source>%1 seconds</source>
         <translation>%1 secondes</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="144"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="148"/>
         <source>[Processing %1 | %2]</source>
         <translation>|Traitement en cours %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="146"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="150"/>
         <source>[Processing %1]</source>
         <translation>|Traitement en cours %1]</translation>
     </message>
@@ -742,27 +727,27 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="68"/>
         <source>Select an image to open...</source>
         <translation>Sélectionnez une image à ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="68"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>Fichiers PNG &amp; JPG (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="88"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="88"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Could not open file.</source>
         <translation>Impossible d&apos;ouvrir le fichier.</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="92"/>
+        <location filename="../src/Host/None/host_none.cpp" line="78"/>
         <source>Default image</source>
         <translation>Image par défaut</translation>
     </message>
@@ -798,32 +783,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="208"/>
+        <location filename="../src/Updater.cpp" line="204"/>
         <source>Could not read/decompress %1</source>
         <translation>Impossible de lire/décompresser %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="199"/>
+        <location filename="../src/Updater.cpp" line="195"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Erreur de téléchargement de %1 (fichier vide ?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="214"/>
+        <location filename="../src/Updater.cpp" line="210"/>
         <source>Error creating file %1</source>
         <translation>Erreur de création du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="218"/>
+        <location filename="../src/Updater.cpp" line="214"/>
         <source>Error writing file %1</source>
         <translation>Erreur d&apos;écriture du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="235"/>
+        <location filename="../src/Updater.cpp" line="231"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="268"/>
+        <location filename="../src/Updater.cpp" line="264"/>
         <source>Download timeout: %1</source>
         <translation>Téléchargement annulé (hors délai) : %1</translation>
     </message>
