@@ -82,7 +82,7 @@ void Logger::log(const QString & message, bool space)
 void Logger::log(const QString & message, const QString & hint, bool space)
 {
   QString text = message;
-  while (!text.isEmpty() && text.back().isSpace()) {
+  while (!text.isEmpty() && text[text.size() - 1].isSpace()) {
     text.chop(1);
   }
   QStringList lines = text.split("\n", QString::KeepEmptyParts);
