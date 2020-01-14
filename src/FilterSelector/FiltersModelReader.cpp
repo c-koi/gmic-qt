@@ -228,7 +228,7 @@ bool FiltersModelReader::textIsPrecededBySpacesInSomeLineOfArray(const QByteArra
 GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
 {
   if (str.length() != 1) {
-    // TODO : Print a warning
+    Logger::warning(QString("'%1' is not recognized as a default input mode (should be a single symbol/letter)").arg(str));
     return GmicQt::UnspecifiedInputMode;
   }
   switch (str.toLocal8Bit()[0]) {
@@ -250,6 +250,7 @@ GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
   case 'i':
     return GmicQt::AllInvisibles;
   default:
+    Logger::warning(QString("'%1' is not recognized as a default input mode").arg(str));
     return GmicQt::UnspecifiedInputMode;
   }
 }
