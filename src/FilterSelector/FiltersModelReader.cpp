@@ -231,7 +231,7 @@ GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
     // TODO : Print a warning
     return GmicQt::UnspecifiedInputMode;
   }
-  switch (str.toLocal8Bit().front()) {
+  switch (str.toLocal8Bit()[0]) {
   case 'x':
   case 'X':
     return GmicQt::NoInput;
