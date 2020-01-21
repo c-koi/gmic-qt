@@ -26,14 +26,26 @@
 #define GMIC_QT_CUSTOMDOUBLESPINBOX_H
 
 #include <QDoubleSpinBox>
+#include <QSize>
+class QShowEvent;
+class QResizeEvent;
 
 class CustomDoubleSpinBox : public QDoubleSpinBox {
   Q_OBJECT
 public:
-  CustomDoubleSpinBox(QWidget * parent = nullptr);
-  ~CustomDoubleSpinBox();
-
+  CustomDoubleSpinBox(QWidget * parent, float min, float max);
+  ~CustomDoubleSpinBox() override;
   QString textFromValue(double value) const override;
+
+protected:
+  QSize sizeHint() const override;
+  QSize minimumSizeHint() const override;
+
+private:
+  QSize _sizeHint;
+  QSize _minimumSizeHint;
+  static const int MAX_DIGITS = 7;
+  static int integerPartDigitCount(float value);
 };
 
 #endif // GMIC_QT_CUSTOMDOUBLESPINBOX_H

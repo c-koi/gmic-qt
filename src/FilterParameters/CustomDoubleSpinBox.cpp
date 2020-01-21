@@ -23,22 +23,67 @@
  *
  */
 #include "FilterParameters/CustomDoubleSpinBox.h"
+#include <QFontMetrics>
+#include <QLineEdit>
+#include <QShowEvent>
+#include <QSizePolicy>
+#include <QString>
+#include <QTimer>
+#include <algorithm>
+#include <cmath>
+#include "Common.h"
 
-CustomDoubleSpinBox::CustomDoubleSpinBox(QWidget * parent) : QDoubleSpinBox(parent) {}
+CustomDoubleSpinBox::CustomDoubleSpinBox(QWidget * parent, float min, float max) : QDoubleSpinBox(parent)
+{
+  setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+  const int decimals = std::max(2, MAX_DIGITS - std::max(integerPartDigitCount(min), integerPartDigitCount(max)));
+  setDecimals(decimals);
+  setRange(min, max);
+
+  QDoubleSpinBox * dummy = new QDoubleSpinBox(this);
+  dummy->hide();
+  dummy->setRange(min, max);
+  dummy->setDecimals(decimals);
+  _sizeHint = dummy->sizeHint();
+  _minimumSizeHint = dummy->minimumSizeHint();
+  delete dummy;
+}
 
 CustomDoubleSpinBox::~CustomDoubleSpinBox() {}
 
 QString CustomDoubleSpinBox::textFromValue(double value) const
 {
-  QString text = QString::number(value, 'g', 15);
+  QString text = QString::number(value, 'g', MAX_DIGITS);
   if (text.contains('e') || text.contains('E')) {
-    text = QString::number(value, 'f', 15);
+    text = QString::number(value, 'f', decimals());
     const QChar DecimalPoint = QLocale().decimalPoint();
     if (text.contains(DecimalPoint)) {
       while (text.endsWith(QChar('0'))) {
         text.chop(1);
       }
+      if (text.endsWith(DecimalPoint)) {
+        text.chop(1);
+      }
     }
   }
   return text;
+}
+
+QSize CustomDoubleSpinBox::sizeHint() const
+{
+  return _sizeHint;
+}
+
+QSize CustomDoubleSpinBox::minimumSizeHint() const
+{
+  return _minimumSizeHint;
+}
+
+int CustomDoubleSpinBox::integerPartDigitCount(float value)
+{
+  QString text = QString::number(static_cast<double>(value), 'f', 0);
+  if (text[0] == "-") {
+    text.remove(0, 1);
+  }
+  return text.length();
 }

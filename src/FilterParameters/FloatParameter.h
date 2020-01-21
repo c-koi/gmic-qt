@@ -62,6 +62,7 @@ private:
   CustomDoubleSpinBox * _spinBox;
   int _timerId;
   static const int UPDATE_DELAY = 300;
+  static const int SLIDER_MAX_RANGE = 1000;
   bool _connected;
 };
 
