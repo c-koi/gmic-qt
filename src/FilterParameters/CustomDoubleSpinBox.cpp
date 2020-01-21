@@ -82,7 +82,7 @@ QSize CustomDoubleSpinBox::minimumSizeHint() const
 int CustomDoubleSpinBox::integerPartDigitCount(float value)
 {
   QString text = QString::number(static_cast<double>(value), 'f', 0);
-  if (text[0] == "-") {
+  if (text[0] == QChar('-')) {
     text.remove(0, 1);
   }
   return text.length();
