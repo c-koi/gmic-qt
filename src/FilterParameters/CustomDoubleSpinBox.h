@@ -44,7 +44,7 @@ protected:
 private:
   QSize _sizeHint;
   QSize _minimumSizeHint;
-  static const int MAX_DIGITS = 7;
+  static const int MAX_DIGITS = 5;
   static int integerPartDigitCount(float value);
 };
 
