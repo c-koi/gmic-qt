@@ -3,7 +3,7 @@
 *  editors, offering hundreds of filters thanks to the underlying G'MIC
 *  image processing framework.
 *
-*  Copyright (C) 2018, 2019 Nicholas Hayes
+*  Copyright (C) 2018, 2019, 2020 Nicholas Hayes
 *
 *  G'MIC-Qt is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -86,10 +86,11 @@ namespace
 
     BOOL ReadFileBlocking(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPOVERLAPPED lpOverlapped)
     {
+        BYTE* bufferStart = static_cast<BYTE*>(lpBuffer);
         DWORD totalBytesRead = 0;
         do
         {
-            if (!ReadFile(hFile, lpBuffer, nNumberOfBytesToRead, nullptr, lpOverlapped))
+            if (!ReadFile(hFile, bufferStart + totalBytesRead, nNumberOfBytesToRead - totalBytesRead, nullptr, lpOverlapped))
             {
                 DWORD error = GetLastError();
                 switch (error)
@@ -121,10 +122,11 @@ namespace
 
     BOOL WriteFileBlocking(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPOVERLAPPED lpOverlapped)
     {
+        const BYTE* bufferStart = static_cast<const BYTE*>(lpBuffer);
         DWORD totalBytesWritten = 0;
         do
         {
-            if (!WriteFile(hFile, lpBuffer, nNumberOfBytesToWrite, nullptr, lpOverlapped))
+            if (!WriteFile(hFile, bufferStart + totalBytesWritten, nNumberOfBytesToWrite - totalBytesWritten, nullptr, lpOverlapped))
             {
                 DWORD error = GetLastError();
                 switch (error)
