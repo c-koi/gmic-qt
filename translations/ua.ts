@@ -167,51 +167,46 @@
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="85"/>
-        <source>Output messages...</source>
-        <translation>Повідомлення...</translation>
-    </message>
-    <message>
-        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Quiet (default)</source>
         <translation>Не виводити повідомлення (стандартний)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="87"/>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Verbose (layer name)</source>
         <translation>Докладний режим (ім&apos;я шару)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="88"/>
+        <location filename="../src/DialogSettings.cpp" line="87"/>
         <source>Verbose (console)</source>
         <translation>Докладний режим (консоль)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="89"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Verbose (log file)</source>
         <translation>Докладний режим (лог)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="90"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Very verbose (console)</source>
         <translation>Дуже докладний режим (консоль)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="91"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Very verbose (log file)</source>
         <translation>Дуже докладний режим (лог)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="92"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Debug (console)</source>
         <translation>Налагодження (консоль)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="93"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Debug (log file)</source>
         <translation>Налагодження (лог)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="109"/>
+        <location filename="../src/DialogSettings.cpp" line="108"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Поставте прапорець, щоб використовувати кольори діалогових вікон Native/OS, або зніміть прапорець, щоб використовувати кольори Qt</translation>
     </message>

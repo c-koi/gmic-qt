@@ -167,51 +167,46 @@
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="85"/>
-        <source>Output messages...</source>
-        <translation>输出信息...</translation>
-    </message>
-    <message>
-        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Quiet (default)</source>
         <translation>静默 (默认)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="87"/>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Verbose (layer name)</source>
         <translation>冗长 (层名)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="88"/>
+        <location filename="../src/DialogSettings.cpp" line="87"/>
         <source>Verbose (console)</source>
         <translation>冗长 (控制台)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="89"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Verbose (log file)</source>
         <translation>冗长 (日志文件)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="90"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Very verbose (console)</source>
         <translation>很冗长 (控制台)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="91"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Very verbose (log file)</source>
         <translation>很冗长 (日志文件)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="92"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Debug (console)</source>
         <translation>调试 (控制台)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="93"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Debug (log file)</source>
         <translation>调试 (日志文件)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="109"/>
+        <location filename="../src/DialogSettings.cpp" line="108"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>选择以便使用原生/系统颜色对话框，取消选择以便使用 Qt</translation>
     </message>

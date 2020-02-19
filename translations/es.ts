@@ -167,51 +167,46 @@
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="85"/>
-        <source>Output messages...</source>
-        <translation>Mensages de salida...</translation>
-    </message>
-    <message>
-        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Quiet (default)</source>
         <translation>Silencioso (por defecto)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="87"/>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Verbose (layer name)</source>
         <translation>Modo verborraico (nombre de capa)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="88"/>
+        <location filename="../src/DialogSettings.cpp" line="87"/>
         <source>Verbose (console)</source>
         <translation>Modo verborraico (consola)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="89"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Verbose (log file)</source>
         <translation>Modo verborraico (archivo de registro)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="90"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Very verbose (console)</source>
         <translation>Modo muy verborraico (consola)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="91"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Very verbose (log file)</source>
         <translation>Modo muy verborraico (archivo de registro)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="92"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Debug (console)</source>
         <translation>Depurar errores (consola)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="93"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Debug (log file)</source>
         <translation>Depurar errores (archivo de registro)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="109"/>
+        <location filename="../src/DialogSettings.cpp" line="108"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Seleccionar para usar el diálogo de color nativo/SO,  deseleccionar para usar el de Qt</translation>
     </message>
