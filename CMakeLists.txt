@@ -482,7 +482,7 @@ qt5_add_translation(gmic_qt_QM
     ${gmic_translation_files}
   )
 
-install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
+# install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
 
 set(gmic_qt_QRC
     gmic_qt.qrc
