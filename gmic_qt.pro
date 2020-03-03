@@ -219,6 +219,12 @@ openmp:equals(COMPILER,"clang") {
     QMAKE_LFLAGS_RELEASE += -fopenmp=libomp
 }
 
+gcc | clang {
+    message("Link Time Optimizer enabled")
+    QMAKE_CXXFLAGS_RELEASE += -flto
+    QMAKE_LFLAGS_RELEASE += -flto
+}
+
 DEFINES += gmic_gui gmic_build gmic_is_parallel cimg_use_abort
 
 INCLUDEPATH	+= $$PWD $$PWD/src $$GMIC_PATH
