@@ -37,6 +37,8 @@ set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shar
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
+option(ENABLE_LTO "Enable -flto (Link Time Optimizer) on gcc and clang" ON)
+
 #
 # Look for G'MIC repository
 #
@@ -87,9 +89,6 @@ message("G'MIC version is [" ${GMIC_VERSION} "]")
 if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
   message(FATAL_ERROR "\nVersion numbers of files 'gmic.h' (" ${GMIC_VERSION} ") and 'CImg.h' (" ${CIMG_VERSION} ") mismatch")
 endif()
-
-
-
 
 
 option(PRERELEASE "Set to ON makes this a prelease build")
@@ -179,11 +178,20 @@ set_package_properties(OpenMP PROPERTIES
 
 if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8.3 AND OPENMP_FOUND)
     message("G'Mic: using OpenMP")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     add_definitions(-Dcimg_use_openmp)
     add_definitions(-fopenmp)
 endif()
 
+#
+# LTO option
+#
+
+if (ENABLE_LTO AND (CMAKE_COMPILER_IS_GNUCC OR (CMAKE_CSS_COMPILER_IS STREQUAL "Clang")))
+    message("Link Time Optimizer enabled")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
+endif()
 
 #
 # add all defines
