@@ -38,6 +38,10 @@ option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
 option(ENABLE_LTO "Enable -flto (Link Time Optimizer) on gcc and clang" ON)
+if (WIN32 AND ENABLE_LTO)
+  message(WARNING "LTO is disabled on windows")
+  set(ENABLE_LTO OFF)
+endif()
 
 #
 # Look for G'MIC repository
