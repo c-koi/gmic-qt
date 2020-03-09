@@ -87,35 +87,36 @@ AbstractParameter * AbstractParameter::createFromText(const char * text, int & l
   QString line = text;
   error.clear();
 
+#define IS_OF_TYPE(ptype) (QRegExp("^[^=]*\\s*=\\s*_?" ptype, Qt::CaseInsensitive).indexIn(line) == 0)
+
 #define PREFIX "^[^=]*\\s*=\\s*_?"
-  if (QRegExp(PREFIX "int", Qt::CaseInsensitive).indexIn(line) == 0) {
+  if (IS_OF_TYPE("int")) {
     result = new IntParameter(parent);
-  } else if (QRegExp(PREFIX "float", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("float")) {
     result = new FloatParameter(parent);
-  } else if (QRegExp(PREFIX "bool", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("bool")) {
     result = new BoolParameter(parent);
-  } else if (QRegExp(PREFIX "choice", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("choice")) {
     result = new ChoiceParameter(parent);
-  } else if (QRegExp(PREFIX "color", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("color")) {
     result = new ColorParameter(parent);
-  } else if (QRegExp(PREFIX "separator", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("separator")) {
     result = new SeparatorParameter(parent);
-  } else if (QRegExp(PREFIX "note", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("note")) {
     result = new NoteParameter(parent);
-  } else if (QRegExp(PREFIX "file", Qt::CaseInsensitive).indexIn(line) == 0 || QRegExp(PREFIX "filein", Qt::CaseInsensitive).indexIn(line) == 0 ||
-             QRegExp(PREFIX "fileout", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("file") || IS_OF_TYPE("filein") || IS_OF_TYPE("fileout")) {
     result = new FileParameter(parent);
-  } else if (QRegExp(PREFIX "folder", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("folder")) {
     result = new FolderParameter(parent);
-  } else if (QRegExp(PREFIX "text", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("text")) {
     result = new TextParameter(parent);
-  } else if (QRegExp(PREFIX "link", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("link")) {
     result = new LinkParameter(parent);
-  } else if (QRegExp(PREFIX "value", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("value")) {
     result = new ConstParameter(parent);
-  } else if (QRegExp(PREFIX "button", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("button")) {
     result = new ButtonParameter(parent);
-  } else if (QRegExp(PREFIX "point", Qt::CaseInsensitive).indexIn(line) == 0) {
+  } else if (IS_OF_TYPE("point")) {
     result = new PointParameter(parent);
   }
   if (result) {
@@ -207,7 +208,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
 
   QRegExp re(QString("^[^=]*\\s*=\\s*(_?)%1\\s*(.)").arg(type), Qt::CaseInsensitive);
   re.indexIn(str);
-  int prefixLength = re.matchedLength();
+  const int prefixLength = re.cap(0).toUtf8().size();
 
   if (re.cap(1) == "_") {
     _update = false;
@@ -226,7 +227,9 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
     Logger::error(QString("Parse error in %1 parameter.").arg(type));
     return QStringList();
   }
-  QString values = str.mid(prefixLength, -1).left(end - (text + prefixLength)).trimmed();
+
+  // QString values = str.mid(prefixLength, -1).left(end - (text + prefixLength)).trimmed();
+  QString values = QString::fromUtf8(text + prefixLength, end - (text + prefixLength)).trimmed();
   length = 1 + end - text;
 
   if (text[length] == '_' && text[length + 1] >= '0' && text[length + 1] <= '2') {
@@ -255,7 +258,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
       _visibilityPropagation = PropagateNone;
     }
   }
-  while (text[length] && (text[length] == ',' || str[length].isSpace())) {
+  while (text[length] && (text[length] == ',' || QChar(text[length]).isSpace())) {
     ++length;
   }
   result << values;
