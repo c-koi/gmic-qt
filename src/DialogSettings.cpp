@@ -97,7 +97,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     }
   }
 
-  ui->sbPreviewTimeout->setRange(1, 360);
+  ui->sbPreviewTimeout->setRange(0, 999);
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
