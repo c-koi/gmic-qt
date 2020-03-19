@@ -15,6 +15,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(EXTRA_LIBRARIES)
 
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif()
+
+message("Build type is " ${CMAKE_BUILD_TYPE})
+
 set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet, or digikam.")
 if (${GMIC_QT_HOST} STREQUAL "none")
   message("Building standalone version.")
@@ -38,10 +44,16 @@ option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
 option(ENABLE_LTO "Enable -flto (Link Time Optimizer) on gcc and clang" ON)
-if (WIN32 AND ENABLE_LTO)
-  message(WARNING "LTO is disabled on windows")
-  set(ENABLE_LTO OFF)
+
+if (WIN32)
+    message("LTO is disabled (windows platform)")
+    set(ENABLE_LTO OFF)
 endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(ENABLE_LTO OFF)
+endif()
+
 
 #
 # Look for G'MIC repository
@@ -106,7 +118,6 @@ option(DRMINGW "Set to ON enables the drmingw debugger.")
 if (${DRMINGW})
     add_definitions(-DDRMINGW)
 endif()
-
 
 
 # Required packages
@@ -258,22 +269,16 @@ if (WIN32)
     )
 endif()
 
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release")
-endif()
-
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH "$ORIGIN/")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    message("Debug build")
     add_definitions(-D_GMIC_QT_DEBUG_)
     if(ENABLE_ASAN)
       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
       set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
     endif(ENABLE_ASAN)
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
-    message("Release build")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
     string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
     string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
@@ -283,7 +288,6 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
       set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
     endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-    message("Release build with debug info")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
     string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
     string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")

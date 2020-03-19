@@ -222,7 +222,12 @@ openmp:equals(COMPILER,"clang") {
     QMAKE_LFLAGS_RELEASE += -fopenmp=libomp
 }
 
-!win32:gcc|clang:equals(LTO,"on") {
+win32:equals(LTO,"on") {
+    message("Link Time Optimizer disabled (windows platform)")
+    LTO = off
+}
+
+!win32:CONFIG(release, debug|release):gcc|clang:equals(LTO,"on") {
     message("Link Time Optimizer enabled")
     QMAKE_CXXFLAGS_RELEASE += -flto
     QMAKE_LFLAGS_RELEASE += -flto
