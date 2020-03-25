@@ -216,15 +216,16 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
 
   QString open = re.cap(2);
   const char * end = nullptr;
-  if (open == "(") {
-    end = strstr(text + prefixLength, ")");
-  } else if (open == "{") {
-    end = strstr(text + prefixLength, "}");
-  } else if (open == "[") {
-    end = strstr(text + prefixLength, "]");
+  const char * closing = (open == "(") ? ")" : (open == "{") ? "}" : (open == "[") ? "]" : nullptr;
+  if (!closing) {
+    Logger::error(QString("Parse error in %1 parameter (invalid opening character '%2').").arg(type).arg(open));
+    length = 1 + prefixLength;
+    return QStringList();
   }
+  end = strstr(text + prefixLength, closing);
   if (!end) {
-    Logger::error(QString("Parse error in %1 parameter.").arg(type));
+    Logger::error(QString("Parse error in %1 parameter (cannot find closing '%2').").arg(type).arg(closing));
+    length = 1 + prefixLength;
     return QStringList();
   }
 
