@@ -1,0 +1,3 @@
+[submodule "gmic"]
+	path = gmic
+	url = https://github.com/dtschump/gmic.git
