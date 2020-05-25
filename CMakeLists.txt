@@ -73,6 +73,9 @@ else()
   message(FATAL_ERROR "\nG'MIC repository not found")
 endif()
 
+file(DOWNLOAD https://gmic.eu/gmic_stdlib.h ${GMIC_ABSOLUTE_PATH}/gmic_stdlib.h)
+execute_process(COMMAND ${CMAKE_COMMAND} -E touch ${GMIC_ABSOLUTE_PATH}/gmic_stdlib.h)
+
 #
 # Look for CImg.h and gmic_stdlib.h
 #
