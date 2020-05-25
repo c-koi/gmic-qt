@@ -28,10 +28,10 @@ else()
   message("Building for target host application: " ${GMIC_QT_HOST})
 endif()
 
-if(EXISTS "../src/gmic.cpp")
-  set (GMIC_PATH "../src" CACHE STRING "Define the path to the gmic headers")
+if(EXISTS "./gmic/gmic.cpp")
+  set (GMIC_PATH "./gmic" CACHE STRING "Define the path to the gmic headers")
 else()
-  set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
+  set (GMIC_PATH "./gmic/src" CACHE STRING "Define the path to the gmic headers")
 endif()
 
 message("G'MIC path: " ${GMIC_PATH})
