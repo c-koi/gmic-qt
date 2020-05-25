@@ -1,3 +1,6 @@
 [submodule "gmic"]
 	path = gmic
 	url = https://github.com/dtschump/gmic.git
+[submodule "CImg"]
+	path = CImg
+	url = https://github.com/dtschump/CImg.git
