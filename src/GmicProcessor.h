@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GMICPROCESSOR_H_
-#define _GMIC_QT_GMICPROCESSOR_H_
+#ifndef GMIC_QT_GMICPROCESSOR_H
+#define GMIC_QT_GMICPROCESSOR_H
 
 #include <QList>
 #include <QObject>
@@ -153,4 +153,4 @@ private:
   std::deque<int> _lastFilterPreviewExecutionDurations;
 };
 
-#endif // _GMIC_QT_GMICPROCESSOR_H_
+#endif // GMIC_QT_GMICPROCESSOR_H

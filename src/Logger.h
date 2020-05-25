@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_LOGGER_H_
-#define _GMIC_QT_LOGGER_H_
+#ifndef GMIC_QT_LOGGER_H
+#define GMIC_QT_LOGGER_H
 
 #include <cstdio>
 #include "gmic_qt.h"
@@ -42,7 +42,11 @@ public:
   static void setMode(const GmicQt::OutputMessageMode mode);
   static void clear();
   static void close();
-  static void log(const QString & message);
+  static void log(const QString & message, const QString & hint, bool space = false);
+  static void error(const QString & message, bool space = false);
+  static void warning(const QString & message, bool space = false);
+  static void note(const QString & message, bool space = false);
+  static void log(const QString & message, bool space = false);
   Logger() = delete;
 
 private:
@@ -50,4 +54,4 @@ private:
   static Mode _currentMode;
 };
 
-#endif // _GMIC_QT_LOGGER_H_
+#endif // GMIC_QT_LOGGER_H

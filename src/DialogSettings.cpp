@@ -82,7 +82,6 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   }
 
   ui->outputMessages->setToolTip(tr("Output messages"));
-  QString dummy3(tr("Output messages..."));
   ui->outputMessages->addItem(tr("Quiet (default)"), GmicQt::Quiet);
   ui->outputMessages->addItem(tr("Verbose (layer name)"), GmicQt::VerboseLayerName);
   ui->outputMessages->addItem(tr("Verbose (console)"), GmicQt::VerboseConsole);
@@ -98,7 +97,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
     }
   }
 
-  ui->sbPreviewTimeout->setRange(1, 360);
+  ui->sbPreviewTimeout->setRange(0, 999);
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);

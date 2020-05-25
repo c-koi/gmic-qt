@@ -333,7 +333,6 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     }
     break;
   case GmicQt::All:
-  case GmicQt::AllDesc:
     layers.assign(begLayers, endLayers);
     break;
   case GmicQt::ActiveAndBelow:
@@ -355,10 +354,8 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     }
     break;
   case GmicQt::AllVisibles:
-  case GmicQt::AllVisiblesDesc:
-  case GmicQt::AllInvisibles:
-  case GmicQt::AllInvisiblesDesc: {
-    bool visibility = (mode == GmicQt::AllVisibles || mode == GmicQt::AllVisiblesDesc);
+  case GmicQt::AllInvisibles: {
+    bool visibility = (mode == GmicQt::AllVisibles);
     for (int i = 0; i < layersCount; ++i) {
       if (_gimp_item_get_visible(begLayers[i]) == visibility) {
         layers.push_back(begLayers[i]);
@@ -430,11 +427,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     }
     break;
   case GmicQt::All:
-  case GmicQt::AllDesc:
     inputLayers.assign(layers, end_layers);
-    if (mode == GmicQt::AllDesc) {
-      std::reverse(inputLayers.begin(), inputLayers.end());
-    }
     break;
   case GmicQt::ActiveAndBelow:
     if ((active_layer_id >= 0) && !gimp_item_is_group(active_layer_id)) {
@@ -455,17 +448,12 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     }
     break;
   case GmicQt::AllVisibles:
-  case GmicQt::AllVisiblesDesc:
-  case GmicQt::AllInvisibles:
-  case GmicQt::AllInvisiblesDesc: {
-    bool visibility = (mode == GmicQt::AllVisibles || mode == GmicQt::AllVisiblesDesc);
+  case GmicQt::AllInvisibles: {
+    bool visibility = (mode == GmicQt::AllVisibles);
     for (int i = 0; i < layersCount; ++i) {
       if (_gimp_item_get_visible(layers[i]) == visibility) {
         inputLayers.push_back(layers[i]);
       }
-    }
-    if (mode == GmicQt::AllVisiblesDesc || mode == GmicQt::AllInvisiblesDesc) {
-      std::reverse(inputLayers.begin(), inputLayers.end());
     }
   } break;
   default:
@@ -940,8 +928,7 @@ void gmic_qt_query()
                                       {GIMP_PDB_DRAWABLE, (gchar *)"drawable", (gchar *)"Input drawable (unused)"},
                                       {GIMP_PDB_INT32, (gchar *)"input",
                                        (gchar *)"Input layers mode, when non-interactive"
-                                                " (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles,"
-                                                " 7=all visibles (decr.), 8=all invisibles (decr.), 9=all (decr.))"},
+                                                " (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles)"},
                                       {GIMP_PDB_INT32, (gchar *)"output",
                                        (gchar *)"Output mode, when non-interactive "
                                                 "(0=in place,1=new layers,2=new active layers,3=new image)"},

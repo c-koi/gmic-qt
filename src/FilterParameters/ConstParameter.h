@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CONSTPARAMETER_H_
-#define _GMIC_QT_CONSTPARAMETER_H_
+#ifndef GMIC_QT_CONSTPARAMETER_H
+#define GMIC_QT_CONSTPARAMETER_H
 
 #include "AbstractParameter.h"
 class QLabel;
@@ -32,7 +32,7 @@ class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ConstParameter(QObject * parent = nullptr);
-  ~ConstParameter();
+  ~ConstParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;
@@ -45,4 +45,4 @@ private:
   QString _value;
 };
 
-#endif // _GMIC_QT_CONSTPARAMETER_H_
+#endif // GMIC_QT_CONSTPARAMETER_H

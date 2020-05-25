@@ -22,13 +22,14 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSMODEL_H_
-#define _GMIC_QT_FILTERSMODEL_H_
+#ifndef GMIC_QT_FILTERSMODEL_H
+#define GMIC_QT_FILTERSMODEL_H
 #include <QList>
 #include <QMap>
 #include <QString>
 #include <cstddef>
 #include <vector>
+#include "gmic_qt.h"
 
 class FiltersModel {
 public:
@@ -43,6 +44,7 @@ public:
     Filter & setAccurateIfZoomed(bool accurate);
     Filter & setPath(const QList<QString> & path);
     Filter & setWarningFlag(bool flag);
+    Filter & setDefaultInputMode(GmicQt::InputMode);
     Filter & build();
 
     QString name() const;
@@ -56,6 +58,7 @@ public:
     float previewFactor() const;
     bool isAccurateIfZoomed() const;
     bool isWarning() const;
+    GmicQt::InputMode defaultInputMode() const;
 
     bool matchKeywords(const QList<QString> & keywords) const;
     bool matchFullPath(const QList<QString> & path) const;
@@ -67,6 +70,7 @@ public:
     QList<QString> _plainPath;
     QString _command;
     QString _previewCommand;
+    GmicQt::InputMode _defaultInputMode;
     QString _parameters;
     float _previewFactor;
     bool _isAccurateIfZoomed;
@@ -112,4 +116,4 @@ private:
   QMap<QString, Filter> _hash2filter;
 };
 
-#endif // _GMIC_QT_FILTERSMODEL_H_
+#endif // GMIC_QT_FILTERSMODEL_H

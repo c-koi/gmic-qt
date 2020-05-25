@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GLOBALS_H_
-#define _GMIC_QT_GLOBALS_H_
+#ifndef GMIC_QT_GLOBALS_H
+#define GMIC_QT_GLOBALS_H
 
 #define GMIC_QT_ORGANISATION_NAME "GREYC"
 #define GMIC_QT_ORGANISATION_DOMAIN "greyc.fr"
@@ -56,4 +56,4 @@ extern const float PreviewFactorActualSize;
 #define KEYPOINTS_INTERACTIVE_MIDDLE_DELAY_MS ((KEYPOINTS_INTERACTIVE_LOWER_DELAY_MS + KEYPOINTS_INTERACTIVE_UPPER_DELAY_MS) / 2)
 #define KEYPOINTS_INTERACTIVE_AVERAGING_COUNT 6
 
-#endif // _GMIC_QT_GLOBALS_H_
+#endif // GMIC_QT_GLOBALS_H

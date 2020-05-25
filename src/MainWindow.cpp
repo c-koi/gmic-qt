@@ -26,11 +26,12 @@
 #include <QAction>
 #include <QCursor>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QEvent>
+#include <QGuiApplication>
 #include <QKeySequence>
 #include <QMessageBox>
 #include <QPalette>
+#include <QScreen>
 #include <QSettings>
 #include <QShowEvent>
 #include <QStyleFactory>
@@ -564,7 +565,14 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
 void MainWindow::onPreviewKeypointsEvent(unsigned int flags, unsigned long time)
 {
   if (flags & PreviewWidget::KeypointMouseReleaseEvent) {
-    ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), true);
+    if (flags & PreviewWidget::KeypointBurstEvent) {
+      // Notify the filter twice (synchronously) so that it can guess that the button has been released
+      ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
+      onPreviewUpdateRequested(true);
+      onPreviewUpdateRequested(true);
+    } else {
+      ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), true);
+    }
     _lastPreviewKeypointBurstUpdateTime = 0;
   } else {
     ui->filterParams->setKeypoints(ui->previewWidget->keypoints(), false);
@@ -794,10 +802,10 @@ void MainWindow::onUpdateFiltersClicked()
 void MainWindow::saveCurrentParameters()
 {
   QString hash = ui->filterParams->filterHash();
-  if (!hash.isEmpty() && (hash == ui->filterParams->filterHash())) {
+  if (!hash.isEmpty()) {
     ParametersCache::setValues(hash, ui->filterParams->valueStringList());
     ParametersCache::setVisibilityStates(hash, ui->filterParams->visibilityStates());
-    ParametersCache::setInputOutputState(hash, ui->inOutSelector->state());
+    ParametersCache::setInputOutputState(hash, ui->inOutSelector->state(), _filtersPresenter->currentFilter().defaultInputMode);
   }
 }
 
@@ -878,14 +886,16 @@ void MainWindow::loadSettings()
       setGeometry(r);
       move(position);
     } else {
-      QDesktopWidget desktop;
-      QRect screenSize = desktop.availableGeometry();
-      screenSize.setWidth(static_cast<int>(screenSize.width() * 0.66));
-      screenSize.setHeight(static_cast<int>(screenSize.height() * 0.66));
-      screenSize.moveCenter(desktop.availableGeometry().center());
-      setGeometry(screenSize);
-      int w = screenSize.width();
-      ui->splitter->setSizes(QList<int>() << static_cast<int>(w * 0.4) << static_cast<int>(w * 0.2) << static_cast<int>(w * 0.4));
+      QList<QScreen *> screens = QGuiApplication::screens();
+      if (!screens.isEmpty()) {
+        QRect screenSize = screens.front()->geometry();
+        screenSize.setWidth(static_cast<int>(screenSize.width() * 0.66));
+        screenSize.setHeight(static_cast<int>(screenSize.height() * 0.66));
+        screenSize.moveCenter(screens.front()->geometry().center());
+        setGeometry(screenSize);
+        int w = screenSize.width();
+        ui->splitter->setSizes(QList<int>() << static_cast<int>(w * 0.4) << static_cast<int>(w * 0.2) << static_cast<int>(w * 0.4));
+      }
     }
   }
 
@@ -1011,7 +1021,17 @@ void MainWindow::activateFilter(bool resetZoom)
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
     ui->inOutSelector->enable();
     ui->inOutSelector->show();
-    ui->inOutSelector->setState(ParametersCache::getInputOutputState(filter.hash), false);
+
+    GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
+    if (inOutState.inputMode == GmicQt::UnspecifiedInputMode) {
+      if ((filter.defaultInputMode != GmicQt::UnspecifiedInputMode)) {
+        inOutState.inputMode = filter.defaultInputMode;
+      } else {
+        inOutState.inputMode = GmicQt::DefaultInputMode;
+      }
+    }
+    ui->inOutSelector->setState(inOutState, false);
+
     ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
     ui->filterName->setVisible(true);
     ui->tbAddFave->setEnabled(true);

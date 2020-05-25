@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_GMIC_QT_H_
-#define _GMIC_QT_GMIC_QT_H_
+#ifndef GMIC_QT_GMIC_QT_H
+#define GMIC_QT_GMIC_QT_H
 
 #ifndef gmic_pixel_type
 #define gmic_pixel_type float
@@ -46,9 +46,9 @@ enum InputMode
   ActiveAndAbove,
   AllVisibles,
   AllInvisibles,
-  AllVisiblesDesc,
-  AllInvisiblesDesc,
-  AllDesc,
+  AllVisiblesDesc_UNUSED,   /* Removed since 2.8.2 */
+  AllInvisiblesDesc_UNUSED, /* Removed since 2.8.2 */
+  AllDesc_UNUSED,           /* Removed since 2.8.2 */
   UnspecifiedInputMode = 100
 };
 extern const InputMode DefaultInputMode;
@@ -86,4 +86,4 @@ int launchPluginHeadlessUsingLastParameters();
 
 int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output);
 
-#endif // _GMIC_QT_GMIC_QT_H_
+#endif // GMIC_QT_GMIC_QT_H

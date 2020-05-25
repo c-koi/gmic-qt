@@ -167,51 +167,46 @@
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="85"/>
-        <source>Output messages...</source>
-        <translation>出力メッセージ...</translation>
-    </message>
-    <message>
-        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Quiet (default)</source>
         <translation>なし (デフォルト)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="87"/>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Verbose (layer name)</source>
         <translation>詳細 (レイヤー名)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="88"/>
+        <location filename="../src/DialogSettings.cpp" line="87"/>
         <source>Verbose (console)</source>
         <translation>詳細 (コンソール)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="89"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Verbose (log file)</source>
         <translation>詳細 (ログファイル)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="90"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Very verbose (console)</source>
         <translation>非常に詳細 (コンソール)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="91"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Very verbose (log file)</source>
         <translation>非常に詳細 (ログファイル)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="92"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Debug (console)</source>
         <translation>デバッグ (コンソール)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="93"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Debug (log file)</source>
         <translation>デバッグ (ログファイル)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="109"/>
+        <location filename="../src/DialogSettings.cpp" line="108"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>チェックすると、システムに標準搭載された色選択ダイアログを使用します。チェックを外すと、Qt の色選択ダイアログを使用します</translation>
     </message>
@@ -250,7 +245,7 @@
 <context>
     <name>FiltersPresenter</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="411"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="418"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
         <translation type="unfinished"></translation>
@@ -270,7 +265,7 @@
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="66"/>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
         <source>Remove fave</source>
         <translation>お気に入りから削除</translation>
     </message>
@@ -285,7 +280,7 @@
         <translation>お気に入りに追加</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -368,89 +363,74 @@
         <translation>すべての不可視レイヤー</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
-        <source>All visible (decr.)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
-        <source>All invisible (decr.)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
-        <source>All (decr.)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/inoutpanel.ui" line="138"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
         <source>Output mode</source>
         <translation>出力モード</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
         <source>In place (default)</source>
         <translation>現在のレイヤー (デフォルト)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
         <source>New layer(s)</source>
         <translation>新規レイヤー</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
         <source>New active layer(s)</source>
         <translation>新規アクティブレイヤー</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
         <source>New image</source>
         <translation>新規画像</translation>
     </message>
     <message>
         <location filename="../ui/inoutpanel.ui" line="125"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
         <source>Preview mode</source>
         <translation>プレビューモード</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
         <source>1st output (default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
         <source>2nd output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
         <source>3rd output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
         <source>4th output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>1st -&gt; 2nd output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
         <source>1st -&gt; 3rd output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
         <source>1st -&gt; 4th output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
         <source>All outputs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -491,7 +471,7 @@
         <translation>インターネット</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
+        <location filename="../src/MainWindow.cpp" line="105"/>
         <source>Selection mode</source>
         <translation>選択モード</translation>
     </message>
@@ -541,104 +521,104 @@
         <translation>OK(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="82"/>
+        <location filename="../src/MainWindow.cpp" line="83"/>
         <source>Add fave</source>
         <translation>お気に入りに追加</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="84"/>
+        <location filename="../src/MainWindow.cpp" line="85"/>
         <source>Reset parameters to default values</source>
         <translation>パラメータの値を初期化</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="88"/>
         <source>Update filters (Ctrl+R / F5)</source>
         <translation>フィルタを更新</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="89"/>
+        <location filename="../src/MainWindow.cpp" line="90"/>
         <source>Rename fave</source>
         <translation>お気に入りの名前を変更</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
+        <location filename="../src/MainWindow.cpp" line="92"/>
         <source>Remove fave</source>
         <translation>お気に入りから削除</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="95"/>
+        <location filename="../src/MainWindow.cpp" line="96"/>
         <source>Expand/Collapse all</source>
         <translation>すべて展開/すべて畳む</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="97"/>
+        <location filename="../src/MainWindow.cpp" line="98"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;フランス国立科学研究センター (https://www.cnrs.fr)&lt;br/&gt;カーン・ノルマンディー大学 (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
+        <location filename="../src/MainWindow.cpp" line="288"/>
         <source>Update completed</source>
         <translation>更新が完了しました</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
-        <location filename="../src/MainWindow.cpp" line="289"/>
-        <location filename="../src/MainWindow.cpp" line="343"/>
+        <location filename="../src/MainWindow.cpp" line="288"/>
+        <location filename="../src/MainWindow.cpp" line="290"/>
+        <location filename="../src/MainWindow.cpp" line="344"/>
         <source>Filter definitions have been updated.</source>
         <translation>フィルタ定義の更新が完了しました。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="292"/>
+        <location filename="../src/MainWindow.cpp" line="293"/>
         <source>No download was needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="339"/>
+        <location filename="../src/MainWindow.cpp" line="340"/>
         <source>Filters update could not be achieved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="461"/>
+        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>以下のエラーにより&lt;br/&gt;更新に失敗しました:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="467"/>
+        <location filename="../src/MainWindow.cpp" line="468"/>
         <source>Update error</source>
         <translation>更新エラー</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="650"/>
+        <location filename="../src/MainWindow.cpp" line="658"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="742"/>
+        <location filename="../src/MainWindow.cpp" line="750"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1098"/>
         <source>Import faves</source>
         <translation>お気に入りをインポート</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1098"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>以下のファイルからお気に入りをインポートしますか？&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1081"/>
+        <location filename="../src/MainWindow.cpp" line="1101"/>
         <source>Don&apos;t ask again</source>
         <translation>次回から確認しない</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1193"/>
+        <location filename="../src/MainWindow.cpp" line="1213"/>
         <source>Confirmation</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1193"/>
+        <location filename="../src/MainWindow.cpp" line="1213"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>G&apos;MIC コマンドが実行中です。&lt;br&gt;本当にプラグインを終了しますか？</translation>
     </message>
@@ -670,7 +650,7 @@
     </message>
     <message>
         <location filename="../ui/progressinfowidget.ui" line="48"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="48"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="49"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
@@ -680,23 +660,23 @@
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="45"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="46"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="143"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="147"/>
         <source>Updating filters...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="198"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="211"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="202"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="215"/>
         <source>[Processing %1 | %2]</source>
         <translation>[実行中: %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="217"/>
         <source>[Processing %1]</source>
         <translation>[実行中: %1]</translation>
     </message>
@@ -720,17 +700,17 @@
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="134"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="138"/>
         <source>%1 seconds</source>
         <translation>%1 秒</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="144"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="148"/>
         <source>[Processing %1 | %2]</source>
         <translation>|実行中: %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="146"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="150"/>
         <source>[Processing %1]</source>
         <translation>|実行中: %1]</translation>
     </message>
@@ -738,27 +718,27 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="68"/>
         <source>Select an image to open...</source>
         <translation>開く画像を選択...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="68"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>PNG および JPG ファイル (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="88"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="88"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Could not open file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="92"/>
+        <location filename="../src/Host/None/host_none.cpp" line="78"/>
         <source>Default image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -794,32 +774,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="208"/>
+        <location filename="../src/Updater.cpp" line="204"/>
         <source>Could not read/decompress %1</source>
         <translation>%1 を読み込み・展開できませんでした</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="199"/>
+        <location filename="../src/Updater.cpp" line="195"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>%1 のダウンロード中にエラーが発生しました (空ファイル？)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="214"/>
+        <location filename="../src/Updater.cpp" line="210"/>
         <source>Error creating file %1</source>
         <translation>ファイル %1 の作成時にエラーが発生しました</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="218"/>
+        <location filename="../src/Updater.cpp" line="214"/>
         <source>Error writing file %1</source>
         <translation>ファイル %1 の書き込み中にエラーが発生しました</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="235"/>
+        <location filename="../src/Updater.cpp" line="231"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="268"/>
+        <location filename="../src/Updater.cpp" line="264"/>
         <source>Download timeout: %1</source>
         <translation>ダウンロード中にタイムアウト: %1</translation>
     </message>

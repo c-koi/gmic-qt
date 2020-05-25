@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_POINTPARAMETER_H_
-#define _GMIC_QT_POINTPARAMETER_H_
+#ifndef GMIC_QT_POINTPARAMETER_H
+#define GMIC_QT_POINTPARAMETER_H
 
 #include <QColor>
 #include <QColorDialog>
@@ -42,7 +42,7 @@ class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
   PointParameter(QObject * parent = nullptr);
-  ~PointParameter();
+  ~PointParameter() override;
   bool addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
@@ -76,7 +76,7 @@ private:
   QColor _color;
   bool _removable;
   bool _burst;
-  int _radius;
+  float _radius;
   bool _keepOpacityWhenSelected;
 
   QLabel * _label;
@@ -94,4 +94,4 @@ private:
   static unsigned long _randomSeed;
 };
 
-#endif // _GMIC_QT_POINTPARAMETER_H_
+#endif // GMIC_QT_POINTPARAMETER_H

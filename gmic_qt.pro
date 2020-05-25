@@ -16,6 +16,9 @@
 # Possible values are "gcc" or "clang"
 !defined(COMPILER,var) { COMPILER = gcc }
 
+# Possible values are "on" or "off"
+!defined(LTO,var) { LTO=on }
+
 #
 #
 #
@@ -31,6 +34,8 @@
 equals(QT_MAJOR_VERSION,5) {
   !greaterThan(QT_MINOR_VERSION, 1):error("You need Qt 5.2 or greater to build this program.")
 }
+
+DEFINES += QT_DEPRECATED_WARNINGS
 
 #
 # Check that pkg-config is installed (qmake error messages are misleading, if not)
@@ -215,6 +220,17 @@ openmp:equals(COMPILER,"clang") {
     QMAKE_CXXFLAGS_RELEASE += -fopenmp=libomp  -I/usr/lib/gcc/x86_64-redhat-linux/7/include/
     QMAKE_LFLAGS_DEBUG += -fopenmp=libomp
     QMAKE_LFLAGS_RELEASE += -fopenmp=libomp
+}
+
+win32:equals(LTO,"on") {
+    message("Link Time Optimizer disabled (windows platform)")
+    LTO = off
+}
+
+!win32:CONFIG(release, debug|release):gcc|clang:equals(LTO,"on") {
+    message("Link Time Optimizer enabled")
+    QMAKE_CXXFLAGS_RELEASE += -flto
+    QMAKE_LFLAGS_RELEASE += -flto
 }
 
 DEFINES += gmic_gui gmic_build gmic_is_parallel cimg_use_abort
@@ -414,7 +430,7 @@ translations/zh_tw.ts
 
 # PRE_TARGETDEPS +=
 
-QMAKE_CXXFLAGS_RELEASE += -Ofast -s # -O3 -s
+QMAKE_CXXFLAGS_RELEASE += -Ofast # -O3 -s
 QMAKE_LFLAGS_RELEASE += -s
 QMAKE_CXXFLAGS_DEBUG += -Dcimg_verbosity=3
 
@@ -428,8 +444,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
-    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+#    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+#    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui

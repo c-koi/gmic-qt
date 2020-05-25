@@ -30,6 +30,7 @@
 #include <QFile>
 #include "Common.h"
 #include "Globals.h"
+#include "Logger.h"
 #include "Utils.h"
 #include "gmic_qt.h"
 
@@ -71,7 +72,7 @@ void FiltersVisibilityMap::load()
         _hiddenFilters.insert(hash);
       }
     } else {
-      qWarning() << "[gmic-qt] Error: reading" << file.fileName();
+      Logger::error("Cannot read visibility file (" + file.fileName() + ")");
     }
   }
 }
@@ -95,6 +96,6 @@ void FiltersVisibilityMap::save()
     file.write(qCompress(data));
     file.close();
   } else {
-    qWarning() << "[gmic-qt] Error: Cannot write" << path;
+    Logger::error("Cannot write " + path);
   }
 }

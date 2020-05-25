@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_TEXTPARAMETER_H_
-#define _GMIC_QT_TEXTPARAMETER_H_
+#ifndef GMIC_QT_TEXTPARAMETER_H
+#define GMIC_QT_TEXTPARAMETER_H
 
 #include <QString>
 #include "AbstractParameter.h"
@@ -38,7 +38,7 @@ class TextParameter : public AbstractParameter {
   Q_OBJECT
 public:
   TextParameter(QObject * parent = nullptr);
-  ~TextParameter();
+  ~TextParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;
@@ -64,4 +64,4 @@ private:
   bool _connected;
 };
 
-#endif // _GMIC_QT_TEXTPARAMETER_H_
+#endif // GMIC_QT_TEXTPARAMETER_H

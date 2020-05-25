@@ -27,6 +27,8 @@
 #include <cmath>
 #include <cstring>
 
+const float KeypointList::Keypoint::DefaultRadius = 6.0f;
+
 KeypointList::KeypointList() = default;
 
 void KeypointList::add(const KeypointList::Keypoint & keypoint)
@@ -47,7 +49,7 @@ void KeypointList::clear()
 QPointF KeypointList::position(int n) const
 {
   const Keypoint & kp = _keypoints[n];
-  return {kp.x, kp.y};
+  return {static_cast<qreal>(kp.x), static_cast<qreal>(kp.y)};
 }
 
 QColor KeypointList::color(int n) const

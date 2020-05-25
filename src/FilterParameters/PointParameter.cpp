@@ -238,8 +238,8 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   _radius = KeypointList::Keypoint::DefaultRadius;
   _keepOpacityWhenSelected = false;
 
-  float x = 50.0;
-  float y = 50.0;
+  float x = 50.0f;
+  float y = 50.0f;
   _removed = false;
   bool xNaN = true;
   bool yNaN = true;
@@ -266,8 +266,8 @@ bool PointParameter::initFromText(const char * text, int & textLength)
     }
   }
 
-  _defaultPosition.setX(x);
-  _defaultPosition.setY(y);
+  _defaultPosition.setX(static_cast<qreal>(x));
+  _defaultPosition.setY(static_cast<qreal>(y));
   _removed = _defaultRemovedStatus = (xNaN || yNaN);
 
   if (params.size() >= 3) {
@@ -341,17 +341,15 @@ bool PointParameter::initFromText(const char * text, int & textLength)
 
   if (params.size() >= 9) {
     QString s = params[8].trimmed();
-    float radius;
     if (s.endsWith("%")) {
       s.chop(1);
-      radius = -s.toFloat(&ok);
+      _radius = -s.toFloat(&ok);
     } else {
-      radius = s.toFloat(&ok);
+      _radius = s.toFloat(&ok);
     }
     if (!ok) {
       return false;
     }
-    _radius = static_cast<int>(radius);
   }
 
   _position = _defaultPosition;

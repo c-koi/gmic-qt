@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERPARAMSWIDGET_H_
-#define _GMIC_QT_FILTERPARAMSWIDGET_H_
+#ifndef GMIC_QT_FILTERPARAMSWIDGET_H
+#define GMIC_QT_FILTERPARAMSWIDGET_H
 
 #include <QGroupBox>
 #include <QList>
@@ -42,7 +42,7 @@ class FilterParametersWidget : public QWidget {
 public:
   FilterParametersWidget(QWidget * parent = nullptr);
   bool build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values, const QList<int> & visibilityStates);
-  void setNoFilter(const QString & message = QString::null);
+  void setNoFilter(const QString & message = QString());
   virtual ~FilterParametersWidget();
   const QString & valueString() const;
   QStringList valueStringList() const;
@@ -83,4 +83,4 @@ protected:
   QString _quotedParameters;
 };
 
-#endif // _GMIC_QT_FILTERPARAMSWIDGET_H_
+#endif // GMIC_QT_FILTERPARAMSWIDGET_H

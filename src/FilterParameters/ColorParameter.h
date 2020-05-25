@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_COLORPARAMETER_H_
-#define _GMIC_QT_COLORPARAMETER_H_
+#ifndef GMIC_QT_COLORPARAMETER_H
+#define GMIC_QT_COLORPARAMETER_H
 
 #include <QColor>
 #include <QColorDialog>
@@ -39,7 +39,7 @@ class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ColorParameter(QObject * parent = nullptr);
-  ~ColorParameter();
+  ~ColorParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;
@@ -60,4 +60,4 @@ private:
   QColorDialog * _dialog;
 };
 
-#endif // _GMIC_QT_COLORPARAMETER_H_
+#endif // GMIC_QT_COLORPARAMETER_H

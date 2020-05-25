@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERTREEABSTRACTITEM_H_
-#define _GMIC_QT_FILTERTREEABSTRACTITEM_H_
+#ifndef GMIC_QT_FILTERTREEABSTRACTITEM_H
+#define GMIC_QT_FILTERTREEABSTRACTITEM_H
 #include <QStandardItem>
 #include <QStringList>
 
@@ -48,4 +48,4 @@ private:
   bool _isWarning;
 };
 
-#endif // _GMIC_QT_FILTERTREEABSTRACTITEM_H_
+#endif // GMIC_QT_FILTERTREEABSTRACTITEM_H

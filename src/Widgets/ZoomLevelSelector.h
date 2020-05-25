@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_ZOOMLEVELSELECTOR_H
-#define _GMIC_QT_ZOOMLEVELSELECTOR_H
+#ifndef GMIC_QT_ZOOMLEVELSELECTOR_H
+#define GMIC_QT_ZOOMLEVELSELECTOR_H
 
 #include <QDoubleValidator>
 #include <QPalette>
@@ -41,7 +41,7 @@ class ZoomLevelSelector : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ZoomLevelSelector(QWidget * parent = 0);
+  explicit ZoomLevelSelector(QWidget * parent = nullptr);
   ~ZoomLevelSelector();
 
   void setZoomConstraint(const ZoomConstraint & constraint);
@@ -81,4 +81,4 @@ private:
   QDoubleValidator * _doubleValidator;
 };
 
-#endif // _GMIC_QT_ZOOMLEVELSELECTOR_H
+#endif // GMIC_QT_ZOOMLEVELSELECTOR_H

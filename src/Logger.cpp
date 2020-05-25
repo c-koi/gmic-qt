@@ -23,7 +23,10 @@
  *
  */
 #include "Logger.h"
+#include <QDebug>
 #include <QString>
+#include <QStringList>
+#include "Common.h"
 #include "Utils.h"
 #include "gmic_qt.h"
 #include "gmic.h"
@@ -71,8 +74,42 @@ void Logger::clear()
   setMode(mode);
 }
 
-void Logger::log(const QString & message)
+void Logger::log(const QString & message, bool space)
 {
-  std::fprintf(cimg_library::cimg::output(), "%s", message.toLocal8Bit().constData());
+  log(message, QString(), space);
+}
+
+void Logger::log(const QString & message, const QString & hint, bool space)
+{
+  QString text = message;
+  while (!text.isEmpty() && text[text.size() - 1].isSpace()) {
+    text.chop(1);
+  }
+  QStringList lines = text.split("\n", QString::KeepEmptyParts);
+
+  QString prefix = QString("[%1]").arg(GmicQt::pluginCodeName());
+  prefix += hint.isEmpty() ? " " : QString("./%1/ ").arg(hint);
+
+  if (space) {
+    std::fprintf(cimg_library::cimg::output(), "\n");
+  }
+  for (const QString & line : lines) {
+    std::fprintf(cimg_library::cimg::output(), "%s\n", (prefix + line).toLocal8Bit().constData());
+  }
   std::fflush(cimg_library::cimg::output());
+}
+
+void Logger::error(const QString & message, bool space)
+{
+  log(message, "error", space);
+}
+
+void Logger::warning(const QString & message, bool space)
+{
+  log(message, "warning", space);
+}
+
+void Logger::note(const QString & message, bool space)
+{
+  log(message, "note", space);
 }

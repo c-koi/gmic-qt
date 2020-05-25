@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_HOST_H_
-#define _GMIC_QT_HOST_H_
+#ifndef GMIC_QT_HOST_H
+#define GMIC_QT_HOST_H
 #include <QString>
 #include "gmic_qt.h"
 
@@ -106,4 +106,4 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
  */
 void gmic_qt_show_message(const char * message);
 
-#endif // _GMIC_QT_HOST_H_
+#endif // GMIC_QT_HOST_H

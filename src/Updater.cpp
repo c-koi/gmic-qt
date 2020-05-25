@@ -58,13 +58,9 @@ void Updater::updateSources(bool useNetwork)
   _sources.clear();
   _sourceIsStdLib.clear();
   // Build sources map
-  QString prefix;
-  if (_outputMessageMode >= GmicQt::DebugConsole) {
-    prefix = "debug ";
-  } else if (_outputMessageMode >= GmicQt::VerboseLayerName) {
-    prefix = "v -99 ";
-  } else {
-    prefix = "v - ";
+  QString prefix = GmicQt::commandFromOutputMessageMode(_outputMessageMode);
+  if (!prefix.isEmpty()) {
+    prefix.push_back(QChar(' '));
   }
   cimg_library::CImgList<gmic_pixel_type> gptSources;
   cimg_library::CImgList<char> names;
@@ -233,11 +229,11 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
     d << error;
     str = str.trimmed();
     _errorMessages << QString(tr("Error downloading %1<br/>Error %2: %3")).arg(reply->request().url().toString()).arg(static_cast<int>(error)).arg(str);
-    Logger::log("\n******* Update Error ******\n");
-    Logger::log(QString("Error: %1\n").arg(reply->errorString()));
-    Logger::log("******* Full replay contents ******\n");
-    Logger::log(reply->readAll());
-    Logger::log(QString("\n******** HTTP Status: %1\n").arg(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()));
+    Logger::error("Update failed");
+    Logger::note(QString("Error string: %1").arg(reply->errorString()));
+    Logger::note("******* Full reply contents ******\n");
+    Logger::note(reply->readAll());
+    Logger::note(QString("******** HTTP Status: %1").arg(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()));
   }
   _pendingReplies.remove(reply);
   if (_pendingReplies.isEmpty()) {

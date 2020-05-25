@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CLICKABLELABEL_H
-#define _GMIC_QT_CLICKABLELABEL_H
+#ifndef GMIC_QT_CLICKABLELABEL_H
+#define GMIC_QT_CLICKABLELABEL_H
 
 #include <QLabel>
 
@@ -32,10 +32,10 @@ class QMouseEvent;
 class ClickableLabel : public QLabel {
   Q_OBJECT
 public:
-  ClickableLabel(QWidget * parent = 0);
+  ClickableLabel(QWidget * parent = nullptr);
   void mousePressEvent(QMouseEvent * e);
 signals:
   void clicked();
 };
 
-#endif // _GMIC_QT_CLICKABLELABEL_H
+#endif // GMIC_QT_CLICKABLELABEL_H

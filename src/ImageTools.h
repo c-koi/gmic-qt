@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_IMAGETOOLS_H
-#define _GMIC_QT_IMAGETOOLS_H
+#ifndef GMIC_QT_IMAGETOOLS_H
+#define GMIC_QT_IMAGETOOLS_H
 
 #include "Common.h"
 #include "PreviewMode.h"
@@ -44,4 +44,4 @@ void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_librar
 
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image);
 
-#endif // _GMIC_QT_IMAGETOOLS_H
+#endif // GMIC_QT_IMAGETOOLS_H

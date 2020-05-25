@@ -22,13 +22,14 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSPRESENTER_H_
-#define _GMIC_QT_FILTERSPRESENTER_H_
+#ifndef GMIC_QT_FILTERSPRESENTER_H
+#define GMIC_QT_FILTERSPRESENTER_H
 #include <QObject>
 #include "FilterSelector/FavesModel.h"
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
 #include "InputOutputState.h"
+#include "gmic_qt.h"
 
 class QSettings;
 
@@ -43,6 +44,7 @@ public:
     QString parameters;
     QList<QString> defaultParameterValues;
     QList<int> defaultVisibilityStates;
+    GmicQt::InputMode defaultInputMode;
     QString hash;
     bool isAccurateIfZoomed;
     float previewFactor;
@@ -124,4 +126,4 @@ private:
   QString _errorMessage;
 };
 
-#endif // _GMIC_QT_FILTERSPRESENTER_H_
+#endif // GMIC_QT_FILTERSPRESENTER_H

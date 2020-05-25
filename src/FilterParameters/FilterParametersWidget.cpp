@@ -54,7 +54,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   auto grid = new QGridLayout(this);
   grid->setRowStretch(1, 2);
 
-  QByteArray rawText = parameters.toLatin1();
+  QByteArray rawText = parameters.toUtf8();
   const char * cstr = rawText.constData();
   int length;
 

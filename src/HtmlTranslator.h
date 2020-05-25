@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_HTMLTRANSLATOR_H_
-#define _GMIC_QT_HTMLTRANSLATOR_H_
+#ifndef GMIC_QT_HTMLTRANSLATOR_H
+#define GMIC_QT_HTMLTRANSLATOR_H
 
 #include <QString>
 #include <QTextDocument>
@@ -38,4 +38,4 @@ private:
   static QTextDocument _document;
 };
 
-#endif //  _GMIC_QT_HTMLTRANSLATOR_H_
+#endif //  GMIC_QT_HTMLTRANSLATOR_H

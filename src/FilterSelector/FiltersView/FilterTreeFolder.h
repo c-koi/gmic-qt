@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERTREEFOLDER_H_
-#define _GMIC_QT_FILTERTREEFOLDER_H_
+#ifndef GMIC_QT_FILTERTREEFOLDER_H
+#define GMIC_QT_FILTERTREEFOLDER_H
 #include <QStandardItem>
 #include <QString>
 #include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
@@ -42,4 +42,4 @@ private:
   bool _isFaveFolder;
 };
 
-#endif // _GMIC_QT_FILTERTREEFOLDER_H_
+#endif // GMIC_QT_FILTERTREEFOLDER_H

@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_SEPARATORPARAMETER_H_
-#define _GMIC_QT_SEPARATORPARAMETER_H_
+#ifndef GMIC_QT_SEPARATORPARAMETER_H
+#define GMIC_QT_SEPARATORPARAMETER_H
 
 #include "AbstractParameter.h"
 class QFrame;
@@ -32,7 +32,7 @@ class SeparatorParameter : public AbstractParameter {
   Q_OBJECT
 public:
   SeparatorParameter(QObject * parent = nullptr);
-  ~SeparatorParameter();
+  ~SeparatorParameter()  override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   void setValue(const QString & value) override;
@@ -43,4 +43,4 @@ private:
   QFrame * _frame;
 };
 
-#endif // _GMIC_QT_SEPARATORPARAMETER_H_
+#endif // GMIC_QT_SEPARATORPARAMETER_H

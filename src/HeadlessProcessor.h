@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_HEADLESSPROCESSOR_H_
-#define _GMIC_QT_HEADLESSPROCESSOR_H_
+#ifndef GMIC_QT_HEADLESSPROCESSOR_H
+#define GMIC_QT_HEADLESSPROCESSOR_H
 
 #include <QObject>
 #include <QString>
@@ -54,7 +54,7 @@ public:
    *
    * @param parent
    */
-  explicit HeadlessProcessor(QObject * parent = 0);
+  explicit HeadlessProcessor(QObject * parent = nullptr);
 
   ~HeadlessProcessor();
   QString command() const;
@@ -87,4 +87,4 @@ private:
   QString _gmicStatusQuotedParameters;
 };
 
-#endif // _GMIC_QT_HEADLESSPROCESSOR_H_
+#endif // GMIC_QT_HEADLESSPROCESSOR_H

@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT__FILTERTHREAD_H_
-#define _GMIC_QT__FILTERTHREAD_H_
+#ifndef GMIC_QT__FILTERTHREAD_H
+#define GMIC_QT__FILTERTHREAD_H
 
 #include <QString>
 #include <QThread>
@@ -91,4 +91,4 @@ private:
   QTime _startTime;
 };
 
-#endif // _GMIC_QT__FILTERTHREAD_H_
+#endif // GMIC_QT__FILTERTHREAD_H

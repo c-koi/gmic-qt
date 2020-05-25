@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_LAYERS_EXTENT_PROXY_H_
-#define _GMIC_QT_LAYERS_EXTENT_PROXY_H_
+#ifndef GMIC_QT_LAYERS_EXTENT_PROXY_H
+#define GMIC_QT_LAYERS_EXTENT_PROXY_H
 #include <QSize>
 #include "gmic_qt.h"
 
@@ -40,4 +40,4 @@ private:
   static GmicQt::InputMode _inputMode;
 };
 
-#endif // _GMIC_QT_LAYERS_EXTENT_PROXY_H_
+#endif // GMIC_QT_LAYERS_EXTENT_PROXY_H

@@ -20,6 +20,31 @@
         <translation>parametrar</translation>
     </message>
     <message>
+        <location filename="../ui/dialogsettings.ui" line="64"/>
+        <source>Preview on the &amp;left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="94"/>
+        <source>Pre&amp;view on right side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="119"/>
+        <source>&amp;Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="126"/>
+        <source>Dar&amp;k</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="186"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Warning: preview may be inaccurate&lt;br/&gt;if checked.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/dialogsettings.ui" line="221"/>
         <source>Internet updates</source>
         <translation>Internetuppdateringar</translation>
@@ -40,29 +65,9 @@
         <translation>Gränssnitt</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="64"/>
-        <source>Preview on the left</source>
-        <translation>Förhandsgranska till vänster</translation>
-    </message>
-    <message>
-        <location filename="../ui/dialogsettings.ui" line="94"/>
-        <source>Preview on right side</source>
-        <translation>Förhandsgranska på höger sida</translation>
-    </message>
-    <message>
         <location filename="../ui/dialogsettings.ui" line="113"/>
         <source>Theme</source>
         <translation>Tema</translation>
-    </message>
-    <message>
-        <location filename="../ui/dialogsettings.ui" line="119"/>
-        <source>Default</source>
-        <translation>Standard</translation>
-    </message>
-    <message>
-        <location filename="../ui/dialogsettings.ui" line="126"/>
-        <source>Dark</source>
-        <translation>Mörk</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="139"/>
@@ -78,11 +83,6 @@
         <location filename="../ui/dialogsettings.ui" line="179"/>
         <source>Always enable preview zooming</source>
         <translation>Aktivera alltid förhandsgranskning</translation>
-    </message>
-    <message>
-        <location filename="../ui/dialogsettings.ui" line="186"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Varning: förhandsgranskningen kan vara felaktigt &lt;br/&gt;if valda.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="215"/>
@@ -167,51 +167,46 @@
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="85"/>
-        <source>Output messages...</source>
-        <translation>Utdata meddelanden...</translation>
-    </message>
-    <message>
-        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Quiet (default)</source>
         <translation>Tyst (standard)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="87"/>
+        <location filename="../src/DialogSettings.cpp" line="86"/>
         <source>Verbose (layer name)</source>
         <translation>Verbose (lagernamn)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="88"/>
+        <location filename="../src/DialogSettings.cpp" line="87"/>
         <source>Verbose (console)</source>
         <translation>Verbosa (konsol)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="89"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Verbose (log file)</source>
         <translation>Verbose (loggfil)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="90"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Very verbose (console)</source>
         <translation>Väldigt verbose (konsol)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="91"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Very verbose (log file)</source>
         <translation>Väldigt verbose (loggfil)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="92"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Debug (console)</source>
         <translation>Felsök (konsol)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="93"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Debug (log file)</source>
         <translation>Felsök (loggfil)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="109"/>
+        <location filename="../src/DialogSettings.cpp" line="108"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Markera för att använda Native / OS-färgdialogen, avmarkera för att använda Qt</translation>
     </message>
@@ -241,16 +236,19 @@
     </message>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="144"/>
-        <source>Error parsing filter parameters</source>
-        <translation>Fel vid analys av filterparametrar</translation>
+        <source>Error parsing filter parameters
+
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FiltersPresenter</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="411"/>
-        <source>Cannot find this fave&apos;s original filter</source>
-        <translation>Kan inte hitta fave&apos;s originalfilter</translation>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="418"/>
+        <source>Cannot find this fave&apos;s original filter
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -267,7 +265,7 @@
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="66"/>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
         <source>Remove fave</source>
         <translation>Ta bort fave</translation>
     </message>
@@ -282,7 +280,7 @@
         <translation>Lägg till fave</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="338"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -367,89 +365,74 @@
         <translation>Alla osynliga</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="53"/>
-        <source>All visible (decr.)</source>
-        <translation>Alla synliga (minska)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="54"/>
-        <source>All invisible (decr.)</source>
-        <translation>Alla synliga (minska)</translation>
-    </message>
-    <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="55"/>
-        <source>All (decr.)</source>
-        <translation>Alla (minska)</translation>
-    </message>
-    <message>
         <location filename="../ui/inoutpanel.ui" line="138"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="57"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
         <source>Output mode</source>
         <translation>Utdata-läge</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="58"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
         <source>In place (default)</source>
         <translation>På plats (standard)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="59"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
         <source>New layer(s)</source>
         <translation>Nya lager</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="60"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
         <source>New active layer(s)</source>
         <translation>Ny aktivt lager</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="61"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="62"/>
         <source>New image</source>
         <translation>New image</translation>
     </message>
     <message>
         <location filename="../ui/inoutpanel.ui" line="125"/>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="63"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
         <source>Preview mode</source>
         <translation>Förhandsgranskningsläge</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="64"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
         <source>1st output (default)</source>
         <translation>1:a utdata (standard)</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="65"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
         <source>2nd output</source>
         <translation>2:a utdata</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="66"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
         <source>3rd output</source>
         <translation>2:e utdata</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="67"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
         <source>4th output</source>
         <translation>4:e utdata</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="68"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>1st -&gt; 2nd output</source>
         <translation>1:a一 -&gt; 2:a utdata</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
         <source>1st -&gt; 3rd output</source>
         <translation>1:a一 -&gt; 3:e utdata</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
         <source>1st -&gt; 4th output</source>
         <translation>1:a一 -&gt; 4:e utdata</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
+        <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
         <source>All outputs</source>
         <translation>All utdata</translation>
     </message>
@@ -497,7 +480,7 @@
     <message>
         <location filename="../ui/mainwindow.ui" line="379"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(högerklicka på förhandsgranskningsbild för omedelbar byte)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&gt;&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(högerklicka på förhandsgranskningsbild för omedelbar byte)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="382"/>
@@ -535,111 +518,111 @@
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="82"/>
+        <location filename="../src/MainWindow.cpp" line="83"/>
         <source>Add fave</source>
         <translation>Lägg till fave</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="84"/>
+        <location filename="../src/MainWindow.cpp" line="85"/>
         <source>Reset parameters to default values</source>
         <translation>Återställ parametrarna till standardvärden</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="88"/>
         <source>Update filters (Ctrl+R / F5)</source>
         <translation>Uppdatera filter (Ctrl+R / F5)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="89"/>
+        <location filename="../src/MainWindow.cpp" line="90"/>
         <source>Rename fave</source>
         <translation>Byt namn på fave</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
+        <location filename="../src/MainWindow.cpp" line="92"/>
         <source>Remove fave</source>
         <translation>Ta bort fave</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="95"/>
+        <location filename="../src/MainWindow.cpp" line="96"/>
         <source>Expand/Collapse all</source>
         <translation>Expandera/Dölj alla</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="97"/>
+        <location filename="../src/MainWindow.cpp" line="98"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
+        <location filename="../src/MainWindow.cpp" line="105"/>
         <source>Selection mode</source>
         <translation>Valläge</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
+        <location filename="../src/MainWindow.cpp" line="288"/>
         <source>Update completed</source>
         <translation>Uppdateringen slutförd</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
-        <location filename="../src/MainWindow.cpp" line="289"/>
-        <location filename="../src/MainWindow.cpp" line="343"/>
+        <location filename="../src/MainWindow.cpp" line="288"/>
+        <location filename="../src/MainWindow.cpp" line="290"/>
+        <location filename="../src/MainWindow.cpp" line="344"/>
         <source>Filter definitions have been updated.</source>
         <translation>Filterdefinitioner har uppdaterats.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="292"/>
+        <location filename="../src/MainWindow.cpp" line="293"/>
         <source>No download was needed.</source>
         <translation>Inga nerladdningar behövs.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="339"/>
+        <location filename="../src/MainWindow.cpp" line="340"/>
         <source>Filters update could not be achieved</source>
         <translation>Filteruppdatering kunde inte utföras</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="461"/>
+        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Uppdateringen kunde inte uppnås&lt;br/&gt;på grund av följande fel:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="467"/>
+        <location filename="../src/MainWindow.cpp" line="468"/>
         <source>Update error</source>
         <translation>Uppdateringsfel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="650"/>
+        <location filename="../src/MainWindow.cpp" line="658"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="742"/>
+        <location filename="../src/MainWindow.cpp" line="750"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>Väntar på avbrutet arbete...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1098"/>
         <source>Import faves</source>
         <translation>Importera faves</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1098"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Vill du importera faves från filen nedan?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1081"/>
+        <location filename="../src/MainWindow.cpp" line="1101"/>
         <source>Don&apos;t ask again</source>
         <translation>Fråga inte igen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1193"/>
+        <location filename="../src/MainWindow.cpp" line="1213"/>
         <source>Confirmation</source>
         <translation>Bekräfta</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1193"/>
+        <location filename="../src/MainWindow.cpp" line="1213"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
-        <translation>Ett g'mic-kommando körs.&lt;br&gt;Vill du verkligen stänga plugin-programmet?</translation>
+        <translation>Ett g&apos;mic-kommando körs.&lt;br&gt;Vill du verkligen stänga plugin-programmet?</translation>
     </message>
 </context>
 <context>
@@ -669,7 +652,7 @@
     </message>
     <message>
         <location filename="../ui/progressinfowidget.ui" line="48"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="48"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="49"/>
         <source>Abort</source>
         <translation>Avbryt</translation>
     </message>
@@ -679,23 +662,23 @@
         <translation>Textetikett</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="45"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="46"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation>G&apos;MIC-Qt Plug-in progression</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="143"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="147"/>
         <source>Updating filters...</source>
         <translation>Uppdaterar filter ...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="198"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="211"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="202"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="215"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Bearbetar %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="217"/>
         <source>[Processing %1]</source>
         <translation>[Bearbetar %1]</translation>
     </message>
@@ -719,17 +702,17 @@
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="134"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="138"/>
         <source>%1 seconds</source>
         <translation>%1 sekunder</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="144"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="148"/>
         <source>[Processing %1 | %2]</source>
         <translation>[Bearbetar %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="146"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="150"/>
         <source>[Processing %1]</source>
         <translation>[Bearbetar %1]</translation>
     </message>
@@ -747,27 +730,27 @@
         <translation>Tillgängliga filter (%1)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="68"/>
         <source>Select an image to open...</source>
         <translation>Välj en bild som ska öppnas...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="68"/>
         <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
         <translation>PNG &amp; JPG filer (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="88"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="88"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Could not open file.</source>
         <translation>Kunde inte öppna filen.</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="92"/>
+        <location filename="../src/Host/None/host_none.cpp" line="78"/>
         <source>Default image</source>
         <translation>Standardbild</translation>
     </message>
@@ -793,32 +776,32 @@
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="199"/>
+        <location filename="../src/Updater.cpp" line="195"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Fel vid nedladdning av %1 (tom fil?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="208"/>
+        <location filename="../src/Updater.cpp" line="204"/>
         <source>Could not read/decompress %1</source>
         <translation>Kunde inte läsa/dekomprimera %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="214"/>
+        <location filename="../src/Updater.cpp" line="210"/>
         <source>Error creating file %1</source>
         <translation>Fel vid skapande av fil %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="218"/>
+        <location filename="../src/Updater.cpp" line="214"/>
         <source>Error writing file %1</source>
         <translation>Fel vid skrivning av fil %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="235"/>
+        <location filename="../src/Updater.cpp" line="231"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>Fel vid nedladdning %1&lt;br/&gt;Fel %2: %3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="268"/>
+        <location filename="../src/Updater.cpp" line="264"/>
         <source>Download timeout: %1</source>
         <translation>Ladda ner timeout: %1</translation>
     </message>

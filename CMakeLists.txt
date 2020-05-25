@@ -13,6 +13,13 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC OFF)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(EXTRA_LIBRARIES)
+
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif()
+
+message("Build type is " ${CMAKE_BUILD_TYPE})
 
 set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet, or digikam.")
 if (${GMIC_QT_HOST} STREQUAL "none")
@@ -30,10 +37,23 @@ endif()
 message("G'MIC path: " ${GMIC_PATH})
 
 option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
+option(ENABLE_CURL "Add support for curl" ON)
 set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shared library")
 
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
+
+option(ENABLE_LTO "Enable -flto (Link Time Optimizer) on gcc and clang" ON)
+
+if (WIN32)
+    message("LTO is disabled (windows platform)")
+    set(ENABLE_LTO OFF)
+endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(ENABLE_LTO OFF)
+endif()
+
 
 #
 # Look for G'MIC repository
@@ -87,9 +107,6 @@ if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
 endif()
 
 
-
-
-
 option(PRERELEASE "Set to ON makes this a prelease build")
 if (${PRERELEASE})
     string(TIMESTAMP PRERELEASE_DATE %y%m%d)
@@ -101,7 +118,6 @@ option(DRMINGW "Set to ON enables the drmingw debugger.")
 if (${DRMINGW})
     add_definitions(-DDRMINGW)
 endif()
-
 
 
 # Required packages
@@ -146,16 +162,23 @@ include_directories(SYSTEM ${ZLIB_INCLUDE_DIRS} )
 #
 find_package(FFTW3 REQUIRED)
 add_definitions(-Dcimg_use_fftw3 )
-add_definitions(-Dcimg_use_fftw3_singlethread )
 include_directories(${FFTW3_INCLUDE_DIR})
+find_library(FFTW3_THREADS_LIB fftw3_threads PATHS ${FFTW3_LIBRARY_DIRS})
+if(FFTW3_THREADS_LIB STREQUAL "FFTW3_THREADS_LIB-NOTFOUND")
+    add_definitions(-Dcimg_use_fftw3_singlethread)
+else()
+    list(APPEND EXTRA_LIBRARIES "-lfftw3_threads")
+endif()
 
 #
 # CURL
 #
-find_package(CURL)
-if (CURL_FOUND)
-    add_definitions(-Dcimg_use_curl)
-    include_directories(SYSTEM ${CURL_INCLUDE_DIRS} )
+if(ENABLE_CURL)
+    find_package(CURL)
+    if (CURL_FOUND)
+        add_definitions(-Dcimg_use_curl)
+        include_directories(SYSTEM ${CURL_INCLUDE_DIRS} )
+    endif()
 endif()
 
 #
@@ -170,11 +193,20 @@ set_package_properties(OpenMP PROPERTIES
 
 if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8.3 AND OPENMP_FOUND)
     message("G'Mic: using OpenMP")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     add_definitions(-Dcimg_use_openmp)
     add_definitions(-fopenmp)
 endif()
 
+#
+# LTO option
+#
+
+if (ENABLE_LTO AND (CMAKE_COMPILER_IS_GNUCC OR (CMAKE_CSS_COMPILER_IS STREQUAL "Clang")))
+    message("Link Time Optimizer enabled")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
+endif()
 
 #
 # add all defines
@@ -188,13 +220,16 @@ set(gmic_qt_LIBRARIES
         ${PNG_LIBRARIES}
         ${FFTW3_LIBRARIES}
         ${ZLIB_LIBRARIES}
+        ${EXTRA_LIBRARIES}
 )
 
-if (CURL_FOUND)
-    set(gmic_qt_LIBRARIES
-        ${gmic_qt_LIBRARIES}
-        ${CURL_LIBRARIES}
-    )
+if(ENABLE_CURL)
+    if (CURL_FOUND)
+        set(gmic_qt_LIBRARIES
+            ${gmic_qt_LIBRARIES}
+            ${CURL_LIBRARIES}
+        )
+    endif()
 endif()
 
 add_definitions(-Dgmic_build)
@@ -234,22 +269,16 @@ if (WIN32)
     )
 endif()
 
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release")
-endif()
-
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH "$ORIGIN/")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    message("Debug build")
     add_definitions(-D_GMIC_QT_DEBUG_)
     if(ENABLE_ASAN)
       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
       set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
     endif(ENABLE_ASAN)
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
-    message("Release build")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
     string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
     string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
@@ -259,7 +288,6 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
       set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
     endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-    message("Release build with debug info")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
     string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
     string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
@@ -470,7 +498,7 @@ qt5_add_translation(gmic_qt_QM
     ${gmic_translation_files}
   )
 
-install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
+# install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
 
 set(gmic_qt_QRC
     gmic_qt.qrc
@@ -485,7 +513,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GIMP2_INCLUDE_DIRS}")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
-    add_definitions(-DGMIC_HOST=gimp_qt -DGIMP_DISABLE_DEPRECATED)
+    add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
       gmic_gimp_qt

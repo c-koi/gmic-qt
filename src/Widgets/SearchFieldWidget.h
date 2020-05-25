@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_SEARCHFIELDWIDGET_H_
-#define _GMIC_QT_SEARCHFIELDWIDGET_H_
+#ifndef GMIC_QT_SEARCHFIELDWIDGET_H
+#define GMIC_QT_SEARCHFIELDWIDGET_H
 #include <QIcon>
 #include <QWidget>
 
@@ -39,7 +39,7 @@ class QToolButton;
 class SearchFieldWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit SearchFieldWidget(QWidget * parent = 0);
+  explicit SearchFieldWidget(QWidget * parent = nullptr);
   ~SearchFieldWidget();
   QString text() const;
 public slots:
@@ -62,4 +62,4 @@ private:
 #endif
 };
 
-#endif // _GMIC_QT_SEARCHFIELDWIDGET_H_
+#endif // GMIC_QT_SEARCHFIELDWIDGET_H

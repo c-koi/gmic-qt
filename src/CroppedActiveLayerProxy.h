@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CROPPEDACTIVELAYERPROXY_H_
-#define _GMIC_QT_CROPPEDACTIVELAYERPROXY_H_
+#ifndef GMIC_QT_CROPPEDACTIVELAYERPROXY_H
+#define GMIC_QT_CROPPEDACTIVELAYERPROXY_H
 
 #include <QSize>
 #include <memory>
@@ -52,4 +52,4 @@ private:
   static double _height;
 };
 
-#endif // _GMIC_QT_CROPPEDACTIVELAYERPROXY_H_
+#endif // GMIC_QT_CROPPEDACTIVELAYERPROXY_H

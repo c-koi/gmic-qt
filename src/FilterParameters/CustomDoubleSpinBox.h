@@ -22,18 +22,30 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_CUSTOMDOUBLESPINBOX_H_
-#define _GMIC_QT_CUSTOMDOUBLESPINBOX_H_
+#ifndef GMIC_QT_CUSTOMDOUBLESPINBOX_H
+#define GMIC_QT_CUSTOMDOUBLESPINBOX_H
 
 #include <QDoubleSpinBox>
+#include <QSize>
+class QShowEvent;
+class QResizeEvent;
 
 class CustomDoubleSpinBox : public QDoubleSpinBox {
   Q_OBJECT
 public:
-  CustomDoubleSpinBox(QWidget * parent = nullptr);
-  ~CustomDoubleSpinBox();
-
+  CustomDoubleSpinBox(QWidget * parent, float min, float max);
+  ~CustomDoubleSpinBox() override;
   QString textFromValue(double value) const override;
+
+protected:
+  QSize sizeHint() const override;
+  QSize minimumSizeHint() const override;
+
+private:
+  QSize _sizeHint;
+  QSize _minimumSizeHint;
+  static const int MAX_DIGITS = 5;
+  static int integerPartDigitCount(float value);
 };
 
-#endif // _GMIC_QT_CUSTOMDOUBLESPINBOX_H_
+#endif // GMIC_QT_CUSTOMDOUBLESPINBOX_H

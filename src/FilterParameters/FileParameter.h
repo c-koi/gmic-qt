@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILEPARAMETER_H_
-#define _GMIC_QT_FILEPARAMETER_H_
+#ifndef GMIC_QT_FILEPARAMETER_H
+#define GMIC_QT_FILEPARAMETER_H
 
 #include <QString>
 #include "AbstractParameter.h"
@@ -34,7 +34,7 @@ class FileParameter : public AbstractParameter {
   Q_OBJECT
 public:
   FileParameter(QObject * parent = nullptr);
-  ~FileParameter();
+  ~FileParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
   QString unquotedTextValue() const override;
@@ -60,4 +60,4 @@ private:
   DialogMode _dialogMode;
 };
 
-#endif // _GMIC_QT_FILEPARAMETER_H_
+#endif // GMIC_QT_FILEPARAMETER_H

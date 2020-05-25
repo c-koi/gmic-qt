@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_FILTERSMODELREADER_H_
-#define _GMIC_QT_FILTERSMODELREADER_H_
+#ifndef GMIC_QT_FILTERSMODELREADER_H
+#define GMIC_QT_FILTERSMODELREADER_H
 #include <QString>
 #include "FilterSelector/FiltersModel.h"
 
@@ -39,6 +39,7 @@ private:
   FiltersModel & _model;
   static QString readBufferLine(QBuffer &);
   static bool textIsPrecededBySpacesInSomeLineOfArray(const QByteArray & text, const QByteArray & array);
+  static GmicQt::InputMode symbolToInputMode(const QString & str);
 };
 
-#endif // _GMIC_QT_FILTERSMODELREADER_H_
+#endif // GMIC_QT_FILTERSMODELREADER_H

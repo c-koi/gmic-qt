@@ -112,6 +112,23 @@ bool ColorParameter::initFromText(const char * text, int & textLength)
     return false;
   }
   _name = HtmlTranslator::html2txt(list[0]);
+
+  // color(#e9cc00) and color(#e9cc00ff)
+  const QString trimmed = list[1].trimmed();
+  QRegExp colorRE("#[0-9a-fA-F]{6,8}");
+  if (colorRE.exactMatch(trimmed)) {
+    _default = QColor(trimmed.left(7));
+    if (trimmed.length() == 9) {
+      _alphaChannel = true;
+      _default.setAlpha(trimmed.right(2).toInt(nullptr, 16));
+    } else {
+      _alphaChannel = false;
+    }
+    _value = _default;
+    return true;
+  }
+
+  // color(120,100,10) and color(120,100,10,128)
   QList<QString> channels = list[1].split(",");
   const int n = channels.size();
   bool okR = true, okG = true, okB = true, okA = true;

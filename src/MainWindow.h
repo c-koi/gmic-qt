@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_MAINWINDOW_H_
-#define _GMIC_QT_MAINWINDOW_H_
+#ifndef GMIC_QT_MAINWINDOW_H
+#define GMIC_QT_MAINWINDOW_H
 
 #include <QIcon>
 #include <QList>
@@ -63,7 +63,7 @@ public:
     PreviewOnRight
   };
 
-  explicit MainWindow(QWidget * parent = 0);
+  explicit MainWindow(QWidget * parent = nullptr);
   ~MainWindow();
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
 
@@ -165,4 +165,4 @@ private:
   ulong _lastPreviewKeypointBurstUpdateTime;
 };
 
-#endif // _GMIC_QT_MAINWINDOW_H_
+#endif // GMIC_QT_MAINWINDOW_H

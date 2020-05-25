@@ -23,8 +23,9 @@
  *
  */
 #include "Widgets/ProgressInfoWidget.h"
-#include <QDesktopWidget>
 #include <QFile>
+#include <QGuiApplication>
+#include <QScreen>
 #include "DialogSettings.h"
 #include "GmicProcessor.h"
 #include "IconLoader.h"
@@ -50,8 +51,11 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   connect(ui->tbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
   if (!parent) {
     QRect position = frameGeometry();
-    position.moveCenter(QDesktopWidget().availableGeometry().center());
-    move(position.topLeft());
+    QList<QScreen *> screens = QGuiApplication::screens();
+    if (!screens.isEmpty()) {
+      position.moveCenter(screens.front()->geometry().center());
+      move(position.topLeft());
+    }
   }
 
   _showingTimer.setSingleShot(true);

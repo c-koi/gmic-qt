@@ -22,8 +22,8 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _GMIC_QT_PARAMETERSCACHE_H
-#define _GMIC_QT_PARAMETERSCACHE_H
+#ifndef GMIC_QT_PARAMETERSCACHE_H
+#define GMIC_QT_PARAMETERSCACHE_H
 
 #include <QHash>
 #include <QList>
@@ -41,7 +41,7 @@ public:
   static void remove(const QString & hash);
 
   static GmicQt::InputOutputState getInputOutputState(const QString & hash);
-  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState &);
+  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state, const GmicQt::InputMode defaultInputMode);
 
   static void cleanup(const QSet<QString> & hashesToKeep);
 
@@ -51,4 +51,4 @@ private:
   static QHash<QString, QList<int>> _visibilityStates;
 };
 
-#endif // _GMIC_QT_PARAMETERSCACHE_H
+#endif // GMIC_QT_PARAMETERSCACHE_H
