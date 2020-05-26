@@ -167,7 +167,7 @@ find_library(FFTW3_THREADS_LIB fftw3_threads PATHS ${FFTW3_LIBRARY_DIRS})
 if(FFTW3_THREADS_LIB STREQUAL "FFTW3_THREADS_LIB-NOTFOUND")
     add_definitions(-Dcimg_use_fftw3_singlethread)
 else()
-    list(APPEND EXTRA_LIBRARIES "-lfftw3_threads")
+    list(APPEND EXTRA_LIBRARIES ${FFTW3_LIBRARIES})
 endif()
 
 #
