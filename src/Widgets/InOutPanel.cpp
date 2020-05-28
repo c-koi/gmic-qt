@@ -273,6 +273,8 @@ void InOutPanel::setTopLabel()
     ui->topLabel->setText(preview ? tr("Input / Preview") : tr("Input"));
   } else if (output) {
     ui->topLabel->setText(preview ? tr("Output / Preview") : tr("Output"));
+  } else if (preview) {
+    ui->topLabel->setText("Preview");
   }
 }
 
