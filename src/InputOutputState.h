@@ -25,7 +25,6 @@
 #ifndef GMIC_QT_INPUTOUTPUTSTATE_H
 #define GMIC_QT_INPUTOUTPUTSTATE_H
 
-#include "PreviewMode.h"
 #include "gmic_qt.h"
 
 class QJsonObject;

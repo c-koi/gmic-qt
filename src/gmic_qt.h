@@ -44,14 +44,14 @@ enum InputMode
   All,
   ActiveAndBelow,
   ActiveAndAbove,
-  AllVisibles,
-  AllInvisibles,
+  AllVisible,
+  AllInvisible,
   AllVisiblesDesc_UNUSED,   /* Removed since 2.8.2 */
   AllInvisiblesDesc_UNUSED, /* Removed since 2.8.2 */
   AllDesc_UNUSED,           /* Removed since 2.8.2 */
   UnspecifiedInputMode = 100
 };
-extern const InputMode DefaultInputMode;
+extern InputMode DefaultInputMode;
 
 enum OutputMode
 {
@@ -61,7 +61,21 @@ enum OutputMode
   NewImage,
   UnspecifiedOutputMode = 100
 };
-extern const OutputMode DefaultOutputMode;
+extern OutputMode DefaultOutputMode;
+
+enum PreviewMode
+{
+  FirstOutput,
+  SecondOutput,
+  ThirdOutput,
+  FourthOutput,
+  First2SecondOutput,
+  First2ThirdOutput,
+  First2FourthOutput,
+  AllOutputs,
+  UnspecifiedPreviewMode = 100
+};
+extern PreviewMode DefaultPreviewMode;
 
 enum OutputMessageMode
 {
@@ -85,5 +99,14 @@ int launchPlugin();
 int launchPluginHeadlessUsingLastParameters();
 
 int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output);
+
+// The following functions should be called before launching the plugin.
+// Caution: at least one mode per category must remain available!
+
+void disableInputMode(GmicQt::InputMode mode);
+
+void disableOutputMode(GmicQt::OutputMode mode);
+
+void disablePreviewMode(GmicQt::PreviewMode mode);
 
 #endif // GMIC_QT_GMIC_QT_H

@@ -129,8 +129,6 @@ message("CImg version is" $$CIMG_VERSION)
    error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'CImg.h' (" $$CIMG_VERSION ") mismatch")
 }
 
-
-
 !isEmpty(PRERELEASE) {
   message( Prerelease date is $$PRERELEASE )
   DEFINES += gmic_prerelease="\\\"$$PRERELEASE\\\""
@@ -291,7 +289,6 @@ HEADERS +=  \
   src/Logger.h \
   src/MainWindow.h \
   src/ParametersCache.h \
-  src/PreviewMode.h \
   src/TimeLogger.h \
   src/Updater.h \
   src/Utils.h \
@@ -364,7 +361,6 @@ SOURCES += \
   src/Logger.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
-  src/PreviewMode.cpp \
   src/TimeLogger.cpp \
   src/Updater.cpp \
   src/Utils.cpp \

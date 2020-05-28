@@ -349,7 +349,6 @@ set (gmic_qt_SRCS
   src/Logger.h
   src/MainWindow.h
   src/ParametersCache.h
-  src/PreviewMode.h
   src/TimeLogger.h
   src/Updater.h
   src/Utils.h
@@ -420,7 +419,6 @@ set (gmic_qt_SRCS
   src/Logger.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
-  src/PreviewMode.cpp
   src/TimeLogger.cpp
   src/Updater.cpp
   src/Utils.cpp

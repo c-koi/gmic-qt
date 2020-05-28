@@ -36,7 +36,6 @@
 #include <QVector>
 #include <deque>
 #include "InputOutputState.h"
-#include "PreviewMode.h"
 #include "gmic_qt.h"
 class FilterThread;
 class FilterSyncRunner;

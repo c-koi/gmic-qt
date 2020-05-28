@@ -149,6 +149,11 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->verticalSplitter->setStretchFactor(0, 5);
   ui->verticalSplitter->setStretchFactor(0, 1);
 
+  if (!ui->inOutSelector->hasActiveControls()) {
+    ui->vSplitterLine->hide();
+    ui->inOutSelector->hide();
+  }
+
   QPalette p = QGuiApplication::palette();
   DialogSettings::UnselectedFilterTextColor = p.color(QPalette::Disabled, QPalette::WindowText);
 
@@ -1020,7 +1025,11 @@ void MainWindow::activateFilter(bool resetZoom)
     }
     ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
     ui->inOutSelector->enable();
-    ui->inOutSelector->show();
+    if (ui->inOutSelector->hasActiveControls()) {
+      ui->inOutSelector->show();
+    } else {
+      ui->inOutSelector->hide();
+    }
 
     GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
     if (inOutState.inputMode == GmicQt::UnspecifiedInputMode) {

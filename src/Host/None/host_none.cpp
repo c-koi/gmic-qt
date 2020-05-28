@@ -200,6 +200,29 @@ int main(int argc, char * argv[])
     filename = DEFAULT_IMAGE;
   }
 #endif
+
+  disableInputMode(GmicQt::NoInput);
+  // disableInputMode(GmicQt::Active);
+  disableInputMode(GmicQt::All);
+  disableInputMode(GmicQt::ActiveAndBelow);
+  disableInputMode(GmicQt::ActiveAndAbove);
+  disableInputMode(GmicQt::AllVisible);
+  disableInputMode(GmicQt::AllInvisible);
+
+  // disableOutputMode(GmicQt::InPlace);
+  disableOutputMode(GmicQt::NewImage);
+  disableOutputMode(GmicQt::NewLayers);
+  disableOutputMode(GmicQt::NewActiveLayers);
+
+  // disablePreviewMode(GmicQt::FirstOutput);
+  disablePreviewMode(GmicQt::SecondOutput);
+  disablePreviewMode(GmicQt::ThirdOutput);
+  disablePreviewMode(GmicQt::FourthOutput);
+  disablePreviewMode(GmicQt::First2SecondOutput);
+  disablePreviewMode(GmicQt::First2ThirdOutput);
+  disablePreviewMode(GmicQt::First2FourthOutput);
+  disablePreviewMode(GmicQt::AllOutputs);
+
   if (filename.isEmpty()) {
     return launchPlugin();
   }

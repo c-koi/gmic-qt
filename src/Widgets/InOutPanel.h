@@ -66,6 +66,12 @@ public:
   void disable();
   void enable();
 
+  static void disableInputMode(GmicQt::InputMode mode);
+  static void disableOutputMode(GmicQt::OutputMode mode);
+  static void disablePreviewMode(GmicQt::PreviewMode mode);
+
+  bool hasActiveControls();
+
 signals:
   void inputModeChanged(GmicQt::InputMode);
   void previewModeChanged(GmicQt::PreviewMode);
@@ -78,9 +84,17 @@ public slots:
   void setDarkTheme();
 
 private:
+  void setDefaultInputMode();
+  void setDefaultOutputMode();
+  void setDefaultPreviewMode();
+  void setTopLabel();
+  void updateLayoutIfUniqueRow();
   bool _notifyValueChange;
   Ui::InOutPanel * ui;
   static const int NoSelection = -1;
+  static QList<GmicQt::InputMode> _enabledInputModes;
+  static QList<GmicQt::OutputMode> _enabledOutputModes;
+  static QList<GmicQt::PreviewMode> _enabledPreviewModes;
 };
 
 #endif // GMIC_QT_INOUTPANEL_H
