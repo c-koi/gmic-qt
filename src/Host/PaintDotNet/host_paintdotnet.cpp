@@ -158,6 +158,20 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    //  disableInputMode(GmicQt::NoInput);
+    disableInputMode(GmicQt::Active);
+    //  disableInputMode(GmicQt::All);
+    disableInputMode(GmicQt::ActiveAndBelow);
+    disableInputMode(GmicQt::ActiveAndAbove);
+    disableInputMode(GmicQt::AllVisible);
+    disableInputMode(GmicQt::AllInvisible);
+
+    // disableOutputMode(GmicQt::InPlace);
+    disableOutputMode(GmicQt::NewImage);
+    disableOutputMode(GmicQt::NewLayers);
+    disableOutputMode(GmicQt::NewActiveLayers);
+
+
     QImage firstLayer(firstLayerImagePath);
 
     if (!firstLayer.isNull())
