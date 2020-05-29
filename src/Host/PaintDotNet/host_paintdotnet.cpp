@@ -608,8 +608,9 @@ int main(int argc, char *argv[])
 
     int exitCode = 0;
 
-    disableInputMode(GmicQt::Active);
-    //  disableInputMode(GmicQt::All);
+    disableInputMode(GmicQt::NoInput);
+    // disableInputMode(GmicQt::Active);
+    // disableInputMode(GmicQt::All);
     disableInputMode(GmicQt::ActiveAndBelow);
     disableInputMode(GmicQt::ActiveAndAbove);
     disableInputMode(GmicQt::AllVisible);
@@ -619,6 +620,15 @@ int main(int argc, char *argv[])
     disableOutputMode(GmicQt::NewImage);
     disableOutputMode(GmicQt::NewLayers);
     disableOutputMode(GmicQt::NewActiveLayers);
+	
+	// disablePreviewMode(GmicQt::FirstOutput);
+    disablePreviewMode(GmicQt::SecondOutput);
+    disablePreviewMode(GmicQt::ThirdOutput);
+    disablePreviewMode(GmicQt::FourthOutput);
+    disablePreviewMode(GmicQt::First2SecondOutput);
+    disablePreviewMode(GmicQt::First2ThirdOutput);
+    disablePreviewMode(GmicQt::First2FourthOutput);
+    disablePreviewMode(GmicQt::AllOutputs);
 
     if (useLastParameters)
     {
