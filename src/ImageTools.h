@@ -26,13 +26,13 @@
 #define GMIC_QT_IMAGETOOLS_H
 
 #include "Common.h"
-#include "PreviewMode.h"
+#include "gmic_qt.h"
 
 namespace cimg_library
 {
 template <typename T> struct CImg;
 template <typename T> struct CImgList;
-}
+} // namespace cimg_library
 
 namespace GmicQt
 {
@@ -40,7 +40,7 @@ template <typename T> void image2uchar(cimg_library::CImg<T> & img);
 template <typename T> void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
 
 void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, GmicQt::PreviewMode previewMode, int previewWidth, int previewHeight);
-}
+} // namespace GmicQt
 
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image);
 

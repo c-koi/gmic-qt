@@ -245,10 +245,10 @@ GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
     return GmicQt::ActiveAndBelow;
   case 'V':
   case 'v':
-    return GmicQt::AllVisibles;
+    return GmicQt::AllVisible;
   case 'I':
   case 'i':
-    return GmicQt::AllInvisibles;
+    return GmicQt::AllInvisible;
   default:
     Logger::warning(QString("'%1' is not recognized as a default input mode").arg(str));
     return GmicQt::UnspecifiedInputMode;

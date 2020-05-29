@@ -40,6 +40,7 @@
 #include "Logger.h"
 #include "MainWindow.h"
 #include "Updater.h"
+#include "Widgets/InOutPanel.h"
 #include "Widgets/LanguageSelectionWidget.h"
 #include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
@@ -51,8 +52,9 @@
 
 namespace GmicQt
 {
-const InputMode DefaultInputMode = Active;
-const OutputMode DefaultOutputMode = InPlace;
+InputMode DefaultInputMode = Active;
+OutputMode DefaultOutputMode = InPlace;
+PreviewMode DefaultPreviewMode = FirstOutput;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
 
 const QString & gmicVersionString()
@@ -195,4 +197,19 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   QObject::connect(&idle, SIGNAL(timeout()), &headlessProcessor, SLOT(startProcessing()));
   idle.start();
   return QCoreApplication::exec();
+}
+
+void disableOutputMode(GmicQt::OutputMode mode)
+{
+  InOutPanel::disableOutputMode(mode);
+}
+
+void disableInputMode(GmicQt::InputMode mode)
+{
+  InOutPanel::disableInputMode(mode);
+}
+
+void disablePreviewMode(GmicQt::PreviewMode mode)
+{
+  InOutPanel::disablePreviewMode(mode);
 }

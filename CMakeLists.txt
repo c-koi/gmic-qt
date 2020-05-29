@@ -167,7 +167,7 @@ find_library(FFTW3_THREADS_LIB fftw3_threads PATHS ${FFTW3_LIBRARY_DIRS})
 if(FFTW3_THREADS_LIB STREQUAL "FFTW3_THREADS_LIB-NOTFOUND")
     add_definitions(-Dcimg_use_fftw3_singlethread)
 else()
-    list(APPEND EXTRA_LIBRARIES "-lfftw3_threads")
+    list(APPEND EXTRA_LIBRARIES ${FFTW3_LIBRARIES})
 endif()
 
 #
@@ -349,7 +349,6 @@ set (gmic_qt_SRCS
   src/Logger.h
   src/MainWindow.h
   src/ParametersCache.h
-  src/PreviewMode.h
   src/TimeLogger.h
   src/Updater.h
   src/Utils.h
@@ -420,7 +419,6 @@ set (gmic_qt_SRCS
   src/Logger.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
-  src/PreviewMode.cpp
   src/TimeLogger.cpp
   src/Updater.cpp
   src/Utils.cpp
@@ -513,7 +511,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GIMP2_INCLUDE_DIRS}")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
-    add_definitions(-DGMIC_HOST=gimp_qt -DGIMP_DISABLE_DEPRECATED)
+    add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
       gmic_gimp_qt
@@ -558,7 +556,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "digikam")
 
     include(GNUInstallDirs)
 
-    find_package(DigikamCore "6.3.0" CONFIG REQUIRED)
+    find_package(DigikamCore CONFIG REQUIRED)
 
     set_package_properties(DigikamCore PROPERTIES
                            URL "http://www.digikam.org"

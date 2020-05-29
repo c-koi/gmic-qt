@@ -353,9 +353,9 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
       layers.push_back(activeLayerID);
     }
     break;
-  case GmicQt::AllVisibles:
-  case GmicQt::AllInvisibles: {
-    bool visibility = (mode == GmicQt::AllVisibles);
+  case GmicQt::AllVisible:
+  case GmicQt::AllInvisible: {
+    bool visibility = (mode == GmicQt::AllVisible);
     for (int i = 0; i < layersCount; ++i) {
       if (_gimp_item_get_visible(begLayers[i]) == visibility) {
         layers.push_back(begLayers[i]);
@@ -447,9 +447,9 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
       inputLayers.push_back(active_layer_id);
     }
     break;
-  case GmicQt::AllVisibles:
-  case GmicQt::AllInvisibles: {
-    bool visibility = (mode == GmicQt::AllVisibles);
+  case GmicQt::AllVisible:
+  case GmicQt::AllInvisible: {
+    bool visibility = (mode == GmicQt::AllVisible);
     for (int i = 0; i < layersCount; ++i) {
       if (_gimp_item_get_visible(layers[i]) == visibility) {
         inputLayers.push_back(layers[i]);

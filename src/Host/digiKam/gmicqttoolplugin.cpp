@@ -37,6 +37,7 @@
 #include "MainWindow.h"
 #include "Widgets/LanguageSelectionWidget.h"
 #include "DialogSettings.h"
+#include "gmic_qt.h"
 
 namespace DigikamEditorGmicQtPlugin
 {
@@ -125,6 +126,19 @@ void GmicQtToolPlugin::slotGmicQt()
         translator->load(QString(":/translations/%1.qm").arg(lang));
         QApplication::installTranslator(translator);
     }
+
+    disableInputMode(GmicQt::NoInput);
+    // disableInputMode(GmicQt::Active);
+    disableInputMode(GmicQt::All);
+    disableInputMode(GmicQt::ActiveAndBelow);
+    disableInputMode(GmicQt::ActiveAndAbove);
+    disableInputMode(GmicQt::AllVisible);
+    disableInputMode(GmicQt::AllInvisible);
+
+    // disableOutputMode(GmicQt::InPlace);
+    disableOutputMode(GmicQt::NewImage);
+    disableOutputMode(GmicQt::NewLayers);
+    disableOutputMode(GmicQt::NewActiveLayers);
 
     QPointer<MainWindow> mainWindow = new MainWindow(0);
     // We want a non modal dialog here.
