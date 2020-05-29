@@ -250,27 +250,6 @@ namespace
     {
         return value < 0.0f ? 0 : value > 255.0f ? 255 : static_cast<quint8>(value);
     }
-    
-    QWidget* GetParentWindow()
-    {
-        foreach(QWidget* widget, qApp->topLevelWidgets())
-        {
-            if (qobject_cast<MainWindow*>(widget) != nullptr && widget->isVisible())
-            {
-                return widget;
-            }
-        }
-
-        return nullptr;
-    }
-
-    void ShowWarningMessage(QString message)
-    {
-        QWidget* parent = GetParentWindow();
-        QString title = QString("G'MIC-Qt for Paint.NET");
-
-        QMessageBox::warning(parent, title, message);
-    }
 }
 
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
@@ -549,12 +528,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
             return;
         }
 
-        QByteArray reply = SendMessageSynchronously(outputImagesCommand.toUtf8());
-
-        if (reply.length() > 0)
-        {
-            ShowWarningMessage(QString::fromUtf8(reply));
-        }
+        SendMessageSynchronously(outputImagesCommand.toUtf8());
     }
 }
 
