@@ -347,6 +347,19 @@ int main(int argc, char *argv[])
 #endif
     }
 
+    disableInputMode(GmicQt::NoInput);
+    // disableInputMode(GmicQt::Active);
+    // disableInputMode(GmicQt::All);
+    // disableInputMode(GmicQt::ActiveAndBelow);
+    // disableInputMode(GmicQt::ActiveAndAbove);
+    disableInputMode(GmicQt::AllVisible);
+    disableInputMode(GmicQt::AllInvisible);
+
+    // disableOutputMode(GmicQt::InPlace);
+    disableOutputMode(GmicQt::NewImage);
+    disableOutputMode(GmicQt::NewLayers);
+    disableOutputMode(GmicQt::NewActiveLayers);
+
     qWarning() << "gmic-qt: socket Key:" << socketKey;
     int r = 0;
     if (headless) {
