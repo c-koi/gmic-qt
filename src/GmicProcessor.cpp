@@ -54,6 +54,7 @@ GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
   _previewRandomSeed = cimg_library::cimg::_rand();
   _lastAppliedCommandInOutState = GmicQt::InputOutputState::Unspecified;
   _filterExecutionTime.start();
+  _completeFullImageProcessingCount = 0;
 }
 
 void GmicProcessor::init()
@@ -197,6 +198,11 @@ void GmicProcessor::setGmicStatusQuotedParameters(const QString & v)
   _gmicStatusQuotedParameters = v;
 }
 
+int GmicProcessor::completedFullImageProcessingCount() const
+{
+  return _completeFullImageProcessingCount;
+}
+
 void GmicProcessor::cancel()
 {
   abortCurrentFilterThread();
@@ -300,8 +306,9 @@ void GmicProcessor::onApplyThreadFinished()
       QString label = QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand());
       gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, label.toLocal8Bit().constData());
     } else {
-      gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, 0);
+      gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, nullptr);
     }
+    _completeFullImageProcessingCount += 1;
     LayersExtentProxy::clear();
     CroppedActiveLayerProxy::clear();
     CroppedImageListProxy::clear();

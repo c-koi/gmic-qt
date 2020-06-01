@@ -62,6 +62,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
   _hasProgressWindow = false;
   ParametersCache::load(true);
+  _processingCompletedProperly = false;
 }
 
 /**
@@ -113,7 +114,7 @@ void HeadlessProcessor::startProcessing()
   _filterThread = new FilterThread(this, _filterName, _lastCommand, _lastArguments, _lastEnvironment, _outputMessageMode);
   _filterThread->swapImages(*_gmicImages);
   _filterThread->setImageNames(imageNames);
-
+  _processingCompletedProperly = false;
   connect(_filterThread, SIGNAL(finished()), this, SLOT(onProcessingFinished()));
   _timer.start();
   _filterThread->start();
@@ -132,6 +133,11 @@ QString HeadlessProcessor::filterName() const
 void HeadlessProcessor::setProgressWindowFlag(bool value)
 {
   _hasProgressWindow = value;
+}
+
+bool HeadlessProcessor::processingCompletedProperly()
+{
+  return _processingCompletedProperly;
 }
 
 void HeadlessProcessor::onTimeout()
@@ -185,6 +191,7 @@ void HeadlessProcessor::onProcessingFinished()
       gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode,
                             (_outputMessageMode == GmicQt::VerboseLayerName) ? QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand()).toLocal8Bit().constData()
                                                                              : nullptr);
+      _processingCompletedProperly = true;
     }
   }
   _filterThread->deleteLater();

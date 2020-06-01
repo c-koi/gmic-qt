@@ -903,7 +903,6 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
   *nreturn_vals = 1;
   return_values[0].type = GIMP_PDB_STATUS;
   int run_mode = (GimpRunMode)param[0].data.d_int32;
-  GimpPDBStatusType status = GIMP_PDB_SUCCESS;
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
@@ -918,7 +917,7 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
     launchPluginHeadless(param[5].data.d_string, (GmicQt::InputMode)(param[3].data.d_int32 + GmicQt::NoInput), GmicQt::OutputMode(param[4].data.d_int32 + GmicQt::InPlace));
     break;
   }
-  return_values[0].data.d_status = status;
+  return_values[0].data.d_status = pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;
 }
 
 void gmic_qt_query()
@@ -950,10 +949,10 @@ void gmic_qt_query()
                          G_N_ELEMENTS(args),        // nparams
                          0,                         // nreturn_vals
                          args,                      // params
-                         0);                        // return_vals
+                         nullptr);                  // return_vals
   gimp_plugin_menu_register(name, "<Image>/Filters");
 }
 
-GimpPlugInInfo PLUG_IN_INFO = {0, 0, gmic_qt_query, gmic_qt_run};
+GimpPlugInInfo PLUG_IN_INFO = {nullptr, nullptr, gmic_qt_query, gmic_qt_run};
 
 MAIN()

@@ -106,6 +106,8 @@ public:
 
   void setGmicStatusQuotedParameters(const QString & v);
 
+  int completedFullImageProcessingCount() const;
+
 public slots:
   void cancel();
 
@@ -150,6 +152,7 @@ private:
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
   QTime _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;
+  int _completeFullImageProcessingCount;
 };
 
 #endif // GMIC_QT_GMICPROCESSOR_H

@@ -64,7 +64,7 @@ public:
   };
 
   explicit MainWindow(QWidget * parent = nullptr);
-  ~MainWindow();
+  ~MainWindow() override;
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
 
   void setDarkTheme();
@@ -79,7 +79,7 @@ public slots:
   void expandOrCollapseFolders();
   void search(const QString &);
   void onOkClicked();
-  void onCloseClicked();
+  void onCancelClicked();
   void onProgressionWidgetCancelClicked();
   void onReset();
   void onPreviewZoomReset();
@@ -100,6 +100,7 @@ public slots:
   void onPreviewImageAvailable();
   void onPreviewError(const QString & message);
   void onParametersChanged();
+  static bool isAccepted();
 
 protected:
   void timerEvent(QTimerEvent *) override;
@@ -147,7 +148,6 @@ private:
   };
 
   Ui::MainWindow * ui;
-
   ProcessingAction _pendingActionAfterCurrentProcessing;
   PreviewPosition _previewPosition = PreviewOnRight;
   bool _showEventReceived = false;
@@ -163,6 +163,7 @@ private:
   FiltersPresenter * _filtersPresenter;
   GmicProcessor _processor;
   ulong _lastPreviewKeypointBurstUpdateTime;
+  static bool _isAccepted;
 };
 
 #endif // GMIC_QT_MAINWINDOW_H
