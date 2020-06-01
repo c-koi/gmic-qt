@@ -619,5 +619,10 @@ int main(int argc, char *argv[])
     }
     host_paintdotnet::sharedMemory.clear();
 
+    if (!pluginDialogWasAccepted())
+    {
+        exitCode = 4;
+    }
+
     return exitCode;
 }
