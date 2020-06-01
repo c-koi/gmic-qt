@@ -60,6 +60,7 @@ public:
   QString command() const;
   QString filterName() const;
   void setProgressWindowFlag(bool);
+  bool processingCompletedProperly();
 
 public slots:
   void startProcessing();
@@ -85,6 +86,7 @@ private:
   bool _hasProgressWindow;
   QTimer _singleShotTimer;
   QString _gmicStatusQuotedParameters;
+  bool _processingCompletedProperly;
 };
 
 #endif // GMIC_QT_HEADLESSPROCESSOR_H

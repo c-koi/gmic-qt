@@ -56,13 +56,17 @@ InputMode DefaultInputMode = Active;
 OutputMode DefaultOutputMode = InPlace;
 PreviewMode DefaultPreviewMode = FirstOutput;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
-
 const QString & gmicVersionString()
 {
   static QString value = QString("%1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10);
   return value;
 }
 } // namespace GmicQt
+
+namespace
+{
+bool pluginProcessingValidAndAccepted = false;
+}
 
 int launchPlugin()
 {
@@ -134,7 +138,9 @@ int launchPlugin()
     mainWindow.show();
   }
   TIMING;
-  return QApplication::exec();
+  int status = QApplication::exec();
+  pluginProcessingValidAndAccepted = mainWindow.isAccepted();
+  return status;
 }
 
 int launchPluginHeadlessUsingLastParameters()
@@ -166,10 +172,13 @@ int launchPluginHeadlessUsingLastParameters()
   HeadlessProcessor processor;
   ProgressInfoWindow progressWindow(&processor);
   if (processor.command().isEmpty()) {
+    pluginProcessingValidAndAccepted = false;
     return 0;
   }
   processor.startProcessing();
-  return QApplication::exec();
+  int status = QApplication::exec();
+  pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
+  return status;
 }
 
 int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output)
@@ -196,7 +205,9 @@ int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::
   idle.setSingleShot(true);
   QObject::connect(&idle, SIGNAL(timeout()), &headlessProcessor, SLOT(startProcessing()));
   idle.start();
-  return QCoreApplication::exec();
+  int status = QCoreApplication::exec();
+  pluginProcessingValidAndAccepted = headlessProcessor.processingCompletedProperly();
+  return status;
 }
 
 void disableOutputMode(GmicQt::OutputMode mode)
@@ -212,4 +223,9 @@ void disableInputMode(GmicQt::InputMode mode)
 void disablePreviewMode(GmicQt::PreviewMode mode)
 {
   InOutPanel::disablePreviewMode(mode);
+}
+
+bool pluginDialogWasAccepted()
+{
+  return pluginProcessingValidAndAccepted;
 }

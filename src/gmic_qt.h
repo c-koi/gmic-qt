@@ -100,6 +100,8 @@ int launchPluginHeadlessUsingLastParameters();
 
 int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output);
 
+bool pluginDialogWasAccepted();
+
 // The following functions should be called before launching the plugin.
 // Caution: at least one mode per category must remain available!
 

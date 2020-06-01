@@ -56,6 +56,8 @@
 #include "ui_mainwindow.h"
 #include "gmic.h"
 
+bool MainWindow::_isAccepted = false;
+
 //
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
 //
@@ -484,7 +486,7 @@ void MainWindow::makeConnections()
   connect(_filtersPresenter, SIGNAL(filterSelectionChanged()), this, SLOT(onFilterSelectionChanged()));
 
   connect(ui->pbOk, SIGNAL(clicked(bool)), this, SLOT(onOkClicked()));
-  connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked()));
+  connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
   connect(ui->pbApply, SIGNAL(clicked(bool)), this, SLOT(onApplyClicked()));
   connect(ui->tbResetParameters, SIGNAL(clicked(bool)), this, SLOT(onReset()));
 
@@ -606,6 +608,7 @@ void MainWindow::onPreviewImageAvailable()
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
+    _isAccepted = false;
     close();
   }
 }
@@ -616,6 +619,7 @@ void MainWindow::onPreviewError(const QString & message)
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
+    _isAccepted = false;
     close();
   }
 }
@@ -626,6 +630,11 @@ void MainWindow::onParametersChanged()
     ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
   }
   ui->previewWidget->sendUpdateRequest();
+}
+
+bool MainWindow::isAccepted()
+{
+  return _isAccepted;
 }
 
 void MainWindow::processImage()
@@ -663,6 +672,7 @@ void MainWindow::onFullImageProcessingError(const QString & message)
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
   enableWidgetList(true);
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
+    _isAccepted = false;
     close();
   }
 }
@@ -697,6 +707,7 @@ void MainWindow::onFullImageProcessingDone()
   ui->filterParams->setValues(_processor.gmicStatus(), false);
   ui->filterParams->setVisibilityStates(_processor.parametersVisibilityStates());
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
+    _isAccepted = (_pendingActionAfterCurrentProcessing == OkAction);
     close();
   } else {
     // Extent cache has been cleared by the GmicProcessor
@@ -734,17 +745,20 @@ void MainWindow::onApplyClicked()
 void MainWindow::onOkClicked()
 {
   if (_filtersPresenter->currentFilter().isNoApplyFilter()) {
+    _isAccepted = _processor.completedFullImageProcessingCount();
     close();
+    return;
   }
   if (_okButtonShouldApply) {
     _pendingActionAfterCurrentProcessing = OkAction;
     processImage();
   } else {
+    _isAccepted = _processor.completedFullImageProcessingCount();
     close();
   }
 }
 
-void MainWindow::onCloseClicked()
+void MainWindow::onCancelClicked()
 {
   TIMING;
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
@@ -755,9 +769,11 @@ void MainWindow::onCloseClicked()
       ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
       _processor.cancel();
     } else {
+      _isAccepted = false;
       close();
     }
   } else {
+    _isAccepted = false;
     close();
   }
 }
@@ -1240,6 +1256,7 @@ void MainWindow::closeEvent(QCloseEvent * e)
     }
     e->ignore();
   } else {
+    _isAccepted = false;
     e->accept();
   }
 }
