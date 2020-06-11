@@ -182,6 +182,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   QSize layersExtent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
   ui->previewWidget->setFullImageSize(layersExtent);
   _lastPreviewKeypointBurstUpdateTime = 0;
+  _isAccepted = false;
 
   TIMING;
   makeConnections();
@@ -608,7 +609,6 @@ void MainWindow::onPreviewImageAvailable()
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
-    _isAccepted = false;
     close();
   }
 }
@@ -619,7 +619,6 @@ void MainWindow::onPreviewError(const QString & message)
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
   if (_pendingActionAfterCurrentProcessing == CloseAction) {
-    _isAccepted = false;
     close();
   }
 }
@@ -672,7 +671,6 @@ void MainWindow::onFullImageProcessingError(const QString & message)
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
   enableWidgetList(true);
   if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
-    _isAccepted = false;
     close();
   }
 }
@@ -769,11 +767,9 @@ void MainWindow::onCancelClicked()
       ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
       _processor.cancel();
     } else {
-      _isAccepted = false;
       close();
     }
   } else {
-    _isAccepted = false;
     close();
   }
 }
@@ -1256,7 +1252,6 @@ void MainWindow::closeEvent(QCloseEvent * e)
     }
     e->ignore();
   } else {
-    _isAccepted = false;
     e->accept();
   }
 }
