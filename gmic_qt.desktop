@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=G'MIC-Qt
+Terminal=false
+Comment=Apply G'MIC filters to images
+Comment[fr]=Appliquer des filtres G'MIC à des images
+TryExec=gmic_qt
+Exec=gmic_qt %F
+Icon=gmic_qt
+Categories=Graphics;
+MimeType=image/jpeg;image/png;image/bmp;image/gif;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/svg;
