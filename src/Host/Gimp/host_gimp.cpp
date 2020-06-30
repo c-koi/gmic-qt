@@ -616,10 +616,10 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
         gimp_drawable_offsets(inputLayers[p], &layer_posx, &layer_posy);
         cimg_library::CImg<char>::string(gimp_item_get_name(inputLayers[p])).move_to(layer_name);
         get_output_layer_props(imageNames[p], layer_blendmode, layer_opacity, layer_posx, layer_posy, layer_name);
-        if (is_selection) {
-          layer_posx = 0;
-          layer_posy = 0;
-        }
+        //        if (is_selection) {
+        //          layer_posx = 0;
+        //          layer_posy = 0;
+        //        }
         cimg_library::CImg<gmic_pixel_type> & img = images[p];
         GmicQt::calibrate_image(img, inputLayerDimensions(p, 3), false);
         if (gimp_drawable_mask_intersect(inputLayers[p], &rgn_x, &rgn_y, &rgn_width, &rgn_height)) {
@@ -646,8 +646,12 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
 #endif
           gimp_layer_set_mode(inputLayers[p], layer_blendmode);
           gimp_layer_set_opacity(inputLayers[p], layer_opacity);
-          gimp_layer_set_offsets(inputLayers[p], layer_posx, layer_posy);
-
+          if (!is_selection) {
+            gimp_layer_set_offsets(inputLayers[p], layer_posx, layer_posy);
+          } else {
+            // gimp_layer_translate(inputLayers[p], 0, 0);
+            gimp_item_transform_translate(inputLayers[p], 0, 0);
+          }
           if (verboseLayersLabel) { // Verbose (layer name)
             gimp_item_set_name(inputLayers[p], verboseLayersLabel);
           } else if (layer_name) {
