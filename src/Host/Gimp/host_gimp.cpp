@@ -42,6 +42,8 @@
  * of the GTK version of the gmic plug-in for GIMP by David Tschumperl\'e.
  */
 
+#define GIMP_VERSION_LTE(MAJOR, MINOR) (GIMP_MAJOR_VERSION < MAJOR) || ((GIMP_MAJOR_VERSION == MAJOR) && (GIMP_MINOR_VERSION <= MINOR))
+
 #define _gimp_image_get_item_position gimp_image_get_item_position
 
 #if (GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 7) && (GIMP_MICRO_VERSION <= 14)
@@ -54,7 +56,7 @@ namespace GmicQt
 {
 const QString HostApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
 const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
 const bool DarkThemeIsDefault = false;
 #else
 const bool DarkThemeIsDefault = true;
@@ -279,7 +281,7 @@ void gmic_qt_show_message(const char * message)
 
 void gmic_qt_apply_color_profile(cimg_library::CImg<float> & image)
 {
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
   unused(image);
 // SWAP RED<->GREEN CHANNELS : FOR TESTING PURPOSE ONLY!
 //  cimg_forXY(image,x,y) {
@@ -521,7 +523,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     QString name = QString("mode(%1),opacity(%2),pos(%3,%4),name(%5)").arg(blendingMode2String(blendMode)).arg(opacity).arg(xPos).arg(yPos).arg(noParenthesisName);
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[l]);
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
     GimpDrawable * drawable = gimp_drawable_get(inputLayers[l]);
     GimpPixelRgn region;
     gimp_pixel_rgn_init(&region, drawable, ix, iy, iw, ih, false, false);
@@ -619,7 +621,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
         cimg_library::CImg<gmic_pixel_type> & img = images[p];
         GmicQt::calibrate_image(img, inputLayerDimensions(p, 3), false);
         if (gimp_drawable_mask_intersect(inputLayers[p], &rgn_x, &rgn_y, &rgn_width, &rgn_height)) {
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
           GimpDrawable * drawable = gimp_drawable_get(inputLayers[p]);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, rgn_x, rgn_y, rgn_width, rgn_height, true, true);
@@ -645,7 +647,11 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           if (!is_selection) {
             gimp_layer_set_offsets(inputLayers[p], layer_posx, layer_posy);
           } else {
+#if GIMP_VERSION_LTE(2, 8)
+            gimp_layer_translate(inputLayers[p], 0, 0);
+#else
             gimp_item_transform_translate(inputLayers[p], 0, 0);
+#endif
           }
           if (verboseLayersLabel) { // Verbose (layer name)
             gimp_item_set_name(inputLayers[p], verboseLayersLabel);
@@ -700,7 +706,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, -1, layer_pos + p);
 
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
@@ -778,7 +784,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, -1, p);
 
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
@@ -819,7 +825,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
     const unsigned int max_width = (unsigned int)bottom_right.x;
     const unsigned int max_height = (unsigned int)bottom_right.y;
     if (active_layer_id >= 0) {
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
       const int nimage_id = gimp_image_new(max_width, max_height, max_spectrum <= 2 ? GIMP_GRAY : GIMP_RGB);
 #else
       const int nimage_id = gimp_image_new_with_precision(max_width, max_height, max_spectrum <= 2 ? GIMP_GRAY : GIMP_RGB, gimp_image_get_precision(gmic_qt_gimp_image_id));
@@ -856,7 +862,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           }
           gimp_image_insert_layer(nimage_id, layer_id, -1, p);
 
-#if (GIMP_MAJOR_VERSION < 2) || ((GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 8))
+#if GIMP_VERSION_LTE(2, 8)
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
