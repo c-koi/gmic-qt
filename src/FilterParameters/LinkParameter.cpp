@@ -30,6 +30,7 @@
 #include <QString>
 #include <QUrl>
 #include "Common.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
 LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent, false), _label(nullptr), _alignment(Qt::AlignLeft) {}
@@ -91,7 +92,7 @@ bool LinkParameter::initFromText(const char * text, int & textLength)
 
   if (values.size() == 2) {
     _text = values[0].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
-    _text = HtmlTranslator::html2txt(_text);
+    _text = HtmlTranslator::html2txt(FilterTextTranslator::translate(_text));
     values.pop_front();
   }
   if (values.size() == 1) {

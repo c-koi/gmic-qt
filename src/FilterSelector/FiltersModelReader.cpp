@@ -34,9 +34,9 @@
 #include "Common.h"
 #include "FilterSelector/FiltersModel.h"
 #include "Globals.h"
+#include "LanguageSettings.h"
 #include "Logger.h"
 #include "Utils.h"
-#include "Widgets/LanguageSelectionWidget.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
@@ -49,7 +49,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
   stdlib.open(QBuffer::ReadOnly | QBuffer::Text);
   QList<QString> filterPath;
 
-  QString language = LanguageSelectionWidget::configuredTranslator();
+  QString language = LanguageSettings::configuredTranslator();
   if (language.isEmpty()) {
     language = "void";
   }

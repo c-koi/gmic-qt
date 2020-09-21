@@ -333,6 +333,7 @@ set (gmic_qt_SRCS
   src/CroppedActiveLayerProxy.h
   src/FilterSyncRunner.h
   src/FilterThread.h
+  src/FilterTextTranslator.h
   src/Globals.h
   src/gmic_qt.h
   src/GmicStdlib.h
@@ -346,6 +347,7 @@ set (gmic_qt_SRCS
   src/InputOutputState.h
   src/KeypointList.h
   src/LayersExtentProxy.h
+  src/LanguageSettings.h
   src/Logger.h
   src/MainWindow.h
   src/ParametersCache.h
@@ -404,6 +406,7 @@ set (gmic_qt_SRCS
   src/CroppedActiveLayerProxy.cpp
   src/FilterSyncRunner.cpp
   src/FilterThread.cpp
+  src/FilterTextTranslator.cpp
   src/gmic_qt.cpp
   src/Globals.cpp
   src/GmicStdlib.cpp
@@ -416,6 +419,7 @@ set (gmic_qt_SRCS
   src/InputOutputState.cpp
   src/KeypointList.cpp
   src/LayersExtentProxy.cpp
+  src/LanguageSettings.cpp
   src/Logger.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
@@ -481,6 +485,8 @@ set(gmic_translation_files
     translations/ua.ts
     translations/ja.ts
     translations/zh.ts
+
+    translations/filters/fr.ts
 )
 
 set_source_files_properties(${gmic_translation_files} PROPERTIES OUTPUT_LOCATION translations)

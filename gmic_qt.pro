@@ -274,6 +274,7 @@ HEADERS +=  \
   src/FilterSyncRunner.h \
   src/FilterThread.h \
   src/gmic_qt.h \
+  src/FilterTextTranslator.h \
   src/Globals.h \
   src/GmicStdlib.h \
   src/GmicProcessor.h \
@@ -287,6 +288,7 @@ HEADERS +=  \
   src/KeypointList.h \
   src/LayersExtentProxy.h \
   src/Logger.h \
+  src/LanguageSettings.h \
   src/MainWindow.h \
   src/ParametersCache.h \
   src/TimeLogger.h \
@@ -347,6 +349,7 @@ SOURCES += \
   src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
   src/gmic_qt.cpp \
+  src/FilterTextTranslator.cpp \
   src/Globals.cpp \
   src/GmicStdlib.cpp \
   src/GmicProcessor.cpp \
@@ -358,6 +361,7 @@ SOURCES += \
   src/InputOutputState.cpp \
   src/KeypointList.cpp \
   src/LayersExtentProxy.cpp \
+  src/LanguageSettings.cpp \
   src/Logger.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \

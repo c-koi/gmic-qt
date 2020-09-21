@@ -34,6 +34,7 @@
 #include <QWidget>
 #include "DialogSettings.h"
 #include "FilterParameters/CustomDoubleSpinBox.h"
+#include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
 
@@ -116,7 +117,7 @@ bool FloatParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(list[0]);
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   QList<QString> values = list[1].split(QChar(','));
   if (values.size() != 3) {
     return false;

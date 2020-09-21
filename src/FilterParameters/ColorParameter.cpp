@@ -36,6 +36,7 @@
 #include <cstdio>
 #include "Common.h"
 #include "DialogSettings.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
 ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(nullptr), _button(nullptr), _dialog(nullptr) {}
@@ -111,7 +112,7 @@ bool ColorParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(list[0]);
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
 
   // color(#e9cc00) and color(#e9cc00ff)
   const QString trimmed = list[1].trimmed();

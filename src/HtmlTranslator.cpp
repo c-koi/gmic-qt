@@ -31,6 +31,7 @@
 
 QTextDocument HtmlTranslator::_document;
 
+// TODO : enum param force + enum param translate
 QString HtmlTranslator::html2txt(const QString & str, bool force)
 {
   if (force || hasHtmlEntities(str)) {

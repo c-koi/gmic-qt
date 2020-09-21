@@ -29,6 +29,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include "Common.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
 ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(nullptr), _alignment(Qt::AlignHCenter) {}
@@ -80,7 +81,7 @@ bool ButtonParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _text = HtmlTranslator::html2txt(list[0]);
+  _text = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   QString & alignment = list[1];
   if (alignment.isEmpty()) {
     return true;

@@ -40,6 +40,7 @@
 #include <cstdlib>
 #include "Common.h"
 #include "DialogSettings.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "KeypointList.h"
 
@@ -224,7 +225,7 @@ bool PointParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(list[0]);
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   QList<QString> params = list[1].split(",");
 
   bool ok = true;

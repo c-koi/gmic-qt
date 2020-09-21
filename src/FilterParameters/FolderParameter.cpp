@@ -34,6 +34,7 @@
 #include <QWidget>
 #include "Common.h"
 #include "DialogSettings.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
@@ -100,7 +101,7 @@ bool FolderParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(list[0]);
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   QRegExp re("^\".*\"$");
   if (re.exactMatch(list[1])) {
     list[1].chop(1);

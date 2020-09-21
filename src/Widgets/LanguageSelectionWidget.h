@@ -41,10 +41,6 @@ public:
   ~LanguageSelectionWidget();
   QString selectedLanguageCode();
 
-  static const QMap<QString, QString> & availableLanguages();
-  static QString configuredTranslator();
-  static QString systemDefaultAndAvailableLanguageCode();
-
 public slots:
   void selectLanguage(const QString & code);
 

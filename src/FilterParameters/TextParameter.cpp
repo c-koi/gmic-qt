@@ -34,6 +34,7 @@
 #include "Common.h"
 #include "DialogSettings.h"
 #include "FilterParameters/MultilineTextParameterWidget.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
@@ -117,7 +118,7 @@ bool TextParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(list[0]);
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   QString value = list[1];
   _multiline = false;
   QRegExp re("^\\s*(0|1)\\s*,");

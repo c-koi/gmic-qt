@@ -31,17 +31,16 @@
 #include <QString>
 #include <QThread>
 #include <QTimer>
-#include <QTranslator>
 #include <cstring>
 #include "Common.h"
 #include "DialogSettings.h"
 #include "Globals.h"
 #include "HeadlessProcessor.h"
+#include "LanguageSettings.h"
 #include "Logger.h"
 #include "MainWindow.h"
 #include "Updater.h"
 #include "Widgets/InOutPanel.h"
-#include "Widgets/LanguageSelectionWidget.h"
 #include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
 #ifdef _IS_MACOS_
@@ -121,14 +120,7 @@ int launchPlugin()
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
   DialogSettings::loadSettings(GmicQt::GuiApplication);
-
-  // Translate according to current locale or configured language
-  QString lang = LanguageSelectionWidget::configuredTranslator();
-  if (!lang.isEmpty() && (lang != "en")) {
-    auto translator = new QTranslator(&app);
-    translator->load(QString(":/translations/%1.qm").arg(lang));
-    QApplication::installTranslator(translator);
-  }
+  LanguageSettings::installTranslators();
   TIMING;
   MainWindow mainWindow;
   TIMING;
@@ -161,13 +153,7 @@ int launchPluginHeadlessUsingLastParameters()
 
   DialogSettings::loadSettings(GmicQt::GuiApplication);
   Logger::setMode(DialogSettings::outputMessageMode());
-  // Translate according to current locale or configured language
-  QString lang = LanguageSelectionWidget::configuredTranslator();
-  if (!lang.isEmpty() && (lang != "en")) {
-    auto translator = new QTranslator(&app);
-    translator->load(QString(":/translations/%1.qm").arg(lang));
-    QCoreApplication::installTranslator(translator);
-  }
+  LanguageSettings::installTranslators();
 
   HeadlessProcessor processor;
   ProgressInfoWindow progressWindow(&processor);

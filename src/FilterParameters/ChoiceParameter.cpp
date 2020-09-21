@@ -26,9 +26,12 @@
 #include <QComboBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QStringList>
 #include <QWidget>
 #include "Common.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
+#include "Logger.h"
 
 ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(nullptr), _comboBox(nullptr), _connected(false) {}
 
@@ -85,7 +88,7 @@ bool ChoiceParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(list[0]);
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   _choices = list[1].split(QChar(','));
   bool ok;
   if (_choices.isEmpty()) {
@@ -100,7 +103,7 @@ bool ChoiceParameter::initFromText(const char * text, int & textLength)
   QList<QString>::iterator it = _choices.begin();
   while (it != _choices.end()) {
     *it = it->trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
-    *it = HtmlTranslator::html2txt(*it);
+    *it = HtmlTranslator::html2txt(FilterTextTranslator::translate(*it));
     ++it;
   }
   _value = _default;
