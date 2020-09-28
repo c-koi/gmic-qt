@@ -485,11 +485,15 @@ set(gmic_translation_files
     translations/ua.ts
     translations/ja.ts
     translations/zh.ts
-
-    translations/filters/fr.ts
 )
 
 set_source_files_properties(${gmic_translation_files} PROPERTIES OUTPUT_LOCATION translations)
+
+set(gmic_filters_translation_files
+    translations/filters/fr.ts
+)
+
+set_source_files_properties(${gmic_filters_translation_files} PROPERTIES OUTPUT_LOCATION translations/filters)
 
 # qt5_create_translation(
 #     qmic_qt_QM
@@ -500,7 +504,7 @@ set_source_files_properties(${gmic_translation_files} PROPERTIES OUTPUT_LOCATION
 
 qt5_add_translation(gmic_qt_QM
     ${gmic_translation_files}
-  )
+)
 
 # install(FILES ${gmic_qt_QM} DESTINATION ${CMAKE_SOURCE_DIR}/translations)
 
