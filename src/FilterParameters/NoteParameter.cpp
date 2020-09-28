@@ -30,6 +30,7 @@
 #include <QUrl>
 #include "Common.h"
 #include "DialogSettings.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
 NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent, false), _label(nullptr) {}
@@ -69,7 +70,9 @@ bool NoteParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _text = list[1].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$")).replace(QString("\\\""), "\"");
+
+  _text = list[1].trimmed(); // Notes are never translated
+  _text.remove(QRegExp("^\"")).remove(QRegExp("\"$")).replace(QString("\\\""), "\"");
   _text.replace(QString("\\n"), "<br/>");
 
   if (DialogSettings::darkThemeEnabled()) {

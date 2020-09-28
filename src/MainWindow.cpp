@@ -45,6 +45,7 @@
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
+#include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
 #include "IconLoader.h"
@@ -1035,7 +1036,7 @@ void MainWindow::activateFilter(bool resetZoom)
     } else {
       ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
     }
-    ui->filterName->setText(QString("<b>%1</b>").arg(filter.name));
+    ui->filterName->setText(QString("<b>%1</b>").arg(FilterTextTranslator::translate((filter.name))));
     ui->inOutSelector->enable();
     if (ui->inOutSelector->hasActiveControls()) {
       ui->inOutSelector->show();

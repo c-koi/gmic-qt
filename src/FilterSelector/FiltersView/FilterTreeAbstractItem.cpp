@@ -23,6 +23,7 @@
  *
  */
 #include "FilterTreeAbstractItem.h"
+#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
 const QChar FilterTreeAbstractItem::WarningPrefix('!');
@@ -36,11 +37,11 @@ FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
   } else {
     _isWarning = false;
   }
-  setText(text);
-  _plainText = HtmlTranslator::html2txt(text, true);
+  setText(FilterTextTranslator::translate(text));
+  _plainText = HtmlTranslator::html2txt(FilterTextTranslator::translate(text), true);
 }
 
-FilterTreeAbstractItem::~FilterTreeAbstractItem() = default;
+FilterTreeAbstractItem::~FilterTreeAbstractItem() {}
 
 void FilterTreeAbstractItem::setVisibilityItem(QStandardItem * item)
 {

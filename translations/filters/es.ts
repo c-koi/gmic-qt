@@ -1,1792 +1,1917 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<TS version="2.1" language="es">
   <context>
     <name>FilterTextTranslator</name>
 
     <message>
       <source>&lt;b&gt;Arrays &amp; Tiles&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Tableaux et pavages&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Matrices y azulejos&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Artistic&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Artistique&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Artístico&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Black &amp; White&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Noir et blanc&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Blanco y negro&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Colors&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Couleurs&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Colores&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Contours&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Contours&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Contornos&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Deformations&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Déformations&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Deformaciones&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Degradations&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Dégradations&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Degradaciones&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Details&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Détails&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Detalles&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Testing&lt;/b&gt;</source>
-      <translation>&lt;b&gt;En test&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Prueba&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Frames&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Cadres&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Marcos&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Frequencies&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Fréquences&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Frecuencias&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Layers&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Calques&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Capas&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Lights &amp; Shadows&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Lumières et ombres&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Luces y sombras&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Patterns&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Motifs&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Patrones&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Rendering&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Rendu&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Renderización&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Repair&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Restauration&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Reparación&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Sequences&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Séquences&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Secuencias&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Silhouettes&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Silhouettes&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Siluetas&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Icons&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Icônes&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Iconos&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Misc&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Divers&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Misc&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Nature&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Nature&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Naturaleza&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Others&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Autres&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Otros&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Stereoscopic 3D&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Stéréoscopie 3D&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;3D estereoscópico&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&amp;#9829; Support Us ! &amp;#9829;</source>
-      <translation>♥ Soutenez-nous ! ♥</translation>
+      <translation>¡ Apóyanos !</translation>
     </message>
 
     <message>
       <source>*Colors Doping</source>
-      <translation>*Dopage des couleurs</translation>
+      <translation>*Colores Dopaje</translation>
     </message>
 
     <message>
       <source>*Colors Doping*</source>
-      <translation>*Dopage des couleurs*</translation>
+      <translation>*Colores Dopaje*</translation>
     </message>
 
     <message>
       <source>*Comix Colors*</source>
-      <translation>*Couleurs Comics*</translation>
+      <translation>*Combinación de colores*</translation>
     </message>
 
     <message>
       <source>*Dark Edges*</source>
-      <translation>*Bords sombres*</translation>
+      <translation>*Bordes oscuros*</translation>
     </message>
 
     <message>
       <source>*Dark Screen*</source>
-      <translation>*Ecran noir*</translation>
+      <translation>*Pantalla oscura*</translation>
     </message>
 
     <message>
       <source>*Graphix Colors</source>
-      <translation>*Couleurs graphiques</translation>
+      <translation>*Colores del gráfix</translation>
+    </message>
+
+    <message>
+      <source>*Vivid Edges*</source>
+      <translation>*Bordes vivos*</translation>
     </message>
 
     <message>
       <source>*Vivid Screen*</source>
-      <translation>*Écran vif*</translation>
+      <translation>*Pantalla viva*</translation>
     </message>
 
     <message>
-      <source>- NO -</source>
-      <translation>- NON -</translation>
+      <source>+180 Deg.</source>
+      <translation>+180 grados.</translation>
+    </message>
+
+    <message>
+      <source>+90 Deg.</source>
+      <translation>+90 grados.</translation>
     </message>
 
     <message>
       <source>-1. Value Action</source>
-      <translation>-1. Action sur la valeur</translation>
+      <translation>-1. Valor Acción</translation>
     </message>
 
     <message>
       <source>-2. Overall Channel(s)</source>
-      <translation>-2. Ensemble des canaux</translation>
+      <translation>-2. Canal(es) general(es)</translation>
     </message>
 
     <message>
       <source>-3. Normalisation Channel(s)</source>
-      <translation>-3. Canaux de normalisation</translation>
+      <translation>-3. Canal(es) de normalización</translation>
+    </message>
+
+    <message>
+      <source>-4. Normalise</source>
+      <translation>-4. Normaliza</translation>
+    </message>
+
+    <message>
+      <source>-90 Deg.</source>
+      <translation>-90 grados.</translation>
+    </message>
+
+    <message>
+      <source>.Bmp</source>
+      <translation>...Bmp.</translation>
+    </message>
+
+    <message>
+      <source>.Png</source>
+      <translation>...Png.</translation>
     </message>
 
     <message>
       <source>0.  Recompute</source>
-      <translation>0. Recalculer</translation>
+      <translation>0. Recompute</translation>
     </message>
 
     <message>
       <source>1 Levels</source>
-      <translation>1 Niveaux</translation>
+      <translation>1 Niveles</translation>
     </message>
 
     <message>
       <source>1.  Plasma Texture [Discards Input Image]</source>
-      <translation>1. Texture du plasma [Rejeter l&apos;image d&apos;entrée].</translation>
+      <translation>1. Textura de plasma [Descarta la imagen de entrada]</translation>
     </message>
 
     <message>
       <source>10.  Quadtree Max Precision</source>
-      <translation>10. Précision maximale du quadtree</translation>
+      <translation>10. Quadtree Max Precision</translation>
     </message>
 
     <message>
       <source>10th</source>
-      <translation>10ème</translation>
+      <translation>10º.</translation>
     </message>
 
     <message>
       <source>10th Color</source>
-      <translation>10ème couleur</translation>
+      <translation>10º Color</translation>
     </message>
 
     <message>
       <source>11.  Quadtree Min Homogeneity</source>
-      <translation>11. Homogénéité minimale du quadtree</translation>
+      <translation>11. Homogeneidad de Quadtree Min</translation>
     </message>
 
     <message>
       <source>11th</source>
-      <translation>11ème</translation>
+      <translation>11º.</translation>
     </message>
 
     <message>
       <source>12 Colors</source>
-      <translation>12 Couleurs</translation>
+      <translation>12 colores</translation>
+    </message>
+
+    <message>
+      <source>12 Grays</source>
+      <translation>12 Grises</translation>
     </message>
 
     <message>
       <source>12.  Quadtree Max Homogeneity</source>
-      <translation>12. Homogénéité maximale du quadtree</translation>
+      <translation>12. Homogeneidad de Quadtree Max</translation>
     </message>
 
     <message>
       <source>125 Keypoints</source>
-      <translation>125 Points clés</translation>
+      <translation>125 puntos clave</translation>
     </message>
 
     <message>
       <source>12th</source>
-      <translation>12ème</translation>
+      <translation>12º.</translation>
     </message>
 
     <message>
       <source>13. Noise Type</source>
-      <translation>13. Type de bruit</translation>
+      <translation>13. Tipo de ruido</translation>
     </message>
 
     <message>
       <source>13th</source>
-      <translation>13ème</translation>
+      <translation>13º.</translation>
     </message>
 
     <message>
       <source>14. Minimum Noise</source>
-      <translation>14. Niveau de bruit minimum</translation>
+      <translation>14. Ruido mínimo</translation>
     </message>
 
     <message>
       <source>14th</source>
-      <translation>14ème</translation>
+      <translation>14º.</translation>
     </message>
 
     <message>
       <source>15. Maximum Noise</source>
-      <translation>15. Niveau de bruit maximum</translation>
+      <translation>15. Ruido máximo</translation>
     </message>
 
     <message>
       <source>15th</source>
-      <translation>15ème</translation>
+      <translation>15º.</translation>
     </message>
 
     <message>
       <source>16 Colors</source>
-      <translation>16 Couleurs</translation>
+      <translation>16 Colores</translation>
+    </message>
+
+    <message>
+      <source>16 Grays</source>
+      <translation>16 Grises</translation>
     </message>
 
     <message>
       <source>16. Noise Channel(s)</source>
-      <translation>16. Canaux de bruit</translation>
+      <translation>16. Canal(es) de ruido</translation>
     </message>
 
     <message>
       <source>16th</source>
-      <translation>16ème</translation>
+      <translation>16º.</translation>
     </message>
 
     <message>
       <source>17. Warp Iterations</source>
-      <translation>17. Itérations de distorsion</translation>
+      <translation>17. Iteraciones de la urdimbre</translation>
     </message>
 
     <message>
       <source>18. Warp Intensity</source>
-      <translation>18. Intensité de la distorsion</translation>
+      <translation>18. Intensidad de la urdimbre</translation>
     </message>
 
     <message>
       <source>180 Deg.</source>
-      <translation>180 deg.</translation>
+      <translation>180 grados.</translation>
     </message>
 
     <message>
       <source>19. Warp Offset</source>
-      <translation>19. Décalage de la distorsion</translation>
+      <translation>19. Compensación de la urdimbre</translation>
     </message>
 
     <message>
       <source>1st</source>
-      <translation>1er</translation>
+      <translation>1er.</translation>
     </message>
 
     <message>
       <source>1st Additional Palette (.Gpl)</source>
-      <translation>1ère palette additionnelle (.Gpl)</translation>
+      <translation>1ª Paleta adicional (.Gpl)</translation>
     </message>
 
     <message>
       <source>1st Color</source>
-      <translation>1ère couleur</translation>
+      <translation>1er Color</translation>
     </message>
 
     <message>
       <source>1st Parameter</source>
-      <translation>1er paramètre</translation>
+      <translation>1er parámetro</translation>
     </message>
 
     <message>
       <source>1st Text</source>
-      <translation>1er texte</translation>
+      <translation>1er Texto</translation>
     </message>
 
     <message>
       <source>1st Tone</source>
-      <translation>1er ton</translation>
+      <translation>1er Tono</translation>
     </message>
 
     <message>
       <source>1st Variance</source>
-      <translation>1ère variance</translation>
+      <translation>1ª Variación</translation>
     </message>
 
     <message>
       <source>1st X-Coord</source>
-      <translation>1ère coordonnée X</translation>
+      <translation>1er X-Coord</translation>
     </message>
 
     <message>
       <source>1st Y-Coord</source>
-      <translation>1ère coordonnée Y</translation>
+      <translation>1a Y-Coordinación</translation>
     </message>
 
     <message>
       <source>2 Colors</source>
-      <translation>2 Couleurs</translation>
+      <translation>2 colores</translation>
+    </message>
+
+    <message>
+      <source>2 Grays</source>
+      <translation>2 Grises</translation>
     </message>
 
     <message>
       <source>2 Noise</source>
-      <translation>2 Bruit</translation>
+      <translation>2 Ruido</translation>
     </message>
 
     <message>
       <source>2-Strip Process</source>
-      <translation>Processus en deux étapes</translation>
+      <translation>Proceso de 2 tiras</translation>
     </message>
 
     <message>
       <source>2.  Plasma Scale</source>
-      <translation>2. Échelle de plasma</translation>
+      <translation>2. Escala de plasma</translation>
     </message>
 
     <message>
       <source>20. Scale to Width</source>
-      <translation>20. Ajuster à la largeur</translation>
+      <translation>20. Escala a la anchura</translation>
     </message>
 
     <message>
       <source>21. Scale to Height</source>
-      <translation>21. Ajuster à la hauteur</translation>
+      <translation>21. Escala a la altura</translation>
     </message>
 
     <message>
       <source>216 Keypoints</source>
-      <translation>216 points clés</translation>
+      <translation>216 Puntos clave</translation>
     </message>
 
     <message>
       <source>22. Correlated Channels</source>
-      <translation>22. Canaux corrélés</translation>
+      <translation>22. Canales correlacionados</translation>
     </message>
 
     <message>
       <source>22.5 Deg.</source>
-      <translation>22,5 deg.</translation>
+      <translation>22,5 grados.</translation>
     </message>
 
     <message>
       <source>23. Boundary</source>
-      <translation>23. Bord</translation>
+      <translation>23. Límite</translation>
     </message>
 
     <message>
       <source>24. Warp Channel(s)</source>
-      <translation>24. Distortion des canaux</translation>
+      <translation>24. Canal(es) de la urdimbre</translation>
     </message>
 
     <message>
       <source>25. Random Negation</source>
-      <translation>25. Négation aléatoire</translation>
+      <translation>25. Negación aleatoria</translation>
     </message>
 
     <message>
       <source>26. Random Negation Channel(s)</source>
-      <translation>26. Canaux de négation aléatoire</translation>
+      <translation>26. Canal(es) de negación aleatoria</translation>
     </message>
 
     <message>
       <source>27 Keypoints</source>
-      <translation>27 Points clés</translation>
+      <translation>27 Puntos clave</translation>
     </message>
 
     <message>
       <source>27. Gamma Offset</source>
-      <translation>27. Compensation gamma</translation>
+      <translation>27. Compensación Gamma</translation>
+    </message>
+
+    <message>
+      <source>270 Deg.</source>
+      <translation>270 grados.</translation>
     </message>
 
     <message>
       <source>28. Hue Offset</source>
-      <translation>28. Compensation de teinte</translation>
+      <translation>28. Compensación de tonalidad</translation>
+    </message>
+
+    <message>
+      <source>29. Normalise</source>
+      <translation>29. Normalización</translation>
     </message>
 
     <message>
       <source>2nd</source>
-      <translation>2ème</translation>
+      <translation>2º.</translation>
     </message>
 
     <message>
       <source>2nd Additional Palette (.Gpl)</source>
-      <translation>2ème palette additionelle (.Gpl)</translation>
+      <translation>2ª Paleta adicional (.Gpl)</translation>
     </message>
 
     <message>
       <source>2nd Color</source>
-      <translation>2ème couleur</translation>
+      <translation>2º Color</translation>
     </message>
 
     <message>
       <source>2nd Parameter</source>
-      <translation>2ème paramètre</translation>
+      <translation>2º parámetro</translation>
     </message>
 
     <message>
       <source>2nd Text</source>
-      <translation>2ème texte</translation>
+      <translation>2º Texto</translation>
     </message>
 
     <message>
       <source>2nd Tone</source>
-      <translation>2ème ton</translation>
+      <translation>2º Tono</translation>
     </message>
 
     <message>
       <source>2nd Variance</source>
-      <translation>2ème variance</translation>
+      <translation>2ª Variación</translation>
     </message>
 
     <message>
       <source>2nd X-Coord</source>
-      <translation>2ème coordonnée X</translation>
+      <translation>2º X-Coord</translation>
     </message>
 
     <message>
       <source>2nd Y-Coord</source>
-      <translation>2ème coordonnée Y</translation>
+      <translation>2º Y-Coord</translation>
+    </message>
+
+    <message>
+      <source>2x Type</source>
+      <translation>2x Tipo</translation>
     </message>
 
     <message>
       <source>2XY Mirror</source>
-      <translation>Miroir 2XY</translation>
+      <translation>Espejo 2XY</translation>
     </message>
 
     <message>
       <source>3 Colors</source>
-      <translation>3 Couleurs</translation>
+      <translation>3 colores</translation>
+    </message>
+
+    <message>
+      <source>3 Grays</source>
+      <translation>3 Grises</translation>
     </message>
 
     <message>
       <source>3 Mix</source>
-      <translation>3 Mélange</translation>
+      <translation>3 Mezcla</translation>
     </message>
 
     <message>
       <source>3.  Plasma Alpha Channel</source>
-      <translation>3. Canal Alpha du plasma</translation>
+      <translation>3. Canal Alfa de Plasma</translation>
     </message>
 
     <message>
       <source>30. Minimum Hue</source>
-      <translation>30. Teinte minimale</translation>
+      <translation>30. Tono mínimo</translation>
     </message>
 
     <message>
       <source>31. Maximum Hue</source>
-      <translation>31. Teinte maximale</translation>
+      <translation>31. Tono máximo</translation>
     </message>
 
     <message>
       <source>32. Minimum Saturation</source>
-      <translation>32. Saturation minimale</translation>
+      <translation>32. Saturación mínima</translation>
     </message>
 
     <message>
       <source>33. Maximum Saturation</source>
-      <translation>33. Saturation maximale</translation>
+      <translation>33. Saturación máxima</translation>
     </message>
 
     <message>
       <source>34. Minimum Value</source>
-      <translation>34. Valeur minimale</translation>
+      <translation>34. Valor mínimo</translation>
     </message>
 
     <message>
       <source>343 Keypoints</source>
-      <translation>343 Points clés</translation>
+      <translation>343 Puntos clave</translation>
     </message>
 
     <message>
       <source>35. Maximum Value</source>
-      <translation>35. Valeur maximale</translation>
+      <translation>35. Valor máximo</translation>
     </message>
 
     <message>
       <source>36. Hue Offset</source>
-      <translation>36. Décalage de la teinte</translation>
+      <translation>36. Compensación de tonalidad</translation>
     </message>
 
     <message>
       <source>37. Saturation Offset</source>
-      <translation>37. Décalage de la saturation</translation>
+      <translation>37. Compensación de saturación</translation>
     </message>
 
     <message>
       <source>38. Value Offset</source>
-      <translation>38. Décalage de la valeur</translation>
+      <translation>38. Compensación del valor</translation>
     </message>
 
     <message>
       <source>3D Blocks</source>
-      <translation>Blocs 3D</translation>
+      <translation>Bloques 3D</translation>
     </message>
 
     <message>
       <source>3D CLUT (Fast)</source>
-      <translation>CLUT 3D (Rapide)</translation>
+      <translation>3D CLUT (Rápido)</translation>
     </message>
 
     <message>
       <source>3D CLUT (Precise)</source>
-      <translation>CLUT 3D (Précis)</translation>
+      <translation>CLUT 3D (Preciso)</translation>
     </message>
 
     <message>
       <source>3D Colored Object</source>
-      <translation>Objet coloré en 3D</translation>
+      <translation>Objeto coloreado en 3D</translation>
     </message>
 
     <message>
       <source>3D Conversion</source>
-      <translation>Conversion 3D</translation>
+      <translation>Conversión 3D</translation>
     </message>
 
     <message>
       <source>3D Elevation</source>
-      <translation>Élévation 3D</translation>
+      <translation>Elevación 3D</translation>
     </message>
 
     <message>
       <source>3D Elevation [Animated]</source>
-      <translation>Élévation 3D [Animé]</translation>
+      <translation>Elevación 3D [Animado]</translation>
     </message>
 
     <message>
       <source>3D Extrusion</source>
-      <translation>Extrusion 3D</translation>
+      <translation>Extrusión 3D</translation>
     </message>
 
     <message>
       <source>3D Extrusion [Animated]</source>
-      <translation>Extrusion en 3D [Animé]</translation>
+      <translation>Extrusión 3D [Animado]</translation>
     </message>
 
     <message>
       <source>3D Image Object</source>
-      <translation>Objet d&apos;image 3D</translation>
+      <translation>Objeto de imagen 3D</translation>
     </message>
 
     <message>
       <source>3D Image Object [Animated]</source>
-      <translation>Image 3D [Animé]</translation>
+      <translation>Objeto de imagen 3D [Animado]</translation>
     </message>
 
     <message>
       <source>3D Image Type</source>
-      <translation>Type d&apos;image 3D</translation>
+      <translation>Tipo de imagen 3D</translation>
     </message>
 
     <message>
       <source>3D Lathing</source>
-      <translation>Lattage 3D</translation>
+      <translation>Torneado 3D</translation>
     </message>
 
     <message>
       <source>3D Metaballs</source>
-      <translation>Métaballs 3D</translation>
+      <translation>Metabolas 3D</translation>
     </message>
 
     <message>
       <source>3D Random Objects</source>
-      <translation>Objets 3D aléatoires</translation>
+      <translation>Objetos aleatorios en 3D</translation>
     </message>
 
     <message>
       <source>3D Reflection</source>
-      <translation>Réflexion 3D</translation>
+      <translation>Reflexión 3D</translation>
     </message>
 
     <message>
       <source>3D Rubber Object</source>
-      <translation>Objet 3D en caoutchouc</translation>
+      <translation>Objeto de goma 3D</translation>
+    </message>
+
+    <message>
+      <source>3D Starfield</source>
+      <translation>Campo estelar en 3D</translation>
     </message>
 
     <message>
       <source>3D Text Pointcloud</source>
-      <translation>Nuage de points 3D pour le texte</translation>
+      <translation>Nube de puntos de texto en 3D</translation>
     </message>
 
     <message>
       <source>3D Tiles</source>
-      <translation>Carreaux en 3D</translation>
+      <translation>Azulejos 3D</translation>
     </message>
 
     <message>
       <source>3D Video Conversion</source>
-      <translation>Conversion de vidéos en 3D</translation>
+      <translation>Conversión de video 3D</translation>
     </message>
 
     <message>
       <source>3D Waves</source>
-      <translation>Ondes 3D</translation>
+      <translation>Ondas 3D</translation>
     </message>
 
     <message>
       <source>3rd</source>
-      <translation>3ème</translation>
+      <translation>Tercero.</translation>
     </message>
 
     <message>
       <source>3rd Color</source>
-      <translation>3ème couleur</translation>
+      <translation>3er Color</translation>
     </message>
 
     <message>
       <source>3rd Parameter</source>
-      <translation>3ème paramètre</translation>
+      <translation>3er parámetro</translation>
     </message>
 
     <message>
       <source>3rd Tone</source>
-      <translation>3ème ton</translation>
+      <translation>3er Tono</translation>
     </message>
 
     <message>
       <source>3rd X-Coord</source>
-      <translation>3ème X-Coord</translation>
+      <translation>3ª X-Coord</translation>
     </message>
 
     <message>
       <source>3rd Y-Coord</source>
-      <translation>3ème Y-Coord</translation>
+      <translation>3ª cuerda en Y</translation>
     </message>
 
     <message>
       <source>4 Colors</source>
-      <translation>4 Couleurs</translation>
+      <translation>4 colores</translation>
+    </message>
+
+    <message>
+      <source>4 Grays</source>
+      <translation>4 Grises</translation>
     </message>
 
     <message>
       <source>4.  Segmentation [No Alpha Channel]</source>
-      <translation>4. Segmentation [Pas de canal Alpha]</translation>
+      <translation>4. Segmentación [Sin canal alfa]</translation>
     </message>
 
     <message>
       <source>4096x4096 Layer</source>
-      <translation>4096x4096 Couche</translation>
+      <translation>4096x4096 Capa</translation>
+    </message>
+
+    <message>
+      <source>45 Deg.</source>
+      <translation>45 grados.</translation>
     </message>
 
     <message>
       <source>4th</source>
-      <translation>4ème</translation>
+      <translation>4º.</translation>
     </message>
 
     <message>
       <source>4th Color</source>
-      <translation>4ème couleur</translation>
+      <translation>4º Color</translation>
     </message>
 
     <message>
       <source>4th Tone</source>
-      <translation>4ème Tonalité</translation>
+      <translation>4º Tono</translation>
     </message>
 
     <message>
       <source>5.  Edge Threshold</source>
-      <translation>5. Seuil de l&apos;arête</translation>
+      <translation>5. Umbral del borde</translation>
     </message>
 
     <message>
       <source>512x512 Layer</source>
-      <translation>Couche 512x512</translation>
+      <translation>512x512 Capa</translation>
     </message>
 
     <message>
       <source>5th</source>
-      <translation>5e</translation>
+      <translation>5º.</translation>
     </message>
 
     <message>
       <source>5th Color</source>
-      <translation>5ème couleur</translation>
+      <translation>5º Color</translation>
     </message>
 
     <message>
       <source>5th Tone</source>
-      <translation>5e ton</translation>
+      <translation>5º Tono</translation>
     </message>
 
     <message>
       <source>6.  Smoothness</source>
-      <translation>6. Lissage</translation>
+      <translation>6. Suavidad</translation>
     </message>
 
     <message>
       <source>60&apos;s (faded Alt)</source>
-      <translation>60&apos;s (Alt fondu)</translation>
+      <translation>60&apos;s (Alt descolorido)</translation>
     </message>
 
     <message>
       <source>60&apos;s (faded)</source>
-      <translation>60&apos;s (délavé)</translation>
+      <translation>60&apos;s (descolorido)</translation>
     </message>
 
     <message>
       <source>64 (Faster)</source>
-      <translation>64 (plus rapide)</translation>
+      <translation>64 (Más rápido)</translation>
     </message>
 
     <message>
       <source>64 Keypoints</source>
-      <translation>64 Points clés</translation>
+      <translation>64 Puntos clave</translation>
     </message>
 
     <message>
       <source>67.5 Deg.</source>
-      <translation>67,5 Deg.</translation>
+      <translation>67,5 grados.</translation>
     </message>
 
     <message>
       <source>6th</source>
-      <translation>6ème</translation>
+      <translation>6º.</translation>
     </message>
 
     <message>
       <source>6th Color</source>
-      <translation>6ème couleur</translation>
+      <translation>6º Color</translation>
     </message>
 
     <message>
       <source>6th Tone</source>
-      <translation>6e ton</translation>
+      <translation>6º Tono</translation>
     </message>
 
     <message>
       <source>7.  Blur</source>
-      <translation>7. Flou</translation>
+      <translation>7. Blur</translation>
     </message>
 
     <message>
       <source>7th</source>
-      <translation>7ème</translation>
+      <translation>7º.</translation>
     </message>
 
     <message>
       <source>7th Color</source>
-      <translation>7ème couleur</translation>
+      <translation>7º Color</translation>
     </message>
 
     <message>
       <source>7th Tone</source>
-      <translation>7e ton</translation>
+      <translation>7º Tono</translation>
     </message>
 
     <message>
       <source>8 Colors</source>
-      <translation>8 Couleurs</translation>
+      <translation>8 Colores</translation>
+    </message>
+
+    <message>
+      <source>8 Grays</source>
+      <translation>8 Grises</translation>
     </message>
 
     <message>
       <source>8 Keypoints (RGB Corners)</source>
-      <translation>8 points clés (RGB Corners)</translation>
+      <translation>8 Puntos clave (Esquinas RGB)</translation>
     </message>
 
     <message>
       <source>8.  Quadtree Pixelisation [No Alpha Channel]</source>
-      <translation>8. Pixelisation en quadrature [Pas de canal Alpha].</translation>
+      <translation>8. Pixelización cuádruple [Sin canal alfa]</translation>
     </message>
 
     <message>
       <source>8th</source>
-      <translation>8ème</translation>
+      <translation>8º.</translation>
     </message>
 
     <message>
       <source>8th Color</source>
-      <translation>8ème couleur</translation>
+      <translation>8º Color</translation>
     </message>
 
     <message>
       <source>8th Tone</source>
-      <translation>8e ton</translation>
+      <translation>8º Tono</translation>
     </message>
 
     <message>
       <source>9.  Quadtree Min Precision</source>
-      <translation>9. Précision quadratique minimale</translation>
+      <translation>9. Precisión mínima de un cuadrípode</translation>
+    </message>
+
+    <message>
+      <source>90 Deg.</source>
+      <translation>90 grados.</translation>
     </message>
 
     <message>
       <source>9th</source>
-      <translation>9ème</translation>
+      <translation>9º.</translation>
     </message>
 
     <message>
       <source>9th Color</source>
-      <translation>9ème couleur</translation>
+      <translation>9º Color</translation>
+    </message>
+
+    <message>
+      <source>[Cyan]MYK</source>
+      <translation>MYK</translation>
     </message>
 
     <message>
       <source>A Lot of Cyan</source>
-      <translation>Beaucoup de cyan</translation>
+      <translation>Mucho cian</translation>
     </message>
 
     <message>
       <source>A Lot of Key</source>
-      <translation>Beaucoup de clés</translation>
+      <translation>Un montón de llave</translation>
     </message>
 
     <message>
       <source>A Lot of Magenta</source>
-      <translation>Beaucoup de magenta</translation>
+      <translation>Mucho magenta</translation>
     </message>
 
     <message>
       <source>A Lot of Yellow</source>
-      <translation>Beaucoup de jaune</translation>
+      <translation>Un montón de amarillo</translation>
     </message>
 
     <message>
       <source>A-Color Factor</source>
-      <translation>Facteur A-Color</translation>
+      <translation>Factor A-Color</translation>
     </message>
 
     <message>
       <source>A-Color Shift</source>
-      <translation>Changement de couleur A</translation>
+      <translation>Cambio de color A</translation>
     </message>
 
     <message>
       <source>A-Color Smoothness</source>
-      <translation>Douceur de la couleur A</translation>
+      <translation>Suavidad de color A</translation>
     </message>
 
     <message>
       <source>A-Component</source>
-      <translation>Composante A</translation>
+      <translation>Componente A</translation>
     </message>
 
     <message>
       <source>A-Value</source>
-      <translation>Valeur A</translation>
+      <translation>Valor A</translation>
     </message>
 
     <message>
       <source>A4 / 100 PPI (Recommended)</source>
-      <translation>A4 / 100 PPI (recommandé)</translation>
+      <translation>A4 / 100 PPI (Recomendado)</translation>
     </message>
 
     <message>
       <source>Abigail Gonzalez (21)</source>
-      <translation>Abigail Gonzalez (21 ans)</translation>
+      <translation>Abigail González (21)</translation>
     </message>
 
     <message>
       <source>About G&apos;MIC</source>
-      <translation>A propos de G&apos;MIC</translation>
+      <translation>Acerca de G&apos;MIC</translation>
     </message>
 
     <message>
       <source>Absolute Brightness</source>
-      <translation>Luminosité absolue</translation>
+      <translation>Brillo absoluto</translation>
     </message>
 
     <message>
       <source>Absolute Value</source>
-      <translation>Valeur absolue</translation>
+      <translation>Valor absoluto</translation>
+    </message>
+
+    <message>
+      <source>Abstraction</source>
+      <translation>Abstracción</translation>
     </message>
 
     <message>
       <source>Acceleration</source>
-      <translation>Accélération</translation>
+      <translation>Aceleración</translation>
     </message>
 
     <message>
       <source>Achromatomaly</source>
-      <translation>Achromatomalie</translation>
+      <translation>Acromatomía</translation>
+    </message>
+
+    <message>
+      <source>Achromatopsia</source>
+      <translation>Acromatopsia</translation>
+    </message>
+
+    <message>
+      <source>Acros</source>
+      <translation>A través de</translation>
+    </message>
+
+    <message>
+      <source>Action</source>
+      <translation>Acción</translation>
     </message>
 
     <message>
       <source>Action #1</source>
-      <translation>Action n° 1</translation>
+      <translation>Acción #1</translation>
     </message>
 
     <message>
       <source>Action #10</source>
-      <translation>Action n° 10</translation>
+      <translation>Acción #10</translation>
     </message>
 
     <message>
       <source>Action #11</source>
-      <translation>Action n°11</translation>
+      <translation>Acción #11</translation>
     </message>
 
     <message>
       <source>Action #12</source>
-      <translation>Action n°12</translation>
+      <translation>Acción #12</translation>
     </message>
 
     <message>
       <source>Action #13</source>
-      <translation>Action n°13</translation>
+      <translation>Acción #13</translation>
     </message>
 
     <message>
       <source>Action #14</source>
-      <translation>Action n° 14</translation>
+      <translation>Acción #14</translation>
     </message>
 
     <message>
       <source>Action #15</source>
-      <translation>Action n°15</translation>
+      <translation>Acción #15</translation>
     </message>
 
     <message>
       <source>Action #16</source>
-      <translation>Action n° 16</translation>
+      <translation>Acción #16</translation>
     </message>
 
     <message>
       <source>Action #17</source>
-      <translation>Action n°17</translation>
+      <translation>Acción #17</translation>
     </message>
 
     <message>
       <source>Action #18</source>
-      <translation>Action n°18</translation>
+      <translation>Acción #18</translation>
     </message>
 
     <message>
       <source>Action #19</source>
-      <translation>Action n°19</translation>
+      <translation>Acción #19</translation>
     </message>
 
     <message>
       <source>Action #2</source>
-      <translation>Action n°2</translation>
+      <translation>Acción #2</translation>
     </message>
 
     <message>
       <source>Action #20</source>
-      <translation>Action n°20</translation>
+      <translation>Acción #20</translation>
     </message>
 
     <message>
       <source>Action #21</source>
-      <translation>Action n°21</translation>
+      <translation>Acción #21</translation>
     </message>
 
     <message>
       <source>Action #22</source>
-      <translation>Action n° 22</translation>
+      <translation>Acción #22</translation>
     </message>
 
     <message>
       <source>Action #23</source>
-      <translation>Action n°23</translation>
+      <translation>Acción #23</translation>
     </message>
 
     <message>
       <source>Action #24</source>
-      <translation>Action n°24</translation>
+      <translation>Acción #24</translation>
     </message>
 
     <message>
       <source>Action #3</source>
-      <translation>Action n°3</translation>
+      <translation>Acción #3</translation>
     </message>
 
     <message>
       <source>Action #4</source>
-      <translation>Action n° 4</translation>
+      <translation>Acción #4</translation>
     </message>
 
     <message>
       <source>Action #5</source>
-      <translation>Action n° 5</translation>
+      <translation>Acción #5</translation>
     </message>
 
     <message>
       <source>Action #6</source>
-      <translation>Action n°6</translation>
+      <translation>Acción #6</translation>
     </message>
 
     <message>
       <source>Action #7</source>
-      <translation>Action n°7</translation>
+      <translation>Acción #7</translation>
     </message>
 
     <message>
       <source>Action #8</source>
-      <translation>Action n° 8</translation>
+      <translation>Acción #8</translation>
     </message>
 
     <message>
       <source>Action #9</source>
-      <translation>Action n° 9</translation>
+      <translation>Acción #9</translation>
+    </message>
+
+    <message>
+      <source>Action Red 01</source>
+      <translation>Acción Roja 01</translation>
     </message>
 
     <message>
       <source>Activate &apos;Pencil Smoother&apos;</source>
-      <translation>Activer le &quot;Pencil Smoother&quot;.</translation>
+      <translation>Activar el &quot;Alisador de lápices</translation>
     </message>
 
     <message>
       <source>Activate Color Enhancement</source>
-      <translation>Activer l&apos;amélioration des couleurs</translation>
+      <translation>Activar la mejora del color</translation>
     </message>
 
     <message>
       <source>Activate Colors Geometric Shapes</source>
-      <translation>Activer les couleurs Formes géométriques</translation>
+      <translation>Activar los colores de las formas geométricas</translation>
     </message>
 
     <message>
       <source>Activate Custom Filter</source>
-      <translation>Activer le filtre personnalisé</translation>
+      <translation>Activar el filtro personalizado</translation>
     </message>
 
     <message>
       <source>Activate Lizards</source>
-      <translation>Activer les lézards</translation>
+      <translation>Activar los lagartos</translation>
     </message>
 
     <message>
       <source>Activate Mirror</source>
-      <translation>Activer le miroir</translation>
+      <translation>Activar el espejo</translation>
     </message>
 
     <message>
       <source>Activate Pink Elephants</source>
-      <translation>Activer les éléphants roses</translation>
+      <translation>Activar los elefantes rosados</translation>
     </message>
 
     <message>
       <source>Activate Second Direction</source>
-      <translation>Activer la deuxième direction</translation>
+      <translation>Activar la segunda dirección</translation>
     </message>
 
     <message>
       <source>Activate Shakes</source>
-      <translation>Activer les shakes</translation>
+      <translation>Activar los batidos</translation>
     </message>
 
     <message>
       <source>Activate Slice 1</source>
-      <translation>Activer la tranche 1</translation>
+      <translation>Activar la rebanada 1</translation>
     </message>
 
     <message>
       <source>Activate Slice 2</source>
-      <translation>Activer la tranche 2</translation>
+      <translation>Activar la rebanada 2</translation>
     </message>
 
     <message>
       <source>Activate Slice 3</source>
-      <translation>Activer la tranche 3</translation>
+      <translation>Activar la rebanada 3</translation>
     </message>
 
     <message>
       <source>Activate Slice 4</source>
-      <translation>Activer la tranche 4</translation>
+      <translation>Activar la rebanada 4</translation>
     </message>
 
     <message>
-      <source>Activer Symmetrizoscope</source>
-      <translation>Activateur Symmetrizoscope</translation>
+      <source>Adaptive</source>
+      <translation>Adaptable</translation>
     </message>
 
     <message>
       <source>Add</source>
-      <translation>Ajouter</translation>
+      <translation>Añade</translation>
     </message>
 
     <message>
       <source>Add 1px Outline</source>
-      <translation>Ajouter 1px Schéma</translation>
+      <translation>Agregar 1px Esquema</translation>
     </message>
 
     <message>
       <source>Add Alpha Channels to Detail Scale Layers</source>
-      <translation>Ajouter des canaux Alpha aux couches d&apos;échelle de détail</translation>
+      <translation>Añadir los canales alfa a las capas de escala de detalle</translation>
     </message>
 
     <message>
       <source>Add as a New Layer</source>
-      <translation>Ajouter en tant que nouvelle couche</translation>
+      <translation>Añadir como una nueva capa</translation>
     </message>
 
     <message>
       <source>Add Chalk Highlights</source>
-      <translation>Ajouter les points forts de la craie</translation>
+      <translation>Agregar puntos destacados de tiza</translation>
     </message>
 
     <message>
       <source>Add Color Background</source>
-      <translation>Ajouter une couleur de fond</translation>
+      <translation>Añadir fondo de color</translation>
     </message>
 
     <message>
       <source>Add Comment Area in HTML Page</source>
-      <translation>Ajouter une zone de commentaires dans la page HTML</translation>
+      <translation>Agregar área de comentarios en la página HTML</translation>
     </message>
 
     <message>
       <source>Add Grain</source>
-      <translation>Ajouter du grain</translation>
+      <translation>Añade el grano</translation>
     </message>
 
     <message>
       <source>Add Image Label</source>
-      <translation>Ajouter un label d&apos;image</translation>
+      <translation>Añadir etiqueta de imagen</translation>
     </message>
 
     <message>
       <source>Add Painter&apos;s Touch</source>
-      <translation>Ajouter la touche de peintre</translation>
+      <translation>Añadir el toque de pintor</translation>
     </message>
 
     <message>
       <source>Add User-Defined Constraints (Interactive)</source>
-      <translation>Ajouter des contraintes définies par l&apos;utilisateur (interactif)</translation>
+      <translation>Añadir restricciones definidas por el usuario (interactivo)</translation>
     </message>
 
     <message>
       <source>Additional Duplicates Count</source>
-      <translation>Les doublons supplémentaires sont comptés</translation>
+      <translation>Los duplicados adicionales cuentan</translation>
     </message>
 
     <message>
       <source>Additional Outline</source>
-      <translation>Schéma supplémentaire</translation>
+      <translation>Esquema adicional</translation>
     </message>
 
     <message>
       <source>Additive</source>
-      <translation>Additif</translation>
+      <translation>Aditivo</translation>
     </message>
 
     <message>
       <source>Adjust Background Reconstruction</source>
-      <translation>Ajuster la reconstruction du contexte</translation>
+      <translation>Ajustar la reconstrucción del fondo</translation>
     </message>
 
     <message>
       <source>Adventure 1453</source>
-      <translation>Aventure 1453</translation>
+      <translation>Aventura 1453</translation>
+    </message>
+
+    <message>
+      <source>Aggresive</source>
+      <translation>Agresivo</translation>
     </message>
 
     <message>
       <source>Aggressive Highlights Recovery 5</source>
-      <translation>La reprise est agressive 5</translation>
-    </message>
-
-    <message>
-      <source>Alex Jordan (81)</source>
-      <translation>Alex Jordan (81 ans)</translation>
+      <translation>Agresivo destaca la recuperación 5</translation>
     </message>
 
     <message>
       <source>Algorithm</source>
-      <translation>Algorithme</translation>
+      <translation>Algoritmo</translation>
     </message>
 
     <message>
       <source>Align Image Streams</source>
-      <translation>Aligner les flux d&apos;images</translation>
+      <translation>Alinear los flujos de imágenes</translation>
     </message>
 
     <message>
       <source>Align Layers</source>
-      <translation>Aligner les couches</translation>
+      <translation>Alinear las capas</translation>
     </message>
 
     <message>
       <source>Aligned</source>
-      <translation>Aligné</translation>
+      <translation>Alineado</translation>
     </message>
 
     <message>
       <source>Alignment Type</source>
-      <translation>Type d&apos;alignement</translation>
+      <translation>Tipo de alineación</translation>
     </message>
 
     <message>
       <source>All</source>
-      <translation>Tous</translation>
+      <translation>Todos</translation>
     </message>
 
     <message>
       <source>All 45° Rotations</source>
-      <translation>Tous les 45° Rotations</translation>
+      <translation>Todos los 45° Rotaciones</translation>
     </message>
 
     <message>
       <source>All 90° Rotations</source>
-      <translation>Tous les 90° Rotations</translation>
+      <translation>Todos los 90° Rotaciones</translation>
     </message>
 
     <message>
       <source>All [Collage]</source>
-      <translation>Tous [Collage]</translation>
+      <translation>Todos [Collage]</translation>
     </message>
 
     <message>
       <source>All but Reference Color</source>
-      <translation>Tout sauf la couleur de référence</translation>
+      <translation>Todo menos el color de referencia</translation>
     </message>
 
     <message>
       <source>All Layers and Masks</source>
-      <translation>Tous les calques et masques</translation>
+      <translation>Todas las capas y máscaras</translation>
     </message>
 
     <message>
       <source>All Tones</source>
-      <translation>Tous les tons</translation>
+      <translation>Todos los tonos</translation>
     </message>
 
     <message>
       <source>All XY-Flips</source>
-      <translation>Tous les XY-Flips</translation>
+      <translation>Todos los XY-Flips</translation>
     </message>
 
     <message>
       <source>Allow Angle</source>
-      <translation>Autoriser l&apos;angle</translation>
+      <translation>Permitir el ángulo</translation>
     </message>
 
     <message>
       <source>Allow Outer Blending</source>
-      <translation>Autoriser le mélange extérieur</translation>
+      <translation>Permitir la mezcla externa</translation>
     </message>
 
     <message>
       <source>Allow Self Intersections</source>
-      <translation>Autoriser les intersections avec soi-même</translation>
+      <translation>Permitir las intersecciones de sí mismo</translation>
+    </message>
+
+    <message>
+      <source>Alpha</source>
+      <translation>Alfa</translation>
     </message>
 
     <message>
       <source>Alpha Channel</source>
-      <translation>Canal Alpha</translation>
+      <translation>Canal Alfa</translation>
     </message>
 
     <message>
       <source>Alpha Mode</source>
-      <translation>Mode Alpha</translation>
+      <translation>Modo Alfa</translation>
     </message>
 
     <message>
       <source>Also Match Gradients</source>
-      <translation>Faites également correspondre les gradients</translation>
+      <translation>También se ajustan a los gradientes</translation>
     </message>
 
     <message>
       <source>Ambient (%)</source>
-      <translation>Ambiance (%)</translation>
+      <translation>Ambiente (%)</translation>
     </message>
 
     <message>
       <source>Ambient Lightness</source>
-      <translation>Luminosité ambiante</translation>
+      <translation>La ligereza del ambiente</translation>
     </message>
 
     <message>
       <source>Amount</source>
-      <translation>Montant</translation>
+      <translation>Cantidad</translation>
+    </message>
+
+    <message>
+      <source>Amplitude</source>
+      <translation>Amplitud</translation>
+    </message>
+
+    <message>
+      <source>Amplitude (%)</source>
+      <translation>Amplitud (%)</translation>
+    </message>
+
+    <message>
+      <source>Amplitude / Angle</source>
+      <translation>Amplitud/ángulo</translation>
+    </message>
+
+    <message>
+      <source>Amstragram</source>
+      <translation>Amstragrama</translation>
     </message>
 
     <message>
       <source>Anaglypgh Green/magenta Optimized</source>
-      <translation>Anaglypgh Vert/magenta Optimisé</translation>
+      <translation>Anaglypgh Green/magenta Optimizado</translation>
     </message>
 
     <message>
       <source>Anaglyph Blue/yellow</source>
-      <translation>Anaglyphe Bleu/jaune</translation>
+      <translation>Anaglifo Azul/amarillo</translation>
     </message>
 
     <message>
       <source>Anaglyph Blue/yellow Optimized</source>
-      <translation>Anaglyphe Bleu/jaune Optimisé</translation>
+      <translation>Anaglifo Azul/amarillo Optimizado</translation>
     </message>
 
     <message>
       <source>Anaglyph Glasses Adjustment</source>
-      <translation>Ajustement des lunettes anaglyphes</translation>
+      <translation>Ajuste de las gafas de anaglifo</translation>
     </message>
 
     <message>
       <source>Anaglyph Green/magenta</source>
-      <translation>Anaglyphe Vert/magenta</translation>
+      <translation>Verde anaglifo/magenta</translation>
     </message>
 
     <message>
       <source>Anaglyph Green/magenta Optimized</source>
-      <translation>Anaglyphe Vert/magenta Optimisé</translation>
+      <translation>Verde anaglifo/magenta optimizado</translation>
     </message>
 
     <message>
       <source>Anaglyph Reconstruction</source>
-      <translation>Reconstruction des anaglyphes</translation>
+      <translation>Reconstrucción de anaglifos</translation>
     </message>
 
     <message>
       <source>Anaglyph Red/cyan</source>
-      <translation>Anaglyphe Rouge/cyan</translation>
+      <translation>Anaglifo Rojo/cyan</translation>
     </message>
 
     <message>
       <source>Anaglyph Red/cyan Optimized</source>
-      <translation>Anaglyphe Rouge/cyan Optimisé</translation>
+      <translation>Anaglifo rojo/cyan optimizado</translation>
     </message>
 
     <message>
       <source>Anaglyph: Red/Cyan</source>
-      <translation>Anaglyphe : Rouge/Cyan</translation>
-    </message>
-
-    <message>
-      <source>AnalogFX - Old Style I</source>
-      <translation>AnalogFX - Ancien style I</translation>
-    </message>
-
-    <message>
-      <source>AnalogFX - Old Style II</source>
-      <translation>AnalogFX - Ancien style II</translation>
-    </message>
-
-    <message>
-      <source>AnalogFX - Old Style III</source>
-      <translation>AnalogFX - Ancien style III</translation>
+      <translation>Anaglifo: Rojo/Cyan</translation>
     </message>
 
     <message>
       <source>AnalogFX - Sepia Color</source>
-      <translation>AnalogFX - Couleur sépia</translation>
-    </message>
-
-    <message>
-      <source>AnalogFX - Soft Sepia I</source>
-      <translation>AnalogFX - Sépia doux I</translation>
-    </message>
-
-    <message>
-      <source>AnalogFX - Soft Sepia II</source>
-      <translation>AnalogFX - Sépia doux II</translation>
+      <translation>AnalogFX - Color Sepia</translation>
     </message>
 
     <message>
       <source>Analysis Scale</source>
-      <translation>Échelle d&apos;analyse</translation>
+      <translation>Escala de análisis</translation>
     </message>
 
     <message>
       <source>Analysis Smoothness</source>
-      <translation>Lissage de l&apos;analyse</translation>
+      <translation>Análisis Suavidad</translation>
     </message>
 
     <message>
       <source>And</source>
-      <translation>Et</translation>
+      <translation>Y</translation>
+    </message>
+
+    <message>
+      <source>Angle</source>
+      <translation>Ángulo</translation>
+    </message>
+
+    <message>
+      <source>Angle (%)</source>
+      <translation>Ángulo (%)</translation>
+    </message>
+
+    <message>
+      <source>Angle (deg)</source>
+      <translation>Ángulo (deg)</translation>
+    </message>
+
+    <message>
+      <source>Angle (deg.)</source>
+      <translation>Ángulo (deg.)</translation>
     </message>
 
     <message>
       <source>Angle / Size</source>
-      <translation>Angle / Taille</translation>
+      <translation>Ángulo / Tamaño</translation>
     </message>
 
     <message>
       <source>Angle Cut</source>
-      <translation>Coupe d&apos;angle</translation>
+      <translation>Corte de ángulo</translation>
     </message>
 
     <message>
       <source>Angle Dispersion</source>
-      <translation>Dispersion angulaire</translation>
+      <translation>Dispersión del ángulo</translation>
     </message>
 
     <message>
       <source>Angle Image Contour</source>
-      <translation>Contour de l&apos;image en angle</translation>
+      <translation>Contorno de la imagen en ángulo</translation>
     </message>
 
     <message>
       <source>Angle of Disturbance Surface</source>
-      <translation>Angle de la surface de perturbation</translation>
+      <translation>Ángulo de la superficie de la perturbación</translation>
     </message>
 
     <message>
       <source>Angle of Main Nebulous Surface</source>
-      <translation>Angle de la surface nébuleuse principale</translation>
+      <translation>Ángulo de la superficie nebulosa principal</translation>
     </message>
 
     <message>
       <source>Angle Range</source>
-      <translation>Gamme d&apos;angles</translation>
+      <translation>Rango de ángulo</translation>
     </message>
 
     <message>
       <source>Angle Range (deg.)</source>
-      <translation>Gamme d&apos;angles (degrés)</translation>
+      <translation>Rango de ángulo (deg.)</translation>
     </message>
 
     <message>
       <source>Angle Tilt</source>
-      <translation>Angle d&apos;inclinaison</translation>
+      <translation>Inclinación del ángulo</translation>
     </message>
 
     <message>
       <source>Angle Variations</source>
-      <translation>Variations des angles</translation>
+      <translation>Variaciones de ángulo</translation>
     </message>
 
     <message>
       <source>Anguish</source>
-      <translation>L&apos;angoisse</translation>
-    </message>
-
-    <message>
-      <source>Angular</source>
-      <translation>Angulaire</translation>
+      <translation>Angustia</translation>
     </message>
 
     <message>
       <source>Angular Precision</source>
-      <translation>Précision angulaire</translation>
+      <translation>Precisión angular</translation>
     </message>
 
     <message>
       <source>Angular Tiles</source>
-      <translation>Tuiles angulaires</translation>
+      <translation>Baldosas angulares</translation>
     </message>
 
     <message>
       <source>Anisotropic</source>
-      <translation>Anisotrope</translation>
+      <translation>Anisótropo</translation>
     </message>
 
     <message>
       <source>Anisotropy</source>
-      <translation>Anisotropie</translation>
+      <translation>Anisotropía</translation>
     </message>
 
     <message>
       <source>Annular Steiner Chain Round Tiles</source>
-      <translation>Tuiles rondes en chaîne de Steiner annulaire</translation>
-    </message>
-
-    <message>
-      <source>Anti Alias</source>
-      <translation>Anti-alias</translation>
-    </message>
-
-    <message>
-      <source>Anti-Ghosting</source>
-      <translation>Anti-espionnage</translation>
-    </message>
-
-    <message>
-      <source>Antialiasing</source>
-      <translation>Anti-crénelage</translation>
+      <translation>Cadena anular Steiner Baldosas redondas</translation>
     </message>
 
     <message>
       <source>Antisymmetry</source>
-      <translation>Antisymmétrie</translation>
+      <translation>Antisimetría</translation>
     </message>
 
     <message>
       <source>Any</source>
-      <translation>Tout</translation>
+      <translation>Cualquier</translation>
     </message>
 
     <message>
       <source>Apocalypse This Very Moment</source>
-      <translation>L&apos;apocalypse en ce moment même</translation>
+      <translation>Apocalipsis en este mismo momento</translation>
     </message>
 
     <message>
       <source>Apples</source>
-      <translation>Pommes</translation>
+      <translation>Manzanas</translation>
     </message>
 
     <message>
       <source>Apply Adjustments On</source>
-      <translation>Appliquer les ajustements sur</translation>
+      <translation>Aplicar los ajustes en</translation>
     </message>
 
     <message>
       <source>Apply Color Balance</source>
-      <translation>Appliquer la balance des couleurs</translation>
+      <translation>Aplicar el balance de color</translation>
     </message>
 
     <message>
       <source>Apply External CLUT</source>
-      <translation>Appliquer le CLUT externe</translation>
+      <translation>Aplicar CLUT externo</translation>
     </message>
 
     <message>
       <source>Apply Mask</source>
-      <translation>Appliquer le masque</translation>
+      <translation>Aplicar la máscara</translation>
     </message>
 
     <message>
       <source>Apply Skin Tone Mask</source>
-      <translation>Appliquer le masque de teint</translation>
+      <translation>Aplicar la máscara de tono de piel</translation>
     </message>
 
     <message>
       <source>Apply Transformation From</source>
-      <translation>Appliquer la transformation de</translation>
+      <translation>Aplicar la transformación de</translation>
     </message>
 
     <message>
       <source>Aqua and Orange Dark</source>
-      <translation>Aqua et Orange Dark</translation>
+      <translation>Aqua y Naranja oscuro</translation>
     </message>
 
     <message>
       <source>Area</source>
-      <translation>Domaine</translation>
+      <translation>Área</translation>
     </message>
 
     <message>
       <source>Area Smoothness</source>
-      <translation>Lissage des zones</translation>
+      <translation>Suavidad de la zona</translation>
     </message>
 
     <message>
       <source>Areas Light Adjustment</source>
-      <translation>Ajustement de l&apos;éclairage des zones</translation>
+      <translation>Ajuste de la luz de las áreas</translation>
     </message>
 
     <message>
       <source>Areas Smoothness</source>
-      <translation>Lissage des zones</translation>
+      <translation>Suavidad de las áreas</translation>
     </message>
 
     <message>
       <source>Array [Faded]</source>
-      <translation>Tableau [Fondu].</translation>
+      <translation>Array [descolorido]</translation>
     </message>
 
     <message>
       <source>Array [Mirrored]</source>
-      <translation>Tableau [en miroir]</translation>
+      <translation>Array [Espejo]</translation>
     </message>
 
     <message>
       <source>Array [Random Colors]</source>
-      <translation>Tableau [Couleurs aléatoires].</translation>
+      <translation>Array [Colores aleatorios]</translation>
     </message>
 
     <message>
       <source>Array [Random]</source>
-      <translation>Tableau [Aléatoire].</translation>
-    </message>
-
-    <message>
-      <source>Array [Regular]</source>
-      <translation>Array [Régulier]</translation>
+      <translation>Array [Aleatorio]</translation>
     </message>
 
     <message>
       <source>Array Mode</source>
-      <translation>Mode &quot;Array</translation>
+      <translation>Modo de arreglo...</translation>
     </message>
 
     <message>
       <source>Arrows</source>
-      <translation>Flèches</translation>
+      <translation>Flechas</translation>
     </message>
 
     <message>
       <source>Arrows (Outline)</source>
-      <translation>Flèches (schéma)</translation>
+      <translation>Flechas (Esquema)</translation>
     </message>
 
     <message>
       <source>Artistic  Modern</source>
-      <translation>Artistique moderne</translation>
+      <translation>Artístico Moderno</translation>
+    </message>
+
+    <message>
+      <source>Artistic Hard</source>
+      <translation>Artístico Duro</translation>
     </message>
 
     <message>
       <source>Artistic Round</source>
-      <translation>Cycle artistique</translation>
+      <translation>Ronda artística</translation>
+    </message>
+
+    <message>
+      <source>Ascii Art</source>
+      <translation>Arte Ascii</translation>
+    </message>
+
+    <message>
+      <source>Aspect</source>
+      <translation>Aspecto</translation>
     </message>
 
     <message>
       <source>Aspect Ratio</source>
-      <translation>Ratio d&apos;aspect</translation>
+      <translation>Relación de aspecto</translation>
     </message>
 
     <message>
       <source>Associated Color</source>
-      <translation>Couleur associée</translation>
+      <translation>Color asociado</translation>
     </message>
 
     <message>
       <source>Attenuation</source>
-      <translation>Atténuation</translation>
-    </message>
-
-    <message>
-      <source>Australia</source>
-      <translation>Australie</translation>
+      <translation>Atenuación</translation>
     </message>
 
     <message>
       <source>Auto Reduce Level (Level Slider Is Disabled)</source>
-      <translation>Réduction automatique du niveau (le curseur de niveau est désactivé)</translation>
+      <translation>Nivel de reducción automática (el deslizador de nivel está desactivado)</translation>
     </message>
 
     <message>
       <source>Auto Set Hue Inverse (Hue Slider Is Disabled)</source>
-      <translation>Auto Set Hue Inverse (le curseur de teinte est désactivé)</translation>
+      <translation>Auto Set Hue Inverse (Hue Slider está deshabilitado)</translation>
     </message>
 
     <message>
       <source>Auto-Clean Bottom Color Layer</source>
-      <translation>Auto-nettoyage de la couche inférieure de couleur</translation>
+      <translation>Capa de color de fondo de limpieza automática</translation>
     </message>
 
     <message>
       <source>Auto-Reduce Number of Frames</source>
-      <translation>Réduction automatique du nombre d&apos;images</translation>
+      <translation>Auto-reducción del número de cuadros</translation>
     </message>
 
     <message>
       <source>Auto-Set Periodicity</source>
-      <translation>Périodicité automatique</translation>
+      <translation>Periodicidad del Auto-Set</translation>
     </message>
 
     <message>
       <source>Autocrop Output Layers</source>
-      <translation>Couches de sortie autocopiantes</translation>
+      <translation>Capas de salida de autocorte</translation>
     </message>
 
     <message>
       <source>Automatic</source>
-      <translation>Automatique</translation>
+      <translation>Automático</translation>
     </message>
 
     <message>
       <source>Automatic &amp; Contrast Mask</source>
-      <translation>Masque automatique et de contraste</translation>
+      <translation>Máscara automática y de contraste</translation>
     </message>
 
     <message>
       <source>Automatic [Scan All Hues]</source>
-      <translation>Automatique [Scanner toutes les teintes].</translation>
+      <translation>Automático [Escanea todas las tonalidades]</translation>
     </message>
 
     <message>
       <source>Automatic Color Balance</source>
-      <translation>Balance automatique des couleurs</translation>
+      <translation>Balance de color automático</translation>
     </message>
 
     <message>
       <source>Automatic Depth Estimation</source>
-      <translation>Estimation automatique de la profondeur</translation>
+      <translation>Estimación automática de la profundidad</translation>
     </message>
 
     <message>
       <source>Automatic Upscale for Optimum Results</source>
-      <translation>Une mise à niveau automatique pour des résultats optimaux</translation>
+      <translation>Aumento automático de la escala para obtener resultados óptimos</translation>
     </message>
 
     <message>
       <source>Autumn</source>
-      <translation>Automne</translation>
+      <translation>Otoño</translation>
+    </message>
+
+    <message>
+      <source>Avalanche</source>
+      <translation>Avalancha</translation>
     </message>
 
     <message>
       <source>Average</source>
-      <translation>Moyenne</translation>
+      <translation>Promedio</translation>
     </message>
 
     <message>
       <source>Average 3x3</source>
-      <translation>Moyenne 3x3</translation>
+      <translation>Promedio 3x3</translation>
     </message>
 
     <message>
       <source>Average 5x5</source>
-      <translation>Moyenne 5x5</translation>
+      <translation>Promedio 5x5</translation>
     </message>
 
     <message>
       <source>Average 7x7</source>
-      <translation>Moyenne 7x7</translation>
+      <translation>Promedio 7x7</translation>
     </message>
 
     <message>
       <source>Average 9x9</source>
-      <translation>Moyenne 9x9</translation>
+      <translation>Promedio 9x9</translation>
     </message>
 
     <message>
       <source>Average RGB</source>
-      <translation>RGB moyen</translation>
+      <translation>Promedio RGB</translation>
     </message>
 
     <message>
       <source>Average Smoothness</source>
-      <translation>Lissage moyen</translation>
+      <translation>Suavidad media</translation>
     </message>
 
     <message>
       <source>Avg / Max Weight</source>
-      <translation>Poids moyen / maximum</translation>
-    </message>
-
-    <message>
-      <source>Avg Branching</source>
-      <translation>Branche moyenne</translation>
+      <translation>Peso medio/máximo</translation>
     </message>
 
     <message>
       <source>Avg Left Angle (deg.)</source>
-      <translation>Angle moyen à gauche (deg.)</translation>
+      <translation>Ángulo izquierdo medio (deg.)</translation>
     </message>
 
     <message>
       <source>Avg Length Factor (%)</source>
-      <translation>Facteur de longueur moyenne (%)</translation>
+      <translation>Factor de longitud media (%)</translation>
     </message>
 
     <message>
       <source>Avg Right Angle (deg.)</source>
-      <translation>Angle droit moyen (deg.)</translation>
+      <translation>Ángulo recto medio (deg.)</translation>
     </message>
 
     <message>
       <source>Avg Thickness Factor (%)</source>
-      <translation>Facteur d&apos;épaisseur moyen (%)</translation>
+      <translation>Factor de espesor medio (%)</translation>
     </message>
 
     <message>
       <source>Axis</source>
-      <translation>Axe</translation>
+      <translation>Eje</translation>
     </message>
 
     <message>
@@ -1795,1568 +1920,1583 @@
     </message>
 
     <message>
+      <source>B&amp;W</source>
+      <translation>EN BLANCO Y NEGRO</translation>
+    </message>
+
+    <message>
       <source>B&amp;W Pencil [Animated]</source>
-      <translation>Crayon N&amp;B [Animé]</translation>
+      <translation>Lápiz en blanco y negro [Animación]</translation>
     </message>
 
     <message>
       <source>B&amp;W Photograph</source>
-      <translation>Photographie N&amp;B</translation>
+      <translation>Fotografía en blanco y negro</translation>
     </message>
 
     <message>
       <source>B&amp;W Stencil</source>
-      <translation>Pochoir N&amp;B</translation>
+      <translation>Plantilla en blanco y negro</translation>
     </message>
 
     <message>
       <source>B&amp;W Stencil [Animated]</source>
-      <translation>Pochoir N&amp;B [Animé]</translation>
+      <translation>B&amp;W Stencil [Animado]</translation>
     </message>
 
     <message>
       <source>B-Color Factor</source>
-      <translation>Facteur B-Color</translation>
+      <translation>Factor B-Color</translation>
     </message>
 
     <message>
       <source>B-Color Shift</source>
-      <translation>Changement de couleur B</translation>
+      <translation>Cambio de color B</translation>
+    </message>
+
+    <message>
+      <source>B-Color Smoothness</source>
+      <translation>Suavidad del color B</translation>
     </message>
 
     <message>
       <source>B-Component</source>
-      <translation>Composante B</translation>
+      <translation>Componente B</translation>
     </message>
 
     <message>
       <source>Background</source>
-      <translation>Contexte</translation>
+      <translation>Antecedentes</translation>
     </message>
 
     <message>
       <source>Background Color</source>
-      <translation>Couleur de fond</translation>
+      <translation>Color de fondo</translation>
     </message>
 
     <message>
       <source>Background Intensity</source>
-      <translation>Intensité du contexte</translation>
+      <translation>Intensidad de fondo</translation>
     </message>
 
     <message>
       <source>Background Point (%)</source>
-      <translation>Contexte (%)</translation>
+      <translation>Punto de fondo (%)</translation>
     </message>
 
     <message>
       <source>Backward</source>
-      <translation>En arrière</translation>
+      <translation>Retrocede</translation>
     </message>
 
     <message>
       <source>Backward Horizontal</source>
-      <translation>Horizontal à l&apos;envers</translation>
+      <translation>Horizontal hacia atrás</translation>
     </message>
 
     <message>
       <source>Backward Vertical</source>
-      <translation>Vertical à l&apos;envers</translation>
+      <translation>Vertical hacia atrás</translation>
     </message>
 
     <message>
       <source>Balance Color</source>
-      <translation>Équilibre des couleurs</translation>
-    </message>
-
-    <message>
-      <source>Balance SRGB</source>
-      <translation>Solde SRGB</translation>
+      <translation>Equilibrar el color</translation>
     </message>
 
     <message>
       <source>Ball</source>
-      <translation>Ballon</translation>
+      <translation>Bola</translation>
     </message>
 
     <message>
       <source>Balloons</source>
-      <translation>Ballons</translation>
+      <translation>Globos</translation>
     </message>
 
     <message>
       <source>Balls</source>
-      <translation>Balles</translation>
+      <translation>Bolas</translation>
     </message>
 
     <message>
       <source>Band Width</source>
-      <translation>Largeur de bande</translation>
-    </message>
-
-    <message>
-      <source>Banding Denoise</source>
-      <translation>Banderolage de Denoise</translation>
+      <translation>Ancho de banda</translation>
     </message>
 
     <message>
       <source>Bandwidth</source>
-      <translation>Bande passante</translation>
+      <translation>Ancho de banda</translation>
     </message>
 
     <message>
       <source>Barbed Wire</source>
-      <translation>Fil de fer barbelé</translation>
+      <translation>Alambre de púas</translation>
     </message>
 
     <message>
-      <source>Barnsley Fern</source>
-      <translation>Fougère d&apos;orge</translation>
+      <source>Bars</source>
+      <translation>Bares</translation>
     </message>
 
     <message>
       <source>Base Reference Dimension</source>
-      <translation>Dimension de référence de base</translation>
+      <translation>Dimensión de referencia de la base</translation>
     </message>
 
     <message>
       <source>Base Scale</source>
-      <translation>Échelle de base</translation>
+      <translation>Escala de la base</translation>
     </message>
 
     <message>
       <source>Base Thickness (%)</source>
-      <translation>Épaisseur de base (%)</translation>
+      <translation>Espesor de la base (%)</translation>
     </message>
 
     <message>
       <source>Basic Adjustments</source>
-      <translation>Ajustements de base</translation>
+      <translation>Ajustes básicos</translation>
     </message>
 
     <message>
       <source>Batch Processing</source>
-      <translation>Traitement par lots</translation>
+      <translation>Procesamiento por lotes</translation>
     </message>
 
     <message>
       <source>Bayer Filter</source>
-      <translation>Filtre Bayer</translation>
+      <translation>Filtro Bayer</translation>
+    </message>
+
+    <message>
+      <source>Bayer Reconstruction</source>
+      <translation>Reconstrucción de Bayer</translation>
     </message>
 
     <message>
       <source>Behind</source>
-      <translation>Derrière</translation>
+      <translation>Detrás de</translation>
     </message>
 
     <message>
       <source>Below</source>
-      <translation>Ci-dessous</translation>
+      <translation>Debajo de</translation>
     </message>
 
     <message>
       <source>Berlin Sky</source>
-      <translation>Ciel de Berlin</translation>
+      <translation>El cielo de Berlín</translation>
     </message>
 
     <message>
       <source>Best Match</source>
-      <translation>Meilleur jumelage</translation>
+      <translation>Mejor partido</translation>
     </message>
 
     <message>
-      <source>Beta</source>
-      <translation>Bêta</translation>
+      <source>BG Textured</source>
+      <translation>BG Texturizado</translation>
     </message>
 
     <message>
       <source>Bi-Directional</source>
-      <translation>Bi-directionnel</translation>
+      <translation>Bi-Direccional</translation>
     </message>
 
     <message>
-      <source>Bias</source>
-      <translation>Biais</translation>
+      <source>Bicubic</source>
+      <translation>Bicúbico</translation>
     </message>
 
     <message>
       <source>Bidirectional [Sharp]</source>
-      <translation>Bidirectionnel [Aiguisé].</translation>
+      <translation>Bidireccional [Sharp]</translation>
     </message>
 
     <message>
       <source>Bidirectional [Smooth]</source>
-      <translation>Bidirectionnel [Lisse]</translation>
+      <translation>Bidireccional [Suave]</translation>
     </message>
 
     <message>
       <source>Bidirectional Rendering</source>
-      <translation>Rendu bidirectionnel</translation>
-    </message>
-
-    <message>
-      <source>Bilateral</source>
-      <translation>Bilatéral</translation>
+      <translation>Renderización bidireccional</translation>
     </message>
 
     <message>
       <source>Bilateral Radius</source>
-      <translation>Rayon bilatéral</translation>
+      <translation>Radio bilateral</translation>
     </message>
 
     <message>
       <source>Binary</source>
-      <translation>Binaire</translation>
+      <translation>Binario</translation>
     </message>
 
     <message>
       <source>Binary Digits</source>
-      <translation>Chiffres binaires</translation>
+      <translation>Cifras binarias</translation>
     </message>
 
     <message>
       <source>Bit Masking (End)</source>
-      <translation>Masquage des bits (fin)</translation>
+      <translation>Enmascaramiento de bits (Fin)</translation>
     </message>
 
     <message>
       <source>Bit Masking (Start)</source>
-      <translation>Masquage des bits (Début)</translation>
+      <translation>Enmascaramiento de bits (Inicio)</translation>
     </message>
 
     <message>
       <source>Black</source>
-      <translation>Noir</translation>
+      <translation>Negro</translation>
     </message>
 
     <message>
       <source>Black &amp; White</source>
-      <translation>Noir et blanc</translation>
+      <translation>Blanco y negro</translation>
     </message>
 
     <message>
       <source>Black &amp; White (25)</source>
-      <translation>Noir et blanc (25)</translation>
+      <translation>Blanco y negro (25)</translation>
     </message>
 
     <message>
       <source>Black &amp; White-1</source>
-      <translation>Noir et blanc - 1</translation>
+      <translation>Blanco y Negro-1</translation>
     </message>
 
     <message>
       <source>Black &amp; White-10</source>
-      <translation>Noir et blanc - 10</translation>
+      <translation>Blanco y Negro-10</translation>
     </message>
 
     <message>
       <source>Black &amp; White-2</source>
-      <translation>Noir et blanc - 2</translation>
+      <translation>Blanco y Negro-2</translation>
     </message>
 
     <message>
       <source>Black &amp; White-3</source>
-      <translation>Noir et blanc - 3</translation>
+      <translation>Blanco y Negro-3</translation>
     </message>
 
     <message>
       <source>Black &amp; White-4</source>
-      <translation>Noir et blanc - 4</translation>
+      <translation>Blanco y Negro-4</translation>
     </message>
 
     <message>
       <source>Black &amp; White-5</source>
-      <translation>Noir et blanc - 5</translation>
+      <translation>Blanco y Negro-5</translation>
     </message>
 
     <message>
       <source>Black &amp; White-6</source>
-      <translation>Noir et blanc - 6</translation>
+      <translation>Blanco y Negro-6</translation>
     </message>
 
     <message>
       <source>Black &amp; White-7</source>
-      <translation>Noir et blanc - 7</translation>
+      <translation>Blanco y Negro-7</translation>
     </message>
 
     <message>
       <source>Black &amp; White-8</source>
-      <translation>Noir et blanc - 8</translation>
+      <translation>Blanco y Negro-8</translation>
     </message>
 
     <message>
       <source>Black &amp; White-9</source>
-      <translation>Noir et blanc - 9</translation>
+      <translation>Blanco y Negro-9</translation>
     </message>
 
     <message>
       <source>Black Crayon Graffiti</source>
-      <translation>Graffitis au crayon noir</translation>
+      <translation>Graffiti de lápiz negro</translation>
     </message>
 
     <message>
       <source>Black Dices</source>
-      <translation>Dés noirs</translation>
+      <translation>Dados negros</translation>
     </message>
 
     <message>
       <source>Black Level</source>
-      <translation>Niveau de noir</translation>
+      <translation>Nivel de negro</translation>
     </message>
 
     <message>
       <source>Black on Transparent</source>
-      <translation>Noir sur transparent</translation>
+      <translation>Negro sobre transparente</translation>
     </message>
 
     <message>
       <source>Black on Transparent White</source>
-      <translation>Noir sur blanc transparent</translation>
+      <translation>Negro sobre blanco transparente</translation>
     </message>
 
     <message>
       <source>Black on White</source>
-      <translation>Noir sur blanc</translation>
+      <translation>Negro sobre blanco</translation>
     </message>
 
     <message>
       <source>Black Point</source>
-      <translation>Point noir</translation>
+      <translation>Punto Negro</translation>
     </message>
 
     <message>
       <source>Black Star</source>
-      <translation>Étoile noire</translation>
+      <translation>Estrella Negra</translation>
     </message>
 
     <message>
       <source>Black to White</source>
-      <translation>Du noir au blanc</translation>
+      <translation>Negro a Blanco</translation>
     </message>
 
     <message>
       <source>Blacks</source>
-      <translation>Noirs</translation>
+      <translation>Negros</translation>
     </message>
 
     <message>
       <source>Blank</source>
-      <translation>Vide</translation>
+      <translation>En blanco</translation>
     </message>
 
     <message>
       <source>Bleach Bypass</source>
-      <translation>Contournement de l&apos;eau de Javel</translation>
+      <translation>Bypass de blanqueo</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 1</source>
-      <translation>Dérivation de l&apos;eau de Javel 1</translation>
+      <translation>Bypass de blanqueo 1</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 2</source>
-      <translation>Dérivation de l&apos;eau de Javel 2</translation>
+      <translation>Bypass de blanqueo 2</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 3</source>
-      <translation>Dérivation de l&apos;eau de Javel 3</translation>
+      <translation>Bypass de blanqueo 3</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 4</source>
-      <translation>Contournement de l&apos;eau de Javel 4</translation>
+      <translation>Bypass de blanqueo 4</translation>
+    </message>
+
+    <message>
+      <source>Bleech Bypass Green</source>
+      <translation>Bleech Bypass Verde</translation>
+    </message>
+
+    <message>
+      <source>Bleech Bypass Yellow 01</source>
+      <translation>Bleech Bypass Amarillo 01</translation>
     </message>
 
     <message>
       <source>Blend</source>
-      <translation>Mélange</translation>
+      <translation>Mezcla</translation>
     </message>
 
     <message>
       <source>Blend [Average All]</source>
-      <translation>Mélange [Moyenne de tous]</translation>
+      <translation>Mezcla [Promedio de todos]</translation>
     </message>
 
     <message>
       <source>Blend [Edges]</source>
-      <translation>Mélange [Bords]</translation>
+      <translation>Mezclar [Bordes]</translation>
     </message>
 
     <message>
       <source>Blend [Fade]</source>
-      <translation>Mélange [Fondu]</translation>
+      <translation>Mezcla [Fade]</translation>
     </message>
 
     <message>
       <source>Blend [Median]</source>
-      <translation>Mélange [Médiane]</translation>
+      <translation>Mezcla [Mediana]</translation>
     </message>
 
     <message>
       <source>Blend [Seamless]</source>
-      <translation>Mélange [Sans couture]</translation>
+      <translation>Mezcla [sin costura]</translation>
     </message>
 
     <message>
       <source>Blend [Standard]</source>
-      <translation>Mélange [Standard]</translation>
+      <translation>Mezcla [Estándar]</translation>
     </message>
 
     <message>
       <source>Blend All Layers</source>
-      <translation>Mélanger toutes les couches</translation>
+      <translation>Mezclar todas las capas</translation>
     </message>
 
     <message>
       <source>Blend Decay</source>
-      <translation>Décomposition des mélanges</translation>
+      <translation>La mezcla decadencia</translation>
     </message>
 
     <message>
       <source>Blend Mode</source>
-      <translation>Mode de mélange</translation>
+      <translation>Modo de mezcla</translation>
     </message>
 
     <message>
       <source>Blend Rays</source>
-      <translation>Rayons de mélange</translation>
+      <translation>Mezclar los rayos</translation>
     </message>
 
     <message>
       <source>Blend Scales</source>
-      <translation>Balances de mélange</translation>
+      <translation>Escalas de mezcla</translation>
     </message>
 
     <message>
       <source>Blend Size</source>
-      <translation>Taille du mélange</translation>
+      <translation>Tamaño de la mezcla</translation>
     </message>
 
     <message>
       <source>Blend Threshold</source>
-      <translation>Seuil de mélange</translation>
+      <translation>Umbral de mezcla</translation>
     </message>
 
     <message>
       <source>Blending Mode</source>
-      <translation>Mode de mélange</translation>
+      <translation>Modo de mezcla</translation>
     </message>
 
     <message>
       <source>Blending Size</source>
-      <translation>Taille du mélange</translation>
+      <translation>Tamaño de la mezcla</translation>
     </message>
 
     <message>
       <source>Blindness Type</source>
-      <translation>Type de cécité</translation>
-    </message>
-
-    <message>
-      <source>Blob 1 Color</source>
-      <translation>Couleur du Blob 1</translation>
-    </message>
-
-    <message>
-      <source>Blob 10 Color</source>
-      <translation>Couleur du Blob 10</translation>
-    </message>
-
-    <message>
-      <source>Blob 11 Color</source>
-      <translation>Couleur du Blob 11</translation>
-    </message>
-
-    <message>
-      <source>Blob 12 Color</source>
-      <translation>Couleur du Blob 12</translation>
-    </message>
-
-    <message>
-      <source>Blob 2 Color</source>
-      <translation>Couleur du Blob 2</translation>
-    </message>
-
-    <message>
-      <source>Blob 3 Color</source>
-      <translation>Couleur de la tache 3</translation>
-    </message>
-
-    <message>
-      <source>Blob 4 Color</source>
-      <translation>Couleur du Blob 4</translation>
-    </message>
-
-    <message>
-      <source>Blob 5 Color</source>
-      <translation>Couleur du Blob 5</translation>
-    </message>
-
-    <message>
-      <source>Blob 6 Color</source>
-      <translation>Couleur du Blob 6</translation>
-    </message>
-
-    <message>
-      <source>Blob 7 Color</source>
-      <translation>Couleur du Blob 7</translation>
-    </message>
-
-    <message>
-      <source>Blob 8 Color</source>
-      <translation>Couleur du Blob 8</translation>
-    </message>
-
-    <message>
-      <source>Blob 9 Color</source>
-      <translation>Couleur de la tache 9</translation>
+      <translation>Tipo de ceguera</translation>
     </message>
 
     <message>
       <source>Blob Size</source>
-      <translation>Taille de la goutte</translation>
+      <translation>Tamaño de la mancha</translation>
     </message>
 
     <message>
       <source>Blobs Editor</source>
-      <translation>Rédacteur de Blobs</translation>
+      <translation>Editor de Blobs</translation>
     </message>
 
     <message>
       <source>Bloc Size (%)</source>
-      <translation>Taille du bloc (%)</translation>
+      <translation>Tamaño del bloque (%)</translation>
     </message>
 
     <message>
       <source>Blockism</source>
-      <translation>Blocage</translation>
+      <translation>Bloqueo</translation>
     </message>
 
     <message>
       <source>Blue</source>
-      <translation>Bleu</translation>
+      <translation>Azul</translation>
     </message>
 
     <message>
       <source>Blue &amp; Red Chrominances</source>
-      <translation>Chrominances bleu et rouge</translation>
+      <translation>Crominanzas Azul y Roja</translation>
     </message>
 
     <message>
       <source>Blue Chroma Factor</source>
-      <translation>Facteur de chromatisation bleu</translation>
+      <translation>Factor de croma azul</translation>
     </message>
 
     <message>
       <source>Blue Chroma Shift</source>
-      <translation>Changement de couleur bleue</translation>
+      <translation>Cambio de croma azul</translation>
     </message>
 
     <message>
       <source>Blue Chroma Smoothness</source>
-      <translation>Douceur du bleu chromatique</translation>
+      <translation>Suavidad del croma azul</translation>
     </message>
 
     <message>
       <source>Blue Chrominance</source>
-      <translation>Chrominance bleue</translation>
-    </message>
-
-    <message>
-      <source>Blue Cold Fade</source>
-      <translation>Fondu bleu à froid</translation>
+      <translation>Crominancia azul</translation>
     </message>
 
     <message>
       <source>Blue Dark</source>
-      <translation>Bleu foncé</translation>
+      <translation>Azul oscuro</translation>
     </message>
 
     <message>
       <source>Blue Factor</source>
-      <translation>Le facteur bleu</translation>
+      <translation>Factor Azul</translation>
     </message>
 
     <message>
       <source>Blue House</source>
-      <translation>Maison bleue</translation>
+      <translation>La Casa Azul</translation>
     </message>
 
     <message>
       <source>Blue Ice</source>
-      <translation>Glace bleue</translation>
+      <translation>Hielo azul</translation>
     </message>
 
     <message>
       <source>Blue Level</source>
-      <translation>Niveau bleu</translation>
+      <translation>Nivel Azul</translation>
     </message>
 
     <message>
       <source>Blue Mono</source>
-      <translation>Mono bleu</translation>
+      <translation>Mono Azul</translation>
     </message>
 
     <message>
       <source>Blue Rotations</source>
-      <translation>Rotations bleues</translation>
+      <translation>Rotaciones azules</translation>
     </message>
 
     <message>
       <source>Blue Screen Mode</source>
-      <translation>Mode écran bleu</translation>
+      <translation>Modo de pantalla azul</translation>
+    </message>
+
+    <message>
+      <source>Blue Shadows 01</source>
+      <translation>Sombras Azules 01</translation>
+    </message>
+
+    <message>
+      <source>Blue Shift</source>
+      <translation>Turno azul</translation>
     </message>
 
     <message>
       <source>Blue Smoothness</source>
-      <translation>La douceur bleue</translation>
+      <translation>Suavidad azul</translation>
     </message>
 
     <message>
       <source>Blue Steel</source>
-      <translation>Acier bleu</translation>
+      <translation>Acero Azul</translation>
     </message>
 
     <message>
       <source>Blue Wavelength</source>
-      <translation>Longueur d&apos;onde bleue</translation>
+      <translation>Longitud de Onda Azul</translation>
     </message>
 
     <message>
       <source>Blue-Green</source>
-      <translation>Bleu-vert</translation>
-    </message>
-
-    <message>
-      <source>Blur</source>
-      <translation>Flou</translation>
+      <translation>Azul-Verde</translation>
     </message>
 
     <message>
       <source>Blur [Angular]</source>
-      <translation>Flou [Angulaire]</translation>
+      <translation>Borrón [Angular]</translation>
     </message>
 
     <message>
       <source>Blur [Bloom]</source>
-      <translation>Flou [Bloom]</translation>
+      <translation>Borrón [Bloom]</translation>
     </message>
 
     <message>
       <source>Blur [Depth-Of-Field]</source>
-      <translation>Flou [Profondeur de champ]</translation>
+      <translation>Blur [Profundidad de campo]</translation>
     </message>
 
     <message>
       <source>Blur [Gaussian]</source>
-      <translation>Flou [Gaussien]</translation>
+      <translation>Borrón [gaussiano]</translation>
     </message>
 
     <message>
       <source>Blur [Glow]</source>
-      <translation>Flou [Glow]</translation>
+      <translation>Borrón y cuenta nueva</translation>
     </message>
 
     <message>
       <source>Blur [Linear]</source>
-      <translation>Flou [Linéaire]</translation>
+      <translation>Borrón [Lineal]</translation>
     </message>
 
     <message>
       <source>Blur [Multidirectional]</source>
-      <translation>Flou [multidirectionnel]</translation>
+      <translation>Blur [Multidireccional]</translation>
     </message>
 
     <message>
       <source>Blur [Radial]</source>
-      <translation>Flou [Radial]</translation>
+      <translation>Borrón [Radial]</translation>
     </message>
 
     <message>
       <source>Blur Alpha</source>
-      <translation>Flou Alpha</translation>
+      <translation>Borrar Alfa</translation>
     </message>
 
     <message>
       <source>Blur Amount</source>
-      <translation>Montant du flou</translation>
+      <translation>Cantidad de borrosidad</translation>
     </message>
 
     <message>
       <source>Blur Amplitude</source>
-      <translation>Amplitude du flou</translation>
+      <translation>Amplitud de la borrosidad</translation>
     </message>
 
     <message>
       <source>Blur Dodge and Burn Layer</source>
-      <translation>Esquive floue et couche brûlée</translation>
+      <translation>Desenfocar Dodge y Burn Layer</translation>
     </message>
 
     <message>
       <source>Blur Factor</source>
-      <translation>Facteur de flou</translation>
+      <translation>Factor de borrosidad</translation>
     </message>
 
     <message>
       <source>Blur Frame</source>
-      <translation>Cadre flou</translation>
+      <translation>Marco borroso</translation>
     </message>
 
     <message>
       <source>Blur Percentage</source>
-      <translation>Pourcentage de flou</translation>
+      <translation>Borrón Porcentaje</translation>
     </message>
 
     <message>
       <source>Blur Precision</source>
-      <translation>Précision du flou</translation>
-    </message>
-
-    <message>
-      <source>Blur Shade</source>
-      <translation>Ombre floue</translation>
+      <translation>Precisión de la borrosidad</translation>
     </message>
 
     <message>
       <source>Blur Standard Deviation</source>
-      <translation>Écart-type du flou</translation>
+      <translation>Desviación estándar de la borrosidad</translation>
     </message>
 
     <message>
       <source>Blur Strength</source>
-      <translation>La force du flou</translation>
+      <translation>Fuerza de la borrosidad</translation>
     </message>
 
     <message>
       <source>Blur the Mask</source>
-      <translation>Flouez le masque</translation>
+      <translation>Desenfocar la máscara</translation>
     </message>
 
     <message>
       <source>Boats</source>
-      <translation>Bateaux</translation>
+      <translation>Barcos</translation>
+    </message>
+
+    <message>
+      <source>Boost</source>
+      <translation>Impulso</translation>
     </message>
 
     <message>
       <source>Boost Chromaticity</source>
-      <translation>Stimuler la chromaticité</translation>
+      <translation>Aumentar la cromaticidad</translation>
     </message>
 
     <message>
       <source>Boost Contrast</source>
-      <translation>Augmenter le contraste</translation>
+      <translation>Aumentar el contraste</translation>
+    </message>
+
+    <message>
+      <source>Boost Smooth</source>
+      <translation>Impulso Suave</translation>
     </message>
 
     <message>
       <source>Boost Stroke</source>
-      <translation>Stimuler l&apos;AVC</translation>
+      <translation>Impulso de la apoplejía</translation>
     </message>
 
     <message>
       <source>Border Color</source>
-      <translation>Couleur de la bordure</translation>
+      <translation>Color del borde</translation>
     </message>
 
     <message>
       <source>Border Opacity</source>
-      <translation>Opacité des frontières</translation>
+      <translation>Opacidad de la frontera</translation>
     </message>
 
     <message>
       <source>Border Outline</source>
-      <translation>Schéma de la frontière</translation>
+      <translation>Esquema de la frontera</translation>
     </message>
 
     <message>
       <source>Border Smoothness</source>
-      <translation>Lissage des frontières</translation>
+      <translation>Suavidad de la frontera</translation>
     </message>
 
     <message>
       <source>Border Thickness (%)</source>
-      <translation>Épaisseur de la frontière (%)</translation>
+      <translation>Espesor de la frontera (%)</translation>
     </message>
 
     <message>
       <source>Border Width</source>
-      <translation>Largeur de la frontière</translation>
+      <translation>Ancho de la frontera</translation>
     </message>
 
     <message>
       <source>Both</source>
-      <translation>Les deux</translation>
+      <translation>Ambos</translation>
     </message>
 
     <message>
       <source>Bottles</source>
-      <translation>Bouteilles</translation>
+      <translation>Botellas</translation>
     </message>
 
     <message>
       <source>Bottom</source>
-      <translation>En bas</translation>
+      <translation>Abajo</translation>
     </message>
 
     <message>
       <source>Bottom and Left Foreground</source>
-      <translation>En bas et à gauche au premier plan</translation>
+      <translation>Abajo y a la izquierda en primer plano</translation>
     </message>
 
     <message>
       <source>Bottom and Right Foreground</source>
-      <translation>Premier plan en bas et à droite</translation>
+      <translation>Fondo y primer plano a la derecha</translation>
     </message>
 
     <message>
       <source>Bottom and Top Foreground</source>
-      <translation>En bas et en haut de l&apos;écran</translation>
+      <translation>En primer plano, abajo y arriba</translation>
     </message>
 
     <message>
       <source>Bottom Layer</source>
-      <translation>Couche inférieure</translation>
+      <translation>Capa inferior</translation>
     </message>
 
     <message>
       <source>Bottom Left</source>
-      <translation>En bas à gauche</translation>
+      <translation>Abajo a la izquierda</translation>
     </message>
 
     <message>
       <source>Bottom Right</source>
-      <translation>En bas à droite</translation>
+      <translation>Abajo a la derecha</translation>
     </message>
 
     <message>
       <source>Bottom Size</source>
-      <translation>Taille du fond</translation>
+      <translation>El tamaño del fondo</translation>
     </message>
 
     <message>
       <source>Bottom-Left</source>
-      <translation>En bas à gauche</translation>
+      <translation>Abajo a la izquierda</translation>
     </message>
 
     <message>
       <source>Bottom-Left Vertex (%)</source>
-      <translation>Sommet inférieur gauche (%)</translation>
+      <translation>Vértice inferior izquierdo (%)</translation>
     </message>
 
     <message>
       <source>Bottom-Right</source>
-      <translation>En bas à droite</translation>
+      <translation>Abajo-Derecha</translation>
     </message>
 
     <message>
       <source>Bottom-Right Vertex (%)</source>
-      <translation>Sommet inférieur droit (%)</translation>
+      <translation>Vértice inferior derecho (%)</translation>
     </message>
 
     <message>
       <source>Bouncing Balls</source>
-      <translation>Balles rebondissantes</translation>
+      <translation>Bolas que rebotan</translation>
     </message>
 
     <message>
       <source>Boundaries (%)</source>
-      <translation>Limites (%)</translation>
+      <translation>Límites (%)</translation>
     </message>
 
     <message>
       <source>Boundary</source>
-      <translation>Frontière</translation>
+      <translation>Límite</translation>
     </message>
 
     <message>
       <source>Boundary Condition</source>
-      <translation>Condition limite</translation>
+      <translation>Condición de los límites</translation>
     </message>
 
     <message>
       <source>Boundary Conditions</source>
-      <translation>Conditions aux frontières</translation>
-    </message>
-
-    <message>
-      <source>Box</source>
-      <translation>Boîte</translation>
+      <translation>Condiciones límites</translation>
     </message>
 
     <message>
       <source>Box Fitting</source>
-      <translation>Ajustement de la boîte</translation>
-    </message>
-
-    <message>
-      <source>Box2x</source>
-      <translation>Boîte2x</translation>
+      <translation>Ajuste de la caja</translation>
     </message>
 
     <message>
       <source>Branches</source>
-      <translation>Succursales</translation>
+      <translation>Ramas</translation>
     </message>
 
     <message>
       <source>Braque: Landscape near Antwerp</source>
-      <translation>Braque : Paysage près d&apos;Anvers</translation>
-    </message>
-
-    <message>
-      <source>Braque: Le Viaduc à L&apos;Estaque</source>
-      <translation>Braque : Le Viaduc à L&apos;Estaque</translation>
+      <translation>Braque: Paisaje cerca de Amberes</translation>
     </message>
 
     <message>
       <source>Braque: Little Bay at La Ciotat</source>
-      <translation>Braque : Petite Baie à La Ciotat</translation>
+      <translation>Braque: Pequeña bahía en La Ciotat</translation>
     </message>
 
     <message>
       <source>Braque: The Mandola</source>
-      <translation>Braque : La mandola</translation>
+      <translation>Braque: La Mandola</translation>
+    </message>
+
+    <message>
+      <source>Brighness</source>
+      <translation>Brigada</translation>
+    </message>
+
+    <message>
+      <source>Bright</source>
+      <translation>Brillante</translation>
     </message>
 
     <message>
       <source>Bright Green</source>
-      <translation>Vert vif</translation>
+      <translation>Verde brillante</translation>
     </message>
 
     <message>
       <source>Bright Green 01</source>
-      <translation>Vert clair 01</translation>
+      <translation>Verde brillante 01</translation>
+    </message>
+
+    <message>
+      <source>Bright Length</source>
+      <translation>Longitud brillante</translation>
     </message>
 
     <message>
       <source>Bright Pixels</source>
-      <translation>Pixels lumineux</translation>
+      <translation>Píxeles brillantes</translation>
     </message>
 
     <message>
       <source>Bright Teal Orange</source>
-      <translation>Sarcelle d&apos;hiver orange vif</translation>
+      <translation>Naranja Cerceta Brillante</translation>
     </message>
 
     <message>
       <source>Bright Warm</source>
-      <translation>Chaud devant</translation>
+      <translation>Brillante Caliente</translation>
     </message>
 
     <message>
       <source>Brighter</source>
-      <translation>Plus clair</translation>
+      <translation>Más brillante</translation>
     </message>
 
     <message>
       <source>Brightness</source>
-      <translation>Luminosité</translation>
+      <translation>Brillo</translation>
     </message>
 
     <message>
       <source>Brightness (%)</source>
-      <translation>Luminosité (%)</translation>
+      <translation>Brillo (%)</translation>
     </message>
 
     <message>
       <source>Bristle Size</source>
-      <translation>Taille des poils</translation>
+      <translation>El tamaño de las cerdas</translation>
+    </message>
+
+    <message>
+      <source>Bronze</source>
+      <translation>Bronce</translation>
     </message>
 
     <message>
       <source>Brownish</source>
-      <translation>Brunâtre</translation>
+      <translation>Marrón</translation>
+    </message>
+
+    <message>
+      <source>Brushify</source>
+      <translation>Cepillar</translation>
     </message>
 
     <message>
       <source>Built-in Gray</source>
-      <translation>Gris intégré</translation>
+      <translation>Gris incorporado</translation>
     </message>
 
     <message>
       <source>Bump Factor</source>
-      <translation>Facteur de majoration</translation>
-    </message>
-
-    <message>
-      <source>Bump Map</source>
-      <translation>Carte des bosses</translation>
+      <translation>Factor de choque</translation>
     </message>
 
     <message>
       <source>Burn</source>
-      <translation>Brûler</translation>
-    </message>
-
-    <message>
-      <source>Burn Blur</source>
-      <translation>Brûler le flou</translation>
+      <translation>Quemar</translation>
     </message>
 
     <message>
       <source>Burn Strength</source>
-      <translation>Brûler la force</translation>
+      <translation>Fuerza de la quemadura</translation>
+    </message>
+
+    <message>
+      <source>Butterfly</source>
+      <translation>Mariposa</translation>
     </message>
 
     <message>
       <source>By Blue Chrominance</source>
-      <translation>Par Blue Chrominance</translation>
+      <translation>Por Blue Chrominance</translation>
     </message>
 
     <message>
       <source>By Blue Component</source>
-      <translation>Par composante bleue</translation>
+      <translation>Por el Componente Azul</translation>
     </message>
 
     <message>
       <source>By Custom Expression</source>
-      <translation>Par expression personnalisée</translation>
+      <translation>Por expresión personalizada</translation>
     </message>
 
     <message>
       <source>By Green Component</source>
-      <translation>Par la composante verte</translation>
+      <translation>Por el Componente Verde</translation>
     </message>
 
     <message>
       <source>By Iteration</source>
-      <translation>Par itération</translation>
+      <translation>Por Iteración</translation>
     </message>
 
     <message>
       <source>By Lightness</source>
-      <translation>Par la légèreté</translation>
+      <translation>Por la ligereza</translation>
     </message>
 
     <message>
       <source>By Luminance</source>
-      <translation>Par Luminance</translation>
+      <translation>Por la luminancia</translation>
     </message>
 
     <message>
       <source>By Red Chrominance</source>
-      <translation>Par Red Chrominance</translation>
+      <translation>Por Crominancia Roja</translation>
     </message>
 
     <message>
       <source>By Red Component</source>
-      <translation>Par composante rouge</translation>
+      <translation>Por el componente rojo</translation>
     </message>
 
     <message>
       <source>By Value</source>
-      <translation>Par valeur</translation>
+      <translation>Por valor</translation>
     </message>
 
     <message>
       <source>Camera Motion Only</source>
-      <translation>Mouvement de caméra uniquement</translation>
+      <translation>Sólo el movimiento de la cámara</translation>
     </message>
 
     <message>
       <source>Camera X</source>
-      <translation>Caméra X</translation>
+      <translation>Cámara X</translation>
     </message>
 
     <message>
       <source>Camera Y</source>
-      <translation>Caméra Y</translation>
+      <translation>Cámara Y</translation>
     </message>
 
     <message>
       <source>Cameraman</source>
-      <translation>Caméraman</translation>
+      <translation>Camarógrafo</translation>
+    </message>
+
+    <message>
+      <source>Camouflage</source>
+      <translation>Camuflaje</translation>
     </message>
 
     <message>
       <source>Candle Light</source>
-      <translation>Lumière de bougie</translation>
+      <translation>La luz de las velas</translation>
     </message>
 
     <message>
       <source>Canvas</source>
-      <translation>Toile</translation>
+      <translation>Lienzo</translation>
     </message>
 
     <message>
       <source>Canvas Brightness</source>
-      <translation>Luminosité de la toile</translation>
+      <translation>Brillo del lienzo</translation>
     </message>
 
     <message>
       <source>Canvas Color</source>
-      <translation>Couleur de la toile</translation>
+      <translation>Color del lienzo</translation>
     </message>
 
     <message>
       <source>Canvas Darkness</source>
-      <translation>Toile de l&apos;obscurité</translation>
+      <translation>Lienzo Oscuridad</translation>
     </message>
 
     <message>
       <source>Canvas Texture</source>
-      <translation>Texture de la toile</translation>
+      <translation>Textura del lienzo</translation>
     </message>
 
     <message>
       <source>Car</source>
-      <translation>Voiture</translation>
+      <translation>Coche</translation>
     </message>
 
     <message>
       <source>Card Suits</source>
-      <translation>Combinaisons de cartes</translation>
+      <translation>Trajes de cartas</translation>
     </message>
 
     <message>
       <source>Cartesian Transform</source>
-      <translation>Transformation cartésienne</translation>
+      <translation>Transformación cartesiana</translation>
     </message>
 
     <message>
       <source>Cartoon</source>
-      <translation>Dessin animé</translation>
+      <translation>Caricatura</translation>
     </message>
 
     <message>
       <source>Cartoon [Animated]</source>
-      <translation>Dessin animé</translation>
+      <translation>Caricatura [Animada]</translation>
     </message>
 
     <message>
       <source>Cat</source>
-      <translation>Chat</translation>
+      <translation>Gato</translation>
     </message>
 
     <message>
       <source>Category</source>
-      <translation>Catégorie</translation>
+      <translation>Categoría</translation>
     </message>
 
     <message>
       <source>Cell Size</source>
-      <translation>Taille de la cellule</translation>
+      <translation>Tamaño de la célula</translation>
     </message>
 
     <message>
       <source>Center</source>
-      <translation>Centre</translation>
+      <translation>Centro</translation>
     </message>
 
     <message>
       <source>Center (%)</source>
-      <translation>Centre (%)</translation>
+      <translation>Centro (%)</translation>
     </message>
 
     <message>
       <source>Center Background</source>
-      <translation>Contexte du centre</translation>
+      <translation>Fondo del Centro</translation>
     </message>
 
     <message>
       <source>Center Foreground</source>
-      <translation>Au premier plan</translation>
+      <translation>Primer plano central</translation>
     </message>
 
     <message>
       <source>Center Help</source>
-      <translation>Centre d&apos;aide</translation>
+      <translation>Ayuda del Centro</translation>
     </message>
 
     <message>
       <source>Center Size</source>
-      <translation>Taille du centre</translation>
+      <translation>Tamaño del centro</translation>
     </message>
 
     <message>
       <source>Center Smoothness</source>
-      <translation>La douceur du centre</translation>
+      <translation>Suavidad del centro</translation>
     </message>
 
     <message>
       <source>Center X</source>
-      <translation>Centre X</translation>
+      <translation>Centro X</translation>
     </message>
 
     <message>
       <source>Center X-Shift</source>
-      <translation>Centre X-Shift</translation>
+      <translation>Centro X-Shift</translation>
     </message>
 
     <message>
       <source>Center Y</source>
-      <translation>Centre Y</translation>
+      <translation>Centro Y</translation>
     </message>
 
     <message>
       <source>Center Y-Shift</source>
-      <translation>Centre Y-Shift</translation>
+      <translation>Desplazamiento Y central</translation>
     </message>
 
     <message>
       <source>Centering (%)</source>
-      <translation>Centrage (%)</translation>
+      <translation>Centrado (%)</translation>
     </message>
 
     <message>
       <source>Centering / Scale</source>
-      <translation>Centrage / Échelle</translation>
+      <translation>Centrado / Escala</translation>
     </message>
 
     <message>
       <source>Centers Color</source>
-      <translation>Couleur des centres</translation>
+      <translation>Centros de color</translation>
     </message>
 
     <message>
       <source>Centers Radius</source>
-      <translation>Rayon des centres</translation>
+      <translation>Radio de los centros</translation>
     </message>
 
     <message>
       <source>Centimeter</source>
-      <translation>Centimètre</translation>
+      <translation>Centímetros</translation>
     </message>
 
     <message>
       <source>Central  Perspective Outdoor</source>
-      <translation>Perspective centrale en plein air</translation>
+      <translation>Perspectiva central en el exterior</translation>
     </message>
 
     <message>
       <source>Central Perspective Indoor</source>
-      <translation>Perspective centrale à l&apos;intérieur</translation>
+      <translation>Perspectiva central en interiores</translation>
     </message>
 
     <message>
       <source>Central Perspective Outdoor</source>
-      <translation>Perspective centrale en plein air</translation>
+      <translation>Perspectiva central en el exterior</translation>
+    </message>
+
+    <message>
+      <source>Centre</source>
+      <translation>Centro</translation>
     </message>
 
     <message>
       <source>Chalk It Up</source>
-      <translation>A la craie</translation>
+      <translation>Anota...</translation>
     </message>
 
     <message>
       <source>Channel #1</source>
-      <translation>Chaîne 1</translation>
+      <translation>Canal 1</translation>
     </message>
 
     <message>
       <source>Channel #2</source>
-      <translation>Canal n°2</translation>
+      <translation>Canal 2</translation>
     </message>
 
     <message>
       <source>Channel #3</source>
-      <translation>Canal n°3</translation>
+      <translation>Canal 3</translation>
     </message>
 
     <message>
       <source>Channel Processing</source>
-      <translation>Traitement des canaux</translation>
+      <translation>Procesamiento del canal</translation>
     </message>
 
     <message>
       <source>Channel(s)</source>
-      <translation>Chaîne(s)</translation>
+      <translation>Canal(es)</translation>
     </message>
 
     <message>
       <source>Channels</source>
-      <translation>Chaînes</translation>
+      <translation>Canales</translation>
     </message>
 
     <message>
       <source>Channels to Layers</source>
-      <translation>Canaux vers les couches</translation>
+      <translation>Canales a las capas</translation>
     </message>
 
     <message>
       <source>Charcoal</source>
-      <translation>Charbon de bois</translation>
+      <translation>Carbón vegetal</translation>
     </message>
 
     <message>
       <source>Checkered</source>
-      <translation>Vérifié</translation>
+      <translation>A cuadros</translation>
     </message>
 
     <message>
       <source>Checkered Inverse</source>
-      <translation>Inverse à carreaux</translation>
+      <translation>A cuadros invertidos</translation>
     </message>
 
     <message>
       <source>Chemical 168</source>
-      <translation>Chimie 168</translation>
+      <translation>Química 168</translation>
     </message>
 
     <message>
       <source>Chessboard</source>
-      <translation>Échiquier</translation>
-    </message>
-
-    <message>
-      <source>Chick</source>
-      <translation>Poussin</translation>
+      <translation>Tablero de ajedrez</translation>
     </message>
 
     <message>
       <source>Chroma Noise</source>
-      <translation>Bruit chromatique</translation>
+      <translation>Ruido cromático</translation>
     </message>
 
     <message>
       <source>Chromatic Aberrations</source>
-      <translation>Aberrations chromatiques</translation>
+      <translation>Aberraciones cromáticas</translation>
     </message>
 
     <message>
       <source>Chromaticity From</source>
-      <translation>Chromaticité de</translation>
+      <translation>La cromaticidad de</translation>
+    </message>
+
+    <message>
+      <source>Chrome 01</source>
+      <translation>Cromo 01</translation>
     </message>
 
     <message>
       <source>Chrominances Only (ab)</source>
-      <translation>Chrominances uniquement (ab)</translation>
+      <translation>Sólo crominanzas (ab)</translation>
     </message>
 
     <message>
       <source>Chrominances Only (CbCr)</source>
-      <translation>Chrominances uniquement (CbCr)</translation>
-    </message>
-
-    <message>
-      <source>Cine Drama</source>
-      <translation>Cinéma</translation>
+      <translation>Sólo crominanzas (CbCr)</translation>
     </message>
 
     <message>
       <source>Cinema</source>
-      <translation>Cinéma</translation>
+      <translation>Cine</translation>
     </message>
 
     <message>
       <source>Cinema 2</source>
-      <translation>Cinéma 2</translation>
+      <translation>Cine 2</translation>
     </message>
 
     <message>
       <source>Cinema 3</source>
-      <translation>Cinéma 3</translation>
+      <translation>Cine 3</translation>
     </message>
 
     <message>
       <source>Cinema 4</source>
-      <translation>Cinéma 4</translation>
+      <translation>Cine 4</translation>
     </message>
 
     <message>
       <source>Cinema 5</source>
-      <translation>Cinéma 5</translation>
+      <translation>Cine 5</translation>
     </message>
 
     <message>
       <source>Cinema Noir</source>
-      <translation>Cinéma noir</translation>
+      <translation>Cine Negro</translation>
     </message>
 
     <message>
       <source>Cinematic (8)</source>
-      <translation>Cinématique (8)</translation>
+      <translation>Cinematográfico (8)</translation>
     </message>
 
     <message>
       <source>Cinematic for Flog</source>
-      <translation>Cinéma pour le Flog</translation>
+      <translation>Cine para Flog</translation>
     </message>
 
     <message>
       <source>Cinematic Lady Bird</source>
-      <translation>Dame Oiseau au cinéma</translation>
+      <translation>La Dama Pájaro Cinematográfica</translation>
     </message>
 
     <message>
       <source>Cinematic Mexico</source>
-      <translation>Cinéma Mexique</translation>
+      <translation>El México cinematográfico</translation>
     </message>
 
     <message>
       <source>Cinematic Travel (29)</source>
-      <translation>Voyages cinématographiques (29)</translation>
+      <translation>Viajes al cine (29)</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-01</source>
+      <translation>Cinemática-01</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-03</source>
+      <translation>Cinemática-03</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-1</source>
+      <translation>Cinemático-1</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-5</source>
+      <translation>Cinemático-5</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-6</source>
+      <translation>Cinemático-6</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-8</source>
+      <translation>Cinemático-8</translation>
     </message>
 
     <message>
       <source>Circle</source>
-      <translation>Cercle</translation>
+      <translation>Círculo</translation>
     </message>
 
     <message>
       <source>Circle (Inv.)</source>
-      <translation>Cercle (Inv.)</translation>
+      <translation>Círculo (Inv.)</translation>
     </message>
 
     <message>
       <source>Circle 1</source>
-      <translation>Cercle 1</translation>
+      <translation>Círculo 1</translation>
     </message>
 
     <message>
       <source>Circle 2</source>
-      <translation>Cercle 2</translation>
+      <translation>Círculo 2</translation>
     </message>
 
     <message>
       <source>Circle Abstraction</source>
-      <translation>Abstraction de cercle</translation>
+      <translation>Abstracción del círculo</translation>
     </message>
 
     <message>
       <source>Circle Art</source>
-      <translation>L&apos;art du cercle</translation>
+      <translation>Arte en círculo</translation>
     </message>
 
     <message>
       <source>Circle to Square</source>
-      <translation>Du cercle au carré</translation>
+      <translation>Círculo a cuadrado</translation>
     </message>
 
     <message>
       <source>Circle Transform</source>
-      <translation>Transformer le cercle</translation>
+      <translation>Transformación del círculo</translation>
     </message>
 
     <message>
       <source>Circles</source>
-      <translation>Cercles</translation>
+      <translation>Círculos</translation>
     </message>
 
     <message>
       <source>Circles (Outline)</source>
-      <translation>Cercles (schéma)</translation>
+      <translation>Círculos (Esquema)</translation>
     </message>
 
     <message>
       <source>Circles 1</source>
-      <translation>Cercles 1</translation>
+      <translation>Círculos 1</translation>
     </message>
 
     <message>
       <source>Circles 2</source>
-      <translation>Cercles 2</translation>
-    </message>
-
-    <message>
-      <source>Circular</source>
-      <translation>Circulaire</translation>
+      <translation>Círculos 2</translation>
     </message>
 
     <message>
       <source>City 7</source>
-      <translation>Ville 7</translation>
+      <translation>Ciudad 7</translation>
     </message>
 
     <message>
       <source>Clarity</source>
-      <translation>Clarté</translation>
+      <translation>Claridad</translation>
     </message>
 
     <message>
       <source>Classic Chrome</source>
-      <translation>Chrome classique</translation>
+      <translation>Cromo clásico</translation>
     </message>
 
     <message>
       <source>Classic Teal and Orange</source>
-      <translation>Sarcelle et orange classiques</translation>
+      <translation>Clásico Teal y Orange</translation>
+    </message>
+
+    <message>
+      <source>Clean</source>
+      <translation>Limpia</translation>
     </message>
 
     <message>
       <source>Clean Text</source>
-      <translation>Texte propre</translation>
+      <translation>Texto limpio</translation>
     </message>
 
     <message>
       <source>Clear Control Points</source>
-      <translation>Points de contrôle clairs</translation>
+      <translation>Despejar los puntos de control</translation>
     </message>
 
     <message>
       <source>Clear Teal Fade</source>
-      <translation>Effacement de la sarcelle</translation>
+      <translation>Desvanecimiento de la cerceta clara</translation>
+    </message>
+
+    <message>
+      <source>Cliff</source>
+      <translation>Acantilado</translation>
     </message>
 
     <message>
       <source>Closeup</source>
-      <translation>Gros plan sur</translation>
+      <translation>Primer plano</translation>
     </message>
 
     <message>
       <source>Closing</source>
-      <translation>Fermeture</translation>
+      <translation>Cierre</translation>
     </message>
 
     <message>
       <source>Closing - Opening</source>
-      <translation>Clôture - Ouverture</translation>
+      <translation>Cierre - Apertura</translation>
     </message>
 
     <message>
       <source>Closing - Original</source>
-      <translation>Clôture - Original</translation>
+      <translation>Cierre - Original</translation>
     </message>
 
     <message>
       <source>Clouds</source>
-      <translation>Nuages</translation>
+      <translation>Nubes</translation>
     </message>
 
     <message>
       <source>CLUT from After - Before Layers</source>
-      <translation>CLUT d&apos;après - avant les couches</translation>
+      <translation>CLUT de Después - Antes de las capas</translation>
     </message>
 
     <message>
       <source>CLUT Opacity</source>
-      <translation>CLUT Opacité</translation>
+      <translation>Opacidad del CLUT</translation>
     </message>
 
     <message>
       <source>CM[Yellow]K</source>
-      <translation>CM[Jaune]K</translation>
+      <translation>CM[Amarillo]K</translation>
     </message>
 
     <message>
       <source>CMY[Key]</source>
-      <translation>CMJ [Clé]</translation>
+      <translation>CMY [Clave]</translation>
+    </message>
+
+    <message>
+      <source>CMYK [cyan]</source>
+      <translation>CMYK [cian]</translation>
     </message>
 
     <message>
       <source>CMYK [Key]</source>
-      <translation>CMYK [Clé]</translation>
+      <translation>CMYK [Clave]</translation>
     </message>
 
     <message>
       <source>CMYK [Yellow]</source>
-      <translation>CMYK [Jaune]</translation>
+      <translation>CMYK [Amarillo]</translation>
     </message>
 
     <message>
       <source>CMYK Tone</source>
-      <translation>Tonalité CMYK</translation>
+      <translation>Tono CMYK</translation>
     </message>
 
     <message>
       <source>Coarse</source>
-      <translation>Grossier</translation>
+      <translation>Grueso</translation>
     </message>
 
     <message>
       <source>Coarsest (faster)</source>
-      <translation>Le plus grossier (plus rapide)</translation>
+      <translation>Más grueso (más rápido)</translation>
+    </message>
+
+    <message>
+      <source>Code</source>
+      <translation>Código</translation>
+    </message>
+
+    <message>
+      <source>Coefficients</source>
+      <translation>Coeficientes</translation>
     </message>
 
     <message>
@@ -3366,612 +3506,562 @@
 
     <message>
       <source>Coherence</source>
-      <translation>Cohérence</translation>
+      <translation>Coherencia</translation>
     </message>
 
     <message>
       <source>Cold Clear Blue</source>
-      <translation>Bleu clair et froid</translation>
+      <translation>Azul claro y frío</translation>
     </message>
 
     <message>
       <source>Cold Clear Blue 1</source>
-      <translation>Bleu clair froid 1</translation>
+      <translation>Azul claro y frío 1</translation>
     </message>
 
     <message>
       <source>Cold Simplicity 2</source>
-      <translation>Simplicité froide 2</translation>
-    </message>
-
-    <message>
-      <source>Color</source>
-      <translation>Couleur</translation>
+      <translation>Fría Simplicidad 2</translation>
     </message>
 
     <message>
       <source>Color (rich)</source>
-      <translation>Couleur (riche)</translation>
-    </message>
-
-    <message>
-      <source>Color 1</source>
-      <translation>Couleur 1</translation>
+      <translation>Color (rico)</translation>
     </message>
 
     <message>
       <source>Color 1 (Up/Left Corner)</source>
-      <translation>Couleur 1 (Coin supérieur/gauche)</translation>
-    </message>
-
-    <message>
-      <source>Color 2</source>
-      <translation>Couleur 2</translation>
+      <translation>Color 1 (arriba/izquierda)</translation>
     </message>
 
     <message>
       <source>Color 2 (Up/Right Corner)</source>
-      <translation>Couleur 2 (Coin supérieur/droit)</translation>
-    </message>
-
-    <message>
-      <source>Color 3</source>
-      <translation>Couleur 3</translation>
+      <translation>Color 2 (Arriba/A la derecha)</translation>
     </message>
 
     <message>
       <source>Color 3 (Bottom/Left Corner)</source>
-      <translation>Couleur 3 (Coin inférieur/gauche)</translation>
-    </message>
-
-    <message>
-      <source>Color 4</source>
-      <translation>Couleur 4</translation>
+      <translation>Color 3 (Esquina inferior/izquierda)</translation>
     </message>
 
     <message>
       <source>Color 4 (Bottom/Right Corner)</source>
-      <translation>Couleur 4 (Coin inférieur/droit)</translation>
-    </message>
-
-    <message>
-      <source>Color A</source>
-      <translation>Couleur A</translation>
+      <translation>Color 4 (Esquina inferior/derecha)</translation>
     </message>
 
     <message>
       <source>Color Abstraction Opacity</source>
-      <translation>Opacité d&apos;abstraction des couleurs</translation>
+      <translation>Opacidad de Abstracción de Color</translation>
     </message>
 
     <message>
       <source>Color Abstraction Paint</source>
-      <translation>Peinture d&apos;abstraction de couleur</translation>
-    </message>
-
-    <message>
-      <source>Color B</source>
-      <translation>Couleur B</translation>
+      <translation>Pintura de Abstracción de Color</translation>
     </message>
 
     <message>
       <source>Color Balance</source>
-      <translation>Balance des couleurs</translation>
+      <translation>Equilibrio de color</translation>
     </message>
 
     <message>
       <source>Color Basis</source>
-      <translation>Base de couleur</translation>
+      <translation>Base de color</translation>
     </message>
 
     <message>
       <source>Color Blending</source>
-      <translation>Mélange de couleurs</translation>
+      <translation>Mezcla de colores</translation>
     </message>
 
     <message>
       <source>Color Blindness</source>
-      <translation>Cécité chromatique</translation>
+      <translation>El daltonismo</translation>
     </message>
 
     <message>
       <source>Color Blue-Yellow</source>
-      <translation>Couleur Bleu-Jaune</translation>
+      <translation>Color Azul-Amarillo</translation>
+    </message>
+
+    <message>
+      <source>Color Boost</source>
+      <translation>Aumento del color</translation>
     </message>
 
     <message>
       <source>Color Burn</source>
-      <translation>Brûlure de couleur</translation>
-    </message>
-
-    <message>
-      <source>Color C</source>
-      <translation>Couleur C</translation>
+      <translation>Quemadura de color</translation>
     </message>
 
     <message>
       <source>Color Channel  Smoothing</source>
-      <translation>Lissage des canaux de couleur</translation>
+      <translation>Suavizar el canal de color</translation>
     </message>
 
     <message>
       <source>Color Channels</source>
-      <translation>Canaux de couleur</translation>
-    </message>
-
-    <message>
-      <source>Color D</source>
-      <translation>Couleur D</translation>
+      <translation>Canales de color</translation>
     </message>
 
     <message>
       <source>Color Dispersion</source>
-      <translation>Dispersion des couleurs</translation>
+      <translation>Dispersión del color</translation>
     </message>
 
     <message>
       <source>Color Doping</source>
-      <translation>Dopage des couleurs</translation>
-    </message>
-
-    <message>
-      <source>Color E</source>
-      <translation>Couleur E</translation>
+      <translation>Dopaje de color</translation>
     </message>
 
     <message>
       <source>Color Effect Mode</source>
-      <translation>Mode effet couleur</translation>
-    </message>
-
-    <message>
-      <source>Color F</source>
-      <translation>Couleur F</translation>
-    </message>
-
-    <message>
-      <source>Color G</source>
-      <translation>Couleur G</translation>
-    </message>
-
-    <message>
-      <source>Color Gamma</source>
-      <translation>Gamma couleur</translation>
+      <translation>Modo de efecto de color</translation>
     </message>
 
     <message>
       <source>Color Grading</source>
-      <translation>Classement des couleurs</translation>
+      <translation>Gradación de color</translation>
     </message>
 
     <message>
       <source>Color Green-Magenta</source>
-      <translation>Couleur Vert-Magenta</translation>
+      <translation>Color Verde-Magenta</translation>
     </message>
 
     <message>
       <source>Color Highlights</source>
-      <translation>Points forts en couleur</translation>
+      <translation>Los colores más destacados</translation>
     </message>
 
     <message>
       <source>Color Image</source>
-      <translation>Image couleur</translation>
+      <translation>Imagen de color</translation>
     </message>
 
     <message>
       <source>Color Intensity</source>
-      <translation>Intensité de la couleur</translation>
+      <translation>Intensidad de color</translation>
     </message>
 
     <message>
       <source>Color Mask</source>
-      <translation>Masque de couleur</translation>
+      <translation>Máscara de color</translation>
     </message>
 
     <message>
       <source>Color Mask [Interactive]</source>
-      <translation>Masque de couleur [Interactif]</translation>
+      <translation>Máscara de color [Interactivo]</translation>
     </message>
 
     <message>
       <source>Color Median</source>
-      <translation>Médiane des couleurs</translation>
+      <translation>Mediana de color</translation>
     </message>
 
     <message>
       <source>Color Metric</source>
-      <translation>Métrique des couleurs</translation>
+      <translation>Color Métrico</translation>
     </message>
 
     <message>
       <source>Color Midtones</source>
-      <translation>Couleur Midtones</translation>
+      <translation>Tonos medios de color</translation>
     </message>
 
     <message>
       <source>Color Mode</source>
-      <translation>Mode couleur</translation>
+      <translation>Modo de color</translation>
     </message>
 
     <message>
       <source>Color Model</source>
-      <translation>Modèle de couleur</translation>
+      <translation>Modelo de color</translation>
     </message>
 
     <message>
       <source>Color Negative</source>
-      <translation>Couleur Négatif</translation>
+      <translation>Color Negativo</translation>
     </message>
 
     <message>
       <source>Color on White</source>
-      <translation>La couleur sur le blanc</translation>
+      <translation>Color sobre blanco</translation>
     </message>
 
     <message>
       <source>Color Overall Effect</source>
-      <translation>Effet global de la couleur</translation>
+      <translation>Efecto general del color</translation>
     </message>
 
     <message>
       <source>Color Presets</source>
-      <translation>Préréglages des couleurs</translation>
+      <translation>Preselecciones de color</translation>
     </message>
 
     <message>
       <source>Color Quantization</source>
-      <translation>Quantification des couleurs</translation>
+      <translation>Cuantificación del color</translation>
     </message>
 
     <message>
       <source>Color Rendering</source>
-      <translation>Rendu des couleurs</translation>
+      <translation>Rendimiento de color</translation>
     </message>
 
     <message>
       <source>Color Shading (%)</source>
-      <translation>Nuances de couleurs (%)</translation>
+      <translation>Sombreado de color (%)</translation>
     </message>
 
     <message>
       <source>Color Shadows</source>
-      <translation>Ombres de couleur</translation>
+      <translation>Sombras de color</translation>
     </message>
 
     <message>
       <source>Color Smoothness</source>
-      <translation>Lissage des couleurs</translation>
+      <translation>Suavidad de color</translation>
     </message>
 
     <message>
       <source>Color Space</source>
-      <translation>Espace de couleur</translation>
+      <translation>Espacio de color</translation>
     </message>
 
     <message>
       <source>Color Spots + Extrapolated Colors + Lineart</source>
-      <translation>Points de couleur + couleurs extrapolées + linéarité</translation>
+      <translation>Manchas de color + Colores extrapolados + Lineal</translation>
     </message>
 
     <message>
       <source>Color Spots + Lineart</source>
-      <translation>Points de couleur + Lineart</translation>
+      <translation>Manchas de color + Lineal</translation>
     </message>
 
     <message>
       <source>Color Strength</source>
-      <translation>Force de la couleur</translation>
+      <translation>La fuerza del color</translation>
     </message>
 
     <message>
       <source>Color Temperature</source>
-      <translation>Température de couleur</translation>
+      <translation>La temperatura del color</translation>
     </message>
 
     <message>
       <source>Color Tolerance</source>
-      <translation>Tolérance des couleurs</translation>
+      <translation>Tolerancia de color</translation>
     </message>
 
     <message>
       <source>Color Variation [Random -1]</source>
-      <translation>Variation de la couleur [Aléatoire -1]</translation>
+      <translation>Variación de color [Aleatorio -1]</translation>
     </message>
 
     <message>
       <source>Colored Geometry</source>
-      <translation>Géométrie colorée</translation>
+      <translation>La geometría de color</translation>
     </message>
 
     <message>
       <source>Colored Grain</source>
-      <translation>Grain coloré</translation>
+      <translation>Grano de color</translation>
     </message>
 
     <message>
       <source>Colored Lineart</source>
-      <translation>Lineart coloré</translation>
+      <translation>Lineart de color</translation>
     </message>
 
     <message>
       <source>Colored on Black</source>
-      <translation>Coloré sur le noir</translation>
+      <translation>Coloreado en negro</translation>
     </message>
 
     <message>
       <source>Colored on Transparent</source>
-      <translation>Coloré sur transparent</translation>
+      <translation>Coloreado en transparente</translation>
     </message>
 
     <message>
       <source>Colored Outline</source>
-      <translation>Schéma coloré</translation>
+      <translation>Esquema de color</translation>
     </message>
 
     <message>
       <source>Colored Pencils</source>
-      <translation>Crayons de couleur</translation>
+      <translation>Lápices de color</translation>
     </message>
 
     <message>
       <source>Colored Regions</source>
-      <translation>Régions colorées</translation>
+      <translation>Regiones de color</translation>
     </message>
 
     <message>
       <source>Colorful</source>
-      <translation>Colorée</translation>
+      <translation>Colorido</translation>
     </message>
 
     <message>
       <source>Colorful 0209</source>
-      <translation>Colorée 0209</translation>
+      <translation>Colorido 0209</translation>
     </message>
 
     <message>
       <source>Colorful Blobs</source>
-      <translation>Blocs colorés</translation>
+      <translation>Glóbulos de colores</translation>
     </message>
 
     <message>
       <source>Coloring</source>
-      <translation>Coloriage</translation>
+      <translation>Coloración</translation>
     </message>
 
     <message>
       <source>Colorize [Interactive]</source>
-      <translation>Coloriser [Interactif]</translation>
+      <translation>Colorear [Interactivo]</translation>
     </message>
 
     <message>
       <source>Colorize [Photographs]</source>
-      <translation>Coloriser [Photographies]</translation>
+      <translation>Colorear [Fotografías]</translation>
     </message>
 
     <message>
       <source>Colorize [with Colormap]</source>
-      <translation>Coloriser [avec Colormap]</translation>
+      <translation>Colorear [con Colormap]</translation>
     </message>
 
     <message>
       <source>Colorize Lineart [Auto-Fill]</source>
-      <translation>Coloriser les linéaires [Auto-remplissage]</translation>
+      <translation>Colorear Lineart [Auto-llenado]</translation>
     </message>
 
     <message>
       <source>Colorize Lineart [Propagation]</source>
-      <translation>Coloriser le linéament [Propagation].</translation>
+      <translation>Colorear Lineart [Propagación]</translation>
     </message>
 
     <message>
       <source>Colorize Lineart [Smart Coloring]</source>
-      <translation>Coloriser les linéaires [Coloration intelligente].</translation>
+      <translation>Colorear Lineart [Coloración inteligente]</translation>
     </message>
 
     <message>
       <source>Colorize Mode</source>
-      <translation>Mode colorisation</translation>
+      <translation>Modo de coloración</translation>
     </message>
 
     <message>
       <source>Colorized Image (1 Layer)</source>
-      <translation>Image colorée (1 couche)</translation>
+      <translation>Imagen coloreada (1 capa)</translation>
     </message>
 
     <message>
       <source>Colormap Type</source>
-      <translation>Type de document (Colormap)</translation>
+      <translation>Tipo de Colormap</translation>
     </message>
 
     <message>
       <source>Colors</source>
-      <translation>Couleurs</translation>
+      <translation>Colores</translation>
     </message>
 
     <message>
       <source>Colors A</source>
-      <translation>Couleurs A</translation>
+      <translation>Colores A</translation>
     </message>
 
     <message>
       <source>Colors B</source>
-      <translation>Couleurs B</translation>
+      <translation>Colores B</translation>
     </message>
 
     <message>
       <source>Colors Only</source>
-      <translation>Couleurs uniquement</translation>
+      <translation>Sólo colores</translation>
     </message>
 
     <message>
       <source>Colors Only (1 Layer)</source>
-      <translation>Couleurs uniquement (1 couche)</translation>
+      <translation>Sólo colores (1 capa)</translation>
     </message>
 
     <message>
       <source>Colors to Layers</source>
-      <translation>Des couleurs aux couches</translation>
+      <translation>Colores a capas</translation>
+    </message>
+
+    <message>
+      <source>Colorspace</source>
+      <translation>Espacio de color</translation>
     </message>
 
     <message>
       <source>Colour</source>
-      <translation>Couleur</translation>
+      <translation>Color</translation>
     </message>
 
     <message>
       <source>Colour Channels</source>
-      <translation>Chaînes de couleur</translation>
+      <translation>Canales de color</translation>
     </message>
 
     <message>
       <source>Colour Model</source>
-      <translation>Modèle de couleur</translation>
+      <translation>Modelo de color</translation>
     </message>
 
     <message>
       <source>Colour Smoothing</source>
-      <translation>Lissage des couleurs</translation>
+      <translation>Suavizar los colores</translation>
     </message>
 
     <message>
       <source>Colour Space Mode</source>
-      <translation>Mode espace couleur</translation>
+      <translation>Modo de espacio de color</translation>
     </message>
 
     <message>
       <source>Column by Column</source>
-      <translation>Colonne par colonne</translation>
+      <translation>Columna por columna</translation>
     </message>
 
     <message>
       <source>Comic Style</source>
-      <translation>Style de la bande dessinée</translation>
+      <translation>Estilo Cómic</translation>
     </message>
 
     <message>
       <source>Components</source>
-      <translation>Composants</translation>
+      <translation>Componentes</translation>
     </message>
 
     <message>
       <source>Composed Layers</source>
-      <translation>Couches composées</translation>
+      <translation>Capas compuestas</translation>
     </message>
 
     <message>
       <source>Compress Highlights</source>
-      <translation>Compresser les points forts</translation>
+      <translation>Comprimir lo más destacado</translation>
     </message>
 
     <message>
       <source>Compression Blur</source>
-      <translation>Flou de compression</translation>
+      <translation>Borrón de compresión</translation>
     </message>
 
     <message>
       <source>Compression Filter</source>
-      <translation>Filtre de compression</translation>
+      <translation>Filtro de compresión</translation>
     </message>
 
     <message>
       <source>Computation Mode</source>
-      <translation>Mode de calcul</translation>
+      <translation>Modo de cálculo</translation>
     </message>
 
     <message>
       <source>Cone</source>
-      <translation>Cône</translation>
+      <translation>Cono</translation>
     </message>
 
     <message>
       <source>Conflict 01</source>
-      <translation>Conflit 01</translation>
+      <translation>Conflicto 01</translation>
     </message>
 
     <message>
       <source>Conformal Maps</source>
-      <translation>Cartes conformes</translation>
+      <translation>Mapas conformes</translation>
     </message>
 
     <message>
       <source>Connectivity</source>
-      <translation>Connectivité</translation>
+      <translation>Conectividad</translation>
     </message>
 
     <message>
       <source>Connectors Centering</source>
-      <translation>Centrage des connecteurs</translation>
+      <translation>Centrado de los conectores</translation>
     </message>
 
     <message>
       <source>Connectors Variability</source>
-      <translation>Variabilité des connecteurs</translation>
+      <translation>Variabilidad de los conectores</translation>
     </message>
 
     <message>
       <source>Constrain Image Size</source>
-      <translation>Limiter la taille de l&apos;image</translation>
+      <translation>Limitar el tamaño de la imagen</translation>
     </message>
 
     <message>
       <source>Constrain Values</source>
-      <translation>Limiter les valeurs</translation>
+      <translation>Limitar los valores</translation>
     </message>
 
     <message>
       <source>Constrained Sharpen</source>
-      <translation>Aiguiser sous contrainte</translation>
+      <translation>Afilado restringido</translation>
     </message>
 
     <message>
       <source>Constraint Radius</source>
-      <translation>Rayon de contrainte</translation>
+      <translation>Radio de restricción</translation>
     </message>
 
     <message>
       <source>Continuous Droste</source>
-      <translation>Droste continu</translation>
+      <translation>Droste continuo</translation>
     </message>
 
     <message>
       <source>Contour Coherence</source>
-      <translation>Cohérence des contours</translation>
+      <translation>Coherencia del contorno</translation>
     </message>
 
     <message>
       <source>Contour Detection (%)</source>
-      <translation>Détection des contours (%)</translation>
+      <translation>Detección de contorno (%)</translation>
     </message>
 
     <message>
       <source>Contour Normalization</source>
-      <translation>Normalisation des contours</translation>
+      <translation>Normalización del contorno</translation>
     </message>
 
     <message>
       <source>Contour Precision</source>
-      <translation>Précision des contours</translation>
+      <translation>Precisión del contorno</translation>
     </message>
 
     <message>
       <source>Contour Threshold</source>
-      <translation>Seuil de contour</translation>
+      <translation>Umbral del contorno</translation>
     </message>
 
     <message>
       <source>Contour Threshold (%)</source>
-      <translation>Seuil de contour (%)</translation>
+      <translation>Umbral del contorno (%)</translation>
+    </message>
+
+    <message>
+      <source>Contours</source>
+      <translation>Contornos</translation>
     </message>
 
     <message>
       <source>Contours + Flocon/Snowflake</source>
-      <translation>Contours + Flocon/Flacon de neige</translation>
+      <translation>Contornos + Flocon/Snowflake</translation>
     </message>
 
     <message>
       <source>Contours Recursion</source>
-      <translation>Récursion des contours</translation>
+      <translation>Recursión de los contornos</translation>
     </message>
 
     <message>
@@ -3986,1947 +4076,2062 @@
 
     <message>
       <source>Contrast Smoothness</source>
-      <translation>Lissage des contrastes</translation>
+      <translation>Suavidad de contraste</translation>
     </message>
 
     <message>
       <source>Contrast Swiss Mask</source>
-      <translation>Masque suisse contrasté</translation>
+      <translation>Contraste de la máscara suiza</translation>
     </message>
 
     <message>
       <source>Contrast with Highlights Protection</source>
-      <translation>Contraste avec la protection des points forts</translation>
+      <translation>Contrasta con la protección de los Highlights</translation>
     </message>
 
     <message>
       <source>Contrasty Afternoon</source>
-      <translation>Après-midi contrasté</translation>
+      <translation>Contraste de la tarde</translation>
     </message>
 
     <message>
       <source>Contrasty Green</source>
-      <translation>Vert contrasté</translation>
+      <translation>Contraste Verde</translation>
     </message>
 
     <message>
       <source>Contributors</source>
-      <translation>Contributeurs</translation>
+      <translation>Colaboradores</translation>
     </message>
 
     <message>
       <source>Control Point 1</source>
-      <translation>Point de contrôle 1</translation>
+      <translation>Punto de control 1</translation>
     </message>
 
     <message>
       <source>Control Point 2</source>
-      <translation>Point de contrôle 2</translation>
+      <translation>Punto de control 2</translation>
     </message>
 
     <message>
       <source>Control Point 3</source>
-      <translation>Point de contrôle 3</translation>
+      <translation>Punto de control 3</translation>
     </message>
 
     <message>
       <source>Control Point 4</source>
-      <translation>Point de contrôle 4</translation>
+      <translation>Punto de control 4</translation>
     </message>
 
     <message>
       <source>Control Point 5</source>
-      <translation>Point de contrôle 5</translation>
+      <translation>Punto de control 5</translation>
     </message>
 
     <message>
       <source>Control Point 6</source>
-      <translation>Point de contrôle 6</translation>
+      <translation>Punto de control 6</translation>
     </message>
 
     <message>
       <source>Convolve</source>
-      <translation>Convivialité</translation>
+      <translation>Involucrar</translation>
+    </message>
+
+    <message>
+      <source>Cool</source>
+      <translation>Genial</translation>
+    </message>
+
+    <message>
+      <source>Cool (256)</source>
+      <translation>Genial (256)</translation>
     </message>
 
     <message>
       <source>Cool / Warm</source>
-      <translation>Froid / Chaud</translation>
+      <translation>Frío / Caliente</translation>
     </message>
 
     <message>
       <source>Copper</source>
-      <translation>Cuivre</translation>
+      <translation>Cobre</translation>
     </message>
 
     <message>
       <source>Corner Brightness</source>
-      <translation>Luminosité du coin</translation>
+      <translation>Brillo de la esquina</translation>
     </message>
 
     <message>
       <source>Correlated Channels</source>
-      <translation>Chaînes corrélées</translation>
+      <translation>Canales correlacionados</translation>
     </message>
 
     <message>
       <source>Counter Clockwise</source>
-      <translation>Dans le sens inverse des aiguilles d&apos;une montre</translation>
+      <translation>En el sentido contrario a las agujas del reloj</translation>
     </message>
 
     <message>
       <source>Course 4</source>
-      <translation>Cours 4</translation>
+      <translation>Curso 4</translation>
+    </message>
+
+    <message>
+      <source>Cracks</source>
+      <translation>Grietas</translation>
+    </message>
+
+    <message>
+      <source>Crease</source>
+      <translation>Pliegue</translation>
     </message>
 
     <message>
       <source>Creative Pack (33)</source>
-      <translation>Pack créatif (33)</translation>
+      <translation>Paquete creativo (33)</translation>
     </message>
 
     <message>
       <source>Crisp Romance</source>
-      <translation>Romance croustillante</translation>
+      <translation>Romance nítido</translation>
+    </message>
+
+    <message>
+      <source>Crisp Warm</source>
+      <translation>Caliente y crujiente</translation>
     </message>
 
     <message>
       <source>Criterion</source>
-      <translation>Critère</translation>
-    </message>
-
-    <message>
-      <source>Crop</source>
-      <translation>Culture</translation>
+      <translation>Criterio</translation>
     </message>
 
     <message>
       <source>Crop (%)</source>
-      <translation>Culture (%)</translation>
+      <translation>Cultivo (%)</translation>
     </message>
 
     <message>
       <source>Cross Process CP 130</source>
-      <translation>Processus croisé CP 130</translation>
+      <translation>Proceso cruzado CP 130</translation>
     </message>
 
     <message>
       <source>Cross Process CP 14</source>
-      <translation>Processus croisé CP 14</translation>
+      <translation>Proceso cruzado CP 14</translation>
     </message>
 
     <message>
       <source>Cross Process CP 15</source>
-      <translation>Processus croisé CP 15</translation>
+      <translation>Proceso cruzado CP 15</translation>
     </message>
 
     <message>
       <source>Cross Process CP 16</source>
-      <translation>Processus croisé CP 16</translation>
+      <translation>Proceso cruzado CP 16</translation>
     </message>
 
     <message>
       <source>Cross Process CP 18</source>
-      <translation>Processus croisé CP 18</translation>
+      <translation>Proceso cruzado CP 18</translation>
     </message>
 
     <message>
       <source>Cross Process CP 3</source>
-      <translation>Processus croisé CP 3</translation>
+      <translation>Proceso cruzado CP 3</translation>
     </message>
 
     <message>
       <source>Cross Process CP 4</source>
-      <translation>Processus croisé CP 4</translation>
+      <translation>Proceso cruzado CP 4</translation>
     </message>
 
     <message>
       <source>Cross Process CP 6</source>
-      <translation>Processus croisé CP 6</translation>
+      <translation>Proceso cruzado CP 6</translation>
     </message>
 
     <message>
       <source>Cross-Hatch Amount</source>
-      <translation>Montant de la hachure</translation>
+      <translation>Cantidad de la escotilla cruzada</translation>
     </message>
 
     <message>
       <source>Crossed</source>
-      <translation>Traversée</translation>
+      <translation>Cruzó</translation>
     </message>
 
     <message>
       <source>Crosses 1</source>
-      <translation>Croix 1</translation>
+      <translation>Cruces 1</translation>
     </message>
 
     <message>
       <source>Crosses 2</source>
-      <translation>Croix 2</translation>
+      <translation>Cruces 2</translation>
     </message>
 
     <message>
       <source>CRT Sub-Pixels</source>
-      <translation>Sous-pixels de la CRT</translation>
+      <translation>Sub-píxeles del CRT</translation>
+    </message>
+
+    <message>
+      <source>Crystal</source>
+      <translation>Cristal</translation>
     </message>
 
     <message>
       <source>Crystal Background</source>
-      <translation>Fond de cristal</translation>
+      <translation>Fondo de cristal</translation>
+    </message>
+
+    <message>
+      <source>Cube</source>
+      <translation>Cubo</translation>
+    </message>
+
+    <message>
+      <source>Cube (256)</source>
+      <translation>Cubo (256)</translation>
     </message>
 
     <message>
       <source>Cubic</source>
-      <translation>Cubique</translation>
+      <translation>Cúbico</translation>
     </message>
 
     <message>
       <source>Cubicle 99</source>
-      <translation>Cabine 99</translation>
+      <translation>Cubículo 99</translation>
     </message>
 
     <message>
       <source>Cubism</source>
-      <translation>Cubisme</translation>
+      <translation>Cubismo</translation>
     </message>
 
     <message>
       <source>Cubism on Color Abstraction</source>
-      <translation>Le cubisme sur l&apos;abstraction des couleurs</translation>
+      <translation>El cubismo en la abstracción del color</translation>
     </message>
 
     <message>
       <source>Cup</source>
-      <translation>Coupe</translation>
+      <translation>Copa</translation>
     </message>
 
     <message>
       <source>Cupid</source>
-      <translation>Cupidon</translation>
+      <translation>Cupido</translation>
     </message>
 
     <message>
       <source>Curvature</source>
-      <translation>Courbure</translation>
+      <translation>Curvatura</translation>
     </message>
 
     <message>
       <source>Curvature Shadow</source>
-      <translation>Ombre de courbure</translation>
+      <translation>Sombra de curvatura</translation>
     </message>
 
     <message>
       <source>Curve Amount</source>
-      <translation>Courbe Montant</translation>
+      <translation>Cantidad de la curva</translation>
     </message>
 
     <message>
       <source>Curve Angle</source>
-      <translation>Angle de la courbe</translation>
+      <translation>Ángulo de la curva</translation>
     </message>
 
     <message>
       <source>Curve Length</source>
-      <translation>Longueur de la courbe</translation>
+      <translation>Longitud de la curva</translation>
     </message>
 
     <message>
       <source>Curved</source>
-      <translation>Courbe</translation>
+      <translation>Curva</translation>
     </message>
 
     <message>
       <source>Curved Stroke</source>
-      <translation>Courbes de l&apos;accident vasculaire cérébral</translation>
+      <translation>Trazo curvo</translation>
     </message>
 
     <message>
       <source>Curves</source>
-      <translation>Courbes</translation>
+      <translation>Curvas</translation>
     </message>
 
     <message>
       <source>Curves Previously Defined</source>
-      <translation>Courbes précédemment définies</translation>
+      <translation>Curvas previamente definidas</translation>
     </message>
 
     <message>
       <source>Custom</source>
-      <translation>Personnalisation</translation>
+      <translation>Personalizado</translation>
     </message>
 
     <message>
       <source>Custom Code [Global]</source>
-      <translation>Code des douanes [Global]</translation>
+      <translation>Código personalizado [Global]</translation>
     </message>
 
     <message>
       <source>Custom Code [Local]</source>
-      <translation>Code des douanes [local]</translation>
+      <translation>Código personalizado [Local]</translation>
     </message>
 
     <message>
       <source>Custom Correction Map</source>
-      <translation>Carte de correction personnalisée</translation>
+      <translation>Mapa de corrección personalizado</translation>
     </message>
 
     <message>
       <source>Custom Depth Correction</source>
-      <translation>Correction de profondeur personnalisée</translation>
+      <translation>Corrección de profundidad personalizada</translation>
     </message>
 
     <message>
       <source>Custom Depth Maps Stream</source>
-      <translation>Flux de cartes de profondeur personnalisées</translation>
+      <translation>Flujo de mapas de profundidad personalizados</translation>
     </message>
 
     <message>
       <source>Custom Dictionary</source>
-      <translation>Dictionnaire des coutumes</translation>
+      <translation>Diccionario personalizado</translation>
     </message>
 
     <message>
       <source>Custom Filter Code</source>
-      <translation>Code de filtrage personnalisé</translation>
+      <translation>Código de filtro personalizado</translation>
     </message>
 
     <message>
       <source>Custom Formula</source>
-      <translation>Formule sur mesure</translation>
+      <translation>Fórmula personalizada</translation>
     </message>
 
     <message>
       <source>Custom Kernel</source>
-      <translation>Noyau personnalisé</translation>
+      <translation>Kernel personalizado</translation>
     </message>
 
     <message>
       <source>Custom Layers</source>
-      <translation>Couches personnalisées</translation>
+      <translation>Capas personalizadas</translation>
     </message>
 
     <message>
       <source>Custom Layout</source>
-      <translation>Mise en page personnalisée</translation>
+      <translation>Diseño personalizado</translation>
     </message>
 
     <message>
       <source>Custom Style (Bottom Layer)</source>
-      <translation>Style personnalisé (couche inférieure)</translation>
+      <translation>Estilo personalizado (capa inferior)</translation>
     </message>
 
     <message>
       <source>Custom Style (Top Layer)</source>
-      <translation>Style personnalisé (couche supérieure)</translation>
+      <translation>Estilo personalizado (capa superior)</translation>
     </message>
 
     <message>
       <source>Custom Transform</source>
-      <translation>Transformation sur mesure</translation>
+      <translation>Transformación personalizada</translation>
     </message>
 
     <message>
       <source>Customize CLUT</source>
-      <translation>Personnaliser CLUT</translation>
+      <translation>Personalizar CLUT</translation>
     </message>
 
     <message>
       <source>Cut</source>
-      <translation>Coupez</translation>
+      <translation>Cortar</translation>
     </message>
 
     <message>
       <source>Cut &amp; Normalize</source>
-      <translation>Couper et normaliser</translation>
+      <translation>Cortar y normalizar</translation>
     </message>
 
     <message>
       <source>Cut High</source>
-      <translation>Couper haut</translation>
+      <translation>Cortar en alto</translation>
     </message>
 
     <message>
       <source>Cut Low</source>
-      <translation>Coupez bas</translation>
+      <translation>Cortar bajo...</translation>
     </message>
 
     <message>
       <source>Cutout</source>
-      <translation>Découpage</translation>
+      <translation>Recorte</translation>
     </message>
 
     <message>
       <source>Cyan Factor</source>
-      <translation>Le facteur cyan</translation>
+      <translation>Factor Cian</translation>
     </message>
 
     <message>
       <source>Cyan Shift</source>
-      <translation>Changement de cyan</translation>
+      <translation>Cambio de Cian</translation>
     </message>
 
     <message>
       <source>Cyan Smoothness</source>
-      <translation>Douceur du cyan</translation>
+      <translation>Suavidad del cian</translation>
     </message>
 
     <message>
       <source>Cycle Layers</source>
-      <translation>Les couches du cycle</translation>
+      <translation>Capas de ciclo</translation>
+    </message>
+
+    <message>
+      <source>Cycles</source>
+      <translation>Ciclos</translation>
     </message>
 
     <message>
       <source>Cylinder</source>
-      <translation>Cylindre</translation>
+      <translation>Cilindro</translation>
     </message>
 
     <message>
       <source>D and O 1</source>
-      <translation>D et O 1</translation>
+      <translation>D y O 1</translation>
     </message>
 
     <message>
       <source>Damping per Octave</source>
-      <translation>Amortissement par octave</translation>
+      <translation>Amortiguación por octava</translation>
     </message>
 
     <message>
       <source>Dark  Motive</source>
-      <translation>Motif sombre</translation>
+      <translation>Motivo oscuro</translation>
+    </message>
+
+    <message>
+      <source>Dark Blues in Sunlight</source>
+      <translation>Los azules oscuros a la luz del sol</translation>
     </message>
 
     <message>
       <source>Dark Color</source>
-      <translation>Couleur foncée</translation>
+      <translation>Color oscuro</translation>
     </message>
 
     <message>
       <source>Dark Edges</source>
-      <translation>Bords sombres</translation>
+      <translation>Bordes oscuros</translation>
     </message>
 
     <message>
       <source>Dark Green 02</source>
-      <translation>Vert foncé 02</translation>
+      <translation>Verde oscuro 02</translation>
     </message>
 
     <message>
       <source>Dark Green 1</source>
-      <translation>Vert foncé 1</translation>
+      <translation>Verde oscuro 1</translation>
     </message>
 
     <message>
       <source>Dark Grey</source>
-      <translation>Gris foncé</translation>
+      <translation>Gris oscuro</translation>
     </message>
 
     <message>
       <source>Dark Length</source>
-      <translation>Longueur noire</translation>
+      <translation>Longitud de la oscuridad</translation>
     </message>
 
     <message>
       <source>Dark Motive</source>
-      <translation>Motif sombre</translation>
+      <translation>Motivo oscuro</translation>
     </message>
 
     <message>
       <source>Dark Pixels</source>
-      <translation>Pixels sombres</translation>
+      <translation>Píxeles oscuros</translation>
     </message>
 
     <message>
       <source>Dark Place 01</source>
-      <translation>Lieu sombre 01</translation>
+      <translation>Lugar oscuro 01</translation>
     </message>
 
     <message>
       <source>Dark Screen</source>
-      <translation>Écran noir</translation>
+      <translation>Pantalla oscura</translation>
     </message>
 
     <message>
       <source>Dark Sky</source>
-      <translation>Ciel noir</translation>
+      <translation>Cielo oscuro</translation>
     </message>
 
     <message>
       <source>Dark Walls</source>
-      <translation>Murs sombres</translation>
+      <translation>Paredes oscuras</translation>
     </message>
 
     <message>
       <source>Darker</source>
-      <translation>Plus sombre</translation>
+      <translation>Más oscuro</translation>
     </message>
 
     <message>
       <source>Darkness</source>
-      <translation>Ténèbres</translation>
+      <translation>Oscuridad</translation>
     </message>
 
     <message>
       <source>Darkness Level</source>
-      <translation>Niveau d&apos;obscurité</translation>
+      <translation>Nivel de oscuridad</translation>
+    </message>
+
+    <message>
+      <source>Date 39</source>
+      <translation>Fecha 39</translation>
     </message>
 
     <message>
       <source>Day for Night</source>
-      <translation>Le jour pour la nuit</translation>
+      <translation>El día por la noche</translation>
     </message>
 
     <message>
       <source>Daylight Scene</source>
-      <translation>Scène de lumière du jour</translation>
+      <translation>Escena de luz diurna</translation>
     </message>
 
     <message>
       <source>De-Anaglyph</source>
-      <translation>De-Anaglyphe</translation>
+      <translation>De-Anaglifo</translation>
     </message>
 
     <message>
       <source>Debug Font Size</source>
-      <translation>Debug Taille de la police</translation>
+      <translation>Tamaño de la fuente de depuración</translation>
+    </message>
+
+    <message>
+      <source>Decagon</source>
+      <translation>Decágono</translation>
     </message>
 
     <message>
       <source>Decompose</source>
-      <translation>Décomposer</translation>
+      <translation>Descomponer</translation>
     </message>
 
     <message>
       <source>Decompose Channels</source>
-      <translation>Décomposer les canaux</translation>
+      <translation>Descomponer los canales</translation>
     </message>
 
     <message>
       <source>Decoration</source>
-      <translation>Décoration</translation>
+      <translation>Decoración</translation>
     </message>
 
     <message>
       <source>Decreasing</source>
-      <translation>En baisse</translation>
+      <translation>Disminuyendo</translation>
     </message>
 
     <message>
-      <source>Deep Blue</source>
-      <translation>Bleu foncé</translation>
+      <source>Deep</source>
+      <translation>Profundo</translation>
     </message>
 
     <message>
       <source>Deep Dark Warm</source>
-      <translation>Profondément sombre et chaud</translation>
+      <translation>Calor profundo y oscuro</translation>
     </message>
 
     <message>
       <source>Deep High Contrast</source>
-      <translation>Contraste élevé et profond</translation>
+      <translation>Contraste profundo y alto</translation>
     </message>
 
     <message>
       <source>Deep Teal Fade</source>
-      <translation>Fondu de sarcelle</translation>
-    </message>
-
-    <message>
-      <source>Deep Warm Fade</source>
-      <translation>Fondu profond et chaud</translation>
+      <translation>Desvanecimiento de la cerceta profunda</translation>
     </message>
 
     <message>
       <source>Default</source>
-      <translation>Par défaut</translation>
+      <translation>Por defecto</translation>
     </message>
 
     <message>
       <source>Defects Contrast</source>
-      <translation>Contraste des défauts</translation>
+      <translation>Contraste de defectos</translation>
     </message>
 
     <message>
       <source>Defects Density</source>
-      <translation>Densité des défauts</translation>
+      <translation>Densidad de defectos</translation>
     </message>
 
     <message>
       <source>Defects Size</source>
-      <translation>Taille des défauts</translation>
+      <translation>Tamaño de los defectos</translation>
     </message>
 
     <message>
       <source>Defects Smoothness</source>
-      <translation>Défauts Lisse</translation>
+      <translation>Defectos Suavidad</translation>
     </message>
 
     <message>
       <source>Deform</source>
-      <translation>Déformer</translation>
+      <translation>Deformar</translation>
     </message>
 
     <message>
-      <source>Delaunay-Oriented</source>
-      <translation>Orienté vers le retard</translation>
+      <source>Deinterlace2x</source>
+      <translation>Desentrelazar2x</translation>
     </message>
 
     <message>
       <source>Delaunay: Portrait De Metzinger</source>
-      <translation>Delaunay : Portrait De Metzinger</translation>
+      <translation>Delaunay: Retrato de Metzinger</translation>
     </message>
 
     <message>
       <source>Delaunay: Windows Open Simultaneously</source>
-      <translation>Retard : les fenêtres s&apos;ouvrent simultanément</translation>
+      <translation>Delaunay: Las ventanas se abren simultáneamente</translation>
     </message>
 
     <message>
       <source>Delete Layer Source</source>
-      <translation>Supprimer la source de la couche</translation>
-    </message>
-
-    <message>
-      <source>Delicatessen</source>
-      <translation>Épicerie fine</translation>
+      <translation>Borrar la fuente de la capa</translation>
     </message>
 
     <message>
       <source>Density</source>
-      <translation>Densité</translation>
+      <translation>Densidad</translation>
     </message>
 
     <message>
       <source>Density (%)</source>
-      <translation>Densité (%)</translation>
+      <translation>Densidad (%)</translation>
     </message>
 
     <message>
       <source>Depth</source>
-      <translation>Profondeur</translation>
+      <translation>Profundidad</translation>
     </message>
 
     <message>
       <source>Depth Fade In Frames</source>
-      <translation>Fondu enchaîné des cadres</translation>
+      <translation>La profundidad se desvanece en los marcos</translation>
     </message>
 
     <message>
       <source>Depth Fade Out Frames</source>
-      <translation>Cadres de fondu enchaîné</translation>
+      <translation>Los marcos de profundidad se desvanecen</translation>
     </message>
 
     <message>
       <source>Depth Field Control</source>
-      <translation>Contrôle du champ de profondeur</translation>
+      <translation>Control del campo de profundidad</translation>
     </message>
 
     <message>
       <source>Depth Map</source>
-      <translation>Carte de profondeur</translation>
+      <translation>Mapa de profundidad</translation>
     </message>
 
     <message>
       <source>Depth Map Construction</source>
-      <translation>Construction de la carte de profondeur</translation>
+      <translation>Construcción del mapa de profundidad</translation>
     </message>
 
     <message>
       <source>Depth Map Only</source>
-      <translation>Carte de profondeur uniquement</translation>
+      <translation>Sólo el mapa de profundidad</translation>
     </message>
 
     <message>
       <source>Depth Map Reconstruction</source>
-      <translation>Reconstruction de la carte de profondeur</translation>
+      <translation>Reconstrucción del mapa de profundidad</translation>
     </message>
 
     <message>
       <source>Depth Maps Only</source>
-      <translation>Cartes de profondeur uniquement</translation>
+      <translation>Sólo mapas de profundidad</translation>
     </message>
 
     <message>
       <source>Depth-Of-Field Type</source>
-      <translation>Type de profondeur de champ</translation>
+      <translation>Tipo de profundidad de campo</translation>
     </message>
 
     <message>
       <source>Desaturate</source>
-      <translation>Désaturer</translation>
+      <translation>Desaturación</translation>
     </message>
 
     <message>
       <source>Desaturate (%)</source>
-      <translation>Désaturé (%)</translation>
+      <translation>Desaturación (%)</translation>
     </message>
 
     <message>
       <source>Desaturate Norm</source>
-      <translation>Norme désaturée</translation>
+      <translation>Norma de Desaturación</translation>
     </message>
 
     <message>
       <source>Descent Method</source>
-      <translation>Méthode de la descente</translation>
+      <translation>Método de descenso</translation>
     </message>
 
     <message>
       <source>Desert Gold 37</source>
-      <translation>L&apos;or du désert 37</translation>
+      <translation>Oro del Desierto 37</translation>
+    </message>
+
+    <message>
+      <source>Destination (%)</source>
+      <translation>Destino (%)</translation>
+    </message>
+
+    <message>
+      <source>Destination X-Tiles</source>
+      <translation>Destino X-Tiles</translation>
+    </message>
+
+    <message>
+      <source>Destination Y-Tiles</source>
+      <translation>Destino Y-Tiles</translation>
     </message>
 
     <message>
       <source>Detail</source>
-      <translation>Détail</translation>
+      <translation>Detalle</translation>
     </message>
 
     <message>
       <source>Detail Level</source>
-      <translation>Niveau de détail</translation>
+      <translation>Nivel de detalle</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Detection</source>
-      <translation>Détection de reconstruction détaillée</translation>
+      <translation>Detalle de la detección de la reconstrucción</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Smoothness</source>
-      <translation>Détail Reconstruction en douceur</translation>
+      <translation>Detalle Reconstrucción Suavidad</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Strength</source>
-      <translation>Détail de la force de reconstruction</translation>
+      <translation>Detalle de la fuerza de reconstrucción</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Style</source>
-      <translation>Détail du style de reconstruction</translation>
+      <translation>Detalle del estilo de reconstrucción</translation>
     </message>
 
     <message>
       <source>Detail Scale</source>
-      <translation>Échelle de détail</translation>
+      <translation>Escala de detalles</translation>
     </message>
 
     <message>
       <source>Detail Strength</source>
-      <translation>Détail Force</translation>
+      <translation>Fuerza de detalle</translation>
     </message>
 
     <message>
       <source>Details</source>
-      <translation>Détails</translation>
+      <translation>Detalles</translation>
     </message>
 
     <message>
       <source>Details Amount</source>
-      <translation>Détails Montant</translation>
+      <translation>Detalles Cantidad</translation>
     </message>
 
     <message>
       <source>Details Equalizer</source>
-      <translation>Détails Egaliseur</translation>
+      <translation>Detalles Ecualizador</translation>
     </message>
 
     <message>
       <source>Details Scale</source>
-      <translation>Détails Échelle</translation>
+      <translation>Detalles Escala</translation>
     </message>
 
     <message>
       <source>Details Smoothness</source>
-      <translation>Détails Lissage</translation>
+      <translation>Detalles Suavidad</translation>
     </message>
 
     <message>
       <source>Details Strength (%)</source>
-      <translation>Détails Force (%)</translation>
+      <translation>Detalles Fuerza (%)</translation>
     </message>
 
     <message>
       <source>Detect Skin</source>
-      <translation>Détecter la peau</translation>
+      <translation>Detectar la piel</translation>
     </message>
 
     <message>
       <source>Deuteranomaly</source>
-      <translation>Deuteranomalie</translation>
+      <translation>Deuteranomalía</translation>
     </message>
 
     <message>
       <source>Deuteranopia</source>
-      <translation>Deutéranopie</translation>
+      <translation>Deuteranopía</translation>
     </message>
 
     <message>
       <source>Deviation</source>
-      <translation>Déviation</translation>
+      <translation>Desviación</translation>
     </message>
 
     <message>
       <source>Diamond</source>
-      <translation>Diamant</translation>
+      <translation>Diamante</translation>
     </message>
 
     <message>
       <source>Diamond (Inv.)</source>
-      <translation>Diamant (Inv.)</translation>
+      <translation>Diamante (Inv.)</translation>
     </message>
 
     <message>
       <source>Diamonds</source>
-      <translation>Diamants</translation>
+      <translation>Diamantes</translation>
     </message>
 
     <message>
       <source>Diamonds (Outline)</source>
-      <translation>Diamants (Grandes lignes)</translation>
-    </message>
-
-    <message>
-      <source>Dices</source>
-      <translation>Dés</translation>
+      <translation>Diamantes (Esquema)</translation>
     </message>
 
     <message>
       <source>Dices with Colored Numbers</source>
-      <translation>Des dés avec des numéros colorés</translation>
+      <translation>Dados con números de color</translation>
     </message>
 
     <message>
       <source>Dices with Colored Sides</source>
-      <translation>Dés avec faces colorées</translation>
+      <translation>Dados con lados de color</translation>
     </message>
 
     <message>
       <source>Difference</source>
-      <translation>Différence</translation>
+      <translation>Diferencia</translation>
     </message>
 
     <message>
       <source>Difference Mixing</source>
-      <translation>Mélange des différences</translation>
+      <translation>Mezcla de diferencias</translation>
     </message>
 
     <message>
       <source>Difference of Gaussians</source>
-      <translation>Différence des gaussiens</translation>
+      <translation>Diferencia de los gausianos</translation>
     </message>
 
     <message>
       <source>Different Axis</source>
-      <translation>Axe différent</translation>
+      <translation>Eje diferente</translation>
     </message>
 
     <message>
       <source>Diffuse (%)</source>
-      <translation>Diffus (%)</translation>
+      <translation>Difuso (%)</translation>
     </message>
 
     <message>
       <source>Diffuse Shadow</source>
-      <translation>Ombre diffuse</translation>
+      <translation>Sombra difusa</translation>
+    </message>
+
+    <message>
+      <source>Diffusion</source>
+      <translation>Difusión</translation>
     </message>
 
     <message>
       <source>Diffusion Tensors</source>
-      <translation>Tenseurs de diffusion</translation>
+      <translation>Tensores de difusión</translation>
     </message>
 
     <message>
       <source>Diffusivity</source>
-      <translation>Diffusivité</translation>
+      <translation>Difusividad</translation>
     </message>
 
     <message>
       <source>Digits</source>
-      <translation>Chiffres</translation>
+      <translation>Cifras</translation>
+    </message>
+
+    <message>
+      <source>Dilatation</source>
+      <translation>Dilatación</translation>
+    </message>
+
+    <message>
+      <source>Dilate</source>
+      <translation>Dilata</translation>
     </message>
 
     <message>
       <source>Dilation</source>
-      <translation>Dilatation</translation>
+      <translation>Dilatación</translation>
     </message>
 
     <message>
       <source>Dilation - Original</source>
-      <translation>Dilatation - Original</translation>
+      <translation>Dilatación - Original</translation>
     </message>
 
     <message>
       <source>Dilation / Erosion</source>
-      <translation>Dilatation / Érosion</translation>
+      <translation>Dilatación / Erosión</translation>
+    </message>
+
+    <message>
+      <source>Dimension</source>
+      <translation>Dimensión</translation>
+    </message>
+
+    <message>
+      <source>Dimension [Diff]</source>
+      <translation>Dimensión [Diff]</translation>
+    </message>
+
+    <message>
+      <source>Dimension A</source>
+      <translation>Dimensión A</translation>
+    </message>
+
+    <message>
+      <source>Dimensions (%)</source>
+      <translation>Dimensiones (%)</translation>
+    </message>
+
+    <message>
+      <source>Dimensions Pixels</source>
+      <translation>Dimensiones Píxeles</translation>
     </message>
 
     <message>
       <source>Dipole: 1/(4*z^2-1)</source>
-      <translation>Dipole : 1/(4*z^2-1)</translation>
+      <translation>Dipolo: 1/(4*z^2-1)</translation>
+    </message>
+
+    <message>
+      <source>Direct</source>
+      <translation>Directo</translation>
+    </message>
+
+    <message>
+      <source>Direction</source>
+      <translation>Dirección</translation>
     </message>
 
     <message>
       <source>Directions 23</source>
-      <translation>Orientations 23</translation>
+      <translation>Direcciones 23</translation>
     </message>
 
     <message>
       <source>Dirty</source>
-      <translation>Sale</translation>
+      <translation>Sucio</translation>
     </message>
 
     <message>
       <source>Disable</source>
-      <translation>Désactiver</translation>
+      <translation>Desactivar</translation>
     </message>
 
     <message>
       <source>Disabled</source>
-      <translation>Handicapés</translation>
+      <translation>Discapacitados</translation>
     </message>
 
     <message>
       <source>Discard Contour Guides</source>
-      <translation>Éliminer les guides de contour</translation>
+      <translation>Desechar las guías de contorno</translation>
     </message>
 
     <message>
       <source>Discard Transparency</source>
-      <translation>Éliminer la transparence</translation>
+      <translation>Desechar la transparencia</translation>
+    </message>
+
+    <message>
+      <source>Disco</source>
+      <translation>Discoteca</translation>
     </message>
 
     <message>
       <source>Display</source>
-      <translation>Afficher</translation>
+      <translation>Pantalla</translation>
     </message>
 
     <message>
       <source>Display Blob Controls</source>
-      <translation>Contrôles des taches d&apos;affichage</translation>
+      <translation>Mostrar los controles de manchas</translation>
     </message>
 
     <message>
       <source>Display Color Axes</source>
-      <translation>Axes de couleur d&apos;affichage</translation>
+      <translation>Mostrar los ejes de color</translation>
     </message>
 
     <message>
       <source>Display Contours</source>
-      <translation>Contours d&apos;affichage</translation>
+      <translation>Contornos de la pantalla</translation>
     </message>
 
     <message>
       <source>Display Coordinates</source>
-      <translation>Afficher les coordonnées</translation>
+      <translation>Mostrar las coordenadas</translation>
     </message>
 
     <message>
       <source>Display Coordinates on Preview Window</source>
-      <translation>Afficher les coordonnées sur la fenêtre de prévisualisation</translation>
+      <translation>Mostrar las coordenadas en la ventana de vista previa</translation>
     </message>
 
     <message>
       <source>Display Debug Info on Preview</source>
-      <translation>Afficher les informations de débogage en avant-première</translation>
+      <translation>Mostrar información de depuración en la vista previa</translation>
+    </message>
+
+    <message>
+      <source>Distance</source>
+      <translation>Distancia</translation>
     </message>
 
     <message>
       <source>Distance (Fast)</source>
-      <translation>Distance (rapide)</translation>
+      <translation>Distancia (Rápido)</translation>
     </message>
 
     <message>
       <source>Distance Transform</source>
-      <translation>Transformation de la distance</translation>
+      <translation>Transformación de la distancia</translation>
     </message>
 
     <message>
       <source>Distort Lens</source>
-      <translation>Distorsion de l&apos;objectif</translation>
+      <translation>Distorsionar la lente</translation>
     </message>
 
     <message>
       <source>Distortion Factor</source>
-      <translation>Facteur de distorsion</translation>
+      <translation>Factor de distorsión</translation>
     </message>
 
     <message>
       <source>Distortion Surface Angle</source>
-      <translation>Angle de surface de distorsion</translation>
+      <translation>Ángulo de la superficie de distorsión</translation>
     </message>
 
     <message>
       <source>Distortion Surface Position</source>
-      <translation>Position de la surface de distorsion</translation>
+      <translation>Posición de la superficie de distorsión</translation>
     </message>
 
     <message>
       <source>Disturbance Scale-By-Factor</source>
-      <translation>L&apos;échelle des perturbations par facteur</translation>
+      <translation>Escala de perturbaciones según el factor</translation>
     </message>
 
     <message>
       <source>Disturbance X</source>
-      <translation>Perturbation X</translation>
+      <translation>Perturbación X</translation>
     </message>
 
     <message>
       <source>Disturbance Y</source>
-      <translation>Perturbation Y</translation>
+      <translation>Perturbación Y</translation>
     </message>
 
     <message>
-      <source>Dithering</source>
-      <translation>Les hésitations</translation>
+      <source>Dither Output</source>
+      <translation>Salida de Dither</translation>
     </message>
 
     <message>
       <source>Divide</source>
-      <translation>Diviser</translation>
+      <translation>Dividir</translation>
     </message>
 
     <message>
       <source>Do Not Flatten Transparency</source>
-      <translation>Ne pas aplatir la transparence</translation>
+      <translation>No aplastar la transparencia</translation>
     </message>
 
     <message>
       <source>Dodge and Burn</source>
-      <translation>Esquiver et brûler</translation>
+      <translation>Esquivar y quemar</translation>
     </message>
 
     <message>
       <source>Dodge Strength</source>
-      <translation>Esquiver la force</translation>
+      <translation>Fuerza de Esquivar</translation>
     </message>
 
     <message>
       <source>DOF Analyzer</source>
-      <translation>Analyseur DOF</translation>
+      <translation>Analizador DOF</translation>
     </message>
 
     <message>
       <source>Dog</source>
-      <translation>Chien</translation>
+      <translation>Perro</translation>
     </message>
 
     <message>
       <source>Don&apos;t Sort</source>
-      <translation>Ne pas trier</translation>
-    </message>
-
-    <message>
-      <source>DoNotMergeLayers</source>
-      <translation>Ne pas faire de vagues</translation>
+      <translation>No lo clasifiques.</translation>
     </message>
 
     <message>
       <source>Dot Size</source>
-      <translation>Taille des points</translation>
+      <translation>Tamaño de punto</translation>
     </message>
 
     <message>
       <source>Dots</source>
-      <translation>Points</translation>
+      <translation>Puntos</translation>
     </message>
 
     <message>
       <source>Download External Data</source>
-      <translation>Télécharger les données externes</translation>
+      <translation>Descarga de datos externos</translation>
     </message>
 
     <message>
       <source>Dragon Curve</source>
-      <translation>Courbe du dragon</translation>
+      <translation>Curva del Dragón</translation>
     </message>
 
     <message>
       <source>Dragonfly</source>
-      <translation>Libellule</translation>
+      <translation>Libélula</translation>
     </message>
 
     <message>
       <source>Drawing Mode</source>
-      <translation>Mode de dessin</translation>
+      <translation>Modo de dibujo</translation>
     </message>
 
     <message>
       <source>Drawn Montage</source>
-      <translation>Montage dessiné</translation>
+      <translation>Dibujó Montage</translation>
     </message>
 
     <message>
       <source>Dream</source>
-      <translation>Rêve</translation>
+      <translation>Sueño</translation>
     </message>
 
     <message>
       <source>Dream 1</source>
-      <translation>Rêve 1</translation>
+      <translation>Sueño 1</translation>
     </message>
 
     <message>
       <source>Dream 85</source>
-      <translation>Rêve 85</translation>
+      <translation>Sueño 85</translation>
     </message>
 
     <message>
       <source>Dream Smoothing</source>
-      <translation>Lissage des rêves</translation>
+      <translation>Suavizar los sueños</translation>
     </message>
 
     <message>
       <source>Drop Green Tint 14</source>
-      <translation>Vert de goutte Teinte 14</translation>
-    </message>
-
-    <message>
-      <source>Drop Shadow</source>
-      <translation>Ombre portée</translation>
+      <translation>Tinte verde de la gota 14</translation>
     </message>
 
     <message>
       <source>Drop Water</source>
-      <translation>Goutte d&apos;eau</translation>
+      <translation>Gota de agua</translation>
     </message>
 
     <message>
       <source>Duck</source>
-      <translation>Canard</translation>
+      <translation>Pato</translation>
     </message>
 
     <message>
       <source>Duplicate Bottom</source>
-      <translation>Dupliquer le fond</translation>
+      <translation>Duplicar el fondo</translation>
     </message>
 
     <message>
       <source>Duplicate Horizontal</source>
-      <translation>Dupliquer à l&apos;horizontale</translation>
+      <translation>Duplicar Horizontal</translation>
     </message>
 
     <message>
       <source>Duplicate Left</source>
-      <translation>Dupliquer à gauche</translation>
+      <translation>Duplicar a la izquierda</translation>
     </message>
 
     <message>
       <source>Duplicate Right</source>
-      <translation>Droit de reproduction</translation>
+      <translation>Duplicar a la derecha</translation>
+    </message>
+
+    <message>
+      <source>Duplicate Top</source>
+      <translation>Duplicar la parte superior</translation>
     </message>
 
     <message>
       <source>Duplicate Vertical</source>
-      <translation>Dupliquer verticalement</translation>
+      <translation>Duplicar la vertical</translation>
     </message>
 
     <message>
       <source>Duration</source>
-      <translation>Durée</translation>
+      <translation>Duración</translation>
     </message>
 
     <message>
       <source>Dynamic Range Increase</source>
-      <translation>Augmentation de la gamme dynamique</translation>
-    </message>
-
-    <message>
-      <source>Eagle</source>
-      <translation>Aigle</translation>
+      <translation>Aumento del rango dinámico</translation>
     </message>
 
     <message>
       <source>Earth</source>
-      <translation>Terre</translation>
+      <translation>Tierra</translation>
+    </message>
+
+    <message>
+      <source>Earth Tone Boost</source>
+      <translation>Aumento del tono de la Tierra</translation>
     </message>
 
     <message>
       <source>Easy Skin Retouch</source>
-      <translation>Retouches cutanées faciles</translation>
+      <translation>Retoque fácil de la piel</translation>
     </message>
 
     <message>
       <source>Edge Antialiasing</source>
-      <translation>Anti-crénelage des bords</translation>
+      <translation>Antialiasing de bordes</translation>
     </message>
 
     <message>
       <source>Edge Attenuation</source>
-      <translation>Atténuation de la lisière</translation>
+      <translation>Atenuación del borde</translation>
     </message>
 
     <message>
       <source>Edge Behavior X</source>
-      <translation>Comportement des bords X</translation>
+      <translation>Comportamiento del borde X</translation>
     </message>
 
     <message>
       <source>Edge Behavior Y</source>
-      <translation>Comportement de bord Y</translation>
+      <translation>Comportamiento del borde Y</translation>
     </message>
 
     <message>
       <source>Edge Detect Includes Chroma</source>
-      <translation>Edge Detect inclut Chroma</translation>
-    </message>
-
-    <message>
-      <source>Edge Exponent</source>
-      <translation>Exposant de pointe</translation>
+      <translation>La detección de bordes incluye el croma</translation>
     </message>
 
     <message>
       <source>Edge Fidelity</source>
-      <translation>Fidélité à la marge</translation>
+      <translation>Fidelidad al borde</translation>
     </message>
 
     <message>
       <source>Edge Influence</source>
-      <translation>Influence de la périphérie</translation>
+      <translation>Influencia del borde</translation>
     </message>
 
     <message>
       <source>Edge Mask</source>
-      <translation>Masque de bord</translation>
+      <translation>Máscara de borde</translation>
     </message>
 
     <message>
       <source>Edge Sensitivity</source>
-      <translation>Sensibilité à la périphérie</translation>
-    </message>
-
-    <message>
-      <source>Edge Shade</source>
-      <translation>Ombre de bord</translation>
+      <translation>Sensibilidad de los bordes</translation>
     </message>
 
     <message>
       <source>Edge Simplicity</source>
-      <translation>Simplicité de la bordure</translation>
+      <translation>Simplicidad del borde</translation>
     </message>
 
     <message>
       <source>Edge Smoothness</source>
-      <translation>Lissage des bords</translation>
+      <translation>Suavidad de los bordes</translation>
     </message>
 
     <message>
       <source>Edge Thickness</source>
-      <translation>Épaisseur des bords</translation>
+      <translation>Espesor del borde</translation>
     </message>
 
     <message>
       <source>Edge Threshold</source>
-      <translation>Seuil de l&apos;arête</translation>
+      <translation>Umbral del borde</translation>
     </message>
 
     <message>
       <source>Edge Threshold (%)</source>
-      <translation>Seuil de l&apos;arête (%)</translation>
+      <translation>Umbral del borde (%)</translation>
     </message>
 
     <message>
-      <source>Edge-Oriented</source>
-      <translation>Orienté vers l&apos;avenir</translation>
+      <source>Edges</source>
+      <translation>Bordes</translation>
     </message>
 
     <message>
       <source>Edges (%)</source>
-      <translation>Bords (%)</translation>
+      <translation>Bordes (%)</translation>
     </message>
 
     <message>
       <source>Edges [Animated]</source>
-      <translation>Bords [Animé]</translation>
+      <translation>Bordes [Animado]</translation>
     </message>
 
     <message>
       <source>Edges Offsets</source>
-      <translation>Compensations des bords</translation>
+      <translation>Compensación de bordes</translation>
     </message>
 
     <message>
       <source>Edges on Fire</source>
-      <translation>Des bords en feu</translation>
+      <translation>Bordes en llamas</translation>
     </message>
 
     <message>
       <source>Edges-0.5 (beware: Memory-Consuming!)</source>
-      <translation>Edges-0.5 (attention : consommation de mémoire !)</translation>
+      <translation>Edges-0.5 (cuidado: ¡consumo de memoria!)</translation>
     </message>
 
     <message>
       <source>Edges-1 (beware: Memory-Consuming!)</source>
-      <translation>Edges-1 (attention : consommation de mémoire !)</translation>
+      <translation>Edges-1 (cuidado: ¡consumo de memoria!)</translation>
     </message>
 
     <message>
       <source>Edges-2 (beware: Memory-Consuming!)</source>
-      <translation>Edges-2 (attention : consommation de mémoire !)</translation>
-    </message>
-
-    <message>
-      <source>Edgy Ember</source>
-      <translation>La braise</translation>
+      <translation>Edges-2 (cuidado: ¡consumo de memoria!)</translation>
     </message>
 
     <message>
       <source>Effect Strength</source>
-      <translation>Force de l&apos;effet</translation>
+      <translation>Fuerza del efecto</translation>
     </message>
 
     <message>
       <source>Effect X-Axis Scaling</source>
-      <translation>Échelle de l&apos;axe des effets X</translation>
+      <translation>Escalado de efecto en el eje X</translation>
     </message>
 
     <message>
       <source>Effect Y-Axis Scaling</source>
-      <translation>Effet de l&apos;échelle de l&apos;axe Y</translation>
+      <translation>Efecto Escalado del eje Y</translation>
     </message>
 
     <message>
       <source>Eight Layers</source>
-      <translation>Huit couches</translation>
+      <translation>Ocho capas</translation>
     </message>
 
     <message>
       <source>Eight Threads</source>
-      <translation>Huit fils</translation>
+      <translation>Ocho hilos</translation>
     </message>
 
     <message>
       <source>Elegance 38</source>
-      <translation>Élégance 38</translation>
+      <translation>Elegancia 38</translation>
     </message>
 
     <message>
       <source>Elephant</source>
-      <translation>Eléphant</translation>
+      <translation>Elefante</translation>
     </message>
 
     <message>
       <source>Elevation</source>
-      <translation>Élévation</translation>
+      <translation>Elevación</translation>
     </message>
 
     <message>
       <source>Elevation (%)</source>
-      <translation>Élévation (%)</translation>
+      <translation>Elevación (%)</translation>
     </message>
 
     <message>
       <source>Ellipse Painting</source>
-      <translation>Peinture d&apos;ellipse</translation>
+      <translation>La pintura de la Elipse</translation>
     </message>
 
     <message>
       <source>Ellipse Ratio</source>
-      <translation>Ratio d&apos;ellipse</translation>
+      <translation>Relación de Elipse</translation>
     </message>
 
     <message>
       <source>Ellipsionism</source>
-      <translation>Ellipsionisme</translation>
+      <translation>Elipsionismo</translation>
     </message>
 
     <message>
       <source>Ellipsionism Opacity</source>
-      <translation>L&apos;opacité de l&apos;ellipsionisme</translation>
+      <translation>Opacidad del elipsionismo</translation>
     </message>
 
     <message>
       <source>Ellipsoid</source>
-      <translation>Ellipsoïde</translation>
-    </message>
-
-    <message>
-      <source>Emboss</source>
-      <translation>Gaufrage</translation>
+      <translation>Elipsoide</translation>
     </message>
 
     <message>
       <source>Enable Antialiasing</source>
-      <translation>Activer l&apos;anticrénelage</translation>
+      <translation>Habilitar el antialiasing</translation>
     </message>
 
     <message>
       <source>Enable Interpolated Motion</source>
-      <translation>Activer la motion interpolée</translation>
+      <translation>Habilitar el movimiento interpolado</translation>
     </message>
 
     <message>
       <source>Enable Morphology</source>
-      <translation>Permettre la morphologie</translation>
+      <translation>Habilitar la morfología</translation>
     </message>
 
     <message>
       <source>Enable Paintstroke</source>
-      <translation>Activer l&apos;AVC</translation>
+      <translation>Activar Paintstroke</translation>
     </message>
 
     <message>
       <source>Enable Segmentation</source>
-      <translation>Permettre la segmentation</translation>
+      <translation>Habilitar la segmentación</translation>
     </message>
 
     <message>
       <source>Enchanted</source>
-      <translation>Enchanté</translation>
+      <translation>Encantado</translation>
     </message>
 
     <message>
       <source>End Color</source>
-      <translation>Couleur de fin</translation>
+      <translation>Color final</translation>
     </message>
 
     <message>
       <source>End Frame Number</source>
-      <translation>Numéro du cadre de fin</translation>
+      <translation>Número de cuadro final</translation>
     </message>
 
     <message>
       <source>End of Mid-Tones</source>
-      <translation>Fin des demi-tons</translation>
+      <translation>Fin de los tonos medios</translation>
     </message>
 
     <message>
       <source>End Point Connectivity</source>
-      <translation>Connectivité des points terminaux</translation>
+      <translation>Conectividad del punto final</translation>
     </message>
 
     <message>
       <source>End Point Rate (%)</source>
-      <translation>Taux du point final (%)</translation>
+      <translation>Tasa de punto final (%)</translation>
     </message>
 
     <message>
       <source>Ending Angle</source>
-      <translation>Angle final</translation>
+      <translation>Ángulo final</translation>
     </message>
 
     <message>
       <source>Ending Color</source>
-      <translation>Fin de la couleur</translation>
+      <translation>Color final</translation>
     </message>
 
     <message>
       <source>Ending Feathering</source>
-      <translation>La fin du plumage</translation>
+      <translation>Terminar de emplumar</translation>
     </message>
 
     <message>
       <source>Ending Point (%)</source>
-      <translation>Point final (%)</translation>
+      <translation>Punto final (%)</translation>
     </message>
 
     <message>
       <source>Ending Scale (%)</source>
-      <translation>Échelle de fin (%)</translation>
+      <translation>Escala final (%)</translation>
     </message>
 
     <message>
       <source>Ending Value</source>
-      <translation>Valeur finale</translation>
+      <translation>Valor final</translation>
     </message>
 
     <message>
       <source>Ending X-Centering</source>
-      <translation>Mettre fin au X-Centering</translation>
+      <translation>Terminando el X-Centrado</translation>
     </message>
 
     <message>
       <source>Ending Y-Centering</source>
-      <translation>Mettre fin au &quot;Y-Centering</translation>
+      <translation>Terminar el centrado en Y</translation>
     </message>
 
     <message>
       <source>Engrave</source>
-      <translation>Gravure</translation>
+      <translation>Grabar</translation>
     </message>
 
     <message>
       <source>Enhance Detail</source>
-      <translation>Améliorer les détails</translation>
+      <translation>Mejorar el detalle</translation>
     </message>
 
     <message>
       <source>Enhance Details</source>
-      <translation>Améliorer les détails</translation>
+      <translation>Mejorar los detalles</translation>
     </message>
 
     <message>
       <source>Equalization</source>
-      <translation>Péréquation</translation>
+      <translation>Ecualización</translation>
     </message>
 
     <message>
       <source>Equalization (%)</source>
-      <translation>Péréquation (%)</translation>
+      <translation>Igualación (%)</translation>
+    </message>
+
+    <message>
+      <source>Equalize</source>
+      <translation>Iguala</translation>
     </message>
 
     <message>
       <source>Equalize and Normalize</source>
-      <translation>Égaliser et normaliser</translation>
+      <translation>Igualar y normalizar</translation>
     </message>
 
     <message>
       <source>Equalize at Each Step</source>
-      <translation>Égaliser à chaque étape</translation>
+      <translation>Igualar en cada paso</translation>
     </message>
 
     <message>
       <source>Equalize HSI-HSL-HSV</source>
-      <translation>Égaliser HSI-HSL-HSV</translation>
+      <translation>Igualar HSI-HSL-HSV</translation>
     </message>
 
     <message>
       <source>Equalize HSV</source>
-      <translation>Égaliser les HSV</translation>
+      <translation>Igualar el HSV</translation>
     </message>
 
     <message>
       <source>Equalize Light</source>
-      <translation>Égaliser la lumière</translation>
+      <translation>Igualar la luz</translation>
     </message>
 
     <message>
       <source>Equalize Local Histograms</source>
-      <translation>Égaliser les histogrammes locaux</translation>
+      <translation>Igualar los histogramas locales</translation>
     </message>
 
     <message>
       <source>Equalize Shadow</source>
-      <translation>Égaliser l&apos;ombre</translation>
+      <translation>Igualar la Sombra</translation>
     </message>
 
     <message>
       <source>Equation Plot [Parametric]</source>
-      <translation>Graphique d&apos;équation [Paramétrique]</translation>
+      <translation>Gráfica de la ecuación [paramétrica]</translation>
     </message>
 
     <message>
       <source>Equation Plot [Y=f(X)]</source>
-      <translation>Équation [Y=f(X)].</translation>
+      <translation>Gráfica de la ecuación [Y=f(X)]</translation>
     </message>
 
     <message>
       <source>Equirectangular to Nadir-Zenith</source>
-      <translation>Equirectangulaire au nadir-zénith</translation>
+      <translation>Equivalente al Nadir-Zenith</translation>
     </message>
 
     <message>
-      <source>Eric Ellerbrock (14)</source>
-      <translation>Eric Ellerbrock (14 ans)</translation>
+      <source>Erosion</source>
+      <translation>Erosión</translation>
     </message>
 
     <message>
       <source>Erosion / Dilation</source>
-      <translation>Érosion / Dilatation</translation>
+      <translation>Erosión / Dilatación</translation>
     </message>
 
     <message>
       <source>Etch Tones</source>
-      <translation>Tonalités de gravure</translation>
+      <translation>Tonos de grabado</translation>
+    </message>
+
+    <message>
+      <source>Eterna for Flog</source>
+      <translation>Eterna para Flog</translation>
     </message>
 
     <message>
       <source>Euclidean</source>
-      <translation>Euclidien</translation>
+      <translation>Euclidiano</translation>
     </message>
 
     <message>
       <source>Euclidean - Polar</source>
-      <translation>Euclidien - Polaire</translation>
+      <translation>Euclidiano - Polar</translation>
+    </message>
+
+    <message>
+      <source>Exclusion</source>
+      <translation>Exclusión</translation>
     </message>
 
     <message>
       <source>Expand</source>
-      <translation>Développer</translation>
+      <translation>Ampliar</translation>
     </message>
 
     <message>
       <source>Expand Background Reconstruction</source>
-      <translation>Élargir la reconstruction du contexte</translation>
+      <translation>Ampliar Reconstrucción del fondo</translation>
     </message>
 
     <message>
       <source>Expand Shadows</source>
-      <translation>Développer les ombres</translation>
+      <translation>Expandir las sombras</translation>
     </message>
 
     <message>
       <source>Expand Size</source>
-      <translation>Agrandir la taille</translation>
+      <translation>Ampliar el tamaño</translation>
     </message>
 
     <message>
       <source>Expanding Mirrors</source>
-      <translation>Des miroirs qui s&apos;agrandissent</translation>
+      <translation>Espejos en expansión</translation>
     </message>
 
     <message>
       <source>Expired (fade)</source>
-      <translation>Expiré (fondu)</translation>
+      <translation>Caducado (desvanecerse)</translation>
     </message>
 
     <message>
       <source>Expired (polaroid)</source>
-      <translation>Expiré (polaroid)</translation>
+      <translation>Caducado (polaroid)</translation>
     </message>
 
     <message>
       <source>Expired 69</source>
-      <translation>Expiré 69</translation>
+      <translation>Expiró 69</translation>
     </message>
 
     <message>
       <source>Exponent</source>
-      <translation>Exposant</translation>
+      <translation>Exponente</translation>
     </message>
 
     <message>
       <source>Exponent (Imaginary)</source>
-      <translation>Exposant (imaginaire)</translation>
+      <translation>Exponente (imaginario)</translation>
     </message>
 
     <message>
       <source>Exponent (Real)</source>
-      <translation>Exposant (réel)</translation>
+      <translation>Exponente (Real)</translation>
     </message>
 
     <message>
       <source>Exponential</source>
-      <translation>Exponentiel</translation>
+      <translation>Exponencial</translation>
     </message>
 
     <message>
       <source>Export RGB-565 File</source>
-      <translation>Exporter le fichier RGB-565</translation>
+      <translation>Exportar el archivo RGB-565</translation>
     </message>
 
     <message>
       <source>Exposure</source>
-      <translation>Exposition</translation>
+      <translation>Exposición</translation>
+    </message>
+
+    <message>
+      <source>Expression</source>
+      <translation>Expresión</translation>
     </message>
 
     <message>
       <source>Extend 1px</source>
-      <translation>Étendre 1px</translation>
+      <translation>Extender 1px</translation>
     </message>
 
     <message>
       <source>External Transparency</source>
-      <translation>Transparence externe</translation>
+      <translation>Transparencia externa</translation>
     </message>
 
     <message>
       <source>Extra  Smooth</source>
-      <translation>Extra lisse</translation>
+      <translation>Extra Suave</translation>
     </message>
 
     <message>
       <source>Extract Foreground [Interactive]</source>
-      <translation>Extrait de l&apos;avant-plan [Interactif]</translation>
+      <translation>Extraer el primer plano [Interactivo]</translation>
     </message>
 
     <message>
       <source>Extract Objects</source>
-      <translation>Extraire des objets</translation>
+      <translation>Extraer objetos</translation>
     </message>
 
     <message>
       <source>Extrapolate Color Spots on Transparent Top Layer</source>
-      <translation>Extrapolation des points de couleur sur la couche supérieure transparente</translation>
+      <translation>Extrapolar las manchas de color en la capa superior transparente</translation>
     </message>
 
     <message>
       <source>Extrapolate Colors As</source>
-      <translation>Extrapoler les couleurs en tant que</translation>
+      <translation>Extrapolar los colores como</translation>
     </message>
 
     <message>
       <source>Extrapolated Colors + Lineart</source>
-      <translation>Couleurs extrapolées + linéarité</translation>
+      <translation>Colores extrapolados + Lineal</translation>
     </message>
 
     <message>
       <source>Extreme</source>
-      <translation>Extrême</translation>
-    </message>
-
-    <message>
-      <source>Factor</source>
-      <translation>Facteur</translation>
-    </message>
-
-    <message>
-      <source>Fade End</source>
-      <translation>Fin du fondu enchaîné</translation>
+      <translation>Extremo</translation>
     </message>
 
     <message>
       <source>Fade End (%)</source>
-      <translation>Fin de la période (%)</translation>
+      <translation>Fin del desvanecimiento (%)</translation>
     </message>
 
     <message>
       <source>Fade Layers</source>
-      <translation>Couches de fondu</translation>
+      <translation>Capas de desvanecimiento</translation>
     </message>
 
     <message>
       <source>Fade Start</source>
-      <translation>Fondu enchaîné Début</translation>
+      <translation>Inicio del desvanecimiento</translation>
     </message>
 
     <message>
       <source>Fade Start (%)</source>
-      <translation>Début du fondu (%)</translation>
+      <translation>Inicio del desvanecimiento (%)</translation>
     </message>
 
     <message>
       <source>Fade to Green</source>
-      <translation>Fondu au vert</translation>
+      <translation>Desaparecer a Verde</translation>
     </message>
 
     <message>
       <source>Faded</source>
-      <translation>Fondu</translation>
+      <translation>Desaparecido</translation>
     </message>
 
     <message>
       <source>Faded (alt)</source>
-      <translation>Fondu (alt)</translation>
+      <translation>Descolorido (alt)</translation>
     </message>
 
     <message>
       <source>Faded (analog)</source>
-      <translation>Fondu (analogique)</translation>
+      <translation>Desvanecido (analógico)</translation>
     </message>
 
     <message>
       <source>Faded (extreme)</source>
-      <translation>Fondu (extrême)</translation>
+      <translation>Desaparecido (extremo)</translation>
     </message>
 
     <message>
       <source>Faded (vivid)</source>
-      <translation>Fondu (vif)</translation>
+      <translation>Desvanecido (vívido)</translation>
     </message>
 
     <message>
       <source>Faded 47</source>
-      <translation>Fondu 47</translation>
+      <translation>Desvanecido 47</translation>
     </message>
 
     <message>
       <source>Faded Green</source>
-      <translation>Vert délavé</translation>
+      <translation>Verde apagado</translation>
     </message>
 
     <message>
       <source>Faded Look</source>
-      <translation>Regard fané</translation>
+      <translation>Mirada descolorida</translation>
     </message>
 
     <message>
       <source>Faded Print</source>
-      <translation>Imprimé délavé</translation>
+      <translation>Impresión descolorida</translation>
     </message>
 
     <message>
       <source>Faded Retro 01</source>
-      <translation>Rétro 01 délavé</translation>
+      <translation>Retro 01 descolorido</translation>
     </message>
 
     <message>
       <source>Faded Retro 02</source>
-      <translation>Rétrospective délavée 02</translation>
+      <translation>Retro 02 descolorido</translation>
     </message>
 
     <message>
       <source>Fading</source>
-      <translation>Fondu enchaîné</translation>
+      <translation>Desapareciendo</translation>
     </message>
 
     <message>
       <source>Fading Shape</source>
-      <translation>Forme en déclin</translation>
+      <translation>Forma de desvanecimiento</translation>
     </message>
 
     <message>
       <source>Fall Colors</source>
-      <translation>Couleurs d&apos;automne</translation>
+      <translation>Colores de otoño</translation>
     </message>
 
     <message>
       <source>Far Point Deviation</source>
-      <translation>Déviation en points de loin</translation>
+      <translation>Desviación del punto lejano</translation>
     </message>
 
     <message>
       <source>Fast</source>
-      <translation>Rapide</translation>
+      <translation>Rápido</translation>
     </message>
 
     <message>
       <source>Fast &amp;#40;Approx.&amp;#41;</source>
-      <translation>Rapide (Approx.)</translation>
+      <translation>Rápido... 40... aprox... 41..;</translation>
     </message>
 
     <message>
       <source>Fast (Low Precision) Preview</source>
-      <translation>Aperçu rapide (faible précision)</translation>
+      <translation>Previsión rápida (baja precisión)</translation>
     </message>
 
     <message>
       <source>Fast Approximation</source>
-      <translation>Approximation rapide</translation>
+      <translation>Aproximación rápida</translation>
     </message>
 
     <message>
       <source>Fast Blend</source>
-      <translation>Mélange rapide</translation>
+      <translation>Mezcla rápida</translation>
     </message>
 
     <message>
       <source>Fast Blend Preview</source>
-      <translation>Aperçu du Fast Blend</translation>
+      <translation>Vista previa de Fast Blend</translation>
     </message>
 
     <message>
       <source>Fast Recovery</source>
-      <translation>Un redressement rapide</translation>
+      <translation>Rápida recuperación</translation>
     </message>
 
     <message>
       <source>Fast Resize</source>
-      <translation>Redimensionnement rapide</translation>
+      <translation>Cambio rápido de tamaño</translation>
     </message>
 
     <message>
       <source>Faux Infrared</source>
-      <translation>Faux infrarouge</translation>
+      <translation>Infrarrojo falso</translation>
     </message>
 
     <message>
       <source>Feathering</source>
-      <translation>Plumage</translation>
+      <translation>Plumas</translation>
     </message>
 
     <message>
       <source>Feature Analyzer Smoothness</source>
-      <translation>Lissage de l&apos;analyseur de caractéristiques</translation>
+      <translation>Características del analizador Suavidad</translation>
     </message>
 
     <message>
       <source>Feature Analyzer Threshold</source>
-      <translation>Seuil de l&apos;analyseur de caractéristiques</translation>
+      <translation>Umbral del analizador de características</translation>
     </message>
 
     <message>
       <source>Felt Pen</source>
-      <translation>Stylo feutre</translation>
+      <translation>Pluma de fieltro</translation>
     </message>
 
     <message>
       <source>FFT Preview</source>
-      <translation>Avant-première FFT</translation>
+      <translation>Vista previa de la FFT</translation>
     </message>
 
     <message>
       <source>Fibers</source>
-      <translation>Fibres</translation>
+      <translation>Fibras</translation>
     </message>
 
     <message>
       <source>Fibers Amplitude</source>
-      <translation>Amplitude des fibres</translation>
+      <translation>Amplitud de las fibras</translation>
     </message>
 
     <message>
       <source>Fibers Smoothness</source>
-      <translation>Fibres Lisse</translation>
+      <translation>Suavidad de las fibras</translation>
     </message>
 
     <message>
       <source>Fibrousness</source>
-      <translation>Fibrosité</translation>
+      <translation>Fibrosidad</translation>
     </message>
 
     <message>
       <source>Fidelity Chromaticity</source>
-      <translation>Chromaticité de la fidélité</translation>
+      <translation>Fidelidad Cromaticidad</translation>
     </message>
 
     <message>
       <source>Fidelity Smoothness (Coarsest)</source>
-      <translation>Fidélité (grossièreté)</translation>
+      <translation>Fidelidad Suavidad (más gruesa)</translation>
     </message>
 
     <message>
       <source>Fidelity Smoothness (Finest)</source>
-      <translation>Fidélité (finesse)</translation>
+      <translation>Fidelidad Suavidad (Finest)</translation>
     </message>
 
     <message>
       <source>Fidelity to Target (Coarsest)</source>
-      <translation>Fidélité à l&apos;objectif (le plus grossier)</translation>
+      <translation>Fidelidad al objetivo (más grueso)</translation>
     </message>
 
     <message>
       <source>Fidelity to Target (Finest)</source>
-      <translation>Fidélité à la cible (Finest)</translation>
+      <translation>Fidelidad al objetivo (Finest)</translation>
     </message>
 
     <message>
       <source>Filename</source>
-      <translation>Nom du fichier</translation>
+      <translation>Nombre de archivo</translation>
     </message>
 
     <message>
       <source>Fill Holes</source>
-      <translation>Remplir les trous</translation>
+      <translation>Llenar los agujeros</translation>
     </message>
 
     <message>
       <source>Fill Holes %</source>
-      <translation>Remplir les trous % % de remplissage</translation>
+      <translation>Rellenar agujeros %</translation>
     </message>
 
     <message>
       <source>Fill Transparent Holes</source>
-      <translation>Remplir les trous transparents</translation>
+      <translation>Rellenar los agujeros transparentes</translation>
     </message>
 
     <message>
       <source>Filled</source>
-      <translation>Remplie</translation>
+      <translation>Llenado</translation>
     </message>
 
     <message>
       <source>Filled Circles</source>
-      <translation>Cercles remplis</translation>
+      <translation>Círculos llenos</translation>
     </message>
 
     <message>
       <source>Filling</source>
-      <translation>Remplissage</translation>
+      <translation>Llenando</translation>
+    </message>
+
+    <message>
+      <source>Film 0987</source>
+      <translation>Película 0987</translation>
+    </message>
+
+    <message>
+      <source>Film 9879</source>
+      <translation>Película 9879</translation>
     </message>
 
     <message>
       <source>Film Highlight Contrast</source>
-      <translation>Contraste du film</translation>
+      <translation>Contraste de la película</translation>
+    </message>
+
+    <message>
+      <source>Filmic</source>
+      <translation>Película</translation>
     </message>
 
     <message>
       <source>Filter Design</source>
-      <translation>Conception des filtres</translation>
+      <translation>Diseño del filtro</translation>
     </message>
 
     <message>
       <source>Final Image</source>
-      <translation>Image finale</translation>
+      <translation>Imagen final</translation>
     </message>
 
     <message>
@@ -5936,1042 +6141,1077 @@
 
     <message>
       <source>Fine 2</source>
-      <translation>Amende 2</translation>
+      <translation>Bien 2</translation>
     </message>
 
     <message>
       <source>Fine Details Smoothness</source>
-      <translation>La finesse des détails</translation>
+      <translation>Detalles finos Suavidad</translation>
     </message>
 
     <message>
       <source>Fine Details Threshold</source>
-      <translation>Seuil de précision</translation>
+      <translation>Detalles finos Umbral</translation>
     </message>
 
     <message>
       <source>Fine Noise</source>
-      <translation>Bruit fin</translation>
+      <translation>Ruido fino</translation>
     </message>
 
     <message>
       <source>Fine Scale</source>
-      <translation>Échelle fine</translation>
+      <translation>Escala fina</translation>
     </message>
 
     <message>
       <source>Finest (slower)</source>
-      <translation>Le plus fin (plus lent)</translation>
+      <translation>Más fino (más lento)</translation>
     </message>
 
     <message>
       <source>Finger Paint</source>
-      <translation>Peinture au doigt</translation>
+      <translation>Pintura de dedos</translation>
     </message>
 
     <message>
       <source>Finger Size</source>
-      <translation>Taille des doigts</translation>
+      <translation>El tamaño de los dedos</translation>
     </message>
 
     <message>
       <source>Fire Effect</source>
-      <translation>Effet de feu</translation>
+      <translation>Efecto del fuego</translation>
     </message>
 
     <message>
       <source>Fireworks</source>
-      <translation>Feux d&apos;artifice</translation>
+      <translation>Fuegos artificiales</translation>
     </message>
 
     <message>
       <source>First</source>
-      <translation>Première</translation>
+      <translation>Primero</translation>
     </message>
 
     <message>
       <source>First Color</source>
-      <translation>Première couleur</translation>
+      <translation>Primer color</translation>
     </message>
 
     <message>
       <source>First Frame</source>
-      <translation>Premier cadre</translation>
+      <translation>Primer cuadro</translation>
     </message>
 
     <message>
       <source>First Offset</source>
-      <translation>Première compensation</translation>
+      <translation>Primera compensación</translation>
     </message>
 
     <message>
       <source>First Radius</source>
-      <translation>Premier rayon</translation>
+      <translation>Primer radio</translation>
     </message>
 
     <message>
       <source>First Size</source>
-      <translation>Première taille</translation>
+      <translation>Primer tamaño</translation>
+    </message>
+
+    <message>
+      <source>Fish-Eye</source>
+      <translation>Ojo de pez</translation>
     </message>
 
     <message>
       <source>Fish-Eye Effect</source>
-      <translation>Effet &quot;Fish-Eye</translation>
+      <translation>Efecto ojo de pez</translation>
     </message>
 
     <message>
       <source>Fitting Function</source>
-      <translation>Fonction d&apos;ajustement</translation>
+      <translation>Función de ajuste</translation>
     </message>
 
     <message>
       <source>Five Layers</source>
-      <translation>Cinq couches</translation>
+      <translation>Cinco capas</translation>
     </message>
 
     <message>
       <source>Flag</source>
-      <translation>Drapeau</translation>
+      <translation>Bandera</translation>
     </message>
 
     <message>
       <source>Flag (256)</source>
-      <translation>Drapeau (256)</translation>
+      <translation>Bandera (256)</translation>
     </message>
 
     <message>
       <source>Flat</source>
-      <translation>Appartement</translation>
+      <translation>Piso</translation>
     </message>
 
     <message>
       <source>Flat 30</source>
-      <translation>Appartement 30</translation>
+      <translation>Piso 30</translation>
     </message>
 
     <message>
       <source>Flat Color</source>
-      <translation>Couleur plate</translation>
+      <translation>Color plano</translation>
     </message>
 
     <message>
       <source>Flat Regions Removal</source>
-      <translation>Suppression des régions plates</translation>
+      <translation>Eliminación de regiones planas</translation>
     </message>
 
     <message>
       <source>Flat-Shaded</source>
-      <translation>En clair</translation>
+      <translation>Sombra plana</translation>
     </message>
 
     <message>
       <source>Flatness</source>
-      <translation>La planéité</translation>
-    </message>
-
-    <message>
-      <source>Flip</source>
-      <translation>Retournez</translation>
+      <translation>Planitud</translation>
     </message>
 
     <message>
       <source>Flip &amp; Rotate Blocs</source>
-      <translation>Retournez et faites pivoter les blocs</translation>
+      <translation>Voltear y rotar los bloques</translation>
+    </message>
+
+    <message>
+      <source>Flip Cross-Hatch</source>
+      <translation>Voltear la escotilla cruzada</translation>
+    </message>
+
+    <message>
+      <source>Flip Left / Right</source>
+      <translation>Voltear a la izquierda/derecha</translation>
     </message>
 
     <message>
       <source>Flip Left/Right</source>
-      <translation>Retournez à gauche/droite</translation>
+      <translation>Voltear a la izquierda/derecha</translation>
     </message>
 
     <message>
       <source>Flip The Pattern</source>
-      <translation>Renverser le schéma</translation>
+      <translation>Voltear el patrón</translation>
     </message>
 
     <message>
       <source>Flip Tolerance</source>
-      <translation>Tolérance de retournement</translation>
+      <translation>Tolerancia a la voltereta</translation>
     </message>
 
     <message>
       <source>Flower</source>
-      <translation>Fleurs</translation>
+      <translation>Flor</translation>
     </message>
 
     <message>
       <source>Foggy Night</source>
-      <translation>Nuit brumeuse</translation>
+      <translation>Noche de niebla</translation>
     </message>
 
     <message>
       <source>Folder Name</source>
-      <translation>Nom du dossier</translation>
+      <translation>Nombre de la carpeta</translation>
     </message>
 
     <message>
       <source>Font Colors</source>
-      <translation>Couleurs des polices</translation>
+      <translation>Colores de las fuentes</translation>
     </message>
 
     <message>
       <source>Font Height (px)</source>
-      <translation>Hauteur de la police (px)</translation>
+      <translation>Altura de la fuente (px)</translation>
+    </message>
+
+    <message>
+      <source>Force Gray</source>
+      <translation>Fuerza Gris</translation>
     </message>
 
     <message>
       <source>Force Re-Download from Scratch</source>
-      <translation>Re-téléchargement de la force à partir de zéro</translation>
+      <translation>Forzar la descarga desde cero</translation>
     </message>
 
     <message>
       <source>Force Tiles to Have Same Size</source>
-      <translation>Obliger les tuiles à avoir la même taille</translation>
+      <translation>Forzar a los azulejos a tener el mismo tamaño</translation>
     </message>
 
     <message>
       <source>Force Transparency</source>
-      <translation>Transparence des forces</translation>
+      <translation>Fuerza Transparencia</translation>
     </message>
 
     <message>
       <source>Foreground Color</source>
-      <translation>Couleur de premier plan</translation>
+      <translation>Color de primer plano</translation>
     </message>
 
     <message>
       <source>Form</source>
-      <translation>Formulaire</translation>
+      <translation>Formulario</translation>
     </message>
 
     <message>
       <source>Formula</source>
-      <translation>Formule</translation>
+      <translation>Fórmula</translation>
     </message>
 
     <message>
       <source>Forward</source>
-      <translation>Transmettre</translation>
+      <translation>Adelante</translation>
     </message>
 
     <message>
       <source>Forward  Horizontal</source>
-      <translation>Horizontal de l&apos;avant</translation>
+      <translation>Horizontal hacia adelante</translation>
     </message>
 
     <message>
       <source>Forward Horizontal</source>
-      <translation>Horizontal de l&apos;avant</translation>
+      <translation>Horizontal hacia adelante</translation>
     </message>
 
     <message>
       <source>Forward Vertical</source>
-      <translation>Vertical en avant</translation>
+      <translation>Vertical hacia adelante</translation>
     </message>
 
     <message>
       <source>Four Layers</source>
-      <translation>Quatre couches</translation>
+      <translation>Cuatro capas</translation>
     </message>
 
     <message>
       <source>Four Threads</source>
-      <translation>Quatre fils</translation>
+      <translation>Cuatro hilos</translation>
     </message>
 
     <message>
       <source>Fourier Analysis</source>
-      <translation>Analyse de Fourier</translation>
+      <translation>Análisis de Fourier</translation>
     </message>
 
     <message>
       <source>Fourier Filtering</source>
-      <translation>Filtrage de Fourier</translation>
+      <translation>Filtro de Fourier</translation>
     </message>
 
     <message>
       <source>Fourier Transform</source>
-      <translation>Transformation de Fourier</translation>
+      <translation>Transformación de Fourier</translation>
     </message>
 
     <message>
       <source>Fourier Watermark</source>
-      <translation>Filigrane de Fourier</translation>
+      <translation>Marca de agua de Fourier</translation>
     </message>
 
     <message>
       <source>Fractal Noise</source>
-      <translation>Bruit fractal</translation>
+      <translation>Ruido fractal</translation>
     </message>
 
     <message>
       <source>Fractal Points</source>
-      <translation>Points fractals</translation>
+      <translation>Puntos fractales</translation>
     </message>
 
     <message>
       <source>Fractal Set</source>
-      <translation>Ensemble fractal</translation>
+      <translation>Conjunto fractal</translation>
     </message>
 
     <message>
       <source>Fractal Whirl</source>
-      <translation>Tourbillon fractal</translation>
+      <translation>Remolino fractal</translation>
     </message>
 
     <message>
       <source>Fractalize</source>
-      <translation>Fractaliser</translation>
+      <translation>Fracturar</translation>
     </message>
 
     <message>
       <source>Fractured Clouds</source>
-      <translation>Nuages fracturés</translation>
+      <translation>Nubes fracturadas</translation>
     </message>
 
     <message>
       <source>Fragment Blur</source>
-      <translation>Flou des fragments</translation>
+      <translation>Desenfoque de fragmentos</translation>
     </message>
 
     <message>
       <source>Frame (px)</source>
-      <translation>Cadre (px)</translation>
+      <translation>Marco (px)</translation>
     </message>
 
     <message>
       <source>Frame [Blur]</source>
-      <translation>Cadre [Flou]</translation>
+      <translation>Marco [Borrón]</translation>
     </message>
 
     <message>
       <source>Frame [Cube]</source>
-      <translation>Cadre [Cube]</translation>
+      <translation>Marco [Cubo]</translation>
     </message>
 
     <message>
       <source>Frame [Fuzzy]</source>
-      <translation>Cadre [Fuzzy]</translation>
+      <translation>Marco [Fuzzy]</translation>
     </message>
 
     <message>
       <source>Frame [Mirror]</source>
-      <translation>Cadre [Miroir]</translation>
+      <translation>Marco [Espejo]</translation>
     </message>
 
     <message>
       <source>Frame [Painting]</source>
-      <translation>Cadre [Peinture]</translation>
+      <translation>Marco [Pintura]</translation>
     </message>
 
     <message>
       <source>Frame [Pattern]</source>
-      <translation>Cadre [Motif]</translation>
+      <translation>Marco [Patrón]</translation>
     </message>
 
     <message>
       <source>Frame [Regular]</source>
-      <translation>Cadre [Régulier]</translation>
+      <translation>Marco [Regular]</translation>
     </message>
 
     <message>
       <source>Frame [Round]</source>
-      <translation>Cadre [Rond]</translation>
+      <translation>Marco [Redondo]</translation>
     </message>
 
     <message>
       <source>Frame [Smooth]</source>
-      <translation>Cadre [Lisse]</translation>
+      <translation>Marco [Suave]</translation>
     </message>
 
     <message>
       <source>Frame as a New Layer</source>
-      <translation>Le cadre comme nouvelle couche</translation>
+      <translation>Enmarcar como una nueva capa</translation>
     </message>
 
     <message>
       <source>Frame Color</source>
-      <translation>Couleur du cadre</translation>
+      <translation>Color del marco</translation>
     </message>
 
     <message>
       <source>Frame Files Format</source>
-      <translation>Format des fichiers cadres</translation>
+      <translation>Formato de los archivos del marco</translation>
     </message>
 
     <message>
       <source>Frame Format</source>
-      <translation>Format de l&apos;image</translation>
+      <translation>Formato del marco</translation>
     </message>
 
     <message>
       <source>Frame Size</source>
-      <translation>Taille de l&apos;image</translation>
+      <translation>Tamaño del cuadro</translation>
     </message>
 
     <message>
       <source>Frame Skip</source>
-      <translation>Saut de cadre</translation>
+      <translation>Saltar marco</translation>
     </message>
 
     <message>
       <source>Frame Type</source>
-      <translation>Type de cadre</translation>
+      <translation>Tipo de cuadro</translation>
     </message>
 
     <message>
       <source>Frame Width</source>
-      <translation>Largeur du cadre</translation>
+      <translation>Ancho del marco</translation>
     </message>
 
     <message>
       <source>Frames</source>
-      <translation>Cadres</translation>
+      <translation>Marcos</translation>
     </message>
 
     <message>
       <source>Frames Offset</source>
-      <translation>Compensation des cadres</translation>
-    </message>
-
-    <message>
-      <source>Freaky B&amp;W</source>
-      <translation>L&apos;étrange B&amp;W</translation>
+      <translation>Compensación de cuadros</translation>
     </message>
 
     <message>
       <source>Freaky Details</source>
-      <translation>Détails bizarres</translation>
+      <translation>Detalles extraños</translation>
     </message>
 
     <message>
       <source>Freeze</source>
-      <translation>Geler</translation>
+      <translation>Congelar</translation>
     </message>
 
     <message>
       <source>French Comedy</source>
-      <translation>Comédie française</translation>
+      <translation>Comedia francesa</translation>
     </message>
 
     <message>
       <source>Frequency</source>
-      <translation>Fréquence</translation>
+      <translation>Frecuencia</translation>
     </message>
 
     <message>
       <source>Frequency (%)</source>
-      <translation>Fréquence (%)</translation>
+      <translation>Frecuencia (%)</translation>
     </message>
 
     <message>
       <source>Frequency Analyzer</source>
-      <translation>Analyseur de fréquence</translation>
+      <translation>Analizador de frecuencia</translation>
     </message>
 
     <message>
       <source>Frequency Range</source>
-      <translation>Gamme de fréquences</translation>
+      <translation>Gama de frecuencias</translation>
     </message>
 
     <message>
       <source>Freqy Pattern</source>
-      <translation>Modèle de fréquence</translation>
+      <translation>Patrón de frecuencia</translation>
     </message>
 
     <message>
       <source>Friends Hall of Fame</source>
-      <translation>Panthéon des amis</translation>
+      <translation>Salón de la Fama de los Amigos</translation>
     </message>
 
     <message>
       <source>From Input</source>
-      <translation>De l&apos;entrée</translation>
+      <translation>De la entrada</translation>
     </message>
 
     <message>
       <source>From Reference Color</source>
-      <translation>De la couleur de référence</translation>
-    </message>
-
-    <message>
-      <source>Frosted</source>
-      <translation>Givré</translation>
+      <translation>Desde el color de referencia</translation>
     </message>
 
     <message>
       <source>Frosted Beach Picnic</source>
-      <translation>Pique-nique sur la plage gelée</translation>
+      <translation>Picnic en la playa de Frosted</translation>
     </message>
 
     <message>
-      <source>Fuji 3510 (Cuspclip)</source>
-      <translation>Fuji 3510 (L&apos;haltère)</translation>
+      <source>Fruits</source>
+      <translation>Frutas</translation>
     </message>
 
     <message>
-      <source>Fuji 3513 (Cuspclip)</source>
-      <translation>Fuji 3513 (L&apos;haltère)</translation>
+      <source>Fuji FP-100c --</source>
+      <translation>Fuji FP-100c...</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative</source>
-      <translation>Fuji FP-100c Négatif</translation>
+      <translation>Fuji FP-100c Negativo</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative +</source>
-      <translation>Fuji FP-100c Négatif +</translation>
+      <translation>Fuji FP-100c Negativo +</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative ++</source>
-      <translation>Fuji FP-100c Négatif ++</translation>
+      <translation>Fuji FP-100c Negativo ++</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative +++</source>
-      <translation>Fuji FP-100c Négatif +++</translation>
+      <translation>Fuji FP-100c Negativo +++</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative ++a</source>
-      <translation>Fuji FP-100c Négatif ++a</translation>
+      <translation>Fuji FP-100c Negativo ++a</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative -</source>
-      <translation>Fuji FP-100c Négatif -</translation>
+      <translation>Fuji FP-100c Negativo -</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative --</source>
-      <translation>Fuji FP-100c Négatif --</translation>
+      <translation>Fuji FP-100c Negativo...</translation>
+    </message>
+
+    <message>
+      <source>Fuji FP-3000b --</source>
+      <translation>Fuji FP-3000b...</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative</source>
-      <translation>Fuji FP-3000b Négatif</translation>
+      <translation>Fuji FP-3000b Negativo</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative +</source>
-      <translation>Fuji FP-3000b Négatif +</translation>
+      <translation>Fuji FP-3000b Negativo +</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative ++</source>
-      <translation>Fuji FP-3000b Négatif ++</translation>
+      <translation>Fuji FP-3000b Negativo ++</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative +++</source>
-      <translation>Fuji FP-3000b Négatif +++</translation>
+      <translation>Fuji FP-3000b Negativo +++</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative -</source>
-      <translation>Fuji FP-3000b Négatif -</translation>
+      <translation>Fuji FP-3000b Negativo -</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative --</source>
-      <translation>Fuji FP-3000b Négatif --</translation>
+      <translation>Fuji FP-3000b Negativo...</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative Early</source>
-      <translation>Fuji FP-3000b Négatif précoce</translation>
+      <translation>Fuji FP-3000b Negativo Temprano</translation>
     </message>
 
     <message>
       <source>Full</source>
-      <translation>Pour en savoir plus :</translation>
+      <translation>Completo</translation>
     </message>
 
     <message>
       <source>Full (Allows Multi-Layers)</source>
-      <translation>Plein (permet les couches multiples)</translation>
+      <translation>Completo (permite multicapas)</translation>
     </message>
 
     <message>
       <source>Full (Slower)</source>
-      <translation>Plein (plus lent)</translation>
+      <translation>Lleno (más lento)</translation>
     </message>
 
     <message>
       <source>Full Bottom/top</source>
-      <translation>Complet Bas/haut</translation>
+      <translation>Completo Abajo/arriba</translation>
     </message>
 
     <message>
       <source>Full Colors</source>
-      <translation>Couleurs</translation>
+      <translation>A todo color</translation>
+    </message>
+
+    <message>
+      <source>Full HD Frame Packing</source>
+      <translation>Paquete de marcos Full HD</translation>
     </message>
 
     <message>
       <source>Full Layer Stack -Slow!-</source>
-      <translation>Pile de couches complètes -Lent !</translation>
+      <translation>Pila de capas completas -¡Lento!-</translation>
     </message>
 
     <message>
       <source>Full Side by Side Keep Uncompressed</source>
-      <translation>Plein côte à côte, sans compression</translation>
+      <translation>Completamente de lado a lado, manténganse descomprimidos</translation>
     </message>
 
     <message>
       <source>Full Side by Side Keep Width</source>
-      <translation>Plein côte à côte Garder la largeur</translation>
+      <translation>Completo Lado a lado Mantener el ancho</translation>
     </message>
 
     <message>
       <source>Full Side by Uncompressed</source>
-      <translation>Full Side par Uncompressed</translation>
+      <translation>Lado completo por Uncompressed</translation>
     </message>
 
     <message>
-      <source>Futuristic Bleak 1</source>
-      <translation>Futuriste Bleue 1</translation>
-    </message>
-
-    <message>
-      <source>Futuristic Bleak 3</source>
-      <translation>Futuriste Bleue 3</translation>
-    </message>
-
-    <message>
-      <source>Futuristic Bleak 4</source>
-      <translation>Futuriste Bleue 4</translation>
+      <source>Fusion 88</source>
+      <translation>Fusión 88</translation>
     </message>
 
     <message>
       <source>G&apos;MIC Operator</source>
-      <translation>Opérateur G&apos;MIC</translation>
+      <translation>Operador G&apos;MIC</translation>
     </message>
 
     <message>
       <source>G/M Smoothness</source>
-      <translation>Lissage G/M</translation>
+      <translation>Suavidad G/M</translation>
     </message>
 
     <message>
       <source>Gain</source>
-      <translation>Gagnez</translation>
+      <translation>Gane</translation>
     </message>
 
     <message>
       <source>Games &amp; Demos</source>
-      <translation>Jeux et démos</translation>
+      <translation>Juegos y demostraciones</translation>
     </message>
 
     <message>
       <source>Gamma Balance</source>
-      <translation>Balance gamma</translation>
+      <translation>Balance Gamma</translation>
     </message>
 
     <message>
       <source>Gamma Compensation</source>
-      <translation>Compensation gamma</translation>
+      <translation>Compensación Gamma</translation>
     </message>
 
     <message>
       <source>Gamma Equalizer</source>
-      <translation>Égaliseur gamma</translation>
+      <translation>Ecualizador Gamma</translation>
     </message>
 
     <message>
       <source>Gaussian</source>
-      <translation>Gaussien</translation>
+      <translation>Gaussiano</translation>
     </message>
 
     <message>
       <source>Gear</source>
-      <translation>Équipement</translation>
+      <translation>Engranaje</translation>
     </message>
 
     <message>
       <source>Generate Random-Colors Layer</source>
-      <translation>Générer une couche de couleurs aléatoires</translation>
+      <translation>Generar una capa de colores aleatorios</translation>
     </message>
 
     <message>
       <source>Generic Fuji Astia 100</source>
-      <translation>Générique Fuji Astia 100</translation>
+      <translation>Genérico Fuji Astia 100</translation>
     </message>
 
     <message>
       <source>Generic Fuji Provia 100</source>
-      <translation>Générique Fuji Provia 100</translation>
+      <translation>Genérico Fuji Provia 100</translation>
     </message>
 
     <message>
       <source>Generic Fuji Velvia 100</source>
-      <translation>Générique Fuji Velvia 100</translation>
+      <translation>Genérico Fuji Velvia 100</translation>
     </message>
 
     <message>
       <source>Generic Kodachrome 64</source>
-      <translation>Générique Kodachrome 64</translation>
+      <translation>Genérico Kodachrome 64</translation>
     </message>
 
     <message>
       <source>Generic Kodak Ektachrome 100 VS</source>
-      <translation>Générique Kodak Ektachrome 100 VS</translation>
+      <translation>Genérico Kodak Ektachrome 100 VS</translation>
     </message>
 
     <message>
       <source>Generic Skin Structure</source>
-      <translation>Structure de la peau générique</translation>
+      <translation>Estructura genérica de la piel</translation>
     </message>
 
     <message>
       <source>Gentle Mode (overrides Minimum Brightness and Minimun Red:Blue Ratio)</source>
-      <translation>Mode doux (remplace la luminosité minimale et le rapport minimal rouge/bleu)</translation>
+      <translation>Modo Suave (anula el Brillo Mínimo y la Relación Mínima Rojo:Azul)</translation>
     </message>
 
     <message>
       <source>Geometry</source>
-      <translation>Géométrie</translation>
+      <translation>Geometría</translation>
     </message>
 
     <message>
       <source>Global Mapping</source>
-      <translation>Cartographie mondiale</translation>
+      <translation>Cartografía mundial</translation>
     </message>
 
     <message>
       <source>Gmicky &amp; Wilber (by Mahvin)</source>
-      <translation>Gmicky &amp; Wilber (par Mahvin)</translation>
+      <translation>Gmicky &amp; Wilber (por Mahvin)</translation>
     </message>
 
     <message>
       <source>Gmicky (by Deevad)</source>
-      <translation>Gmicky (par Deevad)</translation>
+      <translation>Gmicky (por Deevad)</translation>
     </message>
 
     <message>
       <source>Gmicky (by Mahvin)</source>
-      <translation>Gmicky (par Mahvin)</translation>
+      <translation>Gmicky (por Mahvin)</translation>
     </message>
 
     <message>
       <source>Going for a Walk</source>
-      <translation>Se promener</translation>
+      <translation>Salir a pasear</translation>
     </message>
 
     <message>
       <source>Gold</source>
-      <translation>Or</translation>
+      <translation>Oro</translation>
     </message>
 
     <message>
       <source>Golden (bright)</source>
-      <translation>Doré (brillant)</translation>
+      <translation>Dorado (brillante)</translation>
     </message>
 
     <message>
       <source>Golden (fade)</source>
-      <translation>Doré (fondu)</translation>
+      <translation>Dorado (se desvanece)</translation>
     </message>
 
     <message>
       <source>Golden (mono)</source>
-      <translation>Doré (mono)</translation>
+      <translation>Dorado (mono)</translation>
     </message>
 
     <message>
       <source>Golden (vibrant)</source>
-      <translation>Doré (vibrant)</translation>
-    </message>
-
-    <message>
-      <source>Golden Gate</source>
-      <translation>Le Golden Gate</translation>
+      <translation>Dorado (vibrante)</translation>
     </message>
 
     <message>
       <source>GoldFX - Bright Spring Breeze</source>
-      <translation>GoldFX - Brise printanière</translation>
+      <translation>GoldFX - Brisa brillante de primavera</translation>
     </message>
 
     <message>
       <source>GoldFX - Bright Summer Heat</source>
-      <translation>GoldFX - La chaleur de l&apos;été</translation>
+      <translation>GoldFX - Brillante calor de verano</translation>
     </message>
 
     <message>
       <source>GoldFX - Hot Summer Heat</source>
-      <translation>GoldFX - Chaleur estivale</translation>
+      <translation>GoldFX - Calor de verano</translation>
     </message>
 
     <message>
       <source>GoldFX - Perfect Sunset 01min</source>
-      <translation>GoldFX - Coucher de soleil parfait 01min</translation>
+      <translation>GoldFX - Atardecer perfecto 01min</translation>
     </message>
 
     <message>
       <source>GoldFX - Perfect Sunset 05min</source>
-      <translation>GoldFX - Coucher de soleil parfait 05min</translation>
+      <translation>GoldFX - Atardecer perfecto 05min</translation>
     </message>
 
     <message>
       <source>GoldFX - Perfect Sunset 10min</source>
-      <translation>GoldFX - Coucher de soleil parfait 10min</translation>
+      <translation>GoldFX - Atardecer perfecto 10min</translation>
     </message>
 
     <message>
       <source>GoldFX - Spring Breeze</source>
-      <translation>GoldFX - Brise de printemps</translation>
+      <translation>GoldFX - Brisa de Primavera</translation>
     </message>
 
     <message>
       <source>GoldFX - Summer Heat</source>
-      <translation>GoldFX - Chaleur d&apos;été</translation>
+      <translation>GoldFX - El calor del verano</translation>
     </message>
 
     <message>
       <source>Good Morning</source>
-      <translation>Bonjour</translation>
+      <translation>Buenos días.</translation>
+    </message>
+
+    <message>
+      <source>Gradient</source>
+      <translation>Gradiente</translation>
     </message>
 
     <message>
       <source>Gradient [Corners]</source>
-      <translation>Gradient [Angles]</translation>
+      <translation>Gradiente [Esquinas]</translation>
     </message>
 
     <message>
       <source>Gradient [Custom Shape]</source>
-      <translation>Gradient [Forme personnalisée]</translation>
+      <translation>Gradiente [Forma personalizada]</translation>
     </message>
 
     <message>
       <source>Gradient [from Line]</source>
-      <translation>Gradient [à partir de la ligne]</translation>
+      <translation>Gradiente [de la línea]</translation>
     </message>
 
     <message>
       <source>Gradient [Linear]</source>
-      <translation>Gradient [Linéaire]</translation>
+      <translation>Gradiente [Lineal]</translation>
+    </message>
+
+    <message>
+      <source>Gradient [Radial]</source>
+      <translation>Gradiente [Radial]</translation>
     </message>
 
     <message>
       <source>Gradient [Random]</source>
-      <translation>Gradient [Aléatoire]</translation>
+      <translation>Gradiente [Aleatorio]</translation>
     </message>
 
     <message>
       <source>Gradient Norm</source>
-      <translation>Norme de gradient</translation>
+      <translation>Norma de gradiente</translation>
     </message>
 
     <message>
       <source>Gradient Preset</source>
-      <translation>Préréglage du gradient</translation>
+      <translation>Gradiente preestablecido</translation>
+    </message>
+
+    <message>
+      <source>Gradient RGB</source>
+      <translation>Gradiente RGB</translation>
     </message>
 
     <message>
       <source>Gradient Smoothness</source>
-      <translation>Gradient de douceur</translation>
+      <translation>Suavidad gradual</translation>
     </message>
 
     <message>
       <source>Gradient Values</source>
-      <translation>Valeurs de gradient</translation>
+      <translation>Valores graduales</translation>
+    </message>
+
+    <message>
+      <source>Grain</source>
+      <translation>Grano</translation>
     </message>
 
     <message>
       <source>Grain (Highlights)</source>
-      <translation>Céréales (points forts)</translation>
+      <translation>Grano (Highlights)</translation>
+    </message>
+
+    <message>
+      <source>Grain (Midtones)</source>
+      <translation>Grano (Midtones)</translation>
     </message>
 
     <message>
       <source>Grain (Shadows)</source>
-      <translation>Grain (Ombres)</translation>
+      <translation>Grano (Sombras)</translation>
     </message>
 
     <message>
       <source>Grain Extract</source>
-      <translation>Extrait de grain</translation>
+      <translation>Extracto de grano</translation>
     </message>
 
     <message>
       <source>Grain Merge</source>
-      <translation>Fusion des céréales</translation>
+      <translation>Fusión de granos</translation>
     </message>
 
     <message>
       <source>Grain Only</source>
-      <translation>Grain seulement</translation>
+      <translation>Sólo grano</translation>
     </message>
 
     <message>
       <source>Grain Scale</source>
-      <translation>La balance des grains</translation>
+      <translation>Escala del grano</translation>
     </message>
 
     <message>
       <source>Grain Tone Fading</source>
-      <translation>Le ton du grain s&apos;estompe</translation>
+      <translation>Desvanecimiento del tono del grano</translation>
     </message>
 
     <message>
       <source>Grain Type</source>
-      <translation>Type de grain</translation>
+      <translation>Tipo de grano</translation>
+    </message>
+
+    <message>
+      <source>Grainextract</source>
+      <translation>Extracto de grano</translation>
     </message>
 
     <message>
       <source>Granularity</source>
-      <translation>Granularité</translation>
+      <translation>Granularidad</translation>
     </message>
 
     <message>
       <source>Graphic Boost</source>
-      <translation>Coup de pouce graphique</translation>
+      <translation>Aumento de la gráfica</translation>
     </message>
 
     <message>
       <source>Graphic Colours</source>
-      <translation>Couleurs graphiques</translation>
+      <translation>Colores de los gráficos</translation>
     </message>
 
     <message>
       <source>Graphic Novel</source>
-      <translation>Roman graphique</translation>
+      <translation>Novela gráfica</translation>
     </message>
 
     <message>
       <source>Graphix Colors</source>
-      <translation>Couleurs Graphix</translation>
+      <translation>Colores de Grafito</translation>
     </message>
 
     <message>
       <source>Grayscale</source>
-      <translation>Niveaux de gris</translation>
+      <translation>Escala de grises</translation>
     </message>
 
     <message>
       <source>Greece</source>
-      <translation>Grèce</translation>
+      <translation>Grecia</translation>
     </message>
 
     <message>
       <source>Green</source>
-      <translation>Vert</translation>
+      <translation>Verde</translation>
     </message>
 
     <message>
       <source>Green 15</source>
-      <translation>Vert 15</translation>
+      <translation>Verde 15</translation>
     </message>
 
     <message>
       <source>Green 2025</source>
-      <translation>Vert 2025</translation>
+      <translation>Verde 2025</translation>
     </message>
 
     <message>
       <source>Green Action</source>
-      <translation>Action verte</translation>
+      <translation>Acción Verde</translation>
     </message>
 
     <message>
       <source>Green Afternoon</source>
-      <translation>Après-midi vert</translation>
+      <translation>Tarde verde</translation>
     </message>
 
     <message>
       <source>Green Blues</source>
-      <translation>Le blues vert</translation>
+      <translation>Green Blues...</translation>
     </message>
 
     <message>
       <source>Green Conflict</source>
-      <translation>Conflit vert</translation>
+      <translation>Conflicto verde</translation>
     </message>
 
     <message>
       <source>Green Day 01</source>
-      <translation>Journée verte 01</translation>
+      <translation>Día verde 01</translation>
     </message>
 
     <message>
       <source>Green Day 02</source>
-      <translation>Journée verte 02</translation>
+      <translation>Día Verde 02</translation>
     </message>
 
     <message>
       <source>Green Factor</source>
-      <translation>Le facteur vert</translation>
+      <translation>Factor verde</translation>
     </message>
 
     <message>
       <source>Green G09</source>
-      <translation>Vert G09</translation>
+      <translation>Verde G09</translation>
     </message>
 
     <message>
       <source>Green Indoor</source>
-      <translation>Intérieur vert</translation>
+      <translation>Verde Interior</translation>
     </message>
 
     <message>
       <source>Green Level</source>
-      <translation>Niveau vert</translation>
+      <translation>Nivel verde</translation>
     </message>
 
     <message>
       <source>Green Light</source>
-      <translation>Feu vert</translation>
+      <translation>Luz verde</translation>
     </message>
 
     <message>
       <source>Green Mono</source>
-      <translation>Mono vert</translation>
+      <translation>Mono verde</translation>
     </message>
 
     <message>
       <source>Green Rotations</source>
-      <translation>Rotations vertes</translation>
+      <translation>Rotaciones verdes</translation>
     </message>
 
     <message>
       <source>Green Shift</source>
-      <translation>Tournant vert</translation>
+      <translation>Cambio verde</translation>
     </message>
 
     <message>
       <source>Green Smoothness</source>
-      <translation>La douceur verte</translation>
+      <translation>Suavidad verde</translation>
     </message>
 
     <message>
       <source>Green Wavelength</source>
-      <translation>Longueur d&apos;onde verte</translation>
+      <translation>Longitud de Onda Verde</translation>
     </message>
 
     <message>
       <source>Green Yellow</source>
-      <translation>Vert Jaune</translation>
+      <translation>Verde Amarillo</translation>
+    </message>
+
+    <message>
+      <source>Green-Blue</source>
+      <translation>Verde-Azul</translation>
     </message>
 
     <message>
       <source>Green-Red</source>
-      <translation>Vert-Rouge</translation>
+      <translation>Verde-Rojo</translation>
     </message>
 
     <message>
       <source>Greenish Contrasty</source>
-      <translation>Contraste verdâtre</translation>
+      <translation>Contraste verdoso</translation>
     </message>
 
     <message>
       <source>Greenish Fade</source>
-      <translation>Fondu verdâtre</translation>
+      <translation>Desvanecimiento verdoso</translation>
     </message>
 
     <message>
       <source>Greenish Fade 1</source>
-      <translation>Fondu verdâtre 1</translation>
+      <translation>Desvanecimiento verdoso 1</translation>
     </message>
 
     <message>
@@ -6981,1757 +7221,1842 @@
 
     <message>
       <source>Greyscale</source>
-      <translation>Niveaux de gris</translation>
+      <translation>Escala de grises</translation>
     </message>
 
     <message>
       <source>Grid</source>
-      <translation>Grille</translation>
+      <translation>Cuadrícula</translation>
     </message>
 
     <message>
       <source>Grid [Cartesian]</source>
-      <translation>Grille [cartésienne]</translation>
+      <translation>Rejilla [cartesiana]</translation>
     </message>
 
     <message>
       <source>Grid [Hexagonal]</source>
-      <translation>Grille [Hexagonal]</translation>
+      <translation>Rejilla [Hexagonal]</translation>
     </message>
 
     <message>
       <source>Grid [Triangular]</source>
-      <translation>Grille [triangulaire]</translation>
+      <translation>Rejilla [Triangular]</translation>
     </message>
 
     <message>
       <source>Grid Divisions</source>
-      <translation>Divisions de la grille</translation>
+      <translation>Divisiones de la red</translation>
     </message>
 
     <message>
       <source>Grid Smoothing</source>
-      <translation>Lissage de la grille</translation>
+      <translation>Suavizado de la red</translation>
     </message>
 
     <message>
       <source>Grid Width</source>
-      <translation>Largeur de la grille</translation>
+      <translation>Ancho de la red</translation>
     </message>
 
     <message>
       <source>Grow Alpha</source>
-      <translation>Cultiver Alpha</translation>
+      <translation>Crece Alfa</translation>
     </message>
 
     <message>
       <source>Guide As</source>
-      <translation>Guider en tant que</translation>
+      <translation>Guía como</translation>
+    </message>
+
+    <message>
+      <source>Guide Mix</source>
+      <translation>Guía Mixta</translation>
     </message>
 
     <message>
       <source>Guide Recovery</source>
-      <translation>Guide Recouvrement</translation>
+      <translation>Guía de recuperación</translation>
     </message>
 
     <message>
       <source>Gum Leaf</source>
-      <translation>Feuille de gomme</translation>
-    </message>
-
-    <message>
-      <source>Gyroid</source>
-      <translation>Gyroïde</translation>
+      <translation>Hoja de goma de mascar</translation>
     </message>
 
     <message>
       <source>H Cutoff</source>
-      <translation>H Seuil</translation>
+      <translation>Corte H</translation>
     </message>
 
     <message>
       <source>Hair Locks</source>
-      <translation>Serrures de cheveux</translation>
+      <translation>Rizos de pelo</translation>
     </message>
 
     <message>
       <source>HaldCLUT Filename</source>
-      <translation>HaldCLUT Nom du fichier</translation>
+      <translation>HaldCLUT Nombre de archivo</translation>
     </message>
 
     <message>
       <source>Half Bottom/top</source>
-      <translation>Demi-fond/haut</translation>
+      <translation>Medio abajo/arriba</translation>
     </message>
 
     <message>
       <source>Half Side  by Side</source>
-      <translation>A moitié côte à côte</translation>
+      <translation>Medio lado a lado</translation>
     </message>
 
     <message>
       <source>Halftone</source>
-      <translation>Demi-teinte</translation>
+      <translation>Medio tono</translation>
     </message>
 
     <message>
       <source>Halftone Shapes</source>
-      <translation>Formes en demi-teinte</translation>
+      <translation>Formas de medios tonos</translation>
     </message>
 
     <message>
       <source>Hanoi Tower</source>
-      <translation>Tour de Hanoi</translation>
+      <translation>Torre de Hanoi</translation>
     </message>
 
     <message>
       <source>Happyness 133</source>
-      <translation>Bonheur 133</translation>
+      <translation>Felicidad 133</translation>
     </message>
 
     <message>
       <source>Hard</source>
-      <translation>Dur</translation>
+      <translation>Duro</translation>
     </message>
 
     <message>
       <source>Hard Light</source>
-      <translation>Lumière dure</translation>
+      <translation>Luz dura</translation>
     </message>
 
     <message>
       <source>Hard Mix</source>
-      <translation>Mixage difficile</translation>
+      <translation>Mezcla dura</translation>
     </message>
 
     <message>
       <source>Hard Sketch</source>
-      <translation>Esquisse définitive</translation>
+      <translation>Bosquejo duro</translation>
     </message>
 
     <message>
       <source>Hard Teal Orange</source>
-      <translation>Sarcelle d&apos;hiver orange</translation>
+      <translation>Naranja de la cerceta dura</translation>
     </message>
 
     <message>
       <source>Hardlight</source>
-      <translation>Lumière dure</translation>
+      <translation>Harddlight</translation>
     </message>
 
     <message>
       <source>Harsh Day</source>
-      <translation>Journée difficile</translation>
+      <translation>Un día duro</translation>
     </message>
 
     <message>
       <source>Harsh Sunset</source>
-      <translation>Un coucher de soleil brutal</translation>
+      <translation>Atardecer duro...</translation>
     </message>
 
     <message>
       <source>HDR Effect (Tone Map)</source>
-      <translation>Effet HDR (carte des tons)</translation>
+      <translation>Efecto HDR (Mapa de tonos)</translation>
     </message>
 
     <message>
       <source>Heart</source>
-      <translation>Coeur</translation>
+      <translation>Corazón</translation>
     </message>
 
     <message>
       <source>Hearts</source>
-      <translation>Coeurs</translation>
+      <translation>Corazones</translation>
     </message>
 
     <message>
       <source>Hearts (Outline)</source>
-      <translation>Coeurs (Grandes lignes)</translation>
-    </message>
-
-    <message>
-      <source>Hedcut (Experimental)</source>
-      <translation>Hedcut (Expérimental)</translation>
+      <translation>Corazones (Resumen)</translation>
     </message>
 
     <message>
       <source>Height</source>
-      <translation>Hauteur</translation>
+      <translation>Altura</translation>
     </message>
 
     <message>
       <source>Height (%)</source>
-      <translation>Hauteur (%)</translation>
+      <translation>Altura (%)</translation>
     </message>
 
     <message>
       <source>Hexagon</source>
-      <translation>Hexagone</translation>
+      <translation>Hexágono</translation>
     </message>
 
     <message>
       <source>High</source>
-      <translation>Haut</translation>
+      <translation>Alto</translation>
     </message>
 
     <message>
       <source>High (Slower)</source>
-      <translation>Haut (plus lent)</translation>
+      <translation>Alto (más lento)</translation>
     </message>
 
     <message>
       <source>High Frequency</source>
-      <translation>Haute fréquence</translation>
+      <translation>Alta frecuencia</translation>
     </message>
 
     <message>
       <source>High Frequency Layer</source>
-      <translation>Couche haute fréquence</translation>
+      <translation>Capa de alta frecuencia</translation>
     </message>
 
     <message>
-      <source>High Key</source>
-      <translation>Haut de page</translation>
+      <source>High Pass</source>
+      <translation>Paso alto</translation>
     </message>
 
     <message>
       <source>High Quality</source>
-      <translation>Haute qualité</translation>
+      <translation>Alta calidad</translation>
     </message>
 
     <message>
       <source>High Scale</source>
-      <translation>Haute échelle</translation>
+      <translation>Escala alta</translation>
     </message>
 
     <message>
       <source>High Speed</source>
-      <translation>Haute vitesse</translation>
+      <translation>Alta velocidad...</translation>
     </message>
 
     <message>
       <source>High Value</source>
-      <translation>Haute valeur</translation>
+      <translation>Alto valor</translation>
     </message>
 
     <message>
       <source>Higher Mask Threshold (%)</source>
-      <translation>Seuil de masquage supérieur (%)</translation>
+      <translation>Umbral de máscara más alto (%)</translation>
     </message>
 
     <message>
       <source>Highlight</source>
-      <translation>Souligner</translation>
+      <translation>Destacar</translation>
     </message>
 
     <message>
       <source>Highlight (%)</source>
-      <translation>Faits marquants (%)</translation>
+      <translation>Destacar (%)</translation>
     </message>
 
     <message>
       <source>Highlight Bloom</source>
-      <translation>Mettre en évidence Bloom</translation>
+      <translation>Destacar a Bloom</translation>
     </message>
 
     <message>
       <source>Highlights</source>
-      <translation>Faits marquants</translation>
+      <translation>Lo más destacado</translation>
     </message>
 
     <message>
       <source>Highlights Abstraction</source>
-      <translation>Résumé des points forts</translation>
+      <translation>Destaca la abstracción</translation>
     </message>
 
     <message>
       <source>Highlights Brightness</source>
-      <translation>Points forts Luminosité</translation>
+      <translation>Destaca el brillo</translation>
     </message>
 
     <message>
       <source>Highlights Color Intensity</source>
-      <translation>Points forts Intensité des couleurs</translation>
+      <translation>Destaca la intensidad del color</translation>
     </message>
 
     <message>
       <source>Highlights Crossover Point</source>
-      <translation>Points forts Crossover Point</translation>
+      <translation>Destaca el punto de cruce</translation>
     </message>
 
     <message>
       <source>Highlights Hue</source>
-      <translation>Points forts Hue</translation>
+      <translation>Destaca el tono</translation>
     </message>
 
     <message>
       <source>Highlights Lightness</source>
-      <translation>Faits marquants Légèreté</translation>
+      <translation>Destaca la ligereza</translation>
     </message>
 
     <message>
       <source>Highlights Protection</source>
-      <translation>Points forts Protection</translation>
+      <translation>Destaca la protección</translation>
     </message>
 
     <message>
       <source>Highlights Selection</source>
-      <translation>Sélection des points forts</translation>
+      <translation>Selección de destacados</translation>
     </message>
 
     <message>
       <source>Highlights Threshold</source>
-      <translation>Points forts Seuil</translation>
+      <translation>Destaca Umbral</translation>
     </message>
 
     <message>
       <source>Highlights Zone</source>
-      <translation>Zone des points forts</translation>
+      <translation>Zona de Highlights</translation>
     </message>
 
     <message>
       <source>Highres CLUT</source>
-      <translation>Hauts dignitaires CLUT</translation>
+      <translation>Altas CLUT</translation>
     </message>
 
     <message>
       <source>Histogram</source>
-      <translation>Histogramme</translation>
+      <translation>Histograma</translation>
     </message>
 
     <message>
       <source>Histogram Analysis</source>
-      <translation>Analyse des histogrammes</translation>
+      <translation>Análisis de Histograma</translation>
     </message>
 
     <message>
       <source>Histogram Transfer</source>
-      <translation>Transfert d&apos;histogramme</translation>
-    </message>
-
-    <message>
-      <source>HLG 1</source>
-      <translation>GHN 1</translation>
+      <translation>Transferencia de Histograma</translation>
     </message>
 
     <message>
       <source>Hokusai: The Great Wave</source>
-      <translation>Hokusai : la grande vague</translation>
+      <translation>Hokusai: La Gran Ola</translation>
     </message>
 
     <message>
       <source>Homogeneity</source>
-      <translation>Homogénéité</translation>
+      <translation>Homogeneidad</translation>
     </message>
 
     <message>
       <source>Hope Poster</source>
-      <translation>Affiche de l&apos;espoir</translation>
+      <translation>Cartel de la esperanza</translation>
     </message>
 
     <message>
       <source>Horisontal Length</source>
-      <translation>Longueur horisontale</translation>
+      <translation>Longitud horizontal</translation>
     </message>
 
     <message>
       <source>Horizon Leveling (deg)</source>
-      <translation>Nivellement de l&apos;horizon (deg)</translation>
+      <translation>Nivelación del horizonte (deg)</translation>
     </message>
 
     <message>
       <source>Horizontal Amount</source>
-      <translation>Montant horizontal</translation>
+      <translation>Cantidad horizontal</translation>
     </message>
 
     <message>
       <source>Horizontal Array</source>
-      <translation>Tableau horizontal</translation>
+      <translation>Conjunto Horizontal</translation>
     </message>
 
     <message>
       <source>Horizontal Blur</source>
-      <translation>Flou horizontal</translation>
+      <translation>Desenfoque horizontal</translation>
     </message>
 
     <message>
       <source>Horizontal Length</source>
-      <translation>Longueur horizontale</translation>
+      <translation>Longitud horizontal</translation>
     </message>
 
     <message>
       <source>Horizontal Size (%)</source>
-      <translation>Taille horizontale (%)</translation>
+      <translation>Tamaño horizontal (%)</translation>
     </message>
 
     <message>
       <source>Horizontal Stripes</source>
-      <translation>Bandes horizontales</translation>
+      <translation>Rayas horizontales</translation>
     </message>
 
     <message>
       <source>Horizontal Tiles</source>
-      <translation>Carreaux horizontaux</translation>
+      <translation>Baldosas horizontales</translation>
     </message>
 
     <message>
       <source>Horizontal Warp Only</source>
-      <translation>Distorsion horizontale uniquement</translation>
+      <translation>Sólo la urdimbre horizontal</translation>
     </message>
 
     <message>
-      <source>Horror Blue</source>
-      <translation>Bleu d&apos;horreur</translation>
+      <source>Hot</source>
+      <translation>Caliente</translation>
     </message>
 
     <message>
       <source>Hot (256)</source>
-      <translation>Chaud (256)</translation>
+      <translation>Caliente (256)</translation>
     </message>
 
     <message>
       <source>Hough Sketch</source>
-      <translation>Croquis Hough</translation>
+      <translation>Bosquejo de Hough</translation>
+    </message>
+
+    <message>
+      <source>Hough Transform</source>
+      <translation>Transformación de la dureza</translation>
     </message>
 
     <message>
       <source>House</source>
-      <translation>Maison</translation>
+      <translation>Casa</translation>
     </message>
 
     <message>
       <source>Householder</source>
-      <translation>Informations générales</translation>
+      <translation>Ama de casa</translation>
     </message>
 
     <message>
       <source>HSI [all]</source>
-      <translation>HSI [tous]</translation>
+      <translation>HSI [todos]</translation>
     </message>
 
     <message>
       <source>HSI [Intensity]</source>
-      <translation>HSI [Intensité]</translation>
+      <translation>HSI [Intensidad]</translation>
     </message>
 
     <message>
       <source>HSL [all]</source>
-      <translation>HSL [tous]</translation>
+      <translation>HSL [todo]</translation>
     </message>
 
     <message>
       <source>HSL [Lightness]</source>
-      <translation>HSL [Légèreté]</translation>
+      <translation>HSL [Ligereza]</translation>
     </message>
 
     <message>
       <source>HSL Adjustment</source>
-      <translation>Ajustement de la HSL</translation>
+      <translation>Ajuste del HSL</translation>
     </message>
 
     <message>
       <source>HSV [all]</source>
-      <translation>HSV [tous]</translation>
+      <translation>VHS [todo]</translation>
+    </message>
+
+    <message>
+      <source>HSV [Hue]</source>
+      <translation>HSV [Tono]</translation>
+    </message>
+
+    <message>
+      <source>HSV [Saturation]</source>
+      <translation>HSV [Saturación]</translation>
     </message>
 
     <message>
       <source>HSV [Value]</source>
-      <translation>HSV [Valeur]</translation>
+      <translation>HSV [Valor]</translation>
+    </message>
+
+    <message>
+      <source>Hue (%)</source>
+      <translation>Tono (%)</translation>
     </message>
 
     <message>
       <source>Hue Band</source>
-      <translation>Bande de couleur</translation>
+      <translation>Banda de Hue</translation>
     </message>
 
     <message>
       <source>Hue Factor</source>
-      <translation>Facteur de teinte</translation>
+      <translation>Factor de tonalidad</translation>
     </message>
 
     <message>
       <source>Hue Offset</source>
-      <translation>Compensation de la teinte</translation>
+      <translation>Compensación del tono</translation>
     </message>
 
     <message>
       <source>Hue Range</source>
-      <translation>Gamme de teintes</translation>
+      <translation>Rango de tonalidades</translation>
     </message>
 
     <message>
       <source>Hue Shift</source>
-      <translation>Changement de teinte</translation>
+      <translation>Cambio de tono</translation>
     </message>
 
     <message>
       <source>Hue Smoothness</source>
-      <translation>La douceur de la teinte</translation>
+      <translation>Tono Suavidad</translation>
     </message>
 
     <message>
       <source>Human  2</source>
-      <translation>Humain 2</translation>
+      <translation>Humano 2</translation>
     </message>
 
     <message>
       <source>Human 1</source>
-      <translation>Humain 1</translation>
+      <translation>Humano 1</translation>
     </message>
 
     <message>
       <source>Human 2</source>
-      <translation>Humain 2</translation>
+      <translation>Humano 2</translation>
     </message>
 
     <message>
       <source>Hybrid Median - Medium Speed Softest Output</source>
-      <translation>Médiane hybride - vitesse moyenne de sortie la plus douce</translation>
+      <translation>Híbrido Mediano - Velocidad Media Salida Suave</translation>
     </message>
 
     <message>
       <source>Hypersthene</source>
-      <translation>Hypersthène</translation>
+      <translation>Hipersthene</translation>
     </message>
 
     <message>
       <source>Hypnosis</source>
-      <translation>Hypnose</translation>
+      <translation>Hipnosis</translation>
     </message>
 
     <message>
       <source>Iain Noise Reduction 2019</source>
-      <translation>Réduction du bruit en 2019</translation>
-    </message>
-
-    <message>
-      <source>Iain&apos;s Fast Denoise</source>
-      <translation>Le déni rapide de Iain</translation>
+      <translation>Reducción de ruido Iain 2019</translation>
     </message>
 
     <message>
       <source>Identity</source>
-      <translation>Identité</translation>
-    </message>
-
-    <message>
-      <source>Ignore</source>
-      <translation>Ignorer</translation>
+      <translation>Identidad</translation>
     </message>
 
     <message>
       <source>Ignore Current Aspect</source>
-      <translation>Ignorer l&apos;aspect actuel</translation>
+      <translation>Ignorar el aspecto actual</translation>
     </message>
 
     <message>
       <source>Illuminate 2D Shape</source>
-      <translation>Illuminer la forme 2D</translation>
+      <translation>Iluminar la forma 2D</translation>
     </message>
 
     <message>
       <source>Illumination</source>
-      <translation>Éclairage</translation>
+      <translation>Iluminación</translation>
+    </message>
+
+    <message>
+      <source>Illustration Look</source>
+      <translation>Ilustración Mira</translation>
+    </message>
+
+    <message>
+      <source>Image</source>
+      <translation>Imagen</translation>
     </message>
 
     <message>
       <source>Image + Background</source>
-      <translation>Image + Fond</translation>
+      <translation>Imagen + Fondo</translation>
     </message>
 
     <message>
       <source>Image + Colors (2 Layers)</source>
-      <translation>Image + Couleurs (2 couches)</translation>
+      <translation>Imagen + Colores (2 Capas)</translation>
     </message>
 
     <message>
       <source>Image + Colors (Multi-Layers)</source>
-      <translation>Image + Couleurs (multicouches)</translation>
+      <translation>Imagen + Colores (Multi-capas)</translation>
     </message>
 
     <message>
       <source>Image Contour Dimensions</source>
-      <translation>Dimensions des contours de l&apos;image</translation>
+      <translation>Dimensiones del contorno de la imagen</translation>
     </message>
 
     <message>
       <source>Image Smoothness</source>
-      <translation>Lissage de l&apos;image</translation>
+      <translation>Suavidad de la imagen</translation>
     </message>
 
     <message>
       <source>Image to Grab Color from (.Png)</source>
-      <translation>Image à prendre en couleur (.Png)</translation>
+      <translation>Imagen para captar el color de (.Png)</translation>
     </message>
 
     <message>
       <source>Image Weight</source>
-      <translation>Poids de l&apos;image</translation>
+      <translation>Peso de la imagen</translation>
     </message>
 
     <message>
       <source>Import Data</source>
-      <translation>Importation de données</translation>
+      <translation>Importar datos</translation>
     </message>
 
     <message>
       <source>Import RGB-565 File</source>
-      <translation>Importer un fichier RGB-565</translation>
+      <translation>Importar el archivo RGB-565</translation>
     </message>
 
     <message>
       <source>Impulses 5x5</source>
-      <translation>Impulsions 5x5</translation>
+      <translation>Impulsos 5x5</translation>
     </message>
 
     <message>
       <source>Impulses 7x7</source>
-      <translation>Impulsions 7x7</translation>
+      <translation>Impulsos 7x7</translation>
     </message>
 
     <message>
       <source>Impulses 9x9</source>
-      <translation>Impulsions 9x9</translation>
+      <translation>Impulsos 9x9</translation>
     </message>
 
     <message>
       <source>Include Opacity Layer</source>
-      <translation>Inclure la couche d&apos;opacité</translation>
+      <translation>Incluir la capa de opacidad</translation>
     </message>
 
     <message>
       <source>IncreaseChroma1</source>
-      <translation>AugmenterChroma1</translation>
+      <translation>AumentarCroma1</translation>
     </message>
 
     <message>
       <source>Increasing</source>
-      <translation>Augmenter</translation>
+      <translation>Aumentando</translation>
     </message>
 
     <message>
       <source>Indoor Blue</source>
-      <translation>Bleu intérieur</translation>
-    </message>
-
-    <message>
-      <source>Industrial 33</source>
-      <translation>Industrie 33</translation>
+      <translation>Azul interior</translation>
     </message>
 
     <message>
       <source>Influence of Color Samples (%)</source>
-      <translation>Influence des échantillons de couleur (%)</translation>
+      <translation>Influencia de las muestras de color (%)</translation>
     </message>
 
     <message>
       <source>Information</source>
-      <translation>Informations</translation>
+      <translation>Información</translation>
     </message>
 
     <message>
       <source>Init. Resolution</source>
-      <translation>Init. Résolution</translation>
+      <translation>Init. Resolución</translation>
     </message>
 
     <message>
       <source>Init. Type</source>
-      <translation>Init. Tapez</translation>
+      <translation>Init. Escriba</translation>
     </message>
 
     <message>
       <source>Init. With High Gradients Only</source>
-      <translation>Init. Avec des gradients élevés seulement</translation>
+      <translation>Init. Sólo con altos gradientes</translation>
     </message>
 
     <message>
       <source>Initial Density</source>
-      <translation>Densité initiale</translation>
+      <translation>Densidad inicial</translation>
     </message>
 
     <message>
       <source>Initialization</source>
-      <translation>Initialisation</translation>
+      <translation>Inicialización</translation>
     </message>
 
     <message>
       <source>Ink Wash</source>
-      <translation>Lavage de l&apos;encre</translation>
+      <translation>Lavado de tinta</translation>
     </message>
 
     <message>
       <source>Inner</source>
-      <translation>Intérieur</translation>
+      <translation>Interior</translation>
     </message>
 
     <message>
       <source>Inner Fading</source>
-      <translation>Fondu intérieur</translation>
+      <translation>Desvanecimiento interno</translation>
     </message>
 
     <message>
       <source>Inner Length</source>
-      <translation>Longueur intérieure</translation>
+      <translation>Longitud interior</translation>
     </message>
 
     <message>
       <source>Inner Radius</source>
-      <translation>Rayon intérieur</translation>
+      <translation>Radio interno</translation>
     </message>
 
     <message>
       <source>Inner Radius (%)</source>
-      <translation>Rayon intérieur (%)</translation>
+      <translation>Radio interno (%)</translation>
     </message>
 
     <message>
       <source>Inner Shade</source>
-      <translation>Ombre intérieure</translation>
+      <translation>Sombra interior</translation>
     </message>
 
     <message>
       <source>Inpaint [Holes]</source>
-      <translation>Peinture [Trous]</translation>
+      <translation>Pintura [Agujeros]</translation>
     </message>
 
     <message>
       <source>Inpaint [Morphological]</source>
-      <translation>Peinture [Morphologique]</translation>
+      <translation>Pintura [Morfológica]</translation>
     </message>
 
     <message>
       <source>Inpaint [Multi-Scale]</source>
-      <translation>Peinture [multi-échelle]</translation>
+      <translation>Pintura [Multi-escala]</translation>
     </message>
 
     <message>
       <source>Inpaint [Patch-Based]</source>
-      <translation>Inpatient [Patch-Based] (en anglais)</translation>
+      <translation>Pintura [a base de parches]</translation>
     </message>
 
     <message>
       <source>Inpaint [Transport-Diffusion]</source>
-      <translation>Inpatient [Transport-Diffusion]</translation>
+      <translation>Pintura [Transporte-Difusión]</translation>
     </message>
 
     <message>
       <source>Input</source>
-      <translation>Entrée</translation>
+      <translation>Entrada</translation>
     </message>
 
     <message>
       <source>Input Folder</source>
-      <translation>Dossier de saisie</translation>
+      <translation>Carpeta de entrada</translation>
     </message>
 
     <message>
       <source>Input Frame Files Name</source>
-      <translation>Nom des fichiers de trame d&apos;entrée</translation>
+      <translation>Nombre de los archivos del marco de entrada</translation>
     </message>
 
     <message>
       <source>Input Guide Color</source>
-      <translation>Couleur du guide de saisie</translation>
+      <translation>Guía de entrada Color</translation>
     </message>
 
     <message>
       <source>Input Layers</source>
-      <translation>Couches d&apos;entrée</translation>
+      <translation>Capas de entrada</translation>
     </message>
 
     <message>
       <source>Input Transparency</source>
-      <translation>Transparence des entrées</translation>
+      <translation>Transparencia de la entrada</translation>
     </message>
 
     <message>
       <source>Input Type</source>
-      <translation>Type d&apos;entrée</translation>
+      <translation>Tipo de entrada</translation>
     </message>
 
     <message>
       <source>Insert New CLUT Layer</source>
-      <translation>Insérer une nouvelle couche CLUT</translation>
+      <translation>Insertar la nueva capa de CLUT</translation>
     </message>
 
     <message>
       <source>Inside</source>
-      <translation>A l&apos;intérieur</translation>
+      <translation>Dentro de</translation>
     </message>
 
     <message>
       <source>Inside Color</source>
-      <translation>Couleur intérieure</translation>
+      <translation>Color interior</translation>
     </message>
 
     <message>
       <source>Instant [Consumer] (54)</source>
-      <translation>Instantané [Consommateur] (54)</translation>
+      <translation>Instantánea [Consumidor] (54)</translation>
     </message>
 
     <message>
       <source>Instant [Pro] (68)</source>
-      <translation>Instantané [Pro] (68)</translation>
+      <translation>Instantánea [Pro] (68)</translation>
     </message>
 
     <message>
       <source>Intensity</source>
-      <translation>Intensité</translation>
+      <translation>Intensidad</translation>
     </message>
 
     <message>
       <source>Intensity of Purple Fringe</source>
-      <translation>Intensité de la frange violette</translation>
-    </message>
-
-    <message>
-      <source>Inter-Frames</source>
-      <translation>Inter-Cadres</translation>
+      <translation>Intensidad de la franja púrpura</translation>
     </message>
 
     <message>
       <source>Interlace Horizontal</source>
-      <translation>Entrelacer à l&apos;horizontale</translation>
+      <translation>Entrelazado Horizontal</translation>
     </message>
 
     <message>
       <source>Interlace Vertical</source>
-      <translation>Entrelacement vertical</translation>
+      <translation>Entrelazado Vertical</translation>
     </message>
 
     <message>
       <source>Interpolate</source>
-      <translation>Interpoler</translation>
+      <translation>Interpolar</translation>
+    </message>
+
+    <message>
+      <source>Interpolation</source>
+      <translation>Interpolación</translation>
     </message>
 
     <message>
       <source>Interpolation Type</source>
-      <translation>Type d&apos;interpolation</translation>
+      <translation>Tipo de interpolación</translation>
+    </message>
+
+    <message>
+      <source>Inverse</source>
+      <translation>Invertir</translation>
     </message>
 
     <message>
       <source>Inverse Depth Map</source>
-      <translation>Carte des profondeurs inverses</translation>
+      <translation>Mapa de profundidad inversa</translation>
     </message>
 
     <message>
       <source>Inverse Radius</source>
-      <translation>Rayon inverse</translation>
+      <translation>Radio inverso</translation>
     </message>
 
     <message>
       <source>Inverse Transform</source>
-      <translation>Transformation inverse</translation>
+      <translation>Transformación inversa</translation>
+    </message>
+
+    <message>
+      <source>Inversions</source>
+      <translation>Inversiones</translation>
     </message>
 
     <message>
       <source>Invert Background / Foreground</source>
-      <translation>Inverser l&apos;arrière-plan / le premier plan</translation>
+      <translation>Invertir el fondo/primer plano</translation>
     </message>
 
     <message>
       <source>Invert Blur</source>
-      <translation>Inverser le flou</translation>
+      <translation>Invertir el borrón</translation>
     </message>
 
     <message>
       <source>Invert Canvas Colors</source>
-      <translation>Inverser les couleurs de la toile</translation>
+      <translation>Invertir los colores del lienzo</translation>
     </message>
 
     <message>
       <source>Invert Colors</source>
-      <translation>Inverser les couleurs</translation>
+      <translation>Invertir los colores</translation>
     </message>
 
     <message>
       <source>Invert Image Colors</source>
-      <translation>Inverser les couleurs de l&apos;image</translation>
+      <translation>Invertir los colores de la imagen</translation>
     </message>
 
     <message>
       <source>Invert Luminance</source>
-      <translation>Inverser la luminance</translation>
+      <translation>Invertir la luminancia</translation>
     </message>
 
     <message>
       <source>Invert Mask</source>
-      <translation>Masque inversé</translation>
+      <translation>Invertir la máscara</translation>
     </message>
 
     <message>
       <source>Inward</source>
-      <translation>Vers l&apos;intérieur</translation>
+      <translation>Hacia adentro</translation>
+    </message>
+
+    <message>
+      <source>Isophotes</source>
+      <translation>Isótopos</translation>
     </message>
 
     <message>
       <source>Isotropic</source>
-      <translation>Isotropique</translation>
+      <translation>Isótropo</translation>
     </message>
 
     <message>
       <source>Iteration</source>
-      <translation>Itération</translation>
+      <translation>Iteración</translation>
     </message>
 
     <message>
       <source>Iterations</source>
-      <translation>Itérations</translation>
+      <translation>Iteraciones</translation>
     </message>
 
     <message>
       <source>Japanese Maple Leaf</source>
-      <translation>Feuille d&apos;érable japonaise</translation>
+      <translation>Hoja de arce japonés</translation>
     </message>
 
     <message>
       <source>JPEG Artefacts</source>
-      <translation>Artefacts JPEG</translation>
+      <translation>Artefactos JPEG</translation>
     </message>
 
     <message>
       <source>JPEG Smooth</source>
-      <translation>JPEG Lisse</translation>
+      <translation>JPEG Suave</translation>
+    </message>
+
+    <message>
+      <source>Just Peachy</source>
+      <translation>Sólo Peachy</translation>
     </message>
 
     <message>
       <source>K-Factor</source>
-      <translation>Facteur K</translation>
+      <translation>Factor K</translation>
     </message>
 
     <message>
       <source>Kaleidoscope [Blended]</source>
-      <translation>Kaléidoscope [Mélange]</translation>
+      <translation>Caleidoscopio [Mezcla]</translation>
     </message>
 
     <message>
       <source>Kaleidoscope [Polar]</source>
-      <translation>Kaléidoscope [Polaire]</translation>
+      <translation>Caleidoscopio [Polar]</translation>
     </message>
 
     <message>
       <source>Kaleidoscope [Symmetry]</source>
-      <translation>Kaléidoscope [Symétrie]</translation>
+      <translation>Caleidoscopio [Simetría]</translation>
     </message>
 
     <message>
       <source>Kandinsky: Squares with Concentric Circles</source>
-      <translation>Kandinsky : Les carrés et les cercles concentriques</translation>
+      <translation>Kandinsky: Cuadrados con círculos concéntricos</translation>
     </message>
 
     <message>
       <source>Kandinsky: Yellow-Red-Blue</source>
-      <translation>Kandinsky : Jaune-Rouge-Bleu</translation>
+      <translation>Kandinsky: Amarillo-Rojo-Azul</translation>
     </message>
 
     <message>
       <source>Keep</source>
-      <translation>Gardez</translation>
+      <translation>Manténgase en</translation>
     </message>
 
     <message>
       <source>Keep Aspect Ratio</source>
-      <translation>Conserver le rapport d&apos;aspect</translation>
+      <translation>Mantener la relación de aspecto</translation>
     </message>
 
     <message>
       <source>Keep Base Layer as Input Background</source>
-      <translation>Conserver la couche de base comme fond d&apos;entrée</translation>
+      <translation>Mantener la capa base como fondo de entrada</translation>
     </message>
 
     <message>
       <source>Keep Borders Square</source>
-      <translation>Gardez les frontières au carré</translation>
+      <translation>Mantén los límites cuadrados</translation>
     </message>
 
     <message>
       <source>Keep Color Channels</source>
-      <translation>Conserver les canaux de couleur</translation>
+      <translation>Mantener los canales de color</translation>
     </message>
 
     <message>
       <source>Keep Colors</source>
-      <translation>Conserver les couleurs</translation>
+      <translation>Mantener los colores</translation>
     </message>
 
     <message>
       <source>Keep Detail</source>
-      <translation>Garder le détail</translation>
+      <translation>Mantén el detalle</translation>
     </message>
 
     <message>
       <source>Keep Detail Layer Separate</source>
-      <translation>Garder la couche de détail séparée</translation>
+      <translation>Mantenga la capa de detalles separada</translation>
     </message>
 
     <message>
       <source>Keep Iterations as Different Layers</source>
-      <translation>Conserver les itérations sous différentes couches</translation>
+      <translation>Mantener las iteraciones como diferentes capas</translation>
     </message>
 
     <message>
       <source>Keep Layers Separate</source>
-      <translation>Garder les couches séparées</translation>
+      <translation>Mantener las capas separadas</translation>
     </message>
 
     <message>
       <source>Keep Original Image Size</source>
-      <translation>Conserver la taille originale de l&apos;image</translation>
+      <translation>Mantener el tamaño original de la imagen</translation>
     </message>
 
     <message>
       <source>Keep Original Layer</source>
-      <translation>Conserver la couche d&apos;origine</translation>
+      <translation>Mantener la capa original</translation>
     </message>
 
     <message>
       <source>Keep Tiles Square</source>
-      <translation>Gardez les carreaux en place</translation>
+      <translation>Mantén los azulejos cuadrados</translation>
     </message>
 
     <message>
       <source>Keep Transparency in Output</source>
-      <translation>Maintenir la transparence dans les résultats</translation>
+      <translation>Mantener la transparencia en la salida</translation>
     </message>
 
     <message>
       <source>Kernel</source>
-      <translation>Noyau</translation>
+      <translation>Núcleo</translation>
     </message>
 
     <message>
       <source>Kernel Multiplier</source>
-      <translation>Multiplicateur de noyaux</translation>
+      <translation>Multiplicador del núcleo</translation>
     </message>
 
     <message>
       <source>Kernel Type</source>
-      <translation>Type de noyau</translation>
+      <translation>Tipo de núcleo</translation>
     </message>
 
     <message>
       <source>Key Factor</source>
-      <translation>Facteur clé</translation>
+      <translation>Factor clave</translation>
     </message>
 
     <message>
       <source>Key Frame Rate</source>
-      <translation>Taux d&apos;images clés</translation>
+      <translation>Velocidad de fotogramas clave</translation>
     </message>
 
     <message>
       <source>Key Shift</source>
-      <translation>Le changement de cap</translation>
+      <translation>Cambio de tecla</translation>
     </message>
 
     <message>
       <source>Key Smoothness</source>
-      <translation>La clé du succès</translation>
+      <translation>Suavidad de la clave</translation>
     </message>
 
     <message>
       <source>Keypoint Influence (%)</source>
-      <translation>Influence des points clés (%)</translation>
-    </message>
-
-    <message>
-      <source>Kitaoka Spin Illusion</source>
-      <translation>L&apos;illusion de la rotation de Kitaoka</translation>
+      <translation>Influencia del punto clave (%)</translation>
     </message>
 
     <message>
       <source>Klee: Death and Fire</source>
-      <translation>Klee : La mort et le feu</translation>
+      <translation>Klee: Muerte y fuego</translation>
     </message>
 
     <message>
       <source>Klee: In the Style of Kairouan</source>
-      <translation>Klee : Dans le style de Kairouan</translation>
+      <translation>Klee: En el estilo de Kairouan</translation>
     </message>
 
     <message>
       <source>Klee: Oriental Pleasure Garden Anagoria</source>
-      <translation>Klee : Jardin de plaisance oriental Anagoria</translation>
+      <translation>Klee: Jardín de Placer Oriental Anagoria</translation>
     </message>
 
     <message>
       <source>Klee: Polyphony 2</source>
-      <translation>Klee : Polyphonie 2</translation>
+      <translation>Klee: Polifonía 2</translation>
     </message>
 
     <message>
       <source>Klee: Red Waistcoat</source>
-      <translation>Klee : Gilet rouge</translation>
+      <translation>Klee: Chaleco rojo</translation>
     </message>
 
     <message>
       <source>Klimt: The Kiss</source>
-      <translation>Klimt : Le baiser</translation>
+      <translation>Klimt: El beso</translation>
     </message>
 
     <message>
       <source>Kodak 2393 (Cuspclip)</source>
-      <translation>Kodak 2393 (L&apos;haltère)</translation>
+      <translation>Kodak 2393 (Clavija)</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 160</source>
+      <translation>Retrato de Kodak 160</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 160 +</source>
+      <translation>Retrato de Kodak 160 +</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 160 ++</source>
+      <translation>Retrato de Kodak 160 ++</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 160 -</source>
+      <translation>Retrato de Kodak 160 -</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 400</source>
+      <translation>Retrato de Kodak 400</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 400 -</source>
+      <translation>Retrato de Kodak 400 -</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 800</source>
+      <translation>Retrato de Kodak 800</translation>
+    </message>
+
+    <message>
+      <source>Kodak Portra 800 -</source>
+      <translation>Retrato de Kodak 800 -</translation>
     </message>
 
     <message>
       <source>Kuwahara on Painting</source>
-      <translation>Kuwahara sur la peinture</translation>
+      <translation>Kuwahara sobre la pintura</translation>
     </message>
 
     <message>
       <source>L1-Norm</source>
-      <translation>Norme L1</translation>
+      <translation>Norma L1</translation>
+    </message>
+
+    <message>
+      <source>L2-Norm</source>
+      <translation>L2-Norma</translation>
     </message>
 
     <message>
       <source>Lab</source>
-      <translation>Laboratoire</translation>
+      <translation>Laboratorio</translation>
     </message>
 
     <message>
       <source>Lab (Chroma Only)</source>
-      <translation>Laboratoire (Chroma uniquement)</translation>
+      <translation>Laboratorio (sólo croma)</translation>
     </message>
 
     <message>
       <source>Lab (Distinct)</source>
-      <translation>Laboratoire (distinct)</translation>
+      <translation>Laboratorio (Distinto)</translation>
     </message>
 
     <message>
       <source>Lab (Luma Only)</source>
-      <translation>Laboratoire (Luma uniquement)</translation>
+      <translation>Laboratorio (Sólo Luma)</translation>
     </message>
 
     <message>
       <source>Lab (Luma/Chroma)</source>
-      <translation>Laboratoire (Luma/Chroma)</translation>
+      <translation>Laboratorio (Luma/Croma)</translation>
     </message>
 
     <message>
       <source>Lab (Mixed)</source>
-      <translation>Laboratoire (mixte)</translation>
+      <translation>Laboratorio (Mixto)</translation>
+    </message>
+
+    <message>
+      <source>Lab [a-Chrominance]</source>
+      <translation>Laboratorio [a-Crominancia]</translation>
     </message>
 
     <message>
       <source>Lab [ab-Chrominances]</source>
-      <translation>Labo [ab-Chrominances]</translation>
+      <translation>Laboratorio [ab-Crominanzas]</translation>
     </message>
 
     <message>
       <source>Lab [all]</source>
-      <translation>Laboratoire [tous]</translation>
+      <translation>Laboratorio [todos]</translation>
+    </message>
+
+    <message>
+      <source>Lab [b-Chrominance]</source>
+      <translation>Laboratorio [b-Crominancia]</translation>
     </message>
 
     <message>
       <source>Lab [Lightness]</source>
-      <translation>Labo [Légèreté].</translation>
+      <translation>Laboratorio [Ligereza]</translation>
     </message>
 
     <message>
       <source>Landscape</source>
-      <translation>Paysage</translation>
+      <translation>Paisaje</translation>
     </message>
 
     <message>
       <source>Landscape-1</source>
-      <translation>Paysage-1</translation>
+      <translation>Paisaje-1</translation>
     </message>
 
     <message>
       <source>Landscape-10</source>
-      <translation>Paysage-10</translation>
+      <translation>Paisaje-10</translation>
     </message>
 
     <message>
       <source>Landscape-2</source>
-      <translation>Paysage 2</translation>
+      <translation>Paisaje-2</translation>
     </message>
 
     <message>
       <source>Landscape-3</source>
-      <translation>Paysage 3</translation>
+      <translation>Paisaje-3</translation>
     </message>
 
     <message>
       <source>Landscape-4</source>
-      <translation>Paysage-4</translation>
+      <translation>Paisaje-4</translation>
     </message>
 
     <message>
       <source>Landscape-5</source>
-      <translation>Paysage-5</translation>
+      <translation>Paisaje-5</translation>
     </message>
 
     <message>
       <source>Landscape-6</source>
-      <translation>Paysage-6</translation>
+      <translation>Paisaje-6</translation>
     </message>
 
     <message>
       <source>Landscape-7</source>
-      <translation>Paysage-7</translation>
+      <translation>Paisaje-7</translation>
     </message>
 
     <message>
       <source>Landscape-8</source>
-      <translation>Paysage-8</translation>
+      <translation>Paisaje-8</translation>
     </message>
 
     <message>
       <source>Landscape-9</source>
-      <translation>Paysage-9</translation>
-    </message>
-
-    <message>
-      <source>Laplacian</source>
-      <translation>Laplacien</translation>
+      <translation>Paisaje-9</translation>
     </message>
 
     <message>
       <source>Large</source>
-      <translation>Grand</translation>
+      <translation>Gran</translation>
     </message>
 
     <message>
       <source>Large Noise</source>
-      <translation>Bruit important</translation>
+      <translation>Ruido grande</translation>
     </message>
 
     <message>
       <source>Last</source>
-      <translation>Dernier</translation>
+      <translation>Último</translation>
     </message>
 
     <message>
       <source>Last Frame</source>
-      <translation>Dernière image</translation>
+      <translation>Último cuadro</translation>
     </message>
 
     <message>
       <source>Late Afternoon Wanderlust</source>
-      <translation>L&apos;envie d&apos;errer en fin d&apos;après-midi</translation>
+      <translation>La tarde Wanderlust</translation>
     </message>
 
     <message>
       <source>Late Sunset</source>
-      <translation>Coucher de soleil tardif</translation>
-    </message>
-
-    <message>
-      <source>Lava</source>
-      <translation>Lave</translation>
+      <translation>Atardecer tardío</translation>
     </message>
 
     <message>
       <source>Lava Lamp</source>
-      <translation>Lampe à lave</translation>
+      <translation>Lámpara de lava</translation>
     </message>
 
     <message>
       <source>Layer</source>
-      <translation>Couche</translation>
+      <translation>Capa</translation>
     </message>
 
     <message>
       <source>Layer Processing</source>
-      <translation>Traitement des couches</translation>
+      <translation>Procesamiento de la capa</translation>
     </message>
 
     <message>
       <source>Layers to Tiles</source>
-      <translation>Des couches aux carreaux</translation>
+      <translation>De las capas a los azulejos</translation>
     </message>
 
     <message>
       <source>Lch [all]</source>
-      <translation>Lch [tous]</translation>
+      <translation>Lch [todos]</translation>
+    </message>
+
+    <message>
+      <source>Lch [c-Chrominance]</source>
+      <translation>Lch [c-Crominancia]</translation>
+    </message>
+
+    <message>
+      <source>Lch [ch-Chrominances]</source>
+      <translation>Lch [ch-Crominanzas]</translation>
+    </message>
+
+    <message>
+      <source>Lch [h-Chrominance]</source>
+      <translation>Lch [h-Crominancia]</translation>
     </message>
 
     <message>
       <source>Leaf</source>
-      <translation>Feuille</translation>
+      <translation>Hoja</translation>
     </message>
 
     <message>
       <source>Leaf Color</source>
-      <translation>Couleur des feuilles</translation>
+      <translation>Color de la hoja</translation>
     </message>
 
     <message>
       <source>Leaf Opacity (%)</source>
-      <translation>Opacité des feuilles (%)</translation>
+      <translation>Opacidad de la hoja (%)</translation>
     </message>
 
     <message>
       <source>Leak Type</source>
-      <translation>Type de fuite</translation>
+      <translation>Tipo de fuga</translation>
     </message>
 
     <message>
       <source>Left</source>
-      <translation>A gauche</translation>
+      <translation>Izquierda</translation>
     </message>
 
     <message>
       <source>Left  Foreground</source>
-      <translation>Premier plan à gauche</translation>
+      <translation>Primer plano izquierdo</translation>
     </message>
 
     <message>
       <source>Left / Right Blur (%)</source>
-      <translation>Flou gauche / droit (%)</translation>
+      <translation>Borrón izquierdo / derecho (%)</translation>
     </message>
 
     <message>
       <source>Left and Right Background</source>
-      <translation>Fond à gauche et à droite</translation>
+      <translation>Fondo izquierdo y derecho</translation>
     </message>
 
     <message>
       <source>Left and Right Foreground</source>
-      <translation>Premier plan à gauche et à droite</translation>
+      <translation>Primer plano a la izquierda y a la derecha</translation>
     </message>
 
     <message>
       <source>Left and Right Image Streams</source>
-      <translation>Flux d&apos;images gauche et droite</translation>
+      <translation>Corrientes de imágenes de izquierda y derecha</translation>
     </message>
 
     <message>
       <source>Left Diagonal Foreground</source>
-      <translation>Premier plan en diagonale à gauche</translation>
+      <translation>Diagonal izquierda en primer plano</translation>
     </message>
 
     <message>
       <source>Left Foreground</source>
-      <translation>Premier plan à gauche</translation>
+      <translation>Primer plano izquierdo</translation>
     </message>
 
     <message>
       <source>Left Position</source>
-      <translation>Position gauche</translation>
+      <translation>Posición izquierda...</translation>
     </message>
 
     <message>
       <source>Left Side Orientation</source>
-      <translation>Orientation du côté gauche</translation>
+      <translation>Orientación del lado izquierdo</translation>
     </message>
 
     <message>
       <source>Left Slope</source>
-      <translation>Pente gauche</translation>
+      <translation>Pendiente izquierda</translation>
     </message>
 
     <message>
       <source>Left Stream Only</source>
-      <translation>Flux gauche uniquement</translation>
+      <translation>Sólo el arroyo izquierdo</translation>
     </message>
 
     <message>
       <source>Length</source>
-      <translation>Longueur</translation>
+      <translation>Longitud</translation>
     </message>
 
     <message>
       <source>Lenticular Density LPI</source>
-      <translation>Densité lenticulaire LPI</translation>
+      <translation>Densidad lenticular LPI</translation>
     </message>
 
     <message>
       <source>Lenticular Orientation</source>
-      <translation>Orientation lenticulaire</translation>
+      <translation>Orientación lenticular</translation>
     </message>
 
     <message>
       <source>Lenticular Print</source>
-      <translation>L&apos;impression lenticulaire</translation>
+      <translation>Impresión lenticular</translation>
     </message>
 
     <message>
       <source>Level</source>
-      <translation>Niveau</translation>
+      <translation>Nivel</translation>
     </message>
 
     <message>
       <source>Level Frequency</source>
-      <translation>Niveau Fréquence</translation>
+      <translation>Nivel Frecuencia</translation>
     </message>
 
     <message>
       <source>Levels</source>
-      <translation>Niveaux</translation>
+      <translation>Niveles</translation>
     </message>
 
     <message>
       <source>Life Giving Tree</source>
-      <translation>L&apos;arbre qui donne la vie</translation>
+      <translation>Árbol de la vida</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-1</source>
-      <translation>Mode de vie et commerce-1</translation>
+      <translation>Estilo de vida y comercial-1</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-10</source>
-      <translation>Mode de vie et commerce-10</translation>
+      <translation>Estilo de vida y comercial-10</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-2</source>
-      <translation>Mode de vie et commerce-2</translation>
+      <translation>Estilo de vida y comercial-2</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-3</source>
-      <translation>Mode de vie et commerce-3</translation>
+      <translation>Estilo de vida y comercial-3</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-4</source>
-      <translation>Mode de vie et commerce-4</translation>
+      <translation>Estilo de vida y comercial-4</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-5</source>
-      <translation>Mode de vie et commerce-5</translation>
+      <translation>Estilo de vida y comercial-5</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-6</source>
-      <translation>Mode de vie et commerce-6</translation>
+      <translation>Estilo de vida y comercial-6</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-7</source>
-      <translation>Mode de vie et commerce-7</translation>
+      <translation>Estilo de vida y comercial-7</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-8</source>
-      <translation>Mode de vie et commerce-8</translation>
+      <translation>Estilo de vida y comercial-8</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-9</source>
-      <translation>Mode de vie et commerce-9</translation>
+      <translation>Estilo de vida y comercial-9</translation>
     </message>
 
     <message>
       <source>Light</source>
-      <translation>Lumière</translation>
+      <translation>Luz</translation>
     </message>
 
     <message>
       <source>Light (blown)</source>
-      <translation>Lumière (soufflée)</translation>
+      <translation>Luz (soplado)</translation>
     </message>
 
     <message>
       <source>Light Angle</source>
-      <translation>Angle de lumière</translation>
+      <translation>Ángulo de luz</translation>
     </message>
 
     <message>
       <source>Light Color</source>
-      <translation>Couleur de la lumière</translation>
+      <translation>Color de la luz</translation>
     </message>
 
     <message>
       <source>Light Direction</source>
-      <translation>Direction de la lumière</translation>
+      <translation>Dirección de la luz</translation>
     </message>
 
     <message>
       <source>Light Effect</source>
-      <translation>Effet de lumière</translation>
+      <translation>Efecto de la luz</translation>
     </message>
 
     <message>
       <source>Light Glow</source>
-      <translation>Lueur de lumière</translation>
+      <translation>Luz Brillante</translation>
     </message>
 
     <message>
       <source>Light Grey</source>
-      <translation>Gris clair</translation>
+      <translation>Gris claro</translation>
     </message>
 
     <message>
       <source>Light Leaks</source>
-      <translation>Fuites de lumière</translation>
+      <translation>Fugas de luz</translation>
     </message>
 
     <message>
       <source>Light Motive</source>
-      <translation>Motif de la lumière</translation>
+      <translation>Motivo de la luz</translation>
     </message>
 
     <message>
       <source>Light Patch</source>
-      <translation>Patch lumineux</translation>
+      <translation>Parche de luz</translation>
     </message>
 
     <message>
       <source>Light Rays</source>
-      <translation>Rayons lumineux</translation>
+      <translation>Los rayos de luz</translation>
     </message>
 
     <message>
       <source>Light Smoothness</source>
-      <translation>Légèreté et douceur</translation>
+      <translation>Suavidad ligera</translation>
     </message>
 
     <message>
       <source>Light Strength</source>
-      <translation>Force de la lumière</translation>
+      <translation>Fuerza de la luz</translation>
     </message>
 
     <message>
       <source>Light Type</source>
-      <translation>Type de lumière</translation>
+      <translation>Tipo de luz</translation>
     </message>
 
     <message>
       <source>Lighten</source>
-      <translation>Allégez</translation>
+      <translation>Aligera</translation>
     </message>
 
     <message>
       <source>Lighten Edges</source>
-      <translation>Allégez les frontières</translation>
+      <translation>Aligerar los bordes</translation>
     </message>
 
     <message>
       <source>Lighter</source>
-      <translation>Briquet</translation>
+      <translation>Encendedor</translation>
     </message>
 
     <message>
       <source>Lighting</source>
-      <translation>Éclairage</translation>
+      <translation>Iluminación</translation>
     </message>
 
     <message>
       <source>Lighting Angle</source>
-      <translation>Angle d&apos;éclairage</translation>
+      <translation>Ángulo de iluminación</translation>
     </message>
 
     <message>
       <source>Lightness</source>
-      <translation>Légèreté</translation>
+      <translation>Ligereza</translation>
     </message>
 
     <message>
       <source>Lightness (%)</source>
-      <translation>Légèreté (%)</translation>
+      <translation>Ligereza (%)</translation>
     </message>
 
     <message>
       <source>Lightness Factor</source>
-      <translation>Facteur de légèreté</translation>
+      <translation>Factor de ligereza</translation>
     </message>
 
     <message>
       <source>Lightness Level</source>
-      <translation>Niveau de luminosité</translation>
+      <translation>Nivel de luminosidad</translation>
     </message>
 
     <message>
       <source>Lightness Max (%)</source>
-      <translation>Légèreté maximale (%)</translation>
+      <translation>Ligereza Máxima (%)</translation>
     </message>
 
     <message>
       <source>Lightness Min (%)</source>
-      <translation>Légèreté Min (%)</translation>
+      <translation>Ligereza Mínimo (%)</translation>
     </message>
 
     <message>
       <source>Lightness Shift</source>
-      <translation>Changement de luminosité</translation>
+      <translation>Cambio de la ligereza</translation>
     </message>
 
     <message>
       <source>Lightness Smoothness</source>
-      <translation>Légèreté et douceur</translation>
+      <translation>Ligereza Suavidad</translation>
     </message>
 
     <message>
       <source>Lightning</source>
-      <translation>Foudre</translation>
+      <translation>Relámpago</translation>
     </message>
 
     <message>
       <source>Lighty Smooth</source>
-      <translation>Légèrement lisse</translation>
+      <translation>Ligero Suave</translation>
     </message>
 
     <message>
       <source>Limit Hue Range</source>
-      <translation>Limiter la gamme de teintes</translation>
+      <translation>Limitar el rango de tonalidades</translation>
     </message>
 
     <message>
       <source>Line</source>
-      <translation>Ligne</translation>
+      <translation>Línea</translation>
     </message>
 
     <message>
       <source>Line Opacity</source>
-      <translation>Opacité des lignes</translation>
+      <translation>Opacidad de la línea</translation>
     </message>
 
     <message>
       <source>Line Precision</source>
-      <translation>Précision des lignes</translation>
+      <translation>Precisión de la línea</translation>
     </message>
 
     <message>
       <source>Linear</source>
-      <translation>Linéaire</translation>
+      <translation>Lineal</translation>
     </message>
 
     <message>
       <source>Linear Burn</source>
-      <translation>Brûlure linéaire</translation>
+      <translation>Quemadura lineal</translation>
     </message>
 
     <message>
       <source>Linear Light</source>
-      <translation>Lumière linéaire</translation>
+      <translation>Luz lineal</translation>
     </message>
 
     <message>
       <source>Linear RGB</source>
-      <translation>RGB linéaire</translation>
+      <translation>RGB lineal</translation>
     </message>
 
     <message>
       <source>Linear RGB [All]</source>
-      <translation>RVB linéaire [Tous]</translation>
+      <translation>RGB lineal [Todos]</translation>
     </message>
 
     <message>
       <source>Linear RGB [Blue]</source>
-      <translation>RVB linéaire [Bleu]</translation>
+      <translation>RGB lineal [Azul]</translation>
     </message>
 
     <message>
       <source>Linear RGB [Green]</source>
-      <translation>RGB linéaire [Vert]</translation>
+      <translation>RGB lineal [Verde]</translation>
     </message>
 
     <message>
       <source>Linear RGB [Red]</source>
-      <translation>RVB linéaire [Rouge]</translation>
+      <translation>RGB lineal [Rojo]</translation>
     </message>
 
     <message>
       <source>Linearity</source>
-      <translation>Linéarité</translation>
+      <translation>Linealidad</translation>
     </message>
 
     <message>
       <source>Lineart + Color Spots</source>
-      <translation>Lineart + points de couleur</translation>
+      <translation>Lineal + manchas de color</translation>
     </message>
 
     <message>
       <source>Lineart + Color Spots + Extrapolated Colors</source>
-      <translation>Lineart + Points de couleur + Couleurs extrapolées</translation>
+      <translation>Lineal + manchas de color + colores extrapolados</translation>
     </message>
 
     <message>
       <source>Lineart + Colors</source>
-      <translation>Linéaire + Couleurs</translation>
+      <translation>Lineal + Colores</translation>
     </message>
 
     <message>
       <source>Lineart + Extrapolated Colors</source>
-      <translation>Lineart + Couleurs extrapolées</translation>
+      <translation>Lineal + Colores extrapolados</translation>
     </message>
 
     <message>
       <source>Lines</source>
-      <translation>Lignes</translation>
+      <translation>Líneas</translation>
     </message>
 
     <message>
       <source>Lines (256)</source>
-      <translation>Lignes (256)</translation>
+      <translation>Líneas (256)</translation>
+    </message>
+
+    <message>
+      <source>Linify</source>
+      <translation>Linifica</translation>
+    </message>
+
+    <message>
+      <source>Lion</source>
+      <translation>León</translation>
     </message>
 
     <message>
       <source>Lissajous [Animated]</source>
-      <translation>Lissajous [Animé]</translation>
+      <translation>Lissajous [Animado]</translation>
     </message>
 
     <message>
       <source>Lissajous Spiral</source>
-      <translation>Spirale Lissajous</translation>
+      <translation>Espiral de Lissajous</translation>
     </message>
 
     <message>
       <source>Little</source>
-      <translation>Petit</translation>
-    </message>
-
-    <message>
-      <source>Little Blue</source>
-      <translation>Petit Bleu</translation>
+      <translation>Pequeño</translation>
     </message>
 
     <message>
       <source>Little Cyan</source>
-      <translation>Petit Cyan</translation>
-    </message>
-
-    <message>
-      <source>Little Green</source>
-      <translation>Petit Vert</translation>
+      <translation>El pequeño Cyan</translation>
     </message>
 
     <message>
       <source>Little Key</source>
-      <translation>Petite clé</translation>
+      <translation>Pequeña Llave</translation>
     </message>
 
     <message>
       <source>Little Magenta</source>
-      <translation>Petit Magenta</translation>
+      <translation>Pequeño Magenta</translation>
     </message>
 
     <message>
       <source>Little Red</source>
-      <translation>Petit Rouge</translation>
+      <translation>Pequeño Rojo</translation>
     </message>
 
     <message>
       <source>Little Yellow</source>
-      <translation>Petit Jaune</translation>
+      <translation>Pequeño Amarillo</translation>
+    </message>
+
+    <message>
+      <source>LN Amplititude</source>
+      <translation>LN Amplititud</translation>
+    </message>
+
+    <message>
+      <source>LN Amplitude</source>
+      <translation>Amplitud LN</translation>
     </message>
 
     <message>
       <source>LN Average-Smoothness</source>
-      <translation>LN Moyenne - Lissage</translation>
-    </message>
-
-    <message>
-      <source>LN Neightborhood-Smoothness</source>
-      <translation>LN L&apos;intimité de la nuit</translation>
+      <translation>LN Promedio-Suavidad</translation>
     </message>
 
     <message>
       <source>LN Size</source>
-      <translation>Taille LN</translation>
+      <translation>Tamaño LN</translation>
     </message>
 
     <message>
       <source>Local  Normalisation</source>
-      <translation>Normalisation locale</translation>
+      <translation>Normalización local</translation>
     </message>
 
     <message>
@@ -8741,242 +9066,257 @@
 
     <message>
       <source>Local Contrast Effect</source>
-      <translation>Effet de contraste local</translation>
+      <translation>Efecto de contraste local</translation>
     </message>
 
     <message>
       <source>Local Contrast Enhance</source>
-      <translation>Amélioration du contraste local</translation>
+      <translation>Mejora del contraste local</translation>
     </message>
 
     <message>
       <source>Local Contrast Enhancement</source>
-      <translation>Amélioration du contraste local</translation>
+      <translation>Mejoramiento del contraste local</translation>
     </message>
 
     <message>
       <source>Local Contrast Style</source>
-      <translation>Style de contraste local</translation>
+      <translation>Estilo de contraste local</translation>
     </message>
 
     <message>
       <source>Local Detail Enhancer</source>
-      <translation>Améliorateur de détail local</translation>
+      <translation>Mejorador de detalles locales</translation>
     </message>
 
     <message>
       <source>Local Normalization</source>
-      <translation>Normalisation locale</translation>
+      <translation>Normalización local</translation>
     </message>
 
     <message>
       <source>Local Orientation</source>
-      <translation>Orientation locale</translation>
+      <translation>Orientación local</translation>
     </message>
 
     <message>
       <source>Local Processing</source>
-      <translation>Traitement local</translation>
+      <translation>Procesamiento local</translation>
     </message>
 
     <message>
       <source>Local Similarity Mask</source>
-      <translation>Masque de similarité locale</translation>
+      <translation>Máscara de similitud local</translation>
     </message>
 
     <message>
       <source>Local Variance Normalization</source>
-      <translation>Normalisation de la variance locale</translation>
+      <translation>Normalización de la variación local</translation>
     </message>
 
     <message>
       <source>Lock Return Scaling to Source Layer</source>
-      <translation>Verrouiller le retour à l&apos;échelle de la couche source</translation>
+      <translation>Bloquear la escala de retorno a la capa de la fuente</translation>
+    </message>
+
+    <message>
+      <source>Lock Source</source>
+      <translation>Bloquea la fuente</translation>
     </message>
 
     <message>
       <source>Lock Uniform Sampling</source>
-      <translation>Échantillonnage des uniformes de verrouillage</translation>
+      <translation>Bloquee el muestreo uniforme</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion</source>
-      <translation>Distorsion logarithmique</translation>
+      <translation>Distorsión logarítmica</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion Axis Combination for X-Axis</source>
-      <translation>Combinaison d&apos;axes de distorsion logarithmique pour l&apos;axe X</translation>
+      <translation>Combinación de ejes de distorsión logarítmica para el eje X</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion Axis Combination for Y-Axis</source>
-      <translation>Combinaison d&apos;axes de distorsion logarithmique pour l&apos;axe Y</translation>
+      <translation>Combinación de eje de distorsión logarítmica para el eje Y</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion X-Axis Direction</source>
-      <translation>Distorsion logarithmique Direction de l&apos;axe X</translation>
+      <translation>Distorsión logarítmica Dirección del eje X</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion Y-Axis Direction</source>
-      <translation>Distorsion logarithmique Direction de l&apos;axe Y</translation>
+      <translation>Distorsión logarítmica Dirección del eje Y</translation>
     </message>
 
     <message>
       <source>Lomography Redscale 100</source>
-      <translation>Lomographie Redscale 100</translation>
+      <translation>Lomografía Escala Roja 100</translation>
     </message>
 
     <message>
       <source>Lomography X-Pro Slide 200</source>
-      <translation>Lomographie X-Pro Diapositive 200</translation>
+      <translation>Lomografía X-Pro Diapositiva 200</translation>
     </message>
 
     <message>
       <source>Lookup</source>
-      <translation>Consulter</translation>
+      <translation>Busca</translation>
     </message>
 
     <message>
       <source>Lookup Factor</source>
-      <translation>Facteur de recherche</translation>
+      <translation>Factor de búsqueda</translation>
     </message>
 
     <message>
       <source>Lookup Size</source>
-      <translation>Taille de la recherche</translation>
+      <translation>Tamaño de la búsqueda</translation>
     </message>
 
     <message>
       <source>Loop Method</source>
-      <translation>Méthode de la boucle</translation>
+      <translation>Método de bucle</translation>
     </message>
 
     <message>
       <source>Low</source>
-      <translation>Faible</translation>
+      <translation>Bajo</translation>
     </message>
 
     <message>
       <source>Low Bias</source>
-      <translation>Faible biais</translation>
+      <translation>Bajo sesgo...</translation>
     </message>
 
     <message>
       <source>Low Contrast Blue</source>
-      <translation>Bleu à faible contraste</translation>
+      <translation>Azul de bajo contraste</translation>
     </message>
 
     <message>
       <source>Low Frequency</source>
-      <translation>Basse fréquence</translation>
+      <translation>Baja frecuencia</translation>
     </message>
 
     <message>
       <source>Low Frequency Layer</source>
-      <translation>Couche basse fréquence</translation>
-    </message>
-
-    <message>
-      <source>Low Key</source>
-      <translation>Clé basse</translation>
+      <translation>Capa de baja frecuencia</translation>
     </message>
 
     <message>
       <source>Low Scale</source>
-      <translation>Faible échelle</translation>
+      <translation>Escala baja</translation>
     </message>
 
     <message>
       <source>Low Value</source>
-      <translation>Faible valeur</translation>
+      <translation>Bajo valor...</translation>
     </message>
 
     <message>
       <source>Lower Layer Is the Bottom Layer for All Blends</source>
-      <translation>La couche inférieure est la couche inférieure pour tous les mélanges</translation>
+      <translation>La capa inferior es la capa inferior para todas las mezclas</translation>
     </message>
 
     <message>
       <source>Lower Mask Threshold (%)</source>
-      <translation>Seuil inférieur du masque (%)</translation>
+      <translation>Umbral inferior de la máscara (%)</translation>
     </message>
 
     <message>
       <source>Lower Side Orientation</source>
-      <translation>Orientation de la face inférieure</translation>
+      <translation>Orientación del lado inferior</translation>
     </message>
 
     <message>
       <source>Lowercase Letters</source>
-      <translation>Lettres minuscules</translation>
+      <translation>Cartas en minúsculas</translation>
     </message>
 
     <message>
       <source>Lowlights Crossover Point</source>
-      <translation>Point de passage des feux de croisement</translation>
+      <translation>Punto de cruce de luces bajas</translation>
+    </message>
+
+    <message>
+      <source>Lowres CLUT</source>
+      <translation>Los bajos CLUT</translation>
     </message>
 
     <message>
       <source>Lucky 64</source>
-      <translation>Chanceux 64</translation>
+      <translation>Afortunado 64</translation>
+    </message>
+
+    <message>
+      <source>Luma Noise</source>
+      <translation>Ruido de luma</translation>
+    </message>
+
+    <message>
+      <source>Luminance</source>
+      <translation>Luminancia</translation>
     </message>
 
     <message>
       <source>Luminance Factor</source>
-      <translation>Facteur de luminance</translation>
+      <translation>Factor de luminancia</translation>
     </message>
 
     <message>
       <source>Luminance Level</source>
-      <translation>Niveau de luminance</translation>
+      <translation>Nivel de luminancia</translation>
     </message>
 
     <message>
       <source>Luminance Only</source>
-      <translation>Luminance uniquement</translation>
+      <translation>Sólo la luminancia</translation>
     </message>
 
     <message>
       <source>Luminance Only (Lab)</source>
-      <translation>Luminance uniquement (Lab)</translation>
+      <translation>Sólo luminancia (laboratorio)</translation>
     </message>
 
     <message>
       <source>Luminance Only (YCbCr)</source>
-      <translation>Luminance uniquement (YCbCr)</translation>
+      <translation>Sólo luminancia (YCbCr)</translation>
     </message>
 
     <message>
       <source>Luminance Shift</source>
-      <translation>Changement de luminosité</translation>
+      <translation>Cambio de luminancia</translation>
+    </message>
+
+    <message>
+      <source>Luminance Smoothness</source>
+      <translation>Luminancia Suavidad</translation>
     </message>
 
     <message>
       <source>Luminosity from Color</source>
-      <translation>La luminosité de la couleur</translation>
+      <translation>La luminosidad del color</translation>
     </message>
 
     <message>
       <source>Luminosity Type</source>
-      <translation>Type de luminosité</translation>
+      <translation>Tipo de luminosidad</translation>
     </message>
 
     <message>
       <source>Lush Green Summer</source>
-      <translation>Un été vert et luxuriant</translation>
-    </message>
-
-    <message>
-      <source>LUTs Pack</source>
-      <translation>Pack LUTs</translation>
+      <translation>El exuberante verano verde</translation>
     </message>
 
     <message>
       <source>Lylejk&apos;s Painting</source>
-      <translation>La peinture de Lylejk</translation>
+      <translation>La pintura de Lylejk</translation>
     </message>
 
     <message>
@@ -8986,4842 +9326,5062 @@
 
     <message>
       <source>Magenta Day</source>
-      <translation>Journée du magenta</translation>
+      <translation>Día de Magenta</translation>
     </message>
 
     <message>
       <source>Magenta Day 01</source>
-      <translation>Jour du magenta 01</translation>
+      <translation>Día Magenta 01</translation>
     </message>
 
     <message>
       <source>Magenta Dream</source>
-      <translation>Rêve Magenta</translation>
+      <translation>Sueño Magenta</translation>
     </message>
 
     <message>
       <source>Magenta Factor</source>
-      <translation>Facteur Magenta</translation>
+      <translation>Factor Magenta</translation>
     </message>
 
     <message>
       <source>Magenta Shift</source>
-      <translation>Décalage du magenta</translation>
+      <translation>Cambio de Magenta</translation>
     </message>
 
     <message>
       <source>Magenta Smoothness</source>
-      <translation>Douceur magenta</translation>
+      <translation>Suavidad del magenta</translation>
     </message>
 
     <message>
       <source>Magenta Yellow</source>
-      <translation>Jaune magenta</translation>
+      <translation>Amarillo Magenta</translation>
+    </message>
+
+    <message>
+      <source>Magenta-Yellow</source>
+      <translation>Magenta-amarillo</translation>
     </message>
 
     <message>
       <source>Magic Details</source>
-      <translation>Détails magiques</translation>
+      <translation>Detalles mágicos</translation>
     </message>
 
     <message>
       <source>Magnitude / Phase</source>
-      <translation>Ampleur / Phase</translation>
+      <translation>Magnitud / Fase</translation>
     </message>
 
     <message>
       <source>Mail</source>
-      <translation>Courrier électronique</translation>
+      <translation>Correo electrónico</translation>
     </message>
 
     <message>
       <source>Make Hue Depends on Region Size</source>
-      <translation>Make Hue dépend de la taille de la région</translation>
+      <translation>Hacer que el tono dependa del tamaño de la región</translation>
     </message>
 
     <message>
       <source>Make Seamless [Diffusion]</source>
-      <translation>Make Seamless [Diffusion] (en anglais)</translation>
+      <translation>Hacer que la [difusión] sin fisuras</translation>
     </message>
 
     <message>
       <source>Make Seamless [Patch-Based]</source>
-      <translation>Make Seamless [Patch-Based] (en anglais)</translation>
+      <translation>Hacer que el [Patch-Based] sin fisuras</translation>
     </message>
 
     <message>
       <source>Make Squiggly</source>
-      <translation>Faire des gribouillis</translation>
+      <translation>Hacer Garabatos</translation>
     </message>
 
     <message>
       <source>Make Up</source>
-      <translation>Se réconcilier</translation>
+      <translation>Maquillaje</translation>
     </message>
 
     <message>
-      <source>Manual</source>
-      <translation>Manuel</translation>
+      <source>Mandelbrot Explorer</source>
+      <translation>Explorador de Mandelbrot</translation>
+    </message>
+
+    <message>
+      <source>Mandrill</source>
+      <translation>Mandril</translation>
     </message>
 
     <message>
       <source>Manual Controls</source>
-      <translation>Contrôles manuels</translation>
+      <translation>Controles manuales</translation>
     </message>
 
     <message>
       <source>Map</source>
-      <translation>Carte</translation>
+      <translation>Mapa</translation>
     </message>
 
     <message>
       <source>Map Tones</source>
-      <translation>Tonalités de la carte</translation>
+      <translation>Tonos de mapa</translation>
     </message>
 
     <message>
       <source>Mapping</source>
-      <translation>Cartographie</translation>
+      <translation>Mapeo</translation>
     </message>
 
     <message>
       <source>Marble</source>
-      <translation>Marbre</translation>
+      <translation>Mármol</translation>
     </message>
 
     <message>
       <source>Margin (%)</source>
-      <translation>Marge (%)</translation>
+      <translation>Margen (%)</translation>
     </message>
 
     <message>
       <source>Mascot Image</source>
-      <translation>Image de la mascotte</translation>
+      <translation>Imagen de la mascota</translation>
     </message>
 
     <message>
       <source>Masculine</source>
-      <translation>Masculin</translation>
+      <translation>Masculino</translation>
     </message>
 
     <message>
       <source>Mask</source>
-      <translation>Masque</translation>
+      <translation>Máscara</translation>
     </message>
 
     <message>
       <source>Mask + Background</source>
-      <translation>Masque + Fond</translation>
+      <translation>Máscara + Fondo</translation>
     </message>
 
     <message>
       <source>Mask as Bottom Layer</source>
-      <translation>Le masque comme couche inférieure</translation>
+      <translation>La máscara como capa inferior</translation>
     </message>
 
     <message>
       <source>Mask By</source>
-      <translation>Masquer par</translation>
+      <translation>Máscara de</translation>
     </message>
 
     <message>
       <source>Mask Color</source>
-      <translation>Couleur du masque</translation>
+      <translation>Color de la máscara</translation>
     </message>
 
     <message>
       <source>Mask Contrast</source>
-      <translation>Contraste des masques</translation>
+      <translation>Contraste de la máscara</translation>
     </message>
 
     <message>
       <source>Mask Creator</source>
-      <translation>Créateur de masques</translation>
+      <translation>Creador de la máscara</translation>
     </message>
 
     <message>
       <source>Mask Dilation</source>
-      <translation>Dilatation du masque</translation>
+      <translation>Dilatación de la máscara</translation>
     </message>
 
     <message>
       <source>Mask Size</source>
-      <translation>Taille du masque</translation>
+      <translation>Tamaño de la máscara</translation>
     </message>
 
     <message>
       <source>Mask Smoothness (%)</source>
-      <translation>Lissage des masques (%)</translation>
+      <translation>Suavidad de la máscara (%)</translation>
     </message>
 
     <message>
       <source>Mask Type</source>
-      <translation>Type de masque</translation>
+      <translation>Tipo de máscara</translation>
     </message>
 
     <message>
       <source>Masked Image</source>
-      <translation>Image masquée</translation>
+      <translation>Imagen Enmascarada</translation>
     </message>
 
     <message>
       <source>Masking</source>
-      <translation>Masquage</translation>
+      <translation>Enmascaramiento</translation>
     </message>
 
     <message>
       <source>Match Colors With</source>
-      <translation>Faire correspondre les couleurs avec</translation>
+      <translation>Combina los colores con</translation>
     </message>
 
     <message>
       <source>Matching Precision (Smaller Is Faster)</source>
-      <translation>Précision de l&apos;appariement (plus petit, c&apos;est plus rapide)</translation>
+      <translation>Precisión de la coincidencia (Más pequeño es más rápido)</translation>
     </message>
 
     <message>
       <source>Math Symbols</source>
-      <translation>Symboles mathématiques</translation>
+      <translation>Símbolos matemáticos</translation>
     </message>
 
     <message>
       <source>Matrix</source>
-      <translation>Matrice</translation>
+      <translation>Matriz</translation>
     </message>
 
     <message>
       <source>Max Angle</source>
-      <translation>Angle maximal</translation>
+      <translation>Ángulo máximo</translation>
     </message>
 
     <message>
       <source>Max Angle Deviation (deg)</source>
-      <translation>Déviation angulaire maximale (deg)</translation>
+      <translation>Desviación del ángulo máximo (deg)</translation>
     </message>
 
     <message>
       <source>Max Area</source>
-      <translation>Zone Max</translation>
+      <translation>Área máxima</translation>
     </message>
 
     <message>
       <source>Max Curve</source>
-      <translation>Courbe Max</translation>
+      <translation>Curva Max</translation>
     </message>
 
     <message>
       <source>Max Cut (%)</source>
-      <translation>Réduction maximale (%)</translation>
+      <translation>Corte máximo (%)</translation>
     </message>
 
     <message>
       <source>Max Iterations</source>
-      <translation>Itérations Max</translation>
+      <translation>Iteraciones máximas</translation>
     </message>
 
     <message>
       <source>Max Length (%)</source>
-      <translation>Longueur maximale (%)</translation>
+      <translation>Longitud máxima (%)</translation>
     </message>
 
     <message>
       <source>Max Offset (%)</source>
-      <translation>Compensation maximale (%)</translation>
+      <translation>Compensación máxima (%)</translation>
     </message>
 
     <message>
       <source>Max Radius</source>
-      <translation>Rayon maximal</translation>
+      <translation>Radio máximo</translation>
     </message>
 
     <message>
       <source>Max Threshold</source>
-      <translation>Seuil maximum</translation>
+      <translation>Umbral máximo</translation>
     </message>
 
     <message>
       <source>Maximal Area</source>
-      <translation>Surface maximale</translation>
+      <translation>Área máxima</translation>
     </message>
 
     <message>
       <source>Maximal Color Saturation</source>
-      <translation>Saturation maximale des couleurs</translation>
+      <translation>Máxima saturación de color</translation>
     </message>
 
     <message>
       <source>Maximal Highlights</source>
-      <translation>Points forts maximums</translation>
+      <translation>Máximos resultados</translation>
     </message>
 
     <message>
       <source>Maximal Radius</source>
-      <translation>Rayon maximal</translation>
+      <translation>Radio máximo</translation>
     </message>
 
     <message>
       <source>Maximal Seams per Iteration (%)</source>
-      <translation>Nombre maximal de coutures par itération (%)</translation>
+      <translation>Costuras máximas por iteración (%)</translation>
     </message>
 
     <message>
       <source>Maximal Size</source>
-      <translation>Taille maximale</translation>
+      <translation>Tamaño máximo</translation>
     </message>
 
     <message>
       <source>Maximal Value</source>
-      <translation>Valeur maximale</translation>
+      <translation>Valor máximo</translation>
+    </message>
+
+    <message>
+      <source>Maximum</source>
+      <translation>Máximo</translation>
     </message>
 
     <message>
       <source>Maximum Dimension</source>
-      <translation>Dimension maximale</translation>
+      <translation>Dimensión máxima</translation>
     </message>
 
     <message>
       <source>Maximum Image Size</source>
-      <translation>Taille maximale de l&apos;image</translation>
+      <translation>Tamaño máximo de la imagen</translation>
     </message>
 
     <message>
       <source>Maximum Number of Image Colors</source>
-      <translation>Nombre maximum de couleurs d&apos;image</translation>
+      <translation>Número máximo de colores de la imagen</translation>
     </message>
 
     <message>
       <source>Maximum Number of Output Layers</source>
-      <translation>Nombre maximum de couches de sortie</translation>
+      <translation>Número máximo de capas de salida</translation>
     </message>
 
     <message>
       <source>Maximum Red:Blue Ratio in the Fringe</source>
-      <translation>Ratio maximum rouge/bleu dans la frange</translation>
+      <translation>Máxima proporción rojo-azul en el margen</translation>
     </message>
 
     <message>
       <source>Maximum Saturation</source>
-      <translation>Saturation maximale</translation>
+      <translation>Saturación máxima</translation>
     </message>
 
     <message>
       <source>Maximum Size Factor</source>
-      <translation>Facteur de taille maximale</translation>
+      <translation>Factor de tamaño máximo</translation>
     </message>
 
     <message>
       <source>Maximum Value</source>
-      <translation>Valeur maximale</translation>
+      <translation>Valor máximo</translation>
+    </message>
+
+    <message>
+      <source>Maze</source>
+      <translation>Laberinto</translation>
     </message>
 
     <message>
       <source>Maze Type</source>
-      <translation>Type de labyrinthe</translation>
+      <translation>Tipo de laberinto</translation>
     </message>
 
     <message>
       <source>Mean Color</source>
-      <translation>Couleur moyenne</translation>
+      <translation>Color medio</translation>
     </message>
 
     <message>
       <source>Mean Curvature</source>
-      <translation>Courbure moyenne</translation>
+      <translation>Curvatura media</translation>
     </message>
 
     <message>
       <source>Median</source>
-      <translation>Médiane</translation>
+      <translation>Mediana</translation>
     </message>
 
     <message>
       <source>Median (beware: Memory-Consuming!)</source>
-      <translation>Médiane (attention : consommation de mémoire !)</translation>
+      <translation>Mediana (cuidado: ¡consumo de memoria!)</translation>
     </message>
 
     <message>
       <source>Median Radius</source>
-      <translation>Rayon médian</translation>
+      <translation>Radio medio</translation>
     </message>
 
     <message>
       <source>Medium</source>
-      <translation>Moyen</translation>
+      <translation>Medio</translation>
     </message>
 
     <message>
       <source>Medium 3</source>
-      <translation>Moyen 3</translation>
+      <translation>Medio 3</translation>
     </message>
 
     <message>
       <source>Medium Details Smoothness</source>
-      <translation>Moyenne Détails Lisse</translation>
+      <translation>Detalles medios Suavidad</translation>
     </message>
 
     <message>
       <source>Medium Details Threshold</source>
-      <translation>Seuil de détail moyen</translation>
+      <translation>Detalles medios Umbral</translation>
     </message>
 
     <message>
       <source>Medium Frequency Layer</source>
-      <translation>Couche moyenne fréquence</translation>
+      <translation>Capa de frecuencia media</translation>
     </message>
 
     <message>
       <source>Medium Scale (Original)</source>
-      <translation>Moyenne échelle (Original)</translation>
+      <translation>Escala media (original)</translation>
     </message>
 
     <message>
       <source>Medium Scale (Smoothed)</source>
-      <translation>Moyenne échelle (lissée)</translation>
+      <translation>Escala media (Suavizado)</translation>
     </message>
 
     <message>
       <source>Memories</source>
-      <translation>Mémoires</translation>
+      <translation>Recuerdos</translation>
     </message>
 
     <message>
       <source>Merge Brightness / Colors</source>
-      <translation>Fusionner la luminosité / les couleurs</translation>
+      <translation>Fusionar brillo / colores</translation>
     </message>
 
     <message>
       <source>Merge Layers?</source>
-      <translation>Fusionner les couches ?</translation>
+      <translation>¿Fusionar capas?</translation>
     </message>
 
     <message>
       <source>Merging Mode</source>
-      <translation>Mode de fusion</translation>
+      <translation>Modo de fusión</translation>
     </message>
 
     <message>
       <source>Merging Option</source>
-      <translation>Option de fusion</translation>
+      <translation>Opción de fusión</translation>
     </message>
 
     <message>
       <source>Merging Steps</source>
-      <translation>Étapes de la fusion</translation>
+      <translation>Fusión de pasos</translation>
     </message>
 
     <message>
       <source>Mess with Bits</source>
-      <translation>Les petits bobards</translation>
-    </message>
-
-    <message>
-      <source>Metal</source>
-      <translation>Métal</translation>
+      <translation>Meterse con las mordeduras</translation>
     </message>
 
     <message>
       <source>Metallic Look</source>
-      <translation>Aspect métallique</translation>
+      <translation>Mirada metálica</translation>
     </message>
 
     <message>
       <source>Method</source>
-      <translation>Méthode</translation>
+      <translation>Método</translation>
     </message>
 
     <message>
       <source>Metric</source>
-      <translation>Métrique</translation>
+      <translation>Métrico</translation>
+    </message>
+
+    <message>
+      <source>Metropolis</source>
+      <translation>Metrópolis</translation>
     </message>
 
     <message>
       <source>Micro/macro Details  Adjusted</source>
-      <translation>Détails micro/macro ajustés</translation>
+      <translation>Detalles de micro/macro ajustados</translation>
     </message>
 
     <message>
       <source>Mid Grey</source>
-      <translation>Gris moyen</translation>
+      <translation>Gris medio</translation>
     </message>
 
     <message>
       <source>Mid Noise</source>
-      <translation>Bruit moyen</translation>
-    </message>
-
-    <message>
-      <source>Mid Offset</source>
-      <translation>Compensation moyenne</translation>
+      <translation>Ruido medio</translation>
     </message>
 
     <message>
       <source>Mid Tone Contrast</source>
-      <translation>Contraste des tons moyens</translation>
+      <translation>Contraste de los tonos medios</translation>
     </message>
 
     <message>
       <source>Mid-Dark Grey</source>
-      <translation>Gris foncé moyen</translation>
+      <translation>Gris oscuro medio</translation>
     </message>
 
     <message>
       <source>Mid-Light Grey</source>
-      <translation>Gris clair moyen</translation>
+      <translation>Gris de media luz</translation>
     </message>
 
     <message>
       <source>Middle Grey</source>
-      <translation>Gris moyen</translation>
+      <translation>Gris medio</translation>
     </message>
 
     <message>
       <source>Middle Scale</source>
-      <translation>Échelle moyenne</translation>
+      <translation>Escala media</translation>
     </message>
 
     <message>
       <source>Midpoint</source>
-      <translation>Point médian</translation>
+      <translation>Punto medio</translation>
     </message>
 
     <message>
       <source>Midtones Brightness</source>
-      <translation>Luminosité des tons moyens</translation>
+      <translation>Brillo de los tonos medios</translation>
     </message>
 
     <message>
       <source>Midtones Color Intensity</source>
-      <translation>Intensité des couleurs des tons moyens</translation>
+      <translation>Intensidad de color de los tonos medios</translation>
+    </message>
+
+    <message>
+      <source>Midtones Hue</source>
+      <translation>Tono de tonos medios</translation>
     </message>
 
     <message>
       <source>Mighty Details</source>
-      <translation>De puissants détails</translation>
+      <translation>Detalles poderosos</translation>
     </message>
 
     <message>
       <source>Min Angle Deviation (deg)</source>
-      <translation>Déviation angulaire minimale (deg)</translation>
+      <translation>Desviación del ángulo mínimo (deg)</translation>
     </message>
 
     <message>
       <source>Min Area %</source>
-      <translation>Min Superficie % % de la superficie</translation>
+      <translation>Área mínima</translation>
     </message>
 
     <message>
       <source>Min Cut (%)</source>
-      <translation>Réduction minimale (%)</translation>
+      <translation>Corte mínimo (%)</translation>
     </message>
 
     <message>
       <source>Min Length (%)</source>
-      <translation>Durée minimale (%)</translation>
+      <translation>Longitud mínima (%)</translation>
     </message>
 
     <message>
       <source>Min Offset (%)</source>
-      <translation>Compensation minimale (%)</translation>
+      <translation>Compensación mínima (%)</translation>
     </message>
 
     <message>
       <source>Min Radius</source>
-      <translation>Rayon min</translation>
+      <translation>Radio mínimo</translation>
     </message>
 
     <message>
       <source>Min Threshold</source>
-      <translation>Seuil minimal</translation>
+      <translation>Umbral mínimo</translation>
     </message>
 
     <message>
       <source>Mineral Mosaic</source>
-      <translation>Mosaïque minérale</translation>
+      <translation>Mosaico mineral</translation>
     </message>
 
     <message>
       <source>Minesweeper</source>
-      <translation>Dragueur de mines</translation>
+      <translation>Barredor de minas</translation>
     </message>
 
     <message>
       <source>Minimal Area</source>
-      <translation>Surface minimale</translation>
+      <translation>Área mínima</translation>
     </message>
 
     <message>
       <source>Minimal Area (%)</source>
-      <translation>Surface minimale (%)</translation>
+      <translation>Área mínima (%)</translation>
     </message>
 
     <message>
       <source>Minimal Color Intensity</source>
-      <translation>Intensité minimale des couleurs</translation>
+      <translation>Mínima intensidad de color</translation>
     </message>
 
     <message>
       <source>Minimal Highlights</source>
-      <translation>Points forts minimaux</translation>
+      <translation>Mínimos destacados</translation>
     </message>
 
     <message>
       <source>Minimal Path</source>
-      <translation>Chemin minimal</translation>
+      <translation>Camino mínimo</translation>
     </message>
 
     <message>
       <source>Minimal Radius</source>
-      <translation>Rayon minimal</translation>
+      <translation>Radio mínimo</translation>
     </message>
 
     <message>
       <source>Minimal Region Area</source>
-      <translation>Région minimale</translation>
+      <translation>Área de la región mínima</translation>
     </message>
 
     <message>
       <source>Minimal Scale (%)</source>
-      <translation>Échelle minimale (%)</translation>
+      <translation>Escala mínima (%)</translation>
     </message>
 
     <message>
       <source>Minimal Shape Area</source>
-      <translation>Surface de forme minimale</translation>
+      <translation>Área de forma mínima</translation>
     </message>
 
     <message>
       <source>Minimal Size</source>
-      <translation>Taille minimale</translation>
+      <translation>Tamaño mínimo</translation>
     </message>
 
     <message>
       <source>Minimal Size (%)</source>
-      <translation>Taille minimale (%)</translation>
+      <translation>Tamaño mínimo (%)</translation>
     </message>
 
     <message>
       <source>Minimal Stroke Length</source>
-      <translation>Longueur minimale de la course</translation>
+      <translation>Longitud mínima de la apoplejía</translation>
     </message>
 
     <message>
       <source>Minimal Value</source>
-      <translation>Valeur minimale</translation>
+      <translation>Valor mínimo</translation>
     </message>
 
     <message>
       <source>Minimalist Caffeination</source>
-      <translation>La caféination minimaliste</translation>
+      <translation>La cafeína minimalista</translation>
     </message>
 
     <message>
       <source>Minimum</source>
-      <translation>Au minimum</translation>
+      <translation>Mínimo</translation>
     </message>
 
     <message>
       <source>Minimum Brightness</source>
-      <translation>Luminosité minimale</translation>
+      <translation>Brillo mínimo</translation>
     </message>
 
     <message>
       <source>Minimum Red:Blue Ratio in the Fringe</source>
-      <translation>Ratio minimum rouge/bleu en marge</translation>
+      <translation>Mínima proporción rojo-azul en el margen</translation>
     </message>
 
     <message>
       <source>Mirror</source>
-      <translation>Miroir</translation>
+      <translation>Espejo</translation>
     </message>
 
     <message>
       <source>Mirror Effect</source>
-      <translation>Effet miroir</translation>
+      <translation>Efecto espejo</translation>
     </message>
 
     <message>
       <source>Mirror X</source>
-      <translation>Miroir X</translation>
+      <translation>Espejo X</translation>
     </message>
 
     <message>
       <source>Mirror Y</source>
-      <translation>Miroir Y</translation>
+      <translation>Espejo Y</translation>
     </message>
 
     <message>
-      <source>Mirror-XY</source>
-      <translation>Miroir-XY</translation>
+      <source>Mix</source>
+      <translation>Mezcla</translation>
     </message>
 
     <message>
       <source>Mixed Mode</source>
-      <translation>Mode mixte</translation>
+      <translation>Modo mixto</translation>
     </message>
 
     <message>
       <source>Mixer [CMYK]</source>
-      <translation>Mélangeur [CMYK]</translation>
+      <translation>Mezclador [CMYK]</translation>
     </message>
 
     <message>
       <source>Mixer [HSV]</source>
-      <translation>Mélangeur [HSV]</translation>
+      <translation>Mezclador [HSV]</translation>
     </message>
 
     <message>
       <source>Mixer [Lab]</source>
-      <translation>Mélangeur [Labo]</translation>
+      <translation>Mezclador [Laboratorio]</translation>
     </message>
 
     <message>
       <source>Mixer [PCA]</source>
-      <translation>Mélangeur [PCA]</translation>
+      <translation>Mezclador [PCA]</translation>
     </message>
 
     <message>
       <source>Mixer [RGB]</source>
-      <translation>Mélangeur [RGB]</translation>
+      <translation>Mezclador [RGB]</translation>
     </message>
 
     <message>
       <source>Mixer [YCbCr]</source>
-      <translation>Mélangeur [YCbCr]</translation>
+      <translation>Mezclador [YCbCr]</translation>
     </message>
 
     <message>
       <source>Mixer Mode</source>
-      <translation>Mode Mixer</translation>
+      <translation>Modo mezclador</translation>
     </message>
 
     <message>
       <source>Mixer Style</source>
-      <translation>Style du mixeur</translation>
+      <translation>Estilo mezclador</translation>
+    </message>
+
+    <message>
+      <source>Mode</source>
+      <translation>Modo</translation>
     </message>
 
     <message>
       <source>Modern Film</source>
-      <translation>Film moderne</translation>
+      <translation>Película moderna</translation>
     </message>
 
     <message>
       <source>Modulo Value</source>
-      <translation>Valeur modulo</translation>
+      <translation>Valor del módulo</translation>
+    </message>
+
+    <message>
+      <source>Moir&amp;eacute; Animation</source>
+      <translation>Moir&amp;eacutea; Animación</translation>
     </message>
 
     <message>
       <source>Moire Removal</source>
-      <translation>Élimination des moirés</translation>
+      <translation>Eliminación del moiré</translation>
     </message>
 
     <message>
       <source>Moire Removal Method</source>
-      <translation>Méthode d&apos;élimination du moiré</translation>
+      <translation>Método de eliminación de mohos</translation>
     </message>
 
     <message>
       <source>Mondrian: Composition in Red-Yellow-Blue</source>
-      <translation>Mondrian : Composition en rouge-jaune-bleu</translation>
+      <translation>Mondrian: Composición en Rojo-Amarillo-Azul</translation>
     </message>
 
     <message>
       <source>Mondrian: Evening; Red Tree</source>
-      <translation>Mondrian : Soirée; Arbre rouge</translation>
+      <translation>Noche; Árbol rojo</translation>
     </message>
 
     <message>
       <source>Mondrian: Gray Tree</source>
-      <translation>Mondrian : L&apos;arbre gris</translation>
+      <translation>Mondrian: Árbol gris</translation>
     </message>
 
     <message>
       <source>Monet: San Giorgio Maggiore at Dusk</source>
-      <translation>Monet : San Giorgio Maggiore au crépuscule</translation>
+      <translation>Monet: San Giorgio Maggiore al anochecer</translation>
     </message>
 
     <message>
       <source>Monet: Water-Lily Pond</source>
-      <translation>Monet : l&apos;étang aux nénuphars</translation>
+      <translation>Monet: Estanque de nenúfares</translation>
     </message>
 
     <message>
       <source>Monet: Wheatstacks - End of Summer</source>
-      <translation>Monet : Les meules de blé - La fin de l&apos;été</translation>
+      <translation>Monet: Wheatstacks - Fin del verano</translation>
     </message>
 
     <message>
       <source>Monkey</source>
-      <translation>Singe</translation>
+      <translation>Mono</translation>
     </message>
 
     <message>
       <source>Mono Tinted</source>
-      <translation>Mono teinté</translation>
+      <translation>Mono Teñido</translation>
     </message>
 
     <message>
       <source>Mono-Directional</source>
-      <translation>Mono-directionnel</translation>
+      <translation>Mono-Direccional</translation>
+    </message>
+
+    <message>
+      <source>Monochrome</source>
+      <translation>Monocromo</translation>
+    </message>
+
+    <message>
+      <source>Monochrome 1</source>
+      <translation>Monocromo 1</translation>
+    </message>
+
+    <message>
+      <source>Monochrome 2</source>
+      <translation>Monocromo 2</translation>
+    </message>
+
+    <message>
+      <source>Montage</source>
+      <translation>Montaje</translation>
     </message>
 
     <message>
       <source>Montage Type</source>
-      <translation>Type de montage</translation>
+      <translation>Tipo de montaje</translation>
+    </message>
+
+    <message>
+      <source>Moonlight</source>
+      <translation>Luz de Luna</translation>
     </message>
 
     <message>
       <source>Moonlight 01</source>
-      <translation>Clair de lune 01</translation>
+      <translation>Luz de Luna 01</translation>
     </message>
 
     <message>
       <source>Moonrise</source>
-      <translation>Lever de lune</translation>
+      <translation>Salida de la Luna</translation>
     </message>
 
     <message>
       <source>Morning 6</source>
-      <translation>Matin 6</translation>
+      <translation>Mañana 6...</translation>
     </message>
 
     <message>
       <source>Morph [Interactive]</source>
-      <translation>Morph [Interactif]</translation>
+      <translation>Morph [Interactivo]</translation>
     </message>
 
     <message>
       <source>Morph Layers</source>
-      <translation>Couches morphologiques</translation>
+      <translation>Capas de morfología</translation>
     </message>
 
     <message>
       <source>Morphological - Fastest Sharpest Output</source>
-      <translation>Morphologique - Le résultat le plus rapide</translation>
+      <translation>Morfológico - La salida más rápida y aguda</translation>
     </message>
 
     <message>
       <source>Morphological Closing</source>
-      <translation>Clôture morphologique</translation>
+      <translation>Cierre morfológico</translation>
     </message>
 
     <message>
       <source>Morphological Filter</source>
-      <translation>Filtre morphologique</translation>
+      <translation>Filtro morfológico</translation>
     </message>
 
     <message>
       <source>Morphology Painting</source>
-      <translation>Peinture morphologique</translation>
+      <translation>Morfología Pintura</translation>
     </message>
 
     <message>
       <source>Morphology Strength</source>
-      <translation>La force de la morphologie</translation>
+      <translation>Morfología Fuerza</translation>
     </message>
 
     <message>
       <source>Morroco 16</source>
-      <translation>Maroc 16</translation>
+      <translation>Marruecos 16</translation>
     </message>
 
     <message>
       <source>Mosaic</source>
-      <translation>Mosaïque</translation>
+      <translation>Mosaico</translation>
     </message>
 
     <message>
       <source>Most</source>
-      <translation>La plupart</translation>
+      <translation>La mayoría</translation>
     </message>
 
     <message>
       <source>Mostly Blue</source>
-      <translation>Principalement bleu</translation>
+      <translation>Mayormente Azul</translation>
     </message>
 
     <message>
       <source>Motion Analyzer</source>
-      <translation>Analyseur de mouvement</translation>
+      <translation>Analizador de movimiento</translation>
     </message>
 
     <message>
       <source>Motion-Compensated</source>
-      <translation>Motion compensée</translation>
-    </message>
-
-    <message>
-      <source>Moviz 1</source>
-      <translation>Film 1</translation>
-    </message>
-
-    <message>
-      <source>Moviz 10</source>
-      <translation>Film 10</translation>
-    </message>
-
-    <message>
-      <source>Moviz 11</source>
-      <translation>Film 11</translation>
-    </message>
-
-    <message>
-      <source>Moviz 13</source>
-      <translation>Film 13</translation>
-    </message>
-
-    <message>
-      <source>Moviz 14</source>
-      <translation>Film 14</translation>
-    </message>
-
-    <message>
-      <source>Moviz 15</source>
-      <translation>Film 15</translation>
-    </message>
-
-    <message>
-      <source>Moviz 16</source>
-      <translation>Film 16</translation>
-    </message>
-
-    <message>
-      <source>Moviz 17</source>
-      <translation>Film 17</translation>
-    </message>
-
-    <message>
-      <source>Moviz 19</source>
-      <translation>Film 19</translation>
-    </message>
-
-    <message>
-      <source>Moviz 2</source>
-      <translation>Film 2</translation>
-    </message>
-
-    <message>
-      <source>Moviz 20</source>
-      <translation>Film 20</translation>
-    </message>
-
-    <message>
-      <source>Moviz 22</source>
-      <translation>Film 22</translation>
-    </message>
-
-    <message>
-      <source>Moviz 23</source>
-      <translation>Film 23</translation>
-    </message>
-
-    <message>
-      <source>Moviz 26</source>
-      <translation>Film 26</translation>
-    </message>
-
-    <message>
-      <source>Moviz 27</source>
-      <translation>Film 27</translation>
-    </message>
-
-    <message>
-      <source>Moviz 28</source>
-      <translation>Film 28</translation>
-    </message>
-
-    <message>
-      <source>Moviz 29</source>
-      <translation>Film 29</translation>
-    </message>
-
-    <message>
-      <source>Moviz 3</source>
-      <translation>Film 3</translation>
-    </message>
-
-    <message>
-      <source>Moviz 34</source>
-      <translation>Film 34</translation>
-    </message>
-
-    <message>
-      <source>Moviz 35</source>
-      <translation>Film 35</translation>
-    </message>
-
-    <message>
-      <source>Moviz 4</source>
-      <translation>Film 4</translation>
-    </message>
-
-    <message>
-      <source>Moviz 5</source>
-      <translation>Film 5</translation>
-    </message>
-
-    <message>
-      <source>Moviz 8</source>
-      <translation>Film 8</translation>
-    </message>
-
-    <message>
-      <source>Moviz 9</source>
-      <translation>Film 9</translation>
+      <translation>Movimiento compensado</translation>
     </message>
 
     <message>
       <source>Much</source>
-      <translation>Beaucoup</translation>
-    </message>
-
-    <message>
-      <source>Much Blue</source>
-      <translation>Beaucoup de bleu</translation>
+      <translation>Mucho</translation>
     </message>
 
     <message>
       <source>Much Green</source>
-      <translation>Beaucoup de vert</translation>
+      <translation>Mucho verde</translation>
     </message>
 
     <message>
       <source>Much Red</source>
-      <translation>Beaucoup de rouge</translation>
+      <translation>Mucho rojo</translation>
     </message>
 
     <message>
       <source>Multi-Layer Etch</source>
-      <translation>Gravure multicouche</translation>
+      <translation>Grabado multicapa</translation>
     </message>
 
     <message>
       <source>Multiple Colored Shapes Over Transp. BG</source>
-      <translation>Formes multicolores sur le Transp. BG</translation>
+      <translation>Múltiples formas de color sobre el transporte. BG</translation>
     </message>
 
     <message>
       <source>Multiple Layers</source>
-      <translation>Couches multiples</translation>
+      <translation>Múltiples capas</translation>
     </message>
 
     <message>
       <source>Multiplier</source>
-      <translation>Multiplicateur</translation>
+      <translation>Multiplicador</translation>
     </message>
 
     <message>
       <source>Multiply</source>
-      <translation>Multiplier</translation>
+      <translation>Multiplicar</translation>
     </message>
 
     <message>
       <source>Multiscale Operator</source>
-      <translation>Opérateur multi-échelle</translation>
+      <translation>Operador multiescala</translation>
     </message>
 
     <message>
       <source>Munch: The Scream</source>
-      <translation>Munch : Le cri</translation>
+      <translation>Munch: El grito</translation>
     </message>
 
     <message>
       <source>Mute Shift</source>
-      <translation>Changement de silence</translation>
+      <translation>Cambio de silencio</translation>
     </message>
 
     <message>
       <source>Muted 01</source>
-      <translation>Muet 01</translation>
+      <translation>Silenciado 01</translation>
     </message>
 
     <message>
       <source>Muted Fade</source>
-      <translation>Fondu enchaîné</translation>
-    </message>
-
-    <message>
-      <source>Mystic Purple Sunset</source>
-      <translation>Coucher de soleil violet mystique</translation>
+      <translation>Desvanecimiento apagado</translation>
     </message>
 
     <message>
       <source>Name</source>
-      <translation>Nom</translation>
+      <translation>Nombre</translation>
     </message>
 
     <message>
       <source>Natural (vivid)</source>
-      <translation>Naturel (vivant)</translation>
+      <translation>Natural (vívido)</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-1</source>
-      <translation>Nature et vie sauvage - 1</translation>
+      <translation>Naturaleza y Vida Silvestre-1</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-10</source>
-      <translation>Nature et vie sauvage - 10</translation>
+      <translation>Naturaleza y Vida Silvestre-10</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-2</source>
-      <translation>Nature et vie sauvage - 2</translation>
+      <translation>Naturaleza y Vida Silvestre-2</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-3</source>
-      <translation>Nature et vie sauvage - 3</translation>
+      <translation>Naturaleza y Vida Silvestre-3</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-4</source>
-      <translation>Nature et vie sauvage - 4</translation>
+      <translation>Naturaleza y Vida Silvestre-4</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-5</source>
-      <translation>Nature et vie sauvage - 5</translation>
+      <translation>Naturaleza y Vida Silvestre-5</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-6</source>
-      <translation>Nature et vie sauvage - 6</translation>
+      <translation>Naturaleza y Vida Silvestre-6</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-7</source>
-      <translation>Nature et vie sauvage - 7</translation>
+      <translation>Naturaleza y Vida Silvestre-7</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-8</source>
-      <translation>Nature et vie sauvage - 8</translation>
+      <translation>Naturaleza y Vida Silvestre-8</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-9</source>
-      <translation>Nature et vie sauvage - 9</translation>
+      <translation>Naturaleza y Vida Silvestre-9</translation>
     </message>
 
     <message>
       <source>Nb Circles Surrounding</source>
-      <translation>Nb Cercles environnants</translation>
+      <translation>Nb Círculos alrededor</translation>
     </message>
 
     <message>
       <source>Near Black</source>
-      <translation>Près du noir</translation>
+      <translation>Cerca de Black</translation>
     </message>
 
     <message>
       <source>Nearest</source>
-      <translation>Le plus proche</translation>
+      <translation>El más cercano</translation>
     </message>
 
     <message>
       <source>Nearest Neighbor</source>
-      <translation>Voisin le plus proche</translation>
+      <translation>El vecino más cercano</translation>
     </message>
 
     <message>
       <source>Neat Merge</source>
-      <translation>Fusion soignée</translation>
+      <translation>Fusión limpia</translation>
     </message>
 
     <message>
       <source>Nebulous</source>
-      <translation>Nébuleuse</translation>
+      <translation>Nebuloso</translation>
     </message>
 
     <message>
       <source>Negate</source>
-      <translation>Négocier</translation>
+      <translation>Negar</translation>
     </message>
 
     <message>
       <source>Negation</source>
-      <translation>Négation</translation>
+      <translation>Negación</translation>
     </message>
 
     <message>
       <source>Negative</source>
-      <translation>Négatif</translation>
+      <translation>Negativo</translation>
     </message>
 
     <message>
       <source>Negative [Color] (13)</source>
-      <translation>Négatif [Couleur] (13)</translation>
+      <translation>Negativo [Color] (13)</translation>
     </message>
 
     <message>
       <source>Negative [New] (39)</source>
-      <translation>Négatif [Nouveau] (39)</translation>
+      <translation>Negativo [Nuevo] (39)</translation>
     </message>
 
     <message>
       <source>Negative [Old] (44)</source>
-      <translation>Négatif [Ancien] (44)</translation>
+      <translation>Negativo [Antiguo] (44)</translation>
     </message>
 
     <message>
       <source>Negative Color Abstraction</source>
-      <translation>Abstraction de couleur négative</translation>
+      <translation>Abstracción de color negativo</translation>
     </message>
 
     <message>
       <source>Negative Colors</source>
-      <translation>Couleurs négatives</translation>
+      <translation>Colores negativos</translation>
     </message>
 
     <message>
       <source>Negative Effect</source>
-      <translation>Effet négatif</translation>
+      <translation>Efecto negativo</translation>
     </message>
 
     <message>
       <source>Neighborhood Size (%)</source>
-      <translation>Taille du quartier (%)</translation>
+      <translation>Tamaño del vecindario (%)</translation>
     </message>
 
     <message>
       <source>Neighborhood Smoothness</source>
-      <translation>La douceur du voisinage</translation>
+      <translation>Suavidad del vecindario</translation>
+    </message>
+
+    <message>
+      <source>Nemesis</source>
+      <translation>Némesis</translation>
     </message>
 
     <message>
       <source>Neon 770</source>
-      <translation>Néon 770</translation>
+      <translation>Neón 770</translation>
     </message>
 
     <message>
       <source>Neon Lightning</source>
-      <translation>Foudre au néon</translation>
+      <translation>Relámpago de neón</translation>
     </message>
 
     <message>
       <source>Neutral Color</source>
-      <translation>Couleur neutre</translation>
+      <translation>Color neutro</translation>
     </message>
 
     <message>
       <source>Neutral Teal Orange</source>
-      <translation>Orange sarcelle neutre</translation>
+      <translation>Naranja neutro</translation>
     </message>
 
     <message>
       <source>Neutral Warm Fade</source>
-      <translation>Fondu neutre et chaud</translation>
+      <translation>Desvanecimiento del calor neutral</translation>
     </message>
 
     <message>
       <source>New Curves [Interactive]</source>
-      <translation>Nouvelles courbes [Interactif]</translation>
+      <translation>Nuevas Curvas [Interactivo]</translation>
     </message>
 
     <message>
       <source>Newspaper</source>
-      <translation>Journal</translation>
+      <translation>Periódico</translation>
     </message>
 
     <message>
       <source>Night 01</source>
-      <translation>Nuit 01</translation>
+      <translation>Noche 01</translation>
+    </message>
+
+    <message>
+      <source>Night Blade 4</source>
+      <translation>Cuchilla Nocturna 4</translation>
     </message>
 
     <message>
       <source>Night From Day</source>
-      <translation>Nuit du jour</translation>
+      <translation>Noche desde el día</translation>
     </message>
 
     <message>
       <source>Night King 141</source>
-      <translation>Roi de la nuit 141</translation>
+      <translation>Rey de la Noche 141</translation>
     </message>
 
     <message>
       <source>Night Spy</source>
-      <translation>Espion de nuit</translation>
+      <translation>Espía nocturno</translation>
     </message>
 
     <message>
       <source>Nine Layers</source>
-      <translation>Neuf couches</translation>
+      <translation>Nueve capas</translation>
     </message>
 
     <message>
       <source>No Masking</source>
-      <translation>Pas de masquage</translation>
+      <translation>No hay máscaras</translation>
     </message>
 
     <message>
       <source>No Recovery</source>
-      <translation>Pas de reprise</translation>
+      <translation>No hay recuperación</translation>
     </message>
 
     <message>
       <source>No Rescaling</source>
-      <translation>Pas de redimensionnement</translation>
+      <translation>No hay reescalado</translation>
     </message>
 
     <message>
       <source>No Transparency</source>
-      <translation>Pas de transparence</translation>
+      <translation>No hay transparencia</translation>
     </message>
 
     <message>
       <source>Noise</source>
-      <translation>Bruit</translation>
+      <translation>Ruido</translation>
     </message>
 
     <message>
       <source>Noise [Additive]</source>
-      <translation>Bruit [Additif]</translation>
+      <translation>Ruido [Aditivo]</translation>
     </message>
 
     <message>
       <source>Noise [Perlin]</source>
-      <translation>Bruit [Perlin]</translation>
+      <translation>Ruido [Perlin]</translation>
     </message>
 
     <message>
       <source>Noise [Spread]</source>
-      <translation>Bruit [propagation]</translation>
+      <translation>Ruido [Propagación]</translation>
     </message>
 
     <message>
       <source>Noise A</source>
-      <translation>Bruit A</translation>
+      <translation>Ruido A</translation>
     </message>
 
     <message>
       <source>Noise B</source>
-      <translation>Bruit B</translation>
+      <translation>Ruido B</translation>
     </message>
 
     <message>
       <source>Noise C</source>
-      <translation>Bruit C</translation>
+      <translation>Ruido C</translation>
     </message>
 
     <message>
       <source>Noise D</source>
-      <translation>Bruit D</translation>
+      <translation>Ruido D</translation>
     </message>
 
     <message>
       <source>Noise Level</source>
-      <translation>Niveau de bruit</translation>
+      <translation>Nivel de ruido</translation>
     </message>
 
     <message>
       <source>Noise Scale</source>
-      <translation>Échelle de bruit</translation>
+      <translation>Escala de ruido</translation>
     </message>
 
     <message>
       <source>Noise Type</source>
-      <translation>Type de bruit</translation>
+      <translation>Tipo de ruido</translation>
     </message>
 
     <message>
       <source>Non / No</source>
-      <translation>Non / Non</translation>
+      <translation>No / No</translation>
     </message>
 
     <message>
       <source>Non-Linearity</source>
-      <translation>Non-linéarité</translation>
+      <translation>No linealidad</translation>
     </message>
 
     <message>
       <source>Non-Rigid</source>
-      <translation>Non-Rigide</translation>
+      <translation>No Rígido</translation>
     </message>
 
     <message>
       <source>None</source>
-      <translation>Aucune</translation>
+      <translation>Ninguno</translation>
     </message>
 
     <message>
       <source>None (Allows Multi-Layers)</source>
-      <translation>Aucune (permet les couches multiples)</translation>
+      <translation>Ninguno (permite multicapas)</translation>
     </message>
 
     <message>
       <source>None- Skip</source>
-      <translation>Non- Sauter</translation>
+      <translation>No... Saltar...</translation>
     </message>
 
     <message>
       <source>Norm Type</source>
-      <translation>Type de norme</translation>
+      <translation>Tipo de norma</translation>
     </message>
 
     <message>
       <source>Normal Map</source>
-      <translation>Carte normale</translation>
+      <translation>Mapa normal</translation>
     </message>
 
     <message>
       <source>Normal Output</source>
-      <translation>Sortie normale</translation>
+      <translation>Salida normal</translation>
     </message>
 
     <message>
       <source>Normalization</source>
-      <translation>Normalisation</translation>
+      <translation>Normalización</translation>
     </message>
 
     <message>
       <source>Normalize</source>
-      <translation>Normaliser</translation>
+      <translation>Normalizar</translation>
     </message>
 
     <message>
       <source>Normalize Brightness</source>
-      <translation>Normaliser la luminosité</translation>
+      <translation>Normalizar el brillo</translation>
     </message>
 
     <message>
       <source>Normalize Colors</source>
-      <translation>Normaliser les couleurs</translation>
+      <translation>Normalizar los colores</translation>
     </message>
 
     <message>
       <source>Normalize Illumination</source>
-      <translation>Normaliser l&apos;éclairage</translation>
+      <translation>Normalizar la iluminación</translation>
     </message>
 
     <message>
       <source>Normalize Input</source>
-      <translation>Normaliser les entrées</translation>
+      <translation>Normalizar la entrada</translation>
     </message>
 
     <message>
       <source>Normalize Luma</source>
-      <translation>Normaliser Luma</translation>
+      <translation>Normalizar la Luma</translation>
     </message>
 
     <message>
       <source>Normalize Scales</source>
-      <translation>Normaliser les balances</translation>
+      <translation>Normalizar las escalas</translation>
     </message>
 
     <message>
       <source>Nostalgia Honey</source>
-      <translation>Miel de nostalgie</translation>
+      <translation>Nostalgia Miel</translation>
     </message>
 
     <message>
       <source>Nostalgic</source>
-      <translation>Nostalgique</translation>
+      <translation>Nostálgico</translation>
     </message>
 
     <message>
       <source>Nothing</source>
-      <translation>Rien</translation>
+      <translation>Nada</translation>
     </message>
 
     <message>
       <source>Number</source>
-      <translation>Numéro</translation>
+      <translation>Número</translation>
     </message>
 
     <message>
       <source>Number of Added Frames</source>
-      <translation>Nombre de cadres ajoutés</translation>
+      <translation>Número de cuadros añadidos</translation>
     </message>
 
     <message>
       <source>Number of Angles</source>
-      <translation>Nombre d&apos;Angles</translation>
+      <translation>Número de ángulos</translation>
     </message>
 
     <message>
       <source>Number of Clusters</source>
-      <translation>Nombre de clusters</translation>
+      <translation>Número de grupos</translation>
     </message>
 
     <message>
       <source>Number of Colors</source>
-      <translation>Nombre de couleurs</translation>
+      <translation>Número de colores</translation>
     </message>
 
     <message>
       <source>Number of Frames</source>
-      <translation>Nombre de cadres</translation>
+      <translation>Número de cuadros</translation>
     </message>
 
     <message>
       <source>Number of Inter-Frames</source>
-      <translation>Nombre d&apos;inter-cadres</translation>
+      <translation>Número de Inter-Frames</translation>
     </message>
 
     <message>
       <source>Number of Iterations per Scale</source>
-      <translation>Nombre d&apos;itérations par échelle</translation>
+      <translation>Número de iteraciones por escala</translation>
     </message>
 
     <message>
       <source>Number of Key-Frames</source>
-      <translation>Nombre d&apos;images clés</translation>
+      <translation>Número de fotogramas clave</translation>
     </message>
 
     <message>
       <source>Number of Levels</source>
-      <translation>Nombre de niveaux</translation>
+      <translation>Número de niveles</translation>
     </message>
 
     <message>
       <source>Number of Matches (Coarsest)</source>
-      <translation>Nombre de correspondances (le plus grossier)</translation>
+      <translation>Número de cerillas (más gruesas)</translation>
     </message>
 
     <message>
       <source>Number of Matches (Finest)</source>
-      <translation>Nombre de matchs (le plus fin)</translation>
+      <translation>Número de cerillas (mejor)</translation>
     </message>
 
     <message>
       <source>Number of Orientations</source>
-      <translation>Nombre d&apos;orientations</translation>
+      <translation>Número de orientaciones</translation>
     </message>
 
     <message>
       <source>Number Of Rays</source>
-      <translation>Nombre de rayons</translation>
+      <translation>Número de rayos</translation>
     </message>
 
     <message>
       <source>Number of Scales</source>
-      <translation>Nombre de balances</translation>
+      <translation>Número de escalas</translation>
     </message>
 
     <message>
       <source>Number of Sizes</source>
-      <translation>Nombre de tailles</translation>
+      <translation>Número de tamaños</translation>
     </message>
 
     <message>
       <source>Number of Streaks</source>
-      <translation>Nombre de stries</translation>
+      <translation>Número de rayas</translation>
     </message>
 
     <message>
       <source>Number of Teeth</source>
-      <translation>Nombre de dents</translation>
+      <translation>Número de dientes</translation>
     </message>
 
     <message>
       <source>Number of Tones</source>
-      <translation>Nombre de tons</translation>
+      <translation>Número de tonos</translation>
     </message>
 
     <message>
       <source>Object Animation</source>
-      <translation>Animation d&apos;objets</translation>
+      <translation>Animación de objetos</translation>
     </message>
 
     <message>
       <source>Object Ratio</source>
-      <translation>Ratio d&apos;objet</translation>
+      <translation>Relación de objetos</translation>
     </message>
 
     <message>
       <source>Object Tolerance</source>
-      <translation>Tolérance des objets</translation>
+      <translation>Tolerancia a los objetos</translation>
     </message>
 
     <message>
-      <source>Octagonal</source>
-      <translation>Octogonale</translation>
+      <source>Octagon</source>
+      <translation>Octágono</translation>
+    </message>
+
+    <message>
+      <source>Octaves</source>
+      <translation>Octavas</translation>
+    </message>
+
+    <message>
+      <source>Octogon</source>
+      <translation>Octogono</translation>
     </message>
 
     <message>
       <source>Oddness (%)</source>
-      <translation>Étrangeté (%)</translation>
+      <translation>Rareza (%)</translation>
     </message>
 
     <message>
-      <source>Offset</source>
-      <translation>Compensation</translation>
+      <source>Off</source>
+      <translation>Fuera de</translation>
     </message>
 
     <message>
       <source>Offset (%)</source>
-      <translation>Compensation (%)</translation>
+      <translation>Compensación (%)</translation>
     </message>
 
     <message>
       <source>Offset Angle Rays Layer 1</source>
-      <translation>Rayons angulaires décalés Couche 1</translation>
+      <translation>Rayos de ángulo compensado de la capa 1</translation>
     </message>
 
     <message>
       <source>Offset Angle Rays Layer 2</source>
-      <translation>Rayons angulaires décalés couche 2</translation>
+      <translation>Rayos de ángulo compensado de la capa 2</translation>
     </message>
 
     <message>
       <source>Old Method - Slowest</source>
-      <translation>Ancienne méthode - plus lente</translation>
+      <translation>El método antiguo - el más lento</translation>
     </message>
 
     <message>
       <source>Old Photograph</source>
-      <translation>Vieille photo</translation>
+      <translation>Fotografía antigua</translation>
     </message>
 
     <message>
       <source>Old West</source>
-      <translation>Vieux Ouest</translation>
-    </message>
-
-    <message>
-      <source>Old-Movie Stripes</source>
-      <translation>Les bandes de vieux films</translation>
+      <translation>El viejo oeste</translation>
     </message>
 
     <message>
       <source>ON1 Photography (90)</source>
-      <translation>ON1 Photographie (90)</translation>
+      <translation>ON1 Fotografía (90)</translation>
     </message>
 
     <message>
       <source>Once Upon a Time</source>
-      <translation>Il était une fois</translation>
+      <translation>Érase una vez</translation>
     </message>
 
     <message>
       <source>One Layer</source>
-      <translation>Une couche</translation>
+      <translation>Una capa</translation>
     </message>
 
     <message>
       <source>One Layer (Horizontal)</source>
-      <translation>Une couche (horizontale)</translation>
+      <translation>Una capa (horizontal)</translation>
     </message>
 
     <message>
       <source>One Layer (Vertical)</source>
-      <translation>Une couche (verticale)</translation>
+      <translation>Una capa (vertical)</translation>
     </message>
 
     <message>
       <source>One Layer per Single Color</source>
-      <translation>Une couche par couleur</translation>
+      <translation>Una capa por cada color</translation>
     </message>
 
     <message>
       <source>One Layer per Single Region</source>
-      <translation>Une couche par région</translation>
+      <translation>Una capa por cada región</translation>
     </message>
 
     <message>
       <source>One Thread</source>
-      <translation>Un fil</translation>
+      <translation>Un hilo</translation>
     </message>
 
     <message>
       <source>Only Leafs</source>
-      <translation>Seulement les feuilles</translation>
+      <translation>Sólo las hojas</translation>
     </message>
 
     <message>
       <source>Only Red</source>
-      <translation>Uniquement le rouge</translation>
+      <translation>Sólo el rojo</translation>
     </message>
 
     <message>
       <source>Only Red and Blue</source>
-      <translation>Uniquement le rouge et le bleu</translation>
+      <translation>Sólo el rojo y el azul</translation>
     </message>
 
     <message>
       <source>Opacity</source>
-      <translation>Opacité</translation>
+      <translation>Opacidad</translation>
     </message>
 
     <message>
       <source>Opacity (%)</source>
-      <translation>Opacité (%)</translation>
+      <translation>Opacidad (%)</translation>
     </message>
 
     <message>
       <source>Opacity as Heightmap</source>
-      <translation>L&apos;opacité comme carte de hauteur</translation>
+      <translation>Opacidad como mapa de altura</translation>
     </message>
 
     <message>
       <source>Opacity Contours</source>
-      <translation>Les contours de l&apos;opacité</translation>
+      <translation>Contornos de Opacidad</translation>
     </message>
 
     <message>
       <source>Opacity Factor</source>
-      <translation>Facteur d&apos;opacité</translation>
+      <translation>Factor de Opacidad</translation>
     </message>
 
     <message>
       <source>Opacity Gain</source>
-      <translation>Gain d&apos;opacité</translation>
+      <translation>Ganancia de opacidad</translation>
     </message>
 
     <message>
       <source>Opacity Gamma</source>
-      <translation>Opacité Gamma</translation>
+      <translation>Opacidad Gamma</translation>
     </message>
 
     <message>
       <source>Opacity Snowflake</source>
-      <translation>Opacité Flocon de neige</translation>
+      <translation>Opacidad Copo de nieve</translation>
     </message>
 
     <message>
       <source>Opacity Threshold (%)</source>
-      <translation>Seuil d&apos;opacité (%)</translation>
+      <translation>Umbral de Opacidad (%)</translation>
     </message>
 
     <message>
       <source>Opaque Pixels</source>
-      <translation>Pixels opaques</translation>
+      <translation>Píxeles opacos</translation>
     </message>
 
     <message>
       <source>Opaque Regions on Top Layer</source>
-      <translation>Les régions opaques sur la couche supérieure</translation>
+      <translation>Regiones opacas en la capa superior</translation>
     </message>
 
     <message>
       <source>Opaque Skin</source>
-      <translation>Peau opaque</translation>
+      <translation>Piel opaca</translation>
     </message>
 
     <message>
       <source>Open Interactive Preview</source>
-      <translation>Aperçu interactif ouvert</translation>
+      <translation>Abrir la vista previa interactiva</translation>
     </message>
 
     <message>
       <source>Opening</source>
-      <translation>Ouverture</translation>
+      <translation>Apertura</translation>
     </message>
 
     <message>
       <source>Operation Yellow</source>
-      <translation>Opération Jaune</translation>
+      <translation>Operación Amarillo</translation>
     </message>
 
     <message>
       <source>Operator</source>
-      <translation>Opérateur</translation>
+      <translation>Operador</translation>
     </message>
 
     <message>
       <source>Opposing</source>
-      <translation>Opposition</translation>
+      <translation>Oponiéndose a</translation>
     </message>
 
     <message>
       <source>Optimized Lateral Inhibition</source>
-      <translation>Inhibition latérale optimisée</translation>
+      <translation>Inhibición lateral optimizada</translation>
+    </message>
+
+    <message>
+      <source>Orange Dark 4</source>
+      <translation>Naranja oscuro 4</translation>
+    </message>
+
+    <message>
+      <source>Orange Dark 7</source>
+      <translation>Naranja oscuro 7</translation>
     </message>
 
     <message>
       <source>Orange Dark Look</source>
-      <translation>Look orange foncé</translation>
+      <translation>Naranja oscuro...</translation>
     </message>
 
     <message>
       <source>Orange Tone</source>
-      <translation>Tonalité orange</translation>
+      <translation>Tono de naranja</translation>
     </message>
 
     <message>
       <source>Orange Underexposed</source>
-      <translation>Orange sous-exposé</translation>
+      <translation>Naranja Subexpuesto</translation>
+    </message>
+
+    <message>
+      <source>Oranges</source>
+      <translation>Naranjas</translation>
     </message>
 
     <message>
       <source>Order</source>
-      <translation>Commander</translation>
+      <translation>Pedido</translation>
     </message>
 
     <message>
       <source>Order By</source>
-      <translation>Ordre par</translation>
+      <translation>Ordenar por</translation>
+    </message>
+
+    <message>
+      <source>Orientation</source>
+      <translation>Orientación</translation>
     </message>
 
     <message>
       <source>Orientation Coherence</source>
-      <translation>Cohérence de l&apos;orientation</translation>
+      <translation>Orientación Coherencia</translation>
     </message>
 
     <message>
       <source>Orientation Only</source>
-      <translation>Orientation uniquement</translation>
+      <translation>Sólo orientación</translation>
+    </message>
+
+    <message>
+      <source>Orientations</source>
+      <translation>Orientaciones</translation>
     </message>
 
     <message>
       <source>Original - (Opening + Closing)/2</source>
-      <translation>Original - (Ouverture + Clôture)/2</translation>
+      <translation>Original - (Apertura + Cierre)/2</translation>
+    </message>
+
+    <message>
+      <source>Original - Erosion</source>
+      <translation>Original - Erosión</translation>
     </message>
 
     <message>
       <source>Original - Opening</source>
-      <translation>Original - Ouverture</translation>
+      <translation>Original - Apertura</translation>
     </message>
 
     <message>
       <source>Orthogonal Radius</source>
-      <translation>Rayon orthogonal</translation>
+      <translation>Radio ortogonal</translation>
     </message>
 
     <message>
       <source>Others (69)</source>
-      <translation>Autres (69)</translation>
+      <translation>Otros (69)</translation>
     </message>
 
     <message>
       <source>Ouline Color</source>
-      <translation>Couleur Ouline</translation>
+      <translation>Color Ouline</translation>
     </message>
 
     <message>
       <source>Outer</source>
-      <translation>Extérieur</translation>
+      <translation>Exterior</translation>
     </message>
 
     <message>
       <source>Outer Fading</source>
-      <translation>Fondu extérieur</translation>
+      <translation>Desvanecimiento exterior</translation>
     </message>
 
     <message>
       <source>Outer Length</source>
-      <translation>Longueur extérieure</translation>
+      <translation>Longitud exterior</translation>
     </message>
 
     <message>
       <source>Outer Radius</source>
-      <translation>Rayon extérieur</translation>
+      <translation>Radio exterior</translation>
     </message>
 
     <message>
       <source>Outline</source>
-      <translation>Aperçu</translation>
+      <translation>Esquema</translation>
     </message>
 
     <message>
       <source>Outline (%)</source>
-      <translation>Schéma (%)</translation>
+      <translation>Esquema (%)</translation>
     </message>
 
     <message>
       <source>Outline Color</source>
-      <translation>Couleur du contour</translation>
+      <translation>Color del contorno</translation>
     </message>
 
     <message>
       <source>Outline Contrast</source>
-      <translation>Contraste général</translation>
+      <translation>Contraste del contorno</translation>
     </message>
 
     <message>
       <source>Outline Opacity</source>
-      <translation>Opacité des lignes</translation>
+      <translation>Reseña de la opacidad</translation>
     </message>
 
     <message>
       <source>Outline Size</source>
-      <translation>Taille de l&apos;ébauche</translation>
+      <translation>Tamaño del contorno</translation>
     </message>
 
     <message>
       <source>Outline Smoothness</source>
-      <translation>Lissage des contours</translation>
+      <translation>Suavidad del contorno</translation>
     </message>
 
     <message>
       <source>Outline Thickness</source>
-      <translation>Épaisseur du contour</translation>
+      <translation>Espesor del contorno</translation>
     </message>
 
     <message>
       <source>Outlined</source>
-      <translation>Présentation</translation>
+      <translation>Resumido</translation>
     </message>
 
     <message>
       <source>Output</source>
-      <translation>Sortie</translation>
+      <translation>Salida</translation>
     </message>
 
     <message>
       <source>Output As</source>
-      <translation>Sortie en tant que</translation>
+      <translation>Salida como</translation>
     </message>
 
     <message>
       <source>Output as Files</source>
-      <translation>Sortie sous forme de fichiers</translation>
+      <translation>Salida como archivos</translation>
     </message>
 
     <message>
       <source>Output as Frames</source>
-      <translation>Sortie sous forme de cadres</translation>
+      <translation>Salida como marcos</translation>
     </message>
 
     <message>
       <source>Output as Multiple Layers</source>
-      <translation>Sortie sous forme de couches multiples</translation>
+      <translation>Salida como múltiples capas</translation>
     </message>
 
     <message>
       <source>Output as Separate Layers</source>
-      <translation>Sortie sous forme de couches séparées</translation>
+      <translation>Salida como capas separadas</translation>
     </message>
 
     <message>
       <source>Output Ascii File</source>
-      <translation>Sortie du fichier Ascii</translation>
+      <translation>Salida del archivo Ascii</translation>
     </message>
 
     <message>
       <source>Output Chroma NR</source>
-      <translation>Sortie Chroma NR</translation>
+      <translation>Salida Croma NR</translation>
     </message>
 
     <message>
       <source>Output CLUT</source>
-      <translation>Sortie CLUT</translation>
+      <translation>Salida CLUT</translation>
     </message>
 
     <message>
       <source>Output CLUT Resolution</source>
-      <translation>Sortie CLUT Résolution</translation>
+      <translation>Resolución de salida CLUT</translation>
     </message>
 
     <message>
       <source>Output Coordinates File</source>
-      <translation>Fichier de coordonnées de sortie</translation>
+      <translation>Archivo de coordenadas de salida</translation>
     </message>
 
     <message>
       <source>Output Corresponding CLUT</source>
-      <translation>Sortie correspondant à CLUT</translation>
+      <translation>Salida correspondiente CLUT</translation>
     </message>
 
     <message>
       <source>Output Directory</source>
-      <translation>Répertoire de sortie</translation>
+      <translation>Directorio de salida</translation>
     </message>
 
     <message>
       <source>Output Each Piece on a Different Layer</source>
-      <translation>Produire chaque pièce sur une couche différente</translation>
+      <translation>La salida de cada pieza en una capa diferente</translation>
     </message>
 
     <message>
       <source>Output Filename</source>
-      <translation>Nom du fichier de sortie</translation>
+      <translation>Nombre de archivo de salida</translation>
     </message>
 
     <message>
       <source>Output Files</source>
-      <translation>Fichiers de sortie</translation>
+      <translation>Archivos de salida</translation>
     </message>
 
     <message>
       <source>Output Folder</source>
-      <translation>Dossier de sortie</translation>
+      <translation>Carpeta de salida</translation>
     </message>
 
     <message>
       <source>Output Format</source>
-      <translation>Format de sortie</translation>
+      <translation>Formato de salida</translation>
     </message>
 
     <message>
       <source>Output Frames</source>
-      <translation>Cadres de sortie</translation>
+      <translation>Marcos de salida</translation>
     </message>
 
     <message>
       <source>Output Height</source>
-      <translation>Hauteur de sortie</translation>
+      <translation>Altura de salida</translation>
     </message>
 
     <message>
       <source>Output HTML File</source>
-      <translation>Fichier HTML de sortie</translation>
+      <translation>Archivo HTML de salida</translation>
     </message>
 
     <message>
       <source>Output Layers</source>
-      <translation>Couches de sortie</translation>
+      <translation>Capas de salida</translation>
     </message>
 
     <message>
       <source>Output Mode</source>
-      <translation>Mode de sortie</translation>
+      <translation>Modo de salida</translation>
     </message>
 
     <message>
       <source>Output Multiple Layers</source>
-      <translation>Production de couches multiples</translation>
+      <translation>Salida de múltiples capas</translation>
     </message>
 
     <message>
       <source>Output Preset as a HaldCLUT Layer</source>
-      <translation>Sortie préréglée comme une couche HaldCLUT</translation>
+      <translation>La salida preestablecida como una capa de HaldCLUT</translation>
     </message>
 
     <message>
       <source>Output Region Delimiters</source>
-      <translation>Délimiteurs des régions de production</translation>
+      <translation>Delimitadores de la región de salida</translation>
     </message>
 
     <message>
       <source>Output Saturation</source>
-      <translation>Saturation de la production</translation>
+      <translation>Saturación de salida</translation>
     </message>
 
     <message>
       <source>Output Sharpening</source>
-      <translation>Affinement de la production</translation>
+      <translation>Afilado de salida</translation>
     </message>
 
     <message>
       <source>Output Stroke Layer On</source>
-      <translation>Couche de sortie sur</translation>
+      <translation>Capa de golpe de salida activada</translation>
     </message>
 
     <message>
       <source>Output to Folder</source>
-      <translation>Sortie vers le dossier</translation>
+      <translation>Salida a la carpeta</translation>
     </message>
 
     <message>
       <source>Output Type</source>
-      <translation>Type de sortie</translation>
+      <translation>Tipo de salida</translation>
     </message>
 
     <message>
       <source>Output Width</source>
-      <translation>Largeur de sortie</translation>
+      <translation>Ancho de salida</translation>
     </message>
 
     <message>
       <source>Outside</source>
-      <translation>A l&apos;extérieur</translation>
+      <translation>Fuera de</translation>
     </message>
 
     <message>
       <source>Outside Color</source>
-      <translation>Couleur extérieure</translation>
+      <translation>Color exterior</translation>
     </message>
 
     <message>
       <source>Outside-In</source>
-      <translation>Extérieur-intérieur</translation>
+      <translation>Afuera-En</translation>
     </message>
 
     <message>
       <source>Outward</source>
-      <translation>Vers l&apos;extérieur</translation>
+      <translation>Exterior</translation>
     </message>
 
     <message>
       <source>Overall Blur</source>
-      <translation>Flou général</translation>
+      <translation>Desenfoque total</translation>
     </message>
 
     <message>
       <source>Overall Contrast</source>
-      <translation>Contraste général</translation>
+      <translation>Contraste general</translation>
     </message>
 
     <message>
       <source>Overall Lightness</source>
-      <translation>Légèreté générale</translation>
+      <translation>Ligereza general</translation>
     </message>
 
     <message>
       <source>Overlap (%)</source>
-      <translation>Chevauchement (%)</translation>
+      <translation>Superposición (%)</translation>
     </message>
 
     <message>
       <source>Overlay</source>
-      <translation>Superposition</translation>
+      <translation>Superposición</translation>
     </message>
 
     <message>
       <source>Oversample</source>
-      <translation>Suréchantillon</translation>
+      <translation>Sobremuestreo</translation>
     </message>
 
     <message>
       <source>Overshoot</source>
-      <translation>Dépassement</translation>
-    </message>
-
-    <message>
-      <source>Pack Sprites</source>
-      <translation>Les Sprites en boîte</translation>
+      <translation>Sobregiro</translation>
     </message>
 
     <message>
       <source>Padding (px)</source>
-      <translation>Rembourrage (px)</translation>
+      <translation>Acolchado (px)</translation>
     </message>
 
     <message>
       <source>Paint</source>
-      <translation>Peindre</translation>
+      <translation>Pinta</translation>
     </message>
 
     <message>
       <source>Paint Daub</source>
-      <translation>Peinture Daub</translation>
+      <translation>Pinta a Daub</translation>
     </message>
 
     <message>
       <source>Paint Effect</source>
-      <translation>Effet de peinture</translation>
+      <translation>Efecto de la pintura</translation>
     </message>
 
     <message>
       <source>Paint Splat</source>
-      <translation>Eclaboussures de peinture</translation>
+      <translation>Splat de pintura</translation>
     </message>
 
     <message>
       <source>Painter&apos;s Edge Protection Flow</source>
-      <translation>Flux de protection de Painter&apos;s Edge</translation>
+      <translation>Flujo de protección del borde del pintor</translation>
     </message>
 
     <message>
       <source>Painter&apos;s Smoothness</source>
-      <translation>La douceur du peintre</translation>
+      <translation>La suavidad del pintor</translation>
     </message>
 
     <message>
       <source>Painter&apos;s Touch Sharpness</source>
-      <translation>La netteté de la touche du peintre</translation>
+      <translation>La nitidez del toque del pintor</translation>
     </message>
 
     <message>
       <source>Painting</source>
-      <translation>Peinture</translation>
+      <translation>Pintura</translation>
     </message>
 
     <message>
       <source>Painting Opacity</source>
-      <translation>Opacité de la peinture</translation>
+      <translation>Opacidad de la pintura</translation>
     </message>
 
     <message>
-      <source>Paintstroke</source>
-      <translation>AVC de la peinture</translation>
+      <source>Paladin</source>
+      <translation>Paladín</translation>
+    </message>
+
+    <message>
+      <source>Paladin 1875</source>
+      <translation>Paladín 1875</translation>
     </message>
 
     <message>
       <source>Paper Texture</source>
-      <translation>Texture du papier</translation>
+      <translation>Textura del papel</translation>
     </message>
 
     <message>
       <source>Parallel Processing</source>
-      <translation>Traitement parallèle</translation>
+      <translation>Procesamiento paralelo</translation>
     </message>
 
     <message>
       <source>Parrots</source>
-      <translation>Perroquets</translation>
+      <translation>Loros</translation>
     </message>
 
     <message>
       <source>Passing By</source>
-      <translation>Passage</translation>
+      <translation>Pasando</translation>
+    </message>
+
+    <message>
+      <source>Pastell Art</source>
+      <translation>Arte Pastel</translation>
+    </message>
+
+    <message>
+      <source>Patch</source>
+      <translation>Parche</translation>
     </message>
 
     <message>
       <source>Patch Measure</source>
-      <translation>Mesure patch</translation>
+      <translation>Medida del parche</translation>
     </message>
 
     <message>
       <source>Patch Size</source>
-      <translation>Taille du patch</translation>
+      <translation>Tamaño del parche</translation>
     </message>
 
     <message>
       <source>Patch Size for Analysis</source>
-      <translation>Taille du patch pour l&apos;analyse</translation>
+      <translation>Tamaño del parche para el análisis</translation>
     </message>
 
     <message>
       <source>Patch Size for Synthesis</source>
-      <translation>Taille du patch pour la synthèse</translation>
+      <translation>Tamaño del parche para la síntesis</translation>
     </message>
 
     <message>
       <source>Patch Size for Synthesis (Final)</source>
-      <translation>Taille du patch pour la synthèse (final)</translation>
+      <translation>Tamaño del parche para la síntesis (Final)</translation>
+    </message>
+
+    <message>
+      <source>Patch Smoothness</source>
+      <translation>Suavidad del parche</translation>
     </message>
 
     <message>
       <source>Patch Variance</source>
-      <translation>Écart de patch</translation>
+      <translation>Variación del parche</translation>
     </message>
 
     <message>
       <source>Pattern</source>
-      <translation>Modèle</translation>
+      <translation>Patrón</translation>
     </message>
 
     <message>
       <source>Pattern Angle</source>
-      <translation>Angle du modèle</translation>
+      <translation>Ángulo del patrón</translation>
     </message>
 
     <message>
       <source>Pattern Height</source>
-      <translation>Hauteur du motif</translation>
+      <translation>Patrón de altura</translation>
     </message>
 
     <message>
       <source>Pattern Type</source>
-      <translation>Type de modèle</translation>
+      <translation>Tipo de patrón</translation>
     </message>
 
     <message>
       <source>Pattern Variation 1</source>
-      <translation>Variation de modèle 1</translation>
+      <translation>Variación del patrón 1</translation>
     </message>
 
     <message>
       <source>Pattern Variation 2</source>
-      <translation>Variation de modèle 2</translation>
+      <translation>Variación del patrón 2</translation>
     </message>
 
     <message>
       <source>Pattern Variation 3</source>
-      <translation>Variation de modèle 3</translation>
+      <translation>Variación del patrón 3</translation>
     </message>
 
     <message>
       <source>Pattern Weight</source>
-      <translation>Poids du modèle</translation>
+      <translation>Patrón de peso</translation>
     </message>
 
     <message>
       <source>Pattern Width</source>
-      <translation>Largeur du modèle</translation>
+      <translation>Ancho del patrón</translation>
     </message>
 
     <message>
       <source>PCA Transfer</source>
-      <translation>Transfert PCA</translation>
+      <translation>Transferencia de PCA</translation>
     </message>
 
     <message>
       <source>Pea Soup</source>
-      <translation>Soupe aux pois</translation>
+      <translation>Sopa de guisantes</translation>
     </message>
 
     <message>
       <source>Pen Drawing</source>
-      <translation>Dessin au stylo</translation>
+      <translation>Dibujo a pluma</translation>
     </message>
 
     <message>
       <source>Penalize Patch Repetitions</source>
-      <translation>Pénaliser les répétitions de patchs</translation>
+      <translation>Penalizar las repeticiones de parches</translation>
     </message>
 
     <message>
       <source>Pencil</source>
-      <translation>Crayon</translation>
+      <translation>Lápiz</translation>
     </message>
 
     <message>
       <source>Pencil Amplitude</source>
-      <translation>Amplitude du crayon</translation>
+      <translation>Amplitud del lápiz</translation>
     </message>
 
     <message>
       <source>Pencil Portrait</source>
-      <translation>Portrait au crayon</translation>
+      <translation>Retrato a lápiz</translation>
     </message>
 
     <message>
       <source>Pencil Size</source>
-      <translation>Taille du crayon</translation>
+      <translation>El tamaño del lápiz</translation>
     </message>
 
     <message>
       <source>Pencil Smoother Edge Protection</source>
-      <translation>Protection des bords des crayons</translation>
+      <translation>Protección de bordes más lisos del lápiz</translation>
     </message>
 
     <message>
       <source>Pencil Smoother Sharpness</source>
-      <translation>Un crayon plus lisse et plus net</translation>
+      <translation>La nitidez del lápiz es más suave</translation>
     </message>
 
     <message>
       <source>Pencil Smoother Smoothness</source>
-      <translation>Lissage des crayons</translation>
+      <translation>Lápiz Suavizante Suavidad</translation>
     </message>
 
     <message>
       <source>Pencil Type</source>
-      <translation>Type de crayon</translation>
+      <translation>Tipo de lápiz</translation>
     </message>
 
     <message>
       <source>Pencils</source>
-      <translation>Crayons</translation>
+      <translation>Lápices</translation>
     </message>
 
     <message>
       <source>Pentagon</source>
-      <translation>Pentagone</translation>
+      <translation>Pentágono</translation>
     </message>
 
     <message>
       <source>Peppers</source>
-      <translation>Poivrons</translation>
+      <translation>Pimientos</translation>
     </message>
 
     <message>
       <source>Percent of Image Half-Hypotenuse (%)</source>
-      <translation>Pourcentage de demi-hypoténuse de l&apos;image (%)</translation>
+      <translation>Porcentaje de imagen media hipotenusa (%)</translation>
     </message>
 
     <message>
       <source>Periodic</source>
-      <translation>Périodique</translation>
+      <translation>Periódico</translation>
     </message>
 
     <message>
       <source>Periodic Dots</source>
-      <translation>Points périodiques</translation>
+      <translation>Puntos periódicos</translation>
     </message>
 
     <message>
       <source>Periodicity</source>
-      <translation>Périodicité</translation>
+      <translation>Periodicidad</translation>
     </message>
 
     <message>
       <source>Perserve Luminance</source>
-      <translation>Perserver la luminosité</translation>
+      <translation>Perseverar en la luminancia</translation>
+    </message>
+
+    <message>
+      <source>Perspective</source>
+      <translation>Perspectiva</translation>
+    </message>
+
+    <message>
+      <source>Perturbation</source>
+      <translation>Perturbación</translation>
     </message>
 
     <message>
       <source>Petals</source>
-      <translation>Pétales</translation>
+      <translation>Pétalos</translation>
+    </message>
+
+    <message>
+      <source>Phase</source>
+      <translation>Fase</translation>
     </message>
 
     <message>
       <source>Phone</source>
-      <translation>Téléphone</translation>
+      <translation>Teléfono</translation>
     </message>
 
     <message>
-      <source>Picabia: Udnie</source>
-      <translation>Picabia : Udnie</translation>
-    </message>
-
-    <message>
-      <source>Picasso: Les Demoiselles D&apos;Avignon</source>
-      <translation>Picasso : Les Demoiselles d&apos;Avignon</translation>
+      <source>Photoillustration</source>
+      <translation>Fotoilustración</translation>
     </message>
 
     <message>
       <source>Picasso: Seated Woman</source>
-      <translation>Picasso : Femme assise</translation>
+      <translation>Picasso: Mujer sentada</translation>
     </message>
 
     <message>
       <source>Picasso: The Reservoir - Horta De Ebro</source>
-      <translation>Picasso : Le réservoir - Horta De Ebro</translation>
+      <translation>Picasso: El Embalse - Horta De Ebro</translation>
     </message>
 
     <message>
       <source>Piece Complexity</source>
-      <translation>Complexité de la pièce</translation>
+      <translation>Complejidad de la pieza</translation>
     </message>
 
     <message>
       <source>Piece Size (px)</source>
-      <translation>Taille des pièces (px)</translation>
+      <translation>Tamaño de la pieza (px)</translation>
     </message>
 
     <message>
       <source>Pin Light</source>
-      <translation>Lumière d&apos;épingle</translation>
-    </message>
-
-    <message>
-      <source>Pink Fade</source>
-      <translation>Fondu rose</translation>
-    </message>
-
-    <message>
-      <source>Pixel Sort</source>
-      <translation>Tri des pixels</translation>
+      <translation>Luz de alfiler</translation>
     </message>
 
     <message>
       <source>Pixel Values</source>
-      <translation>Valeurs des pixels</translation>
+      <translation>Valores de los píxeles</translation>
+    </message>
+
+    <message>
+      <source>Placement</source>
+      <translation>Colocación</translation>
+    </message>
+
+    <message>
+      <source>Plaid</source>
+      <translation>Tartán</translation>
     </message>
 
     <message>
       <source>Plane</source>
-      <translation>Avion</translation>
+      <translation>Avión</translation>
     </message>
 
     <message>
       <source>Plasma Effect</source>
-      <translation>Effet du plasma</translation>
+      <translation>El efecto del plasma</translation>
     </message>
 
     <message>
       <source>Plot Type</source>
-      <translation>Type de parcelle</translation>
+      <translation>Tipo de parcela</translation>
     </message>
 
     <message>
       <source>Point #0</source>
-      <translation>Point n°0</translation>
+      <translation>Punto #0</translation>
     </message>
 
     <message>
       <source>Point #1</source>
-      <translation>Point n° 1</translation>
+      <translation>Punto 1</translation>
     </message>
 
     <message>
       <source>Point #2</source>
-      <translation>Point n° 2</translation>
+      <translation>Punto #2</translation>
     </message>
 
     <message>
       <source>Point #3</source>
-      <translation>Point n° 3</translation>
+      <translation>Punto 3</translation>
+    </message>
+
+    <message>
+      <source>Point 1</source>
+      <translation>Punto 1</translation>
+    </message>
+
+    <message>
+      <source>Point 2</source>
+      <translation>Punto 2</translation>
+    </message>
+
+    <message>
+      <source>Points</source>
+      <translation>Puntos</translation>
     </message>
 
     <message>
       <source>Polar Transform</source>
-      <translation>Transformation polaire</translation>
+      <translation>Transformación polar</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 665 --</source>
+      <translation>Polaroid 665...</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative</source>
-      <translation>Polaroid 665 Négatif</translation>
+      <translation>Polaroid 665 Negativo</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative +</source>
-      <translation>Polaroid 665 Négatif +</translation>
+      <translation>Polaroid 665 Negativo +</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative -</source>
-      <translation>Polaroid 665 Négatif -</translation>
+      <translation>Polaroid 665 Negativo -</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative HC</source>
-      <translation>Polaroid 665 HC négatif</translation>
+      <translation>Polaroid 665 Negativo HC</translation>
     </message>
 
     <message>
-      <source>Polaroid 669</source>
-      <translation>Polaroïd 669</translation>
+      <source>Polaroid 669 --</source>
+      <translation>Polaroid 669...</translation>
     </message>
 
     <message>
-      <source>Polaroid Polachrome</source>
-      <translation>Polaroïd Polachrome</translation>
+      <source>Polaroid 669 Cold --</source>
+      <translation>Polaroid 669 Cold...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 --</source>
+      <translation>Polaroid 690...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Cold --</source>
+      <translation>Polaroid 690 Cold...</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Cold</source>
-      <translation>Polaroïd PX-100UV+ froid</translation>
+      <translation>Polaroid PX-100UV+ Frío</translation>
+    </message>
+
+    <message>
+      <source>Polaroid PX-100UV+ Cold +</source>
+      <translation>Polaroid PX-100UV+ Frío +</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Cold ++</source>
-      <translation>Polaroid PX-100UV+ Froid ++</translation>
+      <translation>Polaroid PX-100UV+ Frío ++</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Cold +++</source>
-      <translation>Polaroïd PX-100UV+ Froid +++</translation>
+      <translation>Polaroid PX-100UV+ Frío +++</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Cold -</source>
-      <translation>Polaroïd PX-100UV+ froid -</translation>
+      <translation>Polaroid PX-100UV+ Frío -</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-100UV+ Warm</source>
-      <translation>Polaroïd PX-100UV+ chaud</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm +</source>
-      <translation>Polaroid PX-100UV+ Chaud +</translation>
+      <source>Polaroid PX-100UV+ Cold --</source>
+      <translation>Polaroid PX-100UV+ Frío...</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Warm ++</source>
-      <translation>Polaroid PX-100UV+ Chaud ++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm +++</source>
-      <translation>Polaroid PX-100UV+ Chaud +++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm -</source>
-      <translation>Polaroid PX-100UV+ Chaud -</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm --</source>
-      <translation>Polaroïd PX-100UV+ Chaud --</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680</source>
-      <translation>Polaroïd PX-680</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680 +</source>
-      <translation>Polaroïd PX-680 +</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680 ++</source>
-      <translation>Polaroïd PX-680 ++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680 -</source>
-      <translation>Polaroïd PX-680 -</translation>
+      <translation>Polaroid PX-100UV+ Caliente ++</translation>
     </message>
 
     <message>
       <source>Polaroid PX-680 --</source>
-      <translation>Polaroïd PX-680 --</translation>
+      <translation>Polaroid PX-680...</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70</source>
-      <translation>Polaroïd PX-70</translation>
+      <source>Polaroid PX-680 Cold ++a</source>
+      <translation>Polaroid PX-680 Frío ++a</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70 +</source>
-      <translation>Polaroïd PX-70 +</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 ++</source>
-      <translation>Polaroïd PX-70 ++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 +++</source>
-      <translation>Polaroïd PX-70 +++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 -</source>
-      <translation>Polaroïd PX-70 -</translation>
+      <source>Polaroid PX-680 Cold --</source>
+      <translation>Polaroid PX-680 Cold...</translation>
     </message>
 
     <message>
       <source>Polaroid PX-70 --</source>
-      <translation>Polaroïd PX-70 --</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 Cold -</source>
-      <translation>Polaroïd PX-70 Cold -</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 Cold --</source>
-      <translation>Polaroïd PX-70 Cold --</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 Warm</source>
-      <translation>Polaroïd PX-70 Warm</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 Warm --</source>
-      <translation>Polaroïd PX-70 Warm --</translation>
+      <translation>Polaroid PX-70...</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired)</source>
-      <translation>Polaroid Time Zero (expiré)</translation>
+      <translation>Polaroid Tiempo Cero (Expirado)</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) +</source>
-      <translation>Polaroïd Time Zero (expiré) +</translation>
+      <translation>Polaroid Time Zero (Expirado) +</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) ++</source>
-      <translation>Polaroïd Time Zero (expiré) ++</translation>
+      <translation>Polaroid Tiempo Cero (Expirado) ++</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) -</source>
-      <translation>Polaroïd Time Zero (expiré) -</translation>
+      <translation>Polaroid Time Zero (Expirado) -</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) --</source>
-      <translation>Polaroid Time Zero (expiré) --</translation>
+      <translation>Polaroid Tiempo Cero (Expirado) --</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) ---</source>
-      <translation>Polaroid Time Zero (expiré) ---</translation>
+      <translation>Polaroid Tiempo Cero (Expirado) ---</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold</source>
-      <translation>Polaroïd Time Zero (expiré) Froid</translation>
+      <translation>Polaroid Tiempo Cero (Expirado) Frío</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold -</source>
-      <translation>Polaroïd Time Zero (expiré) Cold -</translation>
+      <translation>Polaroid Tiempo Cero (Expirado) Frío -</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold --</source>
-      <translation>Polaroïd Time Zero (expiré) Cold --</translation>
+      <translation>Polaroid Time Zero (Expirado) Cold --</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold ---</source>
-      <translation>Polaroïd Time Zero (expiré) Cold ---</translation>
+      <translation>Polaroid Tiempo Cero (Expirado) Frío ---</translation>
+    </message>
+
+    <message>
+      <source>Pole Long</source>
+      <translation>Polo Largo</translation>
     </message>
 
     <message>
       <source>Pole Rotation</source>
-      <translation>Rotation des pôles</translation>
+      <translation>Rotación de los polos</translation>
+    </message>
+
+    <message>
+      <source>Polka Dots</source>
+      <translation>Lunares</translation>
     </message>
 
     <message>
       <source>Pollock: Convergence</source>
-      <translation>Pollock : Convergence</translation>
+      <translation>Pollock: Convergencia</translation>
     </message>
 
     <message>
       <source>Pollock: Summertime Number 9A</source>
-      <translation>Pollock : Numéro d&apos;été 9A</translation>
+      <translation>Pollock: Número de verano 9A</translation>
     </message>
 
     <message>
       <source>Polygonize [Delaunay]</source>
-      <translation>Polygoniser [Delaunay]</translation>
+      <translation>Poligonizar [Delaunay]</translation>
     </message>
 
     <message>
       <source>Polygonize [Energy]</source>
-      <translation>Polygoniser [Energie].</translation>
+      <translation>Poligonizar [Energía]</translation>
     </message>
 
     <message>
       <source>Pop Shadows</source>
-      <translation>Les ombres de la pop</translation>
+      <translation>Sombras Pop</translation>
+    </message>
+
+    <message>
+      <source>Portrait</source>
+      <translation>Retrato</translation>
     </message>
 
     <message>
       <source>Portrait Retouching</source>
-      <translation>Retouches de portraits</translation>
+      <translation>Retoque de retratos</translation>
+    </message>
+
+    <message>
+      <source>Portrait-1</source>
+      <translation>Retrato-1</translation>
+    </message>
+
+    <message>
+      <source>Portrait-2</source>
+      <translation>Retrato-2</translation>
+    </message>
+
+    <message>
+      <source>Portrait-3</source>
+      <translation>Retrato-3</translation>
+    </message>
+
+    <message>
+      <source>Portrait-4</source>
+      <translation>Retrato-4</translation>
+    </message>
+
+    <message>
+      <source>Portrait-5</source>
+      <translation>Retrato-5</translation>
+    </message>
+
+    <message>
+      <source>Portrait-6</source>
+      <translation>Retrato-6</translation>
+    </message>
+
+    <message>
+      <source>Portrait-7</source>
+      <translation>Retrato-7</translation>
+    </message>
+
+    <message>
+      <source>Portrait-8</source>
+      <translation>Retrato-8</translation>
+    </message>
+
+    <message>
+      <source>Portrait-9</source>
+      <translation>Retrato-9</translation>
+    </message>
+
+    <message>
+      <source>Portrait0</source>
+      <translation>Retrato.</translation>
+    </message>
+
+    <message>
+      <source>Portrait1</source>
+      <translation>Retrato1</translation>
+    </message>
+
+    <message>
+      <source>Portrait10</source>
+      <translation>Retrato10</translation>
+    </message>
+
+    <message>
+      <source>Portrait2</source>
+      <translation>Retrato2</translation>
+    </message>
+
+    <message>
+      <source>Portrait3</source>
+      <translation>Retrato3</translation>
+    </message>
+
+    <message>
+      <source>Portrait4</source>
+      <translation>Retrato4</translation>
+    </message>
+
+    <message>
+      <source>Portrait5</source>
+      <translation>Retrato5</translation>
+    </message>
+
+    <message>
+      <source>Portrait6</source>
+      <translation>Retrato6</translation>
+    </message>
+
+    <message>
+      <source>Portrait7</source>
+      <translation>Retrato7</translation>
+    </message>
+
+    <message>
+      <source>Portrait8</source>
+      <translation>Retrato8</translation>
+    </message>
+
+    <message>
+      <source>Portrait9</source>
+      <translation>Retrato9</translation>
+    </message>
+
+    <message>
+      <source>Position</source>
+      <translation>Posición</translation>
+    </message>
+
+    <message>
+      <source>Position X (%)</source>
+      <translation>Posición X (%)</translation>
     </message>
 
     <message>
       <source>Position X Origin (%)</source>
-      <translation>Position X Origine (%)</translation>
+      <translation>Posición X Origen (%)</translation>
+    </message>
+
+    <message>
+      <source>Position Y (%)</source>
+      <translation>Posición Y (%)</translation>
     </message>
 
     <message>
       <source>Position Y Origin (%)</source>
-      <translation>Position Y Origine (%)</translation>
+      <translation>Posición Y Origen (%)</translation>
     </message>
 
     <message>
       <source>Positive</source>
-      <translation>Positif</translation>
+      <translation>Positivo</translation>
     </message>
 
     <message>
       <source>Post-Normalize</source>
-      <translation>Post-Normaliser</translation>
+      <translation>Post-Normalizar</translation>
     </message>
 
     <message>
       <source>Post-Process</source>
-      <translation>Post-processus</translation>
+      <translation>Post-Proceso</translation>
     </message>
 
     <message>
       <source>Poster Edges</source>
-      <translation>Bords des affiches</translation>
+      <translation>Bordes de carteles</translation>
     </message>
 
     <message>
       <source>Posterization Antialiasing</source>
-      <translation>Anti-crénelage de l&apos;affichage</translation>
+      <translation>Posterización Antialiasing</translation>
     </message>
 
     <message>
       <source>Posterization Level</source>
-      <translation>Niveau d&apos;affichage</translation>
+      <translation>Nivel de posterización</translation>
     </message>
 
     <message>
       <source>Posterize</source>
-      <translation>Affichez</translation>
+      <translation>Póster</translation>
     </message>
 
     <message>
       <source>Posterized Dithering</source>
-      <translation>L&apos;hésitation affichée</translation>
+      <translation>Dithering postergado</translation>
+    </message>
+
+    <message>
+      <source>Power</source>
+      <translation>Poder</translation>
     </message>
 
     <message>
       <source>Pre-Defined</source>
-      <translation>Pré-défini</translation>
+      <translation>Pre-definido</translation>
     </message>
 
     <message>
       <source>Pre-Defined Colormap</source>
-      <translation>Colormap pré-défini</translation>
-    </message>
-
-    <message>
-      <source>Pre-Gamma</source>
-      <translation>Pré-Gamma</translation>
+      <translation>Colormap predefinido</translation>
     </message>
 
     <message>
       <source>Pre-Normalize</source>
-      <translation>Pré-normaliser</translation>
+      <translation>Pre-Normalizar</translation>
     </message>
 
     <message>
       <source>Pre-Normalize Image</source>
-      <translation>Pré-normaliser l&apos;image</translation>
+      <translation>Pre-Normalizar la imagen</translation>
     </message>
 
     <message>
       <source>Pre-Process</source>
-      <translation>Pré-processus</translation>
+      <translation>Pre-proceso</translation>
     </message>
 
     <message>
       <source>Precision</source>
-      <translation>Précision</translation>
+      <translation>Precisión</translation>
     </message>
 
     <message>
       <source>Precision (%)</source>
-      <translation>Précision (%)</translation>
+      <translation>Precisión (%)</translation>
     </message>
 
     <message>
       <source>Preliminary Surface Shift</source>
-      <translation>Déplacement préliminaire en surface</translation>
+      <translation>Desplazamiento superficial preliminar</translation>
     </message>
 
     <message>
       <source>Preliminary X-Axis Scaling</source>
-      <translation>Échelle préliminaire de l&apos;axe X</translation>
+      <translation>Escalado preliminar del eje X</translation>
     </message>
 
     <message>
       <source>Preliminary Y-Axis Scaling</source>
-      <translation>Échelle préliminaire de l&apos;axe Y</translation>
+      <translation>Escalado preliminar del eje Y</translation>
     </message>
 
     <message>
       <source>Preprocessor Power</source>
-      <translation>Puissance du préprocesseur</translation>
+      <translation>Potencia del preprocesador</translation>
     </message>
 
     <message>
       <source>Preprocessor Radius</source>
-      <translation>Rayon du préprocesseur</translation>
+      <translation>Radio del preprocesador</translation>
     </message>
 
     <message>
       <source>Preserve Canvas for Post Bump Mapping</source>
-      <translation>Préserver la toile pour la cartographie de l&apos;après coup</translation>
+      <translation>Preservar el lienzo para el mapeo post bump</translation>
     </message>
 
     <message>
       <source>Preserve Edges</source>
-      <translation>Préserver les bords</translation>
+      <translation>Preservar los bordes</translation>
     </message>
 
     <message>
       <source>Preserve Image Dimension</source>
-      <translation>Préserver la dimension de l&apos;image</translation>
+      <translation>Preservar la dimensión de la imagen</translation>
     </message>
 
     <message>
       <source>Preserve Initial Brightness</source>
-      <translation>Préserver la luminosité initiale</translation>
+      <translation>Preservar el brillo inicial</translation>
     </message>
 
     <message>
       <source>Preserve Luminance</source>
-      <translation>Préserver la luminosité</translation>
-    </message>
-
-    <message>
-      <source>Preset</source>
-      <translation>Préréglage</translation>
+      <translation>Preservar la luminancia</translation>
     </message>
 
     <message>
       <source>Preview</source>
-      <translation>Aperçu</translation>
+      <translation>Vista previa</translation>
     </message>
 
     <message>
       <source>Preview All Outputs</source>
-      <translation>Prévisualisation de tous les résultats</translation>
+      <translation>Vista previa de todas las salidas</translation>
     </message>
 
     <message>
       <source>Preview Bands</source>
-      <translation>Bandes d&apos;avant-première</translation>
+      <translation>Previsualización de bandas</translation>
     </message>
 
     <message>
       <source>Preview Brush</source>
-      <translation>Pinceau de prévisualisation</translation>
+      <translation>Previsualización de la brocha</translation>
     </message>
 
     <message>
       <source>Preview Data</source>
-      <translation>Données d&apos;aperçu</translation>
+      <translation>Vista previa de los datos</translation>
     </message>
 
     <message>
       <source>Preview Detected Shapes</source>
-      <translation>Aperçu des formes détectées</translation>
+      <translation>Vista previa de las formas detectadas</translation>
     </message>
 
     <message>
       <source>Preview Frame Selection</source>
-      <translation>Sélection des images de prévisualisation</translation>
+      <translation>Selección del cuadro de vista previa</translation>
     </message>
 
     <message>
       <source>Preview Gradient</source>
-      <translation>Gradient de prévisualisation</translation>
+      <translation>Vista previa del gradiente</translation>
     </message>
 
     <message>
       <source>Preview Grain Alone</source>
-      <translation>Avant-première Grain Seul</translation>
+      <translation>Previsualización del grano solo</translation>
     </message>
 
     <message>
       <source>Preview Grid</source>
-      <translation>Grille d&apos;aperçu</translation>
+      <translation>Cuadrícula de vista previa</translation>
     </message>
 
     <message>
       <source>Preview Guides</source>
-      <translation>Guides d&apos;avant-première</translation>
+      <translation>Guías de Previsualización</translation>
     </message>
 
     <message>
       <source>Preview Mapping</source>
-      <translation>Aperçu de la cartographie</translation>
+      <translation>Vista previa de la cartografía</translation>
     </message>
 
     <message>
       <source>Preview Mask</source>
-      <translation>Masque de prévisualisation</translation>
-    </message>
-
-    <message>
-      <source>Preview Only Shadow</source>
-      <translation>Aperçu uniquement l&apos;ombre</translation>
+      <translation>Máscara de vista previa</translation>
     </message>
 
     <message>
       <source>Preview Opacity (%)</source>
-      <translation>Opacité de l&apos;aperçu (%)</translation>
+      <translation>Previsión de Opacidad (%)</translation>
     </message>
 
     <message>
       <source>Preview Original</source>
-      <translation>Avant-première Original</translation>
+      <translation>Previsualización Original</translation>
     </message>
 
     <message>
       <source>Preview Precision</source>
-      <translation>Précision de l&apos;aperçu</translation>
+      <translation>Previsión Precisión</translation>
     </message>
 
     <message>
       <source>Preview Progress (%)</source>
-      <translation>Avancées de l&apos;aperçu (%)</translation>
+      <translation>Avance de la previsión (%)</translation>
     </message>
 
     <message>
       <source>Preview Progression While Running</source>
-      <translation>Prévisualisation de la progression en cours d&apos;exécution</translation>
+      <translation>Previsualizar la progresión mientras se ejecuta</translation>
     </message>
 
     <message>
       <source>Preview Ref Point</source>
-      <translation>Prévisualisation Ref Point</translation>
+      <translation>Vista previa Punto de referencia</translation>
     </message>
 
     <message>
       <source>Preview Reference Circle</source>
-      <translation>Cercle de référence de l&apos;avant-première</translation>
+      <translation>Círculo de referencia de vista previa</translation>
     </message>
 
     <message>
       <source>Preview Selection</source>
-      <translation>Prévisualisation de la sélection</translation>
+      <translation>Selección de la vista previa</translation>
     </message>
 
     <message>
       <source>Preview Shape</source>
-      <translation>Forme de l&apos;avant-première</translation>
+      <translation>Vista previa de la forma</translation>
     </message>
 
     <message>
       <source>Preview Shows</source>
-      <translation>Spectacles en avant-première</translation>
+      <translation>Previsualización de espectáculos</translation>
     </message>
 
     <message>
       <source>Preview Split</source>
-      <translation>Aperçu de Split</translation>
+      <translation>Previsualización de Split</translation>
     </message>
 
     <message>
       <source>Preview Subsampling</source>
-      <translation>Aperçu Sous-échantillonnage</translation>
+      <translation>Previsión de submuestreo</translation>
     </message>
 
     <message>
       <source>Preview Time</source>
-      <translation>Heure de l&apos;avant-première</translation>
+      <translation>Tiempo de Previsión</translation>
     </message>
 
     <message>
       <source>Preview Tones Map</source>
-      <translation>Aperçu de la carte des tons</translation>
+      <translation>Vista previa del mapa de tonos</translation>
     </message>
 
     <message>
       <source>Preview Type</source>
-      <translation>Type de prévisualisation</translation>
+      <translation>Tipo de vista previa</translation>
     </message>
 
     <message>
       <source>Preview Without Alpha</source>
-      <translation>Avant-première sans Alpha</translation>
+      <translation>Previsión sin Alfa</translation>
     </message>
 
     <message>
       <source>Primary Angle</source>
-      <translation>Angle primaire</translation>
+      <translation>Ángulo primario</translation>
     </message>
 
     <message>
       <source>Primary Color</source>
-      <translation>Couleur primaire</translation>
+      <translation>Color primario</translation>
     </message>
 
     <message>
       <source>Primary Factor</source>
-      <translation>Facteur principal</translation>
+      <translation>Factor primario</translation>
     </message>
 
     <message>
       <source>Primary Gamma</source>
-      <translation>Gamma primaire</translation>
+      <translation>Gamma primario</translation>
     </message>
 
     <message>
       <source>Primary Radius</source>
-      <translation>Rayon primaire</translation>
+      <translation>Radio primario</translation>
     </message>
 
     <message>
       <source>Primary Shift</source>
-      <translation>Équipe primaire</translation>
+      <translation>Cambio primario</translation>
     </message>
 
     <message>
       <source>Primary Twist</source>
-      <translation>Vrille primaire</translation>
+      <translation>Giro primario</translation>
     </message>
 
     <message>
       <source>Print Adjustment Marks</source>
-      <translation>Marques d&apos;ajustement d&apos;impression</translation>
+      <translation>Imprimir las marcas de ajuste</translation>
     </message>
 
     <message>
       <source>Print Films (12)</source>
-      <translation>Films sur papier (12)</translation>
+      <translation>Películas impresas (12)</translation>
     </message>
 
     <message>
       <source>Print Frame Numbers</source>
-      <translation>Imprimer les numéros de cadre</translation>
+      <translation>Imprimir los números del marco</translation>
     </message>
 
     <message>
       <source>Print Size Unit</source>
-      <translation>Unité de taille d&apos;impression</translation>
+      <translation>Unidad de tamaño de impresión</translation>
     </message>
 
     <message>
       <source>Print Size Width</source>
-      <translation>Largeur de la taille d&apos;impression</translation>
+      <translation>Tamaño de la impresión Ancho</translation>
     </message>
 
     <message>
       <source>Privacy Notice</source>
-      <translation>Avis de confidentialité</translation>
+      <translation>Aviso de privacidad</translation>
     </message>
 
     <message>
       <source>Probability Map</source>
-      <translation>Carte des probabilités</translation>
+      <translation>Mapa de probabilidad</translation>
     </message>
 
     <message>
       <source>Procedural</source>
-      <translation>Procédure</translation>
+      <translation>Procedimiento</translation>
     </message>
 
     <message>
       <source>Process As</source>
-      <translation>Processus en tant que</translation>
+      <translation>Procesar como</translation>
     </message>
 
     <message>
       <source>Process by Blocs of Size</source>
-      <translation>Processus par blocs de taille</translation>
+      <translation>Proceso por bloques de tamaño</translation>
     </message>
 
     <message>
       <source>Process Channels Individually</source>
-      <translation>Traiter les canaux individuellement</translation>
+      <translation>Canales de proceso individualmente</translation>
     </message>
 
     <message>
       <source>Process Top Layer Only</source>
-      <translation>Traitement de la couche supérieure uniquement</translation>
+      <translation>Procesar sólo la capa superior</translation>
     </message>
 
     <message>
       <source>Process Transparency</source>
-      <translation>Transparence du processus</translation>
+      <translation>Transparencia del proceso</translation>
     </message>
 
     <message>
       <source>Processing Mode</source>
-      <translation>Mode de traitement</translation>
+      <translation>Modo de procesamiento</translation>
+    </message>
+
+    <message>
+      <source>Propagation</source>
+      <translation>Propagación</translation>
+    </message>
+
+    <message>
+      <source>Proportion</source>
+      <translation>Proporción</translation>
     </message>
 
     <message>
       <source>Protanomaly</source>
-      <translation>Protanomalie</translation>
+      <translation>Protanomalía</translation>
     </message>
 
     <message>
-      <source>Protanopia</source>
-      <translation>Protanopie</translation>
+      <source>Protect Highlights 01</source>
+      <translation>Proteger lo más destacado 01</translation>
     </message>
 
     <message>
       <source>Prussian Blue</source>
-      <translation>Bleu de Prusse</translation>
+      <translation>Azul de Prusia</translation>
+    </message>
+
+    <message>
+      <source>Pseudo-Gray Dithering</source>
+      <translation>Pseudo-blanqueo gris</translation>
     </message>
 
     <message>
       <source>Purple</source>
-      <translation>Violet</translation>
+      <translation>Púrpura</translation>
     </message>
 
     <message>
       <source>Purple11 (12)</source>
-      <translation>Violet11 (12)</translation>
+      <translation>Púrpura11 (12)</translation>
+    </message>
+
+    <message>
+      <source>Puzzle</source>
+      <translation>Rompecabezas</translation>
     </message>
 
     <message>
       <source>Pyramid</source>
-      <translation>Pyramide</translation>
+      <translation>Pirámide</translation>
     </message>
 
     <message>
       <source>Pyramid Processing</source>
-      <translation>Traitement des pyramides</translation>
+      <translation>Procesamiento de la pirámide</translation>
     </message>
 
     <message>
       <source>Pythagoras Tree</source>
-      <translation>Arbre de Pythagore</translation>
+      <translation>El árbol de Pitágoras</translation>
+    </message>
+
+    <message>
+      <source>Quadrangle</source>
+      <translation>Cuadrangular</translation>
     </message>
 
     <message>
       <source>Quadratic</source>
-      <translation>Quadratique</translation>
+      <translation>Cuadrática</translation>
     </message>
 
     <message>
       <source>Quadtree Variations</source>
-      <translation>Variations en quadrature</translation>
+      <translation>Variaciones de los cuatro árboles</translation>
     </message>
 
     <message>
       <source>Quality</source>
-      <translation>Qualité</translation>
+      <translation>Calidad</translation>
     </message>
 
     <message>
       <source>Quality (%)</source>
-      <translation>Qualité (%)</translation>
+      <translation>Calidad (%)</translation>
     </message>
 
     <message>
       <source>Quantization</source>
-      <translation>Quantification</translation>
+      <translation>Cuantificación</translation>
     </message>
 
     <message>
       <source>Quantize Colors</source>
-      <translation>Quantifier les couleurs</translation>
+      <translation>Cuantificar los colores</translation>
     </message>
 
     <message>
       <source>Quasi-Gaussian</source>
-      <translation>Quasi-Gaussienne</translation>
+      <translation>Cuasi-Gaussiano</translation>
     </message>
 
     <message>
       <source>Quick</source>
-      <translation>Rapide</translation>
+      <translation>Rápido</translation>
+    </message>
+
+    <message>
+      <source>Quick Copyright</source>
+      <translation>Rápido Copyright</translation>
     </message>
 
     <message>
       <source>Quick Enlarge</source>
-      <translation>Agrandissement rapide</translation>
+      <translation>Ampliación rápida</translation>
+    </message>
+
+    <message>
+      <source>R/B Smoothness (Principal)</source>
+      <translation>R/B Suavidad (Principal)</translation>
     </message>
 
     <message>
       <source>R/B Smoothness (Secondary)</source>
-      <translation>Lissage R/B (secondaire)</translation>
+      <translation>R/B Suavidad (Secundaria)</translation>
+    </message>
+
+    <message>
+      <source>Radius</source>
+      <translation>Radio</translation>
     </message>
 
     <message>
       <source>Radius (%)</source>
-      <translation>Rayon (%)</translation>
+      <translation>Radio (%)</translation>
     </message>
 
     <message>
       <source>Radius / Angle</source>
-      <translation>Rayon / Angle</translation>
+      <translation>Radio / ángulo</translation>
     </message>
 
     <message>
       <source>Radius [Manual]</source>
-      <translation>Rayon [Manuel]</translation>
+      <translation>Radio [Manual]</translation>
     </message>
 
     <message>
       <source>Radius Cut</source>
-      <translation>Coupe de rayon</translation>
+      <translation>Corte de radio</translation>
     </message>
 
     <message>
       <source>Radius Middle Circle</source>
-      <translation>Rayon Cercle du milieu</translation>
+      <translation>Radio Círculo Medio</translation>
     </message>
 
     <message>
       <source>Radius Outer Circle A (&gt;0 W%) (&lt;0 H%)</source>
-      <translation>Rayon Cercle extérieur A (&gt;0 W%) (&lt;0 H%)</translation>
+      <translation>Círculo exterior del radio A (&gt;0 W%) (&lt;0 H%)</translation>
     </message>
 
     <message>
       <source>Rain &amp; Snow</source>
-      <translation>Pluie et neige</translation>
-    </message>
-
-    <message>
-      <source>Rainbow</source>
-      <translation>Arc-en-ciel</translation>
+      <translation>Lluvia y Nieve</translation>
     </message>
 
     <message>
       <source>Raindrops</source>
-      <translation>Gouttes de pluie</translation>
+      <translation>Gotas de lluvia</translation>
     </message>
 
     <message>
       <source>Random</source>
-      <translation>Aléatoire</translation>
+      <translation>Al azar</translation>
     </message>
 
     <message>
       <source>Random [non-Transparent]</source>
-      <translation>Aléatoire [non transparent]</translation>
+      <translation>Aleatorio [no transparente]</translation>
     </message>
 
     <message>
       <source>Random Angle</source>
-      <translation>Angle aléatoire</translation>
+      <translation>Ángulo aleatorio</translation>
     </message>
 
     <message>
       <source>Random Color Ellipses</source>
-      <translation>Ellipses de couleurs aléatoires</translation>
+      <translation>Elipses de color al azar</translation>
     </message>
 
     <message>
       <source>Random Colors</source>
-      <translation>Couleurs aléatoires</translation>
-    </message>
-
-    <message>
-      <source>Random Seed</source>
-      <translation>Graines au hasard</translation>
+      <translation>Colores aleatorios</translation>
     </message>
 
     <message>
       <source>Random Shade Stripes</source>
-      <translation>Bandes d&apos;ombre aléatoires</translation>
+      <translation>Rayas de sombra aleatorias</translation>
     </message>
 
     <message>
       <source>Randomize</source>
-      <translation>Randomiser</translation>
+      <translation>Aleatorizar</translation>
     </message>
 
     <message>
       <source>Randomized</source>
-      <translation>Randomisé</translation>
+      <translation>Aleatorio</translation>
     </message>
 
     <message>
       <source>Randomness</source>
-      <translation>Le hasard</translation>
+      <translation>Aleatoriedad</translation>
     </message>
 
     <message>
       <source>Range</source>
-      <translation>Gamme</translation>
+      <translation>Rango</translation>
     </message>
 
     <message>
-      <source>Raw</source>
-      <translation>Brut</translation>
+      <source>Rays</source>
+      <translation>Rayos</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors AB</source>
+      <translation>Rayos Colores AB</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABC</source>
+      <translation>Los rayos colorean el ABC</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCD</source>
+      <translation>Los rayos colorean el ABCD</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCDE</source>
+      <translation>Los rayos colorean ABCDE</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCDEF</source>
+      <translation>Rayos Colores ABCDEF</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCDEFG</source>
+      <translation>Rayos Colores ABCDEFG</translation>
     </message>
 
     <message>
       <source>Rebuild From Similar Blocs</source>
-      <translation>Reconstruire à partir de blocs similaires</translation>
+      <translation>Reconstruir desde bloques similares</translation>
     </message>
 
     <message>
       <source>Recompose</source>
-      <translation>Recomposer</translation>
+      <translation>Recomponer</translation>
     </message>
 
     <message>
       <source>Reconstruct From Previous Frames</source>
-      <translation>Reconstruire à partir des cadres précédents</translation>
+      <translation>Reconstruir a partir de marcos anteriores</translation>
     </message>
 
     <message>
       <source>Recover</source>
-      <translation>Récupérer</translation>
+      <translation>Recuperar</translation>
     </message>
 
     <message>
       <source>Recover Highlights</source>
-      <translation>Récupérer les points forts</translation>
+      <translation>Recuperar lo más destacado</translation>
     </message>
 
     <message>
       <source>Recover Shadows</source>
-      <translation>Récupérer les ombres</translation>
+      <translation>Recuperar las sombras</translation>
     </message>
 
     <message>
       <source>Recovery</source>
-      <translation>Recouvrement</translation>
+      <translation>Recuperación</translation>
+    </message>
+
+    <message>
+      <source>Rectangle</source>
+      <translation>Rectángulo</translation>
     </message>
 
     <message>
       <source>Recursion Depth</source>
-      <translation>Profondeur de récursion</translation>
+      <translation>Profundidad de recursividad</translation>
     </message>
 
     <message>
       <source>Recursions</source>
-      <translation>Récursions</translation>
+      <translation>Recursiones</translation>
     </message>
 
     <message>
       <source>Recursive Median</source>
-      <translation>Médiane récursive</translation>
+      <translation>Mediana recursiva</translation>
     </message>
 
     <message>
       <source>Red</source>
-      <translation>Rouge</translation>
+      <translation>Rojo</translation>
     </message>
 
     <message>
       <source>Red - Green - Blue</source>
-      <translation>Rouge - Vert - Bleu</translation>
+      <translation>Rojo - Verde - Azul</translation>
     </message>
 
     <message>
       <source>Red - Green - Blue - Alpha</source>
-      <translation>Rouge - Vert - Bleu - Alpha</translation>
+      <translation>Rojo - Verde - Azul - Alfa</translation>
     </message>
 
     <message>
       <source>Red Afternoon 01</source>
-      <translation>Après-midi rouge 01</translation>
+      <translation>Tarde Roja 01</translation>
     </message>
 
     <message>
       <source>Red Blue Yellow</source>
-      <translation>Rouge Bleu Jaune</translation>
+      <translation>Rojo Azul Amarillo</translation>
     </message>
 
     <message>
       <source>Red Chroma Factor</source>
-      <translation>Facteur de chromatisation rouge</translation>
+      <translation>Factor de croma rojo</translation>
     </message>
 
     <message>
       <source>Red Chroma Shift</source>
-      <translation>Changement de chroma rouge</translation>
+      <translation>Cambio de Croma Rojo</translation>
     </message>
 
     <message>
       <source>Red Chroma Smoothness</source>
-      <translation>Douceur du rouge</translation>
+      <translation>Suavidad del croma rojo</translation>
     </message>
 
     <message>
       <source>Red Chrominance</source>
-      <translation>Chrominance rouge</translation>
+      <translation>Crominancia Roja</translation>
     </message>
 
     <message>
       <source>Red Day 01</source>
-      <translation>Journée rouge 01</translation>
+      <translation>Día rojo 01</translation>
     </message>
 
     <message>
       <source>Red Dream 01</source>
-      <translation>Rêve rouge 01</translation>
+      <translation>Sueño Rojo 01</translation>
     </message>
 
     <message>
       <source>Red Factor</source>
-      <translation>Facteur rouge</translation>
+      <translation>Factor rojo</translation>
     </message>
 
     <message>
       <source>Red Level</source>
-      <translation>Niveau rouge</translation>
+      <translation>Nivel Rojo</translation>
     </message>
 
     <message>
       <source>Red Rotations</source>
-      <translation>Rotations rouges</translation>
+      <translation>Rotaciones en rojo</translation>
+    </message>
+
+    <message>
+      <source>Red Shift</source>
+      <translation>Turno rojo</translation>
     </message>
 
     <message>
       <source>Red Smoothness</source>
-      <translation>Lisse rouge</translation>
+      <translation>Suavidad roja</translation>
     </message>
 
     <message>
       <source>Red Wavelength</source>
-      <translation>Longueur d&apos;onde rouge</translation>
+      <translation>Longitud de Onda Roja</translation>
     </message>
 
     <message>
       <source>Red-Eye Attenuation</source>
-      <translation>Atténuation des yeux rouges</translation>
+      <translation>Atenuación de Ojos Rojos</translation>
     </message>
 
     <message>
       <source>Red-Green</source>
-      <translation>Rouge-Vert</translation>
+      <translation>Rojo-Verde</translation>
     </message>
 
     <message>
       <source>Reds</source>
-      <translation>Rouge</translation>
+      <translation>Rojos</translation>
     </message>
 
     <message>
       <source>Reds Oranges Yellows</source>
-      <translation>Rouge Oranges Jaune</translation>
+      <translation>Rojos Naranjas Amarillos</translation>
     </message>
 
     <message>
       <source>Reduce Halos</source>
-      <translation>Réduire les halos</translation>
+      <translation>Reducir los halos</translation>
     </message>
 
     <message>
       <source>Reduce Noise</source>
-      <translation>Réduire le bruit</translation>
+      <translation>Reducir el ruido</translation>
     </message>
 
     <message>
       <source>Reduce RAM</source>
-      <translation>Réduire la RAM</translation>
+      <translation>Reducir la RAM</translation>
     </message>
 
     <message>
       <source>Reduce Redness</source>
-      <translation>Réduire la réduction</translation>
-    </message>
-
-    <message>
-      <source>Reeve 38</source>
-      <translation>Préfet 38</translation>
+      <translation>Reducir el enrojecimiento</translation>
     </message>
 
     <message>
       <source>Reference</source>
-      <translation>Référence</translation>
+      <translation>Referencia</translation>
     </message>
 
     <message>
       <source>Reference Angle (deg.)</source>
-      <translation>Angle de référence (deg.)</translation>
+      <translation>Ángulo de referencia (deg.)</translation>
     </message>
 
     <message>
       <source>Reference Color</source>
-      <translation>Couleur de référence</translation>
+      <translation>Color de referencia</translation>
     </message>
 
     <message>
       <source>Reference Colors</source>
-      <translation>Couleurs de référence</translation>
+      <translation>Colores de referencia</translation>
+    </message>
+
+    <message>
+      <source>Reflect</source>
+      <translation>Refleja</translation>
     </message>
 
     <message>
       <source>Reflection</source>
-      <translation>Réflexion</translation>
+      <translation>Reflexión</translation>
     </message>
 
     <message>
       <source>Refraction</source>
-      <translation>Réfraction</translation>
+      <translation>Refracción</translation>
     </message>
 
     <message>
       <source>Regular Grid</source>
-      <translation>Grille régulière</translation>
+      <translation>Rejilla regular</translation>
     </message>
 
     <message>
       <source>Regularity</source>
-      <translation>Régularité</translation>
+      <translation>Regularidad</translation>
     </message>
 
     <message>
       <source>Regularity (%)</source>
-      <translation>Régularité (%)</translation>
+      <translation>Regularidad (%)</translation>
     </message>
 
     <message>
       <source>Regularization</source>
-      <translation>Régularisation</translation>
+      <translation>Regularización</translation>
     </message>
 
     <message>
       <source>Regularization (%)</source>
-      <translation>Régularisation (%)</translation>
+      <translation>Regularización (%)</translation>
     </message>
 
     <message>
       <source>Regularization Factor</source>
-      <translation>Facteur de régularisation</translation>
+      <translation>Factor de regularización</translation>
     </message>
 
     <message>
       <source>Regularization Iterations</source>
-      <translation>Itérations de régularisation</translation>
+      <translation>Iteraciones de regularización</translation>
     </message>
 
     <message>
       <source>Reject</source>
-      <translation>Rejeter</translation>
+      <translation>Rechazar</translation>
     </message>
 
     <message>
       <source>Rejected Colors</source>
-      <translation>Couleurs rejetées</translation>
+      <translation>Colores rechazados</translation>
     </message>
 
     <message>
       <source>Rejected Mask</source>
-      <translation>Masque rejeté</translation>
+      <translation>Máscara rechazada</translation>
     </message>
 
     <message>
       <source>Relative Block Count</source>
-      <translation>Nombre relatif de blocs</translation>
+      <translation>Recuento relativo de bloqueos</translation>
     </message>
 
     <message>
       <source>Relative Size</source>
-      <translation>Taille relative</translation>
+      <translation>Tamaño relativo</translation>
     </message>
 
     <message>
       <source>Relative Warping</source>
-      <translation>Gauchissement relatif</translation>
+      <translation>Deformación relativa</translation>
     </message>
 
     <message>
       <source>Release Notes</source>
-      <translation>Notes de mise à jour</translation>
+      <translation>Notas de lanzamiento</translation>
+    </message>
+
+    <message>
+      <source>Relief</source>
+      <translation>Socorro</translation>
     </message>
 
     <message>
       <source>Relief Amplitude</source>
-      <translation>Amplitude de l&apos;aide</translation>
+      <translation>Amplitud del alivio</translation>
     </message>
 
     <message>
       <source>Relief Contrast</source>
-      <translation>Contraste de l&apos;aide</translation>
+      <translation>Contraste del alivio</translation>
+    </message>
+
+    <message>
+      <source>Relief Light</source>
+      <translation>La luz de alivio</translation>
     </message>
 
     <message>
       <source>Relief Size</source>
-      <translation>Taille de l&apos;aide</translation>
+      <translation>Tamaño del relieve</translation>
     </message>
 
     <message>
       <source>Relief Smoothness</source>
-      <translation>La douceur du soulagement</translation>
+      <translation>Alivio Suavidad</translation>
     </message>
 
     <message>
       <source>Remove Artifacts From Micro/Macro Detail</source>
-      <translation>Supprimer les artefacts des micro/macro-détails</translation>
+      <translation>Eliminar los artefactos de los detalles del micro/macro</translation>
     </message>
 
     <message>
       <source>Remove Hot Pixels</source>
-      <translation>Supprimer les pixels chauds</translation>
+      <translation>Eliminar los píxeles calientes</translation>
     </message>
 
     <message>
       <source>Remove Tile</source>
-      <translation>Enlever une tuile</translation>
+      <translation>Quitar las baldosas</translation>
     </message>
 
     <message>
       <source>Render Multiple Frames</source>
-      <translation>Rendu des images multiples</translation>
+      <translation>Renderizar múltiples cuadros</translation>
     </message>
 
     <message>
       <source>Render on Dark Areas</source>
-      <translation>Rendu sur les zones sombres</translation>
+      <translation>Renderización de las áreas oscuras</translation>
     </message>
 
     <message>
       <source>Render on White Areas</source>
-      <translation>Rendu sur les zones blanches</translation>
+      <translation>Renderización de las áreas blancas</translation>
     </message>
 
     <message>
       <source>Render Routine for Wiggle Animations</source>
-      <translation>Routine de rendu pour les animations Wiggle</translation>
+      <translation>Rutina de Renderización para las animaciones de Wiggle</translation>
     </message>
 
     <message>
       <source>Rendering</source>
-      <translation>Rendu</translation>
+      <translation>Renderización</translation>
     </message>
 
     <message>
       <source>Rendering Mode</source>
-      <translation>Mode de rendu</translation>
+      <translation>Modo de representación</translation>
     </message>
 
     <message>
       <source>Repair Scanned Document</source>
-      <translation>Réparation d&apos;un document scanné</translation>
+      <translation>Reparar el documento escaneado</translation>
     </message>
 
     <message>
       <source>Repeat</source>
-      <translation>Répéter</translation>
+      <translation>Repita</translation>
     </message>
 
     <message>
       <source>Repeat [Memory Consuming!]</source>
-      <translation>Répéter [Mémoire Consommant !]</translation>
+      <translation>Repite [¡consumo de memoria!]</translation>
     </message>
 
     <message>
       <source>Repeats</source>
-      <translation>Répétition de</translation>
+      <translation>Repite</translation>
     </message>
 
     <message>
       <source>Replace</source>
-      <translation>Remplacer</translation>
+      <translation>Reemplazar</translation>
     </message>
 
     <message>
       <source>Replace (Sharpest)</source>
-      <translation>Remplacer (le plus net)</translation>
+      <translation>Reemplazar (más agudo)</translation>
     </message>
 
     <message>
       <source>Replace Layer with CLUT</source>
-      <translation>Remplacer la couche par CLUT</translation>
+      <translation>Reemplazar la capa con CLUT</translation>
     </message>
 
     <message>
       <source>Replace Source by Target</source>
-      <translation>Remplacer la source par la cible</translation>
+      <translation>Reemplazar la fuente por el objetivo</translation>
     </message>
 
     <message>
       <source>Replace With White</source>
-      <translation>Remplacer par du blanc</translation>
+      <translation>Reemplazar con blanco</translation>
     </message>
 
     <message>
       <source>Replaced Color</source>
-      <translation>Remplacement de la couleur</translation>
+      <translation>Color reemplazado</translation>
     </message>
 
     <message>
       <source>Replacement Color</source>
-      <translation>Couleur de remplacement</translation>
+      <translation>Color de reemplazo</translation>
+    </message>
+
+    <message>
+      <source>Reptile</source>
+      <translation>Reptil</translation>
     </message>
 
     <message>
       <source>Rescaling</source>
-      <translation>Redimensionnement</translation>
+      <translation>Rescatar</translation>
     </message>
 
     <message>
       <source>Reset View</source>
-      <translation>Réinitialiser la vue</translation>
+      <translation>Restablecer la vista</translation>
     </message>
 
     <message>
       <source>Resize Image for Optimum Effect</source>
-      <translation>Redimensionner l&apos;image pour un effet optimal</translation>
+      <translation>Cambiar el tamaño de la imagen para un efecto óptimo</translation>
     </message>
 
     <message>
       <source>Resolution</source>
-      <translation>Résolution</translation>
+      <translation>Resolución</translation>
     </message>
 
     <message>
       <source>Resolution (%)</source>
-      <translation>Résolution (%)</translation>
+      <translation>Resolución (%)</translation>
     </message>
 
     <message>
       <source>Resolution (px)</source>
-      <translation>Résolution (px)</translation>
+      <translation>Resolución (px)</translation>
     </message>
 
     <message>
       <source>Rest 33</source>
-      <translation>Reste 33</translation>
+      <translation>El resto 33...</translation>
     </message>
 
     <message>
       <source>Result Image</source>
-      <translation>Image de résultat</translation>
+      <translation>Imagen del resultado</translation>
     </message>
 
     <message>
       <source>Result Type</source>
-      <translation>Type de résultat</translation>
+      <translation>Tipo de resultado</translation>
     </message>
 
     <message>
       <source>Resynthetize Texture [FFT]</source>
-      <translation>Resynthétiser la texture [FFT]</translation>
+      <translation>Resintetizar la textura [FFT]</translation>
     </message>
 
     <message>
       <source>Resynthetize Texture [Patch-Based]</source>
-      <translation>Resynthétiser la texture [Patch-Based] (en anglais)</translation>
+      <translation>Resintetizar la textura [a base de parches]</translation>
     </message>
 
     <message>
       <source>Retouch Layer</source>
-      <translation>Couche de retouche</translation>
+      <translation>Capa de Retoque</translation>
     </message>
 
     <message>
       <source>Retouched and Sharpened Areas</source>
-      <translation>Zones retouchées et aiguisées</translation>
+      <translation>Áreas retocadas y afiladas</translation>
     </message>
 
     <message>
       <source>Retouched Areas Only</source>
-      <translation>Zones retouchées uniquement</translation>
+      <translation>Sólo las áreas retocadas</translation>
     </message>
 
     <message>
       <source>Retouched Image</source>
-      <translation>Image retouchée</translation>
+      <translation>Imagen retocada</translation>
     </message>
 
     <message>
       <source>Retouched Image Basic</source>
-      <translation>Image retouchée de base</translation>
+      <translation>Retocado de la imagen básica</translation>
     </message>
 
     <message>
       <source>Retouched Image Final</source>
-      <translation>Image retouchée finale</translation>
+      <translation>Imagen Retocada Final</translation>
     </message>
 
     <message>
       <source>Retouching Style</source>
-      <translation>Style de retouche</translation>
-    </message>
-
-    <message>
-      <source>Retro</source>
-      <translation>Rétro</translation>
-    </message>
-
-    <message>
-      <source>Retro Fade</source>
-      <translation>Fondu rétro</translation>
+      <translation>Estilo de retoque</translation>
     </message>
 
     <message>
       <source>Retro Summer 3</source>
-      <translation>Rétro Été 3</translation>
+      <translation>Retro Verano 3</translation>
     </message>
 
     <message>
       <source>Retro Yellow 01</source>
-      <translation>Rétro jaune 01</translation>
+      <translation>Retro Amarillo 01</translation>
     </message>
 
     <message>
       <source>Return Scaling</source>
-      <translation>Échelle de retour</translation>
+      <translation>Volver a la escala</translation>
     </message>
 
     <message>
       <source>Reverse Bits</source>
-      <translation>Bits inversés</translation>
+      <translation>Bits invertidos</translation>
     </message>
 
     <message>
       <source>Reverse Bytes</source>
-      <translation>Octets inversés</translation>
+      <translation>Invertir los bytes</translation>
     </message>
 
     <message>
       <source>Reverse Effect</source>
-      <translation>Effet inverse</translation>
+      <translation>Efecto inverso</translation>
+    </message>
+
+    <message>
+      <source>Reverse Endianness</source>
+      <translation>Endianidad inversa</translation>
     </message>
 
     <message>
       <source>Reverse Flip</source>
-      <translation>Retournement</translation>
+      <translation>Vuelta inversa</translation>
     </message>
 
     <message>
       <source>Reverse Frame Stack</source>
-      <translation>Pile de cadres inversée</translation>
+      <translation>Revertir la pila de cuadros</translation>
     </message>
 
     <message>
       <source>Reverse Gradient</source>
-      <translation>Gradient inverse</translation>
+      <translation>Gradiente inverso</translation>
+    </message>
+
+    <message>
+      <source>Reverse Mod</source>
+      <translation>Modalidad de reversa</translation>
     </message>
 
     <message>
       <source>Reverse Motion</source>
-      <translation>Motion de retour en arrière</translation>
+      <translation>Movimiento de reversa</translation>
     </message>
 
     <message>
       <source>Reverse Order</source>
-      <translation>Ordre inverse</translation>
+      <translation>Orden inverso</translation>
+    </message>
+
+    <message>
+      <source>Reverse Pow</source>
+      <translation>Polvo invertido</translation>
     </message>
 
     <message>
       <source>Reversing</source>
-      <translation>Inverser</translation>
+      <translation>Invirtiendo</translation>
     </message>
 
     <message>
       <source>Revert Layer Order</source>
-      <translation>Ordonnance de réversion de couche</translation>
+      <translation>Revertir el orden de la capa</translation>
     </message>
 
     <message>
       <source>Revert Layers</source>
-      <translation>Révision des couches</translation>
+      <translation>Revertir las capas</translation>
     </message>
 
     <message>
       <source>RGB [All]</source>
-      <translation>RGB [Tous]</translation>
+      <translation>RGB [Todos]</translation>
     </message>
 
     <message>
       <source>RGB [Blue]</source>
-      <translation>RVB [Bleu]</translation>
+      <translation>RGB [Azul]</translation>
     </message>
 
     <message>
       <source>RGB [Green]</source>
-      <translation>RGB [Vert]</translation>
+      <translation>RGB [Verde]</translation>
     </message>
 
     <message>
       <source>RGB [red]</source>
-      <translation>RGB [rouge]</translation>
+      <translation>RGB [rojo]</translation>
     </message>
 
     <message>
       <source>RGB Image + Binary Mask (2 Layers)</source>
-      <translation>Image RVB + masque binaire (2 couches)</translation>
+      <translation>Imagen RGB + Máscara Binaria (2 Capas)</translation>
     </message>
 
     <message>
       <source>RGB Quantization</source>
-      <translation>Quantification du RGB</translation>
+      <translation>Cuantificación RGB</translation>
     </message>
 
     <message>
       <source>RGB Tone</source>
-      <translation>Tonalité RGB</translation>
+      <translation>Tono RGB</translation>
     </message>
 
     <message>
       <source>RGBA [All]</source>
-      <translation>RGBA [Tous]</translation>
+      <translation>RGBA [Todos]</translation>
+    </message>
+
+    <message>
+      <source>RGBA [Alpha]</source>
+      <translation>RGBA [Alfa]</translation>
     </message>
 
     <message>
       <source>RGBA Foreground + Background (2 Layers)</source>
-      <translation>RGBA Avant-plan + arrière-plan (2 couches)</translation>
+      <translation>RGBA primer plano + fondo (2 capas)</translation>
     </message>
 
     <message>
       <source>RGBA Image (Full-Transparency / 1 Layer)</source>
-      <translation>Image RGBA (pleine transparence / 1 couche)</translation>
+      <translation>Imagen RGBA (Transparencia total / 1 capa)</translation>
     </message>
 
     <message>
       <source>RGBA Image (Updatable / 1 Layer)</source>
-      <translation>Image RGBA (mise à jour / 1 couche)</translation>
+      <translation>Imagen RGBA (Actualizable / 1 Capa)</translation>
     </message>
 
     <message>
       <source>Rice</source>
-      <translation>Riz</translation>
+      <translation>Arroz</translation>
     </message>
 
     <message>
       <source>Right</source>
-      <translation>droite</translation>
+      <translation>Derecho</translation>
     </message>
 
     <message>
       <source>Right Diagonal  Foreground</source>
-      <translation>Premier plan en diagonale à droite</translation>
+      <translation>Primer plano diagonal derecho</translation>
     </message>
 
     <message>
       <source>Right Diagonal Foreground</source>
-      <translation>Premier plan en diagonale à droite</translation>
+      <translation>Primer plano diagonal derecho</translation>
     </message>
 
     <message>
       <source>Right Eye View</source>
-      <translation>Vue de l&apos;œil droit</translation>
+      <translation>Vista del ojo derecho</translation>
     </message>
 
     <message>
       <source>Right Foreground</source>
-      <translation>Premier plan à droite</translation>
+      <translation>Primer plano derecho</translation>
     </message>
 
     <message>
       <source>Right Position</source>
-      <translation>La bonne position</translation>
+      <translation>Posición correcta</translation>
     </message>
 
     <message>
       <source>Right Side Orientation</source>
-      <translation>Orientation du côté droit</translation>
+      <translation>Orientación del lado derecho</translation>
     </message>
 
     <message>
       <source>Right Slope</source>
-      <translation>Pente droite</translation>
+      <translation>Pendiente derecha</translation>
     </message>
 
     <message>
       <source>Right Stream Only</source>
-      <translation>Right Stream uniquement</translation>
+      <translation>Sólo la corriente derecha</translation>
     </message>
 
     <message>
       <source>Rigid</source>
-      <translation>Rigide</translation>
+      <translation>Rígido</translation>
     </message>
 
     <message>
       <source>Roddy (by Mahvin)</source>
-      <translation>Roddy (par Mahvin)</translation>
+      <translation>Roddy (por Mahvin)</translation>
     </message>
 
     <message>
       <source>Rodilius [Animated]</source>
-      <translation>Rodilius [Animé]</translation>
+      <translation>Rodilius [Animado]</translation>
+    </message>
+
+    <message>
+      <source>Rollei Retro 80s</source>
+      <translation>Rollei Retro 80</translation>
     </message>
 
     <message>
       <source>Rooster</source>
-      <translation>Coq</translation>
+      <translation>Gallo</translation>
     </message>
 
     <message>
       <source>Rotate</source>
-      <translation>Faire tourner</translation>
+      <translation>Gire</translation>
     </message>
 
     <message>
       <source>Rotate (muted)</source>
-      <translation>Rotation (en sourdine)</translation>
+      <translation>Rotar (mudo)</translation>
     </message>
 
     <message>
       <source>Rotate (vibrant)</source>
-      <translation>Rotation (dynamique)</translation>
+      <translation>Rotar (vibrante)</translation>
     </message>
 
     <message>
       <source>Rotate 180 Deg.</source>
-      <translation>Faites une rotation de 180 degrés.</translation>
+      <translation>Gire 180 grados.</translation>
     </message>
 
     <message>
       <source>Rotate 270 Deg.</source>
-      <translation>Rotation de 270 degrés.</translation>
+      <translation>Gire 270 grados.</translation>
     </message>
 
     <message>
       <source>Rotate 90 Deg.</source>
-      <translation>Rotation de 90 degrés.</translation>
+      <translation>Gire 90 grados.</translation>
     </message>
 
     <message>
       <source>Rotate Hue Bands</source>
-      <translation>Rotation des bandes de teinte</translation>
+      <translation>Rotar las bandas de tonalidad</translation>
     </message>
 
     <message>
       <source>Rotate Tree</source>
-      <translation>Faire tourner l&apos;arbre</translation>
+      <translation>Rotar el árbol</translation>
     </message>
 
     <message>
       <source>Rotated</source>
-      <translation>Tourné</translation>
+      <translation>Girado</translation>
     </message>
 
     <message>
       <source>Rotated (crush)</source>
-      <translation>Rotation (écrasement)</translation>
+      <translation>Rotación (aplastamiento)</translation>
+    </message>
+
+    <message>
+      <source>Rotations</source>
+      <translation>Rotaciones</translation>
     </message>
 
     <message>
       <source>Round</source>
-      <translation>Tour</translation>
+      <translation>Ronda</translation>
     </message>
 
     <message>
       <source>Roundness</source>
-      <translation>Rondeur</translation>
+      <translation>Redondez</translation>
     </message>
 
     <message>
       <source>Row by Row</source>
-      <translation>Rangée par rangée</translation>
+      <translation>Fila por fila</translation>
     </message>
 
     <message>
       <source>RYB [All]</source>
-      <translation>RYB [Tous]</translation>
+      <translation>RYB [Todos]</translation>
     </message>
 
     <message>
       <source>RYB [Blue]</source>
-      <translation>RYB [Bleu]</translation>
+      <translation>RYB [Azul]</translation>
     </message>
 
     <message>
       <source>RYB [Red]</source>
-      <translation>RYB [Rouge]</translation>
+      <translation>RYB [Rojo]</translation>
     </message>
 
     <message>
       <source>RYB [Yellow]</source>
-      <translation>RYB [Jaune]</translation>
+      <translation>RYB [Amarillo]</translation>
     </message>
 
     <message>
       <source>S-Curve Contrast</source>
-      <translation>Contraste de la courbe en S</translation>
+      <translation>Contraste de la curva S</translation>
     </message>
 
     <message>
       <source>Salt and Pepper</source>
-      <translation>Sel et poivre</translation>
+      <translation>Sal y pimienta</translation>
     </message>
 
     <message>
       <source>Same as Input</source>
-      <translation>Identique à l&apos;entrée</translation>
+      <translation>Igual que la entrada</translation>
     </message>
 
     <message>
       <source>Same Axis</source>
-      <translation>Même axe</translation>
+      <translation>El mismo eje</translation>
     </message>
 
     <message>
       <source>Sample Image</source>
-      <translation>Exemple d&apos;image</translation>
+      <translation>Imagen de muestra</translation>
     </message>
 
     <message>
       <source>Sampling</source>
-      <translation>Échantillonnage</translation>
+      <translation>Muestreo</translation>
+    </message>
+
+    <message>
+      <source>Sat Bottom</source>
+      <translation>Satélite de fondo</translation>
     </message>
 
     <message>
       <source>Sat Range</source>
-      <translation>Gamme Sat</translation>
+      <translation>Rango de Saturación</translation>
+    </message>
+
+    <message>
+      <source>Satin</source>
+      <translation>Satén</translation>
     </message>
 
     <message>
       <source>Saturated Blue</source>
-      <translation>Bleu saturé</translation>
+      <translation>Azul saturado</translation>
+    </message>
+
+    <message>
+      <source>Saturation</source>
+      <translation>Saturación</translation>
+    </message>
+
+    <message>
+      <source>Saturation (%)</source>
+      <translation>Saturación (%)</translation>
+    </message>
+
+    <message>
+      <source>Saturation Channel Gamma</source>
+      <translation>Canal de Saturación Gamma</translation>
     </message>
 
     <message>
       <source>Saturation Correction</source>
-      <translation>Correction de la saturation</translation>
+      <translation>Corrección de la saturación</translation>
     </message>
 
     <message>
       <source>Saturation EQ</source>
-      <translation>QE par saturation</translation>
+      <translation>Saturación EQ</translation>
     </message>
 
     <message>
       <source>Saturation Factor</source>
-      <translation>Facteur de saturation</translation>
+      <translation>Factor de saturación</translation>
     </message>
 
     <message>
       <source>Saturation Offset</source>
-      <translation>Décalage de la saturation</translation>
+      <translation>Compensación de saturación</translation>
     </message>
 
     <message>
       <source>Saturation Shift</source>
-      <translation>Changement de saturation</translation>
+      <translation>Cambio de saturación</translation>
     </message>
 
     <message>
       <source>Saturation Smoothness</source>
-      <translation>Lissage de la saturation</translation>
+      <translation>Saturación Suavidad</translation>
     </message>
 
     <message>
       <source>Save CLUT as .Cube or .Png File</source>
-      <translation>Enregistrer CLUT en fichier .cube ou .png</translation>
+      <translation>Guarda CLUT como un archivo .Cube o .Png</translation>
     </message>
 
     <message>
       <source>Save Gradient As</source>
-      <translation>Enregistrer le gradient sous</translation>
+      <translation>Guardar el gradiente como</translation>
     </message>
 
     <message>
       <source>Saving Private Damon</source>
-      <translation>Sauver le soldat Damon</translation>
+      <translation>Salvar al soldado Damon</translation>
     </message>
 
     <message>
       <source>Scale</source>
-      <translation>Échelle</translation>
+      <translation>Escala</translation>
     </message>
 
     <message>
       <source>Scale (%)</source>
-      <translation>Échelle (%)</translation>
+      <translation>Escala (%)</translation>
     </message>
 
     <message>
       <source>Scale 1</source>
-      <translation>Échelle 1</translation>
+      <translation>Escala 1</translation>
     </message>
 
     <message>
       <source>Scale 2</source>
-      <translation>Échelle 2</translation>
+      <translation>Escala 2</translation>
     </message>
 
     <message>
       <source>Scale CMYK</source>
-      <translation>Échelle CMYK</translation>
+      <translation>Escala CMYK</translation>
     </message>
 
     <message>
       <source>Scale Factor</source>
-      <translation>Facteur d&apos;échelle</translation>
+      <translation>Factor de escala</translation>
     </message>
 
     <message>
       <source>Scale Output</source>
-      <translation>Production à l&apos;échelle</translation>
+      <translation>Salida de la escala</translation>
     </message>
 
     <message>
       <source>Scale Plasma</source>
-      <translation>Échelle de plasma</translation>
+      <translation>Plasma a escala</translation>
     </message>
 
     <message>
       <source>Scale RGB</source>
-      <translation>Échelle RGB</translation>
+      <translation>Escala RGB</translation>
     </message>
 
     <message>
       <source>Scale Style to Fit Target Resolution</source>
-      <translation>Style d&apos;échelle pour s&apos;adapter à la résolution de la cible</translation>
+      <translation>Estilo de escala para ajustarse a la resolución del objetivo</translation>
     </message>
 
     <message>
       <source>Scale Variations</source>
-      <translation>Variations d&apos;échelle</translation>
+      <translation>Variaciones de escala</translation>
     </message>
 
     <message>
       <source>Scaled</source>
-      <translation>A l&apos;échelle</translation>
+      <translation>Escala</translation>
     </message>
 
     <message>
       <source>Scales</source>
-      <translation>Échelles</translation>
+      <translation>Escalas</translation>
     </message>
 
     <message>
       <source>Scaling Factor</source>
-      <translation>Facteur d&apos;échelle</translation>
+      <translation>Factor de escala</translation>
     </message>
 
     <message>
       <source>Scene Selector</source>
-      <translation>Sélecteur de scène</translation>
+      <translation>Selector de Escena</translation>
+    </message>
+
+    <message>
+      <source>Science Fiction</source>
+      <translation>Ciencia Ficción</translation>
     </message>
 
     <message>
       <source>Screen</source>
-      <translation>Écran</translation>
+      <translation>Pantalla</translation>
     </message>
 
     <message>
       <source>Screen Border</source>
-      <translation>Bordure de l&apos;écran</translation>
+      <translation>Pantalla Borde</translation>
     </message>
 
     <message>
       <source>Seamless Deco</source>
-      <translation>Déco sans couture</translation>
+      <translation>Deco sin fisuras</translation>
     </message>
 
     <message>
       <source>Seamless Turbulence</source>
-      <translation>Des turbulences sans faille</translation>
+      <translation>Turbulencia sin fisuras</translation>
     </message>
 
     <message>
       <source>Second Color</source>
-      <translation>Deuxième couleur</translation>
+      <translation>Segundo color</translation>
     </message>
 
     <message>
       <source>Second Offset</source>
-      <translation>Deuxième compensation</translation>
+      <translation>Segunda compensación</translation>
     </message>
 
     <message>
       <source>Second Radius</source>
-      <translation>Second rayon</translation>
+      <translation>Segundo radio</translation>
     </message>
 
     <message>
       <source>Second Size</source>
-      <translation>Deuxième taille</translation>
+      <translation>Segundo tamaño</translation>
     </message>
 
     <message>
       <source>Secondary Color</source>
-      <translation>Couleur secondaire</translation>
+      <translation>Color secundario</translation>
     </message>
 
     <message>
       <source>Secondary Factor</source>
-      <translation>Facteur secondaire</translation>
+      <translation>Factor secundario</translation>
     </message>
 
     <message>
       <source>Secondary Gamma</source>
-      <translation>Gamma secondaire</translation>
+      <translation>Gamma secundario</translation>
     </message>
 
     <message>
       <source>Secondary Radius</source>
-      <translation>Rayon secondaire</translation>
+      <translation>Radio secundario</translation>
     </message>
 
     <message>
       <source>Secondary Shift</source>
-      <translation>Équipe secondaire</translation>
+      <translation>Turno secundario</translation>
     </message>
 
     <message>
       <source>Secondary Twist</source>
-      <translation>Vrille secondaire</translation>
+      <translation>Giro secundario</translation>
     </message>
 
     <message>
       <source>Sectors</source>
-      <translation>Secteurs</translation>
+      <translation>Sectores</translation>
     </message>
 
     <message>
       <source>Seed</source>
-      <translation>Semences</translation>
+      <translation>Semilla</translation>
     </message>
 
     <message>
       <source>Segment Max Length (px)</source>
-      <translation>Longueur maximale du segment (px)</translation>
+      <translation>Longitud máxima del segmento (px)</translation>
+    </message>
+
+    <message>
+      <source>Segmentation</source>
+      <translation>Segmentación</translation>
     </message>
 
     <message>
       <source>Segmentation Edge Threshold</source>
-      <translation>Seuil de l&apos;arête de segmentation</translation>
+      <translation>Segmentación Umbral de borde</translation>
     </message>
 
     <message>
       <source>Segmentation Smoothness</source>
-      <translation>Lissage de la segmentation</translation>
+      <translation>Suavidad de la segmentación</translation>
+    </message>
+
+    <message>
+      <source>Segments</source>
+      <translation>Segmentos</translation>
     </message>
 
     <message>
       <source>Segments Strength</source>
-      <translation>Segments Force</translation>
+      <translation>Segmentos Fuerza</translation>
     </message>
 
     <message>
       <source>Select By</source>
-      <translation>Sélectionner par</translation>
+      <translation>Seleccione por</translation>
     </message>
 
     <message>
       <source>Select-Replace Color</source>
-      <translation>Sélectionner-Remplacer la couleur</translation>
+      <translation>Selecciona y reemplaza el color</translation>
     </message>
 
     <message>
       <source>Selected Color</source>
-      <translation>Couleur sélectionnée</translation>
+      <translation>Color seleccionado</translation>
     </message>
 
     <message>
       <source>Selected Colors</source>
-      <translation>Couleurs sélectionnées</translation>
+      <translation>Colores seleccionados</translation>
     </message>
 
     <message>
       <source>Selected Frame</source>
-      <translation>Cadre sélectionné</translation>
+      <translation>Marco seleccionado</translation>
     </message>
 
     <message>
       <source>Selected Mask</source>
-      <translation>Masque sélectionné</translation>
+      <translation>Máscara seleccionada</translation>
     </message>
 
     <message>
       <source>Selection</source>
-      <translation>Sélection</translation>
+      <translation>Selección</translation>
     </message>
 
     <message>
       <source>Selective Desaturation</source>
-      <translation>Désaturation sélective</translation>
+      <translation>Desaturación selectiva</translation>
     </message>
 
     <message>
       <source>Selective Gaussian</source>
-      <translation>Gaussien sélectif</translation>
+      <translation>Gaussiano selectivo</translation>
+    </message>
+
+    <message>
+      <source>Self</source>
+      <translation>Auto</translation>
     </message>
 
     <message>
       <source>Self Glitching</source>
-      <translation>Auto-glitching</translation>
+      <translation>Auto-registrarse.</translation>
     </message>
 
     <message>
       <source>Self Image</source>
-      <translation>Image de soi</translation>
+      <translation>Imagen propia</translation>
     </message>
 
     <message>
       <source>Sensitivity</source>
-      <translation>Sensibilité</translation>
-    </message>
-
-    <message>
-      <source>Sepia</source>
-      <translation>Sépia</translation>
+      <translation>Sensibilidad</translation>
     </message>
 
     <message>
       <source>Sequence X4</source>
-      <translation>Séquence X4</translation>
+      <translation>Secuencia X4</translation>
     </message>
 
     <message>
       <source>Sequence X6</source>
-      <translation>Séquence X6</translation>
+      <translation>Secuencia X6</translation>
     </message>
 
     <message>
       <source>Sequence X8</source>
-      <translation>Séquence X8</translation>
+      <translation>Secuencia X8</translation>
     </message>
 
     <message>
       <source>Serenity</source>
-      <translation>Sérénité</translation>
+      <translation>Serenidad</translation>
     </message>
 
     <message>
       <source>Serial Number</source>
-      <translation>Numéro de série</translation>
+      <translation>Número de serie</translation>
     </message>
 
     <message>
-      <source>Seringe 4</source>
-      <translation>Série 4</translation>
+      <source>Serpent</source>
+      <translation>Serpiente</translation>
     </message>
 
     <message>
       <source>Set Aspect Only</source>
-      <translation>Aspect fixe uniquement</translation>
+      <translation>Sólo el aspecto del conjunto</translation>
     </message>
 
     <message>
       <source>Set Frame Format</source>
-      <translation>Format du cadre</translation>
+      <translation>Formato del marco del set</translation>
     </message>
 
     <message>
       <source>Seven Layers</source>
-      <translation>Sept couches</translation>
+      <translation>Siete capas</translation>
     </message>
 
     <message>
       <source>Seventies Magazine</source>
-      <translation>Magazine Seventies</translation>
+      <translation>Revista Seventies</translation>
+    </message>
+
+    <message>
+      <source>Shade</source>
+      <translation>Sombra</translation>
     </message>
 
     <message>
       <source>Shade Angle</source>
-      <translation>Angle d&apos;ombrage</translation>
+      <translation>Ángulo de sombra</translation>
     </message>
 
     <message>
       <source>Shade Back to First Color</source>
-      <translation>Retour à la première couleur</translation>
+      <translation>Sombra Volver al primer color</translation>
+    </message>
+
+    <message>
+      <source>Shade Bobs</source>
+      <translation>Bobs de sombra</translation>
     </message>
 
     <message>
       <source>Shade Strength</source>
-      <translation>La force de l&apos;ombre</translation>
+      <translation>Fuerza de la sombra</translation>
     </message>
 
     <message>
       <source>Shading</source>
-      <translation>Ombrage</translation>
+      <translation>Sombreado</translation>
     </message>
 
     <message>
       <source>Shading (%)</source>
-      <translation>Ombrage (%)</translation>
+      <translation>Sombreado (%)</translation>
     </message>
 
     <message>
       <source>Shadow</source>
-      <translation>Ombre</translation>
+      <translation>Sombra</translation>
     </message>
 
     <message>
       <source>Shadow Contrast</source>
-      <translation>Contraste des ombres</translation>
+      <translation>Contraste de sombras</translation>
     </message>
 
     <message>
       <source>Shadow Intensity</source>
-      <translation>Intensité des ombres</translation>
+      <translation>Intensidad de la sombra</translation>
     </message>
 
     <message>
       <source>Shadow King 39</source>
-      <translation>Le roi de l&apos;ombre 39</translation>
+      <translation>Rey de las Sombras 39</translation>
     </message>
 
     <message>
       <source>Shadow Offset X</source>
-      <translation>Offset d&apos;ombre X</translation>
+      <translation>Desplazamiento de la sombra X</translation>
     </message>
 
     <message>
       <source>Shadow Offset Y</source>
-      <translation>Offset d&apos;ombre Y</translation>
+      <translation>Desplazamiento de la sombra Y</translation>
     </message>
 
     <message>
       <source>Shadow Patch</source>
-      <translation>Patch d&apos;ombre</translation>
+      <translation>Parche de sombra</translation>
     </message>
 
     <message>
       <source>Shadow Size</source>
-      <translation>Taille des ombres</translation>
+      <translation>El tamaño de la sombra</translation>
     </message>
 
     <message>
       <source>Shadow Smoothness</source>
-      <translation>Douceur des ombres</translation>
+      <translation>Suavidad de la sombra</translation>
     </message>
 
     <message>
       <source>Shadows</source>
-      <translation>Ombres</translation>
+      <translation>Sombras</translation>
     </message>
 
     <message>
       <source>Shadows Abstraction</source>
-      <translation>Abstraction des ombres</translation>
+      <translation>Abstracción de las sombras</translation>
     </message>
 
     <message>
       <source>Shadows Brightness</source>
-      <translation>Luminosité des ombres</translation>
+      <translation>Sombras Brillo</translation>
     </message>
 
     <message>
       <source>Shadows Color Intensity</source>
-      <translation>Intensité des couleurs des ombres</translation>
+      <translation>Intensidad de color de las sombras</translation>
     </message>
 
     <message>
       <source>Shadows Hue Shift</source>
-      <translation>Le changement de teinte des ombres</translation>
+      <translation>Sombras Cambio de Tono</translation>
     </message>
 
     <message>
       <source>Shadows Lightness</source>
-      <translation>Ombre Légèreté</translation>
+      <translation>Sombras Luz</translation>
     </message>
 
     <message>
       <source>Shadows Selection</source>
-      <translation>Sélection des ombres</translation>
+      <translation>Selección de sombras</translation>
     </message>
 
     <message>
       <source>Shadows Threshold</source>
-      <translation>Seuil des ombres</translation>
+      <translation>Sombras Umbral</translation>
     </message>
 
     <message>
       <source>Shadows Zone</source>
-      <translation>Zone d&apos;ombre</translation>
-    </message>
-
-    <message>
-      <source>Shamoon Abbasi (25)</source>
-      <translation>Shamoon Abbasi (25 ans)</translation>
+      <translation>Zona de Sombras</translation>
     </message>
 
     <message>
       <source>Shape</source>
-      <translation>Forme</translation>
+      <translation>Forma</translation>
     </message>
 
     <message>
       <source>Shape Area Max</source>
-      <translation>Forme Surface Max</translation>
+      <translation>Forma Área Máxima</translation>
     </message>
 
     <message>
       <source>Shape Area Max0</source>
-      <translation>Forme Surface Max0</translation>
+      <translation>Área de la forma Max0</translation>
     </message>
 
     <message>
       <source>Shape Area Min</source>
-      <translation>Forme Surface Min</translation>
+      <translation>Forma Área Min.</translation>
     </message>
 
     <message>
       <source>Shape Area Min0</source>
-      <translation>Surface de la forme Min0</translation>
+      <translation>Área de la forma Min0</translation>
     </message>
 
     <message>
       <source>Shape Average</source>
-      <translation>Moyenne de la forme</translation>
+      <translation>Forma Promedio</translation>
     </message>
 
     <message>
       <source>Shape Average0</source>
-      <translation>Forme Moyenne0</translation>
+      <translation>Promedio de forma0</translation>
     </message>
 
     <message>
       <source>Shape Max0</source>
-      <translation>Forme Max0</translation>
+      <translation>Forma Max0</translation>
     </message>
 
     <message>
       <source>Shape Median</source>
-      <translation>Forme de la médiane</translation>
+      <translation>Forma Mediana</translation>
     </message>
 
     <message>
       <source>Shape Median0</source>
-      <translation>Forme Médiane0</translation>
+      <translation>Mediana de la forma.</translation>
     </message>
 
     <message>
       <source>Shape Min0</source>
-      <translation>Forme Min0</translation>
+      <translation>Forma Min0</translation>
     </message>
 
     <message>
       <source>Shapes</source>
-      <translation>Formes</translation>
-    </message>
-
-    <message>
-      <source>Sharp Abstract</source>
-      <translation>Un résumé précis</translation>
+      <translation>Formas</translation>
     </message>
 
     <message>
       <source>Sharpen</source>
-      <translation>Aiguiser</translation>
+      <translation>Afila</translation>
     </message>
 
     <message>
       <source>Sharpen [Deblur]</source>
-      <translation>Aiguiser [Deblur]</translation>
+      <translation>Afila [Deblur]</translation>
     </message>
 
     <message>
       <source>Sharpen [Gold-Meinel]</source>
-      <translation>Aiguiser [Gold-Meinel]</translation>
+      <translation>Afila [Gold-Meinel]</translation>
     </message>
 
     <message>
       <source>Sharpen [Gradient]</source>
-      <translation>Aiguiser [Dégradé].</translation>
+      <translation>Afila [Gradiente]</translation>
     </message>
 
     <message>
       <source>Sharpen [Hessian]</source>
-      <translation>Aiguiser [Hessois].</translation>
+      <translation>Afila [Hessian]</translation>
     </message>
 
     <message>
       <source>Sharpen [Inverse Diffusion]</source>
-      <translation>Aiguiser [Diffusion inverse]</translation>
+      <translation>Agudizar [Difusión inversa]</translation>
     </message>
 
     <message>
       <source>Sharpen [Multiscale]</source>
-      <translation>Aiguiser [Multi-échelle]</translation>
+      <translation>Agudizar [Multi-escala]</translation>
     </message>
 
     <message>
       <source>Sharpen [Octave Sharpening]</source>
-      <translation>Aiguiser [Aiguisage d&apos;octave]</translation>
+      <translation>Afila [Afilado de octava]</translation>
     </message>
 
     <message>
       <source>Sharpen [Richardson-Lucy]</source>
-      <translation>Aiguiser [Richardson-Lucy]</translation>
+      <translation>Afila [Richardson-Lucy]</translation>
     </message>
 
     <message>
       <source>Sharpen [Shock Filters]</source>
-      <translation>Aiguiser [Filtres antichocs]</translation>
+      <translation>Afila [Filtros de choque]</translation>
     </message>
 
     <message>
       <source>Sharpen [Texture]</source>
-      <translation>Aiguiser [Texture].</translation>
+      <translation>Afila [Textura]</translation>
     </message>
 
     <message>
       <source>Sharpen [Tones]</source>
-      <translation>Aiguiser [Tonalités]</translation>
+      <translation>Afila [Tonos]</translation>
     </message>
 
     <message>
       <source>Sharpen [Unsharp Mask]</source>
-      <translation>Aiguiser [Masque non tranchant]</translation>
+      <translation>Afila [Máscara de desenfoque]</translation>
     </message>
 
     <message>
       <source>Sharpen [Whiten]</source>
-      <translation>Aiguiser [Blanchir]</translation>
+      <translation>Afila [Blanquear]</translation>
     </message>
 
     <message>
       <source>Sharpen Details in Preview</source>
-      <translation>Préciser les détails en avant-première</translation>
+      <translation>Agudizar los detalles en la vista previa</translation>
     </message>
 
     <message>
       <source>Sharpen Edges Only</source>
-      <translation>Aiguiser les bords uniquement</translation>
+      <translation>Sólo los bordes afilados</translation>
     </message>
 
     <message>
       <source>Sharpen Object</source>
-      <translation>Aiguiser l&apos;objet</translation>
+      <translation>Objeto afilado</translation>
     </message>
 
     <message>
       <source>Sharpen Radius</source>
-      <translation>Aiguiser le rayon</translation>
+      <translation>Radio de agudeza</translation>
     </message>
 
     <message>
       <source>Sharpen Shades</source>
-      <translation>Aiguiser les ombres</translation>
+      <translation>Agudizar las sombras</translation>
     </message>
 
     <message>
       <source>Sharpened Areas Only</source>
-      <translation>Zones aiguisées uniquement</translation>
+      <translation>Sólo las áreas afiladas</translation>
     </message>
 
     <message>
       <source>Sharpening</source>
-      <translation>Aiguiser</translation>
+      <translation>Afilado</translation>
     </message>
 
     <message>
       <source>Sharpening Layer</source>
-      <translation>Aiguiser la couche</translation>
+      <translation>Capa de afilado</translation>
     </message>
 
     <message>
       <source>Sharpening Radius</source>
-      <translation>Rayon d&apos;affûtage</translation>
+      <translation>Radio de afilado</translation>
     </message>
 
     <message>
       <source>Sharpening Strength</source>
-      <translation>Aiguiser les forces</translation>
+      <translation>Fuerza de afilado</translation>
     </message>
 
     <message>
       <source>Sharpening Type</source>
-      <translation>Type d&apos;affûtage</translation>
+      <translation>Tipo de afilado</translation>
     </message>
 
     <message>
       <source>Sharpest</source>
-      <translation>Le plus net</translation>
+      <translation>El más agudo</translation>
     </message>
 
     <message>
       <source>Sharpness</source>
-      <translation>Netteté</translation>
+      <translation>Nitidez</translation>
     </message>
 
     <message>
       <source>Shift Linear Interpolation?</source>
-      <translation>Interpolation linéaire par décalage ?</translation>
+      <translation>¿Interpolación Lineal de Cambio?</translation>
     </message>
 
     <message>
       <source>Shift Point</source>
-      <translation>Point de changement</translation>
+      <translation>Punto de cambio</translation>
     </message>
 
     <message>
       <source>Shift X</source>
-      <translation>Équipe X</translation>
+      <translation>Cambio X</translation>
     </message>
 
     <message>
       <source>Shift Y</source>
-      <translation>Décalage Y</translation>
-    </message>
-
-    <message>
-      <source>Shininess</source>
-      <translation>Brillance</translation>
+      <translation>Cambio Y...</translation>
     </message>
 
     <message>
       <source>Shivers</source>
-      <translation>Frissons</translation>
+      <translation>Escalofríos</translation>
     </message>
 
     <message>
       <source>Shock Waves</source>
-      <translation>Ondes de choc</translation>
+      <translation>Ondas de choque</translation>
     </message>
 
     <message>
       <source>Shopping Cart</source>
-      <translation>Panier d&apos;achat</translation>
+      <translation>Carro de la compra</translation>
     </message>
 
     <message>
       <source>Show Both Poles</source>
-      <translation>Montrez aux deux Polonais</translation>
+      <translation>Mostrar ambos polos</translation>
     </message>
 
     <message>
       <source>Show Difference</source>
-      <translation>Montrer la différence</translation>
+      <translation>Mostrar la diferencia</translation>
     </message>
 
     <message>
       <source>Show Frame</source>
-      <translation>Afficher le cadre</translation>
+      <translation>Marco del espectáculo...</translation>
     </message>
 
     <message>
       <source>Show Grid</source>
-      <translation>Afficher la grille</translation>
+      <translation>Mostrar la cuadrícula</translation>
     </message>
 
     <message>
       <source>Show Watershed</source>
-      <translation>Afficher le bassin versant</translation>
+      <translation>Mostrar Cuenca</translation>
     </message>
 
     <message>
       <source>Shrink</source>
-      <translation>Réduire</translation>
+      <translation>Retracción</translation>
     </message>
 
     <message>
       <source>Shuffle Pieces</source>
-      <translation>Mélanger les morceaux</translation>
+      <translation>Barajar las piezas</translation>
     </message>
 
     <message>
       <source>Side by Side</source>
-      <translation>Côte à côte</translation>
+      <translation>Lado a lado</translation>
+    </message>
+
+    <message>
+      <source>Sierpinksi Design</source>
+      <translation>Diseño Sierpinksi</translation>
     </message>
 
     <message>
       <source>Sierpinski Triangle</source>
-      <translation>Triangle de Sierpinski</translation>
+      <translation>Triángulo de Sierpinski</translation>
     </message>
 
     <message>
       <source>Silver</source>
-      <translation>Argent</translation>
+      <translation>Plata</translation>
     </message>
 
     <message>
       <source>Similarity Space</source>
-      <translation>Espace de similarité</translation>
+      <translation>Espacio de similitud</translation>
     </message>
 
     <message>
@@ -13831,1747 +14391,1807 @@
 
     <message>
       <source>Simple Noise Canvas</source>
-      <translation>Toile à bruit simple</translation>
+      <translation>Lienzo de Ruido Simple</translation>
     </message>
 
     <message>
       <source>Simulate Film</source>
-      <translation>Simuler un film</translation>
+      <translation>Simular la película</translation>
+    </message>
+
+    <message>
+      <source>Sine+</source>
+      <translation>Seno+</translation>
     </message>
 
     <message>
       <source>Single (Merged)</source>
-      <translation>Unique (fusionné)</translation>
+      <translation>Único (Fusionado)</translation>
     </message>
 
     <message>
       <source>Single Custom Depth Map</source>
-      <translation>Carte de profondeur personnalisée unique</translation>
+      <translation>Mapa de profundidad único y personalizado</translation>
     </message>
 
     <message>
       <source>Single Image Stereogram</source>
-      <translation>Stéréogramme à image unique</translation>
+      <translation>Estereograma de imagen única</translation>
     </message>
 
     <message>
       <source>Single Layer</source>
-      <translation>Couche unique</translation>
+      <translation>Una sola capa</translation>
     </message>
 
     <message>
       <source>Single Opaque Shapes Over Transp. BG</source>
-      <translation>Formes uniques et opaques sur la transp. BG</translation>
+      <translation>Formas simples y opacas sobre el transporte. BG</translation>
     </message>
 
     <message>
       <source>Six Layers</source>
-      <translation>Six couches</translation>
+      <translation>Seis capas</translation>
     </message>
 
     <message>
       <source>Sixteen Threads</source>
-      <translation>Seize fils</translation>
+      <translation>Dieciséis hilos</translation>
     </message>
 
     <message>
       <source>Size</source>
-      <translation>Taille</translation>
+      <translation>Tamaño</translation>
     </message>
 
     <message>
       <source>Size (%)</source>
-      <translation>Taille (%)</translation>
+      <translation>Tamaño (%)</translation>
     </message>
 
     <message>
       <source>Size for Bright Tones</source>
-      <translation>Taille pour les tons clairs</translation>
+      <translation>Tamaño para los tonos brillantes</translation>
     </message>
 
     <message>
       <source>Size for Dark Tones</source>
-      <translation>Taille pour les tons sombres</translation>
+      <translation>Tamaño para los tonos oscuros</translation>
     </message>
 
     <message>
       <source>Size of Frame Numbers (%)</source>
-      <translation>Taille des numéros de trame (%)</translation>
+      <translation>Tamaño de los números de cuadro (%)</translation>
     </message>
 
     <message>
       <source>Size Variance</source>
-      <translation>Variation de taille</translation>
+      <translation>Variación de tamaño</translation>
     </message>
 
     <message>
       <source>Size-1</source>
-      <translation>Taille 1</translation>
+      <translation>Talla-1</translation>
     </message>
 
     <message>
       <source>Size-2</source>
-      <translation>Taille 2</translation>
+      <translation>Tamaño 2</translation>
     </message>
 
     <message>
       <source>Size-3</source>
-      <translation>Taille 3</translation>
+      <translation>Talla 3</translation>
     </message>
 
     <message>
       <source>Skeleton</source>
-      <translation>Squelette</translation>
+      <translation>Esqueleto</translation>
+    </message>
+
+    <message>
+      <source>Sketch</source>
+      <translation>Boceto</translation>
     </message>
 
     <message>
       <source>Skin Estimation</source>
-      <translation>Estimation de la peau</translation>
+      <translation>Estimación de la piel</translation>
     </message>
 
     <message>
       <source>Skin Mask</source>
-      <translation>Masque de peau</translation>
+      <translation>Máscara de la piel</translation>
     </message>
 
     <message>
       <source>Skin Tone Colors</source>
-      <translation>Couleurs des tons de la peau</translation>
+      <translation>Colores del tono de la piel</translation>
     </message>
 
     <message>
       <source>Skin Tone Mask</source>
-      <translation>Masque pour le teint de la peau</translation>
+      <translation>Máscara del tono de la piel</translation>
     </message>
 
     <message>
       <source>Skin Tone Protection</source>
-      <translation>Protection du teint de la peau</translation>
+      <translation>Protección del tono de la piel</translation>
     </message>
 
     <message>
       <source>Skip All Other Steps</source>
-      <translation>Sauter toutes les autres étapes</translation>
+      <translation>Saltar todos los demás pasos</translation>
     </message>
 
     <message>
       <source>Skip Finest Scales</source>
-      <translation>Sauter les échelles les plus fines</translation>
+      <translation>Saltar las escalas más finas</translation>
     </message>
 
     <message>
       <source>Skip Others Steps</source>
-      <translation>Sauter les autres étapes</translation>
+      <translation>Saltar otros pasos</translation>
     </message>
 
     <message>
       <source>Skip This Step</source>
-      <translation>Sauter cette étape</translation>
+      <translation>Sáltese este paso</translation>
     </message>
 
     <message>
       <source>Skip to Use the Mask to Boost</source>
-      <translation>Sauter pour utiliser le masque pour booster</translation>
+      <translation>Saltar a usar la máscara para impulsar</translation>
     </message>
 
     <message>
       <source>Slice Luminosity</source>
-      <translation>Luminosité des tranches</translation>
+      <translation>Luminosidad de la rebanada</translation>
     </message>
 
     <message>
       <source>Slide [Color] (26)</source>
-      <translation>Diapositive [Couleur] (26)</translation>
+      <translation>Diapositiva [Color] (26)</translation>
     </message>
 
     <message>
       <source>Slow &amp;#40;Accurate&amp;#41;</source>
-      <translation>Lent (Précis)</translation>
+      <translation>Lento... 40... Preciso... 41..;</translation>
     </message>
 
     <message>
       <source>Slow Recovery</source>
-      <translation>Lente reprise</translation>
+      <translation>Recuperación lenta</translation>
     </message>
 
     <message>
       <source>Small</source>
-      <translation>Petit</translation>
+      <translation>Pequeño</translation>
     </message>
 
     <message>
       <source>Small (Faster)</source>
-      <translation>Petit (plus rapide)</translation>
+      <translation>Pequeño (más rápido)</translation>
     </message>
 
     <message>
       <source>Smart</source>
-      <translation>Intelligent</translation>
+      <translation>Inteligente</translation>
     </message>
 
     <message>
       <source>Smart Contrast</source>
-      <translation>Contraste intelligent</translation>
+      <translation>Contraste inteligente</translation>
     </message>
 
     <message>
       <source>Smart Threshold</source>
-      <translation>Seuil intelligent</translation>
+      <translation>Umbral inteligente</translation>
     </message>
 
     <message>
       <source>Smooth</source>
-      <translation>Lisse</translation>
+      <translation>Suave</translation>
     </message>
 
     <message>
       <source>Smooth [Anisotropic]</source>
-      <translation>Lisse [Anisotrope].</translation>
+      <translation>Suave [Anisótropo]</translation>
     </message>
 
     <message>
       <source>Smooth [Antialias]</source>
-      <translation>Lisse [Antialias].</translation>
+      <translation>Suave [Antialias]</translation>
     </message>
 
     <message>
       <source>Smooth [Bilateral]</source>
-      <translation>Lisse [Bilatéral].</translation>
+      <translation>Suave [Bilateral]</translation>
     </message>
 
     <message>
       <source>Smooth [Block PCA]</source>
-      <translation>Lisse [Bloquer l&apos;ACP]</translation>
+      <translation>Suave [Bloquear PCA]</translation>
     </message>
 
     <message>
       <source>Smooth [Diffusion]</source>
-      <translation>Lisse [Diffusion].</translation>
+      <translation>Suave [Difusión]</translation>
     </message>
 
     <message>
       <source>Smooth [Geometric-Median]</source>
-      <translation>Lisse [Géométrique-Médiane].</translation>
+      <translation>Suave [Geométrico-Mediano]</translation>
     </message>
 
     <message>
       <source>Smooth [Guided]</source>
-      <translation>Lisse [Guidé]</translation>
+      <translation>Suave [Guiado]</translation>
     </message>
 
     <message>
       <source>Smooth [IUWT]</source>
-      <translation>Lisse [IUWT]</translation>
+      <translation>Suave [IUWT]</translation>
     </message>
 
     <message>
       <source>Smooth [Mean-Curvature]</source>
-      <translation>Lisse [Courbe moyenne].</translation>
+      <translation>Suave [Curvatura media]</translation>
     </message>
 
     <message>
       <source>Smooth [Median]</source>
-      <translation>Lisse [Médiane].</translation>
+      <translation>Suave [Mediana]</translation>
     </message>
 
     <message>
       <source>Smooth [NL-Means]</source>
-      <translation>Lisse [NL-Means]</translation>
+      <translation>Suave [NL-Means]</translation>
     </message>
 
     <message>
       <source>Smooth [Patch-Based]</source>
-      <translation>Lisse [basé sur les correctifs].</translation>
+      <translation>Suave [Patch-Based]</translation>
     </message>
 
     <message>
       <source>Smooth [Patch-PCA]</source>
-      <translation>Lisse [Patch-PCA].</translation>
+      <translation>Suave [Patch-PCA]</translation>
     </message>
 
     <message>
       <source>Smooth [Perona-Malik]</source>
-      <translation>Lisse [Pérona-Malik]</translation>
+      <translation>Suave [Perona-Malik]</translation>
     </message>
 
     <message>
       <source>Smooth [Selective Gaussian]</source>
-      <translation>Lisse [Gaussien sélectif].</translation>
+      <translation>Suave [Gausiano selectivo]</translation>
     </message>
 
     <message>
       <source>Smooth [Skin]</source>
-      <translation>Lisse [Peau].</translation>
+      <translation>Suave [Piel]</translation>
     </message>
 
     <message>
       <source>Smooth [Thin Brush]</source>
-      <translation>Lisse [Pinceau fin].</translation>
+      <translation>Suave [cepillo fino]</translation>
     </message>
 
     <message>
       <source>Smooth [Total Variation]</source>
-      <translation>Lisse [Variation totale]</translation>
+      <translation>Suave [Variación total]</translation>
     </message>
 
     <message>
       <source>Smooth [Wavelets]</source>
-      <translation>Lisse [Ondelettes].</translation>
+      <translation>Suave [Ondas]</translation>
     </message>
 
     <message>
       <source>Smooth [Wiener]</source>
-      <translation>Lisse [Wiener]</translation>
+      <translation>Suave [Salchicha]</translation>
     </message>
 
     <message>
       <source>Smooth Abstract</source>
-      <translation>Résumé lisse</translation>
+      <translation>Resumen de Smooth</translation>
     </message>
 
     <message>
       <source>Smooth Amount</source>
-      <translation>Montant lisse</translation>
+      <translation>Suave Cantidad</translation>
     </message>
 
     <message>
       <source>Smooth Clear</source>
-      <translation>Lisse et clair</translation>
+      <translation>Suave claro</translation>
     </message>
 
     <message>
       <source>Smooth Colors</source>
-      <translation>Couleurs lisses</translation>
+      <translation>Colores suaves</translation>
     </message>
 
     <message>
       <source>Smooth Crome-Ish</source>
-      <translation>Lisser le Crome-Ish</translation>
+      <translation>Suave Crome-Ish</translation>
     </message>
 
     <message>
-      <source>Smooth Fade</source>
-      <translation>Fondu enchaîné</translation>
+      <source>Smooth Dark</source>
+      <translation>Suave oscuro</translation>
     </message>
 
     <message>
       <source>Smooth Green Orange</source>
-      <translation>Orange verte lisse</translation>
+      <translation>Suave Verde Naranja</translation>
     </message>
 
     <message>
       <source>Smooth Light</source>
-      <translation>Lumière douce</translation>
+      <translation>Luz suave</translation>
     </message>
 
     <message>
       <source>Smooth Looping</source>
-      <translation>Bouclage en douceur</translation>
+      <translation>Suave giro</translation>
     </message>
 
     <message>
       <source>Smooth Only</source>
-      <translation>Lisse seulement</translation>
+      <translation>Sólo liso</translation>
     </message>
 
     <message>
       <source>Smooth Sailing</source>
-      <translation>Navigation en douceur</translation>
+      <translation>Navegación suave</translation>
     </message>
 
     <message>
       <source>Smooth Teal Orange</source>
-      <translation>Orange sarcelle lisse</translation>
+      <translation>Naranja de cerceta lisa</translation>
     </message>
 
     <message>
       <source>Smoothen Background Reconstruction</source>
-      <translation>Lisser la reconstruction de l&apos;arrière-plan</translation>
+      <translation>Suavizar la reconstrucción del fondo</translation>
     </message>
 
     <message>
       <source>Smoother Edge Protection</source>
-      <translation>Une protection plus efficace</translation>
+      <translation>Protección de bordes más suave</translation>
     </message>
 
     <message>
       <source>Smoother Sharpness</source>
-      <translation>Une meilleure netteté</translation>
+      <translation>Más suave y nítido</translation>
     </message>
 
     <message>
       <source>Smoother Softness</source>
-      <translation>Douceur de l&apos;eau</translation>
+      <translation>Suavidad más suave</translation>
     </message>
 
     <message>
       <source>Smoothing</source>
-      <translation>Lissage</translation>
+      <translation>Suavizar</translation>
     </message>
 
     <message>
       <source>Smoothing Style</source>
-      <translation>Style de lissage</translation>
+      <translation>Estilo de alisado</translation>
     </message>
 
     <message>
       <source>Smoothing Type</source>
-      <translation>Type de lissage</translation>
+      <translation>El tipo de alisado</translation>
     </message>
 
     <message>
       <source>Smoothness</source>
-      <translation>Lisse</translation>
+      <translation>Suavidad</translation>
     </message>
 
     <message>
       <source>Smoothness (%)</source>
-      <translation>Lissage (%)</translation>
+      <translation>Suavidad (%)</translation>
     </message>
 
     <message>
       <source>Smoothness (px)</source>
-      <translation>Lisse (px)</translation>
+      <translation>Suavidad (px)</translation>
     </message>
 
     <message>
       <source>Smoothness Shadow</source>
-      <translation>Ombre de la douceur</translation>
+      <translation>Sombra de suavidad</translation>
     </message>
 
     <message>
       <source>Smoothness Type</source>
-      <translation>Type de lissage</translation>
+      <translation>Tipo de suavidad</translation>
     </message>
 
     <message>
       <source>Snowflake</source>
-      <translation>Flocon de neige</translation>
+      <translation>Copo de nieve</translation>
     </message>
 
     <message>
       <source>Snowflake 2</source>
-      <translation>Flocon de neige 2</translation>
+      <translation>Copo de nieve 2</translation>
     </message>
 
     <message>
       <source>Snowflake Recursion</source>
-      <translation>Récursion des flocons de neige</translation>
+      <translation>Recursión del copo de nieve</translation>
+    </message>
+
+    <message>
+      <source>Soft</source>
+      <translation>Suave</translation>
     </message>
 
     <message>
       <source>Soft  Light</source>
-      <translation>Lumière douce</translation>
+      <translation>Luz suave</translation>
     </message>
 
     <message>
       <source>Soft Burn</source>
-      <translation>Brûlure douce</translation>
-    </message>
-
-    <message>
-      <source>Soft Dodge</source>
-      <translation>Esquive douce</translation>
+      <translation>Quemadura suave</translation>
     </message>
 
     <message>
       <source>Soft Fade</source>
-      <translation>Fondu doux</translation>
+      <translation>Desvanecimiento suave</translation>
     </message>
 
     <message>
       <source>Soft Glow</source>
-      <translation>Lueur douce</translation>
+      <translation>Brillo suave</translation>
     </message>
 
     <message>
       <source>Soft Glow [Animated]</source>
-      <translation>Lueur douce [Animé]</translation>
+      <translation>Brillo Suave [Animado]</translation>
     </message>
 
     <message>
       <source>Soft Light</source>
-      <translation>Lumière douce</translation>
+      <translation>Luz suave</translation>
     </message>
 
     <message>
       <source>Soft Random Shades</source>
-      <translation>Des nuances douces et aléatoires</translation>
+      <translation>Suaves tonos aleatorios</translation>
     </message>
 
     <message>
       <source>Soft Warming</source>
-      <translation>Réchauffement doux</translation>
+      <translation>Calentamiento suave</translation>
     </message>
 
     <message>
       <source>Soften</source>
-      <translation>Adoucir</translation>
+      <translation>Suavizar</translation>
     </message>
 
     <message>
       <source>Soften All Channels</source>
-      <translation>Assouplir tous les canaux</translation>
+      <translation>Suavizar todos los canales</translation>
     </message>
 
     <message>
       <source>Soften Guide</source>
-      <translation>Guide de l&apos;assouplissement</translation>
+      <translation>Guía de la suavidad</translation>
+    </message>
+
+    <message>
+      <source>Solarize</source>
+      <translation>Solarice</translation>
     </message>
 
     <message>
       <source>Solarize Color</source>
-      <translation>Solariser la couleur</translation>
+      <translation>Solarizar el color</translation>
     </message>
 
     <message>
       <source>Solarized Color2</source>
-      <translation>Couleur solarisée2</translation>
+      <translation>Color Solarizado2</translation>
     </message>
 
     <message>
       <source>Solidify</source>
-      <translation>Consolider</translation>
+      <translation>Solidificar</translation>
     </message>
 
     <message>
       <source>Solve Maze</source>
-      <translation>Résoudre le labyrinthe</translation>
+      <translation>Resuelve el laberinto</translation>
     </message>
 
     <message>
       <source>Some</source>
-      <translation>Quelques</translation>
+      <translation>Algunos</translation>
     </message>
 
     <message>
       <source>Some Blue</source>
-      <translation>Un peu de bleu</translation>
+      <translation>Algo de azul</translation>
     </message>
 
     <message>
       <source>Some Cyan</source>
-      <translation>Quelques Cyan</translation>
+      <translation>Algo de Cian</translation>
     </message>
 
     <message>
       <source>Some Green</source>
-      <translation>Certains Verts</translation>
+      <translation>Algo de verde</translation>
     </message>
 
     <message>
       <source>Some Key</source>
-      <translation>Quelques clés</translation>
+      <translation>Alguna llave</translation>
     </message>
 
     <message>
       <source>Some Magenta</source>
-      <translation>Un peu de Magenta</translation>
+      <translation>Algo de Magenta</translation>
     </message>
 
     <message>
       <source>Some Red</source>
-      <translation>Un peu de rouge</translation>
+      <translation>Un poco de rojo</translation>
     </message>
 
     <message>
       <source>Some Yellow</source>
-      <translation>Certains Jaune</translation>
+      <translation>Un poco de amarillo</translation>
     </message>
 
     <message>
       <source>Sort Colors</source>
-      <translation>Trier les couleurs</translation>
+      <translation>Ordenar los colores</translation>
     </message>
 
     <message>
       <source>Sorting Criterion</source>
-      <translation>Critère de tri</translation>
+      <translation>Criterio de clasificación</translation>
+    </message>
+
+    <message>
+      <source>Source (%)</source>
+      <translation>Fuente (%)</translation>
     </message>
 
     <message>
       <source>Source Color #1</source>
-      <translation>Source Couleur #1</translation>
+      <translation>Color de la fuente #1</translation>
     </message>
 
     <message>
       <source>Source Color #10</source>
-      <translation>Source Couleur #10</translation>
+      <translation>Color de la fuente #10</translation>
     </message>
 
     <message>
       <source>Source Color #11</source>
-      <translation>Source Couleur #11</translation>
+      <translation>Color de la fuente #11</translation>
     </message>
 
     <message>
       <source>Source Color #12</source>
-      <translation>Source Couleur #12</translation>
+      <translation>Color de la fuente #12</translation>
     </message>
 
     <message>
       <source>Source Color #13</source>
-      <translation>Source Couleur #13</translation>
+      <translation>Color de la fuente #13</translation>
     </message>
 
     <message>
       <source>Source Color #14</source>
-      <translation>Source Couleur #14</translation>
+      <translation>Color de la fuente #14</translation>
     </message>
 
     <message>
       <source>Source Color #15</source>
-      <translation>Source Couleur #15</translation>
+      <translation>Color de la fuente #15</translation>
     </message>
 
     <message>
       <source>Source Color #16</source>
-      <translation>Source Couleur #16</translation>
+      <translation>Color de la fuente #16</translation>
     </message>
 
     <message>
       <source>Source Color #17</source>
-      <translation>Source Couleur #17</translation>
+      <translation>Color de la fuente #17</translation>
     </message>
 
     <message>
       <source>Source Color #18</source>
-      <translation>Source Couleur #18</translation>
+      <translation>Color de la fuente #18</translation>
     </message>
 
     <message>
       <source>Source Color #19</source>
-      <translation>Source Couleur #19</translation>
+      <translation>Color de la fuente #19</translation>
     </message>
 
     <message>
       <source>Source Color #2</source>
-      <translation>Source Couleur #2</translation>
+      <translation>Color de la fuente #2</translation>
     </message>
 
     <message>
       <source>Source Color #20</source>
-      <translation>Source Couleur #20</translation>
+      <translation>Color de la fuente #20</translation>
     </message>
 
     <message>
       <source>Source Color #21</source>
-      <translation>Source Couleur #21</translation>
+      <translation>Color de la fuente #21</translation>
     </message>
 
     <message>
       <source>Source Color #22</source>
-      <translation>Source Couleur #22</translation>
+      <translation>Color de la fuente #22</translation>
     </message>
 
     <message>
       <source>Source Color #23</source>
-      <translation>Source Couleur #23</translation>
+      <translation>Color de la fuente #23</translation>
     </message>
 
     <message>
       <source>Source Color #24</source>
-      <translation>Source Couleur #24</translation>
+      <translation>Color de la fuente #24</translation>
     </message>
 
     <message>
       <source>Source Color #3</source>
-      <translation>Source Couleur #3</translation>
+      <translation>Color de la fuente #3</translation>
     </message>
 
     <message>
       <source>Source Color #4</source>
-      <translation>Source Couleur #4</translation>
+      <translation>Color de la fuente #4</translation>
     </message>
 
     <message>
       <source>Source Color #5</source>
-      <translation>Source Couleur #5</translation>
+      <translation>Color de la fuente #5</translation>
     </message>
 
     <message>
       <source>Source Color #6</source>
-      <translation>Source Couleur #6</translation>
+      <translation>Color de la fuente #6</translation>
     </message>
 
     <message>
       <source>Source Color #7</source>
-      <translation>Source Couleur #7</translation>
+      <translation>Color de la fuente #7</translation>
     </message>
 
     <message>
       <source>Source Color #8</source>
-      <translation>Source Couleur #8</translation>
+      <translation>Color de la fuente #8</translation>
     </message>
 
     <message>
       <source>Source Color #9</source>
-      <translation>Source Couleur #9</translation>
+      <translation>Color de la fuente #9</translation>
+    </message>
+
+    <message>
+      <source>Source X-Tiles</source>
+      <translation>Fuente X-Tiles</translation>
+    </message>
+
+    <message>
+      <source>Source Y-Tiles</source>
+      <translation>Fuente Y-Tiles</translation>
     </message>
 
     <message>
       <source>Space</source>
-      <translation>Espace</translation>
+      <translation>Espacio</translation>
     </message>
 
     <message>
       <source>Spacing</source>
-      <translation>Espacement</translation>
+      <translation>Espaciamiento</translation>
     </message>
 
     <message>
       <source>Spatial Bandwidth</source>
-      <translation>Bande passante spatiale</translation>
+      <translation>Ancho de banda espacial</translation>
     </message>
 
     <message>
       <source>Spatial Metric</source>
-      <translation>Métrique spatiale</translation>
+      <translation>Métrica espacial</translation>
     </message>
 
     <message>
       <source>Spatial Overlap</source>
-      <translation>Chevauchement spatial</translation>
+      <translation>Superposición espacial</translation>
     </message>
 
     <message>
       <source>Spatial Precision</source>
-      <translation>Précision spatiale</translation>
+      <translation>Precisión espacial</translation>
     </message>
 
     <message>
       <source>Spatial Radius</source>
-      <translation>Rayon spatial</translation>
+      <translation>Radio espacial</translation>
     </message>
 
     <message>
       <source>Spatial Regularization</source>
-      <translation>Régularisation spatiale</translation>
+      <translation>Regularización espacial</translation>
     </message>
 
     <message>
       <source>Spatial Sampling</source>
-      <translation>Échantillonnage spatial</translation>
+      <translation>Muestreo espacial</translation>
     </message>
 
     <message>
       <source>Spatial Scale</source>
-      <translation>Échelle spatiale</translation>
+      <translation>Escala espacial</translation>
     </message>
 
     <message>
       <source>Spatial Tolerance</source>
-      <translation>Tolérance spatiale</translation>
+      <translation>Tolerancia espacial</translation>
     </message>
 
     <message>
       <source>Spatial Transition</source>
-      <translation>Transition spatiale</translation>
+      <translation>Transición espacial</translation>
     </message>
 
     <message>
       <source>Spatial Variance</source>
-      <translation>Variance spatiale</translation>
+      <translation>Variación espacial</translation>
     </message>
 
     <message>
       <source>Special Effects</source>
-      <translation>Effets spéciaux</translation>
+      <translation>Efectos especiales</translation>
     </message>
 
     <message>
       <source>Specific Saturation</source>
-      <translation>Saturation spécifique</translation>
+      <translation>Saturación específica</translation>
     </message>
 
     <message>
       <source>Specify Different Output Size</source>
-      <translation>Spécifier une taille de sortie différente</translation>
+      <translation>Especificar un tamaño de salida diferente</translation>
     </message>
 
     <message>
       <source>Specify HaldCLUT As</source>
-      <translation>Préciser HaldCLUT comme</translation>
+      <translation>Especifique HaldCLUT como</translation>
     </message>
 
     <message>
       <source>Specular</source>
-      <translation>Spéculaire</translation>
+      <translation>Especular</translation>
     </message>
 
     <message>
       <source>Specular (%)</source>
-      <translation>Spéculaire (%)</translation>
+      <translation>Especular (%)</translation>
     </message>
 
     <message>
       <source>Specular Centering</source>
-      <translation>Centrage spéculaire</translation>
+      <translation>Centrado especular</translation>
     </message>
 
     <message>
       <source>Specular Intensity</source>
-      <translation>Intensité spéculaire</translation>
+      <translation>Intensidad especular</translation>
     </message>
 
     <message>
       <source>Specular Light</source>
-      <translation>Lumière spéculaire</translation>
+      <translation>La Luz Especular</translation>
     </message>
 
     <message>
       <source>Specular Lightness</source>
-      <translation>Luminosité spéculaire</translation>
+      <translation>Ligereza especular</translation>
     </message>
 
     <message>
       <source>Specular Shininess</source>
-      <translation>Brillance spéculaire</translation>
+      <translation>Brillo Especular</translation>
     </message>
 
     <message>
       <source>Specular Size</source>
-      <translation>Taille spéculaire</translation>
+      <translation>El tamaño molecular...</translation>
     </message>
 
     <message>
       <source>Speed</source>
-      <translation>Vitesse</translation>
+      <translation>Velocidad</translation>
     </message>
 
     <message>
       <source>Sphere</source>
-      <translation>Sphère</translation>
-    </message>
-
-    <message>
-      <source>Spherize</source>
-      <translation>Sphériser</translation>
+      <translation>Esfera</translation>
     </message>
 
     <message>
       <source>Spiral</source>
-      <translation>Spirale</translation>
+      <translation>Espiral</translation>
     </message>
 
     <message>
       <source>Spiral RGB</source>
-      <translation>Spirale RGB</translation>
-    </message>
-
-    <message>
-      <source>Spline B2</source>
-      <translation>Ligne B2</translation>
-    </message>
-
-    <message>
-      <source>Spline B6</source>
-      <translation>Ligne B6</translation>
+      <translation>Espiral RGB</translation>
     </message>
 
     <message>
       <source>Spline Editor</source>
-      <translation>Rédacteur en chef de Spline</translation>
+      <translation>Editor de Spline</translation>
     </message>
 
     <message>
       <source>Spline Max Angle (deg)</source>
-      <translation>Angle maximal de la cannelure (deg)</translation>
+      <translation>Ángulo máximo del spline (deg)</translation>
     </message>
 
     <message>
       <source>Spline Max Length (px)</source>
-      <translation>Longueur maximale de la cannelure (px)</translation>
+      <translation>Longitud máxima del spline (px)</translation>
     </message>
 
     <message>
       <source>Spline Roundness</source>
-      <translation>Rondeur de la cannelure</translation>
+      <translation>Redondez de la estría</translation>
+    </message>
+
+    <message>
+      <source>Splines</source>
+      <translation>Estrías</translation>
     </message>
 
     <message>
       <source>Split Base and Detail Output</source>
-      <translation>Base fractionnée et sortie détaillée</translation>
+      <translation>Base dividida y salida de detalles</translation>
     </message>
 
     <message>
       <source>Split Brightness / Colors</source>
-      <translation>Split Brightness / Couleurs</translation>
+      <translation>Brillo y colores divididos</translation>
+    </message>
+
+    <message>
+      <source>Split Details [Alpha]</source>
+      <translation>Detalles de la división [Alfa]</translation>
     </message>
 
     <message>
       <source>Split Details [Gaussian]</source>
-      <translation>Split Details [Gaussian] (en anglais)</translation>
+      <translation>Detalles de la división [gaussiana]</translation>
     </message>
 
     <message>
       <source>Split Details [Wavelets]</source>
-      <translation>Split Details [Wavelets] (en anglais)</translation>
+      <translation>Detalles de la división [Ondas]</translation>
     </message>
 
     <message>
       <source>Sponge</source>
-      <translation>Eponge</translation>
+      <translation>Esponja</translation>
     </message>
 
     <message>
       <source>Spread</source>
-      <translation>Diffuser</translation>
+      <translation>Difundir</translation>
     </message>
 
     <message>
       <source>Spread Amount</source>
-      <translation>Montant de l&apos;écart</translation>
+      <translation>Cantidad esparcida</translation>
     </message>
 
     <message>
       <source>Spread Angles</source>
-      <translation>Angles de dispersion</translation>
+      <translation>Ángulos de propagación</translation>
     </message>
 
     <message>
       <source>Spread Noise Amount</source>
-      <translation>Montant du bruit étalé</translation>
+      <translation>Ruido de propagación Cantidad</translation>
     </message>
 
     <message>
       <source>Spreading</source>
-      <translation>Diffusion</translation>
+      <translation>Difusión</translation>
     </message>
 
     <message>
       <source>Spring Morning</source>
-      <translation>Matin de printemps</translation>
+      <translation>Mañana de primavera</translation>
     </message>
 
     <message>
       <source>Sprocket 231</source>
-      <translation>Pivot 231</translation>
+      <translation>Piñón 231</translation>
     </message>
 
     <message>
       <source>Spy 29</source>
-      <translation>Espion 29</translation>
+      <translation>Espía 29</translation>
+    </message>
+
+    <message>
+      <source>Square</source>
+      <translation>Cuadrado</translation>
     </message>
 
     <message>
       <source>Square (Inv.)</source>
-      <translation>Carré (Inv.)</translation>
+      <translation>Cuadrado (Inv.)</translation>
     </message>
 
     <message>
       <source>Square 1</source>
-      <translation>Carré 1</translation>
+      <translation>Cuadrado 1</translation>
     </message>
 
     <message>
       <source>Square 2</source>
-      <translation>Carré 2</translation>
+      <translation>Cuadrado 2</translation>
     </message>
 
     <message>
       <source>Square to Circle</source>
-      <translation>Du carré au cercle</translation>
+      <translation>Cuadrado a Círculo</translation>
     </message>
 
     <message>
       <source>Squared-Euclidean</source>
-      <translation>Squared-Euclidien</translation>
+      <translation>Cuadrado-Euclidiano</translation>
     </message>
 
     <message>
       <source>Squares</source>
-      <translation>Les carrés</translation>
+      <translation>Cuadrados</translation>
     </message>
 
     <message>
       <source>Squares (Outline)</source>
-      <translation>Les carrés (Grandes lignes)</translation>
+      <translation>Cuadrados (Esquema)</translation>
     </message>
 
     <message>
       <source>SRGB Conversion</source>
-      <translation>Conversion SRGB</translation>
+      <translation>Conversión SRGB</translation>
     </message>
 
     <message>
       <source>Stabilizer</source>
-      <translation>Stabilisateur</translation>
+      <translation>Estabilizador</translation>
     </message>
 
     <message>
       <source>Stained Glass</source>
-      <translation>Vitrail</translation>
+      <translation>Vidrios de colores</translation>
     </message>
 
     <message>
       <source>Stamp</source>
-      <translation>Timbre</translation>
+      <translation>Sello</translation>
+    </message>
+
+    <message>
+      <source>Standard</source>
+      <translation>Estándar</translation>
     </message>
 
     <message>
       <source>Standard (256)</source>
-      <translation>Norme (256)</translation>
+      <translation>Estándar (256)</translation>
     </message>
 
     <message>
       <source>Standard [No Scan]</source>
-      <translation>Standard [Pas de scan]</translation>
+      <translation>Estándar [Sin Escaneo]</translation>
     </message>
 
     <message>
       <source>Standard Deviation</source>
-      <translation>Écart type</translation>
+      <translation>Desviación estándar</translation>
+    </message>
+
+    <message>
+      <source>Star</source>
+      <translation>Estrella</translation>
     </message>
 
     <message>
       <source>Star: -5*(z^3/3-Z/4)/2</source>
-      <translation>Star : -5*(z^3/3-Z/4)/2</translation>
+      <translation>Estrella: -5*(z^3/3-Z/4)/2</translation>
+    </message>
+
+    <message>
+      <source>Stardust</source>
+      <translation>Polvo de estrellas</translation>
     </message>
 
     <message>
       <source>Stars</source>
-      <translation>Étoiles</translation>
+      <translation>Estrellas</translation>
     </message>
 
     <message>
       <source>Stars (Outline)</source>
-      <translation>Etoiles (Grandes lignes)</translation>
+      <translation>Estrellas (Esquema)</translation>
     </message>
 
     <message>
       <source>Start Angle</source>
-      <translation>Angle de départ</translation>
+      <translation>Ángulo de inicio</translation>
     </message>
 
     <message>
       <source>Start Color</source>
-      <translation>Couleur de départ</translation>
+      <translation>Color de inicio</translation>
     </message>
 
     <message>
       <source>Start Frame Number</source>
-      <translation>Numéro de la trame de départ</translation>
+      <translation>Número de cuadro inicial</translation>
     </message>
 
     <message>
       <source>Start of Mid-Tones</source>
-      <translation>Début des Mid-Tones</translation>
+      <translation>Inicio de los tonos medios</translation>
     </message>
 
     <message>
       <source>Starting Angle</source>
-      <translation>Angle de départ</translation>
+      <translation>Ángulo de partida</translation>
     </message>
 
     <message>
       <source>Starting Color</source>
-      <translation>Couleur de départ</translation>
+      <translation>Color de inicio</translation>
     </message>
 
     <message>
       <source>Starting Feathering</source>
-      <translation>Commencer le plumage</translation>
+      <translation>Empezando a emplumar</translation>
     </message>
 
     <message>
       <source>Starting Frame</source>
-      <translation>Cadre de départ</translation>
+      <translation>Marco inicial</translation>
     </message>
 
     <message>
       <source>Starting Level</source>
-      <translation>Niveau de départ</translation>
+      <translation>Nivel de inicio</translation>
     </message>
 
     <message>
       <source>Starting Pattern</source>
-      <translation>Modèle de départ</translation>
+      <translation>Patrón de partida</translation>
     </message>
 
     <message>
       <source>Starting Point</source>
-      <translation>Point de départ</translation>
+      <translation>Punto de partida</translation>
     </message>
 
     <message>
       <source>Starting Point (%)</source>
-      <translation>Point de départ (%)</translation>
+      <translation>Punto de partida (%)</translation>
     </message>
 
     <message>
       <source>Starting Scale (%)</source>
-      <translation>Échelle de départ (%)</translation>
+      <translation>Escala inicial (%)</translation>
     </message>
 
     <message>
       <source>Starting Value</source>
-      <translation>Valeur de départ</translation>
+      <translation>Valor inicial</translation>
     </message>
 
     <message>
       <source>Stationary Frames</source>
-      <translation>Cadres fixes</translation>
+      <translation>Marcos estacionarios</translation>
+    </message>
+
+    <message>
+      <source>Std Angle (deg.)</source>
+      <translation>Ángulo estándar (deg.)</translation>
     </message>
 
     <message>
       <source>Std Branching</source>
-      <translation>Branche Std</translation>
+      <translation>Rama Std</translation>
     </message>
 
     <message>
       <source>Std Length Factor (%)</source>
-      <translation>Facteur de longueur de la norme (%)</translation>
+      <translation>Factor de longitud estándar (%)</translation>
     </message>
 
     <message>
       <source>Std Thickness Factor (%)</source>
-      <translation>Facteur d&apos;épaisseur de la norme (%)</translation>
-    </message>
-
-    <message>
-      <source>Stencil</source>
-      <translation>Pochoir</translation>
+      <translation>Factor de Espesor Std (%)</translation>
     </message>
 
     <message>
       <source>Stencil Type</source>
-      <translation>Type de pochoir</translation>
+      <translation>Tipo de plantilla</translation>
     </message>
 
     <message>
       <source>Step</source>
-      <translation>Étape</translation>
+      <translation>Paso</translation>
     </message>
 
     <message>
       <source>Step (%)</source>
-      <translation>Étape (%)</translation>
+      <translation>Paso (%)</translation>
     </message>
 
     <message>
       <source>Steps</source>
-      <translation>Étapes</translation>
+      <translation>Pasos</translation>
     </message>
 
     <message>
       <source>Stereo Image</source>
-      <translation>Image stéréo</translation>
+      <translation>Imagen Estéreo</translation>
     </message>
 
     <message>
       <source>Stereo Window Position</source>
-      <translation>Position de la fenêtre stéréo</translation>
+      <translation>Posición de la ventana del estéreo</translation>
     </message>
 
     <message>
       <source>Stereographic Projection</source>
-      <translation>Projection stéréographique</translation>
+      <translation>Proyección estereográfica</translation>
     </message>
 
     <message>
       <source>Stereoscopic Image Alignment</source>
-      <translation>Alignement des images stéréoscopiques</translation>
+      <translation>Alineación de imágenes estereoscópicas</translation>
     </message>
 
     <message>
       <source>Stereoscopic Window Position</source>
-      <translation>Position de la fenêtre stéréoscopique</translation>
+      <translation>Posición de la ventana estereoscópica</translation>
     </message>
 
     <message>
       <source>Straight</source>
-      <translation>Tout droit</translation>
-    </message>
-
-    <message>
-      <source>Strands</source>
-      <translation>Volets</translation>
+      <translation>Recto</translation>
     </message>
 
     <message>
       <source>Street</source>
-      <translation>Rue</translation>
+      <translation>Calle</translation>
     </message>
 
     <message>
       <source>Strength</source>
-      <translation>Force</translation>
+      <translation>Fuerza</translation>
     </message>
 
     <message>
       <source>Strength (%)</source>
-      <translation>Force (%)</translation>
+      <translation>Fuerza (%)</translation>
     </message>
 
     <message>
       <source>Strength Effect</source>
-      <translation>Effet de force</translation>
+      <translation>Efecto de fuerza</translation>
     </message>
 
     <message>
       <source>Strength Highlights</source>
-      <translation>Points forts</translation>
+      <translation>Lo más destacado de la fuerza</translation>
     </message>
 
     <message>
       <source>Strength Midtones</source>
-      <translation>La force des tons moyens</translation>
+      <translation>Fuerza Midtones</translation>
     </message>
 
     <message>
       <source>Strength Shadows</source>
-      <translation>Les ombres de la force</translation>
+      <translation>Fuerza Sombras</translation>
     </message>
 
     <message>
       <source>Stretch</source>
-      <translation>Étendre</translation>
+      <translation>Estira</translation>
     </message>
 
     <message>
       <source>Stretch Colors</source>
-      <translation>Couleurs extensibles</translation>
+      <translation>Estirar los colores</translation>
     </message>
 
     <message>
       <source>Stretch Contrast</source>
-      <translation>Étendre le contraste</translation>
+      <translation>Estirar el contraste</translation>
     </message>
 
     <message>
       <source>Stretch Factor</source>
-      <translation>Facteur d&apos;allongement</translation>
+      <translation>Factor de estiramiento</translation>
     </message>
 
     <message>
       <source>Strip</source>
-      <translation>Bandeau</translation>
+      <translation>Desnúdate</translation>
     </message>
 
     <message>
       <source>Stripe Orientation</source>
-      <translation>Orientation des bandes</translation>
+      <translation>Orientación de las rayas</translation>
     </message>
 
     <message>
       <source>Stroke</source>
-      <translation>AVC</translation>
+      <translation>Golpe</translation>
     </message>
 
     <message>
       <source>Stroke Angle</source>
-      <translation>Angle de course</translation>
+      <translation>Ángulo de la embolia</translation>
     </message>
 
     <message>
       <source>Stroke Length</source>
-      <translation>Longueur de la course</translation>
+      <translation>Longitud de la carrera</translation>
     </message>
 
     <message>
       <source>Stroke Strength</source>
-      <translation>La force de l&apos;AVC</translation>
+      <translation>Fuerza del golpe</translation>
     </message>
 
     <message>
       <source>Strong</source>
-      <translation>Fort</translation>
+      <translation>Fuerte</translation>
     </message>
 
     <message>
       <source>Structure Smoothness</source>
-      <translation>Lissage de la structure</translation>
+      <translation>Suavidad de la estructura</translation>
+    </message>
+
+    <message>
+      <source>Studio</source>
+      <translation>Estudio</translation>
+    </message>
+
+    <message>
+      <source>Style</source>
+      <translation>Estilo</translation>
     </message>
 
     <message>
       <source>Style Variations</source>
-      <translation>Variations de style</translation>
+      <translation>Variaciones de estilo</translation>
     </message>
 
     <message>
       <source>Stylize</source>
-      <translation>Styliser</translation>
+      <translation>Estilizar</translation>
+    </message>
+
+    <message>
+      <source>Subdivisions</source>
+      <translation>Subdivisiones</translation>
     </message>
 
     <message>
       <source>Subpixel Interpolation</source>
-      <translation>Interpolation des sous-pixels</translation>
+      <translation>Interpolación de subpíxeles</translation>
     </message>
 
     <message>
       <source>Subpixel Level</source>
-      <translation>Niveau des sous-pixels</translation>
+      <translation>Nivel de subpíxel</translation>
     </message>
 
     <message>
       <source>Subsampling (%)</source>
-      <translation>Sous-échantillonnage (%)</translation>
+      <translation>Submuestreo (%)</translation>
     </message>
 
     <message>
       <source>Subtle Blue</source>
-      <translation>Bleu subtil</translation>
+      <translation>Azul sutil</translation>
     </message>
 
     <message>
       <source>Subtle Green</source>
-      <translation>Subtil Vert</translation>
+      <translation>Verde sutil</translation>
     </message>
 
     <message>
       <source>Subtle Yellow</source>
-      <translation>Jaune subtil</translation>
+      <translation>Amarillo sutil</translation>
     </message>
 
     <message>
       <source>Subtract</source>
-      <translation>Soustraire</translation>
+      <translation>Reste</translation>
     </message>
 
     <message>
       <source>Subtractive</source>
-      <translation>Soustractif</translation>
+      <translation>Sustracción</translation>
     </message>
 
     <message>
       <source>Summer</source>
-      <translation>Été</translation>
+      <translation>Verano</translation>
     </message>
 
     <message>
       <source>Summer (alt)</source>
-      <translation>Été (alt)</translation>
+      <translation>Verano (alt)</translation>
     </message>
 
     <message>
       <source>Sunny (alt)</source>
-      <translation>Ensoleillé (alt)</translation>
+      <translation>Soleado (alt)</translation>
     </message>
 
     <message>
       <source>Sunny (rich)</source>
-      <translation>Ensoleillé (riche)</translation>
+      <translation>Sunny (rico)</translation>
     </message>
 
     <message>
       <source>Sunny (warm)</source>
-      <translation>Ensoleillé (chaud)</translation>
+      <translation>Soleado (caliente)</translation>
     </message>
 
     <message>
       <source>Super Warm</source>
-      <translation>Super chaud</translation>
+      <translation>Súper Caliente</translation>
     </message>
 
     <message>
       <source>Super Warm (rich)</source>
-      <translation>Super chaud (riche)</translation>
+      <translation>Súper Caliente (rico)</translation>
+    </message>
+
+    <message>
+      <source>Super-Pixels</source>
+      <translation>Super-Píxeles</translation>
+    </message>
+
+    <message>
+      <source>Superformula</source>
+      <translation>Superfórmula</translation>
     </message>
 
     <message>
       <source>Superimpose with Original?</source>
-      <translation>Superposer avec l&apos;original ?</translation>
+      <translation>¿Superponer con Original?</translation>
     </message>
 
     <message>
       <source>Surface Disturbance</source>
-      <translation>Perturbation de surface</translation>
+      <translation>Perturbación de la superficie</translation>
     </message>
 
     <message>
       <source>Surface Disturbance Multiplier</source>
-      <translation>Multiplicateur de perturbations de surface</translation>
+      <translation>Multiplicador de perturbaciones de la superficie</translation>
     </message>
 
     <message>
       <source>Swan</source>
-      <translation>Cygne</translation>
+      <translation>Cisne</translation>
     </message>
 
     <message>
       <source>Swap</source>
-      <translation>Échange</translation>
+      <translation>Intercambio</translation>
     </message>
 
     <message>
       <source>Swap Colors</source>
-      <translation>Échanger les couleurs</translation>
+      <translation>Intercambio de colores</translation>
     </message>
 
     <message>
       <source>Swap Layers</source>
-      <translation>Échange de couches</translation>
+      <translation>Intercambiar capas</translation>
     </message>
 
     <message>
       <source>Swap Radius / Angle</source>
-      <translation>Rayon / angle d&apos;échange</translation>
+      <translation>Intercambio de radio/ángulo</translation>
     </message>
 
     <message>
       <source>Swap Sides</source>
-      <translation>Échanger les côtés</translation>
+      <translation>Intercambie los lados</translation>
     </message>
 
     <message>
       <source>Sweet Bubblegum</source>
-      <translation>Bubblegum sucré</translation>
+      <translation>Bomba de Chicle Dulce</translation>
     </message>
 
     <message>
       <source>Sweet Gelatto</source>
-      <translation>Gelatto sucré</translation>
+      <translation>Dulce Gelatto</translation>
     </message>
 
     <message>
       <source>Symmetric 2D Shape</source>
-      <translation>Forme symétrique 2D</translation>
+      <translation>Forma 2D simétrica</translation>
+    </message>
+
+    <message>
+      <source>Symmetrize</source>
+      <translation>Simetrizar</translation>
     </message>
 
     <message>
       <source>Symmetry</source>
-      <translation>Symétrie</translation>
+      <translation>Simetría</translation>
     </message>
 
     <message>
       <source>Symmetry Sides</source>
-      <translation>Les côtés de la symétrie</translation>
+      <translation>Lados de simetría</translation>
     </message>
 
     <message>
       <source>Synthesis Scale</source>
-      <translation>Échelle de synthèse</translation>
-    </message>
-
-    <message>
-      <source>Taiga</source>
-      <translation>Taïga</translation>
+      <translation>Escala de síntesis</translation>
     </message>
 
     <message>
       <source>Tangent Radius</source>
-      <translation>Rayon tangent</translation>
+      <translation>El radio de la tangente</translation>
     </message>
 
     <message>
       <source>Target Color #1</source>
-      <translation>Couleur cible #1</translation>
+      <translation>Color del objetivo #1</translation>
     </message>
 
     <message>
       <source>Target Color #10</source>
-      <translation>Couleur cible #10</translation>
+      <translation>Color del objetivo #10</translation>
     </message>
 
     <message>
       <source>Target Color #11</source>
-      <translation>Couleur cible #11</translation>
+      <translation>Color del objetivo #11</translation>
     </message>
 
     <message>
       <source>Target Color #12</source>
-      <translation>Couleur cible #12</translation>
+      <translation>Color del objetivo #12</translation>
     </message>
 
     <message>
       <source>Target Color #13</source>
-      <translation>Couleur cible #13</translation>
+      <translation>Color del objetivo #13</translation>
     </message>
 
     <message>
       <source>Target Color #14</source>
-      <translation>Couleur cible #14</translation>
+      <translation>Color del objetivo #14</translation>
     </message>
 
     <message>
       <source>Target Color #15</source>
-      <translation>Couleur cible #15</translation>
+      <translation>Color del objetivo #15</translation>
     </message>
 
     <message>
       <source>Target Color #16</source>
-      <translation>Couleur cible #16</translation>
+      <translation>Color del objetivo #16</translation>
     </message>
 
     <message>
       <source>Target Color #17</source>
-      <translation>Couleur cible #17</translation>
+      <translation>Color del objetivo #17</translation>
     </message>
 
     <message>
       <source>Target Color #18</source>
-      <translation>Couleur cible #18</translation>
+      <translation>Color del objetivo #18</translation>
     </message>
 
     <message>
       <source>Target Color #19</source>
-      <translation>Couleur cible #19</translation>
+      <translation>Color del objetivo #19</translation>
     </message>
 
     <message>
       <source>Target Color #2</source>
-      <translation>Couleur cible #2</translation>
+      <translation>Color del objetivo #2</translation>
     </message>
 
     <message>
       <source>Target Color #20</source>
-      <translation>Couleur cible #20</translation>
+      <translation>Color del objetivo #20</translation>
     </message>
 
     <message>
       <source>Target Color #21</source>
-      <translation>Couleur cible #21</translation>
+      <translation>Color del objetivo #21</translation>
     </message>
 
     <message>
       <source>Target Color #22</source>
-      <translation>Couleur cible #22</translation>
+      <translation>Color del objetivo #22</translation>
     </message>
 
     <message>
       <source>Target Color #23</source>
-      <translation>Couleur cible #23</translation>
+      <translation>Color del objetivo #23</translation>
     </message>
 
     <message>
       <source>Target Color #24</source>
-      <translation>Couleur cible #24</translation>
+      <translation>Color del objetivo #24</translation>
     </message>
 
     <message>
       <source>Target Color #3</source>
-      <translation>Couleur cible #3</translation>
+      <translation>Color del objetivo #3</translation>
     </message>
 
     <message>
       <source>Target Color #4</source>
-      <translation>Couleur cible #4</translation>
+      <translation>Color del objetivo #4</translation>
     </message>
 
     <message>
       <source>Target Color #5</source>
-      <translation>Couleur cible #5</translation>
+      <translation>Color del objetivo #5</translation>
     </message>
 
     <message>
       <source>Target Color #6</source>
-      <translation>Couleur cible #6</translation>
+      <translation>Color del objetivo #6</translation>
     </message>
 
     <message>
       <source>Target Color #7</source>
-      <translation>Couleur cible #7</translation>
+      <translation>Color del blanco #7</translation>
     </message>
 
     <message>
       <source>Target Color #8</source>
-      <translation>Couleur cible #8</translation>
+      <translation>Color del objetivo #8</translation>
     </message>
 
     <message>
       <source>Target Color #9</source>
-      <translation>Couleur cible #9</translation>
-    </message>
-
-    <message>
-      <source>Teal Fade</source>
-      <translation>Fondu de sarcelle</translation>
-    </message>
-
-    <message>
-      <source>Teal Magenta Gold</source>
-      <translation>Sarcelle d&apos;or magenta</translation>
+      <translation>Color del objetivo #9</translation>
     </message>
 
     <message>
       <source>Teal Moonlight</source>
-      <translation>Sarcelle Clair de Lune</translation>
-    </message>
-
-    <message>
-      <source>Teal Orange</source>
-      <translation>Sarcelle d&apos;Orange</translation>
+      <translation>Luz de Luna Teal</translation>
     </message>
 
     <message>
       <source>TechnicalFX - Backlight Filter</source>
-      <translation>TechnicalFX - Filtre de rétro-éclairage</translation>
+      <translation>TechnicalFX - Filtro de luz de fondo</translation>
     </message>
 
     <message>
       <source>Temperature Balance</source>
-      <translation>Équilibre des températures</translation>
+      <translation>El equilibrio de la temperatura</translation>
     </message>
 
     <message>
       <source>Ten Layers</source>
-      <translation>Dix couches</translation>
+      <translation>Diez capas</translation>
     </message>
 
     <message>
       <source>Tends to Be Square</source>
-      <translation>Tendance à être carré</translation>
+      <translation>Tiende a ser cuadrado</translation>
     </message>
 
     <message>
       <source>Tension Green 1</source>
-      <translation>Tension Vert 1</translation>
+      <translation>Tensión Verde 1</translation>
     </message>
 
     <message>
       <source>Tension Green 2</source>
-      <translation>Tension Vert 2</translation>
+      <translation>Tensión Verde 2</translation>
     </message>
 
     <message>
       <source>Tension Green 3</source>
-      <translation>Vert tension 3</translation>
+      <translation>Tensión Verde 3</translation>
     </message>
 
     <message>
       <source>Tension Green 4</source>
-      <translation>Tension Vert 4</translation>
+      <translation>Tensión Verde 4</translation>
     </message>
 
     <message>
       <source>Tensor Smoothness</source>
-      <translation>Lissage du tenseur</translation>
+      <translation>Suavidad del tensor</translation>
     </message>
 
     <message>
       <source>Tertiary Factor</source>
-      <translation>Facteur tertiaire</translation>
+      <translation>Factor Terciario</translation>
     </message>
 
     <message>
       <source>Tertiary Gamma</source>
-      <translation>Tertiaire Gamma</translation>
+      <translation>Terciario Gamma</translation>
     </message>
 
     <message>
       <source>Tertiary Shift</source>
-      <translation>Tertiaire</translation>
+      <translation>Cambio Terciario</translation>
     </message>
 
     <message>
       <source>Tertiary Twist</source>
-      <translation>Tendance tertiaire</translation>
+      <translation>Giro terciario</translation>
     </message>
 
     <message>
       <source>Text</source>
-      <translation>Texte</translation>
+      <translation>Texto</translation>
+    </message>
+
+    <message>
+      <source>Texture</source>
+      <translation>Textura</translation>
     </message>
 
     <message>
       <source>Texture Enhance</source>
-      <translation>Amélioration de la texture</translation>
+      <translation>Mejora de la textura</translation>
     </message>
 
     <message>
       <source>Textured Glass</source>
-      <translation>Verre texturé</translation>
+      <translation>Vidrio texturizado</translation>
     </message>
 
     <message>
       <source>The Game of Life</source>
-      <translation>Le jeu de la vie</translation>
+      <translation>El juego de la vida</translation>
     </message>
 
     <message>
       <source>The Matrices</source>
-      <translation>Les matrices</translation>
+      <translation>Las matrices</translation>
     </message>
 
     <message>
       <source>Thickness</source>
-      <translation>Épaisseur</translation>
+      <translation>Espesor</translation>
     </message>
 
     <message>
       <source>Thickness (%)</source>
-      <translation>Épaisseur (%)</translation>
+      <translation>Espesor (%)</translation>
     </message>
 
     <message>
       <source>Thickness (px)</source>
-      <translation>Épaisseur (px)</translation>
+      <translation>Espesor (px)</translation>
     </message>
 
     <message>
       <source>Thickness Factor</source>
-      <translation>Facteur d&apos;épaisseur</translation>
+      <translation>Factor de espesor</translation>
     </message>
 
     <message>
       <source>Thin Edges</source>
-      <translation>Bords amincis</translation>
+      <translation>Bordes delgados</translation>
     </message>
 
     <message>
       <source>Thin Separators</source>
-      <translation>Séparateurs minces</translation>
+      <translation>Separadores delgados</translation>
     </message>
 
     <message>
       <source>Thinness</source>
-      <translation>Minceur</translation>
+      <translation>Delgadez</translation>
     </message>
 
     <message>
       <source>Thinning</source>
-      <translation>Éclaircissement</translation>
+      <translation>Adelgazamiento</translation>
     </message>
 
     <message>
       <source>Thinning (Slow)</source>
-      <translation>Éclaircissement (Lent)</translation>
+      <translation>Adelgazamiento (Lento)</translation>
     </message>
 
     <message>
       <source>Three Layers</source>
-      <translation>Trois couches</translation>
+      <translation>Tres capas</translation>
     </message>
 
     <message>
       <source>Threshold</source>
-      <translation>Seuil</translation>
+      <translation>Umbral</translation>
     </message>
 
     <message>
       <source>Threshold (%)</source>
-      <translation>Seuil (%)</translation>
+      <translation>Umbral (%)</translation>
+    </message>
+
+    <message>
+      <source>Threshold Etch</source>
+      <translation>Grabado de umbral</translation>
     </message>
 
     <message>
       <source>Threshold High</source>
-      <translation>Seuil élevé</translation>
+      <translation>Umbral alto</translation>
     </message>
 
     <message>
       <source>Threshold Low</source>
-      <translation>Seuil bas</translation>
+      <translation>Umbral bajo</translation>
     </message>
 
     <message>
       <source>Threshold Max</source>
-      <translation>Seuil Max</translation>
+      <translation>Umbral máximo</translation>
     </message>
 
     <message>
       <source>Threshold Mid</source>
-      <translation>Seuil Mid</translation>
+      <translation>Umbral medio</translation>
     </message>
 
     <message>
       <source>Threshold On</source>
-      <translation>Seuil sur</translation>
+      <translation>Umbral de</translation>
     </message>
 
     <message>
       <source>Thumbnail Size</source>
-      <translation>Taille des vignettes</translation>
+      <translation>El tamaño de la miniatura</translation>
     </message>
 
     <message>
@@ -15581,397 +16201,447 @@
 
     <message>
       <source>Tile Poles</source>
-      <translation>Pôles de tuiles</translation>
+      <translation>Polos de azulejos</translation>
     </message>
 
     <message>
       <source>Tile Size</source>
-      <translation>Taille des carreaux</translation>
+      <translation>Tamaño de las baldosas</translation>
     </message>
 
     <message>
       <source>Tileable Rotation</source>
-      <translation>Rotation des tuiles</translation>
+      <translation>Rotación de la baldosa</translation>
     </message>
 
     <message>
       <source>Tiled Isolation</source>
-      <translation>Isolation par le carrelage</translation>
+      <translation>Aislamiento de azulejos</translation>
     </message>
 
     <message>
       <source>Tiled Normalization</source>
-      <translation>Normalisation des tuiles</translation>
+      <translation>Normalización de los azulejos</translation>
     </message>
 
     <message>
       <source>Tiled Parameterization</source>
-      <translation>Paramétrage en mosaïque</translation>
+      <translation>Parametrización de los azulejos</translation>
     </message>
 
     <message>
       <source>Tiled Preview</source>
-      <translation>Avant-première carrelée</translation>
+      <translation>Vista previa en mosaico</translation>
     </message>
 
     <message>
       <source>Tiled Random Shifts</source>
-      <translation>Des changements aléatoires</translation>
+      <translation>Cambios aleatorios en mosaico</translation>
     </message>
 
     <message>
       <source>Tiled Rotation</source>
-      <translation>Rotation des carreaux</translation>
+      <translation>Rotación de los azulejos</translation>
     </message>
 
     <message>
       <source>Tiles</source>
-      <translation>Carreaux</translation>
+      <translation>Baldosas</translation>
     </message>
 
     <message>
       <source>Tiles to Layers</source>
-      <translation>Des tuiles aux couches</translation>
-    </message>
-
-    <message>
-      <source>Tilt</source>
-      <translation>Inclinaison</translation>
+      <translation>Azulejos a las capas</translation>
     </message>
 
     <message>
       <source>Time</source>
-      <translation>Heure</translation>
+      <translation>Tiempo</translation>
     </message>
 
     <message>
       <source>Time Step</source>
-      <translation>Pas de temps</translation>
+      <translation>Paso de tiempo</translation>
     </message>
 
     <message>
       <source>Timed Image</source>
-      <translation>Image en temps réel</translation>
+      <translation>Imagen cronometrada</translation>
+    </message>
+
+    <message>
+      <source>Tiny</source>
+      <translation>Pequeño</translation>
     </message>
 
     <message>
       <source>To Equirectangular</source>
-      <translation>Vers Equirectangulaire</translation>
+      <translation>a la equidistancia</translation>
     </message>
 
     <message>
       <source>To Nadir / Zenith</source>
-      <translation>Vers le Nadir / Zénith</translation>
+      <translation>A Nadir / Zenith</translation>
     </message>
 
     <message>
       <source>Toasted Garden</source>
-      <translation>Jardin grillé</translation>
+      <translation>Jardín tostado</translation>
+    </message>
+
+    <message>
+      <source>Toes</source>
+      <translation>Dedos de los pies</translation>
     </message>
 
     <message>
       <source>Toggle to View Base Image</source>
-      <translation>Basculer pour voir l&apos;image de la base</translation>
+      <translation>Cambiar a ver la imagen de la base</translation>
     </message>
 
     <message>
       <source>Tolerance</source>
-      <translation>Tolérance</translation>
+      <translation>Tolerancia</translation>
     </message>
 
     <message>
       <source>Tolerance to Gaps</source>
-      <translation>Tolérance aux écarts</translation>
+      <translation>Tolerancia a las diferencias</translation>
     </message>
 
     <message>
       <source>Tonal Bandwidth</source>
-      <translation>Bande passante tonale</translation>
+      <translation>Ancho de banda tonal</translation>
+    </message>
+
+    <message>
+      <source>Tone Blur</source>
+      <translation>Borrón de Tono</translation>
     </message>
 
     <message>
       <source>Tone Enhance</source>
-      <translation>Amélioration de la tonalité</translation>
+      <translation>Mejora del tono</translation>
+    </message>
+
+    <message>
+      <source>Tone Gamma</source>
+      <translation>Tono Gamma</translation>
     </message>
 
     <message>
       <source>Tone Mapping</source>
-      <translation>Cartographie sonore</translation>
+      <translation>Mapeo de Tonos</translation>
+    </message>
+
+    <message>
+      <source>Tone Mapping (%)</source>
+      <translation>Mapeo de tonos (%)</translation>
     </message>
 
     <message>
       <source>Tone Mapping [Fast]</source>
-      <translation>Cartographie sonore [rapide]</translation>
+      <translation>Mapeo de Tonos [Rápido]</translation>
     </message>
 
     <message>
       <source>Tone Mapping Fast</source>
-      <translation>Cartographie sonore rapide</translation>
+      <translation>Mapeo de tonos rápido</translation>
+    </message>
+
+    <message>
+      <source>Tone Mapping Soft</source>
+      <translation>Mapeo de Tono Suave</translation>
     </message>
 
     <message>
       <source>Tone Presets</source>
-      <translation>Presets de tonalité</translation>
+      <translation>Preselecciones de tono</translation>
     </message>
 
     <message>
       <source>Tone Threshold</source>
-      <translation>Seuil de tonalité</translation>
+      <translation>Umbral de tono</translation>
     </message>
 
     <message>
       <source>Tones Range</source>
-      <translation>Gamme de tonalités</translation>
+      <translation>Rango de tonos</translation>
     </message>
 
     <message>
       <source>Tones Smoothness</source>
-      <translation>Tonalités Douceur</translation>
+      <translation>Tonos Suavidad</translation>
     </message>
 
     <message>
       <source>Tones to Layers</source>
-      <translation>Tonalités aux couches</translation>
+      <translation>Tonos a las capas</translation>
     </message>
 
     <message>
       <source>Top Layer</source>
-      <translation>Couche supérieure</translation>
+      <translation>Capa superior</translation>
     </message>
 
     <message>
       <source>Top Left</source>
-      <translation>En haut à gauche</translation>
+      <translation>Arriba a la izquierda</translation>
     </message>
 
     <message>
       <source>Top Right</source>
-      <translation>En haut à droite</translation>
+      <translation>Arriba a la derecha</translation>
     </message>
 
     <message>
       <source>Top-Left Vertex (%)</source>
-      <translation>Sommet supérieur gauche (%)</translation>
+      <translation>Vértice superior izquierdo (%)</translation>
     </message>
 
     <message>
       <source>Top-Right Vertex (%)</source>
-      <translation>Vertex supérieur droit (%)</translation>
+      <translation>Vértice superior derecho (%)</translation>
     </message>
 
     <message>
       <source>Total Layers</source>
-      <translation>Total des couches</translation>
+      <translation>Capas totales</translation>
     </message>
 
     <message>
       <source>Total Variation</source>
-      <translation>Variation totale</translation>
+      <translation>Variación total</translation>
     </message>
 
     <message>
       <source>Transfer Colors [Histogram]</source>
-      <translation>Couleurs de transfert [Histogramme]</translation>
+      <translation>Transferencia de colores [Histograma]</translation>
     </message>
 
     <message>
       <source>Transfer Colors [Patch-Based]</source>
-      <translation>Transfert de couleurs [Patch-Based] (en anglais)</translation>
+      <translation>Transferir colores [Patch-Based]</translation>
     </message>
 
     <message>
       <source>Transfer Colors [PCA]</source>
-      <translation>Couleurs de transfert [PCA]</translation>
+      <translation>Transferencia de colores [PCA]</translation>
     </message>
 
     <message>
       <source>Transfer Colors [Variational]</source>
-      <translation>Couleurs de transfert [Variable]</translation>
+      <translation>Transferencia de colores [Variación]</translation>
     </message>
 
     <message>
       <source>Transform</source>
-      <translation>Transformer</translation>
+      <translation>Transformar</translation>
     </message>
 
     <message>
       <source>Transition Map</source>
-      <translation>Carte de transition</translation>
+      <translation>Mapa de transición</translation>
     </message>
 
     <message>
       <source>Transition Shape</source>
-      <translation>Forme de la transition</translation>
+      <translation>Forma de transición</translation>
     </message>
 
     <message>
       <source>Transition Smoothness</source>
-      <translation>Transition en douceur</translation>
+      <translation>Suavidad de la transición</translation>
     </message>
 
     <message>
       <source>Transmittance Map</source>
-      <translation>Carte de transmission</translation>
+      <translation>Mapa de transmisión</translation>
     </message>
 
     <message>
       <source>Transparency</source>
-      <translation>Transparence</translation>
+      <translation>Transparencia</translation>
+    </message>
+
+    <message>
+      <source>Transparent</source>
+      <translation>Transparente</translation>
     </message>
 
     <message>
       <source>Transparent Background</source>
-      <translation>Un fond transparent</translation>
+      <translation>Fondo transparente</translation>
     </message>
 
     <message>
       <source>Transparent Black &amp; White</source>
-      <translation>Noir et blanc transparent</translation>
+      <translation>Blanco y negro transparente</translation>
     </message>
 
     <message>
       <source>Transparent Color</source>
-      <translation>Couleur transparente</translation>
+      <translation>Color transparente</translation>
     </message>
 
     <message>
       <source>Transparent on Black</source>
-      <translation>Transparent sur le noir</translation>
+      <translation>Transparente sobre Negro</translation>
     </message>
 
     <message>
       <source>Transparent on White</source>
-      <translation>Transparent sur le blanc</translation>
+      <translation>Transparente sobre el blanco</translation>
     </message>
 
     <message>
       <source>Transparent Skin</source>
-      <translation>Peau transparente</translation>
+      <translation>Piel transparente</translation>
     </message>
 
     <message>
       <source>Tree</source>
-      <translation>Arbre</translation>
+      <translation>Árbol</translation>
+    </message>
+
+    <message>
+      <source>Triangle</source>
+      <translation>Triángulo</translation>
+    </message>
+
+    <message>
+      <source>Triangles</source>
+      <translation>Triángulos</translation>
     </message>
 
     <message>
       <source>Triangles (Outline)</source>
-      <translation>Triangles (Grandes lignes)</translation>
-    </message>
-
-    <message>
-      <source>Triangular Ha</source>
-      <translation>Ha triangulaire</translation>
-    </message>
-
-    <message>
-      <source>Triangular Hb</source>
-      <translation>Hb triangulaire</translation>
+      <translation>Triángulos (Esquema)</translation>
     </message>
 
     <message>
       <source>Triangular Va</source>
-      <translation>Va triangulaire</translation>
-    </message>
-
-    <message>
-      <source>Triangular Vb</source>
-      <translation>Triangulaire Vb</translation>
+      <translation>Va triangular</translation>
     </message>
 
     <message>
       <source>Tritanomaly</source>
-      <translation>Tritanomalie</translation>
+      <translation>Tritanomalía</translation>
+    </message>
+
+    <message>
+      <source>True Colors 8</source>
+      <translation>Colores verdaderos 8</translation>
     </message>
 
     <message>
       <source>Trunk Color</source>
-      <translation>Couleur du tronc</translation>
+      <translation>Color del tronco</translation>
     </message>
 
     <message>
       <source>Trunk Opacity (%)</source>
-      <translation>Opacité du tronc (%)</translation>
+      <translation>Opacidad del tronco (%)</translation>
     </message>
 
     <message>
       <source>Trunks</source>
-      <translation>Malles</translation>
+      <translation>Troncos</translation>
     </message>
 
     <message>
       <source>Tulips</source>
-      <translation>Tulipes</translation>
+      <translation>Tulipanes</translation>
+    </message>
+
+    <message>
+      <source>Tunnel</source>
+      <translation>Túnel</translation>
     </message>
 
     <message>
       <source>Turbulence</source>
-      <translation>Turbulences</translation>
+      <translation>Turbulencia</translation>
+    </message>
+
+    <message>
+      <source>Turbulence 2</source>
+      <translation>Turbulencia 2</translation>
     </message>
 
     <message>
       <source>Turbulent Halftone</source>
-      <translation>Demi-teinte turbulente</translation>
+      <translation>Medio tono turbulento</translation>
+    </message>
+
+    <message>
+      <source>Turkiest 42</source>
+      <translation>El 42 más turco</translation>
     </message>
 
     <message>
       <source>Turn on Rotate and Twirl</source>
-      <translation>Activer la fonction Rotate and Twirl</translation>
+      <translation>Enciende la rotación y el giro...</translation>
+    </message>
+
+    <message>
+      <source>Twirl</source>
+      <translation>Giro</translation>
     </message>
 
     <message>
       <source>Twisted Rays</source>
-      <translation>Rayons tordus</translation>
+      <translation>Rayos torcidos</translation>
     </message>
 
     <message>
       <source>Two Layers</source>
-      <translation>Deux couches</translation>
+      <translation>Dos capas</translation>
     </message>
 
     <message>
       <source>Two Threads</source>
-      <translation>Deux fils</translation>
+      <translation>Dos hilos</translation>
     </message>
 
     <message>
       <source>Type</source>
-      <translation>Tapez</translation>
+      <translation>Escriba</translation>
     </message>
 
     <message>
       <source>Type Snowflake</source>
-      <translation>Type Flocon de neige</translation>
+      <translation>Tipo Copo de Nieve</translation>
     </message>
 
     <message>
       <source>Ultra Water</source>
-      <translation>Ultra Eau</translation>
+      <translation>Ultra Agua</translation>
     </message>
 
     <message>
       <source>Unaligned Images</source>
-      <translation>Images non alignées</translation>
+      <translation>Imágenes no alineadas</translation>
     </message>
 
     <message>
       <source>Undeniable</source>
-      <translation>Indéniablement</translation>
+      <translation>Innegable</translation>
     </message>
 
     <message>
       <source>Undeniable 2</source>
-      <translation>Indéniable 2</translation>
+      <translation>Innegable 2</translation>
     </message>
 
     <message>
       <source>Underwater</source>
-      <translation>Sous l&apos;eau</translation>
+      <translation>Bajo el agua</translation>
     </message>
 
     <message>
       <source>Undo Anaglyph</source>
-      <translation>Annuler l&apos;anaglyphe</translation>
+      <translation>Deshacer el anaglifo</translation>
     </message>
 
     <message>
@@ -15981,932 +16651,1037 @@
 
     <message>
       <source>Unknown</source>
-      <translation>Inconnu</translation>
+      <translation>Desconocido</translation>
+    </message>
+
+    <message>
+      <source>Unquantize [JPEG Smooth]</source>
+      <translation>Unquantize [JPEG Suave]</translation>
     </message>
 
     <message>
       <source>Unsharp Mask</source>
-      <translation>Masque flou</translation>
+      <translation>Máscara de la Unsharp</translation>
     </message>
 
     <message>
       <source>Unstrip</source>
-      <translation>Détacher</translation>
+      <translation>Desenvuelva</translation>
     </message>
 
     <message>
       <source>Up-Left</source>
-      <translation>En haut à gauche</translation>
+      <translation>Arriba a la izquierda</translation>
     </message>
 
     <message>
       <source>Up-Right</source>
-      <translation>En haut à droite</translation>
+      <translation>Arriba-Derecha</translation>
     </message>
 
     <message>
       <source>Upper Layer Is the Top Layer for All Blends</source>
-      <translation>La couche supérieure est la couche supérieure pour tous les mélanges</translation>
+      <translation>La capa superior es la capa superior para todas las mezclas</translation>
     </message>
 
     <message>
       <source>Upper Side Orientation</source>
-      <translation>Orientation de la face supérieure</translation>
+      <translation>Orientación del lado superior</translation>
     </message>
 
     <message>
       <source>Uppercase Letters</source>
-      <translation>Lettres majuscules</translation>
-    </message>
-
-    <message>
-      <source>Upscale [DCCI2x]</source>
-      <translation>Haut de gamme [DCCI2x]</translation>
+      <translation>Cartas en mayúsculas</translation>
     </message>
 
     <message>
       <source>Upscale [Diffusion]</source>
-      <translation>Haut de gamme [Diffusion]</translation>
-    </message>
-
-    <message>
-      <source>Upscale [Scale2x]</source>
-      <translation>Haut de gamme [Scale2x]</translation>
-    </message>
-
-    <message>
-      <source>Urban Cowboy</source>
-      <translation>Cowboy urbain</translation>
+      <translation>Difusión a gran escala</translation>
     </message>
 
     <message>
       <source>Use as Hue</source>
-      <translation>Utiliser comme teinte</translation>
+      <translation>Usar como Tono</translation>
     </message>
 
     <message>
       <source>Use as Saturation</source>
-      <translation>Utilisation en tant que saturation</translation>
+      <translation>Uso como saturación</translation>
     </message>
 
     <message>
       <source>Use Individual Depth Map</source>
-      <translation>Utiliser la carte des profondeurs individuelles</translation>
+      <translation>Usar el mapa de profundidad individual</translation>
     </message>
 
     <message>
       <source>Use Light</source>
-      <translation>Utiliser la lumière</translation>
+      <translation>Usar la luz</translation>
     </message>
 
     <message>
       <source>Use Maximum Tones</source>
-      <translation>Utiliser les tons maximums</translation>
+      <translation>Usar los tonos máximos</translation>
     </message>
 
     <message>
       <source>Use Top Layer as a Priority Mask</source>
-      <translation>Utiliser la couche supérieure comme masque de priorité</translation>
+      <translation>Usar la capa superior como una máscara de prioridad</translation>
     </message>
 
     <message>
       <source>User-Defined</source>
-      <translation>Définie par l&apos;utilisateur</translation>
+      <translation>Definido por el usuario</translation>
     </message>
 
     <message>
       <source>User-Defined (Bottom Layer)</source>
-      <translation>Définie par l&apos;utilisateur (couche inférieure)</translation>
+      <translation>Definido por el usuario (capa inferior)</translation>
     </message>
 
     <message>
       <source>Uzbek Bukhara</source>
-      <translation>Boukhara en Ouzbékistan</translation>
+      <translation>Bukhara de Uzbekistán</translation>
     </message>
 
     <message>
       <source>Uzbek Marriage</source>
-      <translation>Mariage ouzbek</translation>
+      <translation>Matrimonio uzbeko</translation>
     </message>
 
     <message>
       <source>Uzbek Samarcande</source>
-      <translation>Samarcande ouzbek</translation>
+      <translation>Samarcande de Uzbekistán</translation>
     </message>
 
     <message>
       <source>V Cutoff</source>
-      <translation>V Seuil</translation>
+      <translation>Corte V</translation>
     </message>
 
     <message>
       <source>Val Range</source>
-      <translation>Gamme Val</translation>
+      <translation>Rango de Val</translation>
     </message>
 
     <message>
       <source>Value</source>
-      <translation>Valeur</translation>
+      <translation>Valor</translation>
     </message>
 
     <message>
       <source>Value Action</source>
-      <translation>Action de valeur</translation>
+      <translation>Valor Acción</translation>
     </message>
 
     <message>
       <source>Value Blending</source>
-      <translation>Mélange de valeurs</translation>
+      <translation>Mezcla de valores</translation>
     </message>
 
     <message>
       <source>Value Bottom</source>
-      <translation>Valeur en bas</translation>
+      <translation>Valor inferior</translation>
     </message>
 
     <message>
       <source>Value Correction</source>
-      <translation>Correction de la valeur</translation>
+      <translation>Corrección del valor</translation>
     </message>
 
     <message>
       <source>Value Factor</source>
-      <translation>Facteur de valeur</translation>
+      <translation>Factor de valor</translation>
     </message>
 
     <message>
       <source>Value Normalization</source>
-      <translation>Normalisation de la valeur</translation>
+      <translation>Normalización de valores</translation>
     </message>
 
     <message>
       <source>Value Offset</source>
-      <translation>Compensation de la valeur</translation>
+      <translation>Compensación del valor</translation>
     </message>
 
     <message>
       <source>Value Precision</source>
-      <translation>Précision de la valeur</translation>
+      <translation>Precisión del valor</translation>
     </message>
 
     <message>
       <source>Value Range</source>
-      <translation>Fourchette de valeurs</translation>
+      <translation>Rango de valores</translation>
     </message>
 
     <message>
       <source>Value Scale</source>
-      <translation>Échelle de valeur</translation>
+      <translation>Escala de valores</translation>
     </message>
 
     <message>
       <source>Value Shift</source>
-      <translation>Changement de valeur</translation>
+      <translation>Cambio de valor</translation>
     </message>
 
     <message>
       <source>Value Smoothness</source>
-      <translation>La valeur de la douceur</translation>
+      <translation>Valorar la suavidad</translation>
     </message>
 
     <message>
       <source>Value Top</source>
-      <translation>Valeur Top</translation>
+      <translation>Valor máximo</translation>
     </message>
 
     <message>
       <source>Value Variance</source>
-      <translation>Variation de la valeur</translation>
+      <translation>Variación del valor</translation>
     </message>
 
     <message>
       <source>Values</source>
-      <translation>Valeurs</translation>
+      <translation>Valores</translation>
     </message>
 
     <message>
       <source>Van Gogh: Almond Blossom</source>
-      <translation>Van Gogh : La fleur d&apos;amandier</translation>
+      <translation>Van Gogh: Flor de almendro</translation>
     </message>
 
     <message>
       <source>Van Gogh: Irises</source>
-      <translation>Van Gogh : Iris</translation>
+      <translation>Van Gogh: Lirios</translation>
     </message>
 
     <message>
       <source>Van Gogh: The Starry Night</source>
-      <translation>Van Gogh : La nuit étoilée</translation>
+      <translation>Van Gogh: La noche estrellada</translation>
     </message>
 
     <message>
       <source>Van Gogh: Wheat Field with Crows</source>
-      <translation>Van Gogh : Champ de blé avec des corbeaux</translation>
+      <translation>Van Gogh: Campo de trigo con cuervos</translation>
     </message>
 
     <message>
       <source>Variability</source>
-      <translation>Variabilité</translation>
+      <translation>Variabilidad</translation>
+    </message>
+
+    <message>
+      <source>Variance</source>
+      <translation>Variación</translation>
     </message>
 
     <message>
       <source>Variation A</source>
-      <translation>Variante A</translation>
+      <translation>Variación A</translation>
     </message>
 
     <message>
       <source>Variation B</source>
-      <translation>Variante B</translation>
+      <translation>Variación B</translation>
+    </message>
+
+    <message>
+      <source>Variation C</source>
+      <translation>Variación C</translation>
     </message>
 
     <message>
       <source>Vector Painting</source>
-      <translation>Peinture vectorielle</translation>
+      <translation>Pintura vectorial</translation>
     </message>
 
     <message>
       <source>Velocity</source>
-      <translation>Vélocité</translation>
+      <translation>Velocidad</translation>
     </message>
 
     <message>
       <source>Vertex Type</source>
-      <translation>Type de sommet</translation>
-    </message>
-
-    <message>
-      <source>Vertical (%)</source>
-      <translation>Verticale (%)</translation>
+      <translation>Tipo de vértice</translation>
     </message>
 
     <message>
       <source>Vertical 1 Amount</source>
-      <translation>Vertical 1 Montant</translation>
+      <translation>Vertical 1 Cantidad</translation>
     </message>
 
     <message>
       <source>Vertical 1 Length</source>
-      <translation>Vertical 1 Longueur</translation>
+      <translation>Vertical 1 Longitud</translation>
     </message>
 
     <message>
       <source>Vertical 2 Amount</source>
-      <translation>Montant vertical 2</translation>
+      <translation>Vertical 2 Cantidad</translation>
     </message>
 
     <message>
       <source>Vertical 2 Length</source>
-      <translation>Vertical 2 Longueur</translation>
+      <translation>Vertical 2 Longitud</translation>
     </message>
 
     <message>
       <source>Vertical Amount</source>
-      <translation>Montant vertical</translation>
+      <translation>Cantidad vertical</translation>
     </message>
 
     <message>
       <source>Vertical Array</source>
-      <translation>Réseau vertical</translation>
+      <translation>Conjunto vertical</translation>
     </message>
 
     <message>
       <source>Vertical Blur</source>
-      <translation>Flou vertical</translation>
+      <translation>Borrón vertical</translation>
     </message>
 
     <message>
       <source>Vertical Length</source>
-      <translation>Longueur verticale</translation>
+      <translation>Longitud vertical</translation>
     </message>
 
     <message>
       <source>Vertical Size (%)</source>
-      <translation>Taille verticale (%)</translation>
+      <translation>Tamaño vertical (%)</translation>
     </message>
 
     <message>
       <source>Vertical Stripes</source>
-      <translation>Bandes verticales</translation>
+      <translation>Rayas verticales</translation>
     </message>
 
     <message>
       <source>Vertical Tiles</source>
-      <translation>Carreaux verticaux</translation>
+      <translation>Baldosas verticales</translation>
     </message>
 
     <message>
       <source>Very Course 5</source>
-      <translation>Très cours 5</translation>
+      <translation>Muy Curso 5</translation>
     </message>
 
     <message>
       <source>Very Fine</source>
-      <translation>Très bien</translation>
+      <translation>Muy bien.</translation>
     </message>
 
     <message>
       <source>Very High</source>
-      <translation>Très élevé</translation>
+      <translation>Muy alto</translation>
     </message>
 
     <message>
       <source>Very High (Even Slower)</source>
-      <translation>Très élevé (même plus lent)</translation>
+      <translation>Muy alto (aún más lento)</translation>
     </message>
 
     <message>
       <source>Very Warm Greenish</source>
-      <translation>Très chaud verdâtre</translation>
+      <translation>Muy caliente verdoso</translation>
+    </message>
+
+    <message>
+      <source>Vibrant</source>
+      <translation>Vibrante</translation>
     </message>
 
     <message>
       <source>Vibrant (alien)</source>
-      <translation>Vibrant (étranger)</translation>
+      <translation>Vibrante (alienígena)</translation>
     </message>
 
     <message>
       <source>Vibrant (contrast)</source>
-      <translation>Vibrant (contraste)</translation>
+      <translation>Vibrante (contraste)</translation>
+    </message>
+
+    <message>
+      <source>Vibrant (crome-Ish)</source>
+      <translation>Vibrante (crome-Ish)</translation>
     </message>
 
     <message>
       <source>Victory</source>
-      <translation>Victoire</translation>
+      <translation>Victoria</translation>
     </message>
 
     <message>
       <source>View Outlines Only</source>
-      <translation>Voir uniquement les grandes lignes</translation>
+      <translation>Ver sólo los esquemas</translation>
     </message>
 
     <message>
       <source>View Resolution</source>
-      <translation>Voir la résolution</translation>
+      <translation>Ver Resolución</translation>
     </message>
 
     <message>
       <source>Vignette Contrast</source>
-      <translation>Contraste de la vignette</translation>
-    </message>
-
-    <message>
-      <source>Vignette Max Radius</source>
-      <translation>Vignette Rayon Max</translation>
-    </message>
-
-    <message>
-      <source>Vignette Min Radius</source>
-      <translation>Vignette Rayon Min</translation>
+      <translation>Contraste de la viñeta</translation>
     </message>
 
     <message>
       <source>Vignette Size</source>
-      <translation>Taille de la vignette</translation>
+      <translation>Tamaño de la viñeta</translation>
     </message>
 
     <message>
       <source>Vignette Strength</source>
-      <translation>Force de la vignette</translation>
-    </message>
-
-    <message>
-      <source>Vintage (alt)</source>
-      <translation>Millésime (alt)</translation>
+      <translation>Fuerza de la viñeta</translation>
     </message>
 
     <message>
       <source>Vintage (brighter)</source>
-      <translation>Vintage (plus lumineux)</translation>
+      <translation>Vintage (más brillante)</translation>
+    </message>
+
+    <message>
+      <source>Vintage Chrome</source>
+      <translation>Cromo antiguo</translation>
     </message>
 
     <message>
       <source>Vintage Style</source>
-      <translation>Style Vintage</translation>
+      <translation>Estilo Vintage</translation>
+    </message>
+
+    <message>
+      <source>Vintage Tone (%)</source>
+      <translation>Tono antiguo (%)</translation>
     </message>
 
     <message>
       <source>Virtual Landscape</source>
-      <translation>Paysage virtuel</translation>
+      <translation>Paisaje virtual</translation>
     </message>
 
     <message>
       <source>Visible Watermark</source>
-      <translation>Filigrane visible</translation>
+      <translation>Marca de agua visible</translation>
     </message>
 
     <message>
       <source>Vivid Edges</source>
-      <translation>Des bords vifs</translation>
-    </message>
-
-    <message>
-      <source>Vivid Edges*</source>
-      <translation>Des bords vifs*.</translation>
+      <translation>Bordes vivos</translation>
     </message>
 
     <message>
       <source>Vivid Light</source>
-      <translation>Lumière vive</translation>
+      <translation>Luz Viva</translation>
     </message>
 
     <message>
       <source>Vivid Screen</source>
-      <translation>Écran vif</translation>
+      <translation>Pantalla Vívida</translation>
+    </message>
+
+    <message>
+      <source>Vorono&amp;#239;</source>
+      <translation>Vorono... 239;</translation>
     </message>
 
     <message>
       <source>Wall</source>
-      <translation>Mur</translation>
+      <translation>Muro</translation>
     </message>
 
     <message>
       <source>Warm</source>
-      <translation>Chaleureux</translation>
+      <translation>Caliente</translation>
     </message>
 
     <message>
       <source>Warm (highlight)</source>
-      <translation>Chaleureux (point fort)</translation>
+      <translation>Caliente (destacar)</translation>
     </message>
 
     <message>
       <source>Warm (yellow)</source>
-      <translation>Chaud (jaune)</translation>
+      <translation>Caliente (amarillo)</translation>
     </message>
 
     <message>
       <source>Warm Dark Contrasty</source>
-      <translation>Contraste sombre et chaud</translation>
-    </message>
-
-    <message>
-      <source>Warm Fade</source>
-      <translation>Fondu chaud</translation>
+      <translation>Contraste cálido y oscuro</translation>
     </message>
 
     <message>
       <source>Warm Neutral</source>
-      <translation>Neutre chaud</translation>
+      <translation>Caliente Neutral</translation>
     </message>
 
     <message>
       <source>Warm Sunset Red</source>
-      <translation>Coucher de soleil rouge et chaud</translation>
+      <translation>Rojo cálido del atardecer</translation>
     </message>
 
     <message>
       <source>Warm Teal</source>
-      <translation>Sarcelle chaude</translation>
+      <translation>Cerceta caliente</translation>
     </message>
 
     <message>
       <source>Warm Vintage</source>
-      <translation>Vintage chaud</translation>
+      <translation>Vintage cálido</translation>
     </message>
 
     <message>
       <source>Warp [Interactive]</source>
-      <translation>Warp [Interactif]</translation>
+      <translation>Warp [Interactivo]</translation>
     </message>
 
     <message>
       <source>Warp by Intensity</source>
-      <translation>Distorsion par intensité</translation>
+      <translation>La urdimbre por la intensidad</translation>
     </message>
 
     <message>
       <source>Water</source>
-      <translation>Eau</translation>
+      <translation>Agua</translation>
     </message>
 
     <message>
       <source>Waterfall</source>
-      <translation>Cascade</translation>
-    </message>
-
-    <message>
-      <source>Wave</source>
-      <translation>Vague</translation>
+      <translation>Cascada</translation>
     </message>
 
     <message>
       <source>Wave(s)</source>
-      <translation>Vague(s)</translation>
+      <translation>Onda(s)</translation>
     </message>
 
     <message>
       <source>Wavelength</source>
-      <translation>Longueur d&apos;onde</translation>
+      <translation>Longitud de onda</translation>
     </message>
 
     <message>
       <source>Waves Amplitude</source>
-      <translation>Amplitude des ondes</translation>
+      <translation>La amplitud de las ondas</translation>
     </message>
 
     <message>
       <source>Waves Smoothness</source>
-      <translation>La douceur des vagues</translation>
+      <translation>Suavidad de las olas</translation>
     </message>
 
     <message>
       <source>We&apos;ll See</source>
-      <translation>Nous verrons</translation>
+      <translation>Ya veremos.</translation>
     </message>
 
     <message>
       <source>Weave</source>
-      <translation>Tisser</translation>
+      <translation>Tejido</translation>
     </message>
 
     <message>
       <source>Weird</source>
-      <translation>Bizarre</translation>
+      <translation>Raro</translation>
     </message>
 
     <message>
       <source>Whirl Drawing</source>
-      <translation>Dessin de tourbillon</translation>
+      <translation>Dibujo de torbellino</translation>
     </message>
 
     <message>
       <source>Whirls</source>
-      <translation>Tourbillons</translation>
+      <translation>Remolinos</translation>
     </message>
 
     <message>
       <source>White</source>
-      <translation>Blanc</translation>
+      <translation>Blanco</translation>
     </message>
 
     <message>
       <source>White Dices</source>
-      <translation>Dés blancs</translation>
+      <translation>Dados blancos</translation>
     </message>
 
     <message>
       <source>White Layers</source>
-      <translation>Les couches blanches</translation>
+      <translation>Capas blancas</translation>
     </message>
 
     <message>
       <source>White Level</source>
-      <translation>Niveau blanc</translation>
+      <translation>Nivel de blanco</translation>
     </message>
 
     <message>
       <source>White on Black</source>
-      <translation>Blanc sur noir</translation>
+      <translation>Blanco sobre Negro</translation>
     </message>
 
     <message>
       <source>White on Transparent</source>
-      <translation>Le blanc sur le transparent</translation>
+      <translation>Blanco sobre Transparente</translation>
     </message>
 
     <message>
       <source>White on Transparent Black</source>
-      <translation>Le blanc sur le noir transparent</translation>
+      <translation>Blanco sobre negro transparente</translation>
     </message>
 
     <message>
       <source>White Point</source>
-      <translation>Point blanc</translation>
+      <translation>Punto Blanco</translation>
     </message>
 
     <message>
       <source>White to Black</source>
-      <translation>Du blanc au noir</translation>
+      <translation>De blanco a negro</translation>
     </message>
 
     <message>
       <source>White Walls</source>
-      <translation>Murs blancs</translation>
+      <translation>Paredes blancas</translation>
     </message>
 
     <message>
       <source>Whitening</source>
-      <translation>Blanchiment</translation>
+      <translation>Blanqueamiento</translation>
     </message>
 
     <message>
       <source>Whiter Whites</source>
-      <translation>Des Blancs plus blancs</translation>
+      <translation>Blancos más blancos</translation>
     </message>
 
     <message>
       <source>Whites</source>
-      <translation>Blancs</translation>
+      <translation>Blancos</translation>
     </message>
 
     <message>
       <source>Width</source>
-      <translation>Largeur</translation>
+      <translation>Ancho</translation>
     </message>
 
     <message>
       <source>Width (%)</source>
-      <translation>Largeur (%)</translation>
+      <translation>Anchura (%)</translation>
     </message>
 
     <message>
       <source>Wind</source>
-      <translation>Vent</translation>
+      <translation>Viento</translation>
     </message>
 
     <message>
       <source>Winter Lighthouse</source>
-      <translation>Phare d&apos;hiver</translation>
+      <translation>Faro de invierno</translation>
     </message>
 
     <message>
       <source>Wipe</source>
-      <translation>Effacer</translation>
+      <translation>Limpia</translation>
     </message>
 
     <message>
       <source>Without</source>
-      <translation>Sans</translation>
+      <translation>Sin</translation>
     </message>
 
     <message>
       <source>Wooden Gold 20</source>
-      <translation>Bois d&apos;or 20</translation>
+      <translation>Oro de madera 20</translation>
     </message>
 
     <message>
       <source>Work on Frameset</source>
-      <translation>Travail sur le Frameset</translation>
+      <translation>Trabajo en Frameset</translation>
     </message>
 
     <message>
       <source>Wrap</source>
-      <translation>Enveloppe</translation>
+      <translation>Envoltura</translation>
     </message>
 
     <message>
       <source>X Center</source>
-      <translation>Centre X</translation>
+      <translation>Centro X</translation>
+    </message>
+
+    <message>
+      <source>X Origine</source>
+      <translation>X Origen</translation>
+    </message>
+
+    <message>
+      <source>X-Angle</source>
+      <translation>Ángulo X</translation>
     </message>
 
     <message>
       <source>X-Axis Then Y-Axis</source>
-      <translation>Axe X puis axe Y</translation>
+      <translation>Eje X y luego eje Y</translation>
+    </message>
+
+    <message>
+      <source>X-Border</source>
+      <translation>Frontera X</translation>
     </message>
 
     <message>
       <source>X-Centering (%)</source>
-      <translation>X-Centrage (%)</translation>
+      <translation>Centrado X (%)</translation>
     </message>
 
     <message>
       <source>X-Coordinate [Manual]</source>
-      <translation>Coordonnée X [Manuel]</translation>
+      <translation>X-Coordenada [Manual]</translation>
+    </message>
+
+    <message>
+      <source>X-Curvature</source>
+      <translation>Curvatura X</translation>
+    </message>
+
+    <message>
+      <source>X-Dispersion</source>
+      <translation>Dispersión X</translation>
+    </message>
+
+    <message>
+      <source>X-Factor</source>
+      <translation>Factor X</translation>
     </message>
 
     <message>
       <source>X-Factor (%)</source>
-      <translation>Facteur X (%)</translation>
+      <translation>Factor X (%)</translation>
     </message>
 
     <message>
       <source>X-Multiplier</source>
-      <translation>X-Multiplicateur</translation>
+      <translation>X-Multiplicador</translation>
     </message>
 
     <message>
-      <source>X-Size</source>
-      <translation>Taille X</translation>
+      <source>X-Ratio</source>
+      <translation>Relación X</translation>
+    </message>
+
+    <message>
+      <source>X-Resolution</source>
+      <translation>Resolución X</translation>
+    </message>
+
+    <message>
+      <source>X-Rotation</source>
+      <translation>X-Rotación</translation>
     </message>
 
     <message>
       <source>X-Size (px)</source>
-      <translation>Taille X (px)</translation>
+      <translation>Tamaño X (px)</translation>
+    </message>
+
+    <message>
+      <source>X-Variations</source>
+      <translation>X-Variaciones</translation>
     </message>
 
     <message>
       <source>X/Y-Ratio</source>
-      <translation>Rapport X/Y</translation>
+      <translation>Relación X/Y</translation>
     </message>
 
     <message>
       <source>X1 (none)</source>
-      <translation>X1 (aucun)</translation>
+      <translation>X1 (ninguno)</translation>
     </message>
 
     <message>
       <source>XY Mirror</source>
-      <translation>Miroir XY</translation>
+      <translation>Espejo XY</translation>
+    </message>
+
+    <message>
+      <source>XY-Axes</source>
+      <translation>Ejes XY</translation>
     </message>
 
     <message>
       <source>XY-Axis</source>
-      <translation>Axe XY</translation>
+      <translation>Eje XY</translation>
     </message>
 
     <message>
       <source>XY-Coordinates (%)</source>
-      <translation>Coordonnées XY (%)</translation>
+      <translation>Coordenadas XY (%)</translation>
     </message>
 
     <message>
       <source>XY-Factor</source>
-      <translation>Facteur XY</translation>
+      <translation>Factor XY</translation>
     </message>
 
     <message>
       <source>Y Center</source>
-      <translation>Centre Y</translation>
+      <translation>Centro Y</translation>
+    </message>
+
+    <message>
+      <source>Y-Axis</source>
+      <translation>Eje Y</translation>
     </message>
 
     <message>
       <source>Y-Axis Then X-Axis</source>
-      <translation>Axe Y puis axe X</translation>
+      <translation>Eje Y y luego eje X</translation>
+    </message>
+
+    <message>
+      <source>Y-Border</source>
+      <translation>Frontera Y</translation>
     </message>
 
     <message>
       <source>Y-Centering (%)</source>
-      <translation>Centre Y (%)</translation>
+      <translation>Centrado en Y (%)</translation>
     </message>
 
     <message>
       <source>Y-Coordinate</source>
-      <translation>Coordonnées Y</translation>
+      <translation>Y-Coordinación</translation>
     </message>
 
     <message>
       <source>Y-Coordinate [Manual]</source>
-      <translation>Coordonnée Y [Manuel]</translation>
+      <translation>Coordenadas Y [Manual]</translation>
     </message>
 
     <message>
-      <source>Y-End (%)</source>
-      <translation>Fin de l&apos;année (%)</translation>
+      <source>Y-Curvature</source>
+      <translation>Curvatura Y</translation>
+    </message>
+
+    <message>
+      <source>Y-Dispersion</source>
+      <translation>Dispersión en Y</translation>
     </message>
 
     <message>
       <source>Y-Factor</source>
-      <translation>Facteur Y</translation>
+      <translation>Factor Y</translation>
     </message>
 
     <message>
       <source>Y-Factor (%)</source>
-      <translation>Facteur Y (%)</translation>
+      <translation>Factor Y (%)</translation>
     </message>
 
     <message>
       <source>Y-Multiplier</source>
-      <translation>Multiplicateur Y</translation>
+      <translation>Y-Multiplicador</translation>
     </message>
 
     <message>
-      <source>Y-Offset (%)</source>
-      <translation>Décalage Y (%)</translation>
+      <source>Y-Ratio</source>
+      <translation>Relación Y</translation>
+    </message>
+
+    <message>
+      <source>Y-Resolution</source>
+      <translation>Resolución Y</translation>
+    </message>
+
+    <message>
+      <source>Y-Rotation</source>
+      <translation>Rotación Y</translation>
+    </message>
+
+    <message>
+      <source>Y-Scale</source>
+      <translation>Escala Y</translation>
     </message>
 
     <message>
       <source>Y-Shift (%)</source>
-      <translation>Décalage en Y (%)</translation>
+      <translation>Desplazamiento Y (%)</translation>
+    </message>
+
+    <message>
+      <source>Y-Shift (px)</source>
+      <translation>Desplazamiento Y (px)</translation>
+    </message>
+
+    <message>
+      <source>Y-Size</source>
+      <translation>Tamaño Y</translation>
     </message>
 
     <message>
       <source>Y-Size (px)</source>
-      <translation>Taille Y (px)</translation>
+      <translation>Tamaño Y (px)</translation>
     </message>
 
     <message>
-      <source>Y-Start (%)</source>
-      <translation>Démarrage en Y (%)</translation>
+      <source>Y-Variations</source>
+      <translation>Variaciones Y</translation>
     </message>
 
     <message>
       <source>YAG Effect</source>
-      <translation>L&apos;effet YAG</translation>
+      <translation>Efecto YAG</translation>
     </message>
 
     <message>
       <source>YCbCr (Chroma Only)</source>
-      <translation>YCbCr (Chroma uniquement)</translation>
+      <translation>YCbCr (Sólo Chroma)</translation>
+    </message>
+
+    <message>
+      <source>YCbCr (Distinct)</source>
+      <translation>YCbCr (Distinto)</translation>
     </message>
 
     <message>
       <source>YCbCr (Luma Only)</source>
-      <translation>YCbCr (Luma uniquement)</translation>
+      <translation>YCbCr (Sólo Luma)</translation>
     </message>
 
     <message>
       <source>YCbCr (Mixed)</source>
-      <translation>YCbCr (mixte)</translation>
+      <translation>YCbCr (Mixto)</translation>
     </message>
 
     <message>
       <source>YCbCr [Blue Chrominance]</source>
-      <translation>YCbCr [Chrominance bleue]</translation>
+      <translation>YCbCr [Crominancia Azul]</translation>
     </message>
 
     <message>
       <source>YCbCr [Blue-Red Chrominances]</source>
-      <translation>YCbCr [Chrominances bleu-rouge]</translation>
+      <translation>YCbCr [Crominanzas Rojo-Azul]</translation>
     </message>
 
     <message>
       <source>YCbCr [Green Chrominance]</source>
-      <translation>YCbCr [Chrominance verte]</translation>
+      <translation>YCbCr [Crominancia Verde]</translation>
     </message>
 
     <message>
       <source>YCbCr [Luminance]</source>
-      <translation>YCbCr [Luminosité]</translation>
+      <translation>YCbCr [Luminancia]</translation>
     </message>
 
     <message>
       <source>YCbCr [Red Chrominance]</source>
-      <translation>YCbCr [Chrominance rouge]</translation>
+      <translation>YCbCr [Crominancia Roja]</translation>
     </message>
 
     <message>
       <source>Yellow</source>
-      <translation>Jaune</translation>
+      <translation>Amarillo</translation>
     </message>
 
     <message>
       <source>Yellow 55B</source>
-      <translation>Jaune 55B</translation>
+      <translation>Amarillo 55B</translation>
     </message>
 
     <message>
       <source>Yellow Factor</source>
-      <translation>Facteur jaune</translation>
+      <translation>Factor amarillo</translation>
     </message>
 
     <message>
       <source>Yellow Film 01</source>
-      <translation>Film jaune 01</translation>
+      <translation>Película amarilla 01</translation>
     </message>
 
     <message>
       <source>Yellow Shift</source>
-      <translation>Décalage jaune</translation>
+      <translation>Turno amarillo</translation>
     </message>
 
     <message>
       <source>Yellow Smoothness</source>
-      <translation>Lisse jaune</translation>
+      <translation>Suavidad amarilla</translation>
     </message>
 
     <message>
       <source>YES8</source>
-      <translation>OUI8</translation>
+      <translation>SÍ8</translation>
+    </message>
+
+    <message>
+      <source>YIQ [chromas]</source>
+      <translation>YIQ [cromas]</translation>
     </message>
 
     <message>
       <source>You Can Do It</source>
-      <translation>Vous pouvez le faire</translation>
+      <translation>Puedes hacerlo</translation>
+    </message>
+
+    <message>
+      <source>Z-Angle</source>
+      <translation>Ángulo Z</translation>
     </message>
 
     <message>
       <source>Z-Multiplier</source>
-      <translation>Z-Multiplicateur</translation>
+      <translation>Z-Multiplicador</translation>
+    </message>
+
+    <message>
+      <source>Z-Rotation</source>
+      <translation>Z-Rotación</translation>
+    </message>
+
+    <message>
+      <source>Z-Scale</source>
+      <translation>Escala Z</translation>
+    </message>
+
+    <message>
+      <source>Z-Size</source>
+      <translation>Tamaño Z</translation>
     </message>
 
     <message>
       <source>Zero</source>
-      <translation>Zéro</translation>
+      <translation>Cero</translation>
     </message>
 
     <message>
       <source>ZilverFX - B&amp;W Solarization</source>
-      <translation>ZilverFX - Solarisation N&amp;B</translation>
+      <translation>ZilverFX - Solarización en blanco y negro</translation>
     </message>
 
     <message>
       <source>ZilverFX - InfraRed</source>
-      <translation>ZilverFX - InfraRouge</translation>
+      <translation>ZilverFX - Infrarrojo</translation>
     </message>
 
     <message>
       <source>Zone System</source>
-      <translation>Système de zones</translation>
-    </message>
-
-    <message>
-      <source>Zoom Center</source>
-      <translation>Centre de zoom</translation>
+      <translation>Sistema de zonas</translation>
     </message>
 
     <message>
       <source>Zoom Factor</source>
-      <translation>Facteur de zoom</translation>
+      <translation>Factor de Zoom</translation>
     </message>
 
     <message>
       <source>Zoom In</source>
-      <translation>Zoom avant</translation>
+      <translation>Acercamiento</translation>
     </message>
 
     <message>
       <source>Zoom Out</source>
-      <translation>Zoom arrière</translation>
+      <translation>Aleja el zoom</translation>
     </message>
 
   </context>

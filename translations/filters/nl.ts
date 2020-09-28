@@ -1,722 +1,757 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<TS version="2.1" language="nl">
   <context>
     <name>FilterTextTranslator</name>
 
     <message>
       <source>&lt;b&gt;Arrays &amp; Tiles&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Tableaux et pavages&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Arrays &amp; Tegels&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Artistic&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Artistique&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Artistiek&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Black &amp; White&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Noir et blanc&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Zwart-wit&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Colors&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Couleurs&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Kleuren&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Contours&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Contours&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Contouren&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Deformations&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Déformations&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Vervormingen&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Degradations&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Dégradations&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Verslechteringen&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Details&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Détails&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Details&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Testing&lt;/b&gt;</source>
-      <translation>&lt;b&gt;En test&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Het testen van&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Frames&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Cadres&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Frames&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Frequencies&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Fréquences&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Frequenties&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Layers&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Calques&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Lagen&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Lights &amp; Shadows&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Lumières et ombres&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Licht en schaduw&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Patterns&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Motifs&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Patronen&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Rendering&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Rendu&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Rendering&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Repair&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Restauration&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Reparatie&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Sequences&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Séquences&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Volgorde&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Silhouettes&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Silhouettes&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Silhouetten&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Icons&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Icônes&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Pictogrammen&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Misc&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Divers&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Overige&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Nature&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Nature&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Natuur&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Others&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Autres&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Andere&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&lt;b&gt;Stereoscopic 3D&lt;/b&gt;</source>
-      <translation>&lt;b&gt;Stéréoscopie 3D&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;Stereoscopisch 3D&lt;/b&gt;</translation>
     </message>
 
     <message>
       <source>&amp;#9829; Support Us ! &amp;#9829;</source>
-      <translation>♥ Soutenez-nous ! ♥</translation>
+      <translation>♥ Steun ons ! ♥</translation>
     </message>
 
     <message>
       <source>*Colors Doping</source>
-      <translation>*Dopage des couleurs</translation>
+      <translation>*Kleuren Doping</translation>
     </message>
 
     <message>
       <source>*Colors Doping*</source>
-      <translation>*Dopage des couleurs*</translation>
+      <translation>*Kleuren Doping*</translation>
     </message>
 
     <message>
       <source>*Comix Colors*</source>
-      <translation>*Couleurs Comics*</translation>
+      <translation>*Comix Kleuren*</translation>
     </message>
 
     <message>
       <source>*Dark Edges*</source>
-      <translation>*Bords sombres*</translation>
+      <translation>*Donkere randen*</translation>
     </message>
 
     <message>
       <source>*Dark Screen*</source>
-      <translation>*Ecran noir*</translation>
+      <translation>*Donker scherm*</translation>
     </message>
 
     <message>
       <source>*Graphix Colors</source>
-      <translation>*Couleurs graphiques</translation>
+      <translation>*Graphix Kleuren</translation>
+    </message>
+
+    <message>
+      <source>*Vivid Edges*</source>
+      <translation>*Vividuele randen*</translation>
     </message>
 
     <message>
       <source>*Vivid Screen*</source>
-      <translation>*Écran vif*</translation>
+      <translation>*Vividueel scherm*</translation>
     </message>
 
     <message>
       <source>- NO -</source>
-      <translation>- NON -</translation>
+      <translation>- NEE -</translation>
     </message>
 
     <message>
       <source>-1. Value Action</source>
-      <translation>-1. Action sur la valeur</translation>
+      <translation>-1. Waarde Actie</translation>
     </message>
 
     <message>
       <source>-2. Overall Channel(s)</source>
-      <translation>-2. Ensemble des canaux</translation>
+      <translation>-2. Totale kanaal(en)</translation>
     </message>
 
     <message>
       <source>-3. Normalisation Channel(s)</source>
-      <translation>-3. Canaux de normalisation</translation>
+      <translation>-3. Normalisatiekanaal(en)</translation>
+    </message>
+
+    <message>
+      <source>-4. Normalise</source>
+      <translation>-4. Normaliseer</translation>
     </message>
 
     <message>
       <source>0.  Recompute</source>
-      <translation>0. Recalculer</translation>
+      <translation>0. Recomputeer</translation>
     </message>
 
     <message>
       <source>1 Levels</source>
-      <translation>1 Niveaux</translation>
+      <translation>1 Niveaus</translation>
     </message>
 
     <message>
       <source>1.  Plasma Texture [Discards Input Image]</source>
-      <translation>1. Texture du plasma [Rejeter l&apos;image d&apos;entrée].</translation>
+      <translation>1. 1. Plasmastructuur [Invoerafbeelding weggooien]</translation>
     </message>
 
     <message>
       <source>10.  Quadtree Max Precision</source>
-      <translation>10. Précision maximale du quadtree</translation>
+      <translation>10. 10. Quadtree Max Precisie</translation>
     </message>
 
     <message>
       <source>10th</source>
-      <translation>10ème</translation>
+      <translation>10e</translation>
     </message>
 
     <message>
       <source>10th Color</source>
-      <translation>10ème couleur</translation>
+      <translation>10e kleur</translation>
     </message>
 
     <message>
       <source>11.  Quadtree Min Homogeneity</source>
-      <translation>11. Homogénéité minimale du quadtree</translation>
+      <translation>11. 11. Quadtree Min. Homogeniteit</translation>
     </message>
 
     <message>
       <source>11th</source>
-      <translation>11ème</translation>
+      <translation>11e</translation>
     </message>
 
     <message>
       <source>12 Colors</source>
-      <translation>12 Couleurs</translation>
+      <translation>12 Kleuren</translation>
+    </message>
+
+    <message>
+      <source>12 Grays</source>
+      <translation>12 Grijzen</translation>
     </message>
 
     <message>
       <source>12.  Quadtree Max Homogeneity</source>
-      <translation>12. Homogénéité maximale du quadtree</translation>
+      <translation>12. 12. Quadtree Max Homogeniteit</translation>
     </message>
 
     <message>
       <source>125 Keypoints</source>
-      <translation>125 Points clés</translation>
+      <translation>125 Kernpunten</translation>
     </message>
 
     <message>
       <source>12th</source>
-      <translation>12ème</translation>
+      <translation>12e</translation>
     </message>
 
     <message>
       <source>13. Noise Type</source>
-      <translation>13. Type de bruit</translation>
+      <translation>13. 13. Geluidstype</translation>
     </message>
 
     <message>
       <source>13th</source>
-      <translation>13ème</translation>
+      <translation>13e</translation>
     </message>
 
     <message>
       <source>14. Minimum Noise</source>
-      <translation>14. Niveau de bruit minimum</translation>
+      <translation>14. 14. Minimaal geluid</translation>
     </message>
 
     <message>
       <source>14th</source>
-      <translation>14ème</translation>
+      <translation>14e</translation>
     </message>
 
     <message>
       <source>15. Maximum Noise</source>
-      <translation>15. Niveau de bruit maximum</translation>
+      <translation>15. 15. Maximaal geluid</translation>
     </message>
 
     <message>
       <source>15th</source>
-      <translation>15ème</translation>
+      <translation>15e</translation>
     </message>
 
     <message>
       <source>16 Colors</source>
-      <translation>16 Couleurs</translation>
+      <translation>16 Kleuren</translation>
+    </message>
+
+    <message>
+      <source>16 Grays</source>
+      <translation>16 Grijzen</translation>
     </message>
 
     <message>
       <source>16. Noise Channel(s)</source>
-      <translation>16. Canaux de bruit</translation>
+      <translation>16. 16. Geluidskanaal(en)</translation>
     </message>
 
     <message>
       <source>16th</source>
-      <translation>16ème</translation>
+      <translation>16e</translation>
     </message>
 
     <message>
       <source>17. Warp Iterations</source>
-      <translation>17. Itérations de distorsion</translation>
+      <translation>17. 17. Warp Iteraties</translation>
     </message>
 
     <message>
       <source>18. Warp Intensity</source>
-      <translation>18. Intensité de la distorsion</translation>
-    </message>
-
-    <message>
-      <source>180 Deg.</source>
-      <translation>180 deg.</translation>
+      <translation>18. 18. Warpintensiteit</translation>
     </message>
 
     <message>
       <source>19. Warp Offset</source>
-      <translation>19. Décalage de la distorsion</translation>
+      <translation>19. 19. Scheefstandcompensatie</translation>
     </message>
 
     <message>
       <source>1st</source>
-      <translation>1er</translation>
+      <translation>1e</translation>
     </message>
 
     <message>
       <source>1st Additional Palette (.Gpl)</source>
-      <translation>1ère palette additionnelle (.Gpl)</translation>
+      <translation>1ste Extra Palet (.Gpl)</translation>
     </message>
 
     <message>
       <source>1st Color</source>
-      <translation>1ère couleur</translation>
+      <translation>1ste kleur</translation>
     </message>
 
     <message>
       <source>1st Parameter</source>
-      <translation>1er paramètre</translation>
+      <translation>1e Parameter</translation>
     </message>
 
     <message>
       <source>1st Text</source>
-      <translation>1er texte</translation>
+      <translation>1e tekst</translation>
     </message>
 
     <message>
       <source>1st Tone</source>
-      <translation>1er ton</translation>
+      <translation>1e Toon</translation>
     </message>
 
     <message>
       <source>1st Variance</source>
-      <translation>1ère variance</translation>
+      <translation>1ste variant</translation>
     </message>
 
     <message>
       <source>1st X-Coord</source>
-      <translation>1ère coordonnée X</translation>
+      <translation>1e X-Coord</translation>
     </message>
 
     <message>
       <source>1st Y-Coord</source>
-      <translation>1ère coordonnée Y</translation>
+      <translation>1e Y-Coord</translation>
     </message>
 
     <message>
       <source>2 Colors</source>
-      <translation>2 Couleurs</translation>
+      <translation>2 Kleuren</translation>
+    </message>
+
+    <message>
+      <source>2 Grays</source>
+      <translation>2 Grijzen</translation>
     </message>
 
     <message>
       <source>2 Noise</source>
-      <translation>2 Bruit</translation>
+      <translation>2 Geluid</translation>
     </message>
 
     <message>
       <source>2-Strip Process</source>
-      <translation>Processus en deux étapes</translation>
+      <translation>2-strooksproces</translation>
     </message>
 
     <message>
       <source>2.  Plasma Scale</source>
-      <translation>2. Échelle de plasma</translation>
+      <translation>2. 2. Plasmaschaal</translation>
     </message>
 
     <message>
       <source>20. Scale to Width</source>
-      <translation>20. Ajuster à la largeur</translation>
+      <translation>20. 20. Schaal naar Breedte</translation>
     </message>
 
     <message>
       <source>21. Scale to Height</source>
-      <translation>21. Ajuster à la hauteur</translation>
+      <translation>21. 21. Schaal naar hoogte</translation>
     </message>
 
     <message>
       <source>216 Keypoints</source>
-      <translation>216 points clés</translation>
+      <translation>216 Kernpunten</translation>
     </message>
 
     <message>
       <source>22. Correlated Channels</source>
-      <translation>22. Canaux corrélés</translation>
+      <translation>22. 22. Correlationele kanalen</translation>
     </message>
 
     <message>
       <source>22.5 Deg.</source>
-      <translation>22,5 deg.</translation>
+      <translation>22,5 Deg.</translation>
     </message>
 
     <message>
       <source>23. Boundary</source>
-      <translation>23. Bord</translation>
+      <translation>23. 23. Grenswaarde</translation>
     </message>
 
     <message>
       <source>24. Warp Channel(s)</source>
-      <translation>24. Distortion des canaux</translation>
+      <translation>24. 24. Warpkanaal(en)</translation>
     </message>
 
     <message>
       <source>25. Random Negation</source>
-      <translation>25. Négation aléatoire</translation>
+      <translation>25. 25. Willekeurige ontkenning</translation>
     </message>
 
     <message>
       <source>26. Random Negation Channel(s)</source>
-      <translation>26. Canaux de négation aléatoire</translation>
+      <translation>26. 26. Willekeurig negatiekanaal (-kanalen)</translation>
     </message>
 
     <message>
       <source>27 Keypoints</source>
-      <translation>27 Points clés</translation>
+      <translation>27 Kernpunten</translation>
     </message>
 
     <message>
       <source>27. Gamma Offset</source>
-      <translation>27. Compensation gamma</translation>
+      <translation>27. 27. Gamma-compensatie</translation>
     </message>
 
     <message>
       <source>28. Hue Offset</source>
-      <translation>28. Compensation de teinte</translation>
+      <translation>28. 28. Tijdcompensatie</translation>
+    </message>
+
+    <message>
+      <source>29. Normalise</source>
+      <translation>29. 29. Normaliseer</translation>
     </message>
 
     <message>
       <source>2nd</source>
-      <translation>2ème</translation>
+      <translation>2e</translation>
     </message>
 
     <message>
       <source>2nd Additional Palette (.Gpl)</source>
-      <translation>2ème palette additionelle (.Gpl)</translation>
+      <translation>2e Extra Palet (.Gpl)</translation>
     </message>
 
     <message>
       <source>2nd Color</source>
-      <translation>2ème couleur</translation>
+      <translation>2de kleur</translation>
     </message>
 
     <message>
       <source>2nd Parameter</source>
-      <translation>2ème paramètre</translation>
+      <translation>2e Parameter</translation>
     </message>
 
     <message>
       <source>2nd Text</source>
-      <translation>2ème texte</translation>
+      <translation>2e tekst</translation>
     </message>
 
     <message>
       <source>2nd Tone</source>
-      <translation>2ème ton</translation>
+      <translation>2e Toon</translation>
     </message>
 
     <message>
       <source>2nd Variance</source>
-      <translation>2ème variance</translation>
+      <translation>2de variant</translation>
     </message>
 
     <message>
       <source>2nd X-Coord</source>
-      <translation>2ème coordonnée X</translation>
+      <translation>2e X-Coord</translation>
     </message>
 
     <message>
       <source>2nd Y-Coord</source>
-      <translation>2ème coordonnée Y</translation>
+      <translation>2e Y-Coord</translation>
     </message>
 
     <message>
       <source>2XY Mirror</source>
-      <translation>Miroir 2XY</translation>
+      <translation>2XY Spiegel</translation>
     </message>
 
     <message>
       <source>3 Colors</source>
-      <translation>3 Couleurs</translation>
+      <translation>3 Kleuren</translation>
     </message>
 
     <message>
-      <source>3 Mix</source>
-      <translation>3 Mélange</translation>
+      <source>3 Grays</source>
+      <translation>3 Grijzen</translation>
     </message>
 
     <message>
       <source>3.  Plasma Alpha Channel</source>
-      <translation>3. Canal Alpha du plasma</translation>
+      <translation>3. 3. Plasma-alpha-kanaal</translation>
     </message>
 
     <message>
       <source>30. Minimum Hue</source>
-      <translation>30. Teinte minimale</translation>
+      <translation>30. 30. Minimale tint</translation>
     </message>
 
     <message>
       <source>31. Maximum Hue</source>
-      <translation>31. Teinte maximale</translation>
+      <translation>31. 31. Maximale tint</translation>
     </message>
 
     <message>
       <source>32. Minimum Saturation</source>
-      <translation>32. Saturation minimale</translation>
+      <translation>32. 32. Minimale verzadiging</translation>
     </message>
 
     <message>
       <source>33. Maximum Saturation</source>
-      <translation>33. Saturation maximale</translation>
+      <translation>33. 33. Maximale verzadiging</translation>
     </message>
 
     <message>
       <source>34. Minimum Value</source>
-      <translation>34. Valeur minimale</translation>
+      <translation>34. 34. Minimumwaarde</translation>
     </message>
 
     <message>
       <source>343 Keypoints</source>
-      <translation>343 Points clés</translation>
+      <translation>343 Kernpunten</translation>
     </message>
 
     <message>
       <source>35. Maximum Value</source>
-      <translation>35. Valeur maximale</translation>
+      <translation>35. 35. Maximale waarde</translation>
     </message>
 
     <message>
       <source>36. Hue Offset</source>
-      <translation>36. Décalage de la teinte</translation>
+      <translation>36. 36. Tijdcompensatie</translation>
     </message>
 
     <message>
       <source>37. Saturation Offset</source>
-      <translation>37. Décalage de la saturation</translation>
+      <translation>37. 37. Verzadigingscompensatie</translation>
     </message>
 
     <message>
       <source>38. Value Offset</source>
-      <translation>38. Décalage de la valeur</translation>
+      <translation>38. 38. Waardevergelijking</translation>
     </message>
 
     <message>
       <source>3D Blocks</source>
-      <translation>Blocs 3D</translation>
+      <translation>3D-blokken</translation>
     </message>
 
     <message>
       <source>3D CLUT (Fast)</source>
-      <translation>CLUT 3D (Rapide)</translation>
+      <translation>3D CLUT (snel)</translation>
     </message>
 
     <message>
       <source>3D CLUT (Precise)</source>
-      <translation>CLUT 3D (Précis)</translation>
+      <translation>3D CLUT (Precies)</translation>
     </message>
 
     <message>
       <source>3D Colored Object</source>
-      <translation>Objet coloré en 3D</translation>
+      <translation>3D-gekleurd object</translation>
     </message>
 
     <message>
       <source>3D Conversion</source>
-      <translation>Conversion 3D</translation>
+      <translation>3D-omzetting</translation>
     </message>
 
     <message>
       <source>3D Elevation</source>
-      <translation>Élévation 3D</translation>
+      <translation>3D Elevatie</translation>
     </message>
 
     <message>
       <source>3D Elevation [Animated]</source>
-      <translation>Élévation 3D [Animé]</translation>
+      <translation>3D Elevatie [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>3D Extrusion</source>
-      <translation>Extrusion 3D</translation>
+      <translation>3D Extrusie</translation>
     </message>
 
     <message>
       <source>3D Extrusion [Animated]</source>
-      <translation>Extrusion en 3D [Animé]</translation>
+      <translation>3D Extrusie [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>3D Image Object</source>
-      <translation>Objet d&apos;image 3D</translation>
+      <translation>3D-beeldobject</translation>
     </message>
 
     <message>
       <source>3D Image Object [Animated]</source>
-      <translation>Image 3D [Animé]</translation>
+      <translation>3D-beeldobject [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>3D Image Type</source>
-      <translation>Type d&apos;image 3D</translation>
+      <translation>3D-beeldtype</translation>
     </message>
 
     <message>
       <source>3D Lathing</source>
-      <translation>Lattage 3D</translation>
+      <translation>3D-latten</translation>
     </message>
 
     <message>
       <source>3D Metaballs</source>
-      <translation>Métaballs 3D</translation>
+      <translation>3D-metaballen</translation>
     </message>
 
     <message>
       <source>3D Random Objects</source>
-      <translation>Objets 3D aléatoires</translation>
+      <translation>3D-Willekeurige objecten</translation>
     </message>
 
     <message>
       <source>3D Reflection</source>
-      <translation>Réflexion 3D</translation>
+      <translation>3D-reflectie</translation>
     </message>
 
     <message>
       <source>3D Rubber Object</source>
-      <translation>Objet 3D en caoutchouc</translation>
+      <translation>3D-rubber voorwerp</translation>
+    </message>
+
+    <message>
+      <source>3D Starfield</source>
+      <translation>3D-sterrenveld</translation>
     </message>
 
     <message>
       <source>3D Text Pointcloud</source>
-      <translation>Nuage de points 3D pour le texte</translation>
+      <translation>3D Tekst Puntenwolk</translation>
     </message>
 
     <message>
       <source>3D Tiles</source>
-      <translation>Carreaux en 3D</translation>
+      <translation>3D-tegels</translation>
     </message>
 
     <message>
       <source>3D Video Conversion</source>
-      <translation>Conversion de vidéos en 3D</translation>
+      <translation>3D Videoconversie</translation>
     </message>
 
     <message>
       <source>3D Waves</source>
-      <translation>Ondes 3D</translation>
+      <translation>3D-golven</translation>
     </message>
 
     <message>
       <source>3rd</source>
-      <translation>3ème</translation>
+      <translation>3e</translation>
     </message>
 
     <message>
       <source>3rd Color</source>
-      <translation>3ème couleur</translation>
+      <translation>3de kleur</translation>
     </message>
 
     <message>
       <source>3rd Parameter</source>
-      <translation>3ème paramètre</translation>
+      <translation>3de Parameter</translation>
     </message>
 
     <message>
       <source>3rd Tone</source>
-      <translation>3ème ton</translation>
+      <translation>3e Toon</translation>
     </message>
 
     <message>
       <source>3rd X-Coord</source>
-      <translation>3ème X-Coord</translation>
+      <translation>3e X-Coord</translation>
     </message>
 
     <message>
       <source>3rd Y-Coord</source>
-      <translation>3ème Y-Coord</translation>
+      <translation>3e Y-Coord</translation>
     </message>
 
     <message>
       <source>4 Colors</source>
-      <translation>4 Couleurs</translation>
+      <translation>4 Kleuren</translation>
+    </message>
+
+    <message>
+      <source>4 Grays</source>
+      <translation>4 Grijzen</translation>
     </message>
 
     <message>
       <source>4.  Segmentation [No Alpha Channel]</source>
-      <translation>4. Segmentation [Pas de canal Alpha]</translation>
+      <translation>4. 4. Segmentatie [Geen alfakanaal]</translation>
     </message>
 
     <message>
       <source>4096x4096 Layer</source>
-      <translation>4096x4096 Couche</translation>
+      <translation>4096x4096 Laag</translation>
     </message>
 
     <message>
       <source>4th</source>
-      <translation>4ème</translation>
+      <translation>4e</translation>
     </message>
 
     <message>
       <source>4th Color</source>
-      <translation>4ème couleur</translation>
+      <translation>4e kleur</translation>
     </message>
 
     <message>
       <source>4th Tone</source>
-      <translation>4ème Tonalité</translation>
+      <translation>4e Toon</translation>
     </message>
 
     <message>
       <source>5.  Edge Threshold</source>
-      <translation>5. Seuil de l&apos;arête</translation>
+      <translation>5. 5. Randdrempel</translation>
     </message>
 
     <message>
       <source>512x512 Layer</source>
-      <translation>Couche 512x512</translation>
+      <translation>512x512 Laag</translation>
     </message>
 
     <message>
@@ -726,37 +761,37 @@
 
     <message>
       <source>5th Color</source>
-      <translation>5ème couleur</translation>
+      <translation>5e Kleur</translation>
     </message>
 
     <message>
       <source>5th Tone</source>
-      <translation>5e ton</translation>
+      <translation>5e Toon</translation>
     </message>
 
     <message>
       <source>6.  Smoothness</source>
-      <translation>6. Lissage</translation>
+      <translation>6. 6. Vlotheid</translation>
     </message>
 
     <message>
       <source>60&apos;s (faded Alt)</source>
-      <translation>60&apos;s (Alt fondu)</translation>
+      <translation>60&apos;s (vervaagde Alt)</translation>
     </message>
 
     <message>
       <source>60&apos;s (faded)</source>
-      <translation>60&apos;s (délavé)</translation>
+      <translation>60&apos;s (vervaagd)</translation>
     </message>
 
     <message>
       <source>64 (Faster)</source>
-      <translation>64 (plus rapide)</translation>
+      <translation>64 (Sneller)</translation>
     </message>
 
     <message>
       <source>64 Keypoints</source>
-      <translation>64 Points clés</translation>
+      <translation>64 Kernpunten</translation>
     </message>
 
     <message>
@@ -766,722 +801,782 @@
 
     <message>
       <source>6th</source>
-      <translation>6ème</translation>
+      <translation>6e</translation>
     </message>
 
     <message>
       <source>6th Color</source>
-      <translation>6ème couleur</translation>
+      <translation>6e Kleur</translation>
     </message>
 
     <message>
       <source>6th Tone</source>
-      <translation>6e ton</translation>
+      <translation>6e Toon</translation>
     </message>
 
     <message>
       <source>7.  Blur</source>
-      <translation>7. Flou</translation>
+      <translation>7. 7. Vervagen</translation>
     </message>
 
     <message>
       <source>7th</source>
-      <translation>7ème</translation>
+      <translation>7e</translation>
     </message>
 
     <message>
       <source>7th Color</source>
-      <translation>7ème couleur</translation>
+      <translation>7e Kleur</translation>
     </message>
 
     <message>
       <source>7th Tone</source>
-      <translation>7e ton</translation>
+      <translation>7e Toon</translation>
     </message>
 
     <message>
       <source>8 Colors</source>
-      <translation>8 Couleurs</translation>
+      <translation>8 Kleuren</translation>
+    </message>
+
+    <message>
+      <source>8 Grays</source>
+      <translation>8 Grijzen</translation>
     </message>
 
     <message>
       <source>8 Keypoints (RGB Corners)</source>
-      <translation>8 points clés (RGB Corners)</translation>
+      <translation>8 Kernpunten (RGB-hoeken)</translation>
     </message>
 
     <message>
       <source>8.  Quadtree Pixelisation [No Alpha Channel]</source>
-      <translation>8. Pixelisation en quadrature [Pas de canal Alpha].</translation>
+      <translation>8. 8. Quadtree Pixelisatie [Geen alfakanaal]</translation>
     </message>
 
     <message>
       <source>8th</source>
-      <translation>8ème</translation>
+      <translation>8e</translation>
     </message>
 
     <message>
       <source>8th Color</source>
-      <translation>8ème couleur</translation>
+      <translation>8e kleur</translation>
     </message>
 
     <message>
       <source>8th Tone</source>
-      <translation>8e ton</translation>
+      <translation>8e Toon</translation>
     </message>
 
     <message>
       <source>9.  Quadtree Min Precision</source>
-      <translation>9. Précision quadratique minimale</translation>
+      <translation>9. 10. Quadtree Min Precisie</translation>
     </message>
 
     <message>
       <source>9th</source>
-      <translation>9ème</translation>
+      <translation>9e</translation>
     </message>
 
     <message>
       <source>9th Color</source>
-      <translation>9ème couleur</translation>
+      <translation>9e kleur</translation>
+    </message>
+
+    <message>
+      <source>[Cyan]MYK</source>
+      <translation>[Cyan] MYK</translation>
     </message>
 
     <message>
       <source>A Lot of Cyan</source>
-      <translation>Beaucoup de cyan</translation>
+      <translation>Veel Cyaan</translation>
     </message>
 
     <message>
       <source>A Lot of Key</source>
-      <translation>Beaucoup de clés</translation>
+      <translation>Heel veel sleutel</translation>
     </message>
 
     <message>
       <source>A Lot of Magenta</source>
-      <translation>Beaucoup de magenta</translation>
+      <translation>Veel Magenta</translation>
     </message>
 
     <message>
       <source>A Lot of Yellow</source>
-      <translation>Beaucoup de jaune</translation>
+      <translation>Veel Geel</translation>
     </message>
 
     <message>
       <source>A-Color Factor</source>
-      <translation>Facteur A-Color</translation>
+      <translation>A-Kleurfactor</translation>
     </message>
 
     <message>
       <source>A-Color Shift</source>
-      <translation>Changement de couleur A</translation>
+      <translation>A-Kleurverschuiving</translation>
     </message>
 
     <message>
       <source>A-Color Smoothness</source>
-      <translation>Douceur de la couleur A</translation>
-    </message>
-
-    <message>
-      <source>A-Component</source>
-      <translation>Composante A</translation>
+      <translation>A-Kleur Gladheid</translation>
     </message>
 
     <message>
       <source>A-Value</source>
-      <translation>Valeur A</translation>
+      <translation>A-Waarde</translation>
     </message>
 
     <message>
       <source>A4 / 100 PPI (Recommended)</source>
-      <translation>A4 / 100 PPI (recommandé)</translation>
-    </message>
-
-    <message>
-      <source>Abigail Gonzalez (21)</source>
-      <translation>Abigail Gonzalez (21 ans)</translation>
+      <translation>A4 / 100 PPI (Aanbevolen)</translation>
     </message>
 
     <message>
       <source>About G&apos;MIC</source>
-      <translation>A propos de G&apos;MIC</translation>
+      <translation>Over G&apos;MIC</translation>
     </message>
 
     <message>
       <source>Absolute Brightness</source>
-      <translation>Luminosité absolue</translation>
+      <translation>Absolute Helderheid</translation>
     </message>
 
     <message>
       <source>Absolute Value</source>
-      <translation>Valeur absolue</translation>
+      <translation>Absolute waarde</translation>
+    </message>
+
+    <message>
+      <source>Abstraction</source>
+      <translation>Abstractie</translation>
     </message>
 
     <message>
       <source>Acceleration</source>
-      <translation>Accélération</translation>
+      <translation>Versnelling</translation>
     </message>
 
     <message>
-      <source>Achromatomaly</source>
-      <translation>Achromatomalie</translation>
+      <source>Achromatopsia</source>
+      <translation>Achromatopsie</translation>
+    </message>
+
+    <message>
+      <source>Action</source>
+      <translation>Actie</translation>
     </message>
 
     <message>
       <source>Action #1</source>
-      <translation>Action n° 1</translation>
+      <translation>Actie #1</translation>
     </message>
 
     <message>
       <source>Action #10</source>
-      <translation>Action n° 10</translation>
+      <translation>Actie #10</translation>
     </message>
 
     <message>
       <source>Action #11</source>
-      <translation>Action n°11</translation>
+      <translation>Actie #11</translation>
     </message>
 
     <message>
       <source>Action #12</source>
-      <translation>Action n°12</translation>
+      <translation>Actie #12</translation>
     </message>
 
     <message>
       <source>Action #13</source>
-      <translation>Action n°13</translation>
+      <translation>Actie #13</translation>
     </message>
 
     <message>
       <source>Action #14</source>
-      <translation>Action n° 14</translation>
+      <translation>Actie #14</translation>
     </message>
 
     <message>
       <source>Action #15</source>
-      <translation>Action n°15</translation>
+      <translation>Actie #15</translation>
     </message>
 
     <message>
       <source>Action #16</source>
-      <translation>Action n° 16</translation>
+      <translation>Actie #16</translation>
     </message>
 
     <message>
       <source>Action #17</source>
-      <translation>Action n°17</translation>
+      <translation>Actie #17</translation>
     </message>
 
     <message>
       <source>Action #18</source>
-      <translation>Action n°18</translation>
+      <translation>Actie 18</translation>
     </message>
 
     <message>
       <source>Action #19</source>
-      <translation>Action n°19</translation>
+      <translation>Actie #19</translation>
     </message>
 
     <message>
       <source>Action #2</source>
-      <translation>Action n°2</translation>
+      <translation>Actie 2</translation>
     </message>
 
     <message>
       <source>Action #20</source>
-      <translation>Action n°20</translation>
+      <translation>Actie #20</translation>
     </message>
 
     <message>
       <source>Action #21</source>
-      <translation>Action n°21</translation>
+      <translation>Actie #21</translation>
     </message>
 
     <message>
       <source>Action #22</source>
-      <translation>Action n° 22</translation>
+      <translation>Actie #22</translation>
     </message>
 
     <message>
       <source>Action #23</source>
-      <translation>Action n°23</translation>
+      <translation>Actie #23</translation>
     </message>
 
     <message>
       <source>Action #24</source>
-      <translation>Action n°24</translation>
+      <translation>Actie #24</translation>
     </message>
 
     <message>
       <source>Action #3</source>
-      <translation>Action n°3</translation>
+      <translation>Actie 3</translation>
     </message>
 
     <message>
       <source>Action #4</source>
-      <translation>Action n° 4</translation>
+      <translation>Actie 4</translation>
     </message>
 
     <message>
       <source>Action #5</source>
-      <translation>Action n° 5</translation>
+      <translation>Actie 5</translation>
     </message>
 
     <message>
       <source>Action #6</source>
-      <translation>Action n°6</translation>
+      <translation>Actie 6</translation>
     </message>
 
     <message>
       <source>Action #7</source>
-      <translation>Action n°7</translation>
+      <translation>Actie 7</translation>
     </message>
 
     <message>
       <source>Action #8</source>
-      <translation>Action n° 8</translation>
+      <translation>Actie #8</translation>
     </message>
 
     <message>
       <source>Action #9</source>
-      <translation>Action n° 9</translation>
+      <translation>Actie #9</translation>
+    </message>
+
+    <message>
+      <source>Action Magenta 01</source>
+      <translation>Actie Magenta 01</translation>
+    </message>
+
+    <message>
+      <source>Action Red 01</source>
+      <translation>Actie Rood 01</translation>
     </message>
 
     <message>
       <source>Activate &apos;Pencil Smoother&apos;</source>
-      <translation>Activer le &quot;Pencil Smoother&quot;.</translation>
+      <translation>Activeer &apos;Pencil Smoother&apos;</translation>
     </message>
 
     <message>
       <source>Activate Color Enhancement</source>
-      <translation>Activer l&apos;amélioration des couleurs</translation>
+      <translation>Activeer Kleurverbetering</translation>
     </message>
 
     <message>
       <source>Activate Colors Geometric Shapes</source>
-      <translation>Activer les couleurs Formes géométriques</translation>
+      <translation>Activeer Kleuren Geometrische Vormen</translation>
     </message>
 
     <message>
       <source>Activate Custom Filter</source>
-      <translation>Activer le filtre personnalisé</translation>
+      <translation>Activeer aangepaste filter</translation>
     </message>
 
     <message>
       <source>Activate Lizards</source>
-      <translation>Activer les lézards</translation>
+      <translation>Hagedissen activeren</translation>
     </message>
 
     <message>
       <source>Activate Mirror</source>
-      <translation>Activer le miroir</translation>
+      <translation>Activeer Spiegel</translation>
     </message>
 
     <message>
       <source>Activate Pink Elephants</source>
-      <translation>Activer les éléphants roses</translation>
+      <translation>Activeer Roze Olifanten</translation>
     </message>
 
     <message>
       <source>Activate Second Direction</source>
-      <translation>Activer la deuxième direction</translation>
+      <translation>Activeer Tweede Richting</translation>
     </message>
 
     <message>
       <source>Activate Shakes</source>
-      <translation>Activer les shakes</translation>
+      <translation>Activeer Shakes</translation>
     </message>
 
     <message>
       <source>Activate Slice 1</source>
-      <translation>Activer la tranche 1</translation>
+      <translation>Activeer Slice 1</translation>
     </message>
 
     <message>
       <source>Activate Slice 2</source>
-      <translation>Activer la tranche 2</translation>
+      <translation>Activeer Slice 2</translation>
     </message>
 
     <message>
       <source>Activate Slice 3</source>
-      <translation>Activer la tranche 3</translation>
+      <translation>Activeer Slice 3</translation>
     </message>
 
     <message>
       <source>Activate Slice 4</source>
-      <translation>Activer la tranche 4</translation>
+      <translation>Activeer Slice 4</translation>
     </message>
 
     <message>
       <source>Activer Symmetrizoscope</source>
-      <translation>Activateur Symmetrizoscope</translation>
+      <translation>Activersymmetrizoscoop</translation>
+    </message>
+
+    <message>
+      <source>Adaptive</source>
+      <translation>Adaptief</translation>
     </message>
 
     <message>
       <source>Add</source>
-      <translation>Ajouter</translation>
+      <translation>Voeg  toe</translation>
     </message>
 
     <message>
       <source>Add 1px Outline</source>
-      <translation>Ajouter 1px Schéma</translation>
+      <translation>Voeg 1px Outline toe</translation>
     </message>
 
     <message>
       <source>Add Alpha Channels to Detail Scale Layers</source>
-      <translation>Ajouter des canaux Alpha aux couches d&apos;échelle de détail</translation>
+      <translation>Voeg alfakanalen toe aan detailschaallagen</translation>
     </message>
 
     <message>
       <source>Add as a New Layer</source>
-      <translation>Ajouter en tant que nouvelle couche</translation>
+      <translation>Toevoegen als nieuwe laag</translation>
     </message>
 
     <message>
       <source>Add Chalk Highlights</source>
-      <translation>Ajouter les points forts de la craie</translation>
+      <translation>Krijthoogtepunten toevoegen</translation>
     </message>
 
     <message>
       <source>Add Color Background</source>
-      <translation>Ajouter une couleur de fond</translation>
+      <translation>Kleur achtergrond toevoegen</translation>
     </message>
 
     <message>
       <source>Add Comment Area in HTML Page</source>
-      <translation>Ajouter une zone de commentaires dans la page HTML</translation>
+      <translation>Commentaargebied toevoegen in HTML-pagina</translation>
     </message>
 
     <message>
       <source>Add Grain</source>
-      <translation>Ajouter du grain</translation>
+      <translation>Graan toevoegen</translation>
     </message>
 
     <message>
       <source>Add Image Label</source>
-      <translation>Ajouter un label d&apos;image</translation>
+      <translation>Afbeeldingsetiket toevoegen</translation>
     </message>
 
     <message>
       <source>Add Painter&apos;s Touch</source>
-      <translation>Ajouter la touche de peintre</translation>
+      <translation>Schilderstip toevoegen</translation>
     </message>
 
     <message>
       <source>Add User-Defined Constraints (Interactive)</source>
-      <translation>Ajouter des contraintes définies par l&apos;utilisateur (interactif)</translation>
+      <translation>Gebruikergedefinieerde beperkingen toevoegen (Interactief)</translation>
     </message>
 
     <message>
       <source>Additional Duplicates Count</source>
-      <translation>Les doublons supplémentaires sont comptés</translation>
+      <translation>Extra Duplicaten Tellen</translation>
     </message>
 
     <message>
       <source>Additional Outline</source>
-      <translation>Schéma supplémentaire</translation>
+      <translation>Extra overzicht</translation>
     </message>
 
     <message>
       <source>Additive</source>
-      <translation>Additif</translation>
+      <translation>Additief</translation>
     </message>
 
     <message>
       <source>Adjust Background Reconstruction</source>
-      <translation>Ajuster la reconstruction du contexte</translation>
+      <translation>Aanpassen Achtergrond Reconstructie</translation>
     </message>
 
     <message>
       <source>Adventure 1453</source>
-      <translation>Aventure 1453</translation>
+      <translation>Avontuur 1453</translation>
+    </message>
+
+    <message>
+      <source>Aggresive</source>
+      <translation>Agressieve</translation>
     </message>
 
     <message>
       <source>Aggressive Highlights Recovery 5</source>
-      <translation>La reprise est agressive 5</translation>
-    </message>
-
-    <message>
-      <source>Alex Jordan (81)</source>
-      <translation>Alex Jordan (81 ans)</translation>
+      <translation>Agressieve Hoogtepunten Herstel 5</translation>
     </message>
 
     <message>
       <source>Algorithm</source>
-      <translation>Algorithme</translation>
+      <translation>Algoritme</translation>
+    </message>
+
+    <message>
+      <source>Aliasing</source>
+      <translation>Vervreemdend</translation>
+    </message>
+
+    <message>
+      <source>Alien Green</source>
+      <translation>Vreemdelingengroen</translation>
     </message>
 
     <message>
       <source>Align Image Streams</source>
-      <translation>Aligner les flux d&apos;images</translation>
+      <translation>Beeldstromen uitlijnen</translation>
     </message>
 
     <message>
       <source>Align Layers</source>
-      <translation>Aligner les couches</translation>
+      <translation>Lagen uitlijnen</translation>
     </message>
 
     <message>
       <source>Aligned</source>
-      <translation>Aligné</translation>
+      <translation>Uitgelijnd</translation>
     </message>
 
     <message>
       <source>Alignment Type</source>
-      <translation>Type d&apos;alignement</translation>
+      <translation>Uitlijningstype</translation>
     </message>
 
     <message>
       <source>All</source>
-      <translation>Tous</translation>
+      <translation>Allemaal</translation>
     </message>
 
     <message>
       <source>All 45° Rotations</source>
-      <translation>Tous les 45° Rotations</translation>
+      <translation>Alle 45° Rotaties</translation>
     </message>
 
     <message>
       <source>All 90° Rotations</source>
-      <translation>Tous les 90° Rotations</translation>
+      <translation>Alle 90° Rotaties</translation>
     </message>
 
     <message>
       <source>All [Collage]</source>
-      <translation>Tous [Collage]</translation>
+      <translation>Alle [Collage]</translation>
     </message>
 
     <message>
       <source>All but Reference Color</source>
-      <translation>Tout sauf la couleur de référence</translation>
+      <translation>Allemaal behalve de Referentiekleur</translation>
     </message>
 
     <message>
       <source>All Layers and Masks</source>
-      <translation>Tous les calques et masques</translation>
+      <translation>Alle lagen en maskers</translation>
     </message>
 
     <message>
       <source>All Tones</source>
-      <translation>Tous les tons</translation>
+      <translation>Alle Tonen</translation>
     </message>
 
     <message>
       <source>All XY-Flips</source>
-      <translation>Tous les XY-Flips</translation>
+      <translation>Alle XY-Flips</translation>
     </message>
 
     <message>
       <source>Allow Angle</source>
-      <translation>Autoriser l&apos;angle</translation>
+      <translation>Hoek toestaan</translation>
     </message>
 
     <message>
       <source>Allow Outer Blending</source>
-      <translation>Autoriser le mélange extérieur</translation>
+      <translation>Laat het buitenmengen toe</translation>
     </message>
 
     <message>
       <source>Allow Self Intersections</source>
-      <translation>Autoriser les intersections avec soi-même</translation>
+      <translation>Laat Self Intersections toe</translation>
     </message>
 
     <message>
       <source>Alpha Channel</source>
-      <translation>Canal Alpha</translation>
+      <translation>Alfa-kanaal</translation>
     </message>
 
     <message>
       <source>Alpha Mode</source>
-      <translation>Mode Alpha</translation>
+      <translation>Alfamodus</translation>
     </message>
 
     <message>
       <source>Also Match Gradients</source>
-      <translation>Faites également correspondre les gradients</translation>
+      <translation>Ook overeenkomen met gradiënten</translation>
     </message>
 
     <message>
       <source>Ambient (%)</source>
-      <translation>Ambiance (%)</translation>
+      <translation>Omgeving (%)</translation>
     </message>
 
     <message>
       <source>Ambient Lightness</source>
-      <translation>Luminosité ambiante</translation>
+      <translation>Omgevingslichtheid</translation>
     </message>
 
     <message>
       <source>Amount</source>
-      <translation>Montant</translation>
+      <translation>Bedrag</translation>
+    </message>
+
+    <message>
+      <source>Amplitude / Angle</source>
+      <translation>Amplitude / Hoek</translation>
     </message>
 
     <message>
       <source>Anaglypgh Green/magenta Optimized</source>
-      <translation>Anaglypgh Vert/magenta Optimisé</translation>
+      <translation>Anaglypgh Groen/magenta Geoptimaliseerd</translation>
     </message>
 
     <message>
       <source>Anaglyph Blue/yellow</source>
-      <translation>Anaglyphe Bleu/jaune</translation>
+      <translation>Anaglyph Blauw/geel</translation>
     </message>
 
     <message>
       <source>Anaglyph Blue/yellow Optimized</source>
-      <translation>Anaglyphe Bleu/jaune Optimisé</translation>
+      <translation>Anaglyph Blauw/geel Geoptimaliseerd</translation>
     </message>
 
     <message>
       <source>Anaglyph Glasses Adjustment</source>
-      <translation>Ajustement des lunettes anaglyphes</translation>
-    </message>
-
-    <message>
-      <source>Anaglyph Green/magenta</source>
-      <translation>Anaglyphe Vert/magenta</translation>
+      <translation>Anaglyph Bril Aanpassing</translation>
     </message>
 
     <message>
       <source>Anaglyph Green/magenta Optimized</source>
-      <translation>Anaglyphe Vert/magenta Optimisé</translation>
+      <translation>Anaglyph Green/magenta Geoptimaliseerd</translation>
     </message>
 
     <message>
       <source>Anaglyph Reconstruction</source>
-      <translation>Reconstruction des anaglyphes</translation>
+      <translation>Anaglyph Reconstructie</translation>
     </message>
 
     <message>
       <source>Anaglyph Red/cyan</source>
-      <translation>Anaglyphe Rouge/cyan</translation>
+      <translation>Anaglyph Rood/cyaan</translation>
     </message>
 
     <message>
       <source>Anaglyph Red/cyan Optimized</source>
-      <translation>Anaglyphe Rouge/cyan Optimisé</translation>
+      <translation>Anaglyph Rood/cyaan Geoptimaliseerd</translation>
     </message>
 
     <message>
       <source>Anaglyph: Red/Cyan</source>
-      <translation>Anaglyphe : Rouge/Cyan</translation>
+      <translation>Anaglyph: Rood/Cyan</translation>
+    </message>
+
+    <message>
+      <source>AnalogFX - Anno 1870 Color</source>
+      <translation>AnalogFX - Anno 1870 Kleur</translation>
     </message>
 
     <message>
       <source>AnalogFX - Old Style I</source>
-      <translation>AnalogFX - Ancien style I</translation>
+      <translation>AnalogFX - Oude stijl I</translation>
     </message>
 
     <message>
       <source>AnalogFX - Old Style II</source>
-      <translation>AnalogFX - Ancien style II</translation>
+      <translation>AnalogFX - Oude stijl II</translation>
     </message>
 
     <message>
       <source>AnalogFX - Old Style III</source>
-      <translation>AnalogFX - Ancien style III</translation>
+      <translation>AnalogFX - Oude stijl III</translation>
     </message>
 
     <message>
       <source>AnalogFX - Sepia Color</source>
-      <translation>AnalogFX - Couleur sépia</translation>
+      <translation>AnalogFX - Sepiakleur</translation>
     </message>
 
     <message>
       <source>AnalogFX - Soft Sepia I</source>
-      <translation>AnalogFX - Sépia doux I</translation>
+      <translation>AnalogFX - Zachte Sepia I</translation>
     </message>
 
     <message>
       <source>AnalogFX - Soft Sepia II</source>
-      <translation>AnalogFX - Sépia doux II</translation>
+      <translation>AnalogFX - Zachte Sepia II</translation>
     </message>
 
     <message>
       <source>Analysis Scale</source>
-      <translation>Échelle d&apos;analyse</translation>
+      <translation>Analyseschaal</translation>
     </message>
 
     <message>
       <source>Analysis Smoothness</source>
-      <translation>Lissage de l&apos;analyse</translation>
+      <translation>Analyse Gladheid</translation>
     </message>
 
     <message>
       <source>And</source>
-      <translation>Et</translation>
+      <translation>En</translation>
+    </message>
+
+    <message>
+      <source>Angle</source>
+      <translation>Hoek</translation>
+    </message>
+
+    <message>
+      <source>Angle (%)</source>
+      <translation>Hoek (%)</translation>
+    </message>
+
+    <message>
+      <source>Angle (deg)</source>
+      <translation>Hoek (deg)</translation>
+    </message>
+
+    <message>
+      <source>Angle (deg.)</source>
+      <translation>Hoek (deg.)</translation>
     </message>
 
     <message>
       <source>Angle / Size</source>
-      <translation>Angle / Taille</translation>
+      <translation>Hoek / Grootte</translation>
     </message>
 
     <message>
       <source>Angle Cut</source>
-      <translation>Coupe d&apos;angle</translation>
+      <translation>Haakse snede</translation>
     </message>
 
     <message>
       <source>Angle Dispersion</source>
-      <translation>Dispersion angulaire</translation>
+      <translation>Hoekverspreiding</translation>
     </message>
 
     <message>
       <source>Angle Image Contour</source>
-      <translation>Contour de l&apos;image en angle</translation>
+      <translation>Hoekbeeldcontour</translation>
     </message>
 
     <message>
       <source>Angle of Disturbance Surface</source>
-      <translation>Angle de la surface de perturbation</translation>
+      <translation>Hoek van verstoring Oppervlakte</translation>
     </message>
 
     <message>
       <source>Angle of Main Nebulous Surface</source>
-      <translation>Angle de la surface nébuleuse principale</translation>
+      <translation>Hoek van het hoofdvlak van de nevel</translation>
     </message>
 
     <message>
       <source>Angle Range</source>
-      <translation>Gamme d&apos;angles</translation>
+      <translation>Hoekwaaier</translation>
     </message>
 
     <message>
       <source>Angle Range (deg.)</source>
-      <translation>Gamme d&apos;angles (degrés)</translation>
+      <translation>Hoekbereik (deg.)</translation>
     </message>
 
     <message>
       <source>Angle Tilt</source>
-      <translation>Angle d&apos;inclinaison</translation>
+      <translation>Hoekinstelling</translation>
     </message>
 
     <message>
       <source>Angle Variations</source>
-      <translation>Variations des angles</translation>
+      <translation>Hoekvariaties</translation>
     </message>
 
     <message>
       <source>Anguish</source>
-      <translation>L&apos;angoisse</translation>
+      <translation>Angstaanjagend</translation>
     </message>
 
     <message>
       <source>Angular</source>
-      <translation>Angulaire</translation>
+      <translation>Hoekig</translation>
     </message>
 
     <message>
       <source>Angular Precision</source>
-      <translation>Précision angulaire</translation>
+      <translation>Hoekprecisie</translation>
     </message>
 
     <message>
       <source>Angular Tiles</source>
-      <translation>Tuiles angulaires</translation>
+      <translation>Hoekige tegels</translation>
     </message>
 
     <message>
       <source>Anisotropic</source>
-      <translation>Anisotrope</translation>
+      <translation>Anisotroop</translation>
     </message>
 
     <message>
@@ -1491,302 +1586,317 @@
 
     <message>
       <source>Annular Steiner Chain Round Tiles</source>
-      <translation>Tuiles rondes en chaîne de Steiner annulaire</translation>
-    </message>
-
-    <message>
-      <source>Anti Alias</source>
-      <translation>Anti-alias</translation>
-    </message>
-
-    <message>
-      <source>Anti-Ghosting</source>
-      <translation>Anti-espionnage</translation>
+      <translation>Ringvormige Steiner Chain Round Tiles</translation>
     </message>
 
     <message>
       <source>Antialiasing</source>
-      <translation>Anti-crénelage</translation>
+      <translation>Anti-aliasing</translation>
     </message>
 
     <message>
       <source>Antisymmetry</source>
-      <translation>Antisymmétrie</translation>
+      <translation>Antisymmetrie</translation>
     </message>
 
     <message>
       <source>Any</source>
-      <translation>Tout</translation>
+      <translation>Elke</translation>
     </message>
 
     <message>
       <source>Apocalypse This Very Moment</source>
-      <translation>L&apos;apocalypse en ce moment même</translation>
+      <translation>Apocalyps op dit moment</translation>
     </message>
 
     <message>
       <source>Apples</source>
-      <translation>Pommes</translation>
+      <translation>Appels</translation>
     </message>
 
     <message>
       <source>Apply Adjustments On</source>
-      <translation>Appliquer les ajustements sur</translation>
+      <translation>Aanpassingen toepassen op</translation>
     </message>
 
     <message>
       <source>Apply Color Balance</source>
-      <translation>Appliquer la balance des couleurs</translation>
+      <translation>Kleurensaldo toepassen</translation>
     </message>
 
     <message>
       <source>Apply External CLUT</source>
-      <translation>Appliquer le CLUT externe</translation>
+      <translation>Externe CLUT toepassen</translation>
     </message>
 
     <message>
       <source>Apply Mask</source>
-      <translation>Appliquer le masque</translation>
+      <translation>Breng het masker aan</translation>
     </message>
 
     <message>
       <source>Apply Skin Tone Mask</source>
-      <translation>Appliquer le masque de teint</translation>
+      <translation>Huidtonenmasker aanbrengen</translation>
     </message>
 
     <message>
       <source>Apply Transformation From</source>
-      <translation>Appliquer la transformation de</translation>
+      <translation>Transformatie toepassen Van</translation>
     </message>
 
     <message>
       <source>Aqua and Orange Dark</source>
-      <translation>Aqua et Orange Dark</translation>
+      <translation>Aqua en Oranje Donker</translation>
     </message>
 
     <message>
       <source>Area</source>
-      <translation>Domaine</translation>
+      <translation>Gebied</translation>
     </message>
 
     <message>
       <source>Area Smoothness</source>
-      <translation>Lissage des zones</translation>
+      <translation>Gebied Soepelheid</translation>
     </message>
 
     <message>
       <source>Areas Light Adjustment</source>
-      <translation>Ajustement de l&apos;éclairage des zones</translation>
+      <translation>Gebieden Lichtaanpassing</translation>
     </message>
 
     <message>
       <source>Areas Smoothness</source>
-      <translation>Lissage des zones</translation>
+      <translation>Gebieden Gladheid</translation>
     </message>
 
     <message>
       <source>Array [Faded]</source>
-      <translation>Tableau [Fondu].</translation>
+      <translation>Array [Vervaagd]</translation>
     </message>
 
     <message>
       <source>Array [Mirrored]</source>
-      <translation>Tableau [en miroir]</translation>
+      <translation>Array [Gespiegeld]</translation>
     </message>
 
     <message>
       <source>Array [Random Colors]</source>
-      <translation>Tableau [Couleurs aléatoires].</translation>
+      <translation>Array [Willekeurige kleuren]</translation>
     </message>
 
     <message>
       <source>Array [Random]</source>
-      <translation>Tableau [Aléatoire].</translation>
+      <translation>Array [Willekeurig]</translation>
     </message>
 
     <message>
       <source>Array [Regular]</source>
-      <translation>Array [Régulier]</translation>
+      <translation>Array [Regelmatig]</translation>
     </message>
 
     <message>
       <source>Array Mode</source>
-      <translation>Mode &quot;Array</translation>
+      <translation>Array-modus</translation>
     </message>
 
     <message>
       <source>Arrows</source>
-      <translation>Flèches</translation>
+      <translation>Pijlen</translation>
     </message>
 
     <message>
       <source>Arrows (Outline)</source>
-      <translation>Flèches (schéma)</translation>
+      <translation>Pijlen (Overzicht)</translation>
     </message>
 
     <message>
       <source>Artistic  Modern</source>
-      <translation>Artistique moderne</translation>
+      <translation>Artistiek Modern</translation>
+    </message>
+
+    <message>
+      <source>Artistic Hard</source>
+      <translation>Artistiek Hard</translation>
     </message>
 
     <message>
       <source>Artistic Round</source>
-      <translation>Cycle artistique</translation>
+      <translation>Artistieke ronde</translation>
+    </message>
+
+    <message>
+      <source>Ascii Art</source>
+      <translation>Ascii-kunst</translation>
     </message>
 
     <message>
       <source>Aspect Ratio</source>
-      <translation>Ratio d&apos;aspect</translation>
+      <translation>Aspectratio</translation>
     </message>
 
     <message>
       <source>Associated Color</source>
-      <translation>Couleur associée</translation>
+      <translation>Bijbehorende kleur</translation>
     </message>
 
     <message>
       <source>Attenuation</source>
-      <translation>Atténuation</translation>
+      <translation>Verzwakking</translation>
     </message>
 
     <message>
       <source>Australia</source>
-      <translation>Australie</translation>
+      <translation>Australië</translation>
+    </message>
+
+    <message>
+      <source>Auto Balance</source>
+      <translation>Autosaldo</translation>
     </message>
 
     <message>
       <source>Auto Reduce Level (Level Slider Is Disabled)</source>
-      <translation>Réduction automatique du niveau (le curseur de niveau est désactivé)</translation>
+      <translation>Automatisch verminderingsniveau (niveau schuifregelaar is uitgeschakeld)</translation>
     </message>
 
     <message>
       <source>Auto Set Hue Inverse (Hue Slider Is Disabled)</source>
-      <translation>Auto Set Hue Inverse (le curseur de teinte est désactivé)</translation>
+      <translation>Auto Set Hue Inverse (Tintenschuif is uitgeschakeld)</translation>
     </message>
 
     <message>
       <source>Auto-Clean Bottom Color Layer</source>
-      <translation>Auto-nettoyage de la couche inférieure de couleur</translation>
+      <translation>Autoschone bodemkleurlaag</translation>
     </message>
 
     <message>
       <source>Auto-Reduce Number of Frames</source>
-      <translation>Réduction automatique du nombre d&apos;images</translation>
+      <translation>Auto-Reduce Aantal Frames</translation>
     </message>
 
     <message>
       <source>Auto-Set Periodicity</source>
-      <translation>Périodicité automatique</translation>
+      <translation>Auto-Set Periodiciteit</translation>
+    </message>
+
+    <message>
+      <source>Auto-Threshold</source>
+      <translation>Autodrempel</translation>
     </message>
 
     <message>
       <source>Autocrop Output Layers</source>
-      <translation>Couches de sortie autocopiantes</translation>
+      <translation>Autocrop Uitgangslagen</translation>
     </message>
 
     <message>
       <source>Automatic</source>
-      <translation>Automatique</translation>
+      <translation>Automatisch</translation>
     </message>
 
     <message>
       <source>Automatic &amp; Contrast Mask</source>
-      <translation>Masque automatique et de contraste</translation>
+      <translation>Automatisch &amp; Contrastmasker</translation>
     </message>
 
     <message>
       <source>Automatic [Scan All Hues]</source>
-      <translation>Automatique [Scanner toutes les teintes].</translation>
+      <translation>Automatisch [Scan alle hints]</translation>
     </message>
 
     <message>
       <source>Automatic Color Balance</source>
-      <translation>Balance automatique des couleurs</translation>
+      <translation>Automatisch kleurensaldo</translation>
     </message>
 
     <message>
       <source>Automatic Depth Estimation</source>
-      <translation>Estimation automatique de la profondeur</translation>
+      <translation>Automatische diepteschatting</translation>
     </message>
 
     <message>
       <source>Automatic Upscale for Optimum Results</source>
-      <translation>Une mise à niveau automatique pour des résultats optimaux</translation>
+      <translation>Automatische Upscale voor optimale resultaten</translation>
     </message>
 
     <message>
       <source>Autumn</source>
-      <translation>Automne</translation>
+      <translation>Herfst</translation>
+    </message>
+
+    <message>
+      <source>Avalanche</source>
+      <translation>Lawine</translation>
     </message>
 
     <message>
       <source>Average</source>
-      <translation>Moyenne</translation>
+      <translation>Gemiddelde</translation>
     </message>
 
     <message>
       <source>Average 3x3</source>
-      <translation>Moyenne 3x3</translation>
+      <translation>Gemiddeld 3x3</translation>
     </message>
 
     <message>
       <source>Average 5x5</source>
-      <translation>Moyenne 5x5</translation>
+      <translation>Gemiddeld 5x5</translation>
     </message>
 
     <message>
       <source>Average 7x7</source>
-      <translation>Moyenne 7x7</translation>
+      <translation>Gemiddelde 7x7</translation>
     </message>
 
     <message>
       <source>Average 9x9</source>
-      <translation>Moyenne 9x9</translation>
+      <translation>Gemiddeld 9x9</translation>
     </message>
 
     <message>
       <source>Average RGB</source>
-      <translation>RGB moyen</translation>
+      <translation>Gemiddelde RGB</translation>
     </message>
 
     <message>
       <source>Average Smoothness</source>
-      <translation>Lissage moyen</translation>
+      <translation>Gemiddelde gladheid</translation>
     </message>
 
     <message>
       <source>Avg / Max Weight</source>
-      <translation>Poids moyen / maximum</translation>
+      <translation>Avg / Max. gewicht</translation>
     </message>
 
     <message>
       <source>Avg Branching</source>
-      <translation>Branche moyenne</translation>
+      <translation>Avg-vertakking</translation>
     </message>
 
     <message>
       <source>Avg Left Angle (deg.)</source>
-      <translation>Angle moyen à gauche (deg.)</translation>
+      <translation>Avg Linkerhoek (deg.)</translation>
     </message>
 
     <message>
       <source>Avg Length Factor (%)</source>
-      <translation>Facteur de longueur moyenne (%)</translation>
+      <translation>Avg Lengte Factor (%)</translation>
     </message>
 
     <message>
       <source>Avg Right Angle (deg.)</source>
-      <translation>Angle droit moyen (deg.)</translation>
+      <translation>Avg Rechter Hoek (deg.)</translation>
     </message>
 
     <message>
       <source>Avg Thickness Factor (%)</source>
-      <translation>Facteur d&apos;épaisseur moyen (%)</translation>
+      <translation>Avg Dikte Factor (%)</translation>
     </message>
 
     <message>
       <source>Axis</source>
-      <translation>Axe</translation>
+      <translation>As</translation>
     </message>
 
     <message>
@@ -1795,213 +1905,233 @@
     </message>
 
     <message>
+      <source>Azrael 93</source>
+      <translation>Azraël 93</translation>
+    </message>
+
+    <message>
+      <source>B&amp;W</source>
+      <translation>ZW</translation>
+    </message>
+
+    <message>
       <source>B&amp;W Pencil [Animated]</source>
-      <translation>Crayon N&amp;B [Animé]</translation>
+      <translation>B&amp;W-potlood [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>B&amp;W Photograph</source>
-      <translation>Photographie N&amp;B</translation>
-    </message>
-
-    <message>
-      <source>B&amp;W Stencil</source>
-      <translation>Pochoir N&amp;B</translation>
+      <translation>Zwart-witfoto</translation>
     </message>
 
     <message>
       <source>B&amp;W Stencil [Animated]</source>
-      <translation>Pochoir N&amp;B [Animé]</translation>
+      <translation>B&amp;W Stencil [Animatie]</translation>
     </message>
 
     <message>
       <source>B-Color Factor</source>
-      <translation>Facteur B-Color</translation>
+      <translation>B-kleurfactor</translation>
     </message>
 
     <message>
       <source>B-Color Shift</source>
-      <translation>Changement de couleur B</translation>
+      <translation>B-kleurverschuiving</translation>
     </message>
 
     <message>
-      <source>B-Component</source>
-      <translation>Composante B</translation>
+      <source>B-Color Smoothness</source>
+      <translation>B-kleur gladheid</translation>
     </message>
 
     <message>
       <source>Background</source>
-      <translation>Contexte</translation>
+      <translation>Achtergrond</translation>
     </message>
 
     <message>
       <source>Background Color</source>
-      <translation>Couleur de fond</translation>
+      <translation>Achtergrondkleur</translation>
     </message>
 
     <message>
       <source>Background Intensity</source>
-      <translation>Intensité du contexte</translation>
+      <translation>Achtergrond Intensiteit</translation>
     </message>
 
     <message>
       <source>Background Point (%)</source>
-      <translation>Contexte (%)</translation>
+      <translation>Achtergrond Punt (%)</translation>
     </message>
 
     <message>
       <source>Backward</source>
-      <translation>En arrière</translation>
+      <translation>Achteruit</translation>
     </message>
 
     <message>
       <source>Backward Horizontal</source>
-      <translation>Horizontal à l&apos;envers</translation>
+      <translation>Achteruit horizontaal</translation>
     </message>
 
     <message>
       <source>Backward Vertical</source>
-      <translation>Vertical à l&apos;envers</translation>
+      <translation>Achterwaarts Verticaal</translation>
+    </message>
+
+    <message>
+      <source>Balance</source>
+      <translation>Balans</translation>
     </message>
 
     <message>
       <source>Balance Color</source>
-      <translation>Équilibre des couleurs</translation>
+      <translation>Balanskleur</translation>
     </message>
 
     <message>
       <source>Balance SRGB</source>
-      <translation>Solde SRGB</translation>
+      <translation>Balans SRGB</translation>
     </message>
 
     <message>
       <source>Ball</source>
-      <translation>Ballon</translation>
+      <translation>Bal</translation>
     </message>
 
     <message>
       <source>Balloons</source>
-      <translation>Ballons</translation>
+      <translation>Ballonnen</translation>
     </message>
 
     <message>
       <source>Balls</source>
-      <translation>Balles</translation>
+      <translation>Ballen</translation>
     </message>
 
     <message>
       <source>Band Width</source>
-      <translation>Largeur de bande</translation>
+      <translation>Bandbreedte</translation>
     </message>
 
     <message>
       <source>Banding Denoise</source>
-      <translation>Banderolage de Denoise</translation>
+      <translation>Bandage Denoise</translation>
     </message>
 
     <message>
       <source>Bandwidth</source>
-      <translation>Bande passante</translation>
+      <translation>Bandbreedte</translation>
     </message>
 
     <message>
       <source>Barbed Wire</source>
-      <translation>Fil de fer barbelé</translation>
+      <translation>Prikkeldraad</translation>
     </message>
 
     <message>
       <source>Barnsley Fern</source>
-      <translation>Fougère d&apos;orge</translation>
+      <translation>Gerstvaren</translation>
     </message>
 
     <message>
       <source>Base Reference Dimension</source>
-      <translation>Dimension de référence de base</translation>
+      <translation>Basis Referentie Maatstaf</translation>
     </message>
 
     <message>
       <source>Base Scale</source>
-      <translation>Échelle de base</translation>
+      <translation>Basisschaal</translation>
     </message>
 
     <message>
       <source>Base Thickness (%)</source>
-      <translation>Épaisseur de base (%)</translation>
+      <translation>Basisdikte (%)</translation>
     </message>
 
     <message>
       <source>Basic Adjustments</source>
-      <translation>Ajustements de base</translation>
+      <translation>Basisaanpassingen</translation>
     </message>
 
     <message>
       <source>Batch Processing</source>
-      <translation>Traitement par lots</translation>
+      <translation>Batchverwerking</translation>
     </message>
 
     <message>
       <source>Bayer Filter</source>
-      <translation>Filtre Bayer</translation>
+      <translation>Bayer-filter</translation>
+    </message>
+
+    <message>
+      <source>Bayer Reconstruction</source>
+      <translation>Bayer reconstructie</translation>
     </message>
 
     <message>
       <source>Behind</source>
-      <translation>Derrière</translation>
+      <translation>Achter</translation>
     </message>
 
     <message>
       <source>Below</source>
-      <translation>Ci-dessous</translation>
+      <translation>Hieronder</translation>
     </message>
 
     <message>
       <source>Berlin Sky</source>
-      <translation>Ciel de Berlin</translation>
+      <translation>Berlijnse hemel</translation>
     </message>
 
     <message>
       <source>Best Match</source>
-      <translation>Meilleur jumelage</translation>
+      <translation>Beste wedstrijd</translation>
     </message>
 
     <message>
-      <source>Beta</source>
-      <translation>Bêta</translation>
+      <source>BG Textured</source>
+      <translation>BG Textuur</translation>
     </message>
 
     <message>
       <source>Bi-Directional</source>
-      <translation>Bi-directionnel</translation>
+      <translation>Bi-directioneel</translation>
     </message>
 
     <message>
       <source>Bias</source>
-      <translation>Biais</translation>
+      <translation>Vooringenomenheid</translation>
+    </message>
+
+    <message>
+      <source>Bicubic</source>
+      <translation>Bicubisch</translation>
     </message>
 
     <message>
       <source>Bidirectional [Sharp]</source>
-      <translation>Bidirectionnel [Aiguisé].</translation>
+      <translation>Bidirectioneel [Scherp]</translation>
     </message>
 
     <message>
       <source>Bidirectional [Smooth]</source>
-      <translation>Bidirectionnel [Lisse]</translation>
+      <translation>Bidirectioneel [Soepel]</translation>
     </message>
 
     <message>
       <source>Bidirectional Rendering</source>
-      <translation>Rendu bidirectionnel</translation>
+      <translation>Bidirectionele Rendering</translation>
     </message>
 
     <message>
       <source>Bilateral</source>
-      <translation>Bilatéral</translation>
+      <translation>Bilateraal</translation>
     </message>
 
     <message>
       <source>Bilateral Radius</source>
-      <translation>Rayon bilatéral</translation>
+      <translation>Bilaterale Straal</translation>
     </message>
 
     <message>
@@ -2011,1242 +2141,1317 @@
 
     <message>
       <source>Binary Digits</source>
-      <translation>Chiffres binaires</translation>
+      <translation>Binaire cijfers</translation>
     </message>
 
     <message>
       <source>Bit Masking (End)</source>
-      <translation>Masquage des bits (fin)</translation>
+      <translation>Bitmaskering (einde)</translation>
     </message>
 
     <message>
       <source>Bit Masking (Start)</source>
-      <translation>Masquage des bits (Début)</translation>
+      <translation>Bitmaskering (Start)</translation>
     </message>
 
     <message>
       <source>Black</source>
-      <translation>Noir</translation>
+      <translation>Zwart</translation>
     </message>
 
     <message>
       <source>Black &amp; White</source>
-      <translation>Noir et blanc</translation>
+      <translation>Zwart-wit</translation>
     </message>
 
     <message>
       <source>Black &amp; White (25)</source>
-      <translation>Noir et blanc (25)</translation>
+      <translation>Zwart-wit (25)</translation>
     </message>
 
     <message>
       <source>Black &amp; White-1</source>
-      <translation>Noir et blanc - 1</translation>
+      <translation>Zwart-wit-1</translation>
     </message>
 
     <message>
       <source>Black &amp; White-10</source>
-      <translation>Noir et blanc - 10</translation>
+      <translation>Zwart &amp; Wit -10</translation>
     </message>
 
     <message>
       <source>Black &amp; White-2</source>
-      <translation>Noir et blanc - 2</translation>
+      <translation>Zwart-wit-2</translation>
     </message>
 
     <message>
       <source>Black &amp; White-3</source>
-      <translation>Noir et blanc - 3</translation>
+      <translation>Zwart-Wit-3</translation>
     </message>
 
     <message>
       <source>Black &amp; White-4</source>
-      <translation>Noir et blanc - 4</translation>
+      <translation>Zwart-wit-4</translation>
     </message>
 
     <message>
       <source>Black &amp; White-5</source>
-      <translation>Noir et blanc - 5</translation>
+      <translation>Zwart-Wit-5</translation>
     </message>
 
     <message>
       <source>Black &amp; White-6</source>
-      <translation>Noir et blanc - 6</translation>
+      <translation>Zwart-wit-6</translation>
     </message>
 
     <message>
       <source>Black &amp; White-7</source>
-      <translation>Noir et blanc - 7</translation>
+      <translation>Zwart-wit-7</translation>
     </message>
 
     <message>
       <source>Black &amp; White-8</source>
-      <translation>Noir et blanc - 8</translation>
+      <translation>Zwart-wit-8</translation>
     </message>
 
     <message>
       <source>Black &amp; White-9</source>
-      <translation>Noir et blanc - 9</translation>
+      <translation>Zwart-wit-9</translation>
     </message>
 
     <message>
       <source>Black Crayon Graffiti</source>
-      <translation>Graffitis au crayon noir</translation>
+      <translation>Zwart krijt Graffiti</translation>
     </message>
 
     <message>
       <source>Black Dices</source>
-      <translation>Dés noirs</translation>
+      <translation>Zwarte Dobbelstenen</translation>
     </message>
 
     <message>
       <source>Black Level</source>
-      <translation>Niveau de noir</translation>
+      <translation>Zwartniveau</translation>
     </message>
 
     <message>
       <source>Black on Transparent</source>
-      <translation>Noir sur transparent</translation>
+      <translation>Zwart op Transparant</translation>
     </message>
 
     <message>
       <source>Black on Transparent White</source>
-      <translation>Noir sur blanc transparent</translation>
+      <translation>Zwart op Transparant Wit</translation>
     </message>
 
     <message>
       <source>Black on White</source>
-      <translation>Noir sur blanc</translation>
+      <translation>Zwart op Wit</translation>
     </message>
 
     <message>
       <source>Black Point</source>
-      <translation>Point noir</translation>
+      <translation>Zwart punt</translation>
     </message>
 
     <message>
       <source>Black Star</source>
-      <translation>Étoile noire</translation>
+      <translation>Zwarte ster</translation>
     </message>
 
     <message>
       <source>Black to White</source>
-      <translation>Du noir au blanc</translation>
+      <translation>Zwart op wit</translation>
     </message>
 
     <message>
       <source>Blacks</source>
-      <translation>Noirs</translation>
+      <translation>Zwarten</translation>
+    </message>
+
+    <message>
+      <source>Blade Runner</source>
+      <translation>Bladloper</translation>
     </message>
 
     <message>
       <source>Blank</source>
-      <translation>Vide</translation>
+      <translation>Blanco</translation>
     </message>
 
     <message>
       <source>Bleach Bypass</source>
-      <translation>Contournement de l&apos;eau de Javel</translation>
+      <translation>Bleekmiddelbypass</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 1</source>
-      <translation>Dérivation de l&apos;eau de Javel 1</translation>
+      <translation>Bleekmiddelbypass 1</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 2</source>
-      <translation>Dérivation de l&apos;eau de Javel 2</translation>
+      <translation>Bleekmiddelbypass 2</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 3</source>
-      <translation>Dérivation de l&apos;eau de Javel 3</translation>
+      <translation>Bleekmiddelbypass 3</translation>
     </message>
 
     <message>
       <source>Bleach Bypass 4</source>
-      <translation>Contournement de l&apos;eau de Javel 4</translation>
+      <translation>Bleekmiddelbypass 4</translation>
+    </message>
+
+    <message>
+      <source>Bleech Bypass Green</source>
+      <translation>Bleech Bypass Groen</translation>
+    </message>
+
+    <message>
+      <source>Bleech Bypass Yellow 01</source>
+      <translation>Bleech Bypass Geel 01</translation>
     </message>
 
     <message>
       <source>Blend</source>
-      <translation>Mélange</translation>
+      <translation>Mengen</translation>
     </message>
 
     <message>
       <source>Blend [Average All]</source>
-      <translation>Mélange [Moyenne de tous]</translation>
+      <translation>Mengen [Gemiddeld alle]</translation>
     </message>
 
     <message>
       <source>Blend [Edges]</source>
-      <translation>Mélange [Bords]</translation>
+      <translation>Mengen [Randen]</translation>
     </message>
 
     <message>
       <source>Blend [Fade]</source>
-      <translation>Mélange [Fondu]</translation>
+      <translation>Mengen [Fade]</translation>
     </message>
 
     <message>
       <source>Blend [Median]</source>
-      <translation>Mélange [Médiane]</translation>
+      <translation>Mélange [Mediaan]</translation>
     </message>
 
     <message>
       <source>Blend [Seamless]</source>
-      <translation>Mélange [Sans couture]</translation>
+      <translation>Mengen [Naadloos]</translation>
     </message>
 
     <message>
       <source>Blend [Standard]</source>
-      <translation>Mélange [Standard]</translation>
+      <translation>Mengen [Standaard]</translation>
     </message>
 
     <message>
       <source>Blend All Layers</source>
-      <translation>Mélanger toutes les couches</translation>
+      <translation>Meng alle lagen</translation>
     </message>
 
     <message>
       <source>Blend Decay</source>
-      <translation>Décomposition des mélanges</translation>
+      <translation>Mengverloop</translation>
     </message>
 
     <message>
       <source>Blend Mode</source>
-      <translation>Mode de mélange</translation>
+      <translation>Mengwijze</translation>
     </message>
 
     <message>
       <source>Blend Rays</source>
-      <translation>Rayons de mélange</translation>
+      <translation>Mengstralen</translation>
     </message>
 
     <message>
       <source>Blend Scales</source>
-      <translation>Balances de mélange</translation>
+      <translation>Mengschaal</translation>
     </message>
 
     <message>
       <source>Blend Size</source>
-      <translation>Taille du mélange</translation>
+      <translation>Menggrootte</translation>
     </message>
 
     <message>
       <source>Blend Threshold</source>
-      <translation>Seuil de mélange</translation>
+      <translation>Mengingsdrempel</translation>
     </message>
 
     <message>
       <source>Blending Mode</source>
-      <translation>Mode de mélange</translation>
+      <translation>Mengmode</translation>
     </message>
 
     <message>
       <source>Blending Size</source>
-      <translation>Taille du mélange</translation>
+      <translation>Het mengen van Grootte</translation>
     </message>
 
     <message>
       <source>Blindness Type</source>
-      <translation>Type de cécité</translation>
+      <translation>Type blindheid</translation>
     </message>
 
     <message>
       <source>Blob 1 Color</source>
-      <translation>Couleur du Blob 1</translation>
+      <translation>Blob 1 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 10 Color</source>
-      <translation>Couleur du Blob 10</translation>
+      <translation>Blob 10 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 11 Color</source>
-      <translation>Couleur du Blob 11</translation>
+      <translation>Blob 11 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 12 Color</source>
-      <translation>Couleur du Blob 12</translation>
+      <translation>Blob 12 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 2 Color</source>
-      <translation>Couleur du Blob 2</translation>
+      <translation>Blob 2 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 3 Color</source>
-      <translation>Couleur de la tache 3</translation>
+      <translation>Blob 3 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 4 Color</source>
-      <translation>Couleur du Blob 4</translation>
+      <translation>Blob 4 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 5 Color</source>
-      <translation>Couleur du Blob 5</translation>
+      <translation>Blob 5 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 6 Color</source>
-      <translation>Couleur du Blob 6</translation>
+      <translation>Blob 6 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 7 Color</source>
-      <translation>Couleur du Blob 7</translation>
+      <translation>Blob 7 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 8 Color</source>
-      <translation>Couleur du Blob 8</translation>
+      <translation>Blob 8 Kleur</translation>
     </message>
 
     <message>
       <source>Blob 9 Color</source>
-      <translation>Couleur de la tache 9</translation>
+      <translation>Blob 9 Kleur</translation>
     </message>
 
     <message>
       <source>Blob Size</source>
-      <translation>Taille de la goutte</translation>
+      <translation>Blobmaat</translation>
     </message>
 
     <message>
       <source>Blobs Editor</source>
-      <translation>Rédacteur de Blobs</translation>
+      <translation>Blobs-editor</translation>
+    </message>
+
+    <message>
+      <source>Bloc</source>
+      <translation>Blok</translation>
     </message>
 
     <message>
       <source>Bloc Size (%)</source>
-      <translation>Taille du bloc (%)</translation>
+      <translation>Blokgrootte (%)</translation>
     </message>
 
     <message>
       <source>Blockism</source>
-      <translation>Blocage</translation>
+      <translation>Blockisme</translation>
+    </message>
+
+    <message>
+      <source>Bloom</source>
+      <translation>Bloei</translation>
     </message>
 
     <message>
       <source>Blue</source>
-      <translation>Bleu</translation>
+      <translation>Blauw</translation>
     </message>
 
     <message>
       <source>Blue &amp; Red Chrominances</source>
-      <translation>Chrominances bleu et rouge</translation>
+      <translation>Blauwe &amp; Rode Chrominances</translation>
     </message>
 
     <message>
       <source>Blue Chroma Factor</source>
-      <translation>Facteur de chromatisation bleu</translation>
+      <translation>Blauwe Chroma Factor</translation>
     </message>
 
     <message>
       <source>Blue Chroma Shift</source>
-      <translation>Changement de couleur bleue</translation>
+      <translation>Blauwe Chroma Shift</translation>
     </message>
 
     <message>
       <source>Blue Chroma Smoothness</source>
-      <translation>Douceur du bleu chromatique</translation>
+      <translation>Blauwe Chroma Smoothness</translation>
     </message>
 
     <message>
       <source>Blue Chrominance</source>
-      <translation>Chrominance bleue</translation>
+      <translation>Blauwe Chrominantie</translation>
     </message>
 
     <message>
       <source>Blue Cold Fade</source>
-      <translation>Fondu bleu à froid</translation>
+      <translation>Blauwe Koude Fade</translation>
     </message>
 
     <message>
       <source>Blue Dark</source>
-      <translation>Bleu foncé</translation>
+      <translation>Blauw Donker</translation>
     </message>
 
     <message>
       <source>Blue Factor</source>
-      <translation>Le facteur bleu</translation>
+      <translation>Blauwe factor</translation>
     </message>
 
     <message>
       <source>Blue House</source>
-      <translation>Maison bleue</translation>
+      <translation>Blauw huis</translation>
     </message>
 
     <message>
       <source>Blue Ice</source>
-      <translation>Glace bleue</translation>
+      <translation>Blauw ijs</translation>
     </message>
 
     <message>
       <source>Blue Level</source>
-      <translation>Niveau bleu</translation>
+      <translation>Blauw niveau</translation>
     </message>
 
     <message>
       <source>Blue Mono</source>
-      <translation>Mono bleu</translation>
+      <translation>Blauwe Mono</translation>
     </message>
 
     <message>
       <source>Blue Rotations</source>
-      <translation>Rotations bleues</translation>
+      <translation>Blauwe rotaties</translation>
     </message>
 
     <message>
       <source>Blue Screen Mode</source>
-      <translation>Mode écran bleu</translation>
+      <translation>Blauwschermwijze</translation>
+    </message>
+
+    <message>
+      <source>Blue Shadows 01</source>
+      <translation>Blauwe Schaduwen 01</translation>
+    </message>
+
+    <message>
+      <source>Blue Shift</source>
+      <translation>Blauwe Verschuiving</translation>
     </message>
 
     <message>
       <source>Blue Smoothness</source>
-      <translation>La douceur bleue</translation>
+      <translation>Blauwe Gladheid</translation>
     </message>
 
     <message>
       <source>Blue Steel</source>
-      <translation>Acier bleu</translation>
+      <translation>Blauw Staal</translation>
     </message>
 
     <message>
       <source>Blue Wavelength</source>
-      <translation>Longueur d&apos;onde bleue</translation>
+      <translation>Blauwe Golflengte</translation>
     </message>
 
     <message>
       <source>Blue-Green</source>
-      <translation>Bleu-vert</translation>
+      <translation>Blauwgroen</translation>
     </message>
 
     <message>
       <source>Blur</source>
-      <translation>Flou</translation>
+      <translation>Vervagen</translation>
     </message>
 
     <message>
       <source>Blur [Angular]</source>
-      <translation>Flou [Angulaire]</translation>
+      <translation>Vervagen [Hoekig]</translation>
     </message>
 
     <message>
       <source>Blur [Bloom]</source>
-      <translation>Flou [Bloom]</translation>
+      <translation>Wazigheid [Bloom]</translation>
     </message>
 
     <message>
       <source>Blur [Depth-Of-Field]</source>
-      <translation>Flou [Profondeur de champ]</translation>
+      <translation>Wazigheid [Diepte-veld]</translation>
     </message>
 
     <message>
       <source>Blur [Gaussian]</source>
-      <translation>Flou [Gaussien]</translation>
+      <translation>Waas [Gaussian]</translation>
     </message>
 
     <message>
       <source>Blur [Glow]</source>
-      <translation>Flou [Glow]</translation>
+      <translation>Vervagen [Gloed]</translation>
     </message>
 
     <message>
       <source>Blur [Linear]</source>
-      <translation>Flou [Linéaire]</translation>
+      <translation>Vervagen [Lineair]</translation>
     </message>
 
     <message>
       <source>Blur [Multidirectional]</source>
-      <translation>Flou [multidirectionnel]</translation>
+      <translation>Vervagen [Multidirectioneel]</translation>
     </message>
 
     <message>
       <source>Blur [Radial]</source>
-      <translation>Flou [Radial]</translation>
+      <translation>Vervagen [Radiaal]</translation>
     </message>
 
     <message>
       <source>Blur Alpha</source>
-      <translation>Flou Alpha</translation>
+      <translation>Vage Alfa</translation>
     </message>
 
     <message>
       <source>Blur Amount</source>
-      <translation>Montant du flou</translation>
+      <translation>Wazig bedrag</translation>
     </message>
 
     <message>
       <source>Blur Amplitude</source>
-      <translation>Amplitude du flou</translation>
+      <translation>Vervaagde Amplitude</translation>
     </message>
 
     <message>
       <source>Blur Dodge and Burn Layer</source>
-      <translation>Esquive floue et couche brûlée</translation>
+      <translation>Vage Dodge en Burn Layer</translation>
     </message>
 
     <message>
       <source>Blur Factor</source>
-      <translation>Facteur de flou</translation>
+      <translation>Vervagende factor</translation>
     </message>
 
     <message>
       <source>Blur Frame</source>
-      <translation>Cadre flou</translation>
+      <translation>Vervagen Frame</translation>
     </message>
 
     <message>
       <source>Blur Percentage</source>
-      <translation>Pourcentage de flou</translation>
+      <translation>Vervagen Percentage</translation>
     </message>
 
     <message>
       <source>Blur Precision</source>
-      <translation>Précision du flou</translation>
+      <translation>Vage Precisie</translation>
     </message>
 
     <message>
       <source>Blur Shade</source>
-      <translation>Ombre floue</translation>
+      <translation>Vage Schaduw</translation>
     </message>
 
     <message>
       <source>Blur Standard Deviation</source>
-      <translation>Écart-type du flou</translation>
+      <translation>Vage standaardafwijking</translation>
     </message>
 
     <message>
       <source>Blur Strength</source>
-      <translation>La force du flou</translation>
+      <translation>Vage kracht</translation>
     </message>
 
     <message>
       <source>Blur the Mask</source>
-      <translation>Flouez le masque</translation>
+      <translation>Vervaag het masker</translation>
     </message>
 
     <message>
       <source>Boats</source>
-      <translation>Bateaux</translation>
-    </message>
-
-    <message>
-      <source>Boost Chromaticity</source>
-      <translation>Stimuler la chromaticité</translation>
-    </message>
-
-    <message>
-      <source>Boost Contrast</source>
-      <translation>Augmenter le contraste</translation>
-    </message>
-
-    <message>
-      <source>Boost Stroke</source>
-      <translation>Stimuler l&apos;AVC</translation>
+      <translation>Boten</translation>
     </message>
 
     <message>
       <source>Border Color</source>
-      <translation>Couleur de la bordure</translation>
+      <translation>Grenskleur</translation>
     </message>
 
     <message>
       <source>Border Opacity</source>
-      <translation>Opacité des frontières</translation>
+      <translation>Grensopaciteit</translation>
     </message>
 
     <message>
       <source>Border Outline</source>
-      <translation>Schéma de la frontière</translation>
+      <translation>Grenslijn</translation>
     </message>
 
     <message>
       <source>Border Smoothness</source>
-      <translation>Lissage des frontières</translation>
+      <translation>Randvlakte</translation>
     </message>
 
     <message>
       <source>Border Thickness (%)</source>
-      <translation>Épaisseur de la frontière (%)</translation>
+      <translation>Grensdikte (%)</translation>
     </message>
 
     <message>
       <source>Border Width</source>
-      <translation>Largeur de la frontière</translation>
+      <translation>Grensbreedte</translation>
     </message>
 
     <message>
       <source>Both</source>
-      <translation>Les deux</translation>
+      <translation>Beide</translation>
     </message>
 
     <message>
       <source>Bottles</source>
-      <translation>Bouteilles</translation>
+      <translation>Flessen</translation>
     </message>
 
     <message>
       <source>Bottom</source>
-      <translation>En bas</translation>
+      <translation>Bodem</translation>
     </message>
 
     <message>
       <source>Bottom and Left Foreground</source>
-      <translation>En bas et à gauche au premier plan</translation>
+      <translation>Onderste en linkse voorgrond</translation>
     </message>
 
     <message>
       <source>Bottom and Right Foreground</source>
-      <translation>Premier plan en bas et à droite</translation>
+      <translation>Bodem en rechtervoorgrond</translation>
     </message>
 
     <message>
       <source>Bottom and Top Foreground</source>
-      <translation>En bas et en haut de l&apos;écran</translation>
+      <translation>Onderkant en bovenkant Voorgrond</translation>
     </message>
 
     <message>
       <source>Bottom Layer</source>
-      <translation>Couche inférieure</translation>
+      <translation>Bodemlaag</translation>
     </message>
 
     <message>
       <source>Bottom Left</source>
-      <translation>En bas à gauche</translation>
+      <translation>Linksonder</translation>
     </message>
 
     <message>
       <source>Bottom Right</source>
-      <translation>En bas à droite</translation>
+      <translation>Rechtsonder</translation>
     </message>
 
     <message>
       <source>Bottom Size</source>
-      <translation>Taille du fond</translation>
+      <translation>Bodemmaat</translation>
     </message>
 
     <message>
       <source>Bottom-Left</source>
-      <translation>En bas à gauche</translation>
+      <translation>Linksonder</translation>
     </message>
 
     <message>
       <source>Bottom-Left Vertex (%)</source>
-      <translation>Sommet inférieur gauche (%)</translation>
+      <translation>Bodem-Links Vertex (%)</translation>
     </message>
 
     <message>
       <source>Bottom-Right</source>
-      <translation>En bas à droite</translation>
+      <translation>Rechtsonder</translation>
     </message>
 
     <message>
       <source>Bottom-Right Vertex (%)</source>
-      <translation>Sommet inférieur droit (%)</translation>
+      <translation>Rechtsonderste punt (%)</translation>
     </message>
 
     <message>
       <source>Bouncing Balls</source>
-      <translation>Balles rebondissantes</translation>
+      <translation>Stuiterende Ballen</translation>
     </message>
 
     <message>
       <source>Boundaries (%)</source>
-      <translation>Limites (%)</translation>
+      <translation>Grenzen (%)</translation>
     </message>
 
     <message>
       <source>Boundary</source>
-      <translation>Frontière</translation>
+      <translation>Grenswaarde</translation>
     </message>
 
     <message>
       <source>Boundary Condition</source>
-      <translation>Condition limite</translation>
+      <translation>Randvoorwaarde</translation>
     </message>
 
     <message>
       <source>Boundary Conditions</source>
-      <translation>Conditions aux frontières</translation>
+      <translation>Grensvoorwaarden</translation>
     </message>
 
     <message>
       <source>Box</source>
-      <translation>Boîte</translation>
+      <translation>Doos</translation>
     </message>
 
     <message>
       <source>Box Fitting</source>
-      <translation>Ajustement de la boîte</translation>
-    </message>
-
-    <message>
-      <source>Box2x</source>
-      <translation>Boîte2x</translation>
+      <translation>Doosindeling</translation>
     </message>
 
     <message>
       <source>Branches</source>
-      <translation>Succursales</translation>
+      <translation>Vestigingen</translation>
     </message>
 
     <message>
       <source>Braque: Landscape near Antwerp</source>
-      <translation>Braque : Paysage près d&apos;Anvers</translation>
-    </message>
-
-    <message>
-      <source>Braque: Le Viaduc à L&apos;Estaque</source>
-      <translation>Braque : Le Viaduc à L&apos;Estaque</translation>
+      <translation>Braque: Landschap bij Antwerpen</translation>
     </message>
 
     <message>
       <source>Braque: Little Bay at La Ciotat</source>
-      <translation>Braque : Petite Baie à La Ciotat</translation>
+      <translation>Braque: Little Bay bij La Ciotat</translation>
     </message>
 
     <message>
       <source>Braque: The Mandola</source>
-      <translation>Braque : La mandola</translation>
+      <translation>Braque: De Mandola</translation>
+    </message>
+
+    <message>
+      <source>Bright</source>
+      <translation>Helder</translation>
     </message>
 
     <message>
       <source>Bright Green</source>
-      <translation>Vert vif</translation>
+      <translation>Helder groen</translation>
     </message>
 
     <message>
       <source>Bright Green 01</source>
-      <translation>Vert clair 01</translation>
+      <translation>Helder groen 01</translation>
+    </message>
+
+    <message>
+      <source>Bright Length</source>
+      <translation>Heldere lengte</translation>
     </message>
 
     <message>
       <source>Bright Pixels</source>
-      <translation>Pixels lumineux</translation>
+      <translation>Heldere Pixels</translation>
     </message>
 
     <message>
       <source>Bright Teal Orange</source>
-      <translation>Sarcelle d&apos;hiver orange vif</translation>
+      <translation>Heldere Teal Oranje</translation>
     </message>
 
     <message>
       <source>Bright Warm</source>
-      <translation>Chaud devant</translation>
+      <translation>Helder Warm</translation>
     </message>
 
     <message>
       <source>Brighter</source>
-      <translation>Plus clair</translation>
+      <translation>Helderder</translation>
     </message>
 
     <message>
       <source>Brightness</source>
-      <translation>Luminosité</translation>
+      <translation>Helderheid</translation>
     </message>
 
     <message>
       <source>Brightness (%)</source>
-      <translation>Luminosité (%)</translation>
+      <translation>Helderheid (%)</translation>
     </message>
 
     <message>
       <source>Bristle Size</source>
-      <translation>Taille des poils</translation>
+      <translation>Borstelgrootte</translation>
+    </message>
+
+    <message>
+      <source>Bronze</source>
+      <translation>Brons</translation>
     </message>
 
     <message>
       <source>Brownish</source>
-      <translation>Brunâtre</translation>
+      <translation>Bruinachtig</translation>
+    </message>
+
+    <message>
+      <source>Brushify</source>
+      <translation>Borstelen</translation>
     </message>
 
     <message>
       <source>Built-in Gray</source>
-      <translation>Gris intégré</translation>
-    </message>
-
-    <message>
-      <source>Bump Factor</source>
-      <translation>Facteur de majoration</translation>
+      <translation>Ingebouwde Grijs</translation>
     </message>
 
     <message>
       <source>Bump Map</source>
-      <translation>Carte des bosses</translation>
+      <translation>Bump kaart</translation>
     </message>
 
     <message>
       <source>Burn</source>
-      <translation>Brûler</translation>
+      <translation>Verbranding</translation>
     </message>
 
     <message>
       <source>Burn Blur</source>
-      <translation>Brûler le flou</translation>
+      <translation>Verbrandingsonscherpte</translation>
     </message>
 
     <message>
       <source>Burn Strength</source>
-      <translation>Brûler la force</translation>
+      <translation>Brandwondsterkte</translation>
+    </message>
+
+    <message>
+      <source>Butterfly</source>
+      <translation>Vlinder</translation>
     </message>
 
     <message>
       <source>By Blue Chrominance</source>
-      <translation>Par Blue Chrominance</translation>
+      <translation>Door Blauwe Chrominantie</translation>
     </message>
 
     <message>
       <source>By Blue Component</source>
-      <translation>Par composante bleue</translation>
+      <translation>Door Blauwe Component</translation>
     </message>
 
     <message>
       <source>By Custom Expression</source>
-      <translation>Par expression personnalisée</translation>
+      <translation>Door Aangepaste Uitdrukking</translation>
     </message>
 
     <message>
       <source>By Green Component</source>
-      <translation>Par la composante verte</translation>
+      <translation>Per Groene Component</translation>
     </message>
 
     <message>
       <source>By Iteration</source>
-      <translation>Par itération</translation>
+      <translation>Door Iteratie</translation>
     </message>
 
     <message>
       <source>By Lightness</source>
-      <translation>Par la légèreté</translation>
+      <translation>Door Lichtheid</translation>
     </message>
 
     <message>
       <source>By Luminance</source>
-      <translation>Par Luminance</translation>
+      <translation>Door Luminantie</translation>
     </message>
 
     <message>
       <source>By Red Chrominance</source>
-      <translation>Par Red Chrominance</translation>
+      <translation>Door Red Chrominance</translation>
     </message>
 
     <message>
       <source>By Red Component</source>
-      <translation>Par composante rouge</translation>
+      <translation>Door rode component</translation>
     </message>
 
     <message>
       <source>By Value</source>
-      <translation>Par valeur</translation>
+      <translation>Naar waarde</translation>
     </message>
 
     <message>
       <source>Camera Motion Only</source>
-      <translation>Mouvement de caméra uniquement</translation>
-    </message>
-
-    <message>
-      <source>Camera X</source>
-      <translation>Caméra X</translation>
-    </message>
-
-    <message>
-      <source>Camera Y</source>
-      <translation>Caméra Y</translation>
-    </message>
-
-    <message>
-      <source>Cameraman</source>
-      <translation>Caméraman</translation>
+      <translation>Alleen camerabeweging</translation>
     </message>
 
     <message>
       <source>Candle Light</source>
-      <translation>Lumière de bougie</translation>
-    </message>
-
-    <message>
-      <source>Canvas</source>
-      <translation>Toile</translation>
+      <translation>Kaarslicht</translation>
     </message>
 
     <message>
       <source>Canvas Brightness</source>
-      <translation>Luminosité de la toile</translation>
+      <translation>Helderheid van het doek</translation>
     </message>
 
     <message>
       <source>Canvas Color</source>
-      <translation>Couleur de la toile</translation>
+      <translation>Kleur van het doek</translation>
     </message>
 
     <message>
       <source>Canvas Darkness</source>
-      <translation>Toile de l&apos;obscurité</translation>
+      <translation>Canvas Duisternis</translation>
     </message>
 
     <message>
       <source>Canvas Texture</source>
-      <translation>Texture de la toile</translation>
+      <translation>Canvasstructuur</translation>
     </message>
 
     <message>
       <source>Car</source>
-      <translation>Voiture</translation>
+      <translation>Auto</translation>
     </message>
 
     <message>
       <source>Card Suits</source>
-      <translation>Combinaisons de cartes</translation>
+      <translation>Kaartpakken</translation>
     </message>
 
     <message>
       <source>Cartesian Transform</source>
-      <translation>Transformation cartésienne</translation>
+      <translation>Cartesiaanse transformatie</translation>
     </message>
 
     <message>
       <source>Cartoon</source>
-      <translation>Dessin animé</translation>
+      <translation>Beeldverhaal</translation>
     </message>
 
     <message>
       <source>Cartoon [Animated]</source>
-      <translation>Dessin animé</translation>
+      <translation>Cartoon [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>Cat</source>
-      <translation>Chat</translation>
+      <translation>Kat</translation>
     </message>
 
     <message>
       <source>Category</source>
-      <translation>Catégorie</translation>
+      <translation>Categorie</translation>
     </message>
 
     <message>
       <source>Cell Size</source>
-      <translation>Taille de la cellule</translation>
+      <translation>Celgrootte</translation>
     </message>
 
     <message>
       <source>Center</source>
-      <translation>Centre</translation>
+      <translation>Centrum</translation>
     </message>
 
     <message>
       <source>Center (%)</source>
-      <translation>Centre (%)</translation>
+      <translation>Centrum (%)</translation>
     </message>
 
     <message>
       <source>Center Background</source>
-      <translation>Contexte du centre</translation>
+      <translation>Centrale Achtergrond</translation>
     </message>
 
     <message>
       <source>Center Foreground</source>
-      <translation>Au premier plan</translation>
+      <translation>Centrum Voorgrond</translation>
     </message>
 
     <message>
       <source>Center Help</source>
-      <translation>Centre d&apos;aide</translation>
+      <translation>Centrum Hulp</translation>
     </message>
 
     <message>
       <source>Center Size</source>
-      <translation>Taille du centre</translation>
+      <translation>Centrum</translation>
     </message>
 
     <message>
       <source>Center Smoothness</source>
-      <translation>La douceur du centre</translation>
+      <translation>Centrum Gladheid</translation>
     </message>
 
     <message>
       <source>Center X</source>
-      <translation>Centre X</translation>
+      <translation>Centrum X</translation>
     </message>
 
     <message>
       <source>Center X-Shift</source>
-      <translation>Centre X-Shift</translation>
+      <translation>Centrum X-Shift</translation>
     </message>
 
     <message>
       <source>Center Y</source>
-      <translation>Centre Y</translation>
+      <translation>Centrum Y</translation>
     </message>
 
     <message>
       <source>Center Y-Shift</source>
-      <translation>Centre Y-Shift</translation>
+      <translation>Centrum Y-Shift</translation>
     </message>
 
     <message>
       <source>Centering (%)</source>
-      <translation>Centrage (%)</translation>
+      <translation>Centrering (%)</translation>
     </message>
 
     <message>
       <source>Centering / Scale</source>
-      <translation>Centrage / Échelle</translation>
+      <translation>Centreren / Schaalverdeling</translation>
     </message>
 
     <message>
       <source>Centers Color</source>
-      <translation>Couleur des centres</translation>
+      <translation>Centra Kleur</translation>
     </message>
 
     <message>
       <source>Centers Radius</source>
-      <translation>Rayon des centres</translation>
-    </message>
-
-    <message>
-      <source>Centimeter</source>
-      <translation>Centimètre</translation>
+      <translation>Centra Straal</translation>
     </message>
 
     <message>
       <source>Central  Perspective Outdoor</source>
-      <translation>Perspective centrale en plein air</translation>
+      <translation>Centraal Perspectief Buiten</translation>
     </message>
 
     <message>
       <source>Central Perspective Indoor</source>
-      <translation>Perspective centrale à l&apos;intérieur</translation>
+      <translation>Centraal Perspectief Binnenshuis</translation>
     </message>
 
     <message>
       <source>Central Perspective Outdoor</source>
-      <translation>Perspective centrale en plein air</translation>
+      <translation>Centraal Perspectief Buiten</translation>
+    </message>
+
+    <message>
+      <source>Centre</source>
+      <translation>Centrum</translation>
     </message>
 
     <message>
       <source>Chalk It Up</source>
-      <translation>A la craie</translation>
+      <translation>Krijg nou wat.</translation>
     </message>
 
     <message>
       <source>Channel #1</source>
-      <translation>Chaîne 1</translation>
+      <translation>Kanaal 1</translation>
     </message>
 
     <message>
       <source>Channel #2</source>
-      <translation>Canal n°2</translation>
+      <translation>Kanaal 2</translation>
     </message>
 
     <message>
       <source>Channel #3</source>
-      <translation>Canal n°3</translation>
+      <translation>Kanaal 3</translation>
     </message>
 
     <message>
       <source>Channel Processing</source>
-      <translation>Traitement des canaux</translation>
+      <translation>Kanaalbewerking</translation>
     </message>
 
     <message>
       <source>Channel(s)</source>
-      <translation>Chaîne(s)</translation>
+      <translation>Kanaal(s)</translation>
     </message>
 
     <message>
       <source>Channels</source>
-      <translation>Chaînes</translation>
+      <translation>Kanalen</translation>
     </message>
 
     <message>
       <source>Channels to Layers</source>
-      <translation>Canaux vers les couches</translation>
+      <translation>Kanalen naar Lagen</translation>
     </message>
 
     <message>
       <source>Charcoal</source>
-      <translation>Charbon de bois</translation>
+      <translation>Houtskool</translation>
     </message>
 
     <message>
       <source>Checkered</source>
-      <translation>Vérifié</translation>
+      <translation>Geruite</translation>
     </message>
 
     <message>
       <source>Checkered Inverse</source>
-      <translation>Inverse à carreaux</translation>
+      <translation>Geruite Omkering</translation>
     </message>
 
     <message>
       <source>Chemical 168</source>
-      <translation>Chimie 168</translation>
+      <translation>Chemisch 168</translation>
     </message>
 
     <message>
       <source>Chessboard</source>
-      <translation>Échiquier</translation>
+      <translation>Schaakbord</translation>
     </message>
 
     <message>
       <source>Chick</source>
-      <translation>Poussin</translation>
+      <translation>Kuiken</translation>
     </message>
 
     <message>
       <source>Chroma Noise</source>
-      <translation>Bruit chromatique</translation>
+      <translation>Chromageluid</translation>
     </message>
 
     <message>
       <source>Chromatic Aberrations</source>
-      <translation>Aberrations chromatiques</translation>
+      <translation>Chromatische afwijkingen</translation>
     </message>
 
     <message>
       <source>Chromaticity From</source>
-      <translation>Chromaticité de</translation>
+      <translation>Chromaticiteit van</translation>
+    </message>
+
+    <message>
+      <source>Chrome 01</source>
+      <translation>Chroom 01</translation>
     </message>
 
     <message>
       <source>Chrominances Only (ab)</source>
-      <translation>Chrominances uniquement (ab)</translation>
+      <translation>Alleen chrominanten (ab)</translation>
     </message>
 
     <message>
       <source>Chrominances Only (CbCr)</source>
-      <translation>Chrominances uniquement (CbCr)</translation>
-    </message>
-
-    <message>
-      <source>Cine Drama</source>
-      <translation>Cinéma</translation>
+      <translation>Alleen chrominanten (CbCr)</translation>
     </message>
 
     <message>
       <source>Cinema</source>
-      <translation>Cinéma</translation>
+      <translation>Bioscoop</translation>
     </message>
 
     <message>
       <source>Cinema 2</source>
-      <translation>Cinéma 2</translation>
+      <translation>Bioscoop 2</translation>
     </message>
 
     <message>
       <source>Cinema 3</source>
-      <translation>Cinéma 3</translation>
+      <translation>Bioscoop 3</translation>
     </message>
 
     <message>
       <source>Cinema 4</source>
-      <translation>Cinéma 4</translation>
+      <translation>Bioscoop 4</translation>
     </message>
 
     <message>
       <source>Cinema 5</source>
-      <translation>Cinéma 5</translation>
+      <translation>Bioscoop 5</translation>
     </message>
 
     <message>
       <source>Cinema Noir</source>
-      <translation>Cinéma noir</translation>
+      <translation>Bioscoop Noir</translation>
     </message>
 
     <message>
       <source>Cinematic (8)</source>
-      <translation>Cinématique (8)</translation>
+      <translation>Bioscoop (8)</translation>
     </message>
 
     <message>
       <source>Cinematic for Flog</source>
-      <translation>Cinéma pour le Flog</translation>
+      <translation>Bioscoop voor Flog</translation>
     </message>
 
     <message>
       <source>Cinematic Lady Bird</source>
-      <translation>Dame Oiseau au cinéma</translation>
+      <translation>Filmische Damesvogel</translation>
     </message>
 
     <message>
       <source>Cinematic Mexico</source>
-      <translation>Cinéma Mexique</translation>
+      <translation>Cinematografisch Mexico</translation>
     </message>
 
     <message>
       <source>Cinematic Travel (29)</source>
-      <translation>Voyages cinématographiques (29)</translation>
+      <translation>Bioscoopreizen (29)</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-01</source>
+      <translation>Cinematisch-01</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-02</source>
+      <translation>Cinematisch-02</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-03</source>
+      <translation>Cinematisch-03</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-1</source>
+      <translation>Bioscoop-1</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-10</source>
+      <translation>Cinematisch-10</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-2</source>
+      <translation>Cinematisch-2</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-3</source>
+      <translation>Cinematisch-3</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-4</source>
+      <translation>Cinematisch-4</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-5</source>
+      <translation>Cinematisch-5</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-6</source>
+      <translation>Cinematisch-6</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-7</source>
+      <translation>Cinematisch-7</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-8</source>
+      <translation>Cinematisch-8</translation>
+    </message>
+
+    <message>
+      <source>Cinematic-9</source>
+      <translation>Cinematisch-9</translation>
     </message>
 
     <message>
       <source>Circle</source>
-      <translation>Cercle</translation>
+      <translation>Cirkel</translation>
     </message>
 
     <message>
       <source>Circle (Inv.)</source>
-      <translation>Cercle (Inv.)</translation>
+      <translation>Cirkel (Inv.)</translation>
     </message>
 
     <message>
       <source>Circle 1</source>
-      <translation>Cercle 1</translation>
+      <translation>Cirkel 1</translation>
     </message>
 
     <message>
       <source>Circle 2</source>
-      <translation>Cercle 2</translation>
+      <translation>Cirkel 2</translation>
     </message>
 
     <message>
       <source>Circle Abstraction</source>
-      <translation>Abstraction de cercle</translation>
+      <translation>Cirkel Abstractie</translation>
     </message>
 
     <message>
       <source>Circle Art</source>
-      <translation>L&apos;art du cercle</translation>
+      <translation>Cirkelkunst</translation>
     </message>
 
     <message>
       <source>Circle to Square</source>
-      <translation>Du cercle au carré</translation>
+      <translation>Cirkel naar vierkant</translation>
     </message>
 
     <message>
       <source>Circle Transform</source>
-      <translation>Transformer le cercle</translation>
+      <translation>Cirkeltransformatie</translation>
     </message>
 
     <message>
       <source>Circles</source>
-      <translation>Cercles</translation>
+      <translation>Cirkels</translation>
     </message>
 
     <message>
       <source>Circles (Outline)</source>
-      <translation>Cercles (schéma)</translation>
+      <translation>Cirkels (Overzicht)</translation>
     </message>
 
     <message>
       <source>Circles 1</source>
-      <translation>Cercles 1</translation>
+      <translation>Cirkels 1</translation>
     </message>
 
     <message>
       <source>Circles 2</source>
-      <translation>Cercles 2</translation>
+      <translation>Cirkels 2</translation>
     </message>
 
     <message>
@@ -3256,1497 +3461,1577 @@
 
     <message>
       <source>City 7</source>
-      <translation>Ville 7</translation>
+      <translation>Stad 7</translation>
     </message>
 
     <message>
       <source>Clarity</source>
-      <translation>Clarté</translation>
+      <translation>Duidelijkheid</translation>
     </message>
 
     <message>
       <source>Classic Chrome</source>
-      <translation>Chrome classique</translation>
+      <translation>Klassiek chroom</translation>
     </message>
 
     <message>
       <source>Classic Teal and Orange</source>
-      <translation>Sarcelle et orange classiques</translation>
+      <translation>Klassiek Teal en Oranje</translation>
+    </message>
+
+    <message>
+      <source>Clean</source>
+      <translation>Schoonmaken</translation>
     </message>
 
     <message>
       <source>Clean Text</source>
-      <translation>Texte propre</translation>
+      <translation>Schone tekst</translation>
     </message>
 
     <message>
       <source>Clear Control Points</source>
-      <translation>Points de contrôle clairs</translation>
+      <translation>Duidelijke controlepunten</translation>
     </message>
 
     <message>
       <source>Clear Teal Fade</source>
-      <translation>Effacement de la sarcelle</translation>
+      <translation>Duidelijke Teal Fade</translation>
+    </message>
+
+    <message>
+      <source>Cliff</source>
+      <translation>Klif</translation>
     </message>
 
     <message>
       <source>Closeup</source>
-      <translation>Gros plan sur</translation>
+      <translation>Close-up</translation>
     </message>
 
     <message>
       <source>Closing</source>
-      <translation>Fermeture</translation>
+      <translation>Afsluiting</translation>
     </message>
 
     <message>
       <source>Closing - Opening</source>
-      <translation>Clôture - Ouverture</translation>
+      <translation>Sluiten - Openen</translation>
     </message>
 
     <message>
       <source>Closing - Original</source>
-      <translation>Clôture - Original</translation>
+      <translation>Afsluiting - Origineel</translation>
     </message>
 
     <message>
       <source>Clouds</source>
-      <translation>Nuages</translation>
+      <translation>Wolken</translation>
     </message>
 
     <message>
       <source>CLUT from After - Before Layers</source>
-      <translation>CLUT d&apos;après - avant les couches</translation>
+      <translation>CLUT van na - voor lagen</translation>
     </message>
 
     <message>
       <source>CLUT Opacity</source>
-      <translation>CLUT Opacité</translation>
+      <translation>CLUT Opaciteit</translation>
     </message>
 
     <message>
       <source>CM[Yellow]K</source>
-      <translation>CM[Jaune]K</translation>
+      <translation>CM[Geel]K</translation>
     </message>
 
     <message>
       <source>CMY[Key]</source>
-      <translation>CMJ [Clé]</translation>
+      <translation>CMY[Sleutel]</translation>
+    </message>
+
+    <message>
+      <source>CMYK [cyan]</source>
+      <translation>CMYK [cyaan]</translation>
     </message>
 
     <message>
       <source>CMYK [Key]</source>
-      <translation>CMYK [Clé]</translation>
+      <translation>CMYK [Sleutel]</translation>
     </message>
 
     <message>
       <source>CMYK [Yellow]</source>
-      <translation>CMYK [Jaune]</translation>
+      <translation>CMYK [Geel]</translation>
     </message>
 
     <message>
       <source>CMYK Tone</source>
-      <translation>Tonalité CMYK</translation>
+      <translation>CMYK-toon</translation>
     </message>
 
     <message>
       <source>Coarse</source>
-      <translation>Grossier</translation>
+      <translation>Grof</translation>
     </message>
 
     <message>
       <source>Coarsest (faster)</source>
-      <translation>Le plus grossier (plus rapide)</translation>
+      <translation>Grofste (sneller)</translation>
+    </message>
+
+    <message>
+      <source>Coefficients</source>
+      <translation>Coëfficiënten</translation>
     </message>
 
     <message>
       <source>Coffee 44</source>
-      <translation>Café 44</translation>
+      <translation>Koffie 44</translation>
     </message>
 
     <message>
       <source>Coherence</source>
-      <translation>Cohérence</translation>
+      <translation>Coherentie</translation>
     </message>
 
     <message>
       <source>Cold Clear Blue</source>
-      <translation>Bleu clair et froid</translation>
+      <translation>Koud Helder Blauw</translation>
     </message>
 
     <message>
       <source>Cold Clear Blue 1</source>
-      <translation>Bleu clair froid 1</translation>
+      <translation>Koud Helder Blauw 1</translation>
     </message>
 
     <message>
       <source>Cold Simplicity 2</source>
-      <translation>Simplicité froide 2</translation>
+      <translation>Koude Eenvoud 2</translation>
     </message>
 
     <message>
       <source>Color</source>
-      <translation>Couleur</translation>
+      <translation>Kleur</translation>
     </message>
 
     <message>
       <source>Color (rich)</source>
-      <translation>Couleur (riche)</translation>
+      <translation>Kleur (rijk)</translation>
     </message>
 
     <message>
       <source>Color 1</source>
-      <translation>Couleur 1</translation>
+      <translation>Kleur 1</translation>
     </message>
 
     <message>
       <source>Color 1 (Up/Left Corner)</source>
-      <translation>Couleur 1 (Coin supérieur/gauche)</translation>
+      <translation>Kleur 1 (Boven/Linkshoek)</translation>
     </message>
 
     <message>
       <source>Color 2</source>
-      <translation>Couleur 2</translation>
+      <translation>Kleur 2</translation>
     </message>
 
     <message>
       <source>Color 2 (Up/Right Corner)</source>
-      <translation>Couleur 2 (Coin supérieur/droit)</translation>
+      <translation>Kleur 2 (Omhoog/Rechterhoek)</translation>
     </message>
 
     <message>
       <source>Color 3</source>
-      <translation>Couleur 3</translation>
+      <translation>Kleur 3</translation>
     </message>
 
     <message>
       <source>Color 3 (Bottom/Left Corner)</source>
-      <translation>Couleur 3 (Coin inférieur/gauche)</translation>
+      <translation>Kleur 3 (Bodem/linkerhoek)</translation>
     </message>
 
     <message>
       <source>Color 4</source>
-      <translation>Couleur 4</translation>
+      <translation>Kleur 4</translation>
     </message>
 
     <message>
       <source>Color 4 (Bottom/Right Corner)</source>
-      <translation>Couleur 4 (Coin inférieur/droit)</translation>
+      <translation>Kleur 4 (Bodem/Rechthoek)</translation>
     </message>
 
     <message>
       <source>Color A</source>
-      <translation>Couleur A</translation>
+      <translation>Kleur A</translation>
     </message>
 
     <message>
       <source>Color Abstraction Opacity</source>
-      <translation>Opacité d&apos;abstraction des couleurs</translation>
+      <translation>Kleurenabstractie Opaciteit</translation>
     </message>
 
     <message>
       <source>Color Abstraction Paint</source>
-      <translation>Peinture d&apos;abstraction de couleur</translation>
+      <translation>Kleur Abstractie Verf</translation>
     </message>
 
     <message>
       <source>Color B</source>
-      <translation>Couleur B</translation>
+      <translation>Kleur B</translation>
     </message>
 
     <message>
       <source>Color Balance</source>
-      <translation>Balance des couleurs</translation>
+      <translation>Kleurensaldo</translation>
     </message>
 
     <message>
       <source>Color Basis</source>
-      <translation>Base de couleur</translation>
+      <translation>Kleurenbasis</translation>
     </message>
 
     <message>
       <source>Color Blending</source>
-      <translation>Mélange de couleurs</translation>
+      <translation>Kleurmenging</translation>
     </message>
 
     <message>
       <source>Color Blindness</source>
-      <translation>Cécité chromatique</translation>
+      <translation>Kleurenblindheid</translation>
     </message>
 
     <message>
       <source>Color Blue-Yellow</source>
-      <translation>Couleur Bleu-Jaune</translation>
+      <translation>Kleur Blauw-Geel</translation>
+    </message>
+
+    <message>
+      <source>Color Boost</source>
+      <translation>Kleurversterking</translation>
     </message>
 
     <message>
       <source>Color Burn</source>
-      <translation>Brûlure de couleur</translation>
+      <translation>Kleurverbranding</translation>
     </message>
 
     <message>
       <source>Color C</source>
-      <translation>Couleur C</translation>
+      <translation>Kleur C</translation>
     </message>
 
     <message>
       <source>Color Channel  Smoothing</source>
-      <translation>Lissage des canaux de couleur</translation>
+      <translation>Kleur kanaal gladstrijken</translation>
     </message>
 
     <message>
       <source>Color Channels</source>
-      <translation>Canaux de couleur</translation>
+      <translation>Kleurenkanalen</translation>
     </message>
 
     <message>
       <source>Color D</source>
-      <translation>Couleur D</translation>
+      <translation>Kleur D</translation>
     </message>
 
     <message>
       <source>Color Dispersion</source>
-      <translation>Dispersion des couleurs</translation>
+      <translation>Kleurverspreiding</translation>
     </message>
 
     <message>
       <source>Color Doping</source>
-      <translation>Dopage des couleurs</translation>
+      <translation>Kleurendoping</translation>
     </message>
 
     <message>
       <source>Color E</source>
-      <translation>Couleur E</translation>
+      <translation>Kleur E</translation>
     </message>
 
     <message>
       <source>Color Effect Mode</source>
-      <translation>Mode effet couleur</translation>
+      <translation>De Wijze van het kleureffect</translation>
     </message>
 
     <message>
       <source>Color F</source>
-      <translation>Couleur F</translation>
+      <translation>Kleur F</translation>
     </message>
 
     <message>
       <source>Color G</source>
-      <translation>Couleur G</translation>
+      <translation>Kleur G</translation>
     </message>
 
     <message>
       <source>Color Gamma</source>
-      <translation>Gamma couleur</translation>
+      <translation>Kleurengamma</translation>
     </message>
 
     <message>
       <source>Color Grading</source>
-      <translation>Classement des couleurs</translation>
+      <translation>Kleursortering</translation>
     </message>
 
     <message>
       <source>Color Green-Magenta</source>
-      <translation>Couleur Vert-Magenta</translation>
+      <translation>Kleur Groen-Magenta</translation>
     </message>
 
     <message>
       <source>Color Highlights</source>
-      <translation>Points forts en couleur</translation>
+      <translation>Kleurenhoogtepunten</translation>
     </message>
 
     <message>
       <source>Color Image</source>
-      <translation>Image couleur</translation>
+      <translation>Kleurenbeeld</translation>
     </message>
 
     <message>
       <source>Color Intensity</source>
-      <translation>Intensité de la couleur</translation>
+      <translation>Kleurintensiteit</translation>
     </message>
 
     <message>
       <source>Color Mask</source>
-      <translation>Masque de couleur</translation>
+      <translation>Kleurenmasker</translation>
     </message>
 
     <message>
       <source>Color Mask [Interactive]</source>
-      <translation>Masque de couleur [Interactif]</translation>
+      <translation>Kleurenmasker [Interactief]</translation>
     </message>
 
     <message>
       <source>Color Median</source>
-      <translation>Médiane des couleurs</translation>
+      <translation>Kleurmediaan</translation>
     </message>
 
     <message>
       <source>Color Metric</source>
-      <translation>Métrique des couleurs</translation>
+      <translation>Kleur Metrisch</translation>
     </message>
 
     <message>
       <source>Color Midtones</source>
-      <translation>Couleur Midtones</translation>
+      <translation>Kleur Midtonen</translation>
     </message>
 
     <message>
       <source>Color Mode</source>
-      <translation>Mode couleur</translation>
+      <translation>Kleurmodus</translation>
     </message>
 
     <message>
       <source>Color Model</source>
-      <translation>Modèle de couleur</translation>
+      <translation>Kleurenmodel</translation>
     </message>
 
     <message>
       <source>Color Negative</source>
-      <translation>Couleur Négatif</translation>
+      <translation>Kleurnegatief</translation>
     </message>
 
     <message>
       <source>Color on White</source>
-      <translation>La couleur sur le blanc</translation>
+      <translation>Kleur op Wit</translation>
     </message>
 
     <message>
       <source>Color Overall Effect</source>
-      <translation>Effet global de la couleur</translation>
+      <translation>Kleuren Algemeen Effect</translation>
     </message>
 
     <message>
       <source>Color Presets</source>
-      <translation>Préréglages des couleurs</translation>
+      <translation>Vooraf ingestelde kleuren</translation>
     </message>
 
     <message>
       <source>Color Quantization</source>
-      <translation>Quantification des couleurs</translation>
+      <translation>Kleurkwantisering</translation>
     </message>
 
     <message>
       <source>Color Rendering</source>
-      <translation>Rendu des couleurs</translation>
+      <translation>Kleurweergave</translation>
     </message>
 
     <message>
       <source>Color Shading (%)</source>
-      <translation>Nuances de couleurs (%)</translation>
+      <translation>Kleurschakering (%)</translation>
     </message>
 
     <message>
       <source>Color Shadows</source>
-      <translation>Ombres de couleur</translation>
+      <translation>Kleur Schaduwen</translation>
     </message>
 
     <message>
       <source>Color Smoothness</source>
-      <translation>Lissage des couleurs</translation>
+      <translation>Kleur gladheid</translation>
     </message>
 
     <message>
       <source>Color Space</source>
-      <translation>Espace de couleur</translation>
+      <translation>Kleurruimte</translation>
     </message>
 
     <message>
       <source>Color Spots + Extrapolated Colors + Lineart</source>
-      <translation>Points de couleur + couleurs extrapolées + linéarité</translation>
+      <translation>Kleurvlekken + geëxtrapoleerde kleuren + Lineart</translation>
     </message>
 
     <message>
       <source>Color Spots + Lineart</source>
-      <translation>Points de couleur + Lineart</translation>
+      <translation>Kleurvlekken + Lineart</translation>
     </message>
 
     <message>
       <source>Color Strength</source>
-      <translation>Force de la couleur</translation>
+      <translation>Kleursterkte</translation>
     </message>
 
     <message>
       <source>Color Temperature</source>
-      <translation>Température de couleur</translation>
+      <translation>Kleurtemperatuur</translation>
     </message>
 
     <message>
       <source>Color Tolerance</source>
-      <translation>Tolérance des couleurs</translation>
+      <translation>Kleurentolerantie</translation>
     </message>
 
     <message>
       <source>Color Variation [Random -1]</source>
-      <translation>Variation de la couleur [Aléatoire -1]</translation>
+      <translation>Kleurvariatie [Willekeurig -1]</translation>
     </message>
 
     <message>
       <source>Colored Geometry</source>
-      <translation>Géométrie colorée</translation>
+      <translation>Gekleurde Geometrie</translation>
     </message>
 
     <message>
       <source>Colored Grain</source>
-      <translation>Grain coloré</translation>
+      <translation>Gekleurde korrel</translation>
     </message>
 
     <message>
       <source>Colored Lineart</source>
-      <translation>Lineart coloré</translation>
+      <translation>Gekleurde Lineart</translation>
     </message>
 
     <message>
       <source>Colored on Black</source>
-      <translation>Coloré sur le noir</translation>
+      <translation>Gekleurd op zwart</translation>
     </message>
 
     <message>
       <source>Colored on Transparent</source>
-      <translation>Coloré sur transparent</translation>
+      <translation>Gekleurd op Transparant</translation>
     </message>
 
     <message>
       <source>Colored Outline</source>
-      <translation>Schéma coloré</translation>
+      <translation>Gekleurde contouren</translation>
     </message>
 
     <message>
       <source>Colored Pencils</source>
-      <translation>Crayons de couleur</translation>
+      <translation>Gekleurde potloden</translation>
     </message>
 
     <message>
       <source>Colored Regions</source>
-      <translation>Régions colorées</translation>
+      <translation>Gekleurde regio&apos;s</translation>
     </message>
 
     <message>
       <source>Colorful</source>
-      <translation>Colorée</translation>
+      <translation>Kleurrijke</translation>
     </message>
 
     <message>
       <source>Colorful 0209</source>
-      <translation>Colorée 0209</translation>
+      <translation>Kleurrijk 0209</translation>
     </message>
 
     <message>
       <source>Colorful Blobs</source>
-      <translation>Blocs colorés</translation>
+      <translation>Kleurrijke Blobs</translation>
     </message>
 
     <message>
       <source>Coloring</source>
-      <translation>Coloriage</translation>
+      <translation>Kleuren</translation>
     </message>
 
     <message>
       <source>Colorize [Interactive]</source>
-      <translation>Coloriser [Interactif]</translation>
+      <translation>Colorize [Interactief]</translation>
     </message>
 
     <message>
       <source>Colorize [Photographs]</source>
-      <translation>Coloriser [Photographies]</translation>
+      <translation>Colorize [Foto&apos;s]</translation>
     </message>
 
     <message>
       <source>Colorize [with Colormap]</source>
-      <translation>Coloriser [avec Colormap]</translation>
-    </message>
-
-    <message>
-      <source>Colorize Lineart [Auto-Fill]</source>
-      <translation>Coloriser les linéaires [Auto-remplissage]</translation>
+      <translation>Colorize [met Colormap]</translation>
     </message>
 
     <message>
       <source>Colorize Lineart [Propagation]</source>
-      <translation>Coloriser le linéament [Propagation].</translation>
-    </message>
-
-    <message>
-      <source>Colorize Lineart [Smart Coloring]</source>
-      <translation>Coloriser les linéaires [Coloration intelligente].</translation>
+      <translation>Colorize Lineart [Voortplanting]</translation>
     </message>
 
     <message>
       <source>Colorize Mode</source>
-      <translation>Mode colorisation</translation>
+      <translation>Kleurrijke modus</translation>
     </message>
 
     <message>
       <source>Colorized Image (1 Layer)</source>
-      <translation>Image colorée (1 couche)</translation>
-    </message>
-
-    <message>
-      <source>Colormap Type</source>
-      <translation>Type de document (Colormap)</translation>
+      <translation>Gekleurd beeld (1 laag)</translation>
     </message>
 
     <message>
       <source>Colors</source>
-      <translation>Couleurs</translation>
+      <translation>Kleuren</translation>
     </message>
 
     <message>
       <source>Colors A</source>
-      <translation>Couleurs A</translation>
+      <translation>Kleuren A</translation>
     </message>
 
     <message>
       <source>Colors B</source>
-      <translation>Couleurs B</translation>
+      <translation>Kleuren B</translation>
     </message>
 
     <message>
       <source>Colors Only</source>
-      <translation>Couleurs uniquement</translation>
+      <translation>Alleen kleuren</translation>
     </message>
 
     <message>
       <source>Colors Only (1 Layer)</source>
-      <translation>Couleurs uniquement (1 couche)</translation>
+      <translation>Alleen kleuren (1 laag)</translation>
     </message>
 
     <message>
       <source>Colors to Layers</source>
-      <translation>Des couleurs aux couches</translation>
+      <translation>Kleuren naar lagen</translation>
+    </message>
+
+    <message>
+      <source>Colorspace</source>
+      <translation>Kleurruimte</translation>
     </message>
 
     <message>
       <source>Colour</source>
-      <translation>Couleur</translation>
+      <translation>Kleur</translation>
     </message>
 
     <message>
       <source>Colour Channels</source>
-      <translation>Chaînes de couleur</translation>
+      <translation>Kleurenkanalen</translation>
     </message>
 
     <message>
       <source>Colour Model</source>
-      <translation>Modèle de couleur</translation>
+      <translation>Kleurenmodel</translation>
     </message>
 
     <message>
       <source>Colour Smoothing</source>
-      <translation>Lissage des couleurs</translation>
+      <translation>Kleur gladstrijken</translation>
     </message>
 
     <message>
       <source>Colour Space Mode</source>
-      <translation>Mode espace couleur</translation>
+      <translation>Kleurruimte modus</translation>
     </message>
 
     <message>
       <source>Column by Column</source>
-      <translation>Colonne par colonne</translation>
+      <translation>Kolom voor kolom</translation>
     </message>
 
     <message>
       <source>Comic Style</source>
-      <translation>Style de la bande dessinée</translation>
+      <translation>Stripstijl</translation>
+    </message>
+
+    <message>
+      <source>Comix Colors</source>
+      <translation>Comix Kleuren</translation>
     </message>
 
     <message>
       <source>Components</source>
-      <translation>Composants</translation>
+      <translation>Onderdelen</translation>
     </message>
 
     <message>
       <source>Composed Layers</source>
-      <translation>Couches composées</translation>
+      <translation>Samengestelde lagen</translation>
     </message>
 
     <message>
       <source>Compress Highlights</source>
-      <translation>Compresser les points forts</translation>
+      <translation>Comprimeer Hoogtepunten</translation>
     </message>
 
     <message>
       <source>Compression Blur</source>
-      <translation>Flou de compression</translation>
+      <translation>Compressie Wazigheid</translation>
     </message>
 
     <message>
       <source>Compression Filter</source>
-      <translation>Filtre de compression</translation>
+      <translation>Compressiefilter</translation>
     </message>
 
     <message>
       <source>Computation Mode</source>
-      <translation>Mode de calcul</translation>
+      <translation>Computationele wijze</translation>
     </message>
 
     <message>
       <source>Cone</source>
-      <translation>Cône</translation>
-    </message>
-
-    <message>
-      <source>Conflict 01</source>
-      <translation>Conflit 01</translation>
+      <translation>Kegel</translation>
     </message>
 
     <message>
       <source>Conformal Maps</source>
-      <translation>Cartes conformes</translation>
+      <translation>Conformiteitskaarten</translation>
     </message>
 
     <message>
       <source>Connectivity</source>
-      <translation>Connectivité</translation>
+      <translation>Connectiviteit</translation>
     </message>
 
     <message>
       <source>Connectors Centering</source>
-      <translation>Centrage des connecteurs</translation>
+      <translation>Verbindingselementen Centreren</translation>
     </message>
 
     <message>
       <source>Connectors Variability</source>
-      <translation>Variabilité des connecteurs</translation>
+      <translation>Aansluitingen Variabiliteit</translation>
     </message>
 
     <message>
       <source>Constrain Image Size</source>
-      <translation>Limiter la taille de l&apos;image</translation>
+      <translation>Beperk het beeldformaat</translation>
     </message>
 
     <message>
       <source>Constrain Values</source>
-      <translation>Limiter les valeurs</translation>
+      <translation>Beperkingswaarden</translation>
     </message>
 
     <message>
       <source>Constrained Sharpen</source>
-      <translation>Aiguiser sous contrainte</translation>
+      <translation>Beperkt verscherpen</translation>
     </message>
 
     <message>
       <source>Constraint Radius</source>
-      <translation>Rayon de contrainte</translation>
+      <translation>Beperkingsstraal</translation>
     </message>
 
     <message>
       <source>Continuous Droste</source>
-      <translation>Droste continu</translation>
+      <translation>Doorlopende Droste</translation>
     </message>
 
     <message>
       <source>Contour Coherence</source>
-      <translation>Cohérence des contours</translation>
+      <translation>Contourcoherentie</translation>
     </message>
 
     <message>
       <source>Contour Detection (%)</source>
-      <translation>Détection des contours (%)</translation>
+      <translation>Contourdetectie (%)</translation>
     </message>
 
     <message>
       <source>Contour Normalization</source>
-      <translation>Normalisation des contours</translation>
+      <translation>Contour Normalisatie</translation>
     </message>
 
     <message>
       <source>Contour Precision</source>
-      <translation>Précision des contours</translation>
+      <translation>Contournauwkeurigheid</translation>
     </message>
 
     <message>
       <source>Contour Threshold</source>
-      <translation>Seuil de contour</translation>
+      <translation>Contourdrempel</translation>
     </message>
 
     <message>
       <source>Contour Threshold (%)</source>
-      <translation>Seuil de contour (%)</translation>
+      <translation>Contourdrempel (%)</translation>
+    </message>
+
+    <message>
+      <source>Contours</source>
+      <translation>Contouren</translation>
     </message>
 
     <message>
       <source>Contours + Flocon/Snowflake</source>
-      <translation>Contours + Flocon/Flacon de neige</translation>
+      <translation>Contouren + Flocon/Snowflake</translation>
     </message>
 
     <message>
       <source>Contours Recursion</source>
-      <translation>Récursion des contours</translation>
-    </message>
-
-    <message>
-      <source>Contrast</source>
-      <translation>Contraste</translation>
-    </message>
-
-    <message>
-      <source>Contrast (%)</source>
-      <translation>Contraste (%)</translation>
+      <translation>Contouren Recursie</translation>
     </message>
 
     <message>
       <source>Contrast Smoothness</source>
-      <translation>Lissage des contrastes</translation>
+      <translation>Contrast Gladheid</translation>
     </message>
 
     <message>
       <source>Contrast Swiss Mask</source>
-      <translation>Masque suisse contrasté</translation>
+      <translation>Contrast Zwitsers Masker</translation>
     </message>
 
     <message>
       <source>Contrast with Highlights Protection</source>
-      <translation>Contraste avec la protection des points forts</translation>
+      <translation>Contrast met Highlights Protection</translation>
     </message>
 
     <message>
       <source>Contrasty Afternoon</source>
-      <translation>Après-midi contrasté</translation>
+      <translation>Contrasterende middag</translation>
     </message>
 
     <message>
       <source>Contrasty Green</source>
-      <translation>Vert contrasté</translation>
+      <translation>Contrastijlgroen</translation>
     </message>
 
     <message>
       <source>Contributors</source>
-      <translation>Contributeurs</translation>
+      <translation>Medewerkers</translation>
     </message>
 
     <message>
       <source>Control Point 1</source>
-      <translation>Point de contrôle 1</translation>
+      <translation>Controlepunt 1</translation>
     </message>
 
     <message>
       <source>Control Point 2</source>
-      <translation>Point de contrôle 2</translation>
+      <translation>Controlepunt 2</translation>
     </message>
 
     <message>
       <source>Control Point 3</source>
-      <translation>Point de contrôle 3</translation>
+      <translation>Controlepunt 3</translation>
     </message>
 
     <message>
       <source>Control Point 4</source>
-      <translation>Point de contrôle 4</translation>
+      <translation>Controlepunt 4</translation>
     </message>
 
     <message>
       <source>Control Point 5</source>
-      <translation>Point de contrôle 5</translation>
+      <translation>Controlepunt 5</translation>
     </message>
 
     <message>
       <source>Control Point 6</source>
-      <translation>Point de contrôle 6</translation>
+      <translation>Controlepunt 6</translation>
     </message>
 
     <message>
       <source>Convolve</source>
-      <translation>Convivialité</translation>
+      <translation>Bekijk</translation>
+    </message>
+
+    <message>
+      <source>Cool (256)</source>
+      <translation>Koel (256)</translation>
     </message>
 
     <message>
       <source>Cool / Warm</source>
-      <translation>Froid / Chaud</translation>
+      <translation>Koel / Warm</translation>
     </message>
 
     <message>
       <source>Copper</source>
-      <translation>Cuivre</translation>
+      <translation>Koper</translation>
     </message>
 
     <message>
       <source>Corner Brightness</source>
-      <translation>Luminosité du coin</translation>
+      <translation>Hoekhelderheid</translation>
     </message>
 
     <message>
       <source>Correlated Channels</source>
-      <translation>Chaînes corrélées</translation>
+      <translation>Gecorreleerde kanalen</translation>
     </message>
 
     <message>
       <source>Counter Clockwise</source>
-      <translation>Dans le sens inverse des aiguilles d&apos;une montre</translation>
+      <translation>Tegen de klok in</translation>
     </message>
 
     <message>
       <source>Course 4</source>
-      <translation>Cours 4</translation>
+      <translation>Cursus 4</translation>
+    </message>
+
+    <message>
+      <source>Cracks</source>
+      <translation>Scheuren</translation>
+    </message>
+
+    <message>
+      <source>Crease</source>
+      <translation>Vouw</translation>
     </message>
 
     <message>
       <source>Creative Pack (33)</source>
-      <translation>Pack créatif (33)</translation>
+      <translation>Creatief pakket (33)</translation>
     </message>
 
     <message>
       <source>Crisp Romance</source>
-      <translation>Romance croustillante</translation>
+      <translation>Knapperige Romantiek</translation>
+    </message>
+
+    <message>
+      <source>Crisp Warm</source>
+      <translation>Knapperig warm</translation>
     </message>
 
     <message>
       <source>Criterion</source>
-      <translation>Critère</translation>
+      <translation>Criterium</translation>
     </message>
 
     <message>
       <source>Crop</source>
-      <translation>Culture</translation>
+      <translation>Gewas</translation>
     </message>
 
     <message>
       <source>Crop (%)</source>
-      <translation>Culture (%)</translation>
+      <translation>Gewas (%)</translation>
     </message>
 
     <message>
       <source>Cross Process CP 130</source>
-      <translation>Processus croisé CP 130</translation>
+      <translation>Kruisproces CP 130</translation>
     </message>
 
     <message>
       <source>Cross Process CP 14</source>
-      <translation>Processus croisé CP 14</translation>
+      <translation>Kruisproces CP 14</translation>
     </message>
 
     <message>
       <source>Cross Process CP 15</source>
-      <translation>Processus croisé CP 15</translation>
+      <translation>Kruisproces CP 15</translation>
     </message>
 
     <message>
       <source>Cross Process CP 16</source>
-      <translation>Processus croisé CP 16</translation>
+      <translation>Kruisproces CP 16</translation>
     </message>
 
     <message>
       <source>Cross Process CP 18</source>
-      <translation>Processus croisé CP 18</translation>
+      <translation>Kruisproces CP 18</translation>
     </message>
 
     <message>
       <source>Cross Process CP 3</source>
-      <translation>Processus croisé CP 3</translation>
+      <translation>Kruisproces CP 3</translation>
     </message>
 
     <message>
       <source>Cross Process CP 4</source>
-      <translation>Processus croisé CP 4</translation>
+      <translation>Kruisproces CP 4</translation>
     </message>
 
     <message>
       <source>Cross Process CP 6</source>
-      <translation>Processus croisé CP 6</translation>
+      <translation>Kruisproces CP 6</translation>
     </message>
 
     <message>
       <source>Cross-Hatch Amount</source>
-      <translation>Montant de la hachure</translation>
+      <translation>Cross-Hatch bedrag</translation>
     </message>
 
     <message>
       <source>Crossed</source>
-      <translation>Traversée</translation>
+      <translation>Gekruist</translation>
     </message>
 
     <message>
       <source>Crosses 1</source>
-      <translation>Croix 1</translation>
+      <translation>Kruisen 1</translation>
     </message>
 
     <message>
       <source>Crosses 2</source>
-      <translation>Croix 2</translation>
+      <translation>Kruisen 2</translation>
+    </message>
+
+    <message>
+      <source>Crosshair</source>
+      <translation>Dwarsdraad</translation>
     </message>
 
     <message>
       <source>CRT Sub-Pixels</source>
-      <translation>Sous-pixels de la CRT</translation>
+      <translation>CRT-sub-pixels</translation>
+    </message>
+
+    <message>
+      <source>Crystal</source>
+      <translation>Kristal</translation>
     </message>
 
     <message>
       <source>Crystal Background</source>
-      <translation>Fond de cristal</translation>
+      <translation>Kristallen achtergrond</translation>
+    </message>
+
+    <message>
+      <source>Cube</source>
+      <translation>Kubus</translation>
+    </message>
+
+    <message>
+      <source>Cube (256)</source>
+      <translation>Kubus (256)</translation>
     </message>
 
     <message>
       <source>Cubic</source>
-      <translation>Cubique</translation>
+      <translation>Kubieke</translation>
     </message>
 
     <message>
       <source>Cubicle 99</source>
-      <translation>Cabine 99</translation>
+      <translation>Kubus 99</translation>
     </message>
 
     <message>
       <source>Cubism</source>
-      <translation>Cubisme</translation>
+      <translation>Kubisme</translation>
     </message>
 
     <message>
       <source>Cubism on Color Abstraction</source>
-      <translation>Le cubisme sur l&apos;abstraction des couleurs</translation>
+      <translation>Kubisme op Kleur Abstractie</translation>
     </message>
 
     <message>
       <source>Cup</source>
-      <translation>Coupe</translation>
+      <translation>Beker</translation>
     </message>
 
     <message>
       <source>Cupid</source>
-      <translation>Cupidon</translation>
+      <translation>Cupido</translation>
     </message>
 
     <message>
       <source>Curvature</source>
-      <translation>Courbure</translation>
+      <translation>Kromming</translation>
     </message>
 
     <message>
       <source>Curvature Shadow</source>
-      <translation>Ombre de courbure</translation>
+      <translation>Kromming Schaduw</translation>
     </message>
 
     <message>
       <source>Curve Amount</source>
-      <translation>Courbe Montant</translation>
+      <translation>Curve Bedrag</translation>
     </message>
 
     <message>
       <source>Curve Angle</source>
-      <translation>Angle de la courbe</translation>
+      <translation>Kromme hoek</translation>
     </message>
 
     <message>
       <source>Curve Length</source>
-      <translation>Longueur de la courbe</translation>
+      <translation>Kromme lengte</translation>
     </message>
 
     <message>
       <source>Curved</source>
-      <translation>Courbe</translation>
+      <translation>Gebogen</translation>
     </message>
 
     <message>
       <source>Curved Stroke</source>
-      <translation>Courbes de l&apos;accident vasculaire cérébral</translation>
+      <translation>Gebogen slag</translation>
     </message>
 
     <message>
       <source>Curves</source>
-      <translation>Courbes</translation>
+      <translation>Curven</translation>
     </message>
 
     <message>
       <source>Curves Previously Defined</source>
-      <translation>Courbes précédemment définies</translation>
+      <translation>Curven Eerder gedefinieerde</translation>
     </message>
 
     <message>
       <source>Custom</source>
-      <translation>Personnalisation</translation>
+      <translation>Aangepaste</translation>
     </message>
 
     <message>
       <source>Custom Code [Global]</source>
-      <translation>Code des douanes [Global]</translation>
+      <translation>Aangepaste code [Globaal]</translation>
     </message>
 
     <message>
       <source>Custom Code [Local]</source>
-      <translation>Code des douanes [local]</translation>
+      <translation>Aangepaste code [Lokaal]</translation>
     </message>
 
     <message>
       <source>Custom Correction Map</source>
-      <translation>Carte de correction personnalisée</translation>
+      <translation>Aangepaste Correctie Kaart</translation>
     </message>
 
     <message>
       <source>Custom Depth Correction</source>
-      <translation>Correction de profondeur personnalisée</translation>
+      <translation>Aangepaste dieptecorrectie</translation>
     </message>
 
     <message>
       <source>Custom Depth Maps Stream</source>
-      <translation>Flux de cartes de profondeur personnalisées</translation>
+      <translation>Aangepaste Dieptekaarten Stroom</translation>
     </message>
 
     <message>
       <source>Custom Dictionary</source>
-      <translation>Dictionnaire des coutumes</translation>
+      <translation>Aangepast Woordenboek</translation>
     </message>
 
     <message>
       <source>Custom Filter Code</source>
-      <translation>Code de filtrage personnalisé</translation>
+      <translation>Aangepaste filtercode</translation>
     </message>
 
     <message>
       <source>Custom Formula</source>
-      <translation>Formule sur mesure</translation>
+      <translation>Aangepaste formule</translation>
     </message>
 
     <message>
       <source>Custom Kernel</source>
-      <translation>Noyau personnalisé</translation>
+      <translation>Aangepaste Kernel</translation>
     </message>
 
     <message>
       <source>Custom Layers</source>
-      <translation>Couches personnalisées</translation>
+      <translation>Aangepaste lagen</translation>
     </message>
 
     <message>
       <source>Custom Layout</source>
-      <translation>Mise en page personnalisée</translation>
+      <translation>Aangepaste indeling</translation>
     </message>
 
     <message>
       <source>Custom Style (Bottom Layer)</source>
-      <translation>Style personnalisé (couche inférieure)</translation>
+      <translation>Aangepaste stijl (bodemlaag)</translation>
     </message>
 
     <message>
       <source>Custom Style (Top Layer)</source>
-      <translation>Style personnalisé (couche supérieure)</translation>
+      <translation>Aangepaste stijl (bovenste laag)</translation>
     </message>
 
     <message>
       <source>Custom Transform</source>
-      <translation>Transformation sur mesure</translation>
+      <translation>Aangepaste Transformatie</translation>
     </message>
 
     <message>
       <source>Customize CLUT</source>
-      <translation>Personnaliser CLUT</translation>
+      <translation>CLUT aanpassen</translation>
     </message>
 
     <message>
       <source>Cut</source>
-      <translation>Coupez</translation>
+      <translation>Knip</translation>
     </message>
 
     <message>
       <source>Cut &amp; Normalize</source>
-      <translation>Couper et normaliser</translation>
+      <translation>Snijden &amp; Normaliseren</translation>
     </message>
 
     <message>
       <source>Cut High</source>
-      <translation>Couper haut</translation>
+      <translation>Snij hoog</translation>
     </message>
 
     <message>
       <source>Cut Low</source>
-      <translation>Coupez bas</translation>
+      <translation>Laag snijden</translation>
     </message>
 
     <message>
       <source>Cutout</source>
-      <translation>Découpage</translation>
+      <translation>Uitsnede</translation>
+    </message>
+
+    <message>
+      <source>Cyan</source>
+      <translation>Cyaan</translation>
     </message>
 
     <message>
       <source>Cyan Factor</source>
-      <translation>Le facteur cyan</translation>
-    </message>
-
-    <message>
-      <source>Cyan Shift</source>
-      <translation>Changement de cyan</translation>
+      <translation>Cyaan Factor</translation>
     </message>
 
     <message>
       <source>Cyan Smoothness</source>
-      <translation>Douceur du cyan</translation>
+      <translation>Cyaan Gladheid</translation>
     </message>
 
     <message>
       <source>Cycle Layers</source>
-      <translation>Les couches du cycle</translation>
+      <translation>Cycluslagen</translation>
+    </message>
+
+    <message>
+      <source>Cycles</source>
+      <translation>Fietsen</translation>
     </message>
 
     <message>
       <source>Cylinder</source>
-      <translation>Cylindre</translation>
+      <translation>Cilinder</translation>
     </message>
 
     <message>
       <source>D and O 1</source>
-      <translation>D et O 1</translation>
+      <translation>D en O 1</translation>
     </message>
 
     <message>
       <source>Damping per Octave</source>
-      <translation>Amortissement par octave</translation>
+      <translation>Demping per octaaf</translation>
     </message>
 
     <message>
       <source>Dark  Motive</source>
-      <translation>Motif sombre</translation>
+      <translation>Donkere motief</translation>
+    </message>
+
+    <message>
+      <source>Dark Blues in Sunlight</source>
+      <translation>Donkerblauw in het zonlicht</translation>
+    </message>
+
+    <message>
+      <source>Dark Boost</source>
+      <translation>Donkere Boost</translation>
     </message>
 
     <message>
       <source>Dark Color</source>
-      <translation>Couleur foncée</translation>
+      <translation>Donkere kleur</translation>
     </message>
 
     <message>
       <source>Dark Edges</source>
-      <translation>Bords sombres</translation>
+      <translation>Donkere randen</translation>
     </message>
 
     <message>
       <source>Dark Green 02</source>
-      <translation>Vert foncé 02</translation>
+      <translation>Donkergroen 02</translation>
     </message>
 
     <message>
       <source>Dark Green 1</source>
-      <translation>Vert foncé 1</translation>
+      <translation>Donkergroen 1</translation>
     </message>
 
     <message>
       <source>Dark Grey</source>
-      <translation>Gris foncé</translation>
+      <translation>Donkergrijs</translation>
     </message>
 
     <message>
       <source>Dark Length</source>
-      <translation>Longueur noire</translation>
+      <translation>Donkere lengte</translation>
     </message>
 
     <message>
       <source>Dark Motive</source>
-      <translation>Motif sombre</translation>
+      <translation>Donkere motief</translation>
     </message>
 
     <message>
       <source>Dark Pixels</source>
-      <translation>Pixels sombres</translation>
+      <translation>Donkere Pixels</translation>
     </message>
 
     <message>
       <source>Dark Place 01</source>
-      <translation>Lieu sombre 01</translation>
+      <translation>Donkere plaats 01</translation>
     </message>
 
     <message>
       <source>Dark Screen</source>
-      <translation>Écran noir</translation>
+      <translation>Donker scherm</translation>
     </message>
 
     <message>
       <source>Dark Sky</source>
-      <translation>Ciel noir</translation>
+      <translation>Donkere hemel</translation>
     </message>
 
     <message>
       <source>Dark Walls</source>
-      <translation>Murs sombres</translation>
+      <translation>Donkere muren</translation>
+    </message>
+
+    <message>
+      <source>Darken</source>
+      <translation>Verduisteren</translation>
     </message>
 
     <message>
       <source>Darker</source>
-      <translation>Plus sombre</translation>
+      <translation>Donkerder</translation>
     </message>
 
     <message>
       <source>Darkness</source>
-      <translation>Ténèbres</translation>
+      <translation>Duisternis</translation>
     </message>
 
     <message>
       <source>Darkness Level</source>
-      <translation>Niveau d&apos;obscurité</translation>
+      <translation>Duisternisniveau</translation>
+    </message>
+
+    <message>
+      <source>Date 39</source>
+      <translation>Datum 39</translation>
     </message>
 
     <message>
       <source>Day for Night</source>
-      <translation>Le jour pour la nuit</translation>
+      <translation>Dag voor de nacht</translation>
     </message>
 
     <message>
       <source>Daylight Scene</source>
-      <translation>Scène de lumière du jour</translation>
-    </message>
-
-    <message>
-      <source>De-Anaglyph</source>
-      <translation>De-Anaglyphe</translation>
+      <translation>Daglichtscène</translation>
     </message>
 
     <message>
       <source>Debug Font Size</source>
-      <translation>Debug Taille de la police</translation>
+      <translation>Debug lettergrootte</translation>
     </message>
 
     <message>
       <source>Decompose</source>
-      <translation>Décomposer</translation>
+      <translation>Ontbind</translation>
     </message>
 
     <message>
       <source>Decompose Channels</source>
-      <translation>Décomposer les canaux</translation>
+      <translation>Kanalen ontbinden</translation>
     </message>
 
     <message>
       <source>Decoration</source>
-      <translation>Décoration</translation>
+      <translation>Decoratie</translation>
     </message>
 
     <message>
       <source>Decreasing</source>
-      <translation>En baisse</translation>
+      <translation>Afnemende</translation>
+    </message>
+
+    <message>
+      <source>Deep</source>
+      <translation>Diepgaand</translation>
     </message>
 
     <message>
       <source>Deep Blue</source>
-      <translation>Bleu foncé</translation>
+      <translation>Diep Blauw</translation>
     </message>
 
     <message>
       <source>Deep Dark Warm</source>
-      <translation>Profondément sombre et chaud</translation>
+      <translation>Diep donker warm</translation>
     </message>
 
     <message>
       <source>Deep High Contrast</source>
-      <translation>Contraste élevé et profond</translation>
+      <translation>Diepgaand hoog contrast</translation>
     </message>
 
     <message>
       <source>Deep Teal Fade</source>
-      <translation>Fondu de sarcelle</translation>
+      <translation>Diepe Teal Fade</translation>
     </message>
 
     <message>
       <source>Deep Warm Fade</source>
-      <translation>Fondu profond et chaud</translation>
+      <translation>Diepwarme Fade</translation>
     </message>
 
     <message>
       <source>Default</source>
-      <translation>Par défaut</translation>
+      <translation>Standaard</translation>
     </message>
 
     <message>
       <source>Defects Contrast</source>
-      <translation>Contraste des défauts</translation>
+      <translation>Defecten Contrast</translation>
     </message>
 
     <message>
       <source>Defects Density</source>
-      <translation>Densité des défauts</translation>
+      <translation>Defecten Dichtheid</translation>
     </message>
 
     <message>
       <source>Defects Size</source>
-      <translation>Taille des défauts</translation>
+      <translation>Defecten Grootte</translation>
     </message>
 
     <message>
       <source>Defects Smoothness</source>
-      <translation>Défauts Lisse</translation>
+      <translation>Defecten Gladheid</translation>
     </message>
 
     <message>
       <source>Deform</source>
-      <translation>Déformer</translation>
-    </message>
-
-    <message>
-      <source>Delaunay-Oriented</source>
-      <translation>Orienté vers le retard</translation>
+      <translation>Vervorm</translation>
     </message>
 
     <message>
       <source>Delaunay: Portrait De Metzinger</source>
-      <translation>Delaunay : Portrait De Metzinger</translation>
+      <translation>Delaunay: Portret De Metzinger</translation>
     </message>
 
     <message>
       <source>Delaunay: Windows Open Simultaneously</source>
-      <translation>Retard : les fenêtres s&apos;ouvrent simultanément</translation>
+      <translation>Delaunay: Vensters gelijktijdig openen</translation>
     </message>
 
     <message>
       <source>Delete Layer Source</source>
-      <translation>Supprimer la source de la couche</translation>
+      <translation>Lagenbron verwijderen</translation>
     </message>
 
     <message>
       <source>Delicatessen</source>
-      <translation>Épicerie fine</translation>
+      <translation>Delicatessenzaken</translation>
     </message>
 
     <message>
       <source>Density</source>
-      <translation>Densité</translation>
+      <translation>Dichtheid</translation>
     </message>
 
     <message>
       <source>Density (%)</source>
-      <translation>Densité (%)</translation>
+      <translation>Dichtheid (%)</translation>
     </message>
 
     <message>
       <source>Depth</source>
-      <translation>Profondeur</translation>
+      <translation>Diepte</translation>
     </message>
 
     <message>
       <source>Depth Fade In Frames</source>
-      <translation>Fondu enchaîné des cadres</translation>
+      <translation>Diepte Fade In Frames</translation>
     </message>
 
     <message>
       <source>Depth Fade Out Frames</source>
-      <translation>Cadres de fondu enchaîné</translation>
+      <translation>Diepte Fade Out Frames</translation>
     </message>
 
     <message>
       <source>Depth Field Control</source>
-      <translation>Contrôle du champ de profondeur</translation>
+      <translation>Diepteveldregeling</translation>
     </message>
 
     <message>
       <source>Depth Map</source>
-      <translation>Carte de profondeur</translation>
+      <translation>Dieptekaart</translation>
     </message>
 
     <message>
       <source>Depth Map Construction</source>
-      <translation>Construction de la carte de profondeur</translation>
+      <translation>Dieptekaart bouw</translation>
     </message>
 
     <message>
       <source>Depth Map Only</source>
-      <translation>Carte de profondeur uniquement</translation>
+      <translation>Alleen de dieptekaart</translation>
     </message>
 
     <message>
       <source>Depth Map Reconstruction</source>
-      <translation>Reconstruction de la carte de profondeur</translation>
+      <translation>Dieptekaart Reconstructie</translation>
     </message>
 
     <message>
       <source>Depth Maps Only</source>
-      <translation>Cartes de profondeur uniquement</translation>
+      <translation>Alleen dieptekaarten</translation>
     </message>
 
     <message>
       <source>Depth-Of-Field Type</source>
-      <translation>Type de profondeur de champ</translation>
+      <translation>Diepte-veld type</translation>
     </message>
 
     <message>
       <source>Desaturate</source>
-      <translation>Désaturer</translation>
+      <translation>Desaturaat</translation>
     </message>
 
     <message>
       <source>Desaturate (%)</source>
-      <translation>Désaturé (%)</translation>
+      <translation>Desaturaat (%)</translation>
     </message>
 
     <message>
       <source>Desaturate Norm</source>
-      <translation>Norme désaturée</translation>
+      <translation>Desaturaat Norm</translation>
     </message>
 
     <message>
       <source>Descent Method</source>
-      <translation>Méthode de la descente</translation>
+      <translation>Afdalingsmethode</translation>
+    </message>
+
+    <message>
+      <source>Descreen</source>
+      <translation>Scherm</translation>
     </message>
 
     <message>
       <source>Desert Gold 37</source>
-      <translation>L&apos;or du désert 37</translation>
+      <translation>Woestijn Goud 37</translation>
     </message>
 
     <message>
-      <source>Detail</source>
-      <translation>Détail</translation>
+      <source>Destination (%)</source>
+      <translation>Bestemming (%)</translation>
+    </message>
+
+    <message>
+      <source>Destination X-Tiles</source>
+      <translation>Bestemming X-Tegels</translation>
+    </message>
+
+    <message>
+      <source>Destination Y-Tiles</source>
+      <translation>Bestemming Y-Tegels</translation>
     </message>
 
     <message>
       <source>Detail Level</source>
-      <translation>Niveau de détail</translation>
+      <translation>Detailniveau</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Detection</source>
-      <translation>Détection de reconstruction détaillée</translation>
+      <translation>Detail Reconstructie Detectie</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Smoothness</source>
-      <translation>Détail Reconstruction en douceur</translation>
+      <translation>Detail Reconstructie Gladheid</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Strength</source>
-      <translation>Détail de la force de reconstruction</translation>
+      <translation>Detail Reconstructie Sterkte</translation>
     </message>
 
     <message>
       <source>Detail Reconstruction Style</source>
-      <translation>Détail du style de reconstruction</translation>
+      <translation>Detail Reconstructie Stijl</translation>
     </message>
 
     <message>
       <source>Detail Scale</source>
-      <translation>Échelle de détail</translation>
+      <translation>Detailschaal</translation>
     </message>
 
     <message>
       <source>Detail Strength</source>
-      <translation>Détail Force</translation>
-    </message>
-
-    <message>
-      <source>Details</source>
-      <translation>Détails</translation>
+      <translation>Detailsterkte</translation>
     </message>
 
     <message>
       <source>Details Amount</source>
-      <translation>Détails Montant</translation>
+      <translation>Details Bedrag</translation>
     </message>
 
     <message>
       <source>Details Equalizer</source>
-      <translation>Détails Egaliseur</translation>
+      <translation>Details Egalisator</translation>
     </message>
 
     <message>
       <source>Details Scale</source>
-      <translation>Détails Échelle</translation>
+      <translation>Details Schaal</translation>
     </message>
 
     <message>
       <source>Details Smoothness</source>
-      <translation>Détails Lissage</translation>
+      <translation>Details Gladheid</translation>
     </message>
 
     <message>
       <source>Details Strength (%)</source>
-      <translation>Détails Force (%)</translation>
+      <translation>Details Sterkte (%)</translation>
     </message>
 
     <message>
       <source>Detect Skin</source>
-      <translation>Détecter la peau</translation>
+      <translation>Huid detecteren</translation>
     </message>
 
     <message>
@@ -4756,12 +5041,12 @@
 
     <message>
       <source>Deuteranopia</source>
-      <translation>Deutéranopie</translation>
+      <translation>Deuteranopie</translation>
     </message>
 
     <message>
       <source>Deviation</source>
-      <translation>Déviation</translation>
+      <translation>Afwijking</translation>
     </message>
 
     <message>
@@ -4776,552 +5061,607 @@
 
     <message>
       <source>Diamonds</source>
-      <translation>Diamants</translation>
+      <translation>Diamanten</translation>
     </message>
 
     <message>
       <source>Diamonds (Outline)</source>
-      <translation>Diamants (Grandes lignes)</translation>
+      <translation>Diamanten (overzicht)</translation>
     </message>
 
     <message>
       <source>Dices</source>
-      <translation>Dés</translation>
+      <translation>Dobbelstenen</translation>
     </message>
 
     <message>
       <source>Dices with Colored Numbers</source>
-      <translation>Des dés avec des numéros colorés</translation>
+      <translation>Dobbelstenen met gekleurde cijfers</translation>
     </message>
 
     <message>
       <source>Dices with Colored Sides</source>
-      <translation>Dés avec faces colorées</translation>
+      <translation>Dobbelstenen met gekleurde kanten</translation>
     </message>
 
     <message>
       <source>Difference</source>
-      <translation>Différence</translation>
+      <translation>Verschil</translation>
     </message>
 
     <message>
       <source>Difference Mixing</source>
-      <translation>Mélange des différences</translation>
+      <translation>Verschil Mengen</translation>
     </message>
 
     <message>
       <source>Difference of Gaussians</source>
-      <translation>Différence des gaussiens</translation>
+      <translation>Verschil van Gaussers</translation>
     </message>
 
     <message>
       <source>Different Axis</source>
-      <translation>Axe différent</translation>
+      <translation>Verschillende assen</translation>
     </message>
 
     <message>
       <source>Diffuse (%)</source>
-      <translation>Diffus (%)</translation>
+      <translation>Diffuus (%)</translation>
     </message>
 
     <message>
       <source>Diffuse Shadow</source>
-      <translation>Ombre diffuse</translation>
+      <translation>Diffuse Schaduw</translation>
+    </message>
+
+    <message>
+      <source>Diffusion</source>
+      <translation>Verspreiding</translation>
     </message>
 
     <message>
       <source>Diffusion Tensors</source>
-      <translation>Tenseurs de diffusion</translation>
+      <translation>Verspreidingstensoren</translation>
     </message>
 
     <message>
       <source>Diffusivity</source>
-      <translation>Diffusivité</translation>
+      <translation>Diffusiviteit</translation>
     </message>
 
     <message>
       <source>Digits</source>
-      <translation>Chiffres</translation>
+      <translation>Cijfers</translation>
+    </message>
+
+    <message>
+      <source>Dilatation</source>
+      <translation>Dilatatie</translation>
     </message>
 
     <message>
       <source>Dilation</source>
-      <translation>Dilatation</translation>
+      <translation>Dilatatie</translation>
     </message>
 
     <message>
       <source>Dilation - Original</source>
-      <translation>Dilatation - Original</translation>
+      <translation>Dilatatie - Origineel</translation>
     </message>
 
     <message>
       <source>Dilation / Erosion</source>
-      <translation>Dilatation / Érosion</translation>
+      <translation>Dilatatie / Erosie</translation>
+    </message>
+
+    <message>
+      <source>Dimension</source>
+      <translation>Dimensie</translation>
+    </message>
+
+    <message>
+      <source>Dimension [Diff]</source>
+      <translation>Dimensie [Diff]</translation>
+    </message>
+
+    <message>
+      <source>Dimension A</source>
+      <translation>Dimensie A</translation>
+    </message>
+
+    <message>
+      <source>Dimensions (%)</source>
+      <translation>Afmetingen (%)</translation>
+    </message>
+
+    <message>
+      <source>Dimensions Pixels</source>
+      <translation>Afmetingen Pixels</translation>
     </message>
 
     <message>
       <source>Dipole: 1/(4*z^2-1)</source>
-      <translation>Dipole : 1/(4*z^2-1)</translation>
+      <translation>Dipool: 1/(4*z^2-1)</translation>
+    </message>
+
+    <message>
+      <source>Direct</source>
+      <translation>Directe</translation>
+    </message>
+
+    <message>
+      <source>Direction</source>
+      <translation>Richting</translation>
     </message>
 
     <message>
       <source>Directions 23</source>
-      <translation>Orientations 23</translation>
+      <translation>Routebeschrijving 23</translation>
     </message>
 
     <message>
       <source>Dirty</source>
-      <translation>Sale</translation>
+      <translation>Vuile</translation>
     </message>
 
     <message>
       <source>Disable</source>
-      <translation>Désactiver</translation>
+      <translation>Schakel  uit.</translation>
     </message>
 
     <message>
       <source>Disabled</source>
-      <translation>Handicapés</translation>
+      <translation>Uitgeschakeld</translation>
     </message>
 
     <message>
       <source>Discard Contour Guides</source>
-      <translation>Éliminer les guides de contour</translation>
+      <translation>Contourgidsen weggooien</translation>
     </message>
 
     <message>
       <source>Discard Transparency</source>
-      <translation>Éliminer la transparence</translation>
+      <translation>Transparantie weggooien</translation>
     </message>
 
     <message>
       <source>Display</source>
-      <translation>Afficher</translation>
+      <translation>Toon</translation>
     </message>
 
     <message>
       <source>Display Blob Controls</source>
-      <translation>Contrôles des taches d&apos;affichage</translation>
+      <translation>Blob-besturingselementen weergeven</translation>
     </message>
 
     <message>
       <source>Display Color Axes</source>
-      <translation>Axes de couleur d&apos;affichage</translation>
+      <translation>Weergavekleur Assen</translation>
     </message>
 
     <message>
       <source>Display Contours</source>
-      <translation>Contours d&apos;affichage</translation>
+      <translation>Toon contouren</translation>
     </message>
 
     <message>
       <source>Display Coordinates</source>
-      <translation>Afficher les coordonnées</translation>
+      <translation>Coördinaten weergeven</translation>
     </message>
 
     <message>
       <source>Display Coordinates on Preview Window</source>
-      <translation>Afficher les coordonnées sur la fenêtre de prévisualisation</translation>
+      <translation>Coördinaten weergeven op voorbeeldvenster</translation>
     </message>
 
     <message>
       <source>Display Debug Info on Preview</source>
-      <translation>Afficher les informations de débogage en avant-première</translation>
+      <translation>Debug-informatie weergeven op voorvertoning</translation>
+    </message>
+
+    <message>
+      <source>Distance</source>
+      <translation>Afstand</translation>
     </message>
 
     <message>
       <source>Distance (Fast)</source>
-      <translation>Distance (rapide)</translation>
+      <translation>Afstand (snel)</translation>
     </message>
 
     <message>
       <source>Distance Transform</source>
-      <translation>Transformation de la distance</translation>
+      <translation>Afstandstransformatie</translation>
     </message>
 
     <message>
       <source>Distort Lens</source>
-      <translation>Distorsion de l&apos;objectif</translation>
+      <translation>Vervormingslens</translation>
     </message>
 
     <message>
       <source>Distortion Factor</source>
-      <translation>Facteur de distorsion</translation>
+      <translation>Vervormingsfactor</translation>
     </message>
 
     <message>
       <source>Distortion Surface Angle</source>
-      <translation>Angle de surface de distorsion</translation>
+      <translation>Vervorming Hoek van het oppervlak</translation>
     </message>
 
     <message>
       <source>Distortion Surface Position</source>
-      <translation>Position de la surface de distorsion</translation>
+      <translation>Vervorming Positie van het oppervlak</translation>
     </message>
 
     <message>
       <source>Disturbance Scale-By-Factor</source>
-      <translation>L&apos;échelle des perturbations par facteur</translation>
+      <translation>Verstoring Schaal-voor-Factor</translation>
     </message>
 
     <message>
       <source>Disturbance X</source>
-      <translation>Perturbation X</translation>
+      <translation>Storing X</translation>
     </message>
 
     <message>
       <source>Disturbance Y</source>
-      <translation>Perturbation Y</translation>
+      <translation>Verstoring Y</translation>
     </message>
 
     <message>
-      <source>Dithering</source>
-      <translation>Les hésitations</translation>
+      <source>Dither Output</source>
+      <translation>Dither Uitgang</translation>
     </message>
 
     <message>
       <source>Divide</source>
-      <translation>Diviser</translation>
+      <translation>Verdeel</translation>
     </message>
 
     <message>
       <source>Do Not Flatten Transparency</source>
-      <translation>Ne pas aplatir la transparence</translation>
+      <translation>Niet afvlakken Transparantie</translation>
     </message>
 
     <message>
       <source>Dodge and Burn</source>
-      <translation>Esquiver et brûler</translation>
+      <translation>Ontwijken en verbranden</translation>
     </message>
 
     <message>
       <source>Dodge Strength</source>
-      <translation>Esquiver la force</translation>
+      <translation>Ontwijkende kracht</translation>
     </message>
 
     <message>
       <source>DOF Analyzer</source>
-      <translation>Analyseur DOF</translation>
+      <translation>DOF-analyzer</translation>
     </message>
 
     <message>
       <source>Dog</source>
-      <translation>Chien</translation>
+      <translation>Hond</translation>
     </message>
 
     <message>
       <source>Don&apos;t Sort</source>
-      <translation>Ne pas trier</translation>
+      <translation>Niet sorteren</translation>
     </message>
 
     <message>
-      <source>DoNotMergeLayers</source>
-      <translation>Ne pas faire de vagues</translation>
+      <source>DoNothing</source>
+      <translation>Niets doen</translation>
     </message>
 
     <message>
       <source>Dot Size</source>
-      <translation>Taille des points</translation>
+      <translation>Puntgrootte</translation>
     </message>
 
     <message>
       <source>Dots</source>
-      <translation>Points</translation>
+      <translation>Stippen</translation>
     </message>
 
     <message>
       <source>Download External Data</source>
-      <translation>Télécharger les données externes</translation>
+      <translation>Externe gegevens downloaden</translation>
     </message>
 
     <message>
       <source>Dragon Curve</source>
-      <translation>Courbe du dragon</translation>
-    </message>
-
-    <message>
-      <source>Dragonfly</source>
-      <translation>Libellule</translation>
+      <translation>Drakenkromme</translation>
     </message>
 
     <message>
       <source>Drawing Mode</source>
-      <translation>Mode de dessin</translation>
+      <translation>Tekenmodus</translation>
     </message>
 
     <message>
       <source>Drawn Montage</source>
-      <translation>Montage dessiné</translation>
+      <translation>Getekend Montage</translation>
     </message>
 
     <message>
       <source>Dream</source>
-      <translation>Rêve</translation>
+      <translation>Droom</translation>
     </message>
 
     <message>
       <source>Dream 1</source>
-      <translation>Rêve 1</translation>
+      <translation>Droom 1</translation>
     </message>
 
     <message>
       <source>Dream 85</source>
-      <translation>Rêve 85</translation>
+      <translation>Droom 85</translation>
     </message>
 
     <message>
       <source>Dream Smoothing</source>
-      <translation>Lissage des rêves</translation>
-    </message>
-
-    <message>
-      <source>Drop Green Tint 14</source>
-      <translation>Vert de goutte Teinte 14</translation>
+      <translation>Droom Gladmaken</translation>
     </message>
 
     <message>
       <source>Drop Shadow</source>
-      <translation>Ombre portée</translation>
+      <translation>Valschaduw</translation>
     </message>
 
     <message>
       <source>Drop Water</source>
-      <translation>Goutte d&apos;eau</translation>
+      <translation>Druppel water</translation>
     </message>
 
     <message>
       <source>Duck</source>
-      <translation>Canard</translation>
+      <translation>Eend</translation>
     </message>
 
     <message>
       <source>Duplicate Bottom</source>
-      <translation>Dupliquer le fond</translation>
+      <translation>Duplicaatbodem</translation>
     </message>
 
     <message>
       <source>Duplicate Horizontal</source>
-      <translation>Dupliquer à l&apos;horizontale</translation>
+      <translation>Duplicaat Horizontaal</translation>
     </message>
 
     <message>
       <source>Duplicate Left</source>
-      <translation>Dupliquer à gauche</translation>
+      <translation>Duplicaat links</translation>
     </message>
 
     <message>
       <source>Duplicate Right</source>
-      <translation>Droit de reproduction</translation>
+      <translation>Duplicaatrecht</translation>
+    </message>
+
+    <message>
+      <source>Duplicate Top</source>
+      <translation>Duplicaat Top</translation>
     </message>
 
     <message>
       <source>Duplicate Vertical</source>
-      <translation>Dupliquer verticalement</translation>
+      <translation>Duplicaat Verticaal</translation>
     </message>
 
     <message>
       <source>Duration</source>
-      <translation>Durée</translation>
+      <translation>Duur</translation>
     </message>
 
     <message>
       <source>Dynamic Range Increase</source>
-      <translation>Augmentation de la gamme dynamique</translation>
+      <translation>Dynamisch bereik vergroten</translation>
     </message>
 
     <message>
       <source>Eagle</source>
-      <translation>Aigle</translation>
+      <translation>Adelaar</translation>
     </message>
 
     <message>
       <source>Earth</source>
-      <translation>Terre</translation>
+      <translation>Aarde</translation>
+    </message>
+
+    <message>
+      <source>Earth Tone Boost</source>
+      <translation>Aarde Tone Boost</translation>
     </message>
 
     <message>
       <source>Easy Skin Retouch</source>
-      <translation>Retouches cutanées faciles</translation>
+      <translation>Gemakkelijke Huidretouche</translation>
+    </message>
+
+    <message>
+      <source>Edge</source>
+      <translation>Rand</translation>
     </message>
 
     <message>
       <source>Edge Antialiasing</source>
-      <translation>Anti-crénelage des bords</translation>
+      <translation>Rand Anti-aliasing</translation>
     </message>
 
     <message>
       <source>Edge Attenuation</source>
-      <translation>Atténuation de la lisière</translation>
+      <translation>Randverzwakking</translation>
     </message>
 
     <message>
       <source>Edge Behavior X</source>
-      <translation>Comportement des bords X</translation>
+      <translation>Randgedrag X</translation>
     </message>
 
     <message>
       <source>Edge Behavior Y</source>
-      <translation>Comportement de bord Y</translation>
+      <translation>Randgedrag Y</translation>
     </message>
 
     <message>
       <source>Edge Detect Includes Chroma</source>
-      <translation>Edge Detect inclut Chroma</translation>
+      <translation>Randdetectie omvat Chroma</translation>
     </message>
 
     <message>
       <source>Edge Exponent</source>
-      <translation>Exposant de pointe</translation>
+      <translation>Randexponent</translation>
     </message>
 
     <message>
       <source>Edge Fidelity</source>
-      <translation>Fidélité à la marge</translation>
+      <translation>Randtrouw</translation>
     </message>
 
     <message>
       <source>Edge Influence</source>
-      <translation>Influence de la périphérie</translation>
+      <translation>Randinvloed</translation>
     </message>
 
     <message>
       <source>Edge Mask</source>
-      <translation>Masque de bord</translation>
+      <translation>Randmasker</translation>
     </message>
 
     <message>
       <source>Edge Sensitivity</source>
-      <translation>Sensibilité à la périphérie</translation>
+      <translation>Randgevoeligheid</translation>
     </message>
 
     <message>
       <source>Edge Shade</source>
-      <translation>Ombre de bord</translation>
+      <translation>Randschaduw</translation>
     </message>
 
     <message>
       <source>Edge Simplicity</source>
-      <translation>Simplicité de la bordure</translation>
+      <translation>Rand Eenvoud</translation>
     </message>
 
     <message>
       <source>Edge Smoothness</source>
-      <translation>Lissage des bords</translation>
+      <translation>Gladheid van de rand</translation>
     </message>
 
     <message>
       <source>Edge Thickness</source>
-      <translation>Épaisseur des bords</translation>
+      <translation>Randdikte</translation>
     </message>
 
     <message>
       <source>Edge Threshold</source>
-      <translation>Seuil de l&apos;arête</translation>
+      <translation>Randdrempel</translation>
     </message>
 
     <message>
       <source>Edge Threshold (%)</source>
-      <translation>Seuil de l&apos;arête (%)</translation>
+      <translation>Randdrempel (%)</translation>
     </message>
 
     <message>
       <source>Edge-Oriented</source>
-      <translation>Orienté vers l&apos;avenir</translation>
+      <translation>Randgericht</translation>
+    </message>
+
+    <message>
+      <source>Edges</source>
+      <translation>Randen</translation>
     </message>
 
     <message>
       <source>Edges (%)</source>
-      <translation>Bords (%)</translation>
+      <translation>Randen (%)</translation>
     </message>
 
     <message>
       <source>Edges [Animated]</source>
-      <translation>Bords [Animé]</translation>
+      <translation>Randen [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>Edges Offsets</source>
-      <translation>Compensations des bords</translation>
+      <translation>Randcompensatie</translation>
     </message>
 
     <message>
       <source>Edges on Fire</source>
-      <translation>Des bords en feu</translation>
+      <translation>Randen in brand</translation>
     </message>
 
     <message>
       <source>Edges-0.5 (beware: Memory-Consuming!)</source>
-      <translation>Edges-0.5 (attention : consommation de mémoire !)</translation>
+      <translation>Randen-0.5 (let op: Geheugen-gebruik!)</translation>
     </message>
 
     <message>
       <source>Edges-1 (beware: Memory-Consuming!)</source>
-      <translation>Edges-1 (attention : consommation de mémoire !)</translation>
+      <translation>Randen-1 (let op: Geheugen-gebruik!)</translation>
     </message>
 
     <message>
       <source>Edges-2 (beware: Memory-Consuming!)</source>
-      <translation>Edges-2 (attention : consommation de mémoire !)</translation>
-    </message>
-
-    <message>
-      <source>Edgy Ember</source>
-      <translation>La braise</translation>
+      <translation>Randen-2 (let op: Geheugen-gebruik!)</translation>
     </message>
 
     <message>
       <source>Effect Strength</source>
-      <translation>Force de l&apos;effet</translation>
+      <translation>Effect Sterkte</translation>
     </message>
 
     <message>
       <source>Effect X-Axis Scaling</source>
-      <translation>Échelle de l&apos;axe des effets X</translation>
+      <translation>Effect X-Axis Schaalverdeling</translation>
     </message>
 
     <message>
       <source>Effect Y-Axis Scaling</source>
-      <translation>Effet de l&apos;échelle de l&apos;axe Y</translation>
+      <translation>Effect Y-Axis Schaalverdeling</translation>
     </message>
 
     <message>
       <source>Eight Layers</source>
-      <translation>Huit couches</translation>
+      <translation>Acht lagen</translation>
     </message>
 
     <message>
       <source>Eight Threads</source>
-      <translation>Huit fils</translation>
+      <translation>Acht Draden</translation>
     </message>
 
     <message>
       <source>Elegance 38</source>
-      <translation>Élégance 38</translation>
+      <translation>Elegantie 38</translation>
     </message>
 
     <message>
       <source>Elephant</source>
-      <translation>Eléphant</translation>
+      <translation>Olifant</translation>
     </message>
 
     <message>
       <source>Elevation</source>
-      <translation>Élévation</translation>
+      <translation>Verhoging</translation>
     </message>
 
     <message>
       <source>Elevation (%)</source>
-      <translation>Élévation (%)</translation>
+      <translation>Hoogte (%)</translation>
     </message>
 
     <message>
       <source>Ellipse Painting</source>
-      <translation>Peinture d&apos;ellipse</translation>
+      <translation>Ellipsschilderen</translation>
     </message>
 
     <message>
       <source>Ellipse Ratio</source>
-      <translation>Ratio d&apos;ellipse</translation>
+      <translation>Ellipsverhouding</translation>
     </message>
 
     <message>
@@ -5331,7 +5671,7 @@
 
     <message>
       <source>Ellipsionism Opacity</source>
-      <translation>L&apos;opacité de l&apos;ellipsionisme</translation>
+      <translation>Ellipsionisme Opaciteit</translation>
     </message>
 
     <message>
@@ -5340,808 +5680,808 @@
     </message>
 
     <message>
-      <source>Emboss</source>
-      <translation>Gaufrage</translation>
-    </message>
-
-    <message>
       <source>Enable Antialiasing</source>
-      <translation>Activer l&apos;anticrénelage</translation>
+      <translation>Antialiasing mogelijk maken</translation>
     </message>
 
     <message>
       <source>Enable Interpolated Motion</source>
-      <translation>Activer la motion interpolée</translation>
+      <translation>Geïnterpoleerde beweging mogelijk maken</translation>
     </message>
 
     <message>
       <source>Enable Morphology</source>
-      <translation>Permettre la morphologie</translation>
+      <translation>Morfologie inschakelen</translation>
     </message>
 
     <message>
       <source>Enable Paintstroke</source>
-      <translation>Activer l&apos;AVC</translation>
+      <translation>Schakel de verfstreek in</translation>
     </message>
 
     <message>
       <source>Enable Segmentation</source>
-      <translation>Permettre la segmentation</translation>
+      <translation>Segmentatie mogelijk maken</translation>
     </message>
 
     <message>
       <source>Enchanted</source>
-      <translation>Enchanté</translation>
+      <translation>Betoverd</translation>
     </message>
 
     <message>
       <source>End Color</source>
-      <translation>Couleur de fin</translation>
+      <translation>Eindkleur</translation>
     </message>
 
     <message>
       <source>End Frame Number</source>
-      <translation>Numéro du cadre de fin</translation>
+      <translation>Einde Kadernummer</translation>
     </message>
 
     <message>
       <source>End of Mid-Tones</source>
-      <translation>Fin des demi-tons</translation>
+      <translation>Einde van de middentonen</translation>
     </message>
 
     <message>
       <source>End Point Connectivity</source>
-      <translation>Connectivité des points terminaux</translation>
+      <translation>Eindpunt Connectiviteit</translation>
     </message>
 
     <message>
       <source>End Point Rate (%)</source>
-      <translation>Taux du point final (%)</translation>
+      <translation>Eindpuntpercentage (%)</translation>
     </message>
 
     <message>
       <source>Ending Angle</source>
-      <translation>Angle final</translation>
+      <translation>Eindhoek</translation>
     </message>
 
     <message>
       <source>Ending Color</source>
-      <translation>Fin de la couleur</translation>
+      <translation>Beëindiging van de kleur</translation>
     </message>
 
     <message>
       <source>Ending Feathering</source>
-      <translation>La fin du plumage</translation>
+      <translation>Einde van de bevedering</translation>
     </message>
 
     <message>
       <source>Ending Point (%)</source>
-      <translation>Point final (%)</translation>
+      <translation>Eindpunt (%)</translation>
     </message>
 
     <message>
       <source>Ending Scale (%)</source>
-      <translation>Échelle de fin (%)</translation>
+      <translation>Eindschaal (%)</translation>
     </message>
 
     <message>
       <source>Ending Value</source>
-      <translation>Valeur finale</translation>
+      <translation>Eindwaarde</translation>
     </message>
 
     <message>
       <source>Ending X-Centering</source>
-      <translation>Mettre fin au X-Centering</translation>
+      <translation>Beëindigen van X-Centering</translation>
     </message>
 
     <message>
       <source>Ending Y-Centering</source>
-      <translation>Mettre fin au &quot;Y-Centering</translation>
+      <translation>Beëindigen van Y-Centering</translation>
     </message>
 
     <message>
       <source>Engrave</source>
-      <translation>Gravure</translation>
+      <translation>Graveer</translation>
     </message>
 
     <message>
       <source>Enhance Detail</source>
-      <translation>Améliorer les détails</translation>
+      <translation>Verbeteren van de details</translation>
     </message>
 
     <message>
       <source>Enhance Details</source>
-      <translation>Améliorer les détails</translation>
+      <translation>Verbeter de details</translation>
     </message>
 
     <message>
       <source>Equalization</source>
-      <translation>Péréquation</translation>
+      <translation>Egalisatie</translation>
     </message>
 
     <message>
       <source>Equalization (%)</source>
-      <translation>Péréquation (%)</translation>
+      <translation>Egalisatie (%)</translation>
+    </message>
+
+    <message>
+      <source>Equalize</source>
+      <translation>Egaliseer</translation>
     </message>
 
     <message>
       <source>Equalize and Normalize</source>
-      <translation>Égaliser et normaliser</translation>
+      <translation>Egaliseer en normaliseer</translation>
     </message>
 
     <message>
       <source>Equalize at Each Step</source>
-      <translation>Égaliser à chaque étape</translation>
+      <translation>Egaliseer bij elke stap</translation>
     </message>
 
     <message>
       <source>Equalize HSI-HSL-HSV</source>
-      <translation>Égaliser HSI-HSL-HSV</translation>
+      <translation>Egaliseer HSI-HSL-HSV</translation>
     </message>
 
     <message>
       <source>Equalize HSV</source>
-      <translation>Égaliser les HSV</translation>
+      <translation>Gelijkstellen van HSV</translation>
     </message>
 
     <message>
       <source>Equalize Light</source>
-      <translation>Égaliser la lumière</translation>
+      <translation>Egaliseer het licht</translation>
     </message>
 
     <message>
       <source>Equalize Local Histograms</source>
-      <translation>Égaliser les histogrammes locaux</translation>
+      <translation>Lokale Histogrammen egaliseren</translation>
     </message>
 
     <message>
       <source>Equalize Shadow</source>
-      <translation>Égaliser l&apos;ombre</translation>
+      <translation>Schaduw egaliseren</translation>
     </message>
 
     <message>
       <source>Equation Plot [Parametric]</source>
-      <translation>Graphique d&apos;équation [Paramétrique]</translation>
+      <translation>Vergelijkingsveld [Parametrisch]</translation>
     </message>
 
     <message>
       <source>Equation Plot [Y=f(X)]</source>
-      <translation>Équation [Y=f(X)].</translation>
+      <translation>Vergelijkingspunt [Y=f(X)]</translation>
     </message>
 
     <message>
       <source>Equirectangular to Nadir-Zenith</source>
-      <translation>Equirectangulaire au nadir-zénith</translation>
+      <translation>Equirectangular naar Nadir-Zenith</translation>
     </message>
 
     <message>
-      <source>Eric Ellerbrock (14)</source>
-      <translation>Eric Ellerbrock (14 ans)</translation>
+      <source>Erosion</source>
+      <translation>Erosie</translation>
     </message>
 
     <message>
       <source>Erosion / Dilation</source>
-      <translation>Érosion / Dilatation</translation>
+      <translation>Erosie / Dilatatie</translation>
     </message>
 
     <message>
       <source>Etch Tones</source>
-      <translation>Tonalités de gravure</translation>
+      <translation>Ets Tonen</translation>
+    </message>
+
+    <message>
+      <source>Eterna for Flog</source>
+      <translation>Eterna voor Flog</translation>
     </message>
 
     <message>
       <source>Euclidean</source>
-      <translation>Euclidien</translation>
+      <translation>Euclidisch</translation>
     </message>
 
     <message>
       <source>Euclidean - Polar</source>
-      <translation>Euclidien - Polaire</translation>
+      <translation>Euclidisch - Polair</translation>
+    </message>
+
+    <message>
+      <source>Exclusion</source>
+      <translation>Uitsluiting</translation>
     </message>
 
     <message>
       <source>Expand</source>
-      <translation>Développer</translation>
+      <translation>Uitbreiden</translation>
     </message>
 
     <message>
       <source>Expand Background Reconstruction</source>
-      <translation>Élargir la reconstruction du contexte</translation>
+      <translation>Uitbreiden Achtergrond Reconstructie</translation>
     </message>
 
     <message>
       <source>Expand Shadows</source>
-      <translation>Développer les ombres</translation>
+      <translation>Schaduwen uitbreiden</translation>
     </message>
 
     <message>
       <source>Expand Size</source>
-      <translation>Agrandir la taille</translation>
+      <translation>Grootte uitbreiden</translation>
     </message>
 
     <message>
       <source>Expanding Mirrors</source>
-      <translation>Des miroirs qui s&apos;agrandissent</translation>
+      <translation>Uitbreiding van de spiegels</translation>
     </message>
 
     <message>
       <source>Expired (fade)</source>
-      <translation>Expiré (fondu)</translation>
+      <translation>Verlopen (vervagen)</translation>
     </message>
 
     <message>
       <source>Expired (polaroid)</source>
-      <translation>Expiré (polaroid)</translation>
+      <translation>Verlopen (polaroid)</translation>
     </message>
 
     <message>
       <source>Expired 69</source>
-      <translation>Expiré 69</translation>
-    </message>
-
-    <message>
-      <source>Exponent</source>
-      <translation>Exposant</translation>
+      <translation>Verlopen 69</translation>
     </message>
 
     <message>
       <source>Exponent (Imaginary)</source>
-      <translation>Exposant (imaginaire)</translation>
+      <translation>Exponent (denkbeeldig)</translation>
     </message>
 
     <message>
       <source>Exponent (Real)</source>
-      <translation>Exposant (réel)</translation>
+      <translation>Exponent (Echt)</translation>
     </message>
 
     <message>
       <source>Exponential</source>
-      <translation>Exponentiel</translation>
+      <translation>Exponentieel</translation>
     </message>
 
     <message>
       <source>Export RGB-565 File</source>
-      <translation>Exporter le fichier RGB-565</translation>
+      <translation>RGB-565-bestand exporteren</translation>
     </message>
 
     <message>
       <source>Exposure</source>
-      <translation>Exposition</translation>
+      <translation>Blootstelling</translation>
+    </message>
+
+    <message>
+      <source>Expression</source>
+      <translation>Uitdrukking</translation>
     </message>
 
     <message>
       <source>Extend 1px</source>
-      <translation>Étendre 1px</translation>
+      <translation>Verlengen 1px</translation>
     </message>
 
     <message>
       <source>External Transparency</source>
-      <translation>Transparence externe</translation>
+      <translation>Externe transparantie</translation>
     </message>
 
     <message>
       <source>Extra  Smooth</source>
-      <translation>Extra lisse</translation>
+      <translation>Extra Gladjes</translation>
     </message>
 
     <message>
       <source>Extract Foreground [Interactive]</source>
-      <translation>Extrait de l&apos;avant-plan [Interactif]</translation>
+      <translation>Extract Voorgrond [Interactief]</translation>
     </message>
 
     <message>
       <source>Extract Objects</source>
-      <translation>Extraire des objets</translation>
+      <translation>Voorwerpen uitpakken</translation>
     </message>
 
     <message>
       <source>Extrapolate Color Spots on Transparent Top Layer</source>
-      <translation>Extrapolation des points de couleur sur la couche supérieure transparente</translation>
+      <translation>Extrapoleer Kleurvlekken op Transparante Bovenlaag</translation>
     </message>
 
     <message>
       <source>Extrapolate Colors As</source>
-      <translation>Extrapoler les couleurs en tant que</translation>
+      <translation>Extrapoleer Kleuren als</translation>
     </message>
 
     <message>
       <source>Extrapolated Colors + Lineart</source>
-      <translation>Couleurs extrapolées + linéarité</translation>
+      <translation>Geëxtrapoleerde kleuren + Lineart</translation>
     </message>
 
     <message>
       <source>Extreme</source>
-      <translation>Extrême</translation>
+      <translation>Extreem</translation>
     </message>
 
     <message>
-      <source>Factor</source>
-      <translation>Facteur</translation>
+      <source>Fade</source>
+      <translation>Vervagen</translation>
     </message>
 
     <message>
       <source>Fade End</source>
-      <translation>Fin du fondu enchaîné</translation>
-    </message>
-
-    <message>
-      <source>Fade End (%)</source>
-      <translation>Fin de la période (%)</translation>
+      <translation>Verdwijnen</translation>
     </message>
 
     <message>
       <source>Fade Layers</source>
-      <translation>Couches de fondu</translation>
-    </message>
-
-    <message>
-      <source>Fade Start</source>
-      <translation>Fondu enchaîné Début</translation>
-    </message>
-
-    <message>
-      <source>Fade Start (%)</source>
-      <translation>Début du fondu (%)</translation>
+      <translation>Fade Lagen</translation>
     </message>
 
     <message>
       <source>Fade to Green</source>
-      <translation>Fondu au vert</translation>
+      <translation>Verdwijnen naar groen</translation>
     </message>
 
     <message>
       <source>Faded</source>
-      <translation>Fondu</translation>
+      <translation>Vervaagd</translation>
     </message>
 
     <message>
       <source>Faded (alt)</source>
-      <translation>Fondu (alt)</translation>
+      <translation>Vervaagd (alt)</translation>
     </message>
 
     <message>
       <source>Faded (analog)</source>
-      <translation>Fondu (analogique)</translation>
+      <translation>Vervaagd (analoog)</translation>
     </message>
 
     <message>
       <source>Faded (extreme)</source>
-      <translation>Fondu (extrême)</translation>
+      <translation>Vervaagd (extreem)</translation>
     </message>
 
     <message>
       <source>Faded (vivid)</source>
-      <translation>Fondu (vif)</translation>
+      <translation>Vervaagd (levendig)</translation>
     </message>
 
     <message>
       <source>Faded 47</source>
-      <translation>Fondu 47</translation>
+      <translation>Vervaagd 47</translation>
     </message>
 
     <message>
       <source>Faded Green</source>
-      <translation>Vert délavé</translation>
+      <translation>Vervaagd groen</translation>
     </message>
 
     <message>
       <source>Faded Look</source>
-      <translation>Regard fané</translation>
+      <translation>Vervaagde look</translation>
     </message>
 
     <message>
       <source>Faded Print</source>
-      <translation>Imprimé délavé</translation>
+      <translation>Vervaagde afdrukken</translation>
     </message>
 
     <message>
       <source>Faded Retro 01</source>
-      <translation>Rétro 01 délavé</translation>
+      <translation>Vervaagd Retro 01</translation>
     </message>
 
     <message>
       <source>Faded Retro 02</source>
-      <translation>Rétrospective délavée 02</translation>
+      <translation>Vervaagd Retro 02</translation>
     </message>
 
     <message>
       <source>Fading</source>
-      <translation>Fondu enchaîné</translation>
+      <translation>Vervaagt</translation>
     </message>
 
     <message>
       <source>Fading Shape</source>
-      <translation>Forme en déclin</translation>
+      <translation>Vervaagde vorm</translation>
     </message>
 
     <message>
       <source>Fall Colors</source>
-      <translation>Couleurs d&apos;automne</translation>
+      <translation>Valkleuren</translation>
     </message>
 
     <message>
       <source>Far Point Deviation</source>
-      <translation>Déviation en points de loin</translation>
+      <translation>Verre punt afwijking</translation>
     </message>
 
     <message>
       <source>Fast</source>
-      <translation>Rapide</translation>
+      <translation>Snelle</translation>
     </message>
 
     <message>
       <source>Fast &amp;#40;Approx.&amp;#41;</source>
-      <translation>Rapide (Approx.)</translation>
+      <translation>Snel (Ca. )</translation>
     </message>
 
     <message>
       <source>Fast (Low Precision) Preview</source>
-      <translation>Aperçu rapide (faible précision)</translation>
+      <translation>Snelle (Lage Precisie) Preview</translation>
     </message>
 
     <message>
       <source>Fast Approximation</source>
-      <translation>Approximation rapide</translation>
+      <translation>Snelle benadering</translation>
     </message>
 
     <message>
       <source>Fast Blend</source>
-      <translation>Mélange rapide</translation>
+      <translation>Snelle mengeling</translation>
     </message>
 
     <message>
       <source>Fast Blend Preview</source>
-      <translation>Aperçu du Fast Blend</translation>
+      <translation>Snelle Mengsel Voorbeeld</translation>
     </message>
 
     <message>
       <source>Fast Recovery</source>
-      <translation>Un redressement rapide</translation>
+      <translation>Snelle recuperatie</translation>
     </message>
 
     <message>
       <source>Fast Resize</source>
-      <translation>Redimensionnement rapide</translation>
+      <translation>Snel aanpassen</translation>
     </message>
 
     <message>
       <source>Faux Infrared</source>
-      <translation>Faux infrarouge</translation>
+      <translation>Faux Infrarood</translation>
     </message>
 
     <message>
       <source>Feathering</source>
-      <translation>Plumage</translation>
+      <translation>Vederzetting</translation>
     </message>
 
     <message>
       <source>Feature Analyzer Smoothness</source>
-      <translation>Lissage de l&apos;analyseur de caractéristiques</translation>
-    </message>
-
-    <message>
-      <source>Feature Analyzer Threshold</source>
-      <translation>Seuil de l&apos;analyseur de caractéristiques</translation>
+      <translation>Eigenschap Analyzer Gladheid</translation>
     </message>
 
     <message>
       <source>Felt Pen</source>
-      <translation>Stylo feutre</translation>
+      <translation>Viltstift</translation>
     </message>
 
     <message>
       <source>FFT Preview</source>
-      <translation>Avant-première FFT</translation>
+      <translation>FFT-voorvertoning</translation>
     </message>
 
     <message>
       <source>Fibers</source>
-      <translation>Fibres</translation>
+      <translation>Vezels</translation>
     </message>
 
     <message>
       <source>Fibers Amplitude</source>
-      <translation>Amplitude des fibres</translation>
+      <translation>Vezels Amplitude</translation>
     </message>
 
     <message>
       <source>Fibers Smoothness</source>
-      <translation>Fibres Lisse</translation>
+      <translation>Vezels Gladheid</translation>
     </message>
 
     <message>
       <source>Fibrousness</source>
-      <translation>Fibrosité</translation>
-    </message>
-
-    <message>
-      <source>Fidelity Chromaticity</source>
-      <translation>Chromaticité de la fidélité</translation>
+      <translation>Vezeligheid</translation>
     </message>
 
     <message>
       <source>Fidelity Smoothness (Coarsest)</source>
-      <translation>Fidélité (grossièreté)</translation>
+      <translation>Trouw Gladheid (grofste)</translation>
     </message>
 
     <message>
       <source>Fidelity Smoothness (Finest)</source>
-      <translation>Fidélité (finesse)</translation>
+      <translation>Trouw Gladheid (Fijnste)</translation>
     </message>
 
     <message>
       <source>Fidelity to Target (Coarsest)</source>
-      <translation>Fidélité à l&apos;objectif (le plus grossier)</translation>
+      <translation>Trouw aan het doelwit (grofste)</translation>
     </message>
 
     <message>
       <source>Fidelity to Target (Finest)</source>
-      <translation>Fidélité à la cible (Finest)</translation>
+      <translation>Trouw aan het doel (mooiste)</translation>
     </message>
 
     <message>
       <source>Filename</source>
-      <translation>Nom du fichier</translation>
+      <translation>Bestandsnaam</translation>
     </message>
 
     <message>
       <source>Fill Holes</source>
-      <translation>Remplir les trous</translation>
+      <translation>Gaten vullen</translation>
     </message>
 
     <message>
       <source>Fill Holes %</source>
-      <translation>Remplir les trous % % de remplissage</translation>
+      <translation>Gaten vullen %</translation>
     </message>
 
     <message>
       <source>Fill Transparent Holes</source>
-      <translation>Remplir les trous transparents</translation>
+      <translation>Vul Transparante Gaten</translation>
     </message>
 
     <message>
       <source>Filled</source>
-      <translation>Remplie</translation>
+      <translation>Gevuld</translation>
     </message>
 
     <message>
       <source>Filled Circles</source>
-      <translation>Cercles remplis</translation>
+      <translation>Gevulde cirkels</translation>
     </message>
 
     <message>
       <source>Filling</source>
-      <translation>Remplissage</translation>
+      <translation>Het vullen van</translation>
     </message>
 
     <message>
-      <source>Film Highlight Contrast</source>
-      <translation>Contraste du film</translation>
+      <source>Film Print 01</source>
+      <translation>Filmdruk 01</translation>
+    </message>
+
+    <message>
+      <source>Film Print 02</source>
+      <translation>Filmdruk 02</translation>
+    </message>
+
+    <message>
+      <source>Filmic</source>
+      <translation>Filmische</translation>
     </message>
 
     <message>
       <source>Filter Design</source>
-      <translation>Conception des filtres</translation>
+      <translation>Filterontwerp</translation>
     </message>
 
     <message>
       <source>Final Image</source>
-      <translation>Image finale</translation>
+      <translation>Eindbeeld</translation>
     </message>
 
     <message>
       <source>Fine</source>
-      <translation>Bien</translation>
+      <translation>Prima</translation>
     </message>
 
     <message>
       <source>Fine 2</source>
-      <translation>Amende 2</translation>
+      <translation>Fijn 2</translation>
     </message>
 
     <message>
       <source>Fine Details Smoothness</source>
-      <translation>La finesse des détails</translation>
+      <translation>Fijne details Gladheid</translation>
     </message>
 
     <message>
       <source>Fine Details Threshold</source>
-      <translation>Seuil de précision</translation>
+      <translation>Fijne details Drempel</translation>
     </message>
 
     <message>
       <source>Fine Noise</source>
-      <translation>Bruit fin</translation>
+      <translation>Fijn geluid</translation>
     </message>
 
     <message>
       <source>Fine Scale</source>
-      <translation>Échelle fine</translation>
+      <translation>Fijne Schaal</translation>
     </message>
 
     <message>
       <source>Finest (slower)</source>
-      <translation>Le plus fin (plus lent)</translation>
+      <translation>Fijnste (langzamer)</translation>
     </message>
 
     <message>
       <source>Finger Paint</source>
-      <translation>Peinture au doigt</translation>
+      <translation>Vingerverf</translation>
     </message>
 
     <message>
       <source>Finger Size</source>
-      <translation>Taille des doigts</translation>
+      <translation>Vingergrootte</translation>
     </message>
 
     <message>
       <source>Fire Effect</source>
-      <translation>Effet de feu</translation>
+      <translation>Vuureffect</translation>
     </message>
 
     <message>
       <source>Fireworks</source>
-      <translation>Feux d&apos;artifice</translation>
+      <translation>Vuurwerk</translation>
     </message>
 
     <message>
       <source>First</source>
-      <translation>Première</translation>
+      <translation>Eerste</translation>
     </message>
 
     <message>
       <source>First Color</source>
-      <translation>Première couleur</translation>
+      <translation>Eerste kleur</translation>
     </message>
 
     <message>
       <source>First Frame</source>
-      <translation>Premier cadre</translation>
+      <translation>Eerste frame</translation>
     </message>
 
     <message>
       <source>First Offset</source>
-      <translation>Première compensation</translation>
+      <translation>Eerste compensatie</translation>
     </message>
 
     <message>
       <source>First Radius</source>
-      <translation>Premier rayon</translation>
+      <translation>Eerste straal</translation>
     </message>
 
     <message>
       <source>First Size</source>
-      <translation>Première taille</translation>
+      <translation>Eerste Maat</translation>
+    </message>
+
+    <message>
+      <source>Fish-Eye</source>
+      <translation>Visoog</translation>
     </message>
 
     <message>
       <source>Fish-Eye Effect</source>
-      <translation>Effet &quot;Fish-Eye</translation>
+      <translation>Vis-oog effect</translation>
     </message>
 
     <message>
       <source>Fitting Function</source>
-      <translation>Fonction d&apos;ajustement</translation>
+      <translation>Passende functie</translation>
     </message>
 
     <message>
       <source>Five Layers</source>
-      <translation>Cinq couches</translation>
+      <translation>Vijf lagen</translation>
     </message>
 
     <message>
       <source>Flag</source>
-      <translation>Drapeau</translation>
+      <translation>Vlag</translation>
     </message>
 
     <message>
       <source>Flag (256)</source>
-      <translation>Drapeau (256)</translation>
+      <translation>Vlag (256)</translation>
     </message>
 
     <message>
       <source>Flat</source>
-      <translation>Appartement</translation>
+      <translation>Vlakke</translation>
     </message>
 
     <message>
       <source>Flat 30</source>
-      <translation>Appartement 30</translation>
+      <translation>Vlakke 30</translation>
     </message>
 
     <message>
       <source>Flat Color</source>
-      <translation>Couleur plate</translation>
+      <translation>Vlakke kleur</translation>
     </message>
 
     <message>
       <source>Flat Regions Removal</source>
-      <translation>Suppression des régions plates</translation>
-    </message>
-
-    <message>
-      <source>Flat-Shaded</source>
-      <translation>En clair</translation>
+      <translation>Platte gebieden Verwijdering</translation>
     </message>
 
     <message>
       <source>Flatness</source>
-      <translation>La planéité</translation>
-    </message>
-
-    <message>
-      <source>Flip</source>
-      <translation>Retournez</translation>
+      <translation>Vlakheid</translation>
     </message>
 
     <message>
       <source>Flip &amp; Rotate Blocs</source>
-      <translation>Retournez et faites pivoter les blocs</translation>
+      <translation>Blokken omdraaien</translation>
+    </message>
+
+    <message>
+      <source>Flip Left / Right</source>
+      <translation>Flip links / rechts</translation>
     </message>
 
     <message>
       <source>Flip Left/Right</source>
-      <translation>Retournez à gauche/droite</translation>
+      <translation>Links/rechtsomklappen</translation>
     </message>
 
     <message>
       <source>Flip The Pattern</source>
-      <translation>Renverser le schéma</translation>
+      <translation>Flip het patroon</translation>
     </message>
 
     <message>
       <source>Flip Tolerance</source>
-      <translation>Tolérance de retournement</translation>
+      <translation>Flip-tolerantie</translation>
     </message>
 
     <message>
       <source>Flower</source>
-      <translation>Fleurs</translation>
+      <translation>Bloem</translation>
     </message>
 
     <message>
       <source>Foggy Night</source>
-      <translation>Nuit brumeuse</translation>
+      <translation>Mistige nacht</translation>
     </message>
 
     <message>
       <source>Folder Name</source>
-      <translation>Nom du dossier</translation>
+      <translation>Mapnaam</translation>
     </message>
 
     <message>
       <source>Font Colors</source>
-      <translation>Couleurs des polices</translation>
+      <translation>Lettertype Kleuren</translation>
     </message>
 
     <message>
       <source>Font Height (px)</source>
-      <translation>Hauteur de la police (px)</translation>
+      <translation>Letterhoogte (px)</translation>
+    </message>
+
+    <message>
+      <source>Force Gray</source>
+      <translation>Grijze kracht</translation>
     </message>
 
     <message>
       <source>Force Re-Download from Scratch</source>
-      <translation>Re-téléchargement de la force à partir de zéro</translation>
+      <translation>Force Re-Download van Scratch</translation>
     </message>
 
     <message>
       <source>Force Tiles to Have Same Size</source>
-      <translation>Obliger les tuiles à avoir la même taille</translation>
+      <translation>Dwingen Tegels om dezelfde grootte te hebben</translation>
     </message>
 
     <message>
       <source>Force Transparency</source>
-      <translation>Transparence des forces</translation>
+      <translation>Transparantie dwingen</translation>
     </message>
 
     <message>
       <source>Foreground Color</source>
-      <translation>Couleur de premier plan</translation>
+      <translation>Voorgrondkleur</translation>
     </message>
 
     <message>
       <source>Form</source>
-      <translation>Formulaire</translation>
+      <translation>Formulier</translation>
     </message>
 
     <message>
@@ -6151,892 +6491,967 @@
 
     <message>
       <source>Forward</source>
-      <translation>Transmettre</translation>
+      <translation>Doorsturen</translation>
     </message>
 
     <message>
       <source>Forward  Horizontal</source>
-      <translation>Horizontal de l&apos;avant</translation>
+      <translation>Horizontaal vooruit</translation>
     </message>
 
     <message>
       <source>Forward Horizontal</source>
-      <translation>Horizontal de l&apos;avant</translation>
+      <translation>Horizontaal vooruit</translation>
     </message>
 
     <message>
       <source>Forward Vertical</source>
-      <translation>Vertical en avant</translation>
+      <translation>Voorwaarts Verticaal</translation>
     </message>
 
     <message>
       <source>Four Layers</source>
-      <translation>Quatre couches</translation>
+      <translation>Vier lagen</translation>
     </message>
 
     <message>
       <source>Four Threads</source>
-      <translation>Quatre fils</translation>
+      <translation>Vier draden</translation>
     </message>
 
     <message>
       <source>Fourier Analysis</source>
-      <translation>Analyse de Fourier</translation>
-    </message>
-
-    <message>
-      <source>Fourier Filtering</source>
-      <translation>Filtrage de Fourier</translation>
+      <translation>Fourieranalyse</translation>
     </message>
 
     <message>
       <source>Fourier Transform</source>
-      <translation>Transformation de Fourier</translation>
+      <translation>Fourier Transformatie</translation>
     </message>
 
     <message>
       <source>Fourier Watermark</source>
-      <translation>Filigrane de Fourier</translation>
+      <translation>Fourier Watermerk</translation>
     </message>
 
     <message>
       <source>Fractal Noise</source>
-      <translation>Bruit fractal</translation>
+      <translation>Fractaal geluid</translation>
     </message>
 
     <message>
       <source>Fractal Points</source>
-      <translation>Points fractals</translation>
+      <translation>Fractische punten</translation>
     </message>
 
     <message>
       <source>Fractal Set</source>
-      <translation>Ensemble fractal</translation>
-    </message>
-
-    <message>
-      <source>Fractal Whirl</source>
-      <translation>Tourbillon fractal</translation>
+      <translation>Fractaire set</translation>
     </message>
 
     <message>
       <source>Fractalize</source>
-      <translation>Fractaliser</translation>
+      <translation>Fractaliseer</translation>
     </message>
 
     <message>
       <source>Fractured Clouds</source>
-      <translation>Nuages fracturés</translation>
+      <translation>Gebroken wolken</translation>
     </message>
 
     <message>
       <source>Fragment Blur</source>
-      <translation>Flou des fragments</translation>
-    </message>
-
-    <message>
-      <source>Frame (px)</source>
-      <translation>Cadre (px)</translation>
+      <translation>Fragment vervagen</translation>
     </message>
 
     <message>
       <source>Frame [Blur]</source>
-      <translation>Cadre [Flou]</translation>
+      <translation>Frame [Wazig]</translation>
     </message>
 
     <message>
       <source>Frame [Cube]</source>
-      <translation>Cadre [Cube]</translation>
-    </message>
-
-    <message>
-      <source>Frame [Fuzzy]</source>
-      <translation>Cadre [Fuzzy]</translation>
+      <translation>Frame [Kubus]</translation>
     </message>
 
     <message>
       <source>Frame [Mirror]</source>
-      <translation>Cadre [Miroir]</translation>
+      <translation>Frame [Spiegel]</translation>
     </message>
 
     <message>
       <source>Frame [Painting]</source>
-      <translation>Cadre [Peinture]</translation>
+      <translation>Frame [Schilderij]</translation>
     </message>
 
     <message>
       <source>Frame [Pattern]</source>
-      <translation>Cadre [Motif]</translation>
+      <translation>Frame [Patroon]</translation>
     </message>
 
     <message>
       <source>Frame [Regular]</source>
-      <translation>Cadre [Régulier]</translation>
+      <translation>Frame [Regelmatig]</translation>
     </message>
 
     <message>
       <source>Frame [Round]</source>
-      <translation>Cadre [Rond]</translation>
+      <translation>Frame [Rond]</translation>
     </message>
 
     <message>
       <source>Frame [Smooth]</source>
-      <translation>Cadre [Lisse]</translation>
+      <translation>Frame [Glad]</translation>
     </message>
 
     <message>
       <source>Frame as a New Layer</source>
-      <translation>Le cadre comme nouvelle couche</translation>
+      <translation>Frame als nieuwe laag</translation>
     </message>
 
     <message>
       <source>Frame Color</source>
-      <translation>Couleur du cadre</translation>
+      <translation>Kleur van het frame</translation>
     </message>
 
     <message>
       <source>Frame Files Format</source>
-      <translation>Format des fichiers cadres</translation>
+      <translation>Frame Bestanden Formaat</translation>
     </message>
 
     <message>
       <source>Frame Format</source>
-      <translation>Format de l&apos;image</translation>
+      <translation>Frameformaat</translation>
     </message>
 
     <message>
       <source>Frame Size</source>
-      <translation>Taille de l&apos;image</translation>
+      <translation>Framegrootte</translation>
     </message>
 
     <message>
       <source>Frame Skip</source>
-      <translation>Saut de cadre</translation>
+      <translation>Frame Overslaan</translation>
     </message>
 
     <message>
       <source>Frame Type</source>
-      <translation>Type de cadre</translation>
+      <translation>Frametype</translation>
     </message>
 
     <message>
       <source>Frame Width</source>
-      <translation>Largeur du cadre</translation>
-    </message>
-
-    <message>
-      <source>Frames</source>
-      <translation>Cadres</translation>
+      <translation>Frame Breedte</translation>
     </message>
 
     <message>
       <source>Frames Offset</source>
-      <translation>Compensation des cadres</translation>
+      <translation>Frames Compensatie</translation>
     </message>
 
     <message>
       <source>Freaky B&amp;W</source>
-      <translation>L&apos;étrange B&amp;W</translation>
+      <translation>Griezelig B&amp;W</translation>
     </message>
 
     <message>
       <source>Freaky Details</source>
-      <translation>Détails bizarres</translation>
+      <translation>Griezelige details</translation>
     </message>
 
     <message>
       <source>Freeze</source>
-      <translation>Geler</translation>
+      <translation>Bevriezen</translation>
     </message>
 
     <message>
       <source>French Comedy</source>
-      <translation>Comédie française</translation>
+      <translation>Franse komedie</translation>
     </message>
 
     <message>
       <source>Frequency</source>
-      <translation>Fréquence</translation>
+      <translation>Frequentie</translation>
     </message>
 
     <message>
       <source>Frequency (%)</source>
-      <translation>Fréquence (%)</translation>
+      <translation>Frequentie (%)</translation>
     </message>
 
     <message>
       <source>Frequency Analyzer</source>
-      <translation>Analyseur de fréquence</translation>
+      <translation>Frequentie-analyzer</translation>
     </message>
 
     <message>
       <source>Frequency Range</source>
-      <translation>Gamme de fréquences</translation>
+      <translation>Frequentiebereik</translation>
     </message>
 
     <message>
       <source>Freqy Pattern</source>
-      <translation>Modèle de fréquence</translation>
+      <translation>Freqy-patroon</translation>
     </message>
 
     <message>
       <source>Friends Hall of Fame</source>
-      <translation>Panthéon des amis</translation>
+      <translation>Vrienden Hall of Fame</translation>
     </message>
 
     <message>
       <source>From Input</source>
-      <translation>De l&apos;entrée</translation>
+      <translation>Van Invoer</translation>
     </message>
 
     <message>
       <source>From Reference Color</source>
-      <translation>De la couleur de référence</translation>
+      <translation>Van Referentie Kleur</translation>
     </message>
 
     <message>
       <source>Frosted</source>
-      <translation>Givré</translation>
+      <translation>Bevroren</translation>
     </message>
 
     <message>
       <source>Frosted Beach Picnic</source>
-      <translation>Pique-nique sur la plage gelée</translation>
+      <translation>Frosted Strand Picknick</translation>
     </message>
 
     <message>
-      <source>Fuji 3510 (Cuspclip)</source>
-      <translation>Fuji 3510 (L&apos;haltère)</translation>
+      <source>Fruits</source>
+      <translation>Vruchten</translation>
     </message>
 
     <message>
-      <source>Fuji 3513 (Cuspclip)</source>
-      <translation>Fuji 3513 (L&apos;haltère)</translation>
+      <source>Fuji FP-100c --</source>
+      <translation>Fuji FP-100c -</translation>
+    </message>
+
+    <message>
+      <source>Fuji FP-100c Cool --</source>
+      <translation>Fuji FP-100c Cool...</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative</source>
-      <translation>Fuji FP-100c Négatif</translation>
+      <translation>Fuji FP-100c Negatief</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative +</source>
-      <translation>Fuji FP-100c Négatif +</translation>
+      <translation>Fuji FP-100c Negatief +</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative ++</source>
-      <translation>Fuji FP-100c Négatif ++</translation>
+      <translation>Fuji FP-100c Negatief ++</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative +++</source>
-      <translation>Fuji FP-100c Négatif +++</translation>
+      <translation>Fuji FP-100c Negatief +++</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative ++a</source>
-      <translation>Fuji FP-100c Négatif ++a</translation>
+      <translation>Fuji FP-100c Negatief ++a</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative -</source>
-      <translation>Fuji FP-100c Négatif -</translation>
+      <translation>Fuji FP-100c Negatief -</translation>
     </message>
 
     <message>
       <source>Fuji FP-100c Negative --</source>
-      <translation>Fuji FP-100c Négatif --</translation>
+      <translation>Fuji FP-100c Negatief -</translation>
+    </message>
+
+    <message>
+      <source>Fuji FP-3000b --</source>
+      <translation>Fuji FP-3000b -</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative</source>
-      <translation>Fuji FP-3000b Négatif</translation>
+      <translation>Fuji FP-3000b Negatief</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative +</source>
-      <translation>Fuji FP-3000b Négatif +</translation>
+      <translation>Fuji FP-3000b Negatief +</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative ++</source>
-      <translation>Fuji FP-3000b Négatif ++</translation>
+      <translation>Fuji FP-3000b Negatief ++</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative +++</source>
-      <translation>Fuji FP-3000b Négatif +++</translation>
+      <translation>Fuji FP-3000b Negatief +++</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative -</source>
-      <translation>Fuji FP-3000b Négatif -</translation>
+      <translation>Fuji FP-3000b Negatief -</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative --</source>
-      <translation>Fuji FP-3000b Négatif --</translation>
+      <translation>Fuji FP-3000b Negatief -</translation>
     </message>
 
     <message>
       <source>Fuji FP-3000b Negative Early</source>
-      <translation>Fuji FP-3000b Négatif précoce</translation>
+      <translation>Fuji FP-3000b Negatief Vroeg</translation>
     </message>
 
     <message>
       <source>Full</source>
-      <translation>Pour en savoir plus :</translation>
+      <translation>Volledig</translation>
     </message>
 
     <message>
       <source>Full (Allows Multi-Layers)</source>
-      <translation>Plein (permet les couches multiples)</translation>
+      <translation>Vol (maakt Multi-Layers mogelijk)</translation>
     </message>
 
     <message>
       <source>Full (Slower)</source>
-      <translation>Plein (plus lent)</translation>
+      <translation>Vol (langzamer)</translation>
     </message>
 
     <message>
       <source>Full Bottom/top</source>
-      <translation>Complet Bas/haut</translation>
+      <translation>Volledige bodem/top</translation>
     </message>
 
     <message>
       <source>Full Colors</source>
-      <translation>Couleurs</translation>
+      <translation>Volle kleuren</translation>
+    </message>
+
+    <message>
+      <source>Full HD Frame Packing</source>
+      <translation>Full HD Frame Verpakking</translation>
     </message>
 
     <message>
       <source>Full Layer Stack -Slow!-</source>
-      <translation>Pile de couches complètes -Lent !</translation>
+      <translation>Volle laagstapel -Slow! -</translation>
     </message>
 
     <message>
       <source>Full Side by Side Keep Uncompressed</source>
-      <translation>Plein côte à côte, sans compression</translation>
+      <translation>Volledig zij aan zij houden Ongecomprimeerd</translation>
     </message>
 
     <message>
       <source>Full Side by Side Keep Width</source>
-      <translation>Plein côte à côte Garder la largeur</translation>
+      <translation>Volledige zij-aan-zij-breedte houden</translation>
     </message>
 
     <message>
       <source>Full Side by Uncompressed</source>
-      <translation>Full Side par Uncompressed</translation>
+      <translation>Volledige Zijde door Ongecomprimeerd</translation>
+    </message>
+
+    <message>
+      <source>Fusion 88</source>
+      <translation>Fusie 88</translation>
     </message>
 
     <message>
       <source>Futuristic Bleak 1</source>
-      <translation>Futuriste Bleue 1</translation>
+      <translation>Futuristisch Guur 1</translation>
+    </message>
+
+    <message>
+      <source>Futuristic Bleak 2</source>
+      <translation>Futuristisch Guur 2</translation>
     </message>
 
     <message>
       <source>Futuristic Bleak 3</source>
-      <translation>Futuriste Bleue 3</translation>
+      <translation>Futuristisch Guur 3</translation>
     </message>
 
     <message>
       <source>Futuristic Bleak 4</source>
-      <translation>Futuriste Bleue 4</translation>
-    </message>
-
-    <message>
-      <source>G&apos;MIC Operator</source>
-      <translation>Opérateur G&apos;MIC</translation>
+      <translation>Futuristisch Guur 4</translation>
     </message>
 
     <message>
       <source>G/M Smoothness</source>
-      <translation>Lissage G/M</translation>
+      <translation>G/M Gladheid</translation>
     </message>
 
     <message>
       <source>Gain</source>
-      <translation>Gagnez</translation>
+      <translation>Verkrijg</translation>
     </message>
 
     <message>
       <source>Games &amp; Demos</source>
-      <translation>Jeux et démos</translation>
+      <translation>Spelletjes &amp; demo&apos;s</translation>
     </message>
 
     <message>
       <source>Gamma Balance</source>
-      <translation>Balance gamma</translation>
+      <translation>Gammabalans</translation>
     </message>
 
     <message>
       <source>Gamma Compensation</source>
-      <translation>Compensation gamma</translation>
+      <translation>Gamma-compensatie</translation>
     </message>
 
     <message>
       <source>Gamma Equalizer</source>
-      <translation>Égaliseur gamma</translation>
+      <translation>Gamma-equalizer</translation>
     </message>
 
     <message>
       <source>Gaussian</source>
-      <translation>Gaussien</translation>
+      <translation>Gaussische</translation>
     </message>
 
     <message>
       <source>Gear</source>
-      <translation>Équipement</translation>
+      <translation>Versnelling</translation>
     </message>
 
     <message>
       <source>Generate Random-Colors Layer</source>
-      <translation>Générer une couche de couleurs aléatoires</translation>
+      <translation>Genereer willekeurige kleurenlaag</translation>
     </message>
 
     <message>
       <source>Generic Fuji Astia 100</source>
-      <translation>Générique Fuji Astia 100</translation>
+      <translation>Generiek Fuji Astia 100</translation>
     </message>
 
     <message>
       <source>Generic Fuji Provia 100</source>
-      <translation>Générique Fuji Provia 100</translation>
+      <translation>Generieke Fuji Provia 100</translation>
     </message>
 
     <message>
       <source>Generic Fuji Velvia 100</source>
-      <translation>Générique Fuji Velvia 100</translation>
+      <translation>Generiek Fuji Velvia 100</translation>
     </message>
 
     <message>
       <source>Generic Kodachrome 64</source>
-      <translation>Générique Kodachrome 64</translation>
+      <translation>Generieke Kodachrome 64</translation>
     </message>
 
     <message>
       <source>Generic Kodak Ektachrome 100 VS</source>
-      <translation>Générique Kodak Ektachrome 100 VS</translation>
+      <translation>Generieke Kodak Ektachrome 100 VS</translation>
     </message>
 
     <message>
       <source>Generic Skin Structure</source>
-      <translation>Structure de la peau générique</translation>
+      <translation>Algemene huidstructuur</translation>
     </message>
 
     <message>
       <source>Gentle Mode (overrides Minimum Brightness and Minimun Red:Blue Ratio)</source>
-      <translation>Mode doux (remplace la luminosité minimale et le rapport minimal rouge/bleu)</translation>
+      <translation>Zachte modus (overschrijft Minimale helderheid en Minimun-rood: Blauwe verhouding)</translation>
     </message>
 
     <message>
       <source>Geometry</source>
-      <translation>Géométrie</translation>
+      <translation>Geometrie</translation>
+    </message>
+
+    <message>
+      <source>Glamour Glow</source>
+      <translation>Glamour Gloed</translation>
+    </message>
+
+    <message>
+      <source>Global</source>
+      <translation>Wereldwijd</translation>
     </message>
 
     <message>
       <source>Global Mapping</source>
-      <translation>Cartographie mondiale</translation>
+      <translation>Globale kartering</translation>
+    </message>
+
+    <message>
+      <source>Glow</source>
+      <translation>Gloed</translation>
     </message>
 
     <message>
       <source>Gmicky &amp; Wilber (by Mahvin)</source>
-      <translation>Gmicky &amp; Wilber (par Mahvin)</translation>
+      <translation>Gmicky &amp; Wilber (door Mahvin)</translation>
     </message>
 
     <message>
       <source>Gmicky (by Deevad)</source>
-      <translation>Gmicky (par Deevad)</translation>
+      <translation>Gmicky (door Deevad)</translation>
     </message>
 
     <message>
       <source>Gmicky (by Mahvin)</source>
-      <translation>Gmicky (par Mahvin)</translation>
+      <translation>Gmicky (door Mahvin)</translation>
     </message>
 
     <message>
       <source>Going for a Walk</source>
-      <translation>Se promener</translation>
+      <translation>Gaan wandelen</translation>
     </message>
 
     <message>
       <source>Gold</source>
-      <translation>Or</translation>
+      <translation>Goud</translation>
+    </message>
+
+    <message>
+      <source>Golden</source>
+      <translation>Gouden</translation>
     </message>
 
     <message>
       <source>Golden (bright)</source>
-      <translation>Doré (brillant)</translation>
+      <translation>Goud (helder)</translation>
     </message>
 
     <message>
       <source>Golden (fade)</source>
-      <translation>Doré (fondu)</translation>
+      <translation>Goud (vervagen)</translation>
     </message>
 
     <message>
       <source>Golden (mono)</source>
-      <translation>Doré (mono)</translation>
+      <translation>Goud (mono)</translation>
     </message>
 
     <message>
       <source>Golden (vibrant)</source>
-      <translation>Doré (vibrant)</translation>
+      <translation>Goud (levendig)</translation>
     </message>
 
     <message>
       <source>Golden Gate</source>
-      <translation>Le Golden Gate</translation>
+      <translation>Gouden Poort</translation>
+    </message>
+
+    <message>
+      <source>Golden Night Softner 43</source>
+      <translation>Gouden Nacht Softner 43</translation>
+    </message>
+
+    <message>
+      <source>Golden Sony 37</source>
+      <translation>Gouden Sony 37</translation>
     </message>
 
     <message>
       <source>GoldFX - Bright Spring Breeze</source>
-      <translation>GoldFX - Brise printanière</translation>
+      <translation>GoldFX - Heldere lentebries</translation>
     </message>
 
     <message>
       <source>GoldFX - Bright Summer Heat</source>
-      <translation>GoldFX - La chaleur de l&apos;été</translation>
+      <translation>GoldFX - Heldere zomerhitte</translation>
     </message>
 
     <message>
       <source>GoldFX - Hot Summer Heat</source>
-      <translation>GoldFX - Chaleur estivale</translation>
+      <translation>GoldFX - Hete Zomerhitte</translation>
     </message>
 
     <message>
       <source>GoldFX - Perfect Sunset 01min</source>
-      <translation>GoldFX - Coucher de soleil parfait 01min</translation>
+      <translation>GoldFX - Perfecte zonsondergang 01min</translation>
     </message>
 
     <message>
       <source>GoldFX - Perfect Sunset 05min</source>
-      <translation>GoldFX - Coucher de soleil parfait 05min</translation>
+      <translation>GoldFX - Perfecte zonsondergang 05min</translation>
     </message>
 
     <message>
       <source>GoldFX - Perfect Sunset 10min</source>
-      <translation>GoldFX - Coucher de soleil parfait 10min</translation>
+      <translation>GoldFX - Perfecte zonsondergang 10min</translation>
     </message>
 
     <message>
       <source>GoldFX - Spring Breeze</source>
-      <translation>GoldFX - Brise de printemps</translation>
+      <translation>GoldFX - Voorjaarswind</translation>
     </message>
 
     <message>
       <source>GoldFX - Summer Heat</source>
-      <translation>GoldFX - Chaleur d&apos;été</translation>
+      <translation>GoldFX - Zomerse hitte</translation>
     </message>
 
     <message>
       <source>Good Morning</source>
-      <translation>Bonjour</translation>
+      <translation>Goedemorgen</translation>
+    </message>
+
+    <message>
+      <source>GradienNormLinearity</source>
+      <translation>GradienNormLineariteit</translation>
+    </message>
+
+    <message>
+      <source>Gradient</source>
+      <translation>Gradiënt</translation>
     </message>
 
     <message>
       <source>Gradient [Corners]</source>
-      <translation>Gradient [Angles]</translation>
+      <translation>Gradiënt [Hoeken]</translation>
     </message>
 
     <message>
       <source>Gradient [Custom Shape]</source>
-      <translation>Gradient [Forme personnalisée]</translation>
+      <translation>Gradiënt [Aangepaste vorm]</translation>
     </message>
 
     <message>
       <source>Gradient [from Line]</source>
-      <translation>Gradient [à partir de la ligne]</translation>
+      <translation>Gradiënt [van lijn]</translation>
     </message>
 
     <message>
       <source>Gradient [Linear]</source>
-      <translation>Gradient [Linéaire]</translation>
+      <translation>Gradiënt [Lineair]</translation>
+    </message>
+
+    <message>
+      <source>Gradient [Radial]</source>
+      <translation>Gradiënt [Radiaal]</translation>
     </message>
 
     <message>
       <source>Gradient [Random]</source>
-      <translation>Gradient [Aléatoire]</translation>
+      <translation>Gradiënt [Willekeurig]</translation>
     </message>
 
     <message>
       <source>Gradient Norm</source>
-      <translation>Norme de gradient</translation>
+      <translation>Gradiënt Norm</translation>
     </message>
 
     <message>
       <source>Gradient Preset</source>
-      <translation>Préréglage du gradient</translation>
+      <translation>Vooraf ingestelde hellingshoek</translation>
+    </message>
+
+    <message>
+      <source>Gradient RGB</source>
+      <translation>Gradiënt RGB</translation>
     </message>
 
     <message>
       <source>Gradient Smoothness</source>
-      <translation>Gradient de douceur</translation>
+      <translation>Gradiënt Gladheid</translation>
     </message>
 
     <message>
       <source>Gradient Values</source>
-      <translation>Valeurs de gradient</translation>
+      <translation>Gradiëntwaarden</translation>
+    </message>
+
+    <message>
+      <source>Grain</source>
+      <translation>Korrel</translation>
     </message>
 
     <message>
       <source>Grain (Highlights)</source>
-      <translation>Céréales (points forts)</translation>
+      <translation>Graan (Highlights)</translation>
+    </message>
+
+    <message>
+      <source>Grain (Midtones)</source>
+      <translation>Graan (Midtones)</translation>
     </message>
 
     <message>
       <source>Grain (Shadows)</source>
-      <translation>Grain (Ombres)</translation>
+      <translation>Graan (Schaduwen)</translation>
     </message>
 
     <message>
       <source>Grain Extract</source>
-      <translation>Extrait de grain</translation>
+      <translation>Graanextract</translation>
     </message>
 
     <message>
       <source>Grain Merge</source>
-      <translation>Fusion des céréales</translation>
+      <translation>Graan Samenvoegen</translation>
     </message>
 
     <message>
       <source>Grain Only</source>
-      <translation>Grain seulement</translation>
+      <translation>Alleen graan</translation>
     </message>
 
     <message>
       <source>Grain Scale</source>
-      <translation>La balance des grains</translation>
+      <translation>Graanschaal</translation>
     </message>
 
     <message>
       <source>Grain Tone Fading</source>
-      <translation>Le ton du grain s&apos;estompe</translation>
+      <translation>Korreltoonvervaging</translation>
     </message>
 
     <message>
       <source>Grain Type</source>
-      <translation>Type de grain</translation>
+      <translation>Type korrel</translation>
+    </message>
+
+    <message>
+      <source>Grainextract</source>
+      <translation>Graanextract</translation>
+    </message>
+
+    <message>
+      <source>Grainmerge</source>
+      <translation>Graanvernieuwing</translation>
     </message>
 
     <message>
       <source>Granularity</source>
-      <translation>Granularité</translation>
+      <translation>Granulariteit</translation>
     </message>
 
     <message>
       <source>Graphic Boost</source>
-      <translation>Coup de pouce graphique</translation>
+      <translation>Grafische Boost</translation>
     </message>
 
     <message>
       <source>Graphic Colours</source>
-      <translation>Couleurs graphiques</translation>
+      <translation>Grafische kleuren</translation>
     </message>
 
     <message>
       <source>Graphic Novel</source>
-      <translation>Roman graphique</translation>
+      <translation>Grafische roman</translation>
     </message>
 
     <message>
       <source>Graphix Colors</source>
-      <translation>Couleurs Graphix</translation>
+      <translation>Graphix Kleuren</translation>
     </message>
 
     <message>
       <source>Grayscale</source>
-      <translation>Niveaux de gris</translation>
+      <translation>Grijstinten</translation>
     </message>
 
     <message>
       <source>Greece</source>
-      <translation>Grèce</translation>
+      <translation>Griekenland</translation>
     </message>
 
     <message>
       <source>Green</source>
-      <translation>Vert</translation>
+      <translation>Groen</translation>
     </message>
 
     <message>
       <source>Green 15</source>
-      <translation>Vert 15</translation>
+      <translation>Groen 15</translation>
     </message>
 
     <message>
       <source>Green 2025</source>
-      <translation>Vert 2025</translation>
+      <translation>Groen 2025</translation>
     </message>
 
     <message>
       <source>Green Action</source>
-      <translation>Action verte</translation>
+      <translation>Groene actie</translation>
     </message>
 
     <message>
       <source>Green Afternoon</source>
-      <translation>Après-midi vert</translation>
+      <translation>Groene middag</translation>
     </message>
 
     <message>
       <source>Green Blues</source>
-      <translation>Le blues vert</translation>
+      <translation>Groenblauw</translation>
     </message>
 
     <message>
       <source>Green Conflict</source>
-      <translation>Conflit vert</translation>
+      <translation>Groen conflict</translation>
     </message>
 
     <message>
       <source>Green Day 01</source>
-      <translation>Journée verte 01</translation>
+      <translation>Groene dag 01</translation>
     </message>
 
     <message>
       <source>Green Day 02</source>
-      <translation>Journée verte 02</translation>
+      <translation>Groene dag 02</translation>
     </message>
 
     <message>
       <source>Green Factor</source>
-      <translation>Le facteur vert</translation>
+      <translation>Groene factor</translation>
     </message>
 
     <message>
       <source>Green G09</source>
-      <translation>Vert G09</translation>
+      <translation>Groen G09</translation>
     </message>
 
     <message>
       <source>Green Indoor</source>
-      <translation>Intérieur vert</translation>
+      <translation>Groen binnenshuis</translation>
     </message>
 
     <message>
       <source>Green Level</source>
-      <translation>Niveau vert</translation>
+      <translation>Groen niveau</translation>
     </message>
 
     <message>
       <source>Green Light</source>
-      <translation>Feu vert</translation>
+      <translation>Groen licht</translation>
     </message>
 
     <message>
       <source>Green Mono</source>
-      <translation>Mono vert</translation>
+      <translation>Groene Mono</translation>
     </message>
 
     <message>
       <source>Green Rotations</source>
-      <translation>Rotations vertes</translation>
+      <translation>Groene rotaties</translation>
     </message>
 
     <message>
       <source>Green Shift</source>
-      <translation>Tournant vert</translation>
+      <translation>Groene Verschuiving</translation>
     </message>
 
     <message>
       <source>Green Smoothness</source>
-      <translation>La douceur verte</translation>
+      <translation>Groene Gladheid</translation>
     </message>
 
     <message>
       <source>Green Wavelength</source>
-      <translation>Longueur d&apos;onde verte</translation>
+      <translation>Groene Golflengte</translation>
     </message>
 
     <message>
       <source>Green Yellow</source>
-      <translation>Vert Jaune</translation>
+      <translation>Groen Geel</translation>
+    </message>
+
+    <message>
+      <source>Green-Blue</source>
+      <translation>Groenblauw</translation>
     </message>
 
     <message>
       <source>Green-Red</source>
-      <translation>Vert-Rouge</translation>
+      <translation>Groen-rood</translation>
     </message>
 
     <message>
       <source>Greenish Contrasty</source>
-      <translation>Contraste verdâtre</translation>
+      <translation>Groenachtige contradictie</translation>
     </message>
 
     <message>
       <source>Greenish Fade</source>
-      <translation>Fondu verdâtre</translation>
+      <translation>Groenige Fade</translation>
     </message>
 
     <message>
       <source>Greenish Fade 1</source>
-      <translation>Fondu verdâtre 1</translation>
+      <translation>Groene Fade 1</translation>
     </message>
 
     <message>
       <source>Grey</source>
-      <translation>Gris</translation>
+      <translation>Grijs</translation>
     </message>
 
     <message>
       <source>Greyscale</source>
-      <translation>Niveaux de gris</translation>
+      <translation>Grijswaarden</translation>
     </message>
 
     <message>
       <source>Grid</source>
-      <translation>Grille</translation>
+      <translation>Rooster</translation>
     </message>
 
     <message>
       <source>Grid [Cartesian]</source>
-      <translation>Grille [cartésienne]</translation>
+      <translation>Rooster [Cartesiaans]</translation>
     </message>
 
     <message>
       <source>Grid [Hexagonal]</source>
-      <translation>Grille [Hexagonal]</translation>
+      <translation>Raster [Hexagonaal]</translation>
     </message>
 
     <message>
       <source>Grid [Triangular]</source>
-      <translation>Grille [triangulaire]</translation>
+      <translation>Rooster [Driehoekig]</translation>
     </message>
 
     <message>
       <source>Grid Divisions</source>
-      <translation>Divisions de la grille</translation>
+      <translation>Rasterafdelingen</translation>
     </message>
 
     <message>
       <source>Grid Smoothing</source>
-      <translation>Lissage de la grille</translation>
+      <translation>Rasterafvlakking</translation>
     </message>
 
     <message>
       <source>Grid Width</source>
-      <translation>Largeur de la grille</translation>
+      <translation>Rasterbreedte</translation>
     </message>
 
     <message>
       <source>Grow Alpha</source>
-      <translation>Cultiver Alpha</translation>
+      <translation>Groeien Alpha</translation>
     </message>
 
     <message>
       <source>Guide As</source>
-      <translation>Guider en tant que</translation>
+      <translation>Gids Als</translation>
+    </message>
+
+    <message>
+      <source>Guide Mix</source>
+      <translation>Gidsmix</translation>
     </message>
 
     <message>
       <source>Guide Recovery</source>
-      <translation>Guide Recouvrement</translation>
+      <translation>Gids voor herstel</translation>
     </message>
 
     <message>
       <source>Gum Leaf</source>
-      <translation>Feuille de gomme</translation>
+      <translation>Kauwgomblad</translation>
     </message>
 
     <message>
@@ -7045,453 +7460,488 @@
     </message>
 
     <message>
-      <source>H Cutoff</source>
-      <translation>H Seuil</translation>
+      <source>Hackmanite</source>
+      <translation>Hackmaniet</translation>
     </message>
 
     <message>
       <source>Hair Locks</source>
-      <translation>Serrures de cheveux</translation>
+      <translation>Haarsloten</translation>
     </message>
 
     <message>
       <source>HaldCLUT Filename</source>
-      <translation>HaldCLUT Nom du fichier</translation>
+      <translation>HaldCLUT Filenaam</translation>
     </message>
 
     <message>
       <source>Half Bottom/top</source>
-      <translation>Demi-fond/haut</translation>
+      <translation>Halve bodem/top</translation>
     </message>
 
     <message>
       <source>Half Side  by Side</source>
-      <translation>A moitié côte à côte</translation>
+      <translation>Halve zijde door zijde</translation>
     </message>
 
     <message>
       <source>Halftone</source>
-      <translation>Demi-teinte</translation>
+      <translation>Halftoon</translation>
     </message>
 
     <message>
       <source>Halftone Shapes</source>
-      <translation>Formes en demi-teinte</translation>
+      <translation>Halftoonvormen</translation>
     </message>
 
     <message>
       <source>Hanoi Tower</source>
-      <translation>Tour de Hanoi</translation>
+      <translation>Hanoi-toren</translation>
     </message>
 
     <message>
       <source>Happyness 133</source>
-      <translation>Bonheur 133</translation>
+      <translation>Geluk 133</translation>
     </message>
 
     <message>
-      <source>Hard</source>
-      <translation>Dur</translation>
+      <source>Hard Dark</source>
+      <translation>Hard donker</translation>
     </message>
 
     <message>
       <source>Hard Light</source>
-      <translation>Lumière dure</translation>
+      <translation>Hard licht</translation>
     </message>
 
     <message>
       <source>Hard Mix</source>
-      <translation>Mixage difficile</translation>
+      <translation>Harde Mix</translation>
     </message>
 
     <message>
       <source>Hard Sketch</source>
-      <translation>Esquisse définitive</translation>
+      <translation>Harde Schets</translation>
     </message>
 
     <message>
       <source>Hard Teal Orange</source>
-      <translation>Sarcelle d&apos;hiver orange</translation>
-    </message>
-
-    <message>
-      <source>Hardlight</source>
-      <translation>Lumière dure</translation>
+      <translation>Hard Teal Oranje</translation>
     </message>
 
     <message>
       <source>Harsh Day</source>
-      <translation>Journée difficile</translation>
+      <translation>Zware dag</translation>
     </message>
 
     <message>
       <source>Harsh Sunset</source>
-      <translation>Un coucher de soleil brutal</translation>
+      <translation>Harde zonsondergang</translation>
     </message>
 
     <message>
       <source>HDR Effect (Tone Map)</source>
-      <translation>Effet HDR (carte des tons)</translation>
+      <translation>HDR-effect (Toonkaart)</translation>
     </message>
 
     <message>
       <source>Heart</source>
-      <translation>Coeur</translation>
+      <translation>Hart</translation>
     </message>
 
     <message>
       <source>Hearts</source>
-      <translation>Coeurs</translation>
+      <translation>Harten</translation>
     </message>
 
     <message>
       <source>Hearts (Outline)</source>
-      <translation>Coeurs (Grandes lignes)</translation>
+      <translation>Harten (Overzicht)</translation>
     </message>
 
     <message>
       <source>Hedcut (Experimental)</source>
-      <translation>Hedcut (Expérimental)</translation>
+      <translation>Hedcut (Experimenteel)</translation>
     </message>
 
     <message>
       <source>Height</source>
-      <translation>Hauteur</translation>
+      <translation>Hoogte</translation>
     </message>
 
     <message>
       <source>Height (%)</source>
-      <translation>Hauteur (%)</translation>
+      <translation>Hoogte (%)</translation>
     </message>
 
     <message>
-      <source>Hexagon</source>
-      <translation>Hexagone</translation>
+      <source>Herderite</source>
+      <translation>Herderiet</translation>
+    </message>
+
+    <message>
+      <source>Hexagonal</source>
+      <translation>Zeshoekig</translation>
+    </message>
+
+    <message>
+      <source>Hiddenite</source>
+      <translation>Verborgenheid</translation>
     </message>
 
     <message>
       <source>High</source>
-      <translation>Haut</translation>
+      <translation>Hoog</translation>
     </message>
 
     <message>
       <source>High (Slower)</source>
-      <translation>Haut (plus lent)</translation>
+      <translation>Hoog (langzamer)</translation>
     </message>
 
     <message>
       <source>High Frequency</source>
-      <translation>Haute fréquence</translation>
+      <translation>Hoge frequentie</translation>
     </message>
 
     <message>
       <source>High Frequency Layer</source>
-      <translation>Couche haute fréquence</translation>
+      <translation>Hoogfrequente laag</translation>
     </message>
 
     <message>
       <source>High Key</source>
-      <translation>Haut de page</translation>
+      <translation>Hoge sleutel</translation>
+    </message>
+
+    <message>
+      <source>High Pass</source>
+      <translation>Hoge Pas</translation>
     </message>
 
     <message>
       <source>High Quality</source>
-      <translation>Haute qualité</translation>
+      <translation>Hoge kwaliteit</translation>
     </message>
 
     <message>
       <source>High Scale</source>
-      <translation>Haute échelle</translation>
+      <translation>Hoge Schaal</translation>
     </message>
 
     <message>
       <source>High Speed</source>
-      <translation>Haute vitesse</translation>
+      <translation>Hoge snelheid</translation>
     </message>
 
     <message>
       <source>High Value</source>
-      <translation>Haute valeur</translation>
+      <translation>Hoge waarde</translation>
     </message>
 
     <message>
       <source>Higher Mask Threshold (%)</source>
-      <translation>Seuil de masquage supérieur (%)</translation>
+      <translation>Hogere masker drempel (%)</translation>
     </message>
 
     <message>
       <source>Highlight</source>
-      <translation>Souligner</translation>
+      <translation>Markeer</translation>
     </message>
 
     <message>
       <source>Highlight (%)</source>
-      <translation>Faits marquants (%)</translation>
+      <translation>Markeer (%)</translation>
     </message>
 
     <message>
       <source>Highlight Bloom</source>
-      <translation>Mettre en évidence Bloom</translation>
-    </message>
-
-    <message>
-      <source>Highlights</source>
-      <translation>Faits marquants</translation>
+      <translation>Markeer Bloom</translation>
     </message>
 
     <message>
       <source>Highlights Abstraction</source>
-      <translation>Résumé des points forts</translation>
+      <translation>Hoogtepunten Abstractie</translation>
     </message>
 
     <message>
       <source>Highlights Brightness</source>
-      <translation>Points forts Luminosité</translation>
+      <translation>Highlights Helderheid</translation>
     </message>
 
     <message>
       <source>Highlights Color Intensity</source>
-      <translation>Points forts Intensité des couleurs</translation>
-    </message>
-
-    <message>
-      <source>Highlights Crossover Point</source>
-      <translation>Points forts Crossover Point</translation>
+      <translation>Highlights Kleurintensiteit</translation>
     </message>
 
     <message>
       <source>Highlights Hue</source>
-      <translation>Points forts Hue</translation>
+      <translation>Highlights Tint</translation>
     </message>
 
     <message>
       <source>Highlights Lightness</source>
-      <translation>Faits marquants Légèreté</translation>
+      <translation>Highlights Lichtheid</translation>
     </message>
 
     <message>
       <source>Highlights Protection</source>
-      <translation>Points forts Protection</translation>
+      <translation>Hoogtepunten Bescherming</translation>
     </message>
 
     <message>
       <source>Highlights Selection</source>
-      <translation>Sélection des points forts</translation>
+      <translation>Hoogtepunten Selectie</translation>
     </message>
 
     <message>
       <source>Highlights Threshold</source>
-      <translation>Points forts Seuil</translation>
+      <translation>Hoogtepunten Drempel</translation>
     </message>
 
     <message>
       <source>Highlights Zone</source>
-      <translation>Zone des points forts</translation>
-    </message>
-
-    <message>
-      <source>Highres CLUT</source>
-      <translation>Hauts dignitaires CLUT</translation>
-    </message>
-
-    <message>
-      <source>Histogram</source>
-      <translation>Histogramme</translation>
+      <translation>Hoogtepunten Zone</translation>
     </message>
 
     <message>
       <source>Histogram Analysis</source>
-      <translation>Analyse des histogrammes</translation>
+      <translation>Histogramanalyse</translation>
     </message>
 
     <message>
       <source>Histogram Transfer</source>
-      <translation>Transfert d&apos;histogramme</translation>
-    </message>
-
-    <message>
-      <source>HLG 1</source>
-      <translation>GHN 1</translation>
+      <translation>Histogram overdracht</translation>
     </message>
 
     <message>
       <source>Hokusai: The Great Wave</source>
-      <translation>Hokusai : la grande vague</translation>
+      <translation>Hokusai: de grote golf</translation>
     </message>
 
     <message>
       <source>Homogeneity</source>
-      <translation>Homogénéité</translation>
+      <translation>Homogeniteit</translation>
+    </message>
+
+    <message>
+      <source>Hong Kong</source>
+      <translation>Hongkong</translation>
     </message>
 
     <message>
       <source>Hope Poster</source>
-      <translation>Affiche de l&apos;espoir</translation>
+      <translation>Hoop Affiche</translation>
     </message>
 
     <message>
       <source>Horisontal Length</source>
-      <translation>Longueur horisontale</translation>
+      <translation>Horizontale lengte</translation>
     </message>
 
     <message>
       <source>Horizon Leveling (deg)</source>
-      <translation>Nivellement de l&apos;horizon (deg)</translation>
+      <translation>Horizontale nivellering (deg)</translation>
+    </message>
+
+    <message>
+      <source>Horizontal</source>
+      <translation>Horizontale</translation>
+    </message>
+
+    <message>
+      <source>Horizontal (%)</source>
+      <translation>Horizontaal (%)</translation>
     </message>
 
     <message>
       <source>Horizontal Amount</source>
-      <translation>Montant horizontal</translation>
+      <translation>Horizontaal bedrag</translation>
     </message>
 
     <message>
       <source>Horizontal Array</source>
-      <translation>Tableau horizontal</translation>
+      <translation>Horizontale Serie</translation>
     </message>
 
     <message>
       <source>Horizontal Blur</source>
-      <translation>Flou horizontal</translation>
+      <translation>Horizontale vervaging</translation>
     </message>
 
     <message>
       <source>Horizontal Length</source>
-      <translation>Longueur horizontale</translation>
+      <translation>Horizontale lengte</translation>
     </message>
 
     <message>
       <source>Horizontal Size (%)</source>
-      <translation>Taille horizontale (%)</translation>
+      <translation>Horizontale grootte (%)</translation>
     </message>
 
     <message>
       <source>Horizontal Stripes</source>
-      <translation>Bandes horizontales</translation>
+      <translation>Horizontale strepen</translation>
     </message>
 
     <message>
       <source>Horizontal Tiles</source>
-      <translation>Carreaux horizontaux</translation>
+      <translation>Horizontale tegels</translation>
     </message>
 
     <message>
       <source>Horizontal Warp Only</source>
-      <translation>Distorsion horizontale uniquement</translation>
+      <translation>Alleen horizontale kromming</translation>
     </message>
 
     <message>
       <source>Horror Blue</source>
-      <translation>Bleu d&apos;horreur</translation>
+      <translation>Horrorblauw</translation>
+    </message>
+
+    <message>
+      <source>Hot</source>
+      <translation>Hete</translation>
     </message>
 
     <message>
       <source>Hot (256)</source>
-      <translation>Chaud (256)</translation>
+      <translation>Warm (256)</translation>
     </message>
 
     <message>
-      <source>Hough Sketch</source>
-      <translation>Croquis Hough</translation>
+      <source>Hough Transform</source>
+      <translation>Hough Transformeren</translation>
     </message>
 
     <message>
       <source>House</source>
-      <translation>Maison</translation>
+      <translation>Huis</translation>
     </message>
 
     <message>
       <source>Householder</source>
-      <translation>Informations générales</translation>
+      <translation>Huishouder</translation>
     </message>
 
     <message>
       <source>HSI [all]</source>
-      <translation>HSI [tous]</translation>
+      <translation>HSI [alle]</translation>
     </message>
 
     <message>
       <source>HSI [Intensity]</source>
-      <translation>HSI [Intensité]</translation>
+      <translation>HSI [Intensiteit]</translation>
     </message>
 
     <message>
       <source>HSL [all]</source>
-      <translation>HSL [tous]</translation>
+      <translation>HSL [alle]</translation>
     </message>
 
     <message>
       <source>HSL [Lightness]</source>
-      <translation>HSL [Légèreté]</translation>
+      <translation>HSL [Lichtheid]</translation>
     </message>
 
     <message>
       <source>HSL Adjustment</source>
-      <translation>Ajustement de la HSL</translation>
+      <translation>HSL-aanpassing</translation>
     </message>
 
     <message>
       <source>HSV [all]</source>
-      <translation>HSV [tous]</translation>
+      <translation>HSV [alle]</translation>
+    </message>
+
+    <message>
+      <source>HSV [Saturation]</source>
+      <translation>HSV [Verzadiging]</translation>
     </message>
 
     <message>
       <source>HSV [Value]</source>
-      <translation>HSV [Valeur]</translation>
+      <translation>HSV [Waarde]</translation>
+    </message>
+
+    <message>
+      <source>HSV Select</source>
+      <translation>HSV kiezen</translation>
+    </message>
+
+    <message>
+      <source>Hue</source>
+      <translation>Tint</translation>
+    </message>
+
+    <message>
+      <source>Hue (%)</source>
+      <translation>Tint (%)</translation>
     </message>
 
     <message>
       <source>Hue Band</source>
-      <translation>Bande de couleur</translation>
+      <translation>Tint band</translation>
     </message>
 
     <message>
       <source>Hue Factor</source>
-      <translation>Facteur de teinte</translation>
+      <translation>Tintfactor</translation>
+    </message>
+
+    <message>
+      <source>Hue Lighten-Darken</source>
+      <translation>Tint Verbleken-Donkeren</translation>
+    </message>
+
+    <message>
+      <source>Hue Max (%)</source>
+      <translation>Tint maximaal (%)</translation>
+    </message>
+
+    <message>
+      <source>Hue Min (%)</source>
+      <translation>Tint Min (%)</translation>
     </message>
 
     <message>
       <source>Hue Offset</source>
-      <translation>Compensation de la teinte</translation>
+      <translation>Tint compensatie</translation>
     </message>
 
     <message>
       <source>Hue Range</source>
-      <translation>Gamme de teintes</translation>
+      <translation>Tintwaaier</translation>
     </message>
 
     <message>
       <source>Hue Shift</source>
-      <translation>Changement de teinte</translation>
+      <translation>Tint verschuiving</translation>
     </message>
 
     <message>
       <source>Hue Smoothness</source>
-      <translation>La douceur de la teinte</translation>
+      <translation>Tint Gladheid</translation>
     </message>
 
     <message>
       <source>Human  2</source>
-      <translation>Humain 2</translation>
+      <translation>Menselijk 2</translation>
     </message>
 
     <message>
       <source>Human 1</source>
-      <translation>Humain 1</translation>
+      <translation>Menselijk 1</translation>
     </message>
 
     <message>
       <source>Human 2</source>
-      <translation>Humain 2</translation>
+      <translation>Menselijk 2</translation>
     </message>
 
     <message>
       <source>Hybrid Median - Medium Speed Softest Output</source>
-      <translation>Médiane hybride - vitesse moyenne de sortie la plus douce</translation>
-    </message>
-
-    <message>
-      <source>Hypersthene</source>
-      <translation>Hypersthène</translation>
+      <translation>Hybride Mediaan - Gemiddelde snelheid Softeste Uitgang</translation>
     </message>
 
     <message>
@@ -7500,853 +7950,838 @@
     </message>
 
     <message>
-      <source>Iain Noise Reduction 2019</source>
-      <translation>Réduction du bruit en 2019</translation>
-    </message>
-
-    <message>
-      <source>Iain&apos;s Fast Denoise</source>
-      <translation>Le déni rapide de Iain</translation>
-    </message>
-
-    <message>
       <source>Identity</source>
-      <translation>Identité</translation>
+      <translation>Identiteit</translation>
     </message>
 
     <message>
       <source>Ignore</source>
-      <translation>Ignorer</translation>
+      <translation>Negeer</translation>
     </message>
 
     <message>
       <source>Ignore Current Aspect</source>
-      <translation>Ignorer l&apos;aspect actuel</translation>
+      <translation>Negeer het huidige aspect</translation>
     </message>
 
     <message>
       <source>Illuminate 2D Shape</source>
-      <translation>Illuminer la forme 2D</translation>
+      <translation>Verlicht 2D-vorm</translation>
     </message>
 
     <message>
       <source>Illumination</source>
-      <translation>Éclairage</translation>
+      <translation>Verlichting</translation>
+    </message>
+
+    <message>
+      <source>Illustration Look</source>
+      <translation>Illustratie Kijk</translation>
+    </message>
+
+    <message>
+      <source>Image</source>
+      <translation>Afbeelding</translation>
     </message>
 
     <message>
       <source>Image + Background</source>
-      <translation>Image + Fond</translation>
+      <translation>Afbeelding + Achtergrond</translation>
     </message>
 
     <message>
       <source>Image + Colors (2 Layers)</source>
-      <translation>Image + Couleurs (2 couches)</translation>
+      <translation>Afbeelding + Kleuren (2 lagen)</translation>
     </message>
 
     <message>
       <source>Image + Colors (Multi-Layers)</source>
-      <translation>Image + Couleurs (multicouches)</translation>
+      <translation>Afbeelding + Kleuren (Multi-Layers)</translation>
     </message>
 
     <message>
       <source>Image Contour Dimensions</source>
-      <translation>Dimensions des contours de l&apos;image</translation>
+      <translation>Afmetingen van de beeldcontouren</translation>
     </message>
 
     <message>
       <source>Image Smoothness</source>
-      <translation>Lissage de l&apos;image</translation>
+      <translation>Afbeelding Gladheid</translation>
     </message>
 
     <message>
       <source>Image to Grab Color from (.Png)</source>
-      <translation>Image à prendre en couleur (.Png)</translation>
+      <translation>Afbeelding om kleur te krijgen van (.Png)</translation>
     </message>
 
     <message>
       <source>Image Weight</source>
-      <translation>Poids de l&apos;image</translation>
+      <translation>Beeldgewicht</translation>
     </message>
 
     <message>
       <source>Import Data</source>
-      <translation>Importation de données</translation>
+      <translation>Gegevens importeren</translation>
     </message>
 
     <message>
       <source>Import RGB-565 File</source>
-      <translation>Importer un fichier RGB-565</translation>
+      <translation>RGB-565-bestand importeren</translation>
     </message>
 
     <message>
       <source>Impulses 5x5</source>
-      <translation>Impulsions 5x5</translation>
+      <translation>Impulsen 5x5</translation>
     </message>
 
     <message>
       <source>Impulses 7x7</source>
-      <translation>Impulsions 7x7</translation>
+      <translation>Impulsen 7x7</translation>
     </message>
 
     <message>
       <source>Impulses 9x9</source>
-      <translation>Impulsions 9x9</translation>
+      <translation>Impulsen 9x9</translation>
     </message>
 
     <message>
       <source>Include Opacity Layer</source>
-      <translation>Inclure la couche d&apos;opacité</translation>
-    </message>
-
-    <message>
-      <source>IncreaseChroma1</source>
-      <translation>AugmenterChroma1</translation>
+      <translation>Inclusief Opacity Layer</translation>
     </message>
 
     <message>
       <source>Increasing</source>
-      <translation>Augmenter</translation>
+      <translation>Toename van</translation>
     </message>
 
     <message>
       <source>Indoor Blue</source>
-      <translation>Bleu intérieur</translation>
+      <translation>Binnenshuis Blauw</translation>
     </message>
 
     <message>
       <source>Industrial 33</source>
-      <translation>Industrie 33</translation>
+      <translation>Industrieel 33</translation>
     </message>
 
     <message>
       <source>Influence of Color Samples (%)</source>
-      <translation>Influence des échantillons de couleur (%)</translation>
+      <translation>Invloed van kleurmonsters (%)</translation>
     </message>
 
     <message>
       <source>Information</source>
-      <translation>Informations</translation>
+      <translation>Informatie</translation>
     </message>
 
     <message>
       <source>Init. Resolution</source>
-      <translation>Init. Résolution</translation>
-    </message>
-
-    <message>
-      <source>Init. Type</source>
-      <translation>Init. Tapez</translation>
+      <translation>Init. Resolutie</translation>
     </message>
 
     <message>
       <source>Init. With High Gradients Only</source>
-      <translation>Init. Avec des gradients élevés seulement</translation>
+      <translation>Init. Met alleen hoge gradiënten</translation>
     </message>
 
     <message>
       <source>Initial Density</source>
-      <translation>Densité initiale</translation>
+      <translation>Oorspronkelijke Dichtheid</translation>
     </message>
 
     <message>
       <source>Initialization</source>
-      <translation>Initialisation</translation>
+      <translation>Initialisatie</translation>
     </message>
 
     <message>
       <source>Ink Wash</source>
-      <translation>Lavage de l&apos;encre</translation>
+      <translation>Inkt Wassen</translation>
     </message>
 
     <message>
       <source>Inner</source>
-      <translation>Intérieur</translation>
+      <translation>Innerlijke</translation>
     </message>
 
     <message>
       <source>Inner Fading</source>
-      <translation>Fondu intérieur</translation>
+      <translation>Innerlijke verbleking</translation>
     </message>
 
     <message>
       <source>Inner Length</source>
-      <translation>Longueur intérieure</translation>
+      <translation>Binnenlengte</translation>
     </message>
 
     <message>
       <source>Inner Radius</source>
-      <translation>Rayon intérieur</translation>
+      <translation>Binnenstraal</translation>
     </message>
 
     <message>
       <source>Inner Radius (%)</source>
-      <translation>Rayon intérieur (%)</translation>
+      <translation>Binnenstraal (%)</translation>
     </message>
 
     <message>
       <source>Inner Shade</source>
-      <translation>Ombre intérieure</translation>
+      <translation>Binnenste Schaduw</translation>
     </message>
 
     <message>
       <source>Inpaint [Holes]</source>
-      <translation>Peinture [Trous]</translation>
+      <translation>Schilderij [Gaten]</translation>
     </message>
 
     <message>
       <source>Inpaint [Morphological]</source>
-      <translation>Peinture [Morphologique]</translation>
+      <translation>Inpaint [Morfologisch]</translation>
     </message>
 
     <message>
       <source>Inpaint [Multi-Scale]</source>
-      <translation>Peinture [multi-échelle]</translation>
-    </message>
-
-    <message>
-      <source>Inpaint [Patch-Based]</source>
-      <translation>Inpatient [Patch-Based] (en anglais)</translation>
+      <translation>Schilderij [Multi-Schaal]</translation>
     </message>
 
     <message>
       <source>Inpaint [Transport-Diffusion]</source>
-      <translation>Inpatient [Transport-Diffusion]</translation>
+      <translation>Inpaint [Transport-Diffusie]</translation>
     </message>
 
     <message>
       <source>Input</source>
-      <translation>Entrée</translation>
+      <translation>Invoer</translation>
     </message>
 
     <message>
       <source>Input Folder</source>
-      <translation>Dossier de saisie</translation>
+      <translation>Invoermap</translation>
     </message>
 
     <message>
       <source>Input Frame Files Name</source>
-      <translation>Nom des fichiers de trame d&apos;entrée</translation>
+      <translation>Naam invoerkaderbestanden</translation>
     </message>
 
     <message>
       <source>Input Guide Color</source>
-      <translation>Couleur du guide de saisie</translation>
+      <translation>Kleur van de invoergids</translation>
     </message>
 
     <message>
       <source>Input Layers</source>
-      <translation>Couches d&apos;entrée</translation>
+      <translation>Invoerlagen</translation>
     </message>
 
     <message>
       <source>Input Transparency</source>
-      <translation>Transparence des entrées</translation>
+      <translation>Input Transparantie</translation>
     </message>
 
     <message>
       <source>Input Type</source>
-      <translation>Type d&apos;entrée</translation>
+      <translation>Type invoer</translation>
     </message>
 
     <message>
       <source>Insert New CLUT Layer</source>
-      <translation>Insérer une nouvelle couche CLUT</translation>
+      <translation>Nieuwe CLUT-laag invoegen</translation>
     </message>
 
     <message>
       <source>Inside</source>
-      <translation>A l&apos;intérieur</translation>
+      <translation>Binnenin</translation>
     </message>
 
     <message>
       <source>Inside Color</source>
-      <translation>Couleur intérieure</translation>
+      <translation>Kleur van de binnenkant</translation>
     </message>
 
     <message>
       <source>Instant [Consumer] (54)</source>
-      <translation>Instantané [Consommateur] (54)</translation>
+      <translation>Onmiddellijk [consument] (54)</translation>
     </message>
 
     <message>
       <source>Instant [Pro] (68)</source>
-      <translation>Instantané [Pro] (68)</translation>
+      <translation>Onmiddellijk [Pro] (68)</translation>
     </message>
 
     <message>
       <source>Intensity</source>
-      <translation>Intensité</translation>
+      <translation>Intensiteit</translation>
     </message>
 
     <message>
       <source>Intensity of Purple Fringe</source>
-      <translation>Intensité de la frange violette</translation>
+      <translation>Intensiteit van paarse franje</translation>
     </message>
 
     <message>
       <source>Inter-Frames</source>
-      <translation>Inter-Cadres</translation>
+      <translation>Interframes</translation>
     </message>
 
     <message>
       <source>Interlace Horizontal</source>
-      <translation>Entrelacer à l&apos;horizontale</translation>
+      <translation>Horizontale tussenruimte</translation>
     </message>
 
     <message>
       <source>Interlace Vertical</source>
-      <translation>Entrelacement vertical</translation>
+      <translation>Verticaal in elkaar schuiven</translation>
     </message>
 
     <message>
       <source>Interpolate</source>
-      <translation>Interpoler</translation>
+      <translation>Interpoleer</translation>
+    </message>
+
+    <message>
+      <source>Interpolation</source>
+      <translation>Interpolatie</translation>
     </message>
 
     <message>
       <source>Interpolation Type</source>
-      <translation>Type d&apos;interpolation</translation>
+      <translation>Interpolatie Type</translation>
+    </message>
+
+    <message>
+      <source>Inverse</source>
+      <translation>Omgekeerd</translation>
     </message>
 
     <message>
       <source>Inverse Depth Map</source>
-      <translation>Carte des profondeurs inverses</translation>
+      <translation>Inverse Diepte Kaart</translation>
     </message>
 
     <message>
       <source>Inverse Radius</source>
-      <translation>Rayon inverse</translation>
+      <translation>Omgekeerde straal</translation>
     </message>
 
     <message>
       <source>Inverse Transform</source>
-      <translation>Transformation inverse</translation>
+      <translation>Omgekeerde transformatie</translation>
+    </message>
+
+    <message>
+      <source>Inversions</source>
+      <translation>Inversies</translation>
     </message>
 
     <message>
       <source>Invert Background / Foreground</source>
-      <translation>Inverser l&apos;arrière-plan / le premier plan</translation>
+      <translation>Achtergrond omkeren / Voorgrond</translation>
     </message>
 
     <message>
       <source>Invert Blur</source>
-      <translation>Inverser le flou</translation>
+      <translation>Omkeren Wazigheid</translation>
     </message>
 
     <message>
       <source>Invert Canvas Colors</source>
-      <translation>Inverser les couleurs de la toile</translation>
+      <translation>Omkeren van Canvas Kleuren</translation>
     </message>
 
     <message>
       <source>Invert Colors</source>
-      <translation>Inverser les couleurs</translation>
+      <translation>Kleuren omkeren</translation>
     </message>
 
     <message>
       <source>Invert Image Colors</source>
-      <translation>Inverser les couleurs de l&apos;image</translation>
+      <translation>Beeldomkering Kleuren</translation>
     </message>
 
     <message>
       <source>Invert Luminance</source>
-      <translation>Inverser la luminance</translation>
+      <translation>Omkering van de helderheid</translation>
     </message>
 
     <message>
       <source>Invert Mask</source>
-      <translation>Masque inversé</translation>
+      <translation>Omkeermasker</translation>
     </message>
 
     <message>
       <source>Inward</source>
-      <translation>Vers l&apos;intérieur</translation>
+      <translation>Binnenwaarts</translation>
+    </message>
+
+    <message>
+      <source>Isophotes</source>
+      <translation>Isofoten</translation>
     </message>
 
     <message>
       <source>Isotropic</source>
-      <translation>Isotropique</translation>
+      <translation>Isotroop</translation>
     </message>
 
     <message>
       <source>Iteration</source>
-      <translation>Itération</translation>
+      <translation>Iteratie</translation>
     </message>
 
     <message>
       <source>Iterations</source>
-      <translation>Itérations</translation>
+      <translation>Iteraties</translation>
     </message>
 
     <message>
       <source>Japanese Maple Leaf</source>
-      <translation>Feuille d&apos;érable japonaise</translation>
+      <translation>Japans esdoornblad</translation>
+    </message>
+
+    <message>
+      <source>Jet (256)</source>
+      <translation>Straal (256)</translation>
     </message>
 
     <message>
       <source>JPEG Artefacts</source>
-      <translation>Artefacts JPEG</translation>
+      <translation>JPEG-artefacten</translation>
     </message>
 
     <message>
       <source>JPEG Smooth</source>
-      <translation>JPEG Lisse</translation>
+      <translation>JPEG Glad</translation>
     </message>
 
     <message>
-      <source>K-Factor</source>
-      <translation>Facteur K</translation>
+      <source>Just Peachy</source>
+      <translation>Gewoon Peachy</translation>
     </message>
 
     <message>
       <source>Kaleidoscope [Blended]</source>
-      <translation>Kaléidoscope [Mélange]</translation>
+      <translation>Caleidoscoop [Gemengd]</translation>
     </message>
 
     <message>
       <source>Kaleidoscope [Polar]</source>
-      <translation>Kaléidoscope [Polaire]</translation>
+      <translation>Caleidoscoop [Polar]</translation>
     </message>
 
     <message>
       <source>Kaleidoscope [Symmetry]</source>
-      <translation>Kaléidoscope [Symétrie]</translation>
+      <translation>Caleidoscoop [Symmetrie]</translation>
     </message>
 
     <message>
       <source>Kandinsky: Squares with Concentric Circles</source>
-      <translation>Kandinsky : Les carrés et les cercles concentriques</translation>
+      <translation>Kandinsky: Pleinen met concentrische cirkels</translation>
     </message>
 
     <message>
       <source>Kandinsky: Yellow-Red-Blue</source>
-      <translation>Kandinsky : Jaune-Rouge-Bleu</translation>
+      <translation>Kandinsky: Geel-rood-blauw</translation>
     </message>
 
     <message>
       <source>Keep</source>
-      <translation>Gardez</translation>
+      <translation>Houd</translation>
     </message>
 
     <message>
       <source>Keep Aspect Ratio</source>
-      <translation>Conserver le rapport d&apos;aspect</translation>
+      <translation>Houd de hoogte-breedteverhouding</translation>
     </message>
 
     <message>
       <source>Keep Base Layer as Input Background</source>
-      <translation>Conserver la couche de base comme fond d&apos;entrée</translation>
+      <translation>Houd de basislaag als invoerachtergrond</translation>
     </message>
 
     <message>
       <source>Keep Borders Square</source>
-      <translation>Gardez les frontières au carré</translation>
+      <translation>Houd Grenzen vierkant</translation>
     </message>
 
     <message>
       <source>Keep Color Channels</source>
-      <translation>Conserver les canaux de couleur</translation>
+      <translation>Houd de kleurkanalen</translation>
     </message>
 
     <message>
       <source>Keep Colors</source>
-      <translation>Conserver les couleurs</translation>
+      <translation>Houd Kleuren</translation>
     </message>
 
     <message>
       <source>Keep Detail</source>
-      <translation>Garder le détail</translation>
+      <translation>Detail bewaren</translation>
     </message>
 
     <message>
       <source>Keep Detail Layer Separate</source>
-      <translation>Garder la couche de détail séparée</translation>
+      <translation>Houd de detaillaag apart</translation>
     </message>
 
     <message>
       <source>Keep Iterations as Different Layers</source>
-      <translation>Conserver les itérations sous différentes couches</translation>
+      <translation>Houd Iteraties als Verschillende Lagen</translation>
     </message>
 
     <message>
       <source>Keep Layers Separate</source>
-      <translation>Garder les couches séparées</translation>
+      <translation>Lagen apart houden</translation>
     </message>
 
     <message>
       <source>Keep Original Image Size</source>
-      <translation>Conserver la taille originale de l&apos;image</translation>
+      <translation>Bewaar het originele beeldformaat</translation>
     </message>
 
     <message>
       <source>Keep Original Layer</source>
-      <translation>Conserver la couche d&apos;origine</translation>
+      <translation>Bewaar de originele laag</translation>
     </message>
 
     <message>
       <source>Keep Tiles Square</source>
-      <translation>Gardez les carreaux en place</translation>
+      <translation>Houd Tegels vierkant</translation>
     </message>
 
     <message>
       <source>Keep Transparency in Output</source>
-      <translation>Maintenir la transparence dans les résultats</translation>
-    </message>
-
-    <message>
-      <source>Kernel</source>
-      <translation>Noyau</translation>
+      <translation>Transparantie in de uitvoer behouden</translation>
     </message>
 
     <message>
       <source>Kernel Multiplier</source>
-      <translation>Multiplicateur de noyaux</translation>
+      <translation>Kernelvermenigvuldiger</translation>
     </message>
 
     <message>
       <source>Kernel Type</source>
-      <translation>Type de noyau</translation>
+      <translation>Kerneltype</translation>
     </message>
 
     <message>
       <source>Key Factor</source>
-      <translation>Facteur clé</translation>
+      <translation>Belangrijke factor</translation>
     </message>
 
     <message>
       <source>Key Frame Rate</source>
-      <translation>Taux d&apos;images clés</translation>
+      <translation>Belangrijkste frametarief</translation>
     </message>
 
     <message>
       <source>Key Shift</source>
-      <translation>Le changement de cap</translation>
+      <translation>Sleutelverschuiving</translation>
     </message>
 
     <message>
       <source>Key Smoothness</source>
-      <translation>La clé du succès</translation>
+      <translation>Sleutel Smoothness</translation>
     </message>
 
     <message>
       <source>Keypoint Influence (%)</source>
-      <translation>Influence des points clés (%)</translation>
-    </message>
-
-    <message>
-      <source>Kitaoka Spin Illusion</source>
-      <translation>L&apos;illusion de la rotation de Kitaoka</translation>
+      <translation>Kernpunt Invloed (%)</translation>
     </message>
 
     <message>
       <source>Klee: Death and Fire</source>
-      <translation>Klee : La mort et le feu</translation>
+      <translation>Klee: Dood en Vuur</translation>
     </message>
 
     <message>
       <source>Klee: In the Style of Kairouan</source>
-      <translation>Klee : Dans le style de Kairouan</translation>
+      <translation>Klee: In de stijl van Kairouan</translation>
     </message>
 
     <message>
       <source>Klee: Oriental Pleasure Garden Anagoria</source>
-      <translation>Klee : Jardin de plaisance oriental Anagoria</translation>
+      <translation>Klee: Oosterse Pleziertuin Anagoria</translation>
     </message>
 
     <message>
       <source>Klee: Polyphony 2</source>
-      <translation>Klee : Polyphonie 2</translation>
+      <translation>Klee: Polyfonie 2</translation>
     </message>
 
     <message>
       <source>Klee: Red Waistcoat</source>
-      <translation>Klee : Gilet rouge</translation>
+      <translation>Klee: Rode Taillejas</translation>
     </message>
 
     <message>
       <source>Klimt: The Kiss</source>
-      <translation>Klimt : Le baiser</translation>
+      <translation>Klimt: De kus</translation>
     </message>
 
     <message>
-      <source>Kodak 2393 (Cuspclip)</source>
-      <translation>Kodak 2393 (L&apos;haltère)</translation>
+      <source>Kodak Elite Chrome 400</source>
+      <translation>Kodak Elite Chroom 400</translation>
+    </message>
+
+    <message>
+      <source>Kuwahara</source>
+      <translation>Koewehara</translation>
     </message>
 
     <message>
       <source>Kuwahara on Painting</source>
-      <translation>Kuwahara sur la peinture</translation>
-    </message>
-
-    <message>
-      <source>L1-Norm</source>
-      <translation>Norme L1</translation>
-    </message>
-
-    <message>
-      <source>Lab</source>
-      <translation>Laboratoire</translation>
+      <translation>Koewehara op Schilderij</translation>
     </message>
 
     <message>
       <source>Lab (Chroma Only)</source>
-      <translation>Laboratoire (Chroma uniquement)</translation>
+      <translation>Lab (alleen Chroma)</translation>
     </message>
 
     <message>
       <source>Lab (Distinct)</source>
-      <translation>Laboratoire (distinct)</translation>
+      <translation>Laboratorium (Distinct)</translation>
     </message>
 
     <message>
       <source>Lab (Luma Only)</source>
-      <translation>Laboratoire (Luma uniquement)</translation>
-    </message>
-
-    <message>
-      <source>Lab (Luma/Chroma)</source>
-      <translation>Laboratoire (Luma/Chroma)</translation>
+      <translation>Lab (alleen Luma)</translation>
     </message>
 
     <message>
       <source>Lab (Mixed)</source>
-      <translation>Laboratoire (mixte)</translation>
-    </message>
-
-    <message>
-      <source>Lab [ab-Chrominances]</source>
-      <translation>Labo [ab-Chrominances]</translation>
+      <translation>Lab (Gemengd)</translation>
     </message>
 
     <message>
       <source>Lab [all]</source>
-      <translation>Laboratoire [tous]</translation>
+      <translation>Lab [alle]</translation>
     </message>
 
     <message>
       <source>Lab [Lightness]</source>
-      <translation>Labo [Légèreté].</translation>
+      <translation>Lab [Lichtheid]</translation>
+    </message>
+
+    <message>
+      <source>LAB-Lightness</source>
+      <translation>LAB-Lichtheid</translation>
     </message>
 
     <message>
       <source>Landscape</source>
-      <translation>Paysage</translation>
+      <translation>Landschap</translation>
     </message>
 
     <message>
       <source>Landscape-1</source>
-      <translation>Paysage-1</translation>
+      <translation>Landschap-1</translation>
     </message>
 
     <message>
       <source>Landscape-10</source>
-      <translation>Paysage-10</translation>
+      <translation>Landschap-10</translation>
     </message>
 
     <message>
       <source>Landscape-2</source>
-      <translation>Paysage 2</translation>
+      <translation>Landschap-2</translation>
     </message>
 
     <message>
       <source>Landscape-3</source>
-      <translation>Paysage 3</translation>
+      <translation>Landschap-3</translation>
     </message>
 
     <message>
       <source>Landscape-4</source>
-      <translation>Paysage-4</translation>
+      <translation>Landschap-4</translation>
     </message>
 
     <message>
       <source>Landscape-5</source>
-      <translation>Paysage-5</translation>
+      <translation>Landschap-5</translation>
     </message>
 
     <message>
       <source>Landscape-6</source>
-      <translation>Paysage-6</translation>
+      <translation>Landschap-6</translation>
     </message>
 
     <message>
       <source>Landscape-7</source>
-      <translation>Paysage-7</translation>
+      <translation>Landschap-7</translation>
     </message>
 
     <message>
       <source>Landscape-8</source>
-      <translation>Paysage-8</translation>
+      <translation>Landschap-8</translation>
     </message>
 
     <message>
       <source>Landscape-9</source>
-      <translation>Paysage-9</translation>
-    </message>
-
-    <message>
-      <source>Laplacian</source>
-      <translation>Laplacien</translation>
+      <translation>Landschap-9</translation>
     </message>
 
     <message>
       <source>Large</source>
-      <translation>Grand</translation>
+      <translation>Grote</translation>
     </message>
 
     <message>
       <source>Large Noise</source>
-      <translation>Bruit important</translation>
+      <translation>Groot lawaai</translation>
     </message>
 
     <message>
       <source>Last</source>
-      <translation>Dernier</translation>
+      <translation>Laatste</translation>
     </message>
 
     <message>
       <source>Last Frame</source>
-      <translation>Dernière image</translation>
+      <translation>Laatste frame</translation>
     </message>
 
     <message>
       <source>Late Afternoon Wanderlust</source>
-      <translation>L&apos;envie d&apos;errer en fin d&apos;après-midi</translation>
+      <translation>Laat in de middag Wanderlust</translation>
     </message>
 
     <message>
       <source>Late Sunset</source>
-      <translation>Coucher de soleil tardif</translation>
-    </message>
-
-    <message>
-      <source>Lava</source>
-      <translation>Lave</translation>
+      <translation>Late zonsondergang</translation>
     </message>
 
     <message>
       <source>Lava Lamp</source>
-      <translation>Lampe à lave</translation>
+      <translation>Lavalamp</translation>
     </message>
 
     <message>
       <source>Layer</source>
-      <translation>Couche</translation>
+      <translation>Laag</translation>
     </message>
 
     <message>
       <source>Layer Processing</source>
-      <translation>Traitement des couches</translation>
+      <translation>Laagverwerking</translation>
     </message>
 
     <message>
       <source>Layers to Tiles</source>
-      <translation>Des couches aux carreaux</translation>
+      <translation>Lagen naar Tegels</translation>
     </message>
 
     <message>
       <source>Lch [all]</source>
-      <translation>Lch [tous]</translation>
+      <translation>Lch [alle]</translation>
+    </message>
+
+    <message>
+      <source>Lch [ch-Chrominances]</source>
+      <translation>Lch [chrominances]</translation>
     </message>
 
     <message>
       <source>Leaf</source>
-      <translation>Feuille</translation>
+      <translation>Blad</translation>
     </message>
 
     <message>
       <source>Leaf Color</source>
-      <translation>Couleur des feuilles</translation>
+      <translation>Bladkleur</translation>
     </message>
 
     <message>
       <source>Leaf Opacity (%)</source>
-      <translation>Opacité des feuilles (%)</translation>
+      <translation>Bladopaciteit (%)</translation>
     </message>
 
     <message>
       <source>Leak Type</source>
-      <translation>Type de fuite</translation>
+      <translation>Lektype</translation>
     </message>
 
     <message>
       <source>Left</source>
-      <translation>A gauche</translation>
+      <translation>Links</translation>
     </message>
 
     <message>
       <source>Left  Foreground</source>
-      <translation>Premier plan à gauche</translation>
+      <translation>Links Voorgrond</translation>
     </message>
 
     <message>
       <source>Left / Right Blur (%)</source>
-      <translation>Flou gauche / droit (%)</translation>
+      <translation>Links / rechts Wazig (%)</translation>
     </message>
 
     <message>
       <source>Left and Right Background</source>
-      <translation>Fond à gauche et à droite</translation>
+      <translation>Links en rechts Achtergrond</translation>
     </message>
 
     <message>
       <source>Left and Right Foreground</source>
-      <translation>Premier plan à gauche et à droite</translation>
+      <translation>Links en rechts Voorgrond</translation>
     </message>
 
     <message>
       <source>Left and Right Image Streams</source>
-      <translation>Flux d&apos;images gauche et droite</translation>
+      <translation>Links en rechts beeldstromen</translation>
     </message>
 
     <message>
       <source>Left Diagonal Foreground</source>
-      <translation>Premier plan en diagonale à gauche</translation>
+      <translation>Links Diagonale voorgrond</translation>
     </message>
 
     <message>
       <source>Left Foreground</source>
-      <translation>Premier plan à gauche</translation>
+      <translation>Links Voorgrond</translation>
     </message>
 
     <message>
       <source>Left Position</source>
-      <translation>Position gauche</translation>
+      <translation>Positie links</translation>
     </message>
 
     <message>
       <source>Left Side Orientation</source>
-      <translation>Orientation du côté gauche</translation>
+      <translation>Linker zijwaartse oriëntatie</translation>
     </message>
 
     <message>
       <source>Left Slope</source>
-      <translation>Pente gauche</translation>
+      <translation>Linker Helling</translation>
     </message>
 
     <message>
       <source>Left Stream Only</source>
-      <translation>Flux gauche uniquement</translation>
+      <translation>Alleen linkse stroom</translation>
     </message>
 
     <message>
       <source>Length</source>
-      <translation>Longueur</translation>
+      <translation>Lengte</translation>
     </message>
 
     <message>
       <source>Lenticular Density LPI</source>
-      <translation>Densité lenticulaire LPI</translation>
+      <translation>Lenticulaire dichtheid LPI</translation>
     </message>
 
     <message>
       <source>Lenticular Orientation</source>
-      <translation>Orientation lenticulaire</translation>
+      <translation>Lenticulaire oriëntatie</translation>
     </message>
 
     <message>
       <source>Lenticular Print</source>
-      <translation>L&apos;impression lenticulaire</translation>
+      <translation>Lenticulair afdrukken</translation>
     </message>
 
     <message>
@@ -8356,737 +8791,757 @@
 
     <message>
       <source>Level Frequency</source>
-      <translation>Niveau Fréquence</translation>
+      <translation>Niveau Frequentie</translation>
     </message>
 
     <message>
       <source>Levels</source>
-      <translation>Niveaux</translation>
+      <translation>Niveaus</translation>
     </message>
 
     <message>
       <source>Life Giving Tree</source>
-      <translation>L&apos;arbre qui donne la vie</translation>
+      <translation>Leven gevende boom</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-1</source>
-      <translation>Mode de vie et commerce-1</translation>
+      <translation>Levensstijl &amp; Commerciële-1</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-10</source>
-      <translation>Mode de vie et commerce-10</translation>
+      <translation>Levensstijl &amp; Commerciële-10</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-2</source>
-      <translation>Mode de vie et commerce-2</translation>
+      <translation>Levensstijl &amp; Commerciële-2</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-3</source>
-      <translation>Mode de vie et commerce-3</translation>
+      <translation>Levensstijl &amp; Commerciële-3</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-4</source>
-      <translation>Mode de vie et commerce-4</translation>
+      <translation>Levensstijl &amp; Commerciële-4</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-5</source>
-      <translation>Mode de vie et commerce-5</translation>
+      <translation>Levensstijl &amp; Commerciële-5</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-6</source>
-      <translation>Mode de vie et commerce-6</translation>
+      <translation>Levensstijl &amp; Commerciële-6</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-7</source>
-      <translation>Mode de vie et commerce-7</translation>
+      <translation>Levensstijl &amp; Commerciële-7</translation>
     </message>
 
     <message>
       <source>Lifestyle &amp; Commercial-8</source>
-      <translation>Mode de vie et commerce-8</translation>
-    </message>
-
-    <message>
-      <source>Lifestyle &amp; Commercial-9</source>
-      <translation>Mode de vie et commerce-9</translation>
+      <translation>Levensstijl &amp; Commerciële-8</translation>
     </message>
 
     <message>
       <source>Light</source>
-      <translation>Lumière</translation>
+      <translation>Licht</translation>
     </message>
 
     <message>
       <source>Light (blown)</source>
-      <translation>Lumière (soufflée)</translation>
+      <translation>Licht (geblazen)</translation>
     </message>
 
     <message>
       <source>Light Angle</source>
-      <translation>Angle de lumière</translation>
+      <translation>Lichthoek</translation>
     </message>
 
     <message>
       <source>Light Color</source>
-      <translation>Couleur de la lumière</translation>
+      <translation>Lichte kleur</translation>
     </message>
 
     <message>
       <source>Light Direction</source>
-      <translation>Direction de la lumière</translation>
+      <translation>Licht Richting</translation>
     </message>
 
     <message>
       <source>Light Effect</source>
-      <translation>Effet de lumière</translation>
+      <translation>Licht Effect</translation>
     </message>
 
     <message>
       <source>Light Glow</source>
-      <translation>Lueur de lumière</translation>
+      <translation>Lichtgloed</translation>
     </message>
 
     <message>
       <source>Light Grey</source>
-      <translation>Gris clair</translation>
+      <translation>Lichtgrijs</translation>
     </message>
 
     <message>
       <source>Light Leaks</source>
-      <translation>Fuites de lumière</translation>
+      <translation>Lichte lekken</translation>
     </message>
 
     <message>
       <source>Light Motive</source>
-      <translation>Motif de la lumière</translation>
+      <translation>Licht motief</translation>
     </message>
 
     <message>
       <source>Light Patch</source>
-      <translation>Patch lumineux</translation>
+      <translation>Licht Flard</translation>
     </message>
 
     <message>
       <source>Light Rays</source>
-      <translation>Rayons lumineux</translation>
+      <translation>Lichtstralen</translation>
     </message>
 
     <message>
       <source>Light Smoothness</source>
-      <translation>Légèreté et douceur</translation>
+      <translation>Lichte gladheid</translation>
     </message>
 
     <message>
       <source>Light Strength</source>
-      <translation>Force de la lumière</translation>
+      <translation>Lichtsterkte</translation>
     </message>
 
     <message>
       <source>Light Type</source>
-      <translation>Type de lumière</translation>
+      <translation>Licht Type</translation>
+    </message>
+
+    <message>
+      <source>Light-Y</source>
+      <translation>Licht-Y</translation>
     </message>
 
     <message>
       <source>Lighten</source>
-      <translation>Allégez</translation>
+      <translation>Verlicht</translation>
     </message>
 
     <message>
       <source>Lighten Edges</source>
-      <translation>Allégez les frontières</translation>
+      <translation>Randen lichter maken</translation>
     </message>
 
     <message>
       <source>Lighter</source>
-      <translation>Briquet</translation>
+      <translation>Lichter</translation>
     </message>
 
     <message>
       <source>Lighting</source>
-      <translation>Éclairage</translation>
+      <translation>Verlichting</translation>
     </message>
 
     <message>
       <source>Lighting Angle</source>
-      <translation>Angle d&apos;éclairage</translation>
+      <translation>Verlichtingshoek</translation>
     </message>
 
     <message>
       <source>Lightness</source>
-      <translation>Légèreté</translation>
+      <translation>Lichtheid</translation>
     </message>
 
     <message>
       <source>Lightness (%)</source>
-      <translation>Légèreté (%)</translation>
+      <translation>Lichtheid (%)</translation>
     </message>
 
     <message>
       <source>Lightness Factor</source>
-      <translation>Facteur de légèreté</translation>
+      <translation>Lichtheidsfactor</translation>
     </message>
 
     <message>
       <source>Lightness Level</source>
-      <translation>Niveau de luminosité</translation>
+      <translation>Lichtheidsgraad</translation>
     </message>
 
     <message>
       <source>Lightness Max (%)</source>
-      <translation>Légèreté maximale (%)</translation>
+      <translation>Lichtheid Max (%)</translation>
     </message>
 
     <message>
       <source>Lightness Min (%)</source>
-      <translation>Légèreté Min (%)</translation>
+      <translation>Lichtheid Min (%)</translation>
     </message>
 
     <message>
       <source>Lightness Shift</source>
-      <translation>Changement de luminosité</translation>
+      <translation>Lichtheidsverschuiving</translation>
     </message>
 
     <message>
       <source>Lightness Smoothness</source>
-      <translation>Légèreté et douceur</translation>
+      <translation>Lichtheid Gladheid</translation>
     </message>
 
     <message>
       <source>Lightning</source>
-      <translation>Foudre</translation>
+      <translation>Bliksem</translation>
     </message>
 
     <message>
       <source>Lighty Smooth</source>
-      <translation>Légèrement lisse</translation>
+      <translation>Licht glad</translation>
     </message>
 
     <message>
       <source>Limit Hue Range</source>
-      <translation>Limiter la gamme de teintes</translation>
+      <translation>Limiet Tintwaaier</translation>
     </message>
 
     <message>
       <source>Line</source>
-      <translation>Ligne</translation>
+      <translation>Lijn</translation>
     </message>
 
     <message>
       <source>Line Opacity</source>
-      <translation>Opacité des lignes</translation>
+      <translation>Lijndoorzichtigheid</translation>
     </message>
 
     <message>
       <source>Line Precision</source>
-      <translation>Précision des lignes</translation>
+      <translation>Lijnprecisie</translation>
     </message>
 
     <message>
       <source>Linear</source>
-      <translation>Linéaire</translation>
+      <translation>Lineair</translation>
     </message>
 
     <message>
       <source>Linear Burn</source>
-      <translation>Brûlure linéaire</translation>
+      <translation>Lineaire verbranding</translation>
     </message>
 
     <message>
       <source>Linear Light</source>
-      <translation>Lumière linéaire</translation>
+      <translation>Lineair licht</translation>
     </message>
 
     <message>
       <source>Linear RGB</source>
-      <translation>RGB linéaire</translation>
+      <translation>Lineair RGB</translation>
     </message>
 
     <message>
       <source>Linear RGB [All]</source>
-      <translation>RVB linéaire [Tous]</translation>
+      <translation>Lineair RGB [Alle]</translation>
     </message>
 
     <message>
       <source>Linear RGB [Blue]</source>
-      <translation>RVB linéaire [Bleu]</translation>
+      <translation>Lineair RGB [Blauw]</translation>
     </message>
 
     <message>
       <source>Linear RGB [Green]</source>
-      <translation>RGB linéaire [Vert]</translation>
+      <translation>Lineair RGB [Groen]</translation>
     </message>
 
     <message>
       <source>Linear RGB [Red]</source>
-      <translation>RVB linéaire [Rouge]</translation>
+      <translation>Lineair RGB [Rood]</translation>
+    </message>
+
+    <message>
+      <source>Linearburn</source>
+      <translation>Lineaire verbranding</translation>
     </message>
 
     <message>
       <source>Linearity</source>
-      <translation>Linéarité</translation>
+      <translation>Lineariteit</translation>
+    </message>
+
+    <message>
+      <source>Linearlight</source>
+      <translation>Lineair licht</translation>
     </message>
 
     <message>
       <source>Lineart + Color Spots</source>
-      <translation>Lineart + points de couleur</translation>
+      <translation>Lineart + Kleurvlekken</translation>
     </message>
 
     <message>
       <source>Lineart + Color Spots + Extrapolated Colors</source>
-      <translation>Lineart + Points de couleur + Couleurs extrapolées</translation>
+      <translation>Lineart + Kleurvlekken + Geëxtrapoleerde kleuren</translation>
     </message>
 
     <message>
       <source>Lineart + Colors</source>
-      <translation>Linéaire + Couleurs</translation>
+      <translation>Lineart + Kleuren</translation>
     </message>
 
     <message>
       <source>Lineart + Extrapolated Colors</source>
-      <translation>Lineart + Couleurs extrapolées</translation>
+      <translation>Lineart + geëxtrapoleerde kleuren</translation>
     </message>
 
     <message>
       <source>Lines</source>
-      <translation>Lignes</translation>
+      <translation>Lijnen</translation>
     </message>
 
     <message>
       <source>Lines (256)</source>
-      <translation>Lignes (256)</translation>
+      <translation>Lijnen (256)</translation>
+    </message>
+
+    <message>
+      <source>Lion</source>
+      <translation>Leeuw</translation>
     </message>
 
     <message>
       <source>Lissajous [Animated]</source>
-      <translation>Lissajous [Animé]</translation>
+      <translation>Lissajous [Animatie]</translation>
     </message>
 
     <message>
       <source>Lissajous Spiral</source>
-      <translation>Spirale Lissajous</translation>
+      <translation>Lissajous Spiraal</translation>
     </message>
 
     <message>
       <source>Little</source>
-      <translation>Petit</translation>
+      <translation>Kleine</translation>
     </message>
 
     <message>
       <source>Little Blue</source>
-      <translation>Petit Bleu</translation>
+      <translation>Kleine Blauwe</translation>
     </message>
 
     <message>
       <source>Little Cyan</source>
-      <translation>Petit Cyan</translation>
+      <translation>Kleine Cyaan</translation>
     </message>
 
     <message>
       <source>Little Green</source>
-      <translation>Petit Vert</translation>
+      <translation>Klein groen</translation>
     </message>
 
     <message>
       <source>Little Key</source>
-      <translation>Petite clé</translation>
+      <translation>Kleine sleutel</translation>
     </message>
 
     <message>
       <source>Little Magenta</source>
-      <translation>Petit Magenta</translation>
+      <translation>Kleine Magenta</translation>
     </message>
 
     <message>
       <source>Little Red</source>
-      <translation>Petit Rouge</translation>
+      <translation>Roodkapje</translation>
     </message>
 
     <message>
       <source>Little Yellow</source>
-      <translation>Petit Jaune</translation>
+      <translation>Kleine Geel</translation>
     </message>
 
     <message>
       <source>LN Average-Smoothness</source>
-      <translation>LN Moyenne - Lissage</translation>
-    </message>
-
-    <message>
-      <source>LN Neightborhood-Smoothness</source>
-      <translation>LN L&apos;intimité de la nuit</translation>
+      <translation>LN Gemiddelde-Snelheid</translation>
     </message>
 
     <message>
       <source>LN Size</source>
-      <translation>Taille LN</translation>
+      <translation>LN-Grootte</translation>
     </message>
 
     <message>
       <source>Local  Normalisation</source>
-      <translation>Normalisation locale</translation>
+      <translation>Lokale normalisering</translation>
     </message>
 
     <message>
       <source>Local Contrast</source>
-      <translation>Contraste local</translation>
+      <translation>Lokaal contrast</translation>
     </message>
 
     <message>
       <source>Local Contrast Effect</source>
-      <translation>Effet de contraste local</translation>
+      <translation>Lokaal contrasteffect</translation>
     </message>
 
     <message>
       <source>Local Contrast Enhance</source>
-      <translation>Amélioration du contraste local</translation>
+      <translation>Lokaal contrast verbeteren</translation>
     </message>
 
     <message>
       <source>Local Contrast Enhancement</source>
-      <translation>Amélioration du contraste local</translation>
+      <translation>Lokale contrastversterking</translation>
     </message>
 
     <message>
       <source>Local Contrast Style</source>
-      <translation>Style de contraste local</translation>
+      <translation>Lokaal Contrast Stijl</translation>
     </message>
 
     <message>
       <source>Local Detail Enhancer</source>
-      <translation>Améliorateur de détail local</translation>
+      <translation>Lokale Detail Enhancer</translation>
     </message>
 
     <message>
       <source>Local Normalization</source>
-      <translation>Normalisation locale</translation>
+      <translation>Lokale normalisatie</translation>
     </message>
 
     <message>
       <source>Local Orientation</source>
-      <translation>Orientation locale</translation>
+      <translation>Lokale Oriëntatie</translation>
     </message>
 
     <message>
       <source>Local Processing</source>
-      <translation>Traitement local</translation>
+      <translation>Lokale verwerking</translation>
     </message>
 
     <message>
       <source>Local Similarity Mask</source>
-      <translation>Masque de similarité locale</translation>
+      <translation>Lokale gelijkenis Masker</translation>
     </message>
 
     <message>
       <source>Local Variance Normalization</source>
-      <translation>Normalisation de la variance locale</translation>
+      <translation>Lokale variantie Normalisatie</translation>
     </message>
 
     <message>
       <source>Lock Return Scaling to Source Layer</source>
-      <translation>Verrouiller le retour à l&apos;échelle de la couche source</translation>
+      <translation>Schaalvergroting van het slot terug naar de bronlaag</translation>
+    </message>
+
+    <message>
+      <source>Lock Source</source>
+      <translation>Slotbron</translation>
     </message>
 
     <message>
       <source>Lock Uniform Sampling</source>
-      <translation>Échantillonnage des uniformes de verrouillage</translation>
+      <translation>Slot Uniforme Bemonstering</translation>
+    </message>
+
+    <message>
+      <source>Log(z)</source>
+      <translation>Logboek(z)</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion</source>
-      <translation>Distorsion logarithmique</translation>
+      <translation>Logaritmische vervorming</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion Axis Combination for X-Axis</source>
-      <translation>Combinaison d&apos;axes de distorsion logarithmique pour l&apos;axe X</translation>
+      <translation>Logaritmische vervormingsascombinatie voor X-as</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion Axis Combination for Y-Axis</source>
-      <translation>Combinaison d&apos;axes de distorsion logarithmique pour l&apos;axe Y</translation>
+      <translation>Logaritmische vervormingsascombinatie voor Y-as</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion X-Axis Direction</source>
-      <translation>Distorsion logarithmique Direction de l&apos;axe X</translation>
+      <translation>Logaritmische vervorming X-asrichting</translation>
     </message>
 
     <message>
       <source>Logarithmic Distortion Y-Axis Direction</source>
-      <translation>Distorsion logarithmique Direction de l&apos;axe Y</translation>
+      <translation>Logaritmische vervorming Y-Axis Richting</translation>
     </message>
 
     <message>
       <source>Lomography Redscale 100</source>
-      <translation>Lomographie Redscale 100</translation>
+      <translation>Lomografie Roodschaal 100</translation>
     </message>
 
     <message>
       <source>Lomography X-Pro Slide 200</source>
-      <translation>Lomographie X-Pro Diapositive 200</translation>
+      <translation>Lomografie X-Pro Slide 200</translation>
     </message>
 
     <message>
       <source>Lookup</source>
-      <translation>Consulter</translation>
-    </message>
-
-    <message>
-      <source>Lookup Factor</source>
-      <translation>Facteur de recherche</translation>
+      <translation>Zoeken op</translation>
     </message>
 
     <message>
       <source>Lookup Size</source>
-      <translation>Taille de la recherche</translation>
+      <translation>Opzoekgrootte</translation>
     </message>
 
     <message>
       <source>Loop Method</source>
-      <translation>Méthode de la boucle</translation>
+      <translation>Lusmethode</translation>
     </message>
 
     <message>
       <source>Low</source>
-      <translation>Faible</translation>
+      <translation>Laag</translation>
     </message>
 
     <message>
       <source>Low Bias</source>
-      <translation>Faible biais</translation>
+      <translation>Lage vooringenomenheid</translation>
     </message>
 
     <message>
       <source>Low Contrast Blue</source>
-      <translation>Bleu à faible contraste</translation>
+      <translation>Laag contrast blauw</translation>
     </message>
 
     <message>
       <source>Low Frequency</source>
-      <translation>Basse fréquence</translation>
+      <translation>Lage frequentie</translation>
     </message>
 
     <message>
       <source>Low Frequency Layer</source>
-      <translation>Couche basse fréquence</translation>
+      <translation>Laagfrequente laag</translation>
     </message>
 
     <message>
-      <source>Low Key</source>
-      <translation>Clé basse</translation>
+      <source>Low Key 01</source>
+      <translation>Lage toets 01</translation>
     </message>
 
     <message>
       <source>Low Scale</source>
-      <translation>Faible échelle</translation>
+      <translation>Lage Schaal</translation>
     </message>
 
     <message>
       <source>Low Value</source>
-      <translation>Faible valeur</translation>
+      <translation>Lage waarde</translation>
     </message>
 
     <message>
       <source>Lower Layer Is the Bottom Layer for All Blends</source>
-      <translation>La couche inférieure est la couche inférieure pour tous les mélanges</translation>
+      <translation>Onderste laag is de onderste laag voor alle mengsels</translation>
     </message>
 
     <message>
       <source>Lower Mask Threshold (%)</source>
-      <translation>Seuil inférieur du masque (%)</translation>
+      <translation>Lagere masker drempel (%)</translation>
     </message>
 
     <message>
       <source>Lower Side Orientation</source>
-      <translation>Orientation de la face inférieure</translation>
+      <translation>Onderzijde Oriëntatie</translation>
     </message>
 
     <message>
       <source>Lowercase Letters</source>
-      <translation>Lettres minuscules</translation>
-    </message>
-
-    <message>
-      <source>Lowlights Crossover Point</source>
-      <translation>Point de passage des feux de croisement</translation>
+      <translation>Kleine letters</translation>
     </message>
 
     <message>
       <source>Lucky 64</source>
-      <translation>Chanceux 64</translation>
+      <translation>Geluksvogel 64</translation>
+    </message>
+
+    <message>
+      <source>Luma Noise</source>
+      <translation>Luma-geluid</translation>
+    </message>
+
+    <message>
+      <source>Luminance</source>
+      <translation>Luminantie</translation>
     </message>
 
     <message>
       <source>Luminance Factor</source>
-      <translation>Facteur de luminance</translation>
+      <translation>Helderheidsfactor</translation>
     </message>
 
     <message>
       <source>Luminance Level</source>
-      <translation>Niveau de luminance</translation>
+      <translation>Helderheidsniveau</translation>
     </message>
 
     <message>
       <source>Luminance Only</source>
-      <translation>Luminance uniquement</translation>
+      <translation>Alleen luminantie</translation>
     </message>
 
     <message>
       <source>Luminance Only (Lab)</source>
-      <translation>Luminance uniquement (Lab)</translation>
+      <translation>Alleen luminantie (Lab)</translation>
     </message>
 
     <message>
       <source>Luminance Only (YCbCr)</source>
-      <translation>Luminance uniquement (YCbCr)</translation>
+      <translation>Alleen luminantie (YCbCr)</translation>
     </message>
 
     <message>
       <source>Luminance Shift</source>
-      <translation>Changement de luminosité</translation>
+      <translation>Luminantieverschuiving</translation>
+    </message>
+
+    <message>
+      <source>Luminance Smoothness</source>
+      <translation>Helderheid Gladheid</translation>
     </message>
 
     <message>
       <source>Luminosity from Color</source>
-      <translation>La luminosité de la couleur</translation>
+      <translation>Helderheid van kleur</translation>
     </message>
 
     <message>
       <source>Luminosity Type</source>
-      <translation>Type de luminosité</translation>
+      <translation>Type lichtsterkte</translation>
     </message>
 
     <message>
       <source>Lush Green Summer</source>
-      <translation>Un été vert et luxuriant</translation>
+      <translation>Weelderige groene zomer</translation>
     </message>
 
     <message>
       <source>LUTs Pack</source>
-      <translation>Pack LUTs</translation>
+      <translation>LUTs-pakket</translation>
     </message>
 
     <message>
       <source>Lylejk&apos;s Painting</source>
-      <translation>La peinture de Lylejk</translation>
+      <translation>Lylejk&apos;s schilderij</translation>
     </message>
 
     <message>
       <source>Magenta Coffee</source>
-      <translation>Café Magenta</translation>
+      <translation>Magenta Koffie</translation>
     </message>
 
     <message>
       <source>Magenta Day</source>
-      <translation>Journée du magenta</translation>
+      <translation>Magenta Dag</translation>
     </message>
 
     <message>
       <source>Magenta Day 01</source>
-      <translation>Jour du magenta 01</translation>
+      <translation>Magenta Dag 01</translation>
     </message>
 
     <message>
       <source>Magenta Dream</source>
-      <translation>Rêve Magenta</translation>
+      <translation>Magenta Droom</translation>
     </message>
 
     <message>
       <source>Magenta Factor</source>
-      <translation>Facteur Magenta</translation>
-    </message>
-
-    <message>
-      <source>Magenta Shift</source>
-      <translation>Décalage du magenta</translation>
+      <translation>Magenta-factor</translation>
     </message>
 
     <message>
       <source>Magenta Smoothness</source>
-      <translation>Douceur magenta</translation>
+      <translation>Magenta Gladheid</translation>
     </message>
 
     <message>
       <source>Magenta Yellow</source>
-      <translation>Jaune magenta</translation>
+      <translation>Magenta Geel</translation>
+    </message>
+
+    <message>
+      <source>Magenta-Yellow</source>
+      <translation>Magenta-Geel</translation>
     </message>
 
     <message>
       <source>Magic Details</source>
-      <translation>Détails magiques</translation>
+      <translation>Magische details</translation>
     </message>
 
     <message>
       <source>Magnitude / Phase</source>
-      <translation>Ampleur / Phase</translation>
-    </message>
-
-    <message>
-      <source>Mail</source>
-      <translation>Courrier électronique</translation>
+      <translation>Omvang / Fase</translation>
     </message>
 
     <message>
       <source>Make Hue Depends on Region Size</source>
-      <translation>Make Hue dépend de la taille de la région</translation>
+      <translation>Maak Hue afhankelijk van de grootte van de regio</translation>
     </message>
 
     <message>
       <source>Make Seamless [Diffusion]</source>
-      <translation>Make Seamless [Diffusion] (en anglais)</translation>
+      <translation>Naadloos maken [Diffusion]</translation>
     </message>
 
     <message>
       <source>Make Seamless [Patch-Based]</source>
-      <translation>Make Seamless [Patch-Based] (en anglais)</translation>
+      <translation>Naadloos maken [Patch-Based]</translation>
     </message>
 
     <message>
       <source>Make Squiggly</source>
-      <translation>Faire des gribouillis</translation>
+      <translation>Maak Squiggly</translation>
     </message>
 
     <message>
       <source>Make Up</source>
-      <translation>Se réconcilier</translation>
+      <translation>Make-up</translation>
     </message>
 
     <message>
       <source>Manual</source>
-      <translation>Manuel</translation>
+      <translation>Handleiding</translation>
     </message>
 
     <message>
       <source>Manual Controls</source>
-      <translation>Contrôles manuels</translation>
+      <translation>Handmatige bediening</translation>
     </message>
 
     <message>
       <source>Map</source>
-      <translation>Carte</translation>
+      <translation>Kaart</translation>
     </message>
 
     <message>
       <source>Map Tones</source>
-      <translation>Tonalités de la carte</translation>
+      <translation>Kaart Tonen</translation>
     </message>
 
     <message>
       <source>Mapping</source>
-      <translation>Cartographie</translation>
+      <translation>Het in kaart brengen van</translation>
     </message>
 
     <message>
       <source>Marble</source>
-      <translation>Marbre</translation>
+      <translation>Marmer</translation>
     </message>
 
     <message>
@@ -9096,2972 +9551,3057 @@
 
     <message>
       <source>Mascot Image</source>
-      <translation>Image de la mascotte</translation>
+      <translation>Mascottebeeld</translation>
     </message>
 
     <message>
       <source>Masculine</source>
-      <translation>Masculin</translation>
+      <translation>Mannelijk</translation>
     </message>
 
     <message>
       <source>Mask</source>
-      <translation>Masque</translation>
+      <translation>Masker</translation>
     </message>
 
     <message>
       <source>Mask + Background</source>
-      <translation>Masque + Fond</translation>
+      <translation>Masker + Achtergrond</translation>
     </message>
 
     <message>
       <source>Mask as Bottom Layer</source>
-      <translation>Le masque comme couche inférieure</translation>
+      <translation>Masker als bodemlaag</translation>
     </message>
 
     <message>
       <source>Mask By</source>
-      <translation>Masquer par</translation>
+      <translation>Masker door</translation>
     </message>
 
     <message>
       <source>Mask Color</source>
-      <translation>Couleur du masque</translation>
+      <translation>Masker Kleur</translation>
     </message>
 
     <message>
       <source>Mask Contrast</source>
-      <translation>Contraste des masques</translation>
+      <translation>Maskercontrast</translation>
     </message>
 
     <message>
       <source>Mask Creator</source>
-      <translation>Créateur de masques</translation>
+      <translation>Maskerontwerper</translation>
     </message>
 
     <message>
       <source>Mask Dilation</source>
-      <translation>Dilatation du masque</translation>
+      <translation>Masker Dilatatie</translation>
     </message>
 
     <message>
       <source>Mask Size</source>
-      <translation>Taille du masque</translation>
+      <translation>Maskergrootte</translation>
     </message>
 
     <message>
       <source>Mask Smoothness (%)</source>
-      <translation>Lissage des masques (%)</translation>
+      <translation>Masker Gladheid (%)</translation>
     </message>
 
     <message>
       <source>Mask Type</source>
-      <translation>Type de masque</translation>
+      <translation>Maskertype</translation>
     </message>
 
     <message>
       <source>Masked Image</source>
-      <translation>Image masquée</translation>
+      <translation>Gemaskerd beeld</translation>
     </message>
 
     <message>
       <source>Masking</source>
-      <translation>Masquage</translation>
+      <translation>Maskeren</translation>
     </message>
 
     <message>
       <source>Match Colors With</source>
-      <translation>Faire correspondre les couleurs avec</translation>
+      <translation>Matchen van kleuren met</translation>
     </message>
 
     <message>
       <source>Matching Precision (Smaller Is Faster)</source>
-      <translation>Précision de l&apos;appariement (plus petit, c&apos;est plus rapide)</translation>
+      <translation>Bijpassende Precisie (Kleiner is sneller)</translation>
     </message>
 
     <message>
       <source>Math Symbols</source>
-      <translation>Symboles mathématiques</translation>
+      <translation>Wiskundige symbolen</translation>
     </message>
 
     <message>
-      <source>Matrix</source>
-      <translation>Matrice</translation>
+      <source>Max</source>
+      <translation>Max.</translation>
     </message>
 
     <message>
       <source>Max Angle</source>
-      <translation>Angle maximal</translation>
+      <translation>Max. hoek</translation>
     </message>
 
     <message>
       <source>Max Angle Deviation (deg)</source>
-      <translation>Déviation angulaire maximale (deg)</translation>
+      <translation>Max Hoekafwijking (deg)</translation>
     </message>
 
     <message>
       <source>Max Area</source>
-      <translation>Zone Max</translation>
-    </message>
-
-    <message>
-      <source>Max Curve</source>
-      <translation>Courbe Max</translation>
+      <translation>Max. gebied</translation>
     </message>
 
     <message>
       <source>Max Cut (%)</source>
-      <translation>Réduction maximale (%)</translation>
+      <translation>Max. Snijding (%)</translation>
     </message>
 
     <message>
       <source>Max Iterations</source>
-      <translation>Itérations Max</translation>
+      <translation>Max Iteraties</translation>
     </message>
 
     <message>
       <source>Max Length (%)</source>
-      <translation>Longueur maximale (%)</translation>
+      <translation>Maximale lengte (%)</translation>
     </message>
 
     <message>
       <source>Max Offset (%)</source>
-      <translation>Compensation maximale (%)</translation>
+      <translation>Maximale compensatie (%)</translation>
     </message>
 
     <message>
       <source>Max Radius</source>
-      <translation>Rayon maximal</translation>
+      <translation>Max. radius</translation>
     </message>
 
     <message>
       <source>Max Threshold</source>
-      <translation>Seuil maximum</translation>
+      <translation>Max. drempel</translation>
     </message>
 
     <message>
       <source>Maximal Area</source>
-      <translation>Surface maximale</translation>
+      <translation>Maximale oppervlakte</translation>
     </message>
 
     <message>
       <source>Maximal Color Saturation</source>
-      <translation>Saturation maximale des couleurs</translation>
+      <translation>Maximale kleurverzadiging</translation>
     </message>
 
     <message>
       <source>Maximal Highlights</source>
-      <translation>Points forts maximums</translation>
+      <translation>Maximale hoogtepunten</translation>
     </message>
 
     <message>
       <source>Maximal Radius</source>
-      <translation>Rayon maximal</translation>
+      <translation>Maximale straal</translation>
     </message>
 
     <message>
       <source>Maximal Seams per Iteration (%)</source>
-      <translation>Nombre maximal de coutures par itération (%)</translation>
+      <translation>Maximaal aantal naden per Iteratie (%)</translation>
     </message>
 
     <message>
       <source>Maximal Size</source>
-      <translation>Taille maximale</translation>
+      <translation>Maximale afmeting</translation>
     </message>
 
     <message>
       <source>Maximal Value</source>
-      <translation>Valeur maximale</translation>
+      <translation>Maximale waarde</translation>
+    </message>
+
+    <message>
+      <source>Maximum</source>
+      <translation>Maximaal</translation>
     </message>
 
     <message>
       <source>Maximum Dimension</source>
-      <translation>Dimension maximale</translation>
+      <translation>Maximale afmeting</translation>
     </message>
 
     <message>
       <source>Maximum Image Size</source>
-      <translation>Taille maximale de l&apos;image</translation>
+      <translation>Maximale beeldgrootte</translation>
     </message>
 
     <message>
       <source>Maximum Number of Image Colors</source>
-      <translation>Nombre maximum de couleurs d&apos;image</translation>
+      <translation>Maximaal aantal beeldkleuren</translation>
     </message>
 
     <message>
       <source>Maximum Number of Output Layers</source>
-      <translation>Nombre maximum de couches de sortie</translation>
+      <translation>Maximaal aantal uitgangslagen</translation>
     </message>
 
     <message>
       <source>Maximum Red:Blue Ratio in the Fringe</source>
-      <translation>Ratio maximum rouge/bleu dans la frange</translation>
+      <translation>Maximum Rood: Blauwe Verhouding in de Fringe</translation>
     </message>
 
     <message>
       <source>Maximum Saturation</source>
-      <translation>Saturation maximale</translation>
+      <translation>Maximale verzadiging</translation>
     </message>
 
     <message>
       <source>Maximum Size Factor</source>
-      <translation>Facteur de taille maximale</translation>
+      <translation>Maximale groottefactor</translation>
     </message>
 
     <message>
       <source>Maximum Value</source>
-      <translation>Valeur maximale</translation>
+      <translation>Maximale waarde</translation>
+    </message>
+
+    <message>
+      <source>Maze</source>
+      <translation>Doolhof</translation>
     </message>
 
     <message>
       <source>Maze Type</source>
-      <translation>Type de labyrinthe</translation>
+      <translation>Doolhoftype</translation>
     </message>
 
     <message>
       <source>Mean Color</source>
-      <translation>Couleur moyenne</translation>
+      <translation>Betekenis van de kleur</translation>
     </message>
 
     <message>
       <source>Mean Curvature</source>
-      <translation>Courbure moyenne</translation>
+      <translation>Gemiddelde kromming</translation>
     </message>
 
     <message>
       <source>Median</source>
-      <translation>Médiane</translation>
+      <translation>Mediaan</translation>
     </message>
 
     <message>
       <source>Median (beware: Memory-Consuming!)</source>
-      <translation>Médiane (attention : consommation de mémoire !)</translation>
+      <translation>Mediaan (let op: Geheugenverlies!)</translation>
     </message>
 
     <message>
       <source>Median Radius</source>
-      <translation>Rayon médian</translation>
-    </message>
-
-    <message>
-      <source>Medium</source>
-      <translation>Moyen</translation>
-    </message>
-
-    <message>
-      <source>Medium 3</source>
-      <translation>Moyen 3</translation>
+      <translation>Mediane Straal</translation>
     </message>
 
     <message>
       <source>Medium Details Smoothness</source>
-      <translation>Moyenne Détails Lisse</translation>
+      <translation>Medium Details Gladheid</translation>
     </message>
 
     <message>
       <source>Medium Details Threshold</source>
-      <translation>Seuil de détail moyen</translation>
+      <translation>Medium Details Drempel</translation>
     </message>
 
     <message>
       <source>Medium Frequency Layer</source>
-      <translation>Couche moyenne fréquence</translation>
+      <translation>Medium Frequentieregelaar</translation>
     </message>
 
     <message>
       <source>Medium Scale (Original)</source>
-      <translation>Moyenne échelle (Original)</translation>
+      <translation>Medium Scale (Origineel)</translation>
     </message>
 
     <message>
       <source>Medium Scale (Smoothed)</source>
-      <translation>Moyenne échelle (lissée)</translation>
+      <translation>Medium Schaal (Gladgemaakt)</translation>
     </message>
 
     <message>
       <source>Memories</source>
-      <translation>Mémoires</translation>
+      <translation>Herinneringen</translation>
     </message>
 
     <message>
       <source>Merge Brightness / Colors</source>
-      <translation>Fusionner la luminosité / les couleurs</translation>
+      <translation>Helderheid / Kleuren samenvoegen</translation>
     </message>
 
     <message>
       <source>Merge Layers?</source>
-      <translation>Fusionner les couches ?</translation>
+      <translation>Lagen samenvoegen?</translation>
     </message>
 
     <message>
       <source>Merging Mode</source>
-      <translation>Mode de fusion</translation>
+      <translation>Samenvoeging modus</translation>
     </message>
 
     <message>
       <source>Merging Option</source>
-      <translation>Option de fusion</translation>
+      <translation>Samenvoegingsoptie</translation>
     </message>
 
     <message>
       <source>Merging Steps</source>
-      <translation>Étapes de la fusion</translation>
+      <translation>Samenvoeging van stappen</translation>
     </message>
 
     <message>
       <source>Mess with Bits</source>
-      <translation>Les petits bobards</translation>
+      <translation>Mess met Bits</translation>
     </message>
 
     <message>
       <source>Metal</source>
-      <translation>Métal</translation>
-    </message>
-
-    <message>
-      <source>Metallic Look</source>
-      <translation>Aspect métallique</translation>
+      <translation>Metaal</translation>
     </message>
 
     <message>
       <source>Method</source>
-      <translation>Méthode</translation>
+      <translation>Methode</translation>
     </message>
 
     <message>
       <source>Metric</source>
-      <translation>Métrique</translation>
+      <translation>Metrisch</translation>
     </message>
 
     <message>
       <source>Micro/macro Details  Adjusted</source>
-      <translation>Détails micro/macro ajustés</translation>
+      <translation>Micro/macro details Aangepast</translation>
+    </message>
+
+    <message>
+      <source>Mid</source>
+      <translation>Midden</translation>
     </message>
 
     <message>
       <source>Mid Grey</source>
-      <translation>Gris moyen</translation>
+      <translation>Midden-Grijs</translation>
     </message>
 
     <message>
       <source>Mid Noise</source>
-      <translation>Bruit moyen</translation>
+      <translation>Midden-geluid</translation>
     </message>
 
     <message>
       <source>Mid Offset</source>
-      <translation>Compensation moyenne</translation>
+      <translation>Tussentijdse compensatie</translation>
     </message>
 
     <message>
       <source>Mid Tone Contrast</source>
-      <translation>Contraste des tons moyens</translation>
+      <translation>Middentooncontrast</translation>
     </message>
 
     <message>
       <source>Mid-Dark Grey</source>
-      <translation>Gris foncé moyen</translation>
+      <translation>Midden-Donkergrijs</translation>
     </message>
 
     <message>
       <source>Mid-Light Grey</source>
-      <translation>Gris clair moyen</translation>
+      <translation>Midden-Lichtgrijs</translation>
     </message>
 
     <message>
       <source>Middle Grey</source>
-      <translation>Gris moyen</translation>
+      <translation>Middengrijs</translation>
     </message>
 
     <message>
       <source>Middle Scale</source>
-      <translation>Échelle moyenne</translation>
+      <translation>Middenschaal</translation>
     </message>
 
     <message>
       <source>Midpoint</source>
-      <translation>Point médian</translation>
+      <translation>Midpunt</translation>
     </message>
 
     <message>
       <source>Midtones Brightness</source>
-      <translation>Luminosité des tons moyens</translation>
+      <translation>Midtonen Helderheid</translation>
     </message>
 
     <message>
       <source>Midtones Color Intensity</source>
-      <translation>Intensité des couleurs des tons moyens</translation>
+      <translation>Midtonen Kleurintensiteit</translation>
     </message>
 
     <message>
       <source>Mighty Details</source>
-      <translation>De puissants détails</translation>
+      <translation>Machtige details</translation>
     </message>
 
     <message>
       <source>Min Angle Deviation (deg)</source>
-      <translation>Déviation angulaire minimale (deg)</translation>
+      <translation>Min Hoekafwijking (deg)</translation>
     </message>
 
     <message>
       <source>Min Area %</source>
-      <translation>Min Superficie % % de la superficie</translation>
+      <translation>Min Oppervlakte %</translation>
     </message>
 
     <message>
       <source>Min Cut (%)</source>
-      <translation>Réduction minimale (%)</translation>
+      <translation>Min. Snijding (%)</translation>
     </message>
 
     <message>
       <source>Min Length (%)</source>
-      <translation>Durée minimale (%)</translation>
+      <translation>Min. lengte (%)</translation>
     </message>
 
     <message>
       <source>Min Offset (%)</source>
-      <translation>Compensation minimale (%)</translation>
+      <translation>Min. Verrekening (%)</translation>
     </message>
 
     <message>
       <source>Min Radius</source>
-      <translation>Rayon min</translation>
+      <translation>Min. radius</translation>
     </message>
 
     <message>
       <source>Min Threshold</source>
-      <translation>Seuil minimal</translation>
+      <translation>Min. drempel</translation>
     </message>
 
     <message>
       <source>Mineral Mosaic</source>
-      <translation>Mosaïque minérale</translation>
+      <translation>Mineraalmozaïek</translation>
     </message>
 
     <message>
       <source>Minesweeper</source>
-      <translation>Dragueur de mines</translation>
+      <translation>Mijnenveger</translation>
     </message>
 
     <message>
       <source>Minimal Area</source>
-      <translation>Surface minimale</translation>
+      <translation>Minimaal gebied</translation>
     </message>
 
     <message>
       <source>Minimal Area (%)</source>
-      <translation>Surface minimale (%)</translation>
+      <translation>Minimale oppervlakte (%)</translation>
     </message>
 
     <message>
       <source>Minimal Color Intensity</source>
-      <translation>Intensité minimale des couleurs</translation>
+      <translation>Minimale kleurintensiteit</translation>
     </message>
 
     <message>
       <source>Minimal Highlights</source>
-      <translation>Points forts minimaux</translation>
+      <translation>Minimale hoogtepunten</translation>
     </message>
 
     <message>
       <source>Minimal Path</source>
-      <translation>Chemin minimal</translation>
+      <translation>Minimaal pad</translation>
     </message>
 
     <message>
       <source>Minimal Radius</source>
-      <translation>Rayon minimal</translation>
+      <translation>Minimale straal</translation>
     </message>
 
     <message>
       <source>Minimal Region Area</source>
-      <translation>Région minimale</translation>
+      <translation>Minimaal gebied</translation>
     </message>
 
     <message>
       <source>Minimal Scale (%)</source>
-      <translation>Échelle minimale (%)</translation>
+      <translation>Minimale schaal (%)</translation>
     </message>
 
     <message>
       <source>Minimal Shape Area</source>
-      <translation>Surface de forme minimale</translation>
+      <translation>Minimale vormgebied</translation>
     </message>
 
     <message>
       <source>Minimal Size</source>
-      <translation>Taille minimale</translation>
+      <translation>Minimale omvang</translation>
     </message>
 
     <message>
       <source>Minimal Size (%)</source>
-      <translation>Taille minimale (%)</translation>
+      <translation>Minimale omvang (%)</translation>
     </message>
 
     <message>
       <source>Minimal Stroke Length</source>
-      <translation>Longueur minimale de la course</translation>
+      <translation>Minimale slaglengte</translation>
     </message>
 
     <message>
       <source>Minimal Value</source>
-      <translation>Valeur minimale</translation>
+      <translation>Minimale waarde</translation>
     </message>
 
     <message>
       <source>Minimalist Caffeination</source>
-      <translation>La caféination minimaliste</translation>
+      <translation>Minimalistische Cafeïne</translation>
     </message>
 
     <message>
       <source>Minimum</source>
-      <translation>Au minimum</translation>
+      <translation>Minimaal</translation>
     </message>
 
     <message>
       <source>Minimum Brightness</source>
-      <translation>Luminosité minimale</translation>
+      <translation>Minimale helderheid</translation>
     </message>
 
     <message>
       <source>Minimum Red:Blue Ratio in the Fringe</source>
-      <translation>Ratio minimum rouge/bleu en marge</translation>
+      <translation>Minimum Rood: Blauwe Ratio in de Fringe</translation>
     </message>
 
     <message>
       <source>Mirror</source>
-      <translation>Miroir</translation>
+      <translation>Spiegel</translation>
     </message>
 
     <message>
       <source>Mirror Effect</source>
-      <translation>Effet miroir</translation>
+      <translation>Spiegeleffect</translation>
     </message>
 
     <message>
       <source>Mirror X</source>
-      <translation>Miroir X</translation>
+      <translation>Spiegel X</translation>
     </message>
 
     <message>
       <source>Mirror Y</source>
-      <translation>Miroir Y</translation>
+      <translation>Spiegel Y</translation>
     </message>
 
     <message>
-      <source>Mirror-XY</source>
-      <translation>Miroir-XY</translation>
+      <source>Mirror-X</source>
+      <translation>Spiegel-X</translation>
+    </message>
+
+    <message>
+      <source>Mirror-Y</source>
+      <translation>Spiegel-Y</translation>
+    </message>
+
+    <message>
+      <source>Mix</source>
+      <translation>Meng</translation>
     </message>
 
     <message>
       <source>Mixed Mode</source>
-      <translation>Mode mixte</translation>
+      <translation>Gemengde modus</translation>
     </message>
 
     <message>
       <source>Mixer [CMYK]</source>
-      <translation>Mélangeur [CMYK]</translation>
+      <translation>Mengmachine [CMYK]</translation>
     </message>
 
     <message>
       <source>Mixer [HSV]</source>
-      <translation>Mélangeur [HSV]</translation>
+      <translation>Mengmachine [HSV]</translation>
     </message>
 
     <message>
       <source>Mixer [Lab]</source>
-      <translation>Mélangeur [Labo]</translation>
+      <translation>Mengmachine [Lab]</translation>
     </message>
 
     <message>
       <source>Mixer [PCA]</source>
-      <translation>Mélangeur [PCA]</translation>
-    </message>
-
-    <message>
-      <source>Mixer [RGB]</source>
-      <translation>Mélangeur [RGB]</translation>
-    </message>
-
-    <message>
-      <source>Mixer [YCbCr]</source>
-      <translation>Mélangeur [YCbCr]</translation>
-    </message>
-
-    <message>
-      <source>Mixer Mode</source>
-      <translation>Mode Mixer</translation>
+      <translation>Mengmachine [PCA]</translation>
     </message>
 
     <message>
       <source>Mixer Style</source>
-      <translation>Style du mixeur</translation>
+      <translation>Mixer Stijl</translation>
+    </message>
+
+    <message>
+      <source>Mode</source>
+      <translation>Modus</translation>
     </message>
 
     <message>
       <source>Modern Film</source>
-      <translation>Film moderne</translation>
+      <translation>Moderne film</translation>
     </message>
 
     <message>
       <source>Modulo Value</source>
-      <translation>Valeur modulo</translation>
+      <translation>Modulowaarde</translation>
+    </message>
+
+    <message>
+      <source>Moir&amp;eacute; Animation</source>
+      <translation>Moir&amp;eacute; Animatie</translation>
     </message>
 
     <message>
       <source>Moire Removal</source>
-      <translation>Élimination des moirés</translation>
+      <translation>Moire-verwijdering</translation>
     </message>
 
     <message>
       <source>Moire Removal Method</source>
-      <translation>Méthode d&apos;élimination du moiré</translation>
+      <translation>Moire-verwijderingsmethode</translation>
     </message>
 
     <message>
       <source>Mondrian: Composition in Red-Yellow-Blue</source>
-      <translation>Mondrian : Composition en rouge-jaune-bleu</translation>
+      <translation>Mondriaan: Samenstelling in Rood-Geel-Blauw</translation>
     </message>
 
     <message>
       <source>Mondrian: Evening; Red Tree</source>
-      <translation>Mondrian : Soirée; Arbre rouge</translation>
+      <translation>Mondriaan: Avond; Rode Boom</translation>
     </message>
 
     <message>
       <source>Mondrian: Gray Tree</source>
-      <translation>Mondrian : L&apos;arbre gris</translation>
+      <translation>Mondriaan: Grijze Boom</translation>
     </message>
 
     <message>
       <source>Monet: San Giorgio Maggiore at Dusk</source>
-      <translation>Monet : San Giorgio Maggiore au crépuscule</translation>
+      <translation>Monet: San Giorgio Maggiore in de schemering.</translation>
     </message>
 
     <message>
       <source>Monet: Water-Lily Pond</source>
-      <translation>Monet : l&apos;étang aux nénuphars</translation>
+      <translation>Monet: Waterlelie-vijver</translation>
     </message>
 
     <message>
       <source>Monet: Wheatstacks - End of Summer</source>
-      <translation>Monet : Les meules de blé - La fin de l&apos;été</translation>
+      <translation>Monet: Korenstapels - Einde van de zomer</translation>
     </message>
 
     <message>
       <source>Monkey</source>
-      <translation>Singe</translation>
+      <translation>Aap</translation>
     </message>
 
     <message>
       <source>Mono Tinted</source>
-      <translation>Mono teinté</translation>
+      <translation>Mono Getint</translation>
     </message>
 
     <message>
       <source>Mono-Directional</source>
-      <translation>Mono-directionnel</translation>
+      <translation>Mono-Directioneel</translation>
     </message>
 
     <message>
-      <source>Montage Type</source>
-      <translation>Type de montage</translation>
+      <source>Monochrome</source>
+      <translation>Monochroom</translation>
+    </message>
+
+    <message>
+      <source>Monochrome 1</source>
+      <translation>Monochroom 1</translation>
+    </message>
+
+    <message>
+      <source>Monochrome 2</source>
+      <translation>Monochroom 2</translation>
+    </message>
+
+    <message>
+      <source>Moonlight</source>
+      <translation>Maanlicht</translation>
     </message>
 
     <message>
       <source>Moonlight 01</source>
-      <translation>Clair de lune 01</translation>
+      <translation>Maanlicht 01</translation>
     </message>
 
     <message>
       <source>Moonrise</source>
-      <translation>Lever de lune</translation>
+      <translation>Maanopkomst</translation>
     </message>
 
     <message>
       <source>Morning 6</source>
-      <translation>Matin 6</translation>
+      <translation>Ochtend 6</translation>
     </message>
 
     <message>
       <source>Morph [Interactive]</source>
-      <translation>Morph [Interactif]</translation>
+      <translation>Morph [Interactief]</translation>
     </message>
 
     <message>
       <source>Morph Layers</source>
-      <translation>Couches morphologiques</translation>
+      <translation>Morph Lagen</translation>
     </message>
 
     <message>
       <source>Morphological - Fastest Sharpest Output</source>
-      <translation>Morphologique - Le résultat le plus rapide</translation>
+      <translation>Morfologisch - Snelste Scherpste Uitvoer</translation>
     </message>
 
     <message>
       <source>Morphological Closing</source>
-      <translation>Clôture morphologique</translation>
+      <translation>Morfologische afsluiting</translation>
     </message>
 
     <message>
       <source>Morphological Filter</source>
-      <translation>Filtre morphologique</translation>
+      <translation>Morfologische filter</translation>
     </message>
 
     <message>
       <source>Morphology Painting</source>
-      <translation>Peinture morphologique</translation>
+      <translation>Morfologie Schilderen</translation>
     </message>
 
     <message>
       <source>Morphology Strength</source>
-      <translation>La force de la morphologie</translation>
-    </message>
-
-    <message>
-      <source>Morroco 16</source>
-      <translation>Maroc 16</translation>
+      <translation>Morfologie Sterkte</translation>
     </message>
 
     <message>
       <source>Mosaic</source>
-      <translation>Mosaïque</translation>
+      <translation>Mozaïek</translation>
     </message>
 
     <message>
       <source>Most</source>
-      <translation>La plupart</translation>
+      <translation>De meeste</translation>
     </message>
 
     <message>
       <source>Mostly Blue</source>
-      <translation>Principalement bleu</translation>
-    </message>
-
-    <message>
-      <source>Motion Analyzer</source>
-      <translation>Analyseur de mouvement</translation>
-    </message>
-
-    <message>
-      <source>Motion-Compensated</source>
-      <translation>Motion compensée</translation>
-    </message>
-
-    <message>
-      <source>Moviz 1</source>
-      <translation>Film 1</translation>
-    </message>
-
-    <message>
-      <source>Moviz 10</source>
-      <translation>Film 10</translation>
-    </message>
-
-    <message>
-      <source>Moviz 11</source>
-      <translation>Film 11</translation>
-    </message>
-
-    <message>
-      <source>Moviz 13</source>
-      <translation>Film 13</translation>
-    </message>
-
-    <message>
-      <source>Moviz 14</source>
-      <translation>Film 14</translation>
-    </message>
-
-    <message>
-      <source>Moviz 15</source>
-      <translation>Film 15</translation>
-    </message>
-
-    <message>
-      <source>Moviz 16</source>
-      <translation>Film 16</translation>
-    </message>
-
-    <message>
-      <source>Moviz 17</source>
-      <translation>Film 17</translation>
-    </message>
-
-    <message>
-      <source>Moviz 19</source>
-      <translation>Film 19</translation>
-    </message>
-
-    <message>
-      <source>Moviz 2</source>
-      <translation>Film 2</translation>
-    </message>
-
-    <message>
-      <source>Moviz 20</source>
-      <translation>Film 20</translation>
-    </message>
-
-    <message>
-      <source>Moviz 22</source>
-      <translation>Film 22</translation>
-    </message>
-
-    <message>
-      <source>Moviz 23</source>
-      <translation>Film 23</translation>
-    </message>
-
-    <message>
-      <source>Moviz 26</source>
-      <translation>Film 26</translation>
-    </message>
-
-    <message>
-      <source>Moviz 27</source>
-      <translation>Film 27</translation>
-    </message>
-
-    <message>
-      <source>Moviz 28</source>
-      <translation>Film 28</translation>
-    </message>
-
-    <message>
-      <source>Moviz 29</source>
-      <translation>Film 29</translation>
-    </message>
-
-    <message>
-      <source>Moviz 3</source>
-      <translation>Film 3</translation>
-    </message>
-
-    <message>
-      <source>Moviz 34</source>
-      <translation>Film 34</translation>
-    </message>
-
-    <message>
-      <source>Moviz 35</source>
-      <translation>Film 35</translation>
-    </message>
-
-    <message>
-      <source>Moviz 4</source>
-      <translation>Film 4</translation>
-    </message>
-
-    <message>
-      <source>Moviz 5</source>
-      <translation>Film 5</translation>
-    </message>
-
-    <message>
-      <source>Moviz 8</source>
-      <translation>Film 8</translation>
-    </message>
-
-    <message>
-      <source>Moviz 9</source>
-      <translation>Film 9</translation>
+      <translation>Meestal Blauw</translation>
     </message>
 
     <message>
       <source>Much</source>
-      <translation>Beaucoup</translation>
+      <translation>Veel</translation>
     </message>
 
     <message>
       <source>Much Blue</source>
-      <translation>Beaucoup de bleu</translation>
+      <translation>Veel Blauw</translation>
     </message>
 
     <message>
       <source>Much Green</source>
-      <translation>Beaucoup de vert</translation>
+      <translation>Veel groen</translation>
     </message>
 
     <message>
       <source>Much Red</source>
-      <translation>Beaucoup de rouge</translation>
+      <translation>Veel rood</translation>
     </message>
 
     <message>
       <source>Multi-Layer Etch</source>
-      <translation>Gravure multicouche</translation>
+      <translation>Meerlaagse ets</translation>
     </message>
 
     <message>
       <source>Multiple Colored Shapes Over Transp. BG</source>
-      <translation>Formes multicolores sur le Transp. BG</translation>
+      <translation>Meerkleurige vormen over transp. BG</translation>
     </message>
 
     <message>
       <source>Multiple Layers</source>
-      <translation>Couches multiples</translation>
+      <translation>Meerdere lagen</translation>
     </message>
 
     <message>
       <source>Multiplier</source>
-      <translation>Multiplicateur</translation>
+      <translation>Vermenigvuldiger</translation>
     </message>
 
     <message>
       <source>Multiply</source>
-      <translation>Multiplier</translation>
+      <translation>Vermenigvuldig</translation>
     </message>
 
     <message>
       <source>Multiscale Operator</source>
-      <translation>Opérateur multi-échelle</translation>
+      <translation>Multiscale-exploitant</translation>
     </message>
 
     <message>
       <source>Munch: The Scream</source>
-      <translation>Munch : Le cri</translation>
+      <translation>Munch: De schreeuw</translation>
     </message>
 
     <message>
       <source>Mute Shift</source>
-      <translation>Changement de silence</translation>
+      <translation>Stomme verschuiving</translation>
     </message>
 
     <message>
       <source>Muted 01</source>
-      <translation>Muet 01</translation>
+      <translation>Gedempt 01</translation>
     </message>
 
     <message>
       <source>Muted Fade</source>
-      <translation>Fondu enchaîné</translation>
+      <translation>Gedempt verbleken</translation>
     </message>
 
     <message>
       <source>Mystic Purple Sunset</source>
-      <translation>Coucher de soleil violet mystique</translation>
+      <translation>Mystieke Paarse Zonsondergang</translation>
     </message>
 
     <message>
       <source>Name</source>
-      <translation>Nom</translation>
+      <translation>Naam</translation>
     </message>
 
     <message>
       <source>Natural (vivid)</source>
-      <translation>Naturel (vivant)</translation>
+      <translation>Natuurlijk (levendig)</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-1</source>
-      <translation>Nature et vie sauvage - 1</translation>
+      <translation>Natuur &amp; Wildlife-1</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-10</source>
-      <translation>Nature et vie sauvage - 10</translation>
+      <translation>Natuur &amp; Wildlife-10</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-2</source>
-      <translation>Nature et vie sauvage - 2</translation>
+      <translation>Natuur &amp; Wildlife-2</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-3</source>
-      <translation>Nature et vie sauvage - 3</translation>
+      <translation>Natuur &amp; Wildlife-3</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-4</source>
-      <translation>Nature et vie sauvage - 4</translation>
+      <translation>Natuur &amp; Wildlife-4</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-5</source>
-      <translation>Nature et vie sauvage - 5</translation>
+      <translation>Natuur &amp; Wildlife-5</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-6</source>
-      <translation>Nature et vie sauvage - 6</translation>
+      <translation>Natuur &amp; Wildlife-6</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-7</source>
-      <translation>Nature et vie sauvage - 7</translation>
+      <translation>Natuur &amp; Wildlife-7</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-8</source>
-      <translation>Nature et vie sauvage - 8</translation>
+      <translation>Natuur &amp; Wildlife-8</translation>
     </message>
 
     <message>
       <source>Nature &amp; Wildlife-9</source>
-      <translation>Nature et vie sauvage - 9</translation>
+      <translation>Natuur &amp; Wildlife-9</translation>
     </message>
 
     <message>
       <source>Nb Circles Surrounding</source>
-      <translation>Nb Cercles environnants</translation>
+      <translation>Nb-cirkels rondom</translation>
     </message>
 
     <message>
       <source>Near Black</source>
-      <translation>Près du noir</translation>
+      <translation>In de buurt van Zwart</translation>
     </message>
 
     <message>
       <source>Nearest</source>
-      <translation>Le plus proche</translation>
+      <translation>Dichtstbijzijnde</translation>
     </message>
 
     <message>
       <source>Nearest Neighbor</source>
-      <translation>Voisin le plus proche</translation>
+      <translation>Dichtstbijzijnde buurman</translation>
     </message>
 
     <message>
       <source>Neat Merge</source>
-      <translation>Fusion soignée</translation>
+      <translation>Keurig samenvoegen</translation>
     </message>
 
     <message>
       <source>Nebulous</source>
-      <translation>Nébuleuse</translation>
+      <translation>Nevelig</translation>
     </message>
 
     <message>
       <source>Negate</source>
-      <translation>Négocier</translation>
+      <translation>Verwaarloos</translation>
     </message>
 
     <message>
       <source>Negation</source>
-      <translation>Négation</translation>
+      <translation>Verwaarlozing</translation>
     </message>
 
     <message>
       <source>Negative</source>
-      <translation>Négatif</translation>
+      <translation>Negatief</translation>
     </message>
 
     <message>
       <source>Negative [Color] (13)</source>
-      <translation>Négatif [Couleur] (13)</translation>
+      <translation>Negatief [Kleur] (13)</translation>
     </message>
 
     <message>
       <source>Negative [New] (39)</source>
-      <translation>Négatif [Nouveau] (39)</translation>
+      <translation>Negatief [Nieuw] (39)</translation>
     </message>
 
     <message>
       <source>Negative [Old] (44)</source>
-      <translation>Négatif [Ancien] (44)</translation>
+      <translation>Negatief [Oud] (44)</translation>
     </message>
 
     <message>
       <source>Negative Color Abstraction</source>
-      <translation>Abstraction de couleur négative</translation>
+      <translation>Negatieve kleurenabstractie</translation>
     </message>
 
     <message>
       <source>Negative Colors</source>
-      <translation>Couleurs négatives</translation>
+      <translation>Negatieve kleuren</translation>
     </message>
 
     <message>
       <source>Negative Effect</source>
-      <translation>Effet négatif</translation>
+      <translation>Negatief effect</translation>
     </message>
 
     <message>
       <source>Neighborhood Size (%)</source>
-      <translation>Taille du quartier (%)</translation>
+      <translation>Buurtgrootte (%)</translation>
     </message>
 
     <message>
       <source>Neighborhood Smoothness</source>
-      <translation>La douceur du voisinage</translation>
-    </message>
-
-    <message>
-      <source>Neon 770</source>
-      <translation>Néon 770</translation>
+      <translation>Buurt Gladheid</translation>
     </message>
 
     <message>
       <source>Neon Lightning</source>
-      <translation>Foudre au néon</translation>
+      <translation>Neonbliksem</translation>
     </message>
 
     <message>
       <source>Neutral Color</source>
-      <translation>Couleur neutre</translation>
+      <translation>Neutrale kleur</translation>
     </message>
 
     <message>
       <source>Neutral Teal Orange</source>
-      <translation>Orange sarcelle neutre</translation>
+      <translation>Neutraal Teal Oranje</translation>
     </message>
 
     <message>
       <source>Neutral Warm Fade</source>
-      <translation>Fondu neutre et chaud</translation>
+      <translation>Neutraal Warm Fade</translation>
     </message>
 
     <message>
       <source>New Curves [Interactive]</source>
-      <translation>Nouvelles courbes [Interactif]</translation>
+      <translation>Nieuwe curven [Interactief]</translation>
     </message>
 
     <message>
       <source>Newspaper</source>
-      <translation>Journal</translation>
+      <translation>Krant</translation>
     </message>
 
     <message>
       <source>Night 01</source>
-      <translation>Nuit 01</translation>
+      <translation>Nacht 01</translation>
+    </message>
+
+    <message>
+      <source>Night Blade 4</source>
+      <translation>Nachtblad 4</translation>
     </message>
 
     <message>
       <source>Night From Day</source>
-      <translation>Nuit du jour</translation>
+      <translation>Nacht van de dag</translation>
     </message>
 
     <message>
       <source>Night King 141</source>
-      <translation>Roi de la nuit 141</translation>
+      <translation>Nachtkoning 141</translation>
     </message>
 
     <message>
       <source>Night Spy</source>
-      <translation>Espion de nuit</translation>
+      <translation>Nachtspion</translation>
     </message>
 
     <message>
       <source>Nine Layers</source>
-      <translation>Neuf couches</translation>
+      <translation>Negen lagen</translation>
     </message>
 
     <message>
       <source>No Masking</source>
-      <translation>Pas de masquage</translation>
+      <translation>Geen maskering</translation>
     </message>
 
     <message>
       <source>No Recovery</source>
-      <translation>Pas de reprise</translation>
+      <translation>Geen herstel</translation>
     </message>
 
     <message>
       <source>No Rescaling</source>
-      <translation>Pas de redimensionnement</translation>
+      <translation>Geen Herschaling</translation>
     </message>
 
     <message>
       <source>No Transparency</source>
-      <translation>Pas de transparence</translation>
+      <translation>Geen transparantie</translation>
     </message>
 
     <message>
       <source>Noise</source>
-      <translation>Bruit</translation>
+      <translation>Lawaai</translation>
     </message>
 
     <message>
       <source>Noise [Additive]</source>
-      <translation>Bruit [Additif]</translation>
+      <translation>Lawaai [Additief]</translation>
     </message>
 
     <message>
       <source>Noise [Perlin]</source>
-      <translation>Bruit [Perlin]</translation>
+      <translation>Lawaai [Perlin]</translation>
     </message>
 
     <message>
       <source>Noise [Spread]</source>
-      <translation>Bruit [propagation]</translation>
+      <translation>Lawaai [Spread]</translation>
     </message>
 
     <message>
       <source>Noise A</source>
-      <translation>Bruit A</translation>
+      <translation>Lawaai A</translation>
     </message>
 
     <message>
       <source>Noise B</source>
-      <translation>Bruit B</translation>
+      <translation>Lawaai B</translation>
     </message>
 
     <message>
       <source>Noise C</source>
-      <translation>Bruit C</translation>
+      <translation>Lawaai C</translation>
     </message>
 
     <message>
       <source>Noise D</source>
-      <translation>Bruit D</translation>
+      <translation>Lawaai D</translation>
     </message>
 
     <message>
       <source>Noise Level</source>
-      <translation>Niveau de bruit</translation>
+      <translation>Geluidsniveau</translation>
     </message>
 
     <message>
       <source>Noise Scale</source>
-      <translation>Échelle de bruit</translation>
+      <translation>Geluidsschaal</translation>
     </message>
 
     <message>
       <source>Noise Type</source>
-      <translation>Type de bruit</translation>
+      <translation>Geluidstype</translation>
     </message>
 
     <message>
       <source>Non / No</source>
-      <translation>Non / Non</translation>
+      <translation>Niet / Nee</translation>
     </message>
 
     <message>
       <source>Non-Linearity</source>
-      <translation>Non-linéarité</translation>
+      <translation>Niet-lineariteit</translation>
     </message>
 
     <message>
       <source>Non-Rigid</source>
-      <translation>Non-Rigide</translation>
+      <translation>Niet-rigide</translation>
     </message>
 
     <message>
       <source>None</source>
-      <translation>Aucune</translation>
+      <translation>Geen</translation>
     </message>
 
     <message>
       <source>None (Allows Multi-Layers)</source>
-      <translation>Aucune (permet les couches multiples)</translation>
+      <translation>Geen (Maakt Multi-Layers mogelijk)</translation>
     </message>
 
     <message>
       <source>None- Skip</source>
-      <translation>Non- Sauter</translation>
+      <translation>Niet overslaan</translation>
     </message>
 
     <message>
       <source>Norm Type</source>
-      <translation>Type de norme</translation>
+      <translation>Normaal Type</translation>
+    </message>
+
+    <message>
+      <source>Normal</source>
+      <translation>Normaal</translation>
     </message>
 
     <message>
       <source>Normal Map</source>
-      <translation>Carte normale</translation>
+      <translation>Normale kaart</translation>
     </message>
 
     <message>
       <source>Normal Output</source>
-      <translation>Sortie normale</translation>
+      <translation>Normale uitgang</translation>
     </message>
 
     <message>
       <source>Normalization</source>
-      <translation>Normalisation</translation>
+      <translation>Normalisatie</translation>
     </message>
 
     <message>
       <source>Normalize</source>
-      <translation>Normaliser</translation>
+      <translation>Normaliseer</translation>
     </message>
 
     <message>
       <source>Normalize Brightness</source>
-      <translation>Normaliser la luminosité</translation>
+      <translation>Helderheid normaliseren</translation>
     </message>
 
     <message>
       <source>Normalize Colors</source>
-      <translation>Normaliser les couleurs</translation>
+      <translation>Kleuren normaliseren</translation>
     </message>
 
     <message>
       <source>Normalize Illumination</source>
-      <translation>Normaliser l&apos;éclairage</translation>
+      <translation>Verlichting normaliseren</translation>
     </message>
 
     <message>
       <source>Normalize Input</source>
-      <translation>Normaliser les entrées</translation>
+      <translation>Input normaliseren</translation>
     </message>
 
     <message>
       <source>Normalize Luma</source>
-      <translation>Normaliser Luma</translation>
+      <translation>Luma normaliseren</translation>
     </message>
 
     <message>
       <source>Normalize Scales</source>
-      <translation>Normaliser les balances</translation>
+      <translation>Normaliseer Schalen</translation>
     </message>
 
     <message>
       <source>Nostalgia Honey</source>
-      <translation>Miel de nostalgie</translation>
+      <translation>Nostalgie Honing</translation>
     </message>
 
     <message>
       <source>Nostalgic</source>
-      <translation>Nostalgique</translation>
+      <translation>Nostalgische</translation>
     </message>
 
     <message>
       <source>Nothing</source>
-      <translation>Rien</translation>
+      <translation>Niets</translation>
     </message>
 
     <message>
       <source>Number</source>
-      <translation>Numéro</translation>
+      <translation>Aantal</translation>
     </message>
 
     <message>
       <source>Number of Added Frames</source>
-      <translation>Nombre de cadres ajoutés</translation>
+      <translation>Aantal toegevoegde frames</translation>
     </message>
 
     <message>
       <source>Number of Angles</source>
-      <translation>Nombre d&apos;Angles</translation>
+      <translation>Aantal hoeken</translation>
     </message>
 
     <message>
       <source>Number of Clusters</source>
-      <translation>Nombre de clusters</translation>
+      <translation>Aantal Clusters</translation>
     </message>
 
     <message>
       <source>Number of Colors</source>
-      <translation>Nombre de couleurs</translation>
+      <translation>Aantal kleuren</translation>
     </message>
 
     <message>
       <source>Number of Frames</source>
-      <translation>Nombre de cadres</translation>
+      <translation>Aantal Frames</translation>
     </message>
 
     <message>
       <source>Number of Inter-Frames</source>
-      <translation>Nombre d&apos;inter-cadres</translation>
+      <translation>Aantal interframes</translation>
     </message>
 
     <message>
       <source>Number of Iterations per Scale</source>
-      <translation>Nombre d&apos;itérations par échelle</translation>
+      <translation>Aantal Iteraties per Schaal</translation>
     </message>
 
     <message>
       <source>Number of Key-Frames</source>
-      <translation>Nombre d&apos;images clés</translation>
+      <translation>Aantal Key-Frames</translation>
     </message>
 
     <message>
       <source>Number of Levels</source>
-      <translation>Nombre de niveaux</translation>
+      <translation>Aantal niveaus</translation>
     </message>
 
     <message>
       <source>Number of Matches (Coarsest)</source>
-      <translation>Nombre de correspondances (le plus grossier)</translation>
+      <translation>Aantal wedstrijden (grofste)</translation>
     </message>
 
     <message>
       <source>Number of Matches (Finest)</source>
-      <translation>Nombre de matchs (le plus fin)</translation>
+      <translation>Aantal Wedstrijden (Fijnste)</translation>
     </message>
 
     <message>
       <source>Number of Orientations</source>
-      <translation>Nombre d&apos;orientations</translation>
+      <translation>Aantal Oriëntaties</translation>
     </message>
 
     <message>
       <source>Number Of Rays</source>
-      <translation>Nombre de rayons</translation>
+      <translation>Aantal stralen</translation>
     </message>
 
     <message>
       <source>Number of Scales</source>
-      <translation>Nombre de balances</translation>
+      <translation>Aantal schalen</translation>
     </message>
 
     <message>
       <source>Number of Sizes</source>
-      <translation>Nombre de tailles</translation>
+      <translation>Aantal Maten</translation>
     </message>
 
     <message>
       <source>Number of Streaks</source>
-      <translation>Nombre de stries</translation>
+      <translation>Aantal strepen</translation>
     </message>
 
     <message>
       <source>Number of Teeth</source>
-      <translation>Nombre de dents</translation>
+      <translation>Aantal tanden</translation>
     </message>
 
     <message>
       <source>Number of Tones</source>
-      <translation>Nombre de tons</translation>
+      <translation>Aantal Tonen</translation>
     </message>
 
     <message>
       <source>Object Animation</source>
-      <translation>Animation d&apos;objets</translation>
+      <translation>Animatie van het object</translation>
     </message>
 
     <message>
       <source>Object Ratio</source>
-      <translation>Ratio d&apos;objet</translation>
+      <translation>Objectratio</translation>
     </message>
 
     <message>
       <source>Object Tolerance</source>
-      <translation>Tolérance des objets</translation>
+      <translation>Objecttolerantie</translation>
+    </message>
+
+    <message>
+      <source>Octagon</source>
+      <translation>Achthoek</translation>
     </message>
 
     <message>
       <source>Octagonal</source>
-      <translation>Octogonale</translation>
+      <translation>Achthoekig</translation>
+    </message>
+
+    <message>
+      <source>Octaves</source>
+      <translation>Octaven</translation>
     </message>
 
     <message>
       <source>Oddness (%)</source>
-      <translation>Étrangeté (%)</translation>
+      <translation>Raarheid (%)</translation>
+    </message>
+
+    <message>
+      <source>Off</source>
+      <translation>Uit</translation>
     </message>
 
     <message>
       <source>Offset</source>
-      <translation>Compensation</translation>
+      <translation>Compensatie</translation>
     </message>
 
     <message>
       <source>Offset (%)</source>
-      <translation>Compensation (%)</translation>
+      <translation>Compensatie (%)</translation>
     </message>
 
     <message>
       <source>Offset Angle Rays Layer 1</source>
-      <translation>Rayons angulaires décalés Couche 1</translation>
+      <translation>Offset Hoekstralen Laag 1</translation>
     </message>
 
     <message>
       <source>Offset Angle Rays Layer 2</source>
-      <translation>Rayons angulaires décalés couche 2</translation>
+      <translation>Offset Hoeklaag 2</translation>
     </message>
 
     <message>
       <source>Old Method - Slowest</source>
-      <translation>Ancienne méthode - plus lente</translation>
+      <translation>Oude methode - Langzaamste</translation>
     </message>
 
     <message>
       <source>Old Photograph</source>
-      <translation>Vieille photo</translation>
+      <translation>Oude foto</translation>
     </message>
 
     <message>
       <source>Old West</source>
-      <translation>Vieux Ouest</translation>
-    </message>
-
-    <message>
-      <source>Old-Movie Stripes</source>
-      <translation>Les bandes de vieux films</translation>
+      <translation>Oude Westen</translation>
     </message>
 
     <message>
       <source>ON1 Photography (90)</source>
-      <translation>ON1 Photographie (90)</translation>
-    </message>
-
-    <message>
-      <source>Once Upon a Time</source>
-      <translation>Il était une fois</translation>
+      <translation>ON1 Fotografie (90)</translation>
     </message>
 
     <message>
       <source>One Layer</source>
-      <translation>Une couche</translation>
+      <translation>Eén laag</translation>
     </message>
 
     <message>
       <source>One Layer (Horizontal)</source>
-      <translation>Une couche (horizontale)</translation>
+      <translation>Eén laag (horizontaal)</translation>
     </message>
 
     <message>
       <source>One Layer (Vertical)</source>
-      <translation>Une couche (verticale)</translation>
+      <translation>Eén laag (verticaal)</translation>
     </message>
 
     <message>
       <source>One Layer per Single Color</source>
-      <translation>Une couche par couleur</translation>
+      <translation>Eén laag per enkele kleur</translation>
     </message>
 
     <message>
       <source>One Layer per Single Region</source>
-      <translation>Une couche par région</translation>
+      <translation>Eén laag per regio</translation>
     </message>
 
     <message>
       <source>One Thread</source>
-      <translation>Un fil</translation>
+      <translation>Een draad</translation>
     </message>
 
     <message>
       <source>Only Leafs</source>
-      <translation>Seulement les feuilles</translation>
+      <translation>Alleen Bladeren</translation>
     </message>
 
     <message>
       <source>Only Red</source>
-      <translation>Uniquement le rouge</translation>
+      <translation>Alleen rood</translation>
     </message>
 
     <message>
       <source>Only Red and Blue</source>
-      <translation>Uniquement le rouge et le bleu</translation>
+      <translation>Alleen rood en blauw</translation>
     </message>
 
     <message>
       <source>Opacity</source>
-      <translation>Opacité</translation>
+      <translation>Opaciteit</translation>
     </message>
 
     <message>
       <source>Opacity (%)</source>
-      <translation>Opacité (%)</translation>
+      <translation>Opaciteit (%)</translation>
     </message>
 
     <message>
       <source>Opacity as Heightmap</source>
-      <translation>L&apos;opacité comme carte de hauteur</translation>
+      <translation>Opaciteit als hoogtekaart</translation>
     </message>
 
     <message>
       <source>Opacity Contours</source>
-      <translation>Les contours de l&apos;opacité</translation>
+      <translation>Opaciteitscontouren</translation>
     </message>
 
     <message>
       <source>Opacity Factor</source>
-      <translation>Facteur d&apos;opacité</translation>
+      <translation>Opaciteitsfactor</translation>
     </message>
 
     <message>
       <source>Opacity Gain</source>
-      <translation>Gain d&apos;opacité</translation>
+      <translation>Opaciteitswinst</translation>
     </message>
 
     <message>
       <source>Opacity Gamma</source>
-      <translation>Opacité Gamma</translation>
+      <translation>Opaciteitsgamma</translation>
     </message>
 
     <message>
       <source>Opacity Snowflake</source>
-      <translation>Opacité Flocon de neige</translation>
+      <translation>Opaciteitssneeuwvlokje</translation>
     </message>
 
     <message>
       <source>Opacity Threshold (%)</source>
-      <translation>Seuil d&apos;opacité (%)</translation>
+      <translation>Opaciteitsdrempel (%)</translation>
     </message>
 
     <message>
       <source>Opaque Pixels</source>
-      <translation>Pixels opaques</translation>
+      <translation>Ondoorzichtige Pixels</translation>
     </message>
 
     <message>
       <source>Opaque Regions on Top Layer</source>
-      <translation>Les régions opaques sur la couche supérieure</translation>
+      <translation>Ondoorzichtige regio&apos;s op de bovenste laag</translation>
     </message>
 
     <message>
       <source>Opaque Skin</source>
-      <translation>Peau opaque</translation>
+      <translation>Ondoorzichtige huid</translation>
     </message>
 
     <message>
       <source>Open Interactive Preview</source>
-      <translation>Aperçu interactif ouvert</translation>
-    </message>
-
-    <message>
-      <source>Opening</source>
-      <translation>Ouverture</translation>
+      <translation>Open Interactieve Voorvertoning</translation>
     </message>
 
     <message>
       <source>Operation Yellow</source>
-      <translation>Opération Jaune</translation>
+      <translation>Operatie Geel</translation>
     </message>
 
     <message>
       <source>Operator</source>
-      <translation>Opérateur</translation>
+      <translation>Exploitant</translation>
     </message>
 
     <message>
       <source>Opposing</source>
-      <translation>Opposition</translation>
+      <translation>Tegen</translation>
     </message>
 
     <message>
       <source>Optimized Lateral Inhibition</source>
-      <translation>Inhibition latérale optimisée</translation>
+      <translation>Geoptimaliseerde zijdelingse remming</translation>
+    </message>
+
+    <message>
+      <source>Orange Dark 4</source>
+      <translation>Oranje Donker 4</translation>
+    </message>
+
+    <message>
+      <source>Orange Dark 7</source>
+      <translation>Oranje Donker 7</translation>
     </message>
 
     <message>
       <source>Orange Dark Look</source>
-      <translation>Look orange foncé</translation>
+      <translation>Oranje Donkerblauw uiterlijk</translation>
     </message>
 
     <message>
       <source>Orange Tone</source>
-      <translation>Tonalité orange</translation>
+      <translation>Oranje Tint</translation>
     </message>
 
     <message>
       <source>Orange Underexposed</source>
-      <translation>Orange sous-exposé</translation>
+      <translation>Oranje Onderbelicht</translation>
+    </message>
+
+    <message>
+      <source>Oranges</source>
+      <translation>Sinaasappels</translation>
     </message>
 
     <message>
       <source>Order</source>
-      <translation>Commander</translation>
+      <translation>Bestel</translation>
     </message>
 
     <message>
       <source>Order By</source>
-      <translation>Ordre par</translation>
+      <translation>Bestel door</translation>
+    </message>
+
+    <message>
+      <source>Orientation</source>
+      <translation>Oriëntatie</translation>
     </message>
 
     <message>
       <source>Orientation Coherence</source>
-      <translation>Cohérence de l&apos;orientation</translation>
+      <translation>Oriëntatie Coherentie</translation>
     </message>
 
     <message>
       <source>Orientation Only</source>
-      <translation>Orientation uniquement</translation>
+      <translation>Alleen de oriëntatie</translation>
+    </message>
+
+    <message>
+      <source>Orientations</source>
+      <translation>Oriëntaties</translation>
+    </message>
+
+    <message>
+      <source>Original</source>
+      <translation>Origineel</translation>
     </message>
 
     <message>
       <source>Original - (Opening + Closing)/2</source>
-      <translation>Original - (Ouverture + Clôture)/2</translation>
+      <translation>Origineel - (openen + sluiten)/2</translation>
+    </message>
+
+    <message>
+      <source>Original - Erosion</source>
+      <translation>Origineel - Erosie</translation>
     </message>
 
     <message>
       <source>Original - Opening</source>
-      <translation>Original - Ouverture</translation>
+      <translation>Origineel - Opening</translation>
     </message>
 
     <message>
       <source>Orthogonal Radius</source>
-      <translation>Rayon orthogonal</translation>
+      <translation>Orthogonale Straal</translation>
+    </message>
+
+    <message>
+      <source>Orton Glow</source>
+      <translation>Orton Gloed</translation>
     </message>
 
     <message>
       <source>Others (69)</source>
-      <translation>Autres (69)</translation>
+      <translation>Andere (69)</translation>
     </message>
 
     <message>
       <source>Ouline Color</source>
-      <translation>Couleur Ouline</translation>
+      <translation>Ouline kleur</translation>
     </message>
 
     <message>
       <source>Outer</source>
-      <translation>Extérieur</translation>
+      <translation>Buiten</translation>
     </message>
 
     <message>
       <source>Outer Fading</source>
-      <translation>Fondu extérieur</translation>
+      <translation>Buitenvervaging</translation>
     </message>
 
     <message>
       <source>Outer Length</source>
-      <translation>Longueur extérieure</translation>
+      <translation>Buitenlengte</translation>
     </message>
 
     <message>
       <source>Outer Radius</source>
-      <translation>Rayon extérieur</translation>
+      <translation>Buitenste straal</translation>
     </message>
 
     <message>
       <source>Outline</source>
-      <translation>Aperçu</translation>
+      <translation>Overzicht</translation>
     </message>
 
     <message>
       <source>Outline (%)</source>
-      <translation>Schéma (%)</translation>
+      <translation>Overzicht (%)</translation>
     </message>
 
     <message>
       <source>Outline Color</source>
-      <translation>Couleur du contour</translation>
+      <translation>Overzicht Kleur</translation>
     </message>
 
     <message>
       <source>Outline Contrast</source>
-      <translation>Contraste général</translation>
+      <translation>Contrast in hoofdlijnen</translation>
     </message>
 
     <message>
       <source>Outline Opacity</source>
-      <translation>Opacité des lignes</translation>
+      <translation>Ondoorzichtigheid in grote lijnen</translation>
     </message>
 
     <message>
       <source>Outline Size</source>
-      <translation>Taille de l&apos;ébauche</translation>
+      <translation>Overzicht van de grootte</translation>
     </message>
 
     <message>
       <source>Outline Smoothness</source>
-      <translation>Lissage des contours</translation>
+      <translation>Overzicht Gladheid</translation>
     </message>
 
     <message>
       <source>Outline Thickness</source>
-      <translation>Épaisseur du contour</translation>
+      <translation>Schetsdikte</translation>
     </message>
 
     <message>
       <source>Outlined</source>
-      <translation>Présentation</translation>
+      <translation>Uitgebreid</translation>
     </message>
 
     <message>
       <source>Output</source>
-      <translation>Sortie</translation>
+      <translation>Uitgang</translation>
     </message>
 
     <message>
       <source>Output As</source>
-      <translation>Sortie en tant que</translation>
+      <translation>Uitgang als</translation>
     </message>
 
     <message>
       <source>Output as Files</source>
-      <translation>Sortie sous forme de fichiers</translation>
+      <translation>Uitvoer als bestanden</translation>
     </message>
 
     <message>
       <source>Output as Frames</source>
-      <translation>Sortie sous forme de cadres</translation>
+      <translation>Uitgang als Frames</translation>
     </message>
 
     <message>
       <source>Output as Multiple Layers</source>
-      <translation>Sortie sous forme de couches multiples</translation>
+      <translation>Uitvoer als meerdere lagen</translation>
     </message>
 
     <message>
       <source>Output as Separate Layers</source>
-      <translation>Sortie sous forme de couches séparées</translation>
+      <translation>Uitgang als afzonderlijke lagen</translation>
     </message>
 
     <message>
       <source>Output Ascii File</source>
-      <translation>Sortie du fichier Ascii</translation>
+      <translation>Uitvoer Ascii-bestand</translation>
     </message>
 
     <message>
       <source>Output Chroma NR</source>
-      <translation>Sortie Chroma NR</translation>
+      <translation>Uitgang Chroma NR</translation>
     </message>
 
     <message>
       <source>Output CLUT</source>
-      <translation>Sortie CLUT</translation>
+      <translation>Uitgang CLUT</translation>
     </message>
 
     <message>
       <source>Output CLUT Resolution</source>
-      <translation>Sortie CLUT Résolution</translation>
+      <translation>Output CLUT Resolutie</translation>
     </message>
 
     <message>
       <source>Output Coordinates File</source>
-      <translation>Fichier de coordonnées de sortie</translation>
+      <translation>Uitvoercoördinaten Bestand</translation>
     </message>
 
     <message>
       <source>Output Corresponding CLUT</source>
-      <translation>Sortie correspondant à CLUT</translation>
+      <translation>Uitgang Corresponderende CLUT</translation>
     </message>
 
     <message>
       <source>Output Directory</source>
-      <translation>Répertoire de sortie</translation>
+      <translation>Uitvoergids</translation>
     </message>
 
     <message>
       <source>Output Each Piece on a Different Layer</source>
-      <translation>Produire chaque pièce sur une couche différente</translation>
+      <translation>Uitvoer elk stuk op een andere laag</translation>
     </message>
 
     <message>
       <source>Output Filename</source>
-      <translation>Nom du fichier de sortie</translation>
+      <translation>Uitgang Filenaam</translation>
     </message>
 
     <message>
       <source>Output Files</source>
-      <translation>Fichiers de sortie</translation>
+      <translation>Uitvoerbestanden</translation>
     </message>
 
     <message>
       <source>Output Folder</source>
-      <translation>Dossier de sortie</translation>
+      <translation>Uitgangsmap</translation>
     </message>
 
     <message>
       <source>Output Format</source>
-      <translation>Format de sortie</translation>
+      <translation>Uitgangsformaat</translation>
     </message>
 
     <message>
       <source>Output Frames</source>
-      <translation>Cadres de sortie</translation>
+      <translation>Uitgangsframes</translation>
     </message>
 
     <message>
       <source>Output Height</source>
-      <translation>Hauteur de sortie</translation>
+      <translation>Uitgangshoogte</translation>
     </message>
 
     <message>
       <source>Output HTML File</source>
-      <translation>Fichier HTML de sortie</translation>
+      <translation>Uitvoer HTML-bestand</translation>
     </message>
 
     <message>
       <source>Output Layers</source>
-      <translation>Couches de sortie</translation>
+      <translation>Uitgangslagen</translation>
     </message>
 
     <message>
       <source>Output Mode</source>
-      <translation>Mode de sortie</translation>
+      <translation>Uitgangsmodus</translation>
     </message>
 
     <message>
       <source>Output Multiple Layers</source>
-      <translation>Production de couches multiples</translation>
+      <translation>Uitgang Meerdere lagen</translation>
     </message>
 
     <message>
       <source>Output Preset as a HaldCLUT Layer</source>
-      <translation>Sortie préréglée comme une couche HaldCLUT</translation>
+      <translation>Uitgang Vooraf ingesteld als een HaldCLUT laag</translation>
     </message>
 
     <message>
       <source>Output Region Delimiters</source>
-      <translation>Délimiteurs des régions de production</translation>
+      <translation>Uitgangsregio afbakeningen</translation>
     </message>
 
     <message>
       <source>Output Saturation</source>
-      <translation>Saturation de la production</translation>
+      <translation>Uitgangsverzadiging</translation>
     </message>
 
     <message>
       <source>Output Sharpening</source>
-      <translation>Affinement de la production</translation>
+      <translation>Uitgangsverscherping</translation>
     </message>
 
     <message>
       <source>Output Stroke Layer On</source>
-      <translation>Couche de sortie sur</translation>
+      <translation>Uitgangsslaglaag Aan</translation>
     </message>
 
     <message>
       <source>Output to Folder</source>
-      <translation>Sortie vers le dossier</translation>
+      <translation>Uitvoer naar de map</translation>
     </message>
 
     <message>
       <source>Output Type</source>
-      <translation>Type de sortie</translation>
+      <translation>Uitgangstype</translation>
     </message>
 
     <message>
       <source>Output Width</source>
-      <translation>Largeur de sortie</translation>
+      <translation>Uitgangsbreedte</translation>
     </message>
 
     <message>
       <source>Outside</source>
-      <translation>A l&apos;extérieur</translation>
+      <translation>Buiten</translation>
     </message>
 
     <message>
       <source>Outside Color</source>
-      <translation>Couleur extérieure</translation>
-    </message>
-
-    <message>
-      <source>Outside-In</source>
-      <translation>Extérieur-intérieur</translation>
+      <translation>Buiten kleur</translation>
     </message>
 
     <message>
       <source>Outward</source>
-      <translation>Vers l&apos;extérieur</translation>
+      <translation>Naar buiten toe</translation>
     </message>
 
     <message>
       <source>Overall Blur</source>
-      <translation>Flou général</translation>
+      <translation>Algehele vervaging</translation>
     </message>
 
     <message>
       <source>Overall Contrast</source>
-      <translation>Contraste général</translation>
+      <translation>Algemeen contrast</translation>
     </message>
 
     <message>
       <source>Overall Lightness</source>
-      <translation>Légèreté générale</translation>
+      <translation>Totale lichtheid</translation>
     </message>
 
     <message>
-      <source>Overlap (%)</source>
-      <translation>Chevauchement (%)</translation>
-    </message>
-
-    <message>
-      <source>Overlay</source>
-      <translation>Superposition</translation>
-    </message>
-
-    <message>
-      <source>Oversample</source>
-      <translation>Suréchantillon</translation>
-    </message>
-
-    <message>
-      <source>Overshoot</source>
-      <translation>Dépassement</translation>
+      <source>Pack</source>
+      <translation>Pakket</translation>
     </message>
 
     <message>
       <source>Pack Sprites</source>
-      <translation>Les Sprites en boîte</translation>
+      <translation>Pakje Sprites</translation>
     </message>
 
     <message>
       <source>Padding (px)</source>
-      <translation>Rembourrage (px)</translation>
+      <translation>Vulling (px)</translation>
     </message>
 
     <message>
       <source>Paint</source>
-      <translation>Peindre</translation>
+      <translation>Verf</translation>
     </message>
 
     <message>
       <source>Paint Daub</source>
-      <translation>Peinture Daub</translation>
+      <translation>Verf Daub</translation>
     </message>
 
     <message>
       <source>Paint Effect</source>
-      <translation>Effet de peinture</translation>
+      <translation>Verfeffect</translation>
     </message>
 
     <message>
       <source>Paint Splat</source>
-      <translation>Eclaboussures de peinture</translation>
+      <translation>Verf Splat</translation>
     </message>
 
     <message>
       <source>Painter&apos;s Edge Protection Flow</source>
-      <translation>Flux de protection de Painter&apos;s Edge</translation>
+      <translation>Schildersrandbeschermingsstroom</translation>
     </message>
 
     <message>
       <source>Painter&apos;s Smoothness</source>
-      <translation>La douceur du peintre</translation>
+      <translation>Gladheid van de schilder</translation>
     </message>
 
     <message>
       <source>Painter&apos;s Touch Sharpness</source>
-      <translation>La netteté de la touche du peintre</translation>
+      <translation>Schilders Touch Sharpness</translation>
     </message>
 
     <message>
       <source>Painting</source>
-      <translation>Peinture</translation>
+      <translation>Schilderij</translation>
     </message>
 
     <message>
       <source>Painting Opacity</source>
-      <translation>Opacité de la peinture</translation>
+      <translation>Schilderij Opaciteit</translation>
     </message>
 
     <message>
       <source>Paintstroke</source>
-      <translation>AVC de la peinture</translation>
+      <translation>Verfslag</translation>
     </message>
 
     <message>
       <source>Paper Texture</source>
-      <translation>Texture du papier</translation>
+      <translation>Papierstructuur</translation>
     </message>
 
     <message>
       <source>Parallel Processing</source>
-      <translation>Traitement parallèle</translation>
+      <translation>Parallelle verwerking</translation>
     </message>
 
     <message>
       <source>Parrots</source>
-      <translation>Perroquets</translation>
+      <translation>Papegaaien</translation>
     </message>
 
     <message>
       <source>Passing By</source>
-      <translation>Passage</translation>
+      <translation>Voorbijgaand</translation>
+    </message>
+
+    <message>
+      <source>Pastell Art</source>
+      <translation>Pastelkunst</translation>
     </message>
 
     <message>
       <source>Patch Measure</source>
-      <translation>Mesure patch</translation>
+      <translation>Patch-maatstaf</translation>
     </message>
 
     <message>
       <source>Patch Size</source>
-      <translation>Taille du patch</translation>
+      <translation>Patchmaat</translation>
     </message>
 
     <message>
       <source>Patch Size for Analysis</source>
-      <translation>Taille du patch pour l&apos;analyse</translation>
+      <translation>Patchgrootte voor analyse</translation>
     </message>
 
     <message>
       <source>Patch Size for Synthesis</source>
-      <translation>Taille du patch pour la synthèse</translation>
+      <translation>Patchmaat voor synthese</translation>
     </message>
 
     <message>
       <source>Patch Size for Synthesis (Final)</source>
-      <translation>Taille du patch pour la synthèse (final)</translation>
+      <translation>Patchgrootte voor synthese (Final)</translation>
+    </message>
+
+    <message>
+      <source>Patch Smoothness</source>
+      <translation>Patch Gladheid</translation>
     </message>
 
     <message>
       <source>Patch Variance</source>
-      <translation>Écart de patch</translation>
+      <translation>Patchvariant</translation>
     </message>
 
     <message>
       <source>Pattern</source>
-      <translation>Modèle</translation>
+      <translation>Patroon</translation>
     </message>
 
     <message>
       <source>Pattern Angle</source>
-      <translation>Angle du modèle</translation>
+      <translation>Patroonhoek</translation>
     </message>
 
     <message>
       <source>Pattern Height</source>
-      <translation>Hauteur du motif</translation>
+      <translation>Patroonhoogte</translation>
     </message>
 
     <message>
       <source>Pattern Type</source>
-      <translation>Type de modèle</translation>
+      <translation>Patroontype</translation>
     </message>
 
     <message>
       <source>Pattern Variation 1</source>
-      <translation>Variation de modèle 1</translation>
+      <translation>Patroonvariatie 1</translation>
     </message>
 
     <message>
       <source>Pattern Variation 2</source>
-      <translation>Variation de modèle 2</translation>
+      <translation>Patroonvariatie 2</translation>
     </message>
 
     <message>
       <source>Pattern Variation 3</source>
-      <translation>Variation de modèle 3</translation>
+      <translation>Patroonvariatie 3</translation>
     </message>
 
     <message>
       <source>Pattern Weight</source>
-      <translation>Poids du modèle</translation>
+      <translation>Patroongewicht</translation>
     </message>
 
     <message>
       <source>Pattern Width</source>
-      <translation>Largeur du modèle</translation>
+      <translation>Patroonbreedte</translation>
     </message>
 
     <message>
       <source>PCA Transfer</source>
-      <translation>Transfert PCA</translation>
+      <translation>PCA-overdracht</translation>
     </message>
 
     <message>
       <source>Pea Soup</source>
-      <translation>Soupe aux pois</translation>
+      <translation>Erwtensoep</translation>
     </message>
 
     <message>
       <source>Pen Drawing</source>
-      <translation>Dessin au stylo</translation>
+      <translation>Pentekening</translation>
     </message>
 
     <message>
       <source>Penalize Patch Repetitions</source>
-      <translation>Pénaliser les répétitions de patchs</translation>
+      <translation>Penalize Patch Herhalingen</translation>
     </message>
 
     <message>
       <source>Pencil</source>
-      <translation>Crayon</translation>
+      <translation>Potlood</translation>
     </message>
 
     <message>
       <source>Pencil Amplitude</source>
-      <translation>Amplitude du crayon</translation>
+      <translation>Potloodamplitude</translation>
     </message>
 
     <message>
       <source>Pencil Portrait</source>
-      <translation>Portrait au crayon</translation>
+      <translation>Potloodportret</translation>
     </message>
 
     <message>
       <source>Pencil Size</source>
-      <translation>Taille du crayon</translation>
+      <translation>Potloodgrootte</translation>
     </message>
 
     <message>
       <source>Pencil Smoother Edge Protection</source>
-      <translation>Protection des bords des crayons</translation>
+      <translation>Potlood gladdere randbescherming</translation>
     </message>
 
     <message>
       <source>Pencil Smoother Sharpness</source>
-      <translation>Un crayon plus lisse et plus net</translation>
+      <translation>Potlood Gladder Scherpte</translation>
     </message>
 
     <message>
       <source>Pencil Smoother Smoothness</source>
-      <translation>Lissage des crayons</translation>
+      <translation>Potlood gladder gladheid</translation>
     </message>
 
     <message>
       <source>Pencil Type</source>
-      <translation>Type de crayon</translation>
+      <translation>Type potlood</translation>
     </message>
 
     <message>
       <source>Pencils</source>
-      <translation>Crayons</translation>
-    </message>
-
-    <message>
-      <source>Pentagon</source>
-      <translation>Pentagone</translation>
+      <translation>Potloden</translation>
     </message>
 
     <message>
       <source>Peppers</source>
-      <translation>Poivrons</translation>
+      <translation>Paprika&apos;s</translation>
     </message>
 
     <message>
       <source>Percent of Image Half-Hypotenuse (%)</source>
-      <translation>Pourcentage de demi-hypoténuse de l&apos;image (%)</translation>
+      <translation>Percentage van het beeld halfpotentiaal (%)</translation>
     </message>
 
     <message>
       <source>Periodic</source>
-      <translation>Périodique</translation>
+      <translation>Periodiek</translation>
     </message>
 
     <message>
       <source>Periodic Dots</source>
-      <translation>Points périodiques</translation>
+      <translation>Periodieke stippen</translation>
     </message>
 
     <message>
       <source>Periodicity</source>
-      <translation>Périodicité</translation>
+      <translation>Periodiciteit</translation>
     </message>
 
     <message>
       <source>Perserve Luminance</source>
-      <translation>Perserver la luminosité</translation>
+      <translation>Perspectief Luminantie</translation>
+    </message>
+
+    <message>
+      <source>Perspective</source>
+      <translation>Perspectief</translation>
+    </message>
+
+    <message>
+      <source>Perturbation</source>
+      <translation>Perturbatie</translation>
     </message>
 
     <message>
       <source>Petals</source>
-      <translation>Pétales</translation>
+      <translation>Bloemblaadjes</translation>
+    </message>
+
+    <message>
+      <source>Phase</source>
+      <translation>Fase</translation>
     </message>
 
     <message>
       <source>Phone</source>
-      <translation>Téléphone</translation>
+      <translation>Telefoon</translation>
     </message>
 
     <message>
-      <source>Picabia: Udnie</source>
-      <translation>Picabia : Udnie</translation>
+      <source>PhotoComix Preset</source>
+      <translation>PhotoComix Vooraf ingesteld</translation>
     </message>
 
     <message>
-      <source>Picasso: Les Demoiselles D&apos;Avignon</source>
-      <translation>Picasso : Les Demoiselles d&apos;Avignon</translation>
+      <source>Photoillustration</source>
+      <translation>Fotoillustratie</translation>
     </message>
 
     <message>
       <source>Picasso: Seated Woman</source>
-      <translation>Picasso : Femme assise</translation>
+      <translation>Picasso: Zittende vrouw</translation>
     </message>
 
     <message>
       <source>Picasso: The Reservoir - Horta De Ebro</source>
-      <translation>Picasso : Le réservoir - Horta De Ebro</translation>
+      <translation>Picasso: Het stuwmeer - Horta De Ebro</translation>
     </message>
 
     <message>
       <source>Piece Complexity</source>
-      <translation>Complexité de la pièce</translation>
+      <translation>Stukje complexiteit</translation>
     </message>
 
     <message>
       <source>Piece Size (px)</source>
-      <translation>Taille des pièces (px)</translation>
+      <translation>Stukgrootte (px)</translation>
     </message>
 
     <message>
       <source>Pin Light</source>
-      <translation>Lumière d&apos;épingle</translation>
+      <translation>Speldlicht</translation>
     </message>
 
     <message>
       <source>Pink Fade</source>
-      <translation>Fondu rose</translation>
+      <translation>Roze Vervaagt</translation>
     </message>
 
     <message>
       <source>Pixel Sort</source>
-      <translation>Tri des pixels</translation>
+      <translation>Pixel Sorteren</translation>
     </message>
 
     <message>
       <source>Pixel Values</source>
-      <translation>Valeurs des pixels</translation>
+      <translation>Pixelwaarden</translation>
+    </message>
+
+    <message>
+      <source>Placement</source>
+      <translation>Plaatsing</translation>
+    </message>
+
+    <message>
+      <source>Plaid</source>
+      <translation>Gereserveerd</translation>
     </message>
 
     <message>
       <source>Plane</source>
-      <translation>Avion</translation>
+      <translation>Vliegtuig</translation>
     </message>
 
     <message>
       <source>Plasma Effect</source>
-      <translation>Effet du plasma</translation>
+      <translation>Plasma-effect</translation>
     </message>
 
     <message>
       <source>Plot Type</source>
-      <translation>Type de parcelle</translation>
+      <translation>Plottype</translation>
     </message>
 
     <message>
       <source>Point #0</source>
-      <translation>Point n°0</translation>
+      <translation>Punt #0</translation>
     </message>
 
     <message>
       <source>Point #1</source>
-      <translation>Point n° 1</translation>
+      <translation>Punt 1</translation>
     </message>
 
     <message>
       <source>Point #2</source>
-      <translation>Point n° 2</translation>
+      <translation>Punt 2</translation>
     </message>
 
     <message>
       <source>Point #3</source>
-      <translation>Point n° 3</translation>
+      <translation>Punt 3</translation>
+    </message>
+
+    <message>
+      <source>Point 1</source>
+      <translation>Punt 1</translation>
+    </message>
+
+    <message>
+      <source>Point 2</source>
+      <translation>Punt 2</translation>
+    </message>
+
+    <message>
+      <source>Points</source>
+      <translation>Punten</translation>
     </message>
 
     <message>
       <source>Polar Transform</source>
-      <translation>Transformation polaire</translation>
+      <translation>Polaire Transformatie</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 665 --</source>
+      <translation>Polaroid 665...</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative</source>
-      <translation>Polaroid 665 Négatif</translation>
+      <translation>Polaroid 665 Negatief</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative +</source>
-      <translation>Polaroid 665 Négatif +</translation>
+      <translation>Polaroid 665 Negatief +</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative -</source>
-      <translation>Polaroid 665 Négatif -</translation>
+      <translation>Polaroid 665 Negatief -</translation>
     </message>
 
     <message>
       <source>Polaroid 665 Negative HC</source>
-      <translation>Polaroid 665 HC négatif</translation>
+      <translation>Polaroid 665 Negatief HC</translation>
     </message>
 
     <message>
-      <source>Polaroid 669</source>
-      <translation>Polaroïd 669</translation>
+      <source>Polaroid 669 --</source>
+      <translation>Polaroid 669...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 669 Cold</source>
+      <translation>Polaroid 669 Koud</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 669 Cold +</source>
+      <translation>Polaroid 669 Koud +</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 669 Cold -</source>
+      <translation>Polaroid 669 Koud -</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 669 Cold --</source>
+      <translation>Polaroid 669 Koud...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 --</source>
+      <translation>Polaroid 690...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Cold</source>
+      <translation>Polaroid 690 Koud</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Cold +</source>
+      <translation>Polaroid 690 Koud +</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Cold ++</source>
+      <translation>Polaroid 690 Koud ++</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Cold -</source>
+      <translation>Polaroid 690 Koud -</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Cold --</source>
+      <translation>Polaroid 690 Koud...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid 690 Warm --</source>
+      <translation>Polaroid 690 Warm...</translation>
     </message>
 
     <message>
       <source>Polaroid Polachrome</source>
-      <translation>Polaroïd Polachrome</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Cold</source>
-      <translation>Polaroïd PX-100UV+ froid</translation>
+      <translation>Polaroidpolachroom</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Cold ++</source>
-      <translation>Polaroid PX-100UV+ Froid ++</translation>
+      <translation>Polaroid PX-100UV+ Koud ++</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Cold +++</source>
-      <translation>Polaroïd PX-100UV+ Froid +++</translation>
+      <translation>Polaroid PX-100UV+ Koud ++++</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-100UV+ Cold -</source>
-      <translation>Polaroïd PX-100UV+ froid -</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm</source>
-      <translation>Polaroïd PX-100UV+ chaud</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm +</source>
-      <translation>Polaroid PX-100UV+ Chaud +</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm ++</source>
-      <translation>Polaroid PX-100UV+ Chaud ++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm +++</source>
-      <translation>Polaroid PX-100UV+ Chaud +++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-100UV+ Warm -</source>
-      <translation>Polaroid PX-100UV+ Chaud -</translation>
+      <source>Polaroid PX-100UV+ Cold --</source>
+      <translation>Polaroid PX-100UV+ Cold...</translation>
     </message>
 
     <message>
       <source>Polaroid PX-100UV+ Warm --</source>
-      <translation>Polaroïd PX-100UV+ Chaud --</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680</source>
-      <translation>Polaroïd PX-680</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680 +</source>
-      <translation>Polaroïd PX-680 +</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680 ++</source>
-      <translation>Polaroïd PX-680 ++</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-680 -</source>
-      <translation>Polaroïd PX-680 -</translation>
+      <translation>Polaroid PX-100UV+ Warm...</translation>
     </message>
 
     <message>
       <source>Polaroid PX-680 --</source>
-      <translation>Polaroïd PX-680 --</translation>
+      <translation>Polaroid PX-680...</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70</source>
-      <translation>Polaroïd PX-70</translation>
+      <source>Polaroid PX-680 Cold</source>
+      <translation>Polaroid PX-680 Koud</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70 +</source>
-      <translation>Polaroïd PX-70 +</translation>
+      <source>Polaroid PX-680 Cold +</source>
+      <translation>Polaroid PX-680 Koud +</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70 ++</source>
-      <translation>Polaroïd PX-70 ++</translation>
+      <source>Polaroid PX-680 Cold ++</source>
+      <translation>Polaroid PX-680 Koud ++</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70 +++</source>
-      <translation>Polaroïd PX-70 +++</translation>
+      <source>Polaroid PX-680 Cold ++a</source>
+      <translation>Polaroid PX-680 Koud ++a</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70 -</source>
-      <translation>Polaroïd PX-70 -</translation>
+      <source>Polaroid PX-680 Cold -</source>
+      <translation>Polaroid PX-680 Koud -</translation>
+    </message>
+
+    <message>
+      <source>Polaroid PX-680 Cold --</source>
+      <translation>Polaroid PX-680 Koud...</translation>
+    </message>
+
+    <message>
+      <source>Polaroid PX-680 Warm --</source>
+      <translation>Polaroid PX-680 Warm -</translation>
     </message>
 
     <message>
       <source>Polaroid PX-70 --</source>
-      <translation>Polaroïd PX-70 --</translation>
+      <translation>Polaroid PX-70 -</translation>
     </message>
 
     <message>
-      <source>Polaroid PX-70 Cold -</source>
-      <translation>Polaroïd PX-70 Cold -</translation>
+      <source>Polaroid PX-70 Cold</source>
+      <translation>Polaroid PX-70 Koud</translation>
+    </message>
+
+    <message>
+      <source>Polaroid PX-70 Cold +</source>
+      <translation>Polaroid PX-70 Koud +</translation>
+    </message>
+
+    <message>
+      <source>Polaroid PX-70 Cold ++</source>
+      <translation>Polaroid PX-70 Koud ++</translation>
     </message>
 
     <message>
       <source>Polaroid PX-70 Cold --</source>
-      <translation>Polaroïd PX-70 Cold --</translation>
-    </message>
-
-    <message>
-      <source>Polaroid PX-70 Warm</source>
-      <translation>Polaroïd PX-70 Warm</translation>
+      <translation>Polaroid PX-70 Cold...</translation>
     </message>
 
     <message>
       <source>Polaroid PX-70 Warm --</source>
-      <translation>Polaroïd PX-70 Warm --</translation>
+      <translation>Polaroid PX-70 Warm -</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired)</source>
-      <translation>Polaroid Time Zero (expiré)</translation>
+      <translation>Polaroid Tijd Nul (Verlopen)</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) +</source>
-      <translation>Polaroïd Time Zero (expiré) +</translation>
+      <translation>Polaroid Time Zero (Verlopen) +</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) ++</source>
-      <translation>Polaroïd Time Zero (expiré) ++</translation>
+      <translation>Polaroid Tijd Nul (Verlopen) ++</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) -</source>
-      <translation>Polaroïd Time Zero (expiré) -</translation>
+      <translation>Polaroid Time Zero (Verlopen) -</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) --</source>
-      <translation>Polaroid Time Zero (expiré) --</translation>
+      <translation>Polaroid Time Zero (Verlopen)...</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) ---</source>
-      <translation>Polaroid Time Zero (expiré) ---</translation>
+      <translation>Polaroid Time Zero (Verlopen) ---</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold</source>
-      <translation>Polaroïd Time Zero (expiré) Froid</translation>
+      <translation>Polaroid Time Zero (Verlopen) Cold</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold -</source>
-      <translation>Polaroïd Time Zero (expiré) Cold -</translation>
+      <translation>Polaroid Time Zero (Verlopen) Cold -</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold --</source>
-      <translation>Polaroïd Time Zero (expiré) Cold --</translation>
+      <translation>Polaroid Time Zero (Verlopen) Cold -</translation>
     </message>
 
     <message>
       <source>Polaroid Time Zero (Expired) Cold ---</source>
-      <translation>Polaroïd Time Zero (expiré) Cold ---</translation>
+      <translation>Polaroid Time Zero (Verlopen) Cold ---</translation>
+    </message>
+
+    <message>
+      <source>Pole Lat</source>
+      <translation>Poollat</translation>
+    </message>
+
+    <message>
+      <source>Pole Long</source>
+      <translation>Pool lang</translation>
     </message>
 
     <message>
       <source>Pole Rotation</source>
-      <translation>Rotation des pôles</translation>
+      <translation>Paalomwenteling</translation>
     </message>
 
     <message>
       <source>Pollock: Convergence</source>
-      <translation>Pollock : Convergence</translation>
+      <translation>Pollock: Convergentie</translation>
     </message>
 
     <message>
       <source>Pollock: Summertime Number 9A</source>
-      <translation>Pollock : Numéro d&apos;été 9A</translation>
-    </message>
-
-    <message>
-      <source>Polygonize [Delaunay]</source>
-      <translation>Polygoniser [Delaunay]</translation>
+      <translation>Pollock: Zomertijd Nummer 9A</translation>
     </message>
 
     <message>
       <source>Polygonize [Energy]</source>
-      <translation>Polygoniser [Energie].</translation>
+      <translation>Polygoniseren [Energie]</translation>
     </message>
 
     <message>
       <source>Pop Shadows</source>
-      <translation>Les ombres de la pop</translation>
+      <translation>Pop Schaduwen</translation>
+    </message>
+
+    <message>
+      <source>Portrait</source>
+      <translation>Portret</translation>
     </message>
 
     <message>
       <source>Portrait Retouching</source>
-      <translation>Retouches de portraits</translation>
+      <translation>Portretretretretretretret</translation>
+    </message>
+
+    <message>
+      <source>Portrait-1</source>
+      <translation>Portret-1</translation>
+    </message>
+
+    <message>
+      <source>Portrait-2</source>
+      <translation>Portret-2</translation>
+    </message>
+
+    <message>
+      <source>Portrait-3</source>
+      <translation>Portret-3</translation>
+    </message>
+
+    <message>
+      <source>Portrait-4</source>
+      <translation>Portret-4</translation>
+    </message>
+
+    <message>
+      <source>Portrait-7</source>
+      <translation>Portret-7</translation>
+    </message>
+
+    <message>
+      <source>Portrait0</source>
+      <translation>Portret0</translation>
+    </message>
+
+    <message>
+      <source>Portrait1</source>
+      <translation>Portret1</translation>
+    </message>
+
+    <message>
+      <source>Portrait10</source>
+      <translation>Portret10</translation>
+    </message>
+
+    <message>
+      <source>Portrait2</source>
+      <translation>Portret2</translation>
+    </message>
+
+    <message>
+      <source>Portrait3</source>
+      <translation>Portret3</translation>
+    </message>
+
+    <message>
+      <source>Portrait4</source>
+      <translation>Portret4</translation>
+    </message>
+
+    <message>
+      <source>Portrait5</source>
+      <translation>Portret5</translation>
+    </message>
+
+    <message>
+      <source>Portrait6</source>
+      <translation>Portret6</translation>
+    </message>
+
+    <message>
+      <source>Portrait7</source>
+      <translation>Portret7</translation>
+    </message>
+
+    <message>
+      <source>Portrait8</source>
+      <translation>Portret8</translation>
+    </message>
+
+    <message>
+      <source>Portrait9</source>
+      <translation>Portret9</translation>
+    </message>
+
+    <message>
+      <source>Position</source>
+      <translation>Positie</translation>
+    </message>
+
+    <message>
+      <source>Position X (%)</source>
+      <translation>Positie X (%)</translation>
     </message>
 
     <message>
       <source>Position X Origin (%)</source>
-      <translation>Position X Origine (%)</translation>
+      <translation>Positie X Herkomst (%)</translation>
+    </message>
+
+    <message>
+      <source>Position Y (%)</source>
+      <translation>Positie Y (%)</translation>
     </message>
 
     <message>
       <source>Position Y Origin (%)</source>
-      <translation>Position Y Origine (%)</translation>
+      <translation>Positie Y Herkomst (%)</translation>
     </message>
 
     <message>
       <source>Positive</source>
-      <translation>Positif</translation>
+      <translation>Positief</translation>
     </message>
 
     <message>
       <source>Post-Normalize</source>
-      <translation>Post-Normaliser</translation>
+      <translation>Post-Normaliseer</translation>
     </message>
 
     <message>
       <source>Post-Process</source>
-      <translation>Post-processus</translation>
+      <translation>Post-proces</translation>
     </message>
 
     <message>
       <source>Poster Edges</source>
-      <translation>Bords des affiches</translation>
+      <translation>Posterranden</translation>
     </message>
 
     <message>
       <source>Posterization Antialiasing</source>
-      <translation>Anti-crénelage de l&apos;affichage</translation>
+      <translation>Posterisatie Anti-aliasing</translation>
     </message>
 
     <message>
       <source>Posterization Level</source>
-      <translation>Niveau d&apos;affichage</translation>
-    </message>
-
-    <message>
-      <source>Posterize</source>
-      <translation>Affichez</translation>
+      <translation>Posterisatie niveau</translation>
     </message>
 
     <message>
       <source>Posterized Dithering</source>
-      <translation>L&apos;hésitation affichée</translation>
+      <translation>Geposterde Dithering</translation>
+    </message>
+
+    <message>
+      <source>Power</source>
+      <translation>Vermogen</translation>
     </message>
 
     <message>
       <source>Pre-Defined</source>
-      <translation>Pré-défini</translation>
+      <translation>Vooraf gedefinieerd</translation>
     </message>
 
     <message>
       <source>Pre-Defined Colormap</source>
-      <translation>Colormap pré-défini</translation>
-    </message>
-
-    <message>
-      <source>Pre-Gamma</source>
-      <translation>Pré-Gamma</translation>
+      <translation>Vooraf gedefinieerde Colormap</translation>
     </message>
 
     <message>
       <source>Pre-Normalize</source>
-      <translation>Pré-normaliser</translation>
+      <translation>Pre-Normaliseer</translation>
     </message>
 
     <message>
       <source>Pre-Normalize Image</source>
-      <translation>Pré-normaliser l&apos;image</translation>
+      <translation>Beeld pre-normaliseren</translation>
     </message>
 
     <message>
       <source>Pre-Process</source>
-      <translation>Pré-processus</translation>
+      <translation>Voorafgaand aan het proces</translation>
     </message>
 
     <message>
       <source>Precision</source>
-      <translation>Précision</translation>
+      <translation>Precisie</translation>
     </message>
 
     <message>
       <source>Precision (%)</source>
-      <translation>Précision (%)</translation>
+      <translation>Precisie (%)</translation>
     </message>
 
     <message>
       <source>Preliminary Surface Shift</source>
-      <translation>Déplacement préliminaire en surface</translation>
+      <translation>Voorlopige oppervlakteverschuiving</translation>
     </message>
 
     <message>
       <source>Preliminary X-Axis Scaling</source>
-      <translation>Échelle préliminaire de l&apos;axe X</translation>
+      <translation>Voorlopige X-Axis-schaalverdeling</translation>
     </message>
 
     <message>
       <source>Preliminary Y-Axis Scaling</source>
-      <translation>Échelle préliminaire de l&apos;axe Y</translation>
+      <translation>Voorlopige Y-Axis-schaalverdeling</translation>
     </message>
 
     <message>
       <source>Preprocessor Power</source>
-      <translation>Puissance du préprocesseur</translation>
+      <translation>Voorbereidend vermogen</translation>
     </message>
 
     <message>
       <source>Preprocessor Radius</source>
-      <translation>Rayon du préprocesseur</translation>
+      <translation>Voorganger Straal</translation>
     </message>
 
     <message>
       <source>Preserve Canvas for Post Bump Mapping</source>
-      <translation>Préserver la toile pour la cartographie de l&apos;après coup</translation>
+      <translation>Conserveer Canvas voor Post Bump Mapping</translation>
     </message>
 
     <message>
       <source>Preserve Edges</source>
-      <translation>Préserver les bords</translation>
+      <translation>Behoud van de randen</translation>
     </message>
 
     <message>
       <source>Preserve Image Dimension</source>
-      <translation>Préserver la dimension de l&apos;image</translation>
+      <translation>Behoud van de Beeldafmeting</translation>
     </message>
 
     <message>
       <source>Preserve Initial Brightness</source>
-      <translation>Préserver la luminosité initiale</translation>
+      <translation>Behoud van de initiële helderheid</translation>
     </message>
 
     <message>
       <source>Preserve Luminance</source>
-      <translation>Préserver la luminosité</translation>
+      <translation>Behoud van de helderheid</translation>
     </message>
 
     <message>
       <source>Preset</source>
-      <translation>Préréglage</translation>
+      <translation>Vooraf ingesteld</translation>
     </message>
 
     <message>
       <source>Preview</source>
-      <translation>Aperçu</translation>
+      <translation>Voorbeeld</translation>
     </message>
 
     <message>
       <source>Preview All Outputs</source>
-      <translation>Prévisualisation de tous les résultats</translation>
+      <translation>Voorbeeld van alle uitgangen</translation>
     </message>
 
     <message>
       <source>Preview Bands</source>
-      <translation>Bandes d&apos;avant-première</translation>
+      <translation>Voorbeeldbanden</translation>
     </message>
 
     <message>
       <source>Preview Brush</source>
-      <translation>Pinceau de prévisualisation</translation>
+      <translation>Voorbeeldborstel</translation>
     </message>
 
     <message>
       <source>Preview Data</source>
-      <translation>Données d&apos;aperçu</translation>
+      <translation>Voorbeeldgegevens</translation>
     </message>
 
     <message>
       <source>Preview Detected Shapes</source>
-      <translation>Aperçu des formes détectées</translation>
+      <translation>Voorbeeld gedetecteerde vormen</translation>
     </message>
 
     <message>
       <source>Preview Frame Selection</source>
-      <translation>Sélection des images de prévisualisation</translation>
+      <translation>Voorbeeldframe selectie</translation>
     </message>
 
     <message>
       <source>Preview Gradient</source>
-      <translation>Gradient de prévisualisation</translation>
+      <translation>Voorbeeldgradiënt</translation>
     </message>
 
     <message>
       <source>Preview Grain Alone</source>
-      <translation>Avant-première Grain Seul</translation>
+      <translation>Voorbeeld korrel alleen</translation>
     </message>
 
     <message>
       <source>Preview Grid</source>
-      <translation>Grille d&apos;aperçu</translation>
+      <translation>Voorbeeldvenster</translation>
     </message>
 
     <message>
       <source>Preview Guides</source>
-      <translation>Guides d&apos;avant-première</translation>
+      <translation>Voorbeeldgidsen</translation>
     </message>
 
     <message>
       <source>Preview Mapping</source>
-      <translation>Aperçu de la cartographie</translation>
+      <translation>Voorbeeldkartering</translation>
     </message>
 
     <message>
       <source>Preview Mask</source>
-      <translation>Masque de prévisualisation</translation>
+      <translation>Voorbeeldmasker</translation>
     </message>
 
     <message>
       <source>Preview Only Shadow</source>
-      <translation>Aperçu uniquement l&apos;ombre</translation>
+      <translation>Voorbeeld van alleen de schaduw</translation>
     </message>
 
     <message>
       <source>Preview Opacity (%)</source>
-      <translation>Opacité de l&apos;aperçu (%)</translation>
+      <translation>Preview Opaciteit (%)</translation>
     </message>
 
     <message>
       <source>Preview Original</source>
-      <translation>Avant-première Original</translation>
+      <translation>Voorbeeld origineel</translation>
     </message>
 
     <message>
       <source>Preview Precision</source>
-      <translation>Précision de l&apos;aperçu</translation>
+      <translation>Preview Precisie</translation>
     </message>
 
     <message>
       <source>Preview Progress (%)</source>
-      <translation>Avancées de l&apos;aperçu (%)</translation>
+      <translation>Voorbeeld van vooruitgang (%)</translation>
     </message>
 
     <message>
       <source>Preview Progression While Running</source>
-      <translation>Prévisualisation de la progression en cours d&apos;exécution</translation>
+      <translation>Voorproefje van de vooruitgang tijdens het lopen</translation>
     </message>
 
     <message>
       <source>Preview Ref Point</source>
-      <translation>Prévisualisation Ref Point</translation>
+      <translation>Voorbeeld-referentiepunt</translation>
     </message>
 
     <message>
       <source>Preview Reference Circle</source>
-      <translation>Cercle de référence de l&apos;avant-première</translation>
+      <translation>Preview Referentie Cirkel</translation>
     </message>
 
     <message>
       <source>Preview Selection</source>
-      <translation>Prévisualisation de la sélection</translation>
+      <translation>Voorbeeldselectie</translation>
     </message>
 
     <message>
       <source>Preview Shape</source>
-      <translation>Forme de l&apos;avant-première</translation>
+      <translation>Voorbeeldvorm</translation>
     </message>
 
     <message>
       <source>Preview Shows</source>
-      <translation>Spectacles en avant-première</translation>
-    </message>
-
-    <message>
-      <source>Preview Split</source>
-      <translation>Aperçu de Split</translation>
+      <translation>Voorbeeldschermen</translation>
     </message>
 
     <message>
       <source>Preview Subsampling</source>
-      <translation>Aperçu Sous-échantillonnage</translation>
+      <translation>Voorbeeldbemonstering</translation>
     </message>
 
     <message>
       <source>Preview Time</source>
-      <translation>Heure de l&apos;avant-première</translation>
+      <translation>Voorvertoningstijd</translation>
     </message>
 
     <message>
       <source>Preview Tones Map</source>
-      <translation>Aperçu de la carte des tons</translation>
+      <translation>Preview Tones Kaart</translation>
     </message>
 
     <message>
       <source>Preview Type</source>
-      <translation>Type de prévisualisation</translation>
+      <translation>Voorvertoningstype</translation>
     </message>
 
     <message>
       <source>Preview Without Alpha</source>
-      <translation>Avant-première sans Alpha</translation>
+      <translation>Voorbeschouwing zonder Alpha</translation>
     </message>
 
     <message>
       <source>Primary Angle</source>
-      <translation>Angle primaire</translation>
+      <translation>Primaire hoek</translation>
     </message>
 
     <message>
       <source>Primary Color</source>
-      <translation>Couleur primaire</translation>
+      <translation>Primaire kleur</translation>
     </message>
 
     <message>
       <source>Primary Factor</source>
-      <translation>Facteur principal</translation>
+      <translation>Primaire factor</translation>
     </message>
 
     <message>
       <source>Primary Gamma</source>
-      <translation>Gamma primaire</translation>
+      <translation>Primair Gamma</translation>
     </message>
 
     <message>
       <source>Primary Radius</source>
-      <translation>Rayon primaire</translation>
+      <translation>Primaire Straal</translation>
     </message>
 
     <message>
       <source>Primary Shift</source>
-      <translation>Équipe primaire</translation>
+      <translation>Primaire verschuiving</translation>
     </message>
 
     <message>
       <source>Primary Twist</source>
-      <translation>Vrille primaire</translation>
+      <translation>Primaire draai</translation>
     </message>
 
     <message>
       <source>Print Adjustment Marks</source>
-      <translation>Marques d&apos;ajustement d&apos;impression</translation>
+      <translation>Aanpassingsmarkeringen afdrukken</translation>
     </message>
 
     <message>
       <source>Print Films (12)</source>
-      <translation>Films sur papier (12)</translation>
+      <translation>Drukfilms (12)</translation>
     </message>
 
     <message>
       <source>Print Frame Numbers</source>
-      <translation>Imprimer les numéros de cadre</translation>
+      <translation>Printframe nummers</translation>
     </message>
 
     <message>
       <source>Print Size Unit</source>
-      <translation>Unité de taille d&apos;impression</translation>
+      <translation>Drukgrootte-eenheid</translation>
     </message>
 
     <message>
       <source>Print Size Width</source>
-      <translation>Largeur de la taille d&apos;impression</translation>
+      <translation>Printgrootte Breedte</translation>
     </message>
 
     <message>
       <source>Privacy Notice</source>
-      <translation>Avis de confidentialité</translation>
+      <translation>Privacymededeling</translation>
+    </message>
+
+    <message>
+      <source>Pro Neg Hi</source>
+      <translation>Pro Negé Hoi</translation>
     </message>
 
     <message>
       <source>Probability Map</source>
-      <translation>Carte des probabilités</translation>
+      <translation>Waarschijnlijkheidskaart</translation>
     </message>
 
     <message>
       <source>Procedural</source>
-      <translation>Procédure</translation>
+      <translation>Procedureel</translation>
     </message>
 
     <message>
       <source>Process As</source>
-      <translation>Processus en tant que</translation>
+      <translation>Proces Zoals</translation>
     </message>
 
     <message>
       <source>Process by Blocs of Size</source>
-      <translation>Processus par blocs de taille</translation>
+      <translation>Proces per blok van grootte</translation>
     </message>
 
     <message>
       <source>Process Channels Individually</source>
-      <translation>Traiter les canaux individuellement</translation>
+      <translation>Proceskanalen Individueel</translation>
     </message>
 
     <message>
       <source>Process Top Layer Only</source>
-      <translation>Traitement de la couche supérieure uniquement</translation>
+      <translation>Alleen de bovenste laag van het proces</translation>
     </message>
 
     <message>
       <source>Process Transparency</source>
-      <translation>Transparence du processus</translation>
+      <translation>Transparantie van het proces</translation>
     </message>
 
     <message>
       <source>Processing Mode</source>
-      <translation>Mode de traitement</translation>
+      <translation>Verwerkingswijze</translation>
+    </message>
+
+    <message>
+      <source>Propagation</source>
+      <translation>Voortplanting</translation>
+    </message>
+
+    <message>
+      <source>Proportion</source>
+      <translation>Aandeel</translation>
     </message>
 
     <message>
@@ -12070,3813 +12610,4058 @@
     </message>
 
     <message>
-      <source>Protanopia</source>
-      <translation>Protanopie</translation>
+      <source>Protect Highlights 01</source>
+      <translation>Beschermen Hoogtepunten 01</translation>
     </message>
 
     <message>
       <source>Prussian Blue</source>
-      <translation>Bleu de Prusse</translation>
+      <translation>Pruisisch Blauw</translation>
     </message>
 
     <message>
       <source>Purple</source>
-      <translation>Violet</translation>
+      <translation>Paars</translation>
     </message>
 
     <message>
       <source>Purple11 (12)</source>
-      <translation>Violet11 (12)</translation>
+      <translation>Paars11 (12)</translation>
+    </message>
+
+    <message>
+      <source>Puzzle</source>
+      <translation>Puzzel</translation>
     </message>
 
     <message>
       <source>Pyramid</source>
-      <translation>Pyramide</translation>
+      <translation>Piramide</translation>
     </message>
 
     <message>
       <source>Pyramid Processing</source>
-      <translation>Traitement des pyramides</translation>
+      <translation>Piramide verwerking</translation>
     </message>
 
     <message>
       <source>Pythagoras Tree</source>
-      <translation>Arbre de Pythagore</translation>
+      <translation>Pythagoras Boom</translation>
     </message>
 
     <message>
       <source>Quadratic</source>
-      <translation>Quadratique</translation>
+      <translation>Kwadratisch</translation>
     </message>
 
     <message>
       <source>Quadtree Variations</source>
-      <translation>Variations en quadrature</translation>
+      <translation>Kwadrantenvariaties</translation>
     </message>
 
     <message>
       <source>Quality</source>
-      <translation>Qualité</translation>
+      <translation>Kwaliteit</translation>
     </message>
 
     <message>
       <source>Quality (%)</source>
-      <translation>Qualité (%)</translation>
+      <translation>Kwaliteit (%)</translation>
     </message>
 
     <message>
       <source>Quantization</source>
-      <translation>Quantification</translation>
+      <translation>Quantizatie</translation>
     </message>
 
     <message>
       <source>Quantize Colors</source>
-      <translation>Quantifier les couleurs</translation>
+      <translation>Quantize Kleuren</translation>
     </message>
 
     <message>
       <source>Quasi-Gaussian</source>
-      <translation>Quasi-Gaussienne</translation>
+      <translation>Quasi-Gaussisch</translation>
     </message>
 
     <message>
       <source>Quick</source>
-      <translation>Rapide</translation>
+      <translation>Snelle</translation>
+    </message>
+
+    <message>
+      <source>Quick Copyright</source>
+      <translation>Snelle Copyright</translation>
     </message>
 
     <message>
       <source>Quick Enlarge</source>
-      <translation>Agrandissement rapide</translation>
+      <translation>Snel Vergroten</translation>
+    </message>
+
+    <message>
+      <source>R/B Smoothness (Principal)</source>
+      <translation>R/B Gladheid (Opdrachtgever)</translation>
     </message>
 
     <message>
       <source>R/B Smoothness (Secondary)</source>
-      <translation>Lissage R/B (secondaire)</translation>
+      <translation>R/B Gladheid (Secundair)</translation>
+    </message>
+
+    <message>
+      <source>Radial</source>
+      <translation>Radiaal</translation>
+    </message>
+
+    <message>
+      <source>Radius</source>
+      <translation>Straal</translation>
     </message>
 
     <message>
       <source>Radius (%)</source>
-      <translation>Rayon (%)</translation>
+      <translation>Straal (%)</translation>
     </message>
 
     <message>
       <source>Radius / Angle</source>
-      <translation>Rayon / Angle</translation>
+      <translation>Straal / Hoek</translation>
     </message>
 
     <message>
       <source>Radius [Manual]</source>
-      <translation>Rayon [Manuel]</translation>
+      <translation>Straal [Handleiding]</translation>
     </message>
 
     <message>
       <source>Radius Cut</source>
-      <translation>Coupe de rayon</translation>
+      <translation>Straalsnede</translation>
     </message>
 
     <message>
       <source>Radius Middle Circle</source>
-      <translation>Rayon Cercle du milieu</translation>
+      <translation>Radius Middencirkel</translation>
     </message>
 
     <message>
       <source>Radius Outer Circle A (&gt;0 W%) (&lt;0 H%)</source>
-      <translation>Rayon Cercle extérieur A (&gt;0 W%) (&lt;0 H%)</translation>
+      <translation>Straal Buitenste Cirkel A (&gt;0 W%) (&lt;0 H%)</translation>
     </message>
 
     <message>
       <source>Rain &amp; Snow</source>
-      <translation>Pluie et neige</translation>
+      <translation>Regen &amp; Sneeuw</translation>
     </message>
 
     <message>
       <source>Rainbow</source>
-      <translation>Arc-en-ciel</translation>
+      <translation>Regenboog</translation>
     </message>
 
     <message>
       <source>Raindrops</source>
-      <translation>Gouttes de pluie</translation>
+      <translation>Regendruppels</translation>
     </message>
 
     <message>
       <source>Random</source>
-      <translation>Aléatoire</translation>
+      <translation>Willekeurig</translation>
     </message>
 
     <message>
       <source>Random [non-Transparent]</source>
-      <translation>Aléatoire [non transparent]</translation>
+      <translation>Willekeurig [niet-transparant]</translation>
     </message>
 
     <message>
       <source>Random Angle</source>
-      <translation>Angle aléatoire</translation>
+      <translation>Willekeurige hoek</translation>
     </message>
 
     <message>
       <source>Random Color Ellipses</source>
-      <translation>Ellipses de couleurs aléatoires</translation>
+      <translation>Willekeurige kleur ellipsen</translation>
     </message>
 
     <message>
       <source>Random Colors</source>
-      <translation>Couleurs aléatoires</translation>
+      <translation>Willekeurige kleuren</translation>
     </message>
 
     <message>
       <source>Random Seed</source>
-      <translation>Graines au hasard</translation>
+      <translation>Willekeurig zaad</translation>
     </message>
 
     <message>
       <source>Random Shade Stripes</source>
-      <translation>Bandes d&apos;ombre aléatoires</translation>
+      <translation>Willekeurige Schaduwstrepen</translation>
     </message>
 
     <message>
       <source>Randomize</source>
-      <translation>Randomiser</translation>
+      <translation>Willekeurig</translation>
     </message>
 
     <message>
       <source>Randomized</source>
-      <translation>Randomisé</translation>
+      <translation>Gerandomiseerde</translation>
     </message>
 
     <message>
       <source>Randomness</source>
-      <translation>Le hasard</translation>
+      <translation>Willekeurigheid</translation>
     </message>
 
     <message>
       <source>Range</source>
-      <translation>Gamme</translation>
+      <translation>Reeks</translation>
+    </message>
+
+    <message>
+      <source>Ratio</source>
+      <translation>Verhouding</translation>
     </message>
 
     <message>
       <source>Raw</source>
-      <translation>Brut</translation>
+      <translation>Ruw</translation>
+    </message>
+
+    <message>
+      <source>Rays</source>
+      <translation>Stralen</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors AB</source>
+      <translation>Stralen Kleuren AB</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABC</source>
+      <translation>Stralen Kleuren ABC</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCD</source>
+      <translation>Stralen Kleuren ABCD</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCDE</source>
+      <translation>Stralen Kleuren ABCDE</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCDEF</source>
+      <translation>Stralen Kleuren ABCDEF</translation>
+    </message>
+
+    <message>
+      <source>Rays Colors ABCDEFG</source>
+      <translation>Stralen Kleuren ABCDEFG</translation>
     </message>
 
     <message>
       <source>Rebuild From Similar Blocs</source>
-      <translation>Reconstruire à partir de blocs similaires</translation>
+      <translation>Herbouwen van soortgelijke blokken</translation>
     </message>
 
     <message>
       <source>Recompose</source>
-      <translation>Recomposer</translation>
+      <translation>Herstel</translation>
     </message>
 
     <message>
       <source>Reconstruct From Previous Frames</source>
-      <translation>Reconstruire à partir des cadres précédents</translation>
+      <translation>Reconstructie van eerdere Frames</translation>
     </message>
 
     <message>
       <source>Recover</source>
-      <translation>Récupérer</translation>
+      <translation>Herstel</translation>
     </message>
 
     <message>
       <source>Recover Highlights</source>
-      <translation>Récupérer les points forts</translation>
+      <translation>Hoogtepunten herstellen</translation>
     </message>
 
     <message>
       <source>Recover Shadows</source>
-      <translation>Récupérer les ombres</translation>
+      <translation>Schaduwen herstellen</translation>
     </message>
 
     <message>
       <source>Recovery</source>
-      <translation>Recouvrement</translation>
+      <translation>Herstel</translation>
+    </message>
+
+    <message>
+      <source>Rectangle</source>
+      <translation>Rechthoek</translation>
     </message>
 
     <message>
       <source>Recursion Depth</source>
-      <translation>Profondeur de récursion</translation>
+      <translation>Recursiediepte</translation>
     </message>
 
     <message>
       <source>Recursions</source>
-      <translation>Récursions</translation>
+      <translation>Recursies</translation>
     </message>
 
     <message>
       <source>Recursive Median</source>
-      <translation>Médiane récursive</translation>
+      <translation>Recursieve mediaan</translation>
     </message>
 
     <message>
       <source>Red</source>
-      <translation>Rouge</translation>
+      <translation>Rood</translation>
     </message>
 
     <message>
       <source>Red - Green - Blue</source>
-      <translation>Rouge - Vert - Bleu</translation>
+      <translation>Rood - Groen - Blauw</translation>
     </message>
 
     <message>
       <source>Red - Green - Blue - Alpha</source>
-      <translation>Rouge - Vert - Bleu - Alpha</translation>
+      <translation>Rood - Groen - Blauw - Alfa</translation>
     </message>
 
     <message>
       <source>Red Afternoon 01</source>
-      <translation>Après-midi rouge 01</translation>
+      <translation>Rode Middag 01</translation>
     </message>
 
     <message>
       <source>Red Blue Yellow</source>
-      <translation>Rouge Bleu Jaune</translation>
+      <translation>Rood Blauw Geel</translation>
     </message>
 
     <message>
       <source>Red Chroma Factor</source>
-      <translation>Facteur de chromatisation rouge</translation>
+      <translation>Rode Chroma Factor</translation>
     </message>
 
     <message>
       <source>Red Chroma Shift</source>
-      <translation>Changement de chroma rouge</translation>
+      <translation>Rode Chroma Shift</translation>
     </message>
 
     <message>
       <source>Red Chroma Smoothness</source>
-      <translation>Douceur du rouge</translation>
+      <translation>Rood Chroma Gladheid</translation>
     </message>
 
     <message>
       <source>Red Chrominance</source>
-      <translation>Chrominance rouge</translation>
+      <translation>Rode Chrominantie</translation>
     </message>
 
     <message>
       <source>Red Day 01</source>
-      <translation>Journée rouge 01</translation>
+      <translation>Rode dag 01</translation>
     </message>
 
     <message>
       <source>Red Dream 01</source>
-      <translation>Rêve rouge 01</translation>
+      <translation>Rode Droom 01</translation>
     </message>
 
     <message>
       <source>Red Factor</source>
-      <translation>Facteur rouge</translation>
+      <translation>Rode factor</translation>
     </message>
 
     <message>
       <source>Red Level</source>
-      <translation>Niveau rouge</translation>
+      <translation>Rood niveau</translation>
     </message>
 
     <message>
       <source>Red Rotations</source>
-      <translation>Rotations rouges</translation>
+      <translation>Rood Omwentelingen</translation>
+    </message>
+
+    <message>
+      <source>Red Shift</source>
+      <translation>Rode Verschuiving</translation>
     </message>
 
     <message>
       <source>Red Smoothness</source>
-      <translation>Lisse rouge</translation>
+      <translation>Rood Gladheid</translation>
     </message>
 
     <message>
       <source>Red Wavelength</source>
-      <translation>Longueur d&apos;onde rouge</translation>
+      <translation>Rode Golflengte</translation>
     </message>
 
     <message>
       <source>Red-Eye Attenuation</source>
-      <translation>Atténuation des yeux rouges</translation>
+      <translation>Roodoogverzwakking</translation>
     </message>
 
     <message>
       <source>Red-Green</source>
-      <translation>Rouge-Vert</translation>
+      <translation>Rood-Groen</translation>
     </message>
 
     <message>
       <source>Reds</source>
-      <translation>Rouge</translation>
+      <translation>Roden</translation>
     </message>
 
     <message>
       <source>Reds Oranges Yellows</source>
-      <translation>Rouge Oranges Jaune</translation>
+      <translation>Roodappelsinaasappels Geel</translation>
     </message>
 
     <message>
       <source>Reduce Halos</source>
-      <translation>Réduire les halos</translation>
+      <translation>Halo&apos;s verminderen</translation>
     </message>
 
     <message>
       <source>Reduce Noise</source>
-      <translation>Réduire le bruit</translation>
+      <translation>Geluidsreductie</translation>
     </message>
 
     <message>
       <source>Reduce RAM</source>
-      <translation>Réduire la RAM</translation>
+      <translation>Verminder het RAM</translation>
     </message>
 
     <message>
       <source>Reduce Redness</source>
-      <translation>Réduire la réduction</translation>
-    </message>
-
-    <message>
-      <source>Reeve 38</source>
-      <translation>Préfet 38</translation>
+      <translation>Roodheid verminderen</translation>
     </message>
 
     <message>
       <source>Reference</source>
-      <translation>Référence</translation>
+      <translation>Referentie</translation>
     </message>
 
     <message>
       <source>Reference Angle (deg.)</source>
-      <translation>Angle de référence (deg.)</translation>
+      <translation>Referentiehoek (deg.)</translation>
     </message>
 
     <message>
       <source>Reference Color</source>
-      <translation>Couleur de référence</translation>
+      <translation>Referentiekleur</translation>
     </message>
 
     <message>
       <source>Reference Colors</source>
-      <translation>Couleurs de référence</translation>
+      <translation>Referentie Kleuren</translation>
+    </message>
+
+    <message>
+      <source>Reflect</source>
+      <translation>Reflecteer</translation>
     </message>
 
     <message>
       <source>Reflection</source>
-      <translation>Réflexion</translation>
+      <translation>Reflectie</translation>
     </message>
 
     <message>
       <source>Refraction</source>
-      <translation>Réfraction</translation>
+      <translation>Breking</translation>
     </message>
 
     <message>
       <source>Regular Grid</source>
-      <translation>Grille régulière</translation>
+      <translation>Regulier rooster</translation>
     </message>
 
     <message>
       <source>Regularity</source>
-      <translation>Régularité</translation>
+      <translation>Regelmatigheid</translation>
     </message>
 
     <message>
       <source>Regularity (%)</source>
-      <translation>Régularité (%)</translation>
+      <translation>Regelmatigheid (%)</translation>
     </message>
 
     <message>
       <source>Regularization</source>
-      <translation>Régularisation</translation>
+      <translation>Regularisatie</translation>
     </message>
 
     <message>
       <source>Regularization (%)</source>
-      <translation>Régularisation (%)</translation>
+      <translation>Regularisatie (%)</translation>
     </message>
 
     <message>
       <source>Regularization Factor</source>
-      <translation>Facteur de régularisation</translation>
+      <translation>Regularisatiefactor</translation>
     </message>
 
     <message>
       <source>Regularization Iterations</source>
-      <translation>Itérations de régularisation</translation>
+      <translation>Regularisatie Iteraties</translation>
     </message>
 
     <message>
       <source>Reject</source>
-      <translation>Rejeter</translation>
+      <translation>Wijs  af.</translation>
     </message>
 
     <message>
       <source>Rejected Colors</source>
-      <translation>Couleurs rejetées</translation>
+      <translation>Afgewezen kleuren</translation>
     </message>
 
     <message>
       <source>Rejected Mask</source>
-      <translation>Masque rejeté</translation>
+      <translation>Afgewezen masker</translation>
     </message>
 
     <message>
       <source>Relative Block Count</source>
-      <translation>Nombre relatif de blocs</translation>
+      <translation>Relatieve bloktelling</translation>
     </message>
 
     <message>
       <source>Relative Size</source>
-      <translation>Taille relative</translation>
+      <translation>Relatieve Grootte</translation>
     </message>
 
     <message>
       <source>Relative Warping</source>
-      <translation>Gauchissement relatif</translation>
+      <translation>Relatieve kromming</translation>
     </message>
 
     <message>
       <source>Release Notes</source>
-      <translation>Notes de mise à jour</translation>
+      <translation>Toelichting bij de uitgave</translation>
+    </message>
+
+    <message>
+      <source>Relief</source>
+      <translation>Ontlasting</translation>
     </message>
 
     <message>
       <source>Relief Amplitude</source>
-      <translation>Amplitude de l&apos;aide</translation>
+      <translation>Ontlastingsamplitude</translation>
     </message>
 
     <message>
       <source>Relief Contrast</source>
-      <translation>Contraste de l&apos;aide</translation>
+      <translation>Ontlastingscontrast</translation>
+    </message>
+
+    <message>
+      <source>Relief Light</source>
+      <translation>Ontlastingslicht</translation>
     </message>
 
     <message>
       <source>Relief Size</source>
-      <translation>Taille de l&apos;aide</translation>
+      <translation>Reliëfgrootte</translation>
     </message>
 
     <message>
       <source>Relief Smoothness</source>
-      <translation>La douceur du soulagement</translation>
+      <translation>Ontlasting Gladheid</translation>
     </message>
 
     <message>
       <source>Remove Artifacts From Micro/Macro Detail</source>
-      <translation>Supprimer les artefacts des micro/macro-détails</translation>
+      <translation>Verwijder artefacten uit Micro/Macro Detail</translation>
     </message>
 
     <message>
       <source>Remove Hot Pixels</source>
-      <translation>Supprimer les pixels chauds</translation>
+      <translation>Hete Pixels verwijderen</translation>
     </message>
 
     <message>
       <source>Remove Tile</source>
-      <translation>Enlever une tuile</translation>
-    </message>
-
-    <message>
-      <source>Render Multiple Frames</source>
-      <translation>Rendu des images multiples</translation>
+      <translation>Tegel verwijderen</translation>
     </message>
 
     <message>
       <source>Render on Dark Areas</source>
-      <translation>Rendu sur les zones sombres</translation>
+      <translation>Render op donkere gebieden</translation>
     </message>
 
     <message>
       <source>Render on White Areas</source>
-      <translation>Rendu sur les zones blanches</translation>
+      <translation>Render op Witte Gebieden</translation>
     </message>
 
     <message>
       <source>Render Routine for Wiggle Animations</source>
-      <translation>Routine de rendu pour les animations Wiggle</translation>
-    </message>
-
-    <message>
-      <source>Rendering</source>
-      <translation>Rendu</translation>
+      <translation>Render Routine voor Wiggle Animaties</translation>
     </message>
 
     <message>
       <source>Rendering Mode</source>
-      <translation>Mode de rendu</translation>
+      <translation>Rendering modus</translation>
     </message>
 
     <message>
       <source>Repair Scanned Document</source>
-      <translation>Réparation d&apos;un document scanné</translation>
+      <translation>Reparatie gescand document</translation>
     </message>
 
     <message>
       <source>Repeat</source>
-      <translation>Répéter</translation>
+      <translation>Herhaal</translation>
     </message>
 
     <message>
       <source>Repeat [Memory Consuming!]</source>
-      <translation>Répéter [Mémoire Consommant !]</translation>
+      <translation>Herhaal [Geheugengebruik!]</translation>
     </message>
 
     <message>
       <source>Repeats</source>
-      <translation>Répétition de</translation>
+      <translation>Herhaalt</translation>
     </message>
 
     <message>
       <source>Replace</source>
-      <translation>Remplacer</translation>
+      <translation>Vervang</translation>
     </message>
 
     <message>
       <source>Replace (Sharpest)</source>
-      <translation>Remplacer (le plus net)</translation>
+      <translation>Vervangen (Scherpste)</translation>
     </message>
 
     <message>
       <source>Replace Layer with CLUT</source>
-      <translation>Remplacer la couche par CLUT</translation>
+      <translation>Laag vervangen door CLUT</translation>
     </message>
 
     <message>
       <source>Replace Source by Target</source>
-      <translation>Remplacer la source par la cible</translation>
+      <translation>Vervang Bron door Doel</translation>
     </message>
 
     <message>
       <source>Replace With White</source>
-      <translation>Remplacer par du blanc</translation>
+      <translation>Vervangen door wit</translation>
     </message>
 
     <message>
       <source>Replaced Color</source>
-      <translation>Remplacement de la couleur</translation>
+      <translation>Vervangende kleur</translation>
     </message>
 
     <message>
       <source>Replacement Color</source>
-      <translation>Couleur de remplacement</translation>
+      <translation>Vervangingskleur</translation>
+    </message>
+
+    <message>
+      <source>Reptile</source>
+      <translation>Reptiel</translation>
     </message>
 
     <message>
       <source>Rescaling</source>
-      <translation>Redimensionnement</translation>
-    </message>
-
-    <message>
-      <source>Reset View</source>
-      <translation>Réinitialiser la vue</translation>
+      <translation>Herschaling</translation>
     </message>
 
     <message>
       <source>Resize Image for Optimum Effect</source>
-      <translation>Redimensionner l&apos;image pour un effet optimal</translation>
+      <translation>Beeld opnieuw dimensioneren voor een optimaal effect</translation>
     </message>
 
     <message>
       <source>Resolution</source>
-      <translation>Résolution</translation>
+      <translation>Resolutie</translation>
     </message>
 
     <message>
       <source>Resolution (%)</source>
-      <translation>Résolution (%)</translation>
+      <translation>Resolutie (%)</translation>
     </message>
 
     <message>
       <source>Resolution (px)</source>
-      <translation>Résolution (px)</translation>
+      <translation>Resolutie (px)</translation>
     </message>
 
     <message>
       <source>Rest 33</source>
-      <translation>Reste 33</translation>
+      <translation>Rust 33</translation>
     </message>
 
     <message>
       <source>Result Image</source>
-      <translation>Image de résultat</translation>
+      <translation>Resultaat Beeld</translation>
     </message>
 
     <message>
       <source>Result Type</source>
-      <translation>Type de résultat</translation>
+      <translation>Type resultaat</translation>
     </message>
 
     <message>
       <source>Resynthetize Texture [FFT]</source>
-      <translation>Resynthétiser la texture [FFT]</translation>
+      <translation>Resynthetiseren van de textuur [FFT]</translation>
     </message>
 
     <message>
       <source>Resynthetize Texture [Patch-Based]</source>
-      <translation>Resynthétiser la texture [Patch-Based] (en anglais)</translation>
+      <translation>Resynthetiseren van de textuur [Patch-Based]</translation>
     </message>
 
     <message>
       <source>Retouch Layer</source>
-      <translation>Couche de retouche</translation>
+      <translation>Retoucheringslaag</translation>
     </message>
 
     <message>
       <source>Retouched and Sharpened Areas</source>
-      <translation>Zones retouchées et aiguisées</translation>
+      <translation>Geretoucheerde en geslepen gebieden</translation>
     </message>
 
     <message>
       <source>Retouched Areas Only</source>
-      <translation>Zones retouchées uniquement</translation>
+      <translation>Alleen geretoucheerde gebieden</translation>
     </message>
 
     <message>
       <source>Retouched Image</source>
-      <translation>Image retouchée</translation>
+      <translation>Geretoucheerd beeld</translation>
     </message>
 
     <message>
       <source>Retouched Image Basic</source>
-      <translation>Image retouchée de base</translation>
+      <translation>Geretoucheerde afbeelding Basic</translation>
     </message>
 
     <message>
       <source>Retouched Image Final</source>
-      <translation>Image retouchée finale</translation>
+      <translation>Geretoucheerde Beeld Finale</translation>
     </message>
 
     <message>
       <source>Retouching Style</source>
-      <translation>Style de retouche</translation>
+      <translation>Retoucheerstijl</translation>
     </message>
 
     <message>
-      <source>Retro</source>
-      <translation>Rétro</translation>
-    </message>
-
-    <message>
-      <source>Retro Fade</source>
-      <translation>Fondu rétro</translation>
+      <source>Retro Brown 01</source>
+      <translation>Retro Bruin 01</translation>
     </message>
 
     <message>
       <source>Retro Summer 3</source>
-      <translation>Rétro Été 3</translation>
+      <translation>Retro Zomer 3</translation>
     </message>
 
     <message>
       <source>Retro Yellow 01</source>
-      <translation>Rétro jaune 01</translation>
+      <translation>Retro Geel 01</translation>
     </message>
 
     <message>
       <source>Return Scaling</source>
-      <translation>Échelle de retour</translation>
+      <translation>Terugkeer Schalen</translation>
     </message>
 
     <message>
       <source>Reverse Bits</source>
-      <translation>Bits inversés</translation>
+      <translation>Omgekeerde Bits</translation>
     </message>
 
     <message>
       <source>Reverse Bytes</source>
-      <translation>Octets inversés</translation>
+      <translation>Omgekeerde bytes</translation>
     </message>
 
     <message>
       <source>Reverse Effect</source>
-      <translation>Effet inverse</translation>
+      <translation>Omgekeerd effect</translation>
+    </message>
+
+    <message>
+      <source>Reverse Endianness</source>
+      <translation>Omgekeerde eindigheid</translation>
     </message>
 
     <message>
       <source>Reverse Flip</source>
-      <translation>Retournement</translation>
+      <translation>Omgekeerde beweging</translation>
     </message>
 
     <message>
       <source>Reverse Frame Stack</source>
-      <translation>Pile de cadres inversée</translation>
+      <translation>Omgekeerde Frame Stack</translation>
     </message>
 
     <message>
       <source>Reverse Gradient</source>
-      <translation>Gradient inverse</translation>
+      <translation>Omgekeerde helling</translation>
+    </message>
+
+    <message>
+      <source>Reverse Mod</source>
+      <translation>Omgekeerde Modus</translation>
     </message>
 
     <message>
       <source>Reverse Motion</source>
-      <translation>Motion de retour en arrière</translation>
+      <translation>Omgekeerde beweging</translation>
     </message>
 
     <message>
       <source>Reverse Order</source>
-      <translation>Ordre inverse</translation>
+      <translation>Omgekeerde volgorde</translation>
+    </message>
+
+    <message>
+      <source>Reverse Pow</source>
+      <translation>Omgekeerd vermogen</translation>
     </message>
 
     <message>
       <source>Reversing</source>
-      <translation>Inverser</translation>
+      <translation>Omkeren</translation>
     </message>
 
     <message>
       <source>Revert Layer Order</source>
-      <translation>Ordonnance de réversion de couche</translation>
+      <translation>Omgekeerde volgorde van de lagen</translation>
     </message>
 
     <message>
       <source>Revert Layers</source>
-      <translation>Révision des couches</translation>
+      <translation>Omgekeerde lagen</translation>
     </message>
 
     <message>
       <source>RGB [All]</source>
-      <translation>RGB [Tous]</translation>
+      <translation>RGB [Allemaal]</translation>
     </message>
 
     <message>
       <source>RGB [Blue]</source>
-      <translation>RVB [Bleu]</translation>
+      <translation>RGB [Blauw]</translation>
     </message>
 
     <message>
       <source>RGB [Green]</source>
-      <translation>RGB [Vert]</translation>
+      <translation>RGB [Groen]</translation>
     </message>
 
     <message>
       <source>RGB [red]</source>
-      <translation>RGB [rouge]</translation>
+      <translation>RGB [rood]</translation>
     </message>
 
     <message>
       <source>RGB Image + Binary Mask (2 Layers)</source>
-      <translation>Image RVB + masque binaire (2 couches)</translation>
+      <translation>RGB-beeld + binair masker (2 lagen)</translation>
     </message>
 
     <message>
       <source>RGB Quantization</source>
-      <translation>Quantification du RGB</translation>
+      <translation>RGB-kwantisering</translation>
     </message>
 
     <message>
       <source>RGB Tone</source>
-      <translation>Tonalité RGB</translation>
+      <translation>RGB-toon</translation>
     </message>
 
     <message>
       <source>RGBA [All]</source>
-      <translation>RGBA [Tous]</translation>
+      <translation>RGBA [Alle]</translation>
     </message>
 
     <message>
       <source>RGBA Foreground + Background (2 Layers)</source>
-      <translation>RGBA Avant-plan + arrière-plan (2 couches)</translation>
+      <translation>RGBA Voorgrond + Achtergrond (2 lagen)</translation>
     </message>
 
     <message>
       <source>RGBA Image (Full-Transparency / 1 Layer)</source>
-      <translation>Image RGBA (pleine transparence / 1 couche)</translation>
+      <translation>RGBA-beeld (volledige transparantie / 1 laag)</translation>
     </message>
 
     <message>
       <source>RGBA Image (Updatable / 1 Layer)</source>
-      <translation>Image RGBA (mise à jour / 1 couche)</translation>
+      <translation>RGBA-beeld (bij te werken / 1 laag)</translation>
     </message>
 
     <message>
       <source>Rice</source>
-      <translation>Riz</translation>
+      <translation>Rijst</translation>
     </message>
 
     <message>
       <source>Right</source>
-      <translation>droite</translation>
+      <translation>Rechts</translation>
     </message>
 
     <message>
       <source>Right Diagonal  Foreground</source>
-      <translation>Premier plan en diagonale à droite</translation>
+      <translation>Rechts Diagonale voorgrond</translation>
     </message>
 
     <message>
       <source>Right Diagonal Foreground</source>
-      <translation>Premier plan en diagonale à droite</translation>
+      <translation>Rechts Diagonale voorgrond</translation>
     </message>
 
     <message>
       <source>Right Eye View</source>
-      <translation>Vue de l&apos;œil droit</translation>
+      <translation>Rechter oogaanzicht</translation>
     </message>
 
     <message>
       <source>Right Foreground</source>
-      <translation>Premier plan à droite</translation>
+      <translation>Voorgrond</translation>
     </message>
 
     <message>
       <source>Right Position</source>
-      <translation>La bonne position</translation>
+      <translation>Juiste positie</translation>
     </message>
 
     <message>
       <source>Right Side Orientation</source>
-      <translation>Orientation du côté droit</translation>
+      <translation>Rechtse oriëntatie</translation>
     </message>
 
     <message>
       <source>Right Slope</source>
-      <translation>Pente droite</translation>
+      <translation>Rechtse helling</translation>
     </message>
 
     <message>
       <source>Right Stream Only</source>
-      <translation>Right Stream uniquement</translation>
+      <translation>Alleen rechtse stroom</translation>
     </message>
 
     <message>
       <source>Rigid</source>
-      <translation>Rigide</translation>
+      <translation>Stijve</translation>
+    </message>
+
+    <message>
+      <source>Ripple</source>
+      <translation>Rimpeling</translation>
     </message>
 
     <message>
       <source>Roddy (by Mahvin)</source>
-      <translation>Roddy (par Mahvin)</translation>
+      <translation>Roddy (door Mahvin)</translation>
     </message>
 
     <message>
       <source>Rodilius [Animated]</source>
-      <translation>Rodilius [Animé]</translation>
+      <translation>Rodilius [Geanimeerd]</translation>
+    </message>
+
+    <message>
+      <source>Rollei Retro 100 Tonal</source>
+      <translation>Rollei Retro 100 tonaal</translation>
     </message>
 
     <message>
       <source>Rooster</source>
-      <translation>Coq</translation>
+      <translation>Haan</translation>
     </message>
 
     <message>
       <source>Rotate</source>
-      <translation>Faire tourner</translation>
+      <translation>Roteer</translation>
     </message>
 
     <message>
       <source>Rotate (muted)</source>
-      <translation>Rotation (en sourdine)</translation>
+      <translation>Draaien (gedempt)</translation>
     </message>
 
     <message>
       <source>Rotate (vibrant)</source>
-      <translation>Rotation (dynamique)</translation>
+      <translation>Draaien (levendig)</translation>
     </message>
 
     <message>
       <source>Rotate 180 Deg.</source>
-      <translation>Faites une rotation de 180 degrés.</translation>
+      <translation>Draai 180 Deg.</translation>
     </message>
 
     <message>
       <source>Rotate 270 Deg.</source>
-      <translation>Rotation de 270 degrés.</translation>
+      <translation>Draai 270 Deg.</translation>
     </message>
 
     <message>
       <source>Rotate 90 Deg.</source>
-      <translation>Rotation de 90 degrés.</translation>
+      <translation>Draai 90 Deg.</translation>
     </message>
 
     <message>
       <source>Rotate Hue Bands</source>
-      <translation>Rotation des bandes de teinte</translation>
+      <translation>Tint banden draaien</translation>
     </message>
 
     <message>
       <source>Rotate Tree</source>
-      <translation>Faire tourner l&apos;arbre</translation>
+      <translation>Boom draaien</translation>
     </message>
 
     <message>
       <source>Rotated</source>
-      <translation>Tourné</translation>
+      <translation>Gedraaide</translation>
     </message>
 
     <message>
       <source>Rotated (crush)</source>
-      <translation>Rotation (écrasement)</translation>
+      <translation>Gedraaide (verbrijzeling)</translation>
+    </message>
+
+    <message>
+      <source>Rotations</source>
+      <translation>Rotaties</translation>
     </message>
 
     <message>
       <source>Round</source>
-      <translation>Tour</translation>
+      <translation>Ronde</translation>
     </message>
 
     <message>
       <source>Roundness</source>
-      <translation>Rondeur</translation>
+      <translation>Rondheid</translation>
     </message>
 
     <message>
       <source>Row by Row</source>
-      <translation>Rangée par rangée</translation>
+      <translation>Rij voor rij</translation>
     </message>
 
     <message>
       <source>RYB [All]</source>
-      <translation>RYB [Tous]</translation>
+      <translation>RYB [Allemaal]</translation>
     </message>
 
     <message>
       <source>RYB [Blue]</source>
-      <translation>RYB [Bleu]</translation>
+      <translation>RYB [Blauw]</translation>
     </message>
 
     <message>
       <source>RYB [Red]</source>
-      <translation>RYB [Rouge]</translation>
+      <translation>RYB [Rood]</translation>
     </message>
 
     <message>
       <source>RYB [Yellow]</source>
-      <translation>RYB [Jaune]</translation>
-    </message>
-
-    <message>
-      <source>S-Curve Contrast</source>
-      <translation>Contraste de la courbe en S</translation>
+      <translation>RYB [Geel]</translation>
     </message>
 
     <message>
       <source>Salt and Pepper</source>
-      <translation>Sel et poivre</translation>
+      <translation>Zout en peper</translation>
     </message>
 
     <message>
       <source>Same as Input</source>
-      <translation>Identique à l&apos;entrée</translation>
+      <translation>Hetzelfde als de invoer</translation>
     </message>
 
     <message>
       <source>Same Axis</source>
-      <translation>Même axe</translation>
+      <translation>Dezelfde As</translation>
     </message>
 
     <message>
       <source>Sample Image</source>
-      <translation>Exemple d&apos;image</translation>
+      <translation>Voorbeeldbeeld</translation>
     </message>
 
     <message>
       <source>Sampling</source>
-      <translation>Échantillonnage</translation>
+      <translation>Bemonstering</translation>
     </message>
 
     <message>
       <source>Sat Range</source>
-      <translation>Gamme Sat</translation>
+      <translation>Zittende waaier</translation>
+    </message>
+
+    <message>
+      <source>Satin</source>
+      <translation>Satijn</translation>
     </message>
 
     <message>
       <source>Saturated Blue</source>
-      <translation>Bleu saturé</translation>
+      <translation>Verzadigd blauw</translation>
+    </message>
+
+    <message>
+      <source>Saturation</source>
+      <translation>Verzadiging</translation>
+    </message>
+
+    <message>
+      <source>Saturation (%)</source>
+      <translation>Verzadiging (%)</translation>
+    </message>
+
+    <message>
+      <source>Saturation Channel Gamma</source>
+      <translation>Verzadiging Kanaal Gamma</translation>
     </message>
 
     <message>
       <source>Saturation Correction</source>
-      <translation>Correction de la saturation</translation>
+      <translation>Verzadigingscorrectie</translation>
     </message>
 
     <message>
       <source>Saturation EQ</source>
-      <translation>QE par saturation</translation>
+      <translation>Verzadiging EQ</translation>
     </message>
 
     <message>
       <source>Saturation Factor</source>
-      <translation>Facteur de saturation</translation>
+      <translation>Verzadigingsfactor</translation>
     </message>
 
     <message>
       <source>Saturation Offset</source>
-      <translation>Décalage de la saturation</translation>
+      <translation>Verzadiging Compensatie</translation>
     </message>
 
     <message>
       <source>Saturation Shift</source>
-      <translation>Changement de saturation</translation>
+      <translation>Verzadigingsverschuiving</translation>
     </message>
 
     <message>
       <source>Saturation Smoothness</source>
-      <translation>Lissage de la saturation</translation>
+      <translation>Verzadiging Gladheid</translation>
     </message>
 
     <message>
       <source>Save CLUT as .Cube or .Png File</source>
-      <translation>Enregistrer CLUT en fichier .cube ou .png</translation>
+      <translation>CLUT opslaan als .Cube of .Png-bestand</translation>
     </message>
 
     <message>
       <source>Save Gradient As</source>
-      <translation>Enregistrer le gradient sous</translation>
+      <translation>Bewaar Gradiënt als</translation>
     </message>
 
     <message>
       <source>Saving Private Damon</source>
-      <translation>Sauver le soldat Damon</translation>
+      <translation>Besparing van privé-Damon</translation>
+    </message>
+
+    <message>
+      <source>Scalar</source>
+      <translation>Scalaire</translation>
     </message>
 
     <message>
       <source>Scale</source>
-      <translation>Échelle</translation>
+      <translation>Schaal</translation>
     </message>
 
     <message>
       <source>Scale (%)</source>
-      <translation>Échelle (%)</translation>
+      <translation>Schaal (%)</translation>
     </message>
 
     <message>
       <source>Scale 1</source>
-      <translation>Échelle 1</translation>
+      <translation>Schaal 1</translation>
     </message>
 
     <message>
       <source>Scale 2</source>
-      <translation>Échelle 2</translation>
+      <translation>Schaal 2</translation>
     </message>
 
     <message>
       <source>Scale CMYK</source>
-      <translation>Échelle CMYK</translation>
+      <translation>Schaal CMYK</translation>
     </message>
 
     <message>
       <source>Scale Factor</source>
-      <translation>Facteur d&apos;échelle</translation>
+      <translation>Schaalfactor</translation>
     </message>
 
     <message>
       <source>Scale Output</source>
-      <translation>Production à l&apos;échelle</translation>
+      <translation>Schaaluitgang</translation>
     </message>
 
     <message>
       <source>Scale Plasma</source>
-      <translation>Échelle de plasma</translation>
+      <translation>Schaalplasma</translation>
     </message>
 
     <message>
       <source>Scale RGB</source>
-      <translation>Échelle RGB</translation>
+      <translation>Schaal RGB</translation>
     </message>
 
     <message>
       <source>Scale Style to Fit Target Resolution</source>
-      <translation>Style d&apos;échelle pour s&apos;adapter à la résolution de la cible</translation>
+      <translation>Schaalstijl om te passen bij de doelresolutie</translation>
     </message>
 
     <message>
       <source>Scale Variations</source>
-      <translation>Variations d&apos;échelle</translation>
+      <translation>Schaalvariaties</translation>
     </message>
 
     <message>
       <source>Scaled</source>
-      <translation>A l&apos;échelle</translation>
+      <translation>Geschaald</translation>
     </message>
 
     <message>
       <source>Scales</source>
-      <translation>Échelles</translation>
+      <translation>Schalen</translation>
     </message>
 
     <message>
       <source>Scaling Factor</source>
-      <translation>Facteur d&apos;échelle</translation>
+      <translation>Schaalfactor</translation>
     </message>
 
     <message>
       <source>Scene Selector</source>
-      <translation>Sélecteur de scène</translation>
+      <translation>Scènekiezer</translation>
     </message>
 
     <message>
       <source>Screen</source>
-      <translation>Écran</translation>
+      <translation>Scherm</translation>
     </message>
 
     <message>
       <source>Screen Border</source>
-      <translation>Bordure de l&apos;écran</translation>
+      <translation>Schermgrens</translation>
+    </message>
+
+    <message>
+      <source>Seamcarve</source>
+      <translation>Naadsnijden</translation>
     </message>
 
     <message>
       <source>Seamless Deco</source>
-      <translation>Déco sans couture</translation>
+      <translation>Naadloze Deco</translation>
     </message>
 
     <message>
       <source>Seamless Turbulence</source>
-      <translation>Des turbulences sans faille</translation>
+      <translation>Naadloze Turbulentie</translation>
     </message>
 
     <message>
       <source>Second Color</source>
-      <translation>Deuxième couleur</translation>
+      <translation>Tweede kleur</translation>
     </message>
 
     <message>
       <source>Second Offset</source>
-      <translation>Deuxième compensation</translation>
+      <translation>Tweede Compensatie</translation>
     </message>
 
     <message>
       <source>Second Radius</source>
-      <translation>Second rayon</translation>
+      <translation>Tweede straal</translation>
     </message>
 
     <message>
       <source>Second Size</source>
-      <translation>Deuxième taille</translation>
+      <translation>Tweede Maat</translation>
     </message>
 
     <message>
       <source>Secondary Color</source>
-      <translation>Couleur secondaire</translation>
+      <translation>Secundaire kleur</translation>
     </message>
 
     <message>
       <source>Secondary Factor</source>
-      <translation>Facteur secondaire</translation>
+      <translation>Secundaire factor</translation>
     </message>
 
     <message>
       <source>Secondary Gamma</source>
-      <translation>Gamma secondaire</translation>
+      <translation>Secundair Gamma</translation>
     </message>
 
     <message>
       <source>Secondary Radius</source>
-      <translation>Rayon secondaire</translation>
+      <translation>Secundaire Straal</translation>
     </message>
 
     <message>
       <source>Secondary Shift</source>
-      <translation>Équipe secondaire</translation>
+      <translation>Secundaire Verschuiving</translation>
     </message>
 
     <message>
       <source>Secondary Twist</source>
-      <translation>Vrille secondaire</translation>
+      <translation>Secundaire Twist</translation>
     </message>
 
     <message>
       <source>Sectors</source>
-      <translation>Secteurs</translation>
+      <translation>Sectoren</translation>
     </message>
 
     <message>
       <source>Seed</source>
-      <translation>Semences</translation>
+      <translation>Zaad</translation>
     </message>
 
     <message>
       <source>Segment Max Length (px)</source>
-      <translation>Longueur maximale du segment (px)</translation>
+      <translation>Segment Maximale lengte (px)</translation>
+    </message>
+
+    <message>
+      <source>Segmentation</source>
+      <translation>Segmentatie</translation>
     </message>
 
     <message>
       <source>Segmentation Edge Threshold</source>
-      <translation>Seuil de l&apos;arête de segmentation</translation>
+      <translation>Segmentatie Randdrempel</translation>
     </message>
 
     <message>
       <source>Segmentation Smoothness</source>
-      <translation>Lissage de la segmentation</translation>
+      <translation>Segmentatie Gladheid</translation>
+    </message>
+
+    <message>
+      <source>Segments</source>
+      <translation>Segmenten</translation>
     </message>
 
     <message>
       <source>Segments Strength</source>
-      <translation>Segments Force</translation>
+      <translation>Segmenten Sterkte</translation>
     </message>
 
     <message>
       <source>Select By</source>
-      <translation>Sélectionner par</translation>
+      <translation>Selecteer door</translation>
     </message>
 
     <message>
       <source>Select-Replace Color</source>
-      <translation>Sélectionner-Remplacer la couleur</translation>
+      <translation>Selecteer-Vervang Kleur</translation>
     </message>
 
     <message>
       <source>Selected Color</source>
-      <translation>Couleur sélectionnée</translation>
+      <translation>Geselecteerde kleur</translation>
     </message>
 
     <message>
       <source>Selected Colors</source>
-      <translation>Couleurs sélectionnées</translation>
+      <translation>Geselecteerde kleuren</translation>
     </message>
 
     <message>
       <source>Selected Frame</source>
-      <translation>Cadre sélectionné</translation>
+      <translation>Geselecteerd frame</translation>
     </message>
 
     <message>
       <source>Selected Mask</source>
-      <translation>Masque sélectionné</translation>
+      <translation>Geselecteerde masker</translation>
     </message>
 
     <message>
       <source>Selection</source>
-      <translation>Sélection</translation>
+      <translation>Selectie</translation>
     </message>
 
     <message>
       <source>Selective Desaturation</source>
-      <translation>Désaturation sélective</translation>
+      <translation>Selectieve Desaturatie</translation>
     </message>
 
     <message>
       <source>Selective Gaussian</source>
-      <translation>Gaussien sélectif</translation>
+      <translation>Selectief Gaussisch</translation>
+    </message>
+
+    <message>
+      <source>Self</source>
+      <translation>Zelf</translation>
     </message>
 
     <message>
       <source>Self Glitching</source>
-      <translation>Auto-glitching</translation>
+      <translation>Zelfstotend</translation>
     </message>
 
     <message>
       <source>Self Image</source>
-      <translation>Image de soi</translation>
+      <translation>Zelfbeeld</translation>
     </message>
 
     <message>
       <source>Sensitivity</source>
-      <translation>Sensibilité</translation>
-    </message>
-
-    <message>
-      <source>Sepia</source>
-      <translation>Sépia</translation>
+      <translation>Gevoeligheid</translation>
     </message>
 
     <message>
       <source>Sequence X4</source>
-      <translation>Séquence X4</translation>
+      <translation>Volgorde X4</translation>
     </message>
 
     <message>
       <source>Sequence X6</source>
-      <translation>Séquence X6</translation>
+      <translation>Volgorde X6</translation>
     </message>
 
     <message>
       <source>Sequence X8</source>
-      <translation>Séquence X8</translation>
+      <translation>Volgorde X8</translation>
     </message>
 
     <message>
       <source>Serenity</source>
-      <translation>Sérénité</translation>
+      <translation>Sereniteit</translation>
     </message>
 
     <message>
       <source>Serial Number</source>
-      <translation>Numéro de série</translation>
+      <translation>Serienummer</translation>
     </message>
 
     <message>
-      <source>Seringe 4</source>
-      <translation>Série 4</translation>
+      <source>Serpent</source>
+      <translation>Slang</translation>
     </message>
 
     <message>
       <source>Set Aspect Only</source>
-      <translation>Aspect fixe uniquement</translation>
+      <translation>Alleen het aspect instellen</translation>
     </message>
 
     <message>
       <source>Set Frame Format</source>
-      <translation>Format du cadre</translation>
+      <translation>Stel het frameformaat in</translation>
     </message>
 
     <message>
       <source>Seven Layers</source>
-      <translation>Sept couches</translation>
+      <translation>Zeven lagen</translation>
     </message>
 
     <message>
       <source>Seventies Magazine</source>
-      <translation>Magazine Seventies</translation>
+      <translation>Tijdschrift voor de jaren zeventig</translation>
+    </message>
+
+    <message>
+      <source>Shade</source>
+      <translation>Schaduw</translation>
     </message>
 
     <message>
       <source>Shade Angle</source>
-      <translation>Angle d&apos;ombrage</translation>
+      <translation>Schaduwhoek</translation>
     </message>
 
     <message>
       <source>Shade Back to First Color</source>
-      <translation>Retour à la première couleur</translation>
+      <translation>Schaduw Terug naar Eerste Kleur</translation>
+    </message>
+
+    <message>
+      <source>Shade Bobs</source>
+      <translation>Schaduw Bobs</translation>
     </message>
 
     <message>
       <source>Shade Strength</source>
-      <translation>La force de l&apos;ombre</translation>
+      <translation>Schaduwsterkte</translation>
     </message>
 
     <message>
       <source>Shading</source>
-      <translation>Ombrage</translation>
+      <translation>Schaduwing</translation>
     </message>
 
     <message>
       <source>Shading (%)</source>
-      <translation>Ombrage (%)</translation>
+      <translation>Schaduw (%)</translation>
     </message>
 
     <message>
       <source>Shadow</source>
-      <translation>Ombre</translation>
+      <translation>Schaduw</translation>
     </message>
 
     <message>
       <source>Shadow Contrast</source>
-      <translation>Contraste des ombres</translation>
+      <translation>Schaduwcontrast</translation>
     </message>
 
     <message>
       <source>Shadow Intensity</source>
-      <translation>Intensité des ombres</translation>
+      <translation>Schaduwintensiteit</translation>
     </message>
 
     <message>
       <source>Shadow King 39</source>
-      <translation>Le roi de l&apos;ombre 39</translation>
+      <translation>Schaduwkoning 39</translation>
     </message>
 
     <message>
       <source>Shadow Offset X</source>
-      <translation>Offset d&apos;ombre X</translation>
+      <translation>Schaduwcompensatie X</translation>
     </message>
 
     <message>
       <source>Shadow Offset Y</source>
-      <translation>Offset d&apos;ombre Y</translation>
+      <translation>Schaduwcompensatie Y</translation>
     </message>
 
     <message>
       <source>Shadow Patch</source>
-      <translation>Patch d&apos;ombre</translation>
+      <translation>Schaduwflard</translation>
     </message>
 
     <message>
       <source>Shadow Size</source>
-      <translation>Taille des ombres</translation>
+      <translation>Schaduwgrootte</translation>
     </message>
 
     <message>
       <source>Shadow Smoothness</source>
-      <translation>Douceur des ombres</translation>
+      <translation>Schaduw Gladheid</translation>
     </message>
 
     <message>
       <source>Shadows</source>
-      <translation>Ombres</translation>
+      <translation>Schaduwen</translation>
     </message>
 
     <message>
       <source>Shadows Abstraction</source>
-      <translation>Abstraction des ombres</translation>
+      <translation>Schaduw Abstractie</translation>
     </message>
 
     <message>
       <source>Shadows Brightness</source>
-      <translation>Luminosité des ombres</translation>
+      <translation>Schaduwen Helderheid</translation>
     </message>
 
     <message>
       <source>Shadows Color Intensity</source>
-      <translation>Intensité des couleurs des ombres</translation>
+      <translation>Schaduwkleurintensiteit</translation>
     </message>
 
     <message>
       <source>Shadows Hue Shift</source>
-      <translation>Le changement de teinte des ombres</translation>
+      <translation>Schaduwtint verschuiving</translation>
     </message>
 
     <message>
       <source>Shadows Lightness</source>
-      <translation>Ombre Légèreté</translation>
+      <translation>Schaduwen Lichtheid</translation>
     </message>
 
     <message>
       <source>Shadows Selection</source>
-      <translation>Sélection des ombres</translation>
+      <translation>Schaduw selectie</translation>
     </message>
 
     <message>
       <source>Shadows Threshold</source>
-      <translation>Seuil des ombres</translation>
+      <translation>Schaduwdrempel</translation>
     </message>
 
     <message>
       <source>Shadows Zone</source>
-      <translation>Zone d&apos;ombre</translation>
-    </message>
-
-    <message>
-      <source>Shamoon Abbasi (25)</source>
-      <translation>Shamoon Abbasi (25 ans)</translation>
+      <translation>Schaduwzone</translation>
     </message>
 
     <message>
       <source>Shape</source>
-      <translation>Forme</translation>
+      <translation>Vorm</translation>
     </message>
 
     <message>
       <source>Shape Area Max</source>
-      <translation>Forme Surface Max</translation>
+      <translation>Vormgebied Max.</translation>
     </message>
 
     <message>
       <source>Shape Area Max0</source>
-      <translation>Forme Surface Max0</translation>
+      <translation>Vormgebied Max0</translation>
     </message>
 
     <message>
       <source>Shape Area Min</source>
-      <translation>Forme Surface Min</translation>
+      <translation>Vormgebied Min</translation>
     </message>
 
     <message>
       <source>Shape Area Min0</source>
-      <translation>Surface de la forme Min0</translation>
+      <translation>Vormgebied Min0</translation>
     </message>
 
     <message>
       <source>Shape Average</source>
-      <translation>Moyenne de la forme</translation>
+      <translation>Vorm Gemiddelde</translation>
     </message>
 
     <message>
       <source>Shape Average0</source>
-      <translation>Forme Moyenne0</translation>
+      <translation>Vorm Gemiddelde0</translation>
+    </message>
+
+    <message>
+      <source>Shape Max</source>
+      <translation>Vorm Max.</translation>
     </message>
 
     <message>
       <source>Shape Max0</source>
-      <translation>Forme Max0</translation>
+      <translation>Vorm Max0</translation>
     </message>
 
     <message>
       <source>Shape Median</source>
-      <translation>Forme de la médiane</translation>
+      <translation>Vorm Mediaan</translation>
     </message>
 
     <message>
       <source>Shape Median0</source>
-      <translation>Forme Médiane0</translation>
+      <translation>Vorm Mediaan0</translation>
+    </message>
+
+    <message>
+      <source>Shape Min</source>
+      <translation>Vorm Min</translation>
     </message>
 
     <message>
       <source>Shape Min0</source>
-      <translation>Forme Min0</translation>
+      <translation>Vorm Min0</translation>
+    </message>
+
+    <message>
+      <source>Shapeaverage</source>
+      <translation>Vormgeving</translation>
+    </message>
+
+    <message>
+      <source>Shapeism</source>
+      <translation>Vormgeving</translation>
     </message>
 
     <message>
       <source>Shapes</source>
-      <translation>Formes</translation>
+      <translation>Vormen</translation>
     </message>
 
     <message>
       <source>Sharp Abstract</source>
-      <translation>Un résumé précis</translation>
+      <translation>Scherp Abstract</translation>
     </message>
 
     <message>
       <source>Sharpen</source>
-      <translation>Aiguiser</translation>
+      <translation>Scherpte</translation>
     </message>
 
     <message>
       <source>Sharpen [Deblur]</source>
-      <translation>Aiguiser [Deblur]</translation>
+      <translation>Scherp [Deblur]</translation>
     </message>
 
     <message>
       <source>Sharpen [Gold-Meinel]</source>
-      <translation>Aiguiser [Gold-Meinel]</translation>
+      <translation>Scherp [Gold-Meinel]</translation>
     </message>
 
     <message>
       <source>Sharpen [Gradient]</source>
-      <translation>Aiguiser [Dégradé].</translation>
+      <translation>Verscherpen [Gradiënt]</translation>
     </message>
 
     <message>
       <source>Sharpen [Hessian]</source>
-      <translation>Aiguiser [Hessois].</translation>
+      <translation>Scherp [Hessian]</translation>
     </message>
 
     <message>
       <source>Sharpen [Inverse Diffusion]</source>
-      <translation>Aiguiser [Diffusion inverse]</translation>
+      <translation>Scherp [Inverse Diffusion]</translation>
     </message>
 
     <message>
       <source>Sharpen [Multiscale]</source>
-      <translation>Aiguiser [Multi-échelle]</translation>
+      <translation>Scherp [Multiscale]</translation>
     </message>
 
     <message>
       <source>Sharpen [Octave Sharpening]</source>
-      <translation>Aiguiser [Aiguisage d&apos;octave]</translation>
+      <translation>Slijpen [Octaafslijpen]</translation>
     </message>
 
     <message>
       <source>Sharpen [Richardson-Lucy]</source>
-      <translation>Aiguiser [Richardson-Lucy]</translation>
+      <translation>Scherp [Richardson-Lucy]</translation>
     </message>
 
     <message>
       <source>Sharpen [Shock Filters]</source>
-      <translation>Aiguiser [Filtres antichocs]</translation>
+      <translation>Scherp [Schokfilters]</translation>
     </message>
 
     <message>
       <source>Sharpen [Texture]</source>
-      <translation>Aiguiser [Texture].</translation>
+      <translation>Scherp [Textuur]</translation>
     </message>
 
     <message>
       <source>Sharpen [Tones]</source>
-      <translation>Aiguiser [Tonalités]</translation>
+      <translation>Scherp [Tonen]</translation>
     </message>
 
     <message>
       <source>Sharpen [Unsharp Mask]</source>
-      <translation>Aiguiser [Masque non tranchant]</translation>
+      <translation>Scherp [Unsharp Mask]</translation>
     </message>
 
     <message>
       <source>Sharpen [Whiten]</source>
-      <translation>Aiguiser [Blanchir]</translation>
+      <translation>Scherp [Whiten]</translation>
     </message>
 
     <message>
       <source>Sharpen Details in Preview</source>
-      <translation>Préciser les détails en avant-première</translation>
+      <translation>Details verscherpen in Voorvertoning</translation>
     </message>
 
     <message>
       <source>Sharpen Edges Only</source>
-      <translation>Aiguiser les bords uniquement</translation>
+      <translation>Alleen de randen slijpen</translation>
     </message>
 
     <message>
       <source>Sharpen Object</source>
-      <translation>Aiguiser l&apos;objet</translation>
+      <translation>Voorwerp slijpen</translation>
     </message>
 
     <message>
       <source>Sharpen Radius</source>
-      <translation>Aiguiser le rayon</translation>
+      <translation>Straal slijpen</translation>
     </message>
 
     <message>
       <source>Sharpen Shades</source>
-      <translation>Aiguiser les ombres</translation>
+      <translation>Scherpere tinten</translation>
     </message>
 
     <message>
       <source>Sharpened Areas Only</source>
-      <translation>Zones aiguisées uniquement</translation>
+      <translation>Alleen geslepen gebieden</translation>
     </message>
 
     <message>
       <source>Sharpening</source>
-      <translation>Aiguiser</translation>
+      <translation>Aanscherping</translation>
     </message>
 
     <message>
       <source>Sharpening Layer</source>
-      <translation>Aiguiser la couche</translation>
+      <translation>Aanscherpingslaag</translation>
     </message>
 
     <message>
       <source>Sharpening Radius</source>
-      <translation>Rayon d&apos;affûtage</translation>
+      <translation>Slijpstraal</translation>
     </message>
 
     <message>
       <source>Sharpening Strength</source>
-      <translation>Aiguiser les forces</translation>
+      <translation>Aanscherpende kracht</translation>
     </message>
 
     <message>
       <source>Sharpening Type</source>
-      <translation>Type d&apos;affûtage</translation>
+      <translation>Aanscherpingstype</translation>
     </message>
 
     <message>
       <source>Sharpest</source>
-      <translation>Le plus net</translation>
+      <translation>Scherpste</translation>
     </message>
 
     <message>
       <source>Sharpness</source>
-      <translation>Netteté</translation>
+      <translation>Scherpte</translation>
     </message>
 
     <message>
       <source>Shift Linear Interpolation?</source>
-      <translation>Interpolation linéaire par décalage ?</translation>
+      <translation>Shift Lineaire Interpolatie?</translation>
     </message>
 
     <message>
       <source>Shift Point</source>
-      <translation>Point de changement</translation>
+      <translation>Verschuivingspunt</translation>
     </message>
 
     <message>
       <source>Shift X</source>
-      <translation>Équipe X</translation>
+      <translation>Verschuiving X</translation>
     </message>
 
     <message>
       <source>Shift Y</source>
-      <translation>Décalage Y</translation>
+      <translation>Verschuiving Y</translation>
     </message>
 
     <message>
       <source>Shininess</source>
-      <translation>Brillance</translation>
+      <translation>Glanzigheid</translation>
     </message>
 
     <message>
       <source>Shivers</source>
-      <translation>Frissons</translation>
+      <translation>Rillingen</translation>
     </message>
 
     <message>
       <source>Shock Waves</source>
-      <translation>Ondes de choc</translation>
+      <translation>Schokgolven</translation>
     </message>
 
     <message>
       <source>Shopping Cart</source>
-      <translation>Panier d&apos;achat</translation>
+      <translation>Winkelwagen</translation>
     </message>
 
     <message>
       <source>Show Both Poles</source>
-      <translation>Montrez aux deux Polonais</translation>
+      <translation>Toon beide polen</translation>
     </message>
 
     <message>
       <source>Show Difference</source>
-      <translation>Montrer la différence</translation>
+      <translation>Verschil tonen</translation>
     </message>
 
     <message>
       <source>Show Frame</source>
-      <translation>Afficher le cadre</translation>
+      <translation>Toon Frame</translation>
     </message>
 
     <message>
       <source>Show Grid</source>
-      <translation>Afficher la grille</translation>
+      <translation>Toon rooster</translation>
     </message>
 
     <message>
       <source>Show Watershed</source>
-      <translation>Afficher le bassin versant</translation>
+      <translation>Toon Waterschuur</translation>
     </message>
 
     <message>
       <source>Shrink</source>
-      <translation>Réduire</translation>
+      <translation>Krimp</translation>
     </message>
 
     <message>
       <source>Shuffle Pieces</source>
-      <translation>Mélanger les morceaux</translation>
+      <translation>Shuffle Stukken</translation>
     </message>
 
     <message>
       <source>Side by Side</source>
-      <translation>Côte à côte</translation>
+      <translation>Zij aan zij</translation>
+    </message>
+
+    <message>
+      <source>Sierpinksi Design</source>
+      <translation>Sierpinksi Ontwerp</translation>
     </message>
 
     <message>
       <source>Sierpinski Triangle</source>
-      <translation>Triangle de Sierpinski</translation>
+      <translation>Sierpinski Driehoek</translation>
     </message>
 
     <message>
       <source>Silver</source>
-      <translation>Argent</translation>
+      <translation>Zilver</translation>
     </message>
 
     <message>
       <source>Similarity Space</source>
-      <translation>Espace de similarité</translation>
+      <translation>Gelijkaardigheid Ruimte</translation>
     </message>
 
     <message>
       <source>Simple Local Contrast</source>
-      <translation>Contraste local simple</translation>
+      <translation>Eenvoudig lokaal contrast</translation>
     </message>
 
     <message>
       <source>Simple Noise Canvas</source>
-      <translation>Toile à bruit simple</translation>
+      <translation>Eenvoudig geluidsdoek</translation>
     </message>
 
     <message>
       <source>Simulate Film</source>
-      <translation>Simuler un film</translation>
+      <translation>Film simuleren</translation>
+    </message>
+
+    <message>
+      <source>Sin(z)</source>
+      <translation>Zonde(z)</translation>
+    </message>
+
+    <message>
+      <source>Sine</source>
+      <translation>Sinus</translation>
+    </message>
+
+    <message>
+      <source>Sine+</source>
+      <translation>Sinus+</translation>
     </message>
 
     <message>
       <source>Single (Merged)</source>
-      <translation>Unique (fusionné)</translation>
+      <translation>Enkelvoudig (samengevoegd)</translation>
     </message>
 
     <message>
       <source>Single Custom Depth Map</source>
-      <translation>Carte de profondeur personnalisée unique</translation>
+      <translation>Enkele aangepaste dieptekaart</translation>
     </message>
 
     <message>
       <source>Single Image Stereogram</source>
-      <translation>Stéréogramme à image unique</translation>
+      <translation>Enkele afbeelding Stereogram</translation>
     </message>
 
     <message>
       <source>Single Layer</source>
-      <translation>Couche unique</translation>
+      <translation>Enkele laag</translation>
     </message>
 
     <message>
       <source>Single Opaque Shapes Over Transp. BG</source>
-      <translation>Formes uniques et opaques sur la transp. BG</translation>
+      <translation>Enkelvoudige Ondoorzichtige Vormen Over Transp. BG</translation>
     </message>
 
     <message>
       <source>Six Layers</source>
-      <translation>Six couches</translation>
+      <translation>Zes lagen</translation>
     </message>
 
     <message>
       <source>Sixteen Threads</source>
-      <translation>Seize fils</translation>
+      <translation>Zestien Draden</translation>
     </message>
 
     <message>
       <source>Size</source>
-      <translation>Taille</translation>
+      <translation>Grootte</translation>
     </message>
 
     <message>
       <source>Size (%)</source>
-      <translation>Taille (%)</translation>
+      <translation>Grootte (%)</translation>
     </message>
 
     <message>
       <source>Size for Bright Tones</source>
-      <translation>Taille pour les tons clairs</translation>
+      <translation>Grootte voor Heldere Tinten</translation>
     </message>
 
     <message>
       <source>Size for Dark Tones</source>
-      <translation>Taille pour les tons sombres</translation>
+      <translation>Grootte voor Donkere Tinten</translation>
     </message>
 
     <message>
       <source>Size of Frame Numbers (%)</source>
-      <translation>Taille des numéros de trame (%)</translation>
+      <translation>Grootte van de framenaantallen (%)</translation>
     </message>
 
     <message>
       <source>Size Variance</source>
-      <translation>Variation de taille</translation>
+      <translation>Groottevariatie</translation>
     </message>
 
     <message>
       <source>Size-1</source>
-      <translation>Taille 1</translation>
+      <translation>Grootte-1</translation>
     </message>
 
     <message>
       <source>Size-2</source>
-      <translation>Taille 2</translation>
+      <translation>Grootte-2</translation>
     </message>
 
     <message>
       <source>Size-3</source>
-      <translation>Taille 3</translation>
+      <translation>Grootte-3</translation>
     </message>
 
     <message>
       <source>Skeleton</source>
-      <translation>Squelette</translation>
+      <translation>Skelet</translation>
+    </message>
+
+    <message>
+      <source>Sketch</source>
+      <translation>Schets</translation>
     </message>
 
     <message>
       <source>Skin Estimation</source>
-      <translation>Estimation de la peau</translation>
+      <translation>Huidschatting</translation>
     </message>
 
     <message>
       <source>Skin Mask</source>
-      <translation>Masque de peau</translation>
+      <translation>Huidmasker</translation>
     </message>
 
     <message>
       <source>Skin Tone Colors</source>
-      <translation>Couleurs des tons de la peau</translation>
+      <translation>Huidskleurige kleuren</translation>
     </message>
 
     <message>
       <source>Skin Tone Mask</source>
-      <translation>Masque pour le teint de la peau</translation>
+      <translation>Huidtonenmasker</translation>
     </message>
 
     <message>
       <source>Skin Tone Protection</source>
-      <translation>Protection du teint de la peau</translation>
+      <translation>Huidtoonbescherming</translation>
     </message>
 
     <message>
       <source>Skip All Other Steps</source>
-      <translation>Sauter toutes les autres étapes</translation>
+      <translation>Alle andere stappen overslaan</translation>
     </message>
 
     <message>
       <source>Skip Finest Scales</source>
-      <translation>Sauter les échelles les plus fines</translation>
+      <translation>Fijnste schalen overslaan</translation>
     </message>
 
     <message>
       <source>Skip Others Steps</source>
-      <translation>Sauter les autres étapes</translation>
+      <translation>Andere stappen overslaan</translation>
     </message>
 
     <message>
       <source>Skip This Step</source>
-      <translation>Sauter cette étape</translation>
+      <translation>Deze stap overslaan</translation>
     </message>
 
     <message>
       <source>Skip to Use the Mask to Boost</source>
-      <translation>Sauter pour utiliser le masque pour booster</translation>
-    </message>
-
-    <message>
-      <source>Slice Luminosity</source>
-      <translation>Luminosité des tranches</translation>
+      <translation>Ga naar het masker te gebruiken om te verhogen</translation>
     </message>
 
     <message>
       <source>Slide [Color] (26)</source>
-      <translation>Diapositive [Couleur] (26)</translation>
+      <translation>Dia [Kleur] (26)</translation>
     </message>
 
     <message>
       <source>Slow &amp;#40;Accurate&amp;#41;</source>
-      <translation>Lent (Précis)</translation>
+      <translation>Langzaam ( Nauwkeurig )</translation>
     </message>
 
     <message>
       <source>Slow Recovery</source>
-      <translation>Lente reprise</translation>
+      <translation>Langzaam herstel</translation>
     </message>
 
     <message>
       <source>Small</source>
-      <translation>Petit</translation>
+      <translation>Kleine</translation>
     </message>
 
     <message>
       <source>Small (Faster)</source>
-      <translation>Petit (plus rapide)</translation>
+      <translation>Klein (Sneller)</translation>
     </message>
 
     <message>
       <source>Smart</source>
-      <translation>Intelligent</translation>
+      <translation>Slimme</translation>
     </message>
 
     <message>
       <source>Smart Contrast</source>
-      <translation>Contraste intelligent</translation>
+      <translation>Slim contrast</translation>
     </message>
 
     <message>
       <source>Smart Threshold</source>
-      <translation>Seuil intelligent</translation>
+      <translation>Slimme drempel</translation>
     </message>
 
     <message>
       <source>Smooth</source>
-      <translation>Lisse</translation>
+      <translation>Vloeiend</translation>
     </message>
 
     <message>
       <source>Smooth [Anisotropic]</source>
-      <translation>Lisse [Anisotrope].</translation>
-    </message>
-
-    <message>
-      <source>Smooth [Antialias]</source>
-      <translation>Lisse [Antialias].</translation>
+      <translation>Glad [Anisotroop]</translation>
     </message>
 
     <message>
       <source>Smooth [Bilateral]</source>
-      <translation>Lisse [Bilatéral].</translation>
+      <translation>Glad [Bilateraal]</translation>
     </message>
 
     <message>
       <source>Smooth [Block PCA]</source>
-      <translation>Lisse [Bloquer l&apos;ACP]</translation>
+      <translation>Glad [Blok PCA]</translation>
     </message>
 
     <message>
       <source>Smooth [Diffusion]</source>
-      <translation>Lisse [Diffusion].</translation>
+      <translation>Gladde [Verspreiding]</translation>
     </message>
 
     <message>
       <source>Smooth [Geometric-Median]</source>
-      <translation>Lisse [Géométrique-Médiane].</translation>
+      <translation>Glad [Geometrisch-Medisch]</translation>
     </message>
 
     <message>
       <source>Smooth [Guided]</source>
-      <translation>Lisse [Guidé]</translation>
+      <translation>Glad [Geleid]</translation>
     </message>
 
     <message>
       <source>Smooth [IUWT]</source>
-      <translation>Lisse [IUWT]</translation>
+      <translation>Vloeiend [IUWT]</translation>
     </message>
 
     <message>
       <source>Smooth [Mean-Curvature]</source>
-      <translation>Lisse [Courbe moyenne].</translation>
+      <translation>Gladjes [Gemiddelde kromming]</translation>
     </message>
 
     <message>
       <source>Smooth [Median]</source>
-      <translation>Lisse [Médiane].</translation>
+      <translation>Smooth [Mediaan]</translation>
     </message>
 
     <message>
       <source>Smooth [NL-Means]</source>
-      <translation>Lisse [NL-Means]</translation>
+      <translation>Vloeiend [NL-Means]</translation>
     </message>
 
     <message>
       <source>Smooth [Patch-Based]</source>
-      <translation>Lisse [basé sur les correctifs].</translation>
+      <translation>Glad [Patch-Based]</translation>
     </message>
 
     <message>
       <source>Smooth [Patch-PCA]</source>
-      <translation>Lisse [Patch-PCA].</translation>
+      <translation>Glad [Patch-PCA]</translation>
     </message>
 
     <message>
       <source>Smooth [Perona-Malik]</source>
-      <translation>Lisse [Pérona-Malik]</translation>
+      <translation>Glad [Perona-Malik]</translation>
     </message>
 
     <message>
       <source>Smooth [Selective Gaussian]</source>
-      <translation>Lisse [Gaussien sélectif].</translation>
+      <translation>Vloeiend [Selectief Gaussisch]</translation>
     </message>
 
     <message>
       <source>Smooth [Skin]</source>
-      <translation>Lisse [Peau].</translation>
+      <translation>Gladde [Huid]</translation>
     </message>
 
     <message>
       <source>Smooth [Thin Brush]</source>
-      <translation>Lisse [Pinceau fin].</translation>
+      <translation>Gladde [Dunne borstel]</translation>
     </message>
 
     <message>
       <source>Smooth [Total Variation]</source>
-      <translation>Lisse [Variation totale]</translation>
+      <translation>Glad [Totale variatie]</translation>
     </message>
 
     <message>
       <source>Smooth [Wavelets]</source>
-      <translation>Lisse [Ondelettes].</translation>
+      <translation>Gladde [Wavelets]</translation>
     </message>
 
     <message>
       <source>Smooth [Wiener]</source>
-      <translation>Lisse [Wiener]</translation>
+      <translation>Glad [Wiener]</translation>
     </message>
 
     <message>
       <source>Smooth Abstract</source>
-      <translation>Résumé lisse</translation>
+      <translation>Vloeiend Abstract</translation>
     </message>
 
     <message>
       <source>Smooth Amount</source>
-      <translation>Montant lisse</translation>
+      <translation>Gladde hoeveelheid</translation>
     </message>
 
     <message>
       <source>Smooth Clear</source>
-      <translation>Lisse et clair</translation>
+      <translation>Gladjes Duidelijk</translation>
     </message>
 
     <message>
       <source>Smooth Colors</source>
-      <translation>Couleurs lisses</translation>
+      <translation>Gladde kleuren</translation>
     </message>
 
     <message>
       <source>Smooth Crome-Ish</source>
-      <translation>Lisser le Crome-Ish</translation>
+      <translation>Gladde Crome-Ish</translation>
+    </message>
+
+    <message>
+      <source>Smooth Dark</source>
+      <translation>Gladde Donker</translation>
     </message>
 
     <message>
       <source>Smooth Fade</source>
-      <translation>Fondu enchaîné</translation>
+      <translation>Gladde vervaging</translation>
     </message>
 
     <message>
       <source>Smooth Green Orange</source>
-      <translation>Orange verte lisse</translation>
+      <translation>Gladde groene sinaasappel</translation>
     </message>
 
     <message>
       <source>Smooth Light</source>
-      <translation>Lumière douce</translation>
+      <translation>Glad licht</translation>
     </message>
 
     <message>
       <source>Smooth Looping</source>
-      <translation>Bouclage en douceur</translation>
+      <translation>Gladde Looping</translation>
     </message>
 
     <message>
       <source>Smooth Only</source>
-      <translation>Lisse seulement</translation>
+      <translation>Alleen gladjes</translation>
     </message>
 
     <message>
       <source>Smooth Sailing</source>
-      <translation>Navigation en douceur</translation>
+      <translation>Vloeiend Varen</translation>
     </message>
 
     <message>
       <source>Smooth Teal Orange</source>
-      <translation>Orange sarcelle lisse</translation>
+      <translation>Gladde Teal Oranje</translation>
     </message>
 
     <message>
       <source>Smoothen Background Reconstruction</source>
-      <translation>Lisser la reconstruction de l&apos;arrière-plan</translation>
+      <translation>Achtergrond Reconstructie gladstrijken</translation>
     </message>
 
     <message>
       <source>Smoother Edge Protection</source>
-      <translation>Une protection plus efficace</translation>
+      <translation>Gladdere randbescherming</translation>
     </message>
 
     <message>
       <source>Smoother Sharpness</source>
-      <translation>Une meilleure netteté</translation>
+      <translation>Gladder Scherpte</translation>
     </message>
 
     <message>
       <source>Smoother Softness</source>
-      <translation>Douceur de l&apos;eau</translation>
+      <translation>Gladder Zachtheid</translation>
     </message>
 
     <message>
       <source>Smoothing</source>
-      <translation>Lissage</translation>
+      <translation>Het gladstrijken van</translation>
     </message>
 
     <message>
       <source>Smoothing Style</source>
-      <translation>Style de lissage</translation>
+      <translation>Het gladstrijken van Stijl</translation>
     </message>
 
     <message>
       <source>Smoothing Type</source>
-      <translation>Type de lissage</translation>
+      <translation>Het gladmaken van Type</translation>
     </message>
 
     <message>
       <source>Smoothness</source>
-      <translation>Lisse</translation>
+      <translation>Gladheid</translation>
     </message>
 
     <message>
       <source>Smoothness (%)</source>
-      <translation>Lissage (%)</translation>
+      <translation>Gladheid (%)</translation>
     </message>
 
     <message>
       <source>Smoothness (px)</source>
-      <translation>Lisse (px)</translation>
+      <translation>Gladheid (px)</translation>
     </message>
 
     <message>
       <source>Smoothness Shadow</source>
-      <translation>Ombre de la douceur</translation>
+      <translation>Gladheid Schaduw</translation>
     </message>
 
     <message>
       <source>Smoothness Type</source>
-      <translation>Type de lissage</translation>
+      <translation>Gladheid Type</translation>
     </message>
 
     <message>
       <source>Snowflake</source>
-      <translation>Flocon de neige</translation>
+      <translation>Sneeuwvlokje</translation>
     </message>
 
     <message>
       <source>Snowflake 2</source>
-      <translation>Flocon de neige 2</translation>
+      <translation>Sneeuwvlokje 2</translation>
     </message>
 
     <message>
       <source>Snowflake Recursion</source>
-      <translation>Récursion des flocons de neige</translation>
+      <translation>Sneeuwvlokje Recursie</translation>
+    </message>
+
+    <message>
+      <source>Soft</source>
+      <translation>Zacht</translation>
     </message>
 
     <message>
       <source>Soft  Light</source>
-      <translation>Lumière douce</translation>
+      <translation>Zacht licht</translation>
     </message>
 
     <message>
       <source>Soft Burn</source>
-      <translation>Brûlure douce</translation>
+      <translation>Zachte verbranding</translation>
     </message>
 
     <message>
       <source>Soft Dodge</source>
-      <translation>Esquive douce</translation>
+      <translation>Zachte Dodge</translation>
     </message>
 
     <message>
       <source>Soft Fade</source>
-      <translation>Fondu doux</translation>
+      <translation>Zachte vervaging</translation>
     </message>
 
     <message>
       <source>Soft Glow</source>
-      <translation>Lueur douce</translation>
+      <translation>Zachte gloed</translation>
     </message>
 
     <message>
       <source>Soft Glow [Animated]</source>
-      <translation>Lueur douce [Animé]</translation>
+      <translation>Zachte gloed [Geanimeerd]</translation>
     </message>
 
     <message>
       <source>Soft Light</source>
-      <translation>Lumière douce</translation>
+      <translation>Zacht licht</translation>
     </message>
 
     <message>
       <source>Soft Random Shades</source>
-      <translation>Des nuances douces et aléatoires</translation>
+      <translation>Zachte Willekeurige Tinten</translation>
     </message>
 
     <message>
       <source>Soft Warming</source>
-      <translation>Réchauffement doux</translation>
+      <translation>Zachte Verwarming</translation>
     </message>
 
     <message>
       <source>Soften</source>
-      <translation>Adoucir</translation>
+      <translation>Verzacht</translation>
     </message>
 
     <message>
       <source>Soften All Channels</source>
-      <translation>Assouplir tous les canaux</translation>
+      <translation>Alle kanalen verzachten</translation>
     </message>
 
     <message>
       <source>Soften Guide</source>
-      <translation>Guide de l&apos;assouplissement</translation>
+      <translation>Verzacht Gids</translation>
+    </message>
+
+    <message>
+      <source>Solarize</source>
+      <translation>Solariseren</translation>
     </message>
 
     <message>
       <source>Solarize Color</source>
-      <translation>Solariser la couleur</translation>
-    </message>
-
-    <message>
-      <source>Solarized Color2</source>
-      <translation>Couleur solarisée2</translation>
+      <translation>Solariseren van de kleur</translation>
     </message>
 
     <message>
       <source>Solidify</source>
-      <translation>Consolider</translation>
+      <translation>Verstevigen</translation>
     </message>
 
     <message>
       <source>Solve Maze</source>
-      <translation>Résoudre le labyrinthe</translation>
+      <translation>Doolhof oplossen</translation>
     </message>
 
     <message>
       <source>Some</source>
-      <translation>Quelques</translation>
+      <translation>Enkele</translation>
     </message>
 
     <message>
       <source>Some Blue</source>
-      <translation>Un peu de bleu</translation>
+      <translation>Wat Blauw</translation>
     </message>
 
     <message>
       <source>Some Cyan</source>
-      <translation>Quelques Cyan</translation>
+      <translation>Een beetje cyaan</translation>
     </message>
 
     <message>
       <source>Some Green</source>
-      <translation>Certains Verts</translation>
+      <translation>Een beetje groen</translation>
     </message>
 
     <message>
       <source>Some Key</source>
-      <translation>Quelques clés</translation>
+      <translation>Wat Sleutel</translation>
     </message>
 
     <message>
       <source>Some Magenta</source>
-      <translation>Un peu de Magenta</translation>
+      <translation>Sommige Magenta</translation>
     </message>
 
     <message>
       <source>Some Red</source>
-      <translation>Un peu de rouge</translation>
+      <translation>Een beetje rood</translation>
     </message>
 
     <message>
       <source>Some Yellow</source>
-      <translation>Certains Jaune</translation>
+      <translation>Wat Geel</translation>
     </message>
 
     <message>
       <source>Sort Colors</source>
-      <translation>Trier les couleurs</translation>
+      <translation>Sorteer Kleuren</translation>
     </message>
 
     <message>
       <source>Sorting Criterion</source>
-      <translation>Critère de tri</translation>
+      <translation>Sorteercriteria</translation>
+    </message>
+
+    <message>
+      <source>Source (%)</source>
+      <translation>Bron (%)</translation>
     </message>
 
     <message>
       <source>Source Color #1</source>
-      <translation>Source Couleur #1</translation>
+      <translation>Bronkleur #1</translation>
     </message>
 
     <message>
       <source>Source Color #10</source>
-      <translation>Source Couleur #10</translation>
+      <translation>Bronkleur #10</translation>
     </message>
 
     <message>
       <source>Source Color #11</source>
-      <translation>Source Couleur #11</translation>
+      <translation>Bronkleur #11</translation>
     </message>
 
     <message>
       <source>Source Color #12</source>
-      <translation>Source Couleur #12</translation>
+      <translation>Bronkleur #12</translation>
     </message>
 
     <message>
       <source>Source Color #13</source>
-      <translation>Source Couleur #13</translation>
+      <translation>Bronkleur #13</translation>
     </message>
 
     <message>
       <source>Source Color #14</source>
-      <translation>Source Couleur #14</translation>
+      <translation>Bronkleur #14</translation>
     </message>
 
     <message>
       <source>Source Color #15</source>
-      <translation>Source Couleur #15</translation>
+      <translation>Bronkleur #15</translation>
     </message>
 
     <message>
       <source>Source Color #16</source>
-      <translation>Source Couleur #16</translation>
+      <translation>Bronkleur #16</translation>
     </message>
 
     <message>
       <source>Source Color #17</source>
-      <translation>Source Couleur #17</translation>
+      <translation>Bronkleur #17</translation>
     </message>
 
     <message>
       <source>Source Color #18</source>
-      <translation>Source Couleur #18</translation>
+      <translation>Bronkleur #18</translation>
     </message>
 
     <message>
       <source>Source Color #19</source>
-      <translation>Source Couleur #19</translation>
+      <translation>Bronkleur #19</translation>
     </message>
 
     <message>
       <source>Source Color #2</source>
-      <translation>Source Couleur #2</translation>
+      <translation>Bronkleur #2</translation>
     </message>
 
     <message>
       <source>Source Color #20</source>
-      <translation>Source Couleur #20</translation>
+      <translation>Bronkleur #20</translation>
     </message>
 
     <message>
       <source>Source Color #21</source>
-      <translation>Source Couleur #21</translation>
+      <translation>Bronkleur #21</translation>
     </message>
 
     <message>
       <source>Source Color #22</source>
-      <translation>Source Couleur #22</translation>
+      <translation>Bronkleur #22</translation>
     </message>
 
     <message>
       <source>Source Color #23</source>
-      <translation>Source Couleur #23</translation>
+      <translation>Bronkleur #23</translation>
     </message>
 
     <message>
       <source>Source Color #24</source>
-      <translation>Source Couleur #24</translation>
+      <translation>Bronkleur #24</translation>
     </message>
 
     <message>
       <source>Source Color #3</source>
-      <translation>Source Couleur #3</translation>
+      <translation>Bronkleur #3</translation>
     </message>
 
     <message>
       <source>Source Color #4</source>
-      <translation>Source Couleur #4</translation>
+      <translation>Bronkleur #4</translation>
     </message>
 
     <message>
       <source>Source Color #5</source>
-      <translation>Source Couleur #5</translation>
+      <translation>Bronkleur #5</translation>
     </message>
 
     <message>
       <source>Source Color #6</source>
-      <translation>Source Couleur #6</translation>
+      <translation>Bronkleur #6</translation>
     </message>
 
     <message>
       <source>Source Color #7</source>
-      <translation>Source Couleur #7</translation>
+      <translation>Bronkleur #7</translation>
     </message>
 
     <message>
       <source>Source Color #8</source>
-      <translation>Source Couleur #8</translation>
+      <translation>Bronkleur #8</translation>
     </message>
 
     <message>
       <source>Source Color #9</source>
-      <translation>Source Couleur #9</translation>
+      <translation>Bronkleur #9</translation>
+    </message>
+
+    <message>
+      <source>Source X-Tiles</source>
+      <translation>Bron X-Tegels</translation>
+    </message>
+
+    <message>
+      <source>Source Y-Tiles</source>
+      <translation>Bron Y-Tegels</translation>
     </message>
 
     <message>
       <source>Space</source>
-      <translation>Espace</translation>
+      <translation>Ruimte</translation>
     </message>
 
     <message>
       <source>Spacing</source>
-      <translation>Espacement</translation>
+      <translation>Afstand</translation>
+    </message>
+
+    <message>
+      <source>Span</source>
+      <translation>Spanwijdte</translation>
     </message>
 
     <message>
       <source>Spatial Bandwidth</source>
-      <translation>Bande passante spatiale</translation>
+      <translation>Ruimtelijke bandbreedte</translation>
     </message>
 
     <message>
       <source>Spatial Metric</source>
-      <translation>Métrique spatiale</translation>
+      <translation>Ruimtelijk Metrisch</translation>
     </message>
 
     <message>
       <source>Spatial Overlap</source>
-      <translation>Chevauchement spatial</translation>
+      <translation>Ruimtelijke overlapping</translation>
     </message>
 
     <message>
       <source>Spatial Precision</source>
-      <translation>Précision spatiale</translation>
+      <translation>Ruimtelijke precisie</translation>
     </message>
 
     <message>
       <source>Spatial Radius</source>
-      <translation>Rayon spatial</translation>
+      <translation>Ruimtelijke Straal</translation>
     </message>
 
     <message>
       <source>Spatial Regularization</source>
-      <translation>Régularisation spatiale</translation>
+      <translation>Ruimtelijke regularisatie</translation>
     </message>
 
     <message>
       <source>Spatial Sampling</source>
-      <translation>Échantillonnage spatial</translation>
+      <translation>Ruimtelijke bemonstering</translation>
     </message>
 
     <message>
       <source>Spatial Scale</source>
-      <translation>Échelle spatiale</translation>
+      <translation>Ruimtelijke schaal</translation>
     </message>
 
     <message>
       <source>Spatial Tolerance</source>
-      <translation>Tolérance spatiale</translation>
+      <translation>Ruimtelijke tolerantie</translation>
     </message>
 
     <message>
       <source>Spatial Transition</source>
-      <translation>Transition spatiale</translation>
+      <translation>Ruimtelijke Overgang</translation>
     </message>
 
     <message>
       <source>Spatial Variance</source>
-      <translation>Variance spatiale</translation>
+      <translation>Ruimtelijke variatie</translation>
     </message>
 
     <message>
       <source>Special Effects</source>
-      <translation>Effets spéciaux</translation>
+      <translation>Speciale effecten</translation>
     </message>
 
     <message>
       <source>Specific Saturation</source>
-      <translation>Saturation spécifique</translation>
+      <translation>Specifieke verzadiging</translation>
     </message>
 
     <message>
       <source>Specify Different Output Size</source>
-      <translation>Spécifier une taille de sortie différente</translation>
+      <translation>Specificeer Verschillende Uitgangsgrootte</translation>
     </message>
 
     <message>
       <source>Specify HaldCLUT As</source>
-      <translation>Préciser HaldCLUT comme</translation>
+      <translation>Geef HaldCLUT op als</translation>
     </message>
 
     <message>
       <source>Specular</source>
-      <translation>Spéculaire</translation>
+      <translation>Specifiek</translation>
     </message>
 
     <message>
       <source>Specular (%)</source>
-      <translation>Spéculaire (%)</translation>
+      <translation>Specifiek (%)</translation>
     </message>
 
     <message>
       <source>Specular Centering</source>
-      <translation>Centrage spéculaire</translation>
+      <translation>Specifiek centreren</translation>
     </message>
 
     <message>
       <source>Specular Intensity</source>
-      <translation>Intensité spéculaire</translation>
+      <translation>Speculatieve intensiteit</translation>
     </message>
 
     <message>
       <source>Specular Light</source>
-      <translation>Lumière spéculaire</translation>
+      <translation>Specifiek licht</translation>
     </message>
 
     <message>
       <source>Specular Lightness</source>
-      <translation>Luminosité spéculaire</translation>
+      <translation>Speculatieve lichtheid</translation>
     </message>
 
     <message>
       <source>Specular Shininess</source>
-      <translation>Brillance spéculaire</translation>
+      <translation>Speculatieve Glanzigheid</translation>
     </message>
 
     <message>
       <source>Specular Size</source>
-      <translation>Taille spéculaire</translation>
+      <translation>Specifiek formaat</translation>
     </message>
 
     <message>
       <source>Speed</source>
-      <translation>Vitesse</translation>
+      <translation>Snelheid</translation>
     </message>
 
     <message>
       <source>Sphere</source>
-      <translation>Sphère</translation>
-    </message>
-
-    <message>
-      <source>Spherize</source>
-      <translation>Sphériser</translation>
+      <translation>Bol</translation>
     </message>
 
     <message>
       <source>Spiral</source>
-      <translation>Spirale</translation>
+      <translation>Spiraal</translation>
     </message>
 
     <message>
       <source>Spiral RGB</source>
-      <translation>Spirale RGB</translation>
-    </message>
-
-    <message>
-      <source>Spline B2</source>
-      <translation>Ligne B2</translation>
-    </message>
-
-    <message>
-      <source>Spline B6</source>
-      <translation>Ligne B6</translation>
-    </message>
-
-    <message>
-      <source>Spline Editor</source>
-      <translation>Rédacteur en chef de Spline</translation>
+      <translation>Spiraalvormige RGB</translation>
     </message>
 
     <message>
       <source>Spline Max Angle (deg)</source>
-      <translation>Angle maximal de la cannelure (deg)</translation>
+      <translation>Spline Max Hoek (deg)</translation>
     </message>
 
     <message>
       <source>Spline Max Length (px)</source>
-      <translation>Longueur maximale de la cannelure (px)</translation>
+      <translation>Spline Max Lengte (px)</translation>
     </message>
 
     <message>
       <source>Spline Roundness</source>
-      <translation>Rondeur de la cannelure</translation>
+      <translation>Spline Rondheid</translation>
     </message>
 
     <message>
       <source>Split Base and Detail Output</source>
-      <translation>Base fractionnée et sortie détaillée</translation>
+      <translation>Gesplitste basis en detailuitgang</translation>
     </message>
 
     <message>
       <source>Split Brightness / Colors</source>
-      <translation>Split Brightness / Couleurs</translation>
+      <translation>Split Helderheid / Kleuren</translation>
+    </message>
+
+    <message>
+      <source>Split Details [Alpha]</source>
+      <translation>Gesplitste details [Alpha]</translation>
     </message>
 
     <message>
       <source>Split Details [Gaussian]</source>
-      <translation>Split Details [Gaussian] (en anglais)</translation>
+      <translation>Gesplitste details [Gaussian]</translation>
     </message>
 
     <message>
       <source>Split Details [Wavelets]</source>
-      <translation>Split Details [Wavelets] (en anglais)</translation>
+      <translation>Gesplitste details [Wavelets]</translation>
     </message>
 
     <message>
       <source>Sponge</source>
-      <translation>Eponge</translation>
+      <translation>Spons</translation>
     </message>
 
     <message>
       <source>Spread</source>
-      <translation>Diffuser</translation>
+      <translation>Verspreiden</translation>
     </message>
 
     <message>
       <source>Spread Amount</source>
-      <translation>Montant de l&apos;écart</translation>
+      <translation>Gespreid bedrag</translation>
     </message>
 
     <message>
       <source>Spread Angles</source>
-      <translation>Angles de dispersion</translation>
+      <translation>Verspreidingshoeken</translation>
     </message>
 
     <message>
       <source>Spread Noise Amount</source>
-      <translation>Montant du bruit étalé</translation>
+      <translation>Gespreid geluidsbedrag</translation>
     </message>
 
     <message>
       <source>Spreading</source>
-      <translation>Diffusion</translation>
+      <translation>Verspreiding</translation>
     </message>
 
     <message>
       <source>Spring Morning</source>
-      <translation>Matin de printemps</translation>
+      <translation>Lentemorgen</translation>
     </message>
 
     <message>
       <source>Sprocket 231</source>
-      <translation>Pivot 231</translation>
+      <translation>Tandwiel 231</translation>
     </message>
 
     <message>
       <source>Spy 29</source>
-      <translation>Espion 29</translation>
+      <translation>Spioneren 29</translation>
+    </message>
+
+    <message>
+      <source>Square</source>
+      <translation>Vierkant</translation>
     </message>
 
     <message>
       <source>Square (Inv.)</source>
-      <translation>Carré (Inv.)</translation>
+      <translation>Vierkant (Inv.)</translation>
     </message>
 
     <message>
       <source>Square 1</source>
-      <translation>Carré 1</translation>
+      <translation>Vierkant 1</translation>
     </message>
 
     <message>
       <source>Square 2</source>
-      <translation>Carré 2</translation>
+      <translation>Vierkant 2</translation>
     </message>
 
     <message>
       <source>Square to Circle</source>
-      <translation>Du carré au cercle</translation>
-    </message>
-
-    <message>
-      <source>Squared-Euclidean</source>
-      <translation>Squared-Euclidien</translation>
+      <translation>Vierkant naar Cirkel</translation>
     </message>
 
     <message>
       <source>Squares</source>
-      <translation>Les carrés</translation>
+      <translation>Pleinen</translation>
     </message>
 
     <message>
       <source>Squares (Outline)</source>
-      <translation>Les carrés (Grandes lignes)</translation>
+      <translation>Vierkanten (Overzicht)</translation>
     </message>
 
     <message>
       <source>SRGB Conversion</source>
-      <translation>Conversion SRGB</translation>
+      <translation>SRGB-omzetting</translation>
     </message>
 
     <message>
       <source>Stabilizer</source>
-      <translation>Stabilisateur</translation>
+      <translation>Stabilisator</translation>
     </message>
 
     <message>
       <source>Stained Glass</source>
-      <translation>Vitrail</translation>
+      <translation>Gebrandschilderd glas</translation>
     </message>
 
     <message>
       <source>Stamp</source>
-      <translation>Timbre</translation>
+      <translation>Stempel</translation>
+    </message>
+
+    <message>
+      <source>Standard</source>
+      <translation>Standaard</translation>
     </message>
 
     <message>
       <source>Standard (256)</source>
-      <translation>Norme (256)</translation>
+      <translation>Standaard (256)</translation>
     </message>
 
     <message>
       <source>Standard [No Scan]</source>
-      <translation>Standard [Pas de scan]</translation>
+      <translation>Standaard [Geen scan]</translation>
     </message>
 
     <message>
       <source>Standard Deviation</source>
-      <translation>Écart type</translation>
+      <translation>Standaardafwijking</translation>
+    </message>
+
+    <message>
+      <source>Star</source>
+      <translation>Ster</translation>
     </message>
 
     <message>
       <source>Star: -5*(z^3/3-Z/4)/2</source>
-      <translation>Star : -5*(z^3/3-Z/4)/2</translation>
+      <translation>Ster: -5*(z^3/3-Z/4)/2</translation>
     </message>
 
     <message>
       <source>Stars</source>
-      <translation>Étoiles</translation>
+      <translation>Sterren</translation>
     </message>
 
     <message>
       <source>Stars (Outline)</source>
-      <translation>Etoiles (Grandes lignes)</translation>
+      <translation>Sterren (overzicht)</translation>
     </message>
 
     <message>
       <source>Start Angle</source>
-      <translation>Angle de départ</translation>
+      <translation>Starthoek</translation>
     </message>
 
     <message>
       <source>Start Color</source>
-      <translation>Couleur de départ</translation>
+      <translation>Startkleur</translation>
     </message>
 
     <message>
       <source>Start Frame Number</source>
-      <translation>Numéro de la trame de départ</translation>
+      <translation>Startframenummer</translation>
     </message>
 
     <message>
       <source>Start of Mid-Tones</source>
-      <translation>Début des Mid-Tones</translation>
+      <translation>Begin van de Mid-Tones</translation>
     </message>
 
     <message>
       <source>Starting Angle</source>
-      <translation>Angle de départ</translation>
+      <translation>Starthoek</translation>
     </message>
 
     <message>
       <source>Starting Color</source>
-      <translation>Couleur de départ</translation>
+      <translation>Beginnende kleur</translation>
     </message>
 
     <message>
       <source>Starting Feathering</source>
-      <translation>Commencer le plumage</translation>
+      <translation>Starten met veren</translation>
     </message>
 
     <message>
       <source>Starting Frame</source>
-      <translation>Cadre de départ</translation>
+      <translation>Startframe</translation>
     </message>
 
     <message>
       <source>Starting Level</source>
-      <translation>Niveau de départ</translation>
+      <translation>Beginnend niveau</translation>
     </message>
 
     <message>
       <source>Starting Pattern</source>
-      <translation>Modèle de départ</translation>
+      <translation>Startpatroon</translation>
     </message>
 
     <message>
       <source>Starting Point</source>
-      <translation>Point de départ</translation>
+      <translation>Uitgangspunt</translation>
     </message>
 
     <message>
       <source>Starting Point (%)</source>
-      <translation>Point de départ (%)</translation>
+      <translation>Uitgangspunt (%)</translation>
     </message>
 
     <message>
       <source>Starting Scale (%)</source>
-      <translation>Échelle de départ (%)</translation>
+      <translation>Beginschaal (%)</translation>
     </message>
 
     <message>
       <source>Starting Value</source>
-      <translation>Valeur de départ</translation>
+      <translation>Beginwaarde</translation>
     </message>
 
     <message>
       <source>Stationary Frames</source>
-      <translation>Cadres fixes</translation>
+      <translation>Stationaire Frames</translation>
+    </message>
+
+    <message>
+      <source>Std Angle (deg.)</source>
+      <translation>Std Hoek (deg.)</translation>
     </message>
 
     <message>
       <source>Std Branching</source>
-      <translation>Branche Std</translation>
+      <translation>Std Vertakking</translation>
     </message>
 
     <message>
       <source>Std Length Factor (%)</source>
-      <translation>Facteur de longueur de la norme (%)</translation>
+      <translation>Std Lengte Factor (%)</translation>
     </message>
 
     <message>
       <source>Std Thickness Factor (%)</source>
-      <translation>Facteur d&apos;épaisseur de la norme (%)</translation>
-    </message>
-
-    <message>
-      <source>Stencil</source>
-      <translation>Pochoir</translation>
+      <translation>Std-diktefactor (%)</translation>
     </message>
 
     <message>
       <source>Stencil Type</source>
-      <translation>Type de pochoir</translation>
+      <translation>Sjabloontype</translation>
     </message>
 
     <message>
       <source>Step</source>
-      <translation>Étape</translation>
+      <translation>Stap</translation>
     </message>
 
     <message>
       <source>Step (%)</source>
-      <translation>Étape (%)</translation>
+      <translation>Stap (%)</translation>
     </message>
 
     <message>
       <source>Steps</source>
-      <translation>Étapes</translation>
+      <translation>Stappen</translation>
     </message>
 
     <message>
       <source>Stereo Image</source>
-      <translation>Image stéréo</translation>
+      <translation>Stereobeeld</translation>
     </message>
 
     <message>
       <source>Stereo Window Position</source>
-      <translation>Position de la fenêtre stéréo</translation>
+      <translation>Stereo Venster Positie</translation>
     </message>
 
     <message>
       <source>Stereographic Projection</source>
-      <translation>Projection stéréographique</translation>
+      <translation>Stereografische projectie</translation>
     </message>
 
     <message>
       <source>Stereoscopic Image Alignment</source>
-      <translation>Alignement des images stéréoscopiques</translation>
+      <translation>Stereoscopische beelduitlijning</translation>
     </message>
 
     <message>
       <source>Stereoscopic Window Position</source>
-      <translation>Position de la fenêtre stéréoscopique</translation>
+      <translation>Stereoscopische vensterpositie</translation>
     </message>
 
     <message>
       <source>Straight</source>
-      <translation>Tout droit</translation>
-    </message>
-
-    <message>
-      <source>Strands</source>
-      <translation>Volets</translation>
+      <translation>Rechtstreeks</translation>
     </message>
 
     <message>
       <source>Street</source>
-      <translation>Rue</translation>
+      <translation>Straat</translation>
     </message>
 
     <message>
       <source>Strength</source>
-      <translation>Force</translation>
+      <translation>Sterkte</translation>
     </message>
 
     <message>
       <source>Strength (%)</source>
-      <translation>Force (%)</translation>
+      <translation>Sterkte (%)</translation>
     </message>
 
     <message>
       <source>Strength Effect</source>
-      <translation>Effet de force</translation>
+      <translation>Sterkte-effect</translation>
     </message>
 
     <message>
       <source>Strength Highlights</source>
-      <translation>Points forts</translation>
+      <translation>Sterkte Highlights</translation>
     </message>
 
     <message>
       <source>Strength Midtones</source>
-      <translation>La force des tons moyens</translation>
+      <translation>Kracht Midtonen</translation>
     </message>
 
     <message>
       <source>Strength Shadows</source>
-      <translation>Les ombres de la force</translation>
+      <translation>Kracht Schaduwen</translation>
     </message>
 
     <message>
       <source>Stretch</source>
-      <translation>Étendre</translation>
+      <translation>Rekken</translation>
     </message>
 
     <message>
       <source>Stretch Colors</source>
-      <translation>Couleurs extensibles</translation>
+      <translation>Stretch Kleuren</translation>
     </message>
 
     <message>
       <source>Stretch Contrast</source>
-      <translation>Étendre le contraste</translation>
+      <translation>Rekcontrast</translation>
     </message>
 
     <message>
       <source>Stretch Factor</source>
-      <translation>Facteur d&apos;allongement</translation>
-    </message>
-
-    <message>
-      <source>Strip</source>
-      <translation>Bandeau</translation>
+      <translation>Stretchfactor</translation>
     </message>
 
     <message>
       <source>Stripe Orientation</source>
-      <translation>Orientation des bandes</translation>
+      <translation>Streep Oriëntatie</translation>
     </message>
 
     <message>
       <source>Stroke</source>
-      <translation>AVC</translation>
+      <translation>Slag</translation>
     </message>
 
     <message>
       <source>Stroke Angle</source>
-      <translation>Angle de course</translation>
+      <translation>Slaghoek</translation>
     </message>
 
     <message>
       <source>Stroke Length</source>
-      <translation>Longueur de la course</translation>
+      <translation>Slaglengte</translation>
     </message>
 
     <message>
       <source>Stroke Strength</source>
-      <translation>La force de l&apos;AVC</translation>
+      <translation>Slagkracht</translation>
     </message>
 
     <message>
       <source>Strong</source>
-      <translation>Fort</translation>
+      <translation>Sterke</translation>
     </message>
 
     <message>
       <source>Structure Smoothness</source>
-      <translation>Lissage de la structure</translation>
+      <translation>Structuur Gladheid</translation>
+    </message>
+
+    <message>
+      <source>Style</source>
+      <translation>Stijl</translation>
     </message>
 
     <message>
       <source>Style Variations</source>
-      <translation>Variations de style</translation>
+      <translation>Stijlvariaties</translation>
     </message>
 
     <message>
-      <source>Stylize</source>
-      <translation>Styliser</translation>
+      <source>Subdivisions</source>
+      <translation>Onderverdelingen</translation>
     </message>
 
     <message>
       <source>Subpixel Interpolation</source>
-      <translation>Interpolation des sous-pixels</translation>
+      <translation>Subpixelinterpolatie</translation>
     </message>
 
     <message>
       <source>Subpixel Level</source>
-      <translation>Niveau des sous-pixels</translation>
+      <translation>Subpixelniveau</translation>
     </message>
 
     <message>
       <source>Subsampling (%)</source>
-      <translation>Sous-échantillonnage (%)</translation>
+      <translation>Subbemonstering (%)</translation>
     </message>
 
     <message>
       <source>Subtle Blue</source>
-      <translation>Bleu subtil</translation>
+      <translation>Subtiel blauw</translation>
     </message>
 
     <message>
       <source>Subtle Green</source>
-      <translation>Subtil Vert</translation>
+      <translation>Subtiel groen</translation>
     </message>
 
     <message>
       <source>Subtle Yellow</source>
-      <translation>Jaune subtil</translation>
+      <translation>Subtiel Geel</translation>
     </message>
 
     <message>
       <source>Subtract</source>
-      <translation>Soustraire</translation>
+      <translation>Aftrekken</translation>
     </message>
 
     <message>
       <source>Subtractive</source>
-      <translation>Soustractif</translation>
+      <translation>Subtractief</translation>
     </message>
 
     <message>
       <source>Summer</source>
-      <translation>Été</translation>
+      <translation>Zomer</translation>
     </message>
 
     <message>
       <source>Summer (alt)</source>
-      <translation>Été (alt)</translation>
+      <translation>Zomer (alt)</translation>
+    </message>
+
+    <message>
+      <source>Sunny</source>
+      <translation>Zonnig</translation>
     </message>
 
     <message>
       <source>Sunny (alt)</source>
-      <translation>Ensoleillé (alt)</translation>
+      <translation>Zonnig (alt)</translation>
     </message>
 
     <message>
       <source>Sunny (rich)</source>
-      <translation>Ensoleillé (riche)</translation>
+      <translation>Zonnig (rijk)</translation>
     </message>
 
     <message>
       <source>Sunny (warm)</source>
-      <translation>Ensoleillé (chaud)</translation>
-    </message>
-
-    <message>
-      <source>Super Warm</source>
-      <translation>Super chaud</translation>
+      <translation>Zonnig (warm)</translation>
     </message>
 
     <message>
       <source>Super Warm (rich)</source>
-      <translation>Super chaud (riche)</translation>
+      <translation>Super Warm (rijk)</translation>
+    </message>
+
+    <message>
+      <source>Superformula</source>
+      <translation>Superformule</translation>
     </message>
 
     <message>
       <source>Superimpose with Original?</source>
-      <translation>Superposer avec l&apos;original ?</translation>
+      <translation>Overstelpen met Origineel?</translation>
     </message>
 
     <message>
       <source>Surface Disturbance</source>
-      <translation>Perturbation de surface</translation>
+      <translation>Oppervlakteverstoring</translation>
     </message>
 
     <message>
       <source>Surface Disturbance Multiplier</source>
-      <translation>Multiplicateur de perturbations de surface</translation>
+      <translation>Oppervlakteverstoring Vermenigvuldiger</translation>
     </message>
 
     <message>
       <source>Swan</source>
-      <translation>Cygne</translation>
-    </message>
-
-    <message>
-      <source>Swap</source>
-      <translation>Échange</translation>
+      <translation>Zwaan</translation>
     </message>
 
     <message>
       <source>Swap Colors</source>
-      <translation>Échanger les couleurs</translation>
+      <translation>Swap Kleuren</translation>
     </message>
 
     <message>
       <source>Swap Layers</source>
-      <translation>Échange de couches</translation>
+      <translation>Swap Lagen</translation>
     </message>
 
     <message>
       <source>Swap Radius / Angle</source>
-      <translation>Rayon / angle d&apos;échange</translation>
+      <translation>Swap Radius / Hoek</translation>
     </message>
 
     <message>
       <source>Swap Sides</source>
-      <translation>Échanger les côtés</translation>
+      <translation>Swap Kanten</translation>
     </message>
 
     <message>
       <source>Sweet Bubblegum</source>
-      <translation>Bubblegum sucré</translation>
+      <translation>Zoete Bubblegum</translation>
     </message>
 
     <message>
       <source>Sweet Gelatto</source>
-      <translation>Gelatto sucré</translation>
+      <translation>Zoete gelatoeage</translation>
     </message>
 
     <message>
       <source>Symmetric 2D Shape</source>
-      <translation>Forme symétrique 2D</translation>
+      <translation>Symmetrische 2D-vorm</translation>
+    </message>
+
+    <message>
+      <source>Symmetrize</source>
+      <translation>Symmetrie</translation>
     </message>
 
     <message>
       <source>Symmetry</source>
-      <translation>Symétrie</translation>
+      <translation>Symmetrie</translation>
     </message>
 
     <message>
       <source>Symmetry Sides</source>
-      <translation>Les côtés de la symétrie</translation>
+      <translation>Symmetrie zijden</translation>
     </message>
 
     <message>
       <source>Synthesis Scale</source>
-      <translation>Échelle de synthèse</translation>
-    </message>
-
-    <message>
-      <source>Taiga</source>
-      <translation>Taïga</translation>
+      <translation>Syntheseschaal</translation>
     </message>
 
     <message>
       <source>Tangent Radius</source>
-      <translation>Rayon tangent</translation>
+      <translation>Raaklijnstraal</translation>
     </message>
 
     <message>
       <source>Target Color #1</source>
-      <translation>Couleur cible #1</translation>
+      <translation>Doelwitkleur #1</translation>
     </message>
 
     <message>
       <source>Target Color #10</source>
-      <translation>Couleur cible #10</translation>
+      <translation>Doelwitkleur #10</translation>
     </message>
 
     <message>
       <source>Target Color #11</source>
-      <translation>Couleur cible #11</translation>
+      <translation>Doelwitkleur #11</translation>
     </message>
 
     <message>
       <source>Target Color #12</source>
-      <translation>Couleur cible #12</translation>
+      <translation>Doelwitkleur #12</translation>
     </message>
 
     <message>
       <source>Target Color #13</source>
-      <translation>Couleur cible #13</translation>
+      <translation>Doelwitkleur #13</translation>
     </message>
 
     <message>
       <source>Target Color #14</source>
-      <translation>Couleur cible #14</translation>
+      <translation>Doelwitkleur #14</translation>
     </message>
 
     <message>
       <source>Target Color #15</source>
-      <translation>Couleur cible #15</translation>
+      <translation>Doelwitkleur #15</translation>
     </message>
 
     <message>
       <source>Target Color #16</source>
-      <translation>Couleur cible #16</translation>
+      <translation>Doelwitkleur #16</translation>
     </message>
 
     <message>
       <source>Target Color #17</source>
-      <translation>Couleur cible #17</translation>
+      <translation>Doelwitkleur #17</translation>
     </message>
 
     <message>
       <source>Target Color #18</source>
-      <translation>Couleur cible #18</translation>
+      <translation>Doelwitkleur #18</translation>
     </message>
 
     <message>
       <source>Target Color #19</source>
-      <translation>Couleur cible #19</translation>
+      <translation>Doelwitkleur #19</translation>
     </message>
 
     <message>
       <source>Target Color #2</source>
-      <translation>Couleur cible #2</translation>
+      <translation>Doelwitkleur #2</translation>
     </message>
 
     <message>
       <source>Target Color #20</source>
-      <translation>Couleur cible #20</translation>
+      <translation>Doelwitkleur #20</translation>
     </message>
 
     <message>
       <source>Target Color #21</source>
-      <translation>Couleur cible #21</translation>
+      <translation>Doelwitkleur #21</translation>
     </message>
 
     <message>
       <source>Target Color #22</source>
-      <translation>Couleur cible #22</translation>
+      <translation>Doelwitkleur #22</translation>
     </message>
 
     <message>
       <source>Target Color #23</source>
-      <translation>Couleur cible #23</translation>
+      <translation>Doelwitkleur #23</translation>
     </message>
 
     <message>
       <source>Target Color #24</source>
-      <translation>Couleur cible #24</translation>
+      <translation>Doelwitkleur #24</translation>
     </message>
 
     <message>
       <source>Target Color #3</source>
-      <translation>Couleur cible #3</translation>
+      <translation>Doelwitkleur #3</translation>
     </message>
 
     <message>
       <source>Target Color #4</source>
-      <translation>Couleur cible #4</translation>
+      <translation>Doelwitkleur #4</translation>
     </message>
 
     <message>
       <source>Target Color #5</source>
-      <translation>Couleur cible #5</translation>
+      <translation>Doelwitkleur #5</translation>
     </message>
 
     <message>
       <source>Target Color #6</source>
-      <translation>Couleur cible #6</translation>
+      <translation>Doelwitkleur #6</translation>
     </message>
 
     <message>
       <source>Target Color #7</source>
-      <translation>Couleur cible #7</translation>
+      <translation>Doelwitkleur #7</translation>
     </message>
 
     <message>
       <source>Target Color #8</source>
-      <translation>Couleur cible #8</translation>
+      <translation>Doelwitkleur #8</translation>
     </message>
 
     <message>
       <source>Target Color #9</source>
-      <translation>Couleur cible #9</translation>
-    </message>
-
-    <message>
-      <source>Teal Fade</source>
-      <translation>Fondu de sarcelle</translation>
+      <translation>Doelwitkleur #9</translation>
     </message>
 
     <message>
       <source>Teal Magenta Gold</source>
-      <translation>Sarcelle d&apos;or magenta</translation>
-    </message>
-
-    <message>
-      <source>Teal Moonlight</source>
-      <translation>Sarcelle Clair de Lune</translation>
+      <translation>Teal Magenta Goud</translation>
     </message>
 
     <message>
       <source>Teal Orange</source>
-      <translation>Sarcelle d&apos;Orange</translation>
+      <translation>Teal Oranje</translation>
+    </message>
+
+    <message>
+      <source>Teal Orange 1</source>
+      <translation>Teal Oranje 1</translation>
+    </message>
+
+    <message>
+      <source>Teal Orange 2</source>
+      <translation>Teal Oranje 2</translation>
+    </message>
+
+    <message>
+      <source>Teal Orange 3</source>
+      <translation>Teal Oranje 3</translation>
     </message>
 
     <message>
       <source>TechnicalFX - Backlight Filter</source>
-      <translation>TechnicalFX - Filtre de rétro-éclairage</translation>
+      <translation>TechnicalFX - Achtergrondverlichtingsfilter</translation>
     </message>
 
     <message>
       <source>Temperature Balance</source>
-      <translation>Équilibre des températures</translation>
+      <translation>Temperatuursaldo</translation>
     </message>
 
     <message>
       <source>Ten Layers</source>
-      <translation>Dix couches</translation>
+      <translation>Tien lagen</translation>
     </message>
 
     <message>
       <source>Tends to Be Square</source>
-      <translation>Tendance à être carré</translation>
+      <translation>De neiging om vierkant te zijn</translation>
     </message>
 
     <message>
       <source>Tension Green 1</source>
-      <translation>Tension Vert 1</translation>
+      <translation>Spanning Groen 1</translation>
     </message>
 
     <message>
       <source>Tension Green 2</source>
-      <translation>Tension Vert 2</translation>
+      <translation>Spanning Groen 2</translation>
     </message>
 
     <message>
       <source>Tension Green 3</source>
-      <translation>Vert tension 3</translation>
+      <translation>Spanning Groen 3</translation>
     </message>
 
     <message>
       <source>Tension Green 4</source>
-      <translation>Tension Vert 4</translation>
+      <translation>Spanning Groen 4</translation>
     </message>
 
     <message>
       <source>Tensor Smoothness</source>
-      <translation>Lissage du tenseur</translation>
+      <translation>Tensor Gladheid</translation>
     </message>
 
     <message>
       <source>Tertiary Factor</source>
-      <translation>Facteur tertiaire</translation>
+      <translation>Tertiaire factor</translation>
     </message>
 
     <message>
       <source>Tertiary Gamma</source>
-      <translation>Tertiaire Gamma</translation>
+      <translation>Tertiair Gamma</translation>
     </message>
 
     <message>
       <source>Tertiary Shift</source>
-      <translation>Tertiaire</translation>
+      <translation>Tertiaire verschuiving</translation>
     </message>
 
     <message>
       <source>Tertiary Twist</source>
-      <translation>Tendance tertiaire</translation>
+      <translation>Tertiaire Twist</translation>
     </message>
 
     <message>
       <source>Text</source>
-      <translation>Texte</translation>
+      <translation>Tekst</translation>
+    </message>
+
+    <message>
+      <source>Texture</source>
+      <translation>Textuur</translation>
     </message>
 
     <message>
       <source>Texture Enhance</source>
-      <translation>Amélioration de la texture</translation>
+      <translation>Textuurverbetering</translation>
     </message>
 
     <message>
       <source>Textured Glass</source>
-      <translation>Verre texturé</translation>
+      <translation>Getextureerd glas</translation>
     </message>
 
     <message>
       <source>The Game of Life</source>
-      <translation>Le jeu de la vie</translation>
+      <translation>Het spel van het leven</translation>
     </message>
 
     <message>
       <source>The Matrices</source>
-      <translation>Les matrices</translation>
+      <translation>De Matrices</translation>
     </message>
 
     <message>
       <source>Thickness</source>
-      <translation>Épaisseur</translation>
+      <translation>Dikte</translation>
     </message>
 
     <message>
       <source>Thickness (%)</source>
-      <translation>Épaisseur (%)</translation>
+      <translation>Dikte (%)</translation>
     </message>
 
     <message>
       <source>Thickness (px)</source>
-      <translation>Épaisseur (px)</translation>
+      <translation>Dikte (px)</translation>
     </message>
 
     <message>
       <source>Thickness Factor</source>
-      <translation>Facteur d&apos;épaisseur</translation>
+      <translation>Diktefactor</translation>
     </message>
 
     <message>
       <source>Thin Edges</source>
-      <translation>Bords amincis</translation>
+      <translation>Dunne randen</translation>
     </message>
 
     <message>
       <source>Thin Separators</source>
-      <translation>Séparateurs minces</translation>
+      <translation>Dunne separatoren</translation>
     </message>
 
     <message>
       <source>Thinness</source>
-      <translation>Minceur</translation>
+      <translation>Dunheid</translation>
     </message>
 
     <message>
       <source>Thinning</source>
-      <translation>Éclaircissement</translation>
+      <translation>Verdunning</translation>
     </message>
 
     <message>
       <source>Thinning (Slow)</source>
-      <translation>Éclaircissement (Lent)</translation>
+      <translation>Uitdunnen (Langzaam)</translation>
     </message>
 
     <message>
       <source>Three Layers</source>
-      <translation>Trois couches</translation>
+      <translation>Drie lagen</translation>
     </message>
 
     <message>
       <source>Threshold</source>
-      <translation>Seuil</translation>
+      <translation>Drempelwaarde</translation>
     </message>
 
     <message>
       <source>Threshold (%)</source>
-      <translation>Seuil (%)</translation>
+      <translation>Drempel (%)</translation>
+    </message>
+
+    <message>
+      <source>Threshold Etch</source>
+      <translation>Drempelwaarde-etch</translation>
     </message>
 
     <message>
       <source>Threshold High</source>
-      <translation>Seuil élevé</translation>
+      <translation>Drempelwaarde hoog</translation>
     </message>
 
     <message>
       <source>Threshold Low</source>
-      <translation>Seuil bas</translation>
+      <translation>Drempel Laag</translation>
     </message>
 
     <message>
       <source>Threshold Max</source>
-      <translation>Seuil Max</translation>
+      <translation>Drempel Max.</translation>
     </message>
 
     <message>
       <source>Threshold Mid</source>
-      <translation>Seuil Mid</translation>
+      <translation>Drempelwaarde Midden</translation>
     </message>
 
     <message>
       <source>Threshold On</source>
-      <translation>Seuil sur</translation>
+      <translation>Drempelwaarde op</translation>
     </message>
 
     <message>
       <source>Thumbnail Size</source>
-      <translation>Taille des vignettes</translation>
+      <translation>Miniatuurafmeting</translation>
     </message>
 
     <message>
       <source>Tiger</source>
-      <translation>Tigre</translation>
+      <translation>Tijger</translation>
     </message>
 
     <message>
       <source>Tile Poles</source>
-      <translation>Pôles de tuiles</translation>
+      <translation>Tegelpalen</translation>
     </message>
 
     <message>
       <source>Tile Size</source>
-      <translation>Taille des carreaux</translation>
+      <translation>Tegelgrootte</translation>
     </message>
 
     <message>
       <source>Tileable Rotation</source>
-      <translation>Rotation des tuiles</translation>
+      <translation>Tegelvormige rotatie</translation>
     </message>
 
     <message>
       <source>Tiled Isolation</source>
-      <translation>Isolation par le carrelage</translation>
+      <translation>Betegelde Isolatie</translation>
     </message>
 
     <message>
       <source>Tiled Normalization</source>
-      <translation>Normalisation des tuiles</translation>
+      <translation>Betegelde Normalisatie</translation>
     </message>
 
     <message>
       <source>Tiled Parameterization</source>
-      <translation>Paramétrage en mosaïque</translation>
+      <translation>Betegelde parametrering</translation>
     </message>
 
     <message>
       <source>Tiled Preview</source>
-      <translation>Avant-première carrelée</translation>
+      <translation>Betegelde preview</translation>
     </message>
 
     <message>
       <source>Tiled Random Shifts</source>
-      <translation>Des changements aléatoires</translation>
+      <translation>Betegelde willekeurige verschuivingen</translation>
     </message>
 
     <message>
       <source>Tiled Rotation</source>
-      <translation>Rotation des carreaux</translation>
+      <translation>Betegelde rotatie</translation>
     </message>
 
     <message>
       <source>Tiles</source>
-      <translation>Carreaux</translation>
+      <translation>Tegels</translation>
     </message>
 
     <message>
       <source>Tiles to Layers</source>
-      <translation>Des tuiles aux couches</translation>
+      <translation>Tegels naar lagen</translation>
     </message>
 
     <message>
       <source>Tilt</source>
-      <translation>Inclinaison</translation>
+      <translation>Kantelen</translation>
     </message>
 
     <message>
       <source>Time</source>
-      <translation>Heure</translation>
+      <translation>Tijd</translation>
     </message>
 
     <message>
       <source>Time Step</source>
-      <translation>Pas de temps</translation>
+      <translation>Tijd Stap</translation>
     </message>
 
     <message>
       <source>Timed Image</source>
-      <translation>Image en temps réel</translation>
+      <translation>Getimede afbeelding</translation>
+    </message>
+
+    <message>
+      <source>Tiny</source>
+      <translation>Kleine</translation>
     </message>
 
     <message>
       <source>To Equirectangular</source>
-      <translation>Vers Equirectangulaire</translation>
+      <translation>Naar Equirectangular</translation>
     </message>
 
     <message>
       <source>To Nadir / Zenith</source>
-      <translation>Vers le Nadir / Zénith</translation>
+      <translation>Naar Nadir / Zenith</translation>
     </message>
 
     <message>
       <source>Toasted Garden</source>
-      <translation>Jardin grillé</translation>
+      <translation>Geroosterde Tuin</translation>
     </message>
 
     <message>
       <source>Toggle to View Base Image</source>
-      <translation>Basculer pour voir l&apos;image de la base</translation>
+      <translation>Omschakelen naar de basisafbeelding</translation>
     </message>
 
     <message>
       <source>Tolerance</source>
-      <translation>Tolérance</translation>
+      <translation>Tolerantie</translation>
     </message>
 
     <message>
       <source>Tolerance to Gaps</source>
-      <translation>Tolérance aux écarts</translation>
+      <translation>Tolerantie voor gaten</translation>
     </message>
 
     <message>
       <source>Tonal Bandwidth</source>
-      <translation>Bande passante tonale</translation>
+      <translation>Tonale bandbreedte</translation>
+    </message>
+
+    <message>
+      <source>Tone Blur</source>
+      <translation>Toonvervaging</translation>
     </message>
 
     <message>
       <source>Tone Enhance</source>
-      <translation>Amélioration de la tonalité</translation>
+      <translation>Toonvergroting</translation>
+    </message>
+
+    <message>
+      <source>Tone Gamma</source>
+      <translation>Toon gamma</translation>
     </message>
 
     <message>
       <source>Tone Mapping</source>
-      <translation>Cartographie sonore</translation>
+      <translation>Toonkaarten</translation>
+    </message>
+
+    <message>
+      <source>Tone Mapping (%)</source>
+      <translation>Toonhoogtebepaling (%)</translation>
     </message>
 
     <message>
       <source>Tone Mapping [Fast]</source>
-      <translation>Cartographie sonore [rapide]</translation>
+      <translation>Toonkaarten [Snel]</translation>
     </message>
 
     <message>
       <source>Tone Mapping Fast</source>
-      <translation>Cartographie sonore rapide</translation>
+      <translation>Toonkaarten snel</translation>
+    </message>
+
+    <message>
+      <source>Tone Mapping Soft</source>
+      <translation>Toonhoogte Zacht</translation>
     </message>
 
     <message>
       <source>Tone Presets</source>
-      <translation>Presets de tonalité</translation>
+      <translation>Toon Toon Toonregeling</translation>
     </message>
 
     <message>
       <source>Tone Threshold</source>
-      <translation>Seuil de tonalité</translation>
+      <translation>Toongrens</translation>
     </message>
 
     <message>
       <source>Tones Range</source>
-      <translation>Gamme de tonalités</translation>
+      <translation>Toonbereik</translation>
     </message>
 
     <message>
       <source>Tones Smoothness</source>
-      <translation>Tonalités Douceur</translation>
+      <translation>Tonen Gladheid</translation>
     </message>
 
     <message>
       <source>Tones to Layers</source>
-      <translation>Tonalités aux couches</translation>
+      <translation>Tonen naar lagen</translation>
     </message>
 
     <message>
       <source>Top Layer</source>
-      <translation>Couche supérieure</translation>
+      <translation>Bovenste laag</translation>
     </message>
 
     <message>
       <source>Top Left</source>
-      <translation>En haut à gauche</translation>
+      <translation>Linksboven</translation>
     </message>
 
     <message>
       <source>Top Right</source>
-      <translation>En haut à droite</translation>
-    </message>
-
-    <message>
-      <source>Top-Left Vertex (%)</source>
-      <translation>Sommet supérieur gauche (%)</translation>
+      <translation>Rechtsboven</translation>
     </message>
 
     <message>
       <source>Top-Right Vertex (%)</source>
-      <translation>Vertex supérieur droit (%)</translation>
+      <translation>Top-rechtse hoek (%)</translation>
     </message>
 
     <message>
       <source>Total Layers</source>
-      <translation>Total des couches</translation>
+      <translation>Totaal aantal lagen</translation>
     </message>
 
     <message>
       <source>Total Variation</source>
-      <translation>Variation totale</translation>
+      <translation>Totale variatie</translation>
     </message>
 
     <message>
       <source>Transfer Colors [Histogram]</source>
-      <translation>Couleurs de transfert [Histogramme]</translation>
+      <translation>Overdrachtskleuren [Histogram]</translation>
     </message>
 
     <message>
       <source>Transfer Colors [Patch-Based]</source>
-      <translation>Transfert de couleurs [Patch-Based] (en anglais)</translation>
+      <translation>Overdrachtskleuren [Patch-Based]</translation>
     </message>
 
     <message>
       <source>Transfer Colors [PCA]</source>
-      <translation>Couleurs de transfert [PCA]</translation>
+      <translation>Overdrachtskleuren [PCA]</translation>
     </message>
 
     <message>
       <source>Transfer Colors [Variational]</source>
-      <translation>Couleurs de transfert [Variable]</translation>
+      <translation>Overdrachtskleuren [Variant]</translation>
     </message>
 
     <message>
       <source>Transform</source>
-      <translation>Transformer</translation>
+      <translation>Transformeer</translation>
     </message>
 
     <message>
       <source>Transition Map</source>
-      <translation>Carte de transition</translation>
+      <translation>Overgangskaart</translation>
     </message>
 
     <message>
       <source>Transition Shape</source>
-      <translation>Forme de la transition</translation>
+      <translation>Overgangsvorm</translation>
     </message>
 
     <message>
       <source>Transition Smoothness</source>
-      <translation>Transition en douceur</translation>
+      <translation>Overgangssoepelheid</translation>
     </message>
 
     <message>
       <source>Transmittance Map</source>
-      <translation>Carte de transmission</translation>
+      <translation>Overdrachtskaart</translation>
     </message>
 
     <message>
       <source>Transparency</source>
-      <translation>Transparence</translation>
+      <translation>Transparantie</translation>
+    </message>
+
+    <message>
+      <source>Transparent</source>
+      <translation>Transparant</translation>
     </message>
 
     <message>
       <source>Transparent Background</source>
-      <translation>Un fond transparent</translation>
+      <translation>Transparante achtergrond</translation>
     </message>
 
     <message>
       <source>Transparent Black &amp; White</source>
-      <translation>Noir et blanc transparent</translation>
+      <translation>Transparant zwart-wit</translation>
     </message>
 
     <message>
       <source>Transparent Color</source>
-      <translation>Couleur transparente</translation>
+      <translation>Transparante kleur</translation>
     </message>
 
     <message>
       <source>Transparent on Black</source>
-      <translation>Transparent sur le noir</translation>
+      <translation>Transparant op zwart</translation>
     </message>
 
     <message>
       <source>Transparent on White</source>
-      <translation>Transparent sur le blanc</translation>
+      <translation>Transparant op Wit</translation>
     </message>
 
     <message>
       <source>Transparent Skin</source>
-      <translation>Peau transparente</translation>
+      <translation>Transparante huid</translation>
     </message>
 
     <message>
       <source>Tree</source>
-      <translation>Arbre</translation>
+      <translation>Boom</translation>
+    </message>
+
+    <message>
+      <source>Triangle</source>
+      <translation>Driehoek</translation>
+    </message>
+
+    <message>
+      <source>Triangles</source>
+      <translation>Driehoeken</translation>
     </message>
 
     <message>
       <source>Triangles (Outline)</source>
-      <translation>Triangles (Grandes lignes)</translation>
+      <translation>Driehoeken (overzicht)</translation>
     </message>
 
     <message>
       <source>Triangular Ha</source>
-      <translation>Ha triangulaire</translation>
+      <translation>Driehoekige Ha</translation>
     </message>
 
     <message>
       <source>Triangular Hb</source>
-      <translation>Hb triangulaire</translation>
+      <translation>Driehoekig Hb</translation>
     </message>
 
     <message>
       <source>Triangular Va</source>
-      <translation>Va triangulaire</translation>
+      <translation>Driehoekige Va</translation>
     </message>
 
     <message>
       <source>Triangular Vb</source>
-      <translation>Triangulaire Vb</translation>
+      <translation>Driehoekig Vb</translation>
     </message>
 
     <message>
@@ -15885,1028 +16670,1028 @@
     </message>
 
     <message>
+      <source>True Colors 8</source>
+      <translation>Ware kleuren 8</translation>
+    </message>
+
+    <message>
       <source>Trunk Color</source>
-      <translation>Couleur du tronc</translation>
+      <translation>Boomstamkleur</translation>
     </message>
 
     <message>
       <source>Trunk Opacity (%)</source>
-      <translation>Opacité du tronc (%)</translation>
+      <translation>Boomstamopaciteit (%)</translation>
     </message>
 
     <message>
       <source>Trunks</source>
-      <translation>Malles</translation>
+      <translation>Koffers</translation>
     </message>
 
     <message>
       <source>Tulips</source>
-      <translation>Tulipes</translation>
+      <translation>Tulpen</translation>
     </message>
 
     <message>
       <source>Turbulence</source>
-      <translation>Turbulences</translation>
+      <translation>Turbulentie</translation>
+    </message>
+
+    <message>
+      <source>Turbulence 2</source>
+      <translation>Turbulentie 2</translation>
     </message>
 
     <message>
       <source>Turbulent Halftone</source>
-      <translation>Demi-teinte turbulente</translation>
+      <translation>Turbulente Halftoon</translation>
     </message>
 
     <message>
       <source>Turn on Rotate and Twirl</source>
-      <translation>Activer la fonction Rotate and Twirl</translation>
+      <translation>Aanzetten Draaien en Twirlennen</translation>
     </message>
 
     <message>
       <source>Twisted Rays</source>
-      <translation>Rayons tordus</translation>
+      <translation>Gedraaide stralen</translation>
     </message>
 
     <message>
       <source>Two Layers</source>
-      <translation>Deux couches</translation>
+      <translation>Twee lagen</translation>
     </message>
 
     <message>
       <source>Two Threads</source>
-      <translation>Deux fils</translation>
+      <translation>Twee draden</translation>
     </message>
 
     <message>
-      <source>Type</source>
-      <translation>Tapez</translation>
+      <source>Two-By-Two</source>
+      <translation>Twee-bij-twee</translation>
     </message>
 
     <message>
       <source>Type Snowflake</source>
-      <translation>Type Flocon de neige</translation>
-    </message>
-
-    <message>
-      <source>Ultra Water</source>
-      <translation>Ultra Eau</translation>
+      <translation>Type Sneeuwvlokje</translation>
     </message>
 
     <message>
       <source>Unaligned Images</source>
-      <translation>Images non alignées</translation>
+      <translation>Onafgestemde beelden</translation>
     </message>
 
     <message>
       <source>Undeniable</source>
-      <translation>Indéniablement</translation>
+      <translation>Onmiskenbaar</translation>
     </message>
 
     <message>
       <source>Undeniable 2</source>
-      <translation>Indéniable 2</translation>
+      <translation>Onmiskenbaar 2</translation>
     </message>
 
     <message>
       <source>Underwater</source>
-      <translation>Sous l&apos;eau</translation>
+      <translation>Onderwater</translation>
     </message>
 
     <message>
       <source>Undo Anaglyph</source>
-      <translation>Annuler l&apos;anaglyphe</translation>
-    </message>
-
-    <message>
-      <source>Uniform</source>
-      <translation>Uniforme</translation>
+      <translation>Anaglyph ongedaan maken</translation>
     </message>
 
     <message>
       <source>Unknown</source>
-      <translation>Inconnu</translation>
+      <translation>Onbekend</translation>
+    </message>
+
+    <message>
+      <source>Unpurple</source>
+      <translation>Onzuivere</translation>
     </message>
 
     <message>
       <source>Unsharp Mask</source>
-      <translation>Masque flou</translation>
+      <translation>Onscherp Masker</translation>
     </message>
 
     <message>
-      <source>Unstrip</source>
-      <translation>Détacher</translation>
+      <source>Untwist</source>
+      <translation>Ontwijken</translation>
     </message>
 
     <message>
       <source>Up-Left</source>
-      <translation>En haut à gauche</translation>
+      <translation>Up-Links</translation>
     </message>
 
     <message>
       <source>Up-Right</source>
-      <translation>En haut à droite</translation>
+      <translation>Rechtsboven</translation>
     </message>
 
     <message>
       <source>Upper Layer Is the Top Layer for All Blends</source>
-      <translation>La couche supérieure est la couche supérieure pour tous les mélanges</translation>
+      <translation>Bovenste laag is de bovenste laag voor alle mengsels</translation>
     </message>
 
     <message>
       <source>Upper Side Orientation</source>
-      <translation>Orientation de la face supérieure</translation>
+      <translation>Bovenzijde Oriëntatie</translation>
     </message>
 
     <message>
       <source>Uppercase Letters</source>
-      <translation>Lettres majuscules</translation>
-    </message>
-
-    <message>
-      <source>Upscale [DCCI2x]</source>
-      <translation>Haut de gamme [DCCI2x]</translation>
+      <translation>Hoofdletters</translation>
     </message>
 
     <message>
       <source>Upscale [Diffusion]</source>
-      <translation>Haut de gamme [Diffusion]</translation>
-    </message>
-
-    <message>
-      <source>Upscale [Scale2x]</source>
-      <translation>Haut de gamme [Scale2x]</translation>
+      <translation>Upscale [Verspreiding]</translation>
     </message>
 
     <message>
       <source>Urban Cowboy</source>
-      <translation>Cowboy urbain</translation>
+      <translation>Stedelijke Cowboy</translation>
     </message>
 
     <message>
       <source>Use as Hue</source>
-      <translation>Utiliser comme teinte</translation>
+      <translation>Gebruik als Tint</translation>
     </message>
 
     <message>
       <source>Use as Saturation</source>
-      <translation>Utilisation en tant que saturation</translation>
+      <translation>Gebruik als verzadiging</translation>
     </message>
 
     <message>
       <source>Use Individual Depth Map</source>
-      <translation>Utiliser la carte des profondeurs individuelles</translation>
+      <translation>Gebruik de individuele dieptekaart</translation>
     </message>
 
     <message>
       <source>Use Light</source>
-      <translation>Utiliser la lumière</translation>
+      <translation>Gebruikslicht</translation>
     </message>
 
     <message>
       <source>Use Maximum Tones</source>
-      <translation>Utiliser les tons maximums</translation>
+      <translation>Gebruik Maximale Tonen</translation>
     </message>
 
     <message>
       <source>Use Top Layer as a Priority Mask</source>
-      <translation>Utiliser la couche supérieure comme masque de priorité</translation>
+      <translation>Gebruik de bovenste laag als een prioritair masker</translation>
     </message>
 
     <message>
       <source>User-Defined</source>
-      <translation>Définie par l&apos;utilisateur</translation>
+      <translation>Door de gebruiker gedefinieerd</translation>
     </message>
 
     <message>
       <source>User-Defined (Bottom Layer)</source>
-      <translation>Définie par l&apos;utilisateur (couche inférieure)</translation>
+      <translation>Door de gebruiker gedefinieerd (bodemlaag)</translation>
     </message>
 
     <message>
       <source>Uzbek Bukhara</source>
-      <translation>Boukhara en Ouzbékistan</translation>
+      <translation>Oezbeekse Bukhara</translation>
     </message>
 
     <message>
       <source>Uzbek Marriage</source>
-      <translation>Mariage ouzbek</translation>
+      <translation>Oezbeeks Huwelijk</translation>
     </message>
 
     <message>
       <source>Uzbek Samarcande</source>
-      <translation>Samarcande ouzbek</translation>
-    </message>
-
-    <message>
-      <source>V Cutoff</source>
-      <translation>V Seuil</translation>
+      <translation>Oezbeekse Samarcande</translation>
     </message>
 
     <message>
       <source>Val Range</source>
-      <translation>Gamme Val</translation>
+      <translation>Val Val range</translation>
     </message>
 
     <message>
       <source>Value</source>
-      <translation>Valeur</translation>
+      <translation>Waarde</translation>
     </message>
 
     <message>
       <source>Value Action</source>
-      <translation>Action de valeur</translation>
+      <translation>Waarde Actie</translation>
     </message>
 
     <message>
       <source>Value Blending</source>
-      <translation>Mélange de valeurs</translation>
+      <translation>Waarde mengen</translation>
     </message>
 
     <message>
       <source>Value Bottom</source>
-      <translation>Valeur en bas</translation>
+      <translation>Waarde Bodem</translation>
     </message>
 
     <message>
       <source>Value Correction</source>
-      <translation>Correction de la valeur</translation>
+      <translation>Waardecorrectie</translation>
     </message>
 
     <message>
       <source>Value Factor</source>
-      <translation>Facteur de valeur</translation>
+      <translation>Waardefactor</translation>
     </message>
 
     <message>
       <source>Value Normalization</source>
-      <translation>Normalisation de la valeur</translation>
+      <translation>Waarde Normalisatie</translation>
     </message>
 
     <message>
       <source>Value Offset</source>
-      <translation>Compensation de la valeur</translation>
+      <translation>Waardecorrectie</translation>
     </message>
 
     <message>
       <source>Value Precision</source>
-      <translation>Précision de la valeur</translation>
+      <translation>Waarde Precisie</translation>
     </message>
 
     <message>
       <source>Value Range</source>
-      <translation>Fourchette de valeurs</translation>
+      <translation>Waardebereik</translation>
     </message>
 
     <message>
       <source>Value Scale</source>
-      <translation>Échelle de valeur</translation>
+      <translation>Waardeschaal</translation>
     </message>
 
     <message>
       <source>Value Shift</source>
-      <translation>Changement de valeur</translation>
+      <translation>Waardeverschuiving</translation>
     </message>
 
     <message>
       <source>Value Smoothness</source>
-      <translation>La valeur de la douceur</translation>
+      <translation>Waarde Gladheid</translation>
     </message>
 
     <message>
       <source>Value Top</source>
-      <translation>Valeur Top</translation>
+      <translation>Waarde Top</translation>
     </message>
 
     <message>
       <source>Value Variance</source>
-      <translation>Variation de la valeur</translation>
+      <translation>Waardevariatie</translation>
     </message>
 
     <message>
       <source>Values</source>
-      <translation>Valeurs</translation>
+      <translation>Waarden</translation>
     </message>
 
     <message>
       <source>Van Gogh: Almond Blossom</source>
-      <translation>Van Gogh : La fleur d&apos;amandier</translation>
+      <translation>Van Gogh: Amandelbloesem</translation>
     </message>
 
     <message>
       <source>Van Gogh: Irises</source>
-      <translation>Van Gogh : Iris</translation>
+      <translation>Van Gogh: Irissen</translation>
     </message>
 
     <message>
       <source>Van Gogh: The Starry Night</source>
-      <translation>Van Gogh : La nuit étoilée</translation>
+      <translation>Van Gogh: De sterrennacht</translation>
     </message>
 
     <message>
       <source>Van Gogh: Wheat Field with Crows</source>
-      <translation>Van Gogh : Champ de blé avec des corbeaux</translation>
+      <translation>Van Gogh: Korenveld met kraaien</translation>
     </message>
 
     <message>
       <source>Variability</source>
-      <translation>Variabilité</translation>
+      <translation>Variabiliteit</translation>
+    </message>
+
+    <message>
+      <source>Variance</source>
+      <translation>Variant</translation>
     </message>
 
     <message>
       <source>Variation A</source>
-      <translation>Variante A</translation>
+      <translation>Variatie A</translation>
     </message>
 
     <message>
       <source>Variation B</source>
-      <translation>Variante B</translation>
+      <translation>Variatie B</translation>
+    </message>
+
+    <message>
+      <source>Variation C</source>
+      <translation>Variatie C</translation>
     </message>
 
     <message>
       <source>Vector Painting</source>
-      <translation>Peinture vectorielle</translation>
+      <translation>Vector Schilderen</translation>
     </message>
 
     <message>
       <source>Velocity</source>
-      <translation>Vélocité</translation>
+      <translation>Snelheid</translation>
     </message>
 
     <message>
       <source>Vertex Type</source>
-      <translation>Type de sommet</translation>
+      <translation>Hoekpunt Type</translation>
+    </message>
+
+    <message>
+      <source>Vertical</source>
+      <translation>Verticaal</translation>
     </message>
 
     <message>
       <source>Vertical (%)</source>
-      <translation>Verticale (%)</translation>
+      <translation>Verticaal (%)</translation>
     </message>
 
     <message>
       <source>Vertical 1 Amount</source>
-      <translation>Vertical 1 Montant</translation>
+      <translation>Verticaal 1 Bedrag</translation>
     </message>
 
     <message>
       <source>Vertical 1 Length</source>
-      <translation>Vertical 1 Longueur</translation>
+      <translation>Verticaal 1 Lengte</translation>
     </message>
 
     <message>
       <source>Vertical 2 Amount</source>
-      <translation>Montant vertical 2</translation>
+      <translation>Verticaal 2 Bedrag</translation>
     </message>
 
     <message>
       <source>Vertical 2 Length</source>
-      <translation>Vertical 2 Longueur</translation>
+      <translation>Verticaal 2 Lengte</translation>
     </message>
 
     <message>
       <source>Vertical Amount</source>
-      <translation>Montant vertical</translation>
+      <translation>Verticaal Bedrag</translation>
     </message>
 
     <message>
       <source>Vertical Array</source>
-      <translation>Réseau vertical</translation>
+      <translation>Verticale Serie</translation>
     </message>
 
     <message>
       <source>Vertical Blur</source>
-      <translation>Flou vertical</translation>
+      <translation>Verticale vervaging</translation>
     </message>
 
     <message>
       <source>Vertical Length</source>
-      <translation>Longueur verticale</translation>
+      <translation>Verticale lengte</translation>
     </message>
 
     <message>
       <source>Vertical Size (%)</source>
-      <translation>Taille verticale (%)</translation>
+      <translation>Verticale grootte (%)</translation>
     </message>
 
     <message>
       <source>Vertical Stripes</source>
-      <translation>Bandes verticales</translation>
+      <translation>Verticale strepen</translation>
     </message>
 
     <message>
       <source>Vertical Tiles</source>
-      <translation>Carreaux verticaux</translation>
+      <translation>Verticale tegels</translation>
     </message>
 
     <message>
       <source>Very Course 5</source>
-      <translation>Très cours 5</translation>
+      <translation>Zeer Cursus 5</translation>
     </message>
 
     <message>
       <source>Very Fine</source>
-      <translation>Très bien</translation>
+      <translation>Zeer Fijn</translation>
     </message>
 
     <message>
       <source>Very High</source>
-      <translation>Très élevé</translation>
+      <translation>Zeer hoog</translation>
     </message>
 
     <message>
       <source>Very High (Even Slower)</source>
-      <translation>Très élevé (même plus lent)</translation>
+      <translation>Zeer hoog (zelfs langzamer)</translation>
     </message>
 
     <message>
       <source>Very Warm Greenish</source>
-      <translation>Très chaud verdâtre</translation>
+      <translation>Zeer warm groenachtig</translation>
+    </message>
+
+    <message>
+      <source>Vibrant</source>
+      <translation>Levendige</translation>
     </message>
 
     <message>
       <source>Vibrant (alien)</source>
-      <translation>Vibrant (étranger)</translation>
+      <translation>Levendig (vreemdeling)</translation>
     </message>
 
     <message>
       <source>Vibrant (contrast)</source>
-      <translation>Vibrant (contraste)</translation>
+      <translation>Levendig (contrast)</translation>
+    </message>
+
+    <message>
+      <source>Vibrant (crome-Ish)</source>
+      <translation>Levendig (crome-Ish)</translation>
     </message>
 
     <message>
       <source>Victory</source>
-      <translation>Victoire</translation>
+      <translation>Overwinning</translation>
     </message>
 
     <message>
       <source>View Outlines Only</source>
-      <translation>Voir uniquement les grandes lignes</translation>
+      <translation>Alleen hoofdlijnen bekijken</translation>
     </message>
 
     <message>
       <source>View Resolution</source>
-      <translation>Voir la résolution</translation>
+      <translation>Bekijk de resolutie</translation>
+    </message>
+
+    <message>
+      <source>Vignette</source>
+      <translation>Vignet</translation>
     </message>
 
     <message>
       <source>Vignette Contrast</source>
-      <translation>Contraste de la vignette</translation>
+      <translation>Vignetcontrast</translation>
     </message>
 
     <message>
       <source>Vignette Max Radius</source>
-      <translation>Vignette Rayon Max</translation>
+      <translation>Vignet Max Radius</translation>
     </message>
 
     <message>
       <source>Vignette Min Radius</source>
-      <translation>Vignette Rayon Min</translation>
+      <translation>Vignet Min Radius</translation>
     </message>
 
     <message>
       <source>Vignette Size</source>
-      <translation>Taille de la vignette</translation>
+      <translation>Vignetgrootte</translation>
     </message>
 
     <message>
       <source>Vignette Strength</source>
-      <translation>Force de la vignette</translation>
+      <translation>Vignetsterkte</translation>
     </message>
 
     <message>
-      <source>Vintage (alt)</source>
-      <translation>Millésime (alt)</translation>
+      <source>Vignette Strenth</source>
+      <translation>Vignet Strenth</translation>
     </message>
 
     <message>
       <source>Vintage (brighter)</source>
-      <translation>Vintage (plus lumineux)</translation>
+      <translation>Vintage (helderder)</translation>
+    </message>
+
+    <message>
+      <source>Vintage Chrome</source>
+      <translation>Vintage Chroom</translation>
     </message>
 
     <message>
       <source>Vintage Style</source>
-      <translation>Style Vintage</translation>
+      <translation>Vintage Stijl</translation>
+    </message>
+
+    <message>
+      <source>Vintage Warmth 1</source>
+      <translation>Vintage Warmte 1</translation>
     </message>
 
     <message>
       <source>Virtual Landscape</source>
-      <translation>Paysage virtuel</translation>
+      <translation>Virtueel landschap</translation>
     </message>
 
     <message>
       <source>Visible Watermark</source>
-      <translation>Filigrane visible</translation>
+      <translation>Zichtbaar watermerk</translation>
     </message>
 
     <message>
       <source>Vivid Edges</source>
-      <translation>Des bords vifs</translation>
+      <translation>Levendige randen</translation>
     </message>
 
     <message>
       <source>Vivid Edges*</source>
-      <translation>Des bords vifs*.</translation>
+      <translation>Levendige randen*</translation>
     </message>
 
     <message>
       <source>Vivid Light</source>
-      <translation>Lumière vive</translation>
+      <translation>Levendig licht</translation>
     </message>
 
     <message>
       <source>Vivid Screen</source>
-      <translation>Écran vif</translation>
+      <translation>Levendig scherm</translation>
     </message>
 
     <message>
       <source>Wall</source>
-      <translation>Mur</translation>
-    </message>
-
-    <message>
-      <source>Warm</source>
-      <translation>Chaleureux</translation>
+      <translation>Muur</translation>
     </message>
 
     <message>
       <source>Warm (highlight)</source>
-      <translation>Chaleureux (point fort)</translation>
+      <translation>Warm (hoogtepunt)</translation>
     </message>
 
     <message>
       <source>Warm (yellow)</source>
-      <translation>Chaud (jaune)</translation>
+      <translation>Warm (geel)</translation>
     </message>
 
     <message>
       <source>Warm Dark Contrasty</source>
-      <translation>Contraste sombre et chaud</translation>
+      <translation>Warme donkere contrasten</translation>
     </message>
 
     <message>
       <source>Warm Fade</source>
-      <translation>Fondu chaud</translation>
+      <translation>Warme Fade</translation>
+    </message>
+
+    <message>
+      <source>Warm Fade 1</source>
+      <translation>Warme Fade 1</translation>
     </message>
 
     <message>
       <source>Warm Neutral</source>
-      <translation>Neutre chaud</translation>
+      <translation>Warm Neutraal</translation>
     </message>
 
     <message>
       <source>Warm Sunset Red</source>
-      <translation>Coucher de soleil rouge et chaud</translation>
+      <translation>Warme zonsondergang rood</translation>
     </message>
 
     <message>
       <source>Warm Teal</source>
-      <translation>Sarcelle chaude</translation>
+      <translation>Warm Wintertaling</translation>
     </message>
 
     <message>
       <source>Warm Vintage</source>
-      <translation>Vintage chaud</translation>
+      <translation>Warme Vintage</translation>
     </message>
 
     <message>
       <source>Warp [Interactive]</source>
-      <translation>Warp [Interactif]</translation>
+      <translation>Warp [Interactief]</translation>
     </message>
 
     <message>
       <source>Warp by Intensity</source>
-      <translation>Distorsion par intensité</translation>
-    </message>
-
-    <message>
-      <source>Water</source>
-      <translation>Eau</translation>
+      <translation>Scheeftrekking door intensiteit</translation>
     </message>
 
     <message>
       <source>Waterfall</source>
-      <translation>Cascade</translation>
+      <translation>Waterval</translation>
     </message>
 
     <message>
       <source>Wave</source>
-      <translation>Vague</translation>
+      <translation>Golfen</translation>
     </message>
 
     <message>
       <source>Wave(s)</source>
-      <translation>Vague(s)</translation>
+      <translation>Golf(en)</translation>
     </message>
 
     <message>
       <source>Wavelength</source>
-      <translation>Longueur d&apos;onde</translation>
+      <translation>Golflengte</translation>
     </message>
 
     <message>
       <source>Waves Amplitude</source>
-      <translation>Amplitude des ondes</translation>
+      <translation>Golven Amplitude</translation>
     </message>
 
     <message>
       <source>Waves Smoothness</source>
-      <translation>La douceur des vagues</translation>
+      <translation>Golven Gladheid</translation>
     </message>
 
     <message>
       <source>We&apos;ll See</source>
-      <translation>Nous verrons</translation>
+      <translation>We zullen zien.</translation>
     </message>
 
     <message>
       <source>Weave</source>
-      <translation>Tisser</translation>
+      <translation>Weven</translation>
     </message>
 
     <message>
       <source>Weird</source>
-      <translation>Bizarre</translation>
+      <translation>Vreemd</translation>
     </message>
 
     <message>
       <source>Whirl Drawing</source>
-      <translation>Dessin de tourbillon</translation>
-    </message>
-
-    <message>
-      <source>Whirls</source>
-      <translation>Tourbillons</translation>
+      <translation>Wervelende tekening</translation>
     </message>
 
     <message>
       <source>White</source>
-      <translation>Blanc</translation>
+      <translation>Wit</translation>
     </message>
 
     <message>
       <source>White Dices</source>
-      <translation>Dés blancs</translation>
+      <translation>Witte dobbelstenen</translation>
     </message>
 
     <message>
       <source>White Layers</source>
-      <translation>Les couches blanches</translation>
+      <translation>Witte lagen</translation>
     </message>
 
     <message>
       <source>White Level</source>
-      <translation>Niveau blanc</translation>
+      <translation>Wit niveau</translation>
     </message>
 
     <message>
       <source>White on Black</source>
-      <translation>Blanc sur noir</translation>
+      <translation>Wit op zwart</translation>
     </message>
 
     <message>
       <source>White on Transparent</source>
-      <translation>Le blanc sur le transparent</translation>
+      <translation>Wit op Transparant</translation>
     </message>
 
     <message>
       <source>White on Transparent Black</source>
-      <translation>Le blanc sur le noir transparent</translation>
+      <translation>Wit op Transparant Zwart</translation>
     </message>
 
     <message>
       <source>White Point</source>
-      <translation>Point blanc</translation>
+      <translation>Witte punt</translation>
     </message>
 
     <message>
       <source>White to Black</source>
-      <translation>Du blanc au noir</translation>
+      <translation>Wit tot zwart</translation>
     </message>
 
     <message>
       <source>White Walls</source>
-      <translation>Murs blancs</translation>
-    </message>
-
-    <message>
-      <source>Whitening</source>
-      <translation>Blanchiment</translation>
+      <translation>Witte muren</translation>
     </message>
 
     <message>
       <source>Whiter Whites</source>
-      <translation>Des Blancs plus blancs</translation>
+      <translation>Witten</translation>
     </message>
 
     <message>
       <source>Whites</source>
-      <translation>Blancs</translation>
+      <translation>Blanken</translation>
     </message>
 
     <message>
       <source>Width</source>
-      <translation>Largeur</translation>
+      <translation>Breedte</translation>
     </message>
 
     <message>
       <source>Width (%)</source>
-      <translation>Largeur (%)</translation>
-    </message>
-
-    <message>
-      <source>Wind</source>
-      <translation>Vent</translation>
+      <translation>Breedte (%)</translation>
     </message>
 
     <message>
       <source>Winter Lighthouse</source>
-      <translation>Phare d&apos;hiver</translation>
+      <translation>Wintervuurtoren</translation>
     </message>
 
     <message>
       <source>Wipe</source>
-      <translation>Effacer</translation>
+      <translation>Veeg</translation>
+    </message>
+
+    <message>
+      <source>Wiremap</source>
+      <translation>Draadkaart</translation>
     </message>
 
     <message>
       <source>Without</source>
-      <translation>Sans</translation>
+      <translation>Zonder</translation>
     </message>
 
     <message>
       <source>Wooden Gold 20</source>
-      <translation>Bois d&apos;or 20</translation>
+      <translation>Houten Goud 20</translation>
     </message>
 
     <message>
       <source>Work on Frameset</source>
-      <translation>Travail sur le Frameset</translation>
+      <translation>Werken aan Frameset</translation>
     </message>
 
     <message>
       <source>Wrap</source>
-      <translation>Enveloppe</translation>
+      <translation>Wikkel</translation>
     </message>
 
     <message>
       <source>X Center</source>
-      <translation>Centre X</translation>
+      <translation>X Centrum</translation>
     </message>
 
     <message>
       <source>X-Axis Then Y-Axis</source>
-      <translation>Axe X puis axe Y</translation>
-    </message>
-
-    <message>
-      <source>X-Centering (%)</source>
-      <translation>X-Centrage (%)</translation>
+      <translation>X-Axis Dan Y-Axis</translation>
     </message>
 
     <message>
       <source>X-Coordinate [Manual]</source>
-      <translation>Coordonnée X [Manuel]</translation>
+      <translation>X-Coordinate [Handleiding]</translation>
     </message>
 
     <message>
-      <source>X-Factor (%)</source>
-      <translation>Facteur X (%)</translation>
+      <source>X-Dispersion</source>
+      <translation>X-Dispersie</translation>
     </message>
 
     <message>
-      <source>X-Multiplier</source>
-      <translation>X-Multiplicateur</translation>
+      <source>X-Ratio</source>
+      <translation>X-verhouding</translation>
     </message>
 
     <message>
-      <source>X-Size</source>
-      <translation>Taille X</translation>
+      <source>X-Rotation</source>
+      <translation>X-Rotatie</translation>
     </message>
 
     <message>
-      <source>X-Size (px)</source>
-      <translation>Taille X (px)</translation>
+      <source>X-Scale</source>
+      <translation>X-Schaal</translation>
+    </message>
+
+    <message>
+      <source>X-Variations</source>
+      <translation>X-Variaties</translation>
     </message>
 
     <message>
       <source>X/Y-Ratio</source>
-      <translation>Rapport X/Y</translation>
+      <translation>X/Y-verhouding</translation>
     </message>
 
     <message>
       <source>X1 (none)</source>
-      <translation>X1 (aucun)</translation>
+      <translation>X1 (geen)</translation>
+    </message>
+
+    <message>
+      <source>Xor</source>
+      <translation>Xof</translation>
     </message>
 
     <message>
       <source>XY Mirror</source>
-      <translation>Miroir XY</translation>
-    </message>
-
-    <message>
-      <source>XY-Axis</source>
-      <translation>Axe XY</translation>
+      <translation>XY Spiegel</translation>
     </message>
 
     <message>
       <source>XY-Coordinates (%)</source>
-      <translation>Coordonnées XY (%)</translation>
-    </message>
-
-    <message>
-      <source>XY-Factor</source>
-      <translation>Facteur XY</translation>
+      <translation>XY-Coordinaten (%)</translation>
     </message>
 
     <message>
       <source>Y Center</source>
-      <translation>Centre Y</translation>
+      <translation>Y-Centrum</translation>
     </message>
 
     <message>
       <source>Y-Axis Then X-Axis</source>
-      <translation>Axe Y puis axe X</translation>
-    </message>
-
-    <message>
-      <source>Y-Centering (%)</source>
-      <translation>Centre Y (%)</translation>
-    </message>
-
-    <message>
-      <source>Y-Coordinate</source>
-      <translation>Coordonnées Y</translation>
+      <translation>Y-Axis Dan X-Axis</translation>
     </message>
 
     <message>
       <source>Y-Coordinate [Manual]</source>
-      <translation>Coordonnée Y [Manuel]</translation>
+      <translation>Y-Coordinate [Handleiding]</translation>
     </message>
 
     <message>
-      <source>Y-End (%)</source>
-      <translation>Fin de l&apos;année (%)</translation>
+      <source>Y-Dispersion</source>
+      <translation>Y-Dispersie</translation>
     </message>
 
     <message>
-      <source>Y-Factor</source>
-      <translation>Facteur Y</translation>
+      <source>Y-Ratio</source>
+      <translation>Y-verhouding</translation>
     </message>
 
     <message>
-      <source>Y-Factor (%)</source>
-      <translation>Facteur Y (%)</translation>
+      <source>Y-Rotation</source>
+      <translation>Y-Rotatie</translation>
     </message>
 
     <message>
-      <source>Y-Multiplier</source>
-      <translation>Multiplicateur Y</translation>
+      <source>Y-Scale</source>
+      <translation>Y-Schaal</translation>
     </message>
 
     <message>
-      <source>Y-Offset (%)</source>
-      <translation>Décalage Y (%)</translation>
-    </message>
-
-    <message>
-      <source>Y-Shift (%)</source>
-      <translation>Décalage en Y (%)</translation>
-    </message>
-
-    <message>
-      <source>Y-Size (px)</source>
-      <translation>Taille Y (px)</translation>
-    </message>
-
-    <message>
-      <source>Y-Start (%)</source>
-      <translation>Démarrage en Y (%)</translation>
+      <source>Y-Variations</source>
+      <translation>Y-variaties</translation>
     </message>
 
     <message>
       <source>YAG Effect</source>
-      <translation>L&apos;effet YAG</translation>
+      <translation>YAG-effect</translation>
     </message>
 
     <message>
       <source>YCbCr (Chroma Only)</source>
-      <translation>YCbCr (Chroma uniquement)</translation>
+      <translation>YCbCr (alleen Chroma)</translation>
+    </message>
+
+    <message>
+      <source>YCbCr (Distinct)</source>
+      <translation>YCbCr (Onderscheiden)</translation>
     </message>
 
     <message>
       <source>YCbCr (Luma Only)</source>
-      <translation>YCbCr (Luma uniquement)</translation>
+      <translation>YCbCr (alleen Luma)</translation>
     </message>
 
     <message>
       <source>YCbCr (Mixed)</source>
-      <translation>YCbCr (mixte)</translation>
-    </message>
-
-    <message>
-      <source>YCbCr [Blue Chrominance]</source>
-      <translation>YCbCr [Chrominance bleue]</translation>
-    </message>
-
-    <message>
-      <source>YCbCr [Blue-Red Chrominances]</source>
-      <translation>YCbCr [Chrominances bleu-rouge]</translation>
-    </message>
-
-    <message>
-      <source>YCbCr [Green Chrominance]</source>
-      <translation>YCbCr [Chrominance verte]</translation>
+      <translation>YCbCr (Gemengd)</translation>
     </message>
 
     <message>
       <source>YCbCr [Luminance]</source>
-      <translation>YCbCr [Luminosité]</translation>
-    </message>
-
-    <message>
-      <source>YCbCr [Red Chrominance]</source>
-      <translation>YCbCr [Chrominance rouge]</translation>
+      <translation>YCbCr [Luminantie]</translation>
     </message>
 
     <message>
       <source>Yellow</source>
-      <translation>Jaune</translation>
+      <translation>Geel</translation>
     </message>
 
     <message>
       <source>Yellow 55B</source>
-      <translation>Jaune 55B</translation>
+      <translation>Geel 55B</translation>
     </message>
 
     <message>
       <source>Yellow Factor</source>
-      <translation>Facteur jaune</translation>
+      <translation>Gele factor</translation>
     </message>
 
     <message>
       <source>Yellow Film 01</source>
-      <translation>Film jaune 01</translation>
+      <translation>Gele film 01</translation>
     </message>
 
     <message>
       <source>Yellow Shift</source>
-      <translation>Décalage jaune</translation>
+      <translation>Gele Verschuiving</translation>
     </message>
 
     <message>
       <source>Yellow Smoothness</source>
-      <translation>Lisse jaune</translation>
+      <translation>Geel Gladheid</translation>
     </message>
 
     <message>
       <source>YES8</source>
-      <translation>OUI8</translation>
+      <translation>JA8</translation>
     </message>
 
     <message>
       <source>You Can Do It</source>
-      <translation>Vous pouvez le faire</translation>
+      <translation>Je kunt het doen.</translation>
     </message>
 
     <message>
-      <source>Z-Multiplier</source>
-      <translation>Z-Multiplicateur</translation>
+      <source>Z-Angle</source>
+      <translation>Z-Angel</translation>
+    </message>
+
+    <message>
+      <source>Z-Rotation</source>
+      <translation>Z-Rotatie</translation>
+    </message>
+
+    <message>
+      <source>Z-Scale</source>
+      <translation>Z-Schaal</translation>
+    </message>
+
+    <message>
+      <source>Z^^6 + Z^^3 - 1</source>
+      <translation>Z^^6 + Z^3 - 1</translation>
+    </message>
+
+    <message>
+      <source>Z^^8 + 15*z^^4 - 1</source>
+      <translation>Z^8 + 15*z^4 - 1</translation>
     </message>
 
     <message>
       <source>Zero</source>
-      <translation>Zéro</translation>
+      <translation>Nul</translation>
     </message>
 
     <message>
       <source>ZilverFX - B&amp;W Solarization</source>
-      <translation>ZilverFX - Solarisation N&amp;B</translation>
+      <translation>ZilverFX - Zonne-energie in zwart-wit</translation>
     </message>
 
     <message>
       <source>ZilverFX - InfraRed</source>
-      <translation>ZilverFX - InfraRouge</translation>
+      <translation>ZilverFX - Infrarood</translation>
+    </message>
+
+    <message>
+      <source>ZilverFX - Vintage B&amp;W</source>
+      <translation>ZilverFX - Vintage Z&amp;W</translation>
     </message>
 
     <message>
       <source>Zone System</source>
-      <translation>Système de zones</translation>
+      <translation>Zone-systeem</translation>
+    </message>
+
+    <message>
+      <source>Zoom</source>
+      <translation>Zoomen</translation>
     </message>
 
     <message>
       <source>Zoom Center</source>
-      <translation>Centre de zoom</translation>
+      <translation>Zoom Zoom Centrum</translation>
     </message>
 
     <message>
       <source>Zoom Factor</source>
-      <translation>Facteur de zoom</translation>
+      <translation>Zoomfactor</translation>
     </message>
 
     <message>
       <source>Zoom In</source>
-      <translation>Zoom avant</translation>
+      <translation>Inzoomen</translation>
     </message>
 
     <message>
       <source>Zoom Out</source>
-      <translation>Zoom arrière</translation>
+      <translation>Uitzoomen</translation>
     </message>
 
   </context>
