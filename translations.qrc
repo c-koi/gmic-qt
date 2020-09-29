@@ -15,6 +15,5 @@
         <file>translations/pt.qm</file>
         <file>translations/ja.qm</file>
         <file>translations/sv.qm</file>
-        <file>translations/filters/fr.qm</file>
     </qresource>
 </RCC>

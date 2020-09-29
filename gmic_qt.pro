@@ -19,6 +19,9 @@
 # Possible values are "on" or "off"
 !defined(LTO,var) { LTO=on }
 
+# Possible values are "on" or "off"
+!defined(TEST_FILTERS_QM,var) { TEST_FILTERS_QM=off }
+
 #
 #
 #
@@ -407,8 +410,11 @@ FORMS +=  ui/inoutpanel.ui \
           ui/filtersview.ui
 
 RESOURCES += gmic_qt.qrc translations.qrc
-equals( HOST, "none") {
+equals(HOST, "none") {
  RESOURCES += standalone.qrc
+}
+equals(TEST_FILTERS_QM, "on") {
+ RESOURCES += wip_translations.qrc
 }
 
 TRANSLATIONS = \

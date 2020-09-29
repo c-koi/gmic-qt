@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+       <file>translations/filters/fr.qm</file>
+    </qresource>
+</RCC>
