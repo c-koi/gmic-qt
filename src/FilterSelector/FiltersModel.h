@@ -78,8 +78,8 @@ public:
     bool _isWarning;
   };
 
-  FiltersModel();
-  ~FiltersModel();
+  FiltersModel() = default;
+  ~FiltersModel() = default;
 
 public:
   void clear();

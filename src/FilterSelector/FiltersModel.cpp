@@ -34,10 +34,6 @@
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
 
-FiltersModel::FiltersModel() = default;
-
-FiltersModel::~FiltersModel() = default;
-
 void FiltersModel::clear()
 {
   _hash2filter.clear();

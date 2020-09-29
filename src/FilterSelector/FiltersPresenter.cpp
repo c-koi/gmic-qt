@@ -177,6 +177,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & default
   fave.setDefaultValues(defaultValues);
   fave.setDefaultVisibilities(visibilityStates);
 
+  bool filterAlreadyHasAFave = false;
   if (_filtersModel.contains(_currentFilter.hash)) {
     const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(_currentFilter.hash);
     fave.setName(_favesModel.uniqueName(FilterTextTranslator::translate(filter.name()), QString()));
@@ -184,6 +185,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & default
     fave.setPreviewCommand(filter.previewCommand());
     fave.setOriginalHash(filter.hash());
     fave.setOriginalName(filter.name());
+    filterAlreadyHasAFave = filterExistsAsFave(filter.hash());
   } else {
     FavesModel::const_iterator faveIterator = _favesModel.findFaveFromHash(_currentFilter.hash);
     if (faveIterator != _favesModel.cend()) {
@@ -194,6 +196,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & default
       fave.setOriginalHash(originalFave.originalHash());
       fave.setOriginalName(originalFave.originalName());
     }
+    filterAlreadyHasAFave = true;
   }
 
   fave.build();
@@ -205,8 +208,11 @@ void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & default
   _filtersView->addFave(fave.name(), fave.hash());
   _filtersView->sortFaves();
   _filtersView->selectFave(fave.hash());
-  onFilterChanged(fave.hash());
   saveFaves();
+  onFilterChanged(fave.hash());
+  if (filterAlreadyHasAFave) {
+    editSelectedFaveName();
+  }
 }
 
 void FiltersPresenter::applySearchCriterion(const QString & text)
@@ -351,6 +357,7 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   _filtersView->updateFaveItem(hash, fave.hash(), fave.name());
   _filtersView->sortFaves();
   saveFaves();
+  setCurrentFilter(fave.hash());
 }
 
 void FiltersPresenter::toggleSelectionMode(bool on)
@@ -435,6 +442,16 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
   } else {
     _currentFilter.clear();
   }
+}
+
+bool FiltersPresenter::filterExistsAsFave(const QString filterHash)
+{
+  for (const FavesModel::Fave & fave : _favesModel) {
+    if (fave.originalHash() == filterHash) {
+      return true;
+    }
+  }
+  return false;
 }
 
 void FiltersPresenter::Filter::clear()

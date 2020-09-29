@@ -118,6 +118,7 @@ private slots:
 
 private:
   void setCurrentFilter(const QString & hash);
+  bool filterExistsAsFave(const QString filterHash);
 
   FiltersModel _filtersModel;
   FavesModel _favesModel;
