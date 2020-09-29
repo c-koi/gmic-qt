@@ -101,6 +101,7 @@ public slots:
   void onPreviewError(const QString & message);
   void onParametersChanged();
   static bool isAccepted();
+  void setFilterName(const QString & text);
 
 protected:
   void timerEvent(QTimerEvent *) override;
@@ -115,7 +116,6 @@ protected:
   void activateFilter(bool resetZoom);
   void setNoFilter();
   void setPreviewPosition(PreviewPosition position);
-
   void adjustVerticalSplitter();
 
 private slots:

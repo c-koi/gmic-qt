@@ -334,9 +334,9 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   if (newName.isEmpty()) {
     if (_filtersModel.contains(fave.originalHash())) {
       const FiltersModel::Filter & originalFilter = _filtersModel.getFilterFromHash(fave.originalHash());
-      newName = _favesModel.uniqueName(originalFilter.name(), QString());
+      newName = _favesModel.uniqueName(FilterTextTranslator::translate(originalFilter.name()), QString());
     } else {
-      newName = _favesModel.uniqueName("Unknown filter", QString());
+      newName = _favesModel.uniqueName(tr("Unknown filter"), QString());
     }
   } else {
     newName = _favesModel.uniqueName(newName, QString());
@@ -358,6 +358,7 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   _filtersView->sortFaves();
   saveFaves();
   setCurrentFilter(fave.hash());
+  emit faveNameChanged(newName);
 }
 
 void FiltersPresenter::toggleSelectionMode(bool on)

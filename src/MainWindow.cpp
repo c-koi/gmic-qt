@@ -523,11 +523,12 @@ void MainWindow::makeConnections()
 
   connect(ui->tbSelectionMode, SIGNAL(toggled(bool)), this, SLOT(onFiltersSelectionModeToggled(bool)));
 
-  connect(&_processor, SIGNAL(previewImageAvailable()), this, SLOT(onPreviewImageAvailable()));
-  connect(&_processor, SIGNAL(previewCommandFailed(QString)), this, SLOT(onPreviewError(QString)));
-  connect(&_processor, SIGNAL(fullImageProcessingFailed(QString)), this, SLOT(onFullImageProcessingError(QString)));
-  connect(&_processor, SIGNAL(fullImageProcessingDone()), this, SLOT(onFullImageProcessingDone()));
-  connect(&_processor, SIGNAL(aboutToSendImagesToHost()), ui->progressInfoWidget, SLOT(stopAnimationAndHide()));
+  connect(&_processor, &GmicProcessor::previewImageAvailable, this, &MainWindow::onPreviewImageAvailable);
+  connect(&_processor, &GmicProcessor::previewCommandFailed, this, &MainWindow::onPreviewError);
+  connect(&_processor, &GmicProcessor::fullImageProcessingFailed, this, &MainWindow::onFullImageProcessingError);
+  connect(&_processor, &GmicProcessor::fullImageProcessingDone, this, &MainWindow::onFullImageProcessingDone);
+  connect(&_processor, &GmicProcessor::aboutToSendImagesToHost, ui->progressInfoWidget, &ProgressInfoWidget::stopAnimationAndHide);
+  connect(_filtersPresenter, &FiltersPresenter::faveNameChanged, this, &MainWindow::setFilterName);
 }
 
 void MainWindow::onPreviewUpdateRequested()
@@ -635,6 +636,11 @@ void MainWindow::onParametersChanged()
 bool MainWindow::isAccepted()
 {
   return _isAccepted;
+}
+
+void MainWindow::setFilterName(const QString & text)
+{
+  ui->filterName->setText(QString("<b>%1</b>").arg(text));
 }
 
 void MainWindow::processImage()
@@ -1036,7 +1042,7 @@ void MainWindow::activateFilter(bool resetZoom)
     } else {
       ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
     }
-    ui->filterName->setText(QString("<b>%1</b>").arg(FilterTextTranslator::translate((filter.name))));
+    setFilterName(FilterTextTranslator::translate((filter.name)));
     ui->inOutSelector->enable();
     if (ui->inOutSelector->hasActiveControls()) {
       ui->inOutSelector->show();

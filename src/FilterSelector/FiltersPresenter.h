@@ -99,12 +99,12 @@ public:
 
   void expandAll();
   void collapseAll();
-
   const QString & errorMessage() const;
 
 signals:
   void filterSelectionChanged();
   void faveAdditionRequested(QString);
+  void faveNameChanged(QString);
 
 public slots:
   void removeSelectedFave();
