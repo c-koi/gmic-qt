@@ -29,6 +29,7 @@
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FavesModelWriter.h"
 #include "FilterSelector/FiltersModelReader.h"
+#include "FilterTextTranslator.h"
 #include "FiltersVisibilityMap.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
@@ -178,7 +179,7 @@ void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & default
 
   if (_filtersModel.contains(_currentFilter.hash)) {
     const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(_currentFilter.hash);
-    fave.setName(_favesModel.uniqueName(filter.name(), QString()));
+    fave.setName(_favesModel.uniqueName(FilterTextTranslator::translate(filter.name()), QString()));
     fave.setCommand(filter.command());
     fave.setPreviewCommand(filter.previewCommand());
     fave.setOriginalHash(filter.hash());
