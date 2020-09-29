@@ -25,9 +25,9 @@
 #ifndef GMIC_QT__FILTERTHREAD_H
 #define GMIC_QT__FILTERTHREAD_H
 
+#include <QElapsedTimer>
 #include <QString>
 #include <QThread>
-#include <QTime>
 
 #include "Common.h"
 #include "Host/host.h"
@@ -88,7 +88,7 @@ private:
   QString _name;
   QString _logSuffix;
   GmicQt::OutputMessageMode _messageMode;
-  QTime _startTime;
+  QElapsedTimer _startTime;
 };
 
 #endif // GMIC_QT__FILTERTHREAD_H

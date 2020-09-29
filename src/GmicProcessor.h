@@ -25,13 +25,13 @@
 #ifndef GMIC_QT_GMICPROCESSOR_H
 #define GMIC_QT_GMICPROCESSOR_H
 
+#include <QElapsedTimer>
 #include <QList>
 #include <QObject>
 #include <QSettings>
 #include <QSignalMapper>
 #include <QString>
 #include <QStringList>
-#include <QTime>
 #include <QTimer>
 #include <QVector>
 #include <deque>
@@ -150,7 +150,7 @@ private:
   QString _gmicStatusQuotedParameters;
   QString _lastAppliedCommandEnv;
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
-  QTime _filterExecutionTime;
+  QElapsedTimer _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;
 };
