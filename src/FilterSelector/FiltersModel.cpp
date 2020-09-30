@@ -27,6 +27,7 @@
 #include <QDebug>
 #include <limits>
 #include "Common.h"
+#include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Utils.h"
@@ -106,6 +107,7 @@ FiltersModel::Filter & FiltersModel::Filter::setName(const QString & name)
 {
   _name = name;
   _plainText = HtmlTranslator::html2txt(name, true);
+  _translatedPlainText = HtmlTranslator::html2txt(FilterTextTranslator::translate(name));
   return *this;
 }
 
@@ -143,8 +145,10 @@ FiltersModel::Filter & FiltersModel::Filter::setPath(const QList<QString> & path
 {
   _path = path;
   _plainPath.clear();
+  _translatedPlainPath.clear();
   for (const QString & str : _path) {
     _plainPath.push_back(HtmlTranslator::html2txt(str, true));
+    _translatedPlainPath.push_back(HtmlTranslator::html2txt(FilterTextTranslator::translate(str), true));
   }
   return *this;
 }
@@ -175,14 +179,19 @@ FiltersModel::Filter & FiltersModel::Filter::build()
   return *this;
 }
 
-QString FiltersModel::Filter::name() const
+const QString & FiltersModel::Filter::name() const
 {
   return _name;
 }
 
-QString FiltersModel::Filter::plainText() const
+const QString & FiltersModel::Filter::plainText() const
 {
   return _plainText;
+}
+
+const QString & FiltersModel::Filter::translatedPlainText() const
+{
+  return _translatedPlainText;
 }
 
 const QList<QString> & FiltersModel::Filter::path() const
@@ -190,7 +199,7 @@ const QList<QString> & FiltersModel::Filter::path() const
   return _path;
 }
 
-QString FiltersModel::Filter::hash() const
+const QString & FiltersModel::Filter::hash() const
 {
   return _hash;
 }
@@ -206,17 +215,17 @@ QString FiltersModel::Filter::hash236() const
   return hash.result().toHex();
 }
 
-QString FiltersModel::Filter::command() const
+const QString & FiltersModel::Filter::command() const
 {
   return _command;
 }
 
-QString FiltersModel::Filter::previewCommand() const
+const QString & FiltersModel::Filter::previewCommand() const
 {
   return _previewCommand;
 }
 
-QString FiltersModel::Filter::parameters() const
+const QString & FiltersModel::Filter::parameters() const
 {
   return _parameters;
 }
@@ -248,12 +257,12 @@ bool FiltersModel::Filter::matchKeywords(const QList<QString> & keywords) const
     // Check that this keyword is present, either in filter name or in its path
     const QString & keyword = *itKeyword;
     bool keywordInPath = false;
-    QList<QString>::const_iterator itPath = _plainPath.cbegin();
-    while (itPath != _plainPath.cend() && !keywordInPath) {
+    QList<QString>::const_iterator itPath = _translatedPlainPath.cbegin();
+    while (itPath != _translatedPlainPath.cend() && !keywordInPath) {
       keywordInPath = itPath->contains(keyword, Qt::CaseInsensitive);
       ++itPath;
     }
-    if (!keywordInPath && !_plainText.contains(keyword, Qt::CaseInsensitive)) {
+    if (!keywordInPath && !_translatedPlainText.contains(keyword, Qt::CaseInsensitive)) {
       return false;
     }
     ++itKeyword;

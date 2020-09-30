@@ -47,14 +47,15 @@ public:
     Filter & setDefaultInputMode(GmicQt::InputMode);
     Filter & build();
 
-    QString name() const;
-    QString plainText() const;
+    const QString & name() const;
+    const QString & plainText() const;
+    const QString & translatedPlainText() const;
     const QList<QString> & path() const;
-    QString hash() const;
+    const QString & hash() const;
     QString hash236() const;
-    QString command() const;
-    QString previewCommand() const;
-    QString parameters() const;
+    const QString & command() const;
+    const QString & previewCommand() const;
+    const QString & parameters() const;
     float previewFactor() const;
     bool isAccurateIfZoomed() const;
     bool isWarning() const;
@@ -66,8 +67,10 @@ public:
   private:
     QString _name;
     QString _plainText;
+    QString _translatedPlainText;
     QList<QString> _path;
     QList<QString> _plainPath;
+    QList<QString> _translatedPlainPath;
     QString _command;
     QString _previewCommand;
     GmicQt::InputMode _defaultInputMode;
