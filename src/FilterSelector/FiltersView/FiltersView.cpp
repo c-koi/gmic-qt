@@ -340,7 +340,11 @@ bool FiltersView::eventFilter(QObject * watched, QEvent * event)
       FilterTreeItem * item = selectedItem();
       if (item && item->isFave()) {
         QMessageBox::StandardButton button;
-        button = QMessageBox::question(this, tr("Remove fave"), QString(tr("Do you really want to remove the following fave?\n\n%1\n")).arg(item->text()));
+        button = QMessageBox::question(this,                                                                                      //
+                                       tr("Remove fave"),                                                                         //
+                                       QString(tr("Do you really want to remove the following fave?\n\n%1\n")).arg(item->text()), //
+                                       QMessageBox::Yes | QMessageBox::No,                                                        //
+                                       QMessageBox::Yes);
         if (button == QMessageBox::Yes) {
           emit faveRemovalRequested(item->hash());
           return true;

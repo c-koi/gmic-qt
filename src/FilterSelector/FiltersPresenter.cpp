@@ -54,10 +54,10 @@ void FiltersPresenter::setFiltersView(FiltersView * filtersView)
     _filtersView->disconnect(this);
   }
   _filtersView = filtersView;
-  connect(_filtersView, SIGNAL(filterSelected(QString)), this, SLOT(onFilterChanged(QString)));
-  connect(_filtersView, SIGNAL(faveRenamed(QString, QString)), this, SLOT(onFaveRenamed(QString, QString)));
-  connect(_filtersView, SIGNAL(faveRemovalRequested(QString)), this, SLOT(removeFave(QString)));
-  connect(_filtersView, SIGNAL(faveAdditionRequested(QString)), this, SIGNAL(faveAdditionRequested(QString)));
+  connect(_filtersView, &FiltersView::filterSelected, this, &FiltersPresenter::onFilterChanged);
+  connect(_filtersView, &FiltersView::faveRenamed, this, &FiltersPresenter::onFaveRenamed);
+  connect(_filtersView, &FiltersView::faveRemovalRequested, this, &FiltersPresenter::removeFave);
+  connect(_filtersView, &FiltersView::faveAdditionRequested, this, &FiltersPresenter::faveAdditionRequested);
 }
 
 void FiltersPresenter::rebuildFilterView()

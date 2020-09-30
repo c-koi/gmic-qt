@@ -508,8 +508,8 @@ void MainWindow::makeConnections()
 
   connect(ui->tbAddFave, SIGNAL(clicked(bool)), this, SLOT(onAddFave()));
   connect(_filtersPresenter, SIGNAL(faveAdditionRequested(QString)), this, SLOT(onAddFave()));
-  connect(ui->tbRemoveFave, SIGNAL(clicked(bool)), this, SLOT(onRemoveFave()));
-  connect(ui->tbRenameFave, SIGNAL(clicked(bool)), this, SLOT(onRenameFave()));
+  connect(ui->tbRemoveFave, &QToolButton::clicked, this, &MainWindow::onRemoveFave);
+  connect(ui->tbRenameFave, &QToolButton::clicked, this, &MainWindow::onRenameFave);
 
   connect(ui->inOutSelector, SIGNAL(inputModeChanged(GmicQt::InputMode)), this, SLOT(onInputModeChanged(GmicQt::InputMode)));
   connect(ui->inOutSelector, SIGNAL(previewModeChanged(GmicQt::PreviewMode)), ui->previewWidget, SLOT(sendUpdateRequest()));
