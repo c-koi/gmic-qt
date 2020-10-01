@@ -267,7 +267,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
 
     if (reply.length() > 0)
     {
-        QStringList items = reply.split(',', QString::SkipEmptyParts);
+        QStringList items = reply.split(',', Qt::SkipEmptyParts);
 
         if (items.length() == 2)
         {
@@ -299,7 +299,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 
     QString reply = QString::fromUtf8(SendMessageSynchronously(getImagesCommand.toUtf8()));
 
-    QStringList layers = reply.split('\n', QString::SkipEmptyParts);
+    QStringList layers = reply.split('\n', Qt::SkipEmptyParts);
 
     const int layerCount = layers.length();
 
@@ -315,7 +315,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 
     for (int i = 0; i < layerCount; ++i)
     {
-        QStringList layerData = layers[i].split(',', QString::SkipEmptyParts);
+        QStringList layerData = layers[i].split(',', Qt::SkipEmptyParts);
         if (layerData.length() != 4)
         {
             return;
@@ -594,7 +594,7 @@ int main(int argc, char *argv[])
     disableOutputMode(GmicQt::NewImage);
     disableOutputMode(GmicQt::NewLayers);
     disableOutputMode(GmicQt::NewActiveLayers);
-	
+
 	// disablePreviewMode(GmicQt::FirstOutput);
     disablePreviewMode(GmicQt::SecondOutput);
     disablePreviewMode(GmicQt::ThirdOutput);
