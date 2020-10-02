@@ -57,13 +57,13 @@ void ParametersCache::load(bool loadFiltersParameters)
 #ifdef _GMIC_QT_DEBUG_
     QJsonDocument jsonDoc;
     QByteArray allFile = jsonFile.readAll();
-    if (allFile.startsWith("{\n")) {
+    if (allFile.startsWith("{")) {
       jsonDoc = QJsonDocument::fromJson(allFile);
     } else {
-      jsonDoc = QJsonDocument::fromBinaryData(qUncompress(allFile));
+      jsonDoc = QJsonDocument::fromJson(qUncompress(allFile));
     }
 #else
-    QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(qUncompress(jsonFile.readAll()));
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(qUncompress(jsonFile.readAll()));
 #endif
     if (jsonDoc.isNull()) {
       Logger::warning(QString("Cannot parse ") + jsonFilename);
@@ -207,7 +207,7 @@ void ParametersCache::save()
 #ifdef _GMIC_QT_DEBUG_
     qint64 count = jsonFile.write(jsonDoc.toJson());
 #else
-    qint64 count = jsonFile.write(qCompress(jsonDoc.toBinaryData()));
+    qint64 count = jsonFile.write(qCompress(jsonDoc.toJson(QJsonDocument::Compact)));
 #endif
     // jsonFile.write(jsonDoc.toJson());
     // jsonFile.write(qCompress(jsonDoc.toBinaryData()));
