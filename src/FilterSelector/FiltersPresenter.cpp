@@ -221,7 +221,7 @@ void FiltersPresenter::applySearchCriterion(const QString & text)
   if ((!text.isEmpty() && previousText.isEmpty()) || (text.isEmpty() && previousText.isEmpty())) {
     _filtersView->preserveExpandedFolders();
   }
-  QList<QString> keywords = text.split(QChar(' '), Qt::SkipEmptyParts);
+  QList<QString> keywords = text.split(QChar(' '), QT_SKIP_EMPTY_PARTS);
 
   rebuildFilterViewWithSelection(keywords);
   if (text.isEmpty()) {

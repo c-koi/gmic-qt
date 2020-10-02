@@ -267,7 +267,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
 
     if (reply.length() > 0)
     {
-        QStringList items = reply.split(',', Qt::SkipEmptyParts);
+        QStringList items = reply.split(',', QT_SKIP_EMPTY_PARTS);
 
         if (items.length() == 2)
         {
@@ -299,7 +299,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 
     QString reply = QString::fromUtf8(SendMessageSynchronously(getImagesCommand.toUtf8()));
 
-    QStringList layers = reply.split('\n', Qt::SkipEmptyParts);
+    QStringList layers = reply.split('\n', QT_SKIP_EMPTY_PARTS);
 
     const int layerCount = layers.length();
 
@@ -315,7 +315,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 
     for (int i = 0; i < layerCount; ++i)
     {
-        QStringList layerData = layers[i].split(',', Qt::SkipEmptyParts);
+        QStringList layerData = layers[i].split(',', QT_SKIP_EMPTY_PARTS);
         if (layerData.length() != 4)
         {
             return;
