@@ -85,7 +85,7 @@ void Logger::log(const QString & message, const QString & hint, bool space)
   while (!text.isEmpty() && text[text.size() - 1].isSpace()) {
     text.chop(1);
   }
-  QStringList lines = text.split("\n", QString::KeepEmptyParts);
+  QStringList lines = text.split("\n", QT_KEEP_EMPTY_PARTS);
 
   QString prefix = QString("[%1]").arg(GmicQt::pluginCodeName());
   prefix += hint.isEmpty() ? " " : QString("./%1/ ").arg(hint);
