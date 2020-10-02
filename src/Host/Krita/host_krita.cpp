@@ -37,6 +37,7 @@
 #include <ImageConverter.h>
 
 #include <algorithm>
+#include "Common.h"
 #include "Host/host.h"
 #include "gmic_qt.h"
 #include "gmic.h"
