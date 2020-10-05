@@ -310,7 +310,7 @@
     <message>
         <location filename="../ui/headlessprogressdialog.ui" line="68"/>
         <source>Cancel</source>
-        <translation>Cancel</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -347,22 +347,22 @@
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="273"/>
         <source>Input / Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrée / Aperçu</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="273"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrée</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="275"/>
         <source>Output / Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortie / Aperçu</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="275"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortie</translation>
     </message>
 </context>
 <context>
@@ -408,7 +408,7 @@
     <message>
         <location filename="../ui/mainwindow.ui" line="489"/>
         <source>TextLabel</source>
-        <translation></translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="233"/>
@@ -418,7 +418,7 @@
     <message>
         <location filename="../ui/mainwindow.ui" line="379"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activer/désactiver l'aperçu&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(cliquez droit sur l'image d'aperçu pour basculer instantanément)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="382"/>
@@ -505,7 +505,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="348"/>
         <source>Filters update could not be achieved</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour des filtres n'a pas réussi</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="470"/>
@@ -568,7 +568,7 @@
     <message>
         <location filename="../src/FilterParameters/MultilineTextParameterWidget.cpp" line="38"/>
         <source>Ctrl+Return</source>
-        <translation>Ctrl+Return</translation>
+        <translation>Ctrl+Entrée</translation>
     </message>
 </context>
 <context>
@@ -627,7 +627,7 @@
     <message>
         <location filename="../ui/progressinfowindow.ui" line="72"/>
         <source>Cancel</source>
-        <translation>Cancel</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="138"/>
@@ -744,22 +744,22 @@
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="51"/>
         <source>Zoom in</source>
-        <translation type="unfinished">Zoom avant</translation>
+        <translation>Zoom avant</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="52"/>
         <source>Zoom out</source>
-        <translation type="unfinished">Zoom arrière</translation>
+        <translation>Zoom arrière</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="53"/>
         <source>Reset zoom</source>
-        <translation type="unfinished">Zoom par défaut</translation>
+        <translation>Zoom par défaut</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="153"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
-        <translation type="unfinished">Attention : l&apos;aperçu peut être erroné (le facteur de zoom a été modifié)</translation>
+        <translation>Attention : l&apos;aperçu peut être erroné (le facteur de zoom a été modifié)</translation>
     </message>
 </context>
 </TS>
