@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Original French translation done by Sébastien Fourey -->
-
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
@@ -37,7 +34,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="24"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="64"/>
@@ -77,17 +74,17 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="179"/>
         <source>Always enable preview zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours activer le zoom</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Warning: preview may be inaccurate&lt;br/&gt;if checked.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Attention : l&apos;aperçu peut être faussé si ce choix est activé.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="215"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Autre</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="253"/>
@@ -123,7 +120,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="262"/>
         <source>Notify when scheduled update fails</source>
-        <translation type="unfinished"></translation>
+        <translation>Signaler quand une mise à jour automatique échoue</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="304"/>
@@ -250,7 +247,7 @@
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="418"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre introuvable pour ce favori</translation>
     </message>
 </context>
 <context>
@@ -418,7 +415,7 @@
     <message>
         <location filename="../ui/mainwindow.ui" line="379"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activer/désactiver l'aperçu&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(cliquez droit sur l'image d'aperçu pour basculer instantanément)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activer/désactiver l&apos;aperçu&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(cliquez droit sur l&apos;image d&apos;aperçu pour basculer instantanément)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="382"/>
@@ -505,7 +502,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="348"/>
         <source>Filters update could not be achieved</source>
-        <translation>La mise à jour des filtres n'a pas réussi</translation>
+        <translation>La mise à jour des filtres n&apos;a pas réussi</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="470"/>
@@ -726,7 +723,7 @@
     <message>
         <location filename="../src/Updater.cpp" line="231"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors du téléchargement de %1&lt;br/&gt; Erreur %2 : %3</translation>
     </message>
     <message>
         <location filename="../src/Updater.cpp" line="264"/>
