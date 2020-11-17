@@ -35,7 +35,7 @@
 // Local includes
 
 #include "MainWindow.h"
-#include "Widgets/LanguageSelectionWidget.h"
+#include "LanguageSettings.h"
 #include "DialogSettings.h"
 #include "gmic_qt.h"
 
@@ -118,7 +118,7 @@ void GmicQtToolPlugin::slotGmicQt()
     DialogSettings::loadSettings(GmicQt::GuiApplication);
 
     // Translate according to current locale or configured language
-    QString lang = LanguageSelectionWidget::configuredTranslator();
+    QString lang = LanguageSettings::configuredTranslator();
 
     if (!lang.isEmpty() && (lang != "en"))
     {
