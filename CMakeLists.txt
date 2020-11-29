@@ -22,7 +22,7 @@ endif()
 
 message("Build type is " ${CMAKE_BUILD_TYPE})
 
-set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet, or digikam.")
+set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet, digikam or 8bf.")
 if (${GMIC_QT_HOST} STREQUAL "none")
   message("Building standalone version.")
 else()
@@ -632,8 +632,19 @@ elseif (${GMIC_QT_HOST} STREQUAL "digikam")
     install(TARGETS Editor_GmicQt_Plugin
             DESTINATION ${QT_PLUGINS_DIR}/digikam/editor)
 
+elseif (${GMIC_QT_HOST} STREQUAL "8bf")
+
+    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/8bf/host_8bf.cpp)
+    add_definitions(-DGMIC_HOST=plugin8bf)
+    add_executable(gmic_8bf_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
+    target_link_libraries(
+      gmic_8bf_qt
+      PRIVATE
+      ${gmic_qt_LIBRARIES}
+      )
+
 else()
-    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita, none, paintdotnet, or digikam")
+    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita, none, paintdotnet, digikam or 8bf")
 endif()
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
