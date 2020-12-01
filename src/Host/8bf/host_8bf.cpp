@@ -440,9 +440,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
                     int n = in.width();
                     unsigned char* dst = out.scanLine(y);
                     while (n--) {
-                        dst[0] = float2uchar_bounded(*src);
-                        dst[1] = float2uchar_bounded(*src);
-                        dst[2] = float2uchar_bounded(*src);
+                        dst[0] = dst[1] = dst[2] = float2uchar_bounded(*src);
                         ++src;
                         dst += 3;
                     }
