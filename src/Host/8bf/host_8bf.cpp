@@ -35,8 +35,7 @@
 #include <memory>
 #include "Common.h"
 #include "Host/host.h"
-#include "ImageConverter.h"
-#include "MainWindow.h"
+#include "ImageTools.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
@@ -54,6 +53,7 @@ namespace host_8bf
     QString outputDir;
     QVector<Gmic8bfLayer> layers;
     int32_t activeLayerIndex;
+    bool grayScale;
 }
 
 namespace GmicQt
@@ -103,7 +103,7 @@ namespace
 
         dataStream >> fileVersion;
 
-        if (fileVersion != 1)
+        if (fileVersion != 1 && fileVersion != 2)
         {
             return false;
         }
@@ -113,6 +113,17 @@ namespace
         dataStream >> layerCount;
 
         dataStream >> host_8bf::activeLayerIndex;
+
+        host_8bf::grayScale = false;
+
+        if (fileVersion == 2)
+        {
+            int32_t grayScaleInt;
+
+            dataStream >> grayScaleInt;
+
+            host_8bf::grayScale = grayScaleInt != 0;
+        }
 
         host_8bf::layers.reserve(layerCount);
 
@@ -140,6 +151,12 @@ namespace
             {
                 image = image.convertToFormat(QImage::Format_RGB888);
             }
+#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
+            else if (image.format() == QImage::Format_Grayscale8)
+            {
+                image = image.convertToFormat(QImage::Format_RGB888);
+            }
+#endif
 
             Gmic8bfLayer layer{};
             layer.width = layerWidth;
@@ -229,6 +246,134 @@ namespace
     {
         return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
     }
+
+    void ConvertCroppedImageToGmic(const QImage& in, cimg_library::CImg<float>& out)
+    {
+        // The following code was copied from ImageConverter.cpp and has been adapted to support the G'MIC grayscale modes.
+
+        Q_ASSERT_X(in.format() == QImage::Format_ARGB32 || in.format() == QImage::Format_RGB888, "ConvertCroppedImageToGmic", "bad input format");
+
+        if (in.format() == QImage::Format_ARGB32)
+        {
+            const int w = in.width();
+            const int h = in.height();
+
+            if (host_8bf::grayScale)
+            {
+                out.assign(w, h, 1, 2);
+                float* dstGray = out.data(0, 0, 0, 0);
+                float* dstAlpha = out.data(0, 0, 0, 1);
+                if (archIsLittleEndian())
+                {
+                    for (int y = 0; y < h; ++y)
+                    {
+                        const unsigned char* src = in.scanLine(y);
+                        int n = in.width();
+                        while (n--)
+                        {
+                            *dstGray++ = static_cast<float>(src[0]);
+                            *dstAlpha++ = static_cast<float>(src[3]);
+                            src += 4;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int y = 0; y < h; ++y)
+                    {
+                        const unsigned char* src = in.scanLine(y);
+                        int n = in.width();
+                        while (n--)
+                        {
+                            *dstAlpha++ = static_cast<float>(src[0]);
+                            *dstGray++ = static_cast<float>(src[1]);
+                            src += 4;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                out.assign(w, h, 1, 4);
+                float* dstR = out.data(0, 0, 0, 0);
+                float* dstG = out.data(0, 0, 0, 1);
+                float* dstB = out.data(0, 0, 0, 2);
+                float* dstA = out.data(0, 0, 0, 3);
+                if (archIsLittleEndian())
+                {
+                    for (int y = 0; y < h; ++y)
+                    {
+                        const unsigned char* src = in.scanLine(y);
+                        int n = in.width();
+                        while (n--)
+                        {
+                            *dstB++ = static_cast<float>(src[0]);
+                            *dstG++ = static_cast<float>(src[1]);
+                            *dstR++ = static_cast<float>(src[2]);
+                            *dstA++ = static_cast<float>(src[3]);
+                            src += 4;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int y = 0; y < h; ++y)
+                    {
+                        const unsigned char* src = in.scanLine(y);
+                        int n = in.width();
+                        while (n--)
+                        {
+                            *dstA++ = static_cast<float>(src[0]);
+                            *dstR++ = static_cast<float>(src[1]);
+                            *dstG++ = static_cast<float>(src[2]);
+                            *dstB++ = static_cast<float>(src[3]);
+                            src += 4;
+                        }
+                    }
+                }
+            }
+        }
+        else if (in.format() == QImage::Format_RGB888)
+        {
+            const int w = in.width();
+            const int h = in.height();
+
+            if (host_8bf::grayScale)
+            {
+                out.assign(w, h, 1, 1);
+                float* dstGray = out.data(0, 0, 0, 0);
+                for (int y = 0; y < h; ++y)
+                {
+                    const unsigned char* src = in.scanLine(y);
+                    int n = in.width();
+                    while (n--)
+                    {
+                        *dstGray++ = static_cast<float>(src[0]);
+                        src += 3;
+                    }
+                }
+            }
+            else
+            {
+                out.assign(w, h, 1, 3);
+                float* dstR = out.data(0, 0, 0, 0);
+                float* dstG = out.data(0, 0, 0, 1);
+                float* dstB = out.data(0, 0, 0, 2);
+                for (int y = 0; y < h; ++y)
+                {
+                    const unsigned char* src = in.scanLine(y);
+                    int n = in.width();
+                    while (n--)
+                    {
+                        *dstR++ = static_cast<float>(src[0]);
+                        *dstG++ = static_cast<float>(src[1]);
+                        *dstB++ = static_cast<float>(src[2]);
+                        src += 3;
+                    }
+                }
+            }
+        }
+    }
 }
 
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
@@ -311,7 +456,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 
     for (int i = 0; i < layerCount; i++)
     {
-        ImageConverter::convert(filteredLayers.at(i).imageData.copy(ix, iy, iw, ih), images[i]);
+       ConvertCroppedImageToGmic(filteredLayers.at(i).imageData.copy(ix, iy, iw, ih), images[i]);
     }
 }
 
@@ -326,10 +471,16 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
         {
             QString outputFileName = QString("%1/%2.png").arg(host_8bf::outputDir).arg(i);
 
-            const cimg_library::CImg<float>& in = images[i];
+            cimg_library::CImg<float>& in = images[i];
 
             const int width = in.width();
             const int height = in.height();
+
+            if (host_8bf::grayScale && (in.spectrum() == 3 || in.spectrum() == 4))
+            {
+                // Convert the RGB image to grayscale.
+                GmicQt::calibrate_image(in, in.spectrum() == 4 ? 2 : 1, false);
+            }
 
             // The ImageConverter::convert method uses Format_Grayscale8 for grayscale images, and we want those images to be saved as Format_RGB888.
             // Saving all images as RGB simplifies the PNG loading code in the 8bf filter.
