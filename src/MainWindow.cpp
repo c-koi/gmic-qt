@@ -1002,15 +1002,17 @@ void MainWindow::adjustVerticalSplitter()
   QSettings settings;
   sizes.push_back(settings.value(QString("Config/ParamsVerticalSplitterSizeTop"), -1).toInt());
   sizes.push_back(settings.value(QString("Config/ParamsVerticalSplitterSizeBottom"), -1).toInt());
-  if ((sizes.front() != -1) && (sizes.back() != -1)) {
+  const int splitterHeight = ui->verticalSplitter->height();
+  if ((sizes.front() != -1) && (sizes.back() != -1) && (sizes.front() + sizes.back() <= splitterHeight)) {
     ui->verticalSplitter->setSizes(sizes);
   } else {
-    int h1 = std::max(ui->inOutSelector->sizeHint().height(), 75);
-    int h = std::max(ui->verticalSplitter->height(), 150);
-    sizes.clear();
-    sizes.push_back(h - h1);
-    sizes.push_back(h1);
-    ui->verticalSplitter->setSizes(sizes);
+    const int inOutHeight = std::max(ui->inOutSelector->sizeHint().height(), 75);
+    if (splitterHeight > inOutHeight) {
+      sizes.clear();
+      sizes.push_back(splitterHeight - inOutHeight);
+      sizes.push_back(inOutHeight);
+      ui->verticalSplitter->setSizes(sizes);
+    }
   }
 }
 
