@@ -27,6 +27,7 @@
 #include <QVector>
 #include <QDebug>
 #include <QDataStream>
+#include <QDir>
 #include <QFile>
 #include <QMessageBox>
 #include <QUUid>
@@ -374,6 +375,16 @@ namespace
             }
         }
     }
+
+    void EmptyOutputFolder()
+    {
+        QDir dir(host_8bf::outputDir);
+        dir.setFilter(QDir::NoDotAndDotDot | QDir::Files);
+        foreach(QString dirFile, dir.entryList())
+        {
+            dir.remove(dirFile);
+        }
+    }
 }
 
 void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
@@ -467,6 +478,9 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
 
     if (images.size() > 0)
     {
+        // Remove any files that may be present from the last time the user clicked Apply.
+        EmptyOutputFolder();
+
         for (size_t i = 0; i < images.size(); ++i)
         {
             QString outputFileName = QString("%1/%2.png").arg(host_8bf::outputDir).arg(i);
@@ -598,7 +612,29 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
                 }
             }
 
-            out.save(outputFileName);
+            if (i == 0)
+            {
+                // Replace the active layer image with the first output image.
+                // This allows users to "layer" multiple effects using the G'MIC-Qt Apply button.
+                //
+                // Note that only the most recently applied effect will be used by the "Last Filter"
+                // or "Repeat Filter" commands.
+
+                Gmic8bfLayer& active = host_8bf::layers[host_8bf::activeLayerIndex];
+
+                active.width = width;
+                active.height = height;
+                active.imageData.swap(out);
+
+                // The image that G'MIC passes to this method does not contain the most recent change.
+                // To get the current "layered" G'MIC effects we need to save the active layer after
+                // it has been updated.
+                active.imageData.save(outputFileName);
+            }
+            else
+            {
+                out.save(outputFileName);
+            }
         }
     }
 }
