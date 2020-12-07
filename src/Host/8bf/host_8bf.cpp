@@ -89,7 +89,7 @@ namespace
         }
 
         QDataStream dataStream(&file);
-        dataStream.setByteOrder(QDataStream::BigEndian);
+        dataStream.setByteOrder(QDataStream::LittleEndian);
 
         char signature[4] = {};
 
