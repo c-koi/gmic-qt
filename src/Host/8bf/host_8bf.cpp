@@ -55,6 +55,8 @@ namespace host_8bf
     QVector<Gmic8bfLayer> layers;
     int32_t activeLayerIndex;
     bool grayScale;
+    bool sixteenBitsPerChannel;
+    QVector<float> sixteenBitToEightBitLUT;
 }
 
 namespace GmicQt
@@ -116,14 +118,16 @@ namespace
         dataStream >> host_8bf::activeLayerIndex;
 
         host_8bf::grayScale = false;
+        host_8bf::sixteenBitsPerChannel = false;
 
         if (fileVersion == 2)
         {
-            int32_t grayScaleInt;
+            int32_t documentFlags;
 
-            dataStream >> grayScaleInt;
+            dataStream >> documentFlags;
 
-            host_8bf::grayScale = grayScaleInt != 0;
+            host_8bf::grayScale = (documentFlags & 1) != 0;
+            host_8bf::sixteenBitsPerChannel = (documentFlags & 2) != 0;
         }
 
         host_8bf::layers.reserve(layerCount);
@@ -152,12 +156,14 @@ namespace
             {
                 image = image.convertToFormat(QImage::Format_RGB888);
             }
-#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
             else if (image.format() == QImage::Format_Grayscale8)
             {
                 image = image.convertToFormat(QImage::Format_RGB888);
             }
-#endif
+            else if (image.format() == QImage::Format_Grayscale16)
+            {
+                image = image.convertToFormat(QImage::Format_RGBX64);
+            }
 
             Gmic8bfLayer layer{};
             layer.width = layerWidth;
@@ -248,11 +254,22 @@ namespace
         return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
     }
 
+    inline ushort float2ushort_bounded(const float& in)
+    {
+        // Scale the value from [0, 255] to [0, 65535].
+        const float fullRangeValue = in * 257.0f;
+
+        return (fullRangeValue < 0.0f) ? 0 : ((fullRangeValue > 65535.0f) ? 65535 : static_cast<ushort>(fullRangeValue));
+    }
+
     void ConvertCroppedImageToGmic(const QImage& in, cimg_library::CImg<float>& out)
     {
         // The following code was copied from ImageConverter.cpp and has been adapted to support the G'MIC grayscale modes.
 
-        Q_ASSERT_X(in.format() == QImage::Format_ARGB32 || in.format() == QImage::Format_RGB888, "ConvertCroppedImageToGmic", "bad input format");
+        Q_ASSERT_X(in.format() == QImage::Format_ARGB32 ||
+                   in.format() == QImage::Format_RGB888 ||
+                   in.format() == QImage::Format_RGBA64 ||
+                   in.format() == QImage::Format_RGBX64, "ConvertCroppedImageToGmic", "bad input format");
 
         if (in.format() == QImage::Format_ARGB32)
         {
@@ -374,6 +391,300 @@ namespace
                 }
             }
         }
+        else if (in.format() == QImage::Format_RGBA64)
+        {
+            const int w = in.width();
+            const int h = in.height();
+
+            if (host_8bf::grayScale)
+            {
+                out.assign(w, h, 1, 2);
+                float* dstGray = out.data(0, 0, 0, 0);
+                float* dstAlpha = out.data(0, 0, 0, 1);
+
+                for (int y = 0; y < h; ++y)
+                {
+                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
+                    int n = in.width();
+                    while (n--)
+                    {
+                        *dstGray++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
+                        *dstAlpha++ = host_8bf::sixteenBitToEightBitLUT[src[3]];
+                        src += 4;
+                    }
+                }
+            }
+            else
+            {
+                out.assign(w, h, 1, 4);
+                float* dstR = out.data(0, 0, 0, 0);
+                float* dstG = out.data(0, 0, 0, 1);
+                float* dstB = out.data(0, 0, 0, 2);
+                float* dstA = out.data(0, 0, 0, 3);
+
+                for (int y = 0; y < h; ++y)
+                {
+                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
+                    int n = in.width();
+                    while (n--)
+                    {
+                        *dstR++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
+                        *dstG++ = host_8bf::sixteenBitToEightBitLUT[src[1]];
+                        *dstB++ = host_8bf::sixteenBitToEightBitLUT[src[2]];
+                        *dstA++ = host_8bf::sixteenBitToEightBitLUT[src[3]];
+                        src += 4;
+                    }
+                }
+            }
+        }
+        else if (in.format() == QImage::Format_RGBX64)
+        {
+            const int w = in.width();
+            const int h = in.height();
+
+            if (host_8bf::grayScale)
+            {
+                out.assign(w, h, 1, 1);
+                float* dstGray = out.data(0, 0, 0, 0);
+                for (int y = 0; y < h; ++y)
+                {
+                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
+                    int n = in.width();
+                    while (n--)
+                    {
+                        *dstGray++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
+                        src += 4;
+                    }
+                }
+            }
+            else
+            {
+                out.assign(w, h, 1, 3);
+                float* dstR = out.data(0, 0, 0, 0);
+                float* dstG = out.data(0, 0, 0, 1);
+                float* dstB = out.data(0, 0, 0, 2);
+                for (int y = 0; y < h; ++y)
+                {
+                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
+                    int n = in.width();
+                    while (n--)
+                    {
+                        *dstR++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
+                        *dstG++ = host_8bf::sixteenBitToEightBitLUT[src[1]];
+                        *dstB++ = host_8bf::sixteenBitToEightBitLUT[src[2]];
+                        src += 4;
+                    }
+                }
+            }
+        }
+    }
+
+    QImage ConvertGmicToOutput8(const cimg_library::CImg<float>& in)
+    {
+        // The following code has been adapted from ImageConverter.cpp.
+
+        QImage out(in.width(), in.height(), QImage::Format_RGB888);
+
+        if (in.spectrum() == 4 && out.format() != QImage::Format_ARGB32) {
+            out = out.convertToFormat(QImage::Format_ARGB32);
+        }
+        else if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
+            out = out.convertToFormat(QImage::Format_RGB888);
+        }
+        else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
+            out = out.convertToFormat(QImage::Format_ARGB32);
+        }
+        else if (in.spectrum() == 1 && out.format() != QImage::Format_RGB888) {
+            out = out.convertToFormat(QImage::Format_RGB888);
+        }
+
+        if (in.spectrum() == 3) {
+            const float* srcR = in.data(0, 0, 0, 0);
+            const float* srcG = in.data(0, 0, 0, 1);
+            const float* srcB = in.data(0, 0, 0, 2);
+            int height = out.height();
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                unsigned char* dst = out.scanLine(y);
+                while (n--) {
+                    dst[0] = float2uchar_bounded(*srcR++);
+                    dst[1] = float2uchar_bounded(*srcG++);
+                    dst[2] = float2uchar_bounded(*srcB++);
+                    dst += 3;
+                }
+            }
+        }
+        else if (in.spectrum() == 4) {
+            const float* srcR = in.data(0, 0, 0, 0);
+            const float* srcG = in.data(0, 0, 0, 1);
+            const float* srcB = in.data(0, 0, 0, 2);
+            const float* srcA = in.data(0, 0, 0, 3);
+            int height = out.height();
+            if (archIsLittleEndian()) {
+                for (int y = 0; y < height; ++y) {
+                    int n = in.width();
+                    unsigned char* dst = out.scanLine(y);
+                    while (n--) {
+                        dst[0] = float2uchar_bounded(*srcB++);
+                        dst[1] = float2uchar_bounded(*srcG++);
+                        dst[2] = float2uchar_bounded(*srcR++);
+                        dst[3] = float2uchar_bounded(*srcA++);
+                        dst += 4;
+                    }
+                }
+            }
+            else {
+                for (int y = 0; y < height; ++y) {
+                    int n = in.width();
+                    unsigned char* dst = out.scanLine(y);
+                    while (n--) {
+                        dst[0] = float2uchar_bounded(*srcA++);
+                        dst[1] = float2uchar_bounded(*srcR++);
+                        dst[2] = float2uchar_bounded(*srcG++);
+                        dst[3] = float2uchar_bounded(*srcB++);
+                        dst += 4;
+                    }
+                }
+            }
+        }
+        else if (in.spectrum() == 2) {
+            //
+            // Gray + Alpha
+            //
+            const float* src = in.data(0, 0, 0, 0);
+            const float* srcA = in.data(0, 0, 0, 1);
+            int height = out.height();
+            if (archIsLittleEndian()) {
+                for (int y = 0; y < height; ++y) {
+                    int n = in.width();
+                    unsigned char* dst = out.scanLine(y);
+                    while (n--) {
+                        dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
+                        dst[3] = float2uchar_bounded(*srcA++);
+                        dst += 4;
+                    }
+                }
+            }
+            else {
+                for (int y = 0; y < height; ++y) {
+                    int n = in.width();
+                    unsigned char* dst = out.scanLine(y);
+                    while (n--) {
+                        dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
+                        dst[0] = float2uchar_bounded(*srcA++);
+                        dst += 4;
+                    }
+                }
+            }
+        }
+        else {
+            //
+            // 8-bits Gray levels
+            //
+            const float* src = in.data(0, 0, 0, 0);
+            int height = out.height();
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                unsigned char* dst = out.scanLine(y);
+                while (n--) {
+                    dst[0] = dst[1] = dst[2] = float2uchar_bounded(*src);
+                    ++src;
+                    dst += 3;
+                }
+            }
+        }
+
+        return out;
+    }
+
+    QImage ConvertGmicToOutput16(const cimg_library::CImg<float>& in)
+    {
+        // The following code has been adapted from ImageConverter.cpp.
+
+        QImage out(in.width(), in.height(), QImage::Format_RGBX64);
+
+        if (in.spectrum() == 4 && out.format() != QImage::Format_RGBA64) {
+            out = out.convertToFormat(QImage::Format_RGBA64);
+        }
+        else if (in.spectrum() == 3 && out.format() != QImage::Format_RGBX64) {
+            out = out.convertToFormat(QImage::Format_RGBX64);
+        }
+        else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
+            out = out.convertToFormat(QImage::Format_RGBA64);
+        }
+        else if (in.spectrum() == 1 && out.format() != QImage::Format_RGBX64) {
+            out = out.convertToFormat(QImage::Format_RGBX64);
+        }
+
+        if (in.spectrum() == 3) {
+            const float* srcR = in.data(0, 0, 0, 0);
+            const float* srcG = in.data(0, 0, 0, 1);
+            const float* srcB = in.data(0, 0, 0, 2);
+            int height = out.height();
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
+                while (n--) {
+                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[1] = float2ushort_bounded(*srcG++);
+                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst += 4;
+                }
+            }
+        }
+        else if (in.spectrum() == 4) {
+            const float* srcR = in.data(0, 0, 0, 0);
+            const float* srcG = in.data(0, 0, 0, 1);
+            const float* srcB = in.data(0, 0, 0, 2);
+            const float* srcA = in.data(0, 0, 0, 3);
+            int height = out.height();
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
+                while (n--) {
+                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[1] = float2ushort_bounded(*srcG++);
+                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst[3] = float2ushort_bounded(*srcA++);
+                    dst += 4;
+                }
+            }
+        }
+        else if (in.spectrum() == 2) {
+            //
+            // 16-bits Gray + Alpha
+            //
+            const float* src = in.data(0, 0, 0, 0);
+            const float* srcA = in.data(0, 0, 0, 1);
+            int height = out.height();
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
+                while (n--) {
+                    dst[0] = dst[1] = dst[2] = float2ushort_bounded(*src++);
+                    dst[3] = float2ushort_bounded(*srcA++);
+                    dst += 4;
+                }
+            }
+        }
+        else {
+            //
+            // 16-bits Gray levels
+            //
+            const float* src = in.data(0, 0, 0, 0);
+            int height = out.height();
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
+                while (n--) {
+                    dst[0] = dst[1] = dst[2] = float2ushort_bounded(*src);
+                    ++src;
+                    dst += 4;
+                }
+            }
+        }
+
+        return out;
     }
 
     void EmptyOutputFolder()
@@ -496,120 +807,15 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
                 GmicQt::calibrate_image(in, in.spectrum() == 4 ? 2 : 1, false);
             }
 
-            // The ImageConverter::convert method uses Format_Grayscale8 for grayscale images, and we want those images to be saved as Format_RGB888.
-            // Saving all images as RGB simplifies the PNG loading code in the 8bf filter.
+            QImage out;
 
-            // The following code has been adapted from ImageConverter.cpp.
-
-            QImage out(width, height, QImage::Format_RGB888);
-
-            if (in.spectrum() == 4 && out.format() != QImage::Format_ARGB32) {
-                out = out.convertToFormat(QImage::Format_ARGB32);
+            if (host_8bf::sixteenBitsPerChannel)
+            {
+                out = ConvertGmicToOutput16(in);
             }
-            else if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
-                out = out.convertToFormat(QImage::Format_RGB888);
-            }
-            else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
-                out = out.convertToFormat(QImage::Format_ARGB32);
-            }
-            else if (in.spectrum() == 1 && out.format() != QImage::Format_RGB888) {
-                out = out.convertToFormat(QImage::Format_RGB888);
-            }
-
-            if (in.spectrum() == 3) {
-                const float* srcR = in.data(0, 0, 0, 0);
-                const float* srcG = in.data(0, 0, 0, 1);
-                const float* srcB = in.data(0, 0, 0, 2);
-                int height = out.height();
-                for (int y = 0; y < height; ++y) {
-                    int n = in.width();
-                    unsigned char* dst = out.scanLine(y);
-                    while (n--) {
-                        dst[0] = float2uchar_bounded(*srcR++);
-                        dst[1] = float2uchar_bounded(*srcG++);
-                        dst[2] = float2uchar_bounded(*srcB++);
-                        dst += 3;
-                    }
-                }
-            }
-            else if (in.spectrum() == 4) {
-                const float* srcR = in.data(0, 0, 0, 0);
-                const float* srcG = in.data(0, 0, 0, 1);
-                const float* srcB = in.data(0, 0, 0, 2);
-                const float* srcA = in.data(0, 0, 0, 3);
-                int height = out.height();
-                if (archIsLittleEndian()) {
-                    for (int y = 0; y < height; ++y) {
-                        int n = in.width();
-                        unsigned char* dst = out.scanLine(y);
-                        while (n--) {
-                            dst[0] = float2uchar_bounded(*srcB++);
-                            dst[1] = float2uchar_bounded(*srcG++);
-                            dst[2] = float2uchar_bounded(*srcR++);
-                            dst[3] = float2uchar_bounded(*srcA++);
-                            dst += 4;
-                        }
-                    }
-                }
-                else {
-                    for (int y = 0; y < height; ++y) {
-                        int n = in.width();
-                        unsigned char* dst = out.scanLine(y);
-                        while (n--) {
-                            dst[0] = float2uchar_bounded(*srcA++);
-                            dst[1] = float2uchar_bounded(*srcR++);
-                            dst[2] = float2uchar_bounded(*srcG++);
-                            dst[3] = float2uchar_bounded(*srcB++);
-                            dst += 4;
-                        }
-                    }
-                }
-            }
-            else if (in.spectrum() == 2) {
-                //
-                // Gray + Alpha
-                //
-                const float* src = in.data(0, 0, 0, 0);
-                const float* srcA = in.data(0, 0, 0, 1);
-                int height = out.height();
-                if (archIsLittleEndian()) {
-                    for (int y = 0; y < height; ++y) {
-                        int n = in.width();
-                        unsigned char* dst = out.scanLine(y);
-                        while (n--) {
-                            dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
-                            dst[3] = float2uchar_bounded(*srcA++);
-                            dst += 4;
-                        }
-                    }
-                }
-                else {
-                    for (int y = 0; y < height; ++y) {
-                        int n = in.width();
-                        unsigned char* dst = out.scanLine(y);
-                        while (n--) {
-                            dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
-                            dst[0] = float2uchar_bounded(*srcA++);
-                            dst += 4;
-                        }
-                    }
-                }
-            }
-            else {
-                //
-                // 8-bits Gray levels
-                //
-                const float* src = in.data(0, 0, 0, 0);
-                int height = out.height();
-                for (int y = 0; y < height; ++y) {
-                    int n = in.width();
-                    unsigned char* dst = out.scanLine(y);
-                    while (n--) {
-                        dst[0] = dst[1] = dst[2] = float2uchar_bounded(*src);
-                        ++src;
-                        dst += 3;
-                    }
-                }
+            else
+            {
+                out = ConvertGmicToOutput8(in);
             }
 
             if (i == 0)
@@ -681,6 +887,18 @@ int main(int argc, char *argv[])
     if (!ParseInputFileIndex(indexFilePath))
     {
         return 4;
+    }
+
+    if (host_8bf::sixteenBitsPerChannel)
+    {
+        host_8bf::sixteenBitToEightBitLUT.reserve(65536);
+
+        for (int i = 0; i < host_8bf::sixteenBitToEightBitLUT.capacity(); i++)
+        {
+            // G'MIC expect the input image data to be a floating-point value in the range of [0, 255].
+            // We use a lookup table to avoid having to repeatedly perform division on the same values.
+            host_8bf::sixteenBitToEightBitLUT.push_back(static_cast<float>(i) / 257.0f);
+        }
     }
 
     int exitCode = 0;
