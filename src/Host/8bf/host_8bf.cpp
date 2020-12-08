@@ -156,14 +156,6 @@ namespace
             {
                 image = image.convertToFormat(QImage::Format_RGB888);
             }
-            else if (image.format() == QImage::Format_Grayscale8)
-            {
-                image = image.convertToFormat(QImage::Format_RGB888);
-            }
-            else if (image.format() == QImage::Format_Grayscale16)
-            {
-                image = image.convertToFormat(QImage::Format_RGBX64);
-            }
 
             Gmic8bfLayer layer{};
             layer.width = layerWidth;
@@ -269,7 +261,9 @@ namespace
         Q_ASSERT_X(in.format() == QImage::Format_ARGB32 ||
                    in.format() == QImage::Format_RGB888 ||
                    in.format() == QImage::Format_RGBA64 ||
-                   in.format() == QImage::Format_RGBX64, "ConvertCroppedImageToGmic", "bad input format");
+                   in.format() == QImage::Format_RGBX64 ||
+                   in.format() == QImage::Format_Grayscale8 ||
+                   in.format() == QImage::Format_Grayscale16, "ConvertCroppedImageToGmic", "bad input format");
 
         if (in.format() == QImage::Format_ARGB32)
         {
@@ -356,38 +350,38 @@ namespace
             const int w = in.width();
             const int h = in.height();
 
-            if (host_8bf::grayScale)
+            out.assign(w, h, 1, 3);
+            float* dstR = out.data(0, 0, 0, 0);
+            float* dstG = out.data(0, 0, 0, 1);
+            float* dstB = out.data(0, 0, 0, 2);
+            for (int y = 0; y < h; ++y)
             {
-                out.assign(w, h, 1, 1);
-                float* dstGray = out.data(0, 0, 0, 0);
-                for (int y = 0; y < h; ++y)
+                const unsigned char* src = in.scanLine(y);
+                int n = in.width();
+                while (n--)
                 {
-                    const unsigned char* src = in.scanLine(y);
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstGray++ = static_cast<float>(src[0]);
-                        src += 3;
-                    }
+                    *dstR++ = static_cast<float>(src[0]);
+                    *dstG++ = static_cast<float>(src[1]);
+                    *dstB++ = static_cast<float>(src[2]);
+                    src += 3;
                 }
             }
-            else
+        }
+        else if (in.format() == QImage::Format_Grayscale8)
+        {
+            const int w = in.width();
+            const int h = in.height();
+
+            out.assign(w, h, 1, 1);
+            float* dstGray = out.data(0, 0, 0, 0);
+            for (int y = 0; y < h; ++y)
             {
-                out.assign(w, h, 1, 3);
-                float* dstR = out.data(0, 0, 0, 0);
-                float* dstG = out.data(0, 0, 0, 1);
-                float* dstB = out.data(0, 0, 0, 2);
-                for (int y = 0; y < h; ++y)
+                const unsigned char* src = in.scanLine(y);
+                int n = in.width();
+                while (n--)
                 {
-                    const unsigned char* src = in.scanLine(y);
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstR++ = static_cast<float>(src[0]);
-                        *dstG++ = static_cast<float>(src[1]);
-                        *dstB++ = static_cast<float>(src[2]);
-                        src += 3;
-                    }
+                    *dstGray++ = src[0];
+                    src++;
                 }
             }
         }
@@ -442,38 +436,38 @@ namespace
             const int w = in.width();
             const int h = in.height();
 
-            if (host_8bf::grayScale)
+            out.assign(w, h, 1, 3);
+            float* dstR = out.data(0, 0, 0, 0);
+            float* dstG = out.data(0, 0, 0, 1);
+            float* dstB = out.data(0, 0, 0, 2);
+            for (int y = 0; y < h; ++y)
             {
-                out.assign(w, h, 1, 1);
-                float* dstGray = out.data(0, 0, 0, 0);
-                for (int y = 0; y < h; ++y)
+                const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
+                int n = in.width();
+                while (n--)
                 {
-                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstGray++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
-                        src += 4;
-                    }
+                    *dstR++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
+                    *dstG++ = host_8bf::sixteenBitToEightBitLUT[src[1]];
+                    *dstB++ = host_8bf::sixteenBitToEightBitLUT[src[2]];
+                    src += 4;
                 }
             }
-            else
+        }
+        else if (in.format() == QImage::Format_Grayscale16)
+        {
+            const int w = in.width();
+            const int h = in.height();
+
+            out.assign(w, h, 1, 1);
+            float* dstGray = out.data(0, 0, 0, 0);
+            for (int y = 0; y < h; ++y)
             {
-                out.assign(w, h, 1, 3);
-                float* dstR = out.data(0, 0, 0, 0);
-                float* dstG = out.data(0, 0, 0, 1);
-                float* dstB = out.data(0, 0, 0, 2);
-                for (int y = 0; y < h; ++y)
+                const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
+                int n = in.width();
+                while (n--)
                 {
-                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstR++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
-                        *dstG++ = host_8bf::sixteenBitToEightBitLUT[src[1]];
-                        *dstB++ = host_8bf::sixteenBitToEightBitLUT[src[2]];
-                        src += 4;
-                    }
+                    *dstGray++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
+                    src++;
                 }
             }
         }
@@ -494,8 +488,8 @@ namespace
         else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
             out = out.convertToFormat(QImage::Format_ARGB32);
         }
-        else if (in.spectrum() == 1 && out.format() != QImage::Format_RGB888) {
-            out = out.convertToFormat(QImage::Format_RGB888);
+        else if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
+            out = out.convertToFormat(QImage::Format_Grayscale8);
         }
 
         if (in.spectrum() == 3) {
@@ -587,9 +581,9 @@ namespace
                 int n = in.width();
                 unsigned char* dst = out.scanLine(y);
                 while (n--) {
-                    dst[0] = dst[1] = dst[2] = float2uchar_bounded(*src);
+                    dst[0] = float2uchar_bounded(*src);
                     ++src;
-                    dst += 3;
+                    ++dst;
                 }
             }
         }
@@ -612,8 +606,8 @@ namespace
         else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
             out = out.convertToFormat(QImage::Format_RGBA64);
         }
-        else if (in.spectrum() == 1 && out.format() != QImage::Format_RGBX64) {
-            out = out.convertToFormat(QImage::Format_RGBX64);
+        else if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale16) {
+            out = out.convertToFormat(QImage::Format_Grayscale16);
         }
 
         if (in.spectrum() == 3) {
@@ -677,9 +671,9 @@ namespace
                 int n = in.width();
                 ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
                 while (n--) {
-                    dst[0] = dst[1] = dst[2] = float2ushort_bounded(*src);
+                    dst[0] = float2ushort_bounded(*src);
                     ++src;
-                    dst += 4;
+                    ++dst;
                 }
             }
         }
