@@ -27,6 +27,7 @@
 #include <QVector>
 #include <QDebug>
 #include <QDataStream>
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QMessageBox>
@@ -786,9 +787,21 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
         // Remove any files that may be present from the last time the user clicked Apply.
         EmptyOutputFolder();
 
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd-hhmmss");
+        bool haveMultipleImages = images.size() > 1;
+
         for (size_t i = 0; i < images.size(); ++i)
         {
-            QString outputFileName = QString("%1/%2.png").arg(host_8bf::outputDir).arg(i);
+            QString outputPath;
+
+            if (haveMultipleImages)
+            {
+                outputPath = QString("%1/%2-%3.png").arg(host_8bf::outputDir).arg(timestamp).arg(i);
+            }
+            else
+            {
+                outputPath = QString("%1/%2.png").arg(host_8bf::outputDir).arg(timestamp);
+            }
 
             cimg_library::CImg<float>& in = images[i];
 
@@ -829,11 +842,11 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
                 // The image that G'MIC passes to this method does not contain the most recent change.
                 // To get the current "layered" G'MIC effects we need to save the active layer after
                 // it has been updated.
-                active.imageData.save(outputFileName);
+                active.imageData.save(outputPath);
             }
             else
             {
-                out.save(outputFileName);
+                out.save(outputPath);
             }
         }
     }
@@ -902,7 +915,8 @@ int main(int argc, char *argv[])
     // disableInputMode(GmicQt::ActiveAndBelow);
     // disableInputMode(GmicQt::ActiveAndAbove);
     // disableInputMode(GmicQt::AllVisible);
-    // disableInputMode(GmicQt::AllInvisible);    
+    // disableInputMode(GmicQt::AllInvisible);
+
 
     // disableOutputMode(GmicQt::InPlace);
     disableOutputMode(GmicQt::NewImage);
