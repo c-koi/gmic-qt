@@ -172,7 +172,7 @@ namespace
 
     QVector<Gmic8bfLayer> FilterLayersForInputMode(GmicQt::InputMode mode)
     {
-        if (mode == GmicQt::InputMode::All)
+        if (host_8bf::layers.size() == 1 || mode == GmicQt::InputMode::All)
         {
             return host_8bf::layers;
         }
