@@ -898,14 +898,11 @@ int main(int argc, char *argv[])
     int exitCode = 0;
     disableInputMode(GmicQt::NoInput);
     // disableInputMode(GmicQt::Active);
-    if (host_8bf::layers.size() == 1)
-    {
-        disableInputMode(GmicQt::All);
-        disableInputMode(GmicQt::ActiveAndBelow);
-        disableInputMode(GmicQt::ActiveAndAbove);
-        disableInputMode(GmicQt::AllVisible);
-        disableInputMode(GmicQt::AllInvisible);
-    }
+    // disableInputMode(GmicQt::All);
+    // disableInputMode(GmicQt::ActiveAndBelow);
+    // disableInputMode(GmicQt::ActiveAndAbove);
+    // disableInputMode(GmicQt::AllVisible);
+    // disableInputMode(GmicQt::AllInvisible);    
 
     // disableOutputMode(GmicQt::InPlace);
     disableOutputMode(GmicQt::NewImage);
