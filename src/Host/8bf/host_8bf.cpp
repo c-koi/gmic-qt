@@ -604,7 +604,7 @@ namespace
         else if (in.spectrum() == 3 && out.format() != QImage::Format_RGBX64) {
             out = out.convertToFormat(QImage::Format_RGBX64);
         }
-        else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
+        else if (in.spectrum() == 2 && out.format() != QImage::Format_RGBA64) {
             out = out.convertToFormat(QImage::Format_RGBA64);
         }
         else if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale16) {
