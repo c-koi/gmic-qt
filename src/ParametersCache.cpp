@@ -83,7 +83,7 @@ void ParametersCache::load(bool loadFiltersParameters)
             if (!parameters.isUndefined()) {
               QJsonArray array = parameters.toArray();
               QStringList values;
-              for (const QJsonValueRef & v : array) {
+              for (const QJsonValueRef v : array) {
                 values.push_back(v.toString());
               }
               _parametersCache[hash] = values;
@@ -92,7 +92,7 @@ void ParametersCache::load(bool loadFiltersParameters)
             if (!visibilityStates.isUndefined()) {
               QJsonArray array = visibilityStates.toArray();
               QList<int> values;
-              for (const QJsonValueRef & v : array) {
+              for (const QJsonValueRef v : array) {
                 values.push_back(v.toInt());
               }
               _visibilityStates[hash] = values;

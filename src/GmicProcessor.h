@@ -94,7 +94,7 @@ public:
   const QList<int> & parametersVisibilityStates() const;
 
   void saveSettings(QSettings & settings);
-  ~GmicProcessor();
+  ~GmicProcessor() override;
 
   int duration() const;
   float progress() const;

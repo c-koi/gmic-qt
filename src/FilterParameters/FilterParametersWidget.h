@@ -43,7 +43,7 @@ public:
   FilterParametersWidget(QWidget * parent = nullptr);
   bool build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values, const QList<int> & visibilityStates);
   void setNoFilter(const QString & message = QString());
-  virtual ~FilterParametersWidget();
+  ~FilterParametersWidget() override;
   const QString & valueString() const;
   QStringList valueStringList() const;
   void setValues(const QStringList &, bool notify);

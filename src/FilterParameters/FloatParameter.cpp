@@ -37,6 +37,7 @@
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
+#include "Logger.h"
 
 FloatParameter::FloatParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
 {
@@ -71,8 +72,8 @@ bool FloatParameter::addTo(QWidget * widget, int row)
   }
 
   _spinBox = new CustomDoubleSpinBox(widget, _min, _max);
-  _spinBox->setSingleStep((_max - _min) / 100.0f);
-  _spinBox->setValue(_value);
+  _spinBox->setSingleStep(double(_max - _min) / 100.0);
+  _spinBox->setValue((double)_value);
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   _grid->addWidget(_slider, row, 1, 1, 1);
   _grid->addWidget(_spinBox, row, 2, 1, 1);
@@ -92,11 +93,17 @@ QString FloatParameter::textValue() const
 
 void FloatParameter::setValue(const QString & value)
 {
-  _value = value.toFloat();
+  bool ok = true;
+  const float x = value.toFloat(&ok);
+  if (!ok) {
+    Logger::warning(QString("FloatParameter::setValue(\"%1\"): bad value").arg(value));
+    return;
+  }
+  _value = x;
   if (_slider) {
     disconnectSliderSpinBox();
     _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
-    _spinBox->setValue(_value);
+    _spinBox->setValue((double)_value);
     connectSliderSpinBox();
   }
 }
@@ -106,7 +113,7 @@ void FloatParameter::reset()
   disconnectSliderSpinBox();
   _value = _default;
   _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
-  _spinBox->setValue(_default);
+  _spinBox->setValue((double)_default);
   connectSliderSpinBox();
 }
 
@@ -139,7 +146,7 @@ void FloatParameter::timerEvent(QTimerEvent * event)
 
 void FloatParameter::onSliderMoved(int value)
 {
-  const float fValue = _min + (value / static_cast<float>(SLIDER_MAX_RANGE)) * (_max - _min);
+  const float fValue = _min + (float(value) / static_cast<float>(SLIDER_MAX_RANGE)) * (_max - _min);
   if (fValue != _value) {
     _spinBox->setValue(_value = fValue);
   }
@@ -147,7 +154,7 @@ void FloatParameter::onSliderMoved(int value)
 
 void FloatParameter::onSliderValueChanged(int value)
 {
-  float fValue = _min + (value / static_cast<float>(SLIDER_MAX_RANGE)) * (_max - _min);
+  float fValue = _min + (float(value) / static_cast<float>(SLIDER_MAX_RANGE)) * (_max - _min);
   if (fValue != _value) {
     _spinBox->setValue(_value = fValue);
   }
@@ -155,7 +162,7 @@ void FloatParameter::onSliderValueChanged(int value)
 
 void FloatParameter::onSpinBoxChanged(double x)
 {
-  _value = x;
+  _value = float(x);
   disconnectSliderSpinBox();
   _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
   connectSliderSpinBox();

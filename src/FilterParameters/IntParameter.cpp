@@ -34,6 +34,7 @@
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
+#include "Logger.h"
 
 IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
 {
@@ -92,7 +93,13 @@ QString IntParameter::textValue() const
 
 void IntParameter::setValue(const QString & value)
 {
-  _value = value.toInt();
+  bool ok = true;
+  const int k = value.toInt(&ok);
+  if (!ok) {
+    Logger::warning(QString("IntParameter::setValue(\"%1\"): bad value").arg(value));
+    return;
+  }
+  _value = k;
   if (_spinBox) {
     disconnectSliderSpinBox();
     _spinBox->setValue(_value);

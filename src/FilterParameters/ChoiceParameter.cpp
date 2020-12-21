@@ -66,7 +66,15 @@ QString ChoiceParameter::textValue() const
 
 void ChoiceParameter::setValue(const QString & value)
 {
-  _value = value.toInt();
+  bool ok = true;
+  const int k = value.toInt(&ok);
+  if (!ok || (k < 0)) {
+    return;
+  }
+  if (_comboBox && (k >= _comboBox->count())) {
+    return;
+  }
+  _value = k;
   if (_comboBox) {
     disconnectComboBox();
     _comboBox->setCurrentIndex(_value);
