@@ -35,6 +35,7 @@
 #include <iostream>
 #include <limits>
 #include <memory>
+#include <new>
 #include "Common.h"
 #include "Host/host.h"
 #include "ImageTools.h"
@@ -82,6 +83,274 @@ namespace
         return QString::fromUtf8(utf8Bytes);
     }
 
+    bool ConvertGmic8bfInputToQImage8(
+        QDataStream& dataStream,
+        int inRowBytes,
+        QImage& image)
+    {
+        std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
+
+        if (!rowBuffer)
+        {
+            return false;
+        }
+
+        int width = image.width();
+        int height = image.height();
+        QImage::Format format = image.format();
+
+        for (int y = 0; y < height; y++)
+        {
+            int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+            if (bytesRead != inRowBytes)
+            {
+                return false;
+            }
+
+            const uchar* src = reinterpret_cast<const uchar*>(rowBuffer.get());
+            uchar* dst = image.scanLine(y);
+
+            for (int x = 0; x < width; x++)
+            {
+                switch (format)
+                {
+                case QImage::Format_Grayscale8:
+                    dst[0] = src[0];
+                    src++;
+                    dst++;
+                    break;
+                case QImage::Format_RGB888:
+                    dst[0] = src[0];
+                    dst[1] = src[1];
+                    dst[2] = src[2];
+                    src += 3;
+                    dst += 3;
+                    break;
+                case QImage::Format_RGBA8888:
+                    dst[0] = src[0];
+                    dst[1] = src[1];
+                    dst[2] = src[2];
+                    dst[3] = src[3];
+                    src += 4;
+                    dst += 4;
+                    break;
+                default:
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    ushort ByteSwap(ushort value)
+    {
+        return (value >> 8) | (value << 8);
+    }
+
+    // The following method was copied from ImageConverter.cpp.
+
+    inline bool archIsLittleEndian()
+    {
+        const int x = 1;
+        return (*reinterpret_cast<const unsigned char*>(&x));
+    }
+
+    bool ConvertGmic8bfInputToQImage16(
+        QDataStream& dataStream,
+        int inRowBytes,
+        QImage& image)
+    {
+        std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
+
+        if (!rowBuffer)
+        {
+            return false;
+        }
+
+        int width = image.width();
+        int height = image.height();
+        QImage::Format format = image.format();
+
+        if (archIsLittleEndian())
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                if (bytesRead != inRowBytes)
+                {
+                    return false;
+                }
+
+                const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
+                ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
+
+                for (int x = 0; x < width; x++)
+                {
+                    switch (format)
+                    {
+                    case QImage::Format_Grayscale16:
+                        dst[0] = src[0];
+                        src++;
+                        dst++;
+                        break;
+                    case QImage::Format_RGBX64:
+                        dst[0] = src[0];
+                        dst[1] = src[1];
+                        dst[2] = src[2];
+                        src += 3;
+                        dst += 4;
+                        break;
+                    case QImage::Format_RGBA64:
+                        dst[0] = src[0];
+                        dst[1] = src[1];
+                        dst[2] = src[2];
+                        dst[3] = src[3];
+                        src += 4;
+                        dst += 4;
+                        break;
+                    default:
+                        return false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                if (bytesRead != inRowBytes)
+                {
+                    return false;
+                }
+
+                const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
+                ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
+
+                for (int x = 0; x < width; x++)
+                {
+                    switch (format)
+                    {
+                    case QImage::Format_Grayscale16:
+                        dst[0] = ByteSwap(src[0]);
+                        src++;
+                        dst++;
+                        break;
+                    case QImage::Format_RGBX64:
+                        dst[0] = ByteSwap(src[0]);
+                        dst[1] = ByteSwap(src[1]);
+                        dst[2] = ByteSwap(src[2]);
+                        src += 3;
+                        dst += 4;
+                        break;
+                    case QImage::Format_RGBA64:
+                        dst[0] = ByteSwap(src[0]);
+                        dst[1] = ByteSwap(src[1]);
+                        dst[2] = ByteSwap(src[2]);
+                        dst[3] = ByteSwap(src[3]);
+                        src += 4;
+                        dst += 4;
+                        break;
+                    default:
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    QImage ReadGmic8bfInput(const QString& path)
+    {
+        QFile file(path);
+
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            return QImage();
+        }
+
+        QDataStream dataStream(&file);
+        dataStream.setByteOrder(QDataStream::LittleEndian);
+
+        char signature[4] = {};
+
+        dataStream.readRawData(signature, 4);
+
+        if (strncmp(signature, "G8II", 4) != 0)
+        {
+            return QImage();
+        }
+
+        int32_t fileVersion = 0;
+
+        dataStream >> fileVersion;
+
+        if (fileVersion != 1)
+        {
+            return QImage();
+        }
+
+        int32_t width = 0;
+
+        dataStream >> width;
+
+        int32_t height = 0;
+
+        dataStream >> height;
+
+        int32_t numberOfChannels = 0;
+
+        dataStream >> numberOfChannels;
+
+        int32_t bitDepth = 0;
+
+        dataStream >> bitDepth;
+
+        QImage::Format format{};
+
+        switch (numberOfChannels)
+        {
+        case 1:
+            format = bitDepth == 16 ? QImage::Format_Grayscale16 : QImage::Format_Grayscale8;
+            break;
+        case 3:
+            format = bitDepth == 16 ? QImage::Format_RGBX64 : QImage::Format_RGB888;
+            break;
+        case 2:
+        case 4:
+            format = bitDepth == 16 ? QImage::Format_RGBA64 : QImage::Format_RGBA8888;
+            break;
+        default:
+            return QImage();
+        }
+
+        QImage image(width, height, format);
+
+        if (!image.isNull())
+        {
+            int rowBytes = width * numberOfChannels;
+
+            if (bitDepth == 16)
+            {
+                if (!ConvertGmic8bfInputToQImage16(dataStream, rowBytes * 2, image))
+                {
+                    return QImage();
+                }
+            }
+            else
+            {
+                if (!ConvertGmic8bfInputToQImage8(dataStream, rowBytes, image))
+                {
+                    return QImage();
+                }
+            }
+        }
+
+        return image;
+    }
+
     bool ParseInputFileIndex(const QString& indexFilePath)
     {
         QFile file(indexFilePath);
@@ -107,7 +376,7 @@ namespace
 
         dataStream >> fileVersion;
 
-        if (fileVersion != 1 && fileVersion != 2)
+        if (fileVersion < 1 || fileVersion > 3)
         {
             return false;
         }
@@ -121,7 +390,7 @@ namespace
         host_8bf::grayScale = false;
         host_8bf::sixteenBitsPerChannel = false;
 
-        if (fileVersion == 2)
+        if (fileVersion >= 2)
         {
             int32_t documentFlags;
 
@@ -151,11 +420,11 @@ namespace
 
             QString filePath = ReadUTF8String(dataStream);
 
-            QImage image(filePath);
+            QImage image = ReadGmic8bfInput(filePath);
 
-            if (image.format() == QImage::Format_RGB32)
+            if (image.isNull())
             {
-                image = image.convertToFormat(QImage::Format_RGB888);
+                return false;
             }
 
             Gmic8bfLayer layer{};
@@ -234,13 +503,7 @@ namespace
         }
     }
 
-    // The following 2 methods have been copied from ImageConverter.cpp.
-
-    inline bool archIsLittleEndian()
-    {
-        const int x = 1;
-        return (*reinterpret_cast<const unsigned char*>(&x));
-    }
+    // The following method was copied from ImageConverter.cpp.
 
     inline unsigned char float2uchar_bounded(const float& in)
     {
@@ -259,14 +522,14 @@ namespace
     {
         // The following code was copied from ImageConverter.cpp and has been adapted to support the G'MIC grayscale modes.
 
-        Q_ASSERT_X(in.format() == QImage::Format_ARGB32 ||
+        Q_ASSERT_X(in.format() == QImage::Format_RGBA8888 ||
                    in.format() == QImage::Format_RGB888 ||
                    in.format() == QImage::Format_RGBA64 ||
                    in.format() == QImage::Format_RGBX64 ||
                    in.format() == QImage::Format_Grayscale8 ||
                    in.format() == QImage::Format_Grayscale16, "ConvertCroppedImageToGmic", "bad input format");
 
-        if (in.format() == QImage::Format_ARGB32)
+        if (in.format() == QImage::Format_RGBA8888)
         {
             const int w = in.width();
             const int h = in.height();
@@ -276,32 +539,16 @@ namespace
                 out.assign(w, h, 1, 2);
                 float* dstGray = out.data(0, 0, 0, 0);
                 float* dstAlpha = out.data(0, 0, 0, 1);
-                if (archIsLittleEndian())
+
+                for (int y = 0; y < h; ++y)
                 {
-                    for (int y = 0; y < h; ++y)
+                    const unsigned char* src = in.scanLine(y);
+                    int n = in.width();
+                    while (n--)
                     {
-                        const unsigned char* src = in.scanLine(y);
-                        int n = in.width();
-                        while (n--)
-                        {
-                            *dstGray++ = static_cast<float>(src[0]);
-                            *dstAlpha++ = static_cast<float>(src[3]);
-                            src += 4;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int y = 0; y < h; ++y)
-                    {
-                        const unsigned char* src = in.scanLine(y);
-                        int n = in.width();
-                        while (n--)
-                        {
-                            *dstAlpha++ = static_cast<float>(src[0]);
-                            *dstGray++ = static_cast<float>(src[1]);
-                            src += 4;
-                        }
+                        *dstGray++ = static_cast<float>(src[0]);
+                        *dstAlpha++ = static_cast<float>(src[3]);
+                        src += 4;
                     }
                 }
             }
@@ -312,36 +559,18 @@ namespace
                 float* dstG = out.data(0, 0, 0, 1);
                 float* dstB = out.data(0, 0, 0, 2);
                 float* dstA = out.data(0, 0, 0, 3);
-                if (archIsLittleEndian())
+
+                for (int y = 0; y < h; ++y)
                 {
-                    for (int y = 0; y < h; ++y)
+                    const unsigned char* src = in.scanLine(y);
+                    int n = in.width();
+                    while (n--)
                     {
-                        const unsigned char* src = in.scanLine(y);
-                        int n = in.width();
-                        while (n--)
-                        {
-                            *dstB++ = static_cast<float>(src[0]);
-                            *dstG++ = static_cast<float>(src[1]);
-                            *dstR++ = static_cast<float>(src[2]);
-                            *dstA++ = static_cast<float>(src[3]);
-                            src += 4;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int y = 0; y < h; ++y)
-                    {
-                        const unsigned char* src = in.scanLine(y);
-                        int n = in.width();
-                        while (n--)
-                        {
-                            *dstA++ = static_cast<float>(src[0]);
-                            *dstR++ = static_cast<float>(src[1]);
-                            *dstG++ = static_cast<float>(src[2]);
-                            *dstB++ = static_cast<float>(src[3]);
-                            src += 4;
-                        }
+                        *dstR++ = static_cast<float>(src[0]);
+                        *dstG++ = static_cast<float>(src[1]);
+                        *dstB++ = static_cast<float>(src[2]);
+                        *dstA++ = static_cast<float>(src[3]);
+                        src += 4;
                     }
                 }
             }
@@ -480,14 +709,14 @@ namespace
 
         QImage out(in.width(), in.height(), QImage::Format_RGB888);
 
-        if (in.spectrum() == 4 && out.format() != QImage::Format_ARGB32) {
-            out = out.convertToFormat(QImage::Format_ARGB32);
+        if (in.spectrum() == 4 && out.format() != QImage::Format_RGBA8888) {
+            out = out.convertToFormat(QImage::Format_RGBA8888);
         }
         else if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
             out = out.convertToFormat(QImage::Format_RGB888);
         }
-        else if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
-            out = out.convertToFormat(QImage::Format_ARGB32);
+        else if (in.spectrum() == 2 && out.format() != QImage::Format_RGBA8888) {
+            out = out.convertToFormat(QImage::Format_RGBA8888);
         }
         else if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
             out = out.convertToFormat(QImage::Format_Grayscale8);
@@ -515,30 +744,15 @@ namespace
             const float* srcB = in.data(0, 0, 0, 2);
             const float* srcA = in.data(0, 0, 0, 3);
             int height = out.height();
-            if (archIsLittleEndian()) {
-                for (int y = 0; y < height; ++y) {
-                    int n = in.width();
-                    unsigned char* dst = out.scanLine(y);
-                    while (n--) {
-                        dst[0] = float2uchar_bounded(*srcB++);
-                        dst[1] = float2uchar_bounded(*srcG++);
-                        dst[2] = float2uchar_bounded(*srcR++);
-                        dst[3] = float2uchar_bounded(*srcA++);
-                        dst += 4;
-                    }
-                }
-            }
-            else {
-                for (int y = 0; y < height; ++y) {
-                    int n = in.width();
-                    unsigned char* dst = out.scanLine(y);
-                    while (n--) {
-                        dst[0] = float2uchar_bounded(*srcA++);
-                        dst[1] = float2uchar_bounded(*srcR++);
-                        dst[2] = float2uchar_bounded(*srcG++);
-                        dst[3] = float2uchar_bounded(*srcB++);
-                        dst += 4;
-                    }
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                unsigned char* dst = out.scanLine(y);
+                while (n--) {
+                    dst[0] = float2uchar_bounded(*srcR++);
+                    dst[1] = float2uchar_bounded(*srcG++);
+                    dst[2] = float2uchar_bounded(*srcB++);
+                    dst[3] = float2uchar_bounded(*srcA++);
+                    dst += 4;
                 }
             }
         }
@@ -549,26 +763,13 @@ namespace
             const float* src = in.data(0, 0, 0, 0);
             const float* srcA = in.data(0, 0, 0, 1);
             int height = out.height();
-            if (archIsLittleEndian()) {
-                for (int y = 0; y < height; ++y) {
-                    int n = in.width();
-                    unsigned char* dst = out.scanLine(y);
-                    while (n--) {
-                        dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
-                        dst[3] = float2uchar_bounded(*srcA++);
-                        dst += 4;
-                    }
-                }
-            }
-            else {
-                for (int y = 0; y < height; ++y) {
-                    int n = in.width();
-                    unsigned char* dst = out.scanLine(y);
-                    while (n--) {
-                        dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
-                        dst[0] = float2uchar_bounded(*srcA++);
-                        dst += 4;
-                    }
+            for (int y = 0; y < height; ++y) {
+                int n = in.width();
+                unsigned char* dst = out.scanLine(y);
+                while (n--) {
+                    dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
+                    dst[3] = float2uchar_bounded(*srcA++);
+                    dst += 4;
                 }
             }
         }
