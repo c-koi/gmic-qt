@@ -76,11 +76,18 @@ namespace
 
         dataStream >> length;
 
-        QByteArray utf8Bytes(length, '\0');
+        if (length == 0)
+        {
+            return QString();
+        }
+        else
+        {
+            QByteArray utf8Bytes(length, '\0');
 
-        dataStream.readRawData(utf8Bytes.data(), length);
+            dataStream.readRawData(utf8Bytes.data(), length);
 
-        return QString::fromUtf8(utf8Bytes);
+            return QString::fromUtf8(utf8Bytes);
+        }
     }
 
     bool ConvertGmic8bfInputToQImage8(
@@ -435,6 +442,29 @@ namespace
             layer.imageData = image;
 
             host_8bf::layers.push_back(layer);
+        }
+
+        // Load the second input image from the alternate source, if present.
+        if (layerCount == 1 && fileVersion == 3)
+        {
+            QString imagePath = ReadUTF8String(dataStream);
+
+            if (!imagePath.isEmpty())
+            {
+                QImage image = ReadGmic8bfInput(imagePath);
+
+                if (!image.isNull())
+                {
+                    Gmic8bfLayer layer{};
+                    layer.width = image.width();
+                    layer.height = image.height();
+                    layer.visible = true;
+                    layer.name = "2nd Image";
+                    layer.imageData = image;
+
+                    host_8bf::layers.push_back(layer);
+                }
+            }
         }
 
         return true;
