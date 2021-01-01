@@ -3,7 +3,7 @@
 *  editors, offering hundreds of filters thanks to the underlying G'MIC
 *  image processing framework.
 *
-*  Copyright (C) 2020 Nicholas Hayes
+*  Copyright (C) 2020, 2021 Nicholas Hayes
 *
 *  Portions Copyright 2017 Sebastien Fourey
 *
@@ -93,6 +93,7 @@ namespace
     bool ConvertGmic8bfInputToQImage8(
         QDataStream& dataStream,
         int inRowBytes,
+        int inNumberOfChannels,
         QImage& image)
     {
         std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
@@ -119,30 +120,43 @@ namespace
 
             for (int x = 0; x < width; x++)
             {
-                switch (format)
+                if (inNumberOfChannels == 2)
                 {
-                case QImage::Format_Grayscale8:
-                    dst[0] = src[0];
-                    src++;
-                    dst++;
-                    break;
-                case QImage::Format_RGB888:
-                    dst[0] = src[0];
-                    dst[1] = src[1];
-                    dst[2] = src[2];
-                    src += 3;
-                    dst += 3;
-                    break;
-                case QImage::Format_RGBA8888:
-                    dst[0] = src[0];
-                    dst[1] = src[1];
-                    dst[2] = src[2];
-                    dst[3] = src[3];
-                    src += 4;
+                    // Grayscale with alpha is a special case.
+                    // Qt does not have a dedicated format for it,
+                    // so it is mapped to Format_RGBA8888.
+                    dst[0] = dst[1] = dst[2] = src[0];
+                    dst[3] = src[1];
+                    src += 2;
                     dst += 4;
-                    break;
-                default:
-                    return false;
+                }
+                else
+                {
+                    switch (format)
+                    {
+                    case QImage::Format_Grayscale8:
+                        dst[0] = src[0];
+                        src++;
+                        dst++;
+                        break;
+                    case QImage::Format_RGB888:
+                        dst[0] = src[0];
+                        dst[1] = src[1];
+                        dst[2] = src[2];
+                        src += 3;
+                        dst += 3;
+                        break;
+                    case QImage::Format_RGBA8888:
+                        dst[0] = src[0];
+                        dst[1] = src[1];
+                        dst[2] = src[2];
+                        dst[3] = src[3];
+                        src += 4;
+                        dst += 4;
+                        break;
+                    default:
+                        return false;
+                    }
                 }
             }
         }
@@ -166,6 +180,7 @@ namespace
     bool ConvertGmic8bfInputToQImage16(
         QDataStream& dataStream,
         int inRowBytes,
+        int inNumberOfChannels,
         QImage& image)
     {
         std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
@@ -194,31 +209,44 @@ namespace
 
                 for (int x = 0; x < width; x++)
                 {
-                    switch (format)
+					if (inNumberOfChannels == 2)
                     {
-                    case QImage::Format_Grayscale16:
-                        dst[0] = src[0];
-                        src++;
-                        dst++;
-                        break;
-                    case QImage::Format_RGBX64:
-                        dst[0] = src[0];
-                        dst[1] = src[1];
-                        dst[2] = src[2];
-                        src += 3;
+                        // Grayscale with alpha is a special case.
+                        // Qt does not have a dedicated format for it,
+                        // so it is mapped to Format_RGBA64.
+                        dst[0] = dst[1] = dst[2] = src[0];
+                        dst[3] = src[1];
+                        src += 2;
                         dst += 4;
-                        break;
-                    case QImage::Format_RGBA64:
-                        dst[0] = src[0];
-                        dst[1] = src[1];
-                        dst[2] = src[2];
-                        dst[3] = src[3];
-                        src += 4;
-                        dst += 4;
-                        break;
-                    default:
-                        return false;
                     }
+                    else
+                    {					
+                        switch (format)
+                        {
+                        case QImage::Format_Grayscale16:
+                            dst[0] = src[0];
+                            src++;
+                            dst++;
+                            break;
+                        case QImage::Format_RGBX64:
+                            dst[0] = src[0];
+                            dst[1] = src[1];
+                            dst[2] = src[2];
+                            src += 3;
+                            dst += 4;
+                            break;
+                        case QImage::Format_RGBA64:
+                            dst[0] = src[0];
+                            dst[1] = src[1];
+                            dst[2] = src[2];
+                            dst[3] = src[3];
+                            src += 4;
+                            dst += 4;
+                            break;
+                        default:
+                            return false;
+                        }
+					}
                 }
             }
         }
@@ -237,31 +265,44 @@ namespace
 
                 for (int x = 0; x < width; x++)
                 {
-                    switch (format)
+					if (inNumberOfChannels == 2)
                     {
-                    case QImage::Format_Grayscale16:
-                        dst[0] = ByteSwap(src[0]);
-                        src++;
-                        dst++;
-                        break;
-                    case QImage::Format_RGBX64:
-                        dst[0] = ByteSwap(src[0]);
-                        dst[1] = ByteSwap(src[1]);
-                        dst[2] = ByteSwap(src[2]);
-                        src += 3;
+                        // Grayscale with alpha is a special case.
+                        // Qt does not have a dedicated format for it,
+                        // so it is mapped to Format_RGBA64.
+                        dst[0] = dst[1] = dst[2] = ByteSwap(src[0]);
+                        dst[3] = ByteSwap(src[1]);
+                        src += 2;
                         dst += 4;
-                        break;
-                    case QImage::Format_RGBA64:
-                        dst[0] = ByteSwap(src[0]);
-                        dst[1] = ByteSwap(src[1]);
-                        dst[2] = ByteSwap(src[2]);
-                        dst[3] = ByteSwap(src[3]);
-                        src += 4;
-                        dst += 4;
-                        break;
-                    default:
-                        return false;
                     }
+                    else
+                    {					
+                        switch (format)
+                        {
+                        case QImage::Format_Grayscale16:
+                            dst[0] = ByteSwap(src[0]);
+                            src++;
+                            dst++;
+                            break;
+                        case QImage::Format_RGBX64:
+                            dst[0] = ByteSwap(src[0]);
+                            dst[1] = ByteSwap(src[1]);
+                            dst[2] = ByteSwap(src[2]);
+                            src += 3;
+                            dst += 4;
+                            break;
+                        case QImage::Format_RGBA64:
+                            dst[0] = ByteSwap(src[0]);
+                            dst[1] = ByteSwap(src[1]);
+                            dst[2] = ByteSwap(src[2]);
+                            dst[3] = ByteSwap(src[3]);
+                            src += 4;
+                            dst += 4;
+                            break;
+                        default:
+                            return false;
+                        }
+					}
                 }
             }
         }
@@ -341,14 +382,14 @@ namespace
 
             if (bitDepth == 16)
             {
-                if (!ConvertGmic8bfInputToQImage16(dataStream, rowBytes * 2, image))
+                if (!ConvertGmic8bfInputToQImage16(dataStream, rowBytes * 2, numberOfChannels, image))
                 {
                     return QImage();
                 }
             }
             else
             {
-                if (!ConvertGmic8bfInputToQImage8(dataStream, rowBytes, image))
+                if (!ConvertGmic8bfInputToQImage8(dataStream, rowBytes, numberOfChannels, image))
                 {
                     return QImage();
                 }
