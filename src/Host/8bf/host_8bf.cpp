@@ -94,6 +94,7 @@ namespace
         QDataStream& dataStream,
         int inRowBytes,
         int inNumberOfChannels,
+        bool planar,
         QImage& image)
     {
         std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
@@ -107,55 +108,121 @@ namespace
         int height = image.height();
         QImage::Format format = image.format();
 
-        for (int y = 0; y < height; y++)
+        if (planar)
         {
-            int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-            if (bytesRead != inRowBytes)
+            int outColumnStep;
+
+            switch (format)
             {
+            case QImage::Format_Grayscale8:
+                outColumnStep = 1;
+                break;
+            case QImage::Format_RGB888:
+                outColumnStep = 3;
+                break;
+            case QImage::Format_RGBA8888:
+                outColumnStep = 4;
+                break;
+            default:
                 return false;
             }
 
-            const uchar* src = reinterpret_cast<const uchar*>(rowBuffer.get());
-            uchar* dst = image.scanLine(y);
-
-            for (int x = 0; x < width; x++)
+            for (int i = 0; i < inNumberOfChannels; i++)
             {
-                if (inNumberOfChannels == 2)
+                for (int y = 0; y < height; y++)
                 {
-                    // Grayscale with alpha is a special case.
-                    // Qt does not have a dedicated format for it,
-                    // so it is mapped to Format_RGBA8888.
-                    dst[0] = dst[1] = dst[2] = src[0];
-                    dst[3] = src[1];
-                    src += 2;
-                    dst += 4;
-                }
-                else
-                {
-                    switch (format)
+                    int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                    if (bytesRead != inRowBytes)
                     {
-                    case QImage::Format_Grayscale8:
-                        dst[0] = src[0];
-                        src++;
-                        dst++;
-                        break;
-                    case QImage::Format_RGB888:
-                        dst[0] = src[0];
-                        dst[1] = src[1];
-                        dst[2] = src[2];
-                        src += 3;
-                        dst += 3;
-                        break;
-                    case QImage::Format_RGBA8888:
-                        dst[0] = src[0];
-                        dst[1] = src[1];
-                        dst[2] = src[2];
-                        dst[3] = src[3];
-                        src += 4;
-                        dst += 4;
-                        break;
-                    default:
                         return false;
+                    }
+
+                    const uchar* src = reinterpret_cast<const uchar*>(rowBuffer.get());
+                    uchar* dst = image.scanLine(y);
+
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (inNumberOfChannels == 2)
+                        {
+                            // Grayscale with alpha is a special case.
+                            // Qt does not have a dedicated format for it,
+                            // so it is mapped to Format_RGBA8888.
+
+                            switch (i)
+                            {
+                            case 0:
+                                dst[0] = dst[1] = dst[2] = src[0];
+                                break;
+                            case 1:
+                                dst[3] = src[0];
+                                break;
+                            default:
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            dst[i] = src[0];
+                        }
+
+                        src++;
+                        dst += outColumnStep;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                if (bytesRead != inRowBytes)
+                {
+                    return false;
+                }
+
+                const uchar* src = reinterpret_cast<const uchar*>(rowBuffer.get());
+                uchar* dst = image.scanLine(y);
+
+                for (int x = 0; x < width; x++)
+                {
+                    if (inNumberOfChannels == 2)
+                    {
+                        // Grayscale with alpha is a special case.
+                        // Qt does not have a dedicated format for it,
+                        // so it is mapped to Format_RGBA8888.
+                        dst[0] = dst[1] = dst[2] = src[0];
+                        dst[3] = src[1];
+                        src += 2;
+                        dst += 4;
+                    }
+                    else
+                    {
+                        switch (format)
+                        {
+                        case QImage::Format_Grayscale8:
+                            dst[0] = src[0];
+                            src++;
+                            dst++;
+                            break;
+                        case QImage::Format_RGB888:
+                            dst[0] = src[0];
+                            dst[1] = src[1];
+                            dst[2] = src[2];
+                            src += 3;
+                            dst += 3;
+                            break;
+                        case QImage::Format_RGBA8888:
+                            dst[0] = src[0];
+                            dst[1] = src[1];
+                            dst[2] = src[2];
+                            dst[3] = src[3];
+                            src += 4;
+                            dst += 4;
+                            break;
+                        default:
+                            return false;
+                        }
                     }
                 }
             }
@@ -181,6 +248,7 @@ namespace
         QDataStream& dataStream,
         int inRowBytes,
         int inNumberOfChannels,
+        bool planar,
         QImage& image)
     {
         std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
@@ -194,115 +262,224 @@ namespace
         int height = image.height();
         QImage::Format format = image.format();
 
-        if (archIsLittleEndian())
+        if (planar)
         {
-            for (int y = 0; y < height; y++)
+            int outColumnStep;
+
+            switch (format)
             {
-                int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                if (bytesRead != inRowBytes)
-                {
-                    return false;
-                }
+            case QImage::Format_Grayscale16:
+                outColumnStep = 1;
+                break;
+            case QImage::Format_RGBX64:
+            case QImage::Format_RGBA64:
+                outColumnStep = 4;
+                break;
+            default:
+                return false;
+            }
 
-                const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
-                ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
-
-                for (int x = 0; x < width; x++)
+            if (archIsLittleEndian())
+            {
+                for (int i = 0; i < inNumberOfChannels; i++)
                 {
-					if (inNumberOfChannels == 2)
+                    for (int y = 0; y < height; y++)
                     {
-                        // Grayscale with alpha is a special case.
-                        // Qt does not have a dedicated format for it,
-                        // so it is mapped to Format_RGBA64.
-                        dst[0] = dst[1] = dst[2] = src[0];
-                        dst[3] = src[1];
-                        src += 2;
-                        dst += 4;
-                    }
-                    else
-                    {					
-                        switch (format)
+                        int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                        if (bytesRead != inRowBytes)
                         {
-                        case QImage::Format_Grayscale16:
-                            dst[0] = src[0];
-                            src++;
-                            dst++;
-                            break;
-                        case QImage::Format_RGBX64:
-                            dst[0] = src[0];
-                            dst[1] = src[1];
-                            dst[2] = src[2];
-                            src += 3;
-                            dst += 4;
-                            break;
-                        case QImage::Format_RGBA64:
-                            dst[0] = src[0];
-                            dst[1] = src[1];
-                            dst[2] = src[2];
-                            dst[3] = src[3];
-                            src += 4;
-                            dst += 4;
-                            break;
-                        default:
                             return false;
                         }
-					}
+
+                        const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
+                        ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
+
+                        for (int x = 0; x < width; x++)
+                        {
+                            if (inNumberOfChannels == 2)
+                            {
+                                // Grayscale with alpha is a special case.
+                                // Qt does not have a dedicated format for it,
+                                // so it is mapped to Format_RGBA8888.
+
+                                switch (i)
+                                {
+                                case 0:
+                                    dst[0] = dst[1] = dst[2] = src[0];
+                                    break;
+                                case 1:
+                                    dst[3] = src[0];
+                                    break;
+                                default:
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                dst[i] = src[0];
+                            }
+                            src++;
+                            dst += outColumnStep;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < inNumberOfChannels; i++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                        if (bytesRead != inRowBytes)
+                        {
+                            return false;
+                        }
+
+                        const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
+                        ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
+
+                        for (int x = 0; x < width; x++)
+                        {
+                            if (inNumberOfChannels == 2)
+                            {
+                                // Grayscale with alpha is a special case.
+                                // Qt does not have a dedicated format for it,
+                                // so it is mapped to Format_RGBA8888.
+
+                                switch (i)
+                                {
+                                case 0:
+                                    dst[0] = dst[1] = dst[2] = ByteSwap(src[0]);
+                                    break;
+                                case 1:
+                                    dst[3] = ByteSwap(src[0]);
+                                    break;
+                                default:
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                dst[i] = ByteSwap(src[0]);
+                            }
+                        }
+                    }
                 }
             }
         }
         else
         {
-            for (int y = 0; y < height; y++)
+            if (archIsLittleEndian())
             {
-                int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                if (bytesRead != inRowBytes)
+                for (int y = 0; y < height; y++)
                 {
-                    return false;
-                }
-
-                const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
-                ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
-
-                for (int x = 0; x < width; x++)
-                {
-					if (inNumberOfChannels == 2)
+                    int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                    if (bytesRead != inRowBytes)
                     {
-                        // Grayscale with alpha is a special case.
-                        // Qt does not have a dedicated format for it,
-                        // so it is mapped to Format_RGBA64.
-                        dst[0] = dst[1] = dst[2] = ByteSwap(src[0]);
-                        dst[3] = ByteSwap(src[1]);
-                        src += 2;
-                        dst += 4;
+                        return false;
                     }
-                    else
-                    {					
-                        switch (format)
+
+                    const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
+                    ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
+
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (inNumberOfChannels == 2)
                         {
-                        case QImage::Format_Grayscale16:
-                            dst[0] = ByteSwap(src[0]);
-                            src++;
-                            dst++;
-                            break;
-                        case QImage::Format_RGBX64:
-                            dst[0] = ByteSwap(src[0]);
-                            dst[1] = ByteSwap(src[1]);
-                            dst[2] = ByteSwap(src[2]);
-                            src += 3;
+                            // Grayscale with alpha is a special case.
+                            // Qt does not have a dedicated format for it,
+                            // so it is mapped to Format_RGBA8888.
+                            dst[0] = dst[1] = dst[2] = src[0];
+                            dst[3] = src[1];
+                            src += 2;
                             dst += 4;
-                            break;
-                        case QImage::Format_RGBA64:
-                            dst[0] = ByteSwap(src[0]);
-                            dst[1] = ByteSwap(src[1]);
-                            dst[2] = ByteSwap(src[2]);
-                            dst[3] = ByteSwap(src[3]);
-                            src += 4;
-                            dst += 4;
-                            break;
-                        default:
-                            return false;
                         }
-					}
+                        else
+                        {
+                            switch (format)
+                            {
+                            case QImage::Format_Grayscale16:
+                                dst[0] = src[0];
+                                src++;
+                                dst++;
+                                break;
+                            case QImage::Format_RGBX64:
+                                dst[0] = src[0];
+                                dst[1] = src[1];
+                                dst[2] = src[2];
+                                src += 3;
+                                dst += 4;
+                                break;
+                            case QImage::Format_RGBA64:
+                                dst[0] = src[0];
+                                dst[1] = src[1];
+                                dst[2] = src[2];
+                                dst[3] = src[3];
+                                src += 4;
+                                dst += 4;
+                                break;
+                            default:
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
+                    if (bytesRead != inRowBytes)
+                    {
+                        return false;
+                    }
+
+                    const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
+                    ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
+
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (inNumberOfChannels == 2)
+                        {
+                            // Grayscale with alpha is a special case.
+                            // Qt does not have a dedicated format for it,
+                            // so it is mapped to Format_RGBA8888.
+                            dst[0] = dst[1] = dst[2] = ByteSwap(src[0]);
+                            dst[3] = ByteSwap(src[1]);
+                            src += 2;
+                            dst += 4;
+                        }
+                        else
+                        {
+                            switch (format)
+                            {
+                            case QImage::Format_Grayscale16:
+                                dst[0] = ByteSwap(src[0]);
+                                src++;
+                                dst++;
+                                break;
+                            case QImage::Format_RGBX64:
+                                dst[0] = ByteSwap(src[0]);
+                                dst[1] = ByteSwap(src[1]);
+                                dst[2] = ByteSwap(src[2]);
+                                src += 3;
+                                dst += 4;
+                                break;
+                            case QImage::Format_RGBA64:
+                                dst[0] = ByteSwap(src[0]);
+                                dst[1] = ByteSwap(src[1]);
+                                dst[2] = ByteSwap(src[2]);
+                                dst[3] = ByteSwap(src[3]);
+                                src += 4;
+                                dst += 4;
+                                break;
+                            default:
+                                return false;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -335,7 +512,7 @@ namespace
 
         dataStream >> fileVersion;
 
-        if (fileVersion != 1)
+        if (fileVersion != 1 && fileVersion != 2)
         {
             return QImage();
         }
@@ -355,6 +532,17 @@ namespace
         int32_t bitDepth = 0;
 
         dataStream >> bitDepth;
+
+        bool planar = false;
+
+        if (fileVersion == 2)
+        {
+            int32_t flags = 0;
+
+            dataStream >> flags;
+
+            planar = (flags & 1) != 0;
+        }
 
         QImage::Format format{};
 
@@ -378,18 +566,18 @@ namespace
 
         if (!image.isNull())
         {
-            int rowBytes = width * numberOfChannels;
+            int rowBytes = planar ? width : width * numberOfChannels;
 
             if (bitDepth == 16)
             {
-                if (!ConvertGmic8bfInputToQImage16(dataStream, rowBytes * 2, numberOfChannels, image))
+                if (!ConvertGmic8bfInputToQImage16(dataStream, rowBytes * 2, numberOfChannels, planar, image))
                 {
                     return QImage();
                 }
             }
             else
             {
-                if (!ConvertGmic8bfInputToQImage8(dataStream, rowBytes, numberOfChannels, image))
+                if (!ConvertGmic8bfInputToQImage8(dataStream, rowBytes, numberOfChannels, planar, image))
                 {
                     return QImage();
                 }
