@@ -29,6 +29,7 @@
 #include <QDataStream>
 #include <QDateTime>
 #include <QDir>
+#include <qendian.h>
 #include <QFile>
 #include <QMessageBox>
 #include <QUUid>
@@ -90,139 +91,243 @@ namespace
         }
     }
 
+    bool FillTileBuffer(
+        QDataStream& dataStream,
+        const size_t& requiredSize,
+        char* buffer)
+    {
+        size_t totalBytesRead = 0;
+
+        while (totalBytesRead < requiredSize)
+        {
+            int bytesToRead = static_cast<int>(std::min(requiredSize - totalBytesRead, static_cast<size_t>(INT_MAX)));
+
+            int bytesRead = dataStream.readRawData(buffer + totalBytesRead, bytesToRead);
+
+            if (bytesRead <= 0)
+            {
+                break;
+            }
+
+            totalBytesRead += bytesRead;
+        }
+
+        return totalBytesRead == requiredSize;
+    }
+
+    bool CopyTileToQImage8Interleaved(
+        char* tileBuffer,
+        size_t tileBufferStride,
+        int left,
+        int top,
+        int right,
+        int bottom,
+        int inNumberOfChannels,
+        int outColumnStep,
+        QImage& image)
+    {
+        for (int y = top; y < bottom; y++)
+        {
+            const uchar* src = reinterpret_cast<const uchar*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
+            uchar* dst = image.scanLine(y) + (static_cast<size_t>(left) * outColumnStep);
+
+            for (int x = left; x < right; x++)
+            {
+                switch (inNumberOfChannels)
+                {
+                case 1:
+                    dst[0] = src[0];
+                    break;
+                case 2:
+                    dst[0] = dst[1] = dst[2] = src[0];
+                    dst[3] = src[1];
+                    break;
+                case 3:
+                    dst[0] = src[0];
+                    dst[1] = src[1];
+                    dst[2] = src[2];
+                    break;
+                case 4:
+                    dst[0] = src[0];
+                    dst[1] = src[1];
+                    dst[2] = src[2];
+                    dst[3] = src[3];
+                    break;
+                default:
+                    return false;
+                }
+
+                src += inNumberOfChannels;
+                dst += outColumnStep;
+            }
+        }
+
+        return true;
+    }
+
+    bool CopyTileToQImage8Planar(
+        char* tileBuffer,
+        size_t tileBufferStride,
+        int left,
+        int top,
+        int right,
+        int bottom,
+        int inNumberOfChannels,
+        int channelIndex,
+        int outColumnStep,
+        QImage& image)
+    {
+        for (int y = top; y < bottom; y++)
+        {
+            const uchar* src = reinterpret_cast<const uchar*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
+            uchar* dst = image.scanLine(y) + (static_cast<size_t>(left) * outColumnStep);
+
+            for (int x = left; x < right; x++)
+            {
+                if (inNumberOfChannels == 2)
+                {
+                    // Grayscale with alpha is a special case.
+                    // Qt does not have a dedicated format for it,
+                    // so it is mapped to Format_RGBA8888.
+
+                    switch (channelIndex)
+                    {
+                    case 0:
+                        dst[0] = dst[1] = dst[2] = src[0];
+                        break;
+                    case 1:
+                        dst[3] = src[0];
+                        break;
+                    default:
+                        return false;
+                    }
+                }
+                else
+                {
+                    dst[channelIndex] = src[0];
+                }
+                src++;
+                dst += outColumnStep;
+            }
+        }
+
+        return true;
+    }
+
     bool ConvertGmic8bfInputToQImage8(
         QDataStream& dataStream,
-        int inRowBytes,
-        int inNumberOfChannels,
+        int32_t inTileWidth,
+        int32_t inTileHeight,
+        int32_t inNumberOfChannels,
         bool planar,
         QImage& image)
     {
-        std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
+        int32_t maxTileStride = planar ? inTileWidth : inTileWidth * inNumberOfChannels;
+        size_t tileBufferSize = static_cast<size_t>(maxTileStride) * inTileHeight;
 
-        if (!rowBuffer)
+        std::unique_ptr<char> tileBuffer(new (std::nothrow) char[tileBufferSize]);
+
+        if (!tileBuffer)
         {
             return false;
         }
 
         int width = image.width();
         int height = image.height();
-        QImage::Format format = image.format();
+        int outColumnStep;
+
+        switch (image.format())
+        {
+        case QImage::Format_Grayscale8:
+            outColumnStep = 1;
+            break;
+        case QImage::Format_RGB888:
+            outColumnStep = 3;
+            break;
+        case QImage::Format_RGBA8888:
+            outColumnStep = 4;
+            break;
+        default:
+            return false;
+        }
 
         if (planar)
         {
-            int outColumnStep;
-
-            switch (format)
-            {
-            case QImage::Format_Grayscale8:
-                outColumnStep = 1;
-                break;
-            case QImage::Format_RGB888:
-                outColumnStep = 3;
-                break;
-            case QImage::Format_RGBA8888:
-                outColumnStep = 4;
-                break;
-            default:
-                return false;
-            }
-
             for (int i = 0; i < inNumberOfChannels; i++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < height; y += inTileHeight)
                 {
-                    int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                    if (bytesRead != inRowBytes)
+                    int top = y;
+                    int bottom = std::min(y + inTileHeight, height);
+
+                    size_t rowCount = static_cast<size_t>(bottom) - top;
+
+                    for (int x = 0; x < width; x += inTileWidth)
                     {
-                        return false;
-                    }
+                        int left = x;
+                        int right = std::min(x + inTileWidth, width);
 
-                    const uchar* src = reinterpret_cast<const uchar*>(rowBuffer.get());
-                    uchar* dst = image.scanLine(y);
+                        size_t tileBufferStride = static_cast<size_t>(right) - left;
+                        size_t bytesToRead = tileBufferStride * rowCount;
 
-                    for (int x = 0; x < width; x++)
-                    {
-                        if (inNumberOfChannels == 2)
+                        if (!FillTileBuffer(dataStream, bytesToRead, tileBuffer.get()))
                         {
-                            // Grayscale with alpha is a special case.
-                            // Qt does not have a dedicated format for it,
-                            // so it is mapped to Format_RGBA8888.
-
-                            switch (i)
-                            {
-                            case 0:
-                                dst[0] = dst[1] = dst[2] = src[0];
-                                break;
-                            case 1:
-                                dst[3] = src[0];
-                                break;
-                            default:
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            dst[i] = src[0];
+                            return false;
                         }
 
-                        src++;
-                        dst += outColumnStep;
+                        if (!CopyTileToQImage8Planar(
+                            tileBuffer.get(),
+                            tileBufferStride,
+                            left,
+                            top,
+                            right,
+                            bottom,
+                            inNumberOfChannels,
+                            i,
+                            outColumnStep,
+                            image))
+                        {
+                            return false;
+                        }
                     }
                 }
             }
         }
         else
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < height; y += inTileHeight)
             {
-                int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                if (bytesRead != inRowBytes)
-                {
-                    return false;
-                }
+                int top = y;
+                int bottom = std::min(y + inTileHeight, height);
 
-                const uchar* src = reinterpret_cast<const uchar*>(rowBuffer.get());
-                uchar* dst = image.scanLine(y);
+                size_t rowCount = static_cast<size_t>(bottom) - top;
 
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < width; x += inTileWidth)
                 {
-                    if (inNumberOfChannels == 2)
+                    int left = x;
+                    int right = std::min(x + inTileWidth, width);
+
+                    size_t columnCount = static_cast<size_t>(right) - left;
+                    size_t tileBufferStride = columnCount * inNumberOfChannels;
+                    size_t bytesToRead = tileBufferStride * rowCount;
+
+                    if (!FillTileBuffer(dataStream, bytesToRead, tileBuffer.get()))
                     {
-                        // Grayscale with alpha is a special case.
-                        // Qt does not have a dedicated format for it,
-                        // so it is mapped to Format_RGBA8888.
-                        dst[0] = dst[1] = dst[2] = src[0];
-                        dst[3] = src[1];
-                        src += 2;
-                        dst += 4;
+                        return false;
                     }
-                    else
+
+                    if (!CopyTileToQImage8Interleaved(
+                        tileBuffer.get(),
+                        tileBufferStride,
+                        left,
+                        top,
+                        right,
+                        bottom,
+                        inNumberOfChannels,
+                        outColumnStep,
+                        image))
                     {
-                        switch (format)
-                        {
-                        case QImage::Format_Grayscale8:
-                            dst[0] = src[0];
-                            src++;
-                            dst++;
-                            break;
-                        case QImage::Format_RGB888:
-                            dst[0] = src[0];
-                            dst[1] = src[1];
-                            dst[2] = src[2];
-                            src += 3;
-                            dst += 3;
-                            break;
-                        case QImage::Format_RGBA8888:
-                            dst[0] = src[0];
-                            dst[1] = src[1];
-                            dst[2] = src[2];
-                            dst[3] = src[3];
-                            src += 4;
-                            dst += 4;
-                            break;
-                        default:
-                            return false;
-                        }
+                        return false;
                     }
                 }
             }
@@ -231,138 +336,176 @@ namespace
         return true;
     }
 
-    ushort ByteSwap(ushort value)
+    bool CopyTileToQImage16Interleaved(
+        char* tileBuffer,
+        size_t tileBufferStride,
+        int left,
+        int top,
+        int right,
+        int bottom,
+        int inNumberOfChannels,
+        int outColumnStep,
+        QImage& image)
     {
-        return (value >> 8) | (value << 8);
+        for (int y = top; y < bottom; y++)
+        {
+            const quint16* src = reinterpret_cast<const quint16*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
+            quint16* dst = reinterpret_cast<quint16*>(image.scanLine(y)) + (static_cast<size_t>(left) * outColumnStep);
+
+            for (int x = left; x < right; x++)
+            {
+                switch (inNumberOfChannels)
+                {
+                case 1:
+                    dst[0] = qFromLittleEndian(src[0]);
+                    break;
+                case 2:
+                    dst[0] = dst[1] = dst[2] = qFromLittleEndian(src[0]);
+                    dst[3] = qFromLittleEndian(src[1]);
+                    break;
+                case 3:
+                    dst[0] = qFromLittleEndian(src[0]);
+                    dst[1] = qFromLittleEndian(src[1]);
+                    dst[2] = qFromLittleEndian(src[2]);
+                    break;
+                case 4:
+                    dst[0] = qFromLittleEndian(src[0]);
+                    dst[1] = qFromLittleEndian(src[1]);
+                    dst[2] = qFromLittleEndian(src[2]);
+                    dst[3] = qFromLittleEndian(src[3]);
+                    break;
+                default:
+                    return false;
+                }
+                src += inNumberOfChannels;
+                dst += outColumnStep;
+            }
+        }
+
+        return true;
     }
 
-    // The following method was copied from ImageConverter.cpp.
-
-    inline bool archIsLittleEndian()
+    bool CopyTileToQImage16Planar(
+        char* tileBuffer,
+        size_t tileBufferStride,
+        int left,
+        int top,
+        int right,
+        int bottom,
+        int inNumberOfChannels,
+        int channelIndex,
+        int outColumnStep,
+        QImage& image)
     {
-        const int x = 1;
-        return (*reinterpret_cast<const unsigned char*>(&x));
+        for (int y = top; y < bottom; y++)
+        {
+            const quint16* src = reinterpret_cast<const quint16*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
+            quint16* dst = reinterpret_cast<quint16*>(image.scanLine(y)) + (static_cast<size_t>(left) * outColumnStep);
+
+            for (int x = left; x < right; x++)
+            {
+                if (inNumberOfChannels == 2)
+                {
+                    // Grayscale with alpha is a special case.
+                    // Qt does not have a dedicated format for it,
+                    // so it is mapped to Format_RGBA64.
+
+                    switch (channelIndex)
+                    {
+                    case 0:
+                        dst[0] = dst[1] = dst[2] = qFromLittleEndian(src[0]);
+                        break;
+                    case 1:
+                        dst[3] = qFromLittleEndian(src[0]);
+                        break;
+                    default:
+                        return false;
+                    }
+                }
+                else
+                {
+                    dst[channelIndex] = qFromLittleEndian(src[0]);
+                }
+                src++;
+                dst += outColumnStep;
+            }
+        }
+
+        return true;
     }
 
     bool ConvertGmic8bfInputToQImage16(
         QDataStream& dataStream,
-        int inRowBytes,
-        int inNumberOfChannels,
+        int32_t inTileWidth,
+        int32_t inTileHeight,
+        int32_t inNumberOfChannels,
         bool planar,
         QImage& image)
     {
-        std::unique_ptr<char> rowBuffer(new (std::nothrow) char[inRowBytes]);
+        size_t maxTileStride = planar ? inTileWidth : static_cast<size_t>(inTileWidth) * inNumberOfChannels;
+        size_t tileBufferSize = maxTileStride * inTileHeight * 2;
 
-        if (!rowBuffer)
+        std::unique_ptr<char> tileBuffer(new (std::nothrow) char[tileBufferSize]);
+
+        if (!tileBuffer)
         {
             return false;
         }
 
         int width = image.width();
         int height = image.height();
-        QImage::Format format = image.format();
+        int outColumnStep;
+
+        switch (image.format())
+        {
+        case QImage::Format_Grayscale16:
+            outColumnStep = 1;
+            break;
+        case QImage::Format_RGBX64:
+        case QImage::Format_RGBA64:
+            outColumnStep = 4;
+            break;
+        default:
+            return false;
+        }
 
         if (planar)
         {
-            int outColumnStep;
-
-            switch (format)
+            for (int i = 0; i < inNumberOfChannels; i++)
             {
-            case QImage::Format_Grayscale16:
-                outColumnStep = 1;
-                break;
-            case QImage::Format_RGBX64:
-            case QImage::Format_RGBA64:
-                outColumnStep = 4;
-                break;
-            default:
-                return false;
-            }
-
-            if (archIsLittleEndian())
-            {
-                for (int i = 0; i < inNumberOfChannels; i++)
+                for (int y = 0; y < height; y += inTileHeight)
                 {
-                    for (int y = 0; y < height; y++)
+                    int top = y;
+                    int bottom = std::min(y + inTileHeight, height);
+
+                    size_t rowCount = static_cast<size_t>(bottom) - top;
+
+                    for (int x = 0; x < width; x += inTileWidth)
                     {
-                        int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                        if (bytesRead != inRowBytes)
+                        int left = x;
+                        int right = std::min(x + inTileWidth, width);
+
+                        size_t tileBufferStride = static_cast<size_t>(right) - left;
+                        size_t bytesToRead = tileBufferStride * rowCount * 2;
+
+                        if (!FillTileBuffer(dataStream, bytesToRead, tileBuffer.get()))
                         {
                             return false;
                         }
 
-                        const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
-                        ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
-
-                        for (int x = 0; x < width; x++)
-                        {
-                            if (inNumberOfChannels == 2)
-                            {
-                                // Grayscale with alpha is a special case.
-                                // Qt does not have a dedicated format for it,
-                                // so it is mapped to Format_RGBA8888.
-
-                                switch (i)
-                                {
-                                case 0:
-                                    dst[0] = dst[1] = dst[2] = src[0];
-                                    break;
-                                case 1:
-                                    dst[3] = src[0];
-                                    break;
-                                default:
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                dst[i] = src[0];
-                            }
-                            src++;
-                            dst += outColumnStep;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < inNumberOfChannels; i++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                        if (bytesRead != inRowBytes)
+                        if (!CopyTileToQImage16Planar(
+                            tileBuffer.get(),
+                            tileBufferStride,
+                            left,
+                            top,
+                            right,
+                            bottom,
+                            inNumberOfChannels,
+                            i,
+                            outColumnStep,
+                            image))
                         {
                             return false;
-                        }
-
-                        const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
-                        ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
-
-                        for (int x = 0; x < width; x++)
-                        {
-                            if (inNumberOfChannels == 2)
-                            {
-                                // Grayscale with alpha is a special case.
-                                // Qt does not have a dedicated format for it,
-                                // so it is mapped to Format_RGBA8888.
-
-                                switch (i)
-                                {
-                                case 0:
-                                    dst[0] = dst[1] = dst[2] = ByteSwap(src[0]);
-                                    break;
-                                case 1:
-                                    dst[3] = ByteSwap(src[0]);
-                                    break;
-                                default:
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                dst[i] = ByteSwap(src[0]);
-                            }
                         }
                     }
                 }
@@ -370,115 +513,39 @@ namespace
         }
         else
         {
-            if (archIsLittleEndian())
+            for (int y = 0; y < height; y += inTileHeight)
             {
-                for (int y = 0; y < height; y++)
+                int top = y;
+                int bottom = std::min(y + inTileHeight, height);
+
+                size_t rowCount = static_cast<size_t>(bottom) - top;
+
+                for (int x = 0; x < width; x += inTileWidth)
                 {
-                    int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                    if (bytesRead != inRowBytes)
+                    int left = x;
+                    int right = std::min(x + inTileWidth, width);
+
+                    size_t columnCount = static_cast<size_t>(right) - left;
+                    size_t tileBufferStride = columnCount * inNumberOfChannels;
+                    size_t bytesToRead = tileBufferStride * rowCount * 2;
+
+                    if (!FillTileBuffer(dataStream, bytesToRead, tileBuffer.get()))
                     {
                         return false;
                     }
 
-                    const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
-                    ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
-
-                    for (int x = 0; x < width; x++)
-                    {
-                        if (inNumberOfChannels == 2)
-                        {
-                            // Grayscale with alpha is a special case.
-                            // Qt does not have a dedicated format for it,
-                            // so it is mapped to Format_RGBA8888.
-                            dst[0] = dst[1] = dst[2] = src[0];
-                            dst[3] = src[1];
-                            src += 2;
-                            dst += 4;
-                        }
-                        else
-                        {
-                            switch (format)
-                            {
-                            case QImage::Format_Grayscale16:
-                                dst[0] = src[0];
-                                src++;
-                                dst++;
-                                break;
-                            case QImage::Format_RGBX64:
-                                dst[0] = src[0];
-                                dst[1] = src[1];
-                                dst[2] = src[2];
-                                src += 3;
-                                dst += 4;
-                                break;
-                            case QImage::Format_RGBA64:
-                                dst[0] = src[0];
-                                dst[1] = src[1];
-                                dst[2] = src[2];
-                                dst[3] = src[3];
-                                src += 4;
-                                dst += 4;
-                                break;
-                            default:
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    int bytesRead = dataStream.readRawData(rowBuffer.get(), inRowBytes);
-                    if (bytesRead != inRowBytes)
+                    if (!CopyTileToQImage16Interleaved(
+                        tileBuffer.get(),
+                        tileBufferStride,
+                        left,
+                        top,
+                        right,
+                        bottom,
+                        inNumberOfChannels,
+                        outColumnStep,
+                        image))
                     {
                         return false;
-                    }
-
-                    const ushort* src = reinterpret_cast<const ushort*>(rowBuffer.get());
-                    ushort* dst = reinterpret_cast<ushort*>(image.scanLine(y));
-
-                    for (int x = 0; x < width; x++)
-                    {
-                        if (inNumberOfChannels == 2)
-                        {
-                            // Grayscale with alpha is a special case.
-                            // Qt does not have a dedicated format for it,
-                            // so it is mapped to Format_RGBA8888.
-                            dst[0] = dst[1] = dst[2] = ByteSwap(src[0]);
-                            dst[3] = ByteSwap(src[1]);
-                            src += 2;
-                            dst += 4;
-                        }
-                        else
-                        {
-                            switch (format)
-                            {
-                            case QImage::Format_Grayscale16:
-                                dst[0] = ByteSwap(src[0]);
-                                src++;
-                                dst++;
-                                break;
-                            case QImage::Format_RGBX64:
-                                dst[0] = ByteSwap(src[0]);
-                                dst[1] = ByteSwap(src[1]);
-                                dst[2] = ByteSwap(src[2]);
-                                src += 3;
-                                dst += 4;
-                                break;
-                            case QImage::Format_RGBA64:
-                                dst[0] = ByteSwap(src[0]);
-                                dst[1] = ByteSwap(src[1]);
-                                dst[2] = ByteSwap(src[2]);
-                                dst[3] = ByteSwap(src[3]);
-                                src += 4;
-                                dst += 4;
-                                break;
-                            default:
-                                return false;
-                            }
-                        }
                     }
                 }
             }
@@ -534,6 +601,8 @@ namespace
         dataStream >> bitDepth;
 
         bool planar = false;
+        int32_t inTileWidth = width;
+        int32_t inTileHeight = height;
 
         if (fileVersion == 2)
         {
@@ -542,6 +611,9 @@ namespace
             dataStream >> flags;
 
             planar = (flags & 1) != 0;
+
+            dataStream >> inTileWidth;
+            dataStream >> inTileHeight;
         }
 
         QImage::Format format{};
@@ -566,18 +638,16 @@ namespace
 
         if (!image.isNull())
         {
-            int rowBytes = planar ? width : width * numberOfChannels;
-
             if (bitDepth == 16)
             {
-                if (!ConvertGmic8bfInputToQImage16(dataStream, rowBytes * 2, numberOfChannels, planar, image))
+                if (!ConvertGmic8bfInputToQImage16(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image))
                 {
                     return QImage();
                 }
             }
             else
             {
-                if (!ConvertGmic8bfInputToQImage8(dataStream, rowBytes, numberOfChannels, planar, image))
+                if (!ConvertGmic8bfInputToQImage8(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image))
                 {
                     return QImage();
                 }
@@ -680,6 +750,10 @@ namespace
 
             if (!imagePath.isEmpty())
             {
+#if defined(_MSC_VER) && defined(_DEBUG)
+                auto name = imagePath.toStdWString();
+#endif
+
                 QImage image = ReadGmic8bfInput(imagePath);
 
                 if (!image.isNull())
