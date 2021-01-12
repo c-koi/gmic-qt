@@ -190,6 +190,14 @@ equals( HOST, "paintdotnet") {
  message(Target host software is Paint.NET)
 }
 
+equals( HOST, "8bf") {
+ TARGET = gmic_8bf_qt
+ SOURCES += src/Host/8bf/host_8bf.cpp
+ DEFINES += GMIC_HOST=plugin8bf
+ DEPENDPATH += $$PWD/src/Host/8bf
+ message(Target host software is 8bf filter)
+}
+
 # enable OpenMP by default on with g++, except on OS X
 !macx:*g++* {
     CONFIG += openmp
