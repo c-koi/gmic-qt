@@ -57,7 +57,7 @@ git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib.h
 cd gmic-qt
-qmake [HOST=none|gimp|krita|paintdotnet]
+qmake [HOST=none|gimp|krita|paintdotnet|8bf]
 make
 ```
 
@@ -82,6 +82,6 @@ cd build
 ```
 
 ```sh
-cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|digikam] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
+cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|digikam|8bf] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
 make
 ```
