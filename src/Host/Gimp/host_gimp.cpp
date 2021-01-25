@@ -31,6 +31,9 @@
 #include <limits>
 #include <stack>
 #include <vector>
+#ifdef _IS_WINDOWS_
+#include <QTextCodec>
+#endif
 #include "Common.h"
 #include "Host/host.h"
 #include "ImageTools.h"
@@ -160,6 +163,23 @@ QString blendingMode2String(const GimpLayerModeEffects & blendingMode)
     return QString("alpha");
   }
 }
+
+#ifdef _IS_WINDOWS_
+QByteArray mapToASCII(const char * str)
+{
+  static const QTextCodec * codec = QTextCodec::codecForName("ASCII");
+  return codec->fromUnicode(QString::fromUtf8(str));
+}
+inline void _GIMP_ITEM_SET_NAME(gint32 item_ID, const gchar * name)
+{
+  gimp_item_set_name(item_ID, mapToASCII(name).constData());
+}
+#else
+inline void _GIMP_ITEM_SET_NAME(gint32 item_ID, const gchar * name)
+{
+  gimp_item_set_name(item_ID, name);
+}
+#endif
 
 // Get layer blending mode from string.
 //-------------------------------------
@@ -654,9 +674,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
 #endif
           }
           if (verboseLayersLabel) { // Verbose (layer name)
-            gimp_item_set_name(inputLayers[p], verboseLayersLabel);
+            _GIMP_ITEM_SET_NAME(inputLayers[p], verboseLayersLabel);
           } else if (layer_name) {
-            gimp_item_set_name(inputLayers[p], layer_name);
+            _GIMP_ITEM_SET_NAME(inputLayers[p], layer_name);
           }
         }
         img.assign();
@@ -700,9 +720,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           gint layer_id = gimp_layer_new(gmic_qt_gimp_image_id, verboseLayersLabel, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
           if (verboseLayersLabel) {
-            gimp_item_set_name(layer_id, verboseLayersLabel);
+            _GIMP_ITEM_SET_NAME(layer_id, verboseLayersLabel);
           } else if (layer_name) {
-            gimp_item_set_name(layer_id, layer_name);
+            _GIMP_ITEM_SET_NAME(layer_id, layer_name);
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, -1, layer_pos + p);
 
@@ -778,9 +798,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           }
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
           if (verboseLayersLabel) {
-            gimp_item_set_name(layer_id, verboseLayersLabel);
+            _GIMP_ITEM_SET_NAME(layer_id, verboseLayersLabel);
           } else if (layer_name) {
-            gimp_item_set_name(layer_id, layer_name);
+            _GIMP_ITEM_SET_NAME(layer_id, layer_name);
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, -1, p);
 
@@ -856,9 +876,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           gint layer_id = gimp_layer_new(nimage_id, verboseLayersLabel, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
           if (verboseLayersLabel) {
-            gimp_item_set_name(layer_id, verboseLayersLabel);
+            _GIMP_ITEM_SET_NAME(layer_id, verboseLayersLabel);
           } else if (layer_name) {
-            gimp_item_set_name(layer_id, layer_name);
+            _GIMP_ITEM_SET_NAME(layer_id, layer_name);
           }
           gimp_image_insert_layer(nimage_id, layer_id, -1, p);
 

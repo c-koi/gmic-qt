@@ -264,6 +264,7 @@ endif()
 if (WIN32)
     add_definitions(-Dcimg_display=2)
     add_definitions(-DPSAPI_VERSION=1)
+    add_definitions(-D_IS_WINDOWS_)
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
         pthread psapi gdi32
