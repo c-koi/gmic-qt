@@ -293,7 +293,7 @@ QByteArray Updater::cimgzDecompress(const QByteArray & array)
     qWarning() << "Updater::cimgzDecompress(): CImg<>::load_cimg error for file " << tmpZ.fileName();
     return QByteArray();
   }
-  return QByteArray((char *)buffer.data(), buffer.size());
+  return QByteArray((char *)buffer.data(), (int)buffer.size());
 }
 
 QByteArray Updater::cimgzDecompressFile(const QString & filename)
@@ -305,7 +305,7 @@ QByteArray Updater::cimgzDecompressFile(const QString & filename)
     qWarning() << "Updater::cimgzDecompressFile(): CImg<>::load_cimg error for file " << filename;
     return QByteArray();
   }
-  return QByteArray((char *)buffer.data(), buffer.size());
+  return QByteArray((char *)buffer.data(), (int)buffer.size());
 }
 
 QString Updater::localFilename(QString url)
@@ -336,7 +336,7 @@ QByteArray Updater::buildFullStdlib() const
   QByteArray result;
   if (_sources.isEmpty()) {
     gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-    QByteArray tmp = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
+    QByteArray tmp = QByteArray::fromRawData(stdlib_h, (int)stdlib_h.size());
     tmp[tmp.size() - 1] = '\n';
     result.append(tmp);
     return result;
@@ -356,7 +356,7 @@ QByteArray Updater::buildFullStdlib() const
         }
         if (!array.size()) {
           gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-          QByteArray tmp = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
+          QByteArray tmp = QByteArray::fromRawData(stdlib_h, (int)stdlib_h.size());
           tmp[tmp.size() - 1] = '\n';
           array.append(tmp);
         }
@@ -368,11 +368,12 @@ QByteArray Updater::buildFullStdlib() const
       result.append('\n');
     } else if (isStdlib(source)) {
       gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-      QByteArray tmp = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
+      QByteArray tmp = QByteArray::fromRawData(stdlib_h, (int)stdlib_h.size());
       tmp[tmp.size() - 1] = '\n';
       result.append(tmp);
     }
-    result.append(QString("#@gui ") + QString("_").repeated(80) + QString("\n"));
+    const QString toTopLevel = QString("#@gui ") + QString("_").repeated(80) + QString("\n");
+    result.append(toTopLevel.toUtf8());
   }
   return result;
 }
