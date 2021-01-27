@@ -46,13 +46,13 @@ KritaGmicPlugin::KritaGmicPlugin(QObject *parent, const QVariantList &)
 
 int KritaGmicPlugin::launch(std::shared_ptr<KisImageInterface> i,
                             bool headless) {
-  disableInputMode(GmicQt::NoInput);
+  // disableInputMode(GmicQt::NoInput);
   // disableInputMode(GmicQt::Active);
   // disableInputMode(GmicQt::All);
   // disableInputMode(GmicQt::ActiveAndBelow);
   // disableInputMode(GmicQt::ActiveAndAbove);
-  disableInputMode(GmicQt::AllVisible);
-  disableInputMode(GmicQt::AllInvisible);
+  // disableInputMode(GmicQt::AllVisible);
+  // disableInputMode(GmicQt::AllInvisible);
 
   // disableOutputMode(GmicQt::InPlace);
   disableOutputMode(GmicQt::NewImage);
