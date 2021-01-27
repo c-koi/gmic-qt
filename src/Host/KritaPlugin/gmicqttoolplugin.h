@@ -31,20 +31,21 @@
 #include <QVector>
 #include <memory>
 
-#include "kis_image_interface.h"
-#include "KritaGmicPluginInterface.h"
+#include "kis_qmic_interface.h"
+#include "kis_qmic_plugin_interface.h"
 
 extern QVector<KisQMicImageSP> sharedMemorySegments;
 extern std::shared_ptr<KisImageInterface> iface;
 
-class KritaGmicPlugin : public QObject, public KritaGmicPluginInterface {
+class KritaGmicPlugin : public QObject, public KisQmicPluginInterface {
   Q_OBJECT
-
-  Q_PLUGIN_METADATA(IID KRITA_GMIC_PLUGIN_INTERFACE_IID)
-  Q_INTERFACES(KritaGmicPluginInterface)
+  Q_INTERFACES(KisQmicPluginInterface)
 
 public:
-  int launch(std::shared_ptr<KisImageInterface> iface, bool headless = false) override;
+  KritaGmicPlugin(QObject *parent, const QVariantList &);
+
+  int launch(std::shared_ptr<KisImageInterface> iface,
+                 bool headless = false) override;
 };
 
 #endif

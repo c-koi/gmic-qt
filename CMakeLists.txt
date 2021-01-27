@@ -546,17 +546,35 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
     install(TARGETS gmic_krita_qt RUNTIME DESTINATION bin)
 
 elseif (${GMIC_QT_HOST} STREQUAL "krita-plugin")
+    set(MIN_FRAMEWORKS_VERSION 5.44.0)
+
+    find_package(ECM 5.22 REQUIRED NOMODULE)
+    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+
+    include(KDEInstallDirs)
+    include(KDECMakeSettings)
+
+    if (ANDROID)
+        set (KRITA_PLUGIN_INSTALL_DIR ${LIB_INSTALL_DIR})
+    else()
+        set (KRITA_PLUGIN_INSTALL_DIR ${LIB_INSTALL_DIR}/kritaplugins)
+    endif()
+
+    find_package(KF5 ${MIN_FRAMEWORKS_VERSION} REQUIRED COMPONENTS
+        CoreAddons
+    )
+
     message(STATUS "Looking for Krita QMic libraries in: ${CMAKE_PREFIX_PATH}")
 
     find_library(KIS_IMAGE_INTERFACE_LIBRARY
-      NAMES kisimageinterface
+      NAMES kisqmicinterface
       REQUIRED)
 
     find_path(KIS_IMAGE_INTERFACE_DIR
-      NAMES KritaGmicPluginInterface.h
+      NAMES kis_qmic_plugin_interface.h
       REQUIRED)
 
-    set_package_properties(kisimageinterface PROPERTIES
+    set_package_properties(kisqmicinterface PROPERTIES
                            URL "http://www.krita.org"
                            DESCRIPTION "Krita GMic core library"
     )
@@ -564,19 +582,20 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita-plugin")
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/KritaPlugin/host.cpp src/Host/KritaPlugin/gmicqttoolplugin.cpp)
     set (gmic_qt_SRCS ${gmic_qt_SRCS} )
     add_definitions(-DGMIC_HOST=krita-plugin)
-    add_library(gmic_krita_qt MODULE ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
+    add_library(krita_gmic_qt MODULE ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_include_directories(
-      gmic_krita_qt
+      krita_gmic_qt
       PUBLIC
       ${KIS_IMAGE_INTERFACE_DIR}
     )
     target_link_libraries(
-      gmic_krita_qt
+      krita_gmic_qt
       PRIVATE
       ${gmic_qt_LIBRARIES}
       ${KIS_IMAGE_INTERFACE_LIBRARY}
+      KF5::CoreAddons
       )
-    install(TARGETS gmic_krita_qt LIBRARY DESTINATION bin) # plugin
+    install(TARGETS krita_gmic_qt DESTINATION ${KRITA_PLUGIN_INSTALL_DIR}) # plugin
 
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 

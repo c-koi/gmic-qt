@@ -1,0 +1,9 @@
+{
+    "Id": "GMic-Qt Krita Plugin",
+    "Type": "Service",
+    "X-KDE-Library": "gmic_krita_qt",
+    "X-KDE-ServiceTypes": [
+        "Krita/GMic"
+    ],
+    "X-Krita-Version": "28"
+}

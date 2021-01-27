@@ -37,6 +37,13 @@
 #include "Widgets/LanguageSelectionWidget.h"
 #include "gmic_qt.h"
 
+#include "kpluginfactory.h"
+
+K_PLUGIN_FACTORY_WITH_JSON(KritaGmicPluginFactory, "gmicqttoolplugin.json", registerPlugin<KritaGmicPlugin>();)
+
+KritaGmicPlugin::KritaGmicPlugin(QObject *parent, const QVariantList &)
+    : QObject(parent) {}
+
 int KritaGmicPlugin::launch(std::shared_ptr<KisImageInterface> i,
                             bool headless) {
   disableInputMode(GmicQt::NoInput);
@@ -126,3 +133,5 @@ int KritaGmicPlugin::launch(std::shared_ptr<KisImageInterface> i,
 
   return r;
 }
+
+#include "gmicqttoolplugin.moc"

@@ -33,7 +33,7 @@
 #include "Host/host.h"
 #include "gmic.h"
 #include "gmic_qt.h"
-#include "kis_image_interface.h"
+#include "kis_qmic_interface.h"
 
 /*
  * No messages are sent in the plugin version of GMic.
