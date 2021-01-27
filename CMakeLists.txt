@@ -545,6 +545,39 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
       )
     install(TARGETS gmic_krita_qt RUNTIME DESTINATION bin)
 
+elseif (${GMIC_QT_HOST} STREQUAL "krita-plugin")
+    message(STATUS "Looking for Krita QMic libraries in: ${CMAKE_PREFIX_PATH}")
+
+    find_library(KIS_IMAGE_INTERFACE_LIBRARY
+      NAMES kisimageinterface
+      REQUIRED)
+
+    find_path(KIS_IMAGE_INTERFACE_DIR
+      NAMES KritaGmicPluginInterface.h
+      REQUIRED)
+
+    set_package_properties(kisimageinterface PROPERTIES
+                           URL "http://www.krita.org"
+                           DESCRIPTION "Krita GMic core library"
+    )
+
+    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/KritaPlugin/host.cpp src/Host/KritaPlugin/gmicqttoolplugin.cpp)
+    set (gmic_qt_SRCS ${gmic_qt_SRCS} )
+    add_definitions(-DGMIC_HOST=krita-plugin)
+    add_library(gmic_krita_qt MODULE ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
+    target_include_directories(
+      gmic_krita_qt
+      PUBLIC
+      ${KIS_IMAGE_INTERFACE_DIR}
+    )
+    target_link_libraries(
+      gmic_krita_qt
+      PRIVATE
+      ${gmic_qt_LIBRARIES}
+      ${KIS_IMAGE_INTERFACE_LIBRARY}
+      )
+    install(TARGETS gmic_krita_qt LIBRARY DESTINATION bin) # plugin
+
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/None/host_none.cpp src/Host/None/ImageDialog.h src/Host/None/ImageDialog.cpp)
