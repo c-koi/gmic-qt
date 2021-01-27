@@ -34,13 +34,13 @@
 #include "kis_image_interface.h"
 #include "KritaGmicPluginInterface.h"
 
-extern QVector<QSharedMemory *> sharedMemorySegments;
+extern QVector<KisQMicImageSP> sharedMemorySegments;
 extern std::shared_ptr<KisImageInterface> iface;
 
 class KritaGmicPlugin : public QObject, public KritaGmicPluginInterface {
   Q_OBJECT
 
-  Q_PLUGIN_METADATA(IID "org.kde.krita.KritaGmicPluginInterface")
+  Q_PLUGIN_METADATA(IID KRITA_GMIC_PLUGIN_INTERFACE_IID)
   Q_INTERFACES(KritaGmicPluginInterface)
 
 public:

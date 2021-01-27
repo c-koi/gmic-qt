@@ -121,14 +121,8 @@ int KritaGmicPlugin::launch(std::shared_ptr<KisImageInterface> i,
     r = loop.exec();
   }
 
-  Q_FOREACH (QSharedMemory *sharedMemory, sharedMemorySegments) {
-    if (sharedMemory->isAttached()) {
-      sharedMemory->detach();
-    }
-  }
-
-  qDeleteAll(sharedMemorySegments);
   sharedMemorySegments.clear();
+  iface.reset();
 
   return r;
 }
