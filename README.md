@@ -85,3 +85,8 @@ cd build
 cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|digikam|8bf] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
 make
 ```
+
+### Adapt G'MIC-Qt to new applications
+
+Developers will find guidelines and instructions for the adaptation of the plugin to a new host application in the [NEW HOST HOWTO](https://github.com/c-koi/gmic-qt/blob/master/NEW_HOST_HOWTO.md).
+
