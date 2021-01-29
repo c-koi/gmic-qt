@@ -61,8 +61,6 @@ qmake [HOST=none|gimp|krita|paintdotnet|8bf]
 make
 ```
 
-NOTE: digikam plugin do not support qmake, use Cmake instead.
-
 #### CMake
 
 cmake works on all platforms. The first part is the same and requires make and wget to be available. If you don't have all dependencies, cmake will warn you which ones are missing. Note that the minimum cmake version is 3.1.
@@ -82,11 +80,10 @@ cd build
 ```
 
 ```sh
-cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|digikam|8bf] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
+cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|8bf] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
 make
 ```
 
 ### Adapt G'MIC-Qt to new applications
 
 Developers will find guidelines and instructions for the adaptation of the plugin to a new host application in the [NEW HOST HOWTO](https://github.com/c-koi/gmic-qt/blob/master/NEW_HOST_HOWTO.md).
-
