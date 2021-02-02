@@ -859,7 +859,6 @@ void MainWindow::saveSettings()
   settings.setValue("Config/MainWindowPosition", frameGeometry().topLeft());
   settings.setValue("Config/MainWindowRect", rect());
   settings.setValue("Config/MainWindowMaximized", isMaximized());
-  settings.setValue("Config/ShowAllFilters", filtersSelectionMode());
   settings.setValue("Config/PreviewEnabled", ui->cbPreview->isChecked());
   settings.setValue("LastExecution/ExitedNormally", true);
   settings.setValue("LastExecution/HostApplicationID", GmicQt::host_app_pid());
@@ -935,8 +934,6 @@ void MainWindow::loadSettings()
     ui->splitter->setSizes(sizes);
   }
 
-  // Filters visibility
-  ui->tbSelectionMode->setChecked(settings.value("Config/ShowAllFilters", false).toBool());
   ui->cbInternetUpdate->setChecked(settings.value("Config/RefreshInternetUpdate", true).toBool());
 }
 
