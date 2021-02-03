@@ -15,9 +15,11 @@
 
 ### Contributors
 
- * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, work in progress)
- * Nicholas Hayes (Paint.NET and 8bf filter compatibility layers, work in progress)
- * Gilles Caulier (digiKam compatibility layer)
+ * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, later replaced by a native version of the plugin)
+ * [amyspark](https://github.com/amyspark) (Krita native version of the plugin, work in progress)
+ * [Nicholas Hayes](https://github.com/0xC0000054) (Paint.NET and 8bf filter compatibility layers, work in progress)
+ * [Gilles Caulier](https://github.com/cgilles) (digiKam compatibility layer)
+
 
 ### Translators
 
