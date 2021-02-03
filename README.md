@@ -15,11 +15,9 @@
 
 ### Contributors
 
- * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, later replaced by a native version of the plugin)
- * [amyspark](https://github.com/amyspark) (Krita native version of the plugin)
+ * Boudewijn Rempt <boud@valdyas.org> (Krita compatibility layer, work in progress)
  * Nicholas Hayes (Paint.NET and 8bf filter compatibility layers, work in progress)
- * [Gilles Caulier](https://github.com/cgilles) (digiKam compatibility layer)
-
+ * Gilles Caulier (digiKam compatibility layer)
 
 ### Translators
 
@@ -59,7 +57,7 @@ git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib.h
 cd gmic-qt
-qmake [HOST=none|gimp|paintdotnet|8bf]
+qmake [HOST=none|gimp|krita|paintdotnet|8bf]
 make
 ```
 
@@ -82,7 +80,7 @@ cd build
 ```
 
 ```sh
-cmake .. [-DGMIC_QT_HOST=none|gimp|paintdotnet|8bf] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
+cmake .. [-DGMIC_QT_HOST=none|gimp|krita|paintdotnet|8bf] [-DGMIC_PATH=/path/to/gmic] [-DCMAKE_BUILD_TYPE=[Debug|Release|RelwithDebInfo]
 make
 ```
 
