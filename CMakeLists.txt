@@ -22,7 +22,7 @@ endif()
 
 message("Build type is " ${CMAKE_BUILD_TYPE})
 
-set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet or 8bf.")
+set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, paintdotnet, 8bf or none.")
 if (${GMIC_QT_HOST} STREQUAL "none")
   message("Building standalone version.")
 else()
@@ -533,18 +533,6 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
       )
     install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP2_PKGLIBDIR}/plug-ins")
 
-elseif (${GMIC_QT_HOST} STREQUAL "krita")
-
-    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Krita/host_krita.cpp)
-    add_definitions(-DGMIC_HOST=krita)
-    add_executable(gmic_krita_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
-    target_link_libraries(
-      gmic_krita_qt
-      PRIVATE
-      ${gmic_qt_LIBRARIES}
-      )
-    install(TARGETS gmic_krita_qt RUNTIME DESTINATION bin)
-
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/None/host_none.cpp src/Host/None/ImageDialog.h src/Host/None/ImageDialog.cpp)
@@ -576,7 +564,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "8bf")
       )
 
 else()
-    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita, none, paintdotnet or 8bf")
+    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, paintdotnet, 8bf or none")
 endif()
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
