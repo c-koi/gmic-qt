@@ -8,6 +8,7 @@
         <file>icons/dark/draw-arrow-down.png</file>
         <file>icons/dark/draw-arrow-up.png</file>
         <file>icons/dark/edit-clear.png</file>
+        <file>icons/dark/edit-copy.png</file>
         <file>icons/dark/edit-find.png</file>
         <file>icons/dark/folder.png</file>
         <file>icons/dark/insert-image.png</file>
@@ -27,6 +28,7 @@
         <file>icons/draw-arrow-down.png</file>
         <file>icons/draw-arrow-up.png</file>
         <file>icons/edit-clear.png</file>
+        <file>icons/edit-copy.png</file>
         <file>icons/edit-find.png</file>
         <file>icons/folder.png</file>
         <file>icons/insert-image.png</file>

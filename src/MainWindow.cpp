@@ -24,6 +24,7 @@
  */
 #include "MainWindow.h"
 #include <QAction>
+#include <QClipboard>
 #include <QCursor>
 #include <QDebug>
 #include <QEvent>
@@ -33,6 +34,7 @@
 #include <QPalette>
 #include <QScreen>
 #include <QSettings>
+#include <QShortcut>
 #include <QShowEvent>
 #include <QStyleFactory>
 #include <cassert>
@@ -80,13 +82,21 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
-  _filterUpdateWidgets = {ui->previewWidget,     ui->zoomLevelSelector, ui->filtersView, ui->filterParams, ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,       ui->pbOk,           ui->pbApply,
-                          ui->tbResetParameters, ui->searchField,       ui->cbPreview,   ui->tbAddFave,    ui->tbRemoveFave,    ui->tbRenameFave, ui->tbExpandCollapse, ui->tbSelectionMode};
+  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,       ui->filterParams,   ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
+                          ui->pbOk,          ui->pbApply,           ui->tbResetParameters, ui->tbCopyCommand,  ui->searchField,     ui->cbPreview,    ui->tbAddFave,
+                          ui->tbRemoveFave,  ui->tbRenameFave,      ui->tbExpandCollapse,  ui->tbSelectionMode};
 
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
   ui->tbResetParameters->setVisible(false);
+
+  ui->tbCopyCommand->setToolTip(tr("Copy gmic command line"));
+  QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
+  copyShortcut->setContext(Qt::ApplicationShortcut);
+  connect(copyShortcut, &QShortcut::activated, [this] { ui->tbCopyCommand->animateClick(100); });
+  ui->tbCopyCommand->setToolTip(tr("Copy gmic command line") + QString(" (%1)").arg(QKeySequence(QKeySequence::Copy).toString()));
+  ui->tbCopyCommand->setVisible(false);
 
   ui->tbUpdateFilters->setToolTip(tr("Update filters (Ctrl+R / F5)"));
 
@@ -212,6 +222,7 @@ void MainWindow::setIcons()
   ui->pbApply->setIcon(LOAD_ICON("system-run"));
   ui->pbOk->setIcon(LOAD_ICON("insert-image"));
   ui->tbResetParameters->setIcon(LOAD_ICON("view-refresh"));
+  ui->tbCopyCommand->setIcon(LOAD_ICON("edit-copy"));
   ui->pbCancel->setIcon(LOAD_ICON("process-stop"));
   ui->tbAddFave->setIcon(LOAD_ICON("bookmark-add"));
   ui->tbRemoveFave->setIcon(LOAD_ICON("bookmark-remove"));
@@ -471,7 +482,7 @@ void MainWindow::showUpdateErrors()
   QString message(tr("The update could not be achieved<br>"
                      "because of the following errors:<br>"));
   QList<QString> errors = Updater::getInstance()->errorMessages();
-  for (const QString s : errors) {
+  for (const QString & s : errors) {
     message += QString("<br/>%1").arg(s);
   }
   QMessageBox::information(this, tr("Update error"), message);
@@ -491,6 +502,7 @@ void MainWindow::makeConnections()
   connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
   connect(ui->pbApply, SIGNAL(clicked(bool)), this, SLOT(onApplyClicked()));
   connect(ui->tbResetParameters, SIGNAL(clicked(bool)), this, SLOT(onReset()));
+  connect(ui->tbCopyCommand, &QToolButton::clicked, this, &MainWindow::onCopyGMICCommand);
 
   connect(ui->tbUpdateFilters, SIGNAL(clicked(bool)), this, SLOT(onUpdateFiltersClicked()));
 
@@ -808,6 +820,15 @@ void MainWindow::onReset()
   }
 }
 
+void MainWindow::onCopyGMICCommand()
+{
+  QClipboard * clipboard = QGuiApplication::clipboard();
+  QString fullCommand = _filtersPresenter->currentFilter().command;
+  fullCommand += " ";
+  fullCommand += ui->filterParams->valueString();
+  clipboard->setText(fullCommand, QClipboard::Clipboard);
+}
+
 void MainWindow::onPreviewZoomReset()
 {
   if (!_filtersPresenter->currentFilter().hash.isEmpty()) {
@@ -1066,6 +1087,7 @@ void MainWindow::activateFilter(bool resetZoom)
     setZoomConstraint();
     _okButtonShouldApply = true;
     ui->tbResetParameters->setVisible(true);
+    ui->tbCopyCommand->setVisible(true);
     ui->tbRemoveFave->setEnabled(filter.isAFave);
     ui->tbRenameFave->setEnabled(filter.isAFave);
   }
@@ -1080,6 +1102,7 @@ void MainWindow::setNoFilter()
   ui->inOutSelector->setState(GmicQt::InputOutputState::Default, false);
   ui->filterName->setVisible(false);
   ui->tbAddFave->setEnabled(false);
+  ui->tbCopyCommand->setVisible(false);
   ui->tbResetParameters->setVisible(false);
   ui->zoomLevelSelector->showWarning(false);
   _okButtonShouldApply = false;

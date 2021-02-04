@@ -82,6 +82,7 @@ public slots:
   void onCancelClicked();
   void onProgressionWidgetCancelClicked();
   void onReset();
+  void onCopyGMICCommand();
   void onPreviewZoomReset();
   void onUpdateFiltersClicked();
   void saveCurrentParameters();

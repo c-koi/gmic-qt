@@ -228,6 +228,13 @@
               </widget>
              </item>
              <item>
+              <widget class="QToolButton" name="tbCopyCommand">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QToolButton" name="tbResetParameters">
                <property name="text">
                 <string>...</string>
@@ -262,7 +269,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>180</width>
-                <height>470</height>
+                <height>472</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">

@@ -100,7 +100,7 @@ void GmicProcessor::execute()
     _filterExecutionTime.restart();
     runner.run();
     manageSynchonousRunner(runner);
-    recordPreviewFilterExecutionDurationMS(_filterExecutionTime.elapsed());
+    recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
   } else if (_filterContext.requestType == FilterContext::PreviewProcessing) {
     _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
@@ -185,7 +185,7 @@ int GmicProcessor::averagePreviewFilterExecutionDuration() const
     return 0;
   }
   int count = 0;
-  float sum = 0;
+  double sum = 0;
   for (int duration : _lastFilterPreviewExecutionDurations) {
     sum += duration;
     ++count;
@@ -288,7 +288,6 @@ void GmicProcessor::onApplyThreadFinished()
   _gmicStatus = _filterThread->gmicStatus();
   _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   hideWaitingCursor();
-
   if (_filterThread->failed()) {
     _lastAppliedFilterName.clear();
     _lastAppliedCommand.clear();
