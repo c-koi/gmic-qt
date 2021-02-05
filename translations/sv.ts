@@ -7,7 +7,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/FilterParameters/ColorParameter.cpp" line="150"/>
+        <location filename="../src/FilterParameters/ColorParameter.cpp" line="168"/>
         <source>Select color</source>
         <translation>Välj färg</translation>
     </message>
@@ -214,9 +214,9 @@
 <context>
     <name>FileParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="148"/>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="151"/>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="154"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="149"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="152"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="155"/>
         <source>Select a file</source>
         <translation>Välj en fil</translation>
     </message>
@@ -245,7 +245,12 @@
 <context>
     <name>FiltersPresenter</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="418"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="339"/>
+        <source>Unknown filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="427"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
         <translation type="unfinished"></translation>
@@ -259,28 +264,28 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="64"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="65"/>
         <source>Rename fave</source>
         <translation>Byt namn på fave</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="66"/>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="67"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="344"/>
         <source>Remove fave</source>
         <translation>Ta bort fave</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="68"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="69"/>
         <source>Clone fave</source>
         <translation>Klona fave</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="72"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="73"/>
         <source>Add fave</source>
         <translation>Lägg till fave</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="342"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="345"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -293,7 +298,7 @@
 <context>
     <name>FolderParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FolderParameter.cpp" line="126"/>
+        <location filename="../src/FilterParameters/FolderParameter.cpp" line="127"/>
         <source>Select a folder</source>
         <translation>Välj en mapp</translation>
     </message>
@@ -400,153 +405,164 @@
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="233"/>
+        <location filename="../ui/mainwindow.ui" line="240"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="379"/>
+        <location filename="../ui/mainwindow.ui" line="386"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&gt;&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(högerklicka på förhandsgranskningsbild för omedelbar byte)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="382"/>
+        <location filename="../ui/mainwindow.ui" line="389"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="473"/>
+        <location filename="../ui/mainwindow.ui" line="480"/>
         <source>Settings...</source>
         <translation>inställningar...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="489"/>
+        <location filename="../ui/mainwindow.ui" line="496"/>
         <source>TextLabel</source>
         <translation>Textetikett</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="502"/>
+        <location filename="../ui/mainwindow.ui" line="509"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="515"/>
+        <location filename="../ui/mainwindow.ui" line="522"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Fullskärm</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="528"/>
+        <location filename="../ui/mainwindow.ui" line="535"/>
         <source>&amp;Apply</source>
         <translation>&amp;Tillämpa</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="541"/>
+        <location filename="../ui/mainwindow.ui" line="548"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="85"/>
+        <location filename="../src/MainWindow.cpp" line="89"/>
         <source>Add fave</source>
         <translation>Lägg till fave</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="91"/>
         <source>Reset parameters to default values</source>
         <translation>Återställ parametrarna till standardvärden</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="90"/>
+        <location filename="../src/MainWindow.cpp" line="94"/>
+        <source>Copy G&apos;MIC command to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="98"/>
+        <source>Copy gmic command line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="101"/>
         <source>Update filters (Ctrl+R / F5)</source>
         <translation>Uppdatera filter (Ctrl+R / F5)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="92"/>
+        <location filename="../src/MainWindow.cpp" line="103"/>
         <source>Rename fave</source>
         <translation>Byt namn på fave</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="94"/>
+        <location filename="../src/MainWindow.cpp" line="105"/>
         <source>Remove fave</source>
         <translation>Ta bort fave</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="98"/>
+        <location filename="../src/MainWindow.cpp" line="109"/>
         <source>Expand/Collapse all</source>
         <translation>Expandera/Dölj alla</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="100"/>
+        <location filename="../src/MainWindow.cpp" line="111"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="107"/>
+        <location filename="../src/MainWindow.cpp" line="118"/>
         <source>Selection mode</source>
         <translation>Valläge</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="296"/>
+        <location filename="../src/MainWindow.cpp" line="308"/>
         <source>Update completed</source>
         <translation>Uppdateringen slutförd</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="296"/>
-        <location filename="../src/MainWindow.cpp" line="298"/>
-        <location filename="../src/MainWindow.cpp" line="352"/>
+        <location filename="../src/MainWindow.cpp" line="308"/>
+        <location filename="../src/MainWindow.cpp" line="310"/>
+        <location filename="../src/MainWindow.cpp" line="364"/>
         <source>Filter definitions have been updated.</source>
         <translation>Filterdefinitioner har uppdaterats.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="301"/>
+        <location filename="../src/MainWindow.cpp" line="313"/>
         <source>No download was needed.</source>
         <translation>Inga nerladdningar behövs.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="348"/>
+        <location filename="../src/MainWindow.cpp" line="360"/>
         <source>Filters update could not be achieved</source>
         <translation>Filteruppdatering kunde inte utföras</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="470"/>
+        <location filename="../src/MainWindow.cpp" line="482"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Uppdateringen kunde inte uppnås&lt;br/&gt;på grund av följande fel:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="476"/>
+        <location filename="../src/MainWindow.cpp" line="488"/>
         <source>Update error</source>
         <translation>Uppdateringsfel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="671"/>
+        <location filename="../src/MainWindow.cpp" line="690"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="767"/>
+        <location filename="../src/MainWindow.cpp" line="786"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>Väntar på avbrutet arbete...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1119"/>
+        <location filename="../src/MainWindow.cpp" line="1148"/>
         <source>Import faves</source>
         <translation>Importera faves</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1119"/>
+        <location filename="../src/MainWindow.cpp" line="1148"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Vill du importera faves från filen nedan?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1122"/>
+        <location filename="../src/MainWindow.cpp" line="1151"/>
         <source>Don&apos;t ask again</source>
         <translation>Fråga inte igen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1234"/>
+        <location filename="../src/MainWindow.cpp" line="1263"/>
         <source>Confirmation</source>
         <translation>Bekräfta</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1234"/>
+        <location filename="../src/MainWindow.cpp" line="1263"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Ett g&apos;mic-kommando körs.&lt;br&gt;Vill du verkligen stänga plugin-programmet?</translation>
     </message>
@@ -646,12 +662,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="87"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="88"/>
         <source>Visible</source>
         <translation>Synlig</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="85"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="86"/>
         <source>Available filters (%1)</source>
         <translation>Tillgängliga filter (%1)</translation>
     </message>
