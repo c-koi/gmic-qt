@@ -474,8 +474,8 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="101"/>
-        <source>Update filters (Ctrl+R / F5)</source>
-        <translation>Actualizar filtros (Ctrl+R / F5)</translation>
+        <source>Update filters</source>
+        <translation>Actualizar filtros</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="103"/>

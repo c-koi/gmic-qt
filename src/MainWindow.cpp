@@ -61,6 +61,19 @@
 
 bool MainWindow::_isAccepted = false;
 
+namespace
+{
+QString appendShortcutText(const QString & text, const QKeySequence & key)
+{
+  if (text.isRightToLeft()) {
+    return QString("(%2) %1").arg(text).arg(key.toString());
+  } else {
+    return QString("%1 (%2)").arg(text).arg(key.toString());
+  }
+}
+
+} // namespace
+
 //
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
 //
@@ -95,10 +108,8 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
   copyShortcut->setContext(Qt::ApplicationShortcut);
   connect(copyShortcut, &QShortcut::activated, [this] { ui->tbCopyCommand->animateClick(100); });
-  ui->tbCopyCommand->setToolTip(tr("Copy gmic command line") + QString(" (%1)").arg(QKeySequence(QKeySequence::Copy).toString()));
+  ui->tbCopyCommand->setToolTip(appendShortcutText(tr("Copy gmic command line"), copyShortcut->key()));
   ui->tbCopyCommand->setVisible(false);
-
-  ui->tbUpdateFilters->setToolTip(tr("Update filters (Ctrl+R / F5)"));
 
   ui->tbRenameFave->setToolTip(tr("Rename fave"));
   ui->tbRenameFave->setEnabled(false);
@@ -150,12 +161,23 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
   addAction(searchAction);
 
-  ui->tbUpdateFilters->setShortcut(QKeySequence("Ctrl+R"));
-  auto updateFiltersAction = new QAction(this);
-  updateFiltersAction->setShortcut(QKeySequence("F5"));
-  updateFiltersAction->setShortcutContext(Qt::ApplicationShortcut);
-  connect(updateFiltersAction, SIGNAL(triggered(bool)), ui->tbUpdateFilters, SLOT(click()));
-  addAction(updateFiltersAction);
+  {
+    QKeySequence f5("F5");
+    QKeySequence ctrlR("Ctrl+R");
+    QString updateText = tr("Update filters");
+    if (updateText.isRightToLeft()) {
+      updateText = QString("(%2 / %3) %1").arg(updateText).arg(f5.toString()).arg(ctrlR.toString());
+    } else {
+      updateText = QString("%1 (%2 / %3)").arg(updateText).arg(ctrlR.toString()).arg(f5.toString());
+    }
+    QShortcut * updateShortcutF5 = new QShortcut(QKeySequence("F5"), this);
+    updateShortcutF5->setContext(Qt::ApplicationShortcut);
+    QShortcut * updateShortcutCtrlR = new QShortcut(QKeySequence("Ctrl+R"), this);
+    updateShortcutCtrlR->setContext(Qt::ApplicationShortcut);
+    connect(updateShortcutF5, &QShortcut::activated, [this]() { ui->tbUpdateFilters->animateClick(); });
+    connect(updateShortcutCtrlR, &QShortcut::activated, [this]() { ui->tbUpdateFilters->animateClick(); });
+    ui->tbUpdateFilters->setToolTip(updateText);
+  }
 
   ui->splitter->setHandleWidth(6);
   ui->verticalSplitter->setHandleWidth(6);
