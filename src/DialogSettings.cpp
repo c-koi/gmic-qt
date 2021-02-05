@@ -83,7 +83,6 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   ui->outputMessages->setToolTip(tr("Output messages"));
   ui->outputMessages->addItem(tr("Quiet (default)"), GmicQt::Quiet);
-  ui->outputMessages->addItem(tr("Verbose (layer name)"), GmicQt::VerboseLayerName);
   ui->outputMessages->addItem(tr("Verbose (console)"), GmicQt::VerboseConsole);
   ui->outputMessages->addItem(tr("Verbose (log file)"), GmicQt::VerboseLogFile);
   ui->outputMessages->addItem(tr("Very verbose (console)"), GmicQt::VeryVerboseConsole);

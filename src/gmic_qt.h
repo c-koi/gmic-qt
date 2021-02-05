@@ -80,8 +80,8 @@ extern PreviewMode DefaultPreviewMode;
 enum OutputMessageMode
 {
   Quiet,
-  VerboseLayerName,
-  VerboseConsole,
+  VerboseLayerName_UNUSED = Quiet, /* Removed since 2.9.5 */
+  VerboseConsole = Quiet + 2,
   VerboseLogFile,
   VeryVerboseConsole,
   VeryVerboseLogFile,

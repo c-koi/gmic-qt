@@ -301,12 +301,7 @@ void GmicProcessor::onApplyThreadFinished()
       emit aboutToSendImagesToHost();
     }
     _filterThread->swapImages(*_gmicImages);
-    if (_filterContext.outputMessageMode == GmicQt::VerboseLayerName) {
-      QString label = QString("[G'MIC] %1: %2").arg(_filterThread->name()).arg(_filterThread->fullCommand());
-      gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, label.toLocal8Bit().constData());
-    } else {
-      gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, nullptr);
-    }
+    gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, nullptr);
     _completeFullImageProcessingCount += 1;
     LayersExtentProxy::clear();
     CroppedActiveLayerProxy::clear();

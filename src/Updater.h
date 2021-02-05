@@ -56,7 +56,7 @@ public:
 
   static Updater * getInstance();
   static void setOutputMessageMode(GmicQt::OutputMessageMode mode);
-  ~Updater();
+  ~Updater() override;
 
   /**
    * @brief Launch download of files that are either not present locally, or
