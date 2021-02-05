@@ -1311,10 +1311,9 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     }
 }
 
-void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel)
+void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
     unused(imageNames);
-    unused(verboseLayersLabel);
 
     if (images.size() > 0)
     {

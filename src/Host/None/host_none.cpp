@@ -153,7 +153,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
 }
 
-void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel)
+void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
   if (images.size() > 0) {
     ImageDialog * dialog = new ImageDialog(QApplication::topLevelWidgets().at(0));
@@ -180,7 +180,6 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
     delete dialog;
   }
   unused(mode);
-  unused(verboseLayersLabel);
 }
 
 void gmic_qt_show_message(const char * message)

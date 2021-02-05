@@ -565,7 +565,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   }
 }
 
-void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode, const char * verboseLayersLabel)
+void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
 {
   // Output modes in original gmic_gimp_gtk : 0/Replace 1/New layer 2/New active layer  3/New image
 
@@ -673,9 +673,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
             gimp_item_transform_translate(inputLayers[p], 0, 0);
 #endif
           }
-          if (verboseLayersLabel) { // Verbose (layer name)
-            _GIMP_ITEM_SET_NAME(inputLayers[p], verboseLayersLabel);
-          } else if (layer_name) {
+          if (layer_name) {
             _GIMP_ITEM_SET_NAME(inputLayers[p], layer_name);
           }
         }
@@ -717,11 +715,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           } else {
             GmicQt::calibrate_image(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
-          gint layer_id = gimp_layer_new(gmic_qt_gimp_image_id, verboseLayersLabel, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
+          gint layer_id = gimp_layer_new(gmic_qt_gimp_image_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
-          if (verboseLayersLabel) {
-            _GIMP_ITEM_SET_NAME(layer_id, verboseLayersLabel);
-          } else if (layer_name) {
+          if (layer_name) {
             _GIMP_ITEM_SET_NAME(layer_id, layer_name);
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, -1, layer_pos + p);
@@ -792,14 +788,12 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           } else {
             GmicQt::calibrate_image(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
-          layer_id = gimp_layer_new(gmic_qt_gimp_image_id, verboseLayersLabel, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
+          layer_id = gimp_layer_new(gmic_qt_gimp_image_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           if (!p) {
             top_layer_id = layer_id;
           }
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
-          if (verboseLayersLabel) {
-            _GIMP_ITEM_SET_NAME(layer_id, verboseLayersLabel);
-          } else if (layer_name) {
+          if (layer_name) {
             _GIMP_ITEM_SET_NAME(layer_id, layer_name);
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, -1, p);
@@ -873,11 +867,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           if (gimp_image_base_type(nimage_id) != GIMP_GRAY) {
             GmicQt::calibrate_image(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
-          gint layer_id = gimp_layer_new(nimage_id, verboseLayersLabel, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
+          gint layer_id = gimp_layer_new(nimage_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
-          if (verboseLayersLabel) {
-            _GIMP_ITEM_SET_NAME(layer_id, verboseLayersLabel);
-          } else if (layer_name) {
+          if (layer_name) {
             _GIMP_ITEM_SET_NAME(layer_id, layer_name);
           }
           gimp_image_insert_layer(nimage_id, layer_id, -1, p);

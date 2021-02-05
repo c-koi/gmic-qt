@@ -376,10 +376,9 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     SendMessageSynchronously("command=gmic_qt_release_shared_memory");
 }
 
-void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel)
+void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
     unused(imageNames);
-    unused(verboseLayersLabel);
 
     if (images.size() > 0)
     {
@@ -390,7 +389,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
         host_paintdotnet::sharedMemory.clear();
 
         QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg(mode);
-		
+
 		for (size_t i = 0; i < images.size(); ++i)
 		{
 			QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));

@@ -231,8 +231,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images,
 
 void gmic_qt_output_images( gmic_list<float> & images,
                             const gmic_list<char> & imageNames,
-                            GmicQt::OutputMode mode,
-                            const char * /*verboseLayersLabel*/)
+                            GmicQt::OutputMode mode)
 {
 
     //qDebug() << "qmic-qt-output-images";
