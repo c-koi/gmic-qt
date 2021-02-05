@@ -85,9 +85,8 @@ void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images
  * @param images List of layers to be sent to the host application. May be modified.
  * @param imageNames Layers labels
  * @param mode Output mode (\see gmic_qt.h)
- * @param verboseLayersLabel Name used for all layers in VerboseLayerName mode, otherwise null.
  */
-void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode, const char * verboseLayersLabel = nullptr);
+void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
 
 /**
  * @brief Apply a color profile to a given image

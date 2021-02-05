@@ -275,7 +275,7 @@ void GmicProcessor::onPreviewThreadFinished()
   _filterThread = nullptr;
   hideWaitingCursor();
   emit previewImageAvailable();
-  recordPreviewFilterExecutionDurationMS(_filterExecutionTime.elapsed());
+  recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
 }
 
 void GmicProcessor::onApplyThreadFinished()
@@ -301,7 +301,7 @@ void GmicProcessor::onApplyThreadFinished()
       emit aboutToSendImagesToHost();
     }
     _filterThread->swapImages(*_gmicImages);
-    gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode, nullptr);
+    gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode);
     _completeFullImageProcessingCount += 1;
     LayersExtentProxy::clear();
     CroppedActiveLayerProxy::clear();
@@ -352,8 +352,8 @@ void GmicProcessor::updateImageNames(gmic_list<char> & imageNames)
     if (str.contains(position) && position.matchedLength() > 0) {
       int xPos = position.cap(1).toInt();
       int yPos = position.cap(3).toInt();
-      int newXPos = (int)(xPos * (xFactor / (float)maxWidth));
-      int newYPos = (int)(yPos * (yFactor / (float)maxHeight));
+      int newXPos = (int)(xPos * (xFactor / (double)maxWidth));
+      int newYPos = (int)(yPos * (yFactor / (double)maxHeight));
       str.replace(position.cap(0), QString("pos(%1%2%3)").arg(newXPos).arg(position.cap(2)).arg(newYPos));
       name.resize(str.size() + 1);
       std::memcpy(name.data(), str.toLatin1().constData(), name.width());

@@ -188,7 +188,7 @@ void HeadlessProcessor::onProcessingFinished()
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if (!_filterThread->aborted()) {
-      gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode, nullptr);
+      gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode);
       _processingCompletedProperly = true;
     }
   }
