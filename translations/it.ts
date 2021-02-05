@@ -465,7 +465,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="94"/>
         <source>Copy G&apos;MIC command to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia il comando G&apos;MIC negli appunti</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="98"/>
