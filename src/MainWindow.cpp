@@ -104,11 +104,10 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
   ui->tbResetParameters->setVisible(false);
 
-  ui->tbCopyCommand->setToolTip(tr("Copy G'MIC command to clipboard"));
   QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
   copyShortcut->setContext(Qt::ApplicationShortcut);
   connect(copyShortcut, &QShortcut::activated, [this] { ui->tbCopyCommand->animateClick(100); });
-  ui->tbCopyCommand->setToolTip(appendShortcutText(tr("Copy gmic command line"), copyShortcut->key()));
+  ui->tbCopyCommand->setToolTip(appendShortcutText(tr("Copy G'MIC command to clipboard"), copyShortcut->key()));
   ui->tbCopyCommand->setVisible(false);
 
   ui->tbRenameFave->setToolTip(tr("Rename fave"));
