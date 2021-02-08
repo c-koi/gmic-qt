@@ -40,6 +40,7 @@
 #include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
+#include "Logger.h"
 #include "OverrideCursor.h"
 #include "gmic.h"
 
@@ -242,7 +243,7 @@ GmicProcessor::~GmicProcessor()
   delete _gmicImages;
   delete _previewImage;
   if (!_unfinishedAbortedThreads.isEmpty()) {
-    qWarning() << QString("Error: ~GmicProcessor(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size());
+    Logger::error(QString("~GmicProcessor(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size()));
   }
 }
 

@@ -30,6 +30,7 @@
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
+#include "Logger.h"
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "gmic.h"
@@ -197,7 +198,7 @@ void HeadlessProcessor::onProcessingFinished()
   _singleShotTimer.stop();
   emit done(errorMessage);
   if (!_hasProgressWindow && !errorMessage.isEmpty()) {
-    qWarning() << "Error:" << errorMessage;
+    Logger::error(errorMessage);
   }
   QCoreApplication::exit(0);
 }
