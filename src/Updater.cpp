@@ -275,22 +275,17 @@ QByteArray Updater::cimgzDecompress(const QByteArray & array)
 {
   QTemporaryFile tmpZ(QDir::tempPath() + QDir::separator() + "gmic_qt_update_XXXXXX_cimgz");
   if (!tmpZ.open()) {
-    qWarning() << "Updater::cimgzDecompress(): Error creating" << tmpZ.fileName();
+    Logger::warning("Updater::cimgzDecompress(): Error creating " + tmpZ.fileName());
     return QByteArray();
   }
   tmpZ.write(array);
   tmpZ.flush();
   tmpZ.close();
-  std::FILE * file = fopen(tmpZ.fileName().toLocal8Bit().constData(), "rb");
-  if (!file) {
-    qWarning() << "Updater::cimgzDecompress(): Error opening" << tmpZ.fileName();
-    return QByteArray();
-  }
   cimg_library::CImg<unsigned char> buffer;
   try {
-    buffer.load_cimg(file);
+    buffer.load_cimg(tmpZ.fileName().toUtf8().constData());
   } catch (...) {
-    qWarning() << "Updater::cimgzDecompress(): CImg<>::load_cimg error for file " << tmpZ.fileName();
+    Logger::warning("Updater::cimgzDecompress(): CImg<>::load_cimg error for file " + tmpZ.fileName());
     return QByteArray();
   }
   return QByteArray((char *)buffer.data(), (int)buffer.size());
@@ -302,7 +297,7 @@ QByteArray Updater::cimgzDecompressFile(const QString & filename)
   try {
     buffer.load_cimg(filename.toLocal8Bit().constData());
   } catch (...) {
-    qWarning() << "Updater::cimgzDecompressFile(): CImg<>::load_cimg error for file " << filename;
+    Logger::warning("Updater::cimgzDecompressFile(): CImg<>::load_cimg error for file " + filename);
     return QByteArray();
   }
   return QByteArray((char *)buffer.data(), (int)buffer.size());
