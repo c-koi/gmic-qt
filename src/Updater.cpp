@@ -58,7 +58,7 @@ void Updater::updateSources(bool useNetwork)
   _sources.clear();
   _sourceIsStdLib.clear();
   // Build sources map
-  QString prefix = GmicQt::commandFromOutputMessageMode(_outputMessageMode);
+  QString prefix = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(_outputMessageMode));
   if (!prefix.isEmpty()) {
     prefix.push_back(QChar(' '));
   }

@@ -144,7 +144,7 @@ void FilterSyncRunner::run()
   _failed = false;
   QString fullCommandLine;
   try {
-    fullCommandLine = QString::fromLocal8Bit(GmicQt::commandFromOutputMessageMode(_messageMode));
+    fullCommandLine = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(_messageMode));
     GmicQt::appendWithSpace(fullCommandLine, _command);
     GmicQt::appendWithSpace(fullCommandLine, _arguments);
     _gmicAbort = false;
