@@ -44,7 +44,7 @@ namespace GmicQt
 {
 const QString & path_rc(bool create)
 {
-  QString qpath = QString::fromLocal8Bit(gmic::path_rc());
+  QString qpath = QString::fromUtf8(gmic::path_rc());
   QFileInfo dir(qpath);
   static QString result;
   if (dir.isDir()) {
@@ -54,7 +54,7 @@ const QString & path_rc(bool create)
   if (!create || !gmic::init_rc()) {
     result.clear();
   } else {
-    result = QString::fromLocal8Bit(gmic::path_rc());
+    result = QString::fromUtf8(gmic::path_rc());
   }
   return result;
 }
