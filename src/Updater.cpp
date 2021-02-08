@@ -82,7 +82,7 @@ void Updater::updateSources(bool useNetwork)
     } else {
       str.columns(0, str.width());
     }
-    QString source = QString::fromLocal8Bit(str);
+    QString source = QString::fromUtf8(str);
     _sources << source;
     _sourceIsStdLib[source] = isStdlib;
   }
