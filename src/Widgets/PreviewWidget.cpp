@@ -492,7 +492,7 @@ void PreviewWidget::wheelEvent(QWheelEvent * event)
 {
   double degrees = event->angleDelta().y() / 8.0;
   int steps = static_cast<int>(std::fabs(degrees) / 15.0);
-#if QT_VERSION_GTE(5, 14)
+#if QT_VERSION_GTE(5, 14, 0)
   const QPoint position = event->position().toPoint();
 #else
   const QPoint position = event->pos();

@@ -94,7 +94,7 @@ void FiltersView::enableModel()
     QString title = QString("_%1_").arg(headerItem->text());
     QFont font;
     QFontMetrics fm(font);
-#if QT_VERSION_GTE(5, 11)
+#if QT_VERSION_GTE(5, 11, 0)
     int w = fm.horizontalAdvance(title);
 #else
     int w = fm.width(title);

@@ -68,7 +68,7 @@ bool TextParameter::addTo(QWidget * widget, int row)
     _lineEdit = new QLineEdit(_value, widget);
     _textEdit = nullptr;
     _grid->addWidget(_lineEdit, row, 1, 1, 2);
-#if QT_VERSION >= 0x050200
+#if QT_VERSION_GTE(5, 2, 0)
     _updateAction = _lineEdit->addAction(LOAD_ICON("view-refresh"), QLineEdit::TrailingPosition);
 #endif
   }
@@ -152,7 +152,7 @@ void TextParameter::connectEditor()
     connect(_textEdit, SIGNAL(valueChanged()), this, SLOT(onValueChanged()));
   } else {
     connect(_lineEdit, SIGNAL(editingFinished()), this, SLOT(onValueChanged()));
-#if QT_VERSION >= 0x050200
+#if QT_VERSION_GTE(5, 2, 0)
     connect(_updateAction, SIGNAL(triggered(bool)), this, SLOT(onValueChanged()));
 #endif
   }
@@ -168,7 +168,7 @@ void TextParameter::disconnectEditor()
     _textEdit->disconnect(this);
   } else {
     _lineEdit->disconnect(this);
-#if QT_VERSION >= 0x050200
+#if QT_VERSION_GTE(5, 2, 0)
     _updateAction->disconnect(this);
 #endif
   }

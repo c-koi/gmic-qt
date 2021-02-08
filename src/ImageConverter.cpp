@@ -62,7 +62,7 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
   }
 
 // Format_Grayscale8 was added in Qt 5.5.
-#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
+#if QT_VERSION_GTE(5, 5, 0)
   if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
     out = out.convertToFormat(QImage::Format_Grayscale8);
   }
@@ -155,7 +155,7 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
     for (int y = 0; y < height; ++y) {
       int n = in.width();
       unsigned char * dst = out.scanLine(y);
-#if ((QT_VERSION_MAJOR == 5) && (QT_VERSION_MINOR > 4)) || (QT_VERSION_MAJOR >= 6)
+#if QT_VERSION_GTE(5, 5, 0)
       while (n--) {
         *dst++ = static_cast<unsigned char>(*src++);
       }

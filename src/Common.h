@@ -25,6 +25,7 @@
 #ifndef GMIC_QT_COMMON_H
 #define GMIC_QT_COMMON_H
 
+#include <QtGlobal>
 #include <iostream>
 #include "TimeLogger.h"
 
@@ -58,9 +59,9 @@ template <typename T> inline void unused(const T &, ...) {}
   std::cout << ""
 #endif
 
-#define QT_VERSION_GTE(MAJOR, MINOR) (((QT_VERSION_MAJOR == MAJOR) && (QT_VERSION_MINOR >= MINOR)) || (QT_VERSION_MAJOR > MAJOR))
+#define QT_VERSION_GTE(MAJOR, MINOR, PATCH) (QT_VERSION >= QT_VERSION_CHECK(MAJOR, MINOR, PATCH))
 
-#if QT_VERSION_GTE(5, 14)
+#if QT_VERSION_GTE(5, 14, 0)
 #define QT_SKIP_EMPTY_PARTS Qt::SkipEmptyParts
 #define QT_KEEP_EMPTY_PARTS Qt::KeepEmptyParts
 #else

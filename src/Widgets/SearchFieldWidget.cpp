@@ -43,7 +43,7 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   _findIcon = LOAD_ICON("edit-find");
   _empty = true;
 
-#if QT_VERSION >= 0x050200
+#if QT_VERSION_GTE(5, 2, 0)
   auto hbox = dynamic_cast<QHBoxLayout *>(layout());
   if (hbox) {
     hbox->setMargin(0);
@@ -93,7 +93,7 @@ QString SearchFieldWidget::text() const
 
 void SearchFieldWidget::onTextChanged(const QString & str)
 {
-#if QT_VERSION >= 0x050200
+#if QT_VERSION_GTE(5, 2, 0)
   if (str.isEmpty()) {
     _empty = true;
     _action->setIcon(_findIcon);
