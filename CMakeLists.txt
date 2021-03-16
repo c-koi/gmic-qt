@@ -533,7 +533,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp")
       ${GIMP_LIBRARIES}
       ${gmic_qt_LIBRARIES}
       )
-    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP_PKGLIBDIR}/plug-ins")
+    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP_PKGLIBDIR}/plug-ins/gmic_gimp_qt")
 
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
