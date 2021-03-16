@@ -22,7 +22,7 @@ endif()
 
 message("Build type is " ${CMAKE_BUILD_TYPE})
 
-set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, krita, none, paintdotnet or 8bf.")
+set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, gimp3 (experimental), krita, none, paintdotnet or 8bf.")
 if (${GMIC_QT_HOST} STREQUAL "none")
   message("Building standalone version.")
 else()
@@ -515,12 +515,17 @@ set(gmic_qt_QRC
     translations.qrc
 )
 
-if (${GMIC_QT_HOST} STREQUAL "gimp")
+if (${GMIC_QT_HOST} STREQUAL "gimp" OR ${GMIC_QT_HOST} STREQUAL "gimp3")
+    if (${GMIC_QT_HOST} STREQUAL "gimp3")
+        set(TARGET_GIMP_VERSION 3)
+    else()
+        set(TARGET_GIMP_VERSION 2)
+    endif()
 
     find_package(PkgConfig REQUIRED)
-    pkg_check_modules(GIMP REQUIRED gimp-2.0)
+    pkg_check_modules(GIMP REQUIRED gimp-${TARGET_GIMP_VERSION}.0)
     # CMake does not support passing --define-variable through pkg_get_variable.
-    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-2.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-${TARGET_GIMP_VERSION}.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
     add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
@@ -578,7 +583,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "8bf")
       )
 
 else()
-    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, krita, none, paintdotnet or 8bf")
+    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, gimp3, krita, none, paintdotnet or 8bf")
 endif()
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
