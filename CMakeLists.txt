@@ -517,21 +517,23 @@ set(gmic_qt_QRC
 
 if (${GMIC_QT_HOST} STREQUAL "gimp")
 
-    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} --libs gimp-2.0 OUTPUT_VARIABLE GIMP2_LIBRARIES OUTPUT_STRIP_TRAILING_WHITESPACE)
-    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} --cflags gimp-2.0 OUTPUT_VARIABLE GIMP2_INCLUDE_DIRS OUTPUT_STRIP_TRAILING_WHITESPACE)
-    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-2.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP2_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GIMP2_INCLUDE_DIRS}")
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GIMP REQUIRED gimp-2.0)
+    # CMake does not support passing --define-variable through pkg_get_variable.
+    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-2.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
     add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
+    target_include_directories(gmic_gimp_qt PRIVATE ${GIMP_INCLUDE_DIRS})
+    target_link_directories(gmic_gimp_qt PRIVATE ${GIMP_LIBRARY_DIRS})
     target_link_libraries(
       gmic_gimp_qt
       PRIVATE
-      ${GIMP2_LIBRARIES}
+      ${GIMP_LIBRARIES}
       ${gmic_qt_LIBRARIES}
       )
-    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP2_PKGLIBDIR}/plug-ins")
+    install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP_PKGLIBDIR}/plug-ins")
 
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
