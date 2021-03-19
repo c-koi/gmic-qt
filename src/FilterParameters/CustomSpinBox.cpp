@@ -69,7 +69,7 @@ QSize CustomSpinBox::minimumSizeHint() const
 void CustomSpinBox::keyPressEvent(QKeyEvent * event)
 {
   QString text = event->text();
-  if ((text.length() == 1 && text.front().isDigit()) || //
+  if ((text.length() == 1 && text[0].isDigit()) ||      //
       (text == DialogSettings::NegativeSign) ||         //
       (text == DialogSettings::GroupSeparator) ||       //
       (event->key() == Qt::Key_Backspace) ||            //

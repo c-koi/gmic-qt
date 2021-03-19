@@ -85,7 +85,7 @@ QSize CustomDoubleSpinBox::minimumSizeHint() const
 void CustomDoubleSpinBox::keyPressEvent(QKeyEvent * event)
 {
   QString text = event->text();
-  if ((text.length() == 1 && text.front().isDigit()) || //
+  if ((text.length() == 1 && text[0].isDigit()) ||      //
       (text == DialogSettings::DecimalPoint) ||         //
       (text == DialogSettings::NegativeSign) ||         //
       (text == DialogSettings::GroupSeparator) ||       //
