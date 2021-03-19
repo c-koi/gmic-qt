@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file CustomDoubleSpinBox.h
+ *  @file CustomSpinBox.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,20 +22,20 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_CUSTOMDOUBLESPINBOX_H
-#define GMIC_QT_CUSTOMDOUBLESPINBOX_H
+#ifndef GMIC_QT_CUSTOMSPINBOX_H
+#define GMIC_QT_CUSTOMSPINBOX_H
 
-#include <QDoubleSpinBox>
 #include <QSize>
+#include <QSpinBox>
 class QShowEvent;
 class QResizeEvent;
 
-class CustomDoubleSpinBox : public QDoubleSpinBox {
+class CustomSpinBox : public QSpinBox {
   Q_OBJECT
 public:
-  CustomDoubleSpinBox(QWidget * parent, float min, float max);
-  ~CustomDoubleSpinBox() override;
-  QString textFromValue(double value) const override;
+  CustomSpinBox(QWidget * parent, int min, int max);
+  ~CustomSpinBox() override;
+  QString textFromValue(int value) const override;
   inline bool unfinishedKeyboardEditing() const;
 
 protected:
@@ -53,9 +53,9 @@ private:
   static int integerPartDigitCount(float value);
 };
 
-bool CustomDoubleSpinBox::unfinishedKeyboardEditing() const
+bool CustomSpinBox::unfinishedKeyboardEditing() const
 {
   return _unfinishedKeyboardEditing;
 }
 
-#endif // GMIC_QT_CUSTOMDOUBLESPINBOX_H
+#endif // GMIC_QT_CUSTOMSPINBOX_H

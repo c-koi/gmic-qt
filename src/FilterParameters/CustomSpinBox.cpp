@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file CustomDoubleSpinBox.h
+ *  @file CustomSpinBox.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "FilterParameters/CustomDoubleSpinBox.h"
+#include "FilterParameters/CustomSpinBox.h"
 #include <QFontMetrics>
 #include <QKeyEvent>
 #include <QLineEdit>
@@ -35,68 +35,51 @@
 #include "Common.h"
 #include "DialogSettings.h"
 
-CustomDoubleSpinBox::CustomDoubleSpinBox(QWidget * parent, float min, float max) : QDoubleSpinBox(parent)
+CustomSpinBox::CustomSpinBox(QWidget * parent, int min, int max) : QSpinBox(parent)
 {
   setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-  const int decimals = std::max(2, MAX_DIGITS - std::max(integerPartDigitCount(min), integerPartDigitCount(max)));
-  setDecimals(decimals);
   setRange(min, max);
 
-  QDoubleSpinBox * dummy = new QDoubleSpinBox(this);
+  QSpinBox * dummy = new QSpinBox(this);
   dummy->hide();
   dummy->setRange(min, max);
-  dummy->setDecimals(decimals);
   _sizeHint = dummy->sizeHint();
   _minimumSizeHint = dummy->minimumSizeHint();
   delete dummy;
-  connect(this, &QDoubleSpinBox::editingFinished, [this]() { _unfinishedKeyboardEditing = false; });
+  connect(this, &QSpinBox::editingFinished, [this]() { _unfinishedKeyboardEditing = false; });
 }
 
-CustomDoubleSpinBox::~CustomDoubleSpinBox() {}
+CustomSpinBox::~CustomSpinBox() {}
 
-QString CustomDoubleSpinBox::textFromValue(double value) const
+QString CustomSpinBox::textFromValue(int value) const
 {
-  QString text = QString::number(value, 'g', MAX_DIGITS);
-  if (text.contains('e') || text.contains('E')) {
-    text = QString::number(value, 'f', decimals());
-    const QChar DecimalPoint = QLocale().decimalPoint();
-    if (text.contains(DecimalPoint)) {
-      while (text.endsWith(QChar('0'))) {
-        text.chop(1);
-      }
-      if (text.endsWith(DecimalPoint)) {
-        text.chop(1);
-      }
-    }
-  }
-  return text;
+  return QString::number(value);
 }
 
-QSize CustomDoubleSpinBox::sizeHint() const
+QSize CustomSpinBox::sizeHint() const
 {
   return _sizeHint;
 }
 
-QSize CustomDoubleSpinBox::minimumSizeHint() const
+QSize CustomSpinBox::minimumSizeHint() const
 {
   return _minimumSizeHint;
 }
 
-void CustomDoubleSpinBox::keyPressEvent(QKeyEvent * event)
+void CustomSpinBox::keyPressEvent(QKeyEvent * event)
 {
   QString text = event->text();
   if ((text.length() == 1 && text.front().isDigit()) || //
-      (text == DialogSettings::DecimalPoint) ||         //
       (text == DialogSettings::NegativeSign) ||         //
       (text == DialogSettings::GroupSeparator) ||       //
       (event->key() == Qt::Key_Backspace) ||            //
       (event->key() == Qt::Key_Delete)) {
     _unfinishedKeyboardEditing = true;
   }
-  QDoubleSpinBox::keyPressEvent(event);
+  QSpinBox::keyPressEvent(event);
 }
 
-int CustomDoubleSpinBox::integerPartDigitCount(float value)
+int CustomSpinBox::integerPartDigitCount(float value)
 {
   QString text = QString::number(static_cast<double>(value), 'f', 0);
   if (text[0] == QChar('-')) {

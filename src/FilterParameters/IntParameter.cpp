@@ -27,10 +27,10 @@
 #include <QLabel>
 #include <QPalette>
 #include <QSlider>
-#include <QSpinBox>
 #include <QTimerEvent>
 #include <QWidget>
 #include "DialogSettings.h"
+#include "FilterParameters/CustomSpinBox.h"
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
@@ -70,8 +70,7 @@ bool IntParameter::addTo(QWidget * widget, int row)
     _slider->setPageStep(fact * (delta / fact) / 10);
   }
 
-  _spinBox = new QSpinBox(widget);
-  _spinBox->setRange(_min, _max);
+  _spinBox = new CustomSpinBox(widget, _min, _max);
   _spinBox->setValue(_value);
   if (DialogSettings::darkThemeEnabled()) {
     QPalette p = _slider->palette();
@@ -83,6 +82,9 @@ bool IntParameter::addTo(QWidget * widget, int row)
   _grid->addWidget(_slider, row, 1, 1, 1);
   _grid->addWidget(_spinBox, row, 2, 1, 1);
   connectSliderSpinBox();
+
+  connect(_spinBox, &CustomSpinBox::editingFinished, [this]() { notifyIfRelevant(); });
+
   return true;
 }
 
@@ -141,7 +143,9 @@ void IntParameter::timerEvent(QTimerEvent * e)
 {
   killTimer(e->timerId());
   _timerId = 0;
-  notifyIfRelevant();
+  if (not _spinBox->unfinishedKeyboardEditing()) {
+    notifyIfRelevant();
+  }
 }
 
 void IntParameter::onSliderMoved(int value)
@@ -165,7 +169,11 @@ void IntParameter::onSpinBoxChanged(int i)
   if (_timerId) {
     killTimer(_timerId);
   }
-  _timerId = startTimer(UPDATE_DELAY);
+  if (_spinBox->unfinishedKeyboardEditing()) {
+    _timerId = 0;
+  } else {
+    _timerId = startTimer(UPDATE_DELAY);
+  }
 }
 
 void IntParameter::connectSliderSpinBox()

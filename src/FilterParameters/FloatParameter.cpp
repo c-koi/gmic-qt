@@ -79,6 +79,9 @@ bool FloatParameter::addTo(QWidget * widget, int row)
   _grid->addWidget(_spinBox, row, 2, 1, 1);
 
   connectSliderSpinBox();
+
+  connect(_spinBox, &CustomDoubleSpinBox::editingFinished, [this]() { notifyIfRelevant(); });
+
   return true;
 }
 
@@ -141,7 +144,9 @@ void FloatParameter::timerEvent(QTimerEvent * event)
 {
   killTimer(event->timerId());
   _timerId = 0;
-  notifyIfRelevant();
+  if (not _spinBox->unfinishedKeyboardEditing()) {
+    notifyIfRelevant();
+  }
 }
 
 void FloatParameter::onSliderMoved(int value)
@@ -154,7 +159,7 @@ void FloatParameter::onSliderMoved(int value)
 
 void FloatParameter::onSliderValueChanged(int value)
 {
-  float fValue = _min + (float(value) / static_cast<float>(SLIDER_MAX_RANGE)) * (_max - _min);
+  const float fValue = _min + (float(value) / static_cast<float>(SLIDER_MAX_RANGE)) * (_max - _min);
   if (fValue != _value) {
     _spinBox->setValue(_value = fValue);
   }
@@ -169,7 +174,11 @@ void FloatParameter::onSpinBoxChanged(double x)
   if (_timerId) {
     killTimer(_timerId);
   }
-  _timerId = startTimer(UPDATE_DELAY);
+  if (_spinBox->unfinishedKeyboardEditing()) {
+    _timerId = 0;
+  } else {
+    _timerId = startTimer(UPDATE_DELAY);
+  }
 }
 
 void FloatParameter::connectSliderSpinBox()

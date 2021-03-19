@@ -48,10 +48,10 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   if (hbox) {
     hbox->setMargin(0);
     hbox->setSpacing(0);
+    hbox->addWidget(_lineEdit = new QLineEdit(this));
+    _action = _lineEdit->addAction(LOAD_ICON("edit-find"), QLineEdit::TrailingPosition);
+    connect(_action, SIGNAL(triggered(bool)), _lineEdit, SLOT(clear()));
   }
-  hbox->addWidget(_lineEdit = new QLineEdit(this));
-  _action = _lineEdit->addAction(LOAD_ICON("edit-find"), QLineEdit::TrailingPosition);
-  connect(_action, SIGNAL(triggered(bool)), _lineEdit, SLOT(clear()));
 #else
   QFrame * frame = new QFrame(this);
   layout()->addWidget(frame);

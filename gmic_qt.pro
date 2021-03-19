@@ -87,13 +87,11 @@ defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
 
 message("G'MIC repository was found ("$$GMIC_PATH")")
 
-
 equals( COMPILER, "clang" ) {
  message("Compiler is clang++")
  QMAKE_CXX = clang++
  QMAKE_LINK = clang++
 }
-
 
 #
 # Make sure CImg.h is in G'MIC source tree
@@ -249,6 +247,7 @@ DEPENDPATH += $$PWD/src \
 HEADERS +=  \
   src/ClickableLabel.h \
   src/Common.h \
+  src/FilterParameters/CustomSpinBox.h \
   src/OverrideCursor.h \
   src/DialogSettings.h \
   src/FilterParameters/AbstractParameter.h \
@@ -324,6 +323,7 @@ HEADERS += $$GMIC_PATH/gmic_stdlib.h
 SOURCES += \
   src/ClickableLabel.cpp \
   src/Common.cpp \
+  src/FilterParameters/CustomSpinBox.cpp \
   src/OverrideCursor.cpp \
   src/DialogSettings.cpp \
   src/FilterParameters/AbstractParameter.cpp \

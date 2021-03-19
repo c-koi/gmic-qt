@@ -467,6 +467,9 @@ void FiltersView::onItemChanged(QStandardItem * item)
     parentFolder = _model.invisibleRootItem();
   }
   QStandardItem * leftItem = parentFolder->child(row);
+  if (!leftItem) {
+    return;
+  }
   auto folder = dynamic_cast<FilterTreeFolder *>(leftItem);
   if (folder) {
     folder->applyVisibilityStatusToFolderContents();
@@ -608,6 +611,9 @@ QStandardItem * FiltersView::getFolderFromPath(QStandardItem * parent, QList<QSt
 
 void FiltersView::saveFiltersVisibility(QStandardItem * item)
 {
+  if (!item) {
+    return;
+  }
   auto filterItem = dynamic_cast<FilterTreeItem *>(item);
   if (filterItem) {
     FiltersVisibilityMap::setVisibility(filterItem->hash(), filterItem->isVisible());

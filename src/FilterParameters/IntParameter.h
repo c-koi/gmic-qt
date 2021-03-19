@@ -27,7 +27,7 @@
 
 #include <QString>
 #include "AbstractParameter.h"
-class QSpinBox;
+class CustomSpinBox;
 class QSlider;
 class QLabel;
 
@@ -59,7 +59,7 @@ private:
   int _value;
   QLabel * _label;
   QSlider * _slider;
-  QSpinBox * _spinBox;
+  CustomSpinBox * _spinBox;
   int _timerId;
   static const int UPDATE_DELAY = 300;
   bool _connected;

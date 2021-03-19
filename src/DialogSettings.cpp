@@ -55,6 +55,10 @@ int DialogSettings::_previewTimeout = 16;
 QIcon DialogSettings::AddIcon;
 QIcon DialogSettings::RemoveIcon;
 
+QString DialogSettings::GroupSeparator;
+QString DialogSettings::DecimalPoint('.');
+QString DialogSettings::NegativeSign('-');
+
 // TODO : Make DialogSetting a view of a Settings class
 
 DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::DialogSettings)
@@ -182,6 +186,10 @@ void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
     AddIcon = LOAD_ICON("list-add");
     RemoveIcon = LOAD_ICON("list-remove");
   }
+  QLocale locale;
+  GroupSeparator = locale.groupSeparator();
+  DecimalPoint = locale.decimalPoint();
+  NegativeSign = locale.negativeSign();
 }
 
 bool DialogSettings::previewZoomAlwaysEnabled()

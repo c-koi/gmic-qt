@@ -53,7 +53,7 @@ class DialogSettings : public QDialog {
 
 public:
   explicit DialogSettings(QWidget * parent = nullptr);
-  ~DialogSettings();
+  ~DialogSettings() override;
   static MainWindow::PreviewPosition previewPosition();
   static bool logosAreVisible();
   static bool darkThemeEnabled();
@@ -72,6 +72,9 @@ public:
   static GmicQt::OutputMessageMode outputMessageMode();
   static QIcon AddIcon;
   static QIcon RemoveIcon;
+  static QString GroupSeparator;
+  static QString DecimalPoint;
+  static QString NegativeSign;
 
 public slots:
   void onRadioLeftPreviewToggled(bool);

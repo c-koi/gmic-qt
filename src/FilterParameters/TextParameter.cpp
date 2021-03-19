@@ -91,7 +91,7 @@ QString TextParameter::unquotedTextValue() const
 void TextParameter::setValue(const QString & value)
 {
   _value = value;
-  if (_multiline && _textEdit) {
+  if (_textEdit) {
     disconnectEditor();
     _textEdit->setText(_value);
     connectEditor();
@@ -104,9 +104,9 @@ void TextParameter::setValue(const QString & value)
 
 void TextParameter::reset()
 {
-  if (_multiline) {
+  if (_textEdit) {
     _textEdit->setText(_default);
-  } else {
+  } else if (_lineEdit) {
     _lineEdit->setText(_default);
   }
   _value = _default;
@@ -148,9 +148,9 @@ void TextParameter::connectEditor()
   if (_connected) {
     return;
   }
-  if (_multiline) {
+  if (_textEdit) {
     connect(_textEdit, SIGNAL(valueChanged()), this, SLOT(onValueChanged()));
-  } else {
+  } else if (_lineEdit) {
     connect(_lineEdit, SIGNAL(editingFinished()), this, SLOT(onValueChanged()));
 #if QT_VERSION_GTE(5, 2, 0)
     connect(_updateAction, SIGNAL(triggered(bool)), this, SLOT(onValueChanged()));
@@ -164,9 +164,9 @@ void TextParameter::disconnectEditor()
   if (!_connected) {
     return;
   }
-  if (_multiline) {
+  if (_textEdit) {
     _textEdit->disconnect(this);
-  } else {
+  } else if (_lineEdit) {
     _lineEdit->disconnect(this);
 #if QT_VERSION_GTE(5, 2, 0)
     _updateAction->disconnect(this);

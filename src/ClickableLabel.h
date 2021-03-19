@@ -33,7 +33,7 @@ class ClickableLabel : public QLabel {
   Q_OBJECT
 public:
   ClickableLabel(QWidget * parent = nullptr);
-  void mousePressEvent(QMouseEvent * e);
+  void mousePressEvent(QMouseEvent * e) override;
 signals:
   void clicked();
 };

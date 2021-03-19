@@ -44,6 +44,7 @@ public:
 
 protected:
   void timerEvent(QTimerEvent * event) override;
+
 public slots:
   void onSliderMoved(int);
   void onSliderValueChanged(int);
