@@ -110,6 +110,10 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->tbCopyCommand->setToolTip(appendShortcutText(tr("Copy G'MIC command to clipboard"), copyShortcut->key()));
   ui->tbCopyCommand->setVisible(false);
 
+  QShortcut * closeShortcut = new QShortcut(QKeySequence::Close, this);
+  closeShortcut->setContext(Qt::ApplicationShortcut);
+  connect(closeShortcut, &QShortcut::activated, this, &MainWindow::close);
+
   ui->tbRenameFave->setToolTip(tr("Rename fave"));
   ui->tbRenameFave->setEnabled(false);
   ui->tbRemoveFave->setToolTip(tr("Remove fave"));
