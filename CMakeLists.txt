@@ -2,7 +2,7 @@ project(gmic-qt)
 
 message(STATUS "Using CMake version: ${CMAKE_VERSION}")
 
-cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.6.0 FATAL_ERROR)
 LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 include(FeatureSummary)
 include(FindPkgConfig)
@@ -525,19 +525,17 @@ if (${GMIC_QT_HOST} STREQUAL "gimp" OR ${GMIC_QT_HOST} STREQUAL "gimp3")
     endif()
 
     find_package(PkgConfig REQUIRED)
-    pkg_check_modules(GIMP REQUIRED gimp-${TARGET_GIMP_VERSION}.0)
+    pkg_check_modules(GIMP REQUIRED gimp-${TARGET_GIMP_VERSION}.0 IMPORTED_TARGET)
     # CMake does not support passing --define-variable through pkg_get_variable.
     execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-${TARGET_GIMP_VERSION}.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
     add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
-    target_include_directories(gmic_gimp_qt PRIVATE ${GIMP_INCLUDE_DIRS})
-    target_link_directories(gmic_gimp_qt PRIVATE ${GIMP_LIBRARY_DIRS})
     target_link_libraries(
       gmic_gimp_qt
       PRIVATE
-      ${GIMP_LIBRARIES}
+      PkgConfig::GIMP
       ${gmic_qt_LIBRARIES}
       )
     install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP_PKGLIBDIR}/plug-ins/gmic_gimp_qt")
