@@ -293,6 +293,18 @@ template void image2uchar(cimg_library::CImg<gmic_pixel_type> & img);
 template void image2uchar(cimg_library::CImg<unsigned char> & img);
 template void calibrate_image(cimg_library::CImg<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
 template void calibrate_image(cimg_library::CImg<unsigned char> & img, const int spectrum, const bool is_preview);
+
+bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, unsigned int & index)
+{
+  for (unsigned int i = 0; i < images.size(); ++i) {
+    if (images[i].spectrum() > 4) {
+      index = i;
+      return false;
+    }
+  }
+  return true;
+}
+
 } // namespace GmicQt
 
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)

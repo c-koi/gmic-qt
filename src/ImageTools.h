@@ -40,6 +40,9 @@ template <typename T> void image2uchar(cimg_library::CImg<T> & img);
 template <typename T> void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
 
 void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, GmicQt::PreviewMode previewMode, int previewWidth, int previewHeight);
+
+bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, unsigned int & index);
+
 } // namespace GmicQt
 
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image);

@@ -268,15 +268,24 @@ void GmicProcessor::onPreviewThreadFinished()
   _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   _gmicImages->assign();
   _filterThread->swapImages(*_gmicImages);
-  for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
-    gmic_qt_apply_color_profile((*_gmicImages)[i]);
+  unsigned int badSpectrumIndex = 0;
+  bool correctSpectrums = GmicQt::checkImageSpectrumAtMost4(*_gmicImages, badSpectrumIndex);
+  if (correctSpectrums) {
+    for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
+      gmic_qt_apply_color_profile((*_gmicImages)[i]);
+    }
+    GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.inputOutputState.previewMode, _filterContext.previewWidth, _filterContext.previewHeight);
   }
-  GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.inputOutputState.previewMode, _filterContext.previewWidth, _filterContext.previewHeight);
   _filterThread->deleteLater();
   _filterThread = nullptr;
   hideWaitingCursor();
-  emit previewImageAvailable();
-  recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
+  if (correctSpectrums) {
+    emit previewImageAvailable();
+    recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
+  } else {
+    QString message(tr("Image #%1 returned by filter has %2 channels (should be at most 4)"));
+    emit previewCommandFailed(message.arg(badSpectrumIndex).arg((*_gmicImages)[badSpectrumIndex].spectrum()));
+  }
 }
 
 void GmicProcessor::onApplyThreadFinished()
@@ -289,6 +298,7 @@ void GmicProcessor::onApplyThreadFinished()
   _gmicStatus = _filterThread->gmicStatus();
   _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   hideWaitingCursor();
+
   if (_filterThread->failed()) {
     _lastAppliedFilterName.clear();
     _lastAppliedCommand.clear();
@@ -298,19 +308,31 @@ void GmicProcessor::onApplyThreadFinished()
     _filterThread = nullptr;
     emit fullImageProcessingFailed(message);
   } else {
-    if (GmicQt::HostApplicationName.isEmpty()) {
-      emit aboutToSendImagesToHost();
-    }
     _filterThread->swapImages(*_gmicImages);
-    gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode);
-    _completeFullImageProcessingCount += 1;
-    LayersExtentProxy::clear();
-    CroppedActiveLayerProxy::clear();
-    CroppedImageListProxy::clear();
-    _filterThread->deleteLater();
-    _filterThread = nullptr;
-    _lastAppliedCommandGmicStatus = _gmicStatus; // TODO : save visibility states?
-    emit fullImageProcessingDone();
+    unsigned int badSpectrumIndex = 0;
+    bool correctSpectrums = GmicQt::checkImageSpectrumAtMost4(*_gmicImages, badSpectrumIndex);
+    if (!correctSpectrums) {
+      _lastAppliedFilterName.clear();
+      _lastAppliedCommand.clear();
+      _lastAppliedCommandArguments.clear();
+      _filterThread->deleteLater();
+      _filterThread = nullptr;
+      QString message(tr("Image #%1 returned by filter has %2 channels\n(should be at most 4)"));
+      emit fullImageProcessingFailed(message.arg(badSpectrumIndex).arg((*_gmicImages)[badSpectrumIndex].spectrum()));
+    } else {
+      if (GmicQt::HostApplicationName.isEmpty()) {
+        emit aboutToSendImagesToHost();
+      }
+      gmic_qt_output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode);
+      _completeFullImageProcessingCount += 1;
+      LayersExtentProxy::clear();
+      CroppedActiveLayerProxy::clear();
+      CroppedImageListProxy::clear();
+      _filterThread->deleteLater();
+      _filterThread = nullptr;
+      _lastAppliedCommandGmicStatus = _gmicStatus; // TODO : save visibility states?
+      emit fullImageProcessingDone();
+    }
   }
 }
 

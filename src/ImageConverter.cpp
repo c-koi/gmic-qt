@@ -45,11 +45,9 @@ inline unsigned char float2uchar_bounded(const float & in)
 
 void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
 {
-  Q_ASSERT_X(in.spectrum() <= 4, "ImageConverter::convert()", QString("bad input spectrum (%1)").arg(in.spectrum()).toLatin1());
-
   out = QImage(in.width(), in.height(), QImage::Format_RGB888);
 
-  if (in.spectrum() == 4 && out.format() != QImage::Format_ARGB32) {
+  if (in.spectrum() >= 4 && out.format() != QImage::Format_ARGB32) {
     out = out.convertToFormat(QImage::Format_ARGB32);
   }
 
@@ -72,22 +70,7 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
   }
 #endif
 
-  if (in.spectrum() == 3) {
-    const float * srcR = in.data(0, 0, 0, 0);
-    const float * srcG = in.data(0, 0, 0, 1);
-    const float * srcB = in.data(0, 0, 0, 2);
-    int height = out.height();
-    for (int y = 0; y < height; ++y) {
-      int n = in.width();
-      unsigned char * dst = out.scanLine(y);
-      while (n--) {
-        dst[0] = float2uchar_bounded(*srcR++);
-        dst[1] = float2uchar_bounded(*srcG++);
-        dst[2] = float2uchar_bounded(*srcB++);
-        dst += 3;
-      }
-    }
-  } else if (in.spectrum() == 4) {
+  if (in.spectrum() >= 4) {
     const float * srcR = in.data(0, 0, 0, 0);
     const float * srcG = in.data(0, 0, 0, 1);
     const float * srcB = in.data(0, 0, 0, 2);
@@ -116,6 +99,21 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
           dst[3] = float2uchar_bounded(*srcB++);
           dst += 4;
         }
+      }
+    }
+  } else if (in.spectrum() == 3) {
+    const float * srcR = in.data(0, 0, 0, 0);
+    const float * srcG = in.data(0, 0, 0, 1);
+    const float * srcB = in.data(0, 0, 0, 2);
+    int height = out.height();
+    for (int y = 0; y < height; ++y) {
+      int n = in.width();
+      unsigned char * dst = out.scanLine(y);
+      while (n--) {
+        dst[0] = float2uchar_bounded(*srcR++);
+        dst[1] = float2uchar_bounded(*srcG++);
+        dst[2] = float2uchar_bounded(*srcB++);
+        dst += 3;
       }
     }
   } else if (in.spectrum() == 2) {
