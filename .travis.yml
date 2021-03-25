@@ -44,13 +44,12 @@ before_install:
   - git clone --depth=1 https://github.com/dtschump/gmic.git gmic-clone
   - make -C gmic-clone/src CImg.h gmic_stdlib.h
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
-        sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp;
         sudo apt-get update;
     fi;
 
 install:
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
-       sudo apt-get install --allow-unauthenticated gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0-dev qt5-default qt5-qmake qtbase5-dev qttools5-dev qttools5-dev-tools;
+       sudo apt-get install --allow-unauthenticated gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0 libgegl-dev libgimp2.0-dev qt5-default qt5-qmake qtbase5-dev qttools5-dev qttools5-dev-tools;
     fi;
 
 script:
