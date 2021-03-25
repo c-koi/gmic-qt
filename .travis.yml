@@ -3,10 +3,8 @@ language: cpp
 git:
   depth: 1
 
-dist: bionic
 os:
   - linux
-# - osx
 
 branches:
   only:
@@ -19,28 +17,26 @@ compiler:
 matrix:
   include:
     - os: linux
+      dist: bionic
       env:
         - BUILD="qmake" GMIC_HOST="all"
     - os: linux
+      dist: focal
+      env:
+        - BUILD="qmake" GMIC_HOST="all"
+    - os: linux
+      dist: bionic
       env:
         - BUILD="cmake" GMIC_HOST="none"
     - os: linux
+      dist: bionic
       env:
         - BUILD="cmake" GMIC_HOST="gimp"
     - os: linux
+      dist: bionic
       env:
         - BUILD="cmake" GMIC_HOST="krita"
   fast_finish: true
-#    - os: osx
-#      osx_image: xcode8.3
-#      env:
-#        - MATRIX_EVAL="brew update"
-
-#  GMIC blessed repo has been moved to Framagit (June 2018)
-#  GIT_SSL_NO_VERIFY=true git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic-clone
-
-#  GMIC blessed repo has been moved back to github (January 2020)
-#  git clone --depth=1 https://github.com/dtschump/gmic.git gmic-clone
 
 before_install:
   - date -u
@@ -54,10 +50,9 @@ before_install:
 
 install:
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
-       sudo apt-get install --allow-unauthenticated gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0-dev qt5-default qt5-qmake qtbase5-dev qttools5-dev qttools5-dev-tools;
-    fi;
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-       brew install fftw curl qt55;
+       sudo apt-get install --allow-unauthenticated gdb libfftw3-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgimp2.0-dev
+       grep -q "^VERSION=.*Bionic" /etc/os-release && sudo apt-get install qt5-default qt5-qmake qtbase5-dev qttools5-dev qttools5-dev-tools;
+       grep -q "^VERSION=.*Focal" /etc/os-release && sudo apt-get install qt5-default qt5-qmake;
     fi;
 
 script:
@@ -65,6 +60,3 @@ script:
   - if [ -z "$TRAVIS_OS_NAME" -o "$TRAVIS_OS_NAME" = "linux" ]; then
        travis_wait 45 ./scripts/travis_build_${BUILD}.sh;
     fi;
-
-# sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-${GCC_VERSION} 90;
-#  - eval "${MATRIX_EVAL}"
