@@ -802,6 +802,22 @@ namespace
             }
         }
 
+        if (layerCount > 1)
+        {
+            // The 8bf plug-in sends layers in bottom to top order, whereas the
+            // G'MIC-Qt plug-in for GIMP sends layers in top to bottom order.
+            // So we reverse the layer list to match the behavior of the G'MIC-Qt
+            // plug-in for GIMP.
+
+            host_8bf::activeLayerIndex = layerCount - (1 + host_8bf::activeLayerIndex);
+
+            // Adapted from https://stackoverflow.com/a/20652805
+            for(int k = 0, s = host_8bf::layers.size(), max = (s / 2); k < max; k++)
+            {
+                host_8bf::layers.swapItemsAt(k, s - (1 + k));
+            }
+        }
+
         return InputFileParseStatus::Ok;
     }
 
@@ -823,19 +839,25 @@ namespace
             {
                 const QVector<Gmic8bfLayer>& layers = host_8bf::layers;
 
-                for (int i = host_8bf::activeLayerIndex; i < layers.size(); i++)
+                // This case is the opposite of the GIMP plug-in because the layer order has
+                // been reversed to match the top to bottom order that the GIMP plug-in uses.                
+                if (host_8bf::activeLayerIndex > 0)
                 {
-                    filteredLayers.push_back(layers[i]);
+                    filteredLayers.push_back(layers[host_8bf::activeLayerIndex - 1]);
                 }
+				filteredLayers.push_back(layers[host_8bf::activeLayerIndex]);
             }
             else if (mode == GmicQt::InputMode::ActiveAndBelow)
             {
                 const QVector<Gmic8bfLayer>& layers = host_8bf::layers;
-
-                for (int i = 0; i <= host_8bf::activeLayerIndex; i++)
+                
+				// This case is the opposite of the GIMP plug-in because the layer order has
+                // been reversed to match the top to bottom order that the GIMP plug-in uses.
+                filteredLayers.push_back(layers[host_8bf::activeLayerIndex]);
+                if (host_8bf::activeLayerIndex < (layers.size() - 1))
                 {
-                    filteredLayers.push_back(layers[i]);
-                }
+                    filteredLayers.push_back(layers[host_8bf::activeLayerIndex + 1]);
+                }                                
             }
             else if (mode == GmicQt::InputMode::AllVisible)
             {
