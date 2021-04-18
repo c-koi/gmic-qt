@@ -407,7 +407,7 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
     const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
     if (!plainPath.isEmpty()) {
       _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(plainPath);
-      if (not filter.isValid()) {
+      if (!filter.isValid()) {
         throw tr("Plugin was called with a filter path with no matching filter:\n\nPath: %1").arg(QString::fromStdString(_pluginParameters.filterPath));
       }
     }

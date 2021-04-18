@@ -271,7 +271,7 @@ void HeadlessProcessor::endApplication(const QString & errorMessage)
   if (!errorMessage.isEmpty()) {
     Logger::error(errorMessage);
   }
-  QCoreApplication::exit(not errorMessage.isEmpty());
+  QCoreApplication::exit(!errorMessage.isEmpty());
 }
 
 } // namespace GmicQt

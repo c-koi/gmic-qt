@@ -29,10 +29,10 @@ else()
   message("Building for target host application: " ${GMIC_QT_HOST})
 endif()
 
-if(EXISTS "../src/gmic.cpp")
-  set (GMIC_PATH "../src" CACHE STRING "Define the path to the gmic headers")
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../src/gmic.cpp")
+  set (GMIC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../src" CACHE STRING "Define the path to the gmic headers")
 else()
-  set (GMIC_PATH "../gmic/src" CACHE STRING "Define the path to the gmic headers")
+  set (GMIC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../gmic/src" CACHE STRING "Define the path to the gmic headers")
 endif()
 
 message("G'MIC path: " ${GMIC_PATH})
@@ -44,15 +44,20 @@ set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shar
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
-option(ENABLE_LTO "Enable -flto (Link Time Optimizer) on gcc and clang" ON)
+option(ENABLE_LTO "Enable Link Time Optimizer" ON)
 
-if (WIN32)
-    message("LTO is disabled (windows platform)")
+if (MSVC)
+  option(ENABLE_CFG "Enable Control Flow Guard (MSVC)" ON)
+  add_definitions(-D__PRETTY_FUNCTION__=__FUNCSIG__)
+endif()
+
+if (WIN32 AND NOT MSVC)
+    message("LTO is disabled (windows platform, not MSVC)")
     set(ENABLE_LTO OFF)
 endif()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(ENABLE_LTO OFF)
+    set(ENABLE_LTO OFF FORCE)
 endif()
 
 
@@ -122,6 +127,11 @@ endif()
 
 
 # Required packages
+
+#
+# Threads
+#
+find_package(Threads REQUIRED)
 
 #
 # Qt5
@@ -203,10 +213,33 @@ endif()
 # LTO option
 #
 
-if (ENABLE_LTO AND (CMAKE_COMPILER_IS_GNUCC OR (CMAKE_CSS_COMPILER_IS STREQUAL "Clang")))
+if (ENABLE_LTO)
     message("Link Time Optimizer enabled")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
+    if (MSVC)
+      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO}")
+      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO}")
+      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO}")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GL")
+      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /LTCG")
+      set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /LTCG")
+      set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /LTCG")
+    else()
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
+      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
+    endif()
+endif()
+
+#
+# Enable CFG
+#
+if (MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:4194304")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /STACK:4194304")
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /STACK:4194304")
+    if (ENABLE_CFG)
+        add_compile_options(/guard:CF)
+        add_link_options(/GUARD:CF)
+    endif()
 endif()
 
 #
@@ -265,9 +298,13 @@ if (WIN32)
     add_definitions(-Dcimg_display=2)
     add_definitions(-DPSAPI_VERSION=1)
     add_definitions(-D_IS_WINDOWS_)
+    if (MSVC)
+      add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+      add_compile_options(/wd4267)
+    endif()
     set(gmic_qt_LIBRARIES
         ${gmic_qt_LIBRARIES}
-        pthread psapi gdi32
+        Threads::Threads psapi gdi32
     )
 endif()
 
@@ -282,19 +319,30 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     endif(ENABLE_ASAN)
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
-    string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
-    string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s")
-    if (WIN32)
+    if (MSVC)
+      set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /fp:fast /Oi")
+    else()
+      string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+      string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+      set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
+    endif()
+    if (NOT MSVC)
+      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s")
+    endif()
+    if (WIN32 AND NOT MSVC)
       set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
     endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
-    string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-    string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-    set_source_files_properties(${GMIC_PATH}/gmic.cpp PROPERTIES COMPILE_FLAGS "-Ofast")
-    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O2")
+    if(MSVC)
+      string(REPLACE "Ob1" "Ob2" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+      set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /fp:fast /Oi")
+    else()
+      string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+      string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+      set_source_files_properties(${GMIC_PATH}/gmic.cpp PROPERTIES COMPILE_FLAGS "-Ofast")
+      set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O2")
+    endif()
 else()
     message(FATAL_ERROR "Build type not recognized (${CMAKE_BUILD_TYPE})")
 endif()
