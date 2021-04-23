@@ -27,6 +27,7 @@
 
 #include "gmic_qt.h"
 class QString;
+class QStringList;
 
 namespace GmicQt
 {
@@ -37,6 +38,7 @@ const QString & pluginCodeName();
 const char * commandFromOutputMessageMode(OutputMessageMode mode);
 void downcaseCommandTitle(QString & title);
 void appendWithSpace(QString & str, const QString & other);
+void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args);
 } // namespace GmicQt
 
 #endif // GMIC_QT_UTILS_H

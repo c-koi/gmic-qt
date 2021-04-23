@@ -28,6 +28,7 @@
 #include <QFileInfo>
 #include <QRegExp>
 #include <QString>
+#include <QStringList>
 #include "Common.h"
 #include "Host/host.h"
 #include "gmic.h"
@@ -177,6 +178,54 @@ void appendWithSpace(QString & str, const QString & other)
   }
   str += QChar(' ');
   str += other;
+}
+
+void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args)
+{
+  if (!text) {
+    return;
+  }
+  args.clear();
+  command_name.clear();
+  const char * pc = text;
+  while (isalnum(*pc) || (*pc == '_')) {
+    ++pc;
+  }
+  if (!isspace(*pc)) {
+    return;
+  }
+  command_name = QString::fromLatin1(text, pc - text);
+  while (isspace(*pc)) {
+    ++pc;
+  }
+  bool quoted = false;
+  bool escaped = false;
+  char * buffer = new char[strlen(pc)]();
+  char * output = buffer;
+  while (*pc) {
+    if (escaped) {
+      *output++ = *pc++;
+      escaped = false;
+    } else if (*pc == '\\') {
+      escaped = true;
+      ++pc;
+    } else if (*pc == '"') {
+      quoted = !quoted;
+      ++pc;
+    } else if (!quoted && !escaped && (*pc == ',')) {
+      *output = '\0';
+      args.push_back(QString::fromLatin1(buffer));
+      output = buffer;
+      ++pc;
+    } else {
+      *output++ = *pc++;
+    }
+  }
+  if (output != buffer) {
+    *output = '\0';
+    args.push_back(QString::fromLatin1(buffer));
+  }
+  delete[] buffer;
 }
 
 } // namespace GmicQt
