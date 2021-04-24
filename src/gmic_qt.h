@@ -37,6 +37,14 @@ class QString;
 
 namespace GmicQt
 {
+
+enum UserInterfaceMode
+{
+  NoGUI,
+  ProgressDialogGUI,
+  FullGUI
+};
+
 enum InputMode
 {
   NoInput,
