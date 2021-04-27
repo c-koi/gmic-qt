@@ -25,6 +25,7 @@
 
 #include "InputOutputState.h"
 #include <QJsonObject>
+#include <QString>
 
 namespace
 {

@@ -357,6 +357,7 @@ set (gmic_qt_SRCS
   src/TimeLogger.h
   src/Updater.h
   src/Utils.h
+  src/Misc.h
   src/FilterSelector/FiltersView/FilterTreeFolder.h
   src/FilterSelector/FiltersView/FilterTreeItem.h
   src/FilterSelector/FavesModel.h
@@ -430,6 +431,7 @@ set (gmic_qt_SRCS
   src/TimeLogger.cpp
   src/Updater.cpp
   src/Utils.cpp
+  src/Misc.cpp
   src/FilterSelector/FiltersView/FilterTreeItem.cpp
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp
   src/FilterSelector/FavesModel.cpp

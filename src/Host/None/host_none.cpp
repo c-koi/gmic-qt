@@ -200,35 +200,36 @@ int main(int argc, char * argv[])
   }
 #endif
 
-  disableInputMode(GmicQt::NoInput);
-  // disableInputMode(GmicQt::Active);
-  disableInputMode(GmicQt::All);
-  disableInputMode(GmicQt::ActiveAndBelow);
-  disableInputMode(GmicQt::ActiveAndAbove);
-  disableInputMode(GmicQt::AllVisible);
-  disableInputMode(GmicQt::AllInvisible);
+  GmicQt::PluginParameters parameters;
+  parameters.disabledInputModes.push_back(GmicQt::NoInput);
+  // parameters.disabledInputModes.push_back(GmicQt::Active);
+  parameters.disabledInputModes.push_back(GmicQt::All);
+  parameters.disabledInputModes.push_back(GmicQt::ActiveAndBelow);
+  parameters.disabledInputModes.push_back(GmicQt::ActiveAndAbove);
+  parameters.disabledInputModes.push_back(GmicQt::AllVisible);
+  parameters.disabledInputModes.push_back(GmicQt::AllInvisible);
 
-  // disableOutputMode(GmicQt::InPlace);
-  disableOutputMode(GmicQt::NewImage);
-  disableOutputMode(GmicQt::NewLayers);
-  disableOutputMode(GmicQt::NewActiveLayers);
+  // parameters.disabledOutputModes.push_back(GmicQt::InPlace);
+  parameters.disabledOutputModes.push_back(GmicQt::NewImage);
+  parameters.disabledOutputModes.push_back(GmicQt::NewLayers);
+  parameters.disabledOutputModes.push_back(GmicQt::NewActiveLayers);
 
-  // disablePreviewMode(GmicQt::FirstOutput);
-  disablePreviewMode(GmicQt::SecondOutput);
-  disablePreviewMode(GmicQt::ThirdOutput);
-  disablePreviewMode(GmicQt::FourthOutput);
-  disablePreviewMode(GmicQt::First2SecondOutput);
-  disablePreviewMode(GmicQt::First2ThirdOutput);
-  disablePreviewMode(GmicQt::First2FourthOutput);
-  disablePreviewMode(GmicQt::AllOutputs);
+  // parameters.disabledPreviewModes.push_back(GmicQt::FirstOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::SecondOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::ThirdOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::FourthOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::First2SecondOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::First2ThirdOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::First2FourthOutput);
+  parameters.disabledPreviewModes.push_back(GmicQt::AllOutputs);
 
   if (filename.isEmpty()) {
-    return launchPlugin();
+    return launchPlugin(GmicQt::FullGUI, parameters);
   }
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
     gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
-    return launchPlugin();
+    return launchPlugin(GmicQt::FullGUI, parameters);
   }
   std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
   return 1;

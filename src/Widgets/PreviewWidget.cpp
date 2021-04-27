@@ -41,8 +41,8 @@
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "OverrideCursor.h"
-#include "Utils.h"
 #include "gmic.h"
 
 const PreviewWidget::PreviewRect PreviewWidget::PreviewRect::Full{0.0, 0.0, 1.0, 1.0};
@@ -214,7 +214,7 @@ void PreviewWidget::updateErrorImage()
   gmic_image<float> image;
   getOriginalImageCrop(image);
   image.move_to(images);
-  QString fullCommandLine = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(DialogSettings::outputMessageMode()));
+  QString fullCommandLine = commandFromOutputMessageMode(DialogSettings::outputMessageMode());
   fullCommandLine += QString(" _host=%1 _tk=qt").arg(GmicQt::HostApplicationShortname);
   fullCommandLine += QString(" _preview_width=%1").arg(width());
   fullCommandLine += QString(" _preview_height=%1").arg(height());

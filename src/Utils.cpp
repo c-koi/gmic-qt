@@ -28,7 +28,6 @@
 #include <QFileInfo>
 #include <QRegExp>
 #include <QString>
-#include <QStringList>
 #include "Common.h"
 #include "Host/host.h"
 #include "gmic.h"
@@ -110,122 +109,6 @@ const QString & pluginCodeName()
     result = GmicQt::HostApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(GmicQt::HostApplicationShortname).toLower());
   }
   return result;
-}
-
-const char * commandFromOutputMessageMode(OutputMessageMode mode)
-{
-  switch (mode) {
-  case Quiet:
-  case VerboseConsole:
-  case VerboseLogFile:
-  case UnspecifiedOutputMessageMode:
-    return "";
-  case VeryVerboseConsole:
-  case VeryVerboseLogFile:
-    return "v 3";
-  case DebugConsole:
-  case DebugLogFile:
-    return "debug";
-  }
-  return "";
-}
-
-void downcaseCommandTitle(QString & title)
-{
-  QMap<int, QString> acronyms;
-  // Acronyms
-  QRegExp re("([A-Z0-9]{2,255})");
-  int index = 0;
-  while ((index = re.indexIn(title, index)) != -1) {
-    QString pattern = re.cap(0);
-    acronyms[index] = pattern;
-    index += pattern.length();
-  }
-
-  // 3D
-  re.setPattern("([1-9])[dD] ");
-  if ((index = re.indexIn(title, 0)) != -1) {
-    acronyms[index] = re.cap(1) + "d ";
-  }
-
-  // B&amp;W
-  re.setPattern("(B&amp;W|[ \\[]Lab|[ \\[]YCbCr)");
-  index = 0;
-  while ((index = re.indexIn(title, index)) != -1) {
-    acronyms[index] = re.cap(1);
-    index += re.cap(1).length();
-  }
-
-  // Uppercase letter in last position, after a space
-  re.setPattern(" ([A-Z])$");
-  if ((index = re.indexIn(title, 0)) != -1) {
-    acronyms[index] = re.cap(0);
-  }
-  title = title.toLower();
-  QMap<int, QString>::const_iterator it = acronyms.cbegin();
-  while (it != acronyms.cend()) {
-    title.replace(it.key(), it.value().length(), it.value());
-    ++it;
-  }
-  title[0] = title[0].toUpper();
-}
-
-void appendWithSpace(QString & str, const QString & other)
-{
-  if (str.isEmpty() || other.isEmpty()) {
-    str += other;
-    return;
-  }
-  str += QChar(' ');
-  str += other;
-}
-
-void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args)
-{
-  if (!text) {
-    return;
-  }
-  args.clear();
-  command_name.clear();
-  const char * pc = text;
-  while (isalnum(*pc) || (*pc == '_')) {
-    ++pc;
-  }
-  if (!isspace(*pc)) {
-    return;
-  }
-  command_name = QString::fromLatin1(text, pc - text);
-  while (isspace(*pc)) {
-    ++pc;
-  }
-  bool quoted = false;
-  bool escaped = false;
-  char * buffer = new char[strlen(pc)]();
-  char * output = buffer;
-  while (*pc) {
-    if (escaped) {
-      *output++ = *pc++;
-      escaped = false;
-    } else if (*pc == '\\') {
-      escaped = true;
-      ++pc;
-    } else if (*pc == '"') {
-      quoted = !quoted;
-      ++pc;
-    } else if (!quoted && !escaped && (*pc == ',')) {
-      *output = '\0';
-      args.push_back(QString::fromLatin1(buffer));
-      output = buffer;
-      ++pc;
-    } else {
-      *output++ = *pc++;
-    }
-  }
-  if (output != buffer) {
-    *output = '\0';
-    args.push_back(QString::fromLatin1(buffer));
-  }
-  delete[] buffer;
 }
 
 } // namespace GmicQt

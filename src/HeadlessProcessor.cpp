@@ -77,6 +77,8 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   _lastCommand = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
   _lastArguments = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
 
+  // TODO : How do we handle the status in the new context ?
+
   QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
   _gmicStatusQuotedParameters = settings.value(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname)).toString();
   if (!lastAppliedCommandGmicStatus.isEmpty()) {

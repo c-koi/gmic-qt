@@ -31,6 +31,7 @@
 #include "Common.h"
 #include "GmicStdlib.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "Utils.h"
 #include "gmic.h"
 
@@ -58,7 +59,7 @@ void Updater::updateSources(bool useNetwork)
   _sources.clear();
   _sourceIsStdLib.clear();
   // Build sources map
-  QString prefix = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(_outputMessageMode));
+  QString prefix = commandFromOutputMessageMode(_outputMessageMode);
   if (!prefix.isEmpty()) {
     prefix.push_back(QChar(' '));
   }

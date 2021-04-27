@@ -128,9 +128,6 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
     ui->previewMode->hide();
   }
 
-  setDefaultInputMode();
-  setDefaultOutputMode();
-  setDefaultPreviewMode();
   setTopLabel();
   updateLayoutIfUniqueRow();
 
@@ -358,17 +355,29 @@ void InOutPanel::enable()
 
 void InOutPanel::disableInputMode(GmicQt::InputMode mode)
 {
+  const bool isDefault = (mode == GmicQt::DefaultInputMode);
   _enabledInputModes.removeOne(mode);
+  if (isDefault) {
+    setDefaultInputMode();
+  }
 }
 
 void InOutPanel::disableOutputMode(GmicQt::OutputMode mode)
 {
+  const bool isDefault = (mode == GmicQt::DefaultOutputMode);
   _enabledOutputModes.removeOne(mode);
+  if (isDefault) {
+    setDefaultOutputMode();
+  }
 }
 
 void InOutPanel::disablePreviewMode(GmicQt::PreviewMode mode)
 {
+  const bool isDefault = (mode == GmicQt::DefaultPreviewMode);
   _enabledPreviewModes.removeOne(mode);
+  if (isDefault) {
+    setDefaultPreviewMode();
+  }
 }
 
 bool InOutPanel::hasActiveControls()

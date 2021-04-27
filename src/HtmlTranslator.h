@@ -30,6 +30,7 @@
 
 class HtmlTranslator {
 public:
+  static QString removeTags(QString str);
   static QString html2txt(const QString & str, bool force = false);
   static bool hasHtmlEntities(const QString & str);
   static QString fromUtf8Escapes(const QString & str);

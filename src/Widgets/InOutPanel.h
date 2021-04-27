@@ -84,9 +84,9 @@ public slots:
   void setDarkTheme();
 
 private:
-  void setDefaultInputMode();
-  void setDefaultOutputMode();
-  void setDefaultPreviewMode();
+  static void setDefaultInputMode();
+  static void setDefaultOutputMode();
+  static void setDefaultPreviewMode();
   void setTopLabel();
   void updateLayoutIfUniqueRow();
   bool _notifyValueChange;

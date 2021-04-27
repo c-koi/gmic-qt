@@ -31,6 +31,11 @@
 
 QTextDocument HtmlTranslator::_document;
 
+QString HtmlTranslator::removeTags(QString str)
+{
+  return str.remove(QRegularExpression("<[^>]*>"));
+}
+
 // TODO : enum param force + enum param translate
 QString HtmlTranslator::html2txt(const QString & str, bool force)
 {

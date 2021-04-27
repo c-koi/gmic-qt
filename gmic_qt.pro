@@ -295,6 +295,7 @@ HEADERS +=  \
   src/Logger.h \
   src/LanguageSettings.h \
   src/MainWindow.h \
+  src/Misc.h \
   src/ParametersCache.h \
   src/TimeLogger.h \
   src/Updater.h \
@@ -374,6 +375,7 @@ SOURCES += \
   src/TimeLogger.cpp \
   src/Updater.cpp \
   src/Utils.cpp \
+  src/Misc.cpp \
   src/FilterSelector/FiltersView/FilterTreeItem.cpp \
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp \
   src/FilterSelector/FavesModel.cpp \

@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file InputOutputState.h
+ *  @file Utils.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,31 +22,22 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_INPUTOUTPUTSTATE_H
-#define GMIC_QT_INPUTOUTPUTSTATE_H
+#ifndef GMIC_QT_MISC_H
+#define GMIC_QT_MISC_H
 
+#include <QList>
+#include <QString>
 #include "gmic_qt.h"
+class QStringList;
 
-class QJsonObject;
-class QString;
+QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode);
 
-namespace GmicQt
-{
-struct InputOutputState {
-  InputMode inputMode;
-  OutputMode outputMode;
-  PreviewMode previewMode;
+void appendWithSpace(QString & str, const QString & other);
 
-  InputOutputState();
-  InputOutputState(InputMode, OutputMode, PreviewMode);
-  bool isDefault() const;
-  void toJSONObject(QJsonObject &) const;
-  static InputOutputState fromJSONObject(const QJsonObject &);
-  static const InputOutputState Default;
-  static const InputOutputState Unspecified;
-  bool operator==(const InputOutputState & other) const;
-  bool operator!=(const InputOutputState & other) const;
-};
-} // namespace GmicQt
+void downcaseCommandTitle(QString & title);
 
-#endif // GMIC_QT_INPUTOUTPUTSTATE_H
+void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args);
+
+QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name);
+
+#endif // GMIC_QT_MISC_H

@@ -31,6 +31,7 @@
 #include <QString>
 #include <QThread>
 #include <QTimer>
+#include <cstdlib>
 #include <cstring>
 #include "Common.h"
 #include "DialogSettings.h"
@@ -49,27 +50,41 @@
 #include <stdlib.h>
 #endif
 
+namespace
+{
+bool pluginProcessingValidAndAccepted = false;
+void configureApplication();
+void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes,   //
+                  const std::list<GmicQt::OutputMode> & disabledOutputModes, //
+                  const std::list<GmicQt::PreviewMode> & disabledPreviewModes);
+} // namespace
+
 namespace GmicQt
 {
 InputMode DefaultInputMode = Active;
 OutputMode DefaultOutputMode = InPlace;
 PreviewMode DefaultPreviewMode = FirstOutput;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
+
 const QString & gmicVersionString()
 {
   static QString value = QString("%1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10);
   return value;
 }
-} // namespace GmicQt
 
-namespace
+PluginParameters lastExecutionPluginParameters()
 {
-bool pluginProcessingValidAndAccepted = false;
+  // TODO : Complete
+  return PluginParameters();
 }
 
-int launchPlugin()
+bool pluginDialogWasAccepted()
 {
-  TIMING;
+  return pluginProcessingValidAndAccepted;
+}
+
+int launchPlugin(UserInterfaceMode interfaceMode, PluginParameters parameters)
+{
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
 
@@ -84,12 +99,12 @@ int launchPlugin()
     // get the path where the executable is stored
     uint32_t size = sizeof(exname);
     if (_NSGetExecutablePath(exname, &size) == 0) {
-      printf("executable path is %s\n", exname);
+      printf("Executable path is [%s]\n", exname);
       fullexname = realpath(exname, nullptr);
-      printf("full executable name is %s\n", fullexname);
+      printf("Full executable name is [%s]\n", fullexname);
       if (fullexname) {
         char * fullpath = dirname(fullexname);
-        printf("full executable path is %s\n", fullpath);
+        printf("Full executable path is [%s]\n", fullpath);
         if (fullpath) {
           char pluginpath[2048] = {0};
           strncpy(pluginpath, fullpath, 2047);
@@ -98,12 +113,12 @@ int launchPlugin()
           if (envpath) {
             strncat(pluginpath, envpath, 2047);
           }
-          printf("plugins path is %s\n", pluginpath);
+          printf("Plugins path is [%s]\n", pluginpath);
           setenv("QT_PLUGIN_PATH", pluginpath, 1);
         }
       }
     } else {
-      fprintf(stderr, "buffer too small; need size %u\n", size);
+      fprintf(stderr, "Buffer too small; need size %u\n", size);
     }
     setenv("QT_DEBUG_PLUGINS", "1", 1);
   }
@@ -113,105 +128,78 @@ int launchPlugin()
   }
   char * dummy_argv[1] = {fullexname};
 
-  QApplication app(dummy_argc, dummy_argv);
-  QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
-  QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
-  QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
-  QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
-  QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-  DialogSettings::loadSettings(GmicQt::GuiApplication);
-  LanguageSettings::installTranslators();
-  TIMING;
-  MainWindow mainWindow;
-  TIMING;
-  if (QSettings().value("Config/MainWindowMaximized", false).toBool()) {
-    mainWindow.showMaximized();
-  } else {
-    mainWindow.show();
+  disableModes(parameters.disabledInputModes, parameters.disabledOutputModes, parameters.disabledPreviewModes);
+  if (interfaceMode == GmicQt::NoGUI) { // launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output)
+    QCoreApplication app(dummy_argc, dummy_argv);
+    configureApplication();
+    DialogSettings::loadSettings(GmicQt::NonGuiApplication);
+    Logger::setMode(DialogSettings::outputMessageMode());
+    // TODO : What if command is nullptr?
+    HeadlessProcessor headlessProcessor(&app, parameters.command.c_str(), parameters.inputMode, parameters.outputMode);
+    QTimer::singleShot(0, &headlessProcessor, SLOT(startProcessing()));
+    int status = QCoreApplication::exec();
+    pluginProcessingValidAndAccepted = headlessProcessor.processingCompletedProperly();
+    return status;
+  } else if (interfaceMode == GmicQt::ProgressDialogGUI) { // launchPluginHeadlessUsingLastParameters
+    QApplication app(dummy_argc, dummy_argv);
+    QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
+    configureApplication();
+    DialogSettings::loadSettings(GmicQt::GuiApplication);
+    Logger::setMode(DialogSettings::outputMessageMode());
+    LanguageSettings::installTranslators();
+    HeadlessProcessor processor(&app); // TODO : use command parameter
+    ProgressInfoWindow progressWindow(&processor);
+    if (processor.command().isEmpty()) {
+      pluginProcessingValidAndAccepted = false;
+      return 0;
+    }
+    processor.startProcessing();
+    int status = QApplication::exec();
+    pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
+    return status;
+  } else if (interfaceMode == GmicQt::FullGUI) {
+    QApplication app(dummy_argc, dummy_argv);
+    QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
+    configureApplication();
+    DialogSettings::loadSettings(GmicQt::GuiApplication);
+    LanguageSettings::installTranslators();
+    MainWindow mainWindow;
+    if (QSettings().value("Config/MainWindowMaximized", false).toBool()) {
+      mainWindow.showMaximized();
+    } else {
+      mainWindow.show();
+    }
+    int status = QApplication::exec();
+    pluginProcessingValidAndAccepted = mainWindow.isAccepted();
+    return status;
   }
-  TIMING;
-  int status = QApplication::exec();
-  pluginProcessingValidAndAccepted = mainWindow.isAccepted();
-  return status;
+  return 0;
 }
+} // namespace GmicQt
 
-int launchPluginHeadlessUsingLastParameters()
+namespace
 {
-  int dummy_argc = 1;
-  char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
-  char * dummy_argv[1] = {dummy_app_name};
-
-#ifdef _IS_WINDOWS_
-  SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
-#endif
-  QApplication app(dummy_argc, dummy_argv);
-  QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
+void configureApplication()
+{
   QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
   QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
   QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+}
 
-  DialogSettings::loadSettings(GmicQt::GuiApplication);
-  Logger::setMode(DialogSettings::outputMessageMode());
-  LanguageSettings::installTranslators();
-
-  HeadlessProcessor processor;
-  ProgressInfoWindow progressWindow(&processor);
-  if (processor.command().isEmpty()) {
-    pluginProcessingValidAndAccepted = false;
-    return 0;
+void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes,   //
+                  const std::list<GmicQt::OutputMode> & disabledOutputModes, //
+                  const std::list<GmicQt::PreviewMode> & disabledPreviewModes)
+{
+  for (const GmicQt::InputMode & mode : disabledInputModes) {
+    InOutPanel::disableInputMode(mode);
   }
-  processor.startProcessing();
-  int status = QApplication::exec();
-  pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
-  return status;
+  for (const GmicQt::OutputMode & mode : disabledOutputModes) {
+    InOutPanel::disableOutputMode(mode);
+  }
+  for (const GmicQt::PreviewMode & mode : disabledPreviewModes) {
+    InOutPanel::disablePreviewMode(mode);
+  }
 }
 
-int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output)
-{
-  int dummy_argc = 1;
-  char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
-  char * dummy_argv[1] = {dummy_app_name};
-
-#ifdef _IS_WINDOWS_
-  SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
-#endif
-  QCoreApplication app(dummy_argc, dummy_argv);
-  QCoreApplication::setOrganizationName(GMIC_QT_ORGANISATION_NAME);
-  QCoreApplication::setOrganizationDomain(GMIC_QT_ORGANISATION_DOMAIN);
-  QCoreApplication::setApplicationName(GMIC_QT_APPLICATION_NAME);
-  QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-
-  DialogSettings::loadSettings(GmicQt::NonGuiApplication);
-  Logger::setMode(DialogSettings::outputMessageMode());
-
-  HeadlessProcessor headlessProcessor(&app, command, input, output);
-  QTimer idle;
-  idle.setInterval(0);
-  idle.setSingleShot(true);
-  QObject::connect(&idle, SIGNAL(timeout()), &headlessProcessor, SLOT(startProcessing()));
-  idle.start();
-  int status = QCoreApplication::exec();
-  pluginProcessingValidAndAccepted = headlessProcessor.processingCompletedProperly();
-  return status;
-}
-
-void disableOutputMode(GmicQt::OutputMode mode)
-{
-  InOutPanel::disableOutputMode(mode);
-}
-
-void disableInputMode(GmicQt::InputMode mode)
-{
-  InOutPanel::disableInputMode(mode);
-}
-
-void disablePreviewMode(GmicQt::PreviewMode mode)
-{
-  InOutPanel::disablePreviewMode(mode);
-}
-
-bool pluginDialogWasAccepted()
-{
-  return pluginProcessingValidAndAccepted;
-}
+} // namespace

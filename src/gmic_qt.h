@@ -34,6 +34,8 @@
 #define gmic_pixel_type_str GMIC_QT_XSTRINGIFY(gmic_pixel_type)
 
 class QString;
+#include <list>
+#include <string>
 
 namespace GmicQt
 {
@@ -100,23 +102,25 @@ enum OutputMessageMode
 extern const OutputMessageMode DefaultOutputMessageMode;
 
 const QString & gmicVersionString();
-} // namespace GmicQt
 
-int launchPlugin();
+struct PluginParameters {
+  std::string command;
+  std::list<std::string> filterPath;
+  GmicQt::InputMode inputMode = GmicQt::UnspecifiedInputMode;
+  GmicQt::OutputMode outputMode = GmicQt::UnspecifiedOutputMode;
+  std::list<GmicQt::InputMode> disabledInputModes;
+  std::list<GmicQt::OutputMode> disabledOutputModes;
+  std::list<GmicQt::PreviewMode> disabledPreviewModes;
+  std::string filterName() const;
+};
 
-int launchPluginHeadlessUsingLastParameters();
+PluginParameters lastExecutionPluginParameters();
 
-int launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output);
+int launchPlugin(UserInterfaceMode interfaceMode = GmicQt::FullGUI, //
+                 PluginParameters parameters = PluginParameters());
 
 bool pluginDialogWasAccepted();
 
-// The following functions should be called before launching the plugin.
-// Caution: at least one mode per category must remain available!
-
-void disableInputMode(GmicQt::InputMode mode);
-
-void disableOutputMode(GmicQt::OutputMode mode);
-
-void disablePreviewMode(GmicQt::PreviewMode mode);
+} // namespace GmicQt
 
 #endif // GMIC_QT_GMIC_QT_H

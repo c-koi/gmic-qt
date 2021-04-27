@@ -30,7 +30,7 @@
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
-#include "Utils.h"
+#include "Misc.h"
 #include "gmic_qt.h"
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
@@ -208,7 +208,7 @@ QString FiltersModel::Filter::hash236() const
 {
   QCryptographicHash hash(QCryptographicHash::Md5);
   QString lowerName(_name);
-  GmicQt::downcaseCommandTitle(lowerName);
+  downcaseCommandTitle(lowerName);
   hash.addData(lowerName.toLocal8Bit());
   hash.addData(_command.toLocal8Bit());
   hash.addData(_previewCommand.toLocal8Bit());

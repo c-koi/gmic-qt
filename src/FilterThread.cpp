@@ -29,7 +29,7 @@
 #include "GmicStdlib.h"
 #include "ImageConverter.h"
 #include "Logger.h"
-#include "Utils.h"
+#include "Misc.h"
 #include "gmic.h"
 using namespace cimg_library;
 
@@ -185,7 +185,7 @@ QString FilterThread::name() const
 QString FilterThread::fullCommand() const
 {
   QString result = _command;
-  GmicQt::appendWithSpace(result, _arguments);
+  appendWithSpace(result, _arguments);
   return result;
 }
 
@@ -206,9 +206,9 @@ void FilterThread::run()
   _failed = false;
   QString fullCommandLine;
   try {
-    fullCommandLine = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(_messageMode));
-    GmicQt::appendWithSpace(fullCommandLine, _command);
-    GmicQt::appendWithSpace(fullCommandLine, _arguments);
+    fullCommandLine = commandFromOutputMessageMode(_messageMode);
+    appendWithSpace(fullCommandLine, _command);
+    appendWithSpace(fullCommandLine, _arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
     if (_messageMode > GmicQt::Quiet) {

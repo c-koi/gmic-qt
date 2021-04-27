@@ -35,10 +35,6 @@ const QString & path_rc(bool create);
 unsigned int host_app_pid();
 const QString & pluginFullName();
 const QString & pluginCodeName();
-const char * commandFromOutputMessageMode(OutputMessageMode mode);
-void downcaseCommandTitle(QString & title);
-void appendWithSpace(QString & str, const QString & other);
-void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args);
 } // namespace GmicQt
 
 #endif // GMIC_QT_UTILS_H
