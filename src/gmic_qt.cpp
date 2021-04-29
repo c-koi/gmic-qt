@@ -55,16 +55,14 @@ namespace
 {
 bool pluginProcessingValidAndAccepted = false;
 void configureApplication();
-void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes,   //
-                  const std::list<GmicQt::OutputMode> & disabledOutputModes, //
-                  const std::list<GmicQt::PreviewMode> & disabledPreviewModes);
+void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes, //
+                  const std::list<GmicQt::OutputMode> & disabledOutputModes);
 } // namespace
 
 namespace GmicQt
 {
 InputMode DefaultInputMode = Active;
 OutputMode DefaultOutputMode = InPlace;
-PreviewMode DefaultPreviewMode = FirstOutput;
 const OutputMessageMode DefaultOutputMessageMode = Quiet;
 
 const QString & gmicVersionString()
@@ -83,6 +81,7 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
   if (path.isEmpty()) {
     return parameters;
   }
+  parameters.filterPath = path.toStdString();
 
   QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
   if (flag == AfterFilterExecution) {
@@ -105,7 +104,10 @@ bool pluginDialogWasAccepted()
   return pluginProcessingValidAndAccepted;
 }
 
-int launchPlugin(UserInterfaceMode interfaceMode, PluginParameters parameters)
+int launchPlugin(UserInterfaceMode interfaceMode,                         //
+                 PluginParameters parameters,                             //
+                 const std::list<GmicQt::InputMode> & disabledInputModes, //
+                 const std::list<GmicQt::OutputMode> & disabledOutputModes)
 {
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
@@ -150,7 +152,7 @@ int launchPlugin(UserInterfaceMode interfaceMode, PluginParameters parameters)
   }
   char * dummy_argv[1] = {fullexname};
 
-  disableModes(parameters.disabledInputModes, parameters.disabledOutputModes, parameters.disabledPreviewModes);
+  disableModes(disabledInputModes, disabledOutputModes);
   if (interfaceMode == GmicQt::NoGUI) { // launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output)
     QCoreApplication app(dummy_argc, dummy_argv);
     configureApplication();
@@ -209,18 +211,14 @@ void configureApplication()
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
 }
 
-void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes,   //
-                  const std::list<GmicQt::OutputMode> & disabledOutputModes, //
-                  const std::list<GmicQt::PreviewMode> & disabledPreviewModes)
+void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes, //
+                  const std::list<GmicQt::OutputMode> & disabledOutputModes)
 {
   for (const GmicQt::InputMode & mode : disabledInputModes) {
     InOutPanel::disableInputMode(mode);
   }
   for (const GmicQt::OutputMode & mode : disabledOutputModes) {
     InOutPanel::disableOutputMode(mode);
-  }
-  for (const GmicQt::PreviewMode & mode : disabledPreviewModes) {
-    InOutPanel::disablePreviewMode(mode);
   }
 }
 

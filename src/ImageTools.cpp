@@ -38,48 +38,15 @@
 namespace GmicQt
 {
 
-void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, GmicQt::PreviewMode previewMode, int previewWidth, int previewHeight)
+void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, int previewWidth, int previewHeight)
 {
   cimg_library::CImgList<gmic_pixel_type> preview_input_images;
-  switch (previewMode) {
-  case GmicQt::FirstOutput:
-    if (images && images.size() > 0) {
-      preview_input_images.push_back(images[0]);
-    }
-    break;
-  case GmicQt::SecondOutput:
-    if (images && images.size() > 1) {
-      preview_input_images.push_back(images[1]);
-    }
-    break;
-  case GmicQt::ThirdOutput:
-    if (images && images.size() > 2) {
-      preview_input_images.push_back(images[2]);
-    }
-    break;
-  case GmicQt::FourthOutput:
-    if (images && images.size() > 3) {
-      preview_input_images.push_back(images[3]);
-    }
-    break;
-  case GmicQt::First2SecondOutput: {
+
+  // FIXME : Simplify this function
+  if (images.size() > 0) {
     preview_input_images.push_back(images[0]);
-    preview_input_images.push_back(images[1]);
-  } break;
-  case GmicQt::First2ThirdOutput: {
-    for (int i = 0; i < 3; ++i) {
-      preview_input_images.push_back(images[i]);
-    }
-  } break;
-  case GmicQt::First2FourthOutput: {
-    for (int i = 0; i < 4; ++i) {
-      preview_input_images.push_back(images[i]);
-    }
-  } break;
-  case GmicQt::AllOutputs:
-  default:
-    preview_input_images = images;
   }
+  // preview_input_images = images;
 
   int spectrum = 0;
   cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }

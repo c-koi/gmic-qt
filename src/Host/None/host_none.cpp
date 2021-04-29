@@ -201,30 +201,23 @@ int main(int argc, char * argv[])
 #endif
 
   GmicQt::PluginParameters parameters;
-  parameters.disabledInputModes.push_back(GmicQt::NoInput);
-  // parameters.disabledInputModes.push_back(GmicQt::Active);
-  parameters.disabledInputModes.push_back(GmicQt::All);
-  parameters.disabledInputModes.push_back(GmicQt::ActiveAndBelow);
-  parameters.disabledInputModes.push_back(GmicQt::ActiveAndAbove);
-  parameters.disabledInputModes.push_back(GmicQt::AllVisible);
-  parameters.disabledInputModes.push_back(GmicQt::AllInvisible);
+  std::list<GmicQt::InputMode> disabledInputModes;
+  disabledInputModes.push_back(GmicQt::NoInput);
+  // disabledInputModes.push_back(GmicQt::Active);
+  disabledInputModes.push_back(GmicQt::All);
+  disabledInputModes.push_back(GmicQt::ActiveAndBelow);
+  disabledInputModes.push_back(GmicQt::ActiveAndAbove);
+  disabledInputModes.push_back(GmicQt::AllVisible);
+  disabledInputModes.push_back(GmicQt::AllInvisible);
 
-  // parameters.disabledOutputModes.push_back(GmicQt::InPlace);
-  parameters.disabledOutputModes.push_back(GmicQt::NewImage);
-  parameters.disabledOutputModes.push_back(GmicQt::NewLayers);
-  parameters.disabledOutputModes.push_back(GmicQt::NewActiveLayers);
-
-  // parameters.disabledPreviewModes.push_back(GmicQt::FirstOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::SecondOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::ThirdOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::FourthOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::First2SecondOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::First2ThirdOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::First2FourthOutput);
-  parameters.disabledPreviewModes.push_back(GmicQt::AllOutputs);
+  std::list<GmicQt::OutputMode> disabledOutputModes;
+  // disabledOutputModes.push_back(GmicQt::InPlace);
+  disabledOutputModes.push_back(GmicQt::NewImage);
+  disabledOutputModes.push_back(GmicQt::NewLayers);
+  disabledOutputModes.push_back(GmicQt::NewActiveLayers);
 
   if (filename.isEmpty()) {
-    return launchPlugin(GmicQt::FullGUI, parameters);
+    return launchPlugin(GmicQt::FullGUI, parameters, disabledInputModes, disabledOutputModes);
   }
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);

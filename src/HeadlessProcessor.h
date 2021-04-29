@@ -56,7 +56,7 @@ public:
    */
   explicit HeadlessProcessor(QObject * parent);
 
-  ~HeadlessProcessor();
+  ~HeadlessProcessor() override;
   QString command() const;
   QString filterName() const;
   void setProgressWindowFlag(bool);
@@ -82,7 +82,6 @@ private:
   GmicQt::OutputMode _outputMode;
   GmicQt::OutputMessageMode _outputMessageMode;
   GmicQt::InputMode _inputMode;
-  GmicQt::PreviewMode _previewMode;
   bool _hasProgressWindow;
   QTimer _singleShotTimer;
   QString _gmicStatusQuotedParameters;

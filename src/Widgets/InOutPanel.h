@@ -49,7 +49,6 @@ public:
 public:
   GmicQt::InputMode inputMode() const;
   GmicQt::OutputMode outputMode() const;
-  GmicQt::PreviewMode previewMode() const;
   GmicQt::OutputMessageMode outputMessageMode() const;
   void reset();
 
@@ -57,7 +56,6 @@ public:
   void enableNotifications();
   void setInputMode(GmicQt::InputMode mode);
   void setOutputMode(GmicQt::OutputMode mode);
-  void setPreviewMode(GmicQt::PreviewMode mode);
 
   GmicQt::InputOutputState state() const;
   void setState(const GmicQt::InputOutputState & state, bool notify);
@@ -68,25 +66,21 @@ public:
 
   static void disableInputMode(GmicQt::InputMode mode);
   static void disableOutputMode(GmicQt::OutputMode mode);
-  static void disablePreviewMode(GmicQt::PreviewMode mode);
 
   bool hasActiveControls();
 
 signals:
   void inputModeChanged(GmicQt::InputMode);
-  void previewModeChanged(GmicQt::PreviewMode);
 
 public slots:
   void onInputModeSelected(int);
   void onOutputModeSelected(int);
-  void onPreviewModeSelected(int);
   void onResetButtonClicked();
   void setDarkTheme();
 
 private:
   static void setDefaultInputMode();
   static void setDefaultOutputMode();
-  static void setDefaultPreviewMode();
   void setTopLabel();
   void updateLayoutIfUniqueRow();
   bool _notifyValueChange;
@@ -94,7 +88,6 @@ private:
   static const int NoSelection = -1;
   static QList<GmicQt::InputMode> _enabledInputModes;
   static QList<GmicQt::OutputMode> _enabledOutputModes;
-  static QList<GmicQt::PreviewMode> _enabledPreviewModes;
 };
 
 #endif // GMIC_QT_INOUTPANEL_H

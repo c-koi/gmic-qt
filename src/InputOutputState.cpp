@@ -46,26 +46,26 @@ void filterObsoleteInputModes(GmicQt::InputMode & mode)
 namespace GmicQt
 {
 
-const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode);
-const InputOutputState InputOutputState::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode, GmicQt::UnspecifiedPreviewMode);
+const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode);
+const InputOutputState InputOutputState::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode);
 
-InputOutputState::InputOutputState() : inputMode(UnspecifiedInputMode), outputMode(UnspecifiedOutputMode), previewMode(GmicQt::UnspecifiedPreviewMode) {}
+InputOutputState::InputOutputState() : inputMode(UnspecifiedInputMode), outputMode(UnspecifiedOutputMode) {}
 
-InputOutputState::InputOutputState(InputMode inputMode, OutputMode outputMode, PreviewMode previewMode) : inputMode(inputMode), outputMode(outputMode), previewMode(previewMode) {}
+InputOutputState::InputOutputState(InputMode inputMode, OutputMode outputMode) : inputMode(inputMode), outputMode(outputMode) {}
 
 bool InputOutputState::operator==(const InputOutputState & other) const
 {
-  return inputMode == other.inputMode && outputMode == other.outputMode && previewMode == other.previewMode;
+  return inputMode == other.inputMode && outputMode == other.outputMode;
 }
 
 bool InputOutputState::operator!=(const InputOutputState & other) const
 {
-  return inputMode != other.inputMode || outputMode != other.outputMode || previewMode != other.previewMode;
+  return inputMode != other.inputMode || outputMode != other.outputMode;
 }
 
 bool InputOutputState::isDefault() const
 {
-  return (inputMode == GmicQt::DefaultInputMode) && (outputMode == GmicQt::DefaultOutputMode) && (previewMode == GmicQt::DefaultPreviewMode);
+  return (inputMode == GmicQt::DefaultInputMode) && (outputMode == GmicQt::DefaultOutputMode);
 }
 
 void InputOutputState::toJSONObject(QJsonObject & object) const
@@ -77,9 +77,6 @@ void InputOutputState::toJSONObject(QJsonObject & object) const
   if (outputMode != DefaultOutputMode) {
     object.insert("OutputMode", outputMode);
   }
-  if (previewMode != DefaultPreviewMode) {
-    object.insert("PreviewMode", previewMode);
-  }
 }
 
 InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
@@ -88,7 +85,6 @@ InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
   state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(UnspecifiedInputMode));
   filterObsoleteInputModes(state.inputMode);
   state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(UnspecifiedOutputMode));
-  state.previewMode = static_cast<PreviewMode>(object.value("PreviewMode").toInt(UnspecifiedPreviewMode));
   return state;
 }
 } // namespace GmicQt

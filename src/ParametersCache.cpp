@@ -263,13 +263,13 @@ GmicQt::InputOutputState ParametersCache::getInputOutputState(const QString & ha
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
   }
-  return GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode);
+  return GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode);
 }
 
 void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state, const GmicQt::InputMode defaultInputMode)
 {
-  if ((state == GmicQt::InputOutputState(defaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode)) //
-      || (state == GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode))) {
+  if ((state == GmicQt::InputOutputState(defaultInputMode, GmicQt::DefaultOutputMode)) //
+      || (state == GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode))) {
     _inOutPanelStates.remove(hash);
     return;
   }

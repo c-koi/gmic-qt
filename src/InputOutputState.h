@@ -35,10 +35,9 @@ namespace GmicQt
 struct InputOutputState {
   InputMode inputMode;
   OutputMode outputMode;
-  PreviewMode previewMode;
 
   InputOutputState();
-  InputOutputState(InputMode, OutputMode, PreviewMode);
+  InputOutputState(InputMode, OutputMode);
   bool isDefault() const;
   void toJSONObject(QJsonObject &) const;
   static InputOutputState fromJSONObject(const QJsonObject &);

@@ -85,7 +85,6 @@ void GmicProcessor::execute()
   QString env = QString("_input_layers=%1").arg(io.inputMode);
   env += QString(" _output_mode=%1").arg(io.outputMode);
   env += QString(" _output_messages=%1").arg(_filterContext.outputMessageMode);
-  env += QString(" _preview_mode=%1").arg(io.previewMode);
   if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
     env += QString(" _preview_width=%1").arg(_filterContext.previewWidth);
     env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
@@ -236,7 +235,6 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), empty);
     settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), 0);
     settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), 0);
-    settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), 0);
   } else {
     settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterPath);
     settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterHash);
@@ -246,7 +244,6 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), _gmicStatusQuotedParameters);
     settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
     settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
-    settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.previewMode);
   }
 }
 
@@ -286,7 +283,7 @@ void GmicProcessor::onPreviewThreadFinished()
     for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
       gmic_qt_apply_color_profile((*_gmicImages)[i]);
     }
-    GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.inputOutputState.previewMode, _filterContext.previewWidth, _filterContext.previewHeight);
+    GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.previewWidth, _filterContext.previewHeight);
   }
   _filterThread->deleteLater();
   _filterThread = nullptr;
@@ -427,7 +424,7 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
     gmic_qt_apply_color_profile((*_gmicImages)[i]);
   }
-  GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.inputOutputState.previewMode, _filterContext.previewWidth, _filterContext.previewHeight);
+  GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.previewWidth, _filterContext.previewHeight);
   hideWaitingCursor();
   emit previewImageAvailable();
 }

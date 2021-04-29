@@ -73,20 +73,6 @@ enum OutputMode
 };
 extern OutputMode DefaultOutputMode;
 
-enum PreviewMode
-{
-  FirstOutput,
-  SecondOutput,
-  ThirdOutput,
-  FourthOutput,
-  First2SecondOutput,
-  First2ThirdOutput,
-  First2FourthOutput,
-  AllOutputs,
-  UnspecifiedPreviewMode = 100
-};
-extern PreviewMode DefaultPreviewMode;
-
 enum OutputMessageMode
 {
   Quiet,
@@ -108,9 +94,6 @@ struct PluginParameters {
   std::string filterPath;
   GmicQt::InputMode inputMode = GmicQt::UnspecifiedInputMode;
   GmicQt::OutputMode outputMode = GmicQt::UnspecifiedOutputMode;
-  std::list<GmicQt::InputMode> disabledInputModes;
-  std::list<GmicQt::OutputMode> disabledOutputModes;
-  std::list<GmicQt::PreviewMode> disabledPreviewModes;
   std::string filterName() const;
 };
 
@@ -122,8 +105,10 @@ enum PluginParameterFlag
 
 PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag);
 
-int launchPlugin(UserInterfaceMode interfaceMode = GmicQt::FullGUI, //
-                 PluginParameters parameters = PluginParameters());
+int launchPlugin(UserInterfaceMode interfaceMode = GmicQt::FullGUI,                                        //
+                 PluginParameters parameters = PluginParameters(),                                         //
+                 const std::list<GmicQt::InputMode> & disabledInputModes = std::list<GmicQt::InputMode>(), //
+                 const std::list<GmicQt::OutputMode> & disabledOutputModes = std::list<GmicQt::OutputMode>());
 
 bool pluginDialogWasAccepted();
 

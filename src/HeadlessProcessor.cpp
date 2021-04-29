@@ -59,7 +59,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
   _outputMessageMode = GmicQt::Quiet;
   _inputMode = inputMode;
   _outputMode = outputMode;
-  _previewMode = static_cast<GmicQt::PreviewMode>(QSettings().value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt());
+  // FIXME : Remove this key QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname)
 
   _timer.setInterval(250);
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
@@ -92,7 +92,6 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
   _inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   _outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
-  _previewMode = (GmicQt::PreviewMode)settings.value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt();
   _timer.setInterval(250);
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
   _singleShotTimer.setInterval(750);
@@ -121,7 +120,6 @@ void HeadlessProcessor::startProcessing()
   QString env = QString("_input_layers=%1").arg(_inputMode);
   env += QString(" _output_mode=%1").arg(_outputMode);
   env += QString(" _output_messages=%1").arg(_outputMessageMode);
-  env += QString(" _preview_mode=%1").arg(_previewMode);
   _filterThread = new FilterThread(this, _lastCommand, _lastArguments, env, _outputMessageMode);
   _filterThread->swapImages(*_gmicImages);
   _filterThread->setImageNames(imageNames);
