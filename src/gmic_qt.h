@@ -105,7 +105,7 @@ const QString & gmicVersionString();
 
 struct PluginParameters {
   std::string command;
-  std::list<std::string> filterPath;
+  std::string filterPath;
   GmicQt::InputMode inputMode = GmicQt::UnspecifiedInputMode;
   GmicQt::OutputMode outputMode = GmicQt::UnspecifiedOutputMode;
   std::list<GmicQt::InputMode> disabledInputModes;
@@ -114,7 +114,13 @@ struct PluginParameters {
   std::string filterName() const;
 };
 
-PluginParameters lastExecutionPluginParameters();
+enum PluginParameterFlag
+{
+  BeforeFilterExecution,
+  AfterFilterExecution
+};
+
+PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag);
 
 int launchPlugin(UserInterfaceMode interfaceMode = GmicQt::FullGUI, //
                  PluginParameters parameters = PluginParameters());

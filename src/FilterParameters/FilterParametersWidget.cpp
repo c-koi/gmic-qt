@@ -44,6 +44,41 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   _hasKeypoints = false;
 }
 
+QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & parameters, QObject * parent, int & actualParameters, QString & quotedParameters, QString & error)
+{
+  QVector<AbstractParameter *> result;
+  QByteArray rawText = parameters.toUtf8();
+  const char * cstr = rawText.constData();
+  int length = 0;
+  actualParameters = 0;
+  error.clear();
+  quotedParameters.clear();
+
+  AbstractParameter * parameter;
+  do {
+    parameter = AbstractParameter::createFromText(cstr, length, error, parent);
+    if (parameter) {
+      result.push_back(parameter);
+      if (parameter->isActualParameter()) {
+        actualParameters += 1;
+        quotedParameters += (parameter->isQuoted() ? QString("1") : QString("0"));
+      }
+    }
+    cstr += length;
+  } while (parameter && error.isEmpty());
+
+  if (!error.isEmpty()) {
+    for (AbstractParameter * p : result) {
+      delete p;
+    }
+    result.clear();
+    error = QString("Parameter #%1\n%2").arg(actualParameters + 1).arg(error);
+    actualParameters = 0;
+    quotedParameters.clear();
+  }
+  return result;
+}
+
 bool FilterParametersWidget::build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values, const QList<int> & visibilityStates)
 {
   _filterName = name;
@@ -54,37 +89,11 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   auto grid = new QGridLayout(this);
   grid->setRowStretch(1, 2);
 
-  QByteArray rawText = parameters.toUtf8();
-  const char * cstr = rawText.constData();
-  int length;
-
   PointParameter::resetDefaultColorIndex();
 
   // Build parameters and count actual ones
-  _actualParametersCount = 0;
-  _quotedParameters.clear();
   QString error;
-  AbstractParameter * parameter;
-  do {
-    parameter = AbstractParameter::createFromText(cstr, length, error, this);
-    if (parameter) {
-      _presetParameters.push_back(parameter);
-      if (parameter->isActualParameter()) {
-        _actualParametersCount += 1;
-        _quotedParameters += (parameter->isQuoted() ? QString("1") : QString("0"));
-      }
-    }
-    cstr += length;
-  } while (parameter && error.isEmpty());
-
-  if (!error.isEmpty()) {
-    for (AbstractParameter * p : _presetParameters) {
-      delete p;
-    }
-    _presetParameters.clear();
-    error = QString("Parameter #%1\n%2").arg(_actualParametersCount + 1).arg(error);
-    _actualParametersCount = 0;
-  }
+  _presetParameters = buildParameters(parameters, this, _actualParametersCount, _quotedParameters, error);
 
   // Restore saved values
   if ((!values.isEmpty()) && (_actualParametersCount == values.size())) {
@@ -318,22 +327,28 @@ QString FilterParametersWidget::filterHash() const
   return _filterHash;
 }
 
-void FilterParametersWidget::updateValueString(bool notify)
+QString FilterParametersWidget::valueString(const QVector<AbstractParameter *> & parameters)
 {
-  _valueString.clear();
+  QString result;
   bool firstParameter = true;
-  for (AbstractParameter * param : _presetParameters) {
-    if (param->isActualParameter()) {
-      QString str = param->textValue();
+  for (AbstractParameter * parameter : parameters) {
+    if (parameter->isActualParameter()) {
+      QString str = parameter->textValue();
       if (!str.isNull()) {
         if (!firstParameter) {
-          _valueString += ",";
+          result += ",";
         }
-        _valueString += str;
+        result += str;
         firstParameter = false;
       }
     }
   }
+  return result;
+}
+
+void FilterParametersWidget::updateValueString(bool notify)
+{
+  _valueString = valueString(_presetParameters);
   if (notify) {
     emit valueChanged();
   }
@@ -407,27 +422,4 @@ bool FilterParametersWidget::hasKeypoints() const
 const QString & FilterParametersWidget::quotedParameters() const
 {
   return _quotedParameters;
-}
-
-QString FilterParametersWidget::flattenParameterList(const QList<QString> & list, const QString & quoted)
-{
-  QString result;
-  if ((list.size() != quoted.size()) || list.isEmpty()) {
-    return result;
-  }
-  QList<QString>::const_iterator itList = list.begin();
-  QString::const_iterator itQuoted = quoted.begin();
-  if (*itQuoted++ == QChar('1')) {
-    result += QString("\"%1\"").arg(*itList++);
-  } else {
-    result += *itList++;
-  }
-  while (itList != list.end()) {
-    if (*itQuoted++ == QChar('1')) {
-      result += QString(",\"%1\"").arg(*itList++);
-    } else {
-      result += QString(",%1").arg(*itList++);
-    }
-  }
-  return result;
 }

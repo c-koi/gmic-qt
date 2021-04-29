@@ -25,6 +25,8 @@
 
 #include "Misc.h"
 #include <QMap>
+#include <QRegularExpression>
+#include <QString>
 #include <QStringList>
 #include "HtmlTranslator.h"
 
@@ -110,7 +112,7 @@ void splitGmicFilterCommand(const char * text, QString & command_name, QStringLi
   if (!isspace(*pc)) {
     return;
   }
-  command_name = QString::fromLatin1(text, pc - text);
+  command_name = QString::fromLatin1(text, static_cast<int>(pc - text));
   while (isspace(*pc)) {
     ++pc;
   }
@@ -144,7 +146,7 @@ void splitGmicFilterCommand(const char * text, QString & command_name, QStringLi
   delete[] buffer;
 }
 
-QString filterPathWithoutTags(const QList<QString> & path, const QString & name)
+QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name)
 {
   QStringList noTags;
   for (const QString & str : path) {
@@ -152,4 +154,34 @@ QString filterPathWithoutTags(const QList<QString> & path, const QString & name)
   }
   noTags.push_back(HtmlTranslator::removeTags(name));
   return noTags.join('/');
+}
+
+QString filterFullPathBasename(const QString & path)
+{
+  QString result = path;
+  result.remove(QRegularExpression("^.*/"));
+  return result;
+}
+
+QString flattenGmicParameterList(const QList<QString> & list, const QString & quoted)
+{
+  QString result;
+  if ((list.size() != quoted.size()) || list.isEmpty()) {
+    return result;
+  }
+  QList<QString>::const_iterator itList = list.begin();
+  QString::const_iterator itQuoted = quoted.begin();
+  if (*itQuoted++ == QChar('1')) {
+    result += QString("\"%1\"").arg(*itList++);
+  } else {
+    result += *itList++;
+  }
+  while (itList != list.end()) {
+    if (*itQuoted++ == QChar('1')) {
+      result += QString(",\"%1\"").arg(*itList++);
+    } else {
+      result += QString(",%1").arg(*itList++);
+    }
+  }
+  return result;
 }

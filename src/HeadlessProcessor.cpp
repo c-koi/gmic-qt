@@ -30,7 +30,9 @@
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
+#include "HtmlTranslator.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "gmic.h"
@@ -57,7 +59,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
   _outputMessageMode = GmicQt::Quiet;
   _inputMode = inputMode;
   _outputMode = outputMode;
-  _lastEnvironment.clear();
+  _previewMode = static_cast<GmicQt::PreviewMode>(QSettings().value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt());
 
   _timer.setInterval(250);
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
@@ -73,7 +75,9 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
 HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filterThread(nullptr), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   QSettings settings;
-  _filterName = settings.value(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname)).toString();
+  // FIXME : Use translated version of the name
+  const QString path = settings.value(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname)).toString();
+  _filterName = HtmlTranslator::html2txt(filterFullPathBasename(path), true);
   _lastCommand = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
   _lastArguments = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
 
@@ -82,13 +86,13 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
   _gmicStatusQuotedParameters = settings.value(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname)).toString();
   if (!lastAppliedCommandGmicStatus.isEmpty()) {
-    _lastArguments = FilterParametersWidget::flattenParameterList(lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
+    _lastArguments = flattenGmicParameterList(lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
   }
 
   _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
   _inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   _outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
-  _lastEnvironment = settings.value(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname), QString()).toString();
+  _previewMode = (GmicQt::PreviewMode)settings.value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt();
   _timer.setInterval(250);
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
   _singleShotTimer.setInterval(750);
@@ -114,7 +118,11 @@ void HeadlessProcessor::startProcessing()
   if (!_hasProgressWindow) {
     gmic_qt_show_message(QString("G'MIC: %1").arg(_lastArguments).toUtf8().constData());
   }
-  _filterThread = new FilterThread(this, _filterName, _lastCommand, _lastArguments, _lastEnvironment, _outputMessageMode);
+  QString env = QString("_input_layers=%1").arg(_inputMode);
+  env += QString(" _output_mode=%1").arg(_outputMode);
+  env += QString(" _output_messages=%1").arg(_outputMessageMode);
+  env += QString(" _preview_mode=%1").arg(_previewMode);
+  _filterThread = new FilterThread(this, _lastCommand, _lastArguments, env, _outputMessageMode);
   _filterThread->swapImages(*_gmicImages);
   _filterThread->setImageNames(imageNames);
   _processingCompletedProperly = false;
@@ -180,7 +188,7 @@ void HeadlessProcessor::onProcessingFinished()
   if (!status.isEmpty()) {
     QSettings settings;
     settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), status);
-    QString lastArguments = FilterParametersWidget::flattenParameterList(status, _gmicStatusQuotedParameters);
+    QString lastArguments = flattenGmicParameterList(status, _gmicStatusQuotedParameters);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), lastArguments);
     QString hash = settings.value(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname)).toString();
     ParametersCache::setValues(hash, status);

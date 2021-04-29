@@ -40,6 +40,7 @@
 #include "LanguageSettings.h"
 #include "Logger.h"
 #include "MainWindow.h"
+#include "Misc.h"
 #include "Updater.h"
 #include "Widgets/InOutPanel.h"
 #include "Widgets/ProgressInfoWindow.h"
@@ -72,10 +73,31 @@ const QString & gmicVersionString()
   return value;
 }
 
-PluginParameters lastExecutionPluginParameters()
+PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
 {
   // TODO : Complete
-  return PluginParameters();
+  configureApplication();
+  PluginParameters parameters;
+  QSettings settings;
+  const QString path = settings.value(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname)).toString();
+  if (path.isEmpty()) {
+    return parameters;
+  }
+
+  QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
+  if (flag == AfterFilterExecution) {
+    QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
+    QString quotedParameters = settings.value(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname)).toString();
+    if (!lastAppliedCommandGmicStatus.isEmpty()) {
+      args = flattenGmicParameterList(lastAppliedCommandGmicStatus, quotedParameters);
+    }
+  }
+  const QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
+  parameters.inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
+  parameters.outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
+  // parameters.previewMode = (GmicQt::PreviewMode)settings.value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt();
+
+  return parameters;
 }
 
 bool pluginDialogWasAccepted()

@@ -34,8 +34,8 @@
 #include "gmic.h"
 using namespace cimg_library;
 
-FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
-    : QObject(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>), _name(name),
+FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
+    : QObject(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>),
       _messageMode(mode)
 {
 #ifdef _IS_MACOS_
@@ -114,11 +114,6 @@ bool FilterSyncRunner::aborted() const
 float FilterSyncRunner::progress() const
 {
   return _gmicProgress;
-}
-
-QString FilterSyncRunner::name() const
-{
-  return _name;
 }
 
 QString FilterSyncRunner::fullCommand() const

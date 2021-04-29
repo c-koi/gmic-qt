@@ -43,7 +43,7 @@ template <typename T> struct CImgList;
 class FilterSyncRunner : public QObject {
   Q_OBJECT
 public:
-  FilterSyncRunner(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
 
   virtual ~FilterSyncRunner();
   void setArguments(const QString &);
@@ -58,7 +58,6 @@ public:
   bool failed() const;
   bool aborted() const;
   float progress() const;
-  QString name() const;
   QString fullCommand() const;
   void setLogSuffix(const QString & text);
   void run();

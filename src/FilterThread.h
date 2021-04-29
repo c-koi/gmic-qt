@@ -42,9 +42,9 @@ class FilterThread : public QThread {
   Q_OBJECT
 
 public:
-  FilterThread(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
 
-  virtual ~FilterThread();
+  ~FilterThread() override;
   void setArguments(const QString &);
   void setInputImages(const cimg_library::CImgList<float> & list);
   void setImageNames(const cimg_library::CImgList<char> & imageNames);
@@ -58,7 +58,6 @@ public:
   bool aborted() const;
   int duration() const;
   float progress() const;
-  QString name() const;
   QString fullCommand() const;
   void setLogSuffix(const QString & text);
 

@@ -82,7 +82,7 @@ private:
   GmicQt::OutputMode _outputMode;
   GmicQt::OutputMessageMode _outputMessageMode;
   GmicQt::InputMode _inputMode;
-  QString _lastEnvironment;
+  GmicQt::PreviewMode _previewMode;
   bool _hasProgressWindow;
   QTimer _singleShotTimer;
   QString _gmicStatusQuotedParameters;

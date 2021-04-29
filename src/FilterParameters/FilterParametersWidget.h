@@ -62,7 +62,9 @@ public:
   bool hasKeypoints() const;
   const QString & quotedParameters() const;
 
-  static QString flattenParameterList(const QList<QString> & list, const QString & quoted);
+  QString valueString(const QVector<AbstractParameter *> & parameters);
+
+  static QVector<AbstractParameter *> buildParameters(const QString & parameters, QObject * parent, int & actualParameters, QString & quotedParameters, QString & error);
 
 public slots:
   void updateValueString(bool notify = true);

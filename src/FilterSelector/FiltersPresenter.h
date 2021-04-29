@@ -39,6 +39,7 @@ public:
   struct Filter {
     QString name;
     QString plainTextName;
+    QString fullPath;
     QString command;
     QString previewCommand;
     QString parameters;
@@ -58,7 +59,7 @@ public:
   };
 
   FiltersPresenter(QObject * parent);
-  ~FiltersPresenter();
+  ~FiltersPresenter() override;
   void setFiltersView(FiltersView * filtersView);
   void rebuildFilterView();
   void rebuildFilterViewWithSelection(const QList<QString> & keywords);
@@ -85,6 +86,7 @@ public:
 
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);
+  void selectFilterFromFullPlainPath(QString path);
   const Filter & currentFilter() const;
 
   void loadSettings(const QSettings & settings);

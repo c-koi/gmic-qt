@@ -598,10 +598,10 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   context.previewWidth = ui->previewWidget->width();
   context.previewHeight = ui->previewWidget->height();
   context.previewTimeout = DialogSettings::previewTimeout();
-  context.filterName = currentFilter.plainTextName;
+  // context.filterName = currentFilter.plainTextName; // Unused in this context
+  // context.filterHash = currentFilter.hash; // Unused in this context
   context.filterCommand = currentFilter.previewCommand;
   context.filterArguments = ui->filterParams->valueString();
-  context.filterHash = currentFilter.hash;
   _processor.setContext(context);
   _processor.execute();
 
@@ -699,8 +699,9 @@ void MainWindow::processImage()
   context.inputOutputState = ui->inOutSelector->state();
   context.outputMessageMode = DialogSettings::outputMessageMode();
   context.filterName = currentFilter.plainTextName;
-  context.filterCommand = currentFilter.command;
+  context.filterFullPath = currentFilter.fullPath;
   context.filterHash = currentFilter.hash;
+  context.filterCommand = currentFilter.command;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
   _processor.setGmicStatusQuotedParameters(ui->filterParams->quotedParameters());

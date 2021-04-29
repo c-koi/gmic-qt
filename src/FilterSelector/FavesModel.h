@@ -44,6 +44,7 @@ public:
 
     const QString & name() const;
     const QString & plainText() const;
+    const QString fullPath() const;
     const QString & originalName() const;
     const QString & originalHash() const;
     const QString & command() const;
@@ -93,6 +94,7 @@ public:
   void flush() const;
   size_t faveCount() const;
   const_iterator findFaveFromHash(const QString &) const;
+  const_iterator findFaveFromPlainText(const QString &) const;
   const Fave & getFaveFromHash(const QString & hash) const;
   QString uniqueName(const QString & name, const QString & faveHashToIgnore);
   static const size_t NoIndex;

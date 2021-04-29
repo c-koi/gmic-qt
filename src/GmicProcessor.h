@@ -74,6 +74,7 @@ public:
     int previewTimeout;
     QString filterName;
     QString filterCommand;
+    QString filterFullPath;
     QString filterArguments;
     QString filterHash;
   };
@@ -143,12 +144,12 @@ private:
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
 
-  QString _lastAppliedFilterName;
+  QString _lastAppliedFilterPath;
+  QString _lastAppliedFilterHash;
   QString _lastAppliedCommand;
   QString _lastAppliedCommandArguments;
   QStringList _lastAppliedCommandGmicStatus;
   QString _gmicStatusQuotedParameters;
-  QString _lastAppliedCommandEnv;
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
   QElapsedTimer _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;

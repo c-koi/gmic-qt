@@ -33,8 +33,8 @@
 #include "gmic.h"
 using namespace cimg_library;
 
-FilterThread::FilterThread(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
-    : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>), _name(name),
+FilterThread::FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
+    : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>),
       _messageMode(mode)
 {
   _gmicAbort = false;
@@ -175,11 +175,6 @@ int FilterThread::duration() const
 float FilterThread::progress() const
 {
   return _gmicProgress;
-}
-
-QString FilterThread::name() const
-{
-  return _name;
 }
 
 QString FilterThread::fullCommand() const

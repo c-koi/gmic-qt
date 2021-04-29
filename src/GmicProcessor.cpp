@@ -92,7 +92,7 @@ void GmicProcessor::execute()
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
   if (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing) {
-    FilterSyncRunner runner(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);
     runner.setImageNames(imageNames);
     runner.setLogSuffix("preview");
@@ -103,7 +103,7 @@ void GmicProcessor::execute()
     manageSynchonousRunner(runner);
     recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
   } else if (_filterContext.requestType == FilterContext::PreviewProcessing) {
-    _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("preview");
@@ -113,12 +113,12 @@ void GmicProcessor::execute()
     _filterExecutionTime.restart();
     _filterThread->start();
   } else if (_filterContext.requestType == FilterContext::FullImageProcessing) {
-    _lastAppliedFilterName = _filterContext.filterName;
+    _lastAppliedFilterHash = _filterContext.filterHash;
+    _lastAppliedFilterPath = _filterContext.filterFullPath;
     _lastAppliedCommand = _filterContext.filterCommand;
     _lastAppliedCommandArguments = _filterContext.filterArguments;
-    _lastAppliedCommandEnv = env;
     _lastAppliedCommandInOutState = _filterContext.inputOutputState;
-    _filterThread = new FilterThread(this, _filterContext.filterName, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("apply");
@@ -226,16 +226,28 @@ const QStringList & GmicProcessor::gmicStatus() const
 
 void GmicProcessor::saveSettings(QSettings & settings)
 {
-  settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
-  settings.setValue(QString("LastExecution/host_%1/FilterName").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterName);
-  settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _filterContext.filterHash);
-  settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
-  settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandGmicStatus);
-  settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), _gmicStatusQuotedParameters);
-  settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
-  settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
-  settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.previewMode);
-  settings.setValue(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandEnv);
+  if (_lastAppliedCommand.isEmpty()) {
+    const QString empty;
+    settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), empty);
+    settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname), empty);
+    settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), empty);
+    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), empty);
+    settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), QStringList());
+    settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), empty);
+    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), 0);
+    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), 0);
+    settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), 0);
+  } else {
+    settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterPath);
+    settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterHash);
+    settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
+    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
+    settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandGmicStatus);
+    settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), _gmicStatusQuotedParameters);
+    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
+    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
+    settings.setValue(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.previewMode);
+  }
 }
 
 GmicProcessor::~GmicProcessor()
@@ -300,7 +312,7 @@ void GmicProcessor::onApplyThreadFinished()
   hideWaitingCursor();
 
   if (_filterThread->failed()) {
-    _lastAppliedFilterName.clear();
+    _lastAppliedFilterPath.clear();
     _lastAppliedCommand.clear();
     _lastAppliedCommandArguments.clear();
     QString message = _filterThread->errorMessage();
@@ -312,7 +324,7 @@ void GmicProcessor::onApplyThreadFinished()
     unsigned int badSpectrumIndex = 0;
     bool correctSpectrums = GmicQt::checkImageSpectrumAtMost4(*_gmicImages, badSpectrumIndex);
     if (!correctSpectrums) {
-      _lastAppliedFilterName.clear();
+      _lastAppliedFilterPath.clear();
       _lastAppliedCommand.clear();
       _lastAppliedCommandArguments.clear();
       _filterThread->deleteLater();

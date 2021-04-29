@@ -40,4 +40,8 @@ void splitGmicFilterCommand(const char * text, QString & command_name, QStringLi
 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name);
 
+QString filterFullPathBasename(const QString & path);
+
+QString flattenGmicParameterList(const QList<QString> & list, const QString & quoted);
+
 #endif // GMIC_QT_MISC_H
