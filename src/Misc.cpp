@@ -184,25 +184,18 @@ QString filterFullPathBasename(const QString & path)
   return result;
 }
 
-QString flattenGmicParameterList(const QList<QString> & list, const QString & quoted)
+// FIXME : test status with "
+
+QString flattenGmicParameterList(const QList<QString> & list)
 {
   QString result;
-  if ((list.size() != quoted.size()) || list.isEmpty()) {
+  if (list.isEmpty()) {
     return result;
   }
   QList<QString>::const_iterator itList = list.begin();
-  QString::const_iterator itQuoted = quoted.begin();
-  if (*itQuoted++ == QChar('1')) {
-    result += QString("\"%1\"").arg(*itList++);
-  } else {
-    result += *itList++;
-  }
+  result += QString("\"%1\"").arg(*itList++).replace(QChar('"'), QString("\\\""));
   while (itList != list.end()) {
-    if (*itQuoted++ == QChar('1')) {
-      result += QString(",\"%1\"").arg(*itList++);
-    } else {
-      result += QString(",%1").arg(*itList++);
-    }
+    result += QString(",\"%1\"").arg(*itList++).replace(QChar('"'), QString("\\\""));
   }
   return result;
 }

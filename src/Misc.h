@@ -44,6 +44,6 @@ QString filterFullPathWithoutTags(const QList<QString> & path, const QString & n
 
 QString filterFullPathBasename(const QString & path);
 
-QString flattenGmicParameterList(const QList<QString> & list, const QString & quoted);
+QString flattenGmicParameterList(const QList<QString> & list);
 
 #endif // GMIC_QT_MISC_H

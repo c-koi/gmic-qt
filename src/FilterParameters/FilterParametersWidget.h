@@ -60,10 +60,9 @@ public:
   KeypointList keypoints() const;
   void setKeypoints(KeypointList list, bool notify);
   bool hasKeypoints() const;
-  const QString & quotedParameters() const;
 
   static QString valueString(const QVector<AbstractParameter *> & parameters);
-  static QVector<AbstractParameter *> buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * quotedParameters, QString * error);
+  static QVector<AbstractParameter *> buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * error);
 
 public slots:
   void updateValueString(bool notify = true);
@@ -81,7 +80,6 @@ protected:
   QString _filterName;
   QString _filterHash;
   bool _hasKeypoints;
-  QString _quotedParameters;
 };
 
 #endif // GMIC_QT_FILTERPARAMSWIDGET_H

@@ -166,7 +166,6 @@ DialogSettings::~DialogSettings()
 void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
 {
   QSettings settings;
-  removeObsoleteKeys(settings);
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
     _previewPosition = MainWindow::PreviewOnLeft;
   } else {
@@ -215,6 +214,7 @@ GmicQt::OutputMessageMode DialogSettings::outputMessageMode()
 
 void DialogSettings::saveSettings(QSettings & settings)
 {
+  removeObsoleteKeys(settings);
   settings.setValue("Config/PreviewPosition", (_previewPosition == MainWindow::PreviewOnLeft) ? "Left" : "Right");
   settings.setValue("Config/NativeColorDialogs", _nativeColorDialogs);
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY, _updatePeriodicity);
@@ -286,6 +286,7 @@ void DialogSettings::removeObsoleteKeys(QSettings & settings)
 {
   settings.remove(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname));
   settings.remove(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname));
 }
 
 void DialogSettings::enableUpdateButton()

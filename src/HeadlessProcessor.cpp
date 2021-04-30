@@ -84,9 +84,8 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   // TODO : How do we handle the status in the new context ?
 
   QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
-  _gmicStatusQuotedParameters = settings.value(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname)).toString();
   if (!lastAppliedCommandGmicStatus.isEmpty()) {
-    _lastArguments = flattenGmicParameterList(lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
+    _lastArguments = flattenGmicParameterList(lastAppliedCommandGmicStatus);
   }
 
   _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
@@ -101,7 +100,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   ParametersCache::load(true);
 }
 
-HeadlessProcessor::HeadlessProcessor(QObject * parent, GmicQt::PluginParameters parameters) : QObject(parent)
+HeadlessProcessor::HeadlessProcessor(QObject * parent, GmicQt::PluginParameters parameters) : QObject(parent), _filterThread(nullptr), _gmicImages(new cimg_library::CImgList<gmic_pixel_type>)
 {
   QSettings settings;
   // FIXME : Use translated version of the name
@@ -130,7 +129,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, GmicQt::PluginParameters 
     } else {
       if (command.isEmpty()) {
         QString error;
-        QVector<AbstractParameter *> defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, nullptr, nullptr, nullptr, &error);
+        QVector<AbstractParameter *> defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, nullptr, nullptr, &error);
         if (error.isEmpty()) {
           _filterName = filter.plainTextName;
           _hash = filter.hash;
@@ -252,8 +251,6 @@ void HeadlessProcessor::onProcessingFinished()
   if (!status.isEmpty()) {
     QSettings settings;
     settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), status);
-    QString lastArguments = flattenGmicParameterList(status, _gmicStatusQuotedParameters);
-    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), lastArguments);
     if (!_hash.isEmpty()) {
       ParametersCache::setValues(_hash, status);
       ParametersCache::save();

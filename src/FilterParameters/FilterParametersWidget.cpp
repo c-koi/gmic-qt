@@ -44,7 +44,7 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   _hasKeypoints = false;
 }
 
-QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * quotedParameters, QString * error)
+QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * error)
 {
   QVector<AbstractParameter *> result;
   QByteArray rawText = parameters.toUtf8();
@@ -52,7 +52,6 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
   int length = 0;
   int localActualParameterCount = 0;
   QString localError;
-  QString localQuotedParameters;
 
   AbstractParameter * parameter;
   do {
@@ -61,7 +60,6 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
       result.push_back(parameter);
       if (parameter->isActualParameter()) {
         localActualParameterCount += 1;
-        localQuotedParameters += (parameter->isQuoted() ? QString("1") : QString("0"));
       }
     }
     cstr += length;
@@ -74,13 +72,9 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
     result.clear();
     localError = QString("Parameter #%1\n%2").arg(localActualParameterCount + 1).arg(localError);
     localActualParameterCount = 0;
-    localQuotedParameters.clear();
   }
   if (actualParameterCount) {
     *actualParameterCount = localActualParameterCount;
-  }
-  if (quotedParameters) {
-    *quotedParameters = localQuotedParameters;
   }
   if (error) {
     *error = localError;
@@ -102,7 +96,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Build parameters and count actual ones
   QString error;
-  _presetParameters = buildParameters(parameters, this, &_actualParametersCount, &_quotedParameters, &error);
+  _presetParameters = buildParameters(parameters, this, &_actualParametersCount, &error);
 
   // Restore saved values
   if ((!values.isEmpty()) && (_actualParametersCount == values.size())) {
@@ -426,9 +420,4 @@ void FilterParametersWidget::setKeypoints(KeypointList list, bool notify)
 bool FilterParametersWidget::hasKeypoints() const
 {
   return _hasKeypoints;
-}
-
-const QString & FilterParametersWidget::quotedParameters() const
-{
-  return _quotedParameters;
 }

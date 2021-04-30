@@ -193,11 +193,6 @@ int GmicProcessor::averagePreviewFilterExecutionDuration() const
   return static_cast<int>(sum / count);
 }
 
-void GmicProcessor::setGmicStatusQuotedParameters(const QString & v)
-{
-  _gmicStatusQuotedParameters = v;
-}
-
 int GmicProcessor::completedFullImageProcessingCount() const
 {
   return _completeFullImageProcessingCount;
@@ -232,7 +227,6 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), empty);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), empty);
     settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), QStringList());
-    settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), empty);
     settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), 0);
     settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), 0);
   } else {
@@ -241,7 +235,6 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
     settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandGmicStatus);
-    settings.setValue(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname), _gmicStatusQuotedParameters);
     settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
     settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
   }

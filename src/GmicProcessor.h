@@ -104,9 +104,6 @@ public:
   void resetLastPreviewFilterExecutionDurations();
   void recordPreviewFilterExecutionDurationMS(int duration);
   int averagePreviewFilterExecutionDuration() const;
-
-  void setGmicStatusQuotedParameters(const QString & v);
-
   int completedFullImageProcessingCount() const;
 
 public slots:
@@ -149,7 +146,6 @@ private:
   QString _lastAppliedCommand;
   QString _lastAppliedCommandArguments;
   QStringList _lastAppliedCommandGmicStatus;
-  QString _gmicStatusQuotedParameters;
   GmicQt::InputOutputState _lastAppliedCommandInOutState;
   QElapsedTimer _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;

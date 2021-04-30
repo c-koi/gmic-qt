@@ -701,7 +701,6 @@ void MainWindow::processImage()
   context.filterCommand = currentFilter.command;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
-  _processor.setGmicStatusQuotedParameters(ui->filterParams->quotedParameters());
   ui->filterParams->clearButtonParameters();
   _processor.setContext(context);
   _processor.execute();

@@ -87,7 +87,6 @@ private:
   GmicQt::InputMode _inputMode;
   bool _hasProgressWindow;
   QTimer _singleShotTimer;
-  QString _gmicStatusQuotedParameters;
   bool _processingCompletedProperly;
   QString _errorMessage;
   QString _hash;

@@ -86,9 +86,8 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
   QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
   if (flag == AfterFilterExecution) {
     QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
-    QString quotedParameters = settings.value(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname)).toString();
     if (!lastAppliedCommandGmicStatus.isEmpty()) {
-      args = flattenGmicParameterList(lastAppliedCommandGmicStatus, quotedParameters);
+      args = flattenGmicParameterList(lastAppliedCommandGmicStatus);
     }
   }
   QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
