@@ -44,37 +44,46 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   _hasKeypoints = false;
 }
 
-QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & parameters, QObject * parent, int & actualParameters, QString & quotedParameters, QString & error)
+QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * quotedParameters, QString * error)
 {
   QVector<AbstractParameter *> result;
   QByteArray rawText = parameters.toUtf8();
   const char * cstr = rawText.constData();
   int length = 0;
-  actualParameters = 0;
-  error.clear();
-  quotedParameters.clear();
+  int localActualParameterCount = 0;
+  QString localError;
+  QString localQuotedParameters;
 
   AbstractParameter * parameter;
   do {
-    parameter = AbstractParameter::createFromText(cstr, length, error, parent);
+    parameter = AbstractParameter::createFromText(cstr, length, localError, parent);
     if (parameter) {
       result.push_back(parameter);
       if (parameter->isActualParameter()) {
-        actualParameters += 1;
-        quotedParameters += (parameter->isQuoted() ? QString("1") : QString("0"));
+        localActualParameterCount += 1;
+        localQuotedParameters += (parameter->isQuoted() ? QString("1") : QString("0"));
       }
     }
     cstr += length;
-  } while (parameter && error.isEmpty());
+  } while (parameter && localError.isEmpty());
 
-  if (!error.isEmpty()) {
+  if (!localError.isEmpty()) {
     for (AbstractParameter * p : result) {
       delete p;
     }
     result.clear();
-    error = QString("Parameter #%1\n%2").arg(actualParameters + 1).arg(error);
-    actualParameters = 0;
-    quotedParameters.clear();
+    localError = QString("Parameter #%1\n%2").arg(localActualParameterCount + 1).arg(localError);
+    localActualParameterCount = 0;
+    localQuotedParameters.clear();
+  }
+  if (actualParameterCount) {
+    *actualParameterCount = localActualParameterCount;
+  }
+  if (quotedParameters) {
+    *quotedParameters = localQuotedParameters;
+  }
+  if (error) {
+    *error = localError;
   }
   return result;
 }
@@ -93,7 +102,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Build parameters and count actual ones
   QString error;
-  _presetParameters = buildParameters(parameters, this, _actualParametersCount, _quotedParameters, error);
+  _presetParameters = buildParameters(parameters, this, &_actualParametersCount, &_quotedParameters, &error);
 
   // Restore saved values
   if ((!values.isEmpty()) && (_actualParametersCount == values.size())) {

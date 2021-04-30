@@ -28,7 +28,18 @@
 #include <QRegularExpression>
 #include <QString>
 #include <QStringList>
+#include <cctype>
 #include "HtmlTranslator.h"
+
+namespace
+{
+inline void skipSpaces(const char *& pc)
+{
+  while (isspace(*pc)) {
+    ++pc;
+  }
+}
+} // namespace
 
 QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode)
 {
@@ -98,29 +109,33 @@ void downcaseCommandTitle(QString & title)
   title[0] = title[0].toUpper();
 }
 
-void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args)
+bool parseGmicUniqueFilterCommand(const char * text, QString & command_name, QStringList & args)
 {
-  if (!text) {
-    return;
-  }
   args.clear();
   command_name.clear();
+  if (!text) {
+    return false;
+  }
+  skipSpaces(text);
+  if (*text == '\0') {
+    return false;
+  }
   const char * pc = text;
   while (isalnum(*pc) || (*pc == '_')) {
     ++pc;
   }
-  if (!isspace(*pc)) {
-    return;
+  if ((*pc != '\0') && !isspace(*pc)) {
+    return false;
   }
   command_name = QString::fromLatin1(text, static_cast<int>(pc - text));
-  while (isspace(*pc)) {
-    ++pc;
-  }
+  skipSpaces(pc);
+
   bool quoted = false;
   bool escaped = false;
+  bool meaningfulSpaceFound = false;
   char * buffer = new char[strlen(pc)]();
   char * output = buffer;
-  while (*pc) {
+  while (*pc && !((meaningfulSpaceFound = (!quoted && !escaped && isspace(*pc))))) {
     if (escaped) {
       *output++ = *pc++;
       escaped = false;
@@ -144,6 +159,12 @@ void splitGmicFilterCommand(const char * text, QString & command_name, QStringLi
     args.push_back(QString::fromLatin1(buffer));
   }
   delete[] buffer;
+  if (quoted || meaningfulSpaceFound) {
+    command_name.clear();
+    args.clear();
+    return false;
+  }
+  return true;
 }
 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name)
@@ -184,4 +205,12 @@ QString flattenGmicParameterList(const QList<QString> & list, const QString & qu
     }
   }
   return result;
+}
+
+QString mergedWithSpace(const QString & prefix, const QString & suffix)
+{
+  if (prefix.isEmpty() || suffix.isEmpty()) {
+    return prefix + suffix;
+  }
+  return prefix + QChar(' ') + suffix;
 }

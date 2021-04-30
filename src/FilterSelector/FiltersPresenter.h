@@ -87,6 +87,8 @@ public:
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);
   void selectFilterFromFullPlainPath(QString path);
+  void selectFilterFromPlainName(const QString & name);
+  void selectFilterFromCommand(const QString & command);
   const Filter & currentFilter() const;
 
   void loadSettings(const QSettings & settings);
@@ -102,6 +104,12 @@ public:
   void expandAll();
   void collapseAll();
   const QString & errorMessage() const;
+
+  /**
+   * @brief findFilterFromPlainPathInStdlib
+   * Caution: this function parses the stdlib each time it is called
+   */
+  static Filter findFilterFromPlainPathInStdlib(QString path);
 
 signals:
   void filterSelectionChanged();

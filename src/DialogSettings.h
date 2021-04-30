@@ -92,6 +92,7 @@ public slots:
   void onNotifyStartupUpdateFailedToggle(bool);
 
 private:
+  static void removeObsoleteKeys(QSettings &);
   Ui::DialogSettings * ui;
   static bool _darkThemeEnabled;
   static QString _languageCode;

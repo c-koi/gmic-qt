@@ -81,7 +81,7 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
   if (path.isEmpty()) {
     return parameters;
   }
-  parameters.filterPath = path.toStdString();
+  parameters.filterPath = "/" + path.toStdString();
 
   QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
   if (flag == AfterFilterExecution) {
@@ -91,7 +91,9 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
       args = flattenGmicParameterList(lastAppliedCommandGmicStatus, quotedParameters);
     }
   }
-  const QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
+  QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
+  appendWithSpace(command, args);
+  parameters.command = command.toStdString();
   parameters.inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   parameters.outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
   // parameters.previewMode = (GmicQt::PreviewMode)settings.value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt();
@@ -199,6 +201,16 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
   }
   return 0;
 }
+
+std::string PluginParameters::filterName() const
+{
+  auto position = filterPath.rfind("/");
+  if (position == std::string::npos) {
+    return filterPath;
+  }
+  return filterPath.substr(position + 1, filterPath.length() - (position + 1));
+}
+
 } // namespace GmicQt
 
 namespace

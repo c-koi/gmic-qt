@@ -28,6 +28,7 @@
 #include <QStringList>
 #include "Common.h"
 #include "FilterParameters/FilterParametersWidget.h"
+#include "FilterSelector/FiltersPresenter.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
 #include "HtmlTranslator.h"
@@ -59,7 +60,6 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent, const char * command, Gmi
   _outputMessageMode = GmicQt::Quiet;
   _inputMode = inputMode;
   _outputMode = outputMode;
-  // FIXME : Remove this key QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname)
 
   _timer.setInterval(250);
   connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
@@ -101,6 +101,69 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
   ParametersCache::load(true);
 }
 
+HeadlessProcessor::HeadlessProcessor(QObject * parent, GmicQt::PluginParameters parameters) : QObject(parent)
+{
+  QSettings settings;
+  // FIXME : Use translated version of the name
+  const QString path = QString::fromStdString(parameters.filterPath);
+  QStringList args;
+  QString command;
+  parseGmicUniqueFilterCommand(parameters.command.c_str(), command, args);
+
+  _inputMode = (parameters.inputMode == GmicQt::UnspecifiedInputMode) ? GmicQt::DefaultInputMode : parameters.inputMode;
+  _outputMode = (parameters.outputMode == GmicQt::UnspecifiedOutputMode) ? GmicQt::DefaultOutputMode : parameters.outputMode;
+
+  if (path.isEmpty()) { // A pure command
+    if (command.isEmpty()) {
+      _errorMessage = tr("At least a filter path or a filter command must be provided.");
+    } else {
+      _filterName = tr("Custom command (%1 ...)").arg(command);
+      _lastCommand = "skip 0";
+      _lastArguments = QString::fromStdString(parameters.command);
+    }
+  } else { // A path is given
+    // _filterName = HtmlTranslator::html2txt(filterFullPathBasename(path), true);
+    QString plainPath = HtmlTranslator::html2txt(path, true);
+    FiltersPresenter::Filter filter = FiltersPresenter::findFilterFromPlainPathInStdlib(plainPath);
+    if (filter.isInvalid()) {
+      _errorMessage = tr("Cannot find filter matching path %1").arg(path);
+    } else {
+      if (command.isEmpty()) {
+        QString error;
+        QVector<AbstractParameter *> defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, nullptr, nullptr, nullptr, &error);
+        if (error.isEmpty()) {
+          _filterName = filter.plainTextName;
+          _hash = filter.hash;
+          _lastCommand = filter.command;
+          _lastArguments = FilterParametersWidget::valueString(defaultParameters);
+        } else {
+          _errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(path).arg(error);
+        }
+      } else {
+        if (command == filter.command) {
+          _filterName = filter.plainTextName;
+          _hash = filter.hash;
+          _lastCommand = command;
+          _lastArguments = args.join(",");
+        } else {
+          _errorMessage = tr("Supplied command [%1] does not match path [%2] (should be %3).").arg(command).arg(plainPath).arg(filter.command);
+        }
+      }
+    }
+  }
+
+  _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
+  Logger::setMode(_outputMessageMode);
+
+  _timer.setInterval(250);
+  connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+  _singleShotTimer.setInterval(750);
+  _singleShotTimer.setSingleShot(true);
+  connect(&_singleShotTimer, SIGNAL(timeout()), this, SIGNAL(singleShotTimeout()));
+  _hasProgressWindow = false;
+  ParametersCache::load(true);
+}
+
 HeadlessProcessor::~HeadlessProcessor()
 {
   delete _gmicImages;
@@ -108,6 +171,9 @@ HeadlessProcessor::~HeadlessProcessor()
 
 void HeadlessProcessor::startProcessing()
 {
+  if (!_errorMessage.isEmpty()) {
+    endApplication(_errorMessage);
+  }
   _singleShotTimer.start();
   Updater::getInstance()->updateSources(false);
   GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
@@ -188,9 +254,10 @@ void HeadlessProcessor::onProcessingFinished()
     settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), status);
     QString lastArguments = flattenGmicParameterList(status, _gmicStatusQuotedParameters);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), lastArguments);
-    QString hash = settings.value(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname)).toString();
-    ParametersCache::setValues(hash, status);
-    ParametersCache::save();
+    if (!_hash.isEmpty()) {
+      ParametersCache::setValues(_hash, status);
+      ParametersCache::save();
+    }
   }
   if (_filterThread->failed()) {
     errorMessage = _filterThread->errorMessage();
@@ -203,12 +270,7 @@ void HeadlessProcessor::onProcessingFinished()
   }
   _filterThread->deleteLater();
   _filterThread = nullptr;
-  _singleShotTimer.stop();
-  emit done(errorMessage);
-  if (!_hasProgressWindow && !errorMessage.isEmpty()) {
-    Logger::error(errorMessage);
-  }
-  QCoreApplication::exit(0);
+  endApplication(errorMessage);
 }
 
 void HeadlessProcessor::cancel()
@@ -216,4 +278,14 @@ void HeadlessProcessor::cancel()
   if (_filterThread) {
     _filterThread->abortGmic();
   }
+}
+
+void HeadlessProcessor::endApplication(const QString & errorMessage)
+{
+  _singleShotTimer.stop();
+  emit done(errorMessage);
+  if (!_hasProgressWindow && !errorMessage.isEmpty()) {
+    Logger::error(errorMessage);
+  }
+  QCoreApplication::exit(0);
 }

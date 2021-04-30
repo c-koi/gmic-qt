@@ -267,6 +267,48 @@ void FiltersPresenter::selectFilterFromHash(QString hash, bool notify)
   }
 }
 
+void FiltersPresenter::selectFilterFromPlainName(const QString & name)
+{
+  QString faveHash;
+  auto itFave = _favesModel.findFaveFromPlainText(name);
+  if (itFave != _favesModel.cend()) {
+    faveHash = itFave->hash();
+  }
+  QStringList filterHashes;
+  for (const FiltersModel::Filter & filter : _filtersModel) {
+    if (filter.plainText() == name) {
+      filterHashes.push_back(filter.hash());
+    }
+  }
+
+  QString hash;
+  if (((!faveHash.isEmpty()) + filterHashes.size()) == 1) {
+    if (!faveHash.isEmpty()) {
+      hash = faveHash;
+      if (_filtersView) {
+        _filtersView->selectFave(hash);
+      }
+    } else { // filterHashes.size() == 1
+      hash = filterHashes.front();
+      if (_filtersView) {
+        _filtersView->selectFave(hash);
+      }
+    }
+  }
+  setCurrentFilter(hash);
+}
+
+void FiltersPresenter::selectFilterFromCommand(const QString & command)
+{
+  for (const FiltersModel::Filter & filter : _filtersModel) {
+    if (filter.command() == command) {
+      setCurrentFilter(filter.hash());
+      return;
+    }
+  }
+  setCurrentFilter(QString());
+}
+
 void FiltersPresenter::selectFilterFromFullPlainPath(QString path)
 {
   QString hash;
@@ -360,6 +402,20 @@ void FiltersPresenter::collapseAll()
 const QString & FiltersPresenter::errorMessage() const
 {
   return _errorMessage;
+}
+
+FiltersPresenter::Filter FiltersPresenter::findFilterFromPlainPathInStdlib(QString path)
+{
+  FiltersPresenter presenter(nullptr);
+  presenter.readFaves();
+  presenter.readFilters();
+  if (path.startsWith("/")) {
+    path.remove(0, 1);
+    presenter.selectFilterFromFullPlainPath(path);
+  } else {
+    presenter.selectFilterFromPlainName(path);
+  }
+  return presenter.currentFilter();
 }
 
 void FiltersPresenter::removeSelectedFave()
@@ -471,7 +527,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
 {
   _errorMessage.clear();
   if (hash.isEmpty()) {
-    _currentFilter.clear();
+    _currentFilter.setInvalid();
   } else if (_favesModel.contains(hash)) {
     const FavesModel::Fave & fave = _favesModel.getFaveFromHash(hash);
     const QString & originalHash = fave.originalHash();
@@ -510,7 +566,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
     _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
     _currentFilter.previewFactor = filter.previewFactor();
   } else {
-    _currentFilter.clear();
+    _currentFilter.setInvalid();
   }
 }
 

@@ -34,9 +34,11 @@ QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode);
 
 void appendWithSpace(QString & str, const QString & other);
 
+QString mergedWithSpace(const QString & prefix, const QString & suffix);
+
 void downcaseCommandTitle(QString & title);
 
-void splitGmicFilterCommand(const char * text, QString & command_name, QStringList & args);
+bool parseGmicUniqueFilterCommand(const char * text, QString & command_name, QStringList & args);
 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name);
 

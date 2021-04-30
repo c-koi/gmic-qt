@@ -166,6 +166,7 @@ DialogSettings::~DialogSettings()
 void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
 {
   QSettings settings;
+  removeObsoleteKeys(settings);
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
     _previewPosition = MainWindow::PreviewOnLeft;
   } else {
@@ -279,6 +280,12 @@ void DialogSettings::onPreviewZoomToggled(bool on)
 void DialogSettings::onNotifyStartupUpdateFailedToggle(bool on)
 {
   _notifyFailedStartupUpdate = on;
+}
+
+void DialogSettings::removeObsoleteKeys(QSettings & settings)
+{
+  settings.remove(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname));
 }
 
 void DialogSettings::enableUpdateButton()

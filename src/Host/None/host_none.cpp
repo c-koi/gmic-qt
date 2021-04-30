@@ -222,7 +222,14 @@ int main(int argc, char * argv[])
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
     gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
-    return launchPlugin(GmicQt::FullGUI, parameters);
+    int status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
+    GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+    STDSHOW(parameters.filterPath);
+    STDSHOW(parameters.command);
+    STDSHOW(parameters.inputMode);
+    STDSHOW(parameters.outputMode);
+    STDSHOW(parameters.filterName());
+    return status;
   }
   std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
   return 1;

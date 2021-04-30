@@ -56,6 +56,8 @@ public:
    */
   explicit HeadlessProcessor(QObject * parent);
 
+  explicit HeadlessProcessor(QObject * parent, GmicQt::PluginParameters parameters);
+
   ~HeadlessProcessor() override;
   QString command() const;
   QString filterName() const;
@@ -73,6 +75,7 @@ signals:
   void progression(float progress, int duration, unsigned long memory);
 
 private:
+  void endApplication(const QString & errorMessage);
   FilterThread * _filterThread;
   cimg_library::CImgList<float> * _gmicImages;
   QTimer _timer;
@@ -86,6 +89,8 @@ private:
   QTimer _singleShotTimer;
   QString _gmicStatusQuotedParameters;
   bool _processingCompletedProperly;
+  QString _errorMessage;
+  QString _hash;
 };
 
 #endif // GMIC_QT_HEADLESSPROCESSOR_H
