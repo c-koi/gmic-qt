@@ -51,7 +51,7 @@ public:
     const QString & plainText() const;
     const QString & translatedPlainText() const;
     const QList<QString> & path() const;
-    const QString fullPath() const;
+    const QString absolutePathNoTags() const;
     const QString & hash() const;
     QString hash236() const;
     const QString & command() const;
@@ -115,7 +115,7 @@ public:
   const_iterator end() const { return _hash2filter.cend(); }
   const_iterator cbegin() const { return _hash2filter.cbegin(); }
   const_iterator cend() const { return _hash2filter.cend(); }
-  const_iterator findFilterFromFullPlainPath(const QString & path) const;
+  const_iterator findFilterFromAbsolutePath(const QString & path) const;
 
 private:
   QMap<QString, Filter> _hash2filter;

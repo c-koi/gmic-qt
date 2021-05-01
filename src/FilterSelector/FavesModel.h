@@ -44,7 +44,7 @@ public:
 
     const QString & name() const;
     const QString & plainText() const;
-    const QString fullPath() const;
+    const QString absolutePath() const;
     const QString & originalName() const;
     const QString & originalHash() const;
     const QString & command() const;

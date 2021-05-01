@@ -195,7 +195,7 @@ const QString & FavesModel::Fave::plainText() const
   return _plainText;
 }
 
-const QString FavesModel::Fave::fullPath() const
+const QString FavesModel::Fave::absolutePath() const
 {
   static const QList<QString> FavePath = {HtmlTranslator::removeTags(FAVE_FOLDER_TEXT)};
   return filterFullPathWithoutTags(FavePath, _name);

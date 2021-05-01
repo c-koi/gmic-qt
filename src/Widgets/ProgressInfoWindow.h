@@ -49,7 +49,7 @@ class ProgressInfoWindow : public QMainWindow {
 
 public:
   explicit ProgressInfoWindow(HeadlessProcessor * processor);
-  ~ProgressInfoWindow();
+  ~ProgressInfoWindow() override;
 
 protected:
   void showEvent(QShowEvent *) override;
@@ -59,6 +59,7 @@ protected:
 public slots:
   void onCancelClicked(bool);
   void onProgress(float progress, int duration, unsigned long memory);
+  void onInfo(QString text);
   void onProcessingFinished(const QString & errorMessage);
 
 private:

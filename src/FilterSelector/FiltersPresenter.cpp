@@ -300,6 +300,8 @@ void FiltersPresenter::selectFilterFromPlainName(const QString & name)
 
 void FiltersPresenter::selectFilterFromCommand(const QString & command)
 {
+  // FIXME : What if more than one ?
+  // FIXME : Look in faves ?
   for (const FiltersModel::Filter & filter : _filtersModel) {
     if (filter.command() == command) {
       setCurrentFilter(filter.hash());
@@ -309,25 +311,27 @@ void FiltersPresenter::selectFilterFromCommand(const QString & command)
   setCurrentFilter(QString());
 }
 
-void FiltersPresenter::selectFilterFromFullPlainPath(QString path)
+void FiltersPresenter::selectFilterFromAbsolutePath(QString path)
 {
   QString hash;
-  static const QString FaveFolderPrefix = HtmlTranslator::html2txt(FAVE_FOLDER_TEXT) + "/";
-  if (path.startsWith(FaveFolderPrefix)) {
-    path.remove(0, FaveFolderPrefix.length());
-    auto it = _favesModel.findFaveFromPlainText(path);
-    if (it != _favesModel.cend()) {
-      hash = it->hash();
-      if (_filtersView) {
-        _filtersView->selectFave(hash);
+  if (path.startsWith("/")) {
+    static const QString FaveFolderPrefix = "/" + HtmlTranslator::html2txt(FAVE_FOLDER_TEXT) + "/";
+    if (path.startsWith(FaveFolderPrefix)) {
+      path.remove(0, FaveFolderPrefix.length());
+      auto it = _favesModel.findFaveFromPlainText(path);
+      if (it != _favesModel.cend()) {
+        hash = it->hash();
+        if (_filtersView) {
+          _filtersView->selectFave(hash);
+        }
       }
-    }
-  } else {
-    auto it = _filtersModel.findFilterFromFullPlainPath(path);
-    if (it != _filtersModel.cend()) {
-      hash = it->hash();
-      if (_filtersView) {
-        _filtersView->selectActualFilter(hash, it->path());
+    } else {
+      auto it = _filtersModel.findFilterFromAbsolutePath(path);
+      if (it != _filtersModel.cend()) {
+        hash = it->hash();
+        if (_filtersView) {
+          _filtersView->selectActualFilter(hash, it->path());
+        }
       }
     }
   }
@@ -404,17 +408,25 @@ const QString & FiltersPresenter::errorMessage() const
   return _errorMessage;
 }
 
-FiltersPresenter::Filter FiltersPresenter::findFilterFromPlainPathInStdlib(QString path)
+FiltersPresenter::Filter FiltersPresenter::findFilterFromAbsolutePathOrNameInStdlib(QString path)
 {
   FiltersPresenter presenter(nullptr);
   presenter.readFaves();
   presenter.readFilters();
   if (path.startsWith("/")) {
-    path.remove(0, 1);
-    presenter.selectFilterFromFullPlainPath(path);
+    presenter.selectFilterFromAbsolutePath(path);
   } else {
     presenter.selectFilterFromPlainName(path);
   }
+  return presenter.currentFilter();
+}
+
+FiltersPresenter::Filter FiltersPresenter::findFilterFromCommandInStdlib(const QString & command)
+{
+  FiltersPresenter presenter(nullptr);
+  presenter.readFaves();
+  presenter.readFilters();
+  presenter.selectFilterFromCommand(command);
   return presenter.currentFilter();
 }
 
@@ -541,7 +553,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
       _currentFilter.isAFave = true;
       _currentFilter.name = fave.name();
       _currentFilter.plainTextName = fave.plainText();
-      _currentFilter.fullPath = fave.fullPath();
+      _currentFilter.fullPath = fave.absolutePath();
       _currentFilter.parameters = filter.parameters();
       _currentFilter.previewCommand = fave.previewCommand();
       _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
@@ -560,7 +572,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
     _currentFilter.isAFave = false;
     _currentFilter.name = filter.name();
     _currentFilter.plainTextName = filter.plainText();
-    _currentFilter.fullPath = filter.fullPath();
+    _currentFilter.fullPath = filter.absolutePathNoTags();
     _currentFilter.parameters = filter.parameters();
     _currentFilter.previewCommand = filter.previewCommand();
     _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
@@ -605,6 +617,11 @@ void FiltersPresenter::Filter::setInvalid()
 bool FiltersPresenter::Filter::isInvalid() const
 {
   return hash.isEmpty() && (command == "skip") && (previewCommand == "skip");
+}
+
+bool FiltersPresenter::Filter::isValid() const
+{
+  return !isInvalid();
 }
 
 bool FiltersPresenter::Filter::isNoApplyFilter() const

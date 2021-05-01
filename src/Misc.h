@@ -38,12 +38,16 @@ QString mergedWithSpace(const QString & prefix, const QString & suffix);
 
 void downcaseCommandTitle(QString & title);
 
-bool parseGmicUniqueFilterCommand(const char * text, QString & command_name, QStringList & args);
+bool parseGmicUniqueFilterParameters(const char * text, QStringList & args);
+
+bool parseGmicUniqueFilterCommand(const char * text, QString & command, QString & arguments);
 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name);
 
 QString filterFullPathBasename(const QString & path);
 
 QString flattenGmicParameterList(const QList<QString> & list);
+
+QString elided(const QString & text, int width);
 
 #endif // GMIC_QT_MISC_H

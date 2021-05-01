@@ -31,7 +31,7 @@
 #include "gmic_qt.h"
 
 class FilterThread;
-
+class ProgressInfoWindow;
 namespace cimg_library
 {
 template <typename T> struct CImgList;
@@ -41,36 +41,21 @@ class HeadlessProcessor : public QObject {
   Q_OBJECT
 
 public:
-  /**
-   * @brief Construct a headless processor a given command and arguments
-   *        (e.g. GIMP script mode)
-   *
-   * @param parent
-   */
-  explicit HeadlessProcessor(QObject * parent, const char * command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode);
-
-  /**
-   * @brief Construct a headless processor using last execution parameters
-   *
-   * @param parent
-   */
   explicit HeadlessProcessor(QObject * parent);
-
-  explicit HeadlessProcessor(QObject * parent, GmicQt::PluginParameters parameters);
-
   ~HeadlessProcessor() override;
   QString command() const;
   QString filterName() const;
-  void setProgressWindowFlag(bool);
+  void setProgressWindow(ProgressInfoWindow *);
   bool processingCompletedProperly();
-
+  bool setPluginParameters(const GmicQt::PluginParameters & parameters);
+  const QString & error() const;
 public slots:
   void startProcessing();
-  void onTimeout();
+  void sendProgressInformation();
   void onProcessingFinished();
   void cancel();
 signals:
-  void singleShotTimeout();
+  void progressWindowShouldShow();
   void done(QString errorMessage);
   void progression(float progress, int duration, unsigned long memory);
 
@@ -78,14 +63,15 @@ private:
   void endApplication(const QString & errorMessage);
   FilterThread * _filterThread;
   cimg_library::CImgList<float> * _gmicImages;
+  ProgressInfoWindow * _progressWindow;
   QTimer _timer;
   QString _filterName;
-  QString _lastCommand;
-  QString _lastArguments;
+  QString _path;
+  QString _command;
+  QString _arguments;
   GmicQt::OutputMode _outputMode;
   GmicQt::OutputMessageMode _outputMessageMode;
   GmicQt::InputMode _inputMode;
-  bool _hasProgressWindow;
   QTimer _singleShotTimer;
   bool _processingCompletedProperly;
   QString _errorMessage;

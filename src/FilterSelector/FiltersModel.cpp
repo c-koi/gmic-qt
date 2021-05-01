@@ -78,12 +78,12 @@ const FiltersModel::Filter & FiltersModel::getFilterFromHash(const QString & has
   return _hash2filter.find(hash).value();
 }
 
-FiltersModel::const_iterator FiltersModel::findFilterFromFullPlainPath(const QString & path) const
+FiltersModel::const_iterator FiltersModel::findFilterFromAbsolutePath(const QString & path) const
 {
   QString plainName = filterFullPathBasename(path);
   for (auto it = cbegin(); it != cend(); ++it) {
     // First test on plainText as plain(fullPath) is not immediate to compute
-    if ((it->plainText() == plainName) && (HtmlTranslator::html2txt(it->fullPath()) == path)) {
+    if ((it->plainText() == plainName) && (HtmlTranslator::html2txt(it->absolutePathNoTags()) == path)) {
       return it;
     }
   }
@@ -211,7 +211,7 @@ const QList<QString> & FiltersModel::Filter::path() const
   return _path;
 }
 
-const QString FiltersModel::Filter::fullPath() const
+const QString FiltersModel::Filter::absolutePathNoTags() const
 {
   return filterFullPathWithoutTags(_path, _name);
 }

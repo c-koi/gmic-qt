@@ -53,6 +53,7 @@ public:
     void clear();
     void setInvalid();
     bool isInvalid() const;
+    bool isValid() const;
     bool isNoApplyFilter() const;
     bool isNoPreviewFilter() const;
     const char * previewFactorString() const;
@@ -86,7 +87,7 @@ public:
 
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);
-  void selectFilterFromFullPlainPath(QString path);
+  void selectFilterFromAbsolutePath(QString path);
   void selectFilterFromPlainName(const QString & name);
   void selectFilterFromCommand(const QString & command);
   const Filter & currentFilter() const;
@@ -109,7 +110,8 @@ public:
    * @brief findFilterFromPlainPathInStdlib
    * Caution: this function parses the stdlib each time it is called
    */
-  static Filter findFilterFromPlainPathInStdlib(QString path);
+  static Filter findFilterFromAbsolutePathOrNameInStdlib(QString path);
+  static Filter findFilterFromCommandInStdlib(const QString & command);
 
 signals:
   void filterSelectionChanged();

@@ -38,6 +38,7 @@
 #include "Host/host.h"
 #include "ImageConverter.h"
 #include "MainWindow.h"
+#include "Misc.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
@@ -190,6 +191,21 @@ void gmic_qt_show_message(const char * message)
 int main(int argc, char * argv[])
 {
   TIMING;
+  {
+    // FIXME : Remove
+    //    QString command;
+    //    QString args;
+    //    // bool ok = parseGmicUniqueFilterCommand("totro09 \"Hello world\\\"\",234,,1,", command, args);
+    //    bool ok = parseGmicUniqueFilterCommand("totro09 \t", command, args);
+    //    SHOW(ok);
+    //    SHOW(command);
+    //    SHOW(args);
+    //    QStringList argList;
+    //    ok = parseGmicUniqueFilterParameters(args.toUtf8().constData(), argList);
+    //    SHOW(argList);
+    //    SHOW(ok);
+    //    exit(0);
+  }
   QString filename;
   if (argc == 2) {
     filename = argv[1];
@@ -222,8 +238,20 @@ int main(int argc, char * argv[])
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
     gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
-    int status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
-    GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+    GmicQt::PluginParameters parameters;
+    int status;
+    if (true) {
+      //  parameters.filterPath = "/Artistic/Cartoon";
+      //  parameters.command = "cartoon 3,200,20,0.25,1.5,8,0,50,50";
+      //  parameters.filterPath = "/Artistic/Cutout";
+      parameters.command = "fx_cutout 4,0.5,4,1,0,50,50"; // TODO : Find filter in this case
+      parameters.inputMode = GmicQt::Active;
+      parameters.outputMode = GmicQt::InPlace;
+      status = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
+    } else {
+      status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
+    }
+    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
     STDSHOW(parameters.filterPath);
     STDSHOW(parameters.command);
     STDSHOW(parameters.inputMode);

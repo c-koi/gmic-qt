@@ -78,11 +78,7 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
   PluginParameters parameters;
   QSettings settings;
   const QString path = settings.value(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname)).toString();
-  if (path.isEmpty()) {
-    return parameters;
-  }
-  parameters.filterPath = "/" + path.toStdString();
-
+  parameters.filterPath = path.toStdString();
   QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
   if (flag == AfterFilterExecution) {
     QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
@@ -95,8 +91,6 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
   parameters.command = command.toStdString();
   parameters.inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   parameters.outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
-  // parameters.previewMode = (GmicQt::PreviewMode)settings.value(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname), GmicQt::DefaultPreviewMode).toInt();
-
   return parameters;
 }
 
@@ -160,10 +154,15 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
     DialogSettings::loadSettings(GmicQt::NonGuiApplication);
     Logger::setMode(DialogSettings::outputMessageMode());
     // TODO : What if command is nullptr?
-    HeadlessProcessor headlessProcessor(&app, parameters.command.c_str(), parameters.inputMode, parameters.outputMode);
-    QTimer::singleShot(0, &headlessProcessor, SLOT(startProcessing()));
+    HeadlessProcessor processor(&app);
+    if (!processor.setPluginParameters(parameters)) {
+      Logger::error(processor.error());
+      pluginProcessingValidAndAccepted = false;
+      return 1;
+    }
+    QTimer::singleShot(0, &processor, &HeadlessProcessor::startProcessing);
     int status = QCoreApplication::exec();
-    pluginProcessingValidAndAccepted = headlessProcessor.processingCompletedProperly();
+    pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
     return status;
   } else if (interfaceMode == GmicQt::ProgressDialogGUI) { // launchPluginHeadlessUsingLastParameters
     QApplication app(dummy_argc, dummy_argv);
@@ -172,12 +171,13 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
     DialogSettings::loadSettings(GmicQt::GuiApplication);
     Logger::setMode(DialogSettings::outputMessageMode());
     LanguageSettings::installTranslators();
-    HeadlessProcessor processor(&app); // TODO : use command parameter
-    ProgressInfoWindow progressWindow(&processor);
-    if (processor.command().isEmpty()) {
+    HeadlessProcessor processor(&app);
+    if (!processor.setPluginParameters(parameters)) {
+      Logger::error(processor.error());
       pluginProcessingValidAndAccepted = false;
-      return 0;
+      return 1;
     }
+    ProgressInfoWindow progressWindow(&processor);
     processor.startProcessing();
     int status = QApplication::exec();
     pluginProcessingValidAndAccepted = processor.processingCompletedProperly();

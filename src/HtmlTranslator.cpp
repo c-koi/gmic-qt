@@ -48,7 +48,7 @@ QString HtmlTranslator::html2txt(const QString & str, bool force)
 
 bool HtmlTranslator::hasHtmlEntities(const QString & str)
 {
-  return str.contains(QRegularExpression("&[a-zA-Z]+;")) || str.contains(QRegularExpression("&#x?[0-9A-Fa-f]+;")) || str.contains(QRegularExpression("<[a-zA-Z]*>"));
+  return str.contains(QRegularExpression("&[a-zA-Z]+;")) || str.contains(QRegularExpression("&#x?[0-9A-Fa-f]+;")) || str.contains(QRegularExpression("</?[a-zA-Z]*>|<[a-zA-Z]*/>"));
 }
 
 QString HtmlTranslator::fromUtf8Escapes(const QString & str)

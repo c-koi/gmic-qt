@@ -39,6 +39,16 @@ inline void skipSpaces(const char *& pc)
     ++pc;
   }
 }
+inline bool isEmptyOrSpaceSequence(const char * pc)
+{
+  while (*pc) {
+    if (!isspace(*pc)) {
+      return false;
+    }
+    ++pc;
+  }
+  return true;
+}
 } // namespace
 
 QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode)
@@ -109,27 +119,14 @@ void downcaseCommandTitle(QString & title)
   title[0] = title[0].toUpper();
 }
 
-bool parseGmicUniqueFilterCommand(const char * text, QString & command_name, QStringList & args)
+bool parseGmicUniqueFilterParameters(const char * text, QStringList & args)
 {
   args.clear();
-  command_name.clear();
   if (!text) {
     return false;
   }
   skipSpaces(text);
-  if (*text == '\0') {
-    return false;
-  }
   const char * pc = text;
-  while (isalnum(*pc) || (*pc == '_')) {
-    ++pc;
-  }
-  if ((*pc != '\0') && !isspace(*pc)) {
-    return false;
-  }
-  command_name = QString::fromLatin1(text, static_cast<int>(pc - text));
-  skipSpaces(pc);
-
   bool quoted = false;
   bool escaped = false;
   bool meaningfulSpaceFound = false;
@@ -147,29 +144,73 @@ bool parseGmicUniqueFilterCommand(const char * text, QString & command_name, QSt
       ++pc;
     } else if (!quoted && !escaped && (*pc == ',')) {
       *output = '\0';
-      args.push_back(QString::fromLatin1(buffer));
+      args.push_back(QString::fromUtf8(buffer));
       output = buffer;
       ++pc;
     } else {
       *output++ = *pc++;
     }
   }
-  if (output != buffer) {
+  const bool endsWidthComma = (output == buffer) && (pc > text) && (!quoted && !escaped && (pc[-1] == ','));
+  if ((output != buffer) || endsWidthComma) {
     *output = '\0';
-    args.push_back(QString::fromLatin1(buffer));
+    args.push_back(QString::fromUtf8(buffer));
   }
   delete[] buffer;
-  if (quoted || meaningfulSpaceFound) {
-    command_name.clear();
+  if (quoted || (meaningfulSpaceFound && !isEmptyOrSpaceSequence(pc))) {
     args.clear();
     return false;
   }
   return true;
 }
 
+bool parseGmicUniqueFilterCommand(const char * text, QString & command, QString & arguments)
+{
+  arguments.clear();
+  command.clear();
+  if (!text) {
+    return false;
+  }
+  const char * commandBegin = text;
+  skipSpaces(commandBegin);
+  if (*commandBegin == '\0') {
+    return false;
+  }
+  const char * pc = commandBegin;
+  while (isalnum(*pc) || (*pc == '_')) {
+    ++pc;
+  }
+  if ((*pc != '\0') && !isspace(*pc)) {
+    return false;
+  }
+  const char * const commandEnd = pc;
+  skipSpaces(pc);
+
+  bool quoted = false;
+  bool escaped = false;
+  bool meaningfulSpaceFound = false;
+  const char * argumentStart = pc;
+  while (*pc && !((meaningfulSpaceFound = (!quoted && !escaped && isspace(*pc))))) {
+    if (escaped) {
+      escaped = false;
+    } else if (*pc == '\\') {
+      escaped = true;
+    } else if (*pc == '"') {
+      quoted = !quoted;
+    }
+    ++pc;
+  }
+  if (quoted || (meaningfulSpaceFound && !isEmptyOrSpaceSequence(pc))) {
+    return false;
+  }
+  command = QString::fromUtf8(commandBegin, static_cast<int>(commandEnd - commandBegin)); // TODO : Delay this
+  arguments = QString::fromUtf8(argumentStart, static_cast<int>(pc - argumentStart));
+  return true;
+}
+
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name)
 {
-  QStringList noTags;
+  QStringList noTags = {QString()};
   for (const QString & str : path) {
     noTags.push_back(HtmlTranslator::removeTags(str));
   }
@@ -206,4 +247,12 @@ QString mergedWithSpace(const QString & prefix, const QString & suffix)
     return prefix + suffix;
   }
   return prefix + QChar(' ') + suffix;
+}
+
+QString elided(const QString & text, int width)
+{
+  if (text.length() <= width) {
+    return text;
+  }
+  return text.left(std::max(0, width - 3)) + "...";
 }
