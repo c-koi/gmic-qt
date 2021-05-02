@@ -53,6 +53,7 @@
 #include "IconLoader.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "Utils.h"
@@ -311,12 +312,17 @@ void MainWindow::setDarkTheme()
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
 
+void MainWindow::setPluginParameters(const GmicQt::PluginParameters & parameters)
+{
+  _pluginParameters = parameters;
+}
+
 void MainWindow::updateFiltersFromSources(int ageLimit, bool useNetwork)
 {
   if (useNetwork) {
     ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
   }
-  connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onUpdateDownloadsFinished(int)), Qt::UniqueConnection);
+  connect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onUpdateDownloadsFinished, Qt::UniqueConnection);
   Updater::getInstance()->startUpdate(ageLimit, 60, useNetwork);
 }
 
@@ -412,6 +418,53 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   if (_newSession || !_lastExecutionOK) {
     hash.clear();
   }
+
+  // If plugin was called with parameters
+  QList<QString> pluginParametersCommandArguments;
+  if (!_pluginParameters.command.empty() || !_pluginParameters.filterPath.empty()) {
+    QString path = QString::fromStdString(_pluginParameters.filterPath);
+    QString pluginParameterHash;
+    QString command;
+    QString arguments;
+    QStringList argumentList;
+    QString errorMessage;
+    if (!path.isEmpty()) {
+      _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(path);
+      if (_filtersPresenter->currentFilter().isValid()) {
+        pluginParameterHash = _filtersPresenter->currentFilter().hash;
+      } else {
+        errorMessage = tr("Plugin was called with a filter path with no matching filter:\n%1").arg(QString::fromStdString(_pluginParameters.filterPath));
+      }
+    }
+    if (_pluginParameters.command.empty()) {
+      hash = pluginParameterHash;
+    } else {
+      if (parseGmicUniqueFilterCommand(_pluginParameters.command.c_str(), command, arguments) //
+          && parseGmicUniqueFilterParameters(arguments.toUtf8().constData(), argumentList)) {
+        _filtersPresenter->selectFilterFromCommand(command);
+        if (_filtersPresenter->currentFilter().isInvalid()) {
+          pluginParameterHash.clear();
+          errorMessage = tr("Plugin was called with a command that cannot be recognized as a filter:\n%1").arg(QString::fromStdString(_pluginParameters.command));
+        } else if ((not pluginParameterHash.isEmpty()) && (_filtersPresenter->currentFilter().hash != pluginParameterHash)) {
+          pluginParameterHash.clear();
+          errorMessage = tr("Plugin was called with a command that do not match the provided path:\nPath: %1\nCommand: %2") //
+                             .arg(QString::fromStdString(_pluginParameters.command))
+                             .arg(QString::fromStdString(_pluginParameters.filterPath));
+        } else {
+          pluginParameterHash = _filtersPresenter->currentFilter().hash;
+          pluginParametersCommandArguments = argumentList;
+        }
+      } else {
+        pluginParameterHash.clear();
+        errorMessage = tr("Plugin was called with a command that cannot be parsed: %1").arg(QString::fromStdString(_pluginParameters.command));
+      }
+    }
+
+    if (not pluginParameterHash.isEmpty()) {
+      hash = pluginParameterHash;
+    }
+  }
+
   _filtersPresenter->selectFilterFromHash(hash, false);
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     _filtersPresenter->expandFaveFolder();
@@ -419,7 +472,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
     ui->previewWidget->setPreviewFactor(GmicQt::PreviewFactorFullImage, true);
   } else {
     _filtersPresenter->adjustViewSize();
-    activateFilter(true);
+    activateFilter(true, pluginParametersCommandArguments);
     if (ui->cbPreview->isChecked()) {
       ui->previewWidget->sendUpdateRequest();
     }
@@ -1061,7 +1114,7 @@ bool MainWindow::filtersSelectionMode()
   return ui->tbSelectionMode->isChecked();
 }
 
-void MainWindow::activateFilter(bool resetZoom)
+void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
 {
   saveCurrentParameters();
   const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
@@ -1070,7 +1123,7 @@ void MainWindow::activateFilter(bool resetZoom)
   if (filter.hash.isEmpty()) {
     setNoFilter();
   } else {
-    QList<QString> savedValues = ParametersCache::getValues(filter.hash);
+    QList<QString> savedValues = values.isEmpty() ? ParametersCache::getValues(filter.hash) : values;
     if (savedValues.isEmpty() && filter.isAFave) {
       savedValues = filter.defaultParameterValues;
     }
@@ -1100,6 +1153,17 @@ void MainWindow::activateFilter(bool resetZoom)
         inOutState.inputMode = GmicQt::DefaultInputMode;
       }
     }
+
+    // Take plugin parameters into account
+    if (_pluginParameters.inputMode != GmicQt::UnspecifiedInputMode) {
+      inOutState.inputMode = _pluginParameters.inputMode;
+      _pluginParameters.inputMode = GmicQt::UnspecifiedInputMode;
+    }
+    if (_pluginParameters.outputMode != GmicQt::UnspecifiedOutputMode) {
+      inOutState.outputMode = _pluginParameters.outputMode;
+      _pluginParameters.outputMode = GmicQt::UnspecifiedOutputMode;
+    }
+
     ui->inOutSelector->setState(inOutState, false);
 
     ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));

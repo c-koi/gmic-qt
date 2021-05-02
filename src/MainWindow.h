@@ -66,8 +66,8 @@ public:
   explicit MainWindow(QWidget * parent = nullptr);
   ~MainWindow() override;
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
-
   void setDarkTheme();
+  void setPluginParameters(const GmicQt::PluginParameters & parameters);
 
 public slots:
   void onUpdateDownloadsFinished(int status);
@@ -114,7 +114,7 @@ protected:
   void showUpdateErrors();
   void makeConnections();
   void processImage();
-  void activateFilter(bool resetZoom);
+  void activateFilter(bool resetZoom, const QList<QString> & values = QList<QString>());
   void setNoFilter();
   void setPreviewPosition(PreviewPosition position);
   void adjustVerticalSplitter();
@@ -165,6 +165,7 @@ private:
   GmicProcessor _processor;
   ulong _lastPreviewKeypointBurstUpdateTime;
   static bool _isAccepted;
+  GmicQt::PluginParameters _pluginParameters;
 };
 
 #endif // GMIC_QT_MAINWINDOW_H

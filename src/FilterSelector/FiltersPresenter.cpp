@@ -337,6 +337,15 @@ void FiltersPresenter::selectFilterFromAbsolutePath(QString path)
   setCurrentFilter(hash);
 }
 
+void FiltersPresenter::selectFilterFromAbsolutePathOrPlainName(const QString & path)
+{
+  if (path.startsWith("/")) {
+    selectFilterFromAbsolutePath(path);
+  } else {
+    selectFilterFromPlainName(path);
+  }
+}
+
 const FiltersPresenter::Filter & FiltersPresenter::currentFilter() const
 {
   return _currentFilter;
@@ -407,7 +416,7 @@ const QString & FiltersPresenter::errorMessage() const
   return _errorMessage;
 }
 
-FiltersPresenter::Filter FiltersPresenter::findFilterFromAbsolutePathOrNameInStdlib(QString path)
+FiltersPresenter::Filter FiltersPresenter::findFilterFromAbsolutePathOrNameInStdlib(const QString & path)
 {
   FiltersPresenter presenter(nullptr);
   presenter.readFaves();
