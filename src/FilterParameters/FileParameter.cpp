@@ -75,6 +75,11 @@ QString FileParameter::textValue() const
   return QString("\"%1\"").arg(_value);
 }
 
+QString FileParameter::defaultTextValue() const
+{
+  return QString("\"%1\"").arg(_default);
+}
+
 QString FileParameter::unquotedTextValue() const
 {
   return _value;

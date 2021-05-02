@@ -24,11 +24,13 @@
  */
 
 #include "Misc.h"
+#include <QChar>
 #include <QMap>
 #include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 #include <cctype>
+#include "Globals.h"
 #include "HtmlTranslator.h"
 
 namespace
@@ -211,7 +213,10 @@ bool parseGmicUniqueFilterCommand(const char * text, QString & command, QString 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name)
 {
   QStringList noTags = {QString()};
-  for (const QString & str : path) {
+  for (QString str : path) {
+    if (str.startsWith(GmicQt::WarningPrefix)) {
+      str.remove(0, 1);
+    }
     noTags.push_back(HtmlTranslator::removeTags(str));
   }
   noTags.push_back(HtmlTranslator::removeTags(name));

@@ -57,6 +57,11 @@ QString ButtonParameter::textValue() const
   return _value ? QString("1") : QString("0");
 }
 
+QString ButtonParameter::defaultTextValue() const
+{
+  return QString("0");
+}
+
 void ButtonParameter::setValue(const QString & s)
 {
   _value = (s == "1");

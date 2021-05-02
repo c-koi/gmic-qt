@@ -43,6 +43,11 @@ QString ConstParameter::textValue() const
   return _value;
 }
 
+QString ConstParameter::defaultTextValue() const
+{
+  return _default;
+}
+
 void ConstParameter::setValue(const QString & value)
 {
   _value = value;

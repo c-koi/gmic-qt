@@ -64,6 +64,11 @@ QString ChoiceParameter::textValue() const
   return QString("%1").arg(_comboBox->currentIndex());
 }
 
+QString ChoiceParameter::defaultTextValue() const
+{
+  return QString("%1").arg(_default);
+}
+
 void ChoiceParameter::setValue(const QString & value)
 {
   bool ok = true;

@@ -93,6 +93,11 @@ QString IntParameter::textValue() const
   return _spinBox->text();
 }
 
+QString IntParameter::defaultTextValue() const
+{
+  return QString::number(_default);
+}
+
 void IntParameter::setValue(const QString & value)
 {
   bool ok = true;

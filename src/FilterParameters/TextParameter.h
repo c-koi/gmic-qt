@@ -41,6 +41,7 @@ public:
   ~TextParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
+  QString defaultTextValue() const override;
   QString unquotedTextValue() const override;
   void setValue(const QString & value) override;
   void reset() override;

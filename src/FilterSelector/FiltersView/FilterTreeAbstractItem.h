@@ -43,7 +43,6 @@ protected:
   QStandardItem * _visibilityItem;
 
 private:
-  static const QChar WarningPrefix;
   QString _plainText;
   bool _isWarning;
 };

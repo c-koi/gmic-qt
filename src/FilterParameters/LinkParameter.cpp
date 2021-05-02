@@ -60,6 +60,11 @@ QString LinkParameter::textValue() const
   return QString();
 }
 
+QString LinkParameter::defaultTextValue() const
+{
+  return QString();
+}
+
 void LinkParameter::setValue(const QString &) {}
 
 void LinkParameter::reset() {}

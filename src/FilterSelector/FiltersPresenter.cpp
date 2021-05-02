@@ -300,8 +300,7 @@ void FiltersPresenter::selectFilterFromPlainName(const QString & name)
 
 void FiltersPresenter::selectFilterFromCommand(const QString & command)
 {
-  // FIXME : What if more than one ?
-  // FIXME : Look in faves ?
+  // We consider only the first matching filter
   for (const FiltersModel::Filter & filter : _filtersModel) {
     if (filter.command() == command) {
       setCurrentFilter(filter.hash());
@@ -424,7 +423,7 @@ FiltersPresenter::Filter FiltersPresenter::findFilterFromAbsolutePathOrNameInStd
 FiltersPresenter::Filter FiltersPresenter::findFilterFromCommandInStdlib(const QString & command)
 {
   FiltersPresenter presenter(nullptr);
-  presenter.readFaves();
+  // presenter.readFaves();
   presenter.readFilters();
   presenter.selectFilterFromCommand(command);
   return presenter.currentFilter();

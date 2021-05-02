@@ -62,6 +62,11 @@ QString SeparatorParameter::textValue() const
   return QString();
 }
 
+QString SeparatorParameter::defaultTextValue() const
+{
+  return QString();
+}
+
 void SeparatorParameter::setValue(const QString &) {}
 
 void SeparatorParameter::reset() {}

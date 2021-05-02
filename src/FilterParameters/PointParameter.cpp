@@ -158,6 +158,11 @@ QString PointParameter::textValue() const
   return QString("%1,%2").arg(_position.x()).arg(_position.y());
 }
 
+QString PointParameter::defaultTextValue() const
+{
+  return QString("%1,%2").arg(_defaultPosition.x()).arg(_defaultPosition.y());
+}
+
 void PointParameter::setValue(const QString & value)
 {
   QStringList list = value.split(",");

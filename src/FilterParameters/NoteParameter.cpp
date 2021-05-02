@@ -60,6 +60,11 @@ QString NoteParameter::textValue() const
   return QString();
 }
 
+QString NoteParameter::defaultTextValue() const
+{
+  return QString();
+}
+
 void NoteParameter::setValue(const QString &) {}
 
 void NoteParameter::reset() {}

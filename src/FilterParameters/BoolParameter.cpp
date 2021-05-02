@@ -67,6 +67,11 @@ QString BoolParameter::textValue() const
   return _value ? QString("1") : QString("0");
 }
 
+QString BoolParameter::defaultTextValue() const
+{
+  return _default ? QString("1") : QString("0");
+}
+
 void BoolParameter::setValue(const QString & value)
 {
   _value = (value == "1");

@@ -83,6 +83,13 @@ QString TextParameter::textValue() const
   return QString("\"%1\"").arg(text);
 }
 
+QString TextParameter::defaultTextValue() const
+{
+  QString text = _default;
+  text.replace(QChar('"'), QString("\\\""));
+  return QString("\"%1\"").arg(text);
+}
+
 QString TextParameter::unquotedTextValue() const
 {
   return _multiline ? _textEdit->text() : _lineEdit->text();

@@ -84,6 +84,15 @@ QString ColorParameter::textValue() const
   return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
 }
 
+QString ColorParameter::defaultTextValue() const
+{
+  const QColor & c = _default;
+  if (_alphaChannel) {
+    return QString("%1,%2,%3,%4").arg(c.red()).arg(c.green()).arg(c.blue()).arg(c.alpha());
+  }
+  return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
+}
+
 void ColorParameter::setValue(const QString & value)
 {
   QStringList list = value.split(",");

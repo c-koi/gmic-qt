@@ -24,14 +24,13 @@
  */
 #include "FilterTreeAbstractItem.h"
 #include "FilterTextTranslator.h"
+#include "Globals.h"
 #include "HtmlTranslator.h"
-
-const QChar FilterTreeAbstractItem::WarningPrefix('!');
 
 FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
 {
   _visibilityItem = nullptr;
-  if (text.startsWith(WarningPrefix)) {
+  if (text.startsWith(GmicQt::WarningPrefix)) {
     text.remove(0, 1);
     _isWarning = true;
   } else {
@@ -87,7 +86,7 @@ QStringList FilterTreeAbstractItem::path() const
 
 QString FilterTreeAbstractItem::removeWarningPrefix(QString folderName)
 {
-  if (folderName.startsWith(WarningPrefix)) {
+  if (folderName.startsWith(GmicQt::WarningPrefix)) {
     folderName.remove(0, 1);
   }
   return folderName;

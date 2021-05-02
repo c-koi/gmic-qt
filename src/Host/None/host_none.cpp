@@ -240,18 +240,22 @@ int main(int argc, char * argv[])
     gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
     GmicQt::PluginParameters parameters;
     int status;
-    if (true) {
+    if (false) {
       //  parameters.filterPath = "/Artistic/Cartoon";
       //  parameters.command = "cartoon 3,200,20,0.25,1.5,8,0,50,50";
       //  parameters.filterPath = "/Artistic/Cutout";
       parameters.command = "fx_cutout 4,0.5,4,1,0,50,50"; // TODO : Find filter in this case
+      parameters.command = "fx_toto ";
+      parameters.command = "fx_toto 10,20,Sebastien";
+      parameters.command = "";
+      parameters.filterPath = "Relief Light";
       parameters.inputMode = GmicQt::Active;
       parameters.outputMode = GmicQt::InPlace;
       status = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
     } else {
       status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
     }
-    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::BeforeFilterExecution);
     STDSHOW(parameters.filterPath);
     STDSHOW(parameters.command);
     STDSHOW(parameters.inputMode);

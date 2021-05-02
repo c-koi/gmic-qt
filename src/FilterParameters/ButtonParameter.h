@@ -40,6 +40,7 @@ public:
   ~ButtonParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
+  QString defaultTextValue() const override;
   void setValue(const QString &) override;
   void clear() override;
   void reset() override;

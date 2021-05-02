@@ -40,6 +40,7 @@ public:
   bool isActualParameter() const;
   virtual bool addTo(QWidget *, int row) = 0;
   virtual QString textValue() const = 0;
+  virtual QString defaultTextValue() const = 0;
   virtual QString unquotedTextValue() const;
   virtual bool isQuoted() const;
   virtual void setValue(const QString & value) = 0;

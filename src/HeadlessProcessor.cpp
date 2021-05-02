@@ -80,16 +80,38 @@ bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & par
       QString arguments;
       QStringList argumentList;
       FiltersPresenter::Filter filter;
+      QVector<AbstractParameter *> defaultParameters;
       if (parseGmicUniqueFilterCommand(parameters.command.c_str(), command, arguments) //
           && parseGmicUniqueFilterParameters(arguments.toUtf8().constData(), argumentList)) {
         filter = FiltersPresenter::findFilterFromCommandInStdlib(command);
       }
       if (filter.isValid()) {
-        _filterName = filter.plainTextName;
-        _hash = filter.hash;
-        _path = filter.fullPath;
-        _command = command;
-        _arguments = arguments;
+        QString error;
+        QObject parent;
+        defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, &parent, nullptr, &error);
+        if (error.isEmpty()) {
+          if ((argumentList.size() == 0) && defaultParameters.size()) {
+            _filterName = filter.plainTextName;
+            _hash = filter.hash;
+            _path = filter.fullPath;
+            _command = command;
+            _arguments = FilterParametersWidget::defaultValueString(defaultParameters);
+          } else if (defaultParameters.size() == argumentList.size()) {
+            _filterName = filter.plainTextName;
+            _hash = filter.hash;
+            _path = filter.fullPath;
+            _command = command;
+            _arguments = arguments;
+          } else {
+            _errorMessage = tr("Wrong number of argument for command %1 [which is %2] (%3 provided, should be %4).") //
+                                .arg(command)
+                                .arg(filter.fullPath)
+                                .arg(argumentList.size())
+                                .arg(defaultParameters.size());
+          }
+        } else {
+          _errorMessage = tr("Error parsing filter parameters definition for filter %1\nCannot retrieve default filter parameters\n%2").arg(filter.fullPath).arg(error);
+        }
       } else {
         _filterName = tr("Custom command (%1)").arg(elided(QString::fromStdString(parameters.command), 35));
         _command = "skip 0";
@@ -106,12 +128,13 @@ bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & par
     } else {
       if (parameters.command.empty()) {
         QString error;
-        QVector<AbstractParameter *> defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, nullptr, nullptr, &error);
+        QObject parent;
+        QVector<AbstractParameter *> defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, &parent, nullptr, &error);
         if (error.isEmpty()) {
           _filterName = filter.plainTextName;
           _hash = filter.hash;
           _command = filter.command;
-          _arguments = FilterParametersWidget::valueString(defaultParameters);
+          _arguments = FilterParametersWidget::defaultValueString(defaultParameters);
         } else {
           _errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(_path).arg(error);
         }

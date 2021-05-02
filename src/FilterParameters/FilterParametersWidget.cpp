@@ -349,6 +349,25 @@ QString FilterParametersWidget::valueString(const QVector<AbstractParameter *> &
   return result;
 }
 
+QString FilterParametersWidget::defaultValueString(const QVector<AbstractParameter *> & parameters)
+{
+  QString result;
+  bool firstParameter = true;
+  for (AbstractParameter * parameter : parameters) {
+    if (parameter->isActualParameter()) {
+      QString str = parameter->defaultTextValue();
+      if (!str.isNull()) {
+        if (!firstParameter) {
+          result += ",";
+        }
+        result += str;
+        firstParameter = false;
+      }
+    }
+  }
+  return result;
+}
+
 void FilterParametersWidget::updateValueString(bool notify)
 {
   _valueString = valueString(_presetParameters);

@@ -62,6 +62,7 @@ public:
   bool hasKeypoints() const;
 
   static QString valueString(const QVector<AbstractParameter *> & parameters);
+  static QString defaultValueString(const QVector<AbstractParameter *> & parameters);
   static QVector<AbstractParameter *> buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * error);
 
 public slots:

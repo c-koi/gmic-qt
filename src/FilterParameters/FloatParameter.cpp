@@ -94,6 +94,15 @@ QString FloatParameter::textValue() const
   return value;
 }
 
+QString FloatParameter::defaultTextValue() const
+{
+  QLocale currentLocale;
+  QLocale::setDefault(QLocale::c());
+  QString value = QString("%1").arg(static_cast<double>(_default));
+  QLocale::setDefault(currentLocale);
+  return value;
+}
+
 void FloatParameter::setValue(const QString & value)
 {
   bool ok = true;

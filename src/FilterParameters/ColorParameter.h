@@ -42,6 +42,7 @@ public:
   ~ColorParameter() override;
   bool addTo(QWidget *, int row) override;
   QString textValue() const override;
+  QString defaultTextValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;

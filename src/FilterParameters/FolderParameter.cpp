@@ -68,6 +68,11 @@ QString FolderParameter::textValue() const
   return QString("\"%1\"").arg(_value);
 }
 
+QString FolderParameter::defaultTextValue() const
+{
+  return QString("\"%1\"").arg(_default);
+}
+
 QString FolderParameter::unquotedTextValue() const
 {
   return _value;
