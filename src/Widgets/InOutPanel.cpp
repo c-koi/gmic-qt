@@ -61,15 +61,15 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
 
 #define ADD_INPUT_IF_ENABLED(MODE, TEXT)                                                                                                                                                               \
   if (_enabledInputModes.contains(MODE))                                                                                                                                                               \
-  ui->inputLayers->addItem(tr(TEXT), MODE)
+  ui->inputLayers->addItem(TEXT, MODE)
 
-  ADD_INPUT_IF_ENABLED(GmicQt::NoInput, "None");
-  ADD_INPUT_IF_ENABLED(GmicQt::Active, "Active (default)");
-  ADD_INPUT_IF_ENABLED(GmicQt::All, "All");
-  ADD_INPUT_IF_ENABLED(GmicQt::ActiveAndBelow, "Active and below");
-  ADD_INPUT_IF_ENABLED(GmicQt::ActiveAndAbove, "Active and above");
-  ADD_INPUT_IF_ENABLED(GmicQt::AllVisible, "All visible");
-  ADD_INPUT_IF_ENABLED(GmicQt::AllInvisible, "All invisible");
+  ADD_INPUT_IF_ENABLED(GmicQt::NoInput, tr("None"));
+  ADD_INPUT_IF_ENABLED(GmicQt::Active, tr("Active (default)"));
+  ADD_INPUT_IF_ENABLED(GmicQt::All, tr("All"));
+  ADD_INPUT_IF_ENABLED(GmicQt::ActiveAndBelow, tr("Active and below"));
+  ADD_INPUT_IF_ENABLED(GmicQt::ActiveAndAbove, tr("Active and above"));
+  ADD_INPUT_IF_ENABLED(GmicQt::AllVisible, tr("All visible"));
+  ADD_INPUT_IF_ENABLED(GmicQt::AllInvisible, tr("All invisible"));
   // "decr." input mode have been removed (since 2.8.2)
   //  ui->inputLayers->addItem(tr("All visible (decr.)"), GmicQt::AllVisiblesDesc);
   //  ui->inputLayers->addItem(tr("All invisible (decr.)"), GmicQt::AllInvisiblesDesc);
@@ -84,12 +84,12 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
 
 #define ADD_OUTPUT_IF_ENABLED(MODE, TEXT)                                                                                                                                                              \
   if (_enabledOutputModes.contains(MODE))                                                                                                                                                              \
-  ui->outputMode->addItem(tr(TEXT), MODE)
+  ui->outputMode->addItem(TEXT, MODE)
 
-  ADD_OUTPUT_IF_ENABLED(GmicQt::InPlace, "In place (default)");
-  ADD_OUTPUT_IF_ENABLED(GmicQt::NewLayers, "New layer(s)");
-  ADD_OUTPUT_IF_ENABLED(GmicQt::NewActiveLayers, "New active layer(s)");
-  ADD_OUTPUT_IF_ENABLED(GmicQt::NewImage, "New image");
+  ADD_OUTPUT_IF_ENABLED(GmicQt::InPlace, tr("In place (default)"));
+  ADD_OUTPUT_IF_ENABLED(GmicQt::NewLayers, tr("New layer(s)"));
+  ADD_OUTPUT_IF_ENABLED(GmicQt::NewActiveLayers, tr("New active layer(s)"));
+  ADD_OUTPUT_IF_ENABLED(GmicQt::NewImage, tr("New image"));
 
   if (ui->outputMode->count() == 1) {
     ui->labelOutputMode->hide();
