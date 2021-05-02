@@ -422,6 +422,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   // If plugin was called with parameters
   QList<QString> pluginParametersCommandArguments;
   if (!_pluginParameters.command.empty() || !_pluginParameters.filterPath.empty()) {
+#define ELIDED(TEXT) elided(QString::fromStdString(TEXT), 80)
     QString path = QString::fromStdString(_pluginParameters.filterPath);
     QString pluginParameterHash;
     QString command;
@@ -433,7 +434,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
       if (_filtersPresenter->currentFilter().isValid()) {
         pluginParameterHash = _filtersPresenter->currentFilter().hash;
       } else {
-        errorMessage = tr("Plugin was called with a filter path with no matching filter:\n%1").arg(QString::fromStdString(_pluginParameters.filterPath));
+        errorMessage = tr("Plugin was called with a filter path with no matching filter:\n\nPath: %1").arg(ELIDED(_pluginParameters.filterPath));
       }
     }
     if (_pluginParameters.command.empty()) {
@@ -444,24 +445,25 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
         _filtersPresenter->selectFilterFromCommand(command);
         if (_filtersPresenter->currentFilter().isInvalid()) {
           pluginParameterHash.clear();
-          errorMessage = tr("Plugin was called with a command that cannot be recognized as a filter:\n%1").arg(QString::fromStdString(_pluginParameters.command));
+          errorMessage = tr("Plugin was called with a command that cannot be recognized as a filter:\n\nCommand: %1").arg(ELIDED(_pluginParameters.command));
         } else if ((not pluginParameterHash.isEmpty()) && (_filtersPresenter->currentFilter().hash != pluginParameterHash)) {
           pluginParameterHash.clear();
-          errorMessage = tr("Plugin was called with a command that do not match the provided path:\nPath: %1\nCommand: %2") //
-                             .arg(QString::fromStdString(_pluginParameters.command))
-                             .arg(QString::fromStdString(_pluginParameters.filterPath));
+          errorMessage = tr("Plugin was called with a command that do not match the provided path:\n\nPath: %1\nCommand: %2") //
+                             .arg(ELIDED(_pluginParameters.command))
+                             .arg(ELIDED(_pluginParameters.filterPath));
         } else {
           pluginParameterHash = _filtersPresenter->currentFilter().hash;
           pluginParametersCommandArguments = argumentList;
         }
       } else {
         pluginParameterHash.clear();
-        errorMessage = tr("Plugin was called with a command that cannot be parsed: %1").arg(QString::fromStdString(_pluginParameters.command));
+        errorMessage = tr("Plugin was called with a command that cannot be parsed:\n\n%1").arg(ELIDED(_pluginParameters.command));
       }
     }
-
     if (not pluginParameterHash.isEmpty()) {
       hash = pluginParameterHash;
+    } else if (!errorMessage.isEmpty()) {
+      QMessageBox::critical(this, "Error with plugin arguments", errorMessage);
     }
   }
 

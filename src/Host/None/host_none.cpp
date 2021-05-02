@@ -254,7 +254,7 @@ int main(int argc, char * argv[])
       status = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
     } else {
       // parameters.command = "fx_toto 10,20,\"Je suis Sebastien\"";
-      // parameters.filterPath = "Relief Light";
+      parameters.filterPath = "Relief Lightdsdsds";
       status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
     }
     parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::BeforeFilterExecution);
