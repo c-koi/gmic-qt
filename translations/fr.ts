@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Original French translation done by Sébastien Fourey -->
-
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
@@ -307,13 +304,14 @@
     <message>
         <location filename="../src/GmicProcessor.cpp" line="288"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image No%1 retournée par le filtre possède %2 canaux (4 est la limite)</translation>
     </message>
     <message>
         <location filename="../src/GmicProcessor.cpp" line="322"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image No%1 retournée par le filtre possède %2 canaux
+(4 est la limite)</translation>
     </message>
 </context>
 <context>
@@ -321,29 +319,31 @@
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="77"/>
         <source>At least a filter path or a filter command must be provided.</source>
-        <translation type="unfinished"></translation>
+        <translation>Au moins un chemin de filtre ou une commande doivent être founis.</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="106"/>
         <source>Wrong number of argument for command %1 [which is %2] (%3 provided, should be %4).</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre d&apos;arguments incorrect pour la commande %1 [c.-à-d. %2] (%3 founi(s), %4 requi(s)).</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="113"/>
         <source>Error parsing filter parameters definition for filter %1
 Cannot retrieve default filter parameters
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de lecture de la définition des paramètres du filtre %1
+Impossible de déterminer les paramètres par défaut
+%2</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="116"/>
         <source>Custom command (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande personnalisée (%1)</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="127"/>
         <source>Cannot find filter matching path %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de trouver un filtre correspondant au chemin %1</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="139"/>
@@ -354,17 +354,23 @@ Cannot retrieve default filter parameters
 Cannot retrieve default parameters.
 
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de lecture de la définition des paramètres pour le filtre :
+
+%1
+
+Impossible de déterminer les paramètres par défaut.
+
+%2</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="151"/>
         <source>Supplied command [%1] does not match path [%2] (should be %3).</source>
-        <translation type="unfinished"></translation>
+        <translation>La command fournie [%1] ne correspond pas au chemin [%2] (devrait être %3).</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="256"/>
         <source>Filter execution failed, but with no error message.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;exécution du filtre a échoué, mais sans message d&apos;erreur.</translation>
     </message>
 </context>
 <context>
@@ -624,14 +630,18 @@ Cannot retrieve default parameters.
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Le plugin a été appelé avec un chemin qui ne correspond à aucun filtre :
+
+Chemin: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="448"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Le plugin a été appelé avec une commande qui ne correspond à aucun filtre :
+
+Commande: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="451"/>
@@ -639,14 +649,19 @@ Command: %1</source>
 
 Path: %1
 Command: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Le plugin a été appelé avec une commande qui ne correspond pas au chemin fourni :
+
+Chemin: %1
+Commande: %2</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="460"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Le plugin a été appelé avec une commande invalide :
+
+%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="562"/>
