@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Original Polish translation by Alex Mozheiko -->
+<!-- Original Polish translation done by Alex Mozheiko -->
 
 <!DOCTYPE TS>
 <TS version="2.1" language="pl">
