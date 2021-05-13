@@ -24,6 +24,11 @@
  */
 #include "Host/None/ImageDialog.h"
 #include <QDebug>
+#include <QFileInfo>
+#include <QImageWriter>
+#include <QString>
+#include <QStringList>
+#include "Common.h"
 #include "gmic.h"
 
 ImageView::ImageView(QWidget * parent) : QWidget(parent) {}
@@ -56,10 +61,10 @@ ImageDialog::ImageDialog(QWidget * parent) : QDialog(parent)
 
   auto hbox = new QHBoxLayout;
   vbox->addLayout(hbox);
-  _closeButton = new QPushButton("Close");
+  _closeButton = new QPushButton(tr("Close"));
   connect(_closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked(bool)));
   hbox->addWidget(_closeButton);
-  _saveButton = new QPushButton("Save as...");
+  _saveButton = new QPushButton(tr("Save as..."));
   connect(_saveButton, SIGNAL(clicked(bool)), this, SLOT(onSaveAs()));
   hbox->addWidget(_saveButton);
 }
@@ -88,11 +93,23 @@ int ImageDialog::currentImageIndex() const
 void ImageDialog::onSaveAs()
 {
   QString selectedFilter;
-  QString filename = QFileDialog::getSaveFileName(this, "Save image as...", QString(), "PNG file (*.png);;JPEG file (*.jpg)", &selectedFilter);
+  QStringList extensions;
+  for (const auto & ext : QImageWriter::supportedImageFormats()) {
+    extensions.push_back(QString::fromLatin1(ext).toLower());
+  }
+  QStringList filters;
+  for (const auto & extension : extensions) {
+    QString filter = QString("%1 file (*.%2)").arg(extension.toUpper()).arg(extension);
+    if (extension == "png" || extension == "jpg" || extension == "jpeg") {
+      filters.push_front(filter);
+    } else {
+      filters.push_back(filter);
+    }
+  }
+  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters.join(";;"), &selectedFilter);
   QString extension = selectedFilter.split("*").back();
   extension.chop(1);
-  const QString upper = filename.toUpper();
-  if (!upper.endsWith(".PNG") && !upper.endsWith(".JPG") && !upper.endsWith(".JPEG")) {
+  if (!extensions.contains(QFileInfo(filename).suffix())) {
     filename += extension;
   }
   if (!filename.isEmpty()) {
@@ -112,7 +129,7 @@ void ImageView::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   QImage displayed;
-  if ((_image.width() / (float)_image.height()) > (width() / (float)height())) {
+  if ((static_cast<float>(_image.width()) / static_cast<float>(_image.height())) > (static_cast<float>(width()) / static_cast<float>(height()))) {
     displayed = _image.scaledToWidth(width());
     p.drawImage(0, (height() - displayed.height()) / 2, displayed);
   } else {
