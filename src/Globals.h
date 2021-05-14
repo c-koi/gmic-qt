@@ -47,7 +47,11 @@ extern const float PreviewFactorActualSize;
 #define REFRESH_USING_INTERNET_KEY "Config/RefreshInternetUpdate"
 #define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
 #define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()
-#define INTERNET_DEFAULT_PERIODICITY (7 * 24)
+#define ONE_DAY_HOURS (24)
+#define ONE_WEEK_HOURS (7 * 24)
+#define TWO_WEEKS_HOURS (14 * 24)
+#define ONE_MONTH_HOURS (30 * 24)
+#define INTERNET_DEFAULT_PERIODICITY ONE_MONTH_HOURS
 
 #define PREVIEW_MAX_ZOOM_FACTOR 40.0
 

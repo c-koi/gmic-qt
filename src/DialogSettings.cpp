@@ -72,10 +72,10 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   ui->pbUpdate->setIcon(LOAD_ICON("view-refresh"));
 
   ui->cbUpdatePeriodicity->addItem(tr("Never"), QVariant(INTERNET_NEVER_UPDATE_PERIODICITY));
-  ui->cbUpdatePeriodicity->addItem(tr("Daily"), QVariant(24));
-  ui->cbUpdatePeriodicity->addItem(tr("Weekly"), QVariant(7 * 24));
-  ui->cbUpdatePeriodicity->addItem(tr("Every 2 weeks"), QVariant(14 * 24));
-  ui->cbUpdatePeriodicity->addItem(tr("Monthly"), QVariant(30 * 24));
+  ui->cbUpdatePeriodicity->addItem(tr("Daily"), QVariant(ONE_DAY_HOURS));
+  ui->cbUpdatePeriodicity->addItem(tr("Weekly"), QVariant(ONE_WEEK_HOURS));
+  ui->cbUpdatePeriodicity->addItem(tr("Every 2 weeks"), QVariant(TWO_WEEKS_HOURS));
+  ui->cbUpdatePeriodicity->addItem(tr("Monthly"), QVariant(ONE_MONTH_HOURS));
 #ifdef _GMIC_QT_DEBUG_
   ui->cbUpdatePeriodicity->addItem(tr("At launch (debug)"), QVariant(0));
 #endif
