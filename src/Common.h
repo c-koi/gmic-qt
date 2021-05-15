@@ -35,7 +35,7 @@
 #define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
 #define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << __LINE__ << "]" << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
-#define STDSHOW(V) std::cout << #V << "=" << (V) << std::endl
+#define STDSHOW(V) std::cout << #V << " = " << (V) << std::endl
 #else
 #define ENTERING while (false)
 #define LEAVING while (false)

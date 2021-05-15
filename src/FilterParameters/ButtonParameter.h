@@ -38,9 +38,10 @@ class ButtonParameter : public AbstractParameter {
 public:
   ButtonParameter(QObject * parent = nullptr);
   ~ButtonParameter() override;
+  virtual int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
-  QString defaultTextValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString &) override;
   void clear() override;
   void reset() override;

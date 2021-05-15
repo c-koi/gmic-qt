@@ -41,6 +41,7 @@
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "OverrideCursor.h"
 #include "gmic.h"
 
@@ -226,7 +227,7 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname), empty);
     settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), empty);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), empty);
-    settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), QStringList());
+    settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname), QString());
     settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), 0);
     settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), 0);
   } else {
@@ -234,7 +235,8 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _lastAppliedFilterHash);
     settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _lastAppliedCommand);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
-    settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandGmicStatus);
+    QString status = flattenGmicParameterList(_lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
+    settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname), status);
     settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
     settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
   }
@@ -247,6 +249,11 @@ GmicProcessor::~GmicProcessor()
   if (!_unfinishedAbortedThreads.isEmpty()) {
     Logger::error(QString("~GmicProcessor(): There are %1 unfinished filter threads.").arg(_unfinishedAbortedThreads.size()));
   }
+}
+
+void GmicProcessor::setGmicStatusQuotedParameters(const QVector<bool> & quotedParameters)
+{
+  _gmicStatusQuotedParameters = quotedParameters;
 }
 
 void GmicProcessor::onPreviewThreadFinished()

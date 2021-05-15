@@ -43,11 +43,12 @@ class PointParameter : public AbstractParameter {
 public:
   PointParameter(QObject * parent = nullptr);
   ~PointParameter() override;
+  int size() const override;
   bool addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
-  QString textValue() const override;
-  QString defaultTextValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;

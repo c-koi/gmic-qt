@@ -33,11 +33,16 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
-NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent, false), _label(nullptr) {}
+NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr) {}
 
 NoteParameter::~NoteParameter()
 {
   delete _label;
+}
+
+int NoteParameter::size() const
+{
+  return 0;
 }
 
 bool NoteParameter::addTo(QWidget * widget, int row)
@@ -55,12 +60,12 @@ bool NoteParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString NoteParameter::textValue() const
+QString NoteParameter::value() const
 {
   return QString();
 }
 
-QString NoteParameter::defaultTextValue() const
+QString NoteParameter::defaultValue() const
 {
   return QString();
 }

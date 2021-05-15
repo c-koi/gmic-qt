@@ -139,6 +139,7 @@ private:
   };
   bool askUserForGTKFavesImport();
   void buildFiltersTree();
+  void retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters);
 
   enum ProcessingAction
   {

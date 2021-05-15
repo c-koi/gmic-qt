@@ -38,12 +38,17 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
-FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _button(nullptr) {}
+FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _button(nullptr) {}
 
 FolderParameter::~FolderParameter()
 {
   delete _label;
   delete _button;
+}
+
+int FolderParameter::size() const
+{
+  return 1;
 }
 
 bool FolderParameter::addTo(QWidget * widget, int row)
@@ -63,19 +68,14 @@ bool FolderParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString FolderParameter::textValue() const
-{
-  return QString("\"%1\"").arg(_value);
-}
-
-QString FolderParameter::defaultTextValue() const
-{
-  return QString("\"%1\"").arg(_default);
-}
-
-QString FolderParameter::unquotedTextValue() const
+QString FolderParameter::value() const
 {
   return _value;
+}
+
+QString FolderParameter::defaultValue() const
+{
+  return _default;
 }
 
 void FolderParameter::setValue(const QString & value)

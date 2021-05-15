@@ -34,12 +34,17 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
-BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent, true), _default(false), _value(false), _label(nullptr), _checkBox(nullptr), _connected(false) {}
+BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent), _default(false), _value(false), _label(nullptr), _checkBox(nullptr), _connected(false) {}
 
 BoolParameter::~BoolParameter()
 {
   delete _checkBox;
   delete _label;
+}
+
+int BoolParameter::size() const
+{
+  return 1;
 }
 
 bool BoolParameter::addTo(QWidget * widget, int row)
@@ -62,12 +67,12 @@ bool BoolParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString BoolParameter::textValue() const
+QString BoolParameter::value() const
 {
   return _value ? QString("1") : QString("0");
 }
 
-QString BoolParameter::defaultTextValue() const
+QString BoolParameter::defaultValue() const
 {
   return _default ? QString("1") : QString("0");
 }

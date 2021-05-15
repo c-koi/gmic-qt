@@ -52,11 +52,6 @@ FilterThread::~FilterThread()
   delete _imageNames;
 }
 
-void FilterThread::setArguments(const QString & str)
-{
-  _arguments = str;
-}
-
 void FilterThread::setImageNames(const cimg_library::CImgList<char> & imageNames)
 {
   *_imageNames = imageNames;
@@ -94,9 +89,9 @@ QStringList FilterThread::status2StringList(const QString & status)
     // TRACE << "Warning: Incorrect status syntax " << status;
     return QStringList();
   }
-  QList<QString> list = statusRegExp.cap(1).split(statusSeparatorRegExp);
+  QStringList list = statusRegExp.cap(1).split(statusSeparatorRegExp);
   if (!list.isEmpty()) {
-    QList<QString>::iterator it = list.begin();
+    QStringList::iterator it = list.begin();
     while (it != list.end()) {
       QByteArray array = it->toLocal8Bit();
       gmic::strreplace_fw(array.data());
@@ -169,7 +164,7 @@ bool FilterThread::aborted() const
 
 int FilterThread::duration() const
 {
-  return _startTime.elapsed();
+  return static_cast<int>(_startTime.elapsed());
 }
 
 float FilterThread::progress() const
@@ -209,7 +204,7 @@ void FilterThread::run()
     if (_messageMode > GmicQt::Quiet) {
       Logger::log(fullCommandLine, _logSuffix, true);
     }
-    gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, 0, 0, 0.0f);
+    gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, nullptr, nullptr, 0.0f);
     gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
     gmicInstance.set_variable("_tk", "qt", '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);

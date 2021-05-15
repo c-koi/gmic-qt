@@ -24,14 +24,21 @@
  */
 
 #include "Misc.h"
+#include <QByteArray>
 #include <QChar>
+#include <QDebug>
 #include <QMap>
 #include <QRegularExpression>
 #include <QString>
 #include <QStringList>
+#include <QTextStream>
+#include <algorithm>
 #include <cctype>
+#include "Common.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
+#include "Logger.h"
+#include "gmic.h"
 
 namespace
 {
@@ -121,7 +128,12 @@ void downcaseCommandTitle(QString & title)
   title[0] = title[0].toUpper();
 }
 
-bool parseGmicUniqueFilterParameters(const char * text, QStringList & args)
+bool parseGmicFilterParameters(const QString & text, QStringList & args)
+{
+  return parseGmicFilterParameters(text.toUtf8().constData(), args);
+}
+
+bool parseGmicFilterParameters(const char * text, QStringList & args)
 {
   args.clear();
   if (!text) {
@@ -205,9 +217,30 @@ bool parseGmicUniqueFilterCommand(const char * text, QString & command, QString 
   if (quoted || (meaningfulSpaceFound && !isEmptyOrSpaceSequence(pc))) {
     return false;
   }
-  command = QString::fromUtf8(commandBegin, static_cast<int>(commandEnd - commandBegin)); // TODO : Delay this
+  command = QString::fromUtf8(commandBegin, static_cast<int>(commandEnd - commandBegin));
   arguments = QString::fromUtf8(argumentStart, static_cast<int>(pc - argumentStart));
   return true;
+}
+
+QString escapeUnescapedQuotes(const QString & text)
+{
+  std::string source_str = text.toStdString();
+  const char * pc = source_str.c_str();
+  std::vector<char> output_str(2 * source_str.size() + 1, static_cast<char>(0));
+  char * out = output_str.data();
+  bool escaped = false;
+  while (*pc) {
+    if (escaped) {
+      escaped = false;
+    } else if (*pc == '\\') {
+      escaped = true;
+    } else if (*pc == '"') {
+      *out++ = '\\';
+    }
+    *out++ = *pc++;
+  }
+  QString result = QString::fromUtf8(output_str.data());
+  return result;
 }
 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name)
@@ -230,18 +263,17 @@ QString filterFullPathBasename(const QString & path)
   return result;
 }
 
-// FIXME : test status with "
-
-QString flattenGmicParameterList(const QList<QString> & list)
+QString flattenGmicParameterList(const QList<QString> & list, const QVector<bool> & quotedParameters)
 {
   QString result;
   if (list.isEmpty()) {
     return result;
   }
-  QList<QString>::const_iterator itList = list.begin();
-  result += QString("\"%1\"").arg(*itList++).replace(QChar('"'), QString("\\\""));
+  QList<QString>::const_iterator itList = list.constBegin();
+  QVector<bool>::const_iterator itQuoting = quotedParameters.constBegin();
+  result += (*itQuoting++) ? quotedString(*itList++) : (*itList++);
   while (itList != list.end()) {
-    result += QString(",\"%1\"").arg(*itList++).replace(QChar('"'), QString("\\\""));
+    result += QString(",%1").arg((*itQuoting++) ? quotedString(*itList++) : (*itList++));
   }
   return result;
 }
@@ -260,4 +292,104 @@ QString elided(const QString & text, int width)
     return text;
   }
   return text.left(std::max(0, width - 3)) + "...";
+}
+
+QVector<bool> quotedParameters(const QList<QString> & parameters)
+{
+  QVector<bool> result;
+  for (const auto & str : parameters) {
+    result.push_back(str.startsWith("\""));
+  }
+  return result;
+}
+
+QStringList mergeSubsequences(const QStringList & sequence, const QVector<int> & subSequenceLengths)
+{
+  QStringList result;
+  QVector<int> lengths = subSequenceLengths;
+  QStringList::const_iterator itInput = sequence.constBegin();
+  QVector<int>::iterator itLength = lengths.begin();
+  while ((itInput != sequence.constEnd()) && (itLength != lengths.end())) {
+    if (*itLength <= 0) {
+      ++itLength;
+      continue;
+    }
+    QString text = *itInput++;
+    --(*itLength);
+    while (*itLength > 0) {
+      text += QString(",%1").arg(*itInput++);
+      --(*itLength);
+    }
+    result.push_back(text);
+    ++itLength;
+  }
+  if ((itInput != sequence.constEnd()) || (itLength != lengths.end())) {
+    Logger::warning(QObject::tr("List %1 cannot be merged considering theses runs: %2").arg(stringify(sequence)).arg(stringify(subSequenceLengths)));
+    return QStringList();
+  }
+  return result;
+}
+
+QStringList completePrefixFromFullList(const QStringList & prefix, const QStringList & fullList)
+{
+  if (fullList.size() <= prefix.size()) {
+    return prefix;
+  }
+  QStringList result = prefix;
+  QStringList::const_iterator it = fullList.constBegin();
+  it += prefix.size();
+  while (it != fullList.constEnd()) {
+    result.push_back(*it++);
+  }
+  return result;
+}
+
+QString quotedString(QString text)
+{
+  return QString("\"%1\"").arg(escapeUnescapedQuotes(text));
+}
+
+QStringList quotedStringList(const QStringList & stringList)
+{
+  QStringList result;
+  for (const auto & text : stringList) {
+    result.push_back(quotedString(text));
+  }
+  return result;
+}
+
+QString unescaped(const QString & text)
+{
+  QByteArray ba = text.toUtf8();
+  cimg_library::cimg::strunescape(ba.data());
+  return QString::fromUtf8(ba.data());
+}
+
+QString unquoted(const QString & text)
+{
+  QRegularExpression re("^\\s*\"(.*)\"\\s*$");
+  auto match = re.match(text);
+  if (match.hasMatch()) {
+    return match.captured(1);
+  } else {
+    return text.trimmed();
+  }
+}
+
+QStringList expandParameterList(const QStringList & parameters, QVector<int> sizes)
+{
+  QStringList result;
+  Q_ASSERT_X(parameters.size() == sizes.size(), __PRETTY_FUNCTION__, "Sizes are different");
+  QStringList::const_iterator itParam = parameters.constBegin();
+  auto itSize = sizes.constBegin();
+  while (itParam != parameters.constEnd() && itSize != sizes.constEnd()) {
+    if (*itSize > 1) {
+      result.append(itParam->split(","));
+    } else {
+      result.push_back(*itParam);
+    }
+    ++itParam;
+    ++itSize;
+  }
+  return result;
 }

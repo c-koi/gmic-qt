@@ -28,8 +28,14 @@
 #include "Common.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
+#include "Misc.h"
 
-ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent, true) {}
+ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent) {}
+
+int ConstParameter::size() const
+{
+  return 1;
+}
 
 ConstParameter::~ConstParameter() = default;
 
@@ -38,12 +44,17 @@ bool ConstParameter::addTo(QWidget *, int)
   return false;
 }
 
-QString ConstParameter::textValue() const
+bool ConstParameter::isQuoted() const
+{
+  return true;
+}
+
+QString ConstParameter::value() const
 {
   return _value;
 }
 
-QString ConstParameter::defaultTextValue() const
+QString ConstParameter::defaultValue() const
 {
   return _default;
 }
@@ -65,6 +76,6 @@ bool ConstParameter::initFromText(const char * text, int & textLength)
     return false;
   }
   _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
-  _value = _default = list[1];
+  _value = _default = unescaped(unquoted(list[1]));
   return true;
 }

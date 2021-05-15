@@ -38,12 +38,17 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
-FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _button(nullptr), _dialogMode(InputOutputMode) {}
+FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _button(nullptr), _dialogMode(InputOutputMode) {}
 
 FileParameter::~FileParameter()
 {
   delete _label;
   delete _button;
+}
+
+int FileParameter::size() const
+{
+  return 1;
 }
 
 bool FileParameter::addTo(QWidget * widget, int row)
@@ -70,19 +75,14 @@ bool FileParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString FileParameter::textValue() const
-{
-  return QString("\"%1\"").arg(_value);
-}
-
-QString FileParameter::defaultTextValue() const
-{
-  return QString("\"%1\"").arg(_default);
-}
-
-QString FileParameter::unquotedTextValue() const
+QString FileParameter::value() const
 {
   return _value;
+}
+
+QString FileParameter::defaultValue() const
+{
+  return _default;
 }
 
 void FileParameter::setValue(const QString & value)

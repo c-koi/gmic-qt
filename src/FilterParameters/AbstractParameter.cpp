@@ -45,7 +45,7 @@
 
 const QStringList AbstractParameter::NoValueParameters = {"link", "note", "separator"};
 
-AbstractParameter::AbstractParameter(QObject * parent, bool actualParameter) : QObject(parent), _actualParameter(actualParameter)
+AbstractParameter::AbstractParameter(QObject * parent) : QObject(parent)
 {
   _update = true;
   _defaultVisibilityState = VisibleParameter;
@@ -59,12 +59,7 @@ AbstractParameter::~AbstractParameter() {}
 
 bool AbstractParameter::isActualParameter() const
 {
-  return _actualParameter;
-}
-
-QString AbstractParameter::unquotedTextValue() const
-{
-  return textValue();
+  return size() > 0;
 }
 
 bool AbstractParameter::isQuoted() const

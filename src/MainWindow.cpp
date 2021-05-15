@@ -357,7 +357,6 @@ void MainWindow::buildFiltersTree()
   GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   const bool withVisibility = filtersSelectionMode();
 
-  // TODO : Is this the right place?
   _filtersPresenter->clear();
   _filtersPresenter->readFilters();
   _filtersPresenter->readFaves();
@@ -378,6 +377,73 @@ void MainWindow::buildFiltersTree()
     ui->previewWidget->sendUpdateRequest();
   } else {
     activateFilter(false);
+  }
+}
+
+void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters)
+{
+  if (_pluginParameters.command.empty() && _pluginParameters.filterPath.empty()) {
+    return;
+  }
+  QString path = QString::fromStdString(_pluginParameters.filterPath);
+  QString pluginParameterHash;
+  QString command;
+  QString arguments;
+  QStringList providedParameters;
+  QString errorMessage;
+  const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
+  if (!path.isEmpty()) {
+    _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(path);
+    if (filter.isValid()) {
+      pluginParameterHash = filter.hash;
+    } else {
+      errorMessage = tr("Plugin was called with a filter path with no matching filter:\n\nPath: %1").arg(QString::fromStdString(_pluginParameters.filterPath));
+    }
+  }
+  if (_pluginParameters.command.empty()) {
+    QString error;
+    if (!pluginParameterHash.isEmpty()) {
+      parameters = FilterParametersWidget::defaultParameterList(filter.parameters, &error, nullptr, nullptr);
+      if (!error.isEmpty()) {
+        pluginParameterHash.clear();
+        errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(filter.fullPath).arg(error);
+      }
+    }
+  } else {
+    if (parseGmicUniqueFilterCommand(_pluginParameters.command.c_str(), command, arguments) //
+        && parseGmicFilterParameters(arguments, providedParameters)) {
+      _filtersPresenter->selectFilterFromCommand(command);
+      if (filter.isInvalid()) {
+        pluginParameterHash.clear();
+        errorMessage = tr("Plugin was called with a command that cannot be recognized as a filter:\n\nCommand: %1").arg(elided80(_pluginParameters.command));
+      } else if ((not pluginParameterHash.isEmpty()) && (filter.hash != pluginParameterHash)) {
+        pluginParameterHash.clear();
+        errorMessage = tr("Plugin was called with a command that does not match the provided path:\n\nPath: %1\nCommand: %2") //
+                           .arg(elided80(_pluginParameters.filterPath))
+                           .arg(QString::fromStdString(_pluginParameters.command));
+      } else {
+        QString error;
+        QVector<int> lengths;
+        auto defaults = FilterParametersWidget::defaultParameterList(filter.parameters, &error, nullptr, &lengths);
+        if (error.isEmpty()) {
+          pluginParameterHash = filter.hash;
+          auto expandedDefaults = expandParameterList(defaults, lengths);
+          auto completed = completePrefixFromFullList(providedParameters, expandedDefaults);
+          parameters = mergeSubsequences(completed, lengths);
+        } else {
+          pluginParameterHash.clear();
+          errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(filter.fullPath).arg(error);
+        }
+      }
+    } else {
+      pluginParameterHash.clear();
+      errorMessage = tr("Plugin was called with a command that cannot be parsed:\n\n%1").arg(elided80(_pluginParameters.command));
+    }
+  }
+  if (!pluginParameterHash.isEmpty()) {
+    hash = pluginParameterHash;
+  } else if (!errorMessage.isEmpty()) {
+    QMessageBox::critical(this, "Error with plugin arguments", errorMessage);
   }
 }
 
@@ -421,51 +487,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
 
   // If plugin was called with parameters
   QList<QString> pluginParametersCommandArguments;
-  if (!_pluginParameters.command.empty() || !_pluginParameters.filterPath.empty()) {
-#define ELIDED(TEXT) elided(QString::fromStdString(TEXT), 80)
-    QString path = QString::fromStdString(_pluginParameters.filterPath);
-    QString pluginParameterHash;
-    QString command;
-    QString arguments;
-    QStringList argumentList;
-    QString errorMessage;
-    if (!path.isEmpty()) {
-      _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(path);
-      if (_filtersPresenter->currentFilter().isValid()) {
-        pluginParameterHash = _filtersPresenter->currentFilter().hash;
-      } else {
-        errorMessage = tr("Plugin was called with a filter path with no matching filter:\n\nPath: %1").arg(ELIDED(_pluginParameters.filterPath));
-      }
-    }
-    if (_pluginParameters.command.empty()) {
-      hash = pluginParameterHash;
-    } else {
-      if (parseGmicUniqueFilterCommand(_pluginParameters.command.c_str(), command, arguments) //
-          && parseGmicUniqueFilterParameters(arguments.toUtf8().constData(), argumentList)) {
-        _filtersPresenter->selectFilterFromCommand(command);
-        if (_filtersPresenter->currentFilter().isInvalid()) {
-          pluginParameterHash.clear();
-          errorMessage = tr("Plugin was called with a command that cannot be recognized as a filter:\n\nCommand: %1").arg(ELIDED(_pluginParameters.command));
-        } else if ((not pluginParameterHash.isEmpty()) && (_filtersPresenter->currentFilter().hash != pluginParameterHash)) {
-          pluginParameterHash.clear();
-          errorMessage = tr("Plugin was called with a command that do not match the provided path:\n\nPath: %1\nCommand: %2") //
-                             .arg(ELIDED(_pluginParameters.command))
-                             .arg(ELIDED(_pluginParameters.filterPath));
-        } else {
-          pluginParameterHash = _filtersPresenter->currentFilter().hash;
-          pluginParametersCommandArguments = argumentList;
-        }
-      } else {
-        pluginParameterHash.clear();
-        errorMessage = tr("Plugin was called with a command that cannot be parsed:\n\n%1").arg(ELIDED(_pluginParameters.command));
-      }
-    }
-    if (not pluginParameterHash.isEmpty()) {
-      hash = pluginParameterHash;
-    } else if (!errorMessage.isEmpty()) {
-      QMessageBox::critical(this, "Error with plugin arguments", errorMessage);
-    }
-  }
+  retrieveFilterAndParametersFromPluginParameters(hash, pluginParametersCommandArguments);
 
   _filtersPresenter->selectFilterFromHash(hash, false);
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
@@ -756,6 +778,7 @@ void MainWindow::processImage()
   context.filterCommand = currentFilter.command;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
+  _processor.setGmicStatusQuotedParameters(ui->filterParams->quotedParameters());
   ui->filterParams->clearButtonParameters();
   _processor.setContext(context);
   _processor.execute();
@@ -806,7 +829,7 @@ void MainWindow::onFullImageProcessingDone()
   } else {
     // Extent cache has been cleared by the GmicProcessor
     QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
-    ui->previewWidget->updateFullImageSizeIfDifferent(extent); // FIXME: updateIfDifferent ?
+    ui->previewWidget->updateFullImageSizeIfDifferent(extent);
     ui->previewWidget->sendUpdateRequest();
     _okButtonShouldApply = false;
   }

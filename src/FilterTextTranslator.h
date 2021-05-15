@@ -10,9 +10,10 @@
 #ifndef GMIC_QT_FILTERTEXTTRANSLATOR_H
 #define GMIC_QT_FILTERTEXTTRANSLATOR_H
 
+#include <QDebug>
 #include <QObject>
 #include <QString>
-
+#include "Common.h"
 /**
  *  The FilterTextTranslator class.
  */

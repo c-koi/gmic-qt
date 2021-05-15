@@ -23,6 +23,7 @@
  *
  */
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -62,6 +63,7 @@ QWidget * visibleMainWindow()
   }
   return nullptr;
 }
+
 void askForImageFilename()
 {
   QWidget * mainWidget = visibleMainWindow();
@@ -87,6 +89,34 @@ const QImage & transparentImage()
     image.fill(QColor(0, 0, 0, 0));
   }
   return image;
+}
+QString imageName(const char * text)
+{
+  QString result;
+  const char * start = std::strstr(text, "name(");
+  if (start) {
+    const char * ps = start + 5;
+    unsigned int level = 1;
+    while (*ps && level) {
+      if (*ps == '(') {
+        ++level;
+      } else if (*ps == ')') {
+        --level;
+      }
+      ++ps;
+    }
+    if (!level || *(ps - 1) == ')') {
+      result = QString::fromUtf8(start + 5, (unsigned int)(ps - start - 5)).chopped(1);
+      for (QChar & c : result) {
+        if (c == 21) {
+          c = '(';
+        } else if (c == 22) {
+          c = ')';
+        }
+      }
+    }
+  }
+  return result;
 }
 } // namespace gmic_qt_standalone
 
@@ -157,28 +187,18 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
   if (images.size() > 0) {
-    ImageDialog * dialog = new ImageDialog(QApplication::topLevelWidgets().at(0));
-    for (unsigned int i = 0; i < images.size(); ++i) {
-      QString name((const char *)imageNames[i]);
-      name.replace(QRegularExpression(".*name\\("), "");
-      int pos = 0;
-      int open = 1;
-      int len = name.size();
-      while (pos < len && open > 0) {
-        if (name[pos] == '(') {
-          ++open;
-        } else if (name[pos] == ')') {
-          --open;
-        }
-        ++pos;
+    QWidgetList widgets = QApplication::topLevelWidgets();
+    if (widgets.size()) {
+      ImageDialog * dialog = new ImageDialog(widgets.at(0));
+      for (unsigned int i = 0; i < images.size(); ++i) {
+        QString name = gmic_qt_standalone::imageName((const char *)imageNames[i]);
+        dialog->addImage(images[i], name);
       }
-      name.remove(pos ? (pos - 1) : pos, len);
-      dialog->addImage(images[i], name);
+      dialog->exec();
+      gmic_qt_standalone::input_image = dialog->currentImage();
+      gmic_qt_standalone::image_filename = gmic_qt_standalone::imageName((const char *)imageNames[dialog->currentImageIndex()]);
+      delete dialog;
     }
-    dialog->exec();
-    gmic_qt_standalone::input_image = dialog->currentImage();
-    gmic_qt_standalone::image_filename = QString((const char *)imageNames[dialog->currentImageIndex()]);
-    delete dialog;
   }
   unused(mode);
 }
@@ -191,21 +211,6 @@ void gmic_qt_show_message(const char * message)
 int main(int argc, char * argv[])
 {
   TIMING;
-  {
-    // FIXME : Remove
-    //    QString command;
-    //    QString args;
-    //    // bool ok = parseGmicUniqueFilterCommand("totro09 \"Hello world\\\"\",234,,1,", command, args);
-    //    bool ok = parseGmicUniqueFilterCommand("totro09 \t", command, args);
-    //    SHOW(ok);
-    //    SHOW(command);
-    //    SHOW(args);
-    //    QStringList argList;
-    //    ok = parseGmicUniqueFilterParameters(args.toUtf8().constData(), argList);
-    //    SHOW(argList);
-    //    SHOW(ok);
-    //    exit(0);
-  }
   QString filename;
   if (argc == 2) {
     filename = argv[1];
@@ -240,29 +245,25 @@ int main(int argc, char * argv[])
     gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
     GmicQt::PluginParameters parameters;
     int status;
-    if (false) {
+
+    if (true) {
       //  parameters.filterPath = "/Artistic/Cartoon";
       //  parameters.command = "cartoon 3,200,20,0.25,1.5,8,0,50,50";
       //  parameters.filterPath = "/Artistic/Cutout";
-      parameters.command = "fx_cutout 4,0.5,4,1,0,50,50"; // TODO : Find filter in this case
-      parameters.command = "fx_toto ";
-      parameters.command = "fx_toto 10,20,Sebastien";
-      parameters.command = "";
-      parameters.filterPath = "Relief Light";
-      parameters.inputMode = GmicQt::Active;
-      parameters.outputMode = GmicQt::InPlace;
+      // parameters.inputMode = GmicQt::Active;
+      // parameters.outputMode = GmicQt::InPlace;
+      // parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::BeforeFilterExecution);
+      parameters.filterPath = "00Toto";
+      parameters.filterPath = "Black & White";
+      // parameters.command = "fx_toto";
       status = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
+      //      status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
     } else {
       // parameters.command = "fx_toto 10,20,\"Je suis Sebastien\"";
-      parameters.filterPath = "Relief Lightdsdsds";
+      parameters.filterPath = "Relief Light";
       status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
     }
-    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::BeforeFilterExecution);
-    STDSHOW(parameters.filterPath);
-    STDSHOW(parameters.command);
-    STDSHOW(parameters.inputMode);
-    STDSHOW(parameters.outputMode);
-    STDSHOW(parameters.filterName());
+    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
     return status;
   }
   std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";

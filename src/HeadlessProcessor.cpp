@@ -30,6 +30,7 @@
 #include "Common.h"
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterSelector/FiltersPresenter.h"
+#include "FilterTextTranslator.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
 #include "HtmlTranslator.h"
@@ -67,7 +68,6 @@ HeadlessProcessor::~HeadlessProcessor()
 bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & parameters)
 {
   QSettings settings;
-  // FIXME : Use translated version of the name
   _path = QString::fromStdString(parameters.filterPath);
   _inputMode = (parameters.inputMode == GmicQt::UnspecifiedInputMode) ? GmicQt::DefaultInputMode : parameters.inputMode;
   _outputMode = (parameters.outputMode == GmicQt::UnspecifiedOutputMode) ? GmicQt::DefaultOutputMode : parameters.outputMode;
@@ -76,79 +76,49 @@ bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & par
     if (parameters.command.empty()) {
       _errorMessage = tr("At least a filter path or a filter command must be provided.");
     } else {
-      QString command;
-      QString arguments;
-      QStringList argumentList;
-      FiltersPresenter::Filter filter;
-      QVector<AbstractParameter *> defaultParameters;
-      if (parseGmicUniqueFilterCommand(parameters.command.c_str(), command, arguments) //
-          && parseGmicUniqueFilterParameters(arguments.toUtf8().constData(), argumentList)) {
-        filter = FiltersPresenter::findFilterFromCommandInStdlib(command);
-      }
-      if (filter.isValid()) {
-        QString error;
-        QObject parent;
-        defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, &parent, nullptr, &error);
-        if (error.isEmpty()) {
-          if ((argumentList.size() == 0) && defaultParameters.size()) {
-            _filterName = filter.plainTextName;
-            _hash = filter.hash;
-            _path = filter.fullPath;
-            _command = command;
-            _arguments = FilterParametersWidget::defaultValueString(defaultParameters);
-          } else if (defaultParameters.size() == argumentList.size()) {
-            _filterName = filter.plainTextName;
-            _hash = filter.hash;
-            _path = filter.fullPath;
-            _command = command;
-            _arguments = arguments;
-          } else {
-            _errorMessage = tr("Wrong number of argument for command %1 [which is %2] (%3 provided, should be %4).") //
-                                .arg(command)
-                                .arg(filter.fullPath)
-                                .arg(argumentList.size())
-                                .arg(defaultParameters.size());
-          }
-        } else {
-          _errorMessage = tr("Error parsing filter parameters definition for filter %1\nCannot retrieve default filter parameters\n%2").arg(filter.fullPath).arg(error);
-        }
-      } else {
-        _filterName = tr("Custom command (%1)").arg(elided(QString::fromStdString(parameters.command), 35));
-        _command = "skip 0";
-        _arguments = QString::fromStdString(parameters.command);
-      }
+      _filterName = tr("Custom command (%1)").arg(elided(QString::fromStdString(parameters.command), 35));
+      _command = "skip 0";
+      _arguments = QString::fromStdString(parameters.command);
     }
   } else { // A path is given
     QString plainPath = HtmlTranslator::html2txt(_path, false);
-
-    // FIXME : What if the filter is in the .gmic ? Does this work ?!
     FiltersPresenter::Filter filter = FiltersPresenter::findFilterFromAbsolutePathOrNameInStdlib(plainPath);
     if (filter.isInvalid()) {
       _errorMessage = tr("Cannot find filter matching path %1").arg(_path);
     } else {
-      if (parameters.command.empty()) {
-        QString error;
-        QObject parent;
-        QVector<AbstractParameter *> defaultParameters = FilterParametersWidget::buildParameters(filter.parameters, &parent, nullptr, &error);
-        if (error.isEmpty()) {
-          _filterName = filter.plainTextName;
+      QString error;
+      QVector<bool> quoted;
+      QVector<int> sizes;
+      QStringList defaultParameters = FilterParametersWidget::defaultParameterList(filter.parameters, &error, &quoted, &sizes);
+      if (!error.isEmpty()) {
+        _errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(_path).arg(error);
+      } else {
+        if (parameters.command.empty()) {
+          _filterName = FilterTextTranslator::translate(filter.plainTextName);
           _hash = filter.hash;
           _command = filter.command;
-          _arguments = FilterParametersWidget::defaultValueString(defaultParameters);
+          _arguments = flattenGmicParameterList(defaultParameters, quoted);
+          _gmicStatusQuotedParameters = quoted;
         } else {
-          _errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(_path).arg(error);
-        }
-      } else {
-        QString command;
-        QString arguments;
-        const bool validSingleGmicCommand = parseGmicUniqueFilterCommand(parameters.command.c_str(), command, arguments);
-        if (validSingleGmicCommand && (command == filter.command)) {
-          _filterName = filter.plainTextName;
-          _hash = filter.hash;
-          _command = command;
-          _arguments = arguments;
-        } else {
-          _errorMessage = tr("Supplied command [%1] does not match path [%2] (should be %3).").arg(command).arg(plainPath).arg(filter.command);
+          QString command;
+          QString arguments;
+          QStringList providedParameters;
+          if (!parseGmicUniqueFilterCommand(parameters.command.c_str(), command, arguments) || //
+              !parseGmicFilterParameters(arguments, providedParameters)) {
+            _errorMessage = tr("Error parsing supplied command: %1").arg(QString::fromStdString(parameters.command));
+          } else {
+            if (command != filter.command) {
+              _errorMessage = tr("Supplied command (%1) does not match path (%2), (should be %3).").arg(command).arg(plainPath).arg(filter.command);
+            } else {
+              _filterName = FilterTextTranslator::translate(filter.plainTextName);
+              _hash = filter.hash;
+              _command = command;
+              auto expandedDefaults = expandParameterList(defaultParameters, sizes);
+              auto completed = completePrefixFromFullList(providedParameters, expandedDefaults);
+              _arguments = flattenGmicParameterList(mergeSubsequences(completed, sizes), quoted);
+              _gmicStatusQuotedParameters = quoted;
+            }
+          }
         }
       }
     }
@@ -165,7 +135,6 @@ const QString & HeadlessProcessor::error() const
 
 void HeadlessProcessor::startProcessing()
 {
-  ENTERING;
   if (!_errorMessage.isEmpty()) {
     endApplication(_errorMessage);
   }
@@ -180,7 +149,7 @@ void HeadlessProcessor::startProcessing()
   gmic_list<char> imageNames;
   gmic_qt_get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
   if (!_progressWindow) {
-    gmic_qt_show_message(QString("G'MIC: %1").arg(_arguments).toUtf8().constData());
+    gmic_qt_show_message(QString("G'MIC: %1 %2").arg(_command).arg(_arguments).toUtf8().constData());
   }
   QString env = QString("_input_layers=%1").arg(_inputMode);
   env += QString(" _output_mode=%1").arg(_outputMode);
@@ -261,12 +230,13 @@ void HeadlessProcessor::onProcessingFinished()
       gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode);
       _processingCompletedProperly = true;
     }
+    QSettings settings;
     if (!status.isEmpty() && !_hash.isEmpty()) {
       ParametersCache::setValues(_hash, status);
       ParametersCache::save();
+      QString statusString = flattenGmicParameterList(status, _gmicStatusQuotedParameters);
+      settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname), statusString);
     }
-    QSettings settings;
-    settings.setValue(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname), status);
     settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname), _path);
     settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _hash);
     settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _command);

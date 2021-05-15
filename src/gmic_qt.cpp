@@ -73,7 +73,6 @@ const QString & gmicVersionString()
 
 PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
 {
-  // TODO : Complete
   configureApplication();
   PluginParameters parameters;
   QSettings settings;
@@ -81,9 +80,9 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
   parameters.filterPath = path.toStdString();
   QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
   if (flag == AfterFilterExecution) {
-    QStringList lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname)).toStringList();
+    QString lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname)).toString();
     if (!lastAppliedCommandGmicStatus.isEmpty()) {
-      args = flattenGmicParameterList(lastAppliedCommandGmicStatus);
+      args = lastAppliedCommandGmicStatus;
     }
   }
   QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
@@ -153,7 +152,6 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
     configureApplication();
     DialogSettings::loadSettings(GmicQt::NonGuiApplication);
     Logger::setMode(DialogSettings::outputMessageMode());
-    // TODO : What if command is nullptr?
     HeadlessProcessor processor(&app);
     if (!processor.setPluginParameters(parameters)) {
       Logger::error(processor.error());

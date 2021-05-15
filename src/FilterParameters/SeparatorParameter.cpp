@@ -29,11 +29,16 @@
 #include "Common.h"
 #include "DialogSettings.h"
 
-SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(nullptr) {}
+SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent), _frame(nullptr) {}
 
 SeparatorParameter::~SeparatorParameter()
 {
   delete _frame;
+}
+
+int SeparatorParameter::size() const
+{
+  return 0;
 }
 
 bool SeparatorParameter::addTo(QWidget * widget, int row)
@@ -57,12 +62,12 @@ bool SeparatorParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString SeparatorParameter::textValue() const
+QString SeparatorParameter::value() const
 {
   return QString();
 }
 
-QString SeparatorParameter::defaultTextValue() const
+QString SeparatorParameter::defaultValue() const
 {
   return QString();
 }

@@ -45,7 +45,6 @@ public:
   FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
 
   ~FilterThread() override;
-  void setArguments(const QString &);
   void setInputImages(const cimg_library::CImgList<float> & list);
   void setImageNames(const cimg_library::CImgList<char> & imageNames);
   void swapImages(cimg_library::CImgList<float> & images);
@@ -75,7 +74,7 @@ protected:
 
 private:
   QString _command;
-  QString _arguments;
+  const QString _arguments;
   QString _environment;
   cimg_library::CImgList<float> * _images;
   cimg_library::CImgList<char> * _imageNames;

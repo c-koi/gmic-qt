@@ -93,8 +93,6 @@ void Updater::updateSources(bool useNetwork)
   //  _sourceIsStdLib.clear();
   //  _sources.push_back("http://localhost:2222/update220.gmic");
   //  _sourceIsStdLib["http://localhost:2222/update220.gmic"] = true;
-
-  SHOW(_sources);
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)

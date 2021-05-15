@@ -76,6 +76,7 @@ private:
   bool _processingCompletedProperly;
   QString _errorMessage;
   QString _hash;
+  QVector<bool> _gmicStatusQuotedParameters;
 };
 
 #endif // GMIC_QT_HEADLESSPROCESSOR_H

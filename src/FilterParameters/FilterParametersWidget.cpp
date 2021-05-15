@@ -30,6 +30,7 @@
 #include "Common.h"
 #include "FilterParameters/AbstractParameter.h"
 #include "FilterParameters/PointParameter.h"
+#include "Misc.h"
 
 FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(parent), _valueString(""), _labelNoParams(nullptr), _paddingWidget(nullptr)
 {
@@ -82,6 +83,66 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
   return result;
 }
 
+QStringList FilterParametersWidget::defaultParameterList(const QVector<AbstractParameter *> & parameters, //
+                                                         QVector<bool> * quoted)
+{
+  if (quoted) {
+    quoted->clear();
+  }
+  QStringList result;
+  for (AbstractParameter * parameter : parameters) {
+    if (parameter->isActualParameter()) {
+      result.push_back(parameter->defaultValue());
+      if (quoted) {
+        quoted->push_back(parameter->isQuoted());
+      }
+    }
+  }
+  return result;
+}
+
+QStringList FilterParametersWidget::defaultParameterList(const QString & parametersDefinition, //
+                                                         QString * error,                      //
+                                                         QVector<bool> * quoted,               //
+                                                         QVector<int> * size)
+{
+  if (error) {
+    error->clear();
+  }
+  QObject parent;
+  QString localError;
+  QVector<AbstractParameter *> v = FilterParametersWidget::buildParameters(parametersDefinition, &parent, nullptr, &localError);
+  if (!localError.isEmpty()) {
+    if (error) {
+      *error = localError;
+    }
+    return QStringList();
+  }
+  QStringList result = defaultParameterList(v, quoted);
+  if (size) {
+    *size = parameterSizes(v);
+  }
+  return result;
+}
+
+QVector<bool> FilterParametersWidget::quotedParameters(const QVector<AbstractParameter *> & parameters)
+{
+  QVector<bool> result;
+  for (AbstractParameter * p : parameters) {
+    result.push_back(p->isQuoted());
+  }
+  return result;
+}
+
+QVector<int> FilterParametersWidget::parameterSizes(const QVector<AbstractParameter *> & parameters)
+{
+  QVector<int> result;
+  for (AbstractParameter * p : parameters) {
+    result.push_back(p->size());
+  }
+  return result;
+}
+
 bool FilterParametersWidget::build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values, const QList<int> & visibilityStates)
 {
   _filterName = name;
@@ -96,13 +157,14 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Build parameters and count actual ones
   QString error;
-  _presetParameters = buildParameters(parameters, this, &_actualParametersCount, &error);
+  _parameters = buildParameters(parameters, this, &_actualParametersCount, &error);
+  _quotedParameters = quotedParameters(_parameters);
 
   // Restore saved values
   if ((!values.isEmpty()) && (_actualParametersCount == values.size())) {
-    QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
+    QVector<AbstractParameter *>::iterator it = _parameters.begin();
     QList<QString>::const_iterator itValue = values.cbegin();
-    while (it != _presetParameters.end()) {
+    while (it != _parameters.end()) {
       if ((*it)->isActualParameter()) {
         (*it)->setValue(*itValue);
         ++itValue;
@@ -113,8 +175,8 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Add to widget and connect
   int row = 0;
-  QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
-  while (it != _presetParameters.end()) {
+  QVector<AbstractParameter *>::iterator it = _parameters.begin();
+  while (it != _parameters.end()) {
     AbstractParameter * parameter = *it;
     if (parameter->addTo(this, row)) {
       grid->setRowStretch(row, 0);
@@ -132,8 +194,8 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Retrieve a dummy keypoint list
   KeypointList keypoints;
-  it = _presetParameters.begin();
-  while (it != _presetParameters.end()) {
+  it = _parameters.begin();
+  while (it != _parameters.end()) {
     (*it)->addToKeypointList(keypoints);
     ++it;
   }
@@ -205,9 +267,9 @@ const QString & FilterParametersWidget::valueString() const
 QStringList FilterParametersWidget::valueStringList() const
 {
   QStringList list;
-  for (AbstractParameter * param : _presetParameters) {
+  for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
-      list.append(param->unquotedTextValue());
+      list.append(param->value());
     }
   }
   return list;
@@ -223,7 +285,7 @@ void FilterParametersWidget::setValues(const QStringList & list, bool notify)
     return;
   }
   auto itValue = list.begin();
-  for (AbstractParameter * param : _presetParameters) {
+  for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
       param->setValue(*itValue++);
     }
@@ -242,11 +304,11 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
   }
 
   // Fill a table of new states for all parameters, including no-value ones
-  QVector<AbstractParameter::VisibilityState> newVisibilityStates(_presetParameters.size(), AbstractParameter::UnspecifiedVisibilityState);
+  QVector<AbstractParameter::VisibilityState> newVisibilityStates(_parameters.size(), AbstractParameter::UnspecifiedVisibilityState);
   {
     auto itState = states.begin();
-    for (int n = 0; n < _presetParameters.size(); ++n) {
-      AbstractParameter * parameter = _presetParameters[n];
+    for (int n = 0; n < _parameters.size(); ++n) {
+      AbstractParameter * parameter = _parameters[n];
       if (parameter->isActualParameter()) {
         newVisibilityStates[n] = static_cast<AbstractParameter::VisibilityState>(*itState);
         ++itState;
@@ -254,8 +316,8 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
     }
   }
   // Propagate if necessary
-  for (int n = 0; n < _presetParameters.size(); ++n) {
-    AbstractParameter * parameter = _presetParameters[n];
+  for (int n = 0; n < _parameters.size(); ++n) {
+    AbstractParameter * parameter = _parameters[n];
     if (parameter->isActualParameter()) {
       AbstractParameter::VisibilityState state = newVisibilityStates[n];
       if (state == AbstractParameter::UnspecifiedVisibilityState) {
@@ -263,21 +325,21 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
       }
       if (parameter->visibilityPropagation() == AbstractParameter::PropagateUp || parameter->visibilityPropagation() == AbstractParameter::PropagateUpDown) {
         int i = n - 1;
-        while ((i >= 0) && !_presetParameters[i]->isActualParameter()) {
+        while ((i >= 0) && !_parameters[i]->isActualParameter()) {
           newVisibilityStates[i++] = state;
         }
       }
       if (parameter->visibilityPropagation() == AbstractParameter::PropagateDown || parameter->visibilityPropagation() == AbstractParameter::PropagateUpDown) {
         int i = n + 1;
-        while ((i < _presetParameters.size()) && !_presetParameters[i]->isActualParameter()) {
+        while ((i < _parameters.size()) && !_parameters[i]->isActualParameter()) {
           newVisibilityStates[i++] = state;
         }
       }
     }
   }
 
-  for (int n = 0; n < _presetParameters.size(); ++n) {
-    AbstractParameter * const parameter = _presetParameters[n];
+  for (int n = 0; n < _parameters.size(); ++n) {
+    AbstractParameter * const parameter = _parameters[n];
     parameter->setVisibilityState(newVisibilityStates[n]);
   }
 }
@@ -285,7 +347,7 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
 QList<int> FilterParametersWidget::visibilityStates()
 {
   QList<int> states;
-  for (const AbstractParameter * const param : _presetParameters) {
+  for (const AbstractParameter * const param : _parameters) {
     if (param->isActualParameter()) {
       states.push_back(param->visibilityState());
     }
@@ -296,7 +358,7 @@ QList<int> FilterParametersWidget::visibilityStates()
 QList<int> FilterParametersWidget::defaultVisibilityStates()
 {
   QList<int> states;
-  for (AbstractParameter * param : _presetParameters) {
+  for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
       states.push_back(param->defaultVisibilityState());
     }
@@ -306,7 +368,7 @@ QList<int> FilterParametersWidget::defaultVisibilityStates()
 
 void FilterParametersWidget::reset(bool notify)
 {
-  for (AbstractParameter * param : _presetParameters) {
+  for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
       param->reset();
     }
@@ -336,7 +398,7 @@ QString FilterParametersWidget::valueString(const QVector<AbstractParameter *> &
   bool firstParameter = true;
   for (AbstractParameter * parameter : parameters) {
     if (parameter->isActualParameter()) {
-      QString str = parameter->textValue();
+      QString str = parameter->isQuoted() ? quotedString(parameter->value()) : parameter->value();
       if (!str.isNull()) {
         if (!firstParameter) {
           result += ",";
@@ -355,7 +417,7 @@ QString FilterParametersWidget::defaultValueString(const QVector<AbstractParamet
   bool firstParameter = true;
   for (AbstractParameter * parameter : parameters) {
     if (parameter->isActualParameter()) {
-      QString str = parameter->defaultTextValue();
+      QString str = parameter->isQuoted() ? quotedString(parameter->defaultValue()) : parameter->defaultValue();
       if (!str.isNull()) {
         if (!firstParameter) {
           result += ",";
@@ -370,7 +432,7 @@ QString FilterParametersWidget::defaultValueString(const QVector<AbstractParamet
 
 void FilterParametersWidget::updateValueString(bool notify)
 {
-  _valueString = valueString(_presetParameters);
+  _valueString = valueString(_parameters);
   if (notify) {
     emit valueChanged();
   }
@@ -378,12 +440,12 @@ void FilterParametersWidget::updateValueString(bool notify)
 
 void FilterParametersWidget::clear()
 {
-  QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
-  while (it != _presetParameters.end()) {
+  QVector<AbstractParameter *>::iterator it = _parameters.begin();
+  while (it != _parameters.end()) {
     delete *it;
     ++it;
   }
-  _presetParameters.clear();
+  _parameters.clear();
   _actualParametersCount = 0;
 
   delete _labelNoParams;
@@ -400,7 +462,7 @@ void FilterParametersWidget::applyDefaultVisibilityStates()
 
 void FilterParametersWidget::clearButtonParameters()
 {
-  for (AbstractParameter * param : _presetParameters) {
+  for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
       param->clear();
     }
@@ -414,8 +476,8 @@ KeypointList FilterParametersWidget::keypoints() const
   if (!_hasKeypoints) {
     return list;
   }
-  QVector<AbstractParameter *>::const_iterator it = _presetParameters.begin();
-  while (it != _presetParameters.end()) {
+  QVector<AbstractParameter *>::const_iterator it = _parameters.begin();
+  while (it != _parameters.end()) {
     (*it)->addToKeypointList(list);
     ++it;
   }
@@ -428,8 +490,8 @@ void FilterParametersWidget::setKeypoints(KeypointList list, bool notify)
   if (!_hasKeypoints) {
     return;
   }
-  QVector<AbstractParameter *>::const_iterator it = _presetParameters.begin();
-  while (it != _presetParameters.end()) {
+  QVector<AbstractParameter *>::const_iterator it = _parameters.begin();
+  while (it != _parameters.end()) {
     (*it)->extractPositionFromKeypointList(list);
     ++it;
   }
@@ -439,4 +501,9 @@ void FilterParametersWidget::setKeypoints(KeypointList list, bool notify)
 bool FilterParametersWidget::hasKeypoints() const
 {
   return _hasKeypoints;
+}
+
+const QVector<bool> & FilterParametersWidget::quotedParameters() const
+{
+  return _quotedParameters;
 }

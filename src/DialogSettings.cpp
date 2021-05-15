@@ -287,6 +287,7 @@ void DialogSettings::removeObsoleteKeys(QSettings & settings)
   settings.remove(QString("LastExecution/host_%1/PreviewMode").arg(GmicQt::HostApplicationShortname));
   settings.remove(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname));
   settings.remove(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQt::HostApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/GmicStatus").arg(GmicQt::HostApplicationShortname));
 }
 
 void DialogSettings::enableUpdateButton()

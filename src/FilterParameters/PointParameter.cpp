@@ -47,7 +47,7 @@
 int PointParameter::_defaultColorNextIndex = 0;
 unsigned long PointParameter::_randomSeed = 12345;
 
-PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent, true), _defaultPosition(0, 0), _position(0, 0), _removable(false), _burst(false)
+PointParameter::PointParameter(QObject * parent) : AbstractParameter(parent), _defaultPosition(0, 0), _position(0, 0), _removable(false), _burst(false)
 {
   _label = nullptr;
   _colorLabel = nullptr;
@@ -70,6 +70,11 @@ PointParameter::~PointParameter()
 {
   delete _label;
   delete _rowCell;
+}
+
+int PointParameter::size() const
+{
+  return 2;
 }
 
 bool PointParameter::addTo(QWidget * widget, int row)
@@ -150,7 +155,7 @@ void PointParameter::extractPositionFromKeypointList(KeypointList & list)
   enableNotifications(true);
 }
 
-QString PointParameter::textValue() const
+QString PointParameter::value() const
 {
   if (_removed) {
     return "nan,nan";
@@ -158,7 +163,7 @@ QString PointParameter::textValue() const
   return QString("%1,%2").arg(_position.x()).arg(_position.y());
 }
 
-QString PointParameter::defaultTextValue() const
+QString PointParameter::defaultValue() const
 {
   return QString("%1,%2").arg(_defaultPosition.x()).arg(_defaultPosition.y());
 }

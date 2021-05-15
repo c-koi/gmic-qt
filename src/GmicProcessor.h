@@ -80,6 +80,7 @@ public:
   };
 
   GmicProcessor(QObject * parent = nullptr);
+  ~GmicProcessor() override;
   void init();
   void setContext(const FilterContext & context);
   void execute();
@@ -93,13 +94,12 @@ public:
   const cimg_library::CImg<float> & previewImage() const;
   const QStringList & gmicStatus() const;
   const QList<int> & parametersVisibilityStates() const;
+  void setGmicStatusQuotedParameters(const QVector<bool> & quotedParameters);
 
   void saveSettings(QSettings & settings);
-  ~GmicProcessor() override;
 
   int duration() const;
   float progress() const;
-
   int lastPreviewFilterExecutionDurationMS() const;
   void resetLastPreviewFilterExecutionDurations();
   void recordPreviewFilterExecutionDurationMS(int duration);
@@ -113,7 +113,7 @@ signals:
   void previewCommandFailed(QString errorMessage);
   void fullImageProcessingFailed(QString errorMessage);
   void previewImageAvailable();
-  void fullImageProcessingDone(); // TODO : Use for example to close the window
+  void fullImageProcessingDone();
   void noMoreUnfinishedJobs();
   void aboutToSendImagesToHost();
 
@@ -150,6 +150,7 @@ private:
   QElapsedTimer _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;
+  QVector<bool> _gmicStatusQuotedParameters;
 };
 
 #endif // GMIC_QT_GMICPROCESSOR_H

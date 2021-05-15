@@ -33,11 +33,16 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
-LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent, false), _label(nullptr), _alignment(Qt::AlignLeft) {}
+LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _alignment(Qt::AlignLeft) {}
 
 LinkParameter::~LinkParameter()
 {
   delete _label;
+}
+
+int LinkParameter::size() const
+{
+  return 0;
 }
 
 bool LinkParameter::addTo(QWidget * widget, int row)
@@ -55,12 +60,12 @@ bool LinkParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString LinkParameter::textValue() const
+QString LinkParameter::value() const
 {
   return QString();
 }
 
-QString LinkParameter::defaultTextValue() const
+QString LinkParameter::defaultValue() const
 {
   return QString();
 }

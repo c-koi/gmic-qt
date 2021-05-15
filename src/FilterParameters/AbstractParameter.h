@@ -35,13 +35,13 @@ class AbstractParameter : public QObject {
   Q_OBJECT
 
 public:
-  AbstractParameter(QObject * parent, bool actualParameter);
-  virtual ~AbstractParameter();
+  AbstractParameter(QObject * parent);
+  virtual ~AbstractParameter() override;
   bool isActualParameter() const;
+  virtual int size() const = 0;
   virtual bool addTo(QWidget *, int row) = 0;
-  virtual QString textValue() const = 0;
-  virtual QString defaultTextValue() const = 0;
-  virtual QString unquotedTextValue() const;
+  virtual QString value() const = 0;
+  virtual QString defaultValue() const = 0;
   virtual bool isQuoted() const;
   virtual void setValue(const QString & value) = 0;
   virtual void clear();
@@ -82,7 +82,6 @@ protected:
   QStringList parseText(const QString & type, const char * text, int & length);
   bool matchType(const QString & type, const char * text) const;
   void notifyIfRelevant();
-  const bool _actualParameter;
   VisibilityState _defaultVisibilityState;
   QGridLayout * _grid;
   int _row;

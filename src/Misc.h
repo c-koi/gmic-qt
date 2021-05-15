@@ -25,8 +25,10 @@
 #ifndef GMIC_QT_MISC_H
 #define GMIC_QT_MISC_H
 
+#include <QDebug>
 #include <QList>
 #include <QString>
+#include <QStringList>
 #include "gmic_qt.h"
 class QStringList;
 
@@ -38,16 +40,49 @@ QString mergedWithSpace(const QString & prefix, const QString & suffix);
 
 void downcaseCommandTitle(QString & title);
 
-bool parseGmicUniqueFilterParameters(const char * text, QStringList & args);
+bool parseGmicFilterParameters(const char * text, QStringList & args);
+
+bool parseGmicFilterParameters(const QString & text, QStringList & args);
 
 bool parseGmicUniqueFilterCommand(const char * text, QString & command, QString & arguments);
+
+QString escapeUnescapedQuotes(const QString & text);
 
 QString filterFullPathWithoutTags(const QList<QString> & path, const QString & name);
 
 QString filterFullPathBasename(const QString & path);
 
-QString flattenGmicParameterList(const QList<QString> & list);
+QString flattenGmicParameterList(const QList<QString> & list, const QVector<bool> & quotedParameters);
+
+QStringList expandParameterList(const QStringList & parameters, QVector<int> sizes);
 
 QString elided(const QString & text, int width);
+
+QVector<bool> quotedParameters(const QList<QString> & parameters);
+
+QString quotedString(QString text);
+
+QStringList quotedStringList(const QStringList & stringList);
+
+QString unescaped(const QString & text);
+
+QStringList mergeSubsequences(const QStringList & sequence, const QVector<int> & subSequenceLengths);
+
+QStringList completePrefixFromFullList(const QStringList & prefix, const QStringList & fullList);
+
+QString unquoted(const QString & text);
+
+inline QString elided80(const std::string & text)
+{
+  return elided(QString::fromStdString(text), 80);
+}
+
+template <typename T> //
+QString stringify(const T & value)
+{
+  QString result;
+  QDebug(&result) << value;
+  return result;
+}
 
 #endif // GMIC_QT_MISC_H

@@ -39,7 +39,7 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
-FloatParameter::FloatParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
+FloatParameter::FloatParameter(QObject * parent) : AbstractParameter(parent), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
 {
   _timerId = 0;
   _connected = false;
@@ -50,6 +50,11 @@ FloatParameter::~FloatParameter()
   delete _spinBox;
   delete _slider;
   delete _label;
+}
+
+int FloatParameter::size() const
+{
+  return 1;
 }
 
 bool FloatParameter::addTo(QWidget * widget, int row)
@@ -85,7 +90,7 @@ bool FloatParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString FloatParameter::textValue() const
+QString FloatParameter::value() const
 {
   QLocale currentLocale;
   QLocale::setDefault(QLocale::c());
@@ -94,7 +99,7 @@ QString FloatParameter::textValue() const
   return value;
 }
 
-QString FloatParameter::defaultTextValue() const
+QString FloatParameter::defaultValue() const
 {
   QLocale currentLocale;
   QLocale::setDefault(QLocale::c());

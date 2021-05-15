@@ -35,10 +35,10 @@ class FileParameter : public AbstractParameter {
 public:
   FileParameter(QObject * parent = nullptr);
   ~FileParameter() override;
+  virtual int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
-  QString defaultTextValue() const override;
-  QString unquotedTextValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;

@@ -998,7 +998,7 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
     pluginParameters.command = param[5].data.d_string;
     pluginParameters.inputMode = (GmicQt::InputMode)(param[3].data.d_int32 + GmicQt::NoInput);
     pluginParameters.outputMode = GmicQt::OutputMode(param[4].data.d_int32 + GmicQt::InPlace);
-    launchPlugin(GmicQt::ProgressDialogGUI, pluginParameters); // FIXME: Or NoGui ???
+    launchPlugin(GmicQt::ProgressDialogGUI, pluginParameters);
     break;
   }
   return_values[0].data.d_status = GmicQt::pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;

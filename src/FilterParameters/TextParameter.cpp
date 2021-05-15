@@ -29,6 +29,7 @@
 #include <QIcon>
 #include <QLabel>
 #include <QLineEdit>
+#include <QRegularExpression>
 #include <QTextEdit>
 #include <QWidget>
 #include "Common.h"
@@ -37,8 +38,9 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
+#include "Misc.h"
 
-TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _lineEdit(nullptr), _textEdit(nullptr), _multiline(false), _connected(false)
+TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _lineEdit(nullptr), _textEdit(nullptr), _multiline(false), _connected(false)
 {
   _updateAction = nullptr;
 }
@@ -48,6 +50,11 @@ TextParameter::~TextParameter()
   delete _lineEdit;
   delete _textEdit;
   delete _label;
+}
+
+int TextParameter::size() const
+{
+  return 1;
 }
 
 bool TextParameter::addTo(QWidget * widget, int row)
@@ -76,23 +83,14 @@ bool TextParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString TextParameter::textValue() const
-{
-  QString text = _multiline ? _textEdit->text() : _lineEdit->text();
-  text.replace(QChar('"'), QString("\\\""));
-  return QString("\"%1\"").arg(text);
-}
-
-QString TextParameter::defaultTextValue() const
-{
-  QString text = _default;
-  text.replace(QChar('"'), QString("\\\""));
-  return QString("\"%1\"").arg(text);
-}
-
-QString TextParameter::unquotedTextValue() const
+QString TextParameter::value() const
 {
   return _multiline ? _textEdit->text() : _lineEdit->text();
+}
+
+QString TextParameter::defaultValue() const
+{
+  return _default;
 }
 
 void TextParameter::setValue(const QString & value)
@@ -128,15 +126,13 @@ bool TextParameter::initFromText(const char * text, int & textLength)
   _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
   QString value = list[1];
   _multiline = false;
-  QRegExp re("^\\s*(0|1)\\s*,");
-  if (value.contains(re) && re.matchedLength() > 0) {
-    _multiline = (re.cap(1).toInt() == 1);
+  QRegularExpression re("^\\s*(0|1)\\s*,");
+  auto match = re.match(value);
+  if (match.hasMatch()) {
+    _multiline = (match.captured(1).toInt() == 1);
     value.replace(re, "");
   }
-  value = value.trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
-  value.replace(QString("\\\\"), QString("\\"));
-  value.replace(QString("\\n"), QString("\n"));
-  _value = _default = value;
+  _value = _default = unescaped(unquoted(value));
   return true;
 }
 
