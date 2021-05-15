@@ -38,44 +38,19 @@
 namespace GmicQt
 {
 
-void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result, int previewWidth, int previewHeight)
+void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result)
 {
   cimg_library::CImgList<gmic_pixel_type> preview_input_images;
-
-  // FIXME : Simplify this function
   if (images.size() > 0) {
     preview_input_images.push_back(images[0]);
-  }
-  // preview_input_images = images;
-
-  int spectrum = 0;
-  cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }
-  spectrum += (spectrum == 1 || spectrum == 3);
-  cimglist_for(preview_input_images, l) { GmicQt::calibrate_image(preview_input_images[l], spectrum, true); }
-  if (preview_input_images.size() == 1) {
+    int spectrum = 0;
+    cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }
+    spectrum += (spectrum == 1 || spectrum == 3);
+    cimglist_for(preview_input_images, l) { GmicQt::calibrate_image(preview_input_images[l], spectrum, true); }
     result.swap(preview_input_images.front());
-    return;
+  } else {
+    result.assign();
   }
-  if (preview_input_images.size() > 1) {
-    try {
-      cimg_library::CImgList<char> preview_images_names;
-      gmic("gui_preview", preview_input_images, preview_images_names, GmicStdLib::Array.constData(), true);
-      if (preview_input_images.size() >= 1) {
-        result.swap(preview_input_images.front());
-        return;
-      }
-    } catch (...) {
-      QImage qimage(QSize(previewWidth, previewHeight), QImage::Format_ARGB32);
-      QPainter painter(&qimage);
-      painter.fillRect(qimage.rect(), QColor(40, 40, 40, 200));
-      painter.setPen(Qt::green);
-      painter.drawText(qimage.rect(), Qt::AlignCenter | Qt::TextWordWrap, "Preview error (handling preview mode)");
-      painter.end();
-      ImageConverter::convert(qimage, result);
-      return;
-    }
-  }
-  result.assign();
 }
 
 template <typename T> void image2uchar(cimg_library::CImg<T> & img)

@@ -283,7 +283,7 @@ void GmicProcessor::onPreviewThreadFinished()
     for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
       gmic_qt_apply_color_profile((*_gmicImages)[i]);
     }
-    GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.previewWidth, _filterContext.previewHeight);
+    GmicQt::buildPreviewImage(*_gmicImages, *_previewImage);
   }
   _filterThread->deleteLater();
   _filterThread = nullptr;
@@ -424,7 +424,7 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
     gmic_qt_apply_color_profile((*_gmicImages)[i]);
   }
-  GmicQt::buildPreviewImage(*_gmicImages, *_previewImage, _filterContext.previewWidth, _filterContext.previewHeight);
+  GmicQt::buildPreviewImage(*_gmicImages, *_previewImage);
   hideWaitingCursor();
   emit previewImageAvailable();
 }
