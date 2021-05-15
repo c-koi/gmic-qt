@@ -71,7 +71,7 @@ const QString & gmicVersionString()
   return value;
 }
 
-PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag)
+PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag)
 {
   configureApplication();
   PluginParameters parameters;

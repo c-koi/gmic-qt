@@ -97,13 +97,13 @@ struct PluginParameters {
   std::string filterName() const;
 };
 
-enum PluginParameterFlag
+enum PluginParametersFlag
 {
   BeforeFilterExecution,
   AfterFilterExecution
 };
 
-PluginParameters lastAppliedFilterPluginParameters(PluginParameterFlag flag);
+PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag);
 
 int launchPlugin(UserInterfaceMode interfaceMode = GmicQt::FullGUI,                                        //
                  PluginParameters parameters = PluginParameters(),                                         //

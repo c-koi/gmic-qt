@@ -972,9 +972,8 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
  */
 void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam * param, gint * nreturn_vals, GimpParam ** return_vals)
 {
-  TIMING;
 #if (GIMP_MAJOR_VERSION == 2 && GIMP_MINOR_VERSION > 8) || (GIMP_MAJOR_VERSION >= 3)
-  gegl_init(NULL, NULL);
+  gegl_init(nullptr, nullptr);
   gimp_plugin_enable_precision();
 #endif
 
@@ -1053,23 +1052,24 @@ static GList * gmic_qt_query(GimpPlugIn * plug_in)
  */
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data)
 {
-  TIMING;
   gegl_init(NULL, NULL);
   // gimp_plugin_enable_precision(); // what is this?
-
+  GmicQt::PluginParameters pluginParameters;
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPlugin();
+    launchPlugin(GmicQt::FullGUI);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = image;
-    launchPluginHeadlessUsingLastParameters();
+    launchPlugin(GmicQt::ProgressDialogGUI, GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution));
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPluginHeadless(g_value_get_string(gimp_value_array_index(args, 2)), (GmicQt::InputMode)(g_value_get_int(gimp_value_array_index(args, 0)) + GmicQt::NoInput),
-                         GmicQt::OutputMode(g_value_get_int(gimp_value_array_index(args, 1)) + GmicQt::InPlace));
+    pluginParameters.command = g_value_get_string(gimp_value_array_index(args, 2));
+    pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + GmicQt::NoInput);
+    pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + GmicQt::InPlace);
+    launchPlugin(GmicQt::ProgressDialogGUI, pluginParameters);
     break;
   }
   return gimp_procedure_new_return_values(procedure, pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL, NULL);
