@@ -166,6 +166,7 @@ bool ColorParameter::initFromText(const char * text, int & textLength)
     } else {
       _alphaChannel = false;
     }
+    _size = 3 + _alphaChannel;
     _value = _default;
     return true;
   }
