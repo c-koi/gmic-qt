@@ -138,7 +138,9 @@ QVector<int> FilterParametersWidget::parameterSizes(const QVector<AbstractParame
 {
   QVector<int> result;
   for (AbstractParameter * p : parameters) {
-    result.push_back(p->size());
+    if (p->isActualParameter()) {
+      result.push_back(p->size());
+    }
   }
   return result;
 }

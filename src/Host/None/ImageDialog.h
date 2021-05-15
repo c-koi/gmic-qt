@@ -65,7 +65,7 @@ public:
   void addImage(const cimg_library::CImg<gmic_pixel_type> & image, const QString & name);
   const QImage & currentImage() const;
   int currentImageIndex() const;
-
+  static void supportedImageFormats(QStringList & extensions, QString & filters);
 public slots:
   void onSaveAs();
   void onCloseClicked(bool);

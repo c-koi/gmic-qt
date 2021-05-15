@@ -90,23 +90,31 @@ int ImageDialog::currentImageIndex() const
   return _tabWidget->currentIndex();
 }
 
+void ImageDialog::supportedImageFormats(QStringList & extensions, QString & filters)
+{
+  extensions.clear();
+  for (const auto & ext : QImageWriter::supportedImageFormats()) {
+    extensions.push_back(QString::fromLatin1(ext).toLower());
+  }
+  QStringList filterList;
+  for (const auto & extension : extensions) {
+    QString filter = QString(tr("%1 file (*.%2)")).arg(extension.toUpper()).arg(extension);
+    if (extension == "png" || extension == "jpg" || extension == "jpeg") {
+      filterList.push_front(filter);
+    } else {
+      filterList.push_back(filter);
+    }
+  }
+  filters = filterList.join(";;");
+}
+
 void ImageDialog::onSaveAs()
 {
   QString selectedFilter;
   QStringList extensions;
-  for (const auto & ext : QImageWriter::supportedImageFormats()) {
-    extensions.push_back(QString::fromLatin1(ext).toLower());
-  }
-  QStringList filters;
-  for (const auto & extension : extensions) {
-    QString filter = QString("%1 file (*.%2)").arg(extension.toUpper()).arg(extension);
-    if (extension == "png" || extension == "jpg" || extension == "jpeg") {
-      filters.push_front(filter);
-    } else {
-      filters.push_back(filter);
-    }
-  }
-  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters.join(";;"), &selectedFilter);
+  QString filters;
+  supportedImageFormats(extensions, filters);
+  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters, &selectedFilter);
   QString extension = selectedFilter.split("*").back();
   extension.chop(1);
   if (!extensions.contains(QFileInfo(filename).suffix())) {

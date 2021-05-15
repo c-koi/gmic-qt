@@ -33,6 +33,7 @@
 #include <QPainter>
 #include <QRegularExpression>
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include "Common.h"
 #include "Host/None/ImageDialog.h"
@@ -50,10 +51,14 @@
 #define STRINGIFY(X) #X
 #define XSTRINGIFY(X) STRINGIFY(X)
 
+namespace
+{
+
 namespace gmic_qt_standalone
 {
 QImage input_image;
-QString image_filename;
+QString input_image_filename;
+QString output_image_filename;
 QWidget * visibleMainWindow()
 {
   for (QWidget * w : QApplication::topLevelWidgets()) {
@@ -68,17 +73,20 @@ void askForImageFilename()
 {
   QWidget * mainWidget = visibleMainWindow();
   Q_ASSERT_X(mainWidget, __PRETTY_FUNCTION__, "No top level window yet");
-  QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", QObject::tr("PNG & JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)"), nullptr);
+  QStringList extensions;
+  QString filters;
+  ImageDialog::supportedImageFormats(extensions, filters);
+  QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", filters, nullptr);
   if (!filename.isEmpty() && QFileInfo(filename).isReadable() && input_image.load(filename)) {
     input_image = input_image.convertToFormat(QImage::Format_ARGB32);
-    image_filename = QFileInfo(filename).fileName();
+    input_image_filename = QFileInfo(filename).fileName();
   } else {
     if (!filename.isEmpty()) {
       QMessageBox::warning(mainWidget, QObject::tr("Error"), QObject::tr("Could not open file."));
     }
     input_image.load(":/resources/gmicky.png");
     input_image = input_image.convertToFormat(QImage::Format_ARGB32);
-    image_filename = QObject::tr("Default image");
+    input_image_filename = QObject::tr("Default image");
   }
 }
 const QImage & transparentImage()
@@ -118,7 +126,18 @@ QString imageName(const char * text)
   }
   return result;
 }
+
+std::string basename(const std::string & text)
+{
+  std::string::size_type position = text.rfind('/');
+  if (position == std::string::npos) {
+    return text;
+  } else {
+    return text.substr(position + 1, text.size() - (position + 1));
+  }
+}
 } // namespace gmic_qt_standalone
+} // namespace
 
 namespace GmicQt
 {
@@ -129,7 +148,6 @@ const bool DarkThemeIsDefault = false;
 
 void gmic_qt_get_image_size(int * width, int * height)
 {
-  // TSHOW(gmic_qt_standalone::visibleMainWindow());
   if (gmic_qt_standalone::input_image.isNull()) {
     if (gmic_qt_standalone::visibleMainWindow()) {
       gmic_qt_standalone::askForImageFilename();
@@ -170,7 +188,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   images.assign(1);
   imageNames.assign(1);
 
-  QString noParenthesisName(gmic_qt_standalone::image_filename);
+  QString noParenthesisName(gmic_qt_standalone::input_image_filename);
   noParenthesisName.replace(QChar('('), QChar(21)).replace(QChar(')'), QChar(22));
 
   QString name = QString("pos(0,0),name(%1)").arg(noParenthesisName);
@@ -187,17 +205,24 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
 void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
   if (images.size() > 0) {
-    QWidgetList widgets = QApplication::topLevelWidgets();
-    if (widgets.size()) {
-      ImageDialog * dialog = new ImageDialog(widgets.at(0));
-      for (unsigned int i = 0; i < images.size(); ++i) {
-        QString name = gmic_qt_standalone::imageName((const char *)imageNames[i]);
-        dialog->addImage(images[i], name);
+    if (gmic_qt_standalone::output_image_filename.isEmpty()) {
+      QWidgetList widgets = QApplication::topLevelWidgets();
+      if (widgets.size()) {
+        ImageDialog * dialog = new ImageDialog(widgets.at(0));
+        for (unsigned int i = 0; i < images.size(); ++i) {
+          QString name = gmic_qt_standalone::imageName((const char *)imageNames[i]);
+          dialog->addImage(images[i], name);
+        }
+        dialog->exec();
+        gmic_qt_standalone::input_image = dialog->currentImage();
+        gmic_qt_standalone::input_image_filename = gmic_qt_standalone::imageName((const char *)imageNames[dialog->currentImageIndex()]);
+        delete dialog;
       }
-      dialog->exec();
-      gmic_qt_standalone::input_image = dialog->currentImage();
-      gmic_qt_standalone::image_filename = gmic_qt_standalone::imageName((const char *)imageNames[dialog->currentImageIndex()]);
-      delete dialog;
+    } else {
+      ImageConverter::convert(images[0], gmic_qt_standalone::input_image);
+      std::cout << "[gmic_qt] Writing output file " << gmic_qt_standalone::output_image_filename.toStdString() << std::endl;
+      gmic_qt_standalone::input_image.save(gmic_qt_standalone::output_image_filename);
+      gmic_qt_standalone::input_image_filename = gmic_qt_standalone::imageName((const char *)imageNames[0]);
     }
   }
   unused(mode);
@@ -208,20 +233,75 @@ void gmic_qt_show_message(const char * message)
   std::cout << message << std::endl;
 }
 
+void usage(const std::string & argv0)
+{
+  std::cout << QObject::tr("Usage: %1 [OPTIONS]... [INPUT_FILE]").arg(QString::fromStdString(argv0)).toStdString() << std::endl;
+  std::cout << QObject::tr("Launch the G'MIC-Qt plugin as a standalone application.\n"
+                           "\n"
+                           "Options:\n"
+                           "                             --help : Display this help\n"
+                           "                      --output FILE : Write output image to FILE\n"
+                           "                           --repeat : Use last applied filter and parameters\n"
+                           "   --path FILTER_PATH | FILTER_NAME : Select filter\n"
+                           "                                      e.g. \"/Black & White/Charcoal\"\n"
+                           "                                           \"Charcoal\"\n")
+                   .toStdString();
+}
+
 int main(int argc, char * argv[])
 {
   TIMING;
   QString filename;
-  if (argc == 2) {
-    filename = argv[1];
+
+  int narg = 1;
+  bool repeat = false;
+  std::string filterPath;
+  std::string command;
+  while (narg < argc) {
+    std::string arg(argv[narg]);
+    if (arg == "--help") {
+      usage(gmic_qt_standalone::basename(argv[0]));
+      return EXIT_SUCCESS;
+    } else if (arg == "--output") {
+      if (narg < argc - 1) {
+        ++narg;
+        gmic_qt_standalone::output_image_filename = argv[narg];
+      } else {
+        std::cerr << QObject::tr("Missing filename for option --output").toStdString() << std::endl;
+        return EXIT_FAILURE;
+      }
+    } else if (arg == "--repeat") {
+      repeat = true;
+    } else if (arg == "--command") {
+      if (narg < argc - 1) {
+        ++narg;
+        command = argv[narg];
+      } else {
+        std::cerr << QObject::tr("Missing command for option --command").toStdString() << std::endl;
+        return EXIT_FAILURE;
+      }
+    } else if (arg == "--path") {
+      if (narg < argc - 1) {
+        ++narg;
+        filterPath = argv[narg];
+      } else {
+        std::cerr << QObject::tr("Missing path for option --path").toStdString() << std::endl;
+        return EXIT_FAILURE;
+      }
+    } else if (narg == argc - 1) {
+      if (QFileInfo(argv[narg]).isReadable()) {
+        filename = QString::fromStdString(argv[narg]);
+      }
+    }
+    ++narg;
   }
+
 #ifdef DEFAULT_IMAGE
   if (filename.isEmpty() && QFileInfo(DEFAULT_IMAGE).isReadable()) {
     filename = DEFAULT_IMAGE;
   }
 #endif
 
-  GmicQt::PluginParameters parameters;
   std::list<GmicQt::InputMode> disabledInputModes;
   disabledInputModes.push_back(GmicQt::NoInput);
   // disabledInputModes.push_back(GmicQt::Active);
@@ -237,33 +317,26 @@ int main(int argc, char * argv[])
   disabledOutputModes.push_back(GmicQt::NewLayers);
   disabledOutputModes.push_back(GmicQt::NewActiveLayers);
 
+  GmicQt::PluginParameters parameters;
+  if (repeat) {
+    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+    std::cout << "[gmic_qt] Running with last parameters...\n";
+    std::cout << "Command: " << parameters.command << std::endl;
+    std::cout << "Path: " << parameters.filterPath << std::endl;
+    std::cout << "Input Mode: " << parameters.inputMode << std::endl;
+    std::cout << "Output Mode: " << parameters.outputMode << std::endl;
+  } else {
+    parameters.filterPath = filterPath;
+    parameters.command = command;
+  }
+
   if (filename.isEmpty()) {
     return launchPlugin(GmicQt::FullGUI, parameters, disabledInputModes, disabledOutputModes);
   }
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
-    gmic_qt_standalone::image_filename = QFileInfo(filename).fileName();
-    GmicQt::PluginParameters parameters;
-    int status;
-
-    if (true) {
-      //  parameters.filterPath = "/Artistic/Cartoon";
-      //  parameters.command = "cartoon 3,200,20,0.25,1.5,8,0,50,50";
-      //  parameters.filterPath = "/Artistic/Cutout";
-      // parameters.inputMode = GmicQt::Active;
-      // parameters.outputMode = GmicQt::InPlace;
-      // parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::BeforeFilterExecution);
-      parameters.filterPath = "00Toto";
-      parameters.filterPath = "Black & White";
-      // parameters.command = "fx_toto";
-      status = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
-      //      status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
-    } else {
-      // parameters.command = "fx_toto 10,20,\"Je suis Sebastien\"";
-      parameters.filterPath = "Relief Light";
-      status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
-    }
-    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+    gmic_qt_standalone::input_image_filename = QFileInfo(filename).fileName();
+    int status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
     return status;
   }
   std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";

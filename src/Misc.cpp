@@ -378,15 +378,18 @@ QString unquoted(const QString & text)
 
 QStringList expandParameterList(const QStringList & parameters, QVector<int> sizes)
 {
+  // FIXME : Handle errors here
   QStringList result;
-  Q_ASSERT_X(parameters.size() == sizes.size(), __PRETTY_FUNCTION__, "Sizes are different");
+  Q_ASSERT_X(parameters.size() == sizes.size(), __PRETTY_FUNCTION__, QString("Sizes are different (parameters: %1, sizes: %2)").arg(parameters.size()).arg(sizes.size()).toStdString().c_str());
   QStringList::const_iterator itParam = parameters.constBegin();
   auto itSize = sizes.constBegin();
   while (itParam != parameters.constEnd() && itSize != sizes.constEnd()) {
     if (*itSize > 1) {
       result.append(itParam->split(","));
-    } else {
+    } else if (*itSize == 1) {
       result.push_back(*itParam);
+    } else {
+      Q_ASSERT_X((*itParam >= 1), __PRETTY_FUNCTION__, QString("Parameter size should be at least 1 (it is %1)").arg(*itParam).toStdString().c_str());
     }
     ++itParam;
     ++itSize;
