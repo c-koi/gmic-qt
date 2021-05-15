@@ -997,7 +997,7 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
     pluginParameters.command = param[5].data.d_string;
     pluginParameters.inputMode = (GmicQt::InputMode)(param[3].data.d_int32 + GmicQt::NoInput);
     pluginParameters.outputMode = GmicQt::OutputMode(param[4].data.d_int32 + GmicQt::InPlace);
-    launchPlugin(GmicQt::ProgressDialogGUI, pluginParameters);
+    launchPlugin(GmicQt::NoGUI, pluginParameters);
     break;
   }
   return_values[0].data.d_status = GmicQt::pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;
@@ -1069,7 +1069,7 @@ static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_m
     pluginParameters.command = g_value_get_string(gimp_value_array_index(args, 2));
     pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + GmicQt::NoInput);
     pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + GmicQt::InPlace);
-    launchPlugin(GmicQt::ProgressDialogGUI, pluginParameters);
+    launchPlugin(GmicQt::NoGUI, pluginParameters);
     break;
   }
   return gimp_procedure_new_return_values(procedure, pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL, NULL);
