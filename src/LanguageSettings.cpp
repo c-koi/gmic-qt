@@ -27,9 +27,11 @@
 #include <QApplication>
 #include <QDebug>
 #include <QFileInfo>
+#include <QLibraryInfo>
 #include <QLocale>
 #include <QSettings>
 #include <QTranslator>
+#include "Common.h"
 #include "Logger.h"
 
 const QMap<QString, QString> & LanguageSettings::availableLanguages()
@@ -97,15 +99,31 @@ void LanguageSettings::installTranslators()
   // FIXME : Install qt translators
   QString lang = LanguageSettings::configuredTranslator();
   if (!lang.isEmpty() && (lang != "en")) {
-    auto translator = new QTranslator(qApp);
-    translator->load(QString(":/translations/%1.qm").arg(lang));
+    installTranslator(QString(":/translations/%1.qm").arg(lang));
+    installQtTranslator(lang);
+    installTranslator(QString(":/translations/filters/%1.qm").arg(lang));
+  }
+}
+
+void LanguageSettings::installTranslator(const QString & qmPath)
+{
+  if (!QFileInfo(qmPath).isReadable()) {
+    return;
+  }
+  auto translator = new QTranslator(qApp);
+  if (translator->load(qmPath)) {
     QApplication::installTranslator(translator);
-    auto filtersQM = QString(":/translations/filters/%1.qm").arg(lang);
-    QFileInfo info(filtersQM);
-    if (info.exists()) {
-      auto filtersTranslator = new QTranslator(qApp);
-      filtersTranslator->load(filtersQM);
-      QApplication::installTranslator(filtersTranslator);
-    }
+  } else {
+    translator->deleteLater();
+  }
+}
+
+void LanguageSettings::installQtTranslator(const QString & lang)
+{
+  auto qtTranslator = new QTranslator(qApp);
+  if (qtTranslator->load(QString("qt_%1").arg(lang), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+    QApplication::installTranslator(qtTranslator);
+  } else {
+    qtTranslator->deleteLater();
   }
 }

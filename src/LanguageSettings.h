@@ -37,6 +37,8 @@ public:
   static void installTranslators();
 
 private:
+  static void installTranslator(const QString & qmPath);
+  static void installQtTranslator(const QString & lang);
 };
 
 #endif // GMIC_QT_LANGUAGESETTINGS_H
