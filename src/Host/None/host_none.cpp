@@ -44,10 +44,6 @@
 #include "gmic_qt.h"
 #include "gmic.h"
 
-#ifdef _GMIC_QT_DEBUG_
-#define DEFAULT_IMAGE "local/default.png"
-#endif
-
 #define STRINGIFY(X) #X
 #define XSTRINGIFY(X) STRINGIFY(X)
 
@@ -235,17 +231,19 @@ void gmic_qt_show_message(const char * message)
 
 void usage(const std::string & argv0)
 {
-  std::cout << QObject::tr("Usage: %1 [OPTIONS]... [INPUT_FILE]").arg(QString::fromStdString(argv0)).toStdString() << std::endl;
-  std::cout << QObject::tr("Launch the G'MIC-Qt plugin as a standalone application.\n"
-                           "\n"
-                           "Options:\n"
-                           "                             --help : Display this help\n"
-                           "                      --output FILE : Write output image to FILE\n"
-                           "                           --repeat : Use last applied filter and parameters\n"
-                           "   --path FILTER_PATH | FILTER_NAME : Select filter\n"
-                           "                                      e.g. \"/Black & White/Charcoal\"\n"
-                           "                                           \"Charcoal\"\n")
-                   .toStdString();
+  std::cout << "Usage: " << argv0 << " [OPTIONS]... [INPUT_FILE]" << std::endl;
+  std::cout << "Launch the G'MIC-Qt plugin as a standalone application.\n"
+               "\n"
+               "Options:\n"
+               "                                    -h --help : Display this help\n"
+               "                             -o --output FILE : Write output image to FILE\n"
+               "                                  -r --repeat : Use last applied filter and parameters\n"
+               "          -p --path FILTER_PATH | FILTER_NAME : Select filter\n"
+               "                                                e.g. \"/Black & White/Charcoal\"\n"
+               "                                                     \"Charcoal\"\n"
+               " -c --command \"gmic_command parameters,...\" : Run gmic command. If a filter name or path is provided,\n"
+               "                                                then parameters are completed using filter's defaults.\n"
+               "                                   -a --apply : Apply filter or command and quit (requires one of -r -p -c)\n";
 }
 
 int main(int argc, char * argv[])
@@ -255,52 +253,60 @@ int main(int argc, char * argv[])
 
   int narg = 1;
   bool repeat = false;
+  bool apply = false;
   std::string filterPath;
   std::string command;
   while (narg < argc) {
-    std::string arg(argv[narg]);
+    QString arg = QString::fromLocal8Bit(argv[narg]);
     if (arg == "--help") {
       usage(gmic_qt_standalone::basename(argv[0]));
       return EXIT_SUCCESS;
-    } else if (arg == "--output") {
+    } else if (arg == "--apply" || arg == "-a") {
+      apply = true;
+    } else if (arg == "--output" || arg == "-o") {
       if (narg < argc - 1) {
         ++narg;
         gmic_qt_standalone::output_image_filename = argv[narg];
       } else {
-        std::cerr << QObject::tr("Missing filename for option --output").toStdString() << std::endl;
+        std::cerr << "Missing filename for option --output" << std::endl;
         return EXIT_FAILURE;
       }
-    } else if (arg == "--repeat") {
+    } else if (arg == "--repeat" || arg == "-r") {
       repeat = true;
-    } else if (arg == "--command") {
+    } else if (arg == "--command" || arg == "-c") {
       if (narg < argc - 1) {
         ++narg;
         command = argv[narg];
       } else {
-        std::cerr << QObject::tr("Missing command for option --command").toStdString() << std::endl;
+        std::cerr << "Missing command for option --command" << std::endl;
         return EXIT_FAILURE;
       }
-    } else if (arg == "--path") {
+    } else if (arg == "--path" || arg == "-p") {
       if (narg < argc - 1) {
         ++narg;
         filterPath = argv[narg];
       } else {
-        std::cerr << QObject::tr("Missing path for option --path").toStdString() << std::endl;
+        std::cerr << "Missing path for option --path" << std::endl;
         return EXIT_FAILURE;
       }
+    } else if (arg.startsWith("--") || arg.startsWith("-")) {
+      std::cerr << "Unrecognized option " << arg.toStdString() << std::endl;
+      return EXIT_FAILURE;
     } else if (narg == argc - 1) {
       if (QFileInfo(argv[narg]).isReadable()) {
         filename = QString::fromStdString(argv[narg]);
+      } else {
+        std::cerr << "File not found: " << arg.toStdString() << std::endl;
+        return EXIT_FAILURE;
       }
     }
     ++narg;
   }
 
-#ifdef DEFAULT_IMAGE
-  if (filename.isEmpty() && QFileInfo(DEFAULT_IMAGE).isReadable()) {
-    filename = DEFAULT_IMAGE;
+  if (apply && (command.empty() && filterPath.empty() && !repeat)) {
+    std::cerr << QObject::tr("Option --apply requires one of --repeat -path --command").toStdString() << std::endl;
+    return EXIT_FAILURE;
   }
-#endif
 
   std::list<GmicQt::InputMode> disabledInputModes;
   disabledInputModes.push_back(GmicQt::NoInput);
@@ -316,15 +322,14 @@ int main(int argc, char * argv[])
   disabledOutputModes.push_back(GmicQt::NewImage);
   disabledOutputModes.push_back(GmicQt::NewLayers);
   disabledOutputModes.push_back(GmicQt::NewActiveLayers);
-
   GmicQt::PluginParameters parameters;
   if (repeat) {
     parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
-    std::cout << "[gmic_qt] Running with last parameters...\n";
-    std::cout << "Command: " << parameters.command << std::endl;
-    std::cout << "Path: " << parameters.filterPath << std::endl;
-    std::cout << "Input Mode: " << parameters.inputMode << std::endl;
-    std::cout << "Output Mode: " << parameters.outputMode << std::endl;
+    std::cout << QObject::tr("[gmic_qt] Running with last parameters...").toStdString() << std::endl;
+    std::cout << QObject::tr("Command: ").toStdString() << parameters.command << std::endl;
+    std::cout << QObject::tr("Path: ").toStdString() << parameters.filterPath << std::endl;
+    std::cout << QObject::tr("Input Mode: ").toStdString() << parameters.inputMode << std::endl;
+    std::cout << QObject::tr("Output Mode: ").toStdString() << parameters.outputMode << std::endl;
   } else {
     parameters.filterPath = filterPath;
     parameters.command = command;
@@ -336,10 +341,10 @@ int main(int argc, char * argv[])
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
     gmic_qt_standalone::input_image_filename = QFileInfo(filename).fileName();
-    int status = GmicQt::launchPlugin(GmicQt::FullGUI, parameters);
+    int status = GmicQt::launchPlugin(apply ? GmicQt::ProgressDialogGUI : GmicQt::FullGUI, parameters);
     return status;
   }
-  std::cerr << "Could not open file " << filename.toLocal8Bit().constData() << "\n";
+  std::cerr << QObject::tr("Could not open file %1").arg(filename).toStdString() << std::endl;
   return 1;
 }
 
