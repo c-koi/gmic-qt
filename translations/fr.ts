@@ -4,7 +4,7 @@
 <context>
     <name>ColorParameter</name>
     <message>
-        <location filename="../src/FilterParameters/ColorParameter.cpp" line="196"/>
+        <location filename="../src/FilterParameters/ColorParameter.cpp" line="197"/>
         <source>Select color</source>
         <translation>Sélectionnez une couleur</translation>
     </message>
@@ -217,17 +217,17 @@
     <name>FilterParametersWidget</name>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="40"/>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="246"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="248"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
         <translation>&lt;i&gt;Sélectionnez un filtre&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="213"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="215"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
         <translation>&lt;i&gt;Aucun paramètre&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="218"/>
+        <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="220"/>
         <source>Error parsing filter parameters
 
 </source>
@@ -302,12 +302,12 @@
 <context>
     <name>GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="298"/>
+        <location filename="../src/GmicProcessor.cpp" line="295"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation>L&apos;image No%1 retournée par le filtre possède %2 canaux (4 est la limite)</translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="332"/>
+        <location filename="../src/GmicProcessor.cpp" line="329"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation>L&apos;image No%1 retournée par le filtre possède %2 canaux
@@ -317,22 +317,22 @@
 <context>
     <name>HeadlessProcessor</name>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="78"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="77"/>
         <source>At least a filter path or a filter command must be provided.</source>
         <translation>Au moins un chemin de filtre ou une commande doivent être founis.</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="80"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="79"/>
         <source>Custom command (%1)</source>
         <translation>Commande personnalisée (%1)</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="88"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="87"/>
         <source>Cannot find filter matching path %1</source>
         <translation>Impossible de trouver un filtre correspondant au chemin %1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="95"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="94"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -349,17 +349,17 @@ Impossible de déterminer les paramètres par défaut.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="109"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="108"/>
         <source>Error parsing supplied command: %1</source>
         <translation>Erreur d&apos;analyse de la commande fournie: %1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="112"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="111"/>
         <source>Supplied command (%1) does not match path (%2), (should be %3).</source>
         <translation>La commande fournie (%1) ne correspond pas au chemin (%2), (ce devrait être %3).</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="226"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="225"/>
         <source>Filter execution failed, but with no error message.</source>
         <translation>L&apos;exécution du filtre a échoué, mais sans message d&apos;erreur.</translation>
     </message>
@@ -390,7 +390,12 @@ Impossible de déterminer les paramètres par défaut.
         <translation>Enregistrer sous...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="109"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="101"/>
+        <source>%1 file (*.%2)</source>
+        <translation>Fichier %1 (*.%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="117"/>
         <source>Save image as...</source>
         <translation>Enregistrer l&apos;image sous...</translation>
     </message>
@@ -620,7 +625,7 @@ Impossible de déterminer les paramètres par défaut.
     <message>
         <location filename="../src/MainWindow.cpp" line="339"/>
         <location filename="../src/MainWindow.cpp" line="341"/>
-        <location filename="../src/MainWindow.cpp" line="462"/>
+        <location filename="../src/MainWindow.cpp" line="461"/>
         <source>Filter definitions have been updated.</source>
         <translation>Les définitions de filtres ont été mises à jour.</translation>
     </message>
@@ -630,12 +635,12 @@ Impossible de déterminer les paramètres par défaut.
         <translation>Aucun téléchargement n&apos;était requis.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="458"/>
+        <location filename="../src/MainWindow.cpp" line="457"/>
         <source>Filters update could not be achieved</source>
         <translation>La mise à jour des filtres n&apos;a pas réussi</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="401"/>
+        <location filename="../src/MainWindow.cpp" line="400"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -644,8 +649,8 @@ Path: %1</source>
 Chemin: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="410"/>
-        <location filename="../src/MainWindow.cpp" line="436"/>
+        <location filename="../src/MainWindow.cpp" line="409"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -662,7 +667,7 @@ Impossible de déterminer les paramètres par défaut.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="419"/>
+        <location filename="../src/MainWindow.cpp" line="418"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -671,7 +676,7 @@ Command: %1</source>
 Commande: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="422"/>
+        <location filename="../src/MainWindow.cpp" line="421"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -682,7 +687,7 @@ Chemin: %1
 Commande: %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="441"/>
+        <location filename="../src/MainWindow.cpp" line="440"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -691,47 +696,47 @@ Commande: %2</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="585"/>
+        <location filename="../src/MainWindow.cpp" line="584"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>La mise à jour n&apos;a pas réussi en raison&lt;br/&gt;des erreurs suivantes :&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="591"/>
+        <location filename="../src/MainWindow.cpp" line="590"/>
         <source>Update error</source>
         <translation>Erreurs lors de la mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="791"/>
+        <location filename="../src/MainWindow.cpp" line="790"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="887"/>
+        <location filename="../src/MainWindow.cpp" line="886"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>En attente des traitements annulés...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1260"/>
+        <location filename="../src/MainWindow.cpp" line="1259"/>
         <source>Import faves</source>
         <translation>Importer les favoris</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1260"/>
+        <location filename="../src/MainWindow.cpp" line="1259"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Voulez-vous importer les favoris du fichier ci-dessous ?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1263"/>
+        <location filename="../src/MainWindow.cpp" line="1262"/>
         <source>Don&apos;t ask again</source>
         <translation>Ne plus me demander</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1375"/>
+        <location filename="../src/MainWindow.cpp" line="1374"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1375"/>
+        <location filename="../src/MainWindow.cpp" line="1374"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Une commande gmic est en cours d&apos;exécution.&lt;br&gt;Voulez-vous vraiment fermer le plugin ?</translation>
     </message>
@@ -831,27 +836,22 @@ Commande: %2</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="71"/>
+        <location filename="../src/Host/None/host_none.cpp" line="75"/>
         <source>Select an image to open...</source>
         <translation>Sélectionnez une image à ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="71"/>
-        <source>PNG &amp; JPG files (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</source>
-        <translation>Fichiers PNG &amp; JPG (*.png *.jpeg *.jpg *.PNG *.JPEG *.JPG)</translation>
-    </message>
-    <message>
-        <location filename="../src/Host/None/host_none.cpp" line="77"/>
+        <location filename="../src/Host/None/host_none.cpp" line="81"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="77"/>
+        <location filename="../src/Host/None/host_none.cpp" line="81"/>
         <source>Could not open file.</source>
         <translation>Impossible d&apos;ouvrir le fichier.</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="81"/>
+        <location filename="../src/Host/None/host_none.cpp" line="85"/>
         <source>Default image</source>
         <translation>Image par défaut</translation>
     </message>
@@ -892,32 +892,32 @@ Commande: %2</translation>
 <context>
     <name>Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="204"/>
+        <location filename="../src/Updater.cpp" line="203"/>
         <source>Could not read/decompress %1</source>
         <translation>Impossible de lire/décompresser %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="195"/>
+        <location filename="../src/Updater.cpp" line="194"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Erreur de téléchargement de %1 (fichier vide ?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="210"/>
+        <location filename="../src/Updater.cpp" line="209"/>
         <source>Error creating file %1</source>
         <translation>Erreur de création du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="214"/>
+        <location filename="../src/Updater.cpp" line="213"/>
         <source>Error writing file %1</source>
         <translation>Erreur d&apos;écriture du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="231"/>
+        <location filename="../src/Updater.cpp" line="230"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>Erreur lors du téléchargement de %1&lt;br/&gt; Erreur %2 : %3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="264"/>
+        <location filename="../src/Updater.cpp" line="263"/>
         <source>Download timeout: %1</source>
         <translation>Téléchargement annulé (hors délai) : %1</translation>
     </message>

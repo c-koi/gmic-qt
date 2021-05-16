@@ -304,7 +304,7 @@ int main(int argc, char * argv[])
   }
 
   if (apply && (command.empty() && filterPath.empty() && !repeat)) {
-    std::cerr << QObject::tr("Option --apply requires one of --repeat -path --command").toStdString() << std::endl;
+    std::cerr << "Option --apply requires one of --repeat -path --command" << std::endl;
     return EXIT_FAILURE;
   }
 
@@ -325,11 +325,11 @@ int main(int argc, char * argv[])
   GmicQt::PluginParameters parameters;
   if (repeat) {
     parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
-    std::cout << QObject::tr("[gmic_qt] Running with last parameters...").toStdString() << std::endl;
-    std::cout << QObject::tr("Command: ").toStdString() << parameters.command << std::endl;
-    std::cout << QObject::tr("Path: ").toStdString() << parameters.filterPath << std::endl;
-    std::cout << QObject::tr("Input Mode: ").toStdString() << parameters.inputMode << std::endl;
-    std::cout << QObject::tr("Output Mode: ").toStdString() << parameters.outputMode << std::endl;
+    std::cout << "[gmic_qt] Running with last parameters..." << std::endl;
+    std::cout << "Command: " << parameters.command << std::endl;
+    std::cout << "Path: " << parameters.filterPath << std::endl;
+    std::cout << "Input Mode: " << parameters.inputMode << std::endl;
+    std::cout << "Output Mode: " << parameters.outputMode << std::endl;
   } else {
     parameters.filterPath = filterPath;
     parameters.command = command;
@@ -344,7 +344,7 @@ int main(int argc, char * argv[])
     int status = GmicQt::launchPlugin(apply ? GmicQt::ProgressDialogGUI : GmicQt::FullGUI, parameters);
     return status;
   }
-  std::cerr << QObject::tr("Could not open file %1").arg(filename).toStdString() << std::endl;
+  std::cerr << "Could not open file " << filename.toStdString() << std::endl;
   return 1;
 }
 
