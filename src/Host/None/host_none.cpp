@@ -241,9 +241,11 @@ void usage(const std::string & argv0)
                "          -p --path FILTER_PATH | FILTER_NAME : Select filter\n"
                "                                                e.g. \"/Black & White/Charcoal\"\n"
                "                                                     \"Charcoal\"\n"
-               " -c --command \"gmic_command parameters,...\" : Run gmic command. If a filter name or path is provided,\n"
+               "                  -c --command \"GMIC COMMAND\" : Run gmic command. If a filter name or path is provided,\n"
                "                                                then parameters are completed using filter's defaults.\n"
-               "                                   -a --apply : Apply filter or command and quit (requires one of -r -p -c)\n";
+               "                                   -a --apply : Apply filter or command and quit (requires one of -r -p -c)\n"
+               "                                       --last : Print last applied plugin parameters\n"
+               "                                 --last-after : Print last applied plugin parameters (after filter execution)\n";
 }
 
 int main(int argc, char * argv[])
@@ -254,6 +256,8 @@ int main(int argc, char * argv[])
   int narg = 1;
   bool repeat = false;
   bool apply = false;
+  bool printLast = false;
+  bool printLastAfter = false;
   std::string filterPath;
   std::string command;
   while (narg < argc) {
@@ -289,6 +293,10 @@ int main(int argc, char * argv[])
         std::cerr << "Missing path for option --path" << std::endl;
         return EXIT_FAILURE;
       }
+    } else if (arg == "--last") {
+      printLast = true;
+    } else if (arg == "--last-after") {
+      printLastAfter = true;
     } else if (arg.startsWith("--") || arg.startsWith("-")) {
       std::cerr << "Unrecognized option " << arg.toStdString() << std::endl;
       return EXIT_FAILURE;
@@ -306,6 +314,16 @@ int main(int argc, char * argv[])
   if (apply && (command.empty() && filterPath.empty() && !repeat)) {
     std::cerr << "Option --apply requires one of --repeat -path --command" << std::endl;
     return EXIT_FAILURE;
+  }
+
+  if (printLast || printLastAfter) {
+    GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(printLast ? GmicQt::BeforeFilterExecution : GmicQt::AfterFilterExecution);
+    std::cout << "Path: " << parameters.filterPath << std::endl;
+    std::cout << "Name: " << parameters.filterName() << std::endl;
+    std::cout << "Command: " << parameters.command << std::endl;
+    std::cout << "InputMode: " << parameters.inputMode << std::endl;
+    std::cout << "OutputMode: " << parameters.outputMode << std::endl;
+    return EXIT_SUCCESS;
   }
 
   std::list<GmicQt::InputMode> disabledInputModes;
