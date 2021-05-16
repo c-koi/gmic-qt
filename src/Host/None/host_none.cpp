@@ -258,7 +258,7 @@ int main(int argc, char * argv[])
   std::string command;
   while (narg < argc) {
     QString arg = QString::fromLocal8Bit(argv[narg]);
-    if (arg == "--help") {
+    if (arg == "--help" || arg == "-h") {
       usage(gmic_qt_standalone::basename(argv[0]));
       return EXIT_SUCCESS;
     } else if (arg == "--apply" || arg == "-a") {
