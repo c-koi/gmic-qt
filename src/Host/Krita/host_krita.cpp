@@ -34,6 +34,7 @@
 #include <QBuffer>
 #include <QUuid>
 
+#include <list>
 #include <ImageConverter.h>
 
 #include <algorithm>
@@ -347,26 +348,31 @@ int main(int argc, char *argv[])
 #endif
     }
 
-    disableInputMode(GmicQt::NoInput);
-    // disableInputMode(GmicQt::Active);
-    // disableInputMode(GmicQt::All);
-    // disableInputMode(GmicQt::ActiveAndBelow);
-    // disableInputMode(GmicQt::ActiveAndAbove);
-    disableInputMode(GmicQt::AllVisible);
-    disableInputMode(GmicQt::AllInvisible);
+    std::list<GmicQt::InputMode> disabledInputModes;
+    disabledInputModes.push_back(GmicQt::NoInput);
+    // disabledInputModes.push_back(GmicQt::Active);
+    // disabledInputModes.push_back(GmicQt::All);
+    // disabledInputModes.push_back(GmicQt::ActiveAndBelow);
+    // disabledInputModes.push_back(GmicQt::ActiveAndAbove);
+    disabledInputModes.push_back(GmicQt::AllVisible);
+    disabledInputModes.push_back(GmicQt::AllInvisible);
 
-    // disableOutputMode(GmicQt::InPlace);
-    disableOutputMode(GmicQt::NewImage);
-    disableOutputMode(GmicQt::NewLayers);
-    disableOutputMode(GmicQt::NewActiveLayers);
+    std::list<GmicQt::OutputMode> disabledOutputModes;
+    // disabledOutputModes.push_back(GmicQt::InPlace);
+    disabledOutputModes.push_back(GmicQt::NewImage);
+    disabledOutputModes.push_back(GmicQt::NewLayers);
+    disabledOutputModes.push_back(GmicQt::NewActiveLayers);
 
     qWarning() << "gmic-qt: socket Key:" << socketKey;
     int r = 0;
     if (headless) {
-        r = launchPluginHeadlessUsingLastParameters();
-    }
-    else {
-        r = launchPlugin();
+      GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+      r = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
+    } else {
+      r = GmicQt::launchPlugin(GmicQt::FullGUI,            //
+			       GmicQt::PluginParameters(), //
+			       disabledInputModes,         //
+			       disabledOutputModes);
     }
 
     Q_FOREACH(QSharedMemory *sharedMemory, sharedMemorySegments) {
