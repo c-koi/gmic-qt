@@ -1059,17 +1059,17 @@ static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_m
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPlugin(GmicQt::FullGUI);
+    launchPlugin(GmicQt::UserInterfaceMode::FullGUI);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = image;
-    launchPlugin(GmicQt::ProgressDialogGUI, GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution));
+    launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::AfterFilterExecution));
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = image;
     pluginParameters.command = g_value_get_string(gimp_value_array_index(args, 2));
-    pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + GmicQt::NoInput);
-    pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + GmicQt::InPlace);
+    pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + (int)GmicQt::InputMode::NoInput);
+    pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + (int)GmicQt::OutputMode::InPlace);
     launchPlugin(GmicQt::UserInterfaceMode::Silent, pluginParameters);
     break;
   }
