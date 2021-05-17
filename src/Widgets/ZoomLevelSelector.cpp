@@ -33,6 +33,9 @@
 #include "PreviewWidget.h"
 #include "ui_zoomlevelselector.h"
 
+namespace GmicQt
+{
+
 ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new Ui::ZoomLevelSelector)
 {
   ui->setupUi(this);
@@ -209,3 +212,5 @@ QValidator::State ZoomLevelValidator::validate(QString & input, int & pos) const
   str.remove(QRegExp(" ?%?$"));
   return _doubleValidator->validate(str, pos);
 }
+
+} // namespace GmicQt

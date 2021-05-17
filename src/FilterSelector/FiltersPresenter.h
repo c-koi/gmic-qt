@@ -33,6 +33,9 @@
 
 class QSettings;
 
+namespace GmicQt
+{
+
 class FiltersPresenter : public QObject {
   Q_OBJECT
 public:
@@ -139,5 +142,7 @@ private:
   Filter _currentFilter;
   QString _errorMessage;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSPRESENTER_H

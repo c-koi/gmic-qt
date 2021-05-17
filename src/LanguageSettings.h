@@ -28,6 +28,9 @@
 #include <QMap>
 #include <QString>
 
+namespace GmicQt
+{
+
 class LanguageSettings {
 public:
   LanguageSettings() = delete;
@@ -40,5 +43,7 @@ private:
   static void installTranslator(const QString & qmPath);
   static void installQtTranslator(const QString & lang);
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_LANGUAGESETTINGS_H

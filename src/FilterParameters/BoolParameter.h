@@ -30,6 +30,9 @@
 class QCheckBox;
 class QLabel;
 
+namespace GmicQt
+{
+
 class BoolParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -55,5 +58,7 @@ private:
   QCheckBox * _checkBox;
   bool _connected;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_BOOLPARAMETER_H

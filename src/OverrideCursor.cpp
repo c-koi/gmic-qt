@@ -28,6 +28,8 @@
 #include <QDebug>
 #include "Common.h"
 
+namespace GmicQt
+{
 bool OverrideCursor::_waiting = false;
 bool OverrideCursor::_pointingHand = false;
 
@@ -70,3 +72,5 @@ bool OverrideCursor::currentCursorIsPointingHand()
 {
   return QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor;
 }
+
+} // namespace GmicQt

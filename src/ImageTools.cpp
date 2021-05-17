@@ -46,7 +46,7 @@ void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_librar
     int spectrum = 0;
     cimglist_for(preview_input_images, l) { spectrum = std::max(spectrum, preview_input_images[l].spectrum()); }
     spectrum += (spectrum == 1 || spectrum == 3);
-    cimglist_for(preview_input_images, l) { GmicQt::calibrate_image(preview_input_images[l], spectrum, true); }
+    cimglist_for(preview_input_images, l) { calibrate_image(preview_input_images[l], spectrum, true); }
     result.swap(preview_input_images.front());
   } else {
     result.assign();
@@ -247,8 +247,6 @@ bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, uns
   return true;
 }
 
-} // namespace GmicQt
-
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
 {
   return image.spectrum() == 2 || image.spectrum() == 4;
@@ -257,25 +255,4 @@ template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
 template bool hasAlphaChannel(const cimg_library::CImg<float> &);
 template bool hasAlphaChannel(const cimg_library::CImg<unsigned char> &);
 
-QPixmap darkerPixmap(const QPixmap & pixmap)
-{
-  static int i = 0;
-  QImage image = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
-  image.save(QString("/tmp/icon%1.png").arg(i++));
-  for (int row = 0; row < image.height(); ++row) {
-    auto pixel = reinterpret_cast<QRgb *>(image.scanLine(row));
-    const QRgb * limit = pixel + image.width();
-    while (pixel != limit) {
-      QColor color;
-      if (qAlpha(*pixel) != 0) {
-        color.setRed((int)(0.4 * qRed(*pixel)));
-        color.setGreen((int)(0.4 * qGreen(*pixel)));
-        color.setBlue((int)(0.4 * qBlue(*pixel)));
-      } else {
-        color.setRgb(0, 0, 0, 0);
-      }
-      *pixel++ = color.rgba();
-    }
-  }
-  return QPixmap::fromImage(image);
-}
+} // namespace GmicQt

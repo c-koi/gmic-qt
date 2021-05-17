@@ -29,6 +29,8 @@
 #include <QString>
 #include <cstddef>
 
+namespace GmicQt
+{
 class FavesModel {
 public:
   class Fave {
@@ -125,4 +127,7 @@ FavesModel::const_iterator FavesModel::end() const
 {
   return FavesModel::const_iterator(_faves.end());
 }
+
+} // namespace GmicQt
+
 #endif // GMIC_QT_FAVESMODEL_H

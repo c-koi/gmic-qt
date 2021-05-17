@@ -27,9 +27,12 @@
 
 #include <QString>
 #include "AbstractParameter.h"
-class CustomDoubleSpinBox;
 class QSlider;
 class QLabel;
+
+namespace GmicQt
+{
+class CustomDoubleSpinBox;
 
 class FloatParameter : public AbstractParameter {
   Q_OBJECT
@@ -68,5 +71,7 @@ private:
   static const int SLIDER_MAX_RANGE = 1000;
   bool _connected;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FLOATPARAMETER_H

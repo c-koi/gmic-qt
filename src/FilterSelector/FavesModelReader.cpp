@@ -40,6 +40,9 @@
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 FavesModelReader::FavesModelReader(FavesModel & model) : _model(model) {}
 
 bool FavesModelReader::gmicGTKFaveFileAvailable()
@@ -181,3 +184,5 @@ QString FavesModelReader::gmicGTKFavesFilename()
 {
   return QString("%1%2").arg(GmicQt::path_rc(false)).arg("gimp_faves");
 }
+
+} // namespace GmicQt

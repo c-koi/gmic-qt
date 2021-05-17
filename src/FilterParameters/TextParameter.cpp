@@ -40,6 +40,9 @@
 #include "IconLoader.h"
 #include "Misc.h"
 
+namespace GmicQt
+{
+
 TextParameter::TextParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _lineEdit(nullptr), _textEdit(nullptr), _multiline(false), _connected(false)
 {
   _updateAction = nullptr;
@@ -177,3 +180,5 @@ void TextParameter::disconnectEditor()
   }
   _connected = false;
 }
+
+} // namespace GmicQt

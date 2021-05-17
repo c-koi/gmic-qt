@@ -30,6 +30,9 @@
 #include "LanguageSettings.h"
 #include "ui_languageselectionwidget.h"
 
+namespace GmicQt
+{
+
 LanguageSelectionWidget::LanguageSelectionWidget(QWidget * parent) //
     : QWidget(parent),                                             //
       ui(new Ui::LanguageSelectionWidget),                         //
@@ -84,3 +87,5 @@ void LanguageSelectionWidget::selectLanguage(const QString & code)
     }
   }
 }
+
+} // namespace GmicQt

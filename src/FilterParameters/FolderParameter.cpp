@@ -38,6 +38,9 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
+namespace GmicQt
+{
+
 FolderParameter::FolderParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _button(nullptr) {}
 
 FolderParameter::~FolderParameter()
@@ -138,3 +141,5 @@ void FolderParameter::onButtonPressed()
   }
   notifyIfRelevant();
 }
+
+} // namespace GmicQt

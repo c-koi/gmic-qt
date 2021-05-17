@@ -33,6 +33,9 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
+namespace GmicQt
+{
+
 LinkParameter::LinkParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _alignment(Qt::AlignLeft) {}
 
 LinkParameter::~LinkParameter()
@@ -121,3 +124,5 @@ void LinkParameter::onLinkActivated(const QString & link)
 {
   QDesktopServices::openUrl(QUrl(link));
 }
+
+} // namespace GmicQt

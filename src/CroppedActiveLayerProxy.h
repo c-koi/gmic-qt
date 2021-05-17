@@ -35,6 +35,8 @@ template <typename T> struct CImg;
 template <typename T> struct CImgList;
 } // namespace cimg_library
 
+namespace GmicQt
+{
 class CroppedActiveLayerProxy {
 public:
   CroppedActiveLayerProxy() = delete;
@@ -51,5 +53,7 @@ private:
   static double _width;
   static double _height;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CROPPEDACTIVELAYERPROXY_H

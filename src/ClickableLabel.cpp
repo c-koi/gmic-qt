@@ -25,9 +25,10 @@
 #include "ClickableLabel.h"
 #include <QMouseEvent>
 
-ClickableLabel::ClickableLabel(QWidget * parent) : QLabel(parent)
+namespace GmicQt
 {
-}
+
+ClickableLabel::ClickableLabel(QWidget * parent) : QLabel(parent) {}
 
 void ClickableLabel::mousePressEvent(QMouseEvent * e)
 {
@@ -35,3 +36,5 @@ void ClickableLabel::mousePressEvent(QMouseEvent * e)
     emit clicked();
   }
 }
+
+} // namespace GmicQt

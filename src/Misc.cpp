@@ -60,19 +60,22 @@ inline bool isEmptyOrSpaceSequence(const char * pc)
 }
 } // namespace
 
+namespace GmicQt
+{
+
 QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode)
 {
   switch (mode) {
-  case GmicQt::Quiet:
-  case GmicQt::VerboseConsole:
-  case GmicQt::VerboseLogFile:
-  case GmicQt::UnspecifiedOutputMessageMode:
+  case OutputMessageMode::Quiet:
+  case OutputMessageMode::VerboseConsole:
+  case OutputMessageMode::VerboseLogFile:
+  case OutputMessageMode::Unspecified:
     return "";
-  case GmicQt::VeryVerboseConsole:
-  case GmicQt::VeryVerboseLogFile:
+  case OutputMessageMode::VeryVerboseConsole:
+  case OutputMessageMode::VeryVerboseLogFile:
     return "v 3";
-  case GmicQt::DebugConsole:
-  case GmicQt::DebugLogFile:
+  case OutputMessageMode::DebugConsole:
+  case OutputMessageMode::DebugLogFile:
     return "debug";
   }
   return "";
@@ -396,3 +399,5 @@ QStringList expandParameterList(const QStringList & parameters, QVector<int> siz
   }
   return result;
 }
+
+} // namespace GmicQt

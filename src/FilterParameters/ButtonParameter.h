@@ -28,10 +28,12 @@
 #include <QString>
 #include <Qt>
 #include "AbstractParameter.h"
-
 class QWidget;
 class QPushButton;
 class QLabel;
+
+namespace GmicQt
+{
 
 class ButtonParameter : public AbstractParameter {
   Q_OBJECT
@@ -55,5 +57,7 @@ private:
   QPushButton * _pushButton;
   Qt::AlignmentFlag _alignment;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_BUTTONPARAMETER_H

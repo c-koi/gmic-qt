@@ -29,6 +29,9 @@
 #include "AbstractParameter.h"
 class QLabel;
 
+namespace GmicQt
+{
+
 class LinkParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -50,5 +53,7 @@ private:
   QString _url;
   Qt::AlignmentFlag _alignment;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_LINKPARAMETER_H

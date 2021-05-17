@@ -40,6 +40,9 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
+namespace GmicQt
+{
+
 ColorParameter::ColorParameter(QObject * parent) //
     : AbstractParameter(parent),                 //
       _default(0, 0, 0, 0),                      //
@@ -216,3 +219,5 @@ void ColorParameter::updateButtonColor()
   painter.drawRect(0, 0, _pixmap.width() - 1, _pixmap.height() - 1);
   _button->setIcon(_pixmap);
 }
+
+} // namespace GmicQt

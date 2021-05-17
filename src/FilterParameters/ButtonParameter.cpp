@@ -32,6 +32,9 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
+namespace GmicQt
+{
+
 ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent), _value(false), _pushButton(nullptr), _alignment(Qt::AlignHCenter) {}
 
 ButtonParameter::~ButtonParameter()
@@ -106,3 +109,5 @@ bool ButtonParameter::initFromText(const char * text, int & textLength)
   }
   return true;
 }
+
+} // namespace GmicQt

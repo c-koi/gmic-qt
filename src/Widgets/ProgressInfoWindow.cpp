@@ -40,6 +40,9 @@
 #include "ui_progressinfowindow.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWindow(nullptr), ui(new Ui::ProgressInfoWindow), _processor(processor)
 {
   ui->setupUi(this);
@@ -163,3 +166,5 @@ void ProgressInfoWindow::onProcessingFinished(const QString & errorMessage)
   }
   close();
 }
+
+} // namespace GmicQt

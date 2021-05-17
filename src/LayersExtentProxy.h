@@ -27,6 +27,8 @@
 #include <QSize>
 #include "gmic_qt.h"
 
+namespace GmicQt
+{
 class LayersExtentProxy {
 public:
   static void getExtent(GmicQt::InputMode mode, int & width, int & height);
@@ -39,5 +41,7 @@ private:
   static int _height;
   static GmicQt::InputMode _inputMode;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_LAYERS_EXTENT_PROXY_H

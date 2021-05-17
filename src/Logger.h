@@ -30,6 +30,9 @@
 
 class QString;
 
+namespace GmicQt
+{
+
 class Logger {
 public:
   enum Mode
@@ -53,5 +56,7 @@ private:
   static FILE * _logFile;
   static Mode _currentMode;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_LOGGER_H

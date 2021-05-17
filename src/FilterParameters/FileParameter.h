@@ -30,6 +30,9 @@
 class QLabel;
 class QPushButton;
 
+namespace GmicQt
+{
+
 class FileParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -60,5 +63,7 @@ private:
   QPushButton * _button;
   DialogMode _dialogMode;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILEPARAMETER_H

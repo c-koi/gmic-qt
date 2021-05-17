@@ -29,27 +29,29 @@
 
 namespace
 {
+
 void filterObsoleteInputModes(GmicQt::InputMode & mode)
 {
   switch (mode) {
-  case GmicQt::AllDesc_UNUSED:
-  case GmicQt::AllVisiblesDesc_UNUSED:
-  case GmicQt::AllInvisiblesDesc_UNUSED:
-    mode = GmicQt::UnspecifiedInputMode;
+  case GmicQt::InputMode::AllDesc_UNUSED:
+  case GmicQt::InputMode::AllVisiblesDesc_UNUSED:
+  case GmicQt::InputMode::AllInvisiblesDesc_UNUSED:
+    mode = GmicQt::InputMode::Unspecified;
     break;
   default:
     break;
   }
 }
+
 } // namespace
 
 namespace GmicQt
 {
 
 const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode);
-const InputOutputState InputOutputState::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode);
+const InputOutputState InputOutputState::Unspecified(InputMode::Unspecified, OutputMode::Unspecified);
 
-InputOutputState::InputOutputState() : inputMode(UnspecifiedInputMode), outputMode(UnspecifiedOutputMode) {}
+InputOutputState::InputOutputState() : inputMode(InputMode::Unspecified), outputMode(OutputMode::Unspecified) {}
 
 InputOutputState::InputOutputState(InputMode inputMode, OutputMode outputMode) : inputMode(inputMode), outputMode(outputMode) {}
 
@@ -71,20 +73,21 @@ bool InputOutputState::isDefault() const
 void InputOutputState::toJSONObject(QJsonObject & object) const
 {
   object = QJsonObject();
-  if (inputMode != UnspecifiedInputMode) {
-    object.insert("InputLayers", inputMode);
+  if (inputMode != InputMode::Unspecified) {
+    object.insert("InputLayers", static_cast<int>(inputMode));
   }
   if (outputMode != DefaultOutputMode) {
-    object.insert("OutputMode", outputMode);
+    object.insert("OutputMode", static_cast<int>(outputMode));
   }
 }
 
 InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
 {
   GmicQt::InputOutputState state;
-  state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(UnspecifiedInputMode));
+  state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(static_cast<int>(InputMode::Unspecified)));
   filterObsoleteInputModes(state.inputMode);
-  state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(UnspecifiedOutputMode));
+  state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(static_cast<int>(OutputMode::Unspecified)));
   return state;
 }
+
 } // namespace GmicQt

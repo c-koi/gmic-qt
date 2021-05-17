@@ -37,14 +37,17 @@
 #include <deque>
 #include "InputOutputState.h"
 #include "gmic_qt.h"
-class FilterThread;
-class FilterSyncRunner;
 
 namespace cimg_library
 {
 template <typename T> struct CImgList;
 template <typename T> struct CImg;
 } // namespace cimg_library
+
+namespace GmicQt
+{
+class FilterThread;
+class FilterSyncRunner;
 
 class GmicProcessor : public QObject {
   Q_OBJECT
@@ -152,5 +155,7 @@ private:
   int _completeFullImageProcessingCount;
   QVector<bool> _gmicStatusQuotedParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_GMICPROCESSOR_H

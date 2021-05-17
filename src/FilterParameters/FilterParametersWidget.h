@@ -33,8 +33,11 @@
 #include <QVector>
 #include <QWidget>
 #include "KeypointList.h"
-class AbstractParameter;
 class QLabel;
+
+namespace GmicQt
+{
+class AbstractParameter;
 
 class FilterParametersWidget : public QWidget {
   Q_OBJECT
@@ -93,5 +96,7 @@ protected:
   bool _hasKeypoints;
   QVector<bool> _quotedParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERPARAMSWIDGET_H

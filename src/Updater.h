@@ -41,8 +41,10 @@
 #include <QTemporaryFile>
 #include <QTimer>
 #include <memory>
-
 #include "gmic_qt.h"
+
+namespace GmicQt
+{
 class Updater : public QObject {
   Q_OBJECT
 
@@ -109,5 +111,7 @@ private:
   QList<QString> _errorMessages;
   bool _someNetworkUpdatesAchieved;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_UPDATER_H

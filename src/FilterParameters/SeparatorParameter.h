@@ -28,6 +28,9 @@
 #include "AbstractParameter.h"
 class QFrame;
 
+namespace GmicQt
+{
+
 class SeparatorParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -44,5 +47,7 @@ public:
 private:
   QFrame * _frame;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_SEPARATORPARAMETER_H

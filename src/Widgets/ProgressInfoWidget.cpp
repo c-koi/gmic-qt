@@ -37,6 +37,9 @@
 #include <psapi.h>
 #endif
 
+namespace GmicQt
+{
+
 ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _gmicProcessor(nullptr)
 {
   ui->setupUi(this);
@@ -242,3 +245,5 @@ void ProgressInfoWidget::updateUpdateProgression()
     }
   }
 }
+
+} // namespace GmicQt

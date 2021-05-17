@@ -34,6 +34,9 @@
 #include "Updater.h"
 #include "ui_dialogsettings.h"
 
+namespace GmicQt
+{
+
 bool DialogSettings::_darkThemeEnabled;
 QString DialogSettings::_languageCode;
 bool DialogSettings::_nativeColorDialogs;
@@ -86,15 +89,15 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   }
 
   ui->outputMessages->setToolTip(tr("Output messages"));
-  ui->outputMessages->addItem(tr("Quiet (default)"), GmicQt::Quiet);
-  ui->outputMessages->addItem(tr("Verbose (console)"), GmicQt::VerboseConsole);
-  ui->outputMessages->addItem(tr("Verbose (log file)"), GmicQt::VerboseLogFile);
-  ui->outputMessages->addItem(tr("Very verbose (console)"), GmicQt::VeryVerboseConsole);
-  ui->outputMessages->addItem(tr("Very verbose (log file)"), GmicQt::VeryVerboseLogFile);
-  ui->outputMessages->addItem(tr("Debug (console)"), GmicQt::DebugConsole);
-  ui->outputMessages->addItem(tr("Debug (log file)"), GmicQt::DebugLogFile);
+  ui->outputMessages->addItem(tr("Quiet (default)"), (int)OutputMessageMode::Quiet);
+  ui->outputMessages->addItem(tr("Verbose (console)"), (int)OutputMessageMode::VerboseConsole);
+  ui->outputMessages->addItem(tr("Verbose (log file)"), (int)OutputMessageMode::VerboseLogFile);
+  ui->outputMessages->addItem(tr("Very verbose (console)"), (int)OutputMessageMode::VeryVerboseConsole);
+  ui->outputMessages->addItem(tr("Very verbose (log file)"), (int)OutputMessageMode::VeryVerboseLogFile);
+  ui->outputMessages->addItem(tr("Debug (console)"), (int)OutputMessageMode::DebugConsole);
+  ui->outputMessages->addItem(tr("Debug (log file)"), (int)OutputMessageMode::DebugLogFile);
   for (int index = 0; index < ui->outputMessages->count(); ++index) {
-    if (ui->outputMessages->itemData(index) == _outputMessageMode) {
+    if (ui->outputMessages->itemData(index) == (int)_outputMessageMode) {
       ui->outputMessages->setCurrentIndex(index);
       break;
     }
@@ -180,7 +183,7 @@ void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
-  _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
+  _outputMessageMode = static_cast<OutputMessageMode>(settings.value("OutputMessageMode", (int)DefaultOutputMessageMode).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
   if (applicationType == GmicQt::GuiApplication) {
     AddIcon = LOAD_ICON("list-add");
@@ -222,7 +225,7 @@ void DialogSettings::saveSettings(QSettings & settings)
   settings.setValue("FileParameterDefaultPath", FileParameterDefaultPath);
   settings.setValue("LogosAreVisible", _logosAreVisible);
   settings.setValue("PreviewTimeout", _previewTimeout);
-  settings.setValue("OutputMessageMode", _outputMessageMode);
+  settings.setValue("OutputMessageMode", (int)_outputMessageMode);
   settings.setValue("AlwaysEnablePreviewZoom", _previewZoomAlwaysEnabled);
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
@@ -339,3 +342,5 @@ bool DialogSettings::nativeColorDialogs()
 {
   return _nativeColorDialogs;
 }
+
+} // namespace GmicQt

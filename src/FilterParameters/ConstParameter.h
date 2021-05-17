@@ -28,6 +28,9 @@
 #include "AbstractParameter.h"
 class QLabel;
 
+namespace GmicQt
+{
+
 class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -47,5 +50,7 @@ private:
   QString _default;
   QString _value;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CONSTPARAMETER_H

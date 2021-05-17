@@ -34,6 +34,9 @@
 #include "Utils.h"
 #include "gmic_qt.h"
 
+namespace GmicQt
+{
+
 QSet<QString> FiltersVisibilityMap::_hiddenFilters;
 
 bool FiltersVisibilityMap::filterIsVisible(const QString & hash)
@@ -99,3 +102,5 @@ void FiltersVisibilityMap::save()
     Logger::error("Cannot write " + path);
   }
 }
+
+} // namespace GmicQt

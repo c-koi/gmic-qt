@@ -31,6 +31,8 @@
 #include <vector>
 #include "gmic_qt.h"
 
+namespace GmicQt
+{
 class FiltersModel {
 public:
   class Filter {
@@ -120,5 +122,7 @@ public:
 private:
   QMap<QString, Filter> _hash2filter;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSMODEL_H

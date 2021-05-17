@@ -40,14 +40,14 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="SearchFieldWidget" name="searchField" native="true">
+        <widget class="GmicQt::SearchFieldWidget" name="searchField" native="true">
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="FiltersView" name="filtersView" native="true"/>
+        <widget class="GmicQt::FiltersView" name="filtersView" native="true"/>
        </item>
        <item>
         <widget class="QWidget" name="widget_2" native="true">
@@ -268,13 +268,13 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>180</width>
-                <height>472</height>
+                <width>220</width>
+                <height>477</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
-                <widget class="FilterParametersWidget" name="filterParams" native="true">
+                <widget class="GmicQt::FilterParametersWidget" name="filterParams" native="true">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -315,7 +315,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="InOutPanel" name="inOutSelector" native="true">
+         <widget class="GmicQt::InOutPanel" name="inOutSelector" native="true">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -369,7 +369,7 @@
            <number>2</number>
           </property>
           <item>
-           <widget class="PreviewWidget" name="previewWidget" native="true">
+           <widget class="GmicQt::PreviewWidget" name="previewWidget" native="true">
             <property name="focusPolicy">
              <enum>Qt::StrongFocus</enum>
             </property>
@@ -404,7 +404,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="ZoomLevelSelector" name="zoomLevelSelector" native="true">
+          <widget class="GmicQt::ZoomLevelSelector" name="zoomLevelSelector" native="true">
            <property name="minimumSize">
             <size>
              <width>40</width>
@@ -482,7 +482,7 @@
       </widget>
      </item>
      <item>
-      <widget class="ProgressInfoWidget" name="progressInfoWidget" native="true"/>
+      <widget class="GmicQt::ProgressInfoWidget" name="progressInfoWidget" native="true"/>
      </item>
      <item>
       <widget class="QLabel" name="messageLabel">
@@ -555,43 +555,43 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ProgressInfoWidget</class>
+   <class>GmicQt::ProgressInfoWidget</class>
    <extends>QWidget</extends>
    <header>Widgets/ProgressInfoWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>FilterParametersWidget</class>
+   <class>GmicQt::FilterParametersWidget</class>
    <extends>QWidget</extends>
    <header>FilterParameters/FilterParametersWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>PreviewWidget</class>
+   <class>GmicQt::PreviewWidget</class>
    <extends>QWidget</extends>
    <header>Widgets/PreviewWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>SearchFieldWidget</class>
+   <class>GmicQt::SearchFieldWidget</class>
    <extends>QWidget</extends>
    <header>Widgets/SearchFieldWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ZoomLevelSelector</class>
+   <class>GmicQt::ZoomLevelSelector</class>
    <extends>QWidget</extends>
    <header>Widgets/ZoomLevelSelector.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>FiltersView</class>
+   <class>GmicQt::FiltersView</class>
    <extends>QWidget</extends>
    <header>FilterSelector/FiltersView/FiltersView.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>InOutPanel</class>
+   <class>GmicQt::InOutPanel</class>
    <extends>QWidget</extends>
    <header>Widgets/InOutPanel.h</header>
    <container>1</container>

@@ -30,6 +30,7 @@
 
 namespace
 {
+
 inline bool archIsLittleEndian()
 {
   const int x = 1;
@@ -42,6 +43,9 @@ inline unsigned char float2uchar_bounded(const float & in)
 }
 
 } // namespace
+
+namespace GmicQt
+{
 
 void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage & out)
 {
@@ -230,3 +234,5 @@ void ImageConverter::convert(const QImage & in, cimg_library::CImg<float> & out)
     return;
   }
 }
+
+} // namespace GmicQt

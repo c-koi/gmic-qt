@@ -43,6 +43,9 @@
 #include "FilterParameters/TextParameter.h"
 #include "Logger.h"
 
+namespace GmicQt
+{
+
 const QStringList AbstractParameter::NoValueParameters = {"link", "note", "separator"};
 
 AbstractParameter::AbstractParameter(QObject * parent) : QObject(parent)
@@ -272,3 +275,5 @@ void AbstractParameter::notifyIfRelevant()
     emit valueChanged();
   }
 }
+
+} // namespace GmicQt

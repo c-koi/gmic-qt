@@ -28,6 +28,9 @@
 #include <QString>
 #include <QTextDocument>
 
+namespace GmicQt
+{
+
 class HtmlTranslator {
 public:
   static QString removeTags(QString str);
@@ -38,5 +41,7 @@ public:
 private:
   static QTextDocument _document;
 };
+
+} // namespace GmicQt
 
 #endif //  GMIC_QT_HTMLTRANSLATOR_H

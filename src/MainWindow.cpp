@@ -61,8 +61,6 @@
 #include "ui_mainwindow.h"
 #include "gmic.h"
 
-bool MainWindow::_isAccepted = false;
-
 namespace
 {
 QString appendShortcutText(const QString & text, const QKeySequence & key)
@@ -75,6 +73,11 @@ QString appendShortcutText(const QString & text, const QKeySequence & key)
 }
 
 } // namespace
+
+namespace GmicQt
+{
+
+bool MainWindow::_isAccepted = false;
 
 //
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
@@ -1172,22 +1175,22 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
     }
 
     GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
-    if (inOutState.inputMode == GmicQt::UnspecifiedInputMode) {
-      if ((filter.defaultInputMode != GmicQt::UnspecifiedInputMode)) {
+    if (inOutState.inputMode == InputMode::Unspecified) {
+      if ((filter.defaultInputMode != InputMode::Unspecified)) {
         inOutState.inputMode = filter.defaultInputMode;
       } else {
-        inOutState.inputMode = GmicQt::DefaultInputMode;
+        inOutState.inputMode = DefaultInputMode;
       }
     }
 
     // Take plugin parameters into account
-    if (_pluginParameters.inputMode != GmicQt::UnspecifiedInputMode) {
+    if (_pluginParameters.inputMode != InputMode::Unspecified) {
       inOutState.inputMode = _pluginParameters.inputMode;
-      _pluginParameters.inputMode = GmicQt::UnspecifiedInputMode;
+      _pluginParameters.inputMode = InputMode::Unspecified;
     }
-    if (_pluginParameters.outputMode != GmicQt::UnspecifiedOutputMode) {
+    if (_pluginParameters.outputMode != OutputMode::Unspecified) {
       inOutState.outputMode = _pluginParameters.outputMode;
-      _pluginParameters.outputMode = GmicQt::UnspecifiedOutputMode;
+      _pluginParameters.outputMode = OutputMode::Unspecified;
     }
 
     ui->inOutSelector->setState(inOutState, false);
@@ -1396,3 +1399,5 @@ void MainWindow::closeEvent(QCloseEvent * e)
     e->accept();
   }
 }
+
+} // namespace GmicQt

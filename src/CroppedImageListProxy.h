@@ -34,6 +34,9 @@ template <typename T> struct CImg;
 template <typename T> struct CImgList;
 } // namespace cimg_library
 
+namespace GmicQt
+{
+
 class CroppedImageListProxy {
 public:
   CroppedImageListProxy() = delete;
@@ -52,5 +55,7 @@ private:
   static GmicQt::InputMode _inputMode;
   static double _zoom;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CROPPEDIMAGELISTPROXY_H

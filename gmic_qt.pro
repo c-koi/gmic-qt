@@ -161,7 +161,6 @@ equals( HOST, "gimp") {
  message(Target host software is GIMP)
 }
 
-
 equals( HOST, "none") {
  TARGET = gmic_qt
  DEFINES += GMIC_HOST=standalone
@@ -455,6 +454,7 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
+#    QMAKE_CXXFLAGS_DEBUG += -Wfatal-errors
 #    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
 #    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }

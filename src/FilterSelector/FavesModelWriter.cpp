@@ -33,6 +33,9 @@
 #include "Logger.h"
 #include "Utils.h"
 
+namespace GmicQt
+{
+
 FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model) {}
 
 FavesModelWriter::~FavesModelWriter() = default;
@@ -85,3 +88,5 @@ QJsonObject FavesModelWriter::faveToJsonObject(const FavesModel::Fave & fave)
   object["defaultVisibilities"] = visibilities;
   return object;
 }
+
+} // namespace GmicQt

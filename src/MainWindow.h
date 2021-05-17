@@ -33,6 +33,7 @@
 #include "Common.h"
 #include "GmicProcessor.h"
 #include "Updater.h"
+class QResizeEvent;
 
 namespace Ui
 {
@@ -44,11 +45,13 @@ namespace cimg_library
 template <typename T> struct CImgList;
 }
 
+namespace GmicQt
+{
+
 class FiltersTreeFolderItem;
 class FiltersTreeFilterItem;
 class FiltersTreeAbstractFilterItem;
 class FiltersTreeFaveItem;
-class QResizeEvent;
 class Updater;
 class FilterThread;
 class FiltersPresenter;
@@ -168,5 +171,7 @@ private:
   static bool _isAccepted;
   GmicQt::PluginParameters _pluginParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_MAINWINDOW_H

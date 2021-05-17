@@ -29,6 +29,9 @@
 
 class QMouseEvent;
 
+namespace GmicQt
+{
+
 class ClickableLabel : public QLabel {
   Q_OBJECT
 public:
@@ -37,5 +40,7 @@ public:
 signals:
   void clicked();
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CLICKABLELABEL_H

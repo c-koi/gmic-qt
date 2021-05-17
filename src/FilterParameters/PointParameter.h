@@ -38,6 +38,9 @@ class QSlider;
 class QLabel;
 class QPushButton;
 
+namespace GmicQt
+{
+
 class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -95,5 +98,7 @@ private:
   static int _defaultColorNextIndex;
   static unsigned long _randomSeed;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_POINTPARAMETER_H

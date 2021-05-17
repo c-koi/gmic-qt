@@ -31,6 +31,9 @@
 class QComboBox;
 class QLabel;
 
+namespace GmicQt
+{
+
 class ChoiceParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -57,5 +60,7 @@ private:
   QList<QString> _choices;
   bool _connected;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CHOICEPARAMETER_H

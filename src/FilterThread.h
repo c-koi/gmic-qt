@@ -28,7 +28,6 @@
 #include <QElapsedTimer>
 #include <QString>
 #include <QThread>
-
 #include "Common.h"
 #include "Host/host.h"
 #include "gmic_qt.h"
@@ -37,6 +36,9 @@ namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
+
+namespace GmicQt
+{
 
 class FilterThread : public QThread {
   Q_OBJECT
@@ -88,5 +90,7 @@ private:
   GmicQt::OutputMessageMode _messageMode;
   QElapsedTimer _startTime;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT__FILTERTHREAD_H

@@ -35,8 +35,10 @@
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
 std::unique_ptr<Updater> Updater::_instance = std::unique_ptr<Updater>(nullptr);
-GmicQt::OutputMessageMode Updater::_outputMessageMode = GmicQt::Quiet;
+OutputMessageMode Updater::_outputMessageMode = OutputMessageMode::Quiet;
 
 Updater::Updater(QObject * parent) : QObject(parent)
 {
@@ -381,3 +383,5 @@ void Updater::setOutputMessageMode(GmicQt::OutputMessageMode mode)
 {
   _outputMessageMode = mode;
 }
+
+} // namespace GmicQt

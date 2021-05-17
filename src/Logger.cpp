@@ -31,12 +31,15 @@
 #include "gmic_qt.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 FILE * Logger::_logFile = nullptr;
 Logger::Mode Logger::_currentMode = Logger::StandardOutput;
 
 void Logger::setMode(const GmicQt::OutputMessageMode mode)
 {
-  if ((mode == GmicQt::VerboseLogFile) || (mode == GmicQt::VeryVerboseLogFile) || (mode == GmicQt::DebugLogFile)) {
+  if ((mode == OutputMessageMode::VerboseLogFile) || (mode == OutputMessageMode::VeryVerboseLogFile) || (mode == OutputMessageMode::DebugLogFile)) {
     setMode(Logger::File);
   } else {
     setMode(Logger::StandardOutput);
@@ -113,3 +116,5 @@ void Logger::note(const QString & message, bool space)
 {
   log(message, "note", space);
 }
+
+} // namespace GmicQt

@@ -32,6 +32,9 @@
 #include "gmic_qt.h"
 class QStringList;
 
+namespace GmicQt
+{
+
 QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode);
 
 void appendWithSpace(QString & str, const QString & other);
@@ -84,5 +87,7 @@ QString stringify(const T & value)
   QDebug(&result) << value;
   return result;
 }
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_MISC_H

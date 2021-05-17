@@ -36,13 +36,14 @@ template <typename T> struct CImgList;
 
 namespace GmicQt
 {
+
 template <typename T> void image2uchar(cimg_library::CImg<T> & img);
 template <typename T> void calibrate_image(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
 bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, unsigned int & index);
 void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result);
 
-} // namespace GmicQt
-
 template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image);
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_IMAGETOOLS_H

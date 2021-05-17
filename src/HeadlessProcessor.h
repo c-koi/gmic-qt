@@ -30,12 +30,15 @@
 #include <QTimer>
 #include "gmic_qt.h"
 
-class FilterThread;
-class ProgressInfoWindow;
 namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
+
+namespace GmicQt
+{
+class FilterThread;
+class ProgressInfoWindow;
 
 class HeadlessProcessor : public QObject {
   Q_OBJECT
@@ -78,5 +81,7 @@ private:
   QString _hash;
   QVector<bool> _gmicStatusQuotedParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_HEADLESSPROCESSOR_H

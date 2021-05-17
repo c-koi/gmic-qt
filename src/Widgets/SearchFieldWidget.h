@@ -27,15 +27,17 @@
 #include <QIcon>
 #include <QWidget>
 #include "Common.h"
+class QAction;
+class QLineEdit;
+class QToolButton;
 
 namespace Ui
 {
 class SearchFieldWidget;
 }
 
-class QAction;
-class QLineEdit;
-class QToolButton;
+namespace GmicQt
+{
 
 class SearchFieldWidget : public QWidget {
   Q_OBJECT
@@ -62,5 +64,7 @@ private:
   QToolButton * _button;
 #endif
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_SEARCHFIELDWIDGET_H

@@ -28,6 +28,8 @@
 #include <QString>
 #include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
 
+namespace GmicQt
+{
 class FilterTreeFolder : public FilterTreeAbstractItem {
 public:
   FilterTreeFolder(const QString & text);
@@ -41,5 +43,7 @@ public:
 private:
   bool _isFaveFolder;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERTREEFOLDER_H

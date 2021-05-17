@@ -156,7 +156,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images,
     }
 
     // Create a message for Krita
-    QString message = QString("command=gmic_qt_get_cropped_images\nmode=%5\ncroprect=%1,%2,%3,%4").arg(x).arg(y).arg(width).arg(height).arg(mode);
+    QString message = QString("command=gmic_qt_get_cropped_images\nmode=%5\ncroprect=%1,%2,%3,%4").arg(x).arg(y).arg(width).arg(height).arg((int)mode);
     QByteArray command = message.toUtf8();
     QString answer = QString::fromUtf8(sendMessageSynchronously(command));
 
@@ -249,7 +249,7 @@ void gmic_qt_output_images( gmic_list<float> & images,
 
     // Create qsharedmemory segments for each image
     // Create a message for Krita based on mode, the keys of the qsharedmemory segments and the imageNames
-    QString message = QString("command=gmic_qt_output_images\nmode=%1\n").arg(mode);
+    QString message = QString("command=gmic_qt_output_images\nmode=%1\n").arg((int)mode);
 
     for (uint i = 0; i < images.size(); ++i) {
 
@@ -349,27 +349,27 @@ int main(int argc, char *argv[])
     }
 
     std::list<GmicQt::InputMode> disabledInputModes;
-    disabledInputModes.push_back(GmicQt::NoInput);
-    // disabledInputModes.push_back(GmicQt::Active);
-    // disabledInputModes.push_back(GmicQt::All);
-    // disabledInputModes.push_back(GmicQt::ActiveAndBelow);
-    // disabledInputModes.push_back(GmicQt::ActiveAndAbove);
-    disabledInputModes.push_back(GmicQt::AllVisible);
-    disabledInputModes.push_back(GmicQt::AllInvisible);
+    disabledInputModes.push_back(GmicQt::InputMode::NoInput);
+    // disabledInputModes.push_back(GmicQt::InputMode::Active);
+    // disabledInputModes.push_back(GmicQt::InputMode::All);
+    // disabledInputModes.push_back(GmicQt::InputMode::ActiveAndBelow);
+    // disabledInputModes.push_back(GmicQt::InputMode::ActiveAndAbove);
+    disabledInputModes.push_back(GmicQt::InputMode::AllVisible);
+    disabledInputModes.push_back(GmicQt::InputMode::AllInvisible);
 
     std::list<GmicQt::OutputMode> disabledOutputModes;
-    // disabledOutputModes.push_back(GmicQt::InPlace);
-    disabledOutputModes.push_back(GmicQt::NewImage);
-    disabledOutputModes.push_back(GmicQt::NewLayers);
-    disabledOutputModes.push_back(GmicQt::NewActiveLayers);
+    // disabledOutputModes.push_back(GmicQt::OutputMode::InPlace);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewImage);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewLayers);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewActiveLayers);
 
     qWarning() << "gmic-qt: socket Key:" << socketKey;
     int r = 0;
     if (headless) {
-      GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
-      r = GmicQt::launchPlugin(GmicQt::ProgressDialogGUI, parameters);
+      GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::AfterFilterExecution);
+      r = GmicQt::launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, parameters);
     } else {
-      r = GmicQt::launchPlugin(GmicQt::FullGUI,            //
+      r = GmicQt::launchPlugin(GmicQt::UserInterfaceMode::FullGUI,            //
 			       GmicQt::PluginParameters(), //
 			       disabledInputModes,         //
 			       disabledOutputModes);

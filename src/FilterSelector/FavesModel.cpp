@@ -33,6 +33,9 @@
 #include "Misc.h"
 #include "gmic_qt.h"
 
+namespace GmicQt
+{
+
 const size_t FavesModel::NoIndex = std::numeric_limits<size_t>::max();
 
 FavesModel::FavesModel() = default;
@@ -298,3 +301,5 @@ bool FavesModel::const_iterator::operator==(const FavesModel::const_iterator & o
 {
   return _mapIterator == other._mapIterator;
 }
+
+} // namespace GmicQt

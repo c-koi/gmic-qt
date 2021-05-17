@@ -45,6 +45,9 @@
 #include "OverrideCursor.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 const PreviewWidget::PreviewRect PreviewWidget::PreviewRect::Full{0.0, 0.0, 1.0, 1.0};
 
 PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
@@ -993,3 +996,5 @@ bool PreviewWidget::PreviewPoint::operator==(const PreviewWidget::PreviewPoint &
 {
   return (x == other.x) && (y == other.y);
 }
+
+} // namespace GmicQt

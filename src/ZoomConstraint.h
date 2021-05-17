@@ -25,6 +25,9 @@
 #ifndef GMIC_QT_ZOOMCONSTRAINT_H
 #define GMIC_QT_ZOOMCONSTRAINT_H
 
+namespace GmicQt
+{
+
 struct ZoomConstraint {
   enum Constraint
   {
@@ -46,5 +49,7 @@ struct ZoomConstraint {
 private:
   Constraint _value;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_ZOOMCONSTRAINT_H

@@ -29,6 +29,9 @@
 #include "CImg.h"
 #include "Common.h"
 
+namespace GmicQt
+{
+
 QTextDocument HtmlTranslator::_document;
 
 QString HtmlTranslator::removeTags(QString str)
@@ -57,3 +60,5 @@ QString HtmlTranslator::fromUtf8Escapes(const QString & str)
   cimg_library::cimg::strunescape(ba.data());
   return QString::fromUtf8(ba);
 }
+
+} // namespace GmicQt

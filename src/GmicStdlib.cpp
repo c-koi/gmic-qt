@@ -32,6 +32,9 @@
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 QByteArray GmicStdLib::Array;
 
 void GmicStdLib::loadStdLib()
@@ -45,3 +48,5 @@ void GmicStdLib::loadStdLib()
     Array = stdlib.readAll();
   }
 }
+
+} // namespace GmicQt

@@ -52,13 +52,14 @@ namespace
 
 namespace gmic_qt_standalone
 {
+
 QImage input_image;
 QString input_image_filename;
 QString output_image_filename;
 QWidget * visibleMainWindow()
 {
   for (QWidget * w : QApplication::topLevelWidgets()) {
-    if ((typeid(*w) == typeid(MainWindow)) && (w->isVisible())) {
+    if ((typeid(*w) == typeid(GmicQt::MainWindow)) && (w->isVisible())) {
       return w;
     }
   }
@@ -71,7 +72,7 @@ void askForImageFilename()
   Q_ASSERT_X(mainWidget, __PRETTY_FUNCTION__, "No top level window yet");
   QStringList extensions;
   QString filters;
-  ImageDialog::supportedImageFormats(extensions, filters);
+  GmicQt::ImageDialog::supportedImageFormats(extensions, filters);
   QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", filters, nullptr);
   if (!filename.isEmpty() && QFileInfo(filename).isReadable() && input_image.load(filename)) {
     input_image = input_image.convertToFormat(QImage::Format_ARGB32);
@@ -132,7 +133,9 @@ std::string basename(const std::string & text)
     return text.substr(position + 1, text.size() - (position + 1));
   }
 }
+
 } // namespace gmic_qt_standalone
+
 } // namespace
 
 namespace GmicQt
@@ -175,7 +178,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     width = 1.0;
     height = 1.0;
   }
-  if (mode == GmicQt::NoInput) {
+  if (mode == GmicQt::InputMode::NoInput) {
     images.assign();
     imageNames.assign();
     return;
@@ -195,7 +198,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image.height()));
   const int iw = entireImage ? input_image.width() : std::min(input_image.width() - ix, static_cast<int>(1 + std::ceil(width * input_image.width())));
   const int ih = entireImage ? input_image.height() : std::min(input_image.height() - iy, static_cast<int>(1 + std::ceil(height * input_image.height())));
-  ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
+  GmicQt::ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
 }
 
 void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
@@ -204,7 +207,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
     if (gmic_qt_standalone::output_image_filename.isEmpty()) {
       QWidgetList widgets = QApplication::topLevelWidgets();
       if (widgets.size()) {
-        ImageDialog * dialog = new ImageDialog(widgets.at(0));
+        auto dialog = new GmicQt::ImageDialog(widgets.at(0));
         for (unsigned int i = 0; i < images.size(); ++i) {
           QString name = gmic_qt_standalone::imageName((const char *)imageNames[i]);
           dialog->addImage(images[i], name);
@@ -215,7 +218,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
         delete dialog;
       }
     } else {
-      ImageConverter::convert(images[0], gmic_qt_standalone::input_image);
+      GmicQt::ImageConverter::convert(images[0], gmic_qt_standalone::input_image);
       std::cout << "[gmic_qt] Writing output file " << gmic_qt_standalone::output_image_filename.toStdString() << std::endl;
       gmic_qt_standalone::input_image.save(gmic_qt_standalone::output_image_filename);
       gmic_qt_standalone::input_image_filename = gmic_qt_standalone::imageName((const char *)imageNames[0]);
@@ -317,49 +320,50 @@ int main(int argc, char * argv[])
   }
 
   if (printLast || printLastAfter) {
-    GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(printLast ? GmicQt::BeforeFilterExecution : GmicQt::AfterFilterExecution);
+    GmicQt::PluginParametersFlag flag = printLast ? GmicQt::PluginParametersFlag::BeforeFilterExecution : GmicQt::PluginParametersFlag::AfterFilterExecution;
+    GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(flag);
     std::cout << "Path: " << parameters.filterPath << std::endl;
     std::cout << "Name: " << parameters.filterName() << std::endl;
     std::cout << "Command: " << parameters.command << std::endl;
-    std::cout << "InputMode: " << parameters.inputMode << std::endl;
-    std::cout << "OutputMode: " << parameters.outputMode << std::endl;
+    std::cout << "InputMode: " << static_cast<int>(parameters.inputMode) << std::endl;
+    std::cout << "OutputMode: " << static_cast<int>(parameters.outputMode) << std::endl;
     return EXIT_SUCCESS;
   }
 
   std::list<GmicQt::InputMode> disabledInputModes;
-  disabledInputModes.push_back(GmicQt::NoInput);
-  // disabledInputModes.push_back(GmicQt::Active);
-  disabledInputModes.push_back(GmicQt::All);
-  disabledInputModes.push_back(GmicQt::ActiveAndBelow);
-  disabledInputModes.push_back(GmicQt::ActiveAndAbove);
-  disabledInputModes.push_back(GmicQt::AllVisible);
-  disabledInputModes.push_back(GmicQt::AllInvisible);
+  disabledInputModes.push_back(GmicQt::InputMode::NoInput);
+  // disabledInputModes.push_back(InputMode::Active);
+  disabledInputModes.push_back(GmicQt::InputMode::All);
+  disabledInputModes.push_back(GmicQt::InputMode::ActiveAndBelow);
+  disabledInputModes.push_back(GmicQt::InputMode::ActiveAndAbove);
+  disabledInputModes.push_back(GmicQt::InputMode::AllVisible);
+  disabledInputModes.push_back(GmicQt::InputMode::AllInvisible);
 
   std::list<GmicQt::OutputMode> disabledOutputModes;
-  // disabledOutputModes.push_back(GmicQt::InPlace);
-  disabledOutputModes.push_back(GmicQt::NewImage);
-  disabledOutputModes.push_back(GmicQt::NewLayers);
-  disabledOutputModes.push_back(GmicQt::NewActiveLayers);
+  // disabledOutputModes.push_back(GmicQt::OutputMode::InPlace);
+  disabledOutputModes.push_back(GmicQt::OutputMode::NewImage);
+  disabledOutputModes.push_back(GmicQt::OutputMode::NewLayers);
+  disabledOutputModes.push_back(GmicQt::OutputMode::NewActiveLayers);
   GmicQt::PluginParameters parameters;
   if (repeat) {
-    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::AfterFilterExecution);
+    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::AfterFilterExecution);
     std::cout << "[gmic_qt] Running with last parameters..." << std::endl;
     std::cout << "Command: " << parameters.command << std::endl;
     std::cout << "Path: " << parameters.filterPath << std::endl;
-    std::cout << "Input Mode: " << parameters.inputMode << std::endl;
-    std::cout << "Output Mode: " << parameters.outputMode << std::endl;
+    std::cout << "Input Mode: " << (int)parameters.inputMode << std::endl;
+    std::cout << "Output Mode: " << (int)parameters.outputMode << std::endl;
   } else {
     parameters.filterPath = filterPath;
     parameters.command = command;
   }
 
   if (filename.isEmpty()) {
-    return launchPlugin(GmicQt::FullGUI, parameters, disabledInputModes, disabledOutputModes);
+    return launchPlugin(GmicQt::UserInterfaceMode::FullGUI, parameters, disabledInputModes, disabledOutputModes);
   }
   if (QFileInfo(filename).isReadable() && gmic_qt_standalone::input_image.load(filename)) {
     gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
     gmic_qt_standalone::input_image_filename = QFileInfo(filename).fileName();
-    int status = GmicQt::launchPlugin(apply ? GmicQt::ProgressDialogGUI : GmicQt::FullGUI, parameters);
+    int status = GmicQt::launchPlugin(apply ? GmicQt::UserInterfaceMode::ProgressDialog : GmicQt::UserInterfaceMode::FullGUI, parameters);
     return status;
   }
   std::cerr << "Could not open file " << filename.toStdString() << std::endl;

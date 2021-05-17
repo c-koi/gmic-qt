@@ -30,6 +30,9 @@
 class QShowEvent;
 class QResizeEvent;
 
+namespace GmicQt
+{
+
 class CustomDoubleSpinBox : public QDoubleSpinBox {
   Q_OBJECT
 public:
@@ -57,5 +60,7 @@ bool CustomDoubleSpinBox::unfinishedKeyboardEditing() const
 {
   return _unfinishedKeyboardEditing;
 }
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CUSTOMDOUBLESPINBOX_H

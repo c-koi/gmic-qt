@@ -44,6 +44,9 @@
 #include "HtmlTranslator.h"
 #include "KeypointList.h"
 
+namespace GmicQt
+{
+
 int PointParameter::_defaultColorNextIndex = 0;
 unsigned long PointParameter::_randomSeed = 12345;
 
@@ -468,3 +471,5 @@ void PointParameter::pickColorFromDefaultColormap()
   }
   ++_defaultColorNextIndex;
 }
+
+} // namespace GmicQt

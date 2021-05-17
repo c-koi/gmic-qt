@@ -45,6 +45,9 @@
 #include "OverrideCursor.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
 {
   _filterThread = nullptr;
@@ -83,9 +86,9 @@ void GmicProcessor::execute()
   }
   _waitingCursorTimer.start(WAITING_CURSOR_DELAY);
   const GmicQt::InputOutputState & io = _filterContext.inputOutputState;
-  QString env = QString("_input_layers=%1").arg(io.inputMode);
-  env += QString(" _output_mode=%1").arg(io.outputMode);
-  env += QString(" _output_messages=%1").arg(_filterContext.outputMessageMode);
+  QString env = QString("_input_layers=%1").arg(static_cast<int>(io.inputMode));
+  env += QString(" _output_mode=%1").arg(static_cast<int>(io.outputMode));
+  env += QString(" _output_messages=%1").arg(static_cast<int>(_filterContext.outputMessageMode));
   if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
     env += QString(" _preview_width=%1").arg(_filterContext.previewWidth);
     env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
@@ -237,8 +240,8 @@ void GmicProcessor::saveSettings(QSettings & settings)
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandArguments);
     QString status = flattenGmicParameterList(_lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
     settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname), status);
-    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.inputMode);
-    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _lastAppliedCommandInOutState.outputMode);
+    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), (int)_lastAppliedCommandInOutState.inputMode);
+    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), (int)_lastAppliedCommandInOutState.outputMode);
   }
 }
 
@@ -433,3 +436,5 @@ const QList<int> & GmicProcessor::parametersVisibilityStates() const
 {
   return _parametersVisibilityStates;
 }
+
+} // namespace GmicQt

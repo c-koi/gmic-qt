@@ -31,6 +31,9 @@
 #include "Common.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 ImageView::ImageView(QWidget * parent) : QWidget(parent) {}
 
 void ImageView::setImage(const cimg_library::CImg<gmic_pixel_type> & image)
@@ -150,3 +153,5 @@ const QImage & ImageView::image() const
 {
   return _image;
 }
+
+} // namespace GmicQt

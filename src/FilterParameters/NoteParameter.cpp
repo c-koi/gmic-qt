@@ -33,6 +33,9 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
+namespace GmicQt
+{
+
 NoteParameter::NoteParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr) {}
 
 NoteParameter::~NoteParameter()
@@ -102,3 +105,5 @@ void NoteParameter::onLinkActivated(const QString & link)
 {
   QDesktopServices::openUrl(QUrl(link));
 }
+
+} // namespace GmicQt

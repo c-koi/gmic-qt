@@ -27,11 +27,14 @@
 #include <QMainWindow>
 #include <QTimer>
 
-class GmicProcessor;
 namespace Ui
 {
 class ProgressInfoWidget;
 }
+
+namespace GmicQt
+{
+class GmicProcessor;
 
 class ProgressInfoWidget : public QWidget {
   Q_OBJECT
@@ -74,5 +77,7 @@ private:
   bool _growing;
   static const int AnimationStep = 10;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_PROGRESSINFOWIDGET_H

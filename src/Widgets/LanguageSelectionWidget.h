@@ -28,11 +28,13 @@
 #include <QMap>
 #include <QString>
 #include <QWidget>
-
 namespace Ui
 {
 class LanguageSelectionWidget;
 }
+
+namespace GmicQt
+{
 
 class LanguageSelectionWidget : public QWidget {
   Q_OBJECT
@@ -49,5 +51,7 @@ private:
   const QMap<QString, QString> & _code2name;
   bool _systemDefaultIsAvailable;
 };
+
+} // namespace GmicQt
 
 #endif // LANGUAGESELECTIONWIDGET_H

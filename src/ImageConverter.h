@@ -24,12 +24,15 @@
  */
 #ifndef GMIC_QT_IMAGECONVERTER_H
 #define GMIC_QT_IMAGECONVERTER_H
-
 class QImage;
+
 namespace cimg_library
 {
 template <typename T> struct CImg;
 }
+
+namespace GmicQt
+{
 
 class ImageConverter {
 public:
@@ -39,5 +42,7 @@ public:
 private:
   ImageConverter() = delete;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_IMAGECONVERTER_H

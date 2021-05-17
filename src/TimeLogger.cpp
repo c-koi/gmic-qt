@@ -31,6 +31,8 @@
 #include "Common.h"
 #include "Utils.h"
 
+namespace GmicQt
+{
 std::unique_ptr<TimeLogger> TimeLogger::_instance = nullptr;
 
 TimeLogger::TimeLogger()
@@ -68,3 +70,5 @@ void TimeLogger::step(const char * function, int line, const char * filename)
   fprintf(_file, "%02d @%2.3f +%2.3f %s <%s:%d>\n", count++, total, elapsed, function, filename, line);
   last = now;
 }
+
+} // namespace GmicQt

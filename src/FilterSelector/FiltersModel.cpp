@@ -33,6 +33,9 @@
 #include "Misc.h"
 #include "gmic_qt.h"
 
+namespace GmicQt
+{
+
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
 
 void FiltersModel::clear()
@@ -335,3 +338,5 @@ bool FiltersModel::const_iterator::operator==(const FiltersModel::const_iterator
 {
   return _mapIterator == other._mapIterator;
 }
+
+} // namespace GmicQt

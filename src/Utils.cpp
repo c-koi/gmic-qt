@@ -42,6 +42,7 @@
 
 namespace GmicQt
 {
+
 const QString & path_rc(bool create)
 {
   QString qpath = QString::fromUtf8(gmic::path_rc());

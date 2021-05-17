@@ -37,6 +37,8 @@
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
 QHash<QString, QList<QString>> ParametersCache::_parametersCache;
 QHash<QString, GmicQt::InputOutputState> ParametersCache::_inOutPanelStates;
 QHash<QString, QList<int>> ParametersCache::_visibilityStates;
@@ -263,13 +265,13 @@ GmicQt::InputOutputState ParametersCache::getInputOutputState(const QString & ha
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
   }
-  return GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode);
+  return GmicQt::InputOutputState(InputMode::Unspecified, GmicQt::DefaultOutputMode);
 }
 
 void ParametersCache::setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state, const GmicQt::InputMode defaultInputMode)
 {
   if ((state == GmicQt::InputOutputState(defaultInputMode, GmicQt::DefaultOutputMode)) //
-      || (state == GmicQt::InputOutputState(GmicQt::UnspecifiedInputMode, GmicQt::DefaultOutputMode))) {
+      || (state == GmicQt::InputOutputState(InputMode::Unspecified, GmicQt::DefaultOutputMode))) {
     _inOutPanelStates.remove(hash);
     return;
   }
@@ -306,3 +308,5 @@ void ParametersCache::cleanup(const QSet<QString> & hashesToKeep)
   }
   obsoleteHashes.clear();
 }
+
+} // namespace GmicQt

@@ -30,6 +30,9 @@
 #include "HtmlTranslator.h"
 #include "Misc.h"
 
+namespace GmicQt
+{
+
 ConstParameter::ConstParameter(QObject * parent) : AbstractParameter(parent) {}
 
 int ConstParameter::size() const
@@ -79,3 +82,5 @@ bool ConstParameter::initFromText(const char * text, int & textLength)
   _value = _default = unescaped(unquoted(list[1]));
   return true;
 }
+
+} // namespace GmicQt

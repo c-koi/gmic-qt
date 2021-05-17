@@ -34,6 +34,9 @@
 #include "Common.h"
 #include "Logger.h"
 
+namespace GmicQt
+{
+
 const QMap<QString, QString> & LanguageSettings::availableLanguages()
 {
   static QMap<QString, QString> result;
@@ -127,3 +130,5 @@ void LanguageSettings::installQtTranslator(const QString & lang)
     qtTranslator->deleteLater();
   }
 }
+
+} // namespace GmicQt

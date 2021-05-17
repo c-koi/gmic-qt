@@ -28,6 +28,9 @@
 #include "AbstractParameter.h"
 class QLabel;
 
+namespace GmicQt
+{
+
 class NoteParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -47,5 +50,7 @@ private:
   QLabel * _label;
   QString _text;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_NOTEPARAMETER_H

@@ -27,9 +27,12 @@
 #include "Common.h"
 #include "Host/host.h"
 
+namespace GmicQt
+{
+
 int LayersExtentProxy::_width = -1;
 int LayersExtentProxy::_height = -1;
-GmicQt::InputMode LayersExtentProxy::_inputMode = GmicQt::All;
+InputMode LayersExtentProxy::_inputMode = InputMode::All;
 
 QSize LayersExtentProxy::getExtent(GmicQt::InputMode mode)
 {
@@ -55,3 +58,5 @@ void LayersExtentProxy::clear()
 {
   _width = _height = -1;
 }
+
+} // namespace GmicQt

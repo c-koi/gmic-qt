@@ -32,6 +32,7 @@ class QString;
 
 namespace GmicQt
 {
+
 struct InputOutputState {
   InputMode inputMode;
   OutputMode outputMode;
@@ -46,6 +47,7 @@ struct InputOutputState {
   bool operator==(const InputOutputState & other) const;
   bool operator!=(const InputOutputState & other) const;
 };
+
 } // namespace GmicQt
 
 #endif // GMIC_QT_INPUTOUTPUTSTATE_H

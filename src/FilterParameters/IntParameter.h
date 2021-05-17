@@ -27,10 +27,13 @@
 
 #include <QString>
 #include "AbstractParameter.h"
-class CustomSpinBox;
 class QSlider;
 class QLabel;
 
+namespace GmicQt
+{
+
+class CustomSpinBox;
 class IntParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -66,5 +69,7 @@ private:
   static const int UPDATE_DELAY = 300;
   bool _connected;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_INTPARAMETER_H

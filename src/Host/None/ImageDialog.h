@@ -45,6 +45,9 @@ namespace cimg_library
 template <typename T> struct CImg;
 }
 
+namespace GmicQt
+{
+
 class ImageView : public QWidget {
 public:
   ImageView(QWidget * parent);
@@ -77,3 +80,5 @@ private:
 };
 
 #endif
+
+} // namespace GmicQt

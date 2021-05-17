@@ -61,9 +61,9 @@ void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes, //
 
 namespace GmicQt
 {
-InputMode DefaultInputMode = Active;
-OutputMode DefaultOutputMode = InPlace;
-const OutputMessageMode DefaultOutputMessageMode = Quiet;
+InputMode DefaultInputMode = InputMode::Active;
+OutputMode DefaultOutputMode = OutputMode::InPlace;
+const OutputMessageMode DefaultOutputMessageMode = OutputMessageMode::Quiet;
 
 const QString & gmicVersionString()
 {
@@ -79,7 +79,7 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag)
   const QString path = settings.value(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname)).toString();
   parameters.filterPath = path.toStdString();
   QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname)).toString();
-  if (flag == AfterFilterExecution) {
+  if (flag == PluginParametersFlag::AfterFilterExecution) {
     QString lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname)).toString();
     if (!lastAppliedCommandGmicStatus.isEmpty()) {
       args = lastAppliedCommandGmicStatus;
@@ -88,8 +88,8 @@ PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag)
   QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname)).toString();
   appendWithSpace(command, args);
   parameters.command = command.toStdString();
-  parameters.inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
-  parameters.outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
+  parameters.inputMode = (InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), (int)InputMode::Active).toInt();
+  parameters.outputMode = (OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), (int)GmicQt::OutputMode::InPlace).toInt();
   return parameters;
 }
 
@@ -147,7 +147,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
   char * dummy_argv[1] = {fullexname};
 
   disableModes(disabledInputModes, disabledOutputModes);
-  if (interfaceMode == GmicQt::NoGUI) { // launchPluginHeadless(const char * command, GmicQt::InputMode input, GmicQt::OutputMode output)
+  if (interfaceMode == GmicQt::UserInterfaceMode::Silent) {
     QCoreApplication app(dummy_argc, dummy_argv);
     configureApplication();
     DialogSettings::loadSettings(GmicQt::NonGuiApplication);
@@ -162,7 +162,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
     int status = QCoreApplication::exec();
     pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
     return status;
-  } else if (interfaceMode == GmicQt::ProgressDialogGUI) { // launchPluginHeadlessUsingLastParameters
+  } else if (interfaceMode == GmicQt::UserInterfaceMode::ProgressDialog) {
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
     configureApplication();
@@ -180,7 +180,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                         //
     int status = QApplication::exec();
     pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
     return status;
-  } else if (interfaceMode == GmicQt::FullGUI) {
+  } else if (interfaceMode == GmicQt::UserInterfaceMode::FullGUI) {
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
     configureApplication();
@@ -225,10 +225,10 @@ void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes, //
                   const std::list<GmicQt::OutputMode> & disabledOutputModes)
 {
   for (const GmicQt::InputMode & mode : disabledInputModes) {
-    InOutPanel::disableInputMode(mode);
+    GmicQt::InOutPanel::disableInputMode(mode);
   }
   for (const GmicQt::OutputMode & mode : disabledOutputModes) {
-    InOutPanel::disableOutputMode(mode);
+    GmicQt::InOutPanel::disableOutputMode(mode);
   }
 }
 

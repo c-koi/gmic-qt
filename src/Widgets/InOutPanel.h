@@ -29,14 +29,17 @@
 #include "Host/host.h"
 #include "InputOutputState.h"
 #include "gmic_qt.h"
+class QSettings;
+class QPalette;
 
 namespace Ui
 {
 class InOutPanel;
 }
 
-class QSettings;
-class QPalette;
+namespace GmicQt
+{
+
 class FilterThread;
 
 class InOutPanel : public QWidget {
@@ -89,5 +92,7 @@ private:
   static QList<GmicQt::InputMode> _enabledInputModes;
   static QList<GmicQt::OutputMode> _enabledOutputModes;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_INOUTPANEL_H

@@ -29,6 +29,9 @@
 #include "Common.h"
 #include "DialogSettings.h"
 
+namespace GmicQt
+{
+
 SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent), _frame(nullptr) {}
 
 SeparatorParameter::~SeparatorParameter()
@@ -82,3 +85,5 @@ bool SeparatorParameter::initFromText(const char * text, int & textLength)
   unused(list);
   return true;
 }
+
+} // namespace GmicQt

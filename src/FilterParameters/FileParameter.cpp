@@ -38,6 +38,9 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
+namespace GmicQt
+{
+
 FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _button(nullptr), _dialogMode(InputOutputMode) {}
 
 FileParameter::~FileParameter()
@@ -184,3 +187,5 @@ void FileParameter::onButtonPressed()
   }
   notifyIfRelevant();
 }
+
+} // namespace GmicQt

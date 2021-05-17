@@ -33,6 +33,8 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
+namespace GmicQt
+{
 ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent), _default(0), _value(0), _label(nullptr), _comboBox(nullptr), _connected(false) {}
 
 ChoiceParameter::~ChoiceParameter()
@@ -151,3 +153,5 @@ void ChoiceParameter::disconnectComboBox()
   _comboBox->disconnect(this);
   _connected = false;
 }
+
+} // namespace GmicQt

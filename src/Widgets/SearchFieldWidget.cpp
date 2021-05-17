@@ -36,6 +36,9 @@
 #include "IconLoader.h"
 #include "ui_SearchFieldWidget.h"
 
+namespace GmicQt
+{
+
 SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new Ui::SearchFieldWidget)
 {
   ui->setupUi(this);
@@ -120,3 +123,5 @@ void SearchFieldWidget::clear()
 {
   _lineEdit->clear();
 }
+
+} // namespace GmicQt

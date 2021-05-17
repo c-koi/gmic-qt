@@ -32,13 +32,15 @@
 #include "Common.h"
 #include "Host/host.h"
 #include "gmic_qt.h"
-
 class QObject;
 
 namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
+
+namespace GmicQt
+{
 
 class FilterSyncRunner : public QObject {
   Q_OBJECT
@@ -78,5 +80,7 @@ private:
   QString _logSuffix;
   GmicQt::OutputMessageMode _messageMode;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSYNCRUNNER_H

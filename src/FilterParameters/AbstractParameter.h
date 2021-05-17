@@ -27,9 +27,11 @@
 
 #include <QObject>
 #include <QStringList>
-
-class KeypointList;
 class QGridLayout;
+
+namespace GmicQt
+{
+class KeypointList;
 
 class AbstractParameter : public QObject {
   Q_OBJECT
@@ -94,5 +96,7 @@ private:
   VisibilityState _visibilityState;
   VisibilityPropagation _visibilityPropagation;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_ABSTRACTPARAMETER_H

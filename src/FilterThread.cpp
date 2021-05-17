@@ -31,7 +31,9 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "gmic.h"
-using namespace cimg_library;
+
+namespace GmicQt
+{
 
 FilterThread::FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
     : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>),
@@ -201,7 +203,7 @@ void FilterThread::run()
     appendWithSpace(fullCommandLine, _arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
-    if (_messageMode > GmicQt::Quiet) {
+    if (_messageMode > OutputMessageMode::Quiet) {
       Logger::log(fullCommandLine, _logSuffix, true);
     }
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, nullptr, nullptr, 0.0f);
@@ -214,9 +216,11 @@ void FilterThread::run()
     _imageNames->assign();
     const char * message = e.what();
     _errorMessage = message;
-    if (_messageMode > GmicQt::Quiet) {
+    if (_messageMode > OutputMessageMode::Quiet) {
       Logger::error(QString("When running command '%1', this error occurred:\n%2").arg(fullCommandLine).arg(message), true);
     }
     _failed = true;
   }
 }
+
+} // namespace GmicQt

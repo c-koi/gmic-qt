@@ -34,6 +34,9 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
+namespace GmicQt
+{
+
 BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent), _default(false), _value(false), _label(nullptr), _checkBox(nullptr), _connected(false) {}
 
 BoolParameter::~BoolParameter()
@@ -125,3 +128,5 @@ bool BoolParameter::initFromText(const char * text, int & textLength)
   _value = _default = (list[1].startsWith("true") || list[1].startsWith("1"));
   return true;
 }
+
+} // namespace GmicQt

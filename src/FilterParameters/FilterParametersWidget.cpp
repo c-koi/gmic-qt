@@ -32,6 +32,9 @@
 #include "FilterParameters/PointParameter.h"
 #include "Misc.h"
 
+namespace GmicQt
+{
+
 FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(parent), _valueString(""), _labelNoParams(nullptr), _paddingWidget(nullptr)
 {
   delete layout();
@@ -509,3 +512,5 @@ const QVector<bool> & FilterParametersWidget::quotedParameters() const
 {
   return _quotedParameters;
 }
+
+} // namespace GmicQt

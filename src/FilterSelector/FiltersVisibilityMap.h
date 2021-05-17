@@ -27,6 +27,8 @@
 
 #include <QSet>
 
+namespace GmicQt
+{
 class FiltersVisibilityMap {
 public:
   static bool filterIsVisible(const QString & hash);
@@ -39,5 +41,7 @@ private:
   static QSet<QString> _hiddenFilters;
   FiltersVisibilityMap() = delete;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSVISIBILITYMAP_H

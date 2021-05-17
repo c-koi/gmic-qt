@@ -45,6 +45,9 @@ template <typename T> struct CImgList;
 template <typename T> struct CImg;
 } // namespace cimg_library
 
+namespace GmicQt
+{
+
 class PreviewWidget : public QWidget {
   Q_OBJECT
 
@@ -203,5 +206,7 @@ private:
   QPoint _movedKeypointOrigin;
   unsigned long _keypointTimestamp;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_PREVIEWWIDGET_H

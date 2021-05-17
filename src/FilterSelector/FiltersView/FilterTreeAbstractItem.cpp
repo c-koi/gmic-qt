@@ -27,6 +27,9 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 
+namespace GmicQt
+{
+
 FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
 {
   _visibilityItem = nullptr;
@@ -91,3 +94,5 @@ QString FilterTreeAbstractItem::removeWarningPrefix(QString folderName)
   }
   return folderName;
 }
+
+} // namespace GmicQt

@@ -30,8 +30,6 @@
 #include <QTimer>
 #include "gmic_qt.h"
 
-class FilterThread;
-
 namespace Ui
 {
 class ProgressInfoWindow;
@@ -41,6 +39,11 @@ namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
+
+namespace GmicQt
+{
+
+class FilterThread;
 
 class HeadlessProcessor;
 
@@ -67,5 +70,7 @@ private:
   bool _isShown;
   HeadlessProcessor * _processor;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_PROGRESSINFOWINDOW_H

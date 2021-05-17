@@ -47,6 +47,9 @@
 #include <psapi.h>
 #endif
 
+namespace GmicQt
+{
+
 /**
  * @brief HeadlessProcessor::HeadlessProcessor using "last parameters" from config file
  * @param parent
@@ -69,8 +72,8 @@ bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & par
 {
   QSettings settings;
   _path = QString::fromStdString(parameters.filterPath);
-  _inputMode = (parameters.inputMode == GmicQt::UnspecifiedInputMode) ? GmicQt::DefaultInputMode : parameters.inputMode;
-  _outputMode = (parameters.outputMode == GmicQt::UnspecifiedOutputMode) ? GmicQt::DefaultOutputMode : parameters.outputMode;
+  _inputMode = (parameters.inputMode == InputMode::Unspecified) ? DefaultInputMode : parameters.inputMode;
+  _outputMode = (parameters.outputMode == OutputMode::Unspecified) ? DefaultOutputMode : parameters.outputMode;
 
   if (_path.isEmpty()) { // A pure command
     if (parameters.command.empty()) {
@@ -123,7 +126,7 @@ bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & par
       }
     }
   }
-  _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
+  _outputMessageMode = (OutputMessageMode)settings.value("OutputMessageMode", (int)DefaultOutputMessageMode).toInt();
   Logger::setMode(_outputMessageMode);
   return _errorMessage.isEmpty();
 }
@@ -151,9 +154,9 @@ void HeadlessProcessor::startProcessing()
   if (!_progressWindow) {
     gmic_qt_show_message(QString("G'MIC: %1 %2").arg(_command).arg(_arguments).toUtf8().constData());
   }
-  QString env = QString("_input_layers=%1").arg(_inputMode);
-  env += QString(" _output_mode=%1").arg(_outputMode);
-  env += QString(" _output_messages=%1").arg(_outputMessageMode);
+  QString env = QString("_input_layers=%1").arg((int)_inputMode);
+  env += QString(" _output_mode=%1").arg((int)_outputMode);
+  env += QString(" _output_messages=%1").arg((int)_outputMessageMode);
   _filterThread = new FilterThread(this, _command, _arguments, env, _outputMessageMode);
   _filterThread->swapImages(*_gmicImages);
   _filterThread->setImageNames(imageNames);
@@ -241,8 +244,8 @@ void HeadlessProcessor::onProcessingFinished()
     settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _hash);
     settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _command);
     settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _arguments);
-    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), _inputMode);
-    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), _outputMode);
+    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), (int)_inputMode);
+    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), (int)_outputMode);
   }
   _filterThread->deleteLater();
   _filterThread = nullptr;
@@ -265,3 +268,5 @@ void HeadlessProcessor::endApplication(const QString & errorMessage)
   }
   QCoreApplication::exit(not errorMessage.isEmpty());
 }
+
+} // namespace GmicQt

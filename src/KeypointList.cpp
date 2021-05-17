@@ -27,6 +27,9 @@
 #include <cmath>
 #include <cstring>
 
+namespace GmicQt
+{
+
 const float KeypointList::Keypoint::DefaultRadius = 6.0f;
 
 KeypointList::KeypointList() = default;
@@ -103,3 +106,5 @@ KeypointList::Keypoint & KeypointList::Keypoint::setNaN()
 #endif
   return *this;
 }
+
+} // namespace GmicQt

@@ -27,11 +27,13 @@
 
 #include <QString>
 #include "AbstractParameter.h"
-
 class QLineEdit;
 class QLabel;
 class QTextEdit;
 class QAction;
+
+namespace GmicQt
+{
 class MultilineTextParameterWidget;
 
 class TextParameter : public AbstractParameter {
@@ -64,5 +66,7 @@ private:
   bool _multiline;
   bool _connected;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_TEXTPARAMETER_H

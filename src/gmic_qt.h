@@ -33,21 +33,20 @@
 #define GMIC_QT_XSTRINGIFY(X) GMIC_QT_STRINGIFY(X)
 #define gmic_pixel_type_str GMIC_QT_XSTRINGIFY(gmic_pixel_type)
 
-class QString;
 #include <list>
 #include <string>
-
+class QString;
 namespace GmicQt
 {
 
-enum UserInterfaceMode
+enum class UserInterfaceMode
 {
-  NoGUI,
-  ProgressDialogGUI,
+  Silent,
+  ProgressDialog,
   FullGUI
 };
 
-enum InputMode
+enum class InputMode
 {
   NoInput,
   Active,
@@ -59,21 +58,21 @@ enum InputMode
   AllVisiblesDesc_UNUSED,   /* Removed since 2.8.2 */
   AllInvisiblesDesc_UNUSED, /* Removed since 2.8.2 */
   AllDesc_UNUSED,           /* Removed since 2.8.2 */
-  UnspecifiedInputMode = 100
+  Unspecified = 100
 };
 extern InputMode DefaultInputMode;
 
-enum OutputMode
+enum class OutputMode
 {
   InPlace,
   NewLayers,
   NewActiveLayers,
   NewImage,
-  UnspecifiedOutputMode = 100
+  Unspecified = 100
 };
 extern OutputMode DefaultOutputMode;
 
-enum OutputMessageMode
+enum class OutputMessageMode
 {
   Quiet,
   VerboseLayerName_UNUSED = Quiet, /* Removed since 2.9.5 */
@@ -83,7 +82,7 @@ enum OutputMessageMode
   VeryVerboseLogFile,
   DebugConsole,
   DebugLogFile,
-  UnspecifiedOutputMessageMode = 100
+  Unspecified = 100
 };
 extern const OutputMessageMode DefaultOutputMessageMode;
 
@@ -92,12 +91,12 @@ const QString & gmicVersionString();
 struct PluginParameters {
   std::string command;
   std::string filterPath;
-  GmicQt::InputMode inputMode = GmicQt::UnspecifiedInputMode;
-  GmicQt::OutputMode outputMode = GmicQt::UnspecifiedOutputMode;
+  InputMode inputMode = InputMode::Unspecified;
+  OutputMode outputMode = OutputMode::Unspecified;
   std::string filterName() const;
 };
 
-enum PluginParametersFlag
+enum class PluginParametersFlag
 {
   BeforeFilterExecution,
   AfterFilterExecution
@@ -105,10 +104,10 @@ enum PluginParametersFlag
 
 PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag);
 
-int launchPlugin(UserInterfaceMode interfaceMode = GmicQt::FullGUI,                                        //
-                 PluginParameters parameters = PluginParameters(),                                         //
-                 const std::list<GmicQt::InputMode> & disabledInputModes = std::list<GmicQt::InputMode>(), //
-                 const std::list<GmicQt::OutputMode> & disabledOutputModes = std::list<GmicQt::OutputMode>());
+int launchPlugin(UserInterfaceMode interfaceMode = UserInterfaceMode::FullGUI,                     //
+                 PluginParameters parameters = PluginParameters(),                                 //
+                 const std::list<GmicQt::InputMode> & disabledInputModes = std::list<InputMode>(), //
+                 const std::list<GmicQt::OutputMode> & disabledOutputModes = std::list<OutputMode>());
 
 bool pluginDialogWasAccepted();
 

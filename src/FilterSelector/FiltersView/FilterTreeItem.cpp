@@ -27,6 +27,9 @@
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "HtmlTranslator.h"
 
+namespace GmicQt
+{
+
 FilterTreeItem::FilterTreeItem(const QString & text) : FilterTreeAbstractItem(text)
 {
   _isWarning = false;
@@ -94,3 +97,5 @@ bool FilterTreeItem::operator<(const QStandardItem & other) const
   }
   return plainText().localeAwareCompare(otherItem->plainText()) < 0;
 }
+
+} // namespace GmicQt

@@ -36,6 +36,8 @@
 #include "gmic.h"
 #include <Windows.h>
 
+namespace GmicQt
+{
 struct KernelHandleCloser
 {
     void operator()(void* pointer)
@@ -627,3 +629,5 @@ int main(int argc, char *argv[])
 
     return exitCode;
 }
+
+} // namespace GmicQt

@@ -39,6 +39,9 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
+namespace GmicQt
+{
+
 FloatParameter::FloatParameter(QObject * parent) : AbstractParameter(parent), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
 {
   _timerId = 0;
@@ -215,3 +218,5 @@ void FloatParameter::disconnectSliderSpinBox()
   _spinBox->disconnect(this);
   _connected = false;
 }
+
+} // namespace GmicQt

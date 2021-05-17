@@ -27,8 +27,11 @@
 
 #include <QString>
 #include "AbstractParameter.h"
-class QLabel;
 class QPushButton;
+class QLabel;
+
+namespace GmicQt
+{
 
 class FolderParameter : public AbstractParameter {
   Q_OBJECT
@@ -53,5 +56,7 @@ private:
   QLabel * _label;
   QPushButton * _button;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FOLDERPARAMETER_H

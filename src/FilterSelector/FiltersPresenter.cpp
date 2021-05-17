@@ -40,6 +40,9 @@
 #include "Utils.h"
 #include "Widgets/InOutPanel.h"
 
+namespace GmicQt
+{
+
 FiltersPresenter::FiltersPresenter(QObject * parent) : QObject(parent)
 {
   _filtersView = nullptr;
@@ -459,7 +462,7 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   FavesModel::Fave fave = _favesModel.getFaveFromHash(hash);
   _favesModel.removeFave(hash);
 
-  GmicQt::InputMode defaultInputMode = GmicQt::UnspecifiedInputMode;
+  InputMode defaultInputMode = InputMode::Unspecified;
   if (_filtersModel.contains(fave.originalHash())) {
     const FiltersModel::Filter & originalFilter = _filtersModel.getFilterFromHash(fave.originalHash());
     defaultInputMode = originalFilter.defaultInputMode();
@@ -611,7 +614,7 @@ void FiltersPresenter::Filter::clear()
   hash.clear();
   plainTextName.clear();
   previewFactor = GmicQt::PreviewFactorAny;
-  defaultInputMode = GmicQt::UnspecifiedInputMode;
+  defaultInputMode = InputMode::Unspecified;
   isAFave = false;
 }
 
@@ -655,3 +658,5 @@ const char * FiltersPresenter::Filter::previewFactorString() const
   }
   return "float value";
 }
+
+} // namespace GmicQt

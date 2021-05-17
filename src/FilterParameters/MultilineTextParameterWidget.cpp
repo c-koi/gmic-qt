@@ -29,6 +29,9 @@
 #include "Common.h"
 #include "ui_multilinetextparameterwidget.h"
 
+namespace GmicQt
+{
+
 MultilineTextParameterWidget::MultilineTextParameterWidget(const QString & name, const QString & value, QWidget * parent) : QWidget(parent), ui(new Ui::MultilineTextParameterWidget)
 {
   ui->setupUi(this);
@@ -70,3 +73,5 @@ bool MultilineTextParameterWidget::eventFilter(QObject * obj, QEvent * event)
   }
   return QObject::eventFilter(obj, event);
 }
+
+} // namespace GmicQt

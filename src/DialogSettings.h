@@ -30,7 +30,6 @@
 #include <QIcon>
 #include "MainWindow.h"
 #include "gmic_qt.h"
-
 class QCloseEvent;
 class QSettings;
 
@@ -41,12 +40,12 @@ class DialogSettings;
 
 namespace GmicQt
 {
+
 enum ApplicationType
 {
   GuiApplication,
   NonGuiApplication
 };
-}
 
 class DialogSettings : public QDialog {
   Q_OBJECT
@@ -101,9 +100,11 @@ private:
   static int _updatePeriodicity;
   static bool _logosAreVisible;
   static int _previewTimeout;
-  static GmicQt::OutputMessageMode _outputMessageMode;
+  static OutputMessageMode _outputMessageMode;
   static bool _previewZoomAlwaysEnabled;
   static bool _notifyFailedStartupUpdate;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_DIALOGSETTINGS_H

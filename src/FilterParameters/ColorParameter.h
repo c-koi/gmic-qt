@@ -35,6 +35,9 @@ class QSlider;
 class QLabel;
 class QPushButton;
 
+namespace GmicQt
+{
+
 class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
@@ -62,5 +65,7 @@ private:
   QColorDialog * _dialog;
   int _size;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_COLORPARAMETER_H
