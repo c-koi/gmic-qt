@@ -50,6 +50,7 @@
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
+#include "HtmlTranslator.h"
 #include "IconLoader.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"
@@ -385,15 +386,15 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
   if (_pluginParameters.command.empty() && _pluginParameters.filterPath.empty()) {
     return;
   }
-  QString path = QString::fromStdString(_pluginParameters.filterPath);
+  QString plainPath = HtmlTranslator::html2txt(QString::fromStdString(_pluginParameters.filterPath), false);
   QString pluginParameterHash;
   QString command;
   QString arguments;
   QStringList providedParameters;
   QString errorMessage;
   const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
-  if (!path.isEmpty()) {
-    _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(path);
+  if (!plainPath.isEmpty()) {
+    _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(plainPath);
     if (filter.isValid()) {
       pluginParameterHash = filter.hash;
     } else {
