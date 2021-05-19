@@ -104,10 +104,10 @@ enum class PluginParametersFlag
 
 PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag);
 
-int launchPlugin(UserInterfaceMode interfaceMode = UserInterfaceMode::FullGUI,                     //
-                 PluginParameters parameters = PluginParameters(),                                 //
-                 const std::list<GmicQt::InputMode> & disabledInputModes = std::list<InputMode>(), //
-                 const std::list<GmicQt::OutputMode> & disabledOutputModes = std::list<OutputMode>());
+int launchPlugin(UserInterfaceMode interfaceMode = UserInterfaceMode::FullGUI,             //
+                 PluginParameters parameters = PluginParameters(),                         //
+                 const std::list<InputMode> & disabledInputModes = std::list<InputMode>(), //
+                 const std::list<OutputMode> & disabledOutputModes = std::list<OutputMode>());
 
 bool pluginDialogWasAccepted();
 

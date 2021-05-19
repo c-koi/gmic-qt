@@ -218,7 +218,7 @@ void PreviewWidget::updateErrorImage()
   getOriginalImageCrop(image);
   image.move_to(images);
   QString fullCommandLine = commandFromOutputMessageMode(DialogSettings::outputMessageMode());
-  fullCommandLine += QString(" _host=%1 _tk=qt").arg(GmicQt::HostApplicationShortname);
+  fullCommandLine += QString(" _host=%1 _tk=qt").arg(HostApplicationShortname);
   fullCommandLine += QString(" _preview_width=%1").arg(width());
   fullCommandLine += QString(" _preview_height=%1").arg(height());
   fullCommandLine += QString(" gui_error_preview \"%2\"").arg(_errorMessage);
@@ -451,8 +451,7 @@ void PreviewWidget::sendUpdateRequest()
 
 bool PreviewWidget::isAtDefaultZoom() const
 {
-  return (_previewFactor == GmicQt::PreviewFactorAny) || (std::abs(_currentZoomFactor - defaultZoomFactor()) < 0.05) ||
-         ((_previewFactor == GmicQt::PreviewFactorActualSize) && (_currentZoomFactor >= 1.0));
+  return (_previewFactor == PreviewFactorAny) || (std::abs(_currentZoomFactor - defaultZoomFactor()) < 0.05) || ((_previewFactor == PreviewFactorActualSize) && (_currentZoomFactor >= 1.0));
 }
 
 double PreviewWidget::currentZoomFactor() const
@@ -794,13 +793,13 @@ double PreviewWidget::defaultZoomFactor() const
   if (_fullImageSize.isNull()) {
     return 1.0;
   }
-  if (_previewFactor == GmicQt::PreviewFactorFullImage) {
+  if (_previewFactor == PreviewFactorFullImage) {
     return std::min(width() / static_cast<double>(_fullImageSize.width()), height() / static_cast<double>(_fullImageSize.height()));
   }
   if (_previewFactor > 1.0f) {
     return _previewFactor * std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
   }
-  return 1.0; // We suppose GmicQt::PreviewFactorActualSize
+  return 1.0; // We suppose PreviewFactorActualSize
 }
 
 void PreviewWidget::saveVisibleCenter()
@@ -824,13 +823,13 @@ void PreviewWidget::setPreviewFactor(float filterFactor, bool reset)
     emit zoomChanged(_currentZoomFactor);
     return;
   }
-  if ((_previewFactor == GmicQt::PreviewFactorFullImage) || ((_previewFactor == GmicQt::PreviewFactorAny) && reset)) {
+  if ((_previewFactor == PreviewFactorFullImage) || ((_previewFactor == PreviewFactorAny) && reset)) {
     _currentZoomFactor = std::min(width() / (double)_fullImageSize.width(), height() / (double)_fullImageSize.height());
     _visibleRect = PreviewRect::Full;
     if (reset) {
       saveVisibleCenter();
     }
-  } else if ((_previewFactor == GmicQt::PreviewFactorAny) && !reset) {
+  } else if ((_previewFactor == PreviewFactorAny) && !reset) {
     updateVisibleRect();
     _visibleRect.moveCenter(_savedVisibleCenter);
   } else {

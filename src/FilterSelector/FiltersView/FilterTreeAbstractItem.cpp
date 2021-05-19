@@ -33,7 +33,7 @@ namespace GmicQt
 FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
 {
   _visibilityItem = nullptr;
-  if (text.startsWith(GmicQt::WarningPrefix)) {
+  if (text.startsWith(WarningPrefix)) {
     text.remove(0, 1);
     _isWarning = true;
   } else {
@@ -89,7 +89,7 @@ QStringList FilterTreeAbstractItem::path() const
 
 QString FilterTreeAbstractItem::removeWarningPrefix(QString folderName)
 {
-  if (folderName.startsWith(GmicQt::WarningPrefix)) {
+  if (folderName.startsWith(WarningPrefix)) {
     folderName.remove(0, 1);
   }
   return folderName;

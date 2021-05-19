@@ -30,13 +30,15 @@
 namespace
 {
 
-void filterObsoleteInputModes(GmicQt::InputMode & mode)
+using GmicQt::InputMode;
+
+void filterObsoleteInputModes(InputMode & mode)
 {
   switch (mode) {
-  case GmicQt::InputMode::AllDesc_UNUSED:
-  case GmicQt::InputMode::AllVisiblesDesc_UNUSED:
-  case GmicQt::InputMode::AllInvisiblesDesc_UNUSED:
-    mode = GmicQt::InputMode::Unspecified;
+  case InputMode::AllDesc_UNUSED:
+  case InputMode::AllVisiblesDesc_UNUSED:
+  case InputMode::AllInvisiblesDesc_UNUSED:
+    mode = InputMode::Unspecified;
     break;
   default:
     break;
@@ -48,7 +50,7 @@ void filterObsoleteInputModes(GmicQt::InputMode & mode)
 namespace GmicQt
 {
 
-const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode);
+const InputOutputState InputOutputState::Default(DefaultInputMode, DefaultOutputMode);
 const InputOutputState InputOutputState::Unspecified(InputMode::Unspecified, OutputMode::Unspecified);
 
 InputOutputState::InputOutputState() : inputMode(InputMode::Unspecified), outputMode(OutputMode::Unspecified) {}
@@ -67,7 +69,7 @@ bool InputOutputState::operator!=(const InputOutputState & other) const
 
 bool InputOutputState::isDefault() const
 {
-  return (inputMode == GmicQt::DefaultInputMode) && (outputMode == GmicQt::DefaultOutputMode);
+  return (inputMode == DefaultInputMode) && (outputMode == DefaultOutputMode);
 }
 
 void InputOutputState::toJSONObject(QJsonObject & object) const
@@ -83,7 +85,7 @@ void InputOutputState::toJSONObject(QJsonObject & object) const
 
 InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
 {
-  GmicQt::InputOutputState state;
+  InputOutputState state;
   state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(static_cast<int>(InputMode::Unspecified)));
   filterObsoleteInputModes(state.inputMode);
   state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(static_cast<int>(OutputMode::Unspecified)));

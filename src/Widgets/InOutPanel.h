@@ -50,30 +50,30 @@ public:
   ~InOutPanel();
 
 public:
-  GmicQt::InputMode inputMode() const;
-  GmicQt::OutputMode outputMode() const;
-  GmicQt::OutputMessageMode outputMessageMode() const;
+  InputMode inputMode() const;
+  OutputMode outputMode() const;
+  OutputMessageMode outputMessageMode() const;
   void reset();
 
   void disableNotifications();
   void enableNotifications();
-  void setInputMode(GmicQt::InputMode mode);
-  void setOutputMode(GmicQt::OutputMode mode);
+  void setInputMode(InputMode mode);
+  void setOutputMode(OutputMode mode);
 
-  GmicQt::InputOutputState state() const;
-  void setState(const GmicQt::InputOutputState & state, bool notify);
+  InputOutputState state() const;
+  void setState(const InputOutputState & state, bool notify);
 
   void setEnabled(bool);
   void disable();
   void enable();
 
-  static void disableInputMode(GmicQt::InputMode mode);
-  static void disableOutputMode(GmicQt::OutputMode mode);
+  static void disableInputMode(InputMode mode);
+  static void disableOutputMode(OutputMode mode);
 
   bool hasActiveControls();
 
 signals:
-  void inputModeChanged(GmicQt::InputMode);
+  void inputModeChanged(InputMode);
 
 public slots:
   void onInputModeSelected(int);
@@ -89,8 +89,8 @@ private:
   bool _notifyValueChange;
   Ui::InOutPanel * ui;
   static const int NoSelection = -1;
-  static QList<GmicQt::InputMode> _enabledInputModes;
-  static QList<GmicQt::OutputMode> _enabledOutputModes;
+  static QList<InputMode> _enabledInputModes;
+  static QList<OutputMode> _enabledOutputModes;
 };
 
 } // namespace GmicQt

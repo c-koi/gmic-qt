@@ -37,7 +37,7 @@ namespace GmicQt
 FILE * Logger::_logFile = nullptr;
 Logger::Mode Logger::_currentMode = Logger::StandardOutput;
 
-void Logger::setMode(const GmicQt::OutputMessageMode mode)
+void Logger::setMode(const OutputMessageMode mode)
 {
   if ((mode == OutputMessageMode::VerboseLogFile) || (mode == OutputMessageMode::VeryVerboseLogFile) || (mode == OutputMessageMode::DebugLogFile)) {
     setMode(Logger::File);
@@ -58,7 +58,7 @@ void Logger::setMode(const Logger::Mode mode)
     _logFile = nullptr;
     cimg_library::cimg::output(stdout);
   } else {
-    QString filename = QString("%1gmic_qt_log").arg(GmicQt::path_rc(true));
+    QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
     _logFile = fopen(filename.toLocal8Bit().constData(), "a");
     cimg_library::cimg::output(_logFile ? _logFile : stdout);
   }
@@ -71,7 +71,7 @@ void Logger::clear()
   if (mode == File) {
     setMode(StandardOutput);
   }
-  QString filename = QString("%1gmic_qt_log").arg(GmicQt::path_rc(true));
+  QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
   FILE * dummyFile = fopen(filename.toLocal8Bit().constData(), "w");
   fclose(dummyFile);
   setMode(mode);
@@ -90,7 +90,7 @@ void Logger::log(const QString & message, const QString & hint, bool space)
   }
   QStringList lines = text.split("\n", QT_KEEP_EMPTY_PARTS);
 
-  QString prefix = QString("[%1]").arg(GmicQt::pluginCodeName());
+  QString prefix = QString("[%1]").arg(pluginCodeName());
   prefix += hint.isEmpty() ? " " : QString("./%1/ ").arg(hint);
 
   if (space) {

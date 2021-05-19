@@ -36,7 +36,7 @@
 namespace GmicQt
 {
 
-FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
+FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode)
     : QObject(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>),
       _messageMode(mode)
 {
@@ -150,7 +150,7 @@ void FilterSyncRunner::run()
       Logger::log(fullCommandLine, _logSuffix, true);
     }
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, 0, 0, 0.f);
-    gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
+    gmicInstance.set_variable("_host", HostApplicationShortname, '=');
     gmicInstance.set_variable("_tk", "qt", '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;

@@ -42,7 +42,7 @@ private:
   FiltersModel & _model;
   static QString readBufferLine(QBuffer &);
   static bool textIsPrecededBySpacesInSomeLineOfArray(const QByteArray & text, const QByteArray & array);
-  static GmicQt::InputMode symbolToInputMode(const QString & str);
+  static InputMode symbolToInputMode(const QString & str);
 };
 
 } // namespace GmicQt

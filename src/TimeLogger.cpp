@@ -37,7 +37,7 @@ std::unique_ptr<TimeLogger> TimeLogger::_instance = nullptr;
 
 TimeLogger::TimeLogger()
 {
-  QString filename = GmicQt::path_rc(true) + "timing_log.txt";
+  QString filename = gmicConfigPath(true) + "timing_log.txt";
   _file = fopen(filename.toLocal8Bit().constData(), "w");
   Q_ASSERT_X(_file, __PRETTY_FUNCTION__, "Cannot open log file");
 }

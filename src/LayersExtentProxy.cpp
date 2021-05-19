@@ -34,14 +34,14 @@ int LayersExtentProxy::_width = -1;
 int LayersExtentProxy::_height = -1;
 InputMode LayersExtentProxy::_inputMode = InputMode::All;
 
-QSize LayersExtentProxy::getExtent(GmicQt::InputMode mode)
+QSize LayersExtentProxy::getExtent(InputMode mode)
 {
   QSize size;
   getExtent(mode, size.rwidth(), size.rheight());
   return size;
 }
 
-void LayersExtentProxy::getExtent(GmicQt::InputMode mode, int & width, int & height)
+void LayersExtentProxy::getExtent(InputMode mode, int & width, int & height)
 {
   if (mode != _inputMode || _width == -1 || _height == -1) {
     gmic_qt_get_layers_extent(&_width, &_height, mode);

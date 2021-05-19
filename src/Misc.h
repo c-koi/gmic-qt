@@ -35,7 +35,7 @@ class QStringList;
 namespace GmicQt
 {
 
-QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode);
+QString commandFromOutputMessageMode(OutputMessageMode mode);
 
 void appendWithSpace(QString & str, const QString & other);
 

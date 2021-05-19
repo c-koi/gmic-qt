@@ -176,7 +176,7 @@ void FiltersPresenter::saveFaves()
   favesModelWriter.writeFaves();
 }
 
-void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & defaultValues, const QList<int> & visibilityStates, GmicQt::InputOutputState inOutState)
+void FiltersPresenter::addSelectedFilterAsNewFave(const QList<QString> & defaultValues, const QList<int> & visibilityStates, InputOutputState inOutState)
 {
   if (_currentFilter.hash.isEmpty() || (!_filtersModel.contains(_currentFilter.hash) && !_favesModel.contains(_currentFilter.hash))) {
     return;
@@ -485,7 +485,7 @@ void FiltersPresenter::onFaveRenamed(const QString & hash, const QString & name)
   // Move parameters
   QList<QString> values = ParametersCache::getValues(hash);
   QList<int> visibilityStates = ParametersCache::getVisibilityStates(hash);
-  GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(hash);
+  InputOutputState inOutState = ParametersCache::getInputOutputState(hash);
   ParametersCache::remove(hash);
   ParametersCache::setValues(fave.hash(), values);
   ParametersCache::setVisibilityStates(fave.hash(), visibilityStates);
@@ -613,7 +613,7 @@ void FiltersPresenter::Filter::clear()
   fullPath.clear();
   hash.clear();
   plainTextName.clear();
-  previewFactor = GmicQt::PreviewFactorAny;
+  previewFactor = PreviewFactorAny;
   defaultInputMode = InputMode::Unspecified;
   isAFave = false;
 }
@@ -647,13 +647,13 @@ bool FiltersPresenter::Filter::isNoPreviewFilter() const
 
 const char * FiltersPresenter::Filter::previewFactorString() const
 {
-  if (previewFactor == GmicQt::PreviewFactorActualSize) {
+  if (previewFactor == PreviewFactorActualSize) {
     return "ActualSize";
   }
-  if (previewFactor == GmicQt::PreviewFactorAny) {
+  if (previewFactor == PreviewFactorAny) {
     return "Any";
   }
-  if (previewFactor == GmicQt::PreviewFactorFullImage) {
+  if (previewFactor == PreviewFactorFullImage) {
     return "FullImage";
   }
   return "float value";

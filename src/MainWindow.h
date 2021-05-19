@@ -70,7 +70,7 @@ public:
   ~MainWindow() override;
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
   void setDarkTheme();
-  void setPluginParameters(const GmicQt::PluginParameters & parameters);
+  void setPluginParameters(const PluginParameters & parameters);
 
 public slots:
   void onUpdateDownloadsFinished(int status);
@@ -125,7 +125,7 @@ protected:
 private slots:
 
   void onFullImageProcessingError(const QString & message);
-  void onInputModeChanged(GmicQt::InputMode);
+  void onInputModeChanged(InputMode);
 
 private:
   void setZoomConstraint();
@@ -169,7 +169,7 @@ private:
   GmicProcessor _processor;
   ulong _lastPreviewKeypointBurstUpdateTime;
   static bool _isAccepted;
-  GmicQt::PluginParameters _pluginParameters;
+  PluginParameters _pluginParameters;
 };
 
 } // namespace GmicQt

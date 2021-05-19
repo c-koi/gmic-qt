@@ -32,7 +32,7 @@ class QStringList;
 namespace GmicQt
 {
 
-const QString & path_rc(bool create);
+const QString & gmicConfigPath(bool create);
 unsigned int host_app_pid();
 const QString & pluginFullName();
 const QString & pluginCodeName();

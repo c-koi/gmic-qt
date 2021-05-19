@@ -95,7 +95,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   _expandCollapseIcon = nullptr;
   _newSession = true; // Overwritten by loadSettings()
 
-  setWindowTitle(GmicQt::pluginFullName());
+  setWindowTitle(pluginFullName());
   QStringList tsp = QIcon::themeSearchPaths();
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
@@ -316,7 +316,7 @@ void MainWindow::setDarkTheme()
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
 
-void MainWindow::setPluginParameters(const GmicQt::PluginParameters & parameters)
+void MainWindow::setPluginParameters(const PluginParameters & parameters)
 {
   _pluginParameters = parameters;
 }
@@ -476,7 +476,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   ui->searchField->setFocus();
 
   // Let the standalone version load an image, if necessary (not pretty)
-  if (GmicQt::HostApplicationName.isEmpty()) {
+  if (HostApplicationName.isEmpty()) {
     LayersExtentProxy::clear();
     QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
     ui->previewWidget->setFullImageSize(extent);
@@ -497,7 +497,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     _filtersPresenter->expandFaveFolder();
     _filtersPresenter->adjustViewSize();
-    ui->previewWidget->setPreviewFactor(GmicQt::PreviewFactorFullImage, true);
+    ui->previewWidget->setPreviewFactor(PreviewFactorFullImage, true);
   } else {
     _filtersPresenter->adjustViewSize();
     activateFilter(true, pluginParametersCommandArguments);
@@ -628,7 +628,7 @@ void MainWindow::makeConnections()
   connect(_filtersPresenter, SIGNAL(faveAdditionRequested(QString)), this, SLOT(onAddFave()));
   connect(ui->tbRemoveFave, &QToolButton::clicked, this, &MainWindow::onRemoveFave);
   connect(ui->tbRenameFave, &QToolButton::clicked, this, &MainWindow::onRenameFave);
-  connect(ui->inOutSelector, SIGNAL(inputModeChanged(GmicQt::InputMode)), this, SLOT(onInputModeChanged(GmicQt::InputMode)));
+  connect(ui->inOutSelector, SIGNAL(inputModeChanged(InputMode)), this, SLOT(onInputModeChanged(InputMode)));
 
   connect(ui->cbPreview, SIGNAL(toggled(bool)), this, SLOT(onPreviewCheckBoxToggled(bool)));
   connect(ui->searchField, SIGNAL(textChanged(QString)), this, SLOT(search(QString)));
@@ -798,7 +798,7 @@ void MainWindow::onFullImageProcessingError(const QString & message)
   }
 }
 
-void MainWindow::onInputModeChanged(GmicQt::InputMode mode)
+void MainWindow::onInputModeChanged(InputMode mode)
 {
   ui->previewWidget->setFullImageSize(LayersExtentProxy::getExtent(mode));
   ui->previewWidget->sendUpdateRequest();
@@ -808,9 +808,9 @@ void MainWindow::setZoomConstraint()
 {
   const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
   ZoomConstraint constraint;
-  if (currentFilter.hash.isEmpty() || currentFilter.isAccurateIfZoomed || DialogSettings::previewZoomAlwaysEnabled() || (currentFilter.previewFactor == GmicQt::PreviewFactorAny)) {
+  if (currentFilter.hash.isEmpty() || currentFilter.isAccurateIfZoomed || DialogSettings::previewZoomAlwaysEnabled() || (currentFilter.previewFactor == PreviewFactorAny)) {
     constraint = ZoomConstraint::Any;
-  } else if (currentFilter.previewFactor == GmicQt::PreviewFactorActualSize) {
+  } else if (currentFilter.previewFactor == PreviewFactorActualSize) {
     constraint = ZoomConstraint::OneOrMore;
   } else {
     constraint = ZoomConstraint::Fixed;
@@ -986,7 +986,7 @@ void MainWindow::saveSettings()
   settings.setValue("Config/MainWindowMaximized", isMaximized());
   settings.setValue("Config/PreviewEnabled", ui->cbPreview->isChecked());
   settings.setValue("LastExecution/ExitedNormally", true);
-  settings.setValue("LastExecution/HostApplicationID", GmicQt::host_app_pid());
+  settings.setValue("LastExecution/HostApplicationID", host_app_pid());
   QList<int> splitterSizes = ui->splitter->sizes();
   for (int i = 0; i < splitterSizes.size(); ++i) {
     settings.setValue(QString("Config/PanelSize%1").arg(i), splitterSizes.at(i));
@@ -1005,7 +1005,7 @@ void MainWindow::loadSettings()
   _filtersPresenter->loadSettings(settings);
 
   _lastExecutionOK = settings.value("LastExecution/ExitedNormally", true).toBool();
-  _newSession = GmicQt::host_app_pid() != settings.value("LastExecution/HostApplicationID", 0).toUInt();
+  _newSession = host_app_pid() != settings.value("LastExecution/HostApplicationID", 0).toUInt();
   settings.setValue("LastExecution/ExitedNormally", false);
   ui->inOutSelector->reset();
 
@@ -1174,7 +1174,7 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
       ui->inOutSelector->hide();
     }
 
-    GmicQt::InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
+    InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
     if (inOutState.inputMode == InputMode::Unspecified) {
       if ((filter.defaultInputMode != InputMode::Unspecified)) {
         inOutState.inputMode = filter.defaultInputMode;
@@ -1214,7 +1214,7 @@ void MainWindow::setNoFilter()
   ui->previewWidget->disableRightClick();
   ui->previewWidget->setKeypoints(KeypointList());
   ui->inOutSelector->hide();
-  ui->inOutSelector->setState(GmicQt::InputOutputState::Default, false);
+  ui->inOutSelector->setState(InputOutputState::Default, false);
   ui->filterName->setVisible(false);
   ui->tbAddFave->setEnabled(false);
   ui->tbCopyCommand->setVisible(false);

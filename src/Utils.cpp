@@ -43,7 +43,7 @@
 namespace GmicQt
 {
 
-const QString & path_rc(bool create)
+const QString & gmicConfigPath(bool create)
 {
   QString qpath = QString::fromUtf8(gmic::path_rc());
   QFileInfo dir(qpath);
@@ -95,10 +95,10 @@ const QString & pluginFullName()
   static QString result;
   if (result.isEmpty()) {
     result = QString("G'MIC-Qt %1- %2 %3 bits - %4" BETA_SUFFIX)
-                 .arg(GmicQt::HostApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(GmicQt::HostApplicationName))
+                 .arg(HostApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(HostApplicationName))
                  .arg(cimg_library::cimg::stros())
                  .arg(sizeof(void *) == 8 ? 64 : 32)
-                 .arg(GmicQt::gmicVersionString());
+                 .arg(gmicVersionString());
   }
   return result;
 }
@@ -107,7 +107,7 @@ const QString & pluginCodeName()
 {
   static QString result;
   if (result.isEmpty()) {
-    result = GmicQt::HostApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(GmicQt::HostApplicationShortname).toLower());
+    result = HostApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(HostApplicationShortname).toLower());
   }
   return result;
 }

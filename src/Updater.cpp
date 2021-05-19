@@ -115,7 +115,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
           TRACE << "Downloading" << str << "to" << filename;
           QUrl url(str);
           QNetworkRequest request(url);
-          request.setHeader(QNetworkRequest::UserAgentHeader, GmicQt::pluginFullName());
+          request.setHeader(QNetworkRequest::UserAgentHeader, pluginFullName());
           // PRIVACY NOTICE (to be displayed in one of the "About" filters of the plugin
           //
           // PRIVACY NOTICE
@@ -308,7 +308,7 @@ QString Updater::localFilename(QString url)
 {
   if (url.startsWith("http://") || url.startsWith("https://")) {
     QUrl u(url);
-    return QString("%1%2").arg(GmicQt::path_rc(true)).arg(u.fileName());
+    return QString("%1%2").arg(gmicConfigPath(true)).arg(u.fileName());
   }
   return url;
 }
@@ -379,7 +379,7 @@ bool Updater::someNetworkUpdateAchieved() const
   return _someNetworkUpdatesAchieved;
 }
 
-void Updater::setOutputMessageMode(GmicQt::OutputMessageMode mode)
+void Updater::setOutputMessageMode(OutputMessageMode mode)
 {
   _outputMessageMode = mode;
 }

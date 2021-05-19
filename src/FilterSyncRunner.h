@@ -45,7 +45,7 @@ namespace GmicQt
 class FilterSyncRunner : public QObject {
   Q_OBJECT
 public:
-  FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode);
 
   virtual ~FilterSyncRunner();
   void setArguments(const QString &);
@@ -78,7 +78,7 @@ private:
   QString _errorMessage;
   QString _name;
   QString _logSuffix;
-  GmicQt::OutputMessageMode _messageMode;
+  OutputMessageMode _messageMode;
 };
 
 } // namespace GmicQt

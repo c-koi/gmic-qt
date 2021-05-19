@@ -42,7 +42,7 @@ public:
   };
 
   static void setMode(const Mode mode);
-  static void setMode(const GmicQt::OutputMessageMode mode);
+  static void setMode(const OutputMessageMode mode);
   static void clear();
   static void close();
   static void log(const QString & message, const QString & hint, bool space = false);

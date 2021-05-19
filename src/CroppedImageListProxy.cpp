@@ -42,7 +42,7 @@ InputMode CroppedImageListProxy::_inputMode = InputMode::Unspecified;
 std::unique_ptr<cimg_library::CImgList<gmic_pixel_type>> CroppedImageListProxy::_cachedImageList(new cimg_library::CImgList<gmic_pixel_type>);
 std::unique_ptr<cimg_library::CImgList<char>> CroppedImageListProxy::_cachedImageNames(new cimg_library::CImgList<char>);
 
-void CroppedImageListProxy::get(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode,
+void CroppedImageListProxy::get(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, InputMode mode,
                                 double zoom)
 {
   if ((x != _x) || (y != _y) || (width != _width) || (height != _height) || (mode != _inputMode) || (zoom != _zoom)) {
@@ -52,7 +52,7 @@ void CroppedImageListProxy::get(cimg_library::CImgList<gmic_pixel_type> & images
   imageNames = *_cachedImageNames;
 }
 
-void CroppedImageListProxy::update(double x, double y, double width, double height, GmicQt::InputMode mode, double zoom)
+void CroppedImageListProxy::update(double x, double y, double width, double height, InputMode mode, double zoom)
 {
   _x = x;
   _y = y;

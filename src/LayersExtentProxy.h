@@ -31,15 +31,15 @@ namespace GmicQt
 {
 class LayersExtentProxy {
 public:
-  static void getExtent(GmicQt::InputMode mode, int & width, int & height);
-  static QSize getExtent(GmicQt::InputMode mode);
+  static void getExtent(InputMode mode, int & width, int & height);
+  static QSize getExtent(InputMode mode);
   static void clear();
 
 private:
   LayersExtentProxy() = delete;
   static int _width;
   static int _height;
-  static GmicQt::InputMode _inputMode;
+  static InputMode _inputMode;
 };
 
 } // namespace GmicQt

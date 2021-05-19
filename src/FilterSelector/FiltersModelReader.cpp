@@ -135,7 +135,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
           commands.push_back(commands.front());
         }
         QList<QString> preview = commands[1].trimmed().split("(");
-        float previewFactor = GmicQt::PreviewFactorAny;
+        float previewFactor = PreviewFactorAny;
         bool accurateIfZoomed = true;
         if (preview.size() >= 2) {
           if (preview[1].endsWith("+")) {
@@ -228,7 +228,7 @@ bool FiltersModelReader::textIsPrecededBySpacesInSomeLineOfArray(const QByteArra
   return false;
 }
 
-GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
+InputMode FiltersModelReader::symbolToInputMode(const QString & str)
 {
   if (str.length() != 1) {
     Logger::warning(QString("'%1' is not recognized as a default input mode (should be a single symbol/letter)").arg(str));

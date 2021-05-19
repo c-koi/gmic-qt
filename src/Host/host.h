@@ -76,7 +76,13 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode);
  * @param height Normalized height of the layers w.r.t. image/extends height
  * @param mode Input mode
  */
-void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode);
+void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, //
+                                cimg_library::CImgList<char> & imageNames,        //
+                                double x,                                         //
+                                double y,                                         //
+                                double width,                                     //
+                                double height,                                    //
+                                GmicQt::InputMode mode);
 
 /**
  * @brief Send a list of new image layers to the host application according to

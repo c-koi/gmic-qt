@@ -46,7 +46,7 @@ public:
     Filter & setAccurateIfZoomed(bool accurate);
     Filter & setPath(const QList<QString> & path);
     Filter & setWarningFlag(bool flag);
-    Filter & setDefaultInputMode(GmicQt::InputMode);
+    Filter & setDefaultInputMode(InputMode);
     Filter & build();
 
     const QString & name() const;
@@ -62,7 +62,7 @@ public:
     float previewFactor() const;
     bool isAccurateIfZoomed() const;
     bool isWarning() const;
-    GmicQt::InputMode defaultInputMode() const;
+    InputMode defaultInputMode() const;
 
     bool matchKeywords(const QList<QString> & keywords) const;
     bool matchFullPath(const QList<QString> & path) const;
@@ -76,7 +76,7 @@ public:
     QList<QString> _translatedPlainPath;
     QString _command;
     QString _previewCommand;
-    GmicQt::InputMode _defaultInputMode;
+    InputMode _defaultInputMode;
     QString _parameters;
     float _previewFactor;
     bool _isAccurateIfZoomed;

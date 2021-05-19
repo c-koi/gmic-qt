@@ -34,19 +34,19 @@
 namespace GmicQt
 {
 
-QList<GmicQt::InputMode> InOutPanel::_enabledInputModes = { //
-    InputMode::NoInput,                                     //
-    InputMode::Active,                                      //
-    InputMode::All,                                         //
-    InputMode::ActiveAndBelow,                              //
-    InputMode::ActiveAndAbove,                              //
-    InputMode::AllVisible,                                  //
+QList<InputMode> InOutPanel::_enabledInputModes = { //
+    InputMode::NoInput,                             //
+    InputMode::Active,                              //
+    InputMode::All,                                 //
+    InputMode::ActiveAndBelow,                      //
+    InputMode::ActiveAndAbove,                      //
+    InputMode::AllVisible,                          //
     InputMode::AllInvisible};
 
-QList<GmicQt::OutputMode> InOutPanel::_enabledOutputModes = { //
-    OutputMode::InPlace,                                      //
-    OutputMode::NewLayers,                                    //
-    OutputMode::NewActiveLayers,                              //
+QList<OutputMode> InOutPanel::_enabledOutputModes = { //
+    OutputMode::InPlace,                              //
+    OutputMode::NewLayers,                            //
+    OutputMode::NewActiveLayers,                      //
     OutputMode::NewImage};
 
 /*
@@ -74,9 +74,9 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   ADD_INPUT_IF_ENABLED(InputMode::AllVisible, tr("All visible"));
   ADD_INPUT_IF_ENABLED(InputMode::AllInvisible, tr("All invisible"));
   // "decr." input mode have been removed (since 2.8.2)
-  //  ui->inputLayers->addItem(tr("All visible (decr.)"), GmicQt::AllVisiblesDesc);
-  //  ui->inputLayers->addItem(tr("All invisible (decr.)"), GmicQt::AllInvisiblesDesc);
-  //  ui->inputLayers->addItem(tr("All (decr.)"), GmicQt::AllDesc);
+  //  ui->inputLayers->addItem(tr("All visible (decr.)"), AllVisiblesDesc);
+  //  ui->inputLayers->addItem(tr("All invisible (decr.)"), AllInvisiblesDesc);
+  //  ui->inputLayers->addItem(tr("All (decr.)"), AllDesc);
 
   if (ui->inputLayers->count() == 1) {
     ui->labelInputLayers->hide();
@@ -114,25 +114,25 @@ InOutPanel::~InOutPanel()
   delete ui;
 }
 
-GmicQt::InputMode InOutPanel::inputMode() const
+InputMode InOutPanel::inputMode() const
 {
   int mode = ui->inputLayers->currentData().toInt();
-  return static_cast<GmicQt::InputMode>(mode);
+  return static_cast<InputMode>(mode);
 }
 
-GmicQt::OutputMode InOutPanel::outputMode() const
+OutputMode InOutPanel::outputMode() const
 {
   int mode = ui->outputMode->currentData().toInt();
-  return static_cast<GmicQt::OutputMode>(mode);
+  return static_cast<OutputMode>(mode);
 }
 
-void InOutPanel::setInputMode(GmicQt::InputMode mode)
+void InOutPanel::setInputMode(InputMode mode)
 {
   int index = ui->inputLayers->findData(static_cast<int>(mode));
   ui->inputLayers->setCurrentIndex((index == -1) ? ui->inputLayers->findData(static_cast<int>(DefaultInputMode)) : index);
 }
 
-void InOutPanel::setOutputMode(GmicQt::OutputMode mode)
+void InOutPanel::setOutputMode(OutputMode mode)
 {
   int index = ui->outputMode->findData(static_cast<int>(mode));
   ui->outputMode->setCurrentIndex((index == -1) ? ui->outputMode->findData(static_cast<int>(DefaultOutputMode)) : index);
@@ -155,7 +155,7 @@ void InOutPanel::onOutputModeSelected(int) {}
 
 void InOutPanel::onResetButtonClicked()
 {
-  setState(GmicQt::InputOutputState::Default, true);
+  setState(InputOutputState::Default, true);
 }
 
 void InOutPanel::setDarkTheme()
@@ -165,7 +165,7 @@ void InOutPanel::setDarkTheme()
 
 void InOutPanel::setDefaultInputMode()
 {
-  if (_enabledInputModes.contains(GmicQt::DefaultInputMode)) {
+  if (_enabledInputModes.contains(DefaultInputMode)) {
     return;
   }
   const int start = static_cast<int>(InputMode::Active);
@@ -183,7 +183,7 @@ void InOutPanel::setDefaultInputMode()
 
 void InOutPanel::setDefaultOutputMode()
 {
-  if (_enabledOutputModes.contains(GmicQt::DefaultOutputMode)) {
+  if (_enabledOutputModes.contains(DefaultOutputMode)) {
     return;
   }
   Q_ASSERT_X(!_enabledOutputModes.isEmpty(), __FUNCTION__, "No output mode left by host settings. Default mode cannot be determined.");
@@ -192,7 +192,7 @@ void InOutPanel::setDefaultOutputMode()
   for (int m = start; m <= stop; ++m) {
     const auto mode = static_cast<OutputMode>(m);
     if (_enabledOutputModes.contains(mode)) {
-      GmicQt::DefaultOutputMode = mode;
+      DefaultOutputMode = mode;
       return;
     }
   }
@@ -243,12 +243,12 @@ void InOutPanel::enableNotifications()
  * InOutPanel::state methods
  */
 
-GmicQt::InputOutputState InOutPanel::state() const
+InputOutputState InOutPanel::state() const
 {
   return {inputMode(), outputMode()};
 }
 
-void InOutPanel::setState(const GmicQt::InputOutputState & state, bool notify)
+void InOutPanel::setState(const InputOutputState & state, bool notify)
 {
   bool savedNotificationStatus = _notifyValueChange;
   if (notify) {
@@ -283,18 +283,18 @@ void InOutPanel::enable()
   setEnabled(true);
 }
 
-void InOutPanel::disableInputMode(GmicQt::InputMode mode)
+void InOutPanel::disableInputMode(InputMode mode)
 {
-  const bool isDefault = (mode == GmicQt::DefaultInputMode);
+  const bool isDefault = (mode == DefaultInputMode);
   _enabledInputModes.removeOne(mode);
   if (isDefault) {
     setDefaultInputMode();
   }
 }
 
-void InOutPanel::disableOutputMode(GmicQt::OutputMode mode)
+void InOutPanel::disableOutputMode(OutputMode mode)
 {
-  const bool isDefault = (mode == GmicQt::DefaultOutputMode);
+  const bool isDefault = (mode == DefaultOutputMode);
   _enabledOutputModes.removeOne(mode);
   if (isDefault) {
     setDefaultOutputMode();

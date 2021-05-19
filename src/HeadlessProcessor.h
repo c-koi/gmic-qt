@@ -50,7 +50,7 @@ public:
   QString filterName() const;
   void setProgressWindow(ProgressInfoWindow *);
   bool processingCompletedProperly();
-  bool setPluginParameters(const GmicQt::PluginParameters & parameters);
+  bool setPluginParameters(const PluginParameters & parameters);
   const QString & error() const;
 public slots:
   void startProcessing();
@@ -72,9 +72,9 @@ private:
   QString _path;
   QString _command;
   QString _arguments;
-  GmicQt::OutputMode _outputMode;
-  GmicQt::OutputMessageMode _outputMessageMode;
-  GmicQt::InputMode _inputMode;
+  OutputMode _outputMode;
+  OutputMessageMode _outputMessageMode;
+  InputMode _inputMode;
   QTimer _singleShotTimer;
   bool _processingCompletedProperly;
   QString _errorMessage;

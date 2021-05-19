@@ -63,7 +63,7 @@ inline bool isEmptyOrSpaceSequence(const char * pc)
 namespace GmicQt
 {
 
-QString commandFromOutputMessageMode(GmicQt::OutputMessageMode mode)
+QString commandFromOutputMessageMode(OutputMessageMode mode)
 {
   switch (mode) {
   case OutputMessageMode::Quiet:
@@ -250,7 +250,7 @@ QString filterFullPathWithoutTags(const QList<QString> & path, const QString & n
 {
   QStringList noTags = {QString()};
   for (QString str : path) {
-    if (str.startsWith(GmicQt::WarningPrefix)) {
+    if (str.startsWith(WarningPrefix)) {
       str.remove(0, 1);
     }
     noTags.push_back(HtmlTranslator::removeTags(str));

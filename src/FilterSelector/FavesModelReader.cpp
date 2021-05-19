@@ -115,7 +115,7 @@ void FavesModelReader::importFavesFromGmicGTK()
 void FavesModelReader::loadFaves()
 {
   // Read JSON faves if file exists
-  QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves.json"));
+  QString jsonFilename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves.json"));
   QFile jsonFile(jsonFilename);
   if (jsonFile.exists()) {
     if (jsonFile.open(QIODevice::ReadOnly)) {
@@ -138,7 +138,7 @@ void FavesModelReader::loadFaves()
   }
 
   // Read old 2.0.0 prerelease file format if no JSON was found
-  QString filename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves"));
+  QString filename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves"));
   QFile file(filename);
   if (file.exists()) {
     if (file.open(QIODevice::ReadOnly)) {
@@ -182,7 +182,7 @@ void FavesModelReader::loadFaves()
 
 QString FavesModelReader::gmicGTKFavesFilename()
 {
-  return QString("%1%2").arg(GmicQt::path_rc(false)).arg("gimp_faves");
+  return QString("%1%2").arg(gmicConfigPath(false)).arg("gimp_faves");
 }
 
 } // namespace GmicQt

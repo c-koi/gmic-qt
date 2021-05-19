@@ -41,8 +41,8 @@ class CroppedImageListProxy {
 public:
   CroppedImageListProxy() = delete;
 
-  static void get(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode, double zoom);
-  static void update(double x, double y, double width, double height, GmicQt::InputMode mode, double zoom);
+  static void get(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, InputMode mode, double zoom);
+  static void update(double x, double y, double width, double height, InputMode mode, double zoom);
   static void clear();
 
 private:
@@ -52,7 +52,7 @@ private:
   static double _y;
   static double _width;
   static double _height;
-  static GmicQt::InputMode _inputMode;
+  static InputMode _inputMode;
   static double _zoom;
 };
 

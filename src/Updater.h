@@ -57,7 +57,7 @@ public:
   };
 
   static Updater * getInstance();
-  static void setOutputMessageMode(GmicQt::OutputMessageMode mode);
+  static void setOutputMessageMode(OutputMessageMode mode);
   ~Updater() override;
 
   /**
@@ -102,7 +102,7 @@ private:
   static QByteArray cimgzDecompress(const QByteArray & array);
   static QByteArray cimgzDecompressFile(const QString & filename);
   static std::unique_ptr<Updater> _instance;
-  static GmicQt::OutputMessageMode _outputMessageMode;
+  static OutputMessageMode _outputMessageMode;
 
   QNetworkAccessManager * _networkAccessManager;
   QList<QString> _sources;

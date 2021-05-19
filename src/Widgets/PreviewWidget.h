@@ -117,7 +117,7 @@ public slots:
    * @brief setPreviewFactor
    * @param filterFactor
    * @param reset If true, zoomFactor is set to "Full Image" if
-   *              filterFactor is GmicQt::PreviewFactorAny
+   *              filterFactor is PreviewFactorAny
    */
   void setPreviewFactor(float filterFactor, bool reset);
   void displayOriginalImage();
@@ -150,8 +150,8 @@ private:
   ZoomConstraint _zoomConstraint;
 
   /*
-   * (0) for a 1:1 preview (GmicQt::PreviewFactorActualSize)
-   * (1) for previewing the whole image (GmicQt::PreviewFactorFullImage)
+   * (0) for a 1:1 preview (PreviewFactorActualSize)
+   * (1) for previewing the whole image (PreviewFactorFullImage)
    * (2) for 1/2 image
    * GmigQt::PreviewFactorAny
    */

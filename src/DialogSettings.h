@@ -59,7 +59,7 @@ public:
   static QString languageCode();
   static bool nativeColorDialogs();
   static void saveSettings(QSettings &);
-  static void loadSettings(GmicQt::ApplicationType applicationType);
+  static void loadSettings(ApplicationType applicationType);
   static bool previewZoomAlwaysEnabled();
   static bool notifyFailedStartupUpdate();
   static const QColor CheckBoxTextColor;
@@ -68,7 +68,7 @@ public:
   static QString FolderParameterDefaultValue;
   static QString FileParameterDefaultPath;
   static int previewTimeout();
-  static GmicQt::OutputMessageMode outputMessageMode();
+  static OutputMessageMode outputMessageMode();
   static QIcon AddIcon;
   static QIcon RemoveIcon;
   static QString GroupSeparator;

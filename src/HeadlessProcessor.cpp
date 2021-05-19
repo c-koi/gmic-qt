@@ -68,7 +68,7 @@ HeadlessProcessor::~HeadlessProcessor()
   delete _gmicImages;
 }
 
-bool HeadlessProcessor::setPluginParameters(const GmicQt::PluginParameters & parameters)
+bool HeadlessProcessor::setPluginParameters(const PluginParameters & parameters)
 {
   QSettings settings;
   _path = QString::fromStdString(parameters.filterPath);
@@ -238,14 +238,14 @@ void HeadlessProcessor::onProcessingFinished()
       ParametersCache::setValues(_hash, status);
       ParametersCache::save();
       QString statusString = flattenGmicParameterList(status, _gmicStatusQuotedParameters);
-      settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQt::HostApplicationShortname), statusString);
+      settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(HostApplicationShortname), statusString);
     }
-    settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQt::HostApplicationShortname), _path);
-    settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQt::HostApplicationShortname), _hash);
-    settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQt::HostApplicationShortname), _command);
-    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQt::HostApplicationShortname), _arguments);
-    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), (int)_inputMode);
-    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), (int)_outputMode);
+    settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(HostApplicationShortname), _path);
+    settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(HostApplicationShortname), _hash);
+    settings.setValue(QString("LastExecution/host_%1/Command").arg(HostApplicationShortname), _command);
+    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(HostApplicationShortname), _arguments);
+    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(HostApplicationShortname), (int)_inputMode);
+    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(HostApplicationShortname), (int)_outputMode);
   }
   _filterThread->deleteLater();
   _filterThread = nullptr;

@@ -68,8 +68,8 @@ public:
     };
     RequestType requestType;
     VisibleRect visibleRect;
-    GmicQt::InputOutputState inputOutputState;
-    GmicQt::OutputMessageMode outputMessageMode;
+    InputOutputState inputOutputState;
+    OutputMessageMode outputMessageMode;
     PositionStringCorrection positionStringCorrection;
     double zoomFactor;
     int previewWidth;
@@ -149,7 +149,7 @@ private:
   QString _lastAppliedCommand;
   QString _lastAppliedCommandArguments;
   QStringList _lastAppliedCommandGmicStatus;
-  GmicQt::InputOutputState _lastAppliedCommandInOutState;
+  InputOutputState _lastAppliedCommandInOutState;
   QElapsedTimer _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;

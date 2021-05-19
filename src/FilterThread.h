@@ -44,7 +44,7 @@ class FilterThread : public QThread {
   Q_OBJECT
 
 public:
-  FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode);
 
   ~FilterThread() override;
   void setInputImages(const cimg_library::CImgList<float> & list);
@@ -87,7 +87,7 @@ private:
   QString _errorMessage;
   QString _name;
   QString _logSuffix;
-  GmicQt::OutputMessageMode _messageMode;
+  OutputMessageMode _messageMode;
   QElapsedTimer _startTime;
 };
 

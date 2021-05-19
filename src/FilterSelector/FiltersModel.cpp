@@ -113,7 +113,7 @@ void FiltersModel::removePath(const QList<QString> & path)
 
 FiltersModel::Filter::Filter()
 {
-  _previewFactor = GmicQt::PreviewFactorAny;
+  _previewFactor = PreviewFactorAny;
   _isAccurateIfZoomed = false;
   _isWarning = false;
 }
@@ -174,7 +174,7 @@ FiltersModel::Filter & FiltersModel::Filter::setWarningFlag(bool flag)
   return *this;
 }
 
-FiltersModel::Filter & FiltersModel::Filter::setDefaultInputMode(GmicQt::InputMode mode)
+FiltersModel::Filter & FiltersModel::Filter::setDefaultInputMode(InputMode mode)
 {
   _defaultInputMode = mode;
   return *this;
@@ -265,7 +265,7 @@ bool FiltersModel::Filter::isWarning() const
   return _isWarning;
 }
 
-GmicQt::InputMode FiltersModel::Filter::defaultInputMode() const
+InputMode FiltersModel::Filter::defaultInputMode() const
 {
   return _defaultInputMode;
 }

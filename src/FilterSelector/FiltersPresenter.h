@@ -48,7 +48,7 @@ public:
     QString parameters;
     QList<QString> defaultParameterValues;
     QList<int> defaultVisibilityStates;
-    GmicQt::InputMode defaultInputMode;
+    InputMode defaultInputMode;
     QString hash;
     bool isAccurateIfZoomed;
     float previewFactor;
@@ -86,7 +86,7 @@ public:
   void restoreFaveHashLinksAfterCaseChange();
   void importGmicGTKFaves();
   void saveFaves();
-  void addSelectedFilterAsNewFave(const QList<QString> & defaultValues, const QList<int> & visibilityStates, GmicQt::InputOutputState inOutState);
+  void addSelectedFilterAsNewFave(const QList<QString> & defaultValues, const QList<int> & visibilityStates, InputOutputState inOutState);
 
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);
