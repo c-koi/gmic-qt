@@ -43,10 +43,10 @@ public:
   explicit ProgressInfoWidget(QWidget * parent = nullptr);
   ~ProgressInfoWidget();
 
-  enum Mode
+  enum class Mode
   {
-    GmicProcessingMode,
-    FiltersUpdateMode
+    GmicProcessing,
+    FiltersUpdate
   };
 
   Mode mode() const;

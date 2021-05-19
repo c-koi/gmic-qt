@@ -53,11 +53,11 @@ class GmicProcessor : public QObject {
   Q_OBJECT
 public:
   struct FilterContext {
-    enum RequestType
+    enum class RequestType
     {
-      SynchronousPreviewProcessing,
-      PreviewProcessing,
-      FullImageProcessing
+      SynchronousPreview,
+      Preview,
+      FullImage
     };
     struct VisibleRect {
       double x, y, w, h;

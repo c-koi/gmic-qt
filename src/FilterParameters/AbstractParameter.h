@@ -62,12 +62,12 @@ public:
     DisabledParameter = 1,
     VisibleParameter = 2,
   };
-  enum VisibilityPropagation
+  enum class VisibilityPropagation
   {
-    PropagateNone = 0,
-    PropagateUp = 1,
-    PropagateDown = 2,
-    PropagateUpDown = 3
+    NoPropagation = 0,
+    Up = 1,
+    Down = 2,
+    UpDown = 3
   };
 
   static const QStringList NoValueParameters;

@@ -35,7 +35,7 @@ namespace GmicQt
 
 class Logger {
 public:
-  enum Mode
+  enum class Mode
   {
     StandardOutput,
     File

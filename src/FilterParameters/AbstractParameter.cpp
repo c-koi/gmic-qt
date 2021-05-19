@@ -53,7 +53,7 @@ AbstractParameter::AbstractParameter(QObject * parent) : QObject(parent)
   _update = true;
   _defaultVisibilityState = VisibleParameter;
   _visibilityState = VisibleParameter;
-  _visibilityPropagation = PropagateNone;
+  _visibilityPropagation = VisibilityPropagation::NoPropagation;
   _row = -1;
   _grid = nullptr;
 }
@@ -233,18 +233,18 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
 
   if (text[length] == '_' && text[length + 1] >= '0' && text[length + 1] <= '2') {
     _defaultVisibilityState = static_cast<VisibilityState>(text[length + 1] - '0');
-    _visibilityPropagation = PropagateNone;
+    _visibilityPropagation = VisibilityPropagation::NoPropagation;
     switch (text[length + 2]) {
     case '-':
-      _visibilityPropagation = PropagateUp;
+      _visibilityPropagation = VisibilityPropagation::Up;
       length += 3;
       break;
     case '+':
-      _visibilityPropagation = PropagateDown;
+      _visibilityPropagation = VisibilityPropagation::Down;
       length += 3;
       break;
     case '*':
-      _visibilityPropagation = PropagateUpDown;
+      _visibilityPropagation = VisibilityPropagation::Down;
       length += 3;
       break;
     default:
@@ -254,7 +254,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
     if (NoValueParameters.contains(type)) {
       Logger::warning(QString("Warning: %1 parameter should not define visibility. Ignored.").arg(result.first()));
       _defaultVisibilityState = AbstractParameter::VisibleParameter;
-      _visibilityPropagation = PropagateNone;
+      _visibilityPropagation = VisibilityPropagation::NoPropagation;
     }
   }
   while (text[length] && (text[length] == ',' || QChar(text[length]).isSpace())) {

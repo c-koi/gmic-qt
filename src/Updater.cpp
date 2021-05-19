@@ -239,9 +239,9 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
   _pendingReplies.remove(reply);
   if (_pendingReplies.isEmpty()) {
     if (_errorMessages.isEmpty()) {
-      emit updateIsDone(UpdateSuccessful);
+      emit updateIsDone((int)UpdateStatus::Successful);
     } else {
-      emit updateIsDone(SomeUpdatesFailed);
+      emit updateIsDone((int)UpdateStatus::SomeFailed);
     }
     _networkAccessManager->deleteLater();
     _networkAccessManager = nullptr;
@@ -252,7 +252,7 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
 void Updater::notifyAllDownloadsOK()
 {
   _errorMessages.clear();
-  emit updateIsDone(UpdateSuccessful);
+  emit updateIsDone((int)UpdateStatus::Successful);
 }
 
 void Updater::cancelAllPendingDownloads()
@@ -269,7 +269,7 @@ void Updater::cancelAllPendingDownloads()
 
 void Updater::onUpdateNotNecessary()
 {
-  emit updateIsDone(UpdateNotNecessary);
+  emit updateIsDone((int)UpdateStatus::NotNecessary);
 }
 
 QByteArray Updater::cimgzDecompress(const QByteArray & array)

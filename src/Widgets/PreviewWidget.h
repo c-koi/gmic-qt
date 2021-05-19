@@ -76,14 +76,14 @@ public:
   const KeypointList & keypoints() const;
   void setKeypoints(const KeypointList &);
 
+  void setZoomConstraint(const ZoomConstraint & constraint);
+  ZoomConstraint zoomConstraint() const;
+
   enum KeypointMotionFlags
   {
     KeypointBurstEvent = 1,
     KeypointMouseReleaseEvent = 2
   };
-
-  void setZoomConstraint(const ZoomConstraint & constraint);
-  ZoomConstraint zoomConstraint() const;
 
 protected:
   void resizeEvent(QResizeEvent *) override;

@@ -60,10 +60,10 @@ class MainWindow : public QWidget {
   Q_OBJECT
 
 public:
-  enum PreviewPosition
+  enum class PreviewPosition
   {
-    PreviewOnLeft,
-    PreviewOnRight
+    Left,
+    Right
   };
 
   explicit MainWindow(QWidget * parent = nullptr);
@@ -135,26 +135,21 @@ private:
   void setIcons();
   bool confirmAbortProcessingOnCloseRequest();
   void enableWidgetList(bool on);
-  enum ModelType
-  {
-    FullModel,
-    SelectionModel
-  };
   bool askUserForGTKFavesImport();
   void buildFiltersTree();
   void retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters);
 
-  enum ProcessingAction
+  enum class ProcessingAction
   {
     NoAction,
-    OkAction,
-    CloseAction,
-    ApplyAction
+    Ok,
+    Close,
+    Apply
   };
 
   Ui::MainWindow * ui;
   ProcessingAction _pendingActionAfterCurrentProcessing;
-  PreviewPosition _previewPosition = PreviewOnRight;
+  PreviewPosition _previewPosition = PreviewPosition::Right;
   bool _showEventReceived = false;
   bool _okButtonShouldApply = false;
   QIcon _expandIcon;

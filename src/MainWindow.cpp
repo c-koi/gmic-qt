@@ -145,7 +145,7 @@ MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindo
   ui->messageLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
   ui->filterParams->setNoFilter();
-  _pendingActionAfterCurrentProcessing = NoAction;
+  _pendingActionAfterCurrentProcessing = ProcessingAction::NoAction;
   ui->inOutSelector->disable();
   ui->splitter->setChildrenCollapsible(false);
 
@@ -239,7 +239,7 @@ MainWindow::~MainWindow()
   saveCurrentParameters();
   ParametersCache::save();
   saveSettings();
-  Logger::setMode(Logger::StandardOutput); // Close log file, if necessary
+  Logger::setMode(Logger::Mode::StandardOutput); // Close log file, if necessary
   delete ui;
 }
 
@@ -334,17 +334,17 @@ void MainWindow::onUpdateDownloadsFinished(int status)
 {
   ui->progressInfoWidget->stopAnimationAndHide();
 
-  if (status == Updater::SomeUpdatesFailed) {
+  if (status == (int)Updater::UpdateStatus::SomeFailed) {
     if (!ui->progressInfoWidget->hasBeenCanceled()) {
       showUpdateErrors();
     }
-  } else if (status == Updater::UpdateSuccessful) {
+  } else if (status == (int)Updater::UpdateStatus::Successful) {
     if (ui->cbInternetUpdate->isChecked()) {
       QMessageBox::information(this, tr("Update completed"), tr("Filter definitions have been updated."));
     } else {
       showMessage(tr("Filter definitions have been updated."), 3000);
     }
-  } else if (status == Updater::UpdateNotNecessary) {
+  } else if (status == (int)Updater::UpdateStatus::NotNecessary) {
     showMessage(tr("No download was needed."), 3000);
   }
 
@@ -456,15 +456,15 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   QObject::disconnect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
 
   ui->progressInfoWidget->stopAnimationAndHide();
-  if (status == Updater::SomeUpdatesFailed) {
+  if (status == (int)Updater::UpdateStatus::SomeFailed) {
     if (DialogSettings::notifyFailedStartupUpdate()) {
       showMessage(tr("Filters update could not be achieved"), 3000);
     }
-  } else if (status == Updater::UpdateSuccessful) {
+  } else if (status == (int)Updater::UpdateStatus::Successful) {
     if (Updater::getInstance()->someNetworkUpdateAchieved()) {
       showMessage(tr("Filter definitions have been updated."), 4000);
     }
-  } else if (status == Updater::UpdateNotNecessary) {
+  } else if (status == (int)Updater::UpdateStatus::NotNecessary) {
   }
 
   if (QSettings().value(FAVES_IMPORT_KEY, false).toBool() || !FavesModelReader::gmicGTKFaveFileAvailable()) {
@@ -666,7 +666,7 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
 
   const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
   GmicProcessor::FilterContext context;
-  context.requestType = synchronous ? GmicProcessor::FilterContext::SynchronousPreviewProcessing : GmicProcessor::FilterContext::PreviewProcessing;
+  context.requestType = synchronous ? GmicProcessor::FilterContext::RequestType::SynchronousPreview : GmicProcessor::FilterContext::RequestType::Preview;
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
   context.inputOutputState = ui->inOutSelector->state();
@@ -725,7 +725,7 @@ void MainWindow::onPreviewImageAvailable()
   ui->previewWidget->setPreviewImage(_processor.previewImage());
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
-  if (_pendingActionAfterCurrentProcessing == CloseAction) {
+  if (_pendingActionAfterCurrentProcessing == ProcessingAction::Close) {
     close();
   }
 }
@@ -735,7 +735,7 @@ void MainWindow::onPreviewError(const QString & message)
   ui->previewWidget->setPreviewErrorMessage(message);
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
-  if (_pendingActionAfterCurrentProcessing == CloseAction) {
+  if (_pendingActionAfterCurrentProcessing == ProcessingAction::Close) {
     close();
   }
 }
@@ -771,7 +771,7 @@ void MainWindow::processImage()
   enableWidgetList(false);
 
   GmicProcessor::FilterContext context;
-  context.requestType = GmicProcessor::FilterContext::FullImageProcessing;
+  context.requestType = GmicProcessor::FilterContext::RequestType::FullImage;
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   rect.x = rect.y = rect.w = rect.h = -1;
   context.inputOutputState = ui->inOutSelector->state();
@@ -793,7 +793,7 @@ void MainWindow::onFullImageProcessingError(const QString & message)
   ui->progressInfoWidget->stopAnimationAndHide();
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
   enableWidgetList(true);
-  if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
+  if ((_pendingActionAfterCurrentProcessing == ProcessingAction::Ok || _pendingActionAfterCurrentProcessing == ProcessingAction::Close)) {
     close();
   }
 }
@@ -827,8 +827,8 @@ void MainWindow::onFullImageProcessingDone()
   ui->previewWidget->update();
   ui->filterParams->setValues(_processor.gmicStatus(), false);
   ui->filterParams->setVisibilityStates(_processor.parametersVisibilityStates());
-  if ((_pendingActionAfterCurrentProcessing == OkAction || _pendingActionAfterCurrentProcessing == CloseAction)) {
-    _isAccepted = (_pendingActionAfterCurrentProcessing == OkAction);
+  if ((_pendingActionAfterCurrentProcessing == ProcessingAction::Ok || _pendingActionAfterCurrentProcessing == ProcessingAction::Close)) {
+    _isAccepted = (_pendingActionAfterCurrentProcessing == ProcessingAction::Ok);
     close();
   } else {
     // Extent cache has been cleared by the GmicProcessor
@@ -859,7 +859,7 @@ void MainWindow::search(const QString & text)
 
 void MainWindow::onApplyClicked()
 {
-  _pendingActionAfterCurrentProcessing = ApplyAction;
+  _pendingActionAfterCurrentProcessing = ProcessingAction::Apply;
   processImage();
 }
 
@@ -871,7 +871,7 @@ void MainWindow::onOkClicked()
     return;
   }
   if (_okButtonShouldApply) {
-    _pendingActionAfterCurrentProcessing = OkAction;
+    _pendingActionAfterCurrentProcessing = ProcessingAction::Ok;
     processImage();
   } else {
     _isAccepted = _processor.completedFullImageProcessingCount();
@@ -884,7 +884,7 @@ void MainWindow::onCancelClicked()
   TIMING;
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     if (_processor.isProcessing()) {
-      _pendingActionAfterCurrentProcessing = CloseAction;
+      _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
       connect(&_processor, SIGNAL(noMoreUnfinishedJobs()), this, SLOT(close()));
       ui->progressInfoWidget->showBusyIndicator();
       ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
@@ -899,15 +899,15 @@ void MainWindow::onCancelClicked()
 
 void MainWindow::onProgressionWidgetCancelClicked()
 {
-  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::GmicProcessingMode) {
+  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::Mode::GmicProcessing) {
     if (_processor.isProcessing()) {
-      _pendingActionAfterCurrentProcessing = NoAction;
+      _pendingActionAfterCurrentProcessing = ProcessingAction::NoAction;
       _processor.cancel();
       ui->progressInfoWidget->stopAnimationAndHide();
       enableWidgetList(true);
     }
   }
-  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::FiltersUpdateMode) {
+  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::Mode::FiltersUpdate) {
     Updater::getInstance()->cancelAllPendingDownloads();
   }
 }
@@ -1015,7 +1015,7 @@ void MainWindow::loadSettings()
 
   // Preview position
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
-    setPreviewPosition(PreviewOnLeft);
+    setPreviewPosition(PreviewPosition::Left);
   }
   if (DialogSettings::darkThemeEnabled()) {
     setDarkTheme();
@@ -1073,7 +1073,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   if (layout) {
     layout->removeWidget(ui->belowPreviewPadding);
     layout->removeWidget(ui->logosLabel);
-    if (position == MainWindow::PreviewOnLeft) {
+    if (position == MainWindow::PreviewPosition::Left) {
       layout->addWidget(ui->logosLabel);
       layout->addWidget(ui->belowPreviewPadding);
     } else {
@@ -1086,7 +1086,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   QWidget * preview;
   QWidget * list;
   QWidget * params;
-  if (position == MainWindow::PreviewOnRight) {
+  if (position == MainWindow::PreviewPosition::Right) {
     ui->messageLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     preview = ui->splitter->widget(0);
     list = ui->splitter->widget(1);
@@ -1103,7 +1103,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   preview->setParent(this);
   list->setParent(this);
   params->setParent(this);
-  if (position == MainWindow::PreviewOnRight) {
+  if (position == MainWindow::PreviewPosition::Right) {
     ui->splitter->addWidget(list);
     ui->splitter->addWidget(params);
     ui->splitter->addWidget(preview);
@@ -1115,7 +1115,7 @@ void MainWindow::setPreviewPosition(MainWindow::PreviewPosition position)
   preview->show();
   list->show();
   params->show();
-  ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewOnRight) ? Qt::AlignRight : Qt::AlignLeft));
+  ui->logosLabel->setAlignment(Qt::AlignVCenter | ((_previewPosition == PreviewPosition::Right) ? Qt::AlignRight : Qt::AlignLeft));
 }
 
 void MainWindow::adjustVerticalSplitter()
@@ -1316,7 +1316,7 @@ void MainWindow::onSettingsClicked()
   int previewWidth;
   int paramsWidth;
   int treeWidth;
-  if (_previewPosition == PreviewOnLeft) {
+  if (_previewPosition == PreviewPosition::Left) {
     previewWidth = splitterSizes.at(0);
     paramsWidth = splitterSizes.at(2);
     treeWidth = splitterSizes.at(1);
@@ -1332,7 +1332,7 @@ void MainWindow::onSettingsClicked()
   setPreviewPosition(DialogSettings::previewPosition());
   if (previewPositionChanged) {
     splitterSizes.clear();
-    if (_previewPosition == PreviewOnLeft) {
+    if (_previewPosition == PreviewPosition::Left) {
       splitterSizes.push_back(previewWidth);
       splitterSizes.push_back(treeWidth);
       splitterSizes.push_back(paramsWidth);
@@ -1389,9 +1389,9 @@ void MainWindow::enableWidgetList(bool on)
 
 void MainWindow::closeEvent(QCloseEvent * e)
 {
-  if (_processor.isProcessing() && _pendingActionAfterCurrentProcessing != CloseAction) {
+  if (_processor.isProcessing() && _pendingActionAfterCurrentProcessing != ProcessingAction::Close) {
     if (confirmAbortProcessingOnCloseRequest()) {
-      _pendingActionAfterCurrentProcessing = CloseAction;
+      _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
       _processor.cancel();
     }
     e->ignore();

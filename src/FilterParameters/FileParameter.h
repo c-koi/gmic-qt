@@ -50,11 +50,11 @@ public slots:
   void onButtonPressed();
 
 private:
-  enum DialogMode
+  enum class DialogMode
   {
-    InputMode,
-    OutputMode,
-    InputOutputMode
+    Input,
+    Output,
+    InputOutput
   };
   QString _name;
   QString _default;

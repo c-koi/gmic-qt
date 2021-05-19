@@ -105,8 +105,8 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   ui->sbPreviewTimeout->setRange(0, 999);
 
-  ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
-  ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
+  ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewPosition::Left);
+  ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewPosition::Right);
   const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, DarkThemeIsDefault).toBool();
   ui->rbDarkTheme->setChecked(savedDarkTheme);
   ui->rbDefaultTheme->setChecked(!savedDarkTheme);
@@ -170,9 +170,9 @@ void DialogSettings::loadSettings(UserInterfaceMode userInterfaceMode)
 {
   QSettings settings;
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
-    _previewPosition = MainWindow::PreviewOnLeft;
+    _previewPosition = MainWindow::PreviewPosition::Left;
   } else {
-    _previewPosition = MainWindow::PreviewOnRight;
+    _previewPosition = MainWindow::PreviewPosition::Right;
   }
   _darkThemeEnabled = settings.value(DARK_THEME_KEY, DarkThemeIsDefault).toBool();
   _languageCode = settings.value("Config/LanguageCode", QString()).toString();
@@ -218,7 +218,7 @@ OutputMessageMode DialogSettings::outputMessageMode()
 void DialogSettings::saveSettings(QSettings & settings)
 {
   removeObsoleteKeys(settings);
-  settings.setValue("Config/PreviewPosition", (_previewPosition == MainWindow::PreviewOnLeft) ? "Left" : "Right");
+  settings.setValue("Config/PreviewPosition", (_previewPosition == MainWindow::PreviewPosition::Left) ? "Left" : "Right");
   settings.setValue("Config/NativeColorDialogs", _nativeColorDialogs);
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY, _updatePeriodicity);
   settings.setValue("FolderParameterDefaultValue", FolderParameterDefaultValue);
@@ -301,9 +301,9 @@ void DialogSettings::enableUpdateButton()
 void DialogSettings::onRadioLeftPreviewToggled(bool on)
 {
   if (on) {
-    _previewPosition = MainWindow::PreviewOnLeft;
+    _previewPosition = MainWindow::PreviewPosition::Left;
   } else {
-    _previewPosition = MainWindow::PreviewOnRight;
+    _previewPosition = MainWindow::PreviewPosition::Right;
   }
 }
 

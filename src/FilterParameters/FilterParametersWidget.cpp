@@ -328,13 +328,15 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
       if (state == AbstractParameter::UnspecifiedVisibilityState) {
         state = parameter->defaultVisibilityState();
       }
-      if (parameter->visibilityPropagation() == AbstractParameter::PropagateUp || parameter->visibilityPropagation() == AbstractParameter::PropagateUpDown) {
+      if (parameter->visibilityPropagation() == AbstractParameter::VisibilityPropagation::Up || //
+          parameter->visibilityPropagation() == AbstractParameter::VisibilityPropagation::Down) {
         int i = n - 1;
         while ((i >= 0) && !_parameters[i]->isActualParameter()) {
           newVisibilityStates[i++] = state;
         }
       }
-      if (parameter->visibilityPropagation() == AbstractParameter::PropagateDown || parameter->visibilityPropagation() == AbstractParameter::PropagateUpDown) {
+      if (parameter->visibilityPropagation() == AbstractParameter::VisibilityPropagation::Down || //
+          parameter->visibilityPropagation() == AbstractParameter::VisibilityPropagation::Down) {
         int i = n + 1;
         while ((i < _parameters.size()) && !_parameters[i]->isActualParameter()) {
           newVisibilityStates[i++] = state;
@@ -354,7 +356,7 @@ QList<int> FilterParametersWidget::visibilityStates()
   QList<int> states;
   for (const AbstractParameter * const param : _parameters) {
     if (param->isActualParameter()) {
-      states.push_back(param->visibilityState());
+      states.push_back((int)param->visibilityState());
     }
   }
   return states;
@@ -365,7 +367,7 @@ QList<int> FilterParametersWidget::defaultVisibilityStates()
   QList<int> states;
   for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
-      states.push_back(param->defaultVisibilityState());
+      states.push_back((int)param->defaultVisibilityState());
     }
   }
   return states;

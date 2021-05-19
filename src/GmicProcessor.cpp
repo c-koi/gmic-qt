@@ -78,7 +78,8 @@ void GmicProcessor::execute()
   gmic_list<char> imageNames;
   FilterContext::VisibleRect & rect = _filterContext.visibleRect;
   _gmicImages->assign();
-  if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
+  if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
+      (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
     CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode, _filterContext.zoomFactor);
     updateImageNames(imageNames);
   } else {
@@ -89,12 +90,13 @@ void GmicProcessor::execute()
   QString env = QString("_input_layers=%1").arg(static_cast<int>(io.inputMode));
   env += QString(" _output_mode=%1").arg(static_cast<int>(io.outputMode));
   env += QString(" _output_messages=%1").arg(static_cast<int>(_filterContext.outputMessageMode));
-  if ((_filterContext.requestType == FilterContext::PreviewProcessing) || (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing)) {
+  if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
+      (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
     env += QString(" _preview_width=%1").arg(_filterContext.previewWidth);
     env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
-  if (_filterContext.requestType == FilterContext::SynchronousPreviewProcessing) {
+  if (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview) {
     FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);
     runner.setImageNames(imageNames);
@@ -105,7 +107,7 @@ void GmicProcessor::execute()
     runner.run();
     manageSynchonousRunner(runner);
     recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
-  } else if (_filterContext.requestType == FilterContext::PreviewProcessing) {
+  } else if (_filterContext.requestType == FilterContext::RequestType::Preview) {
     _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
@@ -115,7 +117,7 @@ void GmicProcessor::execute()
     _previewRandomSeed = cimg_library::cimg::_rand();
     _filterExecutionTime.restart();
     _filterThread->start();
-  } else if (_filterContext.requestType == FilterContext::FullImageProcessing) {
+  } else if (_filterContext.requestType == FilterContext::RequestType::FullImage) {
     _lastAppliedFilterHash = _filterContext.filterHash;
     _lastAppliedFilterPath = _filterContext.filterFullPath;
     _lastAppliedCommand = _filterContext.filterCommand;
@@ -133,7 +135,7 @@ void GmicProcessor::execute()
 
 bool GmicProcessor::isProcessingFullImage() const
 {
-  return _filterContext.requestType == FilterContext::FullImageProcessing;
+  return _filterContext.requestType == FilterContext::RequestType::FullImage;
 }
 
 bool GmicProcessor::isProcessing() const

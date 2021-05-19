@@ -49,11 +49,11 @@ class Updater : public QObject {
   Q_OBJECT
 
 public:
-  enum UpdateStatus
+  enum class UpdateStatus
   {
-    UpdateSuccessful,
-    SomeUpdatesFailed,
-    UpdateNotNecessary
+    Successful,
+    SomeFailed,
+    NotNecessary
   };
 
   static Updater * getInstance();

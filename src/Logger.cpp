@@ -35,14 +35,14 @@ namespace GmicQt
 {
 
 FILE * Logger::_logFile = nullptr;
-Logger::Mode Logger::_currentMode = Logger::StandardOutput;
+Logger::Mode Logger::_currentMode = Logger::Mode::StandardOutput;
 
 void Logger::setMode(const OutputMessageMode mode)
 {
   if ((mode == OutputMessageMode::VerboseLogFile) || (mode == OutputMessageMode::VeryVerboseLogFile) || (mode == OutputMessageMode::DebugLogFile)) {
-    setMode(Logger::File);
+    setMode(Logger::Mode::File);
   } else {
-    setMode(Logger::StandardOutput);
+    setMode(Logger::Mode::StandardOutput);
   }
 }
 
@@ -51,7 +51,7 @@ void Logger::setMode(const Logger::Mode mode)
   if (mode == _currentMode) {
     return;
   }
-  if (mode == StandardOutput) {
+  if (mode == Mode::StandardOutput) {
     if (_logFile) {
       fclose(_logFile);
     }
@@ -68,8 +68,8 @@ void Logger::setMode(const Logger::Mode mode)
 void Logger::clear()
 {
   Mode mode = _currentMode;
-  if (mode == File) {
-    setMode(StandardOutput);
+  if (mode == Mode::File) {
+    setMode(Mode::StandardOutput);
   }
   QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
   FILE * dummyFile = fopen(filename.toLocal8Bit().constData(), "w");
