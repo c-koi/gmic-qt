@@ -150,7 +150,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
   if (interfaceMode == UserInterfaceMode::Silent) {
     QCoreApplication app(dummy_argc, dummy_argv);
     configureApplication();
-    DialogSettings::loadSettings(NonGuiApplication);
+    DialogSettings::loadSettings(interfaceMode);
     Logger::setMode(DialogSettings::outputMessageMode());
     HeadlessProcessor processor(&app);
     if (!processor.setPluginParameters(parameters)) {
@@ -166,7 +166,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
     configureApplication();
-    DialogSettings::loadSettings(GuiApplication); // FIXME : enum class
+    DialogSettings::loadSettings(interfaceMode);
     Logger::setMode(DialogSettings::outputMessageMode());
     LanguageSettings::installTranslators();
     HeadlessProcessor processor(&app);
@@ -176,6 +176,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
       return 1;
     }
     ProgressInfoWindow progressWindow(&processor);
+    unused(progressWindow);
     processor.startProcessing();
     int status = QApplication::exec();
     pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
@@ -184,7 +185,7 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
     configureApplication();
-    DialogSettings::loadSettings(GuiApplication);
+    DialogSettings::loadSettings(interfaceMode);
     LanguageSettings::installTranslators();
     MainWindow mainWindow;
     mainWindow.setPluginParameters(parameters);

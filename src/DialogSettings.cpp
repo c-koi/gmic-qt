@@ -166,7 +166,7 @@ DialogSettings::~DialogSettings()
   delete ui;
 }
 
-void DialogSettings::loadSettings(ApplicationType applicationType)
+void DialogSettings::loadSettings(UserInterfaceMode userInterfaceMode)
 {
   QSettings settings;
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
@@ -185,7 +185,7 @@ void DialogSettings::loadSettings(ApplicationType applicationType)
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
   _outputMessageMode = static_cast<OutputMessageMode>(settings.value("OutputMessageMode", (int)DefaultOutputMessageMode).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
-  if (applicationType == GuiApplication) {
+  if (userInterfaceMode != UserInterfaceMode::Silent) {
     AddIcon = LOAD_ICON("list-add");
     RemoveIcon = LOAD_ICON("list-remove");
   }

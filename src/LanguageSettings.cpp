@@ -99,7 +99,6 @@ QString LanguageSettings::systemDefaultAndAvailableLanguageCode()
 // Translate according to current locale or configured language
 void LanguageSettings::installTranslators()
 {
-  // FIXME : Install qt translators
   QString lang = LanguageSettings::configuredTranslator();
   if (!lang.isEmpty() && (lang != "en")) {
     installTranslator(QString(":/translations/%1.qm").arg(lang));
