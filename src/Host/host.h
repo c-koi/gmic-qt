@@ -41,16 +41,6 @@ extern const bool DarkThemeIsDefault;
 } // namespace GmicQt
 
 /**
- * @brief gmic_qt_get_image_size
- *
- * Already deprecated ! gmic_qt_get_layers_extends is the one actually used.
- *
- * @param[out] width
- * @param[out] height
- */
-void gmic_qt_get_image_size(int * width, int * height);
-
-/**
  * @brief Get the largest width and largest height among all the layers
  *        according to the input mode (\see gmic_qt.h).
  *

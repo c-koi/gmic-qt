@@ -145,7 +145,7 @@ const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
 const bool DarkThemeIsDefault = false;
 } // namespace GmicQt
 
-void gmic_qt_get_image_size(int * width, int * height)
+void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
 {
   if (gmic_qt_standalone::input_image.isNull()) {
     if (gmic_qt_standalone::visibleMainWindow()) {
@@ -160,11 +160,6 @@ void gmic_qt_get_image_size(int * width, int * height)
     *width = gmic_qt_standalone::input_image.width();
     *height = gmic_qt_standalone::input_image.height();
   }
-}
-
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
-{
-  gmic_qt_get_image_size(width, height);
 }
 
 void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)

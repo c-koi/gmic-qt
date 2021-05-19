@@ -464,24 +464,6 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
   }
 }
 
-void gmic_qt_get_image_size(int * width, int * height)
-{
-  *width = 0;
-  *height = 0;
-  int layersCount = 0;
-  get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
-  if (layersCount > 0) {
-    _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
-    if (active_layer_id >= 0) {
-      if (gimp_item_is_valid(_GIMP_ITEM(active_layer_id))) {
-        _GimpImagePtr id = gimp_item_get_image(_GIMP_ITEM(active_layer_id));
-        *width = gimp_image_width(id);
-        *height = gimp_image_height(id);
-      }
-    }
-  }
-}
-
 void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   using cimg_library::CImg;
