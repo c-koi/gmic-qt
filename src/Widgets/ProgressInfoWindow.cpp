@@ -46,7 +46,7 @@ namespace GmicQt
 ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWindow(nullptr), ui(new Ui::ProgressInfoWindow), _processor(processor)
 {
   ui->setupUi(this);
-  setWindowTitle("G'MIC-Qt Plug-in progression");
+  setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
   processor->setProgressWindow(this);
 
   ui->label->setText(QString("%1").arg(processor->filterName()));
