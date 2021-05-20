@@ -27,6 +27,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QStringList>
+#include <QVector>
 #include "Common.h"
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterSelector/FiltersPresenter.h"
