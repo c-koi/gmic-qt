@@ -28,6 +28,7 @@
 #include <QObject>
 #include <QString>
 #include <QTimer>
+#include <QVector>
 #include "gmic_qt.h"
 
 namespace cimg_library

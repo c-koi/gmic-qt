@@ -111,7 +111,8 @@ QString imageName(const char * text)
       ++ps;
     }
     if (!level || *(ps - 1) == ')') {
-      result = QString::fromUtf8(start + 5, (unsigned int)(ps - start - 5)).chopped(1);
+      result = QString::fromUtf8(start + 5, (unsigned int)(ps - start - 5));
+      result.chop(1);
       for (QChar & c : result) {
         if (c == 21) {
           c = '(';
