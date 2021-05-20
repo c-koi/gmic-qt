@@ -9,6 +9,7 @@ os:
 branches:
   only:
     - master
+    - new_api
     - devel
 
 compiler:
