@@ -448,6 +448,20 @@ set (gmic_qt_SRCS
   src/Widgets/ProgressInfoWindow.cpp
 )
 
+set (gmic_qt_FORMS
+  ui/dialogsettings.ui
+  ui/filtersview.ui
+  ui/headlessprogressdialog.ui
+  ui/inoutpanel.ui
+  ui/languageselectionwidget.ui
+  ui/mainwindow.ui
+  ui/multilinetextparameterwidget.ui
+  ui/progressinfowidget.ui
+  ui/progressinfowindow.ui
+  ui/SearchFieldWidget.ui
+  ui/zoomlevelselector.ui
+)
+
 if(ENABLE_DYNAMIC_LINKING)
   set(CMAKE_SKIP_RPATH TRUE)
   set(gmic_qt_LIBRARIES
@@ -462,22 +476,7 @@ else(ENABLE_DYNAMIC_LINKING)
     )
 endif(ENABLE_DYNAMIC_LINKING)
 
-qt5_wrap_ui(gmic_qt_SRCS
-  ui/dialogsettings.ui
-  ui/filtersview.ui
-  ui/headlessprogressdialog.ui
-  ui/inoutpanel.ui
-  ui/languageselectionwidget.ui
-  ui/mainwindow.ui
-  ui/multilinetextparameterwidget.ui
-  ui/progressinfowidget.ui
-  ui/progressinfowindow.ui
-  ui/SearchFieldWidget.ui
-  ui/zoomlevelselector.ui
-)
-
 set(gmic_translation_files
-
     translations/cs.ts
     translations/de.ts
     translations/es.ts
@@ -532,6 +531,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp" OR ${GMIC_QT_HOST} STREQUAL "gimp3")
     execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-${TARGET_GIMP_VERSION}.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
+    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
     add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
@@ -545,6 +545,7 @@ if (${GMIC_QT_HOST} STREQUAL "gimp" OR ${GMIC_QT_HOST} STREQUAL "gimp3")
 elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Krita/host_krita.cpp)
+    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
     add_definitions(-DGMIC_HOST=krita)
     add_executable(gmic_krita_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
@@ -556,26 +557,37 @@ elseif (${GMIC_QT_HOST} STREQUAL "krita")
 
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
-    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/None/host_none.cpp src/Host/None/ImageDialog.h src/Host/None/ImageDialog.cpp)
-    add_definitions(-DGMIC_HOST=standalone)
-    add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
-    target_link_libraries(gmic_qt PRIVATE ${gmic_qt_LIBRARIES})
-    install(TARGETS gmic_qt RUNTIME DESTINATION bin)
+  set (gmic_qt_SRCS ${gmic_qt_SRCS}
+    src/Host/None/host_none.cpp
+    src/Host/None/ImageDialog.h
+    src/Host/None/ImageDialog.cpp
+    src/Host/None/JpegQualityDialog.h
+    src/Host/None/JpegQualityDialog.cpp
+    )
+  set(gmic_qt_FORMS ${gmic_qt_FORMS}
+    src/Host/None/jpegqualitydialog.ui
+    )
+  qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+  add_definitions(-DGMIC_HOST=standalone)
+  add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC}  ${qmic_qt_QM})
+  target_link_libraries(gmic_qt PRIVATE ${gmic_qt_LIBRARIES})
+  install(TARGETS gmic_qt RUNTIME DESTINATION bin)
 
 elseif (${GMIC_QT_HOST} STREQUAL "paintdotnet")
 
-    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/PaintDotNet/host_paintdotnet.cpp)
-    add_definitions(-DGMIC_HOST=paintdotnet)
-    add_executable(gmic_paintdotnet_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
-    target_link_libraries(
-      gmic_paintdotnet_qt
-      PRIVATE
-      ${gmic_qt_LIBRARIES}
-      )
+  set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/PaintDotNet/host_paintdotnet.cpp)
+  qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+  add_definitions(-DGMIC_HOST=paintdotnet)
+  add_executable(gmic_paintdotnet_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
+  target_link_libraries(
+    gmic_paintdotnet_qt
+    PRIVATE ${gmic_qt_LIBRARIES}
+    )
 
 elseif (${GMIC_QT_HOST} STREQUAL "8bf")
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/8bf/host_8bf.cpp)
+    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
     add_definitions(-DGMIC_HOST=plugin8bf)
     add_executable(gmic_8bf_qt ${gmic_qt_SRCS} ${gmic_qt_QRC} ${qmic_qt_QM})
     target_link_libraries(
