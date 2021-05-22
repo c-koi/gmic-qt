@@ -223,9 +223,9 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
         const QString basename = QFileInfo(gmic_qt_standalone::input_image_filename).completeBaseName();
         outputFilename.replace("%b", basename);
       }
-      if (outputFilename.contains("%i")) {
+      if (outputFilename.contains("%f")) {
         const QString filename = QFileInfo(gmic_qt_standalone::input_image_filename).fileName();
-        outputFilename.replace("%i", filename);
+        outputFilename.replace("%f", filename);
       }
       std::cout << "[gmic_qt] Writing output file " << outputFilename.toStdString() << std::endl;
       gmic_qt_standalone::input_image.save(outputFilename, nullptr, gmic_qt_standalone::jpeg_quality);
@@ -249,7 +249,7 @@ void usage(const std::string & argv0)
                "                               -h --help : Display this help\n"
                "                        -o --output FILE : Write output image to FILE\n"
                "                                            %b will be replaced by the input file basename (i.e. without path and extension)\n"
-               "                                            %i will be replaced by the input filename (without path)\n"
+               "                                            %f will be replaced by the input filename (without path)\n"
                "                        -q --quality NNN : JPEG quality of output file(s) in 0..100\n"
                "                             -r --repeat : Use last applied filter and parameters\n"
                "     -p --path FILTER_PATH | FILTER_NAME : Select filter\n"
@@ -258,10 +258,10 @@ void usage(const std::string & argv0)
                "             -c --command \"GMIC COMMAND\" : Run gmic command. If a filter name or path is provided,\n"
                "                                           then parameters are completed using filter's defaults.\n"
                "                              -a --apply : Apply filter or command and quit (requires one of -r -p -c)\n"
-               "                              -f --first : Launch GUI once for first input file, then apply selected filter\n"
+               "                      -R --reapply-first : Launch GUI once for first input file, then apply selected filter\n"
                "                                           and parameters to all other files\n"
-               "                                  --last : Print last applied plugin parameters\n"
-               "                            --last-after : Print last applied plugin parameters (after filter execution)\n";
+               "                             --show-last : Print last applied plugin parameters\n"
+               "                       --show-last-after : Print last applied plugin parameters (after filter execution)\n";
 }
 
 int main(int argc, char * argv[])
@@ -283,7 +283,7 @@ int main(int argc, char * argv[])
       return EXIT_SUCCESS;
     } else if (arg == "--apply" || arg == "-a") {
       apply = true;
-    } else if (arg == "--first" || arg == "-f") {
+    } else if (arg == "--reapply-first" || arg == "-R") {
       first = true;
     } else if (arg == "--output" || arg == "-o") {
       if (narg < argc - 1) {
@@ -319,9 +319,9 @@ int main(int argc, char * argv[])
         std::cerr << "Missing path for option " << arg.toStdString() << std::endl;
         return EXIT_FAILURE;
       }
-    } else if (arg == "--last") {
+    } else if (arg == "--show-last") {
       printLast = true;
-    } else if (arg == "--last-after") {
+    } else if (arg == "--show-last-after") {
       printLastAfter = true;
     } else if (arg.startsWith("--") || arg.startsWith("-")) {
       std::cerr << "Unrecognized option " << arg.toStdString() << std::endl;
