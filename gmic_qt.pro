@@ -164,9 +164,12 @@ equals( HOST, "gimp") {
 equals( HOST, "none") {
  TARGET = gmic_qt
  DEFINES += GMIC_HOST=standalone
- SOURCES += src/Host/None/host_none.cpp
- SOURCES += src/Host/None/ImageDialog.cpp
- HEADERS += src/Host/None/ImageDialog.h
+ HEADERS += src/Host/None/ImageDialog.h \
+            src/Host/None/JpegQualityDialog.h
+ SOURCES += src/Host/None/host_none.cpp \
+            src/Host/None/ImageDialog.cpp \
+            src/Host/None/JpegQualityDialog.cpp
+ FORMS += src/Host/None/jpegqualitydialog.ui
  DEPENDPATH += $$PWD/src/Host/None
  message(Building standalone version)
 }

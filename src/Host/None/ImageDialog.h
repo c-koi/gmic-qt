@@ -35,6 +35,7 @@
 #include <QString>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <QVector>
 #include "Common.h"
 #include "Globals.h"
 #include "ImageConverter.h"
@@ -53,7 +54,7 @@ public:
   ImageView(QWidget * parent);
   void setImage(const cimg_library::CImg<gmic_pixel_type> & image);
   void setImage(const QImage & image);
-  void save(const QString & filename);
+  bool save(const QString & filename, int quality);
   void paintEvent(QPaintEvent *) override;
   const QImage & image() const;
 
@@ -69,6 +70,7 @@ public:
   const QImage & currentImage() const;
   int currentImageIndex() const;
   static void supportedImageFormats(QStringList & extensions, QString & filters);
+  void setJPEGQuality(int);
 public slots:
   void onSaveAs();
   void onCloseClicked(bool);
@@ -77,6 +79,9 @@ private:
   QPushButton * _closeButton;
   QPushButton * _saveButton;
   QTabWidget * _tabWidget;
+  QVector<bool> _savedTab;
+  int _jpegQuality;
+  static const int UNSPECIFIED_JPEG_QUALITY = -1;
 };
 
 #endif

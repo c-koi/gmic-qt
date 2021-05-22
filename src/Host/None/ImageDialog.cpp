@@ -26,9 +26,11 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QImageWriter>
+#include <QMessageBox>
 #include <QString>
 #include <QStringList>
 #include "Common.h"
+#include "JpegQualityDialog.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -48,13 +50,26 @@ void ImageView::setImage(const QImage & image)
   setMinimumSize(std::min(640, image.width()), std::min(480, image.height()));
 }
 
-void ImageView::save(const QString & filename)
+bool ImageView::save(const QString & filename, int quality)
 {
-  _image.save(filename);
+  QString ext = QFileInfo(filename).suffix().toLower();
+  if ((ext == "jpg" || ext == "jpeg") && (quality == -1)) {
+    quality = JpegQualityDialog::ask(dynamic_cast<QWidget *>(parent()), -1);
+  }
+  if (quality == -1) {
+    return false;
+  }
+  if (!_image.save(filename, nullptr, quality)) {
+    QMessageBox::critical(this, tr("Error"), tr("Could not write image file %1").arg(filename));
+    return false;
+  }
+  return true;
 }
 
 ImageDialog::ImageDialog(QWidget * parent) : QDialog(parent)
 {
+  setWindowTitle(tr("G'MIC-Qt filter output"));
+  _jpegQuality = UNSPECIFIED_JPEG_QUALITY;
   auto vbox = new QVBoxLayout(this);
 
   _tabWidget = new QTabWidget(this);
@@ -76,8 +91,9 @@ void ImageDialog::addImage(const cimg_library::CImg<float> & image, const QStrin
 {
   auto view = new ImageView(_tabWidget);
   view->setImage(image);
-  _tabWidget->addTab(view, name);
+  _tabWidget->addTab(view, name + "*");
   _tabWidget->setCurrentIndex(_tabWidget->count() - 1);
+  _savedTab.push_back(false);
 }
 
 const QImage & ImageDialog::currentImage() const
@@ -111,6 +127,11 @@ void ImageDialog::supportedImageFormats(QStringList & extensions, QString & filt
   filters = filterList.join(";;");
 }
 
+void ImageDialog::setJPEGQuality(int q)
+{
+  _jpegQuality = q;
+}
+
 void ImageDialog::onSaveAs()
 {
   QString selectedFilter;
@@ -125,8 +146,12 @@ void ImageDialog::onSaveAs()
   }
   if (!filename.isEmpty()) {
     auto view = dynamic_cast<ImageView *>(_tabWidget->currentWidget());
+    int index = _tabWidget->currentIndex();
     if (view) {
-      view->save(filename);
+      if (view->save(filename, _jpegQuality)) {
+        _tabWidget->setTabText(index, QFileInfo(filename).fileName());
+        _tabWidget->setTabToolTip(index, QFileInfo(filename).filePath());
+      }
     }
   }
 }
