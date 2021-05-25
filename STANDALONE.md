@@ -1,5 +1,6 @@
 # G'MIC-Qt standalone version HOWTO
 
+The G'MIC-Qt GUI accepts several options on its command line, thus allowing simple batch processing.
 In short, command line usage is as follows:
 
  * `gmic_qt [OPTIONS ...] [INPUT_FILES ...]`
