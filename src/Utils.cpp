@@ -115,6 +115,7 @@ const char * commandFromOutputMessageMode(OutputMessageMode mode)
 {
   switch (mode) {
   case Quiet:
+  case VerboseLayerName_UNUSED:
   case VerboseConsole:
   case VerboseLogFile:
   case UnspecifiedOutputMessageMode:

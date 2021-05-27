@@ -34,6 +34,17 @@
 #include "Updater.h"
 #include "ui_dialogsettings.h"
 
+namespace
+{
+GmicQt::OutputMessageMode filterDeprecatedOutputMessageMode(const GmicQt::OutputMessageMode & mode)
+{
+  if (mode == GmicQt::VerboseLayerName_UNUSED) {
+    return GmicQt::DefaultOutputMessageMode;
+  }
+  return mode;
+}
+} // namespace
+
 bool DialogSettings::_darkThemeEnabled;
 QString DialogSettings::_languageCode;
 bool DialogSettings::_nativeColorDialogs;
@@ -180,7 +191,7 @@ void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
-  _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
+  _outputMessageMode = filterDeprecatedOutputMessageMode((GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
   if (applicationType == GmicQt::GuiApplication) {
     AddIcon = LOAD_ICON("list-add");

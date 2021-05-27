@@ -28,7 +28,7 @@
 
 namespace
 {
-void filterObsoleteInputModes(GmicQt::InputMode & mode)
+void filterDeprecatedInputMode(GmicQt::InputMode & mode)
 {
   switch (mode) {
   case GmicQt::AllDesc_UNUSED:
@@ -85,7 +85,7 @@ InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
 {
   GmicQt::InputOutputState state;
   state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(UnspecifiedInputMode));
-  filterObsoleteInputModes(state.inputMode);
+  filterDeprecatedInputMode(state.inputMode);
   state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(UnspecifiedOutputMode));
   state.previewMode = static_cast<PreviewMode>(object.value("PreviewMode").toInt(UnspecifiedPreviewMode));
   return state;

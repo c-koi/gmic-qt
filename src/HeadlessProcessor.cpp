@@ -27,6 +27,7 @@
 #include <QSettings>
 #include <QStringList>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterThread.h"
 #include "GmicStdlib.h"
@@ -83,7 +84,7 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) : QObject(parent), _filte
     _lastArguments = FilterParametersWidget::flattenParameterList(lastAppliedCommandGmicStatus, _gmicStatusQuotedParameters);
   }
 
-  _outputMessageMode = (GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt();
+  _outputMessageMode = DialogSettings::outputMessageMode();
   _inputMode = (GmicQt::InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQt::HostApplicationShortname), GmicQt::InputMode::Active).toInt();
   _outputMode = (GmicQt::OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQt::HostApplicationShortname), GmicQt::OutputMode::InPlace).toInt();
   _lastEnvironment = settings.value(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQt::HostApplicationShortname), QString()).toString();
