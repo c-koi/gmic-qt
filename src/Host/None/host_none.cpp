@@ -141,14 +141,13 @@ std::string basename(const std::string & text)
 
 } // namespace
 
-namespace GmicQt
+namespace GmicQtHost
 {
-const QString HostApplicationName;
-const char * HostApplicationShortname = XSTRINGIFY(GMIC_HOST);
+const QString ApplicationName;
+const char * ApplicationShortname = XSTRINGIFY(GMIC_HOST);
 const bool DarkThemeIsDefault = false;
-} // namespace GmicQt
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
+void get_layers_extent(int * width, int * height, GmicQt::InputMode)
 {
   if (gmic_qt_standalone::input_image.isNull()) {
     if (gmic_qt_standalone::visibleMainWindow()) {
@@ -165,7 +164,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode)
   }
 }
 
-void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   const QImage & input_image = gmic_qt_standalone::input_image.isNull() ? gmic_qt_standalone::transparentImage() : gmic_qt_standalone::input_image;
 
@@ -199,7 +198,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   GmicQt::ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
 }
 
-void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
+void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
   if (images.size() > 0) {
     if (gmic_qt_standalone::output_image_filename.isEmpty()) {
@@ -235,10 +234,14 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
   unused(mode);
 }
 
-void gmic_qt_show_message(const char * message)
+void show_message(const char * message)
 {
   std::cout << message << std::endl;
 }
+
+void apply_color_profile(cimg_library::CImg<gmic_pixel_type> &) {}
+
+} // namespace GmicQtHost
 
 void usage(const std::string & argv0)
 {
@@ -347,8 +350,8 @@ int main(int argc, char * argv[])
   }
 
   if (printLast || printLastAfter) {
-    GmicQt::PluginParametersFlag flag = printLast ? GmicQt::PluginParametersFlag::BeforeFilterExecution : GmicQt::PluginParametersFlag::AfterFilterExecution;
-    GmicQt::PluginParameters parameters = GmicQt::lastAppliedFilterPluginParameters(flag);
+    GmicQt::ReturnedRunParametersFlag flag = printLast ? GmicQt::ReturnedRunParametersFlag::BeforeFilterExecution : GmicQt::ReturnedRunParametersFlag::AfterFilterExecution;
+    GmicQt::RunParameters parameters = GmicQt::lastAppliedFilterRunParameters(flag);
     std::cout << "Path: " << parameters.filterPath << std::endl;
     std::cout << "Name: " << parameters.filterName() << std::endl;
     std::cout << "Command: " << parameters.command << std::endl;
@@ -371,9 +374,9 @@ int main(int argc, char * argv[])
   disabledOutputModes.push_back(GmicQt::OutputMode::NewImage);
   disabledOutputModes.push_back(GmicQt::OutputMode::NewLayers);
   disabledOutputModes.push_back(GmicQt::OutputMode::NewActiveLayers);
-  GmicQt::PluginParameters parameters;
+  GmicQt::RunParameters parameters;
   if (repeat) {
-    parameters = GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::AfterFilterExecution);
+    parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
     std::cout << "[gmic_qt] Running with last parameters..." << std::endl;
     std::cout << "Command: " << parameters.command << std::endl;
     std::cout << "Path: " << parameters.filterPath << std::endl;
@@ -385,7 +388,7 @@ int main(int argc, char * argv[])
   }
 
   if (filenames.isEmpty()) {
-    return launchPlugin(GmicQt::UserInterfaceMode::FullGUI, parameters, disabledInputModes, disabledOutputModes);
+    return GmicQt::run(GmicQt::UserInterfaceMode::Full, parameters, disabledInputModes, disabledOutputModes);
   }
   bool firstLaunch = true;
   for (const QString & filename : filenames) {
@@ -393,8 +396,8 @@ int main(int argc, char * argv[])
       gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
       gmic_qt_standalone::current_image_filename = QFileInfo(filename).fileName();
       gmic_qt_standalone::input_image_filename = gmic_qt_standalone::current_image_filename;
-      int status = GmicQt::launchPlugin((apply || (first && !firstLaunch)) ? GmicQt::UserInterfaceMode::ProgressDialog : GmicQt::UserInterfaceMode::FullGUI, //
-                                        (first && !firstLaunch) ? GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::BeforeFilterExecution) : parameters);
+      int status = GmicQt::run((apply || (first && !firstLaunch)) ? GmicQt::UserInterfaceMode::ProgressDialog : GmicQt::UserInterfaceMode::Full, //
+                               (first && !firstLaunch) ? GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::BeforeFilterExecution) : parameters);
       if (status) {
         std::cerr << "GmicQt::launchPlugin() returned status " << status << std::endl;
         return status;
@@ -406,5 +409,3 @@ int main(int argc, char * argv[])
   }
   return 1;
 }
-
-void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> &) {}
