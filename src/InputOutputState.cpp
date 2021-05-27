@@ -35,9 +35,9 @@ using GmicQt::InputMode;
 void filterObsoleteInputModes(InputMode & mode)
 {
   switch (mode) {
-  case InputMode::AllDesc_UNUSED:
-  case InputMode::AllVisiblesDesc_UNUSED:
-  case InputMode::AllInvisiblesDesc_UNUSED:
+  case InputMode::AllDesc_DEPRECATED:
+  case InputMode::AllVisiblesDesc_DEPRECATED:
+  case InputMode::AllInvisiblesDesc_DEPRECATED:
     mode = InputMode::Unspecified;
     break;
   default:

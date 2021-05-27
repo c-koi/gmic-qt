@@ -53,7 +53,6 @@
 
 namespace
 {
-bool pluginProcessingValidAndAccepted = false;
 void configureApplication();
 void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes, //
                   const std::list<GmicQt::OutputMode> & disabledOutputModes);
@@ -71,37 +70,33 @@ const QString & gmicVersionString()
   return value;
 }
 
-PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag)
+RunParameters lastAppliedFilterRunParameters(ReturnedRunParametersFlag flag)
 {
   configureApplication();
-  PluginParameters parameters;
+  RunParameters parameters;
   QSettings settings;
-  const QString path = settings.value(QString("LastExecution/host_%1/FilterPath").arg(HostApplicationShortname)).toString();
+  const QString path = settings.value(QString("LastExecution/host_%1/FilterPath").arg(GmicQtHost::ApplicationShortname)).toString();
   parameters.filterPath = path.toStdString();
-  QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(HostApplicationShortname)).toString();
-  if (flag == PluginParametersFlag::AfterFilterExecution) {
-    QString lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatusString").arg(HostApplicationShortname)).toString();
+  QString args = settings.value(QString("LastExecution/host_%1/Arguments").arg(GmicQtHost::ApplicationShortname)).toString();
+  if (flag == ReturnedRunParametersFlag::AfterFilterExecution) {
+    QString lastAppliedCommandGmicStatus = settings.value(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQtHost::ApplicationShortname)).toString();
     if (!lastAppliedCommandGmicStatus.isEmpty()) {
       args = lastAppliedCommandGmicStatus;
     }
   }
-  QString command = settings.value(QString("LastExecution/host_%1/Command").arg(HostApplicationShortname)).toString();
+  QString command = settings.value(QString("LastExecution/host_%1/Command").arg(GmicQtHost::ApplicationShortname)).toString();
   appendWithSpace(command, args);
   parameters.command = command.toStdString();
-  parameters.inputMode = (InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(HostApplicationShortname), (int)InputMode::Active).toInt();
-  parameters.outputMode = (OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(HostApplicationShortname), (int)OutputMode::InPlace).toInt();
+  parameters.inputMode = (InputMode)settings.value(QString("LastExecution/host_%1/InputMode").arg(GmicQtHost::ApplicationShortname), (int)InputMode::Active).toInt();
+  parameters.outputMode = (OutputMode)settings.value(QString("LastExecution/host_%1/OutputMode").arg(GmicQtHost::ApplicationShortname), (int)OutputMode::InPlace).toInt();
   return parameters;
 }
 
-bool pluginDialogWasAccepted()
-{
-  return pluginProcessingValidAndAccepted;
-}
-
-int launchPlugin(UserInterfaceMode interfaceMode,                 //
-                 PluginParameters parameters,                     //
-                 const std::list<InputMode> & disabledInputModes, //
-                 const std::list<OutputMode> & disabledOutputModes)
+int run(UserInterfaceMode interfaceMode,                   //
+        RunParameters parameters,                          //
+        const std::list<InputMode> & disabledInputModes,   //
+        const std::list<OutputMode> & disabledOutputModes, //
+        bool * dialogWasAccepted)
 {
   int dummy_argc = 1;
   char dummy_app_name[] = GMIC_QT_APPLICATION_NAME;
@@ -155,12 +150,12 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
     HeadlessProcessor processor(&app);
     if (!processor.setPluginParameters(parameters)) {
       Logger::error(processor.error());
-      pluginProcessingValidAndAccepted = false;
+      setValueIfNotNullPointer(dialogWasAccepted, false);
       return 1;
     }
     QTimer::singleShot(0, &processor, &HeadlessProcessor::startProcessing);
     int status = QCoreApplication::exec();
-    pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
+    setValueIfNotNullPointer(dialogWasAccepted, processor.processingCompletedProperly());
     return status;
   } else if (interfaceMode == UserInterfaceMode::ProgressDialog) {
     QApplication app(dummy_argc, dummy_argv);
@@ -172,16 +167,16 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
     HeadlessProcessor processor(&app);
     if (!processor.setPluginParameters(parameters)) {
       Logger::error(processor.error());
-      pluginProcessingValidAndAccepted = false;
+      setValueIfNotNullPointer(dialogWasAccepted, false);
       return 1;
     }
     ProgressInfoWindow progressWindow(&processor);
     unused(progressWindow);
     processor.startProcessing();
     int status = QApplication::exec();
-    pluginProcessingValidAndAccepted = processor.processingCompletedProperly();
+    setValueIfNotNullPointer(dialogWasAccepted, processor.processingCompletedProperly());
     return status;
-  } else if (interfaceMode == UserInterfaceMode::FullGUI) {
+  } else if (interfaceMode == UserInterfaceMode::Full) {
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
     configureApplication();
@@ -195,13 +190,13 @@ int launchPlugin(UserInterfaceMode interfaceMode,                 //
       mainWindow.show();
     }
     int status = QApplication::exec();
-    pluginProcessingValidAndAccepted = mainWindow.isAccepted();
+    setValueIfNotNullPointer(dialogWasAccepted, mainWindow.isAccepted());
     return status;
   }
   return 0;
 }
 
-std::string PluginParameters::filterName() const
+std::string RunParameters::filterName() const
 {
   auto position = filterPath.rfind("/");
   if (position == std::string::npos) {

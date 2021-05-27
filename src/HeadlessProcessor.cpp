@@ -68,7 +68,7 @@ HeadlessProcessor::~HeadlessProcessor()
   delete _gmicImages;
 }
 
-bool HeadlessProcessor::setPluginParameters(const PluginParameters & parameters)
+bool HeadlessProcessor::setPluginParameters(const RunParameters & parameters)
 {
   QSettings settings;
   _path = QString::fromStdString(parameters.filterPath);
@@ -150,9 +150,9 @@ void HeadlessProcessor::startProcessing()
   _singleShotTimer.start();
   _gmicImages->assign();
   gmic_list<char> imageNames;
-  gmic_qt_get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
+  GmicQtHost::get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
   if (!_progressWindow) {
-    gmic_qt_show_message(QString("G'MIC: %1 %2").arg(_command).arg(_arguments).toUtf8().constData());
+    GmicQtHost::show_message(QString("G'MIC: %1 %2").arg(_command).arg(_arguments).toUtf8().constData());
   }
   QString env = QString("_input_layers=%1").arg((int)_inputMode);
   env += QString(" _output_mode=%1").arg((int)_outputMode);
@@ -230,7 +230,7 @@ void HeadlessProcessor::onProcessingFinished()
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if (!_filterThread->aborted()) {
-      gmic_qt_output_images(images, _filterThread->imageNames(), _outputMode);
+      GmicQtHost::output_images(images, _filterThread->imageNames(), _outputMode);
       _processingCompletedProperly = true;
     }
     QSettings settings;
@@ -238,14 +238,14 @@ void HeadlessProcessor::onProcessingFinished()
       ParametersCache::setValues(_hash, status);
       ParametersCache::save();
       QString statusString = flattenGmicParameterList(status, _gmicStatusQuotedParameters);
-      settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(HostApplicationShortname), statusString);
+      settings.setValue(QString("LastExecution/host_%1/GmicStatusString").arg(GmicQtHost::ApplicationShortname), statusString);
     }
-    settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(HostApplicationShortname), _path);
-    settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(HostApplicationShortname), _hash);
-    settings.setValue(QString("LastExecution/host_%1/Command").arg(HostApplicationShortname), _command);
-    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(HostApplicationShortname), _arguments);
-    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(HostApplicationShortname), (int)_inputMode);
-    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(HostApplicationShortname), (int)_outputMode);
+    settings.setValue(QString("LastExecution/host_%1/FilterPath").arg(GmicQtHost::ApplicationShortname), _path);
+    settings.setValue(QString("LastExecution/host_%1/FilterHash").arg(GmicQtHost::ApplicationShortname), _hash);
+    settings.setValue(QString("LastExecution/host_%1/Command").arg(GmicQtHost::ApplicationShortname), _command);
+    settings.setValue(QString("LastExecution/host_%1/Arguments").arg(GmicQtHost::ApplicationShortname), _arguments);
+    settings.setValue(QString("LastExecution/host_%1/InputMode").arg(GmicQtHost::ApplicationShortname), (int)_inputMode);
+    settings.setValue(QString("LastExecution/host_%1/OutputMode").arg(GmicQtHost::ApplicationShortname), (int)_outputMode);
   }
   _filterThread->deleteLater();
   _filterThread = nullptr;

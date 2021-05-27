@@ -88,6 +88,14 @@ QString stringify(const T & value)
   return result;
 }
 
+template <typename T> //
+inline void setValueIfNotNullPointer(T * pointer, const T & value)
+{
+  if (pointer) {
+    *pointer = value;
+  }
+}
+
 } // namespace GmicQt
 
 #endif // GMIC_QT_MISC_H

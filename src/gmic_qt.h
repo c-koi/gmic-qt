@@ -43,7 +43,7 @@ enum class UserInterfaceMode
 {
   Silent,
   ProgressDialog,
-  FullGUI
+  Full
 };
 
 enum class InputMode
@@ -55,9 +55,9 @@ enum class InputMode
   ActiveAndAbove,
   AllVisible,
   AllInvisible,
-  AllVisiblesDesc_UNUSED,   /* Removed since 2.8.2 */
-  AllInvisiblesDesc_UNUSED, /* Removed since 2.8.2 */
-  AllDesc_UNUSED,           /* Removed since 2.8.2 */
+  AllVisiblesDesc_DEPRECATED,   /* Removed since 2.8.2 */
+  AllInvisiblesDesc_DEPRECATED, /* Removed since 2.8.2 */
+  AllDesc_DEPRECATED,           /* Removed since 2.8.2 */
   Unspecified = 100
 };
 extern InputMode DefaultInputMode;
@@ -75,7 +75,7 @@ extern OutputMode DefaultOutputMode;
 enum class OutputMessageMode
 {
   Quiet,
-  VerboseLayerName_UNUSED = Quiet, /* Removed since 2.9.5 */
+  VerboseLayerName_DEPRECATED = Quiet, /* Removed since 2.9.5 */
   VerboseConsole = Quiet + 2,
   VerboseLogFile,
   VeryVerboseConsole,
@@ -88,7 +88,7 @@ extern const OutputMessageMode DefaultOutputMessageMode;
 
 const QString & gmicVersionString();
 
-struct PluginParameters {
+struct RunParameters {
   std::string command;
   std::string filterPath;
   InputMode inputMode = InputMode::Unspecified;
@@ -96,20 +96,19 @@ struct PluginParameters {
   std::string filterName() const;
 };
 
-enum class PluginParametersFlag
+enum class ReturnedRunParametersFlag
 {
   BeforeFilterExecution,
   AfterFilterExecution
 };
 
-PluginParameters lastAppliedFilterPluginParameters(PluginParametersFlag flag);
+RunParameters lastAppliedFilterRunParameters(ReturnedRunParametersFlag flag);
 
-int launchPlugin(UserInterfaceMode interfaceMode = UserInterfaceMode::FullGUI,             //
-                 PluginParameters parameters = PluginParameters(),                         //
-                 const std::list<InputMode> & disabledInputModes = std::list<InputMode>(), //
-                 const std::list<OutputMode> & disabledOutputModes = std::list<OutputMode>());
-
-bool pluginDialogWasAccepted();
+int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,                   //
+        RunParameters parameters = RunParameters(),                                  //
+        const std::list<InputMode> & disabledInputModes = std::list<InputMode>(),    //
+        const std::list<OutputMode> & disabledOutputModes = std::list<OutputMode>(), //
+        bool * dialogWasAccepted = nullptr);
 
 } // namespace GmicQt
 

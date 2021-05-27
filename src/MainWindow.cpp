@@ -316,7 +316,7 @@ void MainWindow::setDarkTheme()
   DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
 }
 
-void MainWindow::setPluginParameters(const PluginParameters & parameters)
+void MainWindow::setPluginParameters(const RunParameters & parameters)
 {
   _pluginParameters = parameters;
 }
@@ -476,7 +476,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   ui->searchField->setFocus();
 
   // Let the standalone version load an image, if necessary (not pretty)
-  if (HostApplicationName.isEmpty()) {
+  if (GmicQtHost::ApplicationName.isEmpty()) {
     LayersExtentProxy::clear();
     QSize extent = LayersExtentProxy::getExtent(ui->inOutSelector->inputMode());
     ui->previewWidget->setFullImageSize(extent);

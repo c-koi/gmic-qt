@@ -218,7 +218,7 @@ void PreviewWidget::updateErrorImage()
   getOriginalImageCrop(image);
   image.move_to(images);
   QString fullCommandLine = commandFromOutputMessageMode(DialogSettings::outputMessageMode());
-  fullCommandLine += QString(" _host=%1 _tk=qt").arg(HostApplicationShortname);
+  fullCommandLine += QString(" _host=%1 _tk=qt").arg(GmicQtHost::ApplicationShortname);
   fullCommandLine += QString(" _preview_width=%1").arg(width());
   fullCommandLine += QString(" _preview_height=%1").arg(height());
   fullCommandLine += QString(" gui_error_preview \"%2\"").arg(_errorMessage);

@@ -33,12 +33,11 @@ template <typename T> struct CImg;
 template <typename T> struct CImgList;
 } // namespace cimg_library
 
-namespace GmicQt
+namespace GmicQtHost
 {
-extern const QString HostApplicationName;
-extern const char * HostApplicationShortname;
+extern const QString ApplicationName;
+extern const char * ApplicationShortname;
 extern const bool DarkThemeIsDefault;
-} // namespace GmicQt
 
 /**
  * @brief Get the largest width and largest height among all the layers
@@ -47,7 +46,7 @@ extern const bool DarkThemeIsDefault;
  * @param[out] width
  * @param[out] height
  */
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode);
+void get_layers_extent(int * width, int * height, GmicQt::InputMode);
 
 /**
  * @brief Get a list of (cropped) image layers from host software.
@@ -66,13 +65,13 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode);
  * @param height Normalized height of the layers w.r.t. image/extends height
  * @param mode Input mode
  */
-void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, //
-                                cimg_library::CImgList<char> & imageNames,        //
-                                double x,                                         //
-                                double y,                                         //
-                                double width,                                     //
-                                double height,                                    //
-                                GmicQt::InputMode mode);
+void get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, //
+                        cimg_library::CImgList<char> & imageNames,        //
+                        double x,                                         //
+                        double y,                                         //
+                        double width,                                     //
+                        double height,                                    //
+                        GmicQt::InputMode mode);
 
 /**
  * @brief Send a list of new image layers to the host application according to
@@ -82,14 +81,14 @@ void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images
  * @param imageNames Layers labels
  * @param mode Output mode (\see gmic_qt.h)
  */
-void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
+void output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
 
 /**
  * @brief Apply a color profile to a given image
  *
  * @param [in,out] images An image
  */
-void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
+void apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
 
 /**
  * @brief Display a message in the host application.
@@ -99,6 +98,8 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
  *
  * @param message A message to be displayed by the host application
  */
-void gmic_qt_show_message(const char * message);
+void show_message(const char * message);
+
+} // namespace GmicQtHost
 
 #endif // GMIC_QT_HOST_H

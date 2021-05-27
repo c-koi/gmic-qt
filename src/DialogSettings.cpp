@@ -107,7 +107,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewPosition::Left);
   ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewPosition::Right);
-  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, DarkThemeIsDefault).toBool();
+  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, GmicQtHost::DarkThemeIsDefault).toBool();
   ui->rbDarkTheme->setChecked(savedDarkTheme);
   ui->rbDefaultTheme->setChecked(!savedDarkTheme);
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
@@ -174,7 +174,7 @@ void DialogSettings::loadSettings(UserInterfaceMode userInterfaceMode)
   } else {
     _previewPosition = MainWindow::PreviewPosition::Right;
   }
-  _darkThemeEnabled = settings.value(DARK_THEME_KEY, DarkThemeIsDefault).toBool();
+  _darkThemeEnabled = settings.value(DARK_THEME_KEY, GmicQtHost::DarkThemeIsDefault).toBool();
   _languageCode = settings.value("Config/LanguageCode", QString()).toString();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
@@ -287,10 +287,10 @@ void DialogSettings::onNotifyStartupUpdateFailedToggle(bool on)
 
 void DialogSettings::removeObsoleteKeys(QSettings & settings)
 {
-  settings.remove(QString("LastExecution/host_%1/PreviewMode").arg(HostApplicationShortname));
-  settings.remove(QString("LastExecution/host_%1/GmicEnvironment").arg(HostApplicationShortname));
-  settings.remove(QString("LastExecution/host_%1/QuotedParameters").arg(HostApplicationShortname));
-  settings.remove(QString("LastExecution/host_%1/GmicStatus").arg(HostApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/PreviewMode").arg(GmicQtHost::ApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQtHost::ApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQtHost::ApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/GmicStatus").arg(GmicQtHost::ApplicationShortname));
 }
 
 void DialogSettings::enableUpdateButton()

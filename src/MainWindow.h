@@ -70,7 +70,7 @@ public:
   ~MainWindow() override;
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
   void setDarkTheme();
-  void setPluginParameters(const PluginParameters & parameters);
+  void setPluginParameters(const RunParameters & parameters);
 
 public slots:
   void onUpdateDownloadsFinished(int status);
@@ -164,7 +164,7 @@ private:
   GmicProcessor _processor;
   ulong _lastPreviewKeypointBurstUpdateTime;
   static bool _isAccepted;
-  PluginParameters _pluginParameters;
+  RunParameters _pluginParameters;
 };
 
 } // namespace GmicQt

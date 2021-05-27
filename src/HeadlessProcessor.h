@@ -51,7 +51,7 @@ public:
   QString filterName() const;
   void setProgressWindow(ProgressInfoWindow *);
   bool processingCompletedProperly();
-  bool setPluginParameters(const PluginParameters & parameters);
+  bool setPluginParameters(const RunParameters & parameters);
   const QString & error() const;
 public slots:
   void startProcessing();

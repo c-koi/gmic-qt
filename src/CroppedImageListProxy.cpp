@@ -60,7 +60,7 @@ void CroppedImageListProxy::update(double x, double y, double width, double heig
   _height = height;
   _inputMode = mode;
   _zoom = zoom;
-  gmic_qt_get_cropped_images(*_cachedImageList, *_cachedImageNames, _x, _y, _width, _height, _inputMode);
+  GmicQtHost::get_cropped_images(*_cachedImageList, *_cachedImageNames, _x, _y, _width, _height, _inputMode);
   if (zoom < 1.0) {
     for (unsigned int i = 0; i < _cachedImageList->size(); ++i) {
       gmic_image<float> & image = (*_cachedImageList)[i];

@@ -95,7 +95,7 @@ const QString & pluginFullName()
   static QString result;
   if (result.isEmpty()) {
     result = QString("G'MIC-Qt %1- %2 %3 bits - %4" BETA_SUFFIX)
-                 .arg(HostApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(HostApplicationName))
+                 .arg(GmicQtHost::ApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(GmicQtHost::ApplicationName))
                  .arg(cimg_library::cimg::stros())
                  .arg(sizeof(void *) == 8 ? 64 : 32)
                  .arg(gmicVersionString());
@@ -107,7 +107,7 @@ const QString & pluginCodeName()
 {
   static QString result;
   if (result.isEmpty()) {
-    result = HostApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(HostApplicationShortname).toLower());
+    result = GmicQtHost::ApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(GmicQtHost::ApplicationShortname).toLower());
   }
   return result;
 }
