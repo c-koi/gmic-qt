@@ -613,7 +613,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        exitCode = launchPlugin();
+        exitCode = run();
     }
 
     for (size_t i = 0; i < host_paintdotnet::sharedMemory.size(); ++i)
