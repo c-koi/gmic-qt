@@ -116,17 +116,17 @@ static void gmic_qt_init(GmicQtPlugin * gmic_qt) {}
 
 #endif
 
-namespace GmicQt
+namespace GmicQtHost
 {
-const QString HostApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
-const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+const QString ApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
+const char * ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
 #if GIMP_VERSION_LTE(2, 8)
 const bool DarkThemeIsDefault = false;
 #else
 const bool DarkThemeIsDefault = true;
 #endif
 
-} // namespace GmicQt
+} // namespace GmicQtHost
 
 namespace
 {
@@ -348,7 +348,10 @@ _GimpLayerPtr * get_gimp_layers_flat_list(_GimpImagePtr imageId, int * count)
 
 } // namespace
 
-void gmic_qt_show_message(const char * message)
+namespace GmicQtHost
+{
+
+void show_message(const char * message)
 {
   static bool first = true;
 
@@ -360,7 +363,7 @@ void gmic_qt_show_message(const char * message)
   }
 }
 
-void gmic_qt_apply_color_profile(cimg_library::CImg<float> & image)
+void apply_color_profile(cimg_library::CImg<float> & image)
 {
 #if GIMP_VERSION_LTE(2, 8)
   unused(image);
@@ -397,7 +400,7 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<float> & image)
 #endif
 }
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
 {
   int layersCount = 0;
   // _GimpLayerPtr * begLayers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
@@ -464,7 +467,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
   }
 }
 
-void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   using cimg_library::CImg;
   using cimg_library::CImgList;
@@ -608,7 +611,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   }
 }
 
-void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
+void output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
 {
   // Output modes in original gmic_gimp_gtk : 0/Replace 1/New layer 2/New active layer  3/New image
 
@@ -948,6 +951,8 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
   gimp_displays_flush();
 }
 
+} // namespace GmicQtHost
+
 #if GIMP_VERSION_LTE(2, 98)
 /*
  * 'Run' function, required by the GIMP plug-in API.
@@ -959,7 +964,8 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
   gimp_plugin_enable_precision();
 #endif
 
-  GmicQt::PluginParameters pluginParameters;
+  GmicQt::RunParameters pluginParameters;
+  bool accepted = true;
   static GimpParam return_values[1];
   *return_vals = return_values;
   *nreturn_vals = 1;
@@ -968,22 +974,33 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
-    launchPlugin(GmicQt::UserInterfaceMode::FullGUI);
+    GmicQt::run(GmicQt::UserInterfaceMode::Full, //
+                GmicQt::RunParameters(),         //
+                std::list<GmicQt::InputMode>(),  //
+                std::list<GmicQt::OutputMode>(), //
+                &accepted);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
-    GmicQt::launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, //
-                         GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::AfterFilterExecution));
+    GmicQt::run(GmicQt::UserInterfaceMode::ProgressDialog,                                                       //
+                GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution), //
+                std::list<GmicQt::InputMode>(),                                                                  //
+                std::list<GmicQt::OutputMode>(),                                                                 //
+                &accepted);
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
     pluginParameters.command = param[5].data.d_string;
     pluginParameters.inputMode = static_cast<GmicQt::InputMode>(param[3].data.d_int32 + (int)GmicQt::InputMode::NoInput);
     pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(param[4].data.d_int32 + (int)GmicQt::OutputMode::InPlace);
-    launchPlugin(GmicQt::UserInterfaceMode::Silent, pluginParameters);
+    run(GmicQt::UserInterfaceMode::Silent, //
+        pluginParameters,                  //
+        std::list<GmicQt::InputMode>(),    //
+        std::list<GmicQt::OutputMode>(),   //
+        &accepted);
     break;
   }
-  return_values[0].data.d_status = GmicQt::pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;
+  return_values[0].data.d_status = accepted ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;
 }
 
 void gmic_qt_query()
@@ -1037,15 +1054,15 @@ static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_m
 {
   gegl_init(NULL, NULL);
   // gimp_plugin_enable_precision(); // what is this?
-  GmicQt::PluginParameters pluginParameters;
+  GmicQt::RuneParameters pluginParameters;
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPlugin(GmicQt::UserInterfaceMode::FullGUI);
+    launchPlugin(GmicQt::UserInterfaceMode::Full);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = image;
-    launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, GmicQt::lastAppliedFilterPluginParameters(GmicQt::PluginParametersFlag::AfterFilterExecution));
+    launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution));
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = image;
