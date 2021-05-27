@@ -36,8 +36,6 @@
 #include "gmic.h"
 #include <Windows.h>
 
-namespace GmicQt
-{
 struct KernelHandleCloser
 {
     void operator()(void* pointer)
@@ -69,10 +67,10 @@ namespace host_paintdotnet
     std::vector<ScopedFileMapping> sharedMemory;
 }
 
-namespace GmicQt
+namespace GmicQtHost
 {
-    const QString HostApplicationName = QString("Paint.NET");
-    const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+    const QString ApplicationName = QString("Paint.NET");
+    const char * ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
     const bool DarkThemeIsDefault = false;
 }
 
@@ -254,16 +252,18 @@ namespace
     }
 }
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+namespace GmicQtHost {
+
+void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
 {
-    if (mode == GmicQt::NoInput)
+    if (mode == GmicQt::InputMode::NoInput)
     {
         *width = 0;
         *height = 0;
         return;
     }
 
-    QString getMaxLayerSizeCommand = QString("command=gmic_qt_get_max_layer_size\nmode=%1\n").arg(mode);
+    QString getMaxLayerSizeCommand = QString("command=gmic_qt_get_max_layer_size\nmode=%1\n").arg((int)mode);
 
     QString reply = QString::fromUtf8(SendMessageSynchronously(getMaxLayerSizeCommand.toUtf8()));
 
@@ -279,9 +279,9 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     }
 }
 
-void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
-    if (mode == GmicQt::NoInput)
+    if (mode == GmicQt::InputMode::NoInput)
     {
         images.assign();
         imageNames.assign();
@@ -297,7 +297,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
         height = 1.0;
     }
 
-    QString getImagesCommand = QString("command=gmic_qt_get_cropped_images\nmode=%1\ncroprect=%2,%3,%4,%5\n").arg(mode).arg(x).arg(y).arg(width).arg(height);
+    QString getImagesCommand = QString("command=gmic_qt_get_cropped_images\nmode=%1\ncroprect=%2,%3,%4,%5\n").arg((int)mode).arg(x).arg(y).arg(width).arg(height);
 
     QString reply = QString::fromUtf8(SendMessageSynchronously(getImagesCommand.toUtf8()));
 
@@ -378,7 +378,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     SendMessageSynchronously("command=gmic_qt_release_shared_memory");
 }
 
-void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
+void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
     unused(imageNames);
 
@@ -390,7 +390,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
         }
         host_paintdotnet::sharedMemory.clear();
 
-        QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg(mode);
+        QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg((int)mode);
 
 		for (size_t i = 0; i < images.size(); ++i)
 		{
@@ -535,15 +535,18 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
     }
 }
 
-void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images)
+void apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images)
 {
     unused(images);
 }
 
-void gmic_qt_show_message(const char * message)
+void show_message(const char * message)
 {
     unused(message);
 }
+
+} // namespace GmicQtHost
+
 
 int main(int argc, char *argv[])
 {
@@ -585,35 +588,40 @@ int main(int argc, char *argv[])
 
     int exitCode = 0;
 
-    disableInputMode(GmicQt::NoInput);
-    // disableInputMode(GmicQt::Active);
-    // disableInputMode(GmicQt::All);
-    disableInputMode(GmicQt::ActiveAndBelow);
-    disableInputMode(GmicQt::ActiveAndAbove);
-    disableInputMode(GmicQt::AllVisible);
-    disableInputMode(GmicQt::AllInvisible);
+    std::list<GmicQt::InputMode> disabledInputModes;
+    disabledInputModes.push_back(GmicQt::InputMode::NoInput);
+    // disabledInputModes.push_back(GmicQt::InputMode::Active);
+    // disabledInputModes.push_back(GmicQt::InputMode::All);
+    disabledInputModes.push_back(GmicQt::InputMode::ActiveAndBelow);
+    disabledInputModes.push_back(GmicQt::InputMode::ActiveAndAbove);
+    disabledInputModes.push_back(GmicQt::InputMode::AllVisible);
+    disabledInputModes.push_back(GmicQt::InputMode::AllInvisible);
 
-    // disableOutputMode(GmicQt::InPlace);
-    disableOutputMode(GmicQt::NewImage);
-    disableOutputMode(GmicQt::NewLayers);
-    disableOutputMode(GmicQt::NewActiveLayers);
 
-	// disablePreviewMode(GmicQt::FirstOutput);
-    disablePreviewMode(GmicQt::SecondOutput);
-    disablePreviewMode(GmicQt::ThirdOutput);
-    disablePreviewMode(GmicQt::FourthOutput);
-    disablePreviewMode(GmicQt::First2SecondOutput);
-    disablePreviewMode(GmicQt::First2ThirdOutput);
-    disablePreviewMode(GmicQt::First2FourthOutput);
-    disablePreviewMode(GmicQt::AllOutputs);
+    std::list<GmicQt::OutputMode> disabledOutputModes;
+    // disabledOutputModes.push_back(GmicQt::OutputMode::InPlace);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewImage);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewLayers);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewActiveLayers);
+    bool dialogAccepted = true;
 
     if (useLastParameters)
     {
-        exitCode = launchPluginHeadlessUsingLastParameters();
+        GmicQt::RunParameters parameters;
+        parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
+        exitCode = GmicQt::run(GmicQt::UserInterfaceMode::Full,
+                               parameters,
+                               disabledInputModes,
+                               disabledOutputModes,
+                               &dialogAccepted);
     }
     else
     {
-        exitCode = run();
+        exitCode = GmicQt::run(GmicQt::UserInterfaceMode::Full,
+                               GmicQt::RunParameters(),
+                               disabledInputModes,
+                               disabledOutputModes,
+                               &dialogAccepted);
     }
 
     for (size_t i = 0; i < host_paintdotnet::sharedMemory.size(); ++i)
@@ -622,12 +630,10 @@ int main(int argc, char *argv[])
     }
     host_paintdotnet::sharedMemory.clear();
 
-    if (!pluginDialogWasAccepted())
+    if (!dialogAccepted)
     {
         exitCode = 4;
     }
 
     return exitCode;
 }
-
-} // namespace GmicQt
