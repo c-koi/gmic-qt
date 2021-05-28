@@ -46,7 +46,7 @@ namespace cimg_library
 template <typename T> struct CImg;
 }
 
-namespace GmicQt
+namespace gmic_qt_standalone
 {
 
 class ImageView : public QWidget {
@@ -84,6 +84,6 @@ private:
   static const int UNSPECIFIED_JPEG_QUALITY = -1;
 };
 
-#endif
+} // namespace gmic_qt_standalone
 
-} // namespace GmicQt
+#endif

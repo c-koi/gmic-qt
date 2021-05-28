@@ -33,14 +33,14 @@
 #include "JpegQualityDialog.h"
 #include "gmic.h"
 
-namespace GmicQt
+namespace gmic_qt_standalone
 {
 
 ImageView::ImageView(QWidget * parent) : QWidget(parent) {}
 
 void ImageView::setImage(const cimg_library::CImg<gmic_pixel_type> & image)
 {
-  ImageConverter::convert(image, _image);
+  GmicQt::convertCImgToQImage(image, _image);
   setMinimumSize(std::min(640, image.width()), std::min(480, image.height()));
 }
 
@@ -179,4 +179,4 @@ const QImage & ImageView::image() const
   return _image;
 }
 
-} // namespace GmicQt
+} // namespace gmic_qt_standalone

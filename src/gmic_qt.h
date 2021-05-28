@@ -25,6 +25,12 @@
 #ifndef GMIC_QT_GMIC_QT_H
 #define GMIC_QT_GMIC_QT_H
 
+namespace cimg_library
+{
+template <typename T> struct CImg;
+template <typename T> struct CImgList;
+} // namespace cimg_library
+
 #ifndef gmic_pixel_type
 #define gmic_pixel_type float
 #endif
@@ -36,6 +42,8 @@
 #include <list>
 #include <string>
 class QString;
+class QImage;
+
 namespace GmicQt
 {
 
@@ -109,6 +117,20 @@ int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,              
         const std::list<InputMode> & disabledInputModes = std::list<InputMode>(),    //
         const std::list<OutputMode> & disabledOutputModes = std::list<OutputMode>(), //
         bool * dialogWasAccepted = nullptr);
+
+// What follows may be helpful for the implementation of a host_sthg.cpp
+
+/**
+ * Calibrate any image to fit the required number of channels (1:GRAY, 2:GRAYA, 3:RGB or 4:RGBA).
+ *
+ * Instanciated for T in {unsigned char, gmic_pixel_type}
+ */
+template <typename T> //
+void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
+
+void convertCImgToQImage(const cimg_library::CImg<float> & in, QImage & out);
+
+void convertQImageToCImg(const QImage & in, cimg_library::CImg<float> & out);
 
 } // namespace GmicQt
 

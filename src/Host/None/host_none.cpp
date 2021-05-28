@@ -39,6 +39,7 @@
 #include "Host/None/ImageDialog.h"
 #include "Host/host.h"
 #include "ImageConverter.h"
+#include "ImageDialog.h"
 #include "MainWindow.h"
 #include "Misc.h"
 #include "gmic_qt.h"
@@ -46,9 +47,6 @@
 
 #define STRINGIFY(X) #X
 #define XSTRINGIFY(X) STRINGIFY(X)
-
-namespace
-{
 
 namespace gmic_qt_standalone
 {
@@ -58,6 +56,7 @@ QString current_image_filename;
 QString input_image_filename;
 QString output_image_filename;
 int jpeg_quality = -1;
+
 QWidget * visibleMainWindow()
 {
   for (QWidget * w : QApplication::topLevelWidgets()) {
@@ -74,7 +73,7 @@ void askForInputImageFilename()
   Q_ASSERT_X(mainWidget, __PRETTY_FUNCTION__, "No top level window yet");
   QStringList extensions;
   QString filters;
-  GmicQt::ImageDialog::supportedImageFormats(extensions, filters);
+  gmic_qt_standalone::ImageDialog::supportedImageFormats(extensions, filters);
   QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", filters, nullptr);
   if (!filename.isEmpty() && QFileInfo(filename).isReadable() && input_image.load(filename)) {
     input_image = input_image.convertToFormat(QImage::Format_ARGB32);
@@ -139,8 +138,6 @@ std::string basename(const std::string & text)
 
 } // namespace gmic_qt_standalone
 
-} // namespace
-
 namespace GmicQtHost
 {
 const QString ApplicationName;
@@ -195,7 +192,7 @@ void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames,
   const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image.height()));
   const int iw = entireImage ? input_image.width() : std::min(input_image.width() - ix, static_cast<int>(1 + std::ceil(width * input_image.width())));
   const int ih = entireImage ? input_image.height() : std::min(input_image.height() - iy, static_cast<int>(1 + std::ceil(height * input_image.height())));
-  GmicQt::ImageConverter::convert(input_image.copy(ix, iy, iw, ih), images[0]);
+  GmicQt::convertQImageToCImg(input_image.copy(ix, iy, iw, ih), images[0]);
 }
 
 void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
@@ -204,7 +201,7 @@ void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames
     if (gmic_qt_standalone::output_image_filename.isEmpty()) {
       QWidgetList widgets = QApplication::topLevelWidgets();
       if (widgets.size()) {
-        auto dialog = new GmicQt::ImageDialog(widgets.at(0));
+        auto dialog = new gmic_qt_standalone::ImageDialog(widgets.at(0));
         dialog->setJPEGQuality(gmic_qt_standalone::jpeg_quality);
         for (unsigned int i = 0; i < images.size(); ++i) {
           QString name = gmic_qt_standalone::imageName((const char *)imageNames[i]);
@@ -216,7 +213,7 @@ void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames
         delete dialog;
       }
     } else {
-      GmicQt::ImageConverter::convert(images[0], gmic_qt_standalone::input_image);
+      GmicQt::convertCImgToQImage(images[0], gmic_qt_standalone::input_image);
       QString outputFilename = gmic_qt_standalone::output_image_filename;
       if (outputFilename.contains("%b")) {
         const QString basename = QFileInfo(gmic_qt_standalone::input_image_filename).completeBaseName();

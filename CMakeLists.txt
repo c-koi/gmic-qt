@@ -345,7 +345,6 @@ set (gmic_qt_SRCS
   src/Host/host.h
   src/HtmlTranslator.h
   src/IconLoader.h
-  src/ImageConverter.h
   src/ImageTools.h
   src/InputOutputState.h
   src/KeypointList.h
@@ -419,7 +418,6 @@ set (gmic_qt_SRCS
   src/HeadlessProcessor.cpp
   src/HtmlTranslator.cpp
   src/IconLoader.cpp
-  src/ImageConverter.cpp
   src/ImageTools.cpp
   src/InputOutputState.cpp
   src/KeypointList.cpp

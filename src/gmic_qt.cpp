@@ -25,6 +25,7 @@
 #include "gmic_qt.h"
 #include <QApplication>
 #include <QDebug>
+#include <QImage>
 #include <QList>
 #include <QLocale>
 #include <QSettings>
@@ -56,6 +57,18 @@ namespace
 void configureApplication();
 void disableModes(const std::list<GmicQt::InputMode> & disabledInputModes, //
                   const std::list<GmicQt::OutputMode> & disabledOutputModes);
+
+inline bool archIsLittleEndian()
+{
+  const int x = 1;
+  return (*reinterpret_cast<const unsigned char *>(&x));
+}
+
+inline unsigned char float2uchar_bounded(const float & in)
+{
+  return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
+}
+
 } // namespace
 
 namespace GmicQt
@@ -203,6 +216,326 @@ std::string RunParameters::filterName() const
     return filterPath;
   }
   return filterPath.substr(position + 1, filterPath.length() - (position + 1));
+}
+
+template <typename T> //
+void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview)
+{
+  if (!img || !spectrum) {
+    return;
+  }
+  switch (spectrum) {
+  case 1: // To GRAY
+    switch (img.spectrum()) {
+    case 1: // from GRAY
+      break;
+    case 2: // from GRAYA
+      if (is_preview) {
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 1);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
+          ++ptr_r;
+        }
+      }
+      img.channel(0);
+      break;
+    case 3: // from RGB
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
+      img.channel(0);
+      break;
+    case 4: // from RGBA
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
+      if (is_preview) {
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 3);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
+          ++ptr_r;
+        }
+      }
+      img.channel(0);
+      break;
+    default: // from multi-channel (>4)
+      img.channel(0);
+    }
+    break;
+
+  case 2: // To GRAYA
+    switch (img.spectrum()) {
+    case 1: // from GRAY
+      img.resize(-100, -100, 1, 2, 0).get_shared_channel(1).fill(255);
+      break;
+    case 2: // from GRAYA
+      break;
+    case 3: // from RGB
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
+      img.channels(0, 1).get_shared_channel(1).fill(255);
+      break;
+    case 4: // from RGBA
+      (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
+      img.get_shared_channel(1) = img.get_shared_channel(3);
+      img.channels(0, 1);
+      break;
+    default: // from multi-channel (>4)
+      img.channels(0, 1);
+    }
+    break;
+
+  case 3: // to RGB
+    switch (img.spectrum()) {
+    case 1: // from GRAY
+      img.resize(-100, -100, 1, 3);
+      break;
+    case 2: // from GRAYA
+      if (is_preview) {
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 1);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
+          ++ptr_r;
+        }
+      }
+      img.channel(0).resize(-100, -100, 1, 3);
+      break;
+    case 3: // from RGB
+      break;
+    case 4: // from RGBA
+      if (is_preview) {
+        T *ptr_r = img.data(0, 0, 0, 0), *ptr_g = img.data(0, 0, 0, 1), *ptr_b = img.data(0, 0, 0, 2), *ptr_a = img.data(0, 0, 0, 3);
+        cimg_forXY(img, x, y)
+        {
+          const unsigned int a = (unsigned int)*(ptr_a++), i = 96 + (((x ^ y) & 8) << 3);
+          *ptr_r = (T)((a * (unsigned int)*ptr_r + (255 - a) * i) >> 8);
+          *ptr_g = (T)((a * (unsigned int)*ptr_g + (255 - a) * i) >> 8);
+          *ptr_b = (T)((a * (unsigned int)*ptr_b + (255 - a) * i) >> 8);
+          ++ptr_r;
+          ++ptr_g;
+          ++ptr_b;
+        }
+      }
+      img.channels(0, 2);
+      break;
+    default: // from multi-channel (>4)
+      img.channels(0, 2);
+    }
+    break;
+
+  case 4: // to RGBA
+    switch (img.spectrum()) {
+    case 1: // from GRAY
+      img.resize(-100, -100, 1, 4).get_shared_channel(3).fill(255);
+      break;
+    case 2: // from GRAYA
+      img.resize(-100, -100, 1, 4, 0);
+      img.get_shared_channel(3) = img.get_shared_channel(1);
+      img.get_shared_channel(1) = img.get_shared_channel(0);
+      img.get_shared_channel(2) = img.get_shared_channel(0);
+      break;
+    case 3: // from RGB
+      img.resize(-100, -100, 1, 4, 0).get_shared_channel(3).fill(255);
+      break;
+    case 4: // from RGBA
+      break;
+    default: // from multi-channel (>4)
+      img.channels(0, 3);
+    }
+    break;
+  }
+}
+
+template void calibrateImage(cimg_library::CImg<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
+template void calibrateImage(cimg_library::CImg<unsigned char> & img, const int spectrum, const bool is_preview);
+
+void convertCImgToQImage(const cimg_library::CImg<float> & in, QImage & out)
+{
+  out = QImage(in.width(), in.height(), QImage::Format_RGB888);
+
+  if (in.spectrum() >= 4 && out.format() != QImage::Format_ARGB32) {
+    out = out.convertToFormat(QImage::Format_ARGB32);
+  }
+
+  if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
+    out = out.convertToFormat(QImage::Format_RGB888);
+  }
+
+  if (in.spectrum() == 2 && out.format() != QImage::Format_ARGB32) {
+    out = out.convertToFormat(QImage::Format_ARGB32);
+  }
+
+// Format_Grayscale8 was added in Qt 5.5.
+#if QT_VERSION_GTE(5, 5, 0)
+  if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
+    out = out.convertToFormat(QImage::Format_Grayscale8);
+  }
+#else
+  if (in.spectrum() == 1) {
+    out = out.convertToFormat(QImage::Format_RGB888);
+  }
+#endif
+
+  if (in.spectrum() >= 4) {
+    const float * srcR = in.data(0, 0, 0, 0);
+    const float * srcG = in.data(0, 0, 0, 1);
+    const float * srcB = in.data(0, 0, 0, 2);
+    const float * srcA = in.data(0, 0, 0, 3);
+    int height = out.height();
+    if (archIsLittleEndian()) {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[0] = float2uchar_bounded(*srcB++);
+          dst[1] = float2uchar_bounded(*srcG++);
+          dst[2] = float2uchar_bounded(*srcR++);
+          dst[3] = float2uchar_bounded(*srcA++);
+          dst += 4;
+        }
+      }
+    } else {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[0] = float2uchar_bounded(*srcA++);
+          dst[1] = float2uchar_bounded(*srcR++);
+          dst[2] = float2uchar_bounded(*srcG++);
+          dst[3] = float2uchar_bounded(*srcB++);
+          dst += 4;
+        }
+      }
+    }
+  } else if (in.spectrum() == 3) {
+    const float * srcR = in.data(0, 0, 0, 0);
+    const float * srcG = in.data(0, 0, 0, 1);
+    const float * srcB = in.data(0, 0, 0, 2);
+    int height = out.height();
+    for (int y = 0; y < height; ++y) {
+      int n = in.width();
+      unsigned char * dst = out.scanLine(y);
+      while (n--) {
+        dst[0] = float2uchar_bounded(*srcR++);
+        dst[1] = float2uchar_bounded(*srcG++);
+        dst[2] = float2uchar_bounded(*srcB++);
+        dst += 3;
+      }
+    }
+  } else if (in.spectrum() == 2) {
+    //
+    // Gray + Alpha
+    //
+    const float * src = in.data(0, 0, 0, 0);
+    const float * srcA = in.data(0, 0, 0, 1);
+    int height = out.height();
+    if (archIsLittleEndian()) {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
+          dst[3] = float2uchar_bounded(*srcA++);
+          dst += 4;
+        }
+      }
+    } else {
+      for (int y = 0; y < height; ++y) {
+        int n = in.width();
+        unsigned char * dst = out.scanLine(y);
+        while (n--) {
+          dst[1] = dst[2] = dst[3] = float2uchar_bounded(*src++);
+          dst[0] = float2uchar_bounded(*srcA++);
+          dst += 4;
+        }
+      }
+    }
+  } else {
+    //
+    // 8-bits Gray levels
+    //
+    const float * src = in.data(0, 0, 0, 0);
+    int height = out.height();
+    for (int y = 0; y < height; ++y) {
+      int n = in.width();
+      unsigned char * dst = out.scanLine(y);
+#if QT_VERSION_GTE(5, 5, 0)
+      while (n--) {
+        *dst++ = static_cast<unsigned char>(*src++);
+      }
+#else
+      while (n--) {
+        dst[0] = float2uchar_bounded(*src);
+        dst[1] = float2uchar_bounded(*src);
+        dst[2] = float2uchar_bounded(*src);
+        ++src;
+        dst += 3;
+      }
+#endif
+    }
+  }
+}
+
+void convertQImageToCImg(const QImage & in, cimg_library::CImg<float> & out)
+{
+  Q_ASSERT_X(in.format() == QImage::Format_ARGB32 || in.format() == QImage::Format_RGB888, "convert", "bad input format");
+
+  if (in.format() == QImage::Format_ARGB32) {
+    const int w = in.width();
+    const int h = in.height();
+    out.assign(w, h, 1, 4);
+    float * dstR = out.data(0, 0, 0, 0);
+    float * dstG = out.data(0, 0, 0, 1);
+    float * dstB = out.data(0, 0, 0, 2);
+    float * dstA = out.data(0, 0, 0, 3);
+    if (archIsLittleEndian()) {
+      for (int y = 0; y < h; ++y) {
+        const unsigned char * src = in.scanLine(y);
+        int n = in.width();
+        while (n--) {
+          *dstB++ = static_cast<float>(src[0]);
+          *dstG++ = static_cast<float>(src[1]);
+          *dstR++ = static_cast<float>(src[2]);
+          *dstA++ = static_cast<float>(src[3]);
+          src += 4;
+        }
+      }
+    } else {
+      for (int y = 0; y < h; ++y) {
+        const unsigned char * src = in.scanLine(y);
+        int n = in.width();
+        while (n--) {
+          *dstA++ = static_cast<float>(src[0]);
+          *dstR++ = static_cast<float>(src[1]);
+          *dstG++ = static_cast<float>(src[2]);
+          *dstB++ = static_cast<float>(src[3]);
+          src += 4;
+        }
+      }
+    }
+    return;
+  }
+
+  if (in.format() == QImage::Format_RGB888) {
+    const int w = in.width();
+    const int h = in.height();
+    out.assign(w, h, 1, 3);
+    float * dstR = out.data(0, 0, 0, 0);
+    float * dstG = out.data(0, 0, 0, 1);
+    float * dstB = out.data(0, 0, 0, 2);
+    for (int y = 0; y < h; ++y) {
+      const unsigned char * src = in.scanLine(y);
+      int n = in.width();
+      while (n--) {
+        *dstR++ = static_cast<float>(src[0]);
+        *dstG++ = static_cast<float>(src[1]);
+        *dstB++ = static_cast<float>(src[2]);
+        src += 3;
+      }
+    }
+    return;
+  }
 }
 
 } // namespace GmicQt
