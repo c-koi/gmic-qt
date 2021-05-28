@@ -119,7 +119,7 @@ static void gmic_qt_init(GmicQtPlugin * gmic_qt) {}
 namespace GmicQtHost
 {
 const QString ApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
-const char * ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+const char * const ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
 #if GIMP_VERSION_LTE(2, 8)
 const bool DarkThemeIsDefault = false;
 #else

@@ -141,7 +141,7 @@ std::string basename(const std::string & text)
 namespace GmicQtHost
 {
 const QString ApplicationName;
-const char * ApplicationShortname = XSTRINGIFY(GMIC_HOST);
+const char * const ApplicationShortname = XSTRINGIFY(GMIC_HOST);
 const bool DarkThemeIsDefault = false;
 
 void get_layers_extent(int * width, int * height, GmicQt::InputMode)

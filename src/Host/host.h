@@ -36,7 +36,7 @@ template <typename T> struct CImgList;
 namespace GmicQtHost
 {
 extern const QString ApplicationName;
-extern const char * ApplicationShortname;
+extern const char * const ApplicationShortname;
 extern const bool DarkThemeIsDefault;
 
 /**
