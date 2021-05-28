@@ -37,7 +37,6 @@
 #include "DialogSettings.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
-#include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"

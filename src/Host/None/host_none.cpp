@@ -38,7 +38,6 @@
 #include "Common.h"
 #include "Host/None/ImageDialog.h"
 #include "Host/host.h"
-#include "ImageConverter.h"
 #include "ImageDialog.h"
 #include "MainWindow.h"
 #include "Misc.h"

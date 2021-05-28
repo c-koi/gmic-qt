@@ -28,7 +28,6 @@
 #include <iostream>
 #include "FilterThread.h"
 #include "GmicStdlib.h"
-#include "ImageConverter.h"
 #include "Logger.h"
 #include "Misc.h"
 #include "gmic.h"

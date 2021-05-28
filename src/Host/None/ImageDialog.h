@@ -38,7 +38,6 @@
 #include <QVector>
 #include "Common.h"
 #include "Globals.h"
-#include "ImageConverter.h"
 #include "gmic_qt.h"
 
 namespace cimg_library

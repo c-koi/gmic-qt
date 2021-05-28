@@ -37,7 +37,6 @@
 #include "FilterThread.h"
 #include "Globals.h"
 #include "Host/host.h"
-#include "ImageConverter.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"

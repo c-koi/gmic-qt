@@ -27,7 +27,6 @@
 #include <iostream>
 #include "FilterParameters/AbstractParameter.h"
 #include "GmicStdlib.h"
-#include "ImageConverter.h"
 #include "Logger.h"
 #include "Misc.h"
 #include "gmic.h"
