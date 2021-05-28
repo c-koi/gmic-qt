@@ -1347,7 +1347,7 @@ void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames
             if (host_8bf::grayScale && (in.spectrum() == 3 || in.spectrum() == 4))
             {
                 // Convert the RGB image to grayscale.
-                GmicQt::calibrate_image(in, in.spectrum() == 4 ? 2 : 1, false);
+                GmicQt::calibrateImage(in, in.spectrum() == 4 ? 2 : 1, false);
             }
 
             QImage out;

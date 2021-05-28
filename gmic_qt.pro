@@ -4,7 +4,7 @@
 #
 #
 
-!defined(HOST,var) { HOST = none }
+!defined(HOST,var) { HOST = gimp }
 
 !defined(GMIC_DYNAMIC_LINKING,var) { GMIC_DYNAMIC_LINKING = off }
 
