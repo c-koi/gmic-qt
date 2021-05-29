@@ -122,11 +122,10 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
   while (pc < limit) {
     if (*pc == gmic_rbrace) {
       if ((pc < limit - 2) && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2' && (!pc[3] || pc[3] == gmic_lbrace)) {
-        auto visibilityState = static_cast<AbstractParameter::VisibilityState>(pc[2] - '0');
-        result.push_back(visibilityState);
+        result.push_back(pc[2] - '0'); // AbstractParameter::VisibilityState
         pc += 3;
       } else if (!pc[1] || (pc[1] == gmic_lbrace)) {
-        result.push_back(AbstractParameter::UnspecifiedVisibilityState);
+        result.push_back((int)AbstractParameter::VisibilityState::Unspecified);
         ++pc;
       } else {
         // TRACE << "Ignoring status" << qPrintable(status);

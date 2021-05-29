@@ -51,8 +51,7 @@ const QStringList AbstractParameter::NoValueParameters = {"link", "note", "separ
 AbstractParameter::AbstractParameter(QObject * parent) : QObject(parent)
 {
   _update = true;
-  _defaultVisibilityState = VisibleParameter;
-  _visibilityState = VisibleParameter;
+  _visibilityState = _defaultVisibilityState = VisibilityState::Visible;
   _visibilityPropagation = VisibilityPropagation::NoPropagation;
   _row = -1;
   _grid = nullptr;
@@ -153,7 +152,7 @@ AbstractParameter::VisibilityState AbstractParameter::defaultVisibilityState() c
 
 void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState state)
 {
-  if (state == UnspecifiedVisibilityState) {
+  if (state == VisibilityState::Unspecified) {
     setVisibilityState(defaultVisibilityState());
     return;
   }
@@ -165,19 +164,19 @@ void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState st
     QLayoutItem * item = _grid->itemAtPosition(_row, col);
     if (item) {
       auto widget = item->widget();
-      switch (state & 3) {
-      case VisibleParameter:
+      switch (state) {
+      case VisibilityState::Visible:
         widget->setEnabled(true);
         widget->show();
         break;
-      case DisabledParameter:
+      case VisibilityState::Disabled:
         widget->setEnabled(false);
         widget->show();
         break;
-      case HiddenParameter:
+      case VisibilityState::Hidden:
         widget->hide();
         break;
-      case UnspecifiedVisibilityState:
+      case VisibilityState::Unspecified:
         // Taken care above (if)
         break;
       }
@@ -253,7 +252,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
     }
     if (NoValueParameters.contains(type)) {
       Logger::warning(QString("Warning: %1 parameter should not define visibility. Ignored.").arg(result.first()));
-      _defaultVisibilityState = AbstractParameter::VisibleParameter;
+      _defaultVisibilityState = AbstractParameter::VisibilityState::Visible;
       _visibilityPropagation = VisibilityPropagation::NoPropagation;
     }
   }

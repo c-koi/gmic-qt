@@ -55,12 +55,12 @@ public:
   static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = nullptr);
   virtual bool initFromText(const char * text, int & textLength) = 0;
 
-  enum VisibilityState
+  enum class VisibilityState
   {
-    UnspecifiedVisibilityState = -1,
-    HiddenParameter = 0,
-    DisabledParameter = 1,
-    VisibleParameter = 2,
+    Unspecified = -1,
+    Hidden = 0,
+    Disabled = 1,
+    Visible = 2,
   };
   enum class VisibilityPropagation
   {

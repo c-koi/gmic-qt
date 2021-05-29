@@ -195,7 +195,7 @@ void PointParameter::setValue(const QString & value)
 void PointParameter::setVisibilityState(AbstractParameter::VisibilityState state)
 {
   AbstractParameter::setVisibilityState(state);
-  if (state & VisibleParameter) {
+  if (state == VisibilityState::Visible) {
     updateView();
   }
 }
