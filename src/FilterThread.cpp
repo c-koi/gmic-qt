@@ -113,6 +113,7 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
     // TRACE << "Incorrect status syntax " << status;
     return QList<int>();
   }
+
   QByteArray ba = status.toLocal8Bit();
   const char * pc = ba.constData();
   const char * limit = pc + ba.size();
