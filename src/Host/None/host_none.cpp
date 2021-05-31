@@ -29,18 +29,15 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFont>
+#include <QMainWindow>
 #include <QMessageBox>
 #include <QPainter>
 #include <QRegularExpression>
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include "Common.h"
 #include "Host/None/ImageDialog.h"
 #include "Host/host.h"
-#include "ImageDialog.h"
-#include "MainWindow.h"
-#include "Misc.h"
 #include "gmic_qt.h"
 #include "gmic.h"
 
@@ -59,7 +56,7 @@ int jpeg_quality = -1;
 QWidget * visibleMainWindow()
 {
   for (QWidget * w : QApplication::topLevelWidgets()) {
-    if ((typeid(*w) == typeid(GmicQt::MainWindow)) && (w->isVisible())) {
+    if ((dynamic_cast<QMainWindow *>(w) != nullptr) && (w->isVisible())) {
       return w;
     }
   }
@@ -392,8 +389,16 @@ int main(int argc, char * argv[])
       gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
       gmic_qt_standalone::current_image_filename = QFileInfo(filename).fileName();
       gmic_qt_standalone::input_image_filename = gmic_qt_standalone::current_image_filename;
-      int status = GmicQt::run((apply || (first && !firstLaunch)) ? GmicQt::UserInterfaceMode::ProgressDialog : GmicQt::UserInterfaceMode::Full, //
-                               (first && !firstLaunch) ? GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::BeforeFilterExecution) : parameters);
+      GmicQt::UserInterfaceMode uiMode;
+      if (apply || (first && !firstLaunch)) {
+        uiMode = GmicQt::UserInterfaceMode::ProgressDialog;
+      } else {
+        uiMode = GmicQt::UserInterfaceMode::Full;
+      }
+      if (first && !firstLaunch) {
+        parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::BeforeFilterExecution);
+      }
+      int status = GmicQt::run(uiMode, parameters);
       if (status) {
         std::cerr << "GmicQt::launchPlugin() returned status " << status << std::endl;
         return status;
