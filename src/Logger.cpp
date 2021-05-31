@@ -28,7 +28,7 @@
 #include <QStringList>
 #include "Common.h"
 #include "Utils.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 namespace GmicQt

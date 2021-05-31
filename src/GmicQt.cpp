@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file gmic_qt.cpp
+ *  @file GmicQt.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,7 +22,7 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include <QApplication>
 #include <QDebug>
 #include <QImage>

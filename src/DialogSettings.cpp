@@ -28,7 +28,7 @@
 #include <limits>
 #include "Common.h"
 #include "Globals.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "IconLoader.h"
 #include "Logger.h"
 #include "Updater.h"

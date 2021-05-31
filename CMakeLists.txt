@@ -338,11 +338,11 @@ set (gmic_qt_SRCS
   src/FilterThread.h
   src/FilterTextTranslator.h
   src/Globals.h
-  src/gmic_qt.h
+  src/GmicQt.h
   src/GmicStdlib.h
   src/GmicProcessor.h
   src/HeadlessProcessor.h
-  src/Host/host.h
+  src/Host/GmicQtHost.h
   src/HtmlTranslator.h
   src/IconLoader.h
   src/ImageTools.h
@@ -411,7 +411,7 @@ set (gmic_qt_SRCS
   src/FilterSyncRunner.cpp
   src/FilterThread.cpp
   src/FilterTextTranslator.cpp
-  src/gmic_qt.cpp
+  src/GmicQt.cpp
   src/Globals.cpp
   src/GmicStdlib.cpp
   src/GmicProcessor.cpp

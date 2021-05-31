@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file host.h
+ *  @file GmicQtHost.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -25,7 +25,7 @@
 #ifndef GMIC_QT_HOST_H
 #define GMIC_QT_HOST_H
 #include <QString>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {
@@ -41,7 +41,7 @@ extern const bool DarkThemeIsDefault;
 
 /**
  * @brief Get the largest width and largest height among all the layers
- *        according to the input mode (\see gmic_qt.h).
+ *        according to the input mode (\see GmicQt.h).
  *
  * @param[out] width
  * @param[out] height
@@ -75,11 +75,11 @@ void get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, //
 
 /**
  * @brief Send a list of new image layers to the host application according to
- *        an output mode (\see gmic_qt.h)
+ *        an output mode (\see GmicQt.h)
  *
  * @param images List of layers to be sent to the host application. May be modified.
  * @param imageNames Layers labels
- * @param mode Output mode (\see gmic_qt.h)
+ * @param mode Output mode (\see GmicQt.h)
  */
 void output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
 

@@ -35,7 +35,7 @@
 #include <QSize>
 #include <QWidget>
 #include <memory>
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "KeypointList.h"
 #include "ZoomConstraint.h"
 

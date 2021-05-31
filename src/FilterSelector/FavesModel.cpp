@@ -31,7 +31,7 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Misc.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace GmicQt
 {

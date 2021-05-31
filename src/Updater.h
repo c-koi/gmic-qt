@@ -41,7 +41,7 @@
 #include <QTemporaryFile>
 #include <QTimer>
 #include <memory>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace GmicQt
 {

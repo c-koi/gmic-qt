@@ -35,9 +35,9 @@
 #include <QTextCodec>
 #endif
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "ImageTools.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 /*

@@ -25,7 +25,7 @@
 #ifndef GMIC_QT_LAYERS_EXTENT_PROXY_H
 #define GMIC_QT_LAYERS_EXTENT_PROXY_H
 #include <QSize>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace GmicQt
 {

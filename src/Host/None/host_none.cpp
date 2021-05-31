@@ -36,9 +36,9 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include "Host/GmicQtHost.h"
 #include "Host/None/ImageDialog.h"
-#include "Host/host.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 #define STRINGIFY(X) #X

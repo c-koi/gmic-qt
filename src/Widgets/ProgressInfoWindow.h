@@ -28,7 +28,7 @@
 #include <QMainWindow>
 #include <QString>
 #include <QTimer>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace Ui
 {

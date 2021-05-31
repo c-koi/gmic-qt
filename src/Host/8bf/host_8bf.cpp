@@ -39,9 +39,9 @@
 #include <new>
 #include <list>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "ImageTools.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 struct Gmic8bfLayer

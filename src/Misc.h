@@ -29,7 +29,7 @@
 #include <QList>
 #include <QString>
 #include <QStringList>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 class QStringList;
 
 namespace GmicQt

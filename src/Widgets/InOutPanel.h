@@ -26,9 +26,9 @@
 #define GMIC_QT_INOUTPANEL_H
 
 #include <QWidget>
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "InputOutputState.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 class QSettings;
 class QPalette;
 

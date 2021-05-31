@@ -36,7 +36,7 @@
 #include "FilterSyncRunner.h"
 #include "FilterThread.h"
 #include "Globals.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "LayersExtentProxy.h"
 #include "Logger.h"

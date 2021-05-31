@@ -38,7 +38,7 @@
 #include <QVector>
 #include "Common.h"
 #include "Globals.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {

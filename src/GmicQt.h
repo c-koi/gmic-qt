@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file gmic_qt.h
+ *  @file GmicQt.h
  *
  *  Copyright 2017 Sebastien Fourey
  *

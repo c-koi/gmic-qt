@@ -26,7 +26,7 @@
 #include "CroppedActiveLayerProxy.h"
 #include <QDebug>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "gmic.h"
 
 namespace GmicQt

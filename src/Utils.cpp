@@ -29,7 +29,7 @@
 #include <QRegExp>
 #include <QString>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_

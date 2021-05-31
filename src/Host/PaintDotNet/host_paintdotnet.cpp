@@ -30,9 +30,9 @@
 #include <memory>
 #include <vector>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "MainWindow.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 #include <Windows.h>
 

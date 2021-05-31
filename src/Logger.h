@@ -26,7 +26,7 @@
 #define GMIC_QT_LOGGER_H
 
 #include <cstdio>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 class QString;
 

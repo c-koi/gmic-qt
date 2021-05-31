@@ -250,6 +250,8 @@ HEADERS +=  \
   src/ClickableLabel.h \
   src/Common.h \
   src/FilterParameters/CustomSpinBox.h \
+  src/GmicQt.h \
+  src/Host/GmicQtHost.h \
   src/OverrideCursor.h \
   src/DialogSettings.h \
   src/FilterParameters/AbstractParameter.h \
@@ -280,13 +282,11 @@ HEADERS +=  \
   src/CroppedActiveLayerProxy.h \
   src/FilterSyncRunner.h \
   src/FilterThread.h \
-  src/gmic_qt.h \
   src/FilterTextTranslator.h \
   src/Globals.h \
   src/GmicStdlib.h \
   src/GmicProcessor.h \
   src/HeadlessProcessor.h \
-  src/Host/host.h \
   src/HtmlTranslator.h \
   src/IconLoader.h \
   src/ImageTools.h \
@@ -326,6 +326,7 @@ SOURCES += \
   src/ClickableLabel.cpp \
   src/Common.cpp \
   src/FilterParameters/CustomSpinBox.cpp \
+  src/GmicQt.cpp \
   src/OverrideCursor.cpp \
   src/DialogSettings.cpp \
   src/FilterParameters/AbstractParameter.cpp \
@@ -356,7 +357,6 @@ SOURCES += \
   src/CroppedActiveLayerProxy.cpp \
   src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
-  src/gmic_qt.cpp \
   src/FilterTextTranslator.cpp \
   src/Globals.cpp \
   src/GmicStdlib.cpp \

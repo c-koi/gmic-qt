@@ -25,7 +25,7 @@
 #ifndef GMIC_QT_UTILS_H
 #define GMIC_QT_UTILS_H
 
-#include "gmic_qt.h"
+#include "GmicQt.h"
 class QString;
 class QStringList;
 

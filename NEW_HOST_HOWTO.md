@@ -8,7 +8,7 @@ The plugin is intended to be a standalone program which communicates with the ho
 
 * The plugin cannot mess up with the host application process which means in the worst case, make it crash. This would be a responsibility we don't want to endorse. If unfortunately the plugin crashes, the host application does not, and no user data are lost. As long as the host application handles properly its communication with the plugin, nothing bad should ever happen because of a plugin misbehavior.
 * Being based on Qt, the plugin GUI inherits the desktop environment theme but also handles its own custom "dark theme" using stylesheets in an application-wide way. Consequently, a Qt-based host application could inherit from these modifications with unexpected results (for instance, messing up the whole theme of the host GUI).
-* This plugin architecture has allowed us to define our own and quite simple API made of a few functions (exactly 6) that need to be implemented for the plugin to be able to communicate with the host application. Namely, this API is the interface (in the software engineering sense) of the communication layer between the host and the plugin, from the viewpoint of the latter. Thus, any suitable implementation of this interface should be enough to make the plugin work with a given host. Note that only 4% of the whole "G'MIC-Qt for Gimp" source code is host-dependent. The next section gives more details about the work that needs to be done to have a functional plugin for a new host. 
+* This plugin architecture has allowed us to define our own and quite simple API made of a few functions (exactly 6) that need to be implemented for the plugin to be able to communicate with the host application. Namely, this API is the interface (in the software engineering sense) of the communication layer between the host and the plugin, from the viewpoint of the latter. Thus, any suitable implementation of this interface should be enough to make the plugin work with a given host. Note that only 4% of the whole "G'MIC-Qt for Gimp" source code is host-dependent. The next section gives more details about the work that needs to be done to have a functional plugin for a new host.
 * With a plugin being a self-contained application whose host-related code is clearly identified, we can more easily build the plugin and quickly distribute new versions, thus following the rapid development cycle of G'MIC.
 
 ### New host HOWTO: What needs to be done
@@ -17,8 +17,8 @@ Consequently, in order to adapt the plug-in to a new host application cleanly, a
 
 * Provide the host application with a communication system targeted to an external application, if it does not exist yet, so that it supports passing commands and possibly large image data (preferably through memory for improved performances).
 * Write a program:
-  * Which is linked to an implementation of all functions declared and documented in the API header [`Host/host.h`](https://github.com/c-koi/gmic-qt/blob/master/src/Host/host.h) (implementation usually written, at least in part, in a file named `host_HOSTNAME.cpp`). This is the only place where all the communication between the plugin and the host should occur. The plugin relies only on this interface to be implemented.
-  * Which is linked to the host-agnostic code of the plugin found in this repository. (See [gmic_qt.h](src/gmic_qt.h) for more details about the services offered by this part of the plug-in's code.)
+  * Which is linked to an implementation of all functions declared and documented in the API header [`Host/GmicQtHost.h`](https://github.com/c-koi/gmic-qt/blob/master/src/Host/GmicQtHost.h) (implementation usually written, at least in part, in a file named `host_HOSTNAME.cpp`). This is the only place where all the communication between the plugin and the host should occur. The plugin relies only on this interface to be implemented.
+  * Which is linked to the host-agnostic code of the plugin found in this repository. (See [GmicQt.h](src/GmicQt.h) for more details about the services offered by this part of the plug-in's code.)
  ![Architecture](architecture.svg)
   * Which calls the `GmicQt::run()` function provided by the G'MIC-Qt code, once initialisations are done and the communication with the host is established.
   * It should be noticed that tweaking the API internals to adapt the plugin to a new host is definitely not good practice. It may break the compatibility with the plugin's future versions.
@@ -30,7 +30,7 @@ If you succeed in creating such a file for a new host application, you are welco
 
 ### Guidelines
 
-First, we would like to point out that any contribution in the form of a new host adaptation is very (very) welcome. 
+First, we would like to point out that any contribution in the form of a new host adaptation is very (very) welcome.
 
 However, we have decided that contributions will be now accepted in this (upstream) repository only if they respect the architecture described above. It ensures that the plugin executables can be built for these different hosts and that they can be easily updated to the latest G'MIC version.
 

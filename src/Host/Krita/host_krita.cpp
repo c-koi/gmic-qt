@@ -39,8 +39,8 @@
 #include <algorithm>
 #include <list>
 #include "Common.h"
-#include "Host/host.h"
-#include "gmic_qt.h"
+#include "Host/GmicQtHost.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 /*

@@ -29,7 +29,7 @@
 #include <QString>
 #include <cstddef>
 #include <vector>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace GmicQt
 {

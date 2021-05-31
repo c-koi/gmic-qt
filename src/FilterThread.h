@@ -29,8 +29,8 @@
 #include <QString>
 #include <QThread>
 #include "Common.h"
-#include "Host/host.h"
-#include "gmic_qt.h"
+#include "Host/GmicQtHost.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {

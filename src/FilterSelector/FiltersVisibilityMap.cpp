@@ -32,7 +32,7 @@
 #include "Globals.h"
 #include "Logger.h"
 #include "Utils.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace GmicQt
 {

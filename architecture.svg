@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="345.01194"
-     inkscape:cy="294.64157"
+     inkscape:zoom="0.7"
+     inkscape:cx="151.5631"
+     inkscape:cy="244.65399"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -174,64 +174,58 @@
        style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 146.5534,66.629051 2.5608,-2.560801 -2.5608,-2.560801"
        sodipodi:nodetypes="ccc" />
-    <g
-       id="g1167">
-      <path
-         id="rect833-60"
-         style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 31.230444,9.9191284 v 0 H 66.699728 V 34.25926 H 27.256745 V 13.89282"
-         sodipodi:nodetypes="cccccc" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:6.22837px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-         x="31.739929"
+    <path
+       id="rect833-60"
+       style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 31.230444,9.9191284 v 0 H 66.699728 V 34.25926 H 27.256745 V 13.89282"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.22837px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="32.383144"
+       y="23.732426"
+       id="text893-6"
+       transform="scale(1.0005265,0.99947377)"><tspan
+         sodipodi:role="line"
+         id="tspan891-1"
+         x="32.383144"
          y="23.732426"
-         id="text893-6"
-         transform="scale(1.0005265,0.99947377)"><tspan
-           sodipodi:role="line"
-           id="tspan891-1"
-           x="31.739929"
-           y="23.732426"
-           style="stroke-width:0.264583">gmic_qt.h</tspan></text>
-      <path
-         id="rect833-60-8"
-         style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 31.230444,9.9191284 V 13.89282 h -3.973699 z"
-         sodipodi:nodetypes="cccc" />
-    </g>
+         style="stroke-width:0.264583">GmicQt.h</tspan></text>
+    <path
+       id="rect833-60-8"
+       style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 31.230444,9.9191284 V 13.89282 h -3.973699 z"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.793749, 0.793749;stroke-dashoffset:0;stroke-opacity:1"
        d="M 43.563723,56.064294 66.699728,34.25926"
        id="path977-7"
        sodipodi:nodetypes="cc" />
-    <g
-       id="g1173">
-      <path
-         id="rect833-60-9"
-         style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 89.809429,9.8192143 v 0 H 125.27872 V 34.159346 H 85.83573 v -20.36644"
-         sodipodi:nodetypes="cccccc" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:6.22837px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-         x="95.797218"
+    <path
+       id="rect833-60-9"
+       style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 89.809429,9.8192143 v 0 H 141.17741 V 34.159346 H 85.83573 v -20.36644"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.22837px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="91.785919"
+       y="24.322811"
+       id="text893-6-2"
+       transform="scale(1.0005265,0.99947377)"><tspan
+         sodipodi:role="line"
+         id="tspan891-1-0"
+         x="91.785919"
          y="24.322811"
-         id="text893-6-2"
-         transform="scale(1.0005265,0.99947377)"><tspan
-           sodipodi:role="line"
-           id="tspan891-1-0"
-           x="95.797218"
-           y="24.322811"
-           style="stroke-width:0.264583">host.h</tspan></text>
-      <path
-         id="rect833-60-8-2"
-         style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 89.809429,9.8192143 V 13.792906 H 85.83573 Z"
-         sodipodi:nodetypes="cccc" />
-    </g>
+         style="stroke-width:0.264583">GmicQtHost.h</tspan></text>
+    <path
+       id="rect833-60-8-2"
+       style="fill:none;fill-opacity:0.83;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 89.809429,9.8192143 V 13.792906 H 85.83573 Z"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.793749, 0.793749;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 102.14272,55.96438 23.136,-21.805034"
+       d="M 102.14272,55.96438 141.17741,34.159346"
        id="path977-7-3"
        sodipodi:nodetypes="cc" />
   </g>

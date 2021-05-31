@@ -29,7 +29,7 @@
 #include <QDialog>
 #include <QIcon>
 #include "MainWindow.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 class QCloseEvent;
 class QSettings;
 

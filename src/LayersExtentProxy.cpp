@@ -25,7 +25,7 @@
 #include "LayersExtentProxy.h"
 #include <QDebug>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 
 namespace GmicQt
 {

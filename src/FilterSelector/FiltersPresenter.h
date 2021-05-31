@@ -29,7 +29,7 @@
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
 #include "InputOutputState.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 class QSettings;
 

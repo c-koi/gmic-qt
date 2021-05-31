@@ -26,7 +26,7 @@
 #define GMIC_QT_CROPPEDIMAGELISTPROXY_H
 
 #include <memory>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {

@@ -26,7 +26,7 @@
 #define GMIC_QT_IMAGETOOLS_H
 
 #include "Common.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {

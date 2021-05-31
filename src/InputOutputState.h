@@ -25,7 +25,7 @@
 #ifndef GMIC_QT_INPUTOUTPUTSTATE_H
 #define GMIC_QT_INPUTOUTPUTSTATE_H
 
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 class QJsonObject;
 class QString;
