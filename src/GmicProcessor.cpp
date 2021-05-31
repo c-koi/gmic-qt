@@ -285,7 +285,7 @@ void GmicProcessor::onPreviewThreadFinished()
   bool correctSpectrums = checkImageSpectrumAtMost4(*_gmicImages, badSpectrumIndex);
   if (correctSpectrums) {
     for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
-      GmicQtHost::apply_color_profile((*_gmicImages)[i]);
+      GmicQtHost::applyColorProfile((*_gmicImages)[i]);
     }
     buildPreviewImage(*_gmicImages, *_previewImage);
   }
@@ -336,7 +336,7 @@ void GmicProcessor::onApplyThreadFinished()
       if (GmicQtHost::ApplicationName.isEmpty()) {
         emit aboutToSendImagesToHost();
       }
-      GmicQtHost::output_images(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode);
+      GmicQtHost::outputImages(*_gmicImages, _filterThread->imageNames(), _filterContext.inputOutputState.outputMode);
       _completeFullImageProcessingCount += 1;
       LayersExtentProxy::clear();
       CroppedActiveLayerProxy::clear();
@@ -426,7 +426,7 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
   _gmicImages->assign();
   runner.swapImages(*_gmicImages);
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
-    GmicQtHost::apply_color_profile((*_gmicImages)[i]);
+    GmicQtHost::applyColorProfile((*_gmicImages)[i]);
   }
   buildPreviewImage(*_gmicImages, *_previewImage);
   hideWaitingCursor();

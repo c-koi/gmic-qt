@@ -36,9 +36,9 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include "GmicQt.h"
 #include "Host/GmicQtHost.h"
 #include "Host/None/ImageDialog.h"
-#include "GmicQt.h"
 #include "gmic.h"
 
 #define STRINGIFY(X) #X
@@ -140,7 +140,7 @@ const QString ApplicationName;
 const char * const ApplicationShortname = XSTRINGIFY(GMIC_HOST);
 const bool DarkThemeIsDefault = false;
 
-void get_layers_extent(int * width, int * height, GmicQt::InputMode)
+void getLayersExtent(int * width, int * height, GmicQt::InputMode)
 {
   if (gmic_qt_standalone::input_image.isNull()) {
     if (gmic_qt_standalone::visibleMainWindow()) {
@@ -157,7 +157,7 @@ void get_layers_extent(int * width, int * height, GmicQt::InputMode)
   }
 }
 
-void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   const QImage & input_image = gmic_qt_standalone::input_image.isNull() ? gmic_qt_standalone::transparentImage() : gmic_qt_standalone::input_image;
 
@@ -191,7 +191,7 @@ void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames,
   GmicQt::convertQImageToCImg(input_image.copy(ix, iy, iw, ih), images[0]);
 }
 
-void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
+void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
   if (images.size() > 0) {
     if (gmic_qt_standalone::output_image_filename.isEmpty()) {
@@ -227,12 +227,12 @@ void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames
   unused(mode);
 }
 
-void show_message(const char * message)
+void showMessage(const char * message)
 {
   std::cout << message << std::endl;
 }
 
-void apply_color_profile(cimg_library::CImg<gmic_pixel_type> &) {}
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> &) {}
 
 } // namespace GmicQtHost
 

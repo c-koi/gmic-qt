@@ -69,9 +69,9 @@ void CroppedActiveLayerProxy::update(double x, double y, double width, double he
 
   cimg_library::CImgList<gmic_pixel_type> images;
   cimg_library::CImgList<char> imageNames;
-  GmicQtHost::get_cropped_images(images, imageNames, _x, _y, _width, _height, InputMode::Active);
+  GmicQtHost::getCroppedImages(images, imageNames, _x, _y, _width, _height, InputMode::Active);
   if (images.size() > 0) {
-    GmicQtHost::apply_color_profile(images.front());
+    GmicQtHost::applyColorProfile(images.front());
     _cachedImage->swap(images.front());
   } else {
     clear();

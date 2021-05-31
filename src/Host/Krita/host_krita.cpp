@@ -124,7 +124,7 @@ QByteArray sendMessageSynchronously(const QByteArray ba)
 namespace GmicQtHost
 {
 
-void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
 {
   *width = 0;
   *height = 0;
@@ -142,7 +142,7 @@ void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
   // qDebug() << "gmic-qt: layers extent:" << *width << *height;
 }
 
-void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
 
   // qDebug() << "gmic-qt: get_cropped_images:" << x << y << width << height;
@@ -229,7 +229,7 @@ void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames,
   // qDebug() << "\tgmic-qt:  Images size" << images.size() << ", names size" << imageNames.size();
 }
 
-void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
+void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
 
   // qDebug() << "qmic-qt-output-images";
@@ -273,14 +273,14 @@ void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames
   sendMessageSynchronously(message.toUtf8());
 }
 
-void show_message(const char *)
+void showMessage(const char *)
 {
   // May be left empty for Krita.
   // Only used by launchPluginHeadless(), called in the non-interactive
   // script mode of GIMP.
 }
 
-void apply_color_profile(cimg_library::CImg<gmic_pixel_type> &) {}
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> &) {}
 
 } // namespace GmicQtHost
 

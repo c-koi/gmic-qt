@@ -1230,7 +1230,7 @@ namespace
 
 namespace GmicQtHost {
 
-void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
 {
     if (mode == GmicQt::InputMode::NoInput)
     {
@@ -1260,7 +1260,7 @@ void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
     }
 }
 
-void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
     if (mode == GmicQt::InputMode::NoInput)
     {
@@ -1314,7 +1314,7 @@ void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames,
     }
 }
 
-void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode /* mode */)
+void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode /* mode */)
 {
     unused(imageNames);
 
@@ -1388,12 +1388,12 @@ void output_images(gmic_list<float> & images, const gmic_list<char> & imageNames
     }
 }
 
-void apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images)
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images)
 {
     unused(images);
 }
 
-void show_message(const char * message)
+void showMessage(const char * message)
 {
     unused(message);
 }

@@ -400,7 +400,7 @@ template <typename T> void image2uchar(cimg_library::CImg<T> & img)
 namespace GmicQtHost
 {
 
-void show_message(const char * message)
+void showMessage(const char * message)
 {
   static bool first = true;
 
@@ -412,7 +412,7 @@ void show_message(const char * message)
   }
 }
 
-void apply_color_profile(cimg_library::CImg<float> & image)
+void applyColorProfile(cimg_library::CImg<float> & image)
 {
 #if GIMP_VERSION_LTE(2, 8)
   unused(image);
@@ -449,7 +449,7 @@ void apply_color_profile(cimg_library::CImg<float> & image)
 #endif
 }
 
-void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
 {
   int layersCount = 0;
   // _GimpLayerPtr * begLayers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
@@ -516,7 +516,7 @@ void get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
   }
 }
 
-void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   using cimg_library::CImg;
   using cimg_library::CImgList;
@@ -660,7 +660,7 @@ void get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames,
   }
 }
 
-void output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
+void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
 {
   // Output modes in original gmic_gimp_gtk : 0/Replace 1/New layer 2/New active layer  3/New image
 

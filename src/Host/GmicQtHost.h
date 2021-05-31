@@ -46,7 +46,7 @@ extern const bool DarkThemeIsDefault;
  * @param[out] width
  * @param[out] height
  */
-void get_layers_extent(int * width, int * height, GmicQt::InputMode);
+void getLayersExtent(int * width, int * height, GmicQt::InputMode);
 
 /**
  * @brief Get a list of (cropped) image layers from host software.
@@ -65,13 +65,13 @@ void get_layers_extent(int * width, int * height, GmicQt::InputMode);
  * @param height Normalized height of the layers w.r.t. image/extends height
  * @param mode Input mode
  */
-void get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, //
-                        cimg_library::CImgList<char> & imageNames,        //
-                        double x,                                         //
-                        double y,                                         //
-                        double width,                                     //
-                        double height,                                    //
-                        GmicQt::InputMode mode);
+void getCroppedImages(cimg_library::CImgList<gmic_pixel_type> & images, //
+                      cimg_library::CImgList<char> & imageNames,        //
+                      double x,                                         //
+                      double y,                                         //
+                      double width,                                     //
+                      double height,                                    //
+                      GmicQt::InputMode mode);
 
 /**
  * @brief Send a list of new image layers to the host application according to
@@ -81,14 +81,14 @@ void get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, //
  * @param imageNames Layers labels
  * @param mode Output mode (\see GmicQt.h)
  */
-void output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
+void outputImages(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
 
 /**
  * @brief Apply a color profile to a given image
  *
  * @param [in,out] images An image
  */
-void apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images);
 
 /**
  * @brief Display a message in the host application.
@@ -98,7 +98,7 @@ void apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
  *
  * @param message A message to be displayed by the host application
  */
-void show_message(const char * message);
+void showMessage(const char * message);
 
 } // namespace GmicQtHost
 

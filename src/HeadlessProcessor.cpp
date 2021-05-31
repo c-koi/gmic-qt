@@ -150,9 +150,9 @@ void HeadlessProcessor::startProcessing()
   _singleShotTimer.start();
   _gmicImages->assign();
   gmic_list<char> imageNames;
-  GmicQtHost::get_cropped_images(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
+  GmicQtHost::getCroppedImages(*_gmicImages, imageNames, -1, -1, -1, -1, _inputMode);
   if (!_progressWindow) {
-    GmicQtHost::show_message(QString("G'MIC: %1 %2").arg(_command).arg(_arguments).toUtf8().constData());
+    GmicQtHost::showMessage(QString("G'MIC: %1 %2").arg(_command).arg(_arguments).toUtf8().constData());
   }
   QString env = QString("_input_layers=%1").arg((int)_inputMode);
   env += QString(" _output_mode=%1").arg((int)_outputMode);
@@ -230,7 +230,7 @@ void HeadlessProcessor::onProcessingFinished()
   } else {
     gmic_list<gmic_pixel_type> images = _filterThread->images();
     if (!_filterThread->aborted()) {
-      GmicQtHost::output_images(images, _filterThread->imageNames(), _outputMode);
+      GmicQtHost::outputImages(images, _filterThread->imageNames(), _outputMode);
       _processingCompletedProperly = true;
     }
     QSettings settings;

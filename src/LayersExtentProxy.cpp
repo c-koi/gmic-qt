@@ -44,7 +44,7 @@ QSize LayersExtentProxy::getExtent(InputMode mode)
 void LayersExtentProxy::getExtent(InputMode mode, int & width, int & height)
 {
   if (mode != _inputMode || _width == -1 || _height == -1) {
-    GmicQtHost::get_layers_extent(&_width, &_height, mode);
+    GmicQtHost::getLayersExtent(&_width, &_height, mode);
     width = _width;
     height = _height;
   } else {
