@@ -83,7 +83,7 @@ bool MainWindow::_isAccepted = false;
 // TODO : Handle window maximization properly (Windows as well as some Linux desktops)
 //
 
-MainWindow::MainWindow(QWidget * parent) : QWidget(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
   TIMING;
   ui->setupUi(this);

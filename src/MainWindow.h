@@ -27,6 +27,7 @@
 
 #include <QIcon>
 #include <QList>
+#include <QMainWindow>
 #include <QString>
 #include <QTimer>
 #include <QWidget>
@@ -56,7 +57,7 @@ class Updater;
 class FilterThread;
 class FiltersPresenter;
 
-class MainWindow : public QWidget {
+class MainWindow : public QMainWindow {
   Q_OBJECT
 
 public:
