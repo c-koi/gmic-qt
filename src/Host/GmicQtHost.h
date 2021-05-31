@@ -40,8 +40,7 @@ extern const char * const ApplicationShortname;
 extern const bool DarkThemeIsDefault;
 
 /**
- * @brief Get the largest width and largest height among all the layers
- *        according to the input mode (\see GmicQt.h).
+ * @brief Get the largest width and largest height among all the layers according to the input mode (\see GmicQt.h).
  *
  * @param[out] width
  * @param[out] height
@@ -74,8 +73,7 @@ void getCroppedImages(cimg_library::CImgList<gmic_pixel_type> & images, //
                       GmicQt::InputMode mode);
 
 /**
- * @brief Send a list of new image layers to the host application according to
- *        an output mode (\see GmicQt.h)
+ * @brief Send a list of new image layers to the host application according to an output mode (\see GmicQt.h)
  *
  * @param images List of layers to be sent to the host application. May be modified.
  * @param imageNames Layers labels
@@ -92,9 +90,8 @@ void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images);
 
 /**
  * @brief Display a message in the host application.
- *        This function is only used if the plugin is launched using
- *        launchPluginHeadless(). If a given plugin implementation never
- *        calls the latter function, show_message() can do nothing!
+ *        This function is only used if the plugin is launched using the UserInterfaceMode::Silent mode.
+ *        If a given plugin implementation never calls the latter function, show_message() can do nothing!
  *
  * @param message A message to be displayed by the host application
  */

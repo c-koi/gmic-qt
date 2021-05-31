@@ -104,6 +104,13 @@ struct RunParameters {
   std::string filterName() const;
 };
 
+/**
+ * A G'MIC filter may update the parameters it has received. This enum must be
+ * used to tell the function lastAppliedFilterRunParameters() whether it
+ * should return the parameters as they where supplied to the last applied
+ * filter, or as they have been "returned" by this filter. If the filter does
+ * not update its parameters, then "After" means the same as "Before".
+ */
 enum class ReturnedRunParametersFlag
 {
   BeforeFilterExecution,
@@ -112,13 +119,17 @@ enum class ReturnedRunParametersFlag
 
 RunParameters lastAppliedFilterRunParameters(ReturnedRunParametersFlag flag);
 
+/**
+ * Function that should be called to launch the plugin from the host adaptation code.
+ */
 int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,                   //
         RunParameters parameters = RunParameters(),                                  //
         const std::list<InputMode> & disabledInputModes = std::list<InputMode>(),    //
         const std::list<OutputMode> & disabledOutputModes = std::list<OutputMode>(), //
         bool * dialogWasAccepted = nullptr);
-
-// What follows may be helpful for the implementation of a host_sthg.cpp
+/*
+ * What follows may be helpful for the implementation of a host_something.cpp
+ */
 
 /**
  * Calibrate any image to fit the required number of channels (1:GRAY, 2:GRAYA, 3:RGB or 4:RGBA).
@@ -126,7 +137,7 @@ int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,              
  * Instanciated for T in {unsigned char, gmic_pixel_type}
  */
 template <typename T> //
-void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview);
+void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool isPreview);
 
 void convertCImgToQImage(const cimg_library::CImg<float> & in, QImage & out);
 

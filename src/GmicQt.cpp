@@ -219,7 +219,7 @@ std::string RunParameters::filterName() const
 }
 
 template <typename T> //
-void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool is_preview)
+void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool isPreview)
 {
   if (!img || !spectrum) {
     return;
@@ -230,7 +230,7 @@ void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool 
     case 1: // from GRAY
       break;
     case 2: // from GRAYA
-      if (is_preview) {
+      if (isPreview) {
         T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 1);
         cimg_forXY(img, x, y)
         {
@@ -247,7 +247,7 @@ void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool 
       break;
     case 4: // from RGBA
       (img.get_shared_channel(0) += img.get_shared_channel(1) += img.get_shared_channel(2)) /= 3;
-      if (is_preview) {
+      if (isPreview) {
         T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 3);
         cimg_forXY(img, x, y)
         {
@@ -290,7 +290,7 @@ void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool 
       img.resize(-100, -100, 1, 3);
       break;
     case 2: // from GRAYA
-      if (is_preview) {
+      if (isPreview) {
         T *ptr_r = img.data(0, 0, 0, 0), *ptr_a = img.data(0, 0, 0, 1);
         cimg_forXY(img, x, y)
         {
@@ -304,7 +304,7 @@ void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool 
     case 3: // from RGB
       break;
     case 4: // from RGBA
-      if (is_preview) {
+      if (isPreview) {
         T *ptr_r = img.data(0, 0, 0, 0), *ptr_g = img.data(0, 0, 0, 1), *ptr_b = img.data(0, 0, 0, 2), *ptr_a = img.data(0, 0, 0, 3);
         cimg_forXY(img, x, y)
         {
