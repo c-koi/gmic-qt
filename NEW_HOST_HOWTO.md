@@ -17,9 +17,10 @@ Consequently, in order to adapt the plug-in to a new host application cleanly, a
 
 * Provide the host application with a communication system targeted to an external application, if it does not exist yet, so that it supports passing commands and possibly large image data (preferably through memory for improved performances).
 * Write a program:
-  * Which is linked to an implementation of all [functions declared and documented in the API header](https://github.com/c-koi/gmic-qt/blob/master/src/Host/host.h) `host.h` (implementation usually written, at least in part, in a file named `host_HOSTNAME.cpp`). This is the only place where all the communication between the plugin and the host should occur. The plugin relies only on this interface to be implemented.
-  * Which is linked to the host-agnostic code of the plugin found in this repository.
-  * Which calls one of the `launchPlugin*()` functions provided by the G'MIC-Qt code, once initialisations are done and the communication with the host is established.
+  * Which is linked to an implementation of all functions declared and documented in the API header [`Host/host.h`](https://github.com/c-koi/gmic-qt/blob/master/src/Host/host.h) (implementation usually written, at least in part, in a file named `host_HOSTNAME.cpp`). This is the only place where all the communication between the plugin and the host should occur. The plugin relies only on this interface to be implemented.
+  * Which is linked to the host-agnostic code of the plugin found in this repository. (See [gmic_qt.h](src/gmic_qt.h) for more details about the services offered by this part of the plug-in's code.)
+ ![Architecture](architecture.svg)
+  * Which calls the `GmicQt::run()` function provided by the G'MIC-Qt code, once initialisations are done and the communication with the host is established.
   * It should be noticed that tweaking the API internals to adapt the plugin to a new host is definitely not good practice. It may break the compatibility with the plugin's future versions.
 * Adapt the [qmake](https://github.com/c-koi/gmic-qt/blob/master/gmic_qt.pro) or [CMake](https://github.com/c-koi/gmic-qt/blob/master/CMakeLists.txt) project files and follow the [build instructions](https://github.com/c-koi/gmic-qt/blob/master/README.md#build-instructions) from the README.
 
