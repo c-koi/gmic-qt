@@ -840,24 +840,24 @@ namespace
                 const QVector<Gmic8bfLayer>& layers = host_8bf::layers;
 
                 // This case is the opposite of the GIMP plug-in because the layer order has
-                // been reversed to match the top to bottom order that the GIMP plug-in uses.                
+                // been reversed to match the top to bottom order that the GIMP plug-in uses.
                 if (host_8bf::activeLayerIndex > 0)
                 {
                     filteredLayers.push_back(layers[host_8bf::activeLayerIndex - 1]);
                 }
-				filteredLayers.push_back(layers[host_8bf::activeLayerIndex]);
+                filteredLayers.push_back(layers[host_8bf::activeLayerIndex]);
             }
             else if (mode == GmicQt::InputMode::ActiveAndBelow)
             {
                 const QVector<Gmic8bfLayer>& layers = host_8bf::layers;
-                
-				// This case is the opposite of the GIMP plug-in because the layer order has
+
+                // This case is the opposite of the GIMP plug-in because the layer order has
                 // been reversed to match the top to bottom order that the GIMP plug-in uses.
                 filteredLayers.push_back(layers[host_8bf::activeLayerIndex]);
                 if (host_8bf::activeLayerIndex < (layers.size() - 1))
                 {
                     filteredLayers.push_back(layers[host_8bf::activeLayerIndex + 1]);
-                }                                
+                }
             }
             else if (mode == GmicQt::InputMode::AllVisible)
             {
