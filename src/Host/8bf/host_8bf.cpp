@@ -50,7 +50,7 @@ struct Gmic8bfLayer
     int32_t height;
     bool visible;
     QString name;
-    QImage imageData;
+    cimg_library::CImg<float> imageData;
 };
 
 namespace host_8bf
@@ -60,7 +60,10 @@ namespace host_8bf
     int32_t activeLayerIndex;
     bool grayScale;
     bool sixteenBitsPerChannel;
-    QVector<float> sixteenBitToEightBitLUT;
+    int32_t documentWidth;
+    int32_t documentHeight;
+    int32_t hostTileWidth;
+    int32_t hostTileHeight;
 }
 
 namespace GmicQtHost
@@ -127,112 +130,157 @@ namespace
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus CopyTileToQImage8Interleaved(
-        char* tileBuffer,
+    InputFileParseStatus CopyTileToGmicImage8Interleaved(
+        const unsigned char* tileBuffer,
         size_t tileBufferStride,
         int left,
         int top,
         int right,
         int bottom,
-        int inNumberOfChannels,
-        int outColumnStep,
-        QImage& image)
+        cimg_library::CImg<float>& out)
     {
-        for (int y = top; y < bottom; y++)
+        const int imageWidth = out.width();
+        const int numberOfChannels = out.spectrum();
+
+        if (numberOfChannels == 3)
         {
-            const uchar* src = reinterpret_cast<const uchar*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
-            uchar* dst = image.scanLine(y) + (static_cast<size_t>(left) * outColumnStep);
+            float* rPlane = out.data(0, 0, 0, 0);
+            float* gPlane = out.data(0, 0, 0, 1);
+            float* bPlane = out.data(0, 0, 0, 2);
 
-            for (int x = left; x < right; x++)
+            for (int y = top; y < bottom; ++y)
             {
-                switch (inNumberOfChannels)
-                {
-                case 1:
-                    dst[0] = src[0];
-                    break;
-                case 2:
-                    dst[0] = dst[1] = dst[2] = src[0];
-                    dst[3] = src[1];
-                    break;
-                case 3:
-                    dst[0] = src[0];
-                    dst[1] = src[1];
-                    dst[2] = src[2];
-                    break;
-                case 4:
-                    dst[0] = src[0];
-                    dst[1] = src[1];
-                    dst[2] = src[2];
-                    dst[3] = src[3];
-                    break;
-                default:
-                    return InputFileParseStatus::InvalidArgument;
-                }
+                const unsigned char* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
 
-                src += inNumberOfChannels;
-                dst += outColumnStep;
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstR = rPlane + planeStart;
+                float* dstG = gPlane + planeStart;
+                float* dstB = bPlane + planeStart;
+
+                for (int x = left; x < right; x++)
+                {
+                    *dstR++ = static_cast<float>(src[0]);
+                    *dstG++ = static_cast<float>(src[1]);
+                    *dstB++ = static_cast<float>(src[2]);
+                    src += 3;
+                }
             }
+        }
+        else if (numberOfChannels == 4)
+        {
+            float* rPlane = out.data(0, 0, 0, 0);
+            float* gPlane = out.data(0, 0, 0, 1);
+            float* bPlane = out.data(0, 0, 0, 2);
+            float* aPlane = out.data(0, 0, 0, 3);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const unsigned char* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstR = rPlane + planeStart;
+                float* dstG = gPlane + planeStart;
+                float* dstB = bPlane + planeStart;
+                float* dstA = aPlane + planeStart;
+
+                for (int x = left; x < right; x++)
+                {
+                    *dstR++ = static_cast<float>(src[0]);
+                    *dstG++ = static_cast<float>(src[1]);
+                    *dstB++ = static_cast<float>(src[2]);
+                    *dstA++ = static_cast<float>(src[3]);
+                    src += 4;
+                }
+            }
+        }
+        else if (numberOfChannels == 2)
+        {
+            float* grayPlane = out.data(0, 0, 0, 0);
+            float* alphaPlane = out.data(0, 0, 0, 1);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const unsigned char* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstGray = grayPlane + planeStart;
+                float* dstAlpha = alphaPlane + planeStart;
+
+                for (int x = left; x < right; x++)
+                {
+                    *dstGray++ = static_cast<float>(src[0]);
+                    *dstAlpha++ = static_cast<float>(src[1]);
+                    src += 2;
+                }
+            }
+        }
+        else if (numberOfChannels == 1)
+        {
+            float* grayPlane = out.data(0, 0, 0, 0);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const unsigned char* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstGray = grayPlane + planeStart;
+
+                for (int x = left; x < right; x++)
+                {
+                    *dstGray++ = static_cast<float>(src[0]);
+                    src++;
+                }
+            }
+        }
+        else
+        {
+            return InputFileParseStatus::InvalidArgument;
         }
 
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus CopyTileToQImage8Planar(
-        char* tileBuffer,
+    InputFileParseStatus CopyTileToGmicImage8Planar(
+        const unsigned char* tileBuffer,
         size_t tileBufferStride,
         int left,
         int top,
         int right,
         int bottom,
-        int inNumberOfChannels,
         int channelIndex,
-        int outColumnStep,
-        QImage& image)
+        cimg_library::CImg<float>& image)
     {
-        for (int y = top; y < bottom; y++)
+        const int imageWidth = image.width();
+
+        float* plane = image.data(0, 0, 0, channelIndex);
+
+        for (int y = top; y < bottom; ++y)
         {
-            const uchar* src = reinterpret_cast<const uchar*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
-            uchar* dst = image.scanLine(y) + (static_cast<size_t>(left) * outColumnStep);
+            const unsigned char* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+            float* dst = plane + (static_cast<size_t>(y) * static_cast<size_t>(imageWidth)) + left;
 
             for (int x = left; x < right; x++)
             {
-                if (inNumberOfChannels == 2)
-                {
-                    // Grayscale with alpha is a special case.
-                    // Qt does not have a dedicated format for it,
-                    // so it is mapped to Format_RGBA8888.
+                *dst++ = static_cast<float>(src[0]);
 
-                    switch (channelIndex)
-                    {
-                    case 0:
-                        dst[0] = dst[1] = dst[2] = src[0];
-                        break;
-                    case 1:
-                        dst[3] = src[0];
-                        break;
-                    default:
-                        return InputFileParseStatus::InvalidArgument;
-                    }
-                }
-                else
-                {
-                    dst[channelIndex] = src[0];
-                }
                 src++;
-                dst += outColumnStep;
             }
         }
 
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus ConvertGmic8bfInputToQImage8(
+    InputFileParseStatus ConvertGmic8bfInputToGmicImage8(
         QDataStream& dataStream,
         int32_t inTileWidth,
         int32_t inTileHeight,
         int32_t inNumberOfChannels,
         bool planar,
-        QImage& image)
+        cimg_library::CImg<float>& image)
     {
         int32_t maxTileStride = planar ? inTileWidth : inTileWidth * inNumberOfChannels;
         size_t tileBufferSize = static_cast<size_t>(maxTileStride) * inTileHeight;
@@ -246,22 +294,6 @@ namespace
 
         int width = image.width();
         int height = image.height();
-        int outColumnStep;
-
-        switch (image.format())
-        {
-        case QImage::Format_Grayscale8:
-            outColumnStep = 1;
-            break;
-        case QImage::Format_RGB888:
-            outColumnStep = 3;
-            break;
-        case QImage::Format_RGBA8888:
-            outColumnStep = 4;
-            break;
-        default:
-            return InputFileParseStatus::InvalidArgument;
-        }
 
         if (planar)
         {
@@ -289,16 +321,14 @@ namespace
                             return status;
                         }
 
-                        status = CopyTileToQImage8Planar(
-                            tileBuffer.get(),
+                        status = CopyTileToGmicImage8Planar(
+                            reinterpret_cast<const unsigned char*>(tileBuffer.get()),
                             tileBufferStride,
                             left,
                             top,
                             right,
                             bottom,
-                            inNumberOfChannels,
                             i,
-                            outColumnStep,
                             image);
 
                         if (status != InputFileParseStatus::Ok)
@@ -334,15 +364,13 @@ namespace
                         return status;
                     }
 
-                    status = CopyTileToQImage8Interleaved(
-                        tileBuffer.get(),
+                    status = CopyTileToGmicImage8Interleaved(
+                        reinterpret_cast<const unsigned char*>(tileBuffer.get()),
                         tileBufferStride,
                         left,
                         top,
                         right,
                         bottom,
-                        inNumberOfChannels,
-                        outColumnStep,
                         image);
 
                     if (status != InputFileParseStatus::Ok)
@@ -356,111 +384,157 @@ namespace
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus CopyTileToQImage16Interleaved(
-        char* tileBuffer,
+    InputFileParseStatus CopyTileToGmicImage16Interleaved(
+        const unsigned short* tileBuffer,
         size_t tileBufferStride,
         int left,
         int top,
         int right,
         int bottom,
-        int inNumberOfChannels,
-        int outColumnStep,
-        QImage& image)
+        cimg_library::CImg<float>& image,
+        const QVector<float>& sixteenBitToEightBitLUT)
     {
-        for (int y = top; y < bottom; y++)
-        {
-            const quint16* src = reinterpret_cast<const quint16*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
-            quint16* dst = reinterpret_cast<quint16*>(image.scanLine(y)) + (static_cast<size_t>(left) * outColumnStep);
+        const int imageWidth = image.width();
 
-            for (int x = left; x < right; x++)
+        if (image.spectrum() == 3)
+        {
+            float* rPlane = image.data(0, 0, 0, 0);
+            float* gPlane = image.data(0, 0, 0, 1);
+            float* bPlane = image.data(0, 0, 0, 2);
+
+            for (int y = top; y < bottom; ++y)
             {
-                switch (inNumberOfChannels)
+                const unsigned short* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstR = rPlane + planeStart;
+                float* dstG = gPlane + planeStart;
+                float* dstB = bPlane + planeStart;
+
+                for (int x = left; x < right; x++)
                 {
-                case 1:
-                    dst[0] = qFromLittleEndian(src[0]);
-                    break;
-                case 2:
-                    dst[0] = dst[1] = dst[2] = qFromLittleEndian(src[0]);
-                    dst[3] = qFromLittleEndian(src[1]);
-                    break;
-                case 3:
-                    dst[0] = qFromLittleEndian(src[0]);
-                    dst[1] = qFromLittleEndian(src[1]);
-                    dst[2] = qFromLittleEndian(src[2]);
-                    break;
-                case 4:
-                    dst[0] = qFromLittleEndian(src[0]);
-                    dst[1] = qFromLittleEndian(src[1]);
-                    dst[2] = qFromLittleEndian(src[2]);
-                    dst[3] = qFromLittleEndian(src[3]);
-                    break;
-                default:
-                    return InputFileParseStatus::InvalidArgument;
+                    *dstR++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
+                    *dstG++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[1])];
+                    *dstB++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[2])];
+                    src += 3;
                 }
-                src += inNumberOfChannels;
-                dst += outColumnStep;
             }
+        }
+        else if (image.spectrum() == 4)
+        {
+            float* rPlane = image.data(0, 0, 0, 0);
+            float* gPlane = image.data(0, 0, 0, 1);
+            float* bPlane = image.data(0, 0, 0, 2);
+            float* aPlane = image.data(0, 0, 0, 3);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const unsigned short* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstR = rPlane + planeStart;
+                float* dstG = gPlane + planeStart;
+                float* dstB = bPlane + planeStart;
+                float* dstA = aPlane + planeStart;
+
+                for (int x = left; x < right; x++)
+                {
+                    *dstR++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
+                    *dstG++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[1])];
+                    *dstB++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[2])];
+                    *dstA++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[3])];
+                    src += 4;
+                }
+            }
+        }
+        else if (image.spectrum() == 2)
+        {
+            float* grayPlane = image.data(0, 0, 0, 0);
+            float* alphaPlane = image.data(0, 0, 0, 1);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const unsigned short* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstGray = grayPlane + planeStart;
+                float* dstAlpha = alphaPlane + planeStart;
+
+                for (int x = left; x < right; x++)
+                {
+                    *dstGray++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
+                    *dstAlpha++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[1])];
+                    src += 2;
+                }
+            }
+        }
+        else if (image.spectrum() == 1)
+        {
+            float* grayPlane = image.data(0, 0, 0, 0);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const unsigned short* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+
+                const size_t planeStart = (static_cast<size_t>(y) * imageWidth) + left;
+
+                float* dstGray = grayPlane + planeStart;
+                for (int x = left; x < right; x++)
+                {
+                    *dstGray++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
+                    src++;
+                }
+            }
+        }
+        else
+        {
+            return InputFileParseStatus::InvalidArgument;
         }
 
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus CopyTileToQImage16Planar(
-        char* tileBuffer,
+    InputFileParseStatus CopyTileToGmicImage16Planar(
+        const unsigned short* tileBuffer,
         size_t tileBufferStride,
         int left,
         int top,
         int right,
         int bottom,
-        int inNumberOfChannels,
         int channelIndex,
-        int outColumnStep,
-        QImage& image)
+        cimg_library::CImg<float>& image,
+        const QVector<float>& sixteenBitToEightBitLUT)
     {
-        for (int y = top; y < bottom; y++)
+        const int imageWidth = image.width();
+        const int imageHeight = image.height();
+
+        float* plane = image.data(0, 0, 0, channelIndex);
+
+        for (int y = top; y < bottom; ++y)
         {
-            const quint16* src = reinterpret_cast<const quint16*>(tileBuffer) + ((static_cast<size_t>(y) - top) * tileBufferStride);
-            quint16* dst = reinterpret_cast<quint16*>(image.scanLine(y)) + (static_cast<size_t>(left) * outColumnStep);
+            const unsigned short* src = tileBuffer + ((static_cast<size_t>(y) - top) * tileBufferStride);
+            float* dst = plane + (static_cast<size_t>(y) * imageWidth) + left;
 
             for (int x = left; x < right; x++)
             {
-                if (inNumberOfChannels == 2)
-                {
-                    // Grayscale with alpha is a special case.
-                    // Qt does not have a dedicated format for it,
-                    // so it is mapped to Format_RGBA64.
-
-                    switch (channelIndex)
-                    {
-                    case 0:
-                        dst[0] = dst[1] = dst[2] = qFromLittleEndian(src[0]);
-                        break;
-                    case 1:
-                        dst[3] = qFromLittleEndian(src[0]);
-                        break;
-                    default:
-                        return InputFileParseStatus::InvalidArgument;
-                    }
-                }
-                else
-                {
-                    dst[channelIndex] = qFromLittleEndian(src[0]);
-                }
+                *dst++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
                 src++;
-                dst += outColumnStep;
             }
         }
 
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus ConvertGmic8bfInputToQImage16(
+    InputFileParseStatus ConvertGmic8bfInputToGmicImage16(
         QDataStream& dataStream,
         int32_t inTileWidth,
         int32_t inTileHeight,
         int32_t inNumberOfChannels,
         bool planar,
-        QImage& image)
+        cimg_library::CImg<float>& image)
     {
         size_t maxTileStride = planar ? inTileWidth : static_cast<size_t>(inTileWidth) * inNumberOfChannels;
         size_t tileBufferSize = maxTileStride * inTileHeight * 2;
@@ -472,22 +546,18 @@ namespace
             return InputFileParseStatus::OutOfMemory;
         }
 
+        QVector<float> sixteenBitToEightBitLUT;
+        sixteenBitToEightBitLUT.reserve(65536);
+
+        for (int i = 0; i < sixteenBitToEightBitLUT.capacity(); i++)
+        {
+            // G'MIC expect the input image data to be a floating-point value in the range of [0, 255].
+            // We use a lookup table to avoid having to repeatedly perform division on the same values.
+            sixteenBitToEightBitLUT.push_back(static_cast<float>(i) / 257.0f);
+        }
+
         int width = image.width();
         int height = image.height();
-        int outColumnStep;
-
-        switch (image.format())
-        {
-        case QImage::Format_Grayscale16:
-            outColumnStep = 1;
-            break;
-        case QImage::Format_RGBX64:
-        case QImage::Format_RGBA64:
-            outColumnStep = 4;
-            break;
-        default:
-            return InputFileParseStatus::InvalidArgument;
-        }
 
         if (planar)
         {
@@ -515,17 +585,16 @@ namespace
                             return status;
                         }
 
-                        status = CopyTileToQImage16Planar(
-                            tileBuffer.get(),
+                        status = CopyTileToGmicImage16Planar(
+                            reinterpret_cast<const unsigned short*>(tileBuffer.get()),
                             tileBufferStride,
                             left,
                             top,
                             right,
                             bottom,
-                            inNumberOfChannels,
                             i,
-                            outColumnStep,
-                            image);
+                            image,
+                            sixteenBitToEightBitLUT);
 
                         if (status != InputFileParseStatus::Ok)
                         {
@@ -560,16 +629,15 @@ namespace
                         return status;
                     }
 
-                    status = CopyTileToQImage16Interleaved(
-                        tileBuffer.get(),
+                    status = CopyTileToGmicImage16Interleaved(
+                        reinterpret_cast<const unsigned short*>(tileBuffer.get()),
                         tileBufferStride,
                         left,
                         top,
                         right,
                         bottom,
-                        inNumberOfChannels,
-                        outColumnStep,
-                        image);
+                        image,
+                        sixteenBitToEightBitLUT);
 
                     if (status != InputFileParseStatus::Ok)
                     {
@@ -582,7 +650,7 @@ namespace
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus ReadGmic8bfInput(const QString& path, QImage& image)
+    InputFileParseStatus ReadGmic8bfInput(const QString& path, cimg_library::CImg<float>& image, bool isActiveLayer)
     {
         QFile file(path);
 
@@ -598,7 +666,7 @@ namespace
 
         dataStream.readRawData(signature, 4);
 
-        if (strncmp(signature, "G8II", 4) != 0)
+        if (strncmp(signature, "G8IM", 4) != 0)
         {
             return InputFileParseStatus::BadFileSignature;
         }
@@ -607,7 +675,7 @@ namespace
 
         dataStream >> fileVersion;
 
-        if (fileVersion != 1 && fileVersion != 2)
+        if (fileVersion != 1)
         {
             return InputFileParseStatus::UnknownFileVersion;
         }
@@ -628,58 +696,45 @@ namespace
 
         dataStream >> bitDepth;
 
+        int32_t flags = 0;
+
+        dataStream >> flags;
+
         bool planar = false;
-        int32_t inTileWidth = width;
-        int32_t inTileHeight = height;
 
-        if (fileVersion == 2)
+        planar = (flags & 1) != 0;
+
+        int32_t inTileWidth = 0;
+
+        dataStream >> inTileWidth;
+
+        int32_t inTileHeight = 0;
+
+        dataStream >> inTileHeight;
+
+        if (isActiveLayer)
         {
-            int32_t flags = 0;
-
-            dataStream >> flags;
-
-            planar = (flags & 1) != 0;
-
-            dataStream >> inTileWidth;
-            dataStream >> inTileHeight;
+            host_8bf::documentWidth = width;
+            host_8bf::documentHeight = height;
+            host_8bf::hostTileWidth = inTileWidth;
+            host_8bf::hostTileHeight = inTileHeight;
         }
 
-        QImage::Format format{};
-
-        switch (numberOfChannels)
-        {
-        case 1:
-            format = bitDepth == 16 ? QImage::Format_Grayscale16 : QImage::Format_Grayscale8;
-            break;
-        case 3:
-            format = bitDepth == 16 ? QImage::Format_RGBX64 : QImage::Format_RGB888;
-            break;
-        case 2:
-        case 4:
-            format = bitDepth == 16 ? QImage::Format_RGBA64 : QImage::Format_RGBA8888;
-            break;
-        default:
-            return InputFileParseStatus::InvalidArgument;
-        }
-
-        image = QImage(width, height, format);
+        image.assign(width, height, 1, numberOfChannels);
 
         InputFileParseStatus status = InputFileParseStatus::Ok;
 
-        if (image.isNull())
+        switch (bitDepth)
         {
-            status = InputFileParseStatus::OutOfMemory;
-        }
-        else
-        {
-            if (bitDepth == 16)
-            {
-                status = ConvertGmic8bfInputToQImage16(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
-            }
-            else
-            {
-                status = ConvertGmic8bfInputToQImage8(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
-            }
+        case 8:
+            status = ConvertGmic8bfInputToGmicImage8(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
+            break;
+        case 16:
+            status = ConvertGmic8bfInputToGmicImage16(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
+            break;
+        default:
+            status = InputFileParseStatus::InvalidArgument;
+            break;
         }
 
         return status;
@@ -754,9 +809,9 @@ namespace
 
             QString filePath = ReadUTF8String(dataStream);
 
-            QImage image;
+            cimg_library::CImg<float> image;
 
-            InputFileParseStatus status = ReadGmic8bfInput(filePath, image);
+            InputFileParseStatus status = ReadGmic8bfInput(filePath, image, i == host_8bf::activeLayerIndex);
 
             if (status != InputFileParseStatus::Ok)
             {
@@ -784,11 +839,11 @@ namespace
                 auto name = imagePath.toStdWString();
 #endif
 
-                QImage image;
+                cimg_library::CImg<float> image;
 
-                InputFileParseStatus status = ReadGmic8bfInput(imagePath, image);
+                InputFileParseStatus status = ReadGmic8bfInput(imagePath, image, false);
 
-                if (status == InputFileParseStatus::Ok && !image.isNull())
+                if (status == InputFileParseStatus::Ok)
                 {
                     Gmic8bfLayer layer{};
                     layer.width = image.width();
@@ -897,377 +952,514 @@ namespace
         return (in < 0.0f) ? 0 : ((in > 255.0f) ? 255 : static_cast<unsigned char>(in));
     }
 
-    inline ushort float2ushort_bounded(const float& in)
+    inline unsigned short float2ushort_bounded(const float& in)
     {
         // Scale the value from [0, 255] to [0, 65535].
         const float fullRangeValue = in * 257.0f;
 
-        return (fullRangeValue < 0.0f) ? 0 : ((fullRangeValue > 65535.0f) ? 65535 : static_cast<ushort>(fullRangeValue));
+        return (fullRangeValue < 0.0f) ? 0 : ((fullRangeValue > 65535.0f) ? 65535 : static_cast<unsigned short>(fullRangeValue));
     }
 
-    void ConvertCroppedImageToGmic(const QImage& in, cimg_library::CImg<float>& out)
+    void WriteGmic8bfImageHeader(
+        QDataStream& stream,
+        int width,
+        int height,
+        int numberOfChannels,
+        int bitsPerChannel,
+        bool planar,
+        int tileWidth,
+        int tileHeight)
     {
-        // The following code was copied from ImageConverter.cpp and has been adapted to support the G'MIC grayscale modes.
+        const int fileVersion = 1;
+        const int flags = planar ? 1 : 0;
 
-        Q_ASSERT_X(in.format() == QImage::Format_RGBA8888 ||
-                   in.format() == QImage::Format_RGB888 ||
-                   in.format() == QImage::Format_RGBA64 ||
-                   in.format() == QImage::Format_RGBX64 ||
-                   in.format() == QImage::Format_Grayscale8 ||
-                   in.format() == QImage::Format_Grayscale16, "ConvertCroppedImageToGmic", "bad input format");
-
-        if (in.format() == QImage::Format_RGBA8888)
-        {
-            const int w = in.width();
-            const int h = in.height();
-
-            if (host_8bf::grayScale)
-            {
-                out.assign(w, h, 1, 2);
-                float* dstGray = out.data(0, 0, 0, 0);
-                float* dstAlpha = out.data(0, 0, 0, 1);
-
-                for (int y = 0; y < h; ++y)
-                {
-                    const unsigned char* src = in.scanLine(y);
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstGray++ = static_cast<float>(src[0]);
-                        *dstAlpha++ = static_cast<float>(src[3]);
-                        src += 4;
-                    }
-                }
-            }
-            else
-            {
-                out.assign(w, h, 1, 4);
-                float* dstR = out.data(0, 0, 0, 0);
-                float* dstG = out.data(0, 0, 0, 1);
-                float* dstB = out.data(0, 0, 0, 2);
-                float* dstA = out.data(0, 0, 0, 3);
-
-                for (int y = 0; y < h; ++y)
-                {
-                    const unsigned char* src = in.scanLine(y);
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstR++ = static_cast<float>(src[0]);
-                        *dstG++ = static_cast<float>(src[1]);
-                        *dstB++ = static_cast<float>(src[2]);
-                        *dstA++ = static_cast<float>(src[3]);
-                        src += 4;
-                    }
-                }
-            }
-        }
-        else if (in.format() == QImage::Format_RGB888)
-        {
-            const int w = in.width();
-            const int h = in.height();
-
-            out.assign(w, h, 1, 3);
-            float* dstR = out.data(0, 0, 0, 0);
-            float* dstG = out.data(0, 0, 0, 1);
-            float* dstB = out.data(0, 0, 0, 2);
-            for (int y = 0; y < h; ++y)
-            {
-                const unsigned char* src = in.scanLine(y);
-                int n = in.width();
-                while (n--)
-                {
-                    *dstR++ = static_cast<float>(src[0]);
-                    *dstG++ = static_cast<float>(src[1]);
-                    *dstB++ = static_cast<float>(src[2]);
-                    src += 3;
-                }
-            }
-        }
-        else if (in.format() == QImage::Format_Grayscale8)
-        {
-            const int w = in.width();
-            const int h = in.height();
-
-            out.assign(w, h, 1, 1);
-            float* dstGray = out.data(0, 0, 0, 0);
-            for (int y = 0; y < h; ++y)
-            {
-                const unsigned char* src = in.scanLine(y);
-                int n = in.width();
-                while (n--)
-                {
-                    *dstGray++ = src[0];
-                    src++;
-                }
-            }
-        }
-        else if (in.format() == QImage::Format_RGBA64)
-        {
-            const int w = in.width();
-            const int h = in.height();
-
-            if (host_8bf::grayScale)
-            {
-                out.assign(w, h, 1, 2);
-                float* dstGray = out.data(0, 0, 0, 0);
-                float* dstAlpha = out.data(0, 0, 0, 1);
-
-                for (int y = 0; y < h; ++y)
-                {
-                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstGray++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
-                        *dstAlpha++ = host_8bf::sixteenBitToEightBitLUT[src[3]];
-                        src += 4;
-                    }
-                }
-            }
-            else
-            {
-                out.assign(w, h, 1, 4);
-                float* dstR = out.data(0, 0, 0, 0);
-                float* dstG = out.data(0, 0, 0, 1);
-                float* dstB = out.data(0, 0, 0, 2);
-                float* dstA = out.data(0, 0, 0, 3);
-
-                for (int y = 0; y < h; ++y)
-                {
-                    const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
-                    int n = in.width();
-                    while (n--)
-                    {
-                        *dstR++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
-                        *dstG++ = host_8bf::sixteenBitToEightBitLUT[src[1]];
-                        *dstB++ = host_8bf::sixteenBitToEightBitLUT[src[2]];
-                        *dstA++ = host_8bf::sixteenBitToEightBitLUT[src[3]];
-                        src += 4;
-                    }
-                }
-            }
-        }
-        else if (in.format() == QImage::Format_RGBX64)
-        {
-            const int w = in.width();
-            const int h = in.height();
-
-            out.assign(w, h, 1, 3);
-            float* dstR = out.data(0, 0, 0, 0);
-            float* dstG = out.data(0, 0, 0, 1);
-            float* dstB = out.data(0, 0, 0, 2);
-            for (int y = 0; y < h; ++y)
-            {
-                const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
-                int n = in.width();
-                while (n--)
-                {
-                    *dstR++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
-                    *dstG++ = host_8bf::sixteenBitToEightBitLUT[src[1]];
-                    *dstB++ = host_8bf::sixteenBitToEightBitLUT[src[2]];
-                    src += 4;
-                }
-            }
-        }
-        else if (in.format() == QImage::Format_Grayscale16)
-        {
-            const int w = in.width();
-            const int h = in.height();
-
-            out.assign(w, h, 1, 1);
-            float* dstGray = out.data(0, 0, 0, 0);
-            for (int y = 0; y < h; ++y)
-            {
-                const ushort* src = reinterpret_cast<const ushort*>(in.scanLine(y));
-                int n = in.width();
-                while (n--)
-                {
-                    *dstGray++ = host_8bf::sixteenBitToEightBitLUT[src[0]];
-                    src++;
-                }
-            }
-        }
+        stream.writeRawData("G8IM", 4);
+        stream << fileVersion;
+        stream << width;
+        stream << height;
+        stream << numberOfChannels;
+        stream << bitsPerChannel;
+        stream << flags;
+        stream << tileWidth;
+        stream << tileHeight;
     }
 
-    QImage ConvertGmicToOutput8(const cimg_library::CImg<float>& in)
+    void WriteGmicOutputTile8Interleaved(
+        QDataStream& dataStream,
+        const cimg_library::CImg<float>& in,
+        unsigned char* rowBuffer,
+        int rowBufferLengthInBytes,
+        int left,
+        int top,
+        int right,
+        int bottom)
     {
         // The following code has been adapted from ImageConverter.cpp.
 
-        QImage out(in.width(), in.height(), QImage::Format_RGB888);
+        if (in.spectrum() == 3)
+        {
+            const float* rPlane = in.data(0, 0, 0, 0);
+            const float* gPlane = in.data(0, 0, 0, 1);
+            const float* bPlane = in.data(0, 0, 0, 2);
 
-        if (in.spectrum() == 4 && out.format() != QImage::Format_RGBA8888) {
-            out = out.convertToFormat(QImage::Format_RGBA8888);
-        }
-        else if (in.spectrum() == 3 && out.format() != QImage::Format_RGB888) {
-            out = out.convertToFormat(QImage::Format_RGB888);
-        }
-        else if (in.spectrum() == 2 && out.format() != QImage::Format_RGBA8888) {
-            out = out.convertToFormat(QImage::Format_RGBA8888);
-        }
-        else if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale8) {
-            out = out.convertToFormat(QImage::Format_Grayscale8);
-        }
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
 
-        if (in.spectrum() == 3) {
-            const float* srcR = in.data(0, 0, 0, 0);
-            const float* srcG = in.data(0, 0, 0, 1);
-            const float* srcB = in.data(0, 0, 0, 2);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                unsigned char* dst = out.scanLine(y);
-                while (n--) {
+                const float* srcR = rPlane + planeStart;
+                const float* srcG = gPlane + planeStart;
+                const float* srcB = bPlane + planeStart;
+                unsigned char* dst = rowBuffer;
+
+                for (int x = left; x < right; ++x)
+                {
                     dst[0] = float2uchar_bounded(*srcR++);
                     dst[1] = float2uchar_bounded(*srcG++);
                     dst[2] = float2uchar_bounded(*srcB++);
+
                     dst += 3;
                 }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
             }
         }
-        else if (in.spectrum() == 4) {
-            const float* srcR = in.data(0, 0, 0, 0);
-            const float* srcG = in.data(0, 0, 0, 1);
-            const float* srcB = in.data(0, 0, 0, 2);
-            const float* srcA = in.data(0, 0, 0, 3);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                unsigned char* dst = out.scanLine(y);
-                while (n--) {
+        else if (in.spectrum() == 4)
+        {
+            const float* rPlane = in.data(0, 0, 0, 0);
+            const float* gPlane = in.data(0, 0, 0, 1);
+            const float* bPlane = in.data(0, 0, 0, 2);
+            const float* aPlane = in.data(0, 0, 0, 3);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+                const float* srcR = rPlane + planeStart;
+                const float* srcG = gPlane + planeStart;
+                const float* srcB = bPlane + planeStart;
+                const float* srcA = aPlane + planeStart;
+
+                unsigned char* dst = rowBuffer;
+
+                for (int x = left; x < right; ++x)
+                {
                     dst[0] = float2uchar_bounded(*srcR++);
                     dst[1] = float2uchar_bounded(*srcG++);
                     dst[2] = float2uchar_bounded(*srcB++);
                     dst[3] = float2uchar_bounded(*srcA++);
+
                     dst += 4;
                 }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
             }
         }
-        else if (in.spectrum() == 2) {
+        else if (in.spectrum() == 2)
+        {
             //
             // Gray + Alpha
             //
-            const float* src = in.data(0, 0, 0, 0);
-            const float* srcA = in.data(0, 0, 0, 1);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                unsigned char* dst = out.scanLine(y);
-                while (n--) {
-                    dst[2] = dst[1] = dst[0] = float2uchar_bounded(*src++);
-                    dst[3] = float2uchar_bounded(*srcA++);
-                    dst += 4;
+            const float* grayPlane = in.data(0, 0, 0, 0);
+            const float* alphaPlane = in.data(0, 0, 0, 1);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+                const float* src = grayPlane + planeStart;
+                const float* srcA = alphaPlane + planeStart;
+
+                unsigned char* dst = rowBuffer;
+
+
+                for (int x = left; x < right; ++x)
+                {
+                    dst[0] = float2uchar_bounded(*src++);
+                    dst[1] = float2uchar_bounded(*srcA++);
+
+                    dst += 2;
                 }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
             }
         }
-        else {
+        else
+        {
             //
             // 8-bits Gray levels
             //
-            const float* src = in.data(0, 0, 0, 0);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                unsigned char* dst = out.scanLine(y);
-                while (n--) {
-                    dst[0] = float2uchar_bounded(*src);
-                    ++src;
-                    ++dst;
+            const float* grayPlane = in.data(0, 0, 0, 0);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+                const float* src = grayPlane + planeStart;
+
+                unsigned char* dst = rowBuffer;
+
+                for (int x = left; x < right; ++x)
+                {
+                    dst[0] = float2uchar_bounded(*src++);
+
+                    dst++;
+                }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
+            }
+        }
+    }
+
+    void WriteGmicOutputTile8Planar(
+        QDataStream& dataStream,
+        const cimg_library::CImg<float>& in,
+        unsigned char* rowBuffer,
+        int rowBufferLengthInBytes,
+        int left,
+        int top,
+        int right,
+        int bottom,
+        int plane)
+    {
+        const float* srcPlane = in.data(0, 0, 0, plane);
+
+        for (int y = top; y < bottom; ++y)
+        {
+            const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+            const float* src = srcPlane + planeStart;
+
+            unsigned char* dst = rowBuffer;
+
+            for (int x = left; x < right; ++x)
+            {
+                dst[0] = float2uchar_bounded(*src++);
+
+                dst++;
+            }
+
+            dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
+        }
+    }
+
+    void WriteGmicOutput8(
+        const QString& outputFilePath,
+        const cimg_library::CImg<float>& in,
+        bool planar,
+        int32_t tileWidth,
+        int32_t tileHeight)
+    {
+        QFile file(outputFilePath);
+        file.open(QFile::WriteOnly);
+        QDataStream dataStream(&file);
+        dataStream.setByteOrder(QDataStream::LittleEndian);
+
+        const int width = in.width();
+        const int height = in.height();
+        const int numberOfChannels = in.spectrum();
+
+        WriteGmic8bfImageHeader(dataStream, width, height, numberOfChannels, 8, planar, tileWidth, tileHeight);
+
+        if (planar)
+        {
+            std::vector<unsigned char> rowBuffer(width);
+
+            for (int i = 0; i < numberOfChannels; ++i)
+            {
+                for (int y = 0; y < height; y += tileHeight)
+                {
+                    int top = y;
+                    int bottom = std::min(y + tileHeight, height);
+
+                    for (int x = 0; x < width; x += tileWidth)
+                    {
+                        int left = x;
+                        int right = std::min(x + tileWidth, width);
+
+                        int rowBufferLengthInBytes = right - left;
+
+                        WriteGmicOutputTile8Planar(
+                            dataStream,
+                            in,
+                            rowBuffer.data(),
+                            rowBufferLengthInBytes,
+                            left,
+                            top,
+                            right,
+                            bottom,
+                            i);
+                    }
                 }
             }
         }
+        else
+        {
+            std::vector<unsigned char> rowBuffer(static_cast<size_t>(width) * numberOfChannels);
 
-        return out;
+            for (int y = 0; y < height; y += tileHeight)
+            {
+                int top = y;
+                int bottom = std::min(y + tileHeight, height);
+
+                for (int x = 0; x < width; x += tileWidth)
+                {
+                    int left = x;
+                    int right = std::min(x + tileWidth, width);
+
+                    int rowBufferLengthInBytes = (right - left) * numberOfChannels;
+
+                    WriteGmicOutputTile8Interleaved(
+                        dataStream,
+                        in,
+                        rowBuffer.data(),
+                        rowBufferLengthInBytes,
+                        left,
+                        top,
+                        right,
+                        bottom);
+                }
+            }
+        }
     }
 
-    QImage ConvertGmicToOutput16(const cimg_library::CImg<float>& in)
+    void WriteGmicOutputTile16Interleaved(
+        QDataStream& dataStream,
+        const cimg_library::CImg<float>& in,
+        unsigned short* rowBuffer,
+        int rowBufferLengthInBytes,
+        int left,
+        int top,
+        int right,
+        int bottom)
     {
         // The following code has been adapted from ImageConverter.cpp.
 
-        QImage out(in.width(), in.height(), QImage::Format_RGBX64);
+        if (in.spectrum() == 3)
+        {
+            const float* rPlane = in.data(0, 0, 0, 0);
+            const float* gPlane = in.data(0, 0, 0, 1);
+            const float* bPlane = in.data(0, 0, 0, 2);
 
-        if (in.spectrum() == 4 && out.format() != QImage::Format_RGBA64) {
-            out = out.convertToFormat(QImage::Format_RGBA64);
-        }
-        else if (in.spectrum() == 3 && out.format() != QImage::Format_RGBX64) {
-            out = out.convertToFormat(QImage::Format_RGBX64);
-        }
-        else if (in.spectrum() == 2 && out.format() != QImage::Format_RGBA64) {
-            out = out.convertToFormat(QImage::Format_RGBA64);
-        }
-        else if (in.spectrum() == 1 && out.format() != QImage::Format_Grayscale16) {
-            out = out.convertToFormat(QImage::Format_Grayscale16);
-        }
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
 
-        if (in.spectrum() == 3) {
-            const float* srcR = in.data(0, 0, 0, 0);
-            const float* srcG = in.data(0, 0, 0, 1);
-            const float* srcB = in.data(0, 0, 0, 2);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
-                while (n--) {
-                    dst[0] = float2ushort_bounded(*srcR++);
-                    dst[1] = float2ushort_bounded(*srcG++);
-                    dst[2] = float2ushort_bounded(*srcB++);
-                    dst += 4;
+                const float* srcR = rPlane + planeStart;
+                const float* srcG = gPlane + planeStart;
+                const float* srcB = bPlane + planeStart;
+                unsigned short* dst = rowBuffer;
+
+                for (int x = left; x < right; ++x)
+                {
+                    dst[0] =  qToLittleEndian(float2ushort_bounded(*srcR++));
+                    dst[1] =  qToLittleEndian(float2ushort_bounded(*srcG++));
+                    dst[2] =  qToLittleEndian(float2ushort_bounded(*srcB++));
+
+                    dst += 3;
                 }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
             }
         }
-        else if (in.spectrum() == 4) {
-            const float* srcR = in.data(0, 0, 0, 0);
-            const float* srcG = in.data(0, 0, 0, 1);
-            const float* srcB = in.data(0, 0, 0, 2);
-            const float* srcA = in.data(0, 0, 0, 3);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
-                while (n--) {
-                    dst[0] = float2ushort_bounded(*srcR++);
-                    dst[1] = float2ushort_bounded(*srcG++);
-                    dst[2] = float2ushort_bounded(*srcB++);
-                    dst[3] = float2ushort_bounded(*srcA++);
+        else if (in.spectrum() == 4)
+        {
+            const float* rPlane = in.data(0, 0, 0, 0);
+            const float* gPlane = in.data(0, 0, 0, 1);
+            const float* bPlane = in.data(0, 0, 0, 2);
+            const float* aPlane = in.data(0, 0, 0, 3);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+                const float* srcR = rPlane + planeStart;
+                const float* srcG = gPlane + planeStart;
+                const float* srcB = bPlane + planeStart;
+                const float* srcA = aPlane + planeStart;
+
+                unsigned short* dst = rowBuffer;
+
+                for (int x = left; x < right; ++x)
+                {
+                    dst[0] = qToLittleEndian(float2ushort_bounded(*srcR++));
+                    dst[1] = qToLittleEndian(float2ushort_bounded(*srcG++));
+                    dst[2] = qToLittleEndian(float2ushort_bounded(*srcB++));
+                    dst[3] = qToLittleEndian(float2ushort_bounded(*srcA++));
+
                     dst += 4;
                 }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
             }
         }
-        else if (in.spectrum() == 2) {
+        else if (in.spectrum() == 2)
+        {
             //
-            // 16-bits Gray + Alpha
+            // Gray + Alpha
             //
-            const float* src = in.data(0, 0, 0, 0);
-            const float* srcA = in.data(0, 0, 0, 1);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
-                while (n--) {
-                    dst[0] = dst[1] = dst[2] = float2ushort_bounded(*src++);
-                    dst[3] = float2ushort_bounded(*srcA++);
-                    dst += 4;
+            const float* grayPlane = in.data(0, 0, 0, 0);
+            const float* alphaPlane = in.data(0, 0, 0, 1);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+                const float* src = grayPlane + planeStart;
+                const float* srcA = alphaPlane + planeStart;
+
+                unsigned short* dst = rowBuffer;
+
+
+                for (int x = left; x < right; ++x)
+                {
+                    dst[0] = qToLittleEndian(float2ushort_bounded(*src++));
+                    dst[1] = qToLittleEndian(float2ushort_bounded(*srcA++));
+
+                    dst += 2;
                 }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
             }
         }
-        else {
+        else
+        {
             //
             // 16-bits Gray levels
             //
-            const float* src = in.data(0, 0, 0, 0);
-            int height = out.height();
-            for (int y = 0; y < height; ++y) {
-                int n = in.width();
-                ushort* dst = reinterpret_cast<ushort*>(out.scanLine(y));
-                while (n--) {
-                    dst[0] = float2ushort_bounded(*src);
-                    ++src;
-                    ++dst;
+            const float* grayPlane = in.data(0, 0, 0, 0);
+
+            for (int y = top; y < bottom; ++y)
+            {
+                const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+                const float* src = grayPlane + planeStart;
+
+                unsigned short* dst = rowBuffer;
+
+                for (int x = left; x < right; ++x)
+                {
+                    dst[0] = qToLittleEndian(float2ushort_bounded(*src++));
+
+                    dst++;
+                }
+
+                dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
+            }
+        }
+    }
+
+    void WriteGmicOutputTile16Planar(
+        QDataStream& dataStream,
+        const cimg_library::CImg<float>& in,
+        unsigned short* rowBuffer,
+        int rowBufferLengthInBytes,
+        int left,
+        int top,
+        int right,
+        int bottom,
+        int plane)
+    {
+        const float* srcPlane = in.data(0, 0, 0, plane);
+
+        for (int y = top; y < bottom; ++y)
+        {
+            const size_t planeStart = (static_cast<size_t>(y) * in.width()) + left;
+
+            const float* src = srcPlane + planeStart;
+
+            unsigned short* dst = rowBuffer;
+
+            for (int x = left; x < right; ++x)
+            {
+                dst[0] = qToLittleEndian(float2ushort_bounded(*src++));
+
+                dst++;
+            }
+
+            dataStream.writeRawData(reinterpret_cast<const char*>(rowBuffer), rowBufferLengthInBytes);
+        }
+    }
+
+    void WriteGmicOutput16(
+        const QString& outputFilePath,
+        const cimg_library::CImg<float>& in,
+        bool planar,
+        int32_t tileWidth,
+        int32_t tileHeight)
+    {
+        QFile file(outputFilePath);
+        file.open(QFile::WriteOnly);
+        QDataStream dataStream(&file);
+        dataStream.setByteOrder(QDataStream::LittleEndian);
+
+        const int width = in.width();
+        const int height = in.height();
+        const int numberOfChannels = in.spectrum();
+
+        WriteGmic8bfImageHeader(dataStream, width, height, numberOfChannels, 16, planar, tileWidth, tileHeight);
+
+        if (planar)
+        {
+            std::vector<unsigned short> rowBuffer(width);
+
+            for (int i = 0; i < numberOfChannels; ++i)
+            {
+                for (int y = 0; y < height; y += tileHeight)
+                {
+                    int top = y;
+                    int bottom = std::min(y + tileHeight, height);
+
+                    for (int x = 0; x < width; x += tileWidth)
+                    {
+                        int left = x;
+                        int right = std::min(x + tileWidth, width);
+
+                        int columnCount = right - left;
+
+                        int rowBufferLengthInBytes = columnCount * 2;
+
+                        WriteGmicOutputTile16Planar(
+                            dataStream,
+                            in,
+                            rowBuffer.data(),
+                            rowBufferLengthInBytes,
+                            left,
+                            top,
+                            right,
+                            bottom,
+                            i);
+                    }
                 }
             }
         }
+        else
+        {
+            std::vector<unsigned short> rowBuffer(static_cast<size_t>(width) * numberOfChannels);
 
-        return out;
+            for (int y = 0; y < height; y += tileHeight)
+            {
+                int top = y;
+                int bottom = std::min(y + tileHeight, height);
+
+                for (int x = 0; x < width; x += tileWidth)
+                {
+                    int left = x;
+                    int right = std::min(x + tileWidth, width);
+
+                    int rowBufferLengthInBytes = ((right - left) * numberOfChannels) * 2;
+
+                    WriteGmicOutputTile16Interleaved(
+                        dataStream,
+                        in,
+                        rowBuffer.data(),
+                        rowBufferLengthInBytes,
+                        left,
+                        top,
+                        right,
+                        bottom);
+                }
+            }
+        }
     }
 
     void EmptyOutputFolder()
@@ -1333,7 +1525,6 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
 
     QVector<Gmic8bfLayer> filteredLayers = FilterLayersForInputMode(mode);
 
-
     const int layerCount = filteredLayers.size();
 
     images.assign(layerCount);
@@ -1363,7 +1554,14 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
 
     for (int i = 0; i < layerCount; i++)
     {
-       ConvertCroppedImageToGmic(filteredLayers.at(i).imageData.copy(ix, iy, iw, ih), images[i]);
+        if (entireImage)
+        {
+            images[i].assign(filteredLayers.at(i).imageData);
+        }
+        else
+        {
+            images[i].assign(filteredLayers.at(i).imageData.get_crop(ix, iy, iw, ih));
+        }
     }
 }
 
@@ -1385,33 +1583,25 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
 
             if (haveMultipleImages)
             {
-                outputPath = QString("%1/%2-%3.png").arg(host_8bf::outputDir).arg(timestamp).arg(i);
+                outputPath = QString("%1/%2-%3.g8i").arg(host_8bf::outputDir).arg(timestamp).arg(i);
             }
             else
             {
-                outputPath = QString("%1/%2.png").arg(host_8bf::outputDir).arg(timestamp);
+                outputPath = QString("%1/%2.g8i").arg(host_8bf::outputDir).arg(timestamp);
             }
 
             cimg_library::CImg<float>& in = images[i];
 
             const int width = in.width();
             const int height = in.height();
+            bool planar = false;
+            int tileWidth = width;
+            int tileHeight = height;
 
             if (host_8bf::grayScale && (in.spectrum() == 3 || in.spectrum() == 4))
             {
                 // Convert the RGB image to grayscale.
                 GmicQt::calibrateImage(in, in.spectrum() == 4 ? 2 : 1, false);
-            }
-
-            QImage out;
-
-            if (host_8bf::sixteenBitsPerChannel)
-            {
-                out = ConvertGmicToOutput16(in);
-            }
-            else
-            {
-                out = ConvertGmicToOutput8(in);
             }
 
             if (i == 0)
@@ -1426,16 +1616,27 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
 
                 active.width = width;
                 active.height = height;
-                active.imageData.swap(out);
+                active.imageData.assign(in);
 
-                // The image that G'MIC passes to this method does not contain the most recent change.
-                // To get the current "layered" G'MIC effects we need to save the active layer after
-                // it has been updated.
-                active.imageData.save(outputPath);
+                // If the G'MIC output is a single image that matches the host document size it will be
+                // copied to the active layer when G'MIC exits.
+                if (images.size() == 1 && width == host_8bf::documentWidth && height == host_8bf::documentHeight)
+                {
+                    // The output will be written as a tiled planar image because that is the most
+                    // efficient format for the host to read.
+                    planar = true;
+                    tileWidth = host_8bf::hostTileWidth;
+                    tileHeight = host_8bf::hostTileHeight;
+                }
+            }
+
+            if (host_8bf::sixteenBitsPerChannel)
+            {
+                WriteGmicOutput16(outputPath, in, planar, tileWidth, tileHeight);
             }
             else
             {
-                out.save(outputPath);
+                WriteGmicOutput8(outputPath, in, planar, tileWidth, tileHeight);
             }
         }
     }
@@ -1451,11 +1652,56 @@ void showMessage(const char * message)
     unused(message);
 }
 
+
 } // GmicQtHost
 
+#if defined(_MSC_VER) && defined(_DEBUG)
+#include <sstream>
+
+// Adapted from https://stackoverflow.com/a/20387632
+bool launchDebugger()
+{
+    // Get System directory, typically c:\windows\system32
+    std::wstring systemDir(MAX_PATH + 1, '\0');
+    UINT nChars = GetSystemDirectoryW(&systemDir[0], static_cast<UINT>(systemDir.length()));
+    if (nChars == 0) return false; // failed to get system directory
+    systemDir.resize(nChars);
+
+    // Get process ID and create the command line
+    DWORD pid = GetCurrentProcessId();
+    std::wostringstream s;
+    s << systemDir << L"\\vsjitdebugger.exe -p " << pid;
+    std::wstring cmdLine = s.str();
+
+    // Start debugger process
+    STARTUPINFOW si;
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&pi, sizeof(pi));
+
+    if (!CreateProcessW(NULL, &cmdLine[0], NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) return false;
+
+    // Close debugger process handles to eliminate resource leak
+    CloseHandle(pi.hThread);
+    CloseHandle(pi.hProcess);
+
+    // Wait for the debugger to attach
+    while (!IsDebuggerPresent()) Sleep(100);
+
+    // Stop execution so the debugger can take over
+    DebugBreak();
+    return true;
+}
+#endif // defined(_MSC_VER) && defined(_DEBUG)
 
 int main(int argc, char *argv[])
 {
+#if defined(_MSC_VER) && defined(_DEBUG)
+    launchDebugger();
+#endif
+
     QString indexFilePath;
     bool useLastParameters = false;
 
@@ -1507,18 +1753,6 @@ int main(int argc, char *argv[])
             return 10;
         default:
             return 4; // Unknown error
-        }
-
-        if (host_8bf::sixteenBitsPerChannel)
-        {
-            host_8bf::sixteenBitToEightBitLUT.reserve(65536);
-
-            for (int i = 0; i < host_8bf::sixteenBitToEightBitLUT.capacity(); i++)
-            {
-                // G'MIC expect the input image data to be a floating-point value in the range of [0, 255].
-                // We use a lookup table to avoid having to repeatedly perform division on the same values.
-                host_8bf::sixteenBitToEightBitLUT.push_back(static_cast<float>(i) / 257.0f);
-            }
         }
     }
     catch (const std::bad_alloc&)
