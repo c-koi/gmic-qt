@@ -237,7 +237,7 @@ namespace
         int32_t maxTileStride = planar ? inTileWidth : inTileWidth * inNumberOfChannels;
         size_t tileBufferSize = static_cast<size_t>(maxTileStride) * inTileHeight;
 
-        std::unique_ptr<char> tileBuffer(new (std::nothrow) char[tileBufferSize]);
+        std::unique_ptr<char[]> tileBuffer(new (std::nothrow) char[tileBufferSize]);
 
         if (!tileBuffer)
         {
@@ -465,7 +465,7 @@ namespace
         size_t maxTileStride = planar ? inTileWidth : static_cast<size_t>(inTileWidth) * inNumberOfChannels;
         size_t tileBufferSize = maxTileStride * inTileHeight * 2;
 
-        std::unique_ptr<char> tileBuffer(new (std::nothrow) char[tileBufferSize]);
+        std::unique_ptr<char[]> tileBuffer(new (std::nothrow) char[tileBufferSize]);
 
         if (!tileBuffer)
         {
