@@ -55,20 +55,20 @@
 #define _gimp_item_get_visible gimp_item_get_visible
 #endif
 
-#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
-#define _gimp_image_get_width gimp_image_width
-#define _gimp_image_get_height gimp_image_height
-#define _gimp_image_get_base_type gimp_image_base_type
-#define _gimp_drawable_get_width gimp_drawable_width
-#define _gimp_drawable_get_height gimp_drawable_height
-#define _gimp_drawable_get_offsets gimp_drawable_offsets
-#else
+#if GIMP_CHECK_VERSION(2,99,6)
 #define _gimp_image_get_width gimp_image_get_width
 #define _gimp_image_get_height gimp_image_get_height
 #define _gimp_image_get_base_type gimp_image_get_base_type
 #define _gimp_drawable_get_width gimp_drawable_get_width
 #define _gimp_drawable_get_height gimp_drawable_get_height
 #define _gimp_drawable_get_offsets gimp_drawable_get_offsets
+#else
+#define _gimp_image_get_width gimp_image_width
+#define _gimp_image_get_height gimp_image_height
+#define _gimp_image_get_base_type gimp_image_base_type
+#define _gimp_drawable_get_width gimp_drawable_width
+#define _gimp_drawable_get_height gimp_drawable_height
+#define _gimp_drawable_get_offsets gimp_drawable_offsets
 #endif
 
 #if GIMP_VERSION_LTE(2, 98)
