@@ -121,6 +121,7 @@ RunParameters lastAppliedFilterRunParameters(ReturnedRunParametersFlag flag);
 
 /**
  * Function that should be called to launch the plugin from the host adaptation code.
+ * @return The exit status of Qt's main event loop (QApplication::exec()).
  */
 int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,                   //
         RunParameters parameters = RunParameters(),                                  //
