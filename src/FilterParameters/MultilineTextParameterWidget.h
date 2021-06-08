@@ -32,6 +32,9 @@ namespace Ui
 class MultilineTextParameterWidget;
 }
 
+namespace GmicQt
+{
+
 class MultilineTextParameterWidget : public QWidget {
   Q_OBJECT
 public:
@@ -50,5 +53,7 @@ protected:
 private:
   Ui::MultilineTextParameterWidget * ui;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_MULTILINETEXTPARAMETERWIDGET_H

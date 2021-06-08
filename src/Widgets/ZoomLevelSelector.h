@@ -29,11 +29,13 @@
 #include <QPalette>
 #include <QWidget>
 #include "ZoomConstraint.h"
-
 namespace Ui
 {
 class ZoomLevelSelector;
 }
+
+namespace GmicQt
+{
 
 class PreviewWidget;
 
@@ -80,5 +82,7 @@ public:
 private:
   QDoubleValidator * _doubleValidator;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_ZOOMLEVELSELECTOR_H

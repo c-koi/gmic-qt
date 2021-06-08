@@ -10,9 +10,12 @@
 #ifndef GMIC_QT_FILTERTEXTTRANSLATOR_H
 #define GMIC_QT_FILTERTEXTTRANSLATOR_H
 
+#include <QDebug>
 #include <QObject>
 #include <QString>
-
+#include "Common.h"
+namespace GmicQt
+{
 /**
  *  The FilterTextTranslator class.
  */
@@ -31,5 +34,7 @@ QString FilterTextTranslator::translate(const QString & str)
 {
   return tr(str.toUtf8());
 }
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERTEXTTRANSLATOR_H

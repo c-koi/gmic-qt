@@ -32,9 +32,10 @@
 #include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
 
-FilterTreeItemDelegate::FilterTreeItemDelegate(QObject * parent) : QStyledItemDelegate(parent)
+namespace GmicQt
 {
-}
+
+FilterTreeItemDelegate::FilterTreeItemDelegate(QObject * parent) : QStyledItemDelegate(parent) {}
 
 void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
@@ -74,3 +75,5 @@ QSize FilterTreeItemDelegate::sizeHint(const QStyleOptionViewItem & option, cons
   doc.setTextWidth(options.rect.width());
   return {static_cast<int>(doc.idealWidth()), static_cast<int>(doc.size().height())};
 }
+
+} // namespace GmicQt

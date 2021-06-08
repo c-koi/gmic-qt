@@ -25,18 +25,18 @@
 #ifndef GMIC_QT_UTILS_H
 #define GMIC_QT_UTILS_H
 
-#include "gmic_qt.h"
+#include "GmicQt.h"
 class QString;
+class QStringList;
 
 namespace GmicQt
 {
-const QString & path_rc(bool create);
+
+const QString & gmicConfigPath(bool create);
 unsigned int host_app_pid();
 const QString & pluginFullName();
 const QString & pluginCodeName();
-const char * commandFromOutputMessageMode(OutputMessageMode mode);
-void downcaseCommandTitle(QString & title);
-void appendWithSpace(QString & str, const QString & other);
+
 } // namespace GmicQt
 
 #endif // GMIC_QT_UTILS_H

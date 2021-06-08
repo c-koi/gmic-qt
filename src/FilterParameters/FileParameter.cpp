@@ -38,12 +38,20 @@
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
 
-FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent, true), _label(nullptr), _button(nullptr), _dialogMode(InputOutputMode) {}
+namespace GmicQt
+{
+
+FileParameter::FileParameter(QObject * parent) : AbstractParameter(parent), _label(nullptr), _button(nullptr), _dialogMode(DialogMode::InputOutput) {}
 
 FileParameter::~FileParameter()
 {
   delete _label;
   delete _button;
+}
+
+int FileParameter::size() const
+{
+  return 1;
 }
 
 bool FileParameter::addTo(QWidget * widget, int row)
@@ -70,14 +78,14 @@ bool FileParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString FileParameter::textValue() const
-{
-  return QString("\"%1\"").arg(_value);
-}
-
-QString FileParameter::unquotedTextValue() const
+QString FileParameter::value() const
 {
   return _value;
+}
+
+QString FileParameter::defaultValue() const
+{
+  return _default;
 }
 
 void FileParameter::setValue(const QString & value)
@@ -104,13 +112,13 @@ bool FileParameter::initFromText(const char * text, int & textLength)
   QList<QString> list;
   if (matchType("filein", text)) {
     list = parseText("filein", text, textLength);
-    _dialogMode = InputMode;
+    _dialogMode = DialogMode::Input;
   } else if (matchType("fileout", text)) {
     list = parseText("fileout", text, textLength);
-    _dialogMode = OutputMode;
+    _dialogMode = DialogMode::Output;
   } else {
     list = parseText("file", text, textLength);
-    _dialogMode = InputOutputMode;
+    _dialogMode = DialogMode::InputOutput;
   }
   if (list.isEmpty()) {
     return false;
@@ -145,13 +153,13 @@ void FileParameter::onButtonPressed()
   QString filename;
 
   switch (_dialogMode) {
-  case InputMode:
+  case DialogMode::Input:
     filename = QFileDialog::getOpenFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr);
     break;
-  case OutputMode:
+  case DialogMode::Output:
     filename = QFileDialog::getSaveFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr);
     break;
-  case InputOutputMode: {
+  case DialogMode::InputOutput: {
     QFileDialog dialog(dynamic_cast<QWidget *>(parent()), tr("Select a file"), folder, QString());
     dialog.setOptions(QFileDialog::DontConfirmOverwrite | QFileDialog::DontUseNativeDialog);
     dialog.setFileMode(QFileDialog::AnyFile);
@@ -179,3 +187,5 @@ void FileParameter::onButtonPressed()
   }
   notifyIfRelevant();
 }
+
+} // namespace GmicQt

@@ -30,8 +30,11 @@
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
-#include "Utils.h"
-#include "gmic_qt.h"
+#include "Misc.h"
+#include "GmicQt.h"
+
+namespace GmicQt
+{
 
 const size_t FiltersModel::NoIndex = std::numeric_limits<size_t>::max();
 
@@ -78,6 +81,18 @@ const FiltersModel::Filter & FiltersModel::getFilterFromHash(const QString & has
   return _hash2filter.find(hash).value();
 }
 
+FiltersModel::const_iterator FiltersModel::findFilterFromAbsolutePath(const QString & path) const
+{
+  QString plainName = filterFullPathBasename(path);
+  for (auto it = cbegin(); it != cend(); ++it) {
+    // First test on plainText as plain(fullPath) is not immediate to compute
+    if ((it->plainText() == plainName) && (HtmlTranslator::html2txt(it->absolutePathNoTags()) == path)) {
+      return it;
+    }
+  }
+  return cend();
+}
+
 bool FiltersModel::contains(const QString & hash) const
 {
   return (_hash2filter.find(hash) != _hash2filter.cend());
@@ -98,7 +113,7 @@ void FiltersModel::removePath(const QList<QString> & path)
 
 FiltersModel::Filter::Filter()
 {
-  _previewFactor = GmicQt::PreviewFactorAny;
+  _previewFactor = PreviewFactorAny;
   _isAccurateIfZoomed = false;
   _isWarning = false;
 }
@@ -159,7 +174,7 @@ FiltersModel::Filter & FiltersModel::Filter::setWarningFlag(bool flag)
   return *this;
 }
 
-FiltersModel::Filter & FiltersModel::Filter::setDefaultInputMode(GmicQt::InputMode mode)
+FiltersModel::Filter & FiltersModel::Filter::setDefaultInputMode(InputMode mode)
 {
   _defaultInputMode = mode;
   return *this;
@@ -199,6 +214,11 @@ const QList<QString> & FiltersModel::Filter::path() const
   return _path;
 }
 
+const QString FiltersModel::Filter::absolutePathNoTags() const
+{
+  return filterFullPathWithoutTags(_path, _name);
+}
+
 const QString & FiltersModel::Filter::hash() const
 {
   return _hash;
@@ -208,7 +228,7 @@ QString FiltersModel::Filter::hash236() const
 {
   QCryptographicHash hash(QCryptographicHash::Md5);
   QString lowerName(_name);
-  GmicQt::downcaseCommandTitle(lowerName);
+  downcaseCommandTitle(lowerName);
   hash.addData(lowerName.toLocal8Bit());
   hash.addData(_command.toLocal8Bit());
   hash.addData(_previewCommand.toLocal8Bit());
@@ -245,7 +265,7 @@ bool FiltersModel::Filter::isWarning() const
   return _isWarning;
 }
 
-GmicQt::InputMode FiltersModel::Filter::defaultInputMode() const
+InputMode FiltersModel::Filter::defaultInputMode() const
 {
   return _defaultInputMode;
 }
@@ -318,3 +338,5 @@ bool FiltersModel::const_iterator::operator==(const FiltersModel::const_iterator
 {
   return _mapIterator == other._mapIterator;
 }
+
+} // namespace GmicQt

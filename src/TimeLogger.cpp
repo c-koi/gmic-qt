@@ -31,11 +31,13 @@
 #include "Common.h"
 #include "Utils.h"
 
+namespace GmicQt
+{
 std::unique_ptr<TimeLogger> TimeLogger::_instance = nullptr;
 
 TimeLogger::TimeLogger()
 {
-  QString filename = GmicQt::path_rc(true) + "timing_log.txt";
+  QString filename = gmicConfigPath(true) + "timing_log.txt";
   _file = fopen(filename.toLocal8Bit().constData(), "w");
   Q_ASSERT_X(_file, __PRETTY_FUNCTION__, "Cannot open log file");
 }
@@ -68,3 +70,5 @@ void TimeLogger::step(const char * function, int line, const char * filename)
   fprintf(_file, "%02d @%2.3f +%2.3f %s <%s:%d>\n", count++, total, elapsed, function, filename, line);
   last = now;
 }
+
+} // namespace GmicQt

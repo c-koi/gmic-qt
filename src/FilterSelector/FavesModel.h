@@ -29,6 +29,8 @@
 #include <QString>
 #include <cstddef>
 
+namespace GmicQt
+{
 class FavesModel {
 public:
   class Fave {
@@ -44,6 +46,7 @@ public:
 
     const QString & name() const;
     const QString & plainText() const;
+    const QString absolutePath() const;
     const QString & originalName() const;
     const QString & originalHash() const;
     const QString & command() const;
@@ -93,6 +96,7 @@ public:
   void flush() const;
   size_t faveCount() const;
   const_iterator findFaveFromHash(const QString &) const;
+  const_iterator findFaveFromPlainText(const QString &) const;
   const Fave & getFaveFromHash(const QString & hash) const;
   QString uniqueName(const QString & name, const QString & faveHashToIgnore);
   static const size_t NoIndex;
@@ -123,4 +127,7 @@ FavesModel::const_iterator FavesModel::end() const
 {
   return FavesModel::const_iterator(_faves.end());
 }
+
+} // namespace GmicQt
+
 #endif // GMIC_QT_FAVESMODEL_H

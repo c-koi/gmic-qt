@@ -29,9 +29,12 @@
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
 #include "InputOutputState.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 class QSettings;
+
+namespace GmicQt
+{
 
 class FiltersPresenter : public QObject {
   Q_OBJECT
@@ -39,12 +42,13 @@ public:
   struct Filter {
     QString name;
     QString plainTextName;
+    QString fullPath;
     QString command;
     QString previewCommand;
     QString parameters;
     QList<QString> defaultParameterValues;
     QList<int> defaultVisibilityStates;
-    GmicQt::InputMode defaultInputMode;
+    InputMode defaultInputMode;
     QString hash;
     bool isAccurateIfZoomed;
     float previewFactor;
@@ -52,13 +56,14 @@ public:
     void clear();
     void setInvalid();
     bool isInvalid() const;
+    bool isValid() const;
     bool isNoApplyFilter() const;
     bool isNoPreviewFilter() const;
     const char * previewFactorString() const;
   };
 
   FiltersPresenter(QObject * parent);
-  ~FiltersPresenter();
+  ~FiltersPresenter() override;
   void setFiltersView(FiltersView * filtersView);
   void rebuildFilterView();
   void rebuildFilterViewWithSelection(const QList<QString> & keywords);
@@ -81,10 +86,14 @@ public:
   void restoreFaveHashLinksAfterCaseChange();
   void importGmicGTKFaves();
   void saveFaves();
-  void addSelectedFilterAsNewFave(const QList<QString> & defaultValues, const QList<int> & visibilityStates, GmicQt::InputOutputState inOutState);
+  void addSelectedFilterAsNewFave(const QList<QString> & defaultValues, const QList<int> & visibilityStates, InputOutputState inOutState);
 
   void applySearchCriterion(const QString & text);
   void selectFilterFromHash(QString hash, bool notify);
+  void selectFilterFromAbsolutePathOrPlainName(const QString & path);
+  void selectFilterFromAbsolutePath(QString path);
+  void selectFilterFromPlainName(const QString & name);
+  void selectFilterFromCommand(const QString & command);
   const Filter & currentFilter() const;
 
   void loadSettings(const QSettings & settings);
@@ -100,6 +109,13 @@ public:
   void expandAll();
   void collapseAll();
   const QString & errorMessage() const;
+
+  /**
+   * @brief findFilterFromPlainPathInStdlib
+   * Caution: this function parses the stdlib each time it is called
+   */
+  static Filter findFilterFromAbsolutePathOrNameInStdlib(const QString & path);
+  static Filter findFilterFromCommandInStdlib(const QString & command);
 
 signals:
   void filterSelectionChanged();
@@ -126,5 +142,7 @@ private:
   Filter _currentFilter;
   QString _errorMessage;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSPRESENTER_H

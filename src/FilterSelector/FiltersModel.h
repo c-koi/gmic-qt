@@ -29,8 +29,10 @@
 #include <QString>
 #include <cstddef>
 #include <vector>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
+namespace GmicQt
+{
 class FiltersModel {
 public:
   class Filter {
@@ -44,13 +46,14 @@ public:
     Filter & setAccurateIfZoomed(bool accurate);
     Filter & setPath(const QList<QString> & path);
     Filter & setWarningFlag(bool flag);
-    Filter & setDefaultInputMode(GmicQt::InputMode);
+    Filter & setDefaultInputMode(InputMode);
     Filter & build();
 
     const QString & name() const;
     const QString & plainText() const;
     const QString & translatedPlainText() const;
     const QList<QString> & path() const;
+    const QString absolutePathNoTags() const;
     const QString & hash() const;
     QString hash236() const;
     const QString & command() const;
@@ -59,7 +62,7 @@ public:
     float previewFactor() const;
     bool isAccurateIfZoomed() const;
     bool isWarning() const;
-    GmicQt::InputMode defaultInputMode() const;
+    InputMode defaultInputMode() const;
 
     bool matchKeywords(const QList<QString> & keywords) const;
     bool matchFullPath(const QList<QString> & path) const;
@@ -73,7 +76,7 @@ public:
     QList<QString> _translatedPlainPath;
     QString _command;
     QString _previewCommand;
-    GmicQt::InputMode _defaultInputMode;
+    InputMode _defaultInputMode;
     QString _parameters;
     float _previewFactor;
     bool _isAccurateIfZoomed;
@@ -114,9 +117,12 @@ public:
   const_iterator end() const { return _hash2filter.cend(); }
   const_iterator cbegin() const { return _hash2filter.cbegin(); }
   const_iterator cend() const { return _hash2filter.cend(); }
+  const_iterator findFilterFromAbsolutePath(const QString & path) const;
 
 private:
   QMap<QString, Filter> _hash2filter;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSMODEL_H

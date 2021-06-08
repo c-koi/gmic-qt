@@ -24,9 +24,11 @@
  */
 #include "FilterTreeAbstractItem.h"
 #include "FilterTextTranslator.h"
+#include "Globals.h"
 #include "HtmlTranslator.h"
 
-const QChar FilterTreeAbstractItem::WarningPrefix('!');
+namespace GmicQt
+{
 
 FilterTreeAbstractItem::FilterTreeAbstractItem(QString text)
 {
@@ -92,3 +94,5 @@ QString FilterTreeAbstractItem::removeWarningPrefix(QString folderName)
   }
   return folderName;
 }
+
+} // namespace GmicQt

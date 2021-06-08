@@ -31,11 +31,14 @@
 #include "Common.h"
 #include "GmicStdlib.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
 std::unique_ptr<Updater> Updater::_instance = std::unique_ptr<Updater>(nullptr);
-GmicQt::OutputMessageMode Updater::_outputMessageMode = GmicQt::Quiet;
+OutputMessageMode Updater::_outputMessageMode = OutputMessageMode::Quiet;
 
 Updater::Updater(QObject * parent) : QObject(parent)
 {
@@ -51,14 +54,14 @@ Updater * Updater::getInstance()
   return _instance.get();
 }
 
-Updater::~Updater() = default;
+Updater::~Updater() {}
 
 void Updater::updateSources(bool useNetwork)
 {
   _sources.clear();
   _sourceIsStdLib.clear();
   // Build sources map
-  QString prefix = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(_outputMessageMode));
+  QString prefix = commandFromOutputMessageMode(_outputMessageMode);
   if (!prefix.isEmpty()) {
     prefix.push_back(QChar(' '));
   }
@@ -92,8 +95,6 @@ void Updater::updateSources(bool useNetwork)
   //  _sourceIsStdLib.clear();
   //  _sources.push_back("http://localhost:2222/update220.gmic");
   //  _sourceIsStdLib["http://localhost:2222/update220.gmic"] = true;
-
-  // SHOW(_sources);
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
@@ -114,7 +115,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
           TRACE << "Downloading" << str << "to" << filename;
           QUrl url(str);
           QNetworkRequest request(url);
-          request.setHeader(QNetworkRequest::UserAgentHeader, GmicQt::pluginFullName());
+          request.setHeader(QNetworkRequest::UserAgentHeader, pluginFullName());
           // PRIVACY NOTICE (to be displayed in one of the "About" filters of the plugin
           //
           // PRIVACY NOTICE
@@ -238,9 +239,9 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
   _pendingReplies.remove(reply);
   if (_pendingReplies.isEmpty()) {
     if (_errorMessages.isEmpty()) {
-      emit updateIsDone(UpdateSuccessful);
+      emit updateIsDone((int)UpdateStatus::Successful);
     } else {
-      emit updateIsDone(SomeUpdatesFailed);
+      emit updateIsDone((int)UpdateStatus::SomeFailed);
     }
     _networkAccessManager->deleteLater();
     _networkAccessManager = nullptr;
@@ -251,7 +252,7 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
 void Updater::notifyAllDownloadsOK()
 {
   _errorMessages.clear();
-  emit updateIsDone(UpdateSuccessful);
+  emit updateIsDone((int)UpdateStatus::Successful);
 }
 
 void Updater::cancelAllPendingDownloads()
@@ -268,7 +269,7 @@ void Updater::cancelAllPendingDownloads()
 
 void Updater::onUpdateNotNecessary()
 {
-  emit updateIsDone(UpdateNotNecessary);
+  emit updateIsDone((int)UpdateStatus::NotNecessary);
 }
 
 QByteArray Updater::cimgzDecompress(const QByteArray & array)
@@ -307,7 +308,7 @@ QString Updater::localFilename(QString url)
 {
   if (url.startsWith("http://") || url.startsWith("https://")) {
     QUrl u(url);
-    return QString("%1%2").arg(GmicQt::path_rc(true)).arg(u.fileName());
+    return QString("%1%2").arg(gmicConfigPath(true)).arg(u.fileName());
   }
   return url;
 }
@@ -378,7 +379,9 @@ bool Updater::someNetworkUpdateAchieved() const
   return _someNetworkUpdatesAchieved;
 }
 
-void Updater::setOutputMessageMode(GmicQt::OutputMessageMode mode)
+void Updater::setOutputMessageMode(OutputMessageMode mode)
 {
   _outputMessageMode = mode;
 }
+
+} // namespace GmicQt

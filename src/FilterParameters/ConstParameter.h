@@ -28,13 +28,19 @@
 #include "AbstractParameter.h"
 class QLabel;
 
+namespace GmicQt
+{
+
 class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ConstParameter(QObject * parent = nullptr);
   ~ConstParameter() override;
+  virtual int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
+  bool isQuoted() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
@@ -44,5 +50,7 @@ private:
   QString _default;
   QString _value;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CONSTPARAMETER_H

@@ -29,13 +29,18 @@
 #include "AbstractParameter.h"
 class QLabel;
 
+namespace GmicQt
+{
+
 class LinkParameter : public AbstractParameter {
   Q_OBJECT
 public:
   LinkParameter(QObject * parent = nullptr);
   ~LinkParameter() override;
+  int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
@@ -48,5 +53,7 @@ private:
   QString _url;
   Qt::AlignmentFlag _alignment;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_LINKPARAMETER_H

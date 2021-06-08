@@ -40,6 +40,9 @@
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 FavesModelReader::FavesModelReader(FavesModel & model) : _model(model) {}
 
 bool FavesModelReader::gmicGTKFaveFileAvailable()
@@ -57,13 +60,13 @@ FavesModel::Fave FavesModelReader::jsonObjectToFave(const QJsonObject & object)
   fave.setPreviewCommand(object.value("preview").toString());
   QStringList defaultParameters;
   QJsonArray array = object.value("defaultParameters").toArray();
-  for (const QJsonValueRef & value : array) {
+  for (const QJsonValueRef value : array) {
     defaultParameters.push_back(value.toString());
   }
   fave.setDefaultValues(defaultParameters);
   QList<int> defaultVisibilities;
   array = object.value("defaultVisibilities").toArray();
-  for (const QJsonValueRef & value : array) {
+  for (QJsonValueRef value : array) {
     defaultVisibilities.push_back(value.toInt());
   }
   fave.setDefaultVisibilities(defaultVisibilities);
@@ -112,7 +115,7 @@ void FavesModelReader::importFavesFromGmicGTK()
 void FavesModelReader::loadFaves()
 {
   // Read JSON faves if file exists
-  QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves.json"));
+  QString jsonFilename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves.json"));
   QFile jsonFile(jsonFilename);
   if (jsonFile.exists()) {
     if (jsonFile.open(QIODevice::ReadOnly)) {
@@ -135,7 +138,7 @@ void FavesModelReader::loadFaves()
   }
 
   // Read old 2.0.0 prerelease file format if no JSON was found
-  QString filename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves"));
+  QString filename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves"));
   QFile file(filename);
   if (file.exists()) {
     if (file.open(QIODevice::ReadOnly)) {
@@ -179,5 +182,7 @@ void FavesModelReader::loadFaves()
 
 QString FavesModelReader::gmicGTKFavesFilename()
 {
-  return QString("%1%2").arg(GmicQt::path_rc(false)).arg("gimp_faves");
+  return QString("%1%2").arg(gmicConfigPath(false)).arg("gimp_faves");
 }
+
+} // namespace GmicQt

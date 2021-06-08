@@ -29,11 +29,19 @@
 #include "Common.h"
 #include "DialogSettings.h"
 
-SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent, false), _frame(nullptr) {}
+namespace GmicQt
+{
+
+SeparatorParameter::SeparatorParameter(QObject * parent) : AbstractParameter(parent), _frame(nullptr) {}
 
 SeparatorParameter::~SeparatorParameter()
 {
   delete _frame;
+}
+
+int SeparatorParameter::size() const
+{
+  return 0;
 }
 
 bool SeparatorParameter::addTo(QWidget * widget, int row)
@@ -57,7 +65,12 @@ bool SeparatorParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString SeparatorParameter::textValue() const
+QString SeparatorParameter::value() const
+{
+  return QString();
+}
+
+QString SeparatorParameter::defaultValue() const
 {
   return QString();
 }
@@ -72,3 +85,5 @@ bool SeparatorParameter::initFromText(const char * text, int & textLength)
   unused(list);
   return true;
 }
+
+} // namespace GmicQt

@@ -35,6 +35,9 @@
 #include "Common.h"
 #include "DialogSettings.h"
 
+namespace GmicQt
+{
+
 CustomDoubleSpinBox::CustomDoubleSpinBox(QWidget * parent, float min, float max) : QDoubleSpinBox(parent)
 {
   setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -85,11 +88,11 @@ QSize CustomDoubleSpinBox::minimumSizeHint() const
 void CustomDoubleSpinBox::keyPressEvent(QKeyEvent * event)
 {
   QString text = event->text();
-  if ((text.length() == 1 && text[0].isDigit()) ||      //
-      (text == DialogSettings::DecimalPoint) ||         //
-      (text == DialogSettings::NegativeSign) ||         //
-      (text == DialogSettings::GroupSeparator) ||       //
-      (event->key() == Qt::Key_Backspace) ||            //
+  if ((text.length() == 1 && text[0].isDigit()) || //
+      (text == DialogSettings::DecimalPoint) ||    //
+      (text == DialogSettings::NegativeSign) ||    //
+      (text == DialogSettings::GroupSeparator) ||  //
+      (event->key() == Qt::Key_Backspace) ||       //
       (event->key() == Qt::Key_Delete)) {
     _unfinishedKeyboardEditing = true;
   }
@@ -104,3 +107,5 @@ int CustomDoubleSpinBox::integerPartDigitCount(float value)
   }
   return text.length();
 }
+
+} // namespace GmicQt

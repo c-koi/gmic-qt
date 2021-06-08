@@ -36,9 +36,7 @@
 #include <QVector>
 #include <deque>
 #include "InputOutputState.h"
-#include "gmic_qt.h"
-class FilterThread;
-class FilterSyncRunner;
+#include "GmicQt.h"
 
 namespace cimg_library
 {
@@ -46,15 +44,20 @@ template <typename T> struct CImgList;
 template <typename T> struct CImg;
 } // namespace cimg_library
 
+namespace GmicQt
+{
+class FilterThread;
+class FilterSyncRunner;
+
 class GmicProcessor : public QObject {
   Q_OBJECT
 public:
   struct FilterContext {
-    enum RequestType
+    enum class RequestType
     {
-      SynchronousPreviewProcessing,
-      PreviewProcessing,
-      FullImageProcessing
+      SynchronousPreview,
+      Preview,
+      FullImage
     };
     struct VisibleRect {
       double x, y, w, h;
@@ -65,8 +68,8 @@ public:
     };
     RequestType requestType;
     VisibleRect visibleRect;
-    GmicQt::InputOutputState inputOutputState;
-    GmicQt::OutputMessageMode outputMessageMode;
+    InputOutputState inputOutputState;
+    OutputMessageMode outputMessageMode;
     PositionStringCorrection positionStringCorrection;
     double zoomFactor;
     int previewWidth;
@@ -74,11 +77,13 @@ public:
     int previewTimeout;
     QString filterName;
     QString filterCommand;
+    QString filterFullPath;
     QString filterArguments;
     QString filterHash;
   };
 
   GmicProcessor(QObject * parent = nullptr);
+  ~GmicProcessor() override;
   void init();
   void setContext(const FilterContext & context);
   void execute();
@@ -92,20 +97,16 @@ public:
   const cimg_library::CImg<float> & previewImage() const;
   const QStringList & gmicStatus() const;
   const QList<int> & parametersVisibilityStates() const;
+  void setGmicStatusQuotedParameters(const QVector<bool> & quotedParameters);
 
   void saveSettings(QSettings & settings);
-  ~GmicProcessor() override;
 
   int duration() const;
   float progress() const;
-
   int lastPreviewFilterExecutionDurationMS() const;
   void resetLastPreviewFilterExecutionDurations();
   void recordPreviewFilterExecutionDurationMS(int duration);
   int averagePreviewFilterExecutionDuration() const;
-
-  void setGmicStatusQuotedParameters(const QString & v);
-
   int completedFullImageProcessingCount() const;
 
 public slots:
@@ -115,7 +116,7 @@ signals:
   void previewCommandFailed(QString errorMessage);
   void fullImageProcessingFailed(QString errorMessage);
   void previewImageAvailable();
-  void fullImageProcessingDone(); // TODO : Use for example to close the window
+  void fullImageProcessingDone();
   void noMoreUnfinishedJobs();
   void aboutToSendImagesToHost();
 
@@ -143,16 +144,18 @@ private:
   QTimer _waitingCursorTimer;
   static const int WAITING_CURSOR_DELAY = 200;
 
-  QString _lastAppliedFilterName;
+  QString _lastAppliedFilterPath;
+  QString _lastAppliedFilterHash;
   QString _lastAppliedCommand;
   QString _lastAppliedCommandArguments;
   QStringList _lastAppliedCommandGmicStatus;
-  QString _gmicStatusQuotedParameters;
-  QString _lastAppliedCommandEnv;
-  GmicQt::InputOutputState _lastAppliedCommandInOutState;
+  InputOutputState _lastAppliedCommandInOutState;
   QElapsedTimer _filterExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;
+  QVector<bool> _gmicStatusQuotedParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_GMICPROCESSOR_H

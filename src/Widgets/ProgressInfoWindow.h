@@ -28,9 +28,7 @@
 #include <QMainWindow>
 #include <QString>
 #include <QTimer>
-#include "gmic_qt.h"
-
-class FilterThread;
+#include "GmicQt.h"
 
 namespace Ui
 {
@@ -42,6 +40,11 @@ namespace cimg_library
 template <typename T> struct CImgList;
 }
 
+namespace GmicQt
+{
+
+class FilterThread;
+
 class HeadlessProcessor;
 
 class ProgressInfoWindow : public QMainWindow {
@@ -49,7 +52,7 @@ class ProgressInfoWindow : public QMainWindow {
 
 public:
   explicit ProgressInfoWindow(HeadlessProcessor * processor);
-  ~ProgressInfoWindow();
+  ~ProgressInfoWindow() override;
 
 protected:
   void showEvent(QShowEvent *) override;
@@ -59,6 +62,7 @@ protected:
 public slots:
   void onCancelClicked(bool);
   void onProgress(float progress, int duration, unsigned long memory);
+  void onInfo(QString text);
   void onProcessingFinished(const QString & errorMessage);
 
 private:
@@ -66,5 +70,7 @@ private:
   bool _isShown;
   HeadlessProcessor * _processor;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_PROGRESSINFOWINDOW_H

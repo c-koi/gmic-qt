@@ -27,11 +27,16 @@
 
 #include <QByteArray>
 
+namespace GmicQt
+{
+
 class GmicStdLib {
 public:
   GmicStdLib() = delete;
   static void loadStdLib();
   static QByteArray Array;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_GMICSTDLIB_H

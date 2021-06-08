@@ -35,9 +35,9 @@
 #include <QTextCodec>
 #endif
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "ImageTools.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 /*
@@ -81,16 +81,13 @@
 typedef struct _GmicQtPlugin GmicQtPlugin;
 typedef struct _GmicQtPluginClass GmicQtPluginClass;
 
-struct _GmicQtPlugin
-{
+struct _GmicQtPlugin {
   GimpPlugIn parent_instance;
 };
 
-struct _GmicQtPluginClass
-{
+struct _GmicQtPluginClass {
   GimpPlugInClass parent_class;
 };
-
 
 #define GMIC_QT_TYPE (gmic_qt_get_type())
 // The object is called GmicQtPlugin to avoid name conflict with the namespace.
@@ -98,51 +95,38 @@ struct _GmicQtPluginClass
 
 GType gmic_qt_get_type(void) G_GNUC_CONST;
 
-static GList * gmic_qt_query(GimpPlugIn *plug_in);
-static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn *plug_in,
-                                                const gchar *name);
+static GList * gmic_qt_query(GimpPlugIn * plug_in);
+static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name);
 
-static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
-                                    GimpRunMode run_mode,
-                                    GimpImage *image,
-                                    GimpDrawable *drawable,
-                                    const GimpValueArray *args,
-                                    gpointer run_data);
-
-
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data);
 
 G_DEFINE_TYPE(GmicQtPlugin, gmic_qt, GIMP_TYPE_PLUG_IN)
 
 GIMP_MAIN(GMIC_QT_TYPE)
 
-
-static void
-gmic_qt_class_init(GmicQtPluginClass *klass)
+static void gmic_qt_class_init(GmicQtPluginClass * klass)
 {
-  GimpPlugInClass *plug_in_class = GIMP_PLUG_IN_CLASS(klass);
+  GimpPlugInClass * plug_in_class = GIMP_PLUG_IN_CLASS(klass);
 
   plug_in_class->query_procedures = gmic_qt_query;
   plug_in_class->create_procedure = gmic_qt_create_procedure;
 }
 
-static void
-gmic_qt_init(GmicQtPlugin *gmic_qt)
-{
-}
+static void gmic_qt_init(GmicQtPlugin * gmic_qt) {}
 
 #endif
 
-namespace GmicQt
+namespace GmicQtHost
 {
-const QString HostApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
-const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+const QString ApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
+const char * const ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
 #if GIMP_VERSION_LTE(2, 8)
 const bool DarkThemeIsDefault = false;
 #else
 const bool DarkThemeIsDefault = true;
 #endif
 
-} // namespace GmicQt
+} // namespace GmicQtHost
 
 namespace
 {
@@ -362,9 +346,61 @@ _GimpLayerPtr * get_gimp_layers_flat_list(_GimpImagePtr imageId, int * count)
   return layersId.data();
 }
 
+template <typename T> void image2uchar(cimg_library::CImg<T> & img)
+{
+  unsigned int len = img.width() * img.height();
+  auto dst = reinterpret_cast<unsigned char *>(img.data());
+  switch (img.spectrum()) {
+  case 1: {
+    const T * src = img.data(0, 0, 0, 0);
+    while (len--) {
+      *dst++ = static_cast<unsigned char>(*src++);
+    }
+  } break;
+  case 2: {
+    const T * srcG = img.data(0, 0, 0, 0);
+    const T * srcA = img.data(0, 0, 0, 1);
+    while (len--) {
+      dst[0] = static_cast<unsigned char>(*srcG++);
+      dst[1] = static_cast<unsigned char>(*srcA++);
+      dst += 2;
+    }
+  } break;
+  case 3: {
+    const T * srcR = img.data(0, 0, 0, 0);
+    const T * srcG = img.data(0, 0, 0, 1);
+    const T * srcB = img.data(0, 0, 0, 2);
+    while (len--) {
+      dst[0] = static_cast<unsigned char>(*srcR++);
+      dst[1] = static_cast<unsigned char>(*srcG++);
+      dst[2] = static_cast<unsigned char>(*srcB++);
+      dst += 3;
+    }
+  } break;
+  case 4: {
+    const T * srcR = img.data(0, 0, 0, 0);
+    const T * srcG = img.data(0, 0, 0, 1);
+    const T * srcB = img.data(0, 0, 0, 2);
+    const T * srcA = img.data(0, 0, 0, 3);
+    while (len--) {
+      dst[0] = static_cast<unsigned char>(*srcR++);
+      dst[1] = static_cast<unsigned char>(*srcG++);
+      dst[2] = static_cast<unsigned char>(*srcB++);
+      dst[3] = static_cast<unsigned char>(*srcA++);
+      dst += 4;
+    }
+  } break;
+  default:
+    return;
+  }
+}
+
 } // namespace
 
-void gmic_qt_show_message(const char * message)
+namespace GmicQtHost
+{
+
+void showMessage(const char * message)
 {
   static bool first = true;
 
@@ -376,7 +412,7 @@ void gmic_qt_show_message(const char * message)
   }
 }
 
-void gmic_qt_apply_color_profile(cimg_library::CImg<float> & image)
+void applyColorProfile(cimg_library::CImg<float> & image)
 {
 #if GIMP_VERSION_LTE(2, 8)
   unused(image);
@@ -413,7 +449,7 @@ void gmic_qt_apply_color_profile(cimg_library::CImg<float> & image)
 #endif
 }
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
 {
   int layersCount = 0;
   // _GimpLayerPtr * begLayers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
@@ -424,17 +460,17 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
   // Build list of input layers IDs
   std::vector<_GimpLayerPtr> layers;
   switch (mode) {
-  case GmicQt::NoInput:
+  case GmicQt::InputMode::NoInput:
     break;
-  case GmicQt::Active:
+  case GmicQt::InputMode::Active:
     if ((activeLayerID >= 0) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
       layers.push_back(activeLayerID);
     }
     break;
-  case GmicQt::All:
+  case GmicQt::InputMode::All:
     layers.assign(begLayers, endLayers);
     break;
-  case GmicQt::ActiveAndBelow:
+  case GmicQt::InputMode::ActiveAndBelow:
     if ((activeLayerID >= 0) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
       layers.push_back(activeLayerID);
       _GimpLayerPtr * p = std::find(begLayers, endLayers, activeLayerID);
@@ -443,7 +479,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
       }
     }
     break;
-  case GmicQt::ActiveAndAbove:
+  case GmicQt::InputMode::ActiveAndAbove:
     if ((activeLayerID >= 0) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
       _GimpLayerPtr * p = std::find(begLayers, endLayers, activeLayerID);
       if (p > begLayers) {
@@ -452,9 +488,9 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
       layers.push_back(activeLayerID);
     }
     break;
-  case GmicQt::AllVisible:
-  case GmicQt::AllInvisible: {
-    bool visibility = (mode == GmicQt::AllVisible);
+  case GmicQt::InputMode::AllVisible:
+  case GmicQt::InputMode::AllInvisible: {
+    bool visibility = (mode == GmicQt::InputMode::AllVisible);
     for (int i = 0; i < layersCount; ++i) {
       if (_gimp_item_get_visible(_GIMP_ITEM(begLayers[i])) == visibility) {
         layers.push_back(begLayers[i]);
@@ -480,25 +516,7 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
   }
 }
 
-void gmic_qt_get_image_size(int * width, int * height)
-{
-  *width = 0;
-  *height = 0;
-  int layersCount = 0;
-  get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
-  if (layersCount > 0) {
-    _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
-    if (active_layer_id >= 0) {
-      if (gimp_item_is_valid(_GIMP_ITEM(active_layer_id))) {
-        _GimpImagePtr id = gimp_item_get_image(_GIMP_ITEM(active_layer_id));
-        *width = gimp_image_width(id);
-        *height = gimp_image_height(id);
-      }
-    }
-  }
-}
-
-void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   using cimg_library::CImg;
   using cimg_library::CImgList;
@@ -518,17 +536,17 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   // Build list of input layers IDs
   inputLayers.clear();
   switch (mode) {
-  case GmicQt::NoInput:
+  case GmicQt::InputMode::NoInput:
     break;
-  case GmicQt::Active:
+  case GmicQt::InputMode::Active:
     if ((active_layer_id >= 0) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
       inputLayers.push_back(active_layer_id);
     }
     break;
-  case GmicQt::All:
+  case GmicQt::InputMode::All:
     inputLayers.assign(layers, end_layers);
     break;
-  case GmicQt::ActiveAndBelow:
+  case GmicQt::InputMode::ActiveAndBelow:
     if ((active_layer_id >= 0) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
       inputLayers.push_back(active_layer_id);
       _GimpLayerPtr * p = std::find(layers, end_layers, active_layer_id);
@@ -537,7 +555,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
       }
     }
     break;
-  case GmicQt::ActiveAndAbove:
+  case GmicQt::InputMode::ActiveAndAbove:
     if ((active_layer_id >= 0) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
       _GimpLayerPtr * p = std::find(layers, end_layers, active_layer_id);
       if (p > layers) {
@@ -546,9 +564,9 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
       inputLayers.push_back(active_layer_id);
     }
     break;
-  case GmicQt::AllVisible:
-  case GmicQt::AllInvisible: {
-    bool visibility = (mode == GmicQt::AllVisible);
+  case GmicQt::InputMode::AllVisible:
+  case GmicQt::InputMode::AllInvisible: {
+    bool visibility = (mode == GmicQt::InputMode::AllVisible);
     for (int i = 0; i < layersCount; ++i) {
       if (_gimp_item_get_visible(_GIMP_ITEM(layers[i])) == visibility) {
         inputLayers.push_back(layers[i]);
@@ -642,7 +660,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
   }
 }
 
-void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
+void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode outputMode)
 {
   // Output modes in original gmic_gimp_gtk : 0/Replace 1/New layer 2/New active layer  3/New image
 
@@ -681,7 +699,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
   int is_selection = 0, sel_x0 = 0, sel_y0 = 0, sel_x1 = 0, sel_y1 = 0;
   if (!gimp_selection_bounds(gmic_qt_gimp_image_id, &is_selection, &sel_x0, &sel_y0, &sel_x1, &sel_y1)) {
     is_selection = 0;
-  } else if (outputMode == GmicQt::InPlace || outputMode == GmicQt::NewImage) {
+  } else if (outputMode == GmicQt::OutputMode::InPlace || outputMode == GmicQt::OutputMode::NewImage) {
     sel_x0 = sel_y0 = 0;
   }
 
@@ -705,7 +723,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
   double layer_opacity = 100;
   cimg_library::CImg<char> layer_name;
 
-  if (outputMode == GmicQt::InPlace) {
+  if (outputMode == GmicQt::OutputMode::InPlace) {
     gint rgn_x, rgn_y, rgn_width, rgn_height;
     gimp_image_undo_group_start(gmic_qt_gimp_image_id);
     if (is_compatible_dimensions) { // Direct replacement of the layer data.
@@ -716,13 +734,13 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
         cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
         get_output_layer_props(imageNames[p], layer_blendmode, layer_opacity, layer_posx, layer_posy, layer_name);
         cimg_library::CImg<gmic_pixel_type> & img = images[p];
-        GmicQt::calibrate_image(img, inputLayerDimensions(p, 3), false);
+        GmicQt::calibrateImage(img, inputLayerDimensions(p, 3), false);
         if (gimp_drawable_mask_intersect(_GIMP_DRAWABLE(inputLayers[p]), &rgn_x, &rgn_y, &rgn_width, &rgn_height)) {
 #if GIMP_VERSION_LTE(2, 8)
           GimpDrawable * drawable = gimp_drawable_get(inputLayers[p]);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, rgn_x, rgn_y, rgn_width, rgn_height, true, true);
-          GmicQt::image2uchar(img);
+          image2uchar(img);
           gimp_pixel_rgn_set_rect(&region, (guchar *)img.data(), rgn_x, rgn_y, rgn_width, rgn_height);
           gimp_drawable_flush(drawable);
           gimp_drawable_merge_shadow(inputLayers[p], true);
@@ -788,9 +806,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           bottom_right.y = std::max(bottom_right.y, (gint)(layer_posy + images[p]._height));
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
           if (gimp_image_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
-            GmicQt::calibrate_image(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
+            GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
           } else {
-            GmicQt::calibrate_image(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
+            GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
           _GimpLayerPtr layer_id = gimp_layer_new(gmic_qt_gimp_image_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
@@ -803,7 +821,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
-          GmicQt::image2uchar(img);
+          image2uchar(img);
           gimp_pixel_rgn_set_rect(&region, (guchar *)img.data(), 0, 0, img.width(), img.height());
           gimp_drawable_flush(drawable);
           gimp_drawable_merge_shadow(layer_id, true);
@@ -833,7 +851,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
       }
     }
     gimp_image_undo_group_end(gmic_qt_gimp_image_id);
-  } else if (outputMode == GmicQt::NewActiveLayers || outputMode == GmicQt::NewLayers) {
+  } else if (outputMode == GmicQt::OutputMode::NewActiveLayers || outputMode == GmicQt::OutputMode::NewLayers) {
     _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
     if (active_layer_id >= 0) {
       gimp_image_undo_group_start(gmic_qt_gimp_image_id);
@@ -862,9 +880,9 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
 
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
           if (gimp_image_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
-            GmicQt::calibrate_image(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
+            GmicQt::calibrateImage(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
           } else {
-            GmicQt::calibrate_image(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
+            GmicQt::calibrateImage(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
           layer_id = gimp_layer_new(gmic_qt_gimp_image_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           if (!p) {
@@ -880,7 +898,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
-          GmicQt::image2uchar(img);
+          image2uchar(img);
           gimp_pixel_rgn_set_rect(&region, (guchar *)img.data(), 0, 0, img.width(), img.height());
           gimp_drawable_flush(drawable);
           gimp_drawable_merge_shadow(layer_id, true);
@@ -904,7 +922,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
         if (Mw && Mh) {
           gimp_image_resize(gmic_qt_gimp_image_id, Mw, Mh, -top_left.x, -top_left.y);
         }
-        if (outputMode == GmicQt::NewLayers) {
+        if (outputMode == GmicQt::OutputMode::NewLayers) {
           gimp_image_set_active_layer(gmic_qt_gimp_image_id, active_layer_id);
         } else {
           gimp_image_set_active_layer(gmic_qt_gimp_image_id, top_layer_id);
@@ -912,7 +930,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
       }
       gimp_image_undo_group_end(gmic_qt_gimp_image_id);
     }
-  } else if (outputMode == GmicQt::NewImage && images.size()) {
+  } else if (outputMode == GmicQt::OutputMode::NewImage && images.size()) {
     _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
     const unsigned int max_width = (unsigned int)bottom_right.x;
     const unsigned int max_height = (unsigned int)bottom_right.y;
@@ -943,7 +961,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           }
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
           if (gimp_image_base_type(nimage_id) != GIMP_GRAY) {
-            GmicQt::calibrate_image(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
+            GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
           _GimpLayerPtr layer_id = gimp_layer_new(nimage_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
           gimp_layer_set_offsets(layer_id, layer_posx, layer_posy);
@@ -956,7 +974,7 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
-          GmicQt::image2uchar(img);
+          image2uchar(img);
           gimp_pixel_rgn_set_rect(&region, (guchar *)img.data(), 0, 0, img.width(), img.height());
           gimp_drawable_flush(drawable);
           gimp_drawable_merge_shadow(layer_id, true);
@@ -982,18 +1000,21 @@ void gmic_qt_output_images(gmic_list<gmic_pixel_type> & images, const gmic_list<
   gimp_displays_flush();
 }
 
+} // namespace GmicQtHost
+
 #if GIMP_VERSION_LTE(2, 98)
 /*
  * 'Run' function, required by the GIMP plug-in API.
  */
 void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam * param, gint * nreturn_vals, GimpParam ** return_vals)
 {
-  TIMING;
 #if (GIMP_MAJOR_VERSION == 2 && GIMP_MINOR_VERSION > 8) || (GIMP_MAJOR_VERSION >= 3)
-  gegl_init(NULL, NULL);
+  gegl_init(nullptr, nullptr);
   gimp_plugin_enable_precision();
 #endif
 
+  GmicQt::RunParameters pluginParameters;
+  bool accepted = true;
   static GimpParam return_values[1];
   *return_vals = return_values;
   *nreturn_vals = 1;
@@ -1002,18 +1023,33 @@ void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam *
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
-    launchPlugin();
+    GmicQt::run(GmicQt::UserInterfaceMode::Full, //
+                GmicQt::RunParameters(),         //
+                std::list<GmicQt::InputMode>(),  //
+                std::list<GmicQt::OutputMode>(), //
+                &accepted);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
-    launchPluginHeadlessUsingLastParameters();
+    GmicQt::run(GmicQt::UserInterfaceMode::ProgressDialog,                                                       //
+                GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution), //
+                std::list<GmicQt::InputMode>(),                                                                  //
+                std::list<GmicQt::OutputMode>(),                                                                 //
+                &accepted);
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = param[1].data.d_drawable;
-    launchPluginHeadless(param[5].data.d_string, (GmicQt::InputMode)(param[3].data.d_int32 + GmicQt::NoInput), GmicQt::OutputMode(param[4].data.d_int32 + GmicQt::InPlace));
+    pluginParameters.command = param[5].data.d_string;
+    pluginParameters.inputMode = static_cast<GmicQt::InputMode>(param[3].data.d_int32 + (int)GmicQt::InputMode::NoInput);
+    pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(param[4].data.d_int32 + (int)GmicQt::OutputMode::InPlace);
+    run(GmicQt::UserInterfaceMode::Silent, //
+        pluginParameters,                  //
+        std::list<GmicQt::InputMode>(),    //
+        std::list<GmicQt::OutputMode>(),   //
+        &accepted);
     break;
   }
-  return_values[0].data.d_status = pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;
+  return_values[0].data.d_status = accepted ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL;
 }
 
 void gmic_qt_query()
@@ -1055,8 +1091,7 @@ MAIN()
 
 #else
 
-static GList *
-gmic_qt_query(GimpPlugIn *plug_in)
+static GList * gmic_qt_query(GimpPlugIn * plug_in)
 {
   return g_list_append(NULL, g_strdup(PLUG_IN_PROC));
 }
@@ -1064,88 +1099,80 @@ gmic_qt_query(GimpPlugIn *plug_in)
 /*
  * 'Run' function, required by the GIMP plug-in API.
  */
-static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
-                                     GimpRunMode run_mode,
-                                     GimpImage *image,
-                                     GimpDrawable *drawable,
-                                     const GimpValueArray *args,
-                                     gpointer run_data)
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data)
 {
-  TIMING;
   gegl_init(NULL, NULL);
   // gimp_plugin_enable_precision(); // what is this?
-
+  GmicQt::RunParameters pluginParameters;
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPlugin();
+    launchPlugin(GmicQt::UserInterfaceMode::Full);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = image;
-    launchPluginHeadlessUsingLastParameters();
+    launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution));
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPluginHeadless(g_value_get_string(gimp_value_array_index(args, 2)), (GmicQt::InputMode)(g_value_get_int(gimp_value_array_index(args, 0)) + GmicQt::NoInput), GmicQt::OutputMode(g_value_get_int(gimp_value_array_index(args, 1)) + GmicQt::InPlace));
+    pluginParameters.command = g_value_get_string(gimp_value_array_index(args, 2));
+    pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + (int)GmicQt::InputMode::NoInput);
+    pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + (int)GmicQt::OutputMode::InPlace);
+    launchPlugin(GmicQt::UserInterfaceMode::Silent, pluginParameters);
     break;
   }
   return gimp_procedure_new_return_values(procedure, pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL, NULL);
 }
 
-static GimpProcedure *
-gmic_qt_create_procedure(GimpPlugIn *plug_in,
-                          const gchar *name)
+static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name)
 {
-  GimpProcedure *procedure = NULL;
+  GimpProcedure * procedure = NULL;
 
-  if (strcmp(name, PLUG_IN_PROC) == 0)
-    {
-      procedure = gimp_image_procedure_new(plug_in, name,
-                                           GIMP_PDB_PROC_TYPE_PLUGIN,
-                                           gmic_qt_run, NULL, NULL);
+  if (strcmp(name, PLUG_IN_PROC) == 0) {
+    procedure = gimp_image_procedure_new(plug_in, name, GIMP_PDB_PROC_TYPE_PLUGIN, gmic_qt_run, NULL, NULL);
 
-      gimp_procedure_set_image_types(procedure, "RGB*, GRAY*");
+    gimp_procedure_set_image_types(procedure, "RGB*, GRAY*");
 
-      QByteArray path("G'MIC-Qt...");
-      path.prepend("_");
-      gimp_procedure_set_menu_label(procedure, path.constData());
-      gimp_procedure_add_menu_path(procedure, "<Image>/Filters");
+    QByteArray path("G'MIC-Qt...");
+    path.prepend("_");
+    gimp_procedure_set_menu_label(procedure, path.constData());
+    gimp_procedure_add_menu_path(procedure, "<Image>/Filters");
 
-      QByteArray blurb = QString("G'MIC-Qt (%1)").arg(GmicQt::gmicVersionString()).toLatin1();
-      gimp_procedure_set_documentation(procedure,
-                                       blurb.constData(), // blurb
-                                       blurb.constData(), // help
-                                       name); // help_id
-      gimp_procedure_set_attribution(procedure,
-                                     "S\303\251bastien Fourey", // author
-                                     "S\303\251bastien Fourey", // copyright
-                                     "2017"); // date
+    QByteArray blurb = QString("G'MIC-Qt (%1)").arg(GmicQt::gmicVersionString()).toLatin1();
+    gimp_procedure_set_documentation(procedure,
+                                     blurb.constData(), // blurb
+                                     blurb.constData(), // help
+                                     name);             // help_id
+    gimp_procedure_set_attribution(procedure,
+                                   "S\303\251bastien Fourey", // author
+                                   "S\303\251bastien Fourey", // copyright
+                                   "2017");                   // date
 
-      GIMP_PROC_ARG_INT(procedure,
-        "input", // name
-        "input", // nick
-        "Input layers mode, when non-interactive (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles)", // blurb
-        0, // min
-        6, // max
-        0, // default
-        G_PARAM_READWRITE); // flags
+    GIMP_PROC_ARG_INT(procedure,
+                      "input",                                                                                                                                   // name
+                      "input",                                                                                                                                   // nick
+                      "Input layers mode, when non-interactive (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles)", // blurb
+                      0,                                                                                                                                         // min
+                      6,                                                                                                                                         // max
+                      0,                                                                                                                                         // default
+                      G_PARAM_READWRITE);                                                                                                                        // flags
 
-      GIMP_PROC_ARG_INT(procedure,
-        "output", // name
-        "output", // nick
-        "Output mode, when non-interactive (0=in place,1=new layers,2=new active layers,3=new image)", // blurb
-        0, // min
-        3, // max
-        0, // default
-        G_PARAM_READWRITE); // flags
+    GIMP_PROC_ARG_INT(procedure,
+                      "output",                                                                                      // name
+                      "output",                                                                                      // nick
+                      "Output mode, when non-interactive (0=in place,1=new layers,2=new active layers,3=new image)", // blurb
+                      0,                                                                                             // min
+                      3,                                                                                             // max
+                      0,                                                                                             // default
+                      G_PARAM_READWRITE);                                                                            // flags
 
-      GIMP_PROC_ARG_STRING(procedure,
-        "command", // name
-        "command", // nick
-        "G'MIC command string, when non-interactive", // blurb
-        "", // default
-        G_PARAM_READWRITE); // flags
-     }
+    GIMP_PROC_ARG_STRING(procedure,
+                         "command",                                    // name
+                         "command",                                    // nick
+                         "G'MIC command string, when non-interactive", // blurb
+                         "",                                           // default
+                         G_PARAM_READWRITE);                           // flags
+  }
 
   return procedure;
 }

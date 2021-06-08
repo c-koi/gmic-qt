@@ -29,7 +29,15 @@
 #include "CImg.h"
 #include "Common.h"
 
+namespace GmicQt
+{
+
 QTextDocument HtmlTranslator::_document;
+
+QString HtmlTranslator::removeTags(QString str)
+{
+  return str.remove(QRegularExpression("<[^>]*>"));
+}
 
 // TODO : enum param force + enum param translate
 QString HtmlTranslator::html2txt(const QString & str, bool force)
@@ -43,7 +51,7 @@ QString HtmlTranslator::html2txt(const QString & str, bool force)
 
 bool HtmlTranslator::hasHtmlEntities(const QString & str)
 {
-  return str.contains(QRegularExpression("&[a-zA-Z]+;")) || str.contains(QRegularExpression("&#x?[0-9A-Fa-f]+;")) || str.contains(QRegularExpression("<[a-zA-Z]*>"));
+  return str.contains(QRegularExpression("&[a-zA-Z]+;")) || str.contains(QRegularExpression("&#x?[0-9A-Fa-f]+;")) || str.contains(QRegularExpression("</?[a-zA-Z]*>|<[a-zA-Z]*/>"));
 }
 
 QString HtmlTranslator::fromUtf8Escapes(const QString & str)
@@ -52,3 +60,5 @@ QString HtmlTranslator::fromUtf8Escapes(const QString & str)
   cimg_library::cimg::strunescape(ba.data());
   return QString::fromUtf8(ba);
 }
+
+} // namespace GmicQt

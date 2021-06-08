@@ -28,65 +28,61 @@
 #include <QObject>
 #include <QString>
 #include <QTimer>
-#include "gmic_qt.h"
-
-class FilterThread;
+#include <QVector>
+#include "GmicQt.h"
 
 namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
 
+namespace GmicQt
+{
+class FilterThread;
+class ProgressInfoWindow;
+
 class HeadlessProcessor : public QObject {
   Q_OBJECT
 
 public:
-  /**
-   * @brief Construct a headless processor a given command and arguments
-   *        (e.g. GIMP script mode)
-   *
-   * @param parent
-   */
-  explicit HeadlessProcessor(QObject * parent, const char * command, GmicQt::InputMode inputMode, GmicQt::OutputMode outputMode);
-
-  /**
-   * @brief Construct a headless processor using last execution parameters
-   *
-   * @param parent
-   */
-  explicit HeadlessProcessor(QObject * parent = nullptr);
-
-  ~HeadlessProcessor();
+  explicit HeadlessProcessor(QObject * parent);
+  ~HeadlessProcessor() override;
   QString command() const;
   QString filterName() const;
-  void setProgressWindowFlag(bool);
+  void setProgressWindow(ProgressInfoWindow *);
   bool processingCompletedProperly();
-
+  bool setPluginParameters(const RunParameters & parameters);
+  const QString & error() const;
 public slots:
   void startProcessing();
-  void onTimeout();
+  void sendProgressInformation();
   void onProcessingFinished();
   void cancel();
 signals:
-  void singleShotTimeout();
+  void progressWindowShouldShow();
   void done(QString errorMessage);
   void progression(float progress, int duration, unsigned long memory);
 
 private:
+  void endApplication(const QString & errorMessage);
   FilterThread * _filterThread;
   cimg_library::CImgList<float> * _gmicImages;
+  ProgressInfoWindow * _progressWindow;
   QTimer _timer;
   QString _filterName;
-  QString _lastCommand;
-  QString _lastArguments;
-  GmicQt::OutputMode _outputMode;
-  GmicQt::OutputMessageMode _outputMessageMode;
-  GmicQt::InputMode _inputMode;
-  QString _lastEnvironment;
-  bool _hasProgressWindow;
+  QString _path;
+  QString _command;
+  QString _arguments;
+  OutputMode _outputMode;
+  OutputMessageMode _outputMessageMode;
+  InputMode _inputMode;
   QTimer _singleShotTimer;
-  QString _gmicStatusQuotedParameters;
   bool _processingCompletedProperly;
+  QString _errorMessage;
+  QString _hash;
+  QVector<bool> _gmicStatusQuotedParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_HEADLESSPROCESSOR_H

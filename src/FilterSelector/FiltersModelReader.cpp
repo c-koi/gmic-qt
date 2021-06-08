@@ -37,8 +37,11 @@
 #include "LanguageSettings.h"
 #include "Logger.h"
 #include "Utils.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
+
+namespace GmicQt
+{
 
 FiltersModelReader::FiltersModelReader(FiltersModel & model) : _model(model) {}
 
@@ -115,7 +118,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         filterCommands.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"), "");
 
         // Extract default input mode
-        GmicQt::InputMode defaultInputMode = GmicQt::UnspecifiedInputMode;
+        InputMode defaultInputMode = InputMode::Unspecified;
         QRegExp reInputMode("\\s*:\\s*([xX.*+vViI-])\\s*$");
         if (reInputMode.indexIn(filterCommands) != -1) {
           QString mode = reInputMode.cap(1);
@@ -132,7 +135,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
           commands.push_back(commands.front());
         }
         QList<QString> preview = commands[1].trimmed().split("(");
-        float previewFactor = GmicQt::PreviewFactorAny;
+        float previewFactor = PreviewFactorAny;
         bool accurateIfZoomed = true;
         if (preview.size() >= 2) {
           if (preview[1].endsWith("+")) {
@@ -225,33 +228,33 @@ bool FiltersModelReader::textIsPrecededBySpacesInSomeLineOfArray(const QByteArra
   return false;
 }
 
-GmicQt::InputMode FiltersModelReader::symbolToInputMode(const QString & str)
+InputMode FiltersModelReader::symbolToInputMode(const QString & str)
 {
   if (str.length() != 1) {
     Logger::warning(QString("'%1' is not recognized as a default input mode (should be a single symbol/letter)").arg(str));
-    return GmicQt::UnspecifiedInputMode;
+    return InputMode::Unspecified;
   }
   switch (str.toLocal8Bit()[0]) {
   case 'x':
   case 'X':
-    return GmicQt::NoInput;
+    return InputMode::NoInput;
   case '.':
-    return GmicQt::Active;
+    return InputMode::Active;
   case '*':
-    return GmicQt::All;
+    return InputMode::All;
   case '-':
-    return GmicQt::ActiveAndAbove;
+    return InputMode::ActiveAndAbove;
   case '+':
-    return GmicQt::ActiveAndBelow;
+    return InputMode::ActiveAndBelow;
   case 'V':
   case 'v':
-    return GmicQt::AllVisible;
+    return InputMode::AllVisible;
   case 'I':
   case 'i':
-    return GmicQt::AllInvisible;
+    return InputMode::AllInvisible;
   default:
     Logger::warning(QString("'%1' is not recognized as a default input mode").arg(str));
-    return GmicQt::UnspecifiedInputMode;
+    return InputMode::Unspecified;
   }
 }
 
@@ -291,3 +294,5 @@ QString FiltersModelReader::readBufferLine(QBuffer & buffer)
   }
   return result;
 }
+
+} // namespace GmicQt

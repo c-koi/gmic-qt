@@ -33,6 +33,9 @@
 #include <deque>
 #include "Common.h"
 
+namespace GmicQt
+{
+
 class KeypointList {
 public:
   struct Keypoint {
@@ -111,5 +114,7 @@ int KeypointList::Keypoint::actualRadiusFromPreviewSize(const QSize & size) cons
     return std::max(2, static_cast<int>(std::round(-static_cast<double>(radius) * (std::sqrt(size.width() * size.width() + size.height() * size.height())) / 100.0)));
   }
 }
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_KEYPOINTLIST_H

@@ -30,7 +30,11 @@
 #include "Common.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
-#include "gmic_qt.h"
+#include "Misc.h"
+#include "GmicQt.h"
+
+namespace GmicQt
+{
 
 const size_t FavesModel::NoIndex = std::numeric_limits<size_t>::max();
 
@@ -74,6 +78,16 @@ size_t FavesModel::faveCount() const
 FavesModel::const_iterator FavesModel::findFaveFromHash(const QString & hash) const
 {
   return {_faves.find(hash)};
+}
+
+FavesModel::const_iterator FavesModel::findFaveFromPlainText(const QString & name) const
+{
+  for (auto it = cbegin(); it != cend(); ++it) {
+    if (it->plainText() == name) {
+      return it;
+    }
+  }
+  return cend();
 }
 
 const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash) const
@@ -184,6 +198,12 @@ const QString & FavesModel::Fave::plainText() const
   return _plainText;
 }
 
+const QString FavesModel::Fave::absolutePath() const
+{
+  static const QList<QString> FavePath = {HtmlTranslator::removeTags(FAVE_FOLDER_TEXT)};
+  return filterFullPathWithoutTags(FavePath, _name);
+}
+
 const QString & FavesModel::Fave::originalName() const
 {
   return _originalName;
@@ -281,3 +301,5 @@ bool FavesModel::const_iterator::operator==(const FavesModel::const_iterator & o
 {
   return _mapIterator == other._mapIterator;
 }
+
+} // namespace GmicQt

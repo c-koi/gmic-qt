@@ -28,18 +28,21 @@
 #include <QStringList>
 #include "Common.h"
 #include "Utils.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
-FILE * Logger::_logFile = nullptr;
-Logger::Mode Logger::_currentMode = Logger::StandardOutput;
-
-void Logger::setMode(const GmicQt::OutputMessageMode mode)
+namespace GmicQt
 {
-  if ((mode == GmicQt::VerboseLogFile) || (mode == GmicQt::VeryVerboseLogFile) || (mode == GmicQt::DebugLogFile)) {
-    setMode(Logger::File);
+
+FILE * Logger::_logFile = nullptr;
+Logger::Mode Logger::_currentMode = Logger::Mode::StandardOutput;
+
+void Logger::setMode(const OutputMessageMode mode)
+{
+  if ((mode == OutputMessageMode::VerboseLogFile) || (mode == OutputMessageMode::VeryVerboseLogFile) || (mode == OutputMessageMode::DebugLogFile)) {
+    setMode(Logger::Mode::File);
   } else {
-    setMode(Logger::StandardOutput);
+    setMode(Logger::Mode::StandardOutput);
   }
 }
 
@@ -48,14 +51,14 @@ void Logger::setMode(const Logger::Mode mode)
   if (mode == _currentMode) {
     return;
   }
-  if (mode == StandardOutput) {
+  if (mode == Mode::StandardOutput) {
     if (_logFile) {
       fclose(_logFile);
     }
     _logFile = nullptr;
     cimg_library::cimg::output(stdout);
   } else {
-    QString filename = QString("%1gmic_qt_log").arg(GmicQt::path_rc(true));
+    QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
     _logFile = fopen(filename.toLocal8Bit().constData(), "a");
     cimg_library::cimg::output(_logFile ? _logFile : stdout);
   }
@@ -65,10 +68,10 @@ void Logger::setMode(const Logger::Mode mode)
 void Logger::clear()
 {
   Mode mode = _currentMode;
-  if (mode == File) {
-    setMode(StandardOutput);
+  if (mode == Mode::File) {
+    setMode(Mode::StandardOutput);
   }
-  QString filename = QString("%1gmic_qt_log").arg(GmicQt::path_rc(true));
+  QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
   FILE * dummyFile = fopen(filename.toLocal8Bit().constData(), "w");
   fclose(dummyFile);
   setMode(mode);
@@ -87,7 +90,7 @@ void Logger::log(const QString & message, const QString & hint, bool space)
   }
   QStringList lines = text.split("\n", QT_KEEP_EMPTY_PARTS);
 
-  QString prefix = QString("[%1]").arg(GmicQt::pluginCodeName());
+  QString prefix = QString("[%1]").arg(pluginCodeName());
   prefix += hint.isEmpty() ? " " : QString("./%1/ ").arg(hint);
 
   if (space) {
@@ -113,3 +116,5 @@ void Logger::note(const QString & message, bool space)
 {
   log(message, "note", space);
 }
+
+} // namespace GmicQt

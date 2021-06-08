@@ -37,10 +37,11 @@
 #include <limits>
 #include <memory>
 #include <new>
+#include <list>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "ImageTools.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
 #include "gmic.h"
 
 struct Gmic8bfLayer
@@ -62,10 +63,10 @@ namespace host_8bf
     QVector<float> sixteenBitToEightBitLUT;
 }
 
-namespace GmicQt
+namespace GmicQtHost
 {
-    const QString HostApplicationName = QString("8bf Hosts");
-    const char * HostApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
+    const QString ApplicationName = QString("8bf Hosts");
+    const char * const ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
     const bool DarkThemeIsDefault = false;
 }
 
@@ -708,7 +709,7 @@ namespace
 
         host_8bf::layers.reserve(layerCount);
 
-        for (size_t i = 0; i < layerCount; i++)
+        for (int32_t i = 0; i < layerCount; i++)
         {
             int32_t layerWidth = 0;
 
@@ -1227,9 +1228,11 @@ namespace
     }
 }
 
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode)
+namespace GmicQtHost {
+
+void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
 {
-    if (mode == GmicQt::NoInput)
+    if (mode == GmicQt::InputMode::NoInput)
     {
         *width = 0;
         *height = 0;
@@ -1257,9 +1260,9 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode mode
     }
 }
 
-void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
-    if (mode == GmicQt::NoInput)
+    if (mode == GmicQt::InputMode::NoInput)
     {
         images.assign();
         imageNames.assign();
@@ -1311,7 +1314,7 @@ void gmic_qt_get_cropped_images(gmic_list<float> & images, gmic_list<char> & ima
     }
 }
 
-void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
+void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode /* mode */)
 {
     unused(imageNames);
 
@@ -1344,7 +1347,7 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
             if (host_8bf::grayScale && (in.spectrum() == 3 || in.spectrum() == 4))
             {
                 // Convert the RGB image to grayscale.
-                GmicQt::calibrate_image(in, in.spectrum() == 4 ? 2 : 1, false);
+                GmicQt::calibrateImage(in, in.spectrum() == 4 ? 2 : 1, false);
             }
 
             QImage out;
@@ -1385,15 +1388,18 @@ void gmic_qt_output_images(gmic_list<float> & images, const gmic_list<char> & im
     }
 }
 
-void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images)
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images)
 {
     unused(images);
 }
 
-void gmic_qt_show_message(const char * message)
+void showMessage(const char * message)
 {
     unused(message);
 }
+
+} // GmicQtHost
+
 
 int main(int argc, char *argv[])
 {
@@ -1442,39 +1448,43 @@ int main(int argc, char *argv[])
     }
 
     int exitCode = 0;
-    disableInputMode(GmicQt::NoInput);
-    // disableInputMode(GmicQt::Active);
-    // disableInputMode(GmicQt::All);
-    // disableInputMode(GmicQt::ActiveAndBelow);
-    // disableInputMode(GmicQt::ActiveAndAbove);
-    // disableInputMode(GmicQt::AllVisible);
-    // disableInputMode(GmicQt::AllInvisible);
+    std::list<GmicQt::InputMode> disabledInputModes;
+    disabledInputModes.push_back(GmicQt::InputMode::NoInput);
+    // disabledInputModes.push_back(GmicQt::InputMode::Active);
+    // disabledInputModes.push_back(GmicQt::InputMode::All);
+    // disabledInputModes.push_back(GmicQt::InputMode::ActiveAndBelow);
+    // disabledInputModes.push_back(GmicQt::InputMode::ActiveAndAbove);
+    // disabledInputModes.push_back(GmicQt::InputMode::AllVisible);
+    // disabledInputModes.push_back(GmicQt::InputMode::AllInvisible);
 
 
-    // disableOutputMode(GmicQt::InPlace);
-    disableOutputMode(GmicQt::NewImage);
-    disableOutputMode(GmicQt::NewLayers);
-    disableOutputMode(GmicQt::NewActiveLayers);
-
-    // disablePreviewMode(GmicQt::FirstOutput);
-    disablePreviewMode(GmicQt::SecondOutput);
-    disablePreviewMode(GmicQt::ThirdOutput);
-    disablePreviewMode(GmicQt::FourthOutput);
-    disablePreviewMode(GmicQt::First2SecondOutput);
-    disablePreviewMode(GmicQt::First2ThirdOutput);
-    disablePreviewMode(GmicQt::First2FourthOutput);
-    disablePreviewMode(GmicQt::AllOutputs);
+    std::list<GmicQt::OutputMode> disabledOutputModes;
+    // disabledOutputModes.push_back(GmicQt::OutputMode::InPlace);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewImage);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewLayers);
+    disabledOutputModes.push_back(GmicQt::OutputMode::NewActiveLayers);
+    bool dialogAccepted = true;
 
     if (useLastParameters)
     {
-        exitCode = launchPluginHeadlessUsingLastParameters();
+        GmicQt::RunParameters parameters;
+        parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
+        exitCode = GmicQt::run(GmicQt::UserInterfaceMode::Full,
+                               parameters,
+                               disabledInputModes,
+                               disabledOutputModes,
+                               &dialogAccepted);
     }
     else
     {
-        exitCode = launchPlugin();
+        exitCode = GmicQt::run(GmicQt::UserInterfaceMode::Full,
+                               GmicQt::RunParameters(),
+                               disabledInputModes,
+                               disabledOutputModes,
+                               &dialogAccepted);
     }
 
-    if (!pluginDialogWasAccepted())
+    if (!dialogAccepted)
     {
         exitCode = 5;
     }

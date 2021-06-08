@@ -33,8 +33,11 @@
 #include <QVector>
 #include <QWidget>
 #include "KeypointList.h"
-class AbstractParameter;
 class QLabel;
+
+namespace GmicQt
+{
+class AbstractParameter;
 
 class FilterParametersWidget : public QWidget {
   Q_OBJECT
@@ -60,9 +63,13 @@ public:
   KeypointList keypoints() const;
   void setKeypoints(KeypointList list, bool notify);
   bool hasKeypoints() const;
-  const QString & quotedParameters() const;
+  const QVector<bool> & quotedParameters() const;
 
-  static QString flattenParameterList(const QList<QString> & list, const QString & quoted);
+  static QString defaultValueString(const QVector<AbstractParameter *> & parameters);
+  static QStringList defaultParameterList(const QString & parameters,       //
+                                          QString * error,                  //
+                                          QVector<bool> * quoted = nullptr, //
+                                          QVector<int> * size = nullptr);
 
 public slots:
   void updateValueString(bool notify = true);
@@ -70,9 +77,16 @@ public slots:
 signals:
   void valueChanged();
 
+private:
+  static QString valueString(const QVector<AbstractParameter *> & parameters);
+  static QVector<AbstractParameter *> buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * error);
+  static QStringList defaultParameterList(const QVector<AbstractParameter *> & parameters, QVector<bool> * quoted);
+  static QVector<bool> quotedParameters(const QVector<AbstractParameter *> & parameters);
+  static QVector<int> parameterSizes(const QVector<AbstractParameter *> & parameters);
+
 protected:
   void clear();
-  QVector<AbstractParameter *> _presetParameters;
+  QVector<AbstractParameter *> _parameters;
   int _actualParametersCount;
   QString _valueString;
   QLabel * _labelNoParams;
@@ -80,7 +94,9 @@ protected:
   QString _filterName;
   QString _filterHash;
   bool _hasKeypoints;
-  QString _quotedParameters;
+  QVector<bool> _quotedParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERPARAMSWIDGET_H

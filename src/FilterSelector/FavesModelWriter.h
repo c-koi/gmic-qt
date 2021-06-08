@@ -26,8 +26,10 @@
 #define GMIC_QT_FAVESMODELWRITER_H
 #include <QJsonObject>
 #include "FilterSelector/FavesModel.h"
-
 class QByteArray;
+
+namespace GmicQt
+{
 
 class FavesModelWriter {
 public:
@@ -39,4 +41,7 @@ private:
   static QJsonObject faveToJsonObject(const FavesModel::Fave & fave);
   const FavesModel & _model;
 };
+
+} // namespace GmicQt
+
 #endif // GMIC_QT_FAVESMODELWRITER_H

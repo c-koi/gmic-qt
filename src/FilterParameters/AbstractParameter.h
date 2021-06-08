@@ -27,20 +27,23 @@
 
 #include <QObject>
 #include <QStringList>
-
-class KeypointList;
 class QGridLayout;
+
+namespace GmicQt
+{
+class KeypointList;
 
 class AbstractParameter : public QObject {
   Q_OBJECT
 
 public:
-  AbstractParameter(QObject * parent, bool actualParameter);
-  virtual ~AbstractParameter();
+  AbstractParameter(QObject * parent);
+  virtual ~AbstractParameter() override;
   bool isActualParameter() const;
+  virtual int size() const = 0;
   virtual bool addTo(QWidget *, int row) = 0;
-  virtual QString textValue() const = 0;
-  virtual QString unquotedTextValue() const;
+  virtual QString value() const = 0;
+  virtual QString defaultValue() const = 0;
   virtual bool isQuoted() const;
   virtual void setValue(const QString & value) = 0;
   virtual void clear();
@@ -49,22 +52,22 @@ public:
   virtual void addToKeypointList(KeypointList &) const;
   virtual void extractPositionFromKeypointList(KeypointList &);
 
-  static AbstractParameter * createFromText(const char * text, int & length, QString & error, QWidget * parent = nullptr);
+  static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = nullptr);
   virtual bool initFromText(const char * text, int & textLength) = 0;
 
-  enum VisibilityState
+  enum class VisibilityState
   {
-    UnspecifiedVisibilityState = -1,
-    HiddenParameter = 0,
-    DisabledParameter = 1,
-    VisibleParameter = 2,
+    Unspecified = -1,
+    Hidden = 0,
+    Disabled = 1,
+    Visible = 2,
   };
-  enum VisibilityPropagation
+  enum class VisibilityPropagation
   {
-    PropagateNone = 0,
-    PropagateUp = 1,
-    PropagateDown = 2,
-    PropagateUpDown = 3
+    NoPropagation = 0,
+    Up = 1,
+    Down = 2,
+    UpDown = 3
   };
 
   static const QStringList NoValueParameters;
@@ -81,7 +84,6 @@ protected:
   QStringList parseText(const QString & type, const char * text, int & length);
   bool matchType(const QString & type, const char * text) const;
   void notifyIfRelevant();
-  const bool _actualParameter;
   VisibilityState _defaultVisibilityState;
   QGridLayout * _grid;
   int _row;
@@ -94,5 +96,7 @@ private:
   VisibilityState _visibilityState;
   VisibilityPropagation _visibilityPropagation;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_ABSTRACTPARAMETER_H

@@ -26,8 +26,11 @@
 #include "CroppedActiveLayerProxy.h"
 #include <QDebug>
 #include "Common.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "gmic.h"
+
+namespace GmicQt
+{
 
 double CroppedActiveLayerProxy::_x = -1.0;
 double CroppedActiveLayerProxy::_y = -1.0;
@@ -66,11 +69,13 @@ void CroppedActiveLayerProxy::update(double x, double y, double width, double he
 
   cimg_library::CImgList<gmic_pixel_type> images;
   cimg_library::CImgList<char> imageNames;
-  gmic_qt_get_cropped_images(images, imageNames, _x, _y, _width, _height, GmicQt::Active);
+  GmicQtHost::getCroppedImages(images, imageNames, _x, _y, _width, _height, InputMode::Active);
   if (images.size() > 0) {
-    gmic_qt_apply_color_profile(images.front());
+    GmicQtHost::applyColorProfile(images.front());
     _cachedImage->swap(images.front());
   } else {
     clear();
   }
 }
+
+} // namespace GmicQt

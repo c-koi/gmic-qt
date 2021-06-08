@@ -28,24 +28,25 @@
 #include <QElapsedTimer>
 #include <QString>
 #include <QThread>
-
 #include "Common.h"
-#include "Host/host.h"
-#include "gmic_qt.h"
+#include "Host/GmicQtHost.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {
 template <typename T> struct CImgList;
 }
 
+namespace GmicQt
+{
+
 class FilterThread : public QThread {
   Q_OBJECT
 
 public:
-  FilterThread(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode);
 
-  virtual ~FilterThread();
-  void setArguments(const QString &);
+  ~FilterThread() override;
   void setInputImages(const cimg_library::CImgList<float> & list);
   void setImageNames(const cimg_library::CImgList<char> & imageNames);
   void swapImages(cimg_library::CImgList<float> & images);
@@ -58,7 +59,6 @@ public:
   bool aborted() const;
   int duration() const;
   float progress() const;
-  QString name() const;
   QString fullCommand() const;
   void setLogSuffix(const QString & text);
 
@@ -76,7 +76,7 @@ protected:
 
 private:
   QString _command;
-  QString _arguments;
+  const QString _arguments;
   QString _environment;
   cimg_library::CImgList<float> * _images;
   cimg_library::CImgList<char> * _imageNames;
@@ -87,8 +87,10 @@ private:
   QString _errorMessage;
   QString _name;
   QString _logSuffix;
-  GmicQt::OutputMessageMode _messageMode;
+  OutputMessageMode _messageMode;
   QElapsedTimer _startTime;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT__FILTERTHREAD_H

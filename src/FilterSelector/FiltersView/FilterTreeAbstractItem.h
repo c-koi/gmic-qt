@@ -27,6 +27,8 @@
 #include <QStandardItem>
 #include <QStringList>
 
+namespace GmicQt
+{
 class FilterTreeAbstractItem : public QStandardItem {
 public:
   FilterTreeAbstractItem(QString text);
@@ -43,9 +45,10 @@ protected:
   QStandardItem * _visibilityItem;
 
 private:
-  static const QChar WarningPrefix;
   QString _plainText;
   bool _isWarning;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERTREEABSTRACTITEM_H

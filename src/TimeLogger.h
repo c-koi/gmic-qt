@@ -28,6 +28,9 @@
 #include <cstdio>
 #include <memory>
 
+namespace GmicQt
+{
+
 class TimeLogger {
 public:
   ~TimeLogger();
@@ -41,5 +44,7 @@ private:
   FILE * _file;
   static std::unique_ptr<TimeLogger> _instance;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_TIMELOGGER_H

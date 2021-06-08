@@ -27,7 +27,9 @@
 
 namespace GmicQt
 {
+
 const float PreviewFactorAny = -1.0f;
 const float PreviewFactorFullImage = 1.0f;
 const float PreviewFactorActualSize = 0.0f;
-}
+
+} // namespace GmicQt

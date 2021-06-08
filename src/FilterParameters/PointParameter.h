@@ -38,15 +38,20 @@ class QSlider;
 class QLabel;
 class QPushButton;
 
+namespace GmicQt
+{
+
 class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
   PointParameter(QObject * parent = nullptr);
   ~PointParameter() override;
+  int size() const override;
   bool addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;
   void extractPositionFromKeypointList(KeypointList &) override;
-  QString textValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
@@ -93,5 +98,7 @@ private:
   static int _defaultColorNextIndex;
   static unsigned long _randomSeed;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_POINTPARAMETER_H

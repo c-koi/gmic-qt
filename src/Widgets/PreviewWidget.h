@@ -35,7 +35,7 @@
 #include <QSize>
 #include <QWidget>
 #include <memory>
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "KeypointList.h"
 #include "ZoomConstraint.h"
 
@@ -44,6 +44,9 @@ namespace cimg_library
 template <typename T> struct CImgList;
 template <typename T> struct CImg;
 } // namespace cimg_library
+
+namespace GmicQt
+{
 
 class PreviewWidget : public QWidget {
   Q_OBJECT
@@ -73,14 +76,14 @@ public:
   const KeypointList & keypoints() const;
   void setKeypoints(const KeypointList &);
 
+  void setZoomConstraint(const ZoomConstraint & constraint);
+  ZoomConstraint zoomConstraint() const;
+
   enum KeypointMotionFlags
   {
     KeypointBurstEvent = 1,
     KeypointMouseReleaseEvent = 2
   };
-
-  void setZoomConstraint(const ZoomConstraint & constraint);
-  ZoomConstraint zoomConstraint() const;
 
 protected:
   void resizeEvent(QResizeEvent *) override;
@@ -114,7 +117,7 @@ public slots:
    * @brief setPreviewFactor
    * @param filterFactor
    * @param reset If true, zoomFactor is set to "Full Image" if
-   *              filterFactor is GmicQt::PreviewFactorAny
+   *              filterFactor is PreviewFactorAny
    */
   void setPreviewFactor(float filterFactor, bool reset);
   void displayOriginalImage();
@@ -147,8 +150,8 @@ private:
   ZoomConstraint _zoomConstraint;
 
   /*
-   * (0) for a 1:1 preview (GmicQt::PreviewFactorActualSize)
-   * (1) for previewing the whole image (GmicQt::PreviewFactorFullImage)
+   * (0) for a 1:1 preview (PreviewFactorActualSize)
+   * (1) for previewing the whole image (PreviewFactorFullImage)
    * (2) for 1/2 image
    * GmigQt::PreviewFactorAny
    */
@@ -203,5 +206,7 @@ private:
   QPoint _movedKeypointOrigin;
   unsigned long _keypointTimestamp;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_PREVIEWWIDGET_H

@@ -30,6 +30,9 @@
 #include <QString>
 #include "InputOutputState.h"
 
+namespace GmicQt
+{
+
 class ParametersCache {
 public:
   static void load(bool loadFiltersParameters);
@@ -40,15 +43,17 @@ public:
   static QList<int> getVisibilityStates(const QString & hash);
   static void remove(const QString & hash);
 
-  static GmicQt::InputOutputState getInputOutputState(const QString & hash);
-  static void setInputOutputState(const QString & hash, const GmicQt::InputOutputState & state, const GmicQt::InputMode defaultInputMode);
+  static InputOutputState getInputOutputState(const QString & hash);
+  static void setInputOutputState(const QString & hash, const InputOutputState & state, const InputMode defaultInputMode);
 
   static void cleanup(const QSet<QString> & hashesToKeep);
 
 private:
   static QHash<QString, QList<QString>> _parametersCache;
-  static QHash<QString, GmicQt::InputOutputState> _inOutPanelStates;
+  static QHash<QString, InputOutputState> _inOutPanelStates;
   static QHash<QString, QList<int>> _visibilityStates;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_PARAMETERSCACHE_H

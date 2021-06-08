@@ -33,13 +33,16 @@
 #include "Logger.h"
 #include "Utils.h"
 
+namespace GmicQt
+{
+
 FavesModelWriter::FavesModelWriter(const FavesModel & model) : _model(model) {}
 
 FavesModelWriter::~FavesModelWriter() = default;
 
 void FavesModelWriter::writeFaves()
 {
-  QString jsonFilename(QString("%1%2").arg(GmicQt::path_rc(true)).arg("gmic_qt_faves.json"));
+  QString jsonFilename(QString("%1%2").arg(gmicConfigPath(true)).arg("gmic_qt_faves.json"));
   // Create JSON array
   QJsonArray array;
   FavesModel::const_iterator itFave = _model.cbegin();
@@ -57,7 +60,7 @@ void FavesModelWriter::writeFaves()
     QJsonDocument jsonDoc(array);
     if (jsonFile.write(jsonDoc.toJson()) != -1) {
       // Cleanup 2.0.0 pre-release files
-      QString obsoleteFilename(QString("%1%2").arg(GmicQt::path_rc(false)).arg("gmic_qt_faves"));
+      QString obsoleteFilename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves"));
       QFile::remove(obsoleteFilename);
       QFile::remove(obsoleteFilename + ".bak");
     }
@@ -85,3 +88,5 @@ QJsonObject FavesModelWriter::faveToJsonObject(const FavesModel::Fave & fave)
   object["defaultVisibilities"] = visibilities;
   return object;
 }
+
+} // namespace GmicQt

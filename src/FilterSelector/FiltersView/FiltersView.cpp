@@ -40,6 +40,9 @@
 #include "Globals.h"
 #include "ui_filtersview.h"
 
+namespace GmicQt
+{
+
 const QString FiltersView::FilterTreePathSeparator("\t");
 
 FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::FiltersView), _isInSelectionMode(false)
@@ -636,3 +639,5 @@ FilterTreeItem * FiltersView::findFave(const QString & hash)
   }
   return nullptr;
 }
+
+} // namespace GmicQt

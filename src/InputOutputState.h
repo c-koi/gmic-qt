@@ -25,19 +25,20 @@
 #ifndef GMIC_QT_INPUTOUTPUTSTATE_H
 #define GMIC_QT_INPUTOUTPUTSTATE_H
 
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 class QJsonObject;
+class QString;
 
 namespace GmicQt
 {
+
 struct InputOutputState {
   InputMode inputMode;
   OutputMode outputMode;
-  PreviewMode previewMode;
 
   InputOutputState();
-  InputOutputState(InputMode, OutputMode, PreviewMode);
+  InputOutputState(InputMode, OutputMode);
   bool isDefault() const;
   void toJSONObject(QJsonObject &) const;
   static InputOutputState fromJSONObject(const QJsonObject &);
@@ -46,6 +47,7 @@ struct InputOutputState {
   bool operator==(const InputOutputState & other) const;
   bool operator!=(const InputOutputState & other) const;
 };
+
 } // namespace GmicQt
 
 #endif // GMIC_QT_INPUTOUTPUTSTATE_H

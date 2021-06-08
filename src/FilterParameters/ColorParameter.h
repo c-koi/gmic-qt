@@ -35,13 +35,18 @@ class QSlider;
 class QLabel;
 class QPushButton;
 
+namespace GmicQt
+{
+
 class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ColorParameter(QObject * parent = nullptr);
   ~ColorParameter() override;
+  int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
@@ -58,6 +63,9 @@ private:
   QPushButton * _button;
   QPixmap _pixmap;
   QColorDialog * _dialog;
+  int _size;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_COLORPARAMETER_H

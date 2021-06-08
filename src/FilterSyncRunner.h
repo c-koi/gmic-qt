@@ -30,9 +30,8 @@
 #include <QTime>
 
 #include "Common.h"
-#include "Host/host.h"
-#include "gmic_qt.h"
-
+#include "Host/GmicQtHost.h"
+#include "GmicQt.h"
 class QObject;
 
 namespace cimg_library
@@ -40,10 +39,13 @@ namespace cimg_library
 template <typename T> struct CImgList;
 }
 
+namespace GmicQt
+{
+
 class FilterSyncRunner : public QObject {
   Q_OBJECT
 public:
-  FilterSyncRunner(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode);
+  FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode);
 
   virtual ~FilterSyncRunner();
   void setArguments(const QString &);
@@ -58,7 +60,6 @@ public:
   bool failed() const;
   bool aborted() const;
   float progress() const;
-  QString name() const;
   QString fullCommand() const;
   void setLogSuffix(const QString & text);
   void run();
@@ -77,7 +78,9 @@ private:
   QString _errorMessage;
   QString _name;
   QString _logSuffix;
-  GmicQt::OutputMessageMode _messageMode;
+  OutputMessageMode _messageMode;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSYNCRUNNER_H

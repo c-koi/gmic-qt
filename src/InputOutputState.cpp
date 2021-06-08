@@ -25,69 +25,68 @@
 
 #include "InputOutputState.h"
 #include <QJsonObject>
+#include <QString>
 
 namespace
 {
 void filterDeprecatedInputMode(GmicQt::InputMode & mode)
 {
   switch (mode) {
-  case GmicQt::AllDesc_UNUSED:
-  case GmicQt::AllVisiblesDesc_UNUSED:
-  case GmicQt::AllInvisiblesDesc_UNUSED:
-    mode = GmicQt::UnspecifiedInputMode;
+  case GmicQt::InputMode::AllDesc_DEPRECATED:
+  case GmicQt::InputMode::AllVisiblesDesc_DEPRECATED:
+  case GmicQt::InputMode::AllInvisiblesDesc_DEPRECATED:
+    mode = GmicQt::InputMode::Unspecified;
     break;
   default:
     break;
   }
 }
+
 } // namespace
 
 namespace GmicQt
 {
 
-const InputOutputState InputOutputState::Default(GmicQt::DefaultInputMode, GmicQt::DefaultOutputMode, GmicQt::DefaultPreviewMode);
-const InputOutputState InputOutputState::Unspecified(GmicQt::UnspecifiedInputMode, GmicQt::UnspecifiedOutputMode, GmicQt::UnspecifiedPreviewMode);
+const InputOutputState InputOutputState::Default(DefaultInputMode, DefaultOutputMode);
+const InputOutputState InputOutputState::Unspecified(InputMode::Unspecified, OutputMode::Unspecified);
 
-InputOutputState::InputOutputState() : inputMode(UnspecifiedInputMode), outputMode(UnspecifiedOutputMode), previewMode(GmicQt::UnspecifiedPreviewMode) {}
+InputOutputState::InputOutputState() : inputMode(InputMode::Unspecified), outputMode(OutputMode::Unspecified) {}
 
-InputOutputState::InputOutputState(InputMode inputMode, OutputMode outputMode, PreviewMode previewMode) : inputMode(inputMode), outputMode(outputMode), previewMode(previewMode) {}
+InputOutputState::InputOutputState(InputMode inputMode, OutputMode outputMode) : inputMode(inputMode), outputMode(outputMode) {}
 
 bool InputOutputState::operator==(const InputOutputState & other) const
 {
-  return inputMode == other.inputMode && outputMode == other.outputMode && previewMode == other.previewMode;
+  return inputMode == other.inputMode && outputMode == other.outputMode;
 }
 
 bool InputOutputState::operator!=(const InputOutputState & other) const
 {
-  return inputMode != other.inputMode || outputMode != other.outputMode || previewMode != other.previewMode;
+  return inputMode != other.inputMode || outputMode != other.outputMode;
 }
 
 bool InputOutputState::isDefault() const
 {
-  return (inputMode == GmicQt::DefaultInputMode) && (outputMode == GmicQt::DefaultOutputMode) && (previewMode == GmicQt::DefaultPreviewMode);
+  return (inputMode == DefaultInputMode) && (outputMode == DefaultOutputMode);
 }
 
 void InputOutputState::toJSONObject(QJsonObject & object) const
 {
   object = QJsonObject();
-  if (inputMode != UnspecifiedInputMode) {
-    object.insert("InputLayers", inputMode);
+  if (inputMode != InputMode::Unspecified) {
+    object.insert("InputLayers", static_cast<int>(inputMode));
   }
   if (outputMode != DefaultOutputMode) {
-    object.insert("OutputMode", outputMode);
-  }
-  if (previewMode != DefaultPreviewMode) {
-    object.insert("PreviewMode", previewMode);
+    object.insert("OutputMode", static_cast<int>(outputMode));
   }
 }
 
 InputOutputState InputOutputState::fromJSONObject(const QJsonObject & object)
 {
-  GmicQt::InputOutputState state;
-  state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(UnspecifiedInputMode));
+  InputOutputState state;
+  state.inputMode = static_cast<InputMode>(object.value("InputLayers").toInt(static_cast<int>(InputMode::Unspecified)));
   filterDeprecatedInputMode(state.inputMode);
-  state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(UnspecifiedOutputMode));
-  state.previewMode = static_cast<PreviewMode>(object.value("PreviewMode").toInt(UnspecifiedPreviewMode));
+  state.outputMode = static_cast<OutputMode>(object.value("OutputMode").toInt(static_cast<int>(OutputMode::Unspecified)));
   return state;
 }
+
 } // namespace GmicQt

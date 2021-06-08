@@ -37,10 +37,13 @@
 #include <psapi.h>
 #endif
 
+namespace GmicQt
+{
+
 ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(new Ui::ProgressInfoWidget), _gmicProcessor(nullptr)
 {
   ui->setupUi(this);
-  _mode = GmicProcessingMode;
+  _mode = Mode::GmicProcessing;
   _canceled = false;
   _growing = true;
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
@@ -87,9 +90,9 @@ void ProgressInfoWidget::setGmicProcessor(const GmicProcessor * processor)
 
 void ProgressInfoWidget::onTimeOut()
 {
-  if (_mode == GmicProcessingMode) {
+  if (_mode == Mode::GmicProcessing) {
     updateThreadInformation();
-  } else if (_mode == FiltersUpdateMode) {
+  } else if (_mode == Mode::FiltersUpdate) {
     updateUpdateProgression();
   }
 }
@@ -117,7 +120,7 @@ void ProgressInfoWidget::startFilterThreadAnimationAndShow(bool showCancelButton
   layout()->addWidget(ui->label);
 
   _canceled = false;
-  _mode = GmicProcessingMode;
+  _mode = Mode::GmicProcessing;
   ui->progressBar->setRange(0, 100);
   ui->progressBar->setValue(0);
   ui->progressBar->setInvertedAppearance(false);
@@ -138,7 +141,7 @@ void ProgressInfoWidget::startFiltersUpdateAnimationAndShow()
   layout()->addWidget(ui->tbCancel);
   layout()->addWidget(ui->progressBar);
 
-  _mode = FiltersUpdateMode;
+  _mode = Mode::FiltersUpdate;
   _canceled = false;
   // ui->progressBar->setRange(0, 0);
   ui->progressBar->setValue(AnimationStep);
@@ -242,3 +245,5 @@ void ProgressInfoWidget::updateUpdateProgression()
     }
   }
 }
+
+} // namespace GmicQt

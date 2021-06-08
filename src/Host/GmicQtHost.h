@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file host.h
+ *  @file GmicQtHost.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -25,7 +25,7 @@
 #ifndef GMIC_QT_HOST_H
 #define GMIC_QT_HOST_H
 #include <QString>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 namespace cimg_library
 {
@@ -33,31 +33,19 @@ template <typename T> struct CImg;
 template <typename T> struct CImgList;
 } // namespace cimg_library
 
-namespace GmicQt
+namespace GmicQtHost
 {
-extern const QString HostApplicationName;
-extern const char * HostApplicationShortname;
+extern const QString ApplicationName;
+extern const char * const ApplicationShortname;
 extern const bool DarkThemeIsDefault;
-} // namespace GmicQt
 
 /**
- * @brief gmic_qt_get_image_size
- *
- * Already deprecated ! gmic_qt_get_layers_extends is the one actually used.
+ * @brief Get the largest width and largest height among all the layers according to the input mode (\see GmicQt.h).
  *
  * @param[out] width
  * @param[out] height
  */
-void gmic_qt_get_image_size(int * width, int * height);
-
-/**
- * @brief Get the largest width and largest height among all the layers
- *        according to the input mode (\see gmic_qt.h).
- *
- * @param[out] width
- * @param[out] height
- */
-void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode);
+void getLayersExtent(int * width, int * height, GmicQt::InputMode);
 
 /**
  * @brief Get a list of (cropped) image layers from host software.
@@ -76,33 +64,39 @@ void gmic_qt_get_layers_extent(int * width, int * height, GmicQt::InputMode);
  * @param height Normalized height of the layers w.r.t. image/extends height
  * @param mode Input mode
  */
-void gmic_qt_get_cropped_images(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode);
+void getCroppedImages(cimg_library::CImgList<gmic_pixel_type> & images, //
+                      cimg_library::CImgList<char> & imageNames,        //
+                      double x,                                         //
+                      double y,                                         //
+                      double width,                                     //
+                      double height,                                    //
+                      GmicQt::InputMode mode);
 
 /**
- * @brief Send a list of new image layers to the host application according to
- *        an output mode (\see gmic_qt.h)
+ * @brief Send a list of new image layers to the host application according to an output mode (\see GmicQt.h)
  *
  * @param images List of layers to be sent to the host application. May be modified.
  * @param imageNames Layers labels
- * @param mode Output mode (\see gmic_qt.h)
+ * @param mode Output mode (\see GmicQt.h)
  */
-void gmic_qt_output_images(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
+void outputImages(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
 
 /**
  * @brief Apply a color profile to a given image
  *
  * @param [in,out] images An image
  */
-void gmic_qt_apply_color_profile(cimg_library::CImg<gmic_pixel_type> & images);
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images);
 
 /**
  * @brief Display a message in the host application.
- *        This function is only used if the plugin is launched using
- *        launchPluginHeadless(). If a given plugin implementation never
- *        calls the latter function, show_message() can do nothing!
+ *        This function is only used if the plugin is launched using the UserInterfaceMode::Silent mode.
+ *        If a given plugin implementation never calls the latter function, show_message() can do nothing!
  *
  * @param message A message to be displayed by the host application
  */
-void gmic_qt_show_message(const char * message);
+void showMessage(const char * message);
+
+} // namespace GmicQtHost
 
 #endif // GMIC_QT_HOST_H

@@ -35,6 +35,7 @@
 #define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
 #define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << __LINE__ << "]" << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
+#define STDSHOW(V) std::cout << #V << " = " << (V) << std::endl
 #else
 #define ENTERING while (false)
 #define LEAVING while (false)
@@ -47,6 +48,9 @@
 #define SHOW(V)                                                                                                                                                                                        \
   while (false)                                                                                                                                                                                        \
   qWarning() << ""
+#define STDSHOW(V)                                                                                                                                                                                     \
+  while (false)                                                                                                                                                                                        \
+  std::cout << ""
 #endif
 
 template <typename T> inline void unused(const T &, ...) {}

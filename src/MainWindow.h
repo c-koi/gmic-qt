@@ -27,12 +27,14 @@
 
 #include <QIcon>
 #include <QList>
+#include <QMainWindow>
 #include <QString>
 #include <QTimer>
 #include <QWidget>
 #include "Common.h"
 #include "GmicProcessor.h"
 #include "Updater.h"
+class QResizeEvent;
 
 namespace Ui
 {
@@ -44,30 +46,32 @@ namespace cimg_library
 template <typename T> struct CImgList;
 }
 
+namespace GmicQt
+{
+
 class FiltersTreeFolderItem;
 class FiltersTreeFilterItem;
 class FiltersTreeAbstractFilterItem;
 class FiltersTreeFaveItem;
-class QResizeEvent;
 class Updater;
 class FilterThread;
 class FiltersPresenter;
 
-class MainWindow : public QWidget {
+class MainWindow : public QMainWindow {
   Q_OBJECT
 
 public:
-  enum PreviewPosition
+  enum class PreviewPosition
   {
-    PreviewOnLeft,
-    PreviewOnRight
+    Left,
+    Right
   };
 
   explicit MainWindow(QWidget * parent = nullptr);
   ~MainWindow() override;
   void updateFiltersFromSources(int ageLimit, bool useNetwork);
-
   void setDarkTheme();
+  void setPluginParameters(const RunParameters & parameters);
 
 public slots:
   void onUpdateDownloadsFinished(int status);
@@ -114,7 +118,7 @@ protected:
   void showUpdateErrors();
   void makeConnections();
   void processImage();
-  void activateFilter(bool resetZoom);
+  void activateFilter(bool resetZoom, const QList<QString> & values = QList<QString>());
   void setNoFilter();
   void setPreviewPosition(PreviewPosition position);
   void adjustVerticalSplitter();
@@ -122,7 +126,7 @@ protected:
 private slots:
 
   void onFullImageProcessingError(const QString & message);
-  void onInputModeChanged(GmicQt::InputMode);
+  void onInputModeChanged(InputMode);
 
 private:
   void setZoomConstraint();
@@ -132,25 +136,21 @@ private:
   void setIcons();
   bool confirmAbortProcessingOnCloseRequest();
   void enableWidgetList(bool on);
-  enum ModelType
-  {
-    FullModel,
-    SelectionModel
-  };
   bool askUserForGTKFavesImport();
   void buildFiltersTree();
+  void retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters);
 
-  enum ProcessingAction
+  enum class ProcessingAction
   {
     NoAction,
-    OkAction,
-    CloseAction,
-    ApplyAction
+    Ok,
+    Close,
+    Apply
   };
 
   Ui::MainWindow * ui;
   ProcessingAction _pendingActionAfterCurrentProcessing;
-  PreviewPosition _previewPosition = PreviewOnRight;
+  PreviewPosition _previewPosition = PreviewPosition::Right;
   bool _showEventReceived = false;
   bool _okButtonShouldApply = false;
   QIcon _expandIcon;
@@ -165,6 +165,9 @@ private:
   GmicProcessor _processor;
   ulong _lastPreviewKeypointBurstUpdateTime;
   static bool _isAccepted;
+  RunParameters _pluginParameters;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_MAINWINDOW_H

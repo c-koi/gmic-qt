@@ -31,13 +31,18 @@
 class QComboBox;
 class QLabel;
 
+namespace GmicQt
+{
+
 class ChoiceParameter : public AbstractParameter {
   Q_OBJECT
 public:
   ChoiceParameter(QObject * parent = nullptr);
   ~ChoiceParameter() override;
+  virtual int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString &) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
@@ -55,5 +60,7 @@ private:
   QList<QString> _choices;
   bool _connected;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_CHOICEPARAMETER_H

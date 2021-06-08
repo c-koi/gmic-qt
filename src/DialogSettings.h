@@ -29,8 +29,7 @@
 #include <QDialog>
 #include <QIcon>
 #include "MainWindow.h"
-#include "gmic_qt.h"
-
+#include "GmicQt.h"
 class QCloseEvent;
 class QSettings;
 
@@ -41,12 +40,6 @@ class DialogSettings;
 
 namespace GmicQt
 {
-enum ApplicationType
-{
-  GuiApplication,
-  NonGuiApplication
-};
-}
 
 class DialogSettings : public QDialog {
   Q_OBJECT
@@ -60,7 +53,7 @@ public:
   static QString languageCode();
   static bool nativeColorDialogs();
   static void saveSettings(QSettings &);
-  static void loadSettings(GmicQt::ApplicationType applicationType);
+  static void loadSettings(UserInterfaceMode userInterfaceMode);
   static bool previewZoomAlwaysEnabled();
   static bool notifyFailedStartupUpdate();
   static const QColor CheckBoxTextColor;
@@ -69,7 +62,7 @@ public:
   static QString FolderParameterDefaultValue;
   static QString FileParameterDefaultPath;
   static int previewTimeout();
-  static GmicQt::OutputMessageMode outputMessageMode();
+  static OutputMessageMode outputMessageMode();
   static QIcon AddIcon;
   static QIcon RemoveIcon;
   static QString GroupSeparator;
@@ -92,6 +85,7 @@ public slots:
   void onNotifyStartupUpdateFailedToggle(bool);
 
 private:
+  static void removeObsoleteKeys(QSettings &);
   Ui::DialogSettings * ui;
   static bool _darkThemeEnabled;
   static QString _languageCode;
@@ -100,9 +94,11 @@ private:
   static int _updatePeriodicity;
   static bool _logosAreVisible;
   static int _previewTimeout;
-  static GmicQt::OutputMessageMode _outputMessageMode;
+  static OutputMessageMode _outputMessageMode;
   static bool _previewZoomAlwaysEnabled;
   static bool _notifyFailedStartupUpdate;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_DIALOGSETTINGS_H

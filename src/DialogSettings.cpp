@@ -28,7 +28,7 @@
 #include <limits>
 #include "Common.h"
 #include "Globals.h"
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "IconLoader.h"
 #include "Logger.h"
 #include "Updater.h"
@@ -38,12 +38,15 @@ namespace
 {
 GmicQt::OutputMessageMode filterDeprecatedOutputMessageMode(const GmicQt::OutputMessageMode & mode)
 {
-  if (mode == GmicQt::VerboseLayerName_UNUSED) {
+  if (mode == GmicQt::OutputMessageMode::VerboseLayerName_DEPRECATED) {
     return GmicQt::DefaultOutputMessageMode;
   }
   return mode;
 }
 } // namespace
+
+namespace GmicQt
+{
 
 bool DialogSettings::_darkThemeEnabled;
 QString DialogSettings::_languageCode;
@@ -51,7 +54,7 @@ bool DialogSettings::_nativeColorDialogs;
 bool DialogSettings::_logosAreVisible;
 MainWindow::PreviewPosition DialogSettings::_previewPosition;
 int DialogSettings::_updatePeriodicity;
-GmicQt::OutputMessageMode DialogSettings::_outputMessageMode;
+OutputMessageMode DialogSettings::_outputMessageMode;
 bool DialogSettings::_previewZoomAlwaysEnabled = false;
 bool DialogSettings::_notifyFailedStartupUpdate = true;
 
@@ -97,15 +100,15 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   }
 
   ui->outputMessages->setToolTip(tr("Output messages"));
-  ui->outputMessages->addItem(tr("Quiet (default)"), GmicQt::Quiet);
-  ui->outputMessages->addItem(tr("Verbose (console)"), GmicQt::VerboseConsole);
-  ui->outputMessages->addItem(tr("Verbose (log file)"), GmicQt::VerboseLogFile);
-  ui->outputMessages->addItem(tr("Very verbose (console)"), GmicQt::VeryVerboseConsole);
-  ui->outputMessages->addItem(tr("Very verbose (log file)"), GmicQt::VeryVerboseLogFile);
-  ui->outputMessages->addItem(tr("Debug (console)"), GmicQt::DebugConsole);
-  ui->outputMessages->addItem(tr("Debug (log file)"), GmicQt::DebugLogFile);
+  ui->outputMessages->addItem(tr("Quiet (default)"), (int)OutputMessageMode::Quiet);
+  ui->outputMessages->addItem(tr("Verbose (console)"), (int)OutputMessageMode::VerboseConsole);
+  ui->outputMessages->addItem(tr("Verbose (log file)"), (int)OutputMessageMode::VerboseLogFile);
+  ui->outputMessages->addItem(tr("Very verbose (console)"), (int)OutputMessageMode::VeryVerboseConsole);
+  ui->outputMessages->addItem(tr("Very verbose (log file)"), (int)OutputMessageMode::VeryVerboseLogFile);
+  ui->outputMessages->addItem(tr("Debug (console)"), (int)OutputMessageMode::DebugConsole);
+  ui->outputMessages->addItem(tr("Debug (log file)"), (int)OutputMessageMode::DebugLogFile);
   for (int index = 0; index < ui->outputMessages->count(); ++index) {
-    if (ui->outputMessages->itemData(index) == _outputMessageMode) {
+    if (ui->outputMessages->itemData(index) == (int)_outputMessageMode) {
       ui->outputMessages->setCurrentIndex(index);
       break;
     }
@@ -113,9 +116,9 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
 
   ui->sbPreviewTimeout->setRange(0, 999);
 
-  ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewOnLeft);
-  ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewOnRight);
-  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, GmicQt::DarkThemeIsDefault).toBool();
+  ui->rbLeftPreview->setChecked(_previewPosition == MainWindow::PreviewPosition::Left);
+  ui->rbRightPreview->setChecked(_previewPosition == MainWindow::PreviewPosition::Right);
+  const bool savedDarkTheme = QSettings().value(DARK_THEME_KEY, GmicQtHost::DarkThemeIsDefault).toBool();
   ui->rbDarkTheme->setChecked(savedDarkTheme);
   ui->rbDefaultTheme->setChecked(!savedDarkTheme);
   ui->cbNativeColorDialogs->setChecked(_nativeColorDialogs);
@@ -174,15 +177,15 @@ DialogSettings::~DialogSettings()
   delete ui;
 }
 
-void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
+void DialogSettings::loadSettings(UserInterfaceMode userInterfaceMode)
 {
   QSettings settings;
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
-    _previewPosition = MainWindow::PreviewOnLeft;
+    _previewPosition = MainWindow::PreviewPosition::Left;
   } else {
-    _previewPosition = MainWindow::PreviewOnRight;
+    _previewPosition = MainWindow::PreviewPosition::Right;
   }
-  _darkThemeEnabled = settings.value(DARK_THEME_KEY, GmicQt::DarkThemeIsDefault).toBool();
+  _darkThemeEnabled = settings.value(DARK_THEME_KEY, GmicQtHost::DarkThemeIsDefault).toBool();
   _languageCode = settings.value("Config/LanguageCode", QString()).toString();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
@@ -191,9 +194,9 @@ void DialogSettings::loadSettings(GmicQt::ApplicationType applicationType)
   _logosAreVisible = settings.value("LogosAreVisible", true).toBool();
   _previewTimeout = settings.value("PreviewTimeout", 16).toInt();
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
-  _outputMessageMode = filterDeprecatedOutputMessageMode((GmicQt::OutputMessageMode)settings.value("OutputMessageMode", GmicQt::DefaultOutputMessageMode).toInt());
+  _outputMessageMode = filterDeprecatedOutputMessageMode((GmicQt::OutputMessageMode)settings.value("OutputMessageMode", static_cast<int>(GmicQt::DefaultOutputMessageMode)).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
-  if (applicationType == GmicQt::GuiApplication) {
+  if (userInterfaceMode != UserInterfaceMode::Silent) {
     AddIcon = LOAD_ICON("list-add");
     RemoveIcon = LOAD_ICON("list-remove");
   }
@@ -218,21 +221,22 @@ int DialogSettings::previewTimeout()
   return _previewTimeout;
 }
 
-GmicQt::OutputMessageMode DialogSettings::outputMessageMode()
+OutputMessageMode DialogSettings::outputMessageMode()
 {
   return _outputMessageMode;
 }
 
 void DialogSettings::saveSettings(QSettings & settings)
 {
-  settings.setValue("Config/PreviewPosition", (_previewPosition == MainWindow::PreviewOnLeft) ? "Left" : "Right");
+  removeObsoleteKeys(settings);
+  settings.setValue("Config/PreviewPosition", (_previewPosition == MainWindow::PreviewPosition::Left) ? "Left" : "Right");
   settings.setValue("Config/NativeColorDialogs", _nativeColorDialogs);
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY, _updatePeriodicity);
   settings.setValue("FolderParameterDefaultValue", FolderParameterDefaultValue);
   settings.setValue("FileParameterDefaultPath", FileParameterDefaultPath);
   settings.setValue("LogosAreVisible", _logosAreVisible);
   settings.setValue("PreviewTimeout", _previewTimeout);
-  settings.setValue("OutputMessageMode", _outputMessageMode);
+  settings.setValue("OutputMessageMode", (int)_outputMessageMode);
   settings.setValue("AlwaysEnablePreviewZoom", _previewZoomAlwaysEnabled);
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
@@ -278,7 +282,7 @@ void DialogSettings::onPreviewTimeoutChange(int value)
 
 void DialogSettings::onOutputMessageModeChanged(int)
 {
-  _outputMessageMode = static_cast<GmicQt::OutputMessageMode>(ui->outputMessages->currentData().toInt());
+  _outputMessageMode = static_cast<OutputMessageMode>(ui->outputMessages->currentData().toInt());
   Logger::setMode(_outputMessageMode);
 }
 
@@ -292,6 +296,14 @@ void DialogSettings::onNotifyStartupUpdateFailedToggle(bool on)
   _notifyFailedStartupUpdate = on;
 }
 
+void DialogSettings::removeObsoleteKeys(QSettings & settings)
+{
+  settings.remove(QString("LastExecution/host_%1/PreviewMode").arg(GmicQtHost::ApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/GmicEnvironment").arg(GmicQtHost::ApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/QuotedParameters").arg(GmicQtHost::ApplicationShortname));
+  settings.remove(QString("LastExecution/host_%1/GmicStatus").arg(GmicQtHost::ApplicationShortname));
+}
+
 void DialogSettings::enableUpdateButton()
 {
   ui->pbUpdate->setEnabled(true);
@@ -300,9 +312,9 @@ void DialogSettings::enableUpdateButton()
 void DialogSettings::onRadioLeftPreviewToggled(bool on)
 {
   if (on) {
-    _previewPosition = MainWindow::PreviewOnLeft;
+    _previewPosition = MainWindow::PreviewPosition::Left;
   } else {
-    _previewPosition = MainWindow::PreviewOnRight;
+    _previewPosition = MainWindow::PreviewPosition::Right;
   }
 }
 
@@ -341,3 +353,5 @@ bool DialogSettings::nativeColorDialogs()
 {
   return _nativeColorDialogs;
 }
+
+} // namespace GmicQt

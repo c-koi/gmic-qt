@@ -32,11 +32,14 @@
 #include "Utils.h"
 #include "gmic.h"
 
+namespace GmicQt
+{
+
 QByteArray GmicStdLib::Array;
 
 void GmicStdLib::loadStdLib()
 {
-  QFile stdlib(QString("%1update%2.gmic").arg(GmicQt::path_rc(false)).arg(gmic_version));
+  QFile stdlib(QString("%1update%2.gmic").arg(gmicConfigPath(false)).arg(gmic_version));
   if (!stdlib.open(QFile::ReadOnly)) {
     gmic_image<char> stdlib_h = gmic::decompress_stdlib();
     Array = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
@@ -45,3 +48,5 @@ void GmicStdLib::loadStdLib()
     Array = stdlib.readAll();
   }
 }
+
+} // namespace GmicQt

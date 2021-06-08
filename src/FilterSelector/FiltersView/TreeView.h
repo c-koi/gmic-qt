@@ -30,6 +30,8 @@
 #include <QWidget>
 #include "Common.h"
 
+namespace GmicQt
+{
 class TreeView : public QTreeView {
   Q_OBJECT
 public:
@@ -41,5 +43,7 @@ signals:
 
 private:
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_TREEVIEW_H

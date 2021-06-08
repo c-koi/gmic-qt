@@ -33,12 +33,19 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
-ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent, true), _default(0), _value(0), _label(nullptr), _comboBox(nullptr), _connected(false) {}
+namespace GmicQt
+{
+ChoiceParameter::ChoiceParameter(QObject * parent) : AbstractParameter(parent), _default(0), _value(0), _label(nullptr), _comboBox(nullptr), _connected(false) {}
 
 ChoiceParameter::~ChoiceParameter()
 {
   delete _comboBox;
   delete _label;
+}
+
+int ChoiceParameter::size() const
+{
+  return 1;
 }
 
 bool ChoiceParameter::addTo(QWidget * widget, int row)
@@ -59,9 +66,14 @@ bool ChoiceParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString ChoiceParameter::textValue() const
+QString ChoiceParameter::value() const
 {
   return QString("%1").arg(_comboBox->currentIndex());
+}
+
+QString ChoiceParameter::defaultValue() const
+{
+  return QString("%1").arg(_default);
 }
 
 void ChoiceParameter::setValue(const QString & value)
@@ -141,3 +153,5 @@ void ChoiceParameter::disconnectComboBox()
   _comboBox->disconnect(this);
   _connected = false;
 }
+
+} // namespace GmicQt

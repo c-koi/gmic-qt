@@ -26,17 +26,20 @@
 #define GMIC_QT_INOUTPANEL_H
 
 #include <QWidget>
-#include "Host/host.h"
+#include "Host/GmicQtHost.h"
 #include "InputOutputState.h"
-#include "gmic_qt.h"
+#include "GmicQt.h"
+class QSettings;
+class QPalette;
 
 namespace Ui
 {
 class InOutPanel;
 }
 
-class QSettings;
-class QPalette;
+namespace GmicQt
+{
+
 class FilterThread;
 
 class InOutPanel : public QWidget {
@@ -47,54 +50,49 @@ public:
   ~InOutPanel();
 
 public:
-  GmicQt::InputMode inputMode() const;
-  GmicQt::OutputMode outputMode() const;
-  GmicQt::PreviewMode previewMode() const;
-  GmicQt::OutputMessageMode outputMessageMode() const;
+  InputMode inputMode() const;
+  OutputMode outputMode() const;
+  OutputMessageMode outputMessageMode() const;
   void reset();
 
   void disableNotifications();
   void enableNotifications();
-  void setInputMode(GmicQt::InputMode mode);
-  void setOutputMode(GmicQt::OutputMode mode);
-  void setPreviewMode(GmicQt::PreviewMode mode);
+  void setInputMode(InputMode mode);
+  void setOutputMode(OutputMode mode);
 
-  GmicQt::InputOutputState state() const;
-  void setState(const GmicQt::InputOutputState & state, bool notify);
+  InputOutputState state() const;
+  void setState(const InputOutputState & state, bool notify);
 
   void setEnabled(bool);
   void disable();
   void enable();
 
-  static void disableInputMode(GmicQt::InputMode mode);
-  static void disableOutputMode(GmicQt::OutputMode mode);
-  static void disablePreviewMode(GmicQt::PreviewMode mode);
+  static void disableInputMode(InputMode mode);
+  static void disableOutputMode(OutputMode mode);
 
   bool hasActiveControls();
 
 signals:
-  void inputModeChanged(GmicQt::InputMode);
-  void previewModeChanged(GmicQt::PreviewMode);
+  void inputModeChanged(InputMode);
 
 public slots:
   void onInputModeSelected(int);
   void onOutputModeSelected(int);
-  void onPreviewModeSelected(int);
   void onResetButtonClicked();
   void setDarkTheme();
 
 private:
-  void setDefaultInputMode();
-  void setDefaultOutputMode();
-  void setDefaultPreviewMode();
+  static void setDefaultInputMode();
+  static void setDefaultOutputMode();
   void setTopLabel();
   void updateLayoutIfUniqueRow();
   bool _notifyValueChange;
   Ui::InOutPanel * ui;
   static const int NoSelection = -1;
-  static QList<GmicQt::InputMode> _enabledInputModes;
-  static QList<GmicQt::OutputMode> _enabledOutputModes;
-  static QList<GmicQt::PreviewMode> _enabledPreviewModes;
+  static QList<InputMode> _enabledInputModes;
+  static QList<OutputMode> _enabledOutputModes;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_INOUTPANEL_H

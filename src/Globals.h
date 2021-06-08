@@ -34,6 +34,7 @@ namespace GmicQt
 extern const float PreviewFactorAny;
 extern const float PreviewFactorFullImage;
 extern const float PreviewFactorActualSize;
+const char WarningPrefix = '!';
 } // namespace GmicQt
 
 #define SLIDER_MIN_WIDTH 60

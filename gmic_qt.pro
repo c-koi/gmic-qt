@@ -161,13 +161,15 @@ equals( HOST, "gimp") {
  message(Target host software is GIMP)
 }
 
-
 equals( HOST, "none") {
  TARGET = gmic_qt
  DEFINES += GMIC_HOST=standalone
- SOURCES += src/Host/None/host_none.cpp
- SOURCES += src/Host/None/ImageDialog.cpp
- HEADERS += src/Host/None/ImageDialog.h
+ HEADERS += src/Host/None/ImageDialog.h \
+            src/Host/None/JpegQualityDialog.h
+ SOURCES += src/Host/None/host_none.cpp \
+            src/Host/None/ImageDialog.cpp \
+            src/Host/None/JpegQualityDialog.cpp
+ FORMS += src/Host/None/jpegqualitydialog.ui
  DEPENDPATH += $$PWD/src/Host/None
  message(Building standalone version)
 }
@@ -248,6 +250,8 @@ HEADERS +=  \
   src/ClickableLabel.h \
   src/Common.h \
   src/FilterParameters/CustomSpinBox.h \
+  src/GmicQt.h \
+  src/Host/GmicQtHost.h \
   src/OverrideCursor.h \
   src/DialogSettings.h \
   src/FilterParameters/AbstractParameter.h \
@@ -278,16 +282,13 @@ HEADERS +=  \
   src/CroppedActiveLayerProxy.h \
   src/FilterSyncRunner.h \
   src/FilterThread.h \
-  src/gmic_qt.h \
   src/FilterTextTranslator.h \
   src/Globals.h \
   src/GmicStdlib.h \
   src/GmicProcessor.h \
   src/HeadlessProcessor.h \
-  src/Host/host.h \
   src/HtmlTranslator.h \
   src/IconLoader.h \
-  src/ImageConverter.h \
   src/ImageTools.h \
   src/InputOutputState.h \
   src/KeypointList.h \
@@ -295,6 +296,7 @@ HEADERS +=  \
   src/Logger.h \
   src/LanguageSettings.h \
   src/MainWindow.h \
+  src/Misc.h \
   src/ParametersCache.h \
   src/TimeLogger.h \
   src/Updater.h \
@@ -324,6 +326,7 @@ SOURCES += \
   src/ClickableLabel.cpp \
   src/Common.cpp \
   src/FilterParameters/CustomSpinBox.cpp \
+  src/GmicQt.cpp \
   src/OverrideCursor.cpp \
   src/DialogSettings.cpp \
   src/FilterParameters/AbstractParameter.cpp \
@@ -354,7 +357,6 @@ SOURCES += \
   src/CroppedActiveLayerProxy.cpp \
   src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
-  src/gmic_qt.cpp \
   src/FilterTextTranslator.cpp \
   src/Globals.cpp \
   src/GmicStdlib.cpp \
@@ -362,7 +364,6 @@ SOURCES += \
   src/HeadlessProcessor.cpp \
   src/HtmlTranslator.cpp \
   src/IconLoader.cpp \
-  src/ImageConverter.cpp \
   src/ImageTools.cpp \
   src/InputOutputState.cpp \
   src/KeypointList.cpp \
@@ -374,6 +375,7 @@ SOURCES += \
   src/TimeLogger.cpp \
   src/Updater.cpp \
   src/Utils.cpp \
+  src/Misc.cpp \
   src/FilterSelector/FiltersView/FilterTreeItem.cpp \
   src/FilterSelector/FiltersView/FilterTreeFolder.cpp \
   src/FilterSelector/FavesModel.cpp \
@@ -453,6 +455,7 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
+#    QMAKE_CXXFLAGS_DEBUG += -Wfatal-errors
 #    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
 #    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }

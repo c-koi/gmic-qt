@@ -36,7 +36,10 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
-IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent, true), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
+namespace GmicQt
+{
+
+IntParameter::IntParameter(QObject * parent) : AbstractParameter(parent), _min(0), _max(0), _default(0), _value(0), _label(nullptr), _slider(nullptr), _spinBox(nullptr)
 {
   _timerId = 0;
   _connected = false;
@@ -47,6 +50,11 @@ IntParameter::~IntParameter()
   delete _spinBox;
   delete _slider;
   delete _label;
+}
+
+int IntParameter::size() const
+{
+  return 1;
 }
 
 bool IntParameter::addTo(QWidget * widget, int row)
@@ -88,9 +96,14 @@ bool IntParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString IntParameter::textValue() const
+QString IntParameter::value() const
 {
   return _spinBox->text();
+}
+
+QString IntParameter::defaultValue() const
+{
+  return QString::number(_default);
 }
 
 void IntParameter::setValue(const QString & value)
@@ -196,3 +209,5 @@ void IntParameter::disconnectSliderSpinBox()
   _spinBox->disconnect(this);
   _connected = false;
 }
+
+} // namespace GmicQt

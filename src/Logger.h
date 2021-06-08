@@ -26,20 +26,23 @@
 #define GMIC_QT_LOGGER_H
 
 #include <cstdio>
-#include "gmic_qt.h"
+#include "GmicQt.h"
 
 class QString;
 
+namespace GmicQt
+{
+
 class Logger {
 public:
-  enum Mode
+  enum class Mode
   {
     StandardOutput,
     File
   };
 
   static void setMode(const Mode mode);
-  static void setMode(const GmicQt::OutputMessageMode mode);
+  static void setMode(const OutputMessageMode mode);
   static void clear();
   static void close();
   static void log(const QString & message, const QString & hint, bool space = false);
@@ -53,5 +56,7 @@ private:
   static FILE * _logFile;
   static Mode _currentMode;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_LOGGER_H

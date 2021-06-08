@@ -40,13 +40,31 @@
 #include "HtmlTranslator.h"
 #include "Logger.h"
 
-ColorParameter::ColorParameter(QObject * parent) : AbstractParameter(parent, true), _default(0, 0, 0, 0), _value(_default), _alphaChannel(false), _label(nullptr), _button(nullptr), _dialog(nullptr) {}
+namespace GmicQt
+{
+
+ColorParameter::ColorParameter(QObject * parent) //
+    : AbstractParameter(parent),                 //
+      _default(0, 0, 0, 0),                      //
+      _value(_default),                          //
+      _alphaChannel(false),                      //
+      _label(nullptr),                           //
+      _button(nullptr),                          //
+      _dialog(nullptr),                          //
+      _size(-1)
+{
+}
 
 ColorParameter::~ColorParameter()
 {
   delete _button;
   delete _label;
   delete _dialog;
+}
+
+int ColorParameter::size() const
+{
+  return _size;
 }
 
 bool ColorParameter::addTo(QWidget * widget, int row)
@@ -75,9 +93,18 @@ bool ColorParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString ColorParameter::textValue() const
+QString ColorParameter::value() const
 {
   const QColor & c = _value;
+  if (_alphaChannel) {
+    return QString("%1,%2,%3,%4").arg(c.red()).arg(c.green()).arg(c.blue()).arg(c.alpha());
+  }
+  return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
+}
+
+QString ColorParameter::defaultValue() const
+{
+  const QColor & c = _default;
   if (_alphaChannel) {
     return QString("%1,%2,%3,%4").arg(c.red()).arg(c.green()).arg(c.blue()).arg(c.alpha());
   }
@@ -142,6 +169,7 @@ bool ColorParameter::initFromText(const char * text, int & textLength)
     } else {
       _alphaChannel = false;
     }
+    _size = 3 + _alphaChannel;
     _value = _default;
     return true;
   }
@@ -160,7 +188,11 @@ bool ColorParameter::initFromText(const char * text, int & textLength)
   } else {
     _default = _value = QColor(r, g, b);
   }
-  return okR && okG && okB && okA;
+  if (okR && okG && okB && okA) {
+    _size = channels.size();
+    return true;
+  }
+  return false;
 }
 
 void ColorParameter::onButtonPressed()
@@ -187,3 +219,5 @@ void ColorParameter::updateButtonColor()
   painter.drawRect(0, 0, _pixmap.width() - 1, _pixmap.height() - 1);
   _button->setIcon(_pixmap);
 }
+
+} // namespace GmicQt

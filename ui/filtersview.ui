@@ -30,13 +30,13 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="TreeView" name="treeView"/>
+    <widget class="GmicQt::TreeView" name="treeView"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TreeView</class>
+   <class>GmicQt::TreeView</class>
    <extends>QTreeView</extends>
    <header>FilterSelector/FiltersView/TreeView.h</header>
   </customwidget>

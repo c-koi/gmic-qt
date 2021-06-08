@@ -26,6 +26,9 @@
 #include "IconLoader.h"
 #include <QString>
 
+namespace GmicQt
+{
+
 QIcon IconLoader::getForDarkTheme(const QString & name)
 {
   QPixmap pixmap(QString(":/icons/dark/%1.png").arg(name));
@@ -52,3 +55,5 @@ QPixmap IconLoader::darkerPixmap(const QPixmap & pixmap)
   }
   return QPixmap::fromImage(image);
 }
+
+} // namespace GmicQt

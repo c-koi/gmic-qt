@@ -32,17 +32,20 @@
 #include <QStandardItemModel>
 #include <QString>
 #include <QWidget>
+class QSettings;
+class QEvent;
 
 namespace Ui
 {
 class FiltersView;
 }
 
+namespace GmicQt
+{
+
 class FilterTreeFolder;
 class FilterTreeItem;
 class FilterTreeAbstractItem;
-class QSettings;
-class QEvent;
 
 class FiltersView : public QWidget {
   Q_OBJECT
@@ -129,5 +132,7 @@ private:
   QMenu * _faveContextMenu;
   QMenu * _filterContextMenu;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FILTERSVIEW_H

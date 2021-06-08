@@ -32,11 +32,19 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
-ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent, true), _value(false), _pushButton(nullptr), _alignment(Qt::AlignHCenter) {}
+namespace GmicQt
+{
+
+ButtonParameter::ButtonParameter(QObject * parent) : AbstractParameter(parent), _value(false), _pushButton(nullptr), _alignment(Qt::AlignHCenter) {}
 
 ButtonParameter::~ButtonParameter()
 {
   delete _pushButton;
+}
+
+int ButtonParameter::size() const
+{
+  return 1;
 }
 
 bool ButtonParameter::addTo(QWidget * widget, int row)
@@ -52,9 +60,14 @@ bool ButtonParameter::addTo(QWidget * widget, int row)
   return true;
 }
 
-QString ButtonParameter::textValue() const
+QString ButtonParameter::value() const
 {
   return _value ? QString("1") : QString("0");
+}
+
+QString ButtonParameter::defaultValue() const
+{
+  return QString("0");
 }
 
 void ButtonParameter::setValue(const QString & s)
@@ -96,3 +109,5 @@ bool ButtonParameter::initFromText(const char * text, int & textLength)
   }
   return true;
 }
+
+} // namespace GmicQt

@@ -27,17 +27,21 @@
 
 #include <QString>
 #include "AbstractParameter.h"
-class QLabel;
 class QPushButton;
+class QLabel;
+
+namespace GmicQt
+{
 
 class FolderParameter : public AbstractParameter {
   Q_OBJECT
 public:
   FolderParameter(QObject * parent = nullptr);
   ~FolderParameter() override;
+  virtual int size() const override;
   bool addTo(QWidget *, int row) override;
-  QString textValue() const override;
-  QString unquotedTextValue() const override;
+  QString value() const override;
+  QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
   bool initFromText(const char * text, int & textLength) override;
@@ -52,5 +56,7 @@ private:
   QLabel * _label;
   QPushButton * _button;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FOLDERPARAMETER_H

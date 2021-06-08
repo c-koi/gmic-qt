@@ -28,14 +28,15 @@
 #include <iostream>
 #include "FilterThread.h"
 #include "GmicStdlib.h"
-#include "ImageConverter.h"
 #include "Logger.h"
-#include "Utils.h"
+#include "Misc.h"
 #include "gmic.h"
-using namespace cimg_library;
 
-FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & name, const QString & command, const QString & arguments, const QString & environment, GmicQt::OutputMessageMode mode)
-    : QObject(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>), _name(name),
+namespace GmicQt
+{
+
+FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode)
+    : QObject(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>),
       _messageMode(mode)
 {
 #ifdef _IS_MACOS_
@@ -116,15 +117,10 @@ float FilterSyncRunner::progress() const
   return _gmicProgress;
 }
 
-QString FilterSyncRunner::name() const
-{
-  return _name;
-}
-
 QString FilterSyncRunner::fullCommand() const
 {
   QString result = _command;
-  GmicQt::appendWithSpace(result, _arguments);
+  appendWithSpace(result, _arguments);
   return result;
 }
 
@@ -144,16 +140,16 @@ void FilterSyncRunner::run()
   _failed = false;
   QString fullCommandLine;
   try {
-    fullCommandLine = QString::fromLatin1(GmicQt::commandFromOutputMessageMode(_messageMode));
-    GmicQt::appendWithSpace(fullCommandLine, _command);
-    GmicQt::appendWithSpace(fullCommandLine, _arguments);
+    fullCommandLine = commandFromOutputMessageMode(_messageMode);
+    appendWithSpace(fullCommandLine, _command);
+    appendWithSpace(fullCommandLine, _arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
-    if (_messageMode > GmicQt::Quiet) {
+    if (_messageMode > OutputMessageMode::Quiet) {
       Logger::log(fullCommandLine, _logSuffix, true);
     }
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, 0, 0, 0.f);
-    gmicInstance.set_variable("_host", GmicQt::HostApplicationShortname, '=');
+    gmicInstance.set_variable("_host", GmicQtHost::ApplicationShortname, '=');
     gmicInstance.set_variable("_tk", "qt", '=');
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;
@@ -162,9 +158,11 @@ void FilterSyncRunner::run()
     _imageNames->assign();
     const char * message = e.what();
     _errorMessage = message;
-    if (_messageMode > GmicQt::Quiet) {
+    if (_messageMode > OutputMessageMode::Quiet) {
       Logger::error(QString("When running command '%1', this error occurred:\n%2").arg(fullCommandLine).arg(message), true);
     }
     _failed = true;
   }
 }
+
+} // namespace GmicQt

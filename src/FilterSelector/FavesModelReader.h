@@ -29,6 +29,9 @@
 
 class QByteArray;
 
+namespace GmicQt
+{
+
 class FavesModelReader {
 public:
   FavesModelReader(FavesModel & model);
@@ -41,5 +44,7 @@ private:
   static FavesModel::Fave jsonObjectToFave(const QJsonObject & object);
   FavesModel & _model;
 };
+
+} // namespace GmicQt
 
 #endif // GMIC_QT_FAVESMODELREADER_H
