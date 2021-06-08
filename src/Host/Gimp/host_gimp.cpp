@@ -55,6 +55,22 @@
 #define _gimp_item_get_visible gimp_item_get_visible
 #endif
 
+#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+#define _gimp_image_get_width gimp_image_width
+#define _gimp_image_get_height gimp_image_height
+#define _gimp_image_get_base_type gimp_image_base_type
+#define _gimp_drawable_get_width gimp_drawable_width
+#define _gimp_drawable_get_height gimp_drawable_height
+#define _gimp_drawable_get_offsets gimp_drawable_offsets
+#else
+#define _gimp_image_get_width gimp_image_get_width
+#define _gimp_image_get_height gimp_image_get_height
+#define _gimp_image_get_base_type gimp_image_get_base_type
+#define _gimp_drawable_get_width gimp_drawable_get_width
+#define _gimp_drawable_get_height gimp_drawable_get_height
+#define _gimp_drawable_get_offsets gimp_drawable_get_offsets
+#endif
+
 #if GIMP_VERSION_LTE(2, 98)
 #define _GimpImagePtr int
 #define _GimpLayerPtr int
@@ -95,10 +111,26 @@ struct _GmicQtPluginClass {
 
 GType gmic_qt_get_type(void) G_GNUC_CONST;
 
-static GList * gmic_qt_query(GimpPlugIn * plug_in);
-static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name);
+static GList * gmic_qt_query(GimpPlugIn *plug_in);
+static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn *plug_in,
+                                                const gchar *name);
 
-static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data);
+#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
+                                    GimpRunMode run_mode,
+                                    GimpImage *image,
+                                    GimpDrawable *drawable,
+                                    const GimpValueArray *args,
+                                    gpointer run_data);
+#else
+static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
+                                    GimpRunMode run_mode,
+                                    GimpImage *image,
+                                    gint n_drawables,
+                                    GimpDrawable **drawables,
+                                    const GimpValueArray  *args,
+                                    gpointer run_data);
+#endif
 
 G_DEFINE_TYPE(GmicQtPlugin, gmic_qt, GIMP_TYPE_PLUG_IN)
 
@@ -605,8 +637,8 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
     }
     const int spectrum = (gimp_drawable_is_rgb(_GIMP_DRAWABLE(inputLayers[l])) ? 3 : 1) + (gimp_drawable_has_alpha(_GIMP_DRAWABLE(inputLayers[l])) ? 1 : 0);
 
-    const int dw = static_cast<int>(gimp_drawable_width(_GIMP_DRAWABLE(inputLayers[l])));
-    const int dh = static_cast<int>(gimp_drawable_height(_GIMP_DRAWABLE(inputLayers[l])));
+    const int dw = static_cast<int>(_gimp_drawable_get_width(_GIMP_DRAWABLE(inputLayers[l])));
+    const int dh = static_cast<int>(_gimp_drawable_get_height(_GIMP_DRAWABLE(inputLayers[l])));
     const int ix = static_cast<int>(entireImage ? rgn_x : (rgn_x + x * rgn_width));
     const int iy = static_cast<int>(entireImage ? rgn_y : (rgn_y + y * rgn_height));
     const int iw = entireImage ? rgn_width : std::min(dw - ix, static_cast<int>(1 + std::ceil(rgn_width * width)));
@@ -630,7 +662,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
       xPos = selX1;
       yPos = selY1;
     } else {
-      gimp_drawable_offsets(_GIMP_DRAWABLE(inputLayers[l]), &xPos, &yPos);
+      _gimp_drawable_get_offsets(_GIMP_DRAWABLE(inputLayers[l]), &xPos, &yPos);
     }
     QString noParenthesisName(gimp_item_get_name(_GIMP_ITEM(inputLayers[l])));
     noParenthesisName.replace(QChar('('), QChar(21)).replace(QChar(')'), QChar(22));
@@ -692,8 +724,8 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
   get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &image_nb_layers);
   unsigned int image_width = 0, image_height = 0;
   if (inputLayers.size()) {
-    image_width = gimp_image_width(gmic_qt_gimp_image_id);
-    image_height = gimp_image_height(gmic_qt_gimp_image_id);
+    image_width = _gimp_image_get_width(gmic_qt_gimp_image_id);
+    image_height = _gimp_image_get_height(gmic_qt_gimp_image_id);
   }
 
   int is_selection = 0, sel_x0 = 0, sel_y0 = 0, sel_x1 = 0, sel_y1 = 0;
@@ -730,7 +762,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
       for (unsigned int p = 0; p < images.size(); ++p) {
         layer_blendmode = gimp_layer_get_mode(inputLayers[p]);
         layer_opacity = gimp_layer_get_opacity(inputLayers[p]);
-        gimp_drawable_offsets(_GIMP_DRAWABLE(inputLayers[p]), &layer_posx, &layer_posy);
+        _gimp_drawable_get_offsets(_GIMP_DRAWABLE(inputLayers[p]), &layer_posx, &layer_posy);
         cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
         get_output_layer_props(imageNames[p], layer_blendmode, layer_opacity, layer_posx, layer_posy, layer_name);
         cimg_library::CImg<gmic_pixel_type> & img = images[p];
@@ -786,7 +818,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
             layer_blendmode = gimp_layer_get_mode(inputLayers[p]);
             layer_opacity = gimp_layer_get_opacity(inputLayers[p]);
             if (!is_selection) {
-              gimp_drawable_offsets(_GIMP_DRAWABLE(inputLayers[p]), &layer_posx, &layer_posy);
+              _gimp_drawable_get_offsets(_GIMP_DRAWABLE(inputLayers[p]), &layer_posx, &layer_posy);
             }
             cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
             gimp_image_remove_layer(gmic_qt_gimp_image_id, inputLayers[p]);
@@ -805,7 +837,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           bottom_right.x = std::max(bottom_right.x, (gint)(layer_posx + images[p]._width));
           bottom_right.y = std::max(bottom_right.y, (gint)(layer_posy + images[p]._height));
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
-          if (gimp_image_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
+          if (_gimp_image_get_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
             GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
           } else {
             GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
@@ -866,7 +898,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           layer_posx = layer_posy = 0;
           if (inputLayers.size() == 1) {
             if (!is_selection) {
-              gimp_drawable_offsets(_GIMP_DRAWABLE(active_layer_id), &layer_posx, &layer_posy);
+              _gimp_drawable_get_offsets(_GIMP_DRAWABLE(active_layer_id), &layer_posx, &layer_posy);
             }
             cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(active_layer_id))).move_to(layer_name);
           } else {
@@ -879,7 +911,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           bottom_right.y = std::max(bottom_right.y, (gint)(layer_posy + images[p]._height));
 
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
-          if (gimp_image_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
+          if (_gimp_image_get_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
             GmicQt::calibrateImage(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
           } else {
             GmicQt::calibrateImage(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
@@ -948,7 +980,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           layer_posx = layer_posy = 0;
           if (inputLayers.size() == 1) {
             if (!is_selection) {
-              gimp_drawable_offsets(_GIMP_DRAWABLE(active_layer_id), &layer_posx, &layer_posy);
+              _gimp_drawable_get_offsets(_GIMP_DRAWABLE(active_layer_id), &layer_posx, &layer_posy);
             }
             cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(active_layer_id))).move_to(layer_name);
           } else {
@@ -960,7 +992,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
             layer_posy = 0;
           }
           cimg_library::CImg<gmic_pixel_type> & img = images[p];
-          if (gimp_image_base_type(nimage_id) != GIMP_GRAY) {
+          if (_gimp_image_get_base_type(nimage_id) != GIMP_GRAY) {
             GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }
           _GimpLayerPtr layer_id = gimp_layer_new(nimage_id, nullptr, img.width(), img.height(), spectrum2gimpImageTypes[std::min(img.spectrum(), 4)], layer_opacity, layer_blendmode);
@@ -1099,7 +1131,22 @@ static GList * gmic_qt_query(GimpPlugIn * plug_in)
 /*
  * 'Run' function, required by the GIMP plug-in API.
  */
-static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data)
+#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
+                                    GimpRunMode run_mode,
+                                    GimpImage *image,
+                                    GimpDrawable *drawable,
+                                    const GimpValueArray *args,
+                                    gpointer run_data)
+#else
+static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
+                                    GimpRunMode run_mode,
+                                    GimpImage *image,
+                                    gint n_drawables,
+                                    GimpDrawable **drawables,
+                                    const GimpValueArray  *args,
+                                    gpointer run_data)
+#endif
 {
   gegl_init(NULL, NULL);
   // gimp_plugin_enable_precision(); // what is this?
