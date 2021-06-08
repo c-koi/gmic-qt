@@ -29,8 +29,8 @@
 #include <QDataStream>
 #include <QDateTime>
 #include <QDir>
-#include <qendian.h>
 #include <QFile>
+#include <qglobal.h>
 #include <QMessageBox>
 #include <QUUid>
 #include <iostream>
@@ -103,7 +103,8 @@ namespace
         UnknownFileVersion,
         InvalidArgument,
         OutOfMemory,
-        EndOfFile
+        EndOfFile,
+        PlatformEndianMismatch
     };
 
     InputFileParseStatus FillTileBuffer(
@@ -414,9 +415,9 @@ namespace
 
                 for (int x = left; x < right; x++)
                 {
-                    *dstR++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
-                    *dstG++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[1])];
-                    *dstB++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[2])];
+                    *dstR++ = sixteenBitToEightBitLUT[src[0]];
+                    *dstG++ = sixteenBitToEightBitLUT[src[1]];
+                    *dstB++ = sixteenBitToEightBitLUT[src[2]];
                     src += 3;
                 }
             }
@@ -441,10 +442,10 @@ namespace
 
                 for (int x = left; x < right; x++)
                 {
-                    *dstR++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
-                    *dstG++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[1])];
-                    *dstB++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[2])];
-                    *dstA++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[3])];
+                    *dstR++ = sixteenBitToEightBitLUT[src[0]];
+                    *dstG++ = sixteenBitToEightBitLUT[src[1]];
+                    *dstB++ = sixteenBitToEightBitLUT[src[2]];
+                    *dstA++ = sixteenBitToEightBitLUT[src[3]];
                     src += 4;
                 }
             }
@@ -465,8 +466,8 @@ namespace
 
                 for (int x = left; x < right; x++)
                 {
-                    *dstGray++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
-                    *dstAlpha++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[1])];
+                    *dstGray++ = sixteenBitToEightBitLUT[src[0]];
+                    *dstAlpha++ = sixteenBitToEightBitLUT[src[1]];
                     src += 2;
                 }
             }
@@ -484,7 +485,7 @@ namespace
                 float* dstGray = grayPlane + planeStart;
                 for (int x = left; x < right; x++)
                 {
-                    *dstGray++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
+                    *dstGray++ = sixteenBitToEightBitLUT[src[0]];
                     src++;
                 }
             }
@@ -520,7 +521,7 @@ namespace
 
             for (int x = left; x < right; x++)
             {
-                *dst++ = sixteenBitToEightBitLUT[qFromLittleEndian(src[0])];
+                *dst++ = sixteenBitToEightBitLUT[src[0]];
                 src++;
             }
         }
@@ -660,7 +661,6 @@ namespace
         }
 
         QDataStream dataStream(&file);
-        dataStream.setByteOrder(QDataStream::LittleEndian);
 
         char signature[4] = {};
 
@@ -669,6 +669,28 @@ namespace
         if (strncmp(signature, "G8IM", 4) != 0)
         {
             return InputFileParseStatus::BadFileSignature;
+        }
+
+        char endian[4] = {};
+
+        dataStream.readRawData(endian, 4);
+
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+        if (strncmp(endian, "BEDN", 4) == 0)
+        {
+            dataStream.setByteOrder(QDataStream::BigEndian);
+        }
+#elif Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+        if (strncmp(endian, "LEDN", 4) == 0)
+        {
+            dataStream.setByteOrder(QDataStream::LittleEndian);
+        }
+#else
+#error "Unknown endianess on this platform."
+#endif
+        else
+        {
+            return InputFileParseStatus::PlatformEndianMismatch;
         }
 
         int32_t fileVersion = 0;
@@ -750,22 +772,43 @@ namespace
         }
 
         QDataStream dataStream(&file);
-        dataStream.setByteOrder(QDataStream::LittleEndian);
 
         char signature[4] = {};
 
         dataStream.readRawData(signature, 4);
 
-        if (strncmp(signature, "G8IX", 4) != 0)
+        if (strncmp(signature, "G8LI", 4) != 0)
         {
             return InputFileParseStatus::BadFileSignature;
+        }
+
+        char endian[4] = {};
+
+        dataStream.readRawData(endian, 4);
+
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+        if (strncmp(endian, "BEDN", 4) == 0)
+        {
+            dataStream.setByteOrder(QDataStream::BigEndian);
+        }
+#elif Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+        if (strncmp(endian, "LEDN", 4) == 0)
+        {
+            dataStream.setByteOrder(QDataStream::LittleEndian);
+        }
+#else
+#error "Unknown endianess on this platform."
+#endif
+        else
+        {
+            return InputFileParseStatus::PlatformEndianMismatch;
         }
 
         int32_t fileVersion = 0;
 
         dataStream >> fileVersion;
 
-        if (fileVersion < 1 || fileVersion > 3)
+        if (fileVersion != 1)
         {
             return InputFileParseStatus::UnknownFileVersion;
         }
@@ -776,18 +819,12 @@ namespace
 
         dataStream >> host_8bf::activeLayerIndex;
 
-        host_8bf::grayScale = false;
-        host_8bf::sixteenBitsPerChannel = false;
+        int32_t documentFlags;
 
-        if (fileVersion >= 2)
-        {
-            int32_t documentFlags;
+        dataStream >> documentFlags;
 
-            dataStream >> documentFlags;
-
-            host_8bf::grayScale = (documentFlags & 1) != 0;
-            host_8bf::sixteenBitsPerChannel = (documentFlags & 2) != 0;
-        }
+        host_8bf::grayScale = (documentFlags & 1) != 0;
+        host_8bf::sixteenBitsPerChannel = (documentFlags & 2) != 0;
 
         host_8bf::layers.reserve(layerCount);
 
@@ -829,7 +866,7 @@ namespace
         }
 
         // Load the second input image from the alternate source, if present.
-        if (layerCount == 1 && fileVersion == 3)
+        if (layerCount == 1)
         {
             QString imagePath = ReadUTF8String(dataStream);
 
@@ -974,6 +1011,13 @@ namespace
         const int flags = planar ? 1 : 0;
 
         stream.writeRawData("G8IM", 4);
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+        stream.writeRawData("BEDN", 4);
+#elif Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+        stream.writeRawData("LEDN", 4);
+#else
+#error "Unknown endianess on this platform."
+#endif
         stream << fileVersion;
         stream << width;
         stream << height;
@@ -1251,9 +1295,9 @@ namespace
 
                 for (int x = left; x < right; ++x)
                 {
-                    dst[0] =  qToLittleEndian(float2ushort_bounded(*srcR++));
-                    dst[1] =  qToLittleEndian(float2ushort_bounded(*srcG++));
-                    dst[2] =  qToLittleEndian(float2ushort_bounded(*srcB++));
+                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[1] = float2ushort_bounded(*srcG++);
+                    dst[2] = float2ushort_bounded(*srcB++);
 
                     dst += 3;
                 }
@@ -1281,10 +1325,10 @@ namespace
 
                 for (int x = left; x < right; ++x)
                 {
-                    dst[0] = qToLittleEndian(float2ushort_bounded(*srcR++));
-                    dst[1] = qToLittleEndian(float2ushort_bounded(*srcG++));
-                    dst[2] = qToLittleEndian(float2ushort_bounded(*srcB++));
-                    dst[3] = qToLittleEndian(float2ushort_bounded(*srcA++));
+                    dst[0] = float2ushort_bounded(*srcR++);
+                    dst[1] = float2ushort_bounded(*srcG++);
+                    dst[2] = float2ushort_bounded(*srcB++);
+                    dst[3] = float2ushort_bounded(*srcA++);
 
                     dst += 4;
                 }
@@ -1312,8 +1356,8 @@ namespace
 
                 for (int x = left; x < right; ++x)
                 {
-                    dst[0] = qToLittleEndian(float2ushort_bounded(*src++));
-                    dst[1] = qToLittleEndian(float2ushort_bounded(*srcA++));
+                    dst[0] = float2ushort_bounded(*src++);
+                    dst[1] = float2ushort_bounded(*srcA++);
 
                     dst += 2;
                 }
@@ -1338,7 +1382,7 @@ namespace
 
                 for (int x = left; x < right; ++x)
                 {
-                    dst[0] = qToLittleEndian(float2ushort_bounded(*src++));
+                    dst[0] = float2ushort_bounded(*src++);
 
                     dst++;
                 }
@@ -1371,7 +1415,7 @@ namespace
 
             for (int x = left; x < right; ++x)
             {
-                dst[0] = qToLittleEndian(float2ushort_bounded(*src++));
+                dst[0] = float2ushort_bounded(*src++);
 
                 dst++;
             }
@@ -1751,6 +1795,8 @@ int main(int argc, char *argv[])
             return 9;
         case InputFileParseStatus::EndOfFile:
             return 10;
+        case InputFileParseStatus::PlatformEndianMismatch:
+            return 11;
         default:
             return 4; // Unknown error
         }
