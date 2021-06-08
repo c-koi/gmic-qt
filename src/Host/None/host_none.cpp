@@ -107,7 +107,7 @@ QString imageName(const char * text)
       }
       ++ps;
     }
-    if (!level || *(ps - 1) == ')') {
+    if (!level || (*(ps - 1) == ')')) {
       result = QString::fromUtf8(start + 5, (unsigned int)(ps - start - 5));
       result.chop(1);
       for (QChar & c : result) {
@@ -266,7 +266,7 @@ int main(int argc, char * argv[])
   int narg = 1;
   bool repeat = false;
   bool apply = false;
-  bool first = false;
+  bool reapplyFirst = false;
   bool printLast = false;
   bool printLastAfter = false;
   std::string filterPath;
@@ -274,14 +274,14 @@ int main(int argc, char * argv[])
   QStringList filenames;
   while (narg < argc) {
     QString arg = QString::fromLocal8Bit(argv[narg]);
-    if (arg == "--help" || arg == "-h") {
+    if ((arg == "--help") || (arg == "-h")) {
       usage(gmic_qt_standalone::basename(argv[0]));
       return EXIT_SUCCESS;
-    } else if (arg == "--apply" || arg == "-a") {
+    } else if ((arg == "--apply") || (arg == "-a")) {
       apply = true;
-    } else if (arg == "--reapply-first" || arg == "-R") {
-      first = true;
-    } else if (arg == "--output" || arg == "-o") {
+    } else if ((arg == "--reapply-first") || (arg == "-R")) {
+      reapplyFirst = true;
+    } else if ((arg == "--output") || (arg == "-o")) {
       if (narg < argc - 1) {
         ++narg;
         gmic_qt_standalone::output_image_filename = argv[narg];
@@ -289,7 +289,7 @@ int main(int argc, char * argv[])
         std::cerr << "Missing filename for option " << arg.toStdString() << std::endl;
         return EXIT_FAILURE;
       }
-    } else if (arg == "--quality" || arg == "-q") {
+    } else if ((arg == "--quality") || (arg == "-q")) {
       if (narg < argc - 1) {
         ++narg;
         gmic_qt_standalone::jpeg_quality = std::max(0, std::min(100, atoi(argv[narg])));
@@ -297,9 +297,9 @@ int main(int argc, char * argv[])
         std::cerr << "Missing argument for option " << arg.toStdString() << std::endl;
         return EXIT_FAILURE;
       }
-    } else if (arg == "--repeat" || arg == "-r") {
+    } else if ((arg == "--repeat") || (arg == "-r")) {
       repeat = true;
-    } else if (arg == "--command" || arg == "-c") {
+    } else if ((arg == "--command") || (arg == "-c")) {
       if (narg < argc - 1) {
         ++narg;
         command = argv[narg];
@@ -307,7 +307,7 @@ int main(int argc, char * argv[])
         std::cerr << "Missing command for option " << arg.toStdString() << std::endl;
         return EXIT_FAILURE;
       }
-    } else if (arg == "--path" || arg == "-p") {
+    } else if ((arg == "--path") || (arg == "-p")) {
       if (narg < argc - 1) {
         ++narg;
         filterPath = argv[narg];
@@ -390,12 +390,12 @@ int main(int argc, char * argv[])
       gmic_qt_standalone::current_image_filename = QFileInfo(filename).fileName();
       gmic_qt_standalone::input_image_filename = gmic_qt_standalone::current_image_filename;
       GmicQt::UserInterfaceMode uiMode;
-      if (apply || (first && !firstLaunch)) {
+      if (apply || (reapplyFirst && !firstLaunch)) {
         uiMode = GmicQt::UserInterfaceMode::ProgressDialog;
       } else {
         uiMode = GmicQt::UserInterfaceMode::Full;
       }
-      if (first && !firstLaunch) {
+      if (reapplyFirst && !firstLaunch) {
         parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::BeforeFilterExecution);
       }
       int status = GmicQt::run(uiMode, parameters);
