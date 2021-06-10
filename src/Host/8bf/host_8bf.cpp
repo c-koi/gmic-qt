@@ -1013,8 +1013,10 @@ namespace
         stream.writeRawData("G8IM", 4);
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
         stream.writeRawData("BEDN", 4);
+        stream.setByteOrder(QDataStream::BigEndian);
 #elif Q_BYTE_ORDER == Q_LITTLE_ENDIAN
         stream.writeRawData("LEDN", 4);
+        stream.setByteOrder(QDataStream::LittleEndian);
 #else
 #error "Unknown endianess on this platform."
 #endif
