@@ -1517,6 +1517,184 @@ namespace
             dir.remove(dirFile);
         }
     }
+
+    GmicQt::InputMode ReadGmic8bfInputMode(QDataStream& dataStream)
+    {
+        GmicQt::InputMode mode = GmicQt::InputMode::Active;
+
+        QString str = ReadUTF8String(dataStream);
+
+        if (str == "All Layers")
+        {
+            mode = GmicQt::InputMode::All;
+        }
+        else if (str == "Active Layer and Below")
+        {
+            mode = GmicQt::InputMode::ActiveAndBelow;
+        }
+        else if (str == "Active Layer and Above")
+        {
+            mode = GmicQt::InputMode::ActiveAndAbove;
+        }
+        else if (str == "All Visible Layers")
+        {
+            mode = GmicQt::InputMode::AllVisible;
+        }
+        else if (str == "All Hidden Layers")
+        {
+            mode = GmicQt::InputMode::AllInvisible;
+        }
+
+        return mode;
+    }
+
+    bool ReadGmic8bfFilterParameters(const QString& path, GmicQt::RunParameters& parameters)
+    {
+        QFile file(path);
+
+        if (file.open(QFile::ReadOnly))
+        {
+            QDataStream dataStream(&file);
+
+            char signature[4] = {};
+
+            dataStream.readRawData(signature, 4);
+
+            if (strncmp(signature, "G8FP", 4) != 0)
+            {
+                return false;
+            }
+
+            char endian[4] = {};
+
+            dataStream.readRawData(endian, 4);
+
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+            if (strncmp(endian, "BEDN", 4) == 0)
+            {
+                dataStream.setByteOrder(QDataStream::BigEndian);
+            }
+#elif Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+            if (strncmp(endian, "LEDN", 4) == 0)
+            {
+                dataStream.setByteOrder(QDataStream::LittleEndian);
+            }
+#else
+#error "Unknown endianess on this platform."
+#endif
+            else
+            {
+                return false;
+            }
+
+            int32_t fileVersion = 0;
+
+            dataStream >> fileVersion;
+
+            if (fileVersion != 1)
+            {
+                return false;
+            }
+
+            parameters.command = ReadUTF8String(dataStream).toStdString();
+            parameters.filterPath = ReadUTF8String(dataStream).toStdString();
+            parameters.inputMode = ReadGmic8bfInputMode(dataStream);
+        }
+
+        return true;
+    }
+
+    GmicQt::RunParameters GetFilterRunParameters(const QString& path)
+    {
+        GmicQt::RunParameters parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
+
+        if (!path.isEmpty())
+        {
+            ReadGmic8bfFilterParameters(path, parameters);
+        }
+
+        return parameters;
+    }
+
+    void WriteGmic8bfInputMode(QDataStream& dataStream, GmicQt::InputMode inputMode)
+    {
+        QString str;
+
+        switch (inputMode)
+        {
+        case GmicQt::InputMode::All:
+            str = "All Layers";
+            break;
+        case GmicQt::InputMode::ActiveAndBelow:
+            str = "Active Layer and Below";
+            break;
+        case GmicQt::InputMode::ActiveAndAbove:
+            str = "Active Layer and Above";
+            break;
+        case GmicQt::InputMode::AllVisible:
+            str = "All Visible Layers";
+            break;
+        case GmicQt::InputMode::AllInvisible:
+            str = "All Hidden Layers";
+            break;
+        case GmicQt::InputMode::Active:
+        default:
+            str = "Active Layer";
+            break;
+        }
+
+        QByteArray utf8Bytes = str.toUtf8();
+
+        dataStream << utf8Bytes.size();
+
+        dataStream.writeRawData(utf8Bytes.constData(), utf8Bytes.size());
+    }
+
+    void WriteUtf8String(QDataStream& dataStream, const std::string& str)
+    {
+        if (str.size() <= INT_MAX)
+        {
+            const int stringLength = static_cast<int>(str.size());
+
+            dataStream << stringLength;
+
+            dataStream.writeRawData(str.c_str(), stringLength);
+        }
+    }
+
+    void WriteGmic8bfFilterParameters(const QString& path, const GmicQt::RunParameters& parameters)
+    {
+        if (path.isEmpty())
+        {
+            return;
+        }
+
+        QFile file(path);
+
+        if (file.open(QFile::WriteOnly))
+        {
+            QDataStream dataStream(&file);
+
+            const int32_t fileVersion = 1;
+
+            dataStream.writeRawData("G8FP", 4);
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+            stream.writeRawData("BEDN", 4);
+            dataStream.setByteOrder(QDataStream::BigEndian);
+#elif Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+            dataStream.writeRawData("LEDN", 4);
+            dataStream.setByteOrder(QDataStream::LittleEndian);
+#else
+#error "Unknown endianess on this platform."
+#endif
+            dataStream << fileVersion;
+
+            WriteUtf8String(dataStream, parameters.command);
+            WriteUtf8String(dataStream, parameters.filterPath);
+            WriteGmic8bfInputMode(dataStream, parameters.inputMode);
+            WriteUtf8String(dataStream, parameters.filterName());
+        }
+    }
 }
 
 namespace GmicQtHost {
@@ -1749,15 +1927,21 @@ int main(int argc, char *argv[])
 #endif
 
     QString indexFilePath;
+    QString parametersFilePath;
     bool useLastParameters = false;
 
     if (argc >= 3)
     {
         indexFilePath = argv[1];
         host_8bf::outputDir = argv[2];
-        if (argc == 4)
+        if (argc >= 4)
         {
-            useLastParameters = strcmp(argv[3], "reapply") == 0;
+            parametersFilePath = argv[3];
+
+            if (argc == 5)
+            {
+                useLastParameters = strcmp(argv[4], "reapply") == 0;
+            }
         }
     }
     else
@@ -1826,28 +2010,39 @@ int main(int argc, char *argv[])
     disabledOutputModes.push_back(GmicQt::OutputMode::NewActiveLayers);
     bool dialogAccepted = true;
 
+    GmicQt::RunParameters parameters = GetFilterRunParameters(parametersFilePath);
+
     if (useLastParameters)
     {
-        GmicQt::RunParameters parameters;
-        parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
         exitCode = GmicQt::run(GmicQt::UserInterfaceMode::ProgressDialog,
                                parameters,
                                disabledInputModes,
                                disabledOutputModes,
                                &dialogAccepted);
+
+        if (!dialogAccepted)
+        {
+            exitCode = 5;
+        }
     }
     else
     {
         exitCode = GmicQt::run(GmicQt::UserInterfaceMode::Full,
-                               GmicQt::RunParameters(),
+                               parameters,
                                disabledInputModes,
                                disabledOutputModes,
                                &dialogAccepted);
-    }
 
-    if (!dialogAccepted)
-    {
-        exitCode = 5;
+        if (dialogAccepted)
+        {
+            GmicQt::RunParameters currentParameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
+
+            WriteGmic8bfFilterParameters(parametersFilePath, currentParameters);
+        }
+        else
+        {
+            exitCode = 5;
+        }
     }
 
     return exitCode;
