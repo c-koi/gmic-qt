@@ -1151,24 +1151,37 @@ static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
   gegl_init(NULL, NULL);
   // gimp_plugin_enable_precision(); // what is this?
   GmicQt::RunParameters pluginParameters;
+  bool accepted = true;
   switch (run_mode) {
   case GIMP_RUN_INTERACTIVE:
     gmic_qt_gimp_image_id = image;
-    launchPlugin(GmicQt::UserInterfaceMode::Full);
+    GmicQt::run(GmicQt::UserInterfaceMode::Full,
+                GmicQt::RunParameters(),         //
+                std::list<GmicQt::InputMode>(),  //
+                std::list<GmicQt::OutputMode>(), //
+                &accepted);
     break;
   case GIMP_RUN_WITH_LAST_VALS:
     gmic_qt_gimp_image_id = image;
-    launchPlugin(GmicQt::UserInterfaceMode::ProgressDialog, GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution));
+    GmicQt::run(GmicQt::UserInterfaceMode::ProgressDialog,                                                       //
+                GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution), //
+                std::list<GmicQt::InputMode>(),                                                                  //
+                std::list<GmicQt::OutputMode>(),                                                                 //
+                &accepted);
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = image;
     pluginParameters.command = g_value_get_string(gimp_value_array_index(args, 2));
     pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + (int)GmicQt::InputMode::NoInput);
     pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + (int)GmicQt::OutputMode::InPlace);
-    launchPlugin(GmicQt::UserInterfaceMode::Silent, pluginParameters);
+    GmicQt::run(GmicQt::UserInterfaceMode::Silent, //
+                pluginParameters,                  //
+                std::list<GmicQt::InputMode>(),    //
+                std::list<GmicQt::OutputMode>(),   //
+                &accepted);
     break;
   }
-  return gimp_procedure_new_return_values(procedure, pluginDialogWasAccepted() ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL, NULL);
+  return gimp_procedure_new_return_values(procedure, accepted ? GIMP_PDB_SUCCESS : GIMP_PDB_CANCEL, NULL);
 }
 
 static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name)
