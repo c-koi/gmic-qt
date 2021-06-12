@@ -59,7 +59,7 @@ namespace host_8bf
     QVector<Gmic8bfLayer> layers;
     int32_t activeLayerIndex;
     bool grayScale;
-    bool sixteenBitsPerChannel;
+    uint8_t bitsPerChannel;
     int32_t documentWidth;
     int32_t documentHeight;
     int32_t hostTileWidth;
@@ -819,12 +819,16 @@ namespace
 
         dataStream >> host_8bf::activeLayerIndex;
 
-        int32_t documentFlags;
+        uint8_t grayScale;
 
-        dataStream >> documentFlags;
+        dataStream >> grayScale;
 
-        host_8bf::grayScale = (documentFlags & 1) != 0;
-        host_8bf::sixteenBitsPerChannel = (documentFlags & 2) != 0;
+        host_8bf::grayScale = grayScale != 0;
+
+        dataStream >> host_8bf::bitsPerChannel;
+
+        // Skip the padding bytes.
+        dataStream.skipRawData(2);
 
         host_8bf::layers.reserve(layerCount);
 
@@ -1854,13 +1858,15 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
                 }
             }
 
-            if (host_8bf::sixteenBitsPerChannel)
+
+            switch (host_8bf::bitsPerChannel)
             {
-                WriteGmicOutput16(outputPath, in, planar, tileWidth, tileHeight);
-            }
-            else
-            {
+            case 8:
                 WriteGmicOutput8(outputPath, in, planar, tileWidth, tileHeight);
+                break;
+            case 16:
+                WriteGmicOutput16(outputPath, in, planar, tileWidth, tileHeight);
+                break;
             }
         }
     }
