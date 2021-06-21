@@ -392,7 +392,7 @@ QStringList expandParameterList(const QStringList & parameters, QVector<int> siz
     } else if (*itSize == 1) {
       result.push_back(*itParam);
     } else {
-      Q_ASSERT_X((*itParam >= 1), __PRETTY_FUNCTION__, QString("Parameter size should be at least 1 (it is %1)").arg(*itParam).toStdString().c_str());
+      Q_ASSERT_X((*itSize >= 1), __PRETTY_FUNCTION__, QString("Parameter size should be at least 1 (it is %1)").arg(*itSize).toStdString().c_str());
     }
     ++itParam;
     ++itSize;
