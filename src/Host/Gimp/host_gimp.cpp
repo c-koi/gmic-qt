@@ -79,6 +79,7 @@
 #define _GIMP_DRAWABLE(drawable) (drawable)
 #define _GIMP_LAYER(layer) (layer)
 #define _GIMP_NULL_LAYER -1
+#define _GIMP_LAYER_IS_NOT_NULL(layer) ((layer) >= 0)
 #define _gimp_top_layer 0
 
 #else
@@ -90,6 +91,7 @@
 #define _GIMP_DRAWABLE(drawable) GIMP_DRAWABLE(drawable)
 #define _GIMP_LAYER(layer) GIMP_LAYER(layer)
 #define _GIMP_NULL_LAYER NULL
+#define _GIMP_LAYER_IS_NOT_NULL(layer) ((layer) != NULL)
 #define _gimp_top_layer gimp_layer_get_by_id(0)
 
 #define PLUG_IN_PROC "plug-in-gmic-qt"
@@ -495,7 +497,7 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
   case GmicQt::InputMode::NoInput:
     break;
   case GmicQt::InputMode::Active:
-    if ((activeLayerID >= 0) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
+    if (_GIMP_LAYER_IS_NOT_NULL(activeLayerID) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
       layers.push_back(activeLayerID);
     }
     break;
@@ -503,7 +505,7 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
     layers.assign(begLayers, endLayers);
     break;
   case GmicQt::InputMode::ActiveAndBelow:
-    if ((activeLayerID >= 0) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
+    if (_GIMP_LAYER_IS_NOT_NULL(activeLayerID) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
       layers.push_back(activeLayerID);
       _GimpLayerPtr * p = std::find(begLayers, endLayers, activeLayerID);
       if (p < endLayers - 1) {
@@ -512,7 +514,7 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
     }
     break;
   case GmicQt::InputMode::ActiveAndAbove:
-    if ((activeLayerID >= 0) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
+    if (_GIMP_LAYER_IS_NOT_NULL(activeLayerID) && !gimp_item_is_group(_GIMP_ITEM(activeLayerID))) {
       _GimpLayerPtr * p = std::find(begLayers, endLayers, activeLayerID);
       if (p > begLayers) {
         layers.push_back(*(p - 1));
@@ -571,7 +573,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
   case GmicQt::InputMode::NoInput:
     break;
   case GmicQt::InputMode::Active:
-    if ((active_layer_id >= 0) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
+    if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
       inputLayers.push_back(active_layer_id);
     }
     break;
@@ -579,7 +581,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
     inputLayers.assign(layers, end_layers);
     break;
   case GmicQt::InputMode::ActiveAndBelow:
-    if ((active_layer_id >= 0) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
+    if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
       inputLayers.push_back(active_layer_id);
       _GimpLayerPtr * p = std::find(layers, end_layers, active_layer_id);
       if (p < end_layers - 1) {
@@ -588,7 +590,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
     }
     break;
   case GmicQt::InputMode::ActiveAndAbove:
-    if ((active_layer_id >= 0) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
+    if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id) && !gimp_item_is_group(_GIMP_ITEM(active_layer_id))) {
       _GimpLayerPtr * p = std::find(layers, end_layers, active_layer_id);
       if (p > layers) {
         inputLayers.push_back(*(p - 1));
@@ -885,7 +887,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
     gimp_image_undo_group_end(gmic_qt_gimp_image_id);
   } else if (outputMode == GmicQt::OutputMode::NewActiveLayers || outputMode == GmicQt::OutputMode::NewLayers) {
     _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
-    if (active_layer_id >= 0) {
+    if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id)) {
       gimp_image_undo_group_start(gmic_qt_gimp_image_id);
       _GimpLayerPtr top_layer_id = _gimp_top_layer;
       _GimpLayerPtr layer_id = _gimp_top_layer;
@@ -966,7 +968,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
     _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
     const unsigned int max_width = (unsigned int)bottom_right.x;
     const unsigned int max_height = (unsigned int)bottom_right.y;
-    if (active_layer_id >= 0) {
+    if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id)) {
 #if GIMP_VERSION_LTE(2, 8)
       _GimpImagePtr nimage_id = gimp_image_new(max_width, max_height, max_spectrum <= 2 ? GIMP_GRAY : GIMP_RGB);
 #else
