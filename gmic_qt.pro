@@ -1,6 +1,6 @@
 #
 # Set HOST variable to define target host software.
-# Possible values are "none", "gimp", "krita" and "paintdotnet"
+# Possible values are "none", "gimp", "gimp3" (experimental) "krita" and "paintdotnet"
 #
 #
 
@@ -58,6 +58,10 @@ PKGCONFIG += fftw3 zlib libpng libcurl
 
 equals( HOST, "gimp" ) {
   PKGCONFIG += gimp-2.0
+}
+
+equals( HOST, "gimp3" ) {
+  PKGCONFIG += gimp-3.0
 }
 
 DEFINES += cimg_use_cpp11=1
@@ -152,7 +156,7 @@ linux {
   message( Linux platform )
 }
 
-equals( HOST, "gimp") {
+equals( HOST, "gimp")|equals( HOST, "gimp3") {
  TARGET = gmic_gimp_qt
  SOURCES += src/Host/Gimp/host_gimp.cpp
  DEFINES += GMIC_HOST=gimp
