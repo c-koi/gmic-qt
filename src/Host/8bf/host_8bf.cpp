@@ -1788,7 +1788,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
         }
         else
         {
-            images[i].assign(filteredLayers.at(i).imageData.get_crop(ix, iy, iw, ih));
+            images[i].assign(filteredLayers.at(i).imageData.get_crop(ix, iy, ix + iw, iy + ih));
         }
     }
 }
