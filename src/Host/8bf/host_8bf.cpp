@@ -808,7 +808,7 @@ namespace
 
         dataStream >> fileVersion;
 
-        if (fileVersion != 1)
+        if (fileVersion != 2)
         {
             return InputFileParseStatus::UnknownFileVersion;
         }
@@ -867,35 +867,6 @@ namespace
             layer.imageData = image;
 
             host_8bf::layers.push_back(layer);
-        }
-
-        // Load the second input image from the alternate source, if present.
-        if (layerCount == 1)
-        {
-            QString imagePath = ReadUTF8String(dataStream);
-
-            if (!imagePath.isEmpty())
-            {
-#if defined(_MSC_VER) && defined(_DEBUG)
-                auto name = imagePath.toStdWString();
-#endif
-
-                cimg_library::CImg<float> image;
-
-                InputFileParseStatus status = ReadGmic8bfInput(imagePath, image, false);
-
-                if (status == InputFileParseStatus::Ok)
-                {
-                    Gmic8bfLayer layer{};
-                    layer.width = image.width();
-                    layer.height = image.height();
-                    layer.visible = true;
-                    layer.name = "2nd Image";
-                    layer.imageData = image;
-
-                    host_8bf::layers.push_back(layer);
-                }
-            }
         }
 
         if (layerCount > 1)
