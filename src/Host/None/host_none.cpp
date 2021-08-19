@@ -29,6 +29,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFont>
+#include <QGuiApplication>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPainter>
@@ -260,6 +261,15 @@ void usage(const std::string & argv0)
                "                       --show-last-after : Print last applied plugin parameters (after filter execution)\n";
 }
 
+namespace
+{
+inline bool loadImage(QImage & image, const QString & filename, int argc, char * argv[])
+{
+  QGuiApplication app(argc, argv);
+  return image.load(filename);
+}
+} // namespace
+
 int main(int argc, char * argv[])
 {
   TIMING;
@@ -385,7 +395,7 @@ int main(int argc, char * argv[])
   }
   bool firstLaunch = true;
   for (const QString & filename : filenames) {
-    if (gmic_qt_standalone::input_image.load(filename)) {
+    if (loadImage(gmic_qt_standalone::input_image, filename, argc, argv)) {
       gmic_qt_standalone::input_image = gmic_qt_standalone::input_image.convertToFormat(QImage::Format_ARGB32);
       gmic_qt_standalone::current_image_filename = QFileInfo(filename).fileName();
       gmic_qt_standalone::input_image_filename = gmic_qt_standalone::current_image_filename;
