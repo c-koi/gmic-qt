@@ -406,7 +406,7 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
     if (_pluginParameters.command.empty()) {
       if (filter.isValid()) {
         QString error;
-        parameters = FilterParametersWidget::defaultParameterList(filter.parameters, &error, nullptr, nullptr);
+        parameters = filter.isAFave ? filter.defaultParameterValues : FilterParametersWidget::defaultParameterList(filter.parameters, &error, nullptr, nullptr);
         if (notEmpty(error)) {
           throw tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(filter.fullPath).arg(error);
         }
@@ -436,6 +436,10 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
       auto defaults = FilterParametersWidget::defaultParameterList(filter.parameters, &error, nullptr, &lengths);
       if (notEmpty(error)) {
         throw tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(filter.fullPath).arg(error);
+      }
+      if (filter.isAFave) {
+        // lengths have been computed, but we replace 'defaults' with Fave's ones.
+        defaults = filter.defaultParameterValues;
       }
       hash = filter.hash;
       auto expandedDefaults = expandParameterList(defaults, lengths);

@@ -576,7 +576,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
   } else if (_filtersModel.contains(hash)) {
     const FiltersModel::Filter & filter = _filtersModel.getFilterFromHash(hash);
     _currentFilter.command = filter.command();
-    _currentFilter.defaultParameterValues = ParametersCache::getValues(hash);
+    _currentFilter.defaultParameterValues = ParametersCache::getValues(hash); // FIXME : Unused unless it's a fave. Should be renamed.
     _currentFilter.defaultVisibilityStates = ParametersCache::getVisibilityStates(hash);
     _currentFilter.defaultInputMode = filter.defaultInputMode();
     _currentFilter.hash = hash;
