@@ -30,7 +30,6 @@
 #include <QString>
 #include <QStringList>
 #include "GmicQt.h"
-class QStringList;
 
 namespace GmicQt
 {
@@ -94,6 +93,16 @@ inline void setValueIfNotNullPointer(T * pointer, const T & value)
   if (pointer) {
     *pointer = value;
   }
+}
+
+inline bool notEmpty(const QString & text)
+{
+  return !text.isEmpty();
+}
+
+inline bool notEmpty(const std::string & text)
+{
+  return !text.empty();
 }
 
 } // namespace GmicQt

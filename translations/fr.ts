@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Original French translation done by Sébastien Fourey -->
-
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
@@ -141,82 +138,82 @@
 <context>
     <name>GmicQt::DialogSettings</name>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="71"/>
+        <location filename="../src/DialogSettings.cpp" line="82"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="77"/>
+        <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Never</source>
         <translation>Jamais</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="78"/>
+        <location filename="../src/DialogSettings.cpp" line="89"/>
         <source>Daily</source>
         <translation>Journalière</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="79"/>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Weekly</source>
         <translation>Hebdomadaire</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="80"/>
+        <location filename="../src/DialogSettings.cpp" line="91"/>
         <source>Every 2 weeks</source>
         <translation>Toutes les deux semaines</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="81"/>
+        <location filename="../src/DialogSettings.cpp" line="92"/>
         <source>Monthly</source>
         <translation>Mensuelle</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="83"/>
+        <location filename="../src/DialogSettings.cpp" line="94"/>
         <source>At launch (debug)</source>
         <translation>À chaque lancement (débugage)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="91"/>
+        <location filename="../src/DialogSettings.cpp" line="102"/>
         <source>Output messages</source>
         <translation>Messages de sortie</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="92"/>
+        <location filename="../src/DialogSettings.cpp" line="103"/>
         <source>Quiet (default)</source>
         <translation>Aucun message (défaut)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="93"/>
+        <location filename="../src/DialogSettings.cpp" line="104"/>
         <source>Verbose (console)</source>
         <translation>Mode verbeux (console)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="94"/>
+        <location filename="../src/DialogSettings.cpp" line="105"/>
         <source>Verbose (log file)</source>
         <translation>Mode verbeux (fichier de log)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="95"/>
+        <location filename="../src/DialogSettings.cpp" line="106"/>
         <source>Very verbose (console)</source>
         <translation>Mode très verbeux (console)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="96"/>
+        <location filename="../src/DialogSettings.cpp" line="107"/>
         <source>Very verbose (log file)</source>
         <translation>Mode très verbeux (fichier de log)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="97"/>
+        <location filename="../src/DialogSettings.cpp" line="108"/>
         <source>Debug (console)</source>
         <translation>Mode débogage (console)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="98"/>
+        <location filename="../src/DialogSettings.cpp" line="109"/>
         <source>Debug (log file)</source>
         <translation>Mode débogage (fichier de log)</translation>
     </message>
     <message>
-        <location filename="../src/DialogSettings.cpp" line="114"/>
+        <location filename="../src/DialogSettings.cpp" line="125"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>Cocher pour utiliser les dialogues natifs, décocher pour utiliser les dialogues Qt</translation>
     </message>
@@ -315,12 +312,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="298"/>
+        <location filename="../src/GmicProcessor.cpp" line="299"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation>L&apos;image No%1 retournée par le filtre possède %2 canaux (4 est la limite)</translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="332"/>
+        <location filename="../src/GmicProcessor.cpp" line="333"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation>L&apos;image No%1 retournée par le filtre possède %2 canaux
@@ -330,22 +327,22 @@
 <context>
     <name>GmicQt::HeadlessProcessor</name>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="80"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="81"/>
         <source>At least a filter path or a filter command must be provided.</source>
         <translation>Au moins un chemin de filtre ou une commande doivent être founis.</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="82"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="83"/>
         <source>Custom command (%1)</source>
         <translation>Commande personnalisée (%1)</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="90"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="91"/>
         <source>Cannot find filter matching path %1</source>
         <translation>Impossible de trouver un filtre correspondant au chemin %1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="97"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="98"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -362,42 +359,19 @@ Impossible de déterminer les paramètres par défaut.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="111"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="112"/>
         <source>Error parsing supplied command: %1</source>
         <translation>Erreur d&apos;analyse de la commande fournie: %1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="114"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="115"/>
         <source>Supplied command (%1) does not match path (%2), (should be %3).</source>
         <translation>La commande fournie (%1) ne correspond pas au chemin (%2), (ce devrait être %3).</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="228"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="229"/>
         <source>Filter execution failed, but with no error message.</source>
         <translation>L&apos;exécution du filtre a échoué, mais sans message d&apos;erreur.</translation>
-    </message>
-</context>
-<context>
-    <name>GmicQt::ImageDialog</name>
-    <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="67"/>
-        <source>Close</source>
-        <translation>Fermer</translation>
-    </message>
-    <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="70"/>
-        <source>Save as...</source>
-        <translation>Enregistrer sous...</translation>
-    </message>
-    <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="104"/>
-        <source>%1 file (*.%2)</source>
-        <translation>Fichier %1 (*.%2)</translation>
-    </message>
-    <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="120"/>
-        <source>Save image as...</source>
-        <translation>Enregistrer l&apos;image sous...</translation>
     </message>
 </context>
 <context>
@@ -546,7 +520,7 @@ Impossible de déterminer les paramètres par défaut.
     <message>
         <location filename="../src/MainWindow.cpp" line="343"/>
         <location filename="../src/MainWindow.cpp" line="345"/>
-        <location filename="../src/MainWindow.cpp" line="465"/>
+        <location filename="../src/MainWindow.cpp" line="463"/>
         <source>Filter definitions have been updated.</source>
         <translation>Les définitions de filtres ont été mises à jour.</translation>
     </message>
@@ -556,7 +530,7 @@ Impossible de déterminer les paramètres par défaut.
         <translation>Aucun téléchargement n&apos;était requis.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="404"/>
+        <location filename="../src/MainWindow.cpp" line="403"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -565,8 +539,8 @@ Path: %1</source>
 Chemin: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="413"/>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="411"/>
+        <location filename="../src/MainWindow.cpp" line="438"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -583,7 +557,7 @@ Impossible de déterminer les paramètres par défaut.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="422"/>
+        <location filename="../src/MainWindow.cpp" line="424"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -592,18 +566,7 @@ Command: %1</source>
 Commande: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="425"/>
-        <source>Plugin was called with a command that does not match the provided path:
-
-Path: %1
-Command: %2</source>
-        <translation>Le plugin a été appelé avec une commande qui ne correspond pas au chemin fourni :
-
-Chemin: %1
-Commande: %2</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="444"/>
+        <location filename="../src/MainWindow.cpp" line="419"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -612,52 +575,65 @@ Commande: %2</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="461"/>
+        <location filename="../src/MainWindow.cpp" line="428"/>
+        <source>Plugin was called with a command that does not match the provided path:
+
+Path: %1
+Command: %2
+Command found for this path : %3</source>
+        <translation>Le plugin a été appelé avec une commande qui ne correspond pas au chemin fourni :
+
+Chemin : %1
+Commande : %2
+Commande trouvée pour le chemin : %3</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="459"/>
         <source>Filters update could not be achieved</source>
         <translation>La mise à jour des filtres n&apos;a pas réussi</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="588"/>
+        <location filename="../src/MainWindow.cpp" line="586"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>La mise à jour n&apos;a pas réussi en raison&lt;br/&gt;des erreurs suivantes :&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="594"/>
+        <location filename="../src/MainWindow.cpp" line="592"/>
         <source>Update error</source>
         <translation>Erreurs lors de la mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="794"/>
+        <location filename="../src/MainWindow.cpp" line="792"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="890"/>
+        <location filename="../src/MainWindow.cpp" line="888"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>En attente des traitements annulés...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1263"/>
+        <location filename="../src/MainWindow.cpp" line="1261"/>
         <source>Import faves</source>
         <translation>Importer les favoris</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1263"/>
+        <location filename="../src/MainWindow.cpp" line="1261"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Voulez-vous importer les favoris du fichier ci-dessous ?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1266"/>
+        <location filename="../src/MainWindow.cpp" line="1264"/>
         <source>Don&apos;t ask again</source>
         <translation>Ne plus me demander</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1378"/>
+        <location filename="../src/MainWindow.cpp" line="1376"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1378"/>
+        <location filename="../src/MainWindow.cpp" line="1376"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Une commande gmic est en cours d&apos;exécution.&lt;br&gt;Voulez-vous vraiment fermer le plugin ?</translation>
     </message>
@@ -828,6 +804,45 @@ Commande: %2</translation>
     </message>
 </context>
 <context>
+    <name>JpegQualityDialog</name>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="20"/>
+        <location filename="../src/Host/None/JpegQualityDialog.cpp" line="12"/>
+        <source>JPEG Quality</source>
+        <translation>Facteur de qualité JPEG</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="28"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="42"/>
+        <source>100</source>
+        <translation>100</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="60"/>
+        <source>Always use this quality for this execution of G&apos;MIC-Qt</source>
+        <translation>Toujours cette qualité pour cette exécution de G&apos;MIC-Qt</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="85"/>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Annuler</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/jpegqualitydialog.ui" line="92"/>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+</context>
+<context>
     <name>LanguageSelectionWidget</name>
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="14"/>
@@ -843,63 +858,68 @@ Commande: %2</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/mainwindow.ui" line="14"/>
+        <location filename="../ui/mainwindow.ui" line="18"/>
         <source>Form</source>
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="161"/>
+        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Télécharger les définitions de filtres depuis les sources distantes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
+        <location filename="../ui/mainwindow.ui" line="168"/>
         <source>Internet</source>
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="496"/>
+        <location filename="../ui/mainwindow.ui" line="500"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="233"/>
-        <location filename="../ui/mainwindow.ui" line="240"/>
+        <location filename="../ui/mainwindow.ui" line="237"/>
+        <location filename="../ui/mainwindow.ui" line="244"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="386"/>
+        <location filename="../ui/mainwindow.ui" line="14"/>
+        <source>MainWindow</source>
+        <translation>MainWindow</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="390"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activer/désactiver l&apos;aperçu&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(cliquez droit sur l&apos;image d&apos;aperçu pour basculer instantanément)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="389"/>
+        <location filename="../ui/mainwindow.ui" line="393"/>
         <source>Preview</source>
         <translation>Aperçu</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="480"/>
+        <location filename="../ui/mainwindow.ui" line="484"/>
         <source>Settings...</source>
         <translation>Paramètres...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="509"/>
+        <location filename="../ui/mainwindow.ui" line="513"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="522"/>
+        <location filename="../ui/mainwindow.ui" line="526"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Plein écran</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="535"/>
+        <location filename="../ui/mainwindow.ui" line="539"/>
         <source>&amp;Apply</source>
         <translation>&amp;Appliquer</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="548"/>
+        <location filename="../ui/mainwindow.ui" line="552"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -957,22 +977,22 @@ Commande: %2</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="76"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Select an image to open...</source>
         <translation>Sélectionnez une image à ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="80"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="80"/>
         <source>Could not open file.</source>
         <translation>Impossible d&apos;ouvrir le fichier.</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="86"/>
+        <location filename="../src/Host/None/host_none.cpp" line="84"/>
         <source>Default image</source>
         <translation>Image par défaut</translation>
     </message>
@@ -1006,6 +1026,47 @@ Commande: %2</translation>
         <location filename="../ui/zoomlevelselector.ui" line="20"/>
         <source>Form</source>
         <translation>GMIC</translation>
+    </message>
+</context>
+<context>
+    <name>gmic_qt_standalone::ImageDialog</name>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="71"/>
+        <source>G&apos;MIC-Qt filter output</source>
+        <translation>Résultat du filtre G&apos;MIC-Qt</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="82"/>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="85"/>
+        <source>Save as...</source>
+        <translation>Enregistrer sous...</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="120"/>
+        <source>%1 file (*.%2)</source>
+        <translation>Fichier %1 (*.%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="141"/>
+        <source>Save image as...</source>
+        <translation>Enregistrer l&apos;image sous...</translation>
+    </message>
+</context>
+<context>
+    <name>gmic_qt_standalone::ImageView</name>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
+        <source>Error</source>
+        <translation>Erreur</translation>
+    </message>
+    <message>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
+        <source>Could not write image file %1</source>
+        <translation>Impossible d&apos;écrire le fichier %1</translation>
     </message>
 </context>
 </TS>
