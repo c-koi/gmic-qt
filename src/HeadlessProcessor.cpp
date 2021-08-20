@@ -97,6 +97,10 @@ bool HeadlessProcessor::setPluginParameters(const RunParameters & parameters)
       if (!error.isEmpty()) {
         _errorMessage = tr("Error parsing filter parameters definition for filter:\n\n%1\n\nCannot retrieve default parameters.\n\n%2").arg(_path).arg(error);
       } else {
+        if (filter.isAFave) {
+          // sizes have been computed, but we replace 'defaults' with Fave's ones.
+          defaultParameters = filter.defaultParameterValues;
+        }
         if (parameters.command.empty()) {
           _filterName = FilterTextTranslator::translate(filter.plainTextName);
           _hash = filter.hash;
