@@ -418,5 +418,5 @@ int main(int argc, char * argv[])
       std::cerr << "Could not open image file " << filename.toStdString() << std::endl;
     }
   }
-  return 1;
+  return EXIT_SUCCESS;
 }
