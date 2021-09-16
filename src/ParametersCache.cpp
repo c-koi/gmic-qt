@@ -111,7 +111,7 @@ void ParametersCache::load(bool loadFiltersParameters)
       }
     }
   } else {
-    Logger::error("Cannot read " + jsonFilename);
+    Logger::error("Cannot open " + jsonFilename);
     Logger::error("Parameters cannot be restored");
   }
 }

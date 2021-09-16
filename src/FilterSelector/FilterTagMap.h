@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file TreeView.cpp
+ *  @file FilterTagMap.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,22 +22,28 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "TreeView.h"
-#include <QKeyEvent>
+#ifndef GMIC_QT_FILTERTAGMAP_H
+#define GMIC_QT_FILTERTAGMAP_H
+
+#include <QSet>
+
+#include "Tags.h"
 
 namespace GmicQt
 {
+class FiltersTagMap {
+public:
+  static TagColor filterTag(const QString & hash);
+  static void setColor(const QString & hash, TagColor color);
+  static void load();
+  static void save();
 
-TreeView::TreeView(QWidget * parent) : QTreeView(parent) {}
-
-void TreeView::keyPressEvent(QKeyEvent * event)
-{
-  if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-    emit returnKeyPressed();
-  }
-  QTreeView::keyPressEvent(event);
-}
-
-TreeView::~TreeView() {}
+protected:
+private:
+  static QSet<QString> _colorToHashes[static_cast<unsigned int>(TagColor::Count)];
+  FiltersTagMap() = delete;
+};
 
 } // namespace GmicQt
+
+#endif // GMIC_QT_FILTERTAGMAP_H

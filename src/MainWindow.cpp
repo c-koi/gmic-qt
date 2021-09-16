@@ -58,6 +58,7 @@
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "Utils.h"
+#include "Widgets/VisibleTagSelector.h"
 #include "ui_mainwindow.h"
 #include "gmic.h"
 
@@ -225,6 +226,10 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   _lastPreviewKeypointBurstUpdateTime = 0;
   _isAccepted = false;
 
+  _visibleTagSelector = new VisibleTagSelector(this);
+
+  connect(ui->tbTags, &QToolButton::clicked, this, [this]() { _visibleTagSelector->exec(ui->tbTags->mapToGlobal(ui->tbTags->rect().center())); });
+
   TIMING;
   makeConnections();
   TIMING;
@@ -245,6 +250,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setIcons()
 {
+  ui->tbTags->setIcon(LOAD_ICON("color-wheel"));
   ui->tbRenameFave->setIcon(LOAD_ICON("rename"));
   ui->pbSettings->setIcon(LOAD_ICON("package_settings"));
   ui->pbFullscreen->setIcon(LOAD_ICON("view-fullscreen"));

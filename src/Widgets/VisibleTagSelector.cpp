@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file TreeView.cpp
+ *  @file VisibleTagSelector.cpp
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,22 +22,20 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "TreeView.h"
-#include <QKeyEvent>
+#include "Widgets/VisibleTagSelector.h"
+
+#include "Tags.h"
 
 namespace GmicQt
 {
 
-TreeView::TreeView(QWidget * parent) : QTreeView(parent) {}
-
-void TreeView::keyPressEvent(QKeyEvent * event)
+VisibleTagSelector::VisibleTagSelector(QWidget * parent) : QMenu(parent)
 {
-  if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-    emit returnKeyPressed();
+  for (int color = 1 + (int)TagColor::None; color != (int)TagColor::Count; ++color) {
+    addAction(tr("Show only %1 tags").arg(QString::fromUtf8(TagColorNames[color])));
   }
-  QTreeView::keyPressEvent(event);
 }
 
-TreeView::~TreeView() {}
+VisibleTagSelector::~VisibleTagSelector() {}
 
 } // namespace GmicQt

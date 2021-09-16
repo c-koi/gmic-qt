@@ -56,6 +56,7 @@ class FiltersTreeFaveItem;
 class Updater;
 class FilterThread;
 class FiltersPresenter;
+class VisibleTagSelector;
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -166,6 +167,7 @@ private:
   ulong _lastPreviewKeypointBurstUpdateTime;
   static bool _isAccepted;
   RunParameters _pluginParameters;
+  VisibleTagSelector * _visibleTagSelector;
 };
 
 } // namespace GmicQt

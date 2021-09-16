@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file TreeView.cpp
+ *  @file Tags.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,22 +22,38 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "TreeView.h"
-#include <QKeyEvent>
+#ifndef GMIC_QT_TAGS_H
+#define GMIC_QT_TAGS_H
+
+#include <QColor>
+#include <QSize>
+#include <QString>
+#include <QVector>
 
 namespace GmicQt
 {
 
-TreeView::TreeView(QWidget * parent) : QTreeView(parent) {}
-
-void TreeView::keyPressEvent(QKeyEvent * event)
+enum class TagColor
 {
-  if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-    emit returnKeyPressed();
-  }
-  QTreeView::keyPressEvent(event);
-}
+  None,
+  Red,
+  Green,
+  Blue,
+  Count
+};
 
-TreeView::~TreeView() {}
+extern const char * TagColorNames[];
+
+class TagAssets {
+public:
+  static const QString & markerHtml(TagColor color, unsigned int sideSize);
+
+private:
+  static QString _markerHtml[static_cast<unsigned int>(TagColor::Count)];
+  static unsigned int _markerSideSize[static_cast<unsigned int>(TagColor::Count)];
+  static QColor _colors[static_cast<unsigned int>(TagColor::Count)];
+};
 
 } // namespace GmicQt
+
+#endif // GMIC_QT_TAGS_H
