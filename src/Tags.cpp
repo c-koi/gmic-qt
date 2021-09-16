@@ -34,11 +34,11 @@
 namespace GmicQt
 {
 
-const char * TagColorNames[] = {"", "Red", "Green", "Blue"};
+const char * TagColorNames[] = {"", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow"};
 
 QString TagAssets::_markerHtml[static_cast<unsigned int>(TagColor::Count)];
 unsigned int TagAssets::_markerSideSize[static_cast<unsigned int>(TagColor::Count)];
-QColor TagAssets::_colors[static_cast<unsigned int>(TagColor::Count)] = {QColor(0, 0, 0, 0), Qt::red, Qt::green, Qt::blue};
+QColor TagAssets::colors[static_cast<unsigned int>(TagColor::Count)] = {QColor(0, 0, 0, 0), Qt::red, Qt::green, Qt::blue, Qt::cyan, Qt::magenta, Qt::yellow};
 
 const QString & TagAssets::markerHtml(const TagColor color, unsigned int sideSize)
 {
@@ -56,7 +56,7 @@ const QString & TagAssets::markerHtml(const TagColor color, unsigned int sideSiz
     pen.setColor(Qt::black);
     painter.setPen(pen);
     const int innerRadius = sideSize * 0.4;
-    painter.setBrush(_colors[iColor]);
+    painter.setBrush(colors[iColor]);
     painter.drawEllipse(image.rect().center(), innerRadius, innerRadius);
   }
   QByteArray ba;

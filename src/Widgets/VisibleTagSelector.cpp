@@ -24,16 +24,20 @@
  */
 #include "Widgets/VisibleTagSelector.h"
 
+#include <QActionGroup>
 #include "Tags.h"
-
 namespace GmicQt
 {
 
 VisibleTagSelector::VisibleTagSelector(QWidget * parent) : QMenu(parent)
 {
+  QActionGroup * group = new QActionGroup(this);
   for (int color = 1 + (int)TagColor::None; color != (int)TagColor::Count; ++color) {
-    addAction(tr("Show only %1 tags").arg(QString::fromUtf8(TagColorNames[color])));
+    QAction * action = addAction(tr("Show only %1 tags").arg(QString::fromUtf8(TagColorNames[color])));
+    action->setCheckable(true);
+    group->addAction(action);
   }
+  group->setExclusive(true);
 }
 
 VisibleTagSelector::~VisibleTagSelector() {}

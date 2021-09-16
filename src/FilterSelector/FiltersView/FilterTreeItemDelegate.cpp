@@ -51,16 +51,24 @@ void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewIte
   auto filter = dynamic_cast<const FilterTreeItem *>(item);
 
   const int width = 0.5 * options.rect.height();
-  QString tag = TagAssets::markerHtml(TagColor::Green, width);
+  QString tagString;
+  if (filter && !filter->tags().isEmpty()) {
+    const QVector<TagColor> & tags = filter->tags();
+    for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
+      if (tags.contains((TagColor)iColor)) {
+        tagString += TagAssets::markerHtml(TagColor(iColor), width);
+      }
+    }
+  }
 
   QTextDocument doc;
   if (!item->isCheckable() && filter && !filter->isVisible()) {
     QColor textColor;
     textColor = DialogSettings::UnselectedFilterTextColor;
-    doc.setHtml(QString("<span style=\"color:%1\">%2</span>&nbsp;%3").arg(textColor.name()).arg(options.text).arg(tag));
+    doc.setHtml(QString("<span style=\"color:%1\">%2</span>&nbsp;%3").arg(textColor.name()).arg(options.text).arg(tagString));
   } else {
     if (filter) {
-      doc.setHtml(options.text + "&nbsp;" + tag);
+      doc.setHtml(options.text + "&nbsp;" + tagString);
     } else {
       doc.setHtml(options.text);
     }

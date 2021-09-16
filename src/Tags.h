@@ -39,6 +39,9 @@ enum class TagColor
   Red,
   Green,
   Blue,
+  Cyan,
+  Magenta,
+  Yellow,
   Count
 };
 
@@ -47,11 +50,11 @@ extern const char * TagColorNames[];
 class TagAssets {
 public:
   static const QString & markerHtml(TagColor color, unsigned int sideSize);
+  static QColor colors[static_cast<unsigned int>(TagColor::Count)];
 
 private:
   static QString _markerHtml[static_cast<unsigned int>(TagColor::Count)];
   static unsigned int _markerSideSize[static_cast<unsigned int>(TagColor::Count)];
-  static QColor _colors[static_cast<unsigned int>(TagColor::Count)];
 };
 
 } // namespace GmicQt

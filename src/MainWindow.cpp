@@ -226,8 +226,8 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   _lastPreviewKeypointBurstUpdateTime = 0;
   _isAccepted = false;
 
+  ui->tbTags->setToolTip(tr("Manage visible tags\n(Right-click on a fave or a filter to set/remove tags)"));
   _visibleTagSelector = new VisibleTagSelector(this);
-
   connect(ui->tbTags, &QToolButton::clicked, this, [this]() { _visibleTagSelector->exec(ui->tbTags->mapToGlobal(ui->tbTags->rect().center())); });
 
   TIMING;
