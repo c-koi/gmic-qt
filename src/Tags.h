@@ -26,9 +26,11 @@
 #define GMIC_QT_TAGS_H
 
 #include <QColor>
-#include <QSize>
+#include <QIcon>
 #include <QString>
 #include <QVector>
+class QAction;
+class QObject;
 
 namespace GmicQt
 {
@@ -48,12 +50,24 @@ enum class TagColor
 extern const char * TagColorNames[];
 
 class TagAssets {
+
 public:
+  enum class IconMark
+  {
+    None,
+    Check,
+    Disk
+  };
   static const QString & markerHtml(TagColor color, unsigned int sideSize);
+  static const QIcon & menuIcon(TagColor color, IconMark mark);
   static QColor colors[static_cast<unsigned int>(TagColor::Count)];
+  static QAction * action(QObject * parent, TagColor color, IconMark mark);
 
 private:
   static QString _markerHtml[static_cast<unsigned int>(TagColor::Count)];
+  static QIcon _menuIcons[static_cast<unsigned int>(TagColor::Count)];
+  static QIcon _menuIconsWithCheck[static_cast<unsigned int>(TagColor::Count)];
+  static QIcon _menuIconsWithDisk[static_cast<unsigned int>(TagColor::Count)];
   static unsigned int _markerSideSize[static_cast<unsigned int>(TagColor::Count)];
 };
 

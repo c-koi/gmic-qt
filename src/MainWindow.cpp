@@ -45,6 +45,7 @@
 #include "CroppedImageListProxy.h"
 #include "DialogSettings.h"
 #include "FilterSelector/FavesModelReader.h"
+#include "FilterSelector/FilterTagMap.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
 #include "FilterTextTranslator.h"
@@ -203,6 +204,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   _filtersPresenter = new FiltersPresenter(this);
   _filtersPresenter->setFiltersView(ui->filtersView);
+  _filtersPresenter->setSearchField(ui->searchField);
 
   ui->progressInfoWidget->setGmicProcessor(&_processor);
 
@@ -228,7 +230,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   ui->tbTags->setToolTip(tr("Manage visible tags\n(Right-click on a fave or a filter to set/remove tags)"));
   _visibleTagSelector = new VisibleTagSelector(this);
-  connect(ui->tbTags, &QToolButton::clicked, this, [this]() { _visibleTagSelector->exec(ui->tbTags->mapToGlobal(ui->tbTags->rect().center())); });
+  _visibleTagSelector->setToolButton(ui->tbTags);
+  _visibleTagSelector->updateColors();
+  _filtersPresenter->setVisibleTagSelector(_visibleTagSelector);
 
   TIMING;
   makeConnections();
@@ -378,9 +382,7 @@ void MainWindow::buildFiltersTree()
     QSettings().setValue(FAVES_IMPORT_KEY, true);
   }
 
-  QString searchText = ui->searchField->text();
   _filtersPresenter->toggleSelectionMode(withVisibility);
-  _filtersPresenter->applySearchCriterion(searchText);
 
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     setNoFilter();
@@ -532,7 +534,6 @@ void MainWindow::updateZoomLabel(double zoom)
 void MainWindow::onFiltersSelectionModeToggled(bool on)
 {
   _filtersPresenter->toggleSelectionMode(on);
-  _filtersPresenter->applySearchCriterion(ui->searchField->text());
 }
 
 void MainWindow::onPreviewCheckBoxToggled(bool on)

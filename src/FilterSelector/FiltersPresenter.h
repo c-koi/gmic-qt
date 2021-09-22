@@ -28,13 +28,17 @@
 #include "FilterSelector/FavesModel.h"
 #include "FilterSelector/FiltersModel.h"
 #include "FilterSelector/FiltersView/FiltersView.h"
-#include "InputOutputState.h"
 #include "GmicQt.h"
+#include "InputOutputState.h"
+#include "Tags.h"
+#include "Widgets/VisibleTagSelector.h"
 
 class QSettings;
 
 namespace GmicQt
 {
+
+class SearchFieldWidget;
 
 class FiltersPresenter : public QObject {
   Q_OBJECT
@@ -65,6 +69,7 @@ public:
   FiltersPresenter(QObject * parent);
   ~FiltersPresenter() override;
   void setFiltersView(FiltersView * filtersView);
+  void setSearchField(SearchFieldWidget *);
   void rebuildFilterView();
   void rebuildFilterViewWithSelection(const QList<QString> & keywords);
 
@@ -94,6 +99,7 @@ public:
   void selectFilterFromAbsolutePath(QString path);
   void selectFilterFromPlainName(const QString & name);
   void selectFilterFromCommand(const QString & command);
+  void setVisibleTagSelector(VisibleTagSelector * selector);
   const Filter & currentFilter() const;
 
   void loadSettings(const QSettings & settings);
@@ -123,6 +129,7 @@ signals:
   void faveNameChanged(QString);
 
 public slots:
+  void setVisibleTagColor(int color);
   void removeSelectedFave();
   void editSelectedFaveName();
   void onFaveRenamed(const QString & hash, const QString & name);
@@ -131,6 +138,7 @@ public slots:
 private slots:
   void onFilterChanged(const QString & hash);
   void removeFave(const QString & hash);
+  void onTagColorRemovedForAll(int color);
 
 private:
   void setCurrentFilter(const QString & hash);
@@ -139,6 +147,8 @@ private:
   FiltersModel _filtersModel;
   FavesModel _favesModel;
   FiltersView * _filtersView;
+  SearchFieldWidget * _searchField;
+  VisibleTagSelector * _visibleTagSelector;
   Filter _currentFilter;
   QString _errorMessage;
 };

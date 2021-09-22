@@ -42,16 +42,16 @@ public:
   bool isFave() const;
   QString hash() const;
   bool operator<(const QStandardItem & other) const override;
+  void setTags(const QVector<TagColor> & colors);
   void addTag(TagColor tagColor);
   void removeTag(TagColor tagColor);
-  void clearTags();
-  const QVector<TagColor> & tags() const;
+  void toggleTag(TagColor tagColor);
+  const QVector<TagColor> tags() const;
 
 private:
   QString _hash;
   bool _isFave;
   bool _isWarning;
-  QVector<TagColor> _tags;
 };
 
 } // namespace GmicQt

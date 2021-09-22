@@ -24,6 +24,8 @@
  */
 #include "FilterTreeItem.h"
 #include <QDebug>
+#include "Common.h"
+#include "FilterSelector/FilterTagMap.h"
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "HtmlTranslator.h"
 
@@ -35,11 +37,6 @@ FilterTreeItem::FilterTreeItem(const QString & text) : FilterTreeAbstractItem(te
   _isWarning = false;
   _isFave = false;
   setEditable(false);
-  for (int i = 1 + (int)TagColor::None; i != (int)TagColor::Count; ++i) {
-    if (qrand() % 2) { // FIXME : REMOVE
-      addTag(TagColor(i));
-    }
-  }
 }
 
 void FilterTreeItem::setHash(const QString & hash)
@@ -103,27 +100,29 @@ bool FilterTreeItem::operator<(const QStandardItem & other) const
   return plainText().localeAwareCompare(otherItem->plainText()) < 0;
 }
 
+void FilterTreeItem::setTags(const QVector<TagColor> & colors)
+{
+  FiltersTagMap::setFilterTags(_hash, colors);
+}
+
 void FilterTreeItem::addTag(TagColor tagColor)
 {
-  if (_tags.contains(tagColor)) {
-    return;
-  }
-  _tags.push_back(tagColor);
+  FiltersTagMap::setFilterTag(_hash, tagColor);
 }
 
 void FilterTreeItem::removeTag(TagColor tagColor)
 {
-  _tags.removeOne(tagColor);
+  FiltersTagMap::clearFilterTag(_hash, tagColor);
 }
 
-void FilterTreeItem::clearTags()
+void FilterTreeItem::toggleTag(TagColor tagColor)
 {
-  _tags.clear();
+  FiltersTagMap::toggleFilterTag(_hash, tagColor);
 }
 
-const QVector<TagColor> & FilterTreeItem::tags() const
+const QVector<TagColor> FilterTreeItem::tags() const
 {
-  return _tags;
+  return FiltersTagMap::filterTags(_hash);
 }
 
 } // namespace GmicQt

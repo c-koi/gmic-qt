@@ -25,22 +25,29 @@
 #ifndef GMIC_QT_FILTERTAGMAP_H
 #define GMIC_QT_FILTERTAGMAP_H
 
-#include <QSet>
-
+#include <QMap>
+#include <QVector>
 #include "Tags.h"
 
 namespace GmicQt
 {
 class FiltersTagMap {
 public:
-  static TagColor filterTag(const QString & hash);
-  static void setColor(const QString & hash, TagColor color);
+  static QVector<TagColor> filterTags(const QString & hash);
+  static void setFilterTags(const QString & hash, const QVector<TagColor> &);
   static void load();
   static void save();
+  static QVector<TagColor> usedColors(int * count = nullptr);
+  static void removeAllTags(TagColor color);
+  static void clearFilterTag(const QString & hash, TagColor color);
+  static void setFilterTag(const QString & hash, TagColor color);
+  static void toggleFilterTag(const QString & hash, TagColor color);
 
 protected:
 private:
-  static QSet<QString> _colorToHashes[static_cast<unsigned int>(TagColor::Count)];
+  static QVector<TagColor> uint2colors(unsigned int);
+  static unsigned int colors2uint(const QVector<TagColor> &);
+  static QMap<QString, unsigned int> _hashesToColors;
   FiltersTagMap() = delete;
 };
 

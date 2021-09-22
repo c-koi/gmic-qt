@@ -32,6 +32,7 @@
 #include <QStandardItem>
 #include <QStringList>
 #include "Common.h"
+#include "FilterSelector/FilterTagMap.h"
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
 #include "FilterSelector/FiltersView/FilterTreeItemDelegate.h"
@@ -63,20 +64,10 @@ FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::Filters
 
   ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomContextMenu(QPoint)));
-  _faveContextMenu = new QMenu(this);
-  QAction * action;
-  action = _faveContextMenu->addAction(tr("Rename fave"));
-  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRenameFave()));
-  action = _faveContextMenu->addAction(tr("Remove fave"));
-  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRemoveFave()));
-  action = _faveContextMenu->addAction(tr("Clone fave"));
-  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
-
-  _filterContextMenu = new QMenu(this);
-  action = _filterContextMenu->addAction(tr("Add fave"));
-  connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
-
+  _faveContextMenu = nullptr;
+  _filterContextMenu = nullptr;
   ui->treeView->installEventFilter(this);
+  _visibleTagColor = TagColor::None;
 }
 
 FiltersView::~FiltersView()
@@ -120,7 +111,11 @@ void FiltersView::createFolder(const QList<QString> & path)
 void FiltersView::addFilter(const QString & text, const QString & hash, const QList<QString> & path, bool warning)
 {
   const bool filterIsVisible = FiltersVisibilityMap::filterIsVisible(hash);
+  QVector<TagColor> tagColors = FiltersTagMap::filterTags(hash);
   if (!_isInSelectionMode && !filterIsVisible) {
+    return;
+  }
+  if ((_visibleTagColor != TagColor::None) && !tagColors.contains(_visibleTagColor)) {
     return;
   }
   QStandardItem * folder = getFolderFromPath(path);
@@ -130,6 +125,7 @@ void FiltersView::addFilter(const QString & text, const QString & hash, const QL
   auto item = new FilterTreeItem(text);
   item->setHash(hash);
   item->setWarningFlag(warning);
+  item->setTags(tagColors);
   if (_isInSelectionMode) {
     addStandardItemWithCheckbox(folder, item);
     item->setVisibility(filterIsVisible);
@@ -141,7 +137,11 @@ void FiltersView::addFilter(const QString & text, const QString & hash, const QL
 void FiltersView::addFave(const QString & text, const QString & hash)
 {
   const bool faveIsVisible = FiltersVisibilityMap::filterIsVisible(hash);
+  QVector<TagColor> tagColors = FiltersTagMap::filterTags(hash);
   if (!_isInSelectionMode && !faveIsVisible) {
+    return;
+  }
+  if ((_visibleTagColor != TagColor::None) && !tagColors.contains(_visibleTagColor)) {
     return;
   }
   if (!_faveFolder) {
@@ -151,6 +151,7 @@ void FiltersView::addFave(const QString & text, const QString & hash)
   item->setHash(hash);
   item->setWarningFlag(false);
   item->setFaveFlag(true);
+  item->setTags(tagColors);
   if (_isInSelectionMode) {
     addStandardItemWithCheckbox(_faveFolder, item);
     item->setVisibility(faveIsVisible);
@@ -293,6 +294,7 @@ void FiltersView::restoreExpandedFolders()
 void FiltersView::loadSettings(const QSettings &)
 {
   FiltersVisibilityMap::load();
+  FiltersTagMap::load();
 }
 
 void FiltersView::saveSettings(QSettings & settings)
@@ -300,9 +302,11 @@ void FiltersView::saveSettings(QSettings & settings)
   if (_isInSelectionMode) {
     saveFiltersVisibility(_model.invisibleRootItem());
   }
+  saveFiltersTags(_model.invisibleRootItem());
   preserveExpandedFolders();
   settings.setValue("Config/ExpandedFolders", QStringList(_expandedFolderPaths));
   FiltersVisibilityMap::save();
+  FiltersTagMap::save();
 }
 
 void FiltersView::enableSelectionMode()
@@ -358,6 +362,16 @@ bool FiltersView::eventFilter(QObject * watched, QEvent * event)
   return QObject::eventFilter(watched, event);
 }
 
+void FiltersView::setVisibleTagColor(TagColor color)
+{
+  _visibleTagColor = color;
+}
+
+TagColor FiltersView::visibleTagColor() const
+{
+  return _visibleTagColor;
+}
+
 void FiltersView::expandFolders(const QList<QString> & folderPaths, QStandardItem * folder)
 {
   int rows = folder->rowCount();
@@ -411,8 +425,12 @@ void FiltersView::onCustomContextMenu(const QPoint & point)
   }
   onItemClicked(index);
   if (item->isFave()) {
+    _faveContextMenu->deleteLater();
+    _faveContextMenu = itemContextMenu(MenuType::Fave, item);
     _faveContextMenu->exec(ui->treeView->mapToGlobal(point));
   } else {
+    _filterContextMenu->deleteLater();
+    _filterContextMenu = itemContextMenu(MenuType::Filter, item);
     _filterContextMenu->exec(ui->treeView->mapToGlobal(point));
   }
 }
@@ -625,6 +643,92 @@ void FiltersView::saveFiltersVisibility(QStandardItem * item)
   int rows = item->rowCount();
   for (int row = 0; row < rows; ++row) {
     saveFiltersVisibility(item->child(row));
+  }
+}
+
+void FiltersView::saveFiltersTags(QStandardItem * item)
+{
+  if (!item) {
+    return;
+  }
+  auto filterItem = dynamic_cast<FilterTreeItem *>(item);
+  if (filterItem) {
+    FiltersTagMap::setFilterTags(filterItem->hash(), filterItem->tags());
+    return;
+  }
+  int rows = item->rowCount();
+  for (int row = 0; row < rows; ++row) {
+    saveFiltersTags(item->child(row));
+  }
+}
+
+QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
+{
+  QMenu * menu = new QMenu(this);
+  QAction * action;
+  switch (type) {
+  case MenuType::Fave:
+    action = menu->addAction(tr("Rename fave"));
+    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRenameFave()));
+    action = menu->addAction(tr("Remove fave"));
+    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRemoveFave()));
+    action = menu->addAction(tr("Clone fave"));
+    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
+    break;
+  case MenuType::Filter:
+    action = menu->addAction(tr("Add fave"));
+    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
+    break;
+  }
+  const QVector<TagColor> & tags = item->tags();
+  menu->addSeparator();
+  for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
+    QAction * action = TagAssets::action(nullptr, TagColor(iColor), tags.contains((TagColor)iColor) ? TagAssets::IconMark::Check : TagAssets::IconMark::None);
+    connect(action, &QAction::triggered, [this, item, iColor]() { //
+      toggleItemTag(item, TagColor(iColor));
+      if ((_visibleTagColor != TagColor::None) && (_model.invisibleRootItem()->rowCount() == 0)) { //
+        emit tagColorRemovedForAll(iColor);
+      }
+    });
+    menu->addAction(action);
+  }
+  menu->addSeparator();
+  int tagCount[int(TagColor::Count)];
+  QVector<TagColor> existingColors = FiltersTagMap::usedColors(tagCount);
+  QMenu * removeMenu = menu->addMenu("Remove all");
+  if (existingColors.isEmpty()) {
+    removeMenu->setEnabled(false);
+  } else {
+    for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
+      if (existingColors.contains(TagColor(iColor))) {
+        removeMenu->addAction(action = TagAssets::action(nullptr, TagColor(iColor), TagAssets::IconMark::None));
+        action->setText(QString("%1 (%2 tag%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg(tagCount[iColor] ? "s" : ""));
+        connect(action, &QAction::triggered, [this, iColor]() {
+          FiltersTagMap::removeAllTags(TagColor(iColor));
+          emit tagColorRemovedForAll(iColor);
+        });
+      }
+    }
+  }
+  return menu;
+}
+
+void FiltersView::toggleItemTag(FilterTreeItem * item, TagColor color)
+{
+  item->toggleTag(color);
+  if (color != _visibleTagColor) {
+    return;
+  }
+  QStandardItem * folder = item->parent();
+  folder->removeRow(item->row());
+  while (folder && folder != _model.invisibleRootItem() && folder->rowCount() == 0) {
+    const int row = folder->row();
+    QStandardItem * folderParent = folder->parent();
+    if (!folderParent) {
+      folderParent = _model.invisibleRootItem();
+    }
+    folderParent->removeRow(row);
+    folder = folderParent;
   }
 }
 

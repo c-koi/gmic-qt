@@ -32,6 +32,7 @@
 #include <QStandardItemModel>
 #include <QString>
 #include <QWidget>
+#include "Tags.h"
 class QSettings;
 class QEvent;
 
@@ -84,11 +85,15 @@ public:
 
   bool eventFilter(QObject * watched, QEvent * event);
 
+  void setVisibleTagColor(TagColor color);
+  TagColor visibleTagColor() const;
+
 signals:
   void filterSelected(QString hash);
   void faveRenamed(QString hash, QString newName);
   void faveRemovalRequested(QString hash);
   void faveAdditionRequested(QString hash);
+  void tagColorRemovedForAll(int iColor);
 
 public slots:
   void editSelectedFaveName();
@@ -119,6 +124,14 @@ private:
   FilterTreeItem * findFave(const QString & hash);
   static QStandardItem * getFolderFromPath(QStandardItem * parent, QList<QString> path);
   static void saveFiltersVisibility(QStandardItem * item);
+  static void saveFiltersTags(QStandardItem * item);
+  enum class MenuType
+  {
+    Fave,
+    Filter
+  };
+  QMenu * itemContextMenu(MenuType type, FilterTreeItem * item);
+  void toggleItemTag(FilterTreeItem * item, TagColor color);
   Ui::FiltersView * ui;
 
   QStandardItemModel _model;
@@ -131,6 +144,7 @@ private:
   bool _isInSelectionMode;
   QMenu * _faveContextMenu;
   QMenu * _filterContextMenu;
+  TagColor _visibleTagColor;
 };
 
 } // namespace GmicQt
