@@ -33,6 +33,7 @@
 #include <QImage>
 #include <QPainter>
 #include <QPixmap>
+#include "DialogSettings.h"
 
 namespace GmicQt
 {
@@ -44,7 +45,8 @@ QIcon TagAssets::_menuIcons[static_cast<unsigned int>(TagColor::Count)];
 QIcon TagAssets::_menuIconsWithCheck[static_cast<unsigned int>(TagColor::Count)];
 QIcon TagAssets::_menuIconsWithDisk[static_cast<unsigned int>(TagColor::Count)];
 unsigned int TagAssets::_markerSideSize[static_cast<unsigned int>(TagColor::Count)];
-QColor TagAssets::colors[static_cast<unsigned int>(TagColor::Count)] = {QColor(0, 0, 0, 0), Qt::red, Qt::green, Qt::blue, Qt::cyan, Qt::magenta, Qt::yellow};
+QColor TagAssets::colors[static_cast<unsigned int>(TagColor::Count)] = {QColor(0, 0, 0, 0),    QColor(250, 68, 113),  QColor(179, 228, 59), QColor(121, 171, 255),
+                                                                        QColor(117, 225, 242), QColor(188, 154, 234), QColor(236, 224, 105)};
 
 const QString & TagAssets::markerHtml(const TagColor color, unsigned int sideSize)
 {
@@ -84,7 +86,7 @@ const QIcon & TagAssets::menuIcon(TagColor color, IconMark mark)
       bg.fill(QColor(0, 0, 0, 0));
       QPainter p(&bg);
       p.setRenderHint(QPainter::Antialiasing, true);
-      p.setBrush(colors[int(color)]);
+      p.setBrush(colors[iColor]);
       p.drawRoundedRect(bg.rect(), 15, 15);
       _menuIcons[iColor] = QIcon(bg);
     }

@@ -60,8 +60,8 @@ public:
   };
   static const QString & markerHtml(TagColor color, unsigned int sideSize);
   static const QIcon & menuIcon(TagColor color, IconMark mark);
-  static QColor colors[static_cast<unsigned int>(TagColor::Count)];
   static QAction * action(QObject * parent, TagColor color, IconMark mark);
+  static QColor colors[static_cast<unsigned int>(TagColor::Count)];
 
 private:
   static QString _markerHtml[static_cast<unsigned int>(TagColor::Count)];
