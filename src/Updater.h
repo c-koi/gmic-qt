@@ -79,7 +79,6 @@ public:
   QByteArray buildFullStdlib() const;
 
   bool someNetworkUpdateAchieved() const;
-
   void updateSources(bool useNetwork);
 
 signals:

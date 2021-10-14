@@ -1239,7 +1239,7 @@ void MainWindow::showEvent(QShowEvent * event)
   if (_newSession) {
     Logger::clear();
   }
-  QObject::connect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+  QObject::connect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
   Logger::setMode(DialogSettings::outputMessageMode());
   Updater::setOutputMessageMode(DialogSettings::outputMessageMode());
   int ageLimit;

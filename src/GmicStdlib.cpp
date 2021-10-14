@@ -25,6 +25,7 @@
 #include "GmicStdlib.h"
 #include <QDebug>
 #include <QFile>
+#include <QFileInfo>
 #include <QList>
 #include <QString>
 #include <QStringList>
@@ -39,8 +40,10 @@ QByteArray GmicStdLib::Array;
 
 void GmicStdLib::loadStdLib()
 {
-  QFile stdlib(QString("%1update%2.gmic").arg(gmicConfigPath(false)).arg(gmic_version));
-  if (!stdlib.open(QFile::ReadOnly)) {
+  QString path = QString("%1update%2.gmic").arg(gmicConfigPath(false)).arg(gmic_version);
+  QFileInfo info(path);
+  QFile stdlib(path);
+  if ((info.size() == 0) || !stdlib.open(QFile::ReadOnly)) {
     gmic_image<char> stdlib_h = gmic::decompress_stdlib();
     Array = QByteArray::fromRawData(stdlib_h, stdlib_h.size());
     Array[Array.size() - 1] = '\n';

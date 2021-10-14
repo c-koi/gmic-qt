@@ -25,6 +25,7 @@
 
 #include "Utils.h"
 #include <QDebug>
+#include <QFile>
 #include <QFileInfo>
 #include <QRegExp>
 #include <QString>
@@ -110,6 +111,18 @@ const QString & pluginCodeName()
     result = GmicQtHost::ApplicationName.isEmpty() ? QString("gmic_qt") : QString("gmic_%1_qt").arg(QString(GmicQtHost::ApplicationShortname).toLower());
   }
   return result;
+}
+
+bool touchFile(const QString & path)
+{
+  QFile file(path);
+  if (!file.open(QFile::ReadWrite)) {
+    return false;
+  }
+  const auto size = file.size();
+  file.resize(size + 1);
+  file.resize(size);
+  return true;
 }
 
 } // namespace GmicQt

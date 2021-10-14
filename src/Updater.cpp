@@ -93,8 +93,8 @@ void Updater::updateSources(bool useNetwork)
   // NOTE : For testing purpose
   //  _sources.clear();
   //  _sourceIsStdLib.clear();
-  //  _sources.push_back("http://localhost:2222/update220.gmic");
-  //  _sourceIsStdLib["http://localhost:2222/update220.gmic"] = true;
+  //  _sources.push_back("http://localhost:2222/update300.gmic");
+  //  _sourceIsStdLib["http://localhost:2222/update300.gmic"] = true;
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
@@ -103,7 +103,7 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
   updateSources(useNetwork);
   _errorMessages.clear();
   _networkAccessManager = new QNetworkAccessManager(this);
-  connect(_networkAccessManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(onNetworkReplyFinished(QNetworkReply *)));
+  connect(_networkAccessManager, &QNetworkAccessManager::finished, this, &Updater::onNetworkReplyFinished);
   _someNetworkUpdatesAchieved = false;
   if (useNetwork) {
     QDateTime limit = QDateTime::currentDateTime().addSecs(-3600 * (qint64)ageLimit);
@@ -136,10 +136,10 @@ void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)
     }
   }
   if (_pendingReplies.isEmpty()) {
-    QTimer::singleShot(0, this, SLOT(onUpdateNotNecessary())); // While GUI is Idle
+    QTimer::singleShot(0, this, &Updater::onUpdateNotNecessary); // While GUI is Idle
     _networkAccessManager->deleteLater();
   } else {
-    QTimer::singleShot(timeout * 1000, this, SLOT(cancelAllPendingDownloads()));
+    QTimer::singleShot(timeout * 1000, this, &Updater::cancelAllPendingDownloads);
   }
   TIMING;
 }
@@ -235,6 +235,9 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
     Logger::note("******* Full reply contents ******\n");
     Logger::note(reply->readAll());
     Logger::note(QString("******** HTTP Status: %1").arg(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()));
+    // We either create an empty local file or 'touch' the existing one to prevent a systematic update on next startups
+    // Instead, usual delay will occur before next try
+    touchFile(localFilename(reply->url().toString()));
   }
   _pendingReplies.remove(reply);
   if (_pendingReplies.isEmpty()) {
