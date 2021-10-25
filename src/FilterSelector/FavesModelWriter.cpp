@@ -24,6 +24,7 @@
  */
 #include "FavesModelWriter.h"
 #include <QFile>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -51,7 +52,7 @@ void FavesModelWriter::writeFaves()
     array.append(object);
     ++itFave;
   }
-  if (array.isEmpty()) { // Backup
+  if (array.isEmpty() && (QFileInfo(jsonFilename).size() > 0)) { // Backup
     QFile::copy(jsonFilename, jsonFilename + ".bak");
   }
   // Save JSON array
