@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FilterTreeItem.h
+ *  @file FilterTagMap.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,38 +22,35 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_FILTERTREEITEM_H
-#define GMIC_QT_FILTERTREEITEM_H
-#include <QStandardItem>
-#include <QString>
+#ifndef GMIC_QT_FILTERTAGMAP_H
+#define GMIC_QT_FILTERTAGMAP_H
+
+#include <QMap>
 #include <QVector>
-#include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
 #include "Tags.h"
 
 namespace GmicQt
 {
-class FilterTreeItem : public FilterTreeAbstractItem {
+class FiltersTagMap {
 public:
-  FilterTreeItem(const QString & text);
-  void setHash(const QString & hash);
-  void setWarningFlag(bool flag);
-  void setFaveFlag(bool flag);
-  bool isWarning() const;
-  bool isFave() const;
-  QString hash() const;
-  bool operator<(const QStandardItem & other) const override;
-  void setTags(const QVector<TagColor> & colors);
-  void addTag(TagColor tagColor);
-  void removeTag(TagColor tagColor);
-  void toggleTag(TagColor tagColor);
-  const QVector<TagColor> tags() const;
+  static QVector<TagColor> filterTags(const QString & hash);
+  static void setFilterTags(const QString & hash, const QVector<TagColor> &);
+  static void load();
+  static void save();
+  static QVector<TagColor> usedColors(int * count = nullptr);
+  static void removeAllTags(TagColor color);
+  static void clearFilterTag(const QString & hash, TagColor color);
+  static void setFilterTag(const QString & hash, TagColor color);
+  static void toggleFilterTag(const QString & hash, TagColor color);
 
+protected:
 private:
-  QString _hash;
-  bool _isFave;
-  bool _isWarning;
+  static QVector<TagColor> uint2colors(unsigned int);
+  static unsigned int colors2uint(const QVector<TagColor> &);
+  static QMap<QString, unsigned int> _hashesToColors;
+  FiltersTagMap() = delete;
 };
 
 } // namespace GmicQt
 
-#endif // GMIC_QT_FILTERTREEITEM_H
+#endif // GMIC_QT_FILTERTAGMAP_H

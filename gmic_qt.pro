@@ -282,6 +282,7 @@ HEADERS +=  \
   src/FilterSelector/FiltersView/FiltersView.h \
   src/FilterSelector/FiltersView/TreeView.h \
   src/FilterSelector/FiltersVisibilityMap.h \
+  src/FilterSelector/FilterTagMap.h \
   src/CroppedImageListProxy.h \
   src/CroppedActiveLayerProxy.h \
   src/FilterSyncRunner.h \
@@ -302,9 +303,11 @@ HEADERS +=  \
   src/MainWindow.h \
   src/Misc.h \
   src/ParametersCache.h \
+  src/Tags.h \
   src/TimeLogger.h \
   src/Updater.h \
   src/Utils.h \
+  src/Widgets/VisibleTagSelector.h \
   src/ZoomConstraint.h \
   src/FilterSelector/FiltersView/FilterTreeFolder.h \
   src/FilterSelector/FiltersView/FilterTreeItem.h \
@@ -357,6 +360,7 @@ SOURCES += \
   src/FilterSelector/FiltersView/FiltersView.cpp \
   src/FilterSelector/FiltersView/TreeView.cpp \
   src/FilterSelector/FiltersVisibilityMap.cpp \
+  src/FilterSelector/FilterTagMap.cpp \
   src/CroppedImageListProxy.cpp \
   src/CroppedActiveLayerProxy.cpp \
   src/FilterSyncRunner.cpp \
@@ -376,6 +380,7 @@ SOURCES += \
   src/Logger.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
+  src/Tags.cpp \
   src/TimeLogger.cpp \
   src/Updater.cpp \
   src/Utils.cpp \
@@ -390,6 +395,7 @@ SOURCES += \
   src/Widgets/PreviewWidget.cpp \
   src/Widgets/ProgressInfoWidget.cpp \
   src/Widgets/InOutPanel.cpp \
+  src/Widgets/VisibleTagSelector.cpp \
   src/Widgets/ZoomLevelSelector.cpp \
   src/Widgets/SearchFieldWidget.cpp \
   src/Widgets/LanguageSelectionWidget.cpp \

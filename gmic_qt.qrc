@@ -51,5 +51,7 @@
         <file>resources/gmic_hat.png</file>
         <file>resources/logos.png</file>
         <file>resources/transparency.png</file>
+        <file>icons/color-wheel.png</file>
+        <file>icons/dark/color-wheel.png</file>
     </qresource>
 </RCC>

@@ -24,6 +24,8 @@
  */
 #include "FilterTreeItem.h"
 #include <QDebug>
+#include "Common.h"
+#include "FilterSelector/FilterTagMap.h"
 #include "FilterSelector/FiltersView/FilterTreeFolder.h"
 #include "HtmlTranslator.h"
 
@@ -96,6 +98,31 @@ bool FilterTreeItem::operator<(const QStandardItem & other) const
     return plainText().localeAwareCompare(otherFolder->plainText()) < 0;
   }
   return plainText().localeAwareCompare(otherItem->plainText()) < 0;
+}
+
+void FilterTreeItem::setTags(const QVector<TagColor> & colors)
+{
+  FiltersTagMap::setFilterTags(_hash, colors);
+}
+
+void FilterTreeItem::addTag(TagColor tagColor)
+{
+  FiltersTagMap::setFilterTag(_hash, tagColor);
+}
+
+void FilterTreeItem::removeTag(TagColor tagColor)
+{
+  FiltersTagMap::clearFilterTag(_hash, tagColor);
+}
+
+void FilterTreeItem::toggleTag(TagColor tagColor)
+{
+  FiltersTagMap::toggleFilterTag(_hash, tagColor);
+}
+
+const QVector<TagColor> FilterTreeItem::tags() const
+{
+  return FiltersTagMap::filterTags(_hash);
 }
 
 } // namespace GmicQt

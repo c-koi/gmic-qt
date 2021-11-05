@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file FilterTreeItem.h
+ *  @file VisibleTagSelector.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,38 +22,37 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_FILTERTREEITEM_H
-#define GMIC_QT_FILTERTREEITEM_H
-#include <QStandardItem>
-#include <QString>
-#include <QVector>
-#include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
+#ifndef GMIC_QT_VISIBLETAGSELECTOR_H
+#define GMIC_QT_VISIBLETAGSELECTOR_H
+
+#include <QMenu>
 #include "Tags.h"
+
+class QToolButton;
 
 namespace GmicQt
 {
-class FilterTreeItem : public FilterTreeAbstractItem {
+
+class VisibleTagSelector : public QMenu {
+  Q_OBJECT
+
 public:
-  FilterTreeItem(const QString & text);
-  void setHash(const QString & hash);
-  void setWarningFlag(bool flag);
-  void setFaveFlag(bool flag);
-  bool isWarning() const;
-  bool isFave() const;
-  QString hash() const;
-  bool operator<(const QStandardItem & other) const override;
-  void setTags(const QVector<TagColor> & colors);
-  void addTag(TagColor tagColor);
-  void removeTag(TagColor tagColor);
-  void toggleTag(TagColor tagColor);
-  const QVector<TagColor> tags() const;
+  explicit VisibleTagSelector(QWidget * parent = nullptr);
+  void setToolButton(QToolButton * button);
+  TagColor selectedColor() const;
+  ~VisibleTagSelector() override;
+
+public slots:
+  void updateColors();
+signals:
+  void visibleColorChanged(int);
 
 private:
-  QString _hash;
-  bool _isFave;
-  bool _isWarning;
+  QToolButton * _toolButton;
+  QVector<TagColor> _colors;
+  TagColor _selectedColor;
 };
 
 } // namespace GmicQt
 
-#endif // GMIC_QT_FILTERTREEITEM_H
+#endif // GMIC_QT_VISIBLETAGSELECTOR_H

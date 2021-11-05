@@ -115,6 +115,17 @@
             </spacer>
            </item>
            <item>
+            <widget class="QToolButton" name="tbTags">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../gmic_qt.qrc">
+               <normaloff>:/icons/color-wheel.png</normaloff>:/icons/color-wheel.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QToolButton" name="tbSelectionMode">
              <property name="text">
               <string/>
@@ -610,6 +621,8 @@
   <tabstop>pbApply</tabstop>
   <tabstop>pbOk</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../gmic_qt.qrc"/>
+ </resources>
  <connections/>
 </ui>

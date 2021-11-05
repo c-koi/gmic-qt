@@ -45,6 +45,7 @@
 #include "CroppedImageListProxy.h"
 #include "DialogSettings.h"
 #include "FilterSelector/FavesModelReader.h"
+#include "FilterSelector/FilterTagMap.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterSelector/FiltersVisibilityMap.h"
 #include "FilterTextTranslator.h"
@@ -58,6 +59,7 @@
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "Utils.h"
+#include "Widgets/VisibleTagSelector.h"
 #include "ui_mainwindow.h"
 #include "gmic.h"
 
@@ -202,6 +204,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   _filtersPresenter = new FiltersPresenter(this);
   _filtersPresenter->setFiltersView(ui->filtersView);
+  _filtersPresenter->setSearchField(ui->searchField);
 
   ui->progressInfoWidget->setGmicProcessor(&_processor);
 
@@ -225,6 +228,12 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   _lastPreviewKeypointBurstUpdateTime = 0;
   _isAccepted = false;
 
+  ui->tbTags->setToolTip(tr("Manage visible tags\n(Right-click on a fave or a filter to set/remove tags)"));
+  _visibleTagSelector = new VisibleTagSelector(this);
+  _visibleTagSelector->setToolButton(ui->tbTags);
+  _visibleTagSelector->updateColors();
+  _filtersPresenter->setVisibleTagSelector(_visibleTagSelector);
+
   TIMING;
   makeConnections();
   TIMING;
@@ -245,6 +254,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setIcons()
 {
+  ui->tbTags->setIcon(LOAD_ICON("color-wheel"));
   ui->tbRenameFave->setIcon(LOAD_ICON("rename"));
   ui->pbSettings->setIcon(LOAD_ICON("package_settings"));
   ui->pbFullscreen->setIcon(LOAD_ICON("view-fullscreen"));
@@ -372,9 +382,7 @@ void MainWindow::buildFiltersTree()
     QSettings().setValue(FAVES_IMPORT_KEY, true);
   }
 
-  QString searchText = ui->searchField->text();
   _filtersPresenter->toggleSelectionMode(withVisibility);
-  _filtersPresenter->applySearchCriterion(searchText);
 
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     setNoFilter();
@@ -526,7 +534,6 @@ void MainWindow::updateZoomLabel(double zoom)
 void MainWindow::onFiltersSelectionModeToggled(bool on)
 {
   _filtersPresenter->toggleSelectionMode(on);
-  _filtersPresenter->applySearchCriterion(ui->searchField->text());
 }
 
 void MainWindow::onPreviewCheckBoxToggled(bool on)

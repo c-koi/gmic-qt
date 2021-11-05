@@ -40,6 +40,7 @@ const char WarningPrefix = '!';
 #define SLIDER_MIN_WIDTH 60
 #define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
 #define FILTERS_VISIBILITY_FILENAME "gmic_qt_visibility.dat"
+#define FILTERS_TAGS_FILENAME "gmic_qt_tags.dat"
 
 #define FAVE_FOLDER_TEXT "<b>Faves</b>"
 #define FAVES_IMPORT_KEY "Faves/ImportedGTK179"

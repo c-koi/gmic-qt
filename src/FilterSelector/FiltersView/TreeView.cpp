@@ -38,6 +38,6 @@ void TreeView::keyPressEvent(QKeyEvent * event)
   QTreeView::keyPressEvent(event);
 }
 
-TreeView::~TreeView() = default;
+TreeView::~TreeView() {}
 
 } // namespace GmicQt
