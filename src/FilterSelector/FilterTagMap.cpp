@@ -149,7 +149,7 @@ QVector<TagColor> FiltersTagMap::usedColors(int * count)
       ++it;
     }
   } else {
-    while (it != _hashesToColors.end()) {
+    while (it != _hashesToColors.cend()) {
       all |= it.value();
       ++it;
     }
