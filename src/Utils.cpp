@@ -24,13 +24,16 @@
  */
 
 #include "Utils.h"
+#include <QByteArray>
 #include <QDebug>
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QRegExp>
 #include <QString>
 #include "Common.h"
 #include "Host/GmicQtHost.h"
+#include "Logger.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
@@ -38,6 +41,7 @@
 #include <tlhelp32.h>
 #endif
 #ifdef _IS_LINUX_
+#include <QTemporaryFile>
 #include <unistd.h>
 #endif
 
@@ -125,4 +129,44 @@ bool touchFile(const QString & path)
   return true;
 }
 
+bool writeAll(const QByteArray & array, QFile & file)
+{
+  qint64 toBeWritten = array.size();
+  qint64 totalWritten = 0;
+  qint64 writtenByCall = 0;
+  qint64 maxBytesPerWrite = 10l << 20;
+  const char * data = array.constData();
+  do {
+    writtenByCall = file.write(data, std::min(toBeWritten, maxBytesPerWrite));
+    if (writtenByCall == -1) {
+      Logger::error(QString("Could not properly write file %1 (%2/%3 bytes written)") //
+                        .arg(file.fileName())
+                        .arg(totalWritten)
+                        .arg(array.size()));
+      return false;
+    }
+    data += writtenByCall;
+    totalWritten += writtenByCall;
+    toBeWritten -= writtenByCall;
+  } while (toBeWritten);
+  file.flush();
+  return true;
+}
+
+bool safelyWrite(const QByteArray & array, const QString & filename)
+{
+  QString directory = QFileInfo(filename).absoluteDir().absolutePath();
+  if (!QFileInfo(directory).isWritable()) {
+    Logger::error(QString("Folder is not writable (%1)").arg(directory));
+    return false;
+  }
+  QTemporaryFile temporary;
+  temporary.setAutoRemove(false);
+  const bool ok = temporary.open()                                              //
+                  && writeAll(array, temporary)                                 //
+                  && (!QFileInfo(filename).exists() || QFile::remove(filename)) //
+                  && temporary.copy(filename);
+  temporary.remove();
+  return ok;
+}
 } // namespace GmicQt

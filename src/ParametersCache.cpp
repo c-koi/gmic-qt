@@ -199,29 +199,18 @@ void ParametersCache::save()
 
   QJsonDocument jsonDoc(documentObject);
   QString jsonFilename = QString("%1%2").arg(gmicConfigPath(true), PARAMETERS_CACHE_FILENAME);
-  QFile jsonFile(jsonFilename);
-  if (QFile::exists(jsonFilename)) {
-    QString bakFilename = QString("%1%2").arg(gmicConfigPath(false), PARAMETERS_CACHE_FILENAME ".bak");
-    QFile::remove(bakFilename);
-    QFile::copy(jsonFilename, bakFilename);
-  }
-  if (jsonFile.open(QFile::WriteOnly | QFile::Truncate)) {
 #ifdef _GMIC_QT_DEBUG_
-    qint64 count = jsonFile.write(jsonDoc.toJson());
+  QByteArray array(jsonDoc.toJson());
 #else
-    qint64 count = jsonFile.write(qCompress(jsonDoc.toJson(QJsonDocument::Compact)));
+  QByteArray array(qCompress(jsonDoc.toJson(QJsonDocument::Compact)));
 #endif
-    // jsonFile.write(jsonDoc.toJson());
-    // jsonFile.write(qCompress(jsonDoc.toBinaryData()));
-    jsonFile.close();
-    if (count != -1) {
-      // Remove obsolete 2.0.0 pre-release files
-      const QString & path = gmicConfigPath(true);
-      QFile::remove(path + "gmic_qt_parameters.dat");
-      QFile::remove(path + "gmic_qt_parameters.json");
-      QFile::remove(path + "gmic_qt_parameters.json.bak");
-      QFile::remove(path + "gmic_qt_parameters_json.dat");
-    }
+  if (safelyWrite(array, jsonFilename)) {
+    // Remove obsolete 2.0.0 pre-release files
+    const QString & path = gmicConfigPath(true);
+    QFile::remove(path + "gmic_qt_parameters.dat");
+    QFile::remove(path + "gmic_qt_parameters.json");
+    QFile::remove(path + "gmic_qt_parameters.json.bak");
+    QFile::remove(path + "gmic_qt_parameters_json.dat");
   } else {
     Logger::error("Cannot write " + jsonFilename);
     Logger::error("Parameters cannot be saved");

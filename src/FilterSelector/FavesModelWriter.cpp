@@ -52,21 +52,17 @@ void FavesModelWriter::writeFaves()
     array.append(object);
     ++itFave;
   }
-  if (array.isEmpty() && (QFileInfo(jsonFilename).size() > 0)) { // Backup
+  if (array.isEmpty() && (QFileInfo(jsonFilename).size() > 10)) { // Backup
     QFile::copy(jsonFilename, jsonFilename + ".bak");
   }
   // Save JSON array
-  QFile jsonFile(jsonFilename);
-  if (jsonFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-    QJsonDocument jsonDoc(array);
-    if (jsonFile.write(jsonDoc.toJson()) != -1) {
-      // Cleanup 2.0.0 pre-release files
-      QString obsoleteFilename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves"));
-      QFile::remove(obsoleteFilename);
-      QFile::remove(obsoleteFilename + ".bak");
-    }
+  if (safelyWrite(QJsonDocument(array).toJson(), jsonFilename)) {
+    // Cleanup 2.0.0 pre-release files
+    QString obsoleteFilename(QString("%1%2").arg(gmicConfigPath(false)).arg("gmic_qt_faves"));
+    QFile::remove(obsoleteFilename);
+    QFile::remove(obsoleteFilename + ".bak");
   } else {
-    Logger::error("Cannot open/create file " + jsonFilename);
+    Logger::error("Cannot write fave file " + jsonFilename);
   }
 }
 

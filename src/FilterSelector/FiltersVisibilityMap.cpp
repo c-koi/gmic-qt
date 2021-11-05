@@ -30,9 +30,9 @@
 #include <QFile>
 #include "Common.h"
 #include "Globals.h"
+#include "GmicQt.h"
 #include "Logger.h"
 #include "Utils.h"
-#include "GmicQt.h"
 
 namespace GmicQt
 {
@@ -90,16 +90,11 @@ void FiltersVisibilityMap::save()
   for (const QString & str : _hiddenFilters) {
     buffer.write((str + QChar('\n')).toLatin1());
   }
-
   QString path = QString("%1%2").arg(gmicConfigPath(true), FILTERS_VISIBILITY_FILENAME);
-  QFile file(path);
-  if (file.open(QFile::WriteOnly)) {
-    file.write(QString("Version=%1\n").arg(gmicVersionString()).toLocal8Bit());
-    file.write(QString("[Hidden filters list (compressed)]\n").toLocal8Bit());
-    file.write(qCompress(data));
-    file.close();
-  } else {
-    Logger::error("Cannot write " + path);
+  QByteArray array = QString("Version=%1\n[Hidden filters list (compressed)]\n").arg(gmicVersionString()).toLocal8Bit();
+  array += qCompress(data);
+  if (!safelyWrite(array, path)) {
+    Logger::error("Saving filters visibility in " + path);
   }
 }
 

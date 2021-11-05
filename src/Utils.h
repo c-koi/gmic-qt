@@ -26,17 +26,20 @@
 #define GMIC_QT_UTILS_H
 
 #include "GmicQt.h"
+class QFile;
+class QByteArray;
 class QString;
 class QStringList;
 
 namespace GmicQt
 {
-
 const QString & gmicConfigPath(bool create);
 unsigned int host_app_pid();
 const QString & pluginFullName();
 const QString & pluginCodeName();
 bool touchFile(const QString & path);
+bool writeAll(const QByteArray & array, QFile & file);
+bool safelyWrite(const QByteArray & array, const QString & filename);
 } // namespace GmicQt
 
 #endif // GMIC_QT_UTILS_H

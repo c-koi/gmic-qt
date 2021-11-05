@@ -206,16 +206,11 @@ void Updater::processReply(QNetworkReply * reply)
     return;
   }
   QString filename = localFilename(url);
-  QFile file(filename);
-  if (!file.open(QFile::WriteOnly)) {
-    _errorMessages << QString(tr("Error creating file %1")).arg(filename);
+  if (!safelyWrite(array, filename)) {
+    _errorMessages << QString(tr("Error writing file %1")).arg(filename);
     return;
   }
-  if (file.write(array) != array.size()) {
-    _errorMessages << QString(tr("Error writing file %1")).arg(filename);
-  } else {
-    _someNetworkUpdatesAchieved = true;
-  }
+  _someNetworkUpdatesAchieved = true;
 }
 
 void Updater::onNetworkReplyFinished(QNetworkReply * reply)
@@ -282,8 +277,10 @@ QByteArray Updater::cimgzDecompress(const QByteArray & array)
     Logger::warning("Updater::cimgzDecompress(): Error creating " + tmpZ.fileName());
     return QByteArray();
   }
-  tmpZ.write(array);
-  tmpZ.flush();
+  if (!writeAll(array, tmpZ)) {
+    Logger::warning("Updater::cimgzDecompress(): Error writing temporary " + tmpZ.fileName());
+    return QByteArray();
+  }
   tmpZ.close();
   cimg_library::CImg<unsigned char> buffer;
   try {
