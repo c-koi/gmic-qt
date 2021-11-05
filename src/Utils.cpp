@@ -31,6 +31,7 @@
 #include <QFileInfo>
 #include <QRegExp>
 #include <QString>
+#include <QTemporaryFile>
 #include "Common.h"
 #include "Host/GmicQtHost.h"
 #include "Logger.h"
@@ -41,7 +42,6 @@
 #include <tlhelp32.h>
 #endif
 #ifdef _IS_LINUX_
-#include <QTemporaryFile>
 #include <unistd.h>
 #endif
 
