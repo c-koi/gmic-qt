@@ -112,24 +112,18 @@ void FiltersTagMap::save()
   }
   QJsonDocument jsonDoc(documentObject);
   QString jsonFilename = QString("%1%2").arg(gmicConfigPath(true), FILTERS_TAGS_FILENAME);
-  QFile jsonFile(jsonFilename);
   if (QFile::exists(jsonFilename)) {
     QString bakFilename = QString("%1%2").arg(gmicConfigPath(false), FILTERS_TAGS_FILENAME ".bak");
     QFile::remove(bakFilename);
     QFile::copy(jsonFilename, bakFilename);
   }
 
-  qint64 count = -1;
-  if (jsonFile.open(QFile::WriteOnly | QFile::Truncate)) {
 #ifdef _GMIC_QT_DEBUG_
-    count = jsonFile.write(jsonDoc.toJson());
+  const bool ok = safelyWrite(jsonDoc.toJson(), jsonFilename);
 #else
-    count = jsonFile.write(qCompress(jsonDoc.toJson(QJsonDocument::Compact)));
+  const bool ok = safelyWrite(qCompress(jsonDoc.toJson(QJsonDocument::Compact)), jsonFilename);
 #endif
-    jsonFile.close();
-  }
-
-  if (count == -1) {
+  if (ok) {
     Logger::error("Cannot write " + jsonFilename);
     Logger::error("Parameters cannot be saved");
   }
