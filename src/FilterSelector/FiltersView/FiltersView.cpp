@@ -683,12 +683,12 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
   const QVector<TagColor> & tags = item->tags();
   menu->addSeparator();
   for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
-    QAction * action = TagAssets::action(nullptr, TagColor(iColor), tags.contains((TagColor)iColor) ? TagAssets::IconMark::Check : TagAssets::IconMark::None);
+    QAction * action = TagAssets::action(nullptr,          //
+                                         TagColor(iColor), //
+                                         tags.contains((TagColor)iColor) ? TagAssets::IconMark::Check : TagAssets::IconMark::None);
     connect(action, &QAction::triggered, [this, item, iColor]() { //
       toggleItemTag(item, TagColor(iColor));
-      if ((_visibleTagColor != TagColor::None) && (_model.invisibleRootItem()->rowCount() == 0)) { //
-        emit tagColorRemovedForAll(iColor);
-      }
+      emit tagToggled(iColor);
     });
     menu->addAction(action);
   }
@@ -705,7 +705,7 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
         action->setText(QString("%1 (%2 tag%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg(tagCount[iColor] ? "s" : ""));
         connect(action, &QAction::triggered, [this, iColor]() {
           FiltersTagMap::removeAllTags(TagColor(iColor));
-          emit tagColorRemovedForAll(iColor);
+          emit tagToggled(iColor);
         });
       }
     }

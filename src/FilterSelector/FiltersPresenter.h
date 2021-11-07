@@ -138,7 +138,7 @@ public slots:
 private slots:
   void onFilterChanged(const QString & hash);
   void removeFave(const QString & hash);
-  void onTagColorRemovedForAll(int color);
+  void onTagToggled(int color);
 
 private:
   void setCurrentFilter(const QString & hash);

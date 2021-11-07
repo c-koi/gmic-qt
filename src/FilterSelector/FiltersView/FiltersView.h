@@ -93,7 +93,7 @@ signals:
   void faveRenamed(QString hash, QString newName);
   void faveRemovalRequested(QString hash);
   void faveAdditionRequested(QString hash);
-  void tagColorRemovedForAll(int iColor);
+  void tagToggled(int iColor);
 
 public slots:
   void editSelectedFaveName();

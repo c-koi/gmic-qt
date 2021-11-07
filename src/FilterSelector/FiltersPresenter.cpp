@@ -66,7 +66,7 @@ void FiltersPresenter::setFiltersView(FiltersView * filtersView)
   connect(_filtersView, &FiltersView::faveRenamed, this, &FiltersPresenter::onFaveRenamed);
   connect(_filtersView, &FiltersView::faveRemovalRequested, this, &FiltersPresenter::removeFave);
   connect(_filtersView, &FiltersView::faveAdditionRequested, this, &FiltersPresenter::faveAdditionRequested);
-  connect(_filtersView, &FiltersView::tagColorRemovedForAll, this, &FiltersPresenter::onTagColorRemovedForAll);
+  connect(_filtersView, &FiltersView::tagToggled, this, &FiltersPresenter::onTagToggled);
 }
 
 void FiltersPresenter::setSearchField(SearchFieldWidget * searchField)
@@ -556,7 +556,7 @@ void FiltersPresenter::removeFave(const QString & hash)
   }
 }
 
-void FiltersPresenter::onTagColorRemovedForAll(int)
+void FiltersPresenter::onTagToggled(int)
 {
   TagColor color = _visibleTagSelector->selectedColor();
   _visibleTagSelector->updateColors();

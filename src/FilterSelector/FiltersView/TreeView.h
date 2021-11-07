@@ -36,7 +36,7 @@ class TreeView : public QTreeView {
   Q_OBJECT
 public:
   TreeView(QWidget * parent = nullptr);
-  ~TreeView();
+  ~TreeView() override;
   void keyPressEvent(QKeyEvent * event) override;
 signals:
   void returnKeyPressed();
