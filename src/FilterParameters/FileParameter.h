@@ -36,7 +36,7 @@ namespace GmicQt
 class FileParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FileParameter(QObject * parent = nullptr);
+  FileParameter(QObject * parent);
   ~FileParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

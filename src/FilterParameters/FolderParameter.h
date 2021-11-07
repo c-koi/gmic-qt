@@ -36,7 +36,7 @@ namespace GmicQt
 class FolderParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FolderParameter(QObject * parent = nullptr);
+  FolderParameter(QObject * parent);
   ~FolderParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

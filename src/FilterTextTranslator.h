@@ -10,6 +10,7 @@
 #ifndef GMIC_QT_FILTERTEXTTRANSLATOR_H
 #define GMIC_QT_FILTERTEXTTRANSLATOR_H
 
+#include <QByteArray>
 #include <QDebug>
 #include <QObject>
 #include <QString>
@@ -32,7 +33,10 @@ private:
 
 QString FilterTextTranslator::translate(const QString & str)
 {
-  return tr(str.toUtf8());
+  QByteArray array = str.toUtf8();
+  return str;
+  // TODO : Remove
+  return QObject::tr(array.constData());
 }
 
 } // namespace GmicQt

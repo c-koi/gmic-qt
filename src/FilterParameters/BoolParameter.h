@@ -36,7 +36,7 @@ namespace GmicQt
 class BoolParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  BoolParameter(QObject * parent = nullptr);
+  BoolParameter(QObject * parent);
   ~BoolParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

@@ -114,7 +114,6 @@ const QIcon & TagAssets::menuIcon(TagColor color, IconMark mark)
     return _menuIconsWithCheck[iColor];
   case IconMark::Disk:
     return _menuIconsWithDisk[iColor];
-  case IconMark::None:
   default:
     return _menuIcons[iColor];
   }
@@ -125,10 +124,7 @@ QAction * TagAssets::action(QObject * parent, TagColor color, IconMark mark)
   if ((color == TagColor::None) || (color == TagColor::Count)) {
     return nullptr;
   }
-  // QAction * action = new QAction(menuIcon(color), QString("Tag"), parent);
-  QAction * action = new QAction(menuIcon(color, mark), "Tag", parent);
-  // action->setCheckable(true);
-  return action;
+  return new QAction(menuIcon(color, mark), "Tag", parent);
 }
 
 } // namespace GmicQt

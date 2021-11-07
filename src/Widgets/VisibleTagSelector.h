@@ -37,7 +37,7 @@ class VisibleTagSelector : public QMenu {
   Q_OBJECT
 
 public:
-  explicit VisibleTagSelector(QWidget * parent = nullptr);
+  explicit VisibleTagSelector(QWidget * parent);
   void setToolButton(QToolButton * button);
   TagColor selectedColor() const;
   ~VisibleTagSelector() override;

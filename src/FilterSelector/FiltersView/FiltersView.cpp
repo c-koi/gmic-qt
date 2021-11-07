@@ -683,7 +683,7 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
   const QVector<TagColor> & tags = item->tags();
   menu->addSeparator();
   for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
-    QAction * action = TagAssets::action(nullptr,          //
+    QAction * action = TagAssets::action(menu,             //
                                          TagColor(iColor), //
                                          tags.contains((TagColor)iColor) ? TagAssets::IconMark::Check : TagAssets::IconMark::None);
     connect(action, &QAction::triggered, [this, item, iColor]() { //
@@ -701,7 +701,7 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
   } else {
     for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
       if (existingColors.contains(TagColor(iColor))) {
-        removeMenu->addAction(action = TagAssets::action(nullptr, TagColor(iColor), TagAssets::IconMark::None));
+        removeMenu->addAction(action = TagAssets::action(removeMenu, TagColor(iColor), TagAssets::IconMark::None));
         action->setText(QString("%1 (%2 tag%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg(tagCount[iColor] ? "s" : ""));
         connect(action, &QAction::triggered, [this, iColor]() {
           FiltersTagMap::removeAllTags(TagColor(iColor));

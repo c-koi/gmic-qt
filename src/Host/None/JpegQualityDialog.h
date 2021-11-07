@@ -12,7 +12,7 @@ class JpegQualityDialog : public QDialog {
   Q_OBJECT
 
 public:
-  explicit JpegQualityDialog(QWidget * parent = nullptr);
+  explicit JpegQualityDialog(QWidget * parent);
   ~JpegQualityDialog() override;
   int quality() const;
   void setQuality(int quality);

@@ -43,7 +43,7 @@ class FilterParametersWidget : public QWidget {
   Q_OBJECT
 
 public:
-  FilterParametersWidget(QWidget * parent = nullptr);
+  FilterParametersWidget(QWidget * parent);
   bool build(const QString & name, const QString & hash, const QString & parameters, const QList<QString> & values, const QList<int> & visibilityStates);
   void setNoFilter(const QString & message = QString());
   ~FilterParametersWidget() override;

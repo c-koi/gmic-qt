@@ -34,10 +34,10 @@
 #include "Common.h"
 #include "FilterSelector/FiltersModel.h"
 #include "Globals.h"
+#include "GmicQt.h"
 #include "LanguageSettings.h"
 #include "Logger.h"
 #include "Utils.h"
-#include "GmicQt.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -107,8 +107,8 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         // A filter
         //
         QString filterName = line;
-        filterName.replace(QRegExp("[ ]*:.*$"), "");
-        filterName.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"), "");
+        filterName.remove(QRegExp("[ ]*:.*$"));
+        filterName.remove(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"));
         const bool warning = filterName.startsWith(WarningPrefix);
         if (warning) {
           filterName.remove(0, 1);

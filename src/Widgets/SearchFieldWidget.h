@@ -42,7 +42,7 @@ namespace GmicQt
 class SearchFieldWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit SearchFieldWidget(QWidget * parent = nullptr);
+  explicit SearchFieldWidget(QWidget * parent);
   ~SearchFieldWidget() override;
   QString text() const;
 public slots:

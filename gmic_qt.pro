@@ -8,6 +8,8 @@
 
 !defined(GMIC_DYNAMIC_LINKING,var) { GMIC_DYNAMIC_LINKING = off }
 
+!defined(ASAN,var) { ASAN = off }
+
 !defined(PRERELEASE, var) {
 # calling 'date' directly crashes on MSYS2!
    PRERELEASE = $$system(bash pre_version.sh)
@@ -466,8 +468,12 @@ CONFIG(debug, debug|release) {
     message(Debug build)
     DEFINES += _GMIC_QT_DEBUG_
 #    QMAKE_CXXFLAGS_DEBUG += -Wfatal-errors
-#    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
-#    QMAKE_LFLAGS_DEBUG += -fsanitize=address
+}
+
+equals(ASAN, "on" ) {
+    message(Adress sanitizer enabled)
+    QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
+    QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }
 
 UI_DIR = .ui

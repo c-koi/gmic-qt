@@ -34,7 +34,7 @@ namespace GmicQt
 class NoteParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  NoteParameter(QObject * parent = nullptr);
+  NoteParameter(QObject * parent);
   ~NoteParameter() override;
   int size() const override;
   bool addTo(QWidget *, int row) override;

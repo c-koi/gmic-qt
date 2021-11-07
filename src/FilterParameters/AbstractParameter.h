@@ -52,7 +52,7 @@ public:
   virtual void addToKeypointList(KeypointList &) const;
   virtual void extractPositionFromKeypointList(KeypointList &);
 
-  static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent = nullptr);
+  static AbstractParameter * createFromText(const char * text, int & length, QString & error, QObject * parent);
   virtual bool initFromText(const char * text, int & textLength) = 0;
 
   enum class VisibilityState

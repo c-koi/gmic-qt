@@ -37,7 +37,7 @@ namespace GmicQt
 class ChoiceParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ChoiceParameter(QObject * parent = nullptr);
+  ChoiceParameter(QObject * parent);
   ~ChoiceParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

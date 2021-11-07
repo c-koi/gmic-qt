@@ -36,6 +36,7 @@
 #define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << __LINE__ << "]" << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
 #define STDSHOW(V) std::cout << #V << " = " << (V) << std::endl
+#define QSTDSHOW(STR) std::cout << #STR << " = " << (STR).toStdString() << std::endl
 #else
 #define ENTERING while (false)
 #define LEAVING while (false)
@@ -50,7 +51,10 @@
   qWarning() << ""
 #define STDSHOW(V)                                                                                                                                                                                     \
   while (false)                                                                                                                                                                                        \
-  std::cout << ""
+  std::cerr << ""
+#define QSTDSHOW(STR)                                                                                                                                                                                  \
+  while (false)                                                                                                                                                                                        \
+  std::cerr << ""
 #endif
 
 template <typename T> inline void unused(const T &, ...) {}

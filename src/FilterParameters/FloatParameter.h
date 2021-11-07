@@ -37,7 +37,7 @@ class CustomDoubleSpinBox;
 class FloatParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FloatParameter(QObject * parent = nullptr);
+  FloatParameter(QObject * parent);
   ~FloatParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

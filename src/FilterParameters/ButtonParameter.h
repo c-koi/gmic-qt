@@ -38,7 +38,7 @@ namespace GmicQt
 class ButtonParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ButtonParameter(QObject * parent = nullptr);
+  ButtonParameter(QObject * parent);
   ~ButtonParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

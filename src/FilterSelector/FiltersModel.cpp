@@ -29,9 +29,9 @@
 #include "Common.h"
 #include "FilterTextTranslator.h"
 #include "Globals.h"
+#include "GmicQt.h"
 #include "HtmlTranslator.h"
 #include "Misc.h"
-#include "GmicQt.h"
 
 namespace GmicQt
 {

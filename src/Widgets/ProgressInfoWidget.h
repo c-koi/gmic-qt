@@ -40,7 +40,7 @@ class ProgressInfoWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ProgressInfoWidget(QWidget * parent = nullptr);
+  explicit ProgressInfoWidget(QWidget * parent);
   ~ProgressInfoWidget();
 
   enum class Mode

@@ -254,7 +254,7 @@ InputOutputState ParametersCache::getInputOutputState(const QString & hash)
   if (_inOutPanelStates.contains(hash)) {
     return _inOutPanelStates[hash];
   }
-  return InputOutputState(InputMode::Unspecified, DefaultOutputMode);
+  return {InputMode::Unspecified, DefaultOutputMode};
 }
 
 void ParametersCache::setInputOutputState(const QString & hash, const InputOutputState & state, const InputMode defaultInputMode)

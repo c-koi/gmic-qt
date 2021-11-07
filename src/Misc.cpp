@@ -379,7 +379,7 @@ QString unquoted(const QString & text)
   }
 }
 
-QStringList expandParameterList(const QStringList & parameters, QVector<int> sizes)
+QStringList expandParameterList(const QStringList & parameters, const QVector<int> & sizes)
 {
   // FIXME : Handle errors here
   QStringList result;

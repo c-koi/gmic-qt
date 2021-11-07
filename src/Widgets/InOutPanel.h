@@ -26,9 +26,9 @@
 #define GMIC_QT_INOUTPANEL_H
 
 #include <QWidget>
+#include "GmicQt.h"
 #include "Host/GmicQtHost.h"
 #include "InputOutputState.h"
-#include "GmicQt.h"
 class QSettings;
 class QPalette;
 
@@ -46,8 +46,8 @@ class InOutPanel : public QWidget {
   Q_OBJECT
 
 public:
-  explicit InOutPanel(QWidget * parent = nullptr);
-  ~InOutPanel();
+  explicit InOutPanel(QWidget * parent);
+  ~InOutPanel() override;
 
 public:
   InputMode inputMode() const;

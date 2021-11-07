@@ -34,7 +34,7 @@ namespace GmicQt
 class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ConstParameter(QObject * parent = nullptr);
+  ConstParameter(QObject * parent);
   ~ConstParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

@@ -35,7 +35,7 @@ namespace GmicQt
 class LinkParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  LinkParameter(QObject * parent = nullptr);
+  LinkParameter(QObject * parent);
   ~LinkParameter() override;
   int size() const override;
   bool addTo(QWidget *, int row) override;

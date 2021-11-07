@@ -35,8 +35,8 @@
 #include <QTimer>
 #include <QVector>
 #include <deque>
-#include "InputOutputState.h"
 #include "GmicQt.h"
+#include "InputOutputState.h"
 
 namespace cimg_library
 {

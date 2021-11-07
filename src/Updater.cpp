@@ -48,13 +48,13 @@ Updater::Updater(QObject * parent) : QObject(parent)
 
 Updater * Updater::getInstance()
 {
-  if (!_instance.get()) {
+  if (!_instance) {
     _instance = std::unique_ptr<Updater>(new Updater(nullptr));
   }
   return _instance.get();
 }
 
-Updater::~Updater() {}
+Updater::~Updater() = default;
 
 void Updater::updateSources(bool useNetwork)
 {
@@ -93,8 +93,10 @@ void Updater::updateSources(bool useNetwork)
   // NOTE : For testing purpose
   //  _sources.clear();
   //  _sourceIsStdLib.clear();
-  //  _sources.push_back("http://localhost:2222/update300.gmic");
-  //  _sourceIsStdLib["http://localhost:2222/update300.gmic"] = true;
+  //  //  _sources.push_back("http://localhost:2222/update300.gmic");
+  //  //  _sourceIsStdLib["http://localhost:2222/update300.gmic"] = true;
+  //  _sources.push_back("https://gmic.eu/update271.gmic");
+  //  _sourceIsStdLib["https://gmic.eu/update271.gmic"] = true;
 }
 
 void Updater::startUpdate(int ageLimit, int timeout, bool useNetwork)

@@ -52,7 +52,7 @@ class PreviewWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit PreviewWidget(QWidget * parent = nullptr);
+  explicit PreviewWidget(QWidget * parent);
   ~PreviewWidget() override;
   void setFullImageSize(const QSize &);
   void updateFullImageSizeIfDifferent(const QSize &);

@@ -39,7 +39,7 @@ namespace GmicQt
 class LanguageSelectionWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit LanguageSelectionWidget(QWidget * parent = nullptr);
+  explicit LanguageSelectionWidget(QWidget * parent);
   ~LanguageSelectionWidget();
   QString selectedLanguageCode();
 

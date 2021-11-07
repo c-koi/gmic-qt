@@ -43,7 +43,7 @@ class ZoomLevelSelector : public QWidget {
   Q_OBJECT
 
 public:
-  explicit ZoomLevelSelector(QWidget * parent = nullptr);
+  explicit ZoomLevelSelector(QWidget * parent);
   ~ZoomLevelSelector();
 
   void setZoomConstraint(const ZoomConstraint & constraint);

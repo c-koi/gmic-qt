@@ -37,7 +37,7 @@ class CustomSpinBox;
 class IntParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  IntParameter(QObject * parent = nullptr);
+  IntParameter(QObject * parent);
   ~IntParameter() override;
   virtual int size() const override;
   bool addTo(QWidget *, int row) override;

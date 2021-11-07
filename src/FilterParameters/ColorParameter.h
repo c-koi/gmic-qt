@@ -41,7 +41,7 @@ namespace GmicQt
 class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ColorParameter(QObject * parent = nullptr);
+  ColorParameter(QObject * parent);
   ~ColorParameter() override;
   int size() const override;
   bool addTo(QWidget *, int row) override;

@@ -44,7 +44,7 @@ namespace GmicQt
 class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  PointParameter(QObject * parent = nullptr);
+  PointParameter(QObject * parent);
   ~PointParameter() override;
   int size() const override;
   bool addTo(QWidget *, int row) override;

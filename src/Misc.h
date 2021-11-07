@@ -56,7 +56,7 @@ QString filterFullPathBasename(const QString & path);
 
 QString flattenGmicParameterList(const QList<QString> & list, const QVector<bool> & quotedParameters);
 
-QStringList expandParameterList(const QStringList & parameters, QVector<int> sizes);
+QStringList expandParameterList(const QStringList & parameters, const QVector<int> &sizes);
 
 QString elided(const QString & text, int width);
 

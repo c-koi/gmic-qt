@@ -34,7 +34,7 @@ namespace GmicQt
 class SeparatorParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  SeparatorParameter(QObject * parent = nullptr);
+  SeparatorParameter(QObject * parent);
   ~SeparatorParameter() override;
   int size() const override;
   bool addTo(QWidget *, int row) override;
