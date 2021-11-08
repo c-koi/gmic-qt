@@ -50,13 +50,14 @@ void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewIte
   Q_ASSERT_X(item, "FiltersTreeItemDelegate::paint()", "No item");
   auto filter = dynamic_cast<const FilterTreeItem *>(item);
 
-  const int width = 0.5 * options.rect.height();
+  const int height = int(options.rect.height() * 0.4);
   QString tagString;
   if (filter && !filter->tags().isEmpty()) {
     const QVector<TagColor> & tags = filter->tags();
+    tagString = "&nbsp;&nbsp;";
     for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
       if (tags.contains((TagColor)iColor)) {
-        tagString += TagAssets::markerHtml(TagColor(iColor), width);
+        tagString += QString("&nbsp;") + TagAssets::markerHtml(TagColor(iColor), height);
       }
     }
   }
@@ -68,7 +69,7 @@ void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewIte
     doc.setHtml(QString("<span style=\"color:%1\">%2</span>&nbsp;%3").arg(textColor.name()).arg(options.text).arg(tagString));
   } else {
     if (filter) {
-      doc.setHtml(options.text + "&nbsp;" + tagString);
+      doc.setHtml(options.text + tagString);
     } else {
       doc.setHtml(options.text);
     }

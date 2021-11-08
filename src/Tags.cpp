@@ -48,30 +48,32 @@ unsigned int TagAssets::_markerSideSize[static_cast<unsigned int>(TagColor::Coun
 QColor TagAssets::colors[static_cast<unsigned int>(TagColor::Count)] = {QColor(0, 0, 0, 0),    QColor(250, 68, 113),  QColor(179, 228, 59), QColor(121, 171, 255),
                                                                         QColor(117, 225, 242), QColor(188, 154, 234), QColor(236, 224, 105)};
 
-const QString & TagAssets::markerHtml(const TagColor color, unsigned int sideSize)
+const QString & TagAssets::markerHtml(const TagColor color, unsigned int height)
 {
+  if (!(height % 2)) {
+    ++height;
+  }
   const int iColor = (int)color;
-  if (!_markerHtml[iColor].isEmpty() && _markerSideSize[iColor] == sideSize) {
+  if (!_markerHtml[iColor].isEmpty() && _markerSideSize[iColor] == height) {
     return _markerHtml[iColor];
   }
-  QImage image(sideSize, sideSize, QImage::Format_RGBA8888);
+  QImage image(height, height, QImage::Format_RGBA8888);
   image.fill(QColor(0, 0, 0, 0));
   if (color != TagColor::None) {
     QPainter painter(&image);
     painter.setRenderHint(QPainter::Antialiasing, true);
     QPen pen = painter.pen();
-    pen.setWidth(2);
-    pen.setColor(Qt::black);
+    pen.setWidth(1);
+    pen.setColor(QColor(0, 0, 0, 128));
     painter.setPen(pen);
-    const int innerRadius = int(sideSize * 0.4);
     painter.setBrush(colors[iColor]);
-    painter.drawEllipse(image.rect().center(), innerRadius, innerRadius);
+    painter.drawEllipse(1, 1, height - 2, height - 2);
   }
   QByteArray ba;
   QBuffer buffer(&ba);
   image.save(&buffer, "png");
-  _markerSideSize[iColor] = sideSize;
-  _markerHtml[iColor] = QString("<img src=\"data:image/png;base64,%1\">").arg(QString(ba.toBase64()));
+  _markerSideSize[iColor] = height;
+  _markerHtml[iColor] = QString("<img style=\"vertical-align: baseline\" src=\"data:image/png;base64,%1\"/>").arg(QString(ba.toBase64()));
   return _markerHtml[iColor];
 }
 
