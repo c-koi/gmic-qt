@@ -702,7 +702,7 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
     for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
       if (existingColors.contains(TagColor(iColor))) {
         removeMenu->addAction(action = TagAssets::action(removeMenu, TagColor(iColor), TagAssets::IconMark::None));
-        action->setText(QString("%1 (%2 tag%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg(tagCount[iColor] ? "s" : ""));
+        action->setText(QString("%1 (%2 filter%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg((tagCount[iColor] != 1) ? "s" : ""));
         connect(action, &QAction::triggered, [this, iColor]() {
           FiltersTagMap::removeAllTags(TagColor(iColor));
           emit tagToggled(iColor);
