@@ -98,7 +98,7 @@ void FiltersTagMap::load()
     }
   } else {
     Logger::error("Cannot open " + jsonFilename);
-    Logger::error("Parameters cannot be restored");
+    Logger::error("Tags cannot be restored");
   }
 }
 
@@ -123,7 +123,7 @@ void FiltersTagMap::save()
 #else
   const bool ok = safelyWrite(qCompress(jsonDoc.toJson(QJsonDocument::Compact)), jsonFilename);
 #endif
-  if (ok) {
+  if (!ok) {
     Logger::error("Cannot write " + jsonFilename);
     Logger::error("Parameters cannot be saved");
   }
