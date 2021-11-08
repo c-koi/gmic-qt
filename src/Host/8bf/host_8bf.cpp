@@ -510,7 +510,6 @@ namespace
         const QVector<float>& sixteenBitToEightBitLUT)
     {
         const int imageWidth = image.width();
-        const int imageHeight = image.height();
 
         float* plane = image.data(0, 0, 0, channelIndex);
 
