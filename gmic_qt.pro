@@ -243,7 +243,7 @@ CONFIG(release, debug|release):gcc|clang:equals(LTO,"on") {
     QMAKE_LFLAGS_RELEASE += -flto
 }
 
-DEFINES += gmic_gui gmic_build gmic_is_parallel cimg_use_abort
+DEFINES += gmic_gui gmic_build gmic_is_parallel gmic_community cimg_use_abort
 
 INCLUDEPATH	+= $$PWD $$PWD/src $$GMIC_PATH
 DEPENDPATH += $$PWD/src \
