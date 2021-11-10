@@ -53,12 +53,12 @@ void VisibleTagSelector::setToolButton(QToolButton * button)
 
 void VisibleTagSelector::updateColors()
 {
-  QVector<TagColor> colors = FiltersTagMap::usedColors();
+  TagColorSet colors = FiltersTagMap::usedColors();
   clear();
   QAction * action = addAction(tr("Show all filters"));
   action->setIcon(TagAssets::menuIcon(TagColor::None, (_selectedColor == TagColor::None) ? TagAssets::IconMark::Disk : TagAssets::IconMark::None));
   connect(action, &QAction::triggered, [this]() { _selectedColor = TagColor::None; });
-  for (const TagColor & color : colors) {
+  for (TagColor color : colors) {
     int iColor = (int)color;
     QAction * action = addAction(tr("Show only %1 tags").arg(QString::fromUtf8(TagColorNames[iColor])));
     action->setIcon(TagAssets::menuIcon(color, (color == _selectedColor) ? TagAssets::IconMark::Disk : TagAssets::IconMark::None));

@@ -111,7 +111,7 @@ void FiltersView::createFolder(const QList<QString> & path)
 void FiltersView::addFilter(const QString & text, const QString & hash, const QList<QString> & path, bool warning)
 {
   const bool filterIsVisible = FiltersVisibilityMap::filterIsVisible(hash);
-  QVector<TagColor> tagColors = FiltersTagMap::filterTags(hash);
+  TagColorSet tagColors = FiltersTagMap::filterTags(hash);
   if (!_isInSelectionMode && !filterIsVisible) {
     return;
   }
@@ -137,7 +137,7 @@ void FiltersView::addFilter(const QString & text, const QString & hash, const QL
 void FiltersView::addFave(const QString & text, const QString & hash)
 {
   const bool faveIsVisible = FiltersVisibilityMap::filterIsVisible(hash);
-  QVector<TagColor> tagColors = FiltersTagMap::filterTags(hash);
+  TagColorSet tagColors = FiltersTagMap::filterTags(hash);
   if (!_isInSelectionMode && !faveIsVisible) {
     return;
   }
@@ -680,34 +680,33 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
     connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
     break;
   }
-  const QVector<TagColor> & tags = item->tags();
+  TagColorSet tags = item->tags();
   menu->addSeparator();
-  for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
-    QAction * action = TagAssets::action(menu,             //
-                                         TagColor(iColor), //
-                                         tags.contains((TagColor)iColor) ? TagAssets::IconMark::Check : TagAssets::IconMark::None);
-    connect(action, &QAction::triggered, [this, item, iColor]() { //
-      toggleItemTag(item, TagColor(iColor));
-      emit tagToggled(iColor);
+  for (TagColor color : TagColorSet::ActualColors) {
+    QAction * action = TagAssets::action(menu,  //
+                                         color, //
+                                         tags.contains(color) ? TagAssets::IconMark::Check : TagAssets::IconMark::None);
+    connect(action, &QAction::triggered, [this, item, color]() { //
+      toggleItemTag(item, color);
+      emit tagToggled(int(color));
     });
     menu->addAction(action);
   }
   menu->addSeparator();
   int tagCount[int(TagColor::Count)];
-  QVector<TagColor> existingColors = FiltersTagMap::usedColors(tagCount);
+  TagColorSet existingColors = FiltersTagMap::usedColors(tagCount);
   QMenu * removeMenu = menu->addMenu("Remove all");
   if (existingColors.isEmpty()) {
     removeMenu->setEnabled(false);
   } else {
-    for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
-      if (existingColors.contains(TagColor(iColor))) {
-        removeMenu->addAction(action = TagAssets::action(removeMenu, TagColor(iColor), TagAssets::IconMark::None));
-        action->setText(QString("%1 (%2 filter%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg((tagCount[iColor] != 1) ? "s" : ""));
-        connect(action, &QAction::triggered, [this, iColor]() {
-          FiltersTagMap::removeAllTags(TagColor(iColor));
-          emit tagToggled(iColor);
-        });
-      }
+    for (TagColor color : existingColors) {
+      int iColor = int(color);
+      removeMenu->addAction(action = TagAssets::action(removeMenu, color, TagAssets::IconMark::None));
+      action->setText(QString("%1 (%2 filter%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg((tagCount[iColor] != 1) ? "s" : ""));
+      connect(action, &QAction::triggered, [this, color, iColor]() {
+        FiltersTagMap::removeAllTags(color);
+        emit tagToggled(iColor);
+      });
     }
   }
   return menu;

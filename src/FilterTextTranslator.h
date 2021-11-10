@@ -34,8 +34,6 @@ private:
 QString FilterTextTranslator::translate(const QString & str)
 {
   QByteArray array = str.toUtf8();
-  return str;
-  // TODO : Remove
   return QObject::tr(array.constData());
 }
 

@@ -32,6 +32,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QList>
 #include "Common.h"
 #include "Globals.h"
 #include "GmicQt.h"
@@ -41,24 +42,24 @@
 namespace GmicQt
 {
 
-QMap<QString, unsigned int> FiltersTagMap::_hashesToColors;
+QMap<QString, TagColorSet> FiltersTagMap::_hashesToColors;
 
-QVector<TagColor> FiltersTagMap::filterTags(const QString & hash)
+TagColorSet FiltersTagMap::filterTags(const QString & hash)
 {
-  QMap<QString, unsigned int>::const_iterator it = _hashesToColors.find(hash);
-  if (it == _hashesToColors.cend()) {
-    return QVector<TagColor>();
+  auto it = _hashesToColors.find(hash);
+  if (it == _hashesToColors.end()) {
+    return TagColorSet::Empty;
   }
-  return uint2colors(it.value());
+  return it.value();
 }
 
-void FiltersTagMap::setFilterTags(const QString & hash, const QVector<TagColor> & colors)
+void FiltersTagMap::setFilterTags(const QString & hash, const TagColorSet & colors)
 {
   if (colors.isEmpty()) {
     _hashesToColors.remove(hash);
     return;
   }
-  _hashesToColors[hash] = colors2uint(colors);
+  _hashesToColors[hash] = colors;
 }
 
 void FiltersTagMap::load()
@@ -92,7 +93,7 @@ void FiltersTagMap::load()
         for (QJsonObject::const_iterator it = documentObject.constBegin(); //
              it != documentObject.constEnd();                              //
              ++it) {
-          _hashesToColors[it.key()] = it.value().toInt();
+          _hashesToColors[it.key()] = TagColorSet(it.value().toInt());
         }
       }
     }
@@ -105,9 +106,9 @@ void FiltersTagMap::load()
 void FiltersTagMap::save()
 {
   QJsonObject documentObject;
-  QMap<QString, unsigned int>::const_iterator it = _hashesToColors.cbegin();
+  auto it = _hashesToColors.begin();
   while (it != _hashesToColors.end()) {
-    documentObject.insert(it.key(), QJsonValue(int(it.value())));
+    documentObject.insert(it.key(), QJsonValue(int(it.value().mask())));
     ++it;
   }
   QJsonDocument jsonDoc(documentObject);
@@ -129,17 +130,18 @@ void FiltersTagMap::save()
   }
 }
 
-QVector<TagColor> FiltersTagMap::usedColors(int * count)
+TagColorSet FiltersTagMap::usedColors(int * count)
 {
-  unsigned int all = 0;
-  QMap<QString, unsigned int>::const_iterator it = _hashesToColors.cbegin();
+  TagColorSet all;
+  auto it = _hashesToColors.cbegin();
   if (count) {
     memset(count, 0, sizeof(int) * int(TagColor::Count));
     while (it != _hashesToColors.cend()) {
-      for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
-        count[iColor] += bool((1 << iColor) & it.value());
+      TagColorSet colors = it.value();
+      for (TagColor color : colors) {
+        ++count[int(color)];
       }
-      all |= it.value();
+      all |= colors;
       ++it;
     }
   } else {
@@ -148,17 +150,16 @@ QVector<TagColor> FiltersTagMap::usedColors(int * count)
       ++it;
     }
   }
-  return uint2colors(all);
+  return all;
 }
 
 void FiltersTagMap::removeAllTags(TagColor color)
 {
-  QStringList toBeRemoved;
-  QMap<QString, unsigned int>::iterator it = _hashesToColors.begin();
-  unsigned int mask = ~(1 << int(color));
+  QList<QString> toBeRemoved;
+  auto it = _hashesToColors.begin();
   while (it != _hashesToColors.end()) {
-    it.value() = (it.value() & mask);
-    if (!it.value()) {
+    it.value() -= color;
+    if (it.value().isEmpty()) {
       toBeRemoved.push_back(it.key());
     }
     ++it;
@@ -174,41 +175,24 @@ void FiltersTagMap::clearFilterTag(const QString & hash, TagColor color)
   if (it == _hashesToColors.end()) {
     return;
   }
-  const unsigned int mask = ~(1 << int(color));
-  it.value() = it.value() & mask;
-  if (!it.value()) {
+  it.value() -= color;
+  if (it.value().isEmpty()) {
     _hashesToColors.erase(it);
   }
 }
 
 void FiltersTagMap::setFilterTag(const QString & hash, TagColor color)
 {
-  _hashesToColors[hash] = _hashesToColors[hash] | (1 << int(color));
+  _hashesToColors[hash] += color;
 }
 
 void FiltersTagMap::toggleFilterTag(const QString & hash, TagColor color)
 {
-  _hashesToColors[hash] ^= (1 << int(color));
+  _hashesToColors[hash].toggle(color);
 }
 
-QVector<TagColor> FiltersTagMap::uint2colors(unsigned int value)
+void FiltersTagMap::remove(const QString & hash)
 {
-  QVector<TagColor> colors;
-  for (unsigned int iColor = (int)TagColor::None + 1; iColor != (int)TagColor::Count; ++iColor) {
-    if (value & (1 << iColor)) {
-      colors.push_back(TagColor(iColor));
-    }
-  }
-  return colors;
+  _hashesToColors.remove(hash);
 }
-
-unsigned int FiltersTagMap::colors2uint(const QVector<TagColor> & colors)
-{
-  uint result = 0;
-  for (const TagColor & color : colors) {
-    result |= (1 << int(color));
-  }
-  return result;
-}
-
 } // namespace GmicQt

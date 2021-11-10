@@ -49,15 +49,15 @@ void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewIte
   const QStandardItem * item = model->itemFromIndex(index);
   Q_ASSERT_X(item, "FiltersTreeItemDelegate::paint()", "No item");
   auto filter = dynamic_cast<const FilterTreeItem *>(item);
-
   const int height = int(options.rect.height() * 0.4);
   QString tagString;
-  if (filter && !filter->tags().isEmpty()) {
-    const QVector<TagColor> & tags = filter->tags();
-    tagString = "&nbsp;&nbsp;";
-    for (int iColor = 1 + (int)TagColor::None; iColor != (int)TagColor::Count; ++iColor) {
-      if (tags.contains((TagColor)iColor)) {
-        tagString += QString("&nbsp;") + TagAssets::markerHtml(TagColor(iColor), height);
+
+  if (filter) {
+    TagColorSet tags = filter->tags();
+    if (!tags.isEmpty()) {
+      tagString = "&nbsp;&nbsp;";
+      for (TagColor color : tags) {
+        tagString += QString("&nbsp;") + TagAssets::markerHtml(color, height);
       }
     }
   }

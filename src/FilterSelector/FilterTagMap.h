@@ -27,17 +27,18 @@
 
 #include <QMap>
 #include <QVector>
+#include <string>
 #include "Tags.h"
 
 namespace GmicQt
 {
 class FiltersTagMap {
 public:
-  static QVector<TagColor> filterTags(const QString & hash);
-  static void setFilterTags(const QString & hash, const QVector<TagColor> &);
+  static TagColorSet filterTags(const QString & hash);
+  static void setFilterTags(const QString & hash, const TagColorSet &);
   static void load();
   static void save();
-  static QVector<TagColor> usedColors(int * count = nullptr);
+  static TagColorSet usedColors(int * count = nullptr);
   static void removeAllTags(TagColor color);
   static void clearFilterTag(const QString & hash, TagColor color);
   static void setFilterTag(const QString & hash, TagColor color);
@@ -45,9 +46,8 @@ public:
 
 protected:
 private:
-  static QVector<TagColor> uint2colors(unsigned int);
-  static unsigned int colors2uint(const QVector<TagColor> &);
-  static QMap<QString, unsigned int> _hashesToColors;
+  static QMap<QString, TagColorSet> _hashesToColors;
+  static void remove(const QString & hash);
   FiltersTagMap() = delete;
 };
 

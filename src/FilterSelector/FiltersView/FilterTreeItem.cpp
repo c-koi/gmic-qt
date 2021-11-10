@@ -100,7 +100,7 @@ bool FilterTreeItem::operator<(const QStandardItem & other) const
   return plainText().localeAwareCompare(otherItem->plainText()) < 0;
 }
 
-void FilterTreeItem::setTags(const QVector<TagColor> & colors)
+void FilterTreeItem::setTags(const TagColorSet & colors)
 {
   FiltersTagMap::setFilterTags(_hash, colors);
 }
@@ -120,7 +120,7 @@ void FilterTreeItem::toggleTag(TagColor tagColor)
   FiltersTagMap::toggleFilterTag(_hash, tagColor);
 }
 
-const QVector<TagColor> FilterTreeItem::tags() const
+const TagColorSet FilterTreeItem::tags() const
 {
   return FiltersTagMap::filterTags(_hash);
 }

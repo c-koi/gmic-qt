@@ -38,7 +38,11 @@
 namespace GmicQt
 {
 
-const char * TagColorNames[] = {"", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow"};
+const TagColorSet TagColorSet::Full(TagColorSet::_fullMask);
+const TagColorSet TagColorSet::ActualColors(TagColorSet::_fullMask &(~1u));
+const TagColorSet TagColorSet::Empty(0);
+
+const char * TagColorNames[] = {"None", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow"};
 
 QString TagAssets::_markerHtml[static_cast<unsigned int>(TagColor::Count)];
 QIcon TagAssets::_menuIcons[static_cast<unsigned int>(TagColor::Count)];
@@ -127,6 +131,22 @@ QAction * TagAssets::action(QObject * parent, TagColor color, IconMark mark)
     return nullptr;
   }
   return new QAction(menuIcon(color, mark), "Tag", parent);
+}
+
+std::ostream & operator<<(std::ostream & out, const TagColorSet & colors)
+{
+  out << "{";
+  bool first = true;
+  for (TagColor color : colors) {
+    if (first) {
+      first = false;
+    } else {
+      out << ",";
+    }
+    out << TagColorNames[int(color)];
+  }
+  out << "}";
+  return out;
 }
 
 } // namespace GmicQt

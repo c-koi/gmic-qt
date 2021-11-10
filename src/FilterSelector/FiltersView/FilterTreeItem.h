@@ -42,11 +42,11 @@ public:
   bool isFave() const;
   QString hash() const;
   bool operator<(const QStandardItem & other) const override;
-  void setTags(const QVector<TagColor> & colors);
+  void setTags(const TagColorSet & colors);
   void addTag(TagColor tagColor);
   void removeTag(TagColor tagColor);
   void toggleTag(TagColor tagColor);
-  const QVector<TagColor> tags() const;
+  const TagColorSet tags() const;
 
 private:
   QString _hash;

@@ -38,7 +38,7 @@ namespace GmicQt
 
 QByteArray GmicStdLib::Array;
 
-void GmicStdLib::loadStdLib()
+void GmicStdLib::loadStdLib() // TODO : Is this useful ?
 {
   QString path = QString("%1update%2.gmic").arg(gmicConfigPath(false)).arg(gmic_version);
   QFileInfo info(path);
