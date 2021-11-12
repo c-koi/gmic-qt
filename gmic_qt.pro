@@ -114,17 +114,17 @@ equals( COMPILER, "clang" ) {
 }
 
 #
-# Make sure gmic_stdlib.h is in G'MIC source tree
+# Make sure gmic_stdlib_community.h is in G'MIC source tree
 #
-!exists( $$GMIC_PATH/gmic_stdlib.h ) {
-  message( "gmic_stdlib.h is missing. Trying to get it..." )
-  !system(make -C $$GMIC_PATH gmic_stdlib.h) {
-    error("Could not get gmic_stdlib.h from G'MIC repository")
+!exists( $$GMIC_PATH/gmic_stdlib_community.h ) {
+  message( "gmic_stdlib_community.h is missing. Trying to get it..." )
+  !system(make -C $$GMIC_PATH gmic_stdlib_community.h) {
+    error("Could not get gmic_stdlib_community.h from G'MIC repository")
   }
-  !exists($$GMIC_PATH/gmic_stdlib.h) {
-    error("Could not get gmic_stdlib.h from G'MIC repository")
+  !exists($$GMIC_PATH/gmic_stdlib_community.h) {
+    error("Could not get gmic_stdlib_community.h from G'MIC repository")
   }
-  message("gmic_stdlib.h found")
+  message("gmic_stdlib_community.h found")
 }
 
 # Make sure CImg and gmic are the same version
@@ -329,7 +329,7 @@ HEADERS +=  \
 
 HEADERS += $$GMIC_PATH/gmic.h
 HEADERS += $$GMIC_PATH/CImg.h
-HEADERS += $$GMIC_PATH/gmic_stdlib.h
+HEADERS += $$GMIC_PATH/gmic_stdlib_community.h
 
 SOURCES += \
   src/ClickableLabel.cpp \
