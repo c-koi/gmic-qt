@@ -75,9 +75,9 @@ else()
 endif()
 
 #
-# Look for CImg.h and gmic_stdlib.h
+# Look for CImg.h and gmic_stdlib_community.h
 #
-set(GMIC_FILES CImg.h gmic_stdlib.h)
+set(GMIC_FILES CImg.h gmic_stdlib_community.h)
 foreach(F ${GMIC_FILES})
   if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
     message("Found " ${GMIC_PATH}/${F})
@@ -378,7 +378,7 @@ set (gmic_qt_SRCS
 
   ${GMIC_PATH}/gmic.h
   ${GMIC_PATH}/CImg.h
-  ${GMIC_PATH}/gmic_stdlib.h
+  ${GMIC_PATH}/gmic_stdlib_community.h
 
   src/ClickableLabel.cpp
   src/Common.cpp
