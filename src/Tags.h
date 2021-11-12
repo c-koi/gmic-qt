@@ -78,6 +78,9 @@ public:
   inline void insert(TagColor color);
   inline bool contains(TagColor color) const;
   inline bool isEmpty() const;
+  inline void clear();
+  inline bool operator==(const TagColorSet & other) const;
+  inline bool operator!=(const TagColorSet & other) const;
   inline TagColorSet operator+(TagColor color) const;
   inline TagColorSet & operator+=(TagColor color);
   inline TagColorSet & operator-=(TagColor color);
@@ -115,7 +118,7 @@ public:
 
 private:
   unsigned int _mask;
-  static const unsigned int _fullMask = ((1 << (int(TagColor::Count) - 1)) - 1);
+  static const unsigned int _fullMask = ((1 << int(TagColor::Count)) - 1);
 };
 
 std::ostream & operator<<(std::ostream & out, const TagColorSet & colors);
@@ -124,31 +127,40 @@ TagColorSet::TagColorSet(unsigned int mask) : _mask(mask & _fullMask) {}
 
 inline void TagColorSet::toggle(TagColor color)
 {
-  if (color == TagColor::None) {
-    return;
-  }
-  _mask ^= (1u << (int(color) - 1));
+  Q_ASSERT_X((color != TagColor::Count), __PRETTY_FUNCTION__, QString("Inavild color (%1)").arg(int(color)).toLocal8Bit().constData());
+  _mask ^= (1u << int(color));
 }
 
 void TagColorSet::insert(TagColor color)
 {
-  if (color == TagColor::None) {
-    return;
-  }
-  _mask |= (1u << (int(color) - 1));
+  Q_ASSERT_X((color != TagColor::Count), __PRETTY_FUNCTION__, QString("Inavild color (%1)").arg(int(color)).toLocal8Bit().constData());
+  _mask |= (1u << int(color));
 }
 
 bool TagColorSet::contains(TagColor color) const
 {
-  if (color == TagColor::None) {
-    return false;
-  }
-  return _mask & (1u << (int(color) - 1));
+  Q_ASSERT_X((color != TagColor::Count), __PRETTY_FUNCTION__, QString("Inavild color (%1)").arg(int(color)).toLocal8Bit().constData());
+  return _mask & (1u << int(color));
 }
 
 bool TagColorSet::isEmpty() const
 {
   return !_mask;
+}
+
+void TagColorSet::clear()
+{
+  _mask = 0;
+}
+
+bool TagColorSet::operator==(const TagColorSet & other) const
+{
+  return _mask == other._mask;
+}
+
+bool TagColorSet::operator!=(const TagColorSet & other) const
+{
+  return _mask != other._mask;
 }
 
 TagColorSet & TagColorSet::operator+=(TagColor color)
@@ -166,7 +178,7 @@ TagColorSet TagColorSet::operator+(TagColor color) const
 
 TagColorSet & TagColorSet::operator-=(TagColor color)
 {
-  _mask &= ~(1u << (int(color) - 1));
+  _mask &= ~(1u << int(color));
   return *this;
 }
 
@@ -231,7 +243,7 @@ TagColor TagColorSet::const_iterator::operator*() const
 {
   Q_ASSERT_X(!isAtEnd(), __PRETTY_FUNCTION__, "Should not dereference end() iterator");
   Q_ASSERT_X((_set._mask & (1 << _position)), __PRETTY_FUNCTION__, "Current TagColor but is not set");
-  return TagColor(_position + 1);
+  return TagColor(_position);
 }
 
 TagColorSet::const_iterator TagColorSet::const_iterator::operator++(int)
@@ -253,8 +265,7 @@ bool TagColorSet::const_iterator::operator==(const TagColorSet::const_iterator &
 
 TagColorSet::const_iterator TagColorSet::begin() const
 {
-  const_iterator it(*this);
-  return it;
+  return const_iterator(*this);
 }
 
 TagColorSet::const_iterator TagColorSet::end() const

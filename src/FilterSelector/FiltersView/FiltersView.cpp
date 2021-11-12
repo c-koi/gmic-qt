@@ -67,7 +67,6 @@ FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::Filters
   _faveContextMenu = nullptr;
   _filterContextMenu = nullptr;
   ui->treeView->installEventFilter(this);
-  _visibleTagColor = TagColor::None;
 }
 
 FiltersView::~FiltersView()
@@ -115,7 +114,7 @@ void FiltersView::addFilter(const QString & text, const QString & hash, const QL
   if (!_isInSelectionMode && !filterIsVisible) {
     return;
   }
-  if ((_visibleTagColor != TagColor::None) && !tagColors.contains(_visibleTagColor)) {
+  if (!_visibleTagColors.isEmpty() && (tagColors & _visibleTagColors).isEmpty()) {
     return;
   }
   QStandardItem * folder = getFolderFromPath(path);
@@ -141,7 +140,7 @@ void FiltersView::addFave(const QString & text, const QString & hash)
   if (!_isInSelectionMode && !faveIsVisible) {
     return;
   }
-  if ((_visibleTagColor != TagColor::None) && !tagColors.contains(_visibleTagColor)) {
+  if (!_visibleTagColors.isEmpty() && (tagColors & _visibleTagColors).isEmpty()) {
     return;
   }
   if (!_faveFolder) {
@@ -362,14 +361,14 @@ bool FiltersView::eventFilter(QObject * watched, QEvent * event)
   return QObject::eventFilter(watched, event);
 }
 
-void FiltersView::setVisibleTagColor(TagColor color)
+void FiltersView::setVisibleTagColors(const TagColorSet & colors)
 {
-  _visibleTagColor = color;
+  _visibleTagColors = colors;
 }
 
-TagColor FiltersView::visibleTagColor() const
+TagColorSet FiltersView::visibleTagColors() const
 {
-  return _visibleTagColor;
+  return _visibleTagColors;
 }
 
 void FiltersView::expandFolders(const QList<QString> & folderPaths, QStandardItem * folder)
@@ -715,17 +714,17 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
 void FiltersView::toggleItemTag(FilterTreeItem * item, TagColor color)
 {
   item->toggleTag(color);
-  if (color != _visibleTagColor) {
+  if (!_visibleTagColors.contains(color)) {
     return;
   }
   QStandardItem * folder = item->parent();
   folder->removeRow(item->row());
-  while (folder && folder != _model.invisibleRootItem() && folder->rowCount() == 0) {
-    const int row = folder->row();
+  while (folder && (folder != _model.invisibleRootItem()) && (folder->rowCount() == 0)) {
     QStandardItem * folderParent = folder->parent();
     if (!folderParent) {
       folderParent = _model.invisibleRootItem();
     }
+    const int row = folder->row();
     folderParent->removeRow(row);
     folder = folderParent;
   }

@@ -85,8 +85,8 @@ public:
 
   bool eventFilter(QObject * watched, QEvent * event);
 
-  void setVisibleTagColor(TagColor color);
-  TagColor visibleTagColor() const;
+  void setVisibleTagColors(const TagColorSet & colors);
+  TagColorSet visibleTagColors() const;
 
 signals:
   void filterSelected(QString hash);
@@ -144,7 +144,7 @@ private:
   bool _isInSelectionMode;
   QMenu * _faveContextMenu;
   QMenu * _filterContextMenu;
-  TagColor _visibleTagColor;
+  TagColorSet _visibleTagColors;
 };
 
 } // namespace GmicQt

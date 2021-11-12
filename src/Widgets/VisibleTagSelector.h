@@ -25,6 +25,7 @@
 #ifndef GMIC_QT_VISIBLETAGSELECTOR_H
 #define GMIC_QT_VISIBLETAGSELECTOR_H
 
+#include <QActionGroup>
 #include <QMenu>
 #include "Tags.h"
 
@@ -39,18 +40,18 @@ class VisibleTagSelector : public QMenu {
 public:
   explicit VisibleTagSelector(QWidget * parent);
   void setToolButton(QToolButton * button);
-  TagColor selectedColor() const;
+  TagColorSet selectedColors() const;
   ~VisibleTagSelector() override;
 
 public slots:
   void updateColors();
 signals:
-  void visibleColorChanged(int);
+  void visibleColorsChanged(unsigned int);
 
 private:
   QToolButton * _toolButton;
   QVector<TagColor> _colors;
-  TagColor _selectedColor;
+  TagColorSet _selectedColors;
 };
 
 } // namespace GmicQt

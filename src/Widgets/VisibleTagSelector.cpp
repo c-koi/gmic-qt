@@ -35,7 +35,6 @@ namespace GmicQt
 
 VisibleTagSelector::VisibleTagSelector(QWidget * parent) : QMenu(parent)
 {
-  _selectedColor = TagColor::None;
   _toolButton = nullptr;
 }
 
@@ -46,37 +45,36 @@ void VisibleTagSelector::setToolButton(QToolButton * button)
     updateColors();
     exec(_toolButton->mapToGlobal(_toolButton->rect().center()));
     // _filtersPresenter->toggleSelectionMode(false);
-    emit visibleColorChanged(int(_selectedColor));
+    emit visibleColorsChanged((unsigned int)_selectedColors.mask());
     // FIXME : Preserve expanded then Unfold all
   });
 }
 
 void VisibleTagSelector::updateColors()
 {
-  TagColorSet colors = FiltersTagMap::usedColors();
+  TagColorSet used = FiltersTagMap::usedColors();
   clear();
   QAction * action = addAction(tr("Show all filters"));
-  action->setIcon(TagAssets::menuIcon(TagColor::None, (_selectedColor == TagColor::None) ? TagAssets::IconMark::Disk : TagAssets::IconMark::None));
-  connect(action, &QAction::triggered, [this]() { _selectedColor = TagColor::None; });
-  for (TagColor color : colors) {
+  action->setIcon(TagAssets::menuIcon(TagColor::None, _selectedColors.isEmpty() ? TagAssets::IconMark::Disk : TagAssets::IconMark::None));
+  connect(action, &QAction::triggered, [this]() { _selectedColors.clear(); });
+  for (TagColor color : used) {
     int iColor = (int)color;
-    QAction * action = addAction(tr("Show only %1 tags").arg(QString::fromUtf8(TagColorNames[iColor])));
-    action->setIcon(TagAssets::menuIcon(color, (color == _selectedColor) ? TagAssets::IconMark::Disk : TagAssets::IconMark::None));
-    connect(action, &QAction::triggered, [this, color](bool) { //
-      _selectedColor = color;
+    QAction * action = addAction(tr("Show %1 tags").arg(QString::fromUtf8(TagColorNames[iColor])));
+    action->setIcon(TagAssets::menuIcon(color, (_selectedColors.contains(color)) ? TagAssets::IconMark::Check : TagAssets::IconMark::None));
+    connect(action, &QAction::triggered, [this, color](bool) { // TODO : Check
+      _selectedColors.toggle(color);
     });
   }
-  if (colors.isEmpty() || !colors.contains(_selectedColor)) {
-    _selectedColor = TagColor::None;
-  }
+  _selectedColors = _selectedColors & used;
+
   if (_toolButton) {
-    _toolButton->setEnabled(!colors.isEmpty());
+    _toolButton->setEnabled(!used.isEmpty());
   }
 }
 
-TagColor VisibleTagSelector::selectedColor() const
+TagColorSet VisibleTagSelector::selectedColors() const
 {
-  return _selectedColor;
+  return _selectedColors;
 }
 
 VisibleTagSelector::~VisibleTagSelector() {}

@@ -246,7 +246,7 @@ void FiltersPresenter::applySearchCriterion(const QString & text)
   QList<QString> keywords = text.split(QChar(' '), QT_SKIP_EMPTY_PARTS);
 
   rebuildFilterViewWithSelection(keywords);
-  if (text.isEmpty() && (_filtersView->visibleTagColor() == TagColor::None)) {
+  if (text.isEmpty() && _filtersView->visibleTagColors().isEmpty()) {
     _filtersView->restoreExpandedFolders();
   } else {
     _filtersView->expandAll();
@@ -325,12 +325,12 @@ void FiltersPresenter::selectFilterFromCommand(const QString & command)
 void FiltersPresenter::setVisibleTagSelector(VisibleTagSelector * selector)
 {
   _visibleTagSelector = selector;
-  connect(selector, &VisibleTagSelector::visibleColorChanged, this, &FiltersPresenter::setVisibleTagColor);
+  connect(selector, &VisibleTagSelector::visibleColorsChanged, this, &FiltersPresenter::setVisibleTagColors);
 }
 
-void FiltersPresenter::setVisibleTagColor(int color)
+void FiltersPresenter::setVisibleTagColors(unsigned int colors)
 {
-  _filtersView->setVisibleTagColor(TagColor(color));
+  _filtersView->setVisibleTagColors(TagColorSet(colors));
   applySearchCriterion(_searchField->text());
 }
 
@@ -558,10 +558,10 @@ void FiltersPresenter::removeFave(const QString & hash)
 
 void FiltersPresenter::onTagToggled(int)
 {
-  TagColor color = _visibleTagSelector->selectedColor();
+  TagColorSet colors = _visibleTagSelector->selectedColors();
   _visibleTagSelector->updateColors();
-  if (_visibleTagSelector->selectedColor() != color) {
-    _filtersView->setVisibleTagColor(TagColor::None);
+  if (_visibleTagSelector->selectedColors() != colors) {
+    _filtersView->setVisibleTagColors(TagColorSet::Empty);
     applySearchCriterion(_searchField->text());
   }
 }

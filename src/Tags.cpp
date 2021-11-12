@@ -92,16 +92,34 @@ const QIcon & TagAssets::menuIcon(TagColor color, IconMark mark)
       bg.fill(QColor(0, 0, 0, 0));
       QPainter p(&bg);
       p.setRenderHint(QPainter::Antialiasing, true);
-      p.setBrush(colors[iColor]);
-      p.drawRoundedRect(bg.rect(), 15, 15);
+      if (color == TagColor::None) {
+        QPen pen;
+        pen.setWidth(3);
+        if (DialogSettings::darkThemeEnabled()) {
+          pen.setColor(QColor(40, 40, 40));
+          p.setBrush(DialogSettings::CheckBoxBaseColor);
+        } else {
+          QPalette palette;
+          pen.setColor(palette.text().color());
+          p.setBrush(palette.window().color());
+        }
+        p.setPen(pen);
+        p.drawEllipse(bg.rect().adjusted(2, 2, -2, -2));
+      } else {
+        p.setBrush(colors[iColor]);
+        p.drawRoundedRect(bg.rect(), 15, 15);
+      }
       _menuIcons[iColor] = QIcon(bg);
+    }
+    QColor markColor = Qt::black;
+    if (color == TagColor::None) {
+      markColor = DialogSettings::darkThemeEnabled() ? QColor(170, 170, 170) : QPalette().text().color();
     }
     QPixmap pixmap(bg);
     {
       QPainter p(&pixmap);
       p.setFont(font);
-      p.setPen(Qt::black);
-      p.setBrush(Qt::black);
+      p.setPen(markColor);
       p.setRenderHint(QPainter::Antialiasing, true);
       p.drawText(pixmap.rect(), Qt::AlignCenter | Qt::AlignVCenter, "\xE2\x9C\x93"); // CHECK MARK
       _menuIconsWithCheck[iColor] = QIcon(pixmap);
@@ -110,7 +128,8 @@ const QIcon & TagAssets::menuIcon(TagColor color, IconMark mark)
     {
       QPainter p(&pixmap);
       p.setFont(font);
-      p.setPen(Qt::gray);
+      p.setPen(markColor);
+      p.setRenderHint(QPainter::Antialiasing, true);
       p.drawText(pixmap.rect(), Qt::AlignCenter | Qt::AlignVCenter, "\xE2\x9A\xAB"); // MEDIUM BLACK CIRCLE
       _menuIconsWithDisk[iColor] = QIcon(pixmap);
     }

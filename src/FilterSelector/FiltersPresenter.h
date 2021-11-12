@@ -129,7 +129,7 @@ signals:
   void faveNameChanged(QString);
 
 public slots:
-  void setVisibleTagColor(int color);
+  void setVisibleTagColors(unsigned int color);
   void removeSelectedFave();
   void editSelectedFaveName();
   void onFaveRenamed(const QString & hash, const QString & name);
