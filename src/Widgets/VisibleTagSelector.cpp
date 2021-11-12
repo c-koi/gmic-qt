@@ -44,9 +44,7 @@ void VisibleTagSelector::setToolButton(QToolButton * button)
   connect(button, &QToolButton::clicked, [this]() {
     updateColors();
     exec(_toolButton->mapToGlobal(_toolButton->rect().center()));
-    // _filtersPresenter->toggleSelectionMode(false);
     emit visibleColorsChanged((unsigned int)_selectedColors.mask());
-    // FIXME : Preserve expanded then Unfold all
   });
 }
 
@@ -54,12 +52,11 @@ void VisibleTagSelector::updateColors()
 {
   TagColorSet used = FiltersTagMap::usedColors();
   clear();
-  QAction * action = addAction(tr("Show all filters"));
+  QAction * action = addAction(tr("Show All Filters"));
   action->setIcon(TagAssets::menuIcon(TagColor::None, _selectedColors.isEmpty() ? TagAssets::IconMark::Disk : TagAssets::IconMark::None));
   connect(action, &QAction::triggered, [this]() { _selectedColors.clear(); });
   for (TagColor color : used) {
-    int iColor = (int)color;
-    QAction * action = addAction(tr("Show %1 tags").arg(QString::fromUtf8(TagColorNames[iColor])));
+    QAction * action = addAction(tr("Show %1 Tags").arg(TagAssets::colorName(color)));
     action->setIcon(TagAssets::menuIcon(color, (_selectedColors.contains(color)) ? TagAssets::IconMark::Check : TagAssets::IconMark::None));
     connect(action, &QAction::triggered, [this, color](bool) { // TODO : Check
       _selectedColors.toggle(color);

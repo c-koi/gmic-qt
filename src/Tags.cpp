@@ -23,16 +23,17 @@
  *
  */
 #include "Tags.h"
-#include "Common.h"
-
 #include <QAction>
 #include <QBuffer>
 #include <QByteArray>
 #include <QDebug>
 #include <QIcon>
 #include <QImage>
+#include <QObject>
 #include <QPainter>
 #include <QPixmap>
+#include <QStringList>
+#include "Common.h"
 #include "DialogSettings.h"
 
 namespace GmicQt
@@ -41,8 +42,6 @@ namespace GmicQt
 const TagColorSet TagColorSet::Full(TagColorSet::_fullMask);
 const TagColorSet TagColorSet::ActualColors(TagColorSet::_fullMask &(~1u));
 const TagColorSet TagColorSet::Empty(0);
-
-const char * TagColorNames[] = {"None", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow"};
 
 QString TagAssets::_markerHtml[static_cast<unsigned int>(TagColor::Count)];
 QIcon TagAssets::_menuIcons[static_cast<unsigned int>(TagColor::Count)];
@@ -149,7 +148,20 @@ QAction * TagAssets::action(QObject * parent, TagColor color, IconMark mark)
   if ((color == TagColor::None) || (color == TagColor::Count)) {
     return nullptr;
   }
-  return new QAction(menuIcon(color, mark), "Tag", parent);
+  return new QAction(menuIcon(color, mark), QObject::tr("%1 Tag").arg(colorName(color)), parent);
+}
+
+QString TagAssets::colorName(TagColor color)
+{
+  Q_ASSERT_X(((unsigned int)color < (unsigned int)TagColor::Count), __PRETTY_FUNCTION__, "Invalid color");
+  static QStringList names = {QObject::tr("None"),    //
+                              QObject::tr("Red"),     //
+                              QObject::tr("Green"),   //
+                              QObject::tr("Blue"),    //
+                              QObject::tr("Cyan"),    //
+                              QObject::tr("Magenta"), //
+                              QObject::tr("Yellow")};
+  return names.at(int(color));
 }
 
 std::ostream & operator<<(std::ostream & out, const TagColorSet & colors)
@@ -162,7 +174,7 @@ std::ostream & operator<<(std::ostream & out, const TagColorSet & colors)
     } else {
       out << ",";
     }
-    out << TagColorNames[int(color)];
+    out << TagAssets::colorName(color).toStdString();
   }
   out << "}";
   return out;

@@ -49,8 +49,6 @@ enum class TagColor
   Count
 };
 
-extern const char * TagColorNames[];
-
 class TagAssets {
 public:
   enum class IconMark
@@ -63,6 +61,7 @@ public:
   static const QIcon & menuIcon(TagColor color, IconMark mark);
   static QAction * action(QObject * parent, TagColor color, IconMark mark);
   static QColor colors[static_cast<unsigned int>(TagColor::Count)];
+  static QString colorName(TagColor color);
 
 private:
   static QString _markerHtml[static_cast<unsigned int>(TagColor::Count)];

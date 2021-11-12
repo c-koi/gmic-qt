@@ -667,15 +667,15 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
   QAction * action;
   switch (type) {
   case MenuType::Fave:
-    action = menu->addAction(tr("Rename fave"));
+    action = menu->addAction(tr("Rename Fave"));
     connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRenameFave()));
-    action = menu->addAction(tr("Remove fave"));
+    action = menu->addAction(tr("Remove Fave"));
     connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRemoveFave()));
-    action = menu->addAction(tr("Clone fave"));
+    action = menu->addAction(tr("Clone Fave"));
     connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
     break;
   case MenuType::Filter:
-    action = menu->addAction(tr("Add fave"));
+    action = menu->addAction(tr("Add Fave"));
     connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
     break;
   }
@@ -694,14 +694,14 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
   menu->addSeparator();
   int tagCount[int(TagColor::Count)];
   TagColorSet existingColors = FiltersTagMap::usedColors(tagCount);
-  QMenu * removeMenu = menu->addMenu("Remove all");
+  QMenu * removeMenu = menu->addMenu(tr("Remove All"));
   if (existingColors.isEmpty()) {
     removeMenu->setEnabled(false);
   } else {
     for (TagColor color : existingColors) {
       int iColor = int(color);
       removeMenu->addAction(action = TagAssets::action(removeMenu, color, TagAssets::IconMark::None));
-      action->setText(QString("%1 (%2 filter%3)").arg(TagColorNames[iColor]).arg(tagCount[iColor]).arg((tagCount[iColor] != 1) ? "s" : ""));
+      action->setText(QString(tr("%1 (%2 %3)")).arg(TagAssets::colorName(color)).arg(tagCount[iColor]).arg((tagCount[iColor] != 1) ? tr("Filters") : tr("Filter")));
       connect(action, &QAction::triggered, [this, color, iColor]() {
         FiltersTagMap::removeAllTags(color);
         emit tagToggled(iColor);
