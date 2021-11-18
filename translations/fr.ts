@@ -1090,6 +1090,16 @@ Commande trouvée pour le chemin : %3</translation>
         <source>Yellow</source>
         <translation>jaune</translation>
     </message>
+    <message>
+        <location filename="../src/LanguageSettings.cpp" line="118"/>
+        <source>Could not install translator for file %1</source>
+        <translation>Impossible d&apos;installer le traducteur pour le fichier %1</translation>
+    </message>
+    <message>
+        <location filename="../src/LanguageSettings.cpp" line="121"/>
+        <source>Could not load filter translation file %1</source>
+        <translation>Impossible de charger le fichier de traduction %1</translation>
+    </message>
 </context>
 <context>
     <name>SearchFieldWidget</name>

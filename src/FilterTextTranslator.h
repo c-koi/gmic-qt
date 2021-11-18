@@ -11,6 +11,7 @@
 #define GMIC_QT_FILTERTEXTTRANSLATOR_H
 
 #include <QByteArray>
+#include <QCoreApplication>
 #include <QDebug>
 #include <QObject>
 #include <QString>
@@ -24,18 +25,11 @@ class FilterTextTranslator : public QObject {
   Q_OBJECT
 public:
   FilterTextTranslator() = delete;
-
-  inline static QString translate(const QString & str);
+  static QString translate(const QString & str);
 
 protected:
 private:
 };
-
-QString FilterTextTranslator::translate(const QString & str)
-{
-  QByteArray array = str.toUtf8();
-  return QObject::tr(array.constData());
-}
 
 } // namespace GmicQt
 

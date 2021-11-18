@@ -101,8 +101,8 @@ void LanguageSettings::installTranslators()
 {
   QString lang = LanguageSettings::configuredTranslator();
   if (!lang.isEmpty() && (lang != "en")) {
-    installTranslator(QString(":/translations/%1.qm").arg(lang));
     installQtTranslator(lang);
+    installTranslator(QString(":/translations/%1.qm").arg(lang));
     installTranslator(QString(":/translations/filters/%1.qm").arg(lang));
   }
 }
@@ -114,8 +114,11 @@ void LanguageSettings::installTranslator(const QString & qmPath)
   }
   auto translator = new QTranslator(qApp);
   if (translator->load(qmPath)) {
-    QApplication::installTranslator(translator);
+    if (!QApplication::installTranslator(translator)) {
+      Logger::error(QObject::tr("Could not install translator for file %1").arg(qmPath));
+    }
   } else {
+    Logger::error(QObject::tr("Could not load filter translation file %1").arg(qmPath));
     translator->deleteLater();
   }
 }

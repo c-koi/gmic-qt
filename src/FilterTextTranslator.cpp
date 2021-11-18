@@ -8,3 +8,11 @@
  * @copyright
  */
 #include "FilterTextTranslator.h"
+namespace GmicQt
+{
+QString FilterTextTranslator::translate(const QString & str)
+{
+  QByteArray array = str.toUtf8();
+  return QCoreApplication::translate("FilterTextTranslator", array.constData());
+}
+} // namespace GmicQt

@@ -1067,6 +1067,16 @@ Command found for this path : %3</source>
         <source>Yellow</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/LanguageSettings.cpp" line="118"/>
+        <source>Could not install translator for file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/LanguageSettings.cpp" line="121"/>
+        <source>Could not load filter translation file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchFieldWidget</name>

@@ -432,6 +432,7 @@ equals(HOST, "none") {
 }
 equals(TEST_FILTERS_QM, "on") {
  RESOURCES += wip_translations.qrc
+ TRANSLATIONS += translations/filters/fr.ts
 }
 
 TRANSLATIONS = \
