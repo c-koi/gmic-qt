@@ -27,7 +27,7 @@ $ lrelease-qt5 -compress fr.ts
 * Check that this indeed produced the file `it.qm`.
 
 ## Step 3: Test it!
-* Add your `it.qm` file in the *work in progress* set of translations.
+* If not already there, add your `it.qm` file in the *work in progress* set of translations.
  For this, add a line in the file `wip_translations.qrc` in the root folder.
 
 ```xml
@@ -38,13 +38,8 @@ $ lrelease-qt5 -compress fr.ts
     </qresource>
 </RCC>
 ```
-* At last, you need to enable WIP translations before
-compiling the plugin.
-
-```shell
-$ qmake-qt5 TEST_FILTERS_QM=on
-$ make
-```
+* Caution : you need to check "Translate filters (WIP)" in the settings dialog.
+As a WIP, it is disabled by default.
 
 ## Step 4: Submit a Pull Request
 * Your PR should only include the `it.ts` file and the updated

@@ -474,8 +474,13 @@ Cannot retrieve default parameters.
 <context>
     <name>GmicQt::LanguageSelectionWidget</name>
     <message>
-        <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="51"/>
+        <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="53"/>
         <source>System default (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="62"/>
+        <source>Translations are very likely to be incomplete.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -862,9 +867,14 @@ Command found for this path : %3</source>
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/languageselectionwidget.ui" line="38"/>
+        <location filename="../ui/languageselectionwidget.ui" line="35"/>
         <source>&lt;i&gt;(Restart needed)&lt;/i&gt;</source>
         <translation>&lt;i&gt;(Reinicio necesario)&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ui/languageselectionwidget.ui" line="48"/>
+        <source>Translate filters (WIP)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1064,13 +1074,13 @@ Command found for this path : %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/LanguageSettings.cpp" line="118"/>
+        <location filename="../src/LanguageSettings.cpp" line="126"/>
         <source>Could not install translator for file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/LanguageSettings.cpp" line="121"/>
-        <source>Could not load filter translation file %1</source>
+        <location filename="../src/LanguageSettings.cpp" line="129"/>
+        <source>Could not load translation file %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

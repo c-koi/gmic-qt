@@ -32,6 +32,7 @@
 #include <QSettings>
 #include <QTranslator>
 #include "Common.h"
+#include "DialogSettings.h"
 #include "Logger.h"
 
 namespace GmicQt
@@ -64,7 +65,7 @@ const QMap<QString, QString> & LanguageSettings::availableLanguages()
 
 QString LanguageSettings::configuredTranslator()
 {
-  QString code = QSettings().value("Config/LanguageCode", QString()).toString();
+  QString code = DialogSettings::languageCode();
   if (code.isEmpty()) {
     code = systemDefaultAndAvailableLanguageCode();
     if (code.isEmpty()) {
@@ -103,8 +104,15 @@ void LanguageSettings::installTranslators()
   if (!lang.isEmpty() && (lang != "en")) {
     installQtTranslator(lang);
     installTranslator(QString(":/translations/%1.qm").arg(lang));
-    installTranslator(QString(":/translations/filters/%1.qm").arg(lang));
+    if (DialogSettings::filterTranslationEnabled()) {
+      installTranslator(QString(":/translations/filters/%1.qm").arg(lang));
+    }
   }
+}
+
+bool LanguageSettings::filterTranslationAvailable(const QString & lang)
+{
+  return QFileInfo(QString(":/translations/filters/%1.qm").arg(lang)).isReadable();
 }
 
 void LanguageSettings::installTranslator(const QString & qmPath)
@@ -118,7 +126,7 @@ void LanguageSettings::installTranslator(const QString & qmPath)
       Logger::error(QObject::tr("Could not install translator for file %1").arg(qmPath));
     }
   } else {
-    Logger::error(QObject::tr("Could not load filter translation file %1").arg(qmPath));
+    Logger::error(QObject::tr("Could not load translation file %1").arg(qmPath));
     translator->deleteLater();
   }
 }

@@ -430,10 +430,6 @@ RESOURCES += gmic_qt.qrc translations.qrc
 equals(HOST, "none") {
  RESOURCES += standalone.qrc
 }
-equals(TEST_FILTERS_QM, "on") {
- RESOURCES += wip_translations.qrc
- TRANSLATIONS += translations/filters/fr.ts
-}
 
 TRANSLATIONS = \
 translations/cs.ts \
@@ -451,6 +447,9 @@ translations/ua.ts \
 translations/ja.ts \
 translations/zh.ts \
 translations/zh_tw.ts
+
+RESOURCES += wip_translations.qrc
+TRANSLATIONS += translations/filters/fr.ts
 
 # PRE_TARGETDEPS +=
 

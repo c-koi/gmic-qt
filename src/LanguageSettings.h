@@ -38,6 +38,7 @@ public:
   static QString configuredTranslator();
   static QString systemDefaultAndAvailableLanguageCode();
   static void installTranslators();
+  static bool filterTranslationAvailable(const QString & lang);
 
 private:
   static void installTranslator(const QString & qmPath);

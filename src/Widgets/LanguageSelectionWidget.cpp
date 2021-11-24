@@ -27,6 +27,8 @@
 #include <QSettings>
 #include <QStringList>
 #include "Common.h"
+#include "DialogSettings.h"
+#include "Globals.h"
 #include "LanguageSettings.h"
 #include "ui_languageselectionwidget.h"
 
@@ -50,6 +52,16 @@ LanguageSelectionWidget::LanguageSelectionWidget(QWidget * parent) //
   if (_systemDefaultIsAvailable) {
     ui->comboBox->insertItem(0, QString(tr("System default (%1)")).arg(_code2name[lang]), QVariant(QString()));
   }
+
+  if (DialogSettings::darkThemeEnabled()) {
+    QPalette p = ui->cbTranslateFilters->palette();
+    p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
+    p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
+    ui->cbTranslateFilters->setPalette(p);
+  }
+  ui->cbTranslateFilters->setToolTip(tr("Translations are very likely to be incomplete."));
+
+  connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &LanguageSelectionWidget::onLanguageSelectionChanged);
 }
 
 LanguageSelectionWidget::~LanguageSelectionWidget()
@@ -57,9 +69,19 @@ LanguageSelectionWidget::~LanguageSelectionWidget()
   delete ui;
 }
 
-QString LanguageSelectionWidget::selectedLanguageCode()
+QString LanguageSelectionWidget::selectedLanguageCode() const
 {
   return ui->comboBox->currentData().toString();
+}
+
+bool LanguageSelectionWidget::translateFiltersEnabled() const
+{
+  return ui->cbTranslateFilters->isChecked();
+}
+
+void LanguageSelectionWidget::enableFilterTranslation(bool on)
+{
+  ui->cbTranslateFilters->setChecked(on);
 }
 
 void LanguageSelectionWidget::selectLanguage(const QString & code)
@@ -86,6 +108,12 @@ void LanguageSelectionWidget::selectLanguage(const QString & code)
       return;
     }
   }
+}
+
+void LanguageSelectionWidget::onLanguageSelectionChanged(int index)
+{
+  QString lang = ui->comboBox->itemData(index).toString();
+  ui->cbTranslateFilters->setEnabled(LanguageSettings::filterTranslationAvailable(lang));
 }
 
 } // namespace GmicQt
