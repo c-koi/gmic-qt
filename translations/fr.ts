@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Original French translation done by Sébastien Fourey -->
+
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
@@ -1101,12 +1104,12 @@ Commande trouvée pour le chemin : %3</translation>
         <translation>jaune</translation>
     </message>
     <message>
-        <location filename="../src/LanguageSettings.cpp" line="126"/>
+        <location filename="../src/LanguageSettings.cpp" line="127"/>
         <source>Could not install translator for file %1</source>
         <translation>Impossible d&apos;installer le traducteur pour le fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/LanguageSettings.cpp" line="129"/>
+        <location filename="../src/LanguageSettings.cpp" line="130"/>
         <source>Could not load translation file %1</source>
         <translation>Impossible de charger le fichier de traduction %1</translation>
     </message>

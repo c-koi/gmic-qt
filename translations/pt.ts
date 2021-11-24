@@ -1074,12 +1074,12 @@ Command found for this path : %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/LanguageSettings.cpp" line="126"/>
+        <location filename="../src/LanguageSettings.cpp" line="127"/>
         <source>Could not install translator for file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/LanguageSettings.cpp" line="129"/>
+        <location filename="../src/LanguageSettings.cpp" line="130"/>
         <source>Could not load translation file %1</source>
         <translation type="unfinished"></translation>
     </message>

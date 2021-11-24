@@ -449,7 +449,9 @@ translations/zh.ts \
 translations/zh_tw.ts
 
 RESOURCES += wip_translations.qrc
-TRANSLATIONS += translations/filters/fr.ts
+
+# Prevent overwriting of these files by lupdate
+# TRANSLATIONS += translations/filters/fr.ts
 
 # PRE_TARGETDEPS +=
 

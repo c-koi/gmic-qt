@@ -188,7 +188,7 @@ void DialogSettings::loadSettings(UserInterfaceMode userInterfaceMode)
     _previewPosition = MainWindow::PreviewPosition::Right;
   }
   _darkThemeEnabled = settings.value(DARK_THEME_KEY, GmicQtHost::DarkThemeIsDefault).toBool();
-  _languageCode = settings.value("Config/LanguageCode", QString()).toString();
+  _languageCode = settings.value(LANGUAGE_CODE_KEY, QString()).toString();
   _filterTranslationEnabled = settings.value(ENABLE_FILTER_TRANSLATION, false).toBool();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
@@ -274,7 +274,7 @@ void DialogSettings::done(int r)
   QSettings settings;
   saveSettings(settings);
   settings.setValue(DARK_THEME_KEY, ui->rbDarkTheme->isChecked());
-  settings.setValue("Config/LanguageCode", ui->languageSelector->selectedLanguageCode());
+  settings.setValue(LANGUAGE_CODE_KEY, ui->languageSelector->selectedLanguageCode());
   settings.setValue(ENABLE_FILTER_TRANSLATION, ui->languageSelector->translateFiltersEnabled());
   QDialog::done(r);
 }

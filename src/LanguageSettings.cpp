@@ -33,6 +33,7 @@
 #include <QTranslator>
 #include "Common.h"
 #include "DialogSettings.h"
+#include "Globals.h"
 #include "Logger.h"
 
 namespace GmicQt
@@ -65,7 +66,7 @@ const QMap<QString, QString> & LanguageSettings::availableLanguages()
 
 QString LanguageSettings::configuredTranslator()
 {
-  QString code = DialogSettings::languageCode();
+  QString code = QSettings().value(LANGUAGE_CODE_KEY, QString()).toString();
   if (code.isEmpty()) {
     code = systemDefaultAndAvailableLanguageCode();
     if (code.isEmpty()) {
@@ -104,7 +105,7 @@ void LanguageSettings::installTranslators()
   if (!lang.isEmpty() && (lang != "en")) {
     installQtTranslator(lang);
     installTranslator(QString(":/translations/%1.qm").arg(lang));
-    if (DialogSettings::filterTranslationEnabled()) {
+    if (QSettings().value(ENABLE_FILTER_TRANSLATION, false).toBool()) {
       installTranslator(QString(":/translations/filters/%1.qm").arg(lang));
     }
   }
