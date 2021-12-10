@@ -473,7 +473,7 @@ CONFIG(debug, debug|release) {
 }
 
 equals(ASAN, "on" ) {
-    message(Adress sanitizer enabled)
+    message(Address sanitizer enabled)
     QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
     QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }

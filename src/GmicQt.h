@@ -135,7 +135,7 @@ int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,              
 /**
  * Calibrate any image to fit the required number of channels (1:GRAY, 2:GRAYA, 3:RGB or 4:RGBA).
  *
- * Instanciated for T in {unsigned char, gmic_pixel_type}
+ * Instantiated for T in {unsigned char, gmic_pixel_type}
  */
 template <typename T> //
 void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool isPreview);
