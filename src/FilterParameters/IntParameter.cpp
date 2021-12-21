@@ -156,7 +156,7 @@ void IntParameter::timerEvent(QTimerEvent * e)
 {
   killTimer(e->timerId());
   _timerId = 0;
-  if (not _spinBox->unfinishedKeyboardEditing()) {
+  if (!_spinBox->unfinishedKeyboardEditing()) {
     notifyIfRelevant();
   }
 }
