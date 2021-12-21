@@ -84,7 +84,7 @@ void FiltersTagMap::load()
 #endif
     if (jsonDoc.isNull()) {
       Logger::warning(QString("Cannot parse ") + jsonFilename);
-      Logger::warning("Fiter tags are lost!");
+      Logger::warning("Filter tags are lost!");
     } else {
       if (!jsonDoc.isObject()) {
         Logger::error(QString("JSON file format is not correct (") + jsonFilename + ")");

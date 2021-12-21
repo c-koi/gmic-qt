@@ -685,7 +685,7 @@ namespace
             dataStream.setByteOrder(QDataStream::LittleEndian);
         }
 #else
-#error "Unknown endianess on this platform."
+#error "Unknown endianness on this platform."
 #endif
         else
         {
@@ -796,7 +796,7 @@ namespace
             dataStream.setByteOrder(QDataStream::LittleEndian);
         }
 #else
-#error "Unknown endianess on this platform."
+#error "Unknown endianness on this platform."
 #endif
         else
         {
@@ -992,7 +992,7 @@ namespace
         stream.writeRawData("LEDN", 4);
         stream.setByteOrder(QDataStream::LittleEndian);
 #else
-#error "Unknown endianess on this platform."
+#error "Unknown endianness on this platform."
 #endif
         stream << fileVersion;
         stream << width;
@@ -1554,7 +1554,7 @@ namespace
                 dataStream.setByteOrder(QDataStream::LittleEndian);
             }
 #else
-#error "Unknown endianess on this platform."
+#error "Unknown endianness on this platform."
 #endif
             else
             {
@@ -1659,7 +1659,7 @@ namespace
             dataStream.writeRawData("LEDN", 4);
             dataStream.setByteOrder(QDataStream::LittleEndian);
 #else
-#error "Unknown endianess on this platform."
+#error "Unknown endianness on this platform."
 #endif
             dataStream << fileVersion;
 
