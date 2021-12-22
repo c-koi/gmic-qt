@@ -644,7 +644,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="1387"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
-        <translation>Se está ejecutando un comando de gmic.&apos;exÃ©cution.&lt;br&gt;¿Seguro que quieres cerrar el plugin?</translation>
+        <translation>Se está ejecutando un comando de gmic.&lt;br&gt;¿Seguro que quieres cerrar el plugin?</translation>
     </message>
 </context>
 <context>
