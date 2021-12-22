@@ -113,6 +113,10 @@ void LanguageSelectionWidget::selectLanguage(const QString & code)
 void LanguageSelectionWidget::onLanguageSelectionChanged(int index)
 {
   QString lang = ui->comboBox->itemData(index).toString();
+  if (lang.isEmpty()) {
+    lang = LanguageSettings::systemDefaultAndAvailableLanguageCode();
+  }
+  LanguageSettings::filterTranslationAvailable(lang);
   ui->cbTranslateFilters->setEnabled(LanguageSettings::filterTranslationAvailable(lang));
 }
 

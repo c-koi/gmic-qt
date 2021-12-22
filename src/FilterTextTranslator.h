@@ -26,6 +26,7 @@ class FilterTextTranslator : public QObject {
 public:
   FilterTextTranslator() = delete;
   static QString translate(const QString & str);
+  static QString translate(const QString & str, const QString & filterName);
 
 protected:
 private:

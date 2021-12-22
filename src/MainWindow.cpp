@@ -1175,7 +1175,7 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
     } else {
       ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
     }
-    setFilterName(FilterTextTranslator::translate((filter.name)));
+    setFilterName(FilterTextTranslator::translate(filter.name));
     ui->inOutSelector->enable();
     if (ui->inOutSelector->hasActiveControls()) {
       ui->inOutSelector->show();

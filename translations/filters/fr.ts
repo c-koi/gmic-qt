@@ -1821,6 +1821,12 @@
     </message>
 
     <message>
+      <source>Light</source>
+      <comment>Comic Book</comment>
+      <translation>Légère</translation>
+    </message>
+
+    <message>
       <source>A Lot of Magenta</source>
       <translation>Beaucoup de magenta</translation>
     </message>
@@ -4988,6 +4994,11 @@
     <message>
       <source>Preview Shape</source>
       <translation>Prévisualise la forme</translation>
+    </message>
+
+    <message>
+      <source>Comic Book</source>
+      <translation>Comic Book</translation>
     </message>
 
 </context>

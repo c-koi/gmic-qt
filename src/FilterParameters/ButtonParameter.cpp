@@ -88,13 +88,13 @@ void ButtonParameter::onPushButtonClicked(bool)
   notifyIfRelevant();
 }
 
-bool ButtonParameter::initFromText(const char * text, int & textLength)
+bool ButtonParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list = parseText("button", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _text = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _text = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   QString & alignment = list[1];
   if (alignment.isEmpty()) {
     return true;

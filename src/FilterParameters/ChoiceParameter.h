@@ -45,7 +45,7 @@ public:
   QString defaultValue() const override;
   void setValue(const QString &) override;
   void reset() override;
-  bool initFromText(const char * text, int & textLength) override;
+  bool initFromText(const QString & filterName, const char * text, int & textLength) override;
 public slots:
   void onComboBoxIndexChanged(int);
 

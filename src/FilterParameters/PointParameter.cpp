@@ -232,13 +232,13 @@ void PointParameter::reset()
 }
 
 // P = point(x,y,removable{(0),1},burst{(0),1},r,g,b,a{negative->keepOpacityWhenSelected},radius,widget_visible{0|(1)})
-bool PointParameter::initFromText(const char * text, int & textLength)
+bool PointParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list = parseText("point", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   QList<QString> params = list[1].split(",");
 
   bool ok = true;

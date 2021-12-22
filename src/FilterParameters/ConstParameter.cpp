@@ -72,13 +72,13 @@ void ConstParameter::reset()
   _value = _default;
 }
 
-bool ConstParameter::initFromText(const char * text, int & textLength)
+bool ConstParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QStringList list = parseText("value", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   _value = _default = unescaped(unquoted(list[1]));
   return true;
 }
