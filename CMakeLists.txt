@@ -176,7 +176,7 @@ if (ENABLE_FFTW3)
   add_definitions(-Dcimg_use_fftw3 )
   include_directories(${FFTW3_INCLUDE_DIR})
 
-  # Detect 
+  # Detect
   include(CheckCXXSourceCompiles)
   set(CMAKE_REQUIRED_INCLUDES ${FFTW3_INCLUDE_DIR})
   set(CMAKE_REQUIRED_LIBRARIES ${FFTW3_LIBRARIES})
@@ -282,6 +282,7 @@ if(ENABLE_CURL)
 endif()
 
 add_definitions(-Dgmic_build)
+add_definitions(-Dgmic_community)
 add_definitions(-Dcimg_use_abort)
 add_definitions(-Dgmic_is_parallel)
 add_definitions(-Dgmic_gui)
