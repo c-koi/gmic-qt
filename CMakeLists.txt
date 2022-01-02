@@ -29,17 +29,24 @@ else()
   message("Building for target host application: " ${GMIC_QT_HOST})
 endif()
 
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../src/gmic.cpp")
-  set (GMIC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../src" CACHE STRING "Define the path to the gmic headers")
+option(ENABLE_SYSTEM_GMIC "Find GMIC shared library installed on the system" ON)
+
+if (ENABLE_SYSTEM_GMIC)
+  option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" ON)
 else()
+  option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
+
+  set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shared library")
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../src/gmic.cpp")
+  set (GMIC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../src" CACHE STRING "Define the path to the gmic headers")
+  else()
   set (GMIC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../gmic/src" CACHE STRING "Define the path to the gmic headers")
+  endif()
+
+  message("G'MIC path: " ${GMIC_PATH})
 endif()
 
-message("G'MIC path: " ${GMIC_PATH})
-
-option(ENABLE_DYNAMIC_LINKING "Dynamically link the binaries to the GMIC shared library" OFF)
 option(ENABLE_CURL "Add support for curl" ON)
-set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shared library")
 
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
@@ -62,55 +69,57 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 
-#
-# Look for G'MIC repository
-#
-get_filename_component(GMIC_ABSOLUTE_PATH ${GMIC_PATH} ABSOLUTE BASEDIR ${CMAKE_SOURCE_DIR})
-if (EXISTS ${GMIC_ABSOLUTE_PATH}/gmic.cpp)
-  message("Found G'MIC repository")
-else()
-  get_filename_component(TARGET_CLONE_DIR ${GMIC_ABSOLUTE_PATH}/.. ABSOLUTE)
-  message("")
-  message("Cannot find G'MIC repository in " ${GMIC_ABSOLUTE_PATH} )
-  message("")
-  message("You should try:")
-  message("")
-  message("   git clone https://github.com/dtschump/gmic.git " ${TARGET_CLONE_DIR}/gmic )
-  message("")
-  message(FATAL_ERROR "\nG'MIC repository not found")
-endif()
-
-#
-# Look for CImg.h and gmic_stdlib_community.h
-#
-set(GMIC_FILES CImg.h gmic_stdlib_community.h)
-foreach(F ${GMIC_FILES})
-  if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
-    message("Found " ${GMIC_PATH}/${F})
+if (NOT ENABLE_SYSTEM_GMIC)
+  #
+  # Look for G'MIC repository
+  #
+  get_filename_component(GMIC_ABSOLUTE_PATH ${GMIC_PATH} ABSOLUTE BASEDIR ${CMAKE_SOURCE_DIR})
+  if (EXISTS ${GMIC_ABSOLUTE_PATH}/gmic.cpp)
+    message("Found G'MIC repository")
   else()
-    message(${F} " not found")
-    execute_process(COMMAND make -C ${GMIC_ABSOLUTE_PATH} ${F})
-    if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
-      message("Found " ${GMIC_PATH}/${F})
-    else()
-      message(FATAL_ERROR "\nCannot obtain " ${GMIC_PATH}/${F})
-    endif()
+    get_filename_component(TARGET_CLONE_DIR ${GMIC_ABSOLUTE_PATH}/.. ABSOLUTE)
+    message("")
+    message("Cannot find G'MIC repository in " ${GMIC_ABSOLUTE_PATH} )
+    message("")
+    message("You should try:")
+    message("")
+    message("   git clone https://github.com/dtschump/gmic.git " ${TARGET_CLONE_DIR}/gmic )
+    message("")
+    message(FATAL_ERROR "\nG'MIC repository not found")
   endif()
-endforeach()
 
-#
-# Ensure that gmic and CImg are the same version
-#
-file(STRINGS ${GMIC_ABSOLUTE_PATH}/CImg.h CIMG_VERSION REGEX "cimg_version ")
-string(REGEX REPLACE ".*cimg_version " "" CIMG_VERSION ${CIMG_VERSION})
-message("CImg version is [" ${CIMG_VERSION} "]")
+  #
+  # Look for CImg.h and gmic_stdlib_community.h
+  #
+  set(GMIC_FILES CImg.h gmic_stdlib_community.h)
+  foreach(F ${GMIC_FILES})
+  if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
+      message("Found " ${GMIC_PATH}/${F})
+  else()
+      message(${F} " not found")
+      execute_process(COMMAND make -C ${GMIC_ABSOLUTE_PATH} ${F})
+      if(EXISTS ${GMIC_ABSOLUTE_PATH}/${F})
+      message("Found " ${GMIC_PATH}/${F})
+      else()
+      message(FATAL_ERROR "\nCannot obtain " ${GMIC_PATH}/${F})
+      endif()
+  endif()
+  endforeach()
 
-file(STRINGS ${GMIC_ABSOLUTE_PATH}/gmic.h GMIC_VERSION REGEX "gmic_version ")
-string(REGEX REPLACE ".*gmic_version " "" GMIC_VERSION ${GMIC_VERSION})
-message("G'MIC version is [" ${GMIC_VERSION} "]")
+  #
+  # Ensure that gmic and CImg are the same version
+  #
+  file(STRINGS ${GMIC_ABSOLUTE_PATH}/CImg.h CIMG_VERSION REGEX "cimg_version ")
+  string(REGEX REPLACE ".*cimg_version " "" CIMG_VERSION ${CIMG_VERSION})
+  message("CImg version is [" ${CIMG_VERSION} "]")
 
-if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
+  file(STRINGS ${GMIC_ABSOLUTE_PATH}/gmic.h GMIC_VERSION REGEX "gmic_version ")
+  string(REGEX REPLACE ".*gmic_version " "" GMIC_VERSION ${GMIC_VERSION})
+  message("G'MIC version is [" ${GMIC_VERSION} "]")
+
+  if (NOT(${GMIC_VERSION} EQUAL ${CIMG_VERSION}))
   message(FATAL_ERROR "\nVersion numbers of files 'gmic.h' (" ${GMIC_VERSION} ") and 'CImg.h' (" ${CIMG_VERSION} ") mismatch")
+  endif()
 endif()
 
 
@@ -128,6 +137,13 @@ endif()
 
 
 # Required packages
+
+#
+# Gmic
+#
+if (ENABLE_SYSTEM_GMIC)
+  find_package(Gmic REQUIRED CONFIG)
+endif (ENABLE_SYSTEM_GMIC)
 
 #
 # Threads
@@ -353,14 +369,19 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
     else()
       string(REPLACE "-O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
       string(REPLACE "-O3" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-      set_source_files_properties(${GMIC_PATH}/gmic.cpp PROPERTIES COMPILE_FLAGS "-Ofast")
+      if (NOT ENABLE_SYSTEM_GMIC)
+          set_source_files_properties(${GMIC_PATH}/gmic.cpp PROPERTIES COMPILE_FLAGS "-Ofast")
+      endif (NOT ENABLE_SYSTEM_GMIC)
       set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O2")
     endif()
 else()
     message(FATAL_ERROR "Build type not recognized (${CMAKE_BUILD_TYPE})")
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/src ${GMIC_PATH})
+if (NOT ENABLE_SYSTEM_GMIC)
+    include_directories(${GMIC_PATH})
+endif (NOT ENABLE_SYSTEM_GMIC)
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 set (gmic_qt_SRCS
 
@@ -438,11 +459,19 @@ set (gmic_qt_SRCS
   src/Widgets/ProgressInfoWindow.h
   src/Widgets/VisibleTagSelector.h
   src/ZoomConstraint.h
+)
 
-  ${GMIC_PATH}/gmic.h
-  ${GMIC_PATH}/CImg.h
-  ${GMIC_PATH}/gmic_stdlib_community.h
+if (NOT ENABLE_SYSTEM_GMIC)
+    set(gmic_qt_SRCS
+        ${gmic_qt_SRCS}
+        ${GMIC_PATH}/gmic.h
+        ${GMIC_PATH}/CImg.h
+        ${GMIC_PATH}/gmic_stdlib_community.h
+    )
+endif()
 
+set(gmic_qt_SRCS
+  ${gmic_qt_SRCS}
   src/ClickableLabel.cpp
   src/Common.cpp
   src/OverrideCursor.cpp
@@ -537,7 +566,9 @@ if(ENABLE_DYNAMIC_LINKING)
     ${gmic_qt_LIBRARIES}
     "gmic"
     )
-  link_directories(${GMIC_LIB_PATH})
+  if (NOT ENABLE_SYSTEM_GMIC)
+    link_directories(${GMIC_LIB_PATH})
+  endif()
 else(ENABLE_DYNAMIC_LINKING)
   set(gmic_qt_SRCS
     ${gmic_qt_SRCS}
