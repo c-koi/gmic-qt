@@ -149,8 +149,8 @@ void FilterSyncRunner::run()
       Logger::log(fullCommandLine, _logSuffix, true);
     }
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, 0, 0, 0.f);
-    gmicInstance.set_variable("_host", GmicQtHost::ApplicationShortname, '=');
-    gmicInstance.set_variable("_tk", "qt", '=');
+    gmicInstance.set_variable("_host", '=', GmicQtHost::ApplicationShortname);
+    gmicInstance.set_variable("_tk", '=', "qt");
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;
   } catch (gmic_exception & e) {
