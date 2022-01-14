@@ -38,6 +38,7 @@
 #include "HeadlessProcessor.h"
 #include "Updater.h"
 #include "ui_progressinfowindow.h"
+#include "CImg.h"
 #include "gmic.h"
 
 namespace GmicQt

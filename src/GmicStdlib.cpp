@@ -31,6 +31,7 @@
 #include <QStringList>
 #include "Common.h"
 #include "Utils.h"
+#include "CImg.h"
 #include "gmic.h"
 
 namespace GmicQt

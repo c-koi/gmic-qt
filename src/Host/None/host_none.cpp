@@ -40,6 +40,7 @@
 #include "GmicQt.h"
 #include "Host/GmicQtHost.h"
 #include "Host/None/ImageDialog.h"
+#include "CImg.h"
 #include "gmic.h"
 
 #define STRINGIFY(X) #X

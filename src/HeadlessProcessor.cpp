@@ -40,6 +40,7 @@
 #include "ParametersCache.h"
 #include "Updater.h"
 #include "Widgets/ProgressInfoWindow.h"
+#include "CImg.h"
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_

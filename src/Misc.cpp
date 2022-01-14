@@ -38,6 +38,7 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
+#include "CImg.h"
 #include "gmic.h"
 
 namespace

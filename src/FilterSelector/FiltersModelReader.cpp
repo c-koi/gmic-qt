@@ -38,6 +38,7 @@
 #include "LanguageSettings.h"
 #include "Logger.h"
 #include "Utils.h"
+#include "CImg.h"
 #include "gmic.h"
 
 namespace GmicQt

@@ -42,6 +42,7 @@
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "GmicQt.h"
+#include "CImg.h"
 #include "gmic.h"
 
 struct Gmic8bfLayer

@@ -29,6 +29,7 @@
 #include "Common.h"
 #include "Utils.h"
 #include "GmicQt.h"
+#include "CImg.h"
 #include "gmic.h"
 
 namespace GmicQt

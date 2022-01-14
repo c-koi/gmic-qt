@@ -42,6 +42,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "OverrideCursor.h"
+#include "CImg.h"
 #include "gmic.h"
 
 namespace GmicQt
