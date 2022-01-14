@@ -392,144 +392,144 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
 
         QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg((int)mode);
 
-		for (size_t i = 0; i < images.size(); ++i)
-		{
-			QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));
+        for (size_t i = 0; i < images.size(); ++i)
+        {
+            QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));
 
-			const cimg_library::CImg<float>& out = images[i];
+            const cimg_library::CImg<float>& out = images[i];
 
-			const int width = out.width();
-			const int height = out.height();
+            const int width = out.width();
+            const int height = out.height();
 
-			const qint64 imageSizeInBytes = static_cast<qint64>(width) * static_cast<qint64>(height) * 4;
+            const qint64 imageSizeInBytes = static_cast<qint64>(width) * static_cast<qint64>(height) * 4;
 
-			const DWORD capacityHigh = static_cast<DWORD>((imageSizeInBytes >> 32) & 0xFFFFFFFF);
-			const DWORD capacityLow = static_cast<DWORD>(imageSizeInBytes & 0x00000000FFFFFFFF);
+            const DWORD capacityHigh = static_cast<DWORD>((imageSizeInBytes >> 32) & 0xFFFFFFFF);
+            const DWORD capacityLow = static_cast<DWORD>(imageSizeInBytes & 0x00000000FFFFFFFF);
 
-			ScopedFileMapping fileMappingObject(CreateFileMappingW(INVALID_HANDLE_VALUE,
-																   nullptr,
-																   PAGE_READWRITE,
-																   capacityHigh,
-																   capacityLow,
-																   reinterpret_cast<LPCWSTR>(mappingName.utf16())));
-			if (fileMappingObject)
-			{
-				ScopedFileMappingView mappedData(MapViewOfFile(fileMappingObject.get(), FILE_MAP_ALL_ACCESS, 0, 0, static_cast<size_t>(imageSizeInBytes)));
+            ScopedFileMapping fileMappingObject(CreateFileMappingW(INVALID_HANDLE_VALUE,
+                                                                   nullptr,
+                                                                   PAGE_READWRITE,
+                                                                   capacityHigh,
+                                                                   capacityLow,
+                                                                   reinterpret_cast<LPCWSTR>(mappingName.utf16())));
+            if (fileMappingObject)
+            {
+                ScopedFileMappingView mappedData(MapViewOfFile(fileMappingObject.get(), FILE_MAP_ALL_ACCESS, 0, 0, static_cast<size_t>(imageSizeInBytes)));
 
-				if (mappedData)
-				{
-					quint8* scan0 = static_cast<quint8*>(mappedData.get());
-					const int stride = width * 4;
+                if (mappedData)
+                {
+                    quint8* scan0 = static_cast<quint8*>(mappedData.get());
+                    const int stride = width * 4;
 
-					if (out.spectrum() == 3)
-					{
-						const float* srcR = out.data(0, 0, 0, 0);
-						const float* srcG = out.data(0, 0, 0, 1);
-						const float* srcB = out.data(0, 0, 0, 2);
+                    if (out.spectrum() == 3)
+                    {
+                        const float* srcR = out.data(0, 0, 0, 0);
+                        const float* srcG = out.data(0, 0, 0, 1);
+                        const float* srcB = out.data(0, 0, 0, 2);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = Float2Uint8Clamped(*srcB++);
-								dst[1] = Float2Uint8Clamped(*srcG++);
-								dst[2] = Float2Uint8Clamped(*srcR++);
-								dst[3] = 255;
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = Float2Uint8Clamped(*srcB++);
+                                dst[1] = Float2Uint8Clamped(*srcG++);
+                                dst[2] = Float2Uint8Clamped(*srcR++);
+                                dst[3] = 255;
 
-								dst += 4;
-							}
-						}
-					}
-					else if (out.spectrum() == 4)
-					{
-						const float* srcR = out.data(0, 0, 0, 0);
-						const float* srcG = out.data(0, 0, 0, 1);
-						const float* srcB = out.data(0, 0, 0, 2);
-						const float* srcA = out.data(0, 0, 0, 3);
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else if (out.spectrum() == 4)
+                    {
+                        const float* srcR = out.data(0, 0, 0, 0);
+                        const float* srcG = out.data(0, 0, 0, 1);
+                        const float* srcB = out.data(0, 0, 0, 2);
+                        const float* srcA = out.data(0, 0, 0, 3);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = Float2Uint8Clamped(*srcB++);
-								dst[1] = Float2Uint8Clamped(*srcG++);
-								dst[2] = Float2Uint8Clamped(*srcR++);
-								dst[3] = Float2Uint8Clamped(*srcA++);
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = Float2Uint8Clamped(*srcB++);
+                                dst[1] = Float2Uint8Clamped(*srcG++);
+                                dst[2] = Float2Uint8Clamped(*srcR++);
+                                dst[3] = Float2Uint8Clamped(*srcA++);
 
-								dst += 4;
-							}
-						}
-					}
-					else if (out.spectrum() == 2)
-					{
-						const float* srcGray = out.data(0, 0, 0, 0);
-						const float* srcAlpha = out.data(0, 0, 0, 1);
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else if (out.spectrum() == 2)
+                    {
+                        const float* srcGray = out.data(0, 0, 0, 0);
+                        const float* srcAlpha = out.data(0, 0, 0, 1);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
-								dst[3] = Float2Uint8Clamped(*srcAlpha++);
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
+                                dst[3] = Float2Uint8Clamped(*srcAlpha++);
 
-								dst += 4;
-							}
-						}
-					}
-					else if (out.spectrum() == 1)
-					{
-						const float* srcGray = out.data(0, 0, 0, 0);
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else if (out.spectrum() == 1)
+                    {
+                        const float* srcGray = out.data(0, 0, 0, 0);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
-								dst[3] = 255;
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
+                                dst[3] = 255;
 
-								dst += 4;
-							}
-						}
-					}
-					else
-					{
-						qWarning() << "The image must have between 1 and 4 channels. Actual value=" << out.spectrum();
-						return;
-					}
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        qWarning() << "The image must have between 1 and 4 channels. Actual value=" << out.spectrum();
+                        return;
+                    }
 
-					// Manually release the mapped data to ensue it is committed before the parent file mapping handle
-					// is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
+                    // Manually release the mapped data to ensue it is committed before the parent file mapping handle
+                    // is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
 
-					mappedData.reset();
+                    mappedData.reset();
 
-					outputImagesCommand += "layer=" + mappingName + ","
-						+ QString::number(width) + ","
-						+ QString::number(height) + ","
-						+ QString::number(stride) + "\n";
+                    outputImagesCommand += "layer=" + mappingName + ","
+                        + QString::number(width) + ","
+                        + QString::number(height) + ","
+                        + QString::number(stride) + "\n";
 
 
-					host_paintdotnet::sharedMemory.push_back(std::move(fileMappingObject));
-				}
-				else
-				{
-					qWarning() << "MapViewOfFile failed GetLastError=" << GetLastError();
-					return;
-				}
-			}
-			else
-			{
-				qWarning() << "CreateFileMappingW failed GetLastError=" << GetLastError();
-				return;
-			}
-		}
+                    host_paintdotnet::sharedMemory.push_back(std::move(fileMappingObject));
+                }
+                else
+                {
+                    qWarning() << "MapViewOfFile failed GetLastError=" << GetLastError();
+                    return;
+                }
+            }
+            else
+            {
+                qWarning() << "CreateFileMappingW failed GetLastError=" << GetLastError();
+                return;
+            }
+        }
 
         SendMessageSynchronously(outputImagesCommand.toUtf8());
     }
