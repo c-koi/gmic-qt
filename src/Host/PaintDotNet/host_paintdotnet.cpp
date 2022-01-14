@@ -33,6 +33,9 @@
 #include "Host/GmicQtHost.h"
 #include "MainWindow.h"
 #include "GmicQt.h"
+#ifndef gmic_core
+#include "CImg.h"
+#endif
 #include "gmic.h"
 #include <Windows.h>
 
