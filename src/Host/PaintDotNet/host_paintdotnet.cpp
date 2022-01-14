@@ -3,7 +3,7 @@
 *  editors, offering hundreds of filters thanks to the underlying G'MIC
 *  image processing framework.
 *
-*  Copyright (C) 2018, 2019, 2020 Nicholas Hayes
+*  Copyright (C) 2018, 2019, 2020, 2022 Nicholas Hayes
 *
 *  G'MIC-Qt is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -630,7 +630,38 @@ int main(int argc, char *argv[])
     }
     host_paintdotnet::sharedMemory.clear();
 
-    if (!dialogAccepted)
+    if (dialogAccepted)
+    {
+        // Send the G'MIC command name to Paint.NET.
+        // It will be added to the image file names when writing the G'MIC images to an external file.
+        GmicQt::RunParameters parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
+        QString gmicCommandName;
+
+        // A G'MIC command consists of a command name that can optionally be followed
+        // by a space and the command arguments.
+        // If a command does not take any arguments only the command name will be present.
+        //
+        // According to the G'MIC Language Reference command names are restricted to a
+        // subset of 7-bit US-ASCII: letters, numbers and underscores.
+        // These restrictions make the command name safe to use in an OS file name.
+        // See https://gmic.eu/reference/adding_custom_commands.html for more information.
+
+        size_t firstSpaceIndex = parameters.command.find_first_of(' ');
+
+        if (firstSpaceIndex != std::string::npos)
+        {
+            gmicCommandName = QString::fromStdString(parameters.command.substr(0, firstSpaceIndex));
+        }
+        else
+        {
+            gmicCommandName = QString::fromStdString(parameters.command);
+        }
+        
+        QString message = QString("command=gmic_qt_set_gmic_command_name\n%1\n").arg(gmicCommandName);
+        
+        SendMessageSynchronously(message.toUtf8());
+    }
+    else
     {
         exitCode = 4;
     }
