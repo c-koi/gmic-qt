@@ -19,7 +19,7 @@
 !defined(COMPILER,var) { COMPILER = gcc }
 
 # Possible values are "on" or "off"
-!defined(LTO,var) { LTO=on }
+!defined(LTO,var) { LTO=off }
 
 # Possible values are "on" or "off"
 !defined(TEST_FILTERS_QM,var) { TEST_FILTERS_QM=off }
