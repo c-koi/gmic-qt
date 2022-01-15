@@ -68,7 +68,7 @@ equals( HOST, "gimp3" ) {
 
 DEFINES += cimg_use_cpp11=1
 DEFINES += cimg_use_fftw3 cimg_use_zlib
-DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png
+DEFINES += gmic_core cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png
 DEFINES += cimg_appname="\\\"gmic\\\""
 
 equals(TIMING, "on") {
@@ -243,7 +243,7 @@ CONFIG(release, debug|release):gcc|clang:equals(LTO,"on") {
     QMAKE_LFLAGS_RELEASE += -flto
 }
 
-DEFINES += gmic_gui gmic_build gmic_is_parallel gmic_community cimg_use_abort
+DEFINES += gmic_gui gmic_core gmic_is_parallel gmic_community cimg_use_abort
 
 INCLUDEPATH	+= $$PWD $$PWD/src $$GMIC_PATH
 DEPENDPATH += $$PWD/src \

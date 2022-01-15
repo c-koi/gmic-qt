@@ -281,7 +281,7 @@ if(ENABLE_CURL)
     endif()
 endif()
 
-add_definitions(-Dgmic_build)
+add_definitions(-Dgmic_core)
 add_definitions(-Dgmic_community)
 add_definitions(-Dcimg_use_abort)
 add_definitions(-Dgmic_is_parallel)
