@@ -79,7 +79,7 @@ void SeparatorParameter::setValue(const QString &) {}
 
 void SeparatorParameter::reset() {}
 
-bool SeparatorParameter::initFromText(const QString & filterName, const char * text, int & textLength)
+bool SeparatorParameter::initFromText(const QString & /* filterName */, const char * text, int & textLength)
 {
   QStringList list = parseText("separator", text, textLength);
   unused(list);
