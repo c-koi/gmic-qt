@@ -3,7 +3,7 @@
 *  editors, offering hundreds of filters thanks to the underlying G'MIC
 *  image processing framework.
 *
-*  Copyright (C) 2018, 2019, 2020 Nicholas Hayes
+*  Copyright (C) 2018, 2019, 2020, 2022 Nicholas Hayes
 *
 *  G'MIC-Qt is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -392,144 +392,144 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
 
         QString outputImagesCommand = QString("command=gmic_qt_output_images\nmode=%1\n").arg((int)mode);
 
-		for (size_t i = 0; i < images.size(); ++i)
-		{
-			QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));
+        for (size_t i = 0; i < images.size(); ++i)
+        {
+            QString mappingName = QString("pdn_%1").arg(QUuid::createUuid().toString(QUuid::StringFormat::WithoutBraces));
 
-			const cimg_library::CImg<float>& out = images[i];
+            const cimg_library::CImg<float>& out = images[i];
 
-			const int width = out.width();
-			const int height = out.height();
+            const int width = out.width();
+            const int height = out.height();
 
-			const qint64 imageSizeInBytes = static_cast<qint64>(width) * static_cast<qint64>(height) * 4;
+            const qint64 imageSizeInBytes = static_cast<qint64>(width) * static_cast<qint64>(height) * 4;
 
-			const DWORD capacityHigh = static_cast<DWORD>((imageSizeInBytes >> 32) & 0xFFFFFFFF);
-			const DWORD capacityLow = static_cast<DWORD>(imageSizeInBytes & 0x00000000FFFFFFFF);
+            const DWORD capacityHigh = static_cast<DWORD>((imageSizeInBytes >> 32) & 0xFFFFFFFF);
+            const DWORD capacityLow = static_cast<DWORD>(imageSizeInBytes & 0x00000000FFFFFFFF);
 
-			ScopedFileMapping fileMappingObject(CreateFileMappingW(INVALID_HANDLE_VALUE,
-																   nullptr,
-																   PAGE_READWRITE,
-																   capacityHigh,
-																   capacityLow,
-																   reinterpret_cast<LPCWSTR>(mappingName.utf16())));
-			if (fileMappingObject)
-			{
-				ScopedFileMappingView mappedData(MapViewOfFile(fileMappingObject.get(), FILE_MAP_ALL_ACCESS, 0, 0, static_cast<size_t>(imageSizeInBytes)));
+            ScopedFileMapping fileMappingObject(CreateFileMappingW(INVALID_HANDLE_VALUE,
+                                                                   nullptr,
+                                                                   PAGE_READWRITE,
+                                                                   capacityHigh,
+                                                                   capacityLow,
+                                                                   reinterpret_cast<LPCWSTR>(mappingName.utf16())));
+            if (fileMappingObject)
+            {
+                ScopedFileMappingView mappedData(MapViewOfFile(fileMappingObject.get(), FILE_MAP_ALL_ACCESS, 0, 0, static_cast<size_t>(imageSizeInBytes)));
 
-				if (mappedData)
-				{
-					quint8* scan0 = static_cast<quint8*>(mappedData.get());
-					const int stride = width * 4;
+                if (mappedData)
+                {
+                    quint8* scan0 = static_cast<quint8*>(mappedData.get());
+                    const int stride = width * 4;
 
-					if (out.spectrum() == 3)
-					{
-						const float* srcR = out.data(0, 0, 0, 0);
-						const float* srcG = out.data(0, 0, 0, 1);
-						const float* srcB = out.data(0, 0, 0, 2);
+                    if (out.spectrum() == 3)
+                    {
+                        const float* srcR = out.data(0, 0, 0, 0);
+                        const float* srcG = out.data(0, 0, 0, 1);
+                        const float* srcB = out.data(0, 0, 0, 2);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = Float2Uint8Clamped(*srcB++);
-								dst[1] = Float2Uint8Clamped(*srcG++);
-								dst[2] = Float2Uint8Clamped(*srcR++);
-								dst[3] = 255;
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = Float2Uint8Clamped(*srcB++);
+                                dst[1] = Float2Uint8Clamped(*srcG++);
+                                dst[2] = Float2Uint8Clamped(*srcR++);
+                                dst[3] = 255;
 
-								dst += 4;
-							}
-						}
-					}
-					else if (out.spectrum() == 4)
-					{
-						const float* srcR = out.data(0, 0, 0, 0);
-						const float* srcG = out.data(0, 0, 0, 1);
-						const float* srcB = out.data(0, 0, 0, 2);
-						const float* srcA = out.data(0, 0, 0, 3);
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else if (out.spectrum() == 4)
+                    {
+                        const float* srcR = out.data(0, 0, 0, 0);
+                        const float* srcG = out.data(0, 0, 0, 1);
+                        const float* srcB = out.data(0, 0, 0, 2);
+                        const float* srcA = out.data(0, 0, 0, 3);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = Float2Uint8Clamped(*srcB++);
-								dst[1] = Float2Uint8Clamped(*srcG++);
-								dst[2] = Float2Uint8Clamped(*srcR++);
-								dst[3] = Float2Uint8Clamped(*srcA++);
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = Float2Uint8Clamped(*srcB++);
+                                dst[1] = Float2Uint8Clamped(*srcG++);
+                                dst[2] = Float2Uint8Clamped(*srcR++);
+                                dst[3] = Float2Uint8Clamped(*srcA++);
 
-								dst += 4;
-							}
-						}
-					}
-					else if (out.spectrum() == 2)
-					{
-						const float* srcGray = out.data(0, 0, 0, 0);
-						const float* srcAlpha = out.data(0, 0, 0, 1);
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else if (out.spectrum() == 2)
+                    {
+                        const float* srcGray = out.data(0, 0, 0, 0);
+                        const float* srcAlpha = out.data(0, 0, 0, 1);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
-								dst[3] = Float2Uint8Clamped(*srcAlpha++);
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
+                                dst[3] = Float2Uint8Clamped(*srcAlpha++);
 
-								dst += 4;
-							}
-						}
-					}
-					else if (out.spectrum() == 1)
-					{
-						const float* srcGray = out.data(0, 0, 0, 0);
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else if (out.spectrum() == 1)
+                    {
+                        const float* srcGray = out.data(0, 0, 0, 0);
 
-						for (int y = 0; y < height; ++y)
-						{
-							quint8* dst = scan0 + (y * stride);
+                        for (int y = 0; y < height; ++y)
+                        {
+                            quint8* dst = scan0 + (y * stride);
 
-							for (int x = 0; x < width; ++x)
-							{
-								dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
-								dst[3] = 255;
+                            for (int x = 0; x < width; ++x)
+                            {
+                                dst[0] = dst[1] = dst[2] = Float2Uint8Clamped(*srcGray++);
+                                dst[3] = 255;
 
-								dst += 4;
-							}
-						}
-					}
-					else
-					{
-						qWarning() << "The image must have between 1 and 4 channels. Actual value=" << out.spectrum();
-						return;
-					}
+                                dst += 4;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        qWarning() << "The image must have between 1 and 4 channels. Actual value=" << out.spectrum();
+                        return;
+                    }
 
-					// Manually release the mapped data to ensue it is committed before the parent file mapping handle
-					// is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
+                    // Manually release the mapped data to ensue it is committed before the parent file mapping handle
+                    // is moved into the host_paintdotnet::sharedMemory vector (which invalidates the previous handle).
 
-					mappedData.reset();
+                    mappedData.reset();
 
-					outputImagesCommand += "layer=" + mappingName + ","
-						+ QString::number(width) + ","
-						+ QString::number(height) + ","
-						+ QString::number(stride) + "\n";
+                    outputImagesCommand += "layer=" + mappingName + ","
+                        + QString::number(width) + ","
+                        + QString::number(height) + ","
+                        + QString::number(stride) + "\n";
 
 
-					host_paintdotnet::sharedMemory.push_back(std::move(fileMappingObject));
-				}
-				else
-				{
-					qWarning() << "MapViewOfFile failed GetLastError=" << GetLastError();
-					return;
-				}
-			}
-			else
-			{
-				qWarning() << "CreateFileMappingW failed GetLastError=" << GetLastError();
-				return;
-			}
-		}
+                    host_paintdotnet::sharedMemory.push_back(std::move(fileMappingObject));
+                }
+                else
+                {
+                    qWarning() << "MapViewOfFile failed GetLastError=" << GetLastError();
+                    return;
+                }
+            }
+            else
+            {
+                qWarning() << "CreateFileMappingW failed GetLastError=" << GetLastError();
+                return;
+            }
+        }
 
         SendMessageSynchronously(outputImagesCommand.toUtf8());
     }
@@ -630,7 +630,38 @@ int main(int argc, char *argv[])
     }
     host_paintdotnet::sharedMemory.clear();
 
-    if (!dialogAccepted)
+    if (dialogAccepted)
+    {
+        // Send the G'MIC command name to Paint.NET.
+        // It will be added to the image file names when writing the G'MIC images to an external file.
+        GmicQt::RunParameters parameters = GmicQt::lastAppliedFilterRunParameters(GmicQt::ReturnedRunParametersFlag::AfterFilterExecution);
+        QString gmicCommandName;
+
+        // A G'MIC command consists of a command name that can optionally be followed
+        // by a space and the command arguments.
+        // If a command does not take any arguments only the command name will be present.
+        //
+        // According to the G'MIC Language Reference command names are restricted to a
+        // subset of 7-bit US-ASCII: letters, numbers and underscores.
+        // These restrictions make the command name safe to use in an OS file name.
+        // See https://gmic.eu/reference/adding_custom_commands.html for more information.
+
+        size_t firstSpaceIndex = parameters.command.find_first_of(' ');
+
+        if (firstSpaceIndex != std::string::npos)
+        {
+            gmicCommandName = QString::fromStdString(parameters.command.substr(0, firstSpaceIndex));
+        }
+        else
+        {
+            gmicCommandName = QString::fromStdString(parameters.command);
+        }
+        
+        QString message = QString("command=gmic_qt_set_gmic_command_name\n%1\n").arg(gmicCommandName);
+        
+        SendMessageSynchronously(message.toUtf8());
+    }
+    else
     {
         exitCode = 4;
     }
