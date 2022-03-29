@@ -127,13 +127,18 @@ equals( COMPILER, "clang" ) {
   message("gmic_stdlib_community.h found")
 }
 
-# Make sure CImg and gmic are the same version
+# Make sure CImg, gmic and gmic_stdlib_community.h are the same version
 GMIC_VERSION = $$system(bash check_versions.sh $$GMIC_PATH gmic)
+STDLIB_VERSION = $$system(bash check_versions.sh $$GMIC_PATH stdlib)
 CIMG_VERSION = $$system(bash check_versions.sh $$GMIC_PATH CImg)
-message("G'MIC version is" $$GMIC_VERSION)
-message("CImg version is" $$CIMG_VERSION)
-!system(bash check_versions.sh $$GMIC_PATH check):{
+message("G'MIC version is ................." $$GMIC_VERSION)
+message("gmic_stdlib_community.h version is" $$STDLIB_VERSION)
+message("CImg version is .................." $$CIMG_VERSION)
+!equals(GMIC_VERSION, $$CIMG_VERSION):{
    error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'CImg.h' (" $$CIMG_VERSION ") mismatch")
+}
+!equals(GMIC_VERSION, $$STDLIB_VERSION):{
+   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'gmic_stdlib_community.h' (" $$STDLIB_VERSION ") mismatch")
 }
 
 !isEmpty(PRERELEASE) {
