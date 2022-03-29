@@ -44,7 +44,7 @@ set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shar
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
-option(ENABLE_LTO "Enable Link Time Optimizer" ON)
+option(ENABLE_LTO "Enable Link Time Optimizer" OFF)
 
 if (MSVC)
   option(ENABLE_CFG "Enable Control Flow Guard (MSVC)" ON)
@@ -281,7 +281,7 @@ if(ENABLE_CURL)
     endif()
 endif()
 
-add_definitions(-Dgmic_build)
+add_definitions(-Dgmic_core)
 add_definitions(-Dgmic_community)
 add_definitions(-Dcimg_use_abort)
 add_definitions(-Dgmic_is_parallel)
