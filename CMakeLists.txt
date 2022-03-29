@@ -22,7 +22,7 @@ endif()
 
 message("Build type is " ${CMAKE_BUILD_TYPE})
 
-set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host qmic-qt will be built: gimp, gimp3 (experimental), krita, none, paintdotnet or 8bf.")
+set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host gmic-qt will be built: gimp, gimp3 (experimental), krita, none, paintdotnet or 8bf.")
 if (${GMIC_QT_HOST} STREQUAL "none")
   message("Building standalone version.")
 else()
