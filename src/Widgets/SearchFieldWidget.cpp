@@ -28,6 +28,7 @@
 #include <QHBoxLayout>
 #include <QIcon>
 #include <QLineEdit>
+#include <QPalette>
 #include <QRegExp>
 #include <QRegExpValidator>
 #include <QToolButton>
@@ -79,7 +80,11 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   _lineEdit->setPlaceholderText(tr("Search"));
   _lineEdit->setToolTip(tr("Search in filters list (%1)").arg(QKeySequence(QKeySequence::Find).toString()));
   setFocusProxy(_lineEdit);
-
+  if (DialogSettings::darkThemeEnabled()) {
+    QPalette palette = _lineEdit->palette();
+    palette.setColor(QPalette::PlaceholderText, Qt::gray);
+    _lineEdit->setPalette(palette);
+  }
   QRegExpValidator * validator = new QRegExpValidator(QRegExp("[^/].*"), this);
   _lineEdit->setValidator(validator);
 }
