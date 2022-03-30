@@ -463,7 +463,8 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
 
 void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
-  QObject::disconnect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+  bool ok = QObject::disconnect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
+  Q_ASSERT_X(ok, __PRETTY_FUNCTION__, "Cannot disconnect Updater::updateIsDone from MainWindow::onStartupFiltersUpdateFinished");
 
   ui->progressInfoWidget->stopAnimationAndHide();
   if (status == (int)Updater::UpdateStatus::SomeFailed) {
