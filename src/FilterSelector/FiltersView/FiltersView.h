@@ -83,7 +83,7 @@ public:
   void adjustTreeSize();
   void expandFolders(QList<QString> & folderPaths);
 
-  bool eventFilter(QObject * watched, QEvent * event);
+  bool eventFilter(QObject * watched, QEvent * event) override;
 
   void setVisibleTagColors(const TagColorSet & colors);
   TagColorSet visibleTagColors() const;
@@ -145,6 +145,8 @@ private:
   QMenu * _faveContextMenu;
   QMenu * _filterContextMenu;
   TagColorSet _visibleTagColors;
+  QModelIndex _indexBeforeClick;
+  void updateIndexBeforeClick();
 };
 
 } // namespace GmicQt

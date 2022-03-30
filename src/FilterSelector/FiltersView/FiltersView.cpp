@@ -167,6 +167,7 @@ void FiltersView::selectFave(const QString & hash)
     if (fave) {
       ui->treeView->setCurrentIndex(fave->index());
       ui->treeView->scrollTo(fave->index(), QAbstractItemView::PositionAtCenter);
+      updateIndexBeforeClick();
     }
   }
 }
@@ -180,6 +181,7 @@ void FiltersView::selectActualFilter(const QString & hash, const QList<QString> 
       if (filter && (filter->hash() == hash)) {
         ui->treeView->setCurrentIndex(filter->index());
         ui->treeView->scrollTo(filter->index(), QAbstractItemView::PositionAtCenter);
+        updateIndexBeforeClick();
         return;
       }
     }
@@ -467,12 +469,15 @@ void FiltersView::onReturnKeyPressedInFiltersTree()
 
 void FiltersView::onItemClicked(QModelIndex index)
 {
-  FilterTreeItem * item = filterTreeItemFromIndex(index);
-  if (item) {
-    emit filterSelected(item->hash());
-  } else {
-    emit filterSelected(QString());
+  if (index != _indexBeforeClick) {
+    FilterTreeItem * item = filterTreeItemFromIndex(index);
+    if (item) {
+      emit filterSelected(item->hash());
+    } else {
+      emit filterSelected(QString());
+    }
   }
+  updateIndexBeforeClick();
 }
 
 void FiltersView::onItemChanged(QStandardItem * item)
@@ -728,6 +733,11 @@ void FiltersView::toggleItemTag(FilterTreeItem * item, TagColor color)
     folderParent->removeRow(row);
     folder = folderParent;
   }
+}
+
+void FiltersView::updateIndexBeforeClick()
+{
+  _indexBeforeClick = ui->treeView->currentIndex();
 }
 
 FilterTreeItem * FiltersView::findFave(const QString & hash)
