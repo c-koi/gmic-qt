@@ -80,11 +80,13 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   _lineEdit->setPlaceholderText(tr("Search"));
   _lineEdit->setToolTip(tr("Search in filters list (%1)").arg(QKeySequence(QKeySequence::Find).toString()));
   setFocusProxy(_lineEdit);
+#if QT_VERSION_GTE(5, 12, 0)
   if (DialogSettings::darkThemeEnabled()) {
     QPalette palette = _lineEdit->palette();
     palette.setColor(QPalette::PlaceholderText, Qt::gray);
     _lineEdit->setPalette(palette);
   }
+#endif
   QRegExpValidator * validator = new QRegExpValidator(QRegExp("[^/].*"), this);
   _lineEdit->setValidator(validator);
 }
