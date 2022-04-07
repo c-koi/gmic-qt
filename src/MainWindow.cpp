@@ -679,6 +679,7 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   context.requestType = synchronous ? GmicProcessor::FilterContext::RequestType::SynchronousPreview : GmicProcessor::FilterContext::RequestType::Preview;
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
+
   context.inputOutputState = ui->inOutSelector->state();
   context.outputMessageMode = DialogSettings::outputMessageMode();
   ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
@@ -690,6 +691,7 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   // context.filterHash = currentFilter.hash; // Unused in this context
   context.filterCommand = currentFilter.previewCommand;
   context.filterArguments = ui->filterParams->valueString();
+  context.previewFromFullImage = currentFilter.previewFromFullImage;
   _processor.setContext(context);
   _processor.execute();
 
@@ -792,6 +794,7 @@ void MainWindow::processImage()
   context.filterCommand = currentFilter.command;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
+  context.previewFromFullImage = false;
   _processor.setGmicStatusQuotedParameters(ui->filterParams->quotedParameters());
   ui->filterParams->clearButtonParameters();
   _processor.setContext(context);

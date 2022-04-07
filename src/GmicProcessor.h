@@ -75,6 +75,7 @@ public:
     int previewWidth;
     int previewHeight;
     int previewTimeout;
+    bool previewFromFullImage = false;
     QString filterName;
     QString filterCommand;
     QString filterFullPath;

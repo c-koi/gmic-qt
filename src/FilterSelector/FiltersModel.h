@@ -44,6 +44,7 @@ public:
     Filter & setParameters(const QString & parameters);
     Filter & setPreviewFactor(float factor);
     Filter & setAccurateIfZoomed(bool accurate);
+    Filter & setPreviewFromFullImage(bool on);
     Filter & setPath(const QList<QString> & path);
     Filter & setWarningFlag(bool flag);
     Filter & setDefaultInputMode(InputMode);
@@ -61,6 +62,7 @@ public:
     const QString & parameters() const;
     float previewFactor() const;
     bool isAccurateIfZoomed() const;
+    bool previewFromFullImage() const;
     bool isWarning() const;
     InputMode defaultInputMode() const;
 
@@ -80,6 +82,7 @@ public:
     QString _parameters;
     float _previewFactor;
     bool _isAccurateIfZoomed;
+    bool _previewFromFullImage;
     QString _hash;
     bool _isWarning;
   };

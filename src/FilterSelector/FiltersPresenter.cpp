@@ -600,6 +600,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
       _currentFilter.parameters = filter.parameters();
       _currentFilter.previewCommand = fave.previewCommand();
       _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
+      _currentFilter.previewFromFullImage = filter.previewFromFullImage();
       _currentFilter.previewFactor = filter.previewFactor();
     } else {
       setInvalidFilter();
@@ -619,6 +620,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
     _currentFilter.parameters = filter.parameters();
     _currentFilter.previewCommand = filter.previewCommand();
     _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
+    _currentFilter.previewFromFullImage = filter.previewFromFullImage();
     _currentFilter.previewFactor = filter.previewFactor();
   } else {
     _currentFilter.setInvalid();
@@ -646,6 +648,7 @@ void FiltersPresenter::Filter::clear()
   hash.clear();
   plainTextName.clear();
   previewFactor = PreviewFactorAny;
+  previewFromFullImage = false;
   defaultInputMode = InputMode::Unspecified;
   isAFave = false;
 }

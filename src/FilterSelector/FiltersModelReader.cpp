@@ -137,24 +137,29 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         QList<QString> preview = commands[1].trimmed().split("(");
         float previewFactor = PreviewFactorAny;
         bool accurateIfZoomed = true;
+        bool previewFromFullImage = false;
         if (preview.size() >= 2) {
           if (preview[1].endsWith("+")) {
             accurateIfZoomed = true;
             preview[1].chop(1);
+          } else if (preview[1].endsWith("*")) {
+            accurateIfZoomed = true;
+            previewFromFullImage = true;
+            preview[1].chop(1);
           } else {
             accurateIfZoomed = false;
           }
-          previewFactor = preview[1].replace(QRegExp("\\).*"), "").toFloat();
+          bool ok = false;
+          preview[1].replace(QRegExp("\\).*"), "");
+          previewFactor = preview[1].toFloat(&ok);
+          if (!ok) {
+            Logger::error(QString("Cannot parse zoom factor for filter [%1]:\n%2").arg(filterName).arg(line));
+            previewFactor = PreviewFactorAny;
+          }
+          previewFactor = std::abs(previewFactor);
         }
+
         QString filterPreviewCommand = preview[0].trimmed();
-
-        //        FiltersTreeFilterItem * filterItem = new FiltersTreeFilterItem(filterName,
-        //                                                                       filterCommand,
-        //                                                                       filterPreviewCommand,
-        //                                                                       previewFactor,
-        //                                                                       accurateIfZoomed);
-        // filterItem->setWarningFlag(warning);
-
         QString start = line;
         start.replace(QRegExp("^\\s*"), "");
         start.replace(QRegExp(" .*"), " :");
@@ -182,6 +187,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         filter.setDefaultInputMode(defaultInputMode);
         filter.setPreviewFactor(previewFactor);
         filter.setAccurateIfZoomed(accurateIfZoomed);
+        filter.setPreviewFromFullImage(previewFromFullImage);
         filter.setParameters(parameters);
         filter.setPath(filterPath);
         filter.setWarningFlag(warning);
