@@ -100,19 +100,17 @@ void GmicProcessor::execute()
     env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
-  if (_filterContext.previewFromFullImage) {
-    int maxWidth;
-    int maxHeight;
-    LayersExtentProxy::getExtent(_filterContext.inputOutputState.inputMode, maxWidth, maxHeight);
-    const int ix0 = static_cast<int>(rect.x * maxWidth);
-    const int iy0 = static_cast<int>(rect.y * maxHeight);
-    const int ix1 = ix0 + std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
-    const int iy1 = iy0 + std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
-    env += QString(" _preview_x0=%1").arg(ix0);
-    env += QString(" _preview_y0=%1").arg(iy0);
-    env += QString(" _preview_x1=%1").arg(ix1);
-    env += QString(" _preview_y1=%1").arg(iy1);
-  }
+  int maxWidth;
+  int maxHeight;
+  LayersExtentProxy::getExtent(_filterContext.inputOutputState.inputMode, maxWidth, maxHeight);
+  const int ix0 = static_cast<int>(rect.x * maxWidth);
+  const int iy0 = static_cast<int>(rect.y * maxHeight);
+  const int ix1 = ix0 + std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
+  const int iy1 = iy0 + std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
+  env += QString(" _preview_x0=%1").arg(ix0);
+  env += QString(" _preview_y0=%1").arg(iy0);
+  env += QString(" _preview_x1=%1").arg(ix1);
+  env += QString(" _preview_y1=%1").arg(iy1);
   if (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview) {
     FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);
