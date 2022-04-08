@@ -103,6 +103,10 @@ void GmicProcessor::execute()
   int maxWidth;
   int maxHeight;
   LayersExtentProxy::getExtent(_filterContext.inputOutputState.inputMode, maxWidth, maxHeight);
+  if (_filterContext.zoomFactor < 1.0) {
+    maxWidth = static_cast<int>(std::round(maxWidth * _filterContext.zoomFactor));
+    maxHeight = static_cast<int>(std::round(maxHeight * _filterContext.zoomFactor));
+  }
   const int ix0 = static_cast<int>(rect.x * maxWidth);
   const int iy0 = static_cast<int>(rect.y * maxHeight);
   const int ix1 = ix0 + std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
