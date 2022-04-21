@@ -155,6 +155,10 @@ private:
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;
   QVector<bool> _gmicStatusQuotedParameters;
+  int _preview_x0;
+  int _preview_y0;
+  int _preview_x1;
+  int _preview_y1;
 };
 
 } // namespace GmicQt
