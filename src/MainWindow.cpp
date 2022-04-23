@@ -684,8 +684,8 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   context.outputMessageMode = DialogSettings::outputMessageMode();
   ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
   context.zoomFactor = ui->previewWidget->currentZoomFactor();
-  context.previewWidth = ui->previewWidget->width();
-  context.previewHeight = ui->previewWidget->height();
+  context.previewWindowWidth = ui->previewWidget->width();
+  context.previewWindowHeight = ui->previewWidget->height();
   context.previewTimeout = DialogSettings::previewTimeout();
   // context.filterName = currentFilter.plainTextName; // Unused in this context
   // context.filterHash = currentFilter.hash; // Unused in this context

@@ -72,8 +72,8 @@ public:
     OutputMessageMode outputMessageMode;
     PositionStringCorrection positionStringCorrection;
     double zoomFactor;
-    int previewWidth;
-    int previewHeight;
+    int previewWindowWidth;
+    int previewWindowHeight;
     int previewTimeout;
     bool previewFromFullImage = false;
     QString filterName;
@@ -155,10 +155,6 @@ private:
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;
   QVector<bool> _gmicStatusQuotedParameters;
-  int _preview_x0;
-  int _preview_y0;
-  int _preview_x1;
-  int _preview_y1;
 };
 
 } // namespace GmicQt

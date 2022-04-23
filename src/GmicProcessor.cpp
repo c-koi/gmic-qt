@@ -96,21 +96,45 @@ void GmicProcessor::execute()
   env += QString(" _output_messages=%1").arg(static_cast<int>(_filterContext.outputMessageMode));
   if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
       (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
-    env += QString(" _preview_width=%1").arg(_filterContext.previewWidth);
-    env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
+    env += QString(" _preview_window_width=%1").arg(_filterContext.previewWindowWidth);
+    env += QString(" _preview_window_height=%1").arg(_filterContext.previewWindowHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
   int maxWidth;
   int maxHeight;
+  int preview_x0;
+  int preview_y0;
+  int preview_x1;
+  int preview_y1;
+  QSize previewSize;
   LayersExtentProxy::getExtent(_filterContext.inputOutputState.inputMode, maxWidth, maxHeight);
-  _preview_x0 = static_cast<int>(rect.x * maxWidth);
-  _preview_y0 = static_cast<int>(rect.y * maxHeight);
-  _preview_x1 = _preview_x0 + std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
-  _preview_y1 = _preview_y0 + std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
-  env += QString(" _preview_x0=%1").arg(_preview_x0);
-  env += QString(" _preview_y0=%1").arg(_preview_y0);
-  env += QString(" _preview_x1=%1").arg(_preview_x1);
-  env += QString(" _preview_y1=%1").arg(_preview_y1);
+  if (_filterContext.previewFromFullImage) {
+    preview_x0 = static_cast<int>(rect.x * maxWidth);
+    preview_y0 = static_cast<int>(rect.y * maxHeight);
+    preview_x1 = preview_x0 + std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
+    preview_y1 = preview_y0 + std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
+    previewSize = QSize(1 + preview_x1 - preview_x0, 1 + preview_y1 - preview_y0);
+    if (_filterContext.zoomFactor < 1.0) {
+      previewSize = QSize(static_cast<int>(std::round(previewSize.width() * _filterContext.zoomFactor)), //
+                          static_cast<int>(std::round(previewSize.height() * _filterContext.zoomFactor)));
+    }
+  } else {
+    if (_filterContext.zoomFactor < 1.0) {
+      maxWidth = static_cast<int>(std::round(maxWidth * _filterContext.zoomFactor));
+      maxHeight = static_cast<int>(std::round(maxHeight * _filterContext.zoomFactor));
+    }
+    preview_x0 = 0;
+    preview_y0 = 0;
+    preview_x1 = std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
+    preview_y1 = std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
+    previewSize = QSize(1 + preview_x1 - preview_x0, 1 + preview_y1 - preview_y0);
+  }
+  env += QString(" _preview_x0=%1").arg(preview_x0);
+  env += QString(" _preview_y0=%1").arg(preview_y0);
+  env += QString(" _preview_x1=%1").arg(preview_x1);
+  env += QString(" _preview_y1=%1").arg(preview_y1);
+  env += QString(" _preview_width=%1").arg(previewSize.width());
+  env += QString(" _preview_height=%1").arg(previewSize.height());
   if (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview) {
     FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);
@@ -305,16 +329,6 @@ void GmicProcessor::onPreviewThreadFinished()
     }
     buildPreviewImage(*_gmicImages, *_previewImage);
   }
-
-  if (_filterContext.previewFromFullImage && _filterContext.zoomFactor < 1.0) {
-    QSize previewImageSize(1 + _preview_x1 - _preview_x0, 1 + _preview_y1 - _preview_y0);
-    if ((_previewImage->width() == previewImageSize.width()) && (_previewImage->height() == previewImageSize.height())) {
-      QSize scaledPreviewImageSize(static_cast<int>(std::round(_previewImage->width() * _filterContext.zoomFactor)), //
-                                   static_cast<int>(std::round(_previewImage->height() * _filterContext.zoomFactor)));
-      _previewImage->resize(scaledPreviewImageSize.width(), scaledPreviewImageSize.height(), 1, -100, 1);
-    }
-  }
-
   _filterThread->deleteLater();
   _filterThread = nullptr;
   hideWaitingCursor();
