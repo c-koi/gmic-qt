@@ -56,7 +56,7 @@ QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
 VERSION = 0.0.0
 
-PKGCONFIG += fftw3 zlib libpng libcurl
+PKGCONFIG += fftw3 zlib libpng libjpeg libcurl
 
 equals( HOST, "gimp" ) {
   PKGCONFIG += gimp-2.0
@@ -68,7 +68,7 @@ equals( HOST, "gimp3" ) {
 
 DEFINES += cimg_use_cpp11=1
 DEFINES += cimg_use_fftw3 cimg_use_zlib
-DEFINES += gmic_core cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png
+DEFINES += gmic_core cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_jpeg
 DEFINES += cimg_appname="\\\"gmic\\\""
 
 equals(TIMING, "on") {
