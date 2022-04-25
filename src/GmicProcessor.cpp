@@ -96,8 +96,8 @@ void GmicProcessor::execute()
   env += QString(" _output_messages=%1").arg(static_cast<int>(_filterContext.outputMessageMode));
   if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
       (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
-    env += QString(" _preview_window_width=%1").arg(_filterContext.previewWindowWidth);
-    env += QString(" _preview_window_height=%1").arg(_filterContext.previewWindowHeight);
+    env += QString(" _preview_area_width=%1").arg(_filterContext.previewWindowWidth);
+    env += QString(" _preview_area_height=%1").arg(_filterContext.previewWindowHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
   int maxWidth;
