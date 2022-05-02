@@ -65,7 +65,7 @@ void FiltersTagMap::setFilterTags(const QString & hash, const TagColorSet & colo
 void FiltersTagMap::load()
 {
   _hashesToColors.clear();
-  QString jsonFilename = QString("%1%2").arg(gmicConfigPath(true), FILTERS_TAGS_FILENAME);
+  QString jsonFilename = QString("%1%2").arg(gmicConfigPath(false), FILTERS_TAGS_FILENAME);
   QFile jsonFile(jsonFilename);
   if (!jsonFile.exists()) {
     return;
