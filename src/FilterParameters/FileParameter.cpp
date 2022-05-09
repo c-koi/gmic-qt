@@ -107,7 +107,7 @@ void FileParameter::reset()
   setValue(_default);
 }
 
-bool FileParameter::initFromText(const char * text, int & textLength)
+bool FileParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list;
   if (matchType("filein", text)) {
@@ -123,7 +123,7 @@ bool FileParameter::initFromText(const char * text, int & textLength)
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   QRegExp re("^\".*\"$");
   if (re.exactMatch(list[1])) {
     list[1].chop(1);

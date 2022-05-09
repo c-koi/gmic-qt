@@ -55,6 +55,7 @@ public:
     InputMode defaultInputMode;
     QString hash;
     bool isAccurateIfZoomed;
+    bool previewFromFullImage;
     float previewFactor;
     bool isAFave;
     void clear();

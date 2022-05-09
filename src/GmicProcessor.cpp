@@ -79,8 +79,13 @@ void GmicProcessor::execute()
   _gmicImages->assign();
   if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
       (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
-    CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode, _filterContext.zoomFactor);
-    updateImageNames(imageNames);
+    if (_filterContext.previewFromFullImage) {
+      CroppedImageListProxy::get(*_gmicImages, imageNames, 0.0, 0.0, 1.0, 1.0, _filterContext.inputOutputState.inputMode, 1.0);
+      updateImageNames(imageNames);
+    } else {
+      CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode, _filterContext.zoomFactor);
+      updateImageNames(imageNames);
+    }
   } else {
     CroppedImageListProxy::get(*_gmicImages, imageNames, rect.x, rect.y, rect.w, rect.h, _filterContext.inputOutputState.inputMode, 1.0);
   }
@@ -91,10 +96,45 @@ void GmicProcessor::execute()
   env += QString(" _output_messages=%1").arg(static_cast<int>(_filterContext.outputMessageMode));
   if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
       (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
-    env += QString(" _preview_width=%1").arg(_filterContext.previewWidth);
-    env += QString(" _preview_height=%1").arg(_filterContext.previewHeight);
+    env += QString(" _preview_area_width=%1").arg(_filterContext.previewWindowWidth);
+    env += QString(" _preview_area_height=%1").arg(_filterContext.previewWindowHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
   }
+  int maxWidth;
+  int maxHeight;
+  int preview_x0;
+  int preview_y0;
+  int preview_x1;
+  int preview_y1;
+  QSize previewSize;
+  LayersExtentProxy::getExtent(_filterContext.inputOutputState.inputMode, maxWidth, maxHeight);
+  if (_filterContext.previewFromFullImage) {
+    preview_x0 = static_cast<int>(rect.x * maxWidth);
+    preview_y0 = static_cast<int>(rect.y * maxHeight);
+    preview_x1 = preview_x0 + std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
+    preview_y1 = preview_y0 + std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
+    previewSize = QSize(1 + preview_x1 - preview_x0, 1 + preview_y1 - preview_y0);
+    if (_filterContext.zoomFactor < 1.0) {
+      previewSize = QSize(static_cast<int>(std::round(previewSize.width() * _filterContext.zoomFactor)), //
+                          static_cast<int>(std::round(previewSize.height() * _filterContext.zoomFactor)));
+    }
+  } else {
+    if (_filterContext.zoomFactor < 1.0) {
+      maxWidth = static_cast<int>(std::round(maxWidth * _filterContext.zoomFactor));
+      maxHeight = static_cast<int>(std::round(maxHeight * _filterContext.zoomFactor));
+    }
+    preview_x0 = 0;
+    preview_y0 = 0;
+    preview_x1 = std::min(maxWidth, static_cast<int>(1 + std::ceil(maxWidth * rect.w))) - 1;
+    preview_y1 = std::min(maxHeight, static_cast<int>(1 + std::ceil(maxHeight * rect.h))) - 1;
+    previewSize = QSize(1 + preview_x1 - preview_x0, 1 + preview_y1 - preview_y0);
+  }
+  env += QString(" _preview_x0=%1").arg(preview_x0);
+  env += QString(" _preview_y0=%1").arg(preview_y0);
+  env += QString(" _preview_x1=%1").arg(preview_x1);
+  env += QString(" _preview_y1=%1").arg(preview_y1);
+  env += QString(" _preview_width=%1").arg(previewSize.width());
+  env += QString(" _preview_height=%1").arg(previewSize.height());
   if (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview) {
     FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
     runner.swapImages(*_gmicImages);

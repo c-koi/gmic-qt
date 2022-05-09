@@ -103,13 +103,13 @@ void FolderParameter::reset()
   setValue(_default);
 }
 
-bool FolderParameter::initFromText(const char * text, int & textLength)
+bool FolderParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list = parseText("folder", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   QRegExp re("^\".*\"$");
   if (re.exactMatch(list[1])) {
     list[1].chop(1);

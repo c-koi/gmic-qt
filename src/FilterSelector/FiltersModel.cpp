@@ -115,6 +115,7 @@ FiltersModel::Filter::Filter()
 {
   _previewFactor = PreviewFactorAny;
   _isAccurateIfZoomed = false;
+  _previewFromFullImage = false;
   _isWarning = false;
 }
 
@@ -153,6 +154,12 @@ FiltersModel::Filter & FiltersModel::Filter::setPreviewFactor(float factor)
 FiltersModel::Filter & FiltersModel::Filter::setAccurateIfZoomed(bool accurate)
 {
   _isAccurateIfZoomed = accurate;
+  return *this;
+}
+
+FiltersModel::Filter & FiltersModel::Filter::setPreviewFromFullImage(bool on)
+{
+  _previewFromFullImage = on;
   return *this;
 }
 
@@ -258,6 +265,11 @@ float FiltersModel::Filter::previewFactor() const
 bool FiltersModel::Filter::isAccurateIfZoomed() const
 {
   return _isAccurateIfZoomed;
+}
+
+bool FiltersModel::Filter::previewFromFullImage() const
+{
+  return _previewFromFullImage;
 }
 
 bool FiltersModel::Filter::isWarning() const

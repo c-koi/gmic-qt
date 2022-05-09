@@ -79,7 +79,7 @@ signals:
 
 private:
   static QString valueString(const QVector<AbstractParameter *> & parameters);
-  static QVector<AbstractParameter *> buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * error);
+  static QVector<AbstractParameter *> buildParameters(const QString & filterName, const QString & parameters, QObject * parent, int * actualParameterCount, QString * error);
   static QStringList defaultParameterList(const QVector<AbstractParameter *> & parameters, QVector<bool> * quoted);
   static QVector<bool> quotedParameters(const QVector<AbstractParameter *> & parameters);
   static QVector<int> parameterSizes(const QVector<AbstractParameter *> & parameters);

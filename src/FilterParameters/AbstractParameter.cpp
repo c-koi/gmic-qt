@@ -78,7 +78,7 @@ void AbstractParameter::addToKeypointList(KeypointList &) const {}
 
 void AbstractParameter::extractPositionFromKeypointList(KeypointList &) {}
 
-AbstractParameter * AbstractParameter::createFromText(const char * text, int & length, QString & error, QObject * parent)
+AbstractParameter * AbstractParameter::createFromText(const QString & filterName, const char * text, int & length, QString & error, QObject * parent)
 {
   AbstractParameter * result = nullptr;
   QString line = text;
@@ -117,7 +117,7 @@ AbstractParameter * AbstractParameter::createFromText(const char * text, int & l
     result = new PointParameter(parent);
   }
   if (result) {
-    if (!result->initFromText(text, length)) {
+    if (!result->initFromText(filterName, text, length)) {
       delete result;
       result = nullptr;
       if (!line.isEmpty()) {

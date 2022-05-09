@@ -72,9 +72,10 @@ public:
     OutputMessageMode outputMessageMode;
     PositionStringCorrection positionStringCorrection;
     double zoomFactor;
-    int previewWidth;
-    int previewHeight;
+    int previewWindowWidth;
+    int previewWindowHeight;
     int previewTimeout;
+    bool previewFromFullImage = false;
     QString filterName;
     QString filterCommand;
     QString filterFullPath;

@@ -48,7 +48,11 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   _hasKeypoints = false;
 }
 
-QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & parameters, QObject * parent, int * actualParameterCount, QString * error)
+QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QString & filterName, //
+                                                                     const QString & parameters, //
+                                                                     QObject * parent,           //
+                                                                     int * actualParameterCount, //
+                                                                     QString * error)
 {
   QVector<AbstractParameter *> result;
   QByteArray rawText = parameters.toUtf8();
@@ -59,7 +63,7 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
 
   AbstractParameter * parameter;
   do {
-    parameter = AbstractParameter::createFromText(cstr, length, localError, parent);
+    parameter = AbstractParameter::createFromText(filterName, cstr, length, localError, parent);
     if (parameter) {
       result.push_back(parameter);
       if (parameter->isActualParameter()) {
@@ -114,7 +118,7 @@ QStringList FilterParametersWidget::defaultParameterList(const QString & paramet
   }
   QObject parent;
   QString localError;
-  QVector<AbstractParameter *> v = FilterParametersWidget::buildParameters(parametersDefinition, &parent, nullptr, &localError);
+  QVector<AbstractParameter *> v = FilterParametersWidget::buildParameters("Dummy filter", parametersDefinition, &parent, nullptr, &localError);
   if (!localError.isEmpty()) {
     if (error) {
       *error = localError;
@@ -162,7 +166,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Build parameters and count actual ones
   QString error;
-  _parameters = buildParameters(parameters, this, &_actualParametersCount, &error);
+  _parameters = buildParameters(_filterName, parameters, this, &_actualParametersCount, &error);
   _quotedParameters = quotedParameters(_parameters);
 
   // Restore saved values

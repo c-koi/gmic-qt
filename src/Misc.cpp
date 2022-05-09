@@ -327,7 +327,7 @@ QStringList mergeSubsequences(const QStringList & sequence, const QVector<int> &
     ++itLength;
   }
   if ((itInput != sequence.constEnd()) || (itLength != lengths.end())) {
-    Logger::warning(QObject::tr("List %1 cannot be merged considering theses runs: %2").arg(stringify(sequence)).arg(stringify(subSequenceLengths)));
+    Logger::warning(QObject::tr("List %1 cannot be merged considering these runs: %2").arg(stringify(sequence)).arg(stringify(subSequenceLengths)));
     return QStringList();
   }
   return result;

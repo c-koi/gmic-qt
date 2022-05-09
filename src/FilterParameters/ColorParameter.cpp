@@ -150,13 +150,13 @@ void ColorParameter::reset()
   updateButtonColor();
 }
 
-bool ColorParameter::initFromText(const char * text, int & textLength)
+bool ColorParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list = parseText("color", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
 
   // color(#e9cc00) and color(#e9cc00ff)
   const QString trimmed = list[1].trimmed();

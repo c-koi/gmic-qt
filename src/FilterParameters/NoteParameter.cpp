@@ -77,7 +77,7 @@ void NoteParameter::setValue(const QString &) {}
 
 void NoteParameter::reset() {}
 
-bool NoteParameter::initFromText(const char * text, int & textLength)
+bool NoteParameter::initFromText(const QString & /* filterName */, const char * text, int & textLength)
 {
   QList<QString> list = parseText("note", text, textLength);
   if (list.isEmpty()) {

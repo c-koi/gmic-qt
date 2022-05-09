@@ -120,13 +120,13 @@ void TextParameter::reset()
   _value = _default;
 }
 
-bool TextParameter::initFromText(const char * text, int & textLength)
+bool TextParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QStringList list = parseText("text", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   QString value = list[1];
   _multiline = false;
   QRegularExpression re("^\\s*(0|1)\\s*,");

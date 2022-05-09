@@ -57,7 +57,7 @@ qmake is simple to use but only really works in an environment where bash is ava
 ```sh
 git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
-make -C gmic/src CImg.h gmic_stdlib.h
+make -C gmic/src CImg.h gmic_stdlib_community.h
 cd gmic-qt
 qmake [HOST=none|gimp|krita|paintdotnet|8bf]
 make
@@ -70,7 +70,7 @@ cmake works on all platforms. The first part is the same and requires make and w
 ```sh
 git clone https://github.com/dtschump/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
-make -C gmic/src CImg.h gmic_stdlib.h
+make -C gmic/src CImg.h gmic_stdlib_community.h
 cd gmic-qt
 ```
 

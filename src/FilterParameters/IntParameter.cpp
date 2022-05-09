@@ -132,13 +132,13 @@ void IntParameter::reset()
   connectSliderSpinBox();
 }
 
-bool IntParameter::initFromText(const char * text, int & textLength)
+bool IntParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list = parseText("int", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
 
   QList<QString> values = list[1].split(QChar(','));
   if (values.size() != 3) {
@@ -156,7 +156,7 @@ void IntParameter::timerEvent(QTimerEvent * e)
 {
   killTimer(e->timerId());
   _timerId = 0;
-  if (not _spinBox->unfinishedKeyboardEditing()) {
+  if (!_spinBox->unfinishedKeyboardEditing()) {
     notifyIfRelevant();
   }
 }

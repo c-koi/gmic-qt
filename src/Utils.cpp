@@ -30,6 +30,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QRegExp>
+#include <QStandardPaths>
 #include <QString>
 #include <QTemporaryFile>
 #include "Common.h"
@@ -50,17 +51,20 @@ namespace GmicQt
 
 const QString & gmicConfigPath(bool create)
 {
-  QString qpath = QString::fromUtf8(gmic::path_rc());
-  QFileInfo dir(qpath);
+#if defined(Q_OS_ANDROID)
+  QString baseAppPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+  const QString qpath = QString::fromUtf8(gmic::path_rc(qPrintable(baseAppPath)));
+#elif defined(_IS_WINDOWS_)
+  const QString qpath = QString::fromUtf8(gmic::path_rc());
+#else
+  const QString qpath = QString::fromLocal8Bit(gmic::path_rc());
+#endif
   static QString result;
-  if (dir.isDir()) {
+  QFileInfo pathInfo(qpath);
+  if (pathInfo.isDir() || (create && gmic::init_rc())) {
     result = qpath;
-    return result;
-  }
-  if (!create || !gmic::init_rc()) {
-    result.clear();
   } else {
-    result = QString::fromUtf8(gmic::path_rc());
+    result.clear();
   }
   return result;
 }

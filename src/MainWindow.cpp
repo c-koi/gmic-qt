@@ -407,7 +407,7 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
     const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
     if (!plainPath.isEmpty()) {
       _filtersPresenter->selectFilterFromAbsolutePathOrPlainName(plainPath);
-      if (not filter.isValid()) {
+      if (!filter.isValid()) {
         throw tr("Plugin was called with a filter path with no matching filter:\n\nPath: %1").arg(QString::fromStdString(_pluginParameters.filterPath));
       }
     }
@@ -463,7 +463,8 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
 
 void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
-  QObject::disconnect(Updater::getInstance(), SIGNAL(updateIsDone(int)), this, SLOT(onStartupFiltersUpdateFinished(int)));
+  bool ok = QObject::disconnect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
+  Q_ASSERT_X(ok, __PRETTY_FUNCTION__, "Cannot disconnect Updater::updateIsDone from MainWindow::onStartupFiltersUpdateFinished");
 
   ui->progressInfoWidget->stopAnimationAndHide();
   if (status == (int)Updater::UpdateStatus::SomeFailed) {
@@ -634,7 +635,7 @@ void MainWindow::makeConnections()
   connect(ui->zoomLevelSelector, SIGNAL(zoomReset()), this, SLOT(onPreviewZoomReset()));
 
   connect(ui->tbAddFave, SIGNAL(clicked(bool)), this, SLOT(onAddFave()));
-  connect(_filtersPresenter, SIGNAL(faveAdditionRequested(QString)), this, SLOT(onAddFave()));
+  connect(_filtersPresenter, &FiltersPresenter::faveAdditionRequested, this, &MainWindow::onAddFave);
   connect(ui->tbRemoveFave, &QToolButton::clicked, this, &MainWindow::onRemoveFave);
   connect(ui->tbRenameFave, &QToolButton::clicked, this, &MainWindow::onRenameFave);
   connect(ui->inOutSelector, SIGNAL(inputModeChanged(InputMode)), this, SLOT(onInputModeChanged(InputMode)));
@@ -678,17 +679,19 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   context.requestType = synchronous ? GmicProcessor::FilterContext::RequestType::SynchronousPreview : GmicProcessor::FilterContext::RequestType::Preview;
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
+
   context.inputOutputState = ui->inOutSelector->state();
   context.outputMessageMode = DialogSettings::outputMessageMode();
   ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
   context.zoomFactor = ui->previewWidget->currentZoomFactor();
-  context.previewWidth = ui->previewWidget->width();
-  context.previewHeight = ui->previewWidget->height();
+  context.previewWindowWidth = ui->previewWidget->width();
+  context.previewWindowHeight = ui->previewWidget->height();
   context.previewTimeout = DialogSettings::previewTimeout();
   // context.filterName = currentFilter.plainTextName; // Unused in this context
   // context.filterHash = currentFilter.hash; // Unused in this context
   context.filterCommand = currentFilter.previewCommand;
   context.filterArguments = ui->filterParams->valueString();
+  context.previewFromFullImage = currentFilter.previewFromFullImage;
   _processor.setContext(context);
   _processor.execute();
 
@@ -791,6 +794,7 @@ void MainWindow::processImage()
   context.filterCommand = currentFilter.command;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
+  context.previewFromFullImage = false;
   _processor.setGmicStatusQuotedParameters(ui->filterParams->quotedParameters());
   ui->filterParams->clearButtonParameters();
   _processor.setContext(context);
@@ -1175,7 +1179,7 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
     } else {
       ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
     }
-    setFilterName(FilterTextTranslator::translate((filter.name)));
+    setFilterName(FilterTextTranslator::translate(filter.name));
     ui->inOutSelector->enable();
     if (ui->inOutSelector->hasActiveControls()) {
       ui->inOutSelector->show();

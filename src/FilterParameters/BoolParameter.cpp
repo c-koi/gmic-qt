@@ -118,13 +118,13 @@ void BoolParameter::disconnectCheckBox()
   _connected = false;
 }
 
-bool BoolParameter::initFromText(const char * text, int & textLength)
+bool BoolParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
   QList<QString> list = parseText("bool", text, textLength);
   if (list.isEmpty()) {
     return false;
   }
-  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0]));
+  _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
   _value = _default = (list[1].startsWith("true") || list[1].startsWith("1"));
   return true;
 }

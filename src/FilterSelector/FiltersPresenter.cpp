@@ -270,7 +270,7 @@ void FiltersPresenter::selectFilterFromHash(QString hash, bool notify)
       hashExists = false;
     }
   }
-  if (not hashExists) {
+  if (!hashExists) {
     hash.clear();
   }
   setCurrentFilter(hash);
@@ -568,12 +568,12 @@ void FiltersPresenter::onTagToggled(int)
 
 bool FiltersPresenter::danglingFaveIsSelected() const
 {
-  if (not _filtersView || not _filtersView->aFaveIsSelected()) {
+  if (!_filtersView || !_filtersView->aFaveIsSelected()) {
     return false;
   }
   QString hash = _filtersView->selectedFilterHash();
   if (_favesModel.contains(hash)) {
-    return not _filtersModel.contains(_favesModel.getFaveFromHash(hash).originalHash());
+    return !_filtersModel.contains(_favesModel.getFaveFromHash(hash).originalHash());
   }
   return false;
 }
@@ -600,6 +600,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
       _currentFilter.parameters = filter.parameters();
       _currentFilter.previewCommand = fave.previewCommand();
       _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
+      _currentFilter.previewFromFullImage = filter.previewFromFullImage();
       _currentFilter.previewFactor = filter.previewFactor();
     } else {
       setInvalidFilter();
@@ -619,6 +620,7 @@ void FiltersPresenter::setCurrentFilter(const QString & hash)
     _currentFilter.parameters = filter.parameters();
     _currentFilter.previewCommand = filter.previewCommand();
     _currentFilter.isAccurateIfZoomed = filter.isAccurateIfZoomed();
+    _currentFilter.previewFromFullImage = filter.previewFromFullImage();
     _currentFilter.previewFactor = filter.previewFactor();
   } else {
     _currentFilter.setInvalid();
@@ -646,6 +648,7 @@ void FiltersPresenter::Filter::clear()
   hash.clear();
   plainTextName.clear();
   previewFactor = PreviewFactorAny;
+  previewFromFullImage = false;
   defaultInputMode = InputMode::Unspecified;
   isAFave = false;
 }

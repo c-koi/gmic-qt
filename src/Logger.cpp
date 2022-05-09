@@ -27,8 +27,8 @@
 #include <QString>
 #include <QStringList>
 #include "Common.h"
-#include "Utils.h"
 #include "GmicQt.h"
+#include "Utils.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -73,7 +73,9 @@ void Logger::clear()
   }
   QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
   FILE * dummyFile = fopen(filename.toLocal8Bit().constData(), "w");
-  fclose(dummyFile);
+  if (dummyFile) {
+    fclose(dummyFile);
+  }
   setMode(mode);
 }
 

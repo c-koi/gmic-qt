@@ -19,7 +19,7 @@
 !defined(COMPILER,var) { COMPILER = gcc }
 
 # Possible values are "on" or "off"
-!defined(LTO,var) { LTO=on }
+!defined(LTO,var) { LTO=off }
 
 # Possible values are "on" or "off"
 !defined(TEST_FILTERS_QM,var) { TEST_FILTERS_QM=off }
@@ -56,7 +56,7 @@ QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
 VERSION = 0.0.0
 
-PKGCONFIG += fftw3 zlib libpng libcurl
+PKGCONFIG += fftw3 zlib libpng libjpeg libcurl
 
 equals( HOST, "gimp" ) {
   PKGCONFIG += gimp-2.0
@@ -68,7 +68,7 @@ equals( HOST, "gimp3" ) {
 
 DEFINES += cimg_use_cpp11=1
 DEFINES += cimg_use_fftw3 cimg_use_zlib
-DEFINES += gmic_build cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png
+DEFINES += gmic_core cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_jpeg
 DEFINES += cimg_appname="\\\"gmic\\\""
 
 equals(TIMING, "on") {
@@ -127,13 +127,18 @@ equals( COMPILER, "clang" ) {
   message("gmic_stdlib_community.h found")
 }
 
-# Make sure CImg and gmic are the same version
+# Make sure CImg, gmic and gmic_stdlib_community.h are the same version
 GMIC_VERSION = $$system(bash check_versions.sh $$GMIC_PATH gmic)
+STDLIB_VERSION = $$system(bash check_versions.sh $$GMIC_PATH stdlib)
 CIMG_VERSION = $$system(bash check_versions.sh $$GMIC_PATH CImg)
-message("G'MIC version is" $$GMIC_VERSION)
-message("CImg version is" $$CIMG_VERSION)
-!system(bash check_versions.sh $$GMIC_PATH check):{
+message("G'MIC version is ................." $$GMIC_VERSION)
+message("gmic_stdlib_community.h version is" $$STDLIB_VERSION)
+message("CImg version is .................." $$CIMG_VERSION)
+!equals(GMIC_VERSION, $$CIMG_VERSION):{
    error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'CImg.h' (" $$CIMG_VERSION ") mismatch")
+}
+!equals(GMIC_VERSION, $$STDLIB_VERSION):{
+   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'gmic_stdlib_community.h' (" $$STDLIB_VERSION ") mismatch")
 }
 
 !isEmpty(PRERELEASE) {
@@ -243,7 +248,7 @@ CONFIG(release, debug|release):gcc|clang:equals(LTO,"on") {
     QMAKE_LFLAGS_RELEASE += -flto
 }
 
-DEFINES += gmic_gui gmic_build gmic_is_parallel gmic_community cimg_use_abort
+DEFINES += gmic_gui gmic_core gmic_is_parallel gmic_community cimg_use_abort
 
 INCLUDEPATH	+= $$PWD $$PWD/src $$GMIC_PATH
 DEPENDPATH += $$PWD/src \
@@ -406,7 +411,7 @@ SOURCES += \
 
 equals(GMIC_DYNAMIC_LINKING, "on" ) {
   message(Dynamic linking with libgmic)
-  LIBS += $$GMIC_PATH/libgmic.so
+  LIBS += -Wl,-rpath,. $$GMIC_PATH/libgmic.so
 }
 
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
@@ -473,7 +478,7 @@ CONFIG(debug, debug|release) {
 }
 
 equals(ASAN, "on" ) {
-    message(Adress sanitizer enabled)
+    message(Address sanitizer enabled)
     QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
     QMAKE_LFLAGS_DEBUG += -fsanitize=address
 }

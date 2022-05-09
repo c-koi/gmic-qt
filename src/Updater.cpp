@@ -71,6 +71,7 @@ void Updater::updateSources(bool useNetwork)
   try {
     gmic(command.toLocal8Bit().constData(), gptSources, names, nullptr, true);
   } catch (...) {
+    Logger::error(QString("Command '%1' failed.").arg(command));
     gptSources.assign();
   }
   cimg_library::CImgList<char> sources;
