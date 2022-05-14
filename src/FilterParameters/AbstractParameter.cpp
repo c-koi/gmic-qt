@@ -25,6 +25,7 @@
 #include "FilterParameters/AbstractParameter.h"
 #include <QDebug>
 #include <QGridLayout>
+#include <QLabel>
 #include <cstring>
 #include "Common.h"
 #include "FilterParameters/BoolParameter.h"
@@ -192,6 +193,13 @@ AbstractParameter::VisibilityState AbstractParameter::visibilityState() const
 AbstractParameter::VisibilityPropagation AbstractParameter::visibilityPropagation() const
 {
   return _visibilityPropagation;
+}
+
+void AbstractParameter::setTextSelectable(QLabel * label)
+{
+  Qt::TextInteractionFlags flags = label->textInteractionFlags();
+  flags.setFlag(Qt::TextSelectableByMouse, true);
+  label->setTextInteractionFlags(flags);
 }
 
 QStringList AbstractParameter::parseText(const QString & type, const char * text, int & length)

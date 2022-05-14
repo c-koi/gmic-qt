@@ -61,6 +61,7 @@ bool ChoiceParameter::addTo(QWidget * widget, int row)
   _comboBox->setCurrentIndex(_value);
 
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  setTextSelectable(_label);
   _grid->addWidget(_comboBox, row, 1, 1, 2);
   connectComboBox();
   return true;

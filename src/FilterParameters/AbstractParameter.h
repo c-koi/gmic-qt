@@ -28,6 +28,7 @@
 #include <QObject>
 #include <QStringList>
 class QGridLayout;
+class QLabel;
 
 namespace GmicQt
 {
@@ -81,6 +82,7 @@ signals:
   void valueChanged();
 
 protected:
+  static void setTextSelectable(QLabel * label);
   QStringList parseText(const QString & type, const char * text, int & length);
   bool matchType(const QString & type, const char * text) const;
   void notifyIfRelevant();

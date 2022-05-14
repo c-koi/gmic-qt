@@ -73,6 +73,7 @@ bool FileParameter::addTo(QWidget * widget, int row)
   _button = new QPushButton(buttonText, widget);
   _button->setIcon(LOAD_ICON("document-open"));
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  setTextSelectable(_label);
   _grid->addWidget(_button, row, 1, 1, 2);
   connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
   return true;

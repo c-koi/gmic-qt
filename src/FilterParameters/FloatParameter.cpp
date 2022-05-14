@@ -83,6 +83,7 @@ bool FloatParameter::addTo(QWidget * widget, int row)
   _spinBox->setSingleStep(double(_max - _min) / 100.0);
   _spinBox->setValue((double)_value);
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  setTextSelectable(_label);
   _grid->addWidget(_slider, row, 1, 1, 1);
   _grid->addWidget(_spinBox, row, 2, 1, 1);
 

@@ -87,10 +87,10 @@ bool IntParameter::addTo(QWidget * widget, int row)
     _slider->setPalette(p);
   }
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  setTextSelectable(_label);
   _grid->addWidget(_slider, row, 1, 1, 1);
   _grid->addWidget(_spinBox, row, 2, 1, 1);
   connectSliderSpinBox();
-
   connect(_spinBox, &CustomSpinBox::editingFinished, [this]() { notifyIfRelevant(); });
 
   return true;

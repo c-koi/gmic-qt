@@ -37,12 +37,11 @@
 namespace GmicQt
 {
 
-BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent), _default(false), _value(false), _label(nullptr), _checkBox(nullptr), _connected(false) {}
+BoolParameter::BoolParameter(QObject * parent) : AbstractParameter(parent), _default(false), _value(false), _checkBox(nullptr), _connected(false) {}
 
 BoolParameter::~BoolParameter()
 {
   delete _checkBox;
-  delete _label;
 }
 
 int BoolParameter::size() const
@@ -56,7 +55,6 @@ bool BoolParameter::addTo(QWidget * widget, int row)
   Q_ASSERT_X(_grid, __PRETTY_FUNCTION__, "No grid layout in widget");
   _row = row;
   delete _checkBox;
-  delete _label;
   _checkBox = new QCheckBox(_name, widget);
   _checkBox->setChecked(_value);
   if (DialogSettings::darkThemeEnabled()) {

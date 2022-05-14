@@ -121,6 +121,7 @@ bool PointParameter::addTo(QWidget * widget, int row)
   _spinBoxX->setValue(_position.x());
   _spinBoxY->setValue(_position.y());
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  setTextSelectable(_label);
   _grid->addWidget(_rowCell, row, 1, 1, 2);
 
 #ifdef _GMIC_QT_DEBUG_
