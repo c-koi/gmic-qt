@@ -28,9 +28,9 @@
 #include <QPainter>
 #include <QPalette>
 #include <QTextDocument>
-#include "DialogSettings.h"
 #include "FilterSelector/FiltersView/FilterTreeAbstractItem.h"
 #include "FilterSelector/FiltersView/FilterTreeItem.h"
+#include "Settings.h"
 #include "Tags.h"
 
 namespace GmicQt
@@ -65,7 +65,7 @@ void FilterTreeItemDelegate::paint(QPainter * painter, const QStyleOptionViewIte
   QTextDocument doc;
   if (!item->isCheckable() && filter && !filter->isVisible()) {
     QColor textColor;
-    textColor = DialogSettings::UnselectedFilterTextColor;
+    textColor = Settings::UnselectedFilterTextColor;
     doc.setHtml(QString("<span style=\"color:%1\">%2</span>&nbsp;%3").arg(textColor.name()).arg(options.text).arg(tagString));
   } else {
     if (filter) {

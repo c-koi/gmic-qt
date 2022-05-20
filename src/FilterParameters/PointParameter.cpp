@@ -39,10 +39,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "KeypointList.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -111,7 +111,7 @@ bool PointParameter::addTo(QWidget * widget, int row)
     hbox->addWidget(_removeButton = new QToolButton(_rowCell));
     _removeButton->setCheckable(true);
     _removeButton->setChecked(_removed);
-    _removeButton->setIcon(DialogSettings::RemoveIcon);
+    _removeButton->setIcon(Settings::RemoveIcon);
   } else {
     _removeButton = nullptr;
   }
@@ -393,7 +393,7 @@ void PointParameter::setRemoved(bool on)
     _labelX->setDisabled(on);
     _labelY->setDisabled(on);
     if (_removeButton) {
-      _removeButton->setIcon(on ? DialogSettings::AddIcon : DialogSettings::RemoveIcon);
+      _removeButton->setIcon(on ? Settings::AddIcon : Settings::RemoveIcon);
     }
   }
 }

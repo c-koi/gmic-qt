@@ -27,9 +27,9 @@
 #include <QSettings>
 #include <QStringList>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "Globals.h"
 #include "LanguageSettings.h"
+#include "Settings.h"
 #include "ui_languageselectionwidget.h"
 
 namespace GmicQt
@@ -53,15 +53,16 @@ LanguageSelectionWidget::LanguageSelectionWidget(QWidget * parent) //
     ui->comboBox->insertItem(0, QString(tr("System default (%1)")).arg(_code2name[lang]), QVariant(QString()));
   }
 
-  if (DialogSettings::darkThemeEnabled()) {
+  if (Settings::darkThemeEnabled()) {
     QPalette p = ui->cbTranslateFilters->palette();
-    p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
-    p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
+    p.setColor(QPalette::Text, Settings::CheckBoxTextColor);
+    p.setColor(QPalette::Base, Settings::CheckBoxBaseColor);
     ui->cbTranslateFilters->setPalette(p);
   }
   ui->cbTranslateFilters->setToolTip(tr("Translations are very likely to be incomplete."));
 
   connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &LanguageSelectionWidget::onLanguageSelectionChanged);
+  connect(ui->cbTranslateFilters, &QCheckBox::toggled, this, &LanguageSelectionWidget::onCheckboxToggled);
 }
 
 LanguageSelectionWidget::~LanguageSelectionWidget()
@@ -116,8 +117,19 @@ void LanguageSelectionWidget::onLanguageSelectionChanged(int index)
   if (lang.isEmpty()) {
     lang = LanguageSettings::systemDefaultAndAvailableLanguageCode();
   }
-  LanguageSettings::filterTranslationAvailable(lang);
-  ui->cbTranslateFilters->setEnabled(LanguageSettings::filterTranslationAvailable(lang));
+  if (LanguageSettings::filterTranslationAvailable(lang)) {
+    ui->cbTranslateFilters->setEnabled(true);
+  } else {
+    ui->cbTranslateFilters->setChecked(false);
+    ui->cbTranslateFilters->setEnabled(false);
+  }
+  emit languageCodeSelected(lang);
+  Settings::setLanguageCode(lang);
+}
+
+void LanguageSelectionWidget::onCheckboxToggled(bool on)
+{
+  Settings::setFilterTranslationEnabled(on);
 }
 
 } // namespace GmicQt

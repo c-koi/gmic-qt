@@ -27,7 +27,6 @@
 #include <QPalette>
 #include <QSettings>
 #include <cstdio>
-#include "DialogSettings.h"
 #include "IconLoader.h"
 #include "ui_inoutpanel.h"
 

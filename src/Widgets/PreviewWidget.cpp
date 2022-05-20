@@ -34,7 +34,6 @@
 #include <functional>
 #include "Common.h"
 #include "CroppedActiveLayerProxy.h"
-#include "DialogSettings.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
 #include "ImageTools.h"
@@ -42,6 +41,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "OverrideCursor.h"
+#include "Settings.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -216,7 +216,7 @@ void PreviewWidget::updateErrorImage()
   gmic_image<float> image;
   getOriginalImageCrop(image);
   image.move_to(images);
-  QString fullCommandLine = commandFromOutputMessageMode(DialogSettings::outputMessageMode());
+  QString fullCommandLine = commandFromOutputMessageMode(Settings::outputMessageMode());
   fullCommandLine += QString(" _host=%1 _tk=qt").arg(GmicQtHost::ApplicationShortname);
   fullCommandLine += QString(" _preview_width=%1").arg(width());
   fullCommandLine += QString(" _preview_height=%1").arg(height());

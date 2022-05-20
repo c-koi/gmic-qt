@@ -33,7 +33,7 @@
 #include <algorithm>
 #include <cmath>
 #include "Common.h"
-#include "DialogSettings.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -89,9 +89,9 @@ void CustomDoubleSpinBox::keyPressEvent(QKeyEvent * event)
 {
   QString text = event->text();
   if ((text.length() == 1 && text[0].isDigit()) || //
-      (text == DialogSettings::DecimalPoint) ||    //
-      (text == DialogSettings::NegativeSign) ||    //
-      (text == DialogSettings::GroupSeparator) ||  //
+      (text == Settings::DecimalPoint) ||          //
+      (text == Settings::NegativeSign) ||          //
+      (text == Settings::GroupSeparator) ||        //
       (event->key() == Qt::Key_Backspace) ||       //
       (event->key() == Qt::Key_Delete)) {
     _unfinishedKeyboardEditing = true;

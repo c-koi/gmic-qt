@@ -35,10 +35,10 @@
 #include <QWidget>
 #include <cstdio>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -199,7 +199,7 @@ bool ColorParameter::initFromText(const QString & filterName, const char * text,
 void ColorParameter::onButtonPressed()
 {
   QColor color = QColorDialog::getColor(_value, QApplication::activeWindow(), tr("Select color"),
-                                        (DialogSettings::nativeColorDialogs() ? QColorDialog::ColorDialogOptions() : QColorDialog::DontUseNativeDialog) |
+                                        (Settings::nativeColorDialogs() ? QColorDialog::ColorDialogOptions() : QColorDialog::DontUseNativeDialog) |
                                             (_alphaChannel ? QColorDialog::ShowAlphaChannel : QColorDialog::ColorDialogOptions()));
   if (color.isValid()) {
     _value = color;

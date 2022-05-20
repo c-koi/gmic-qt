@@ -27,7 +27,6 @@
 #include <QLineEdit>
 #include <cmath>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "Globals.h"
 #include "IconLoader.h"
 #include "PreviewWidget.h"

@@ -27,7 +27,7 @@
 #include <QGridLayout>
 #include <QSizePolicy>
 #include "Common.h"
-#include "DialogSettings.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -58,7 +58,7 @@ bool SeparatorParameter::addTo(QWidget * widget, int row)
   _frame->setSizePolicy(sizePolicy);
   _frame->setFrameShape(QFrame::HLine);
   _frame->setFrameShadow(QFrame::Sunken);
-  if (DialogSettings::darkThemeEnabled()) {
+  if (Settings::darkThemeEnabled()) {
     _frame->setStyleSheet("QFrame{ border-top: 0px none #a0a0a0; border-bottom: 2px solid rgb(160,160,160);}");
   }
   _grid->addWidget(_frame, row, 0, 1, 3);

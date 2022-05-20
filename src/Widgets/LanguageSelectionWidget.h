@@ -49,6 +49,10 @@ public slots:
   void selectLanguage(const QString & code);
 private slots:
   void onLanguageSelectionChanged(int index);
+  void onCheckboxToggled(bool);
+
+signals:
+  void languageCodeSelected(QString);
 
 private:
   Ui::LanguageSelectionWidget * ui;

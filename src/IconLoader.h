@@ -27,11 +27,11 @@
 
 #include <QIcon>
 #include <QPixmap>
-#include "DialogSettings.h"
+#include "Settings.h"
 class QString;
 
-#define LOAD_ICON(NAME) (DialogSettings::darkThemeEnabled() ? IconLoader::getForDarkTheme(NAME) : QIcon(":/icons/" NAME ".png"))
-#define LOAD_ICON_NO_DARKENED(NAME) (DialogSettings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
+#define LOAD_ICON(NAME) (Settings::darkThemeEnabled() ? IconLoader::getForDarkTheme(NAME) : QIcon(":/icons/" NAME ".png"))
+#define LOAD_ICON_NO_DARKENED(NAME) (Settings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
 
 namespace GmicQt
 {

@@ -33,10 +33,10 @@
 #include <QRegExp>
 #include <QWidget>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -86,7 +86,7 @@ void FolderParameter::setValue(const QString & value)
 {
   _value = value;
   if (_value.isEmpty()) {
-    _value = DialogSettings::FolderParameterDefaultValue;
+    _value = Settings::FolderParameterDefaultValue;
   } else if (!QFileInfo(_value).isDir()) {
     _value = QDir::homePath();
   }
@@ -118,7 +118,7 @@ bool FolderParameter::initFromText(const QString & filterName, const char * text
   }
   if (list[1].isEmpty()) {
     _default.clear();
-    _value = DialogSettings::FolderParameterDefaultValue;
+    _value = Settings::FolderParameterDefaultValue;
   } else {
     _default = _value = list[1];
   }
@@ -137,7 +137,7 @@ void FolderParameter::onButtonPressed()
   if (path.isEmpty()) {
     setValue(oldValue);
   } else {
-    DialogSettings::FolderParameterDefaultValue = path;
+    Settings::FolderParameterDefaultValue = path;
     setValue(path);
   }
   notifyIfRelevant();

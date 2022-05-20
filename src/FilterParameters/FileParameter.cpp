@@ -33,10 +33,10 @@
 #include <QPushButton>
 #include <QWidget>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "IconLoader.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -143,7 +143,7 @@ void FileParameter::onButtonPressed()
 {
   QString folder;
   if (_value.isEmpty()) {
-    folder = DialogSettings::FileParameterDefaultPath;
+    folder = Settings::FileParameterDefaultPath;
   } else {
     folder = QFileInfo(_value).path();
   }
@@ -181,7 +181,7 @@ void FileParameter::onButtonPressed()
   } else {
     _value = filename;
     QFileInfo info(filename);
-    DialogSettings::FileParameterDefaultPath = info.path();
+    Settings::FileParameterDefaultPath = info.path();
     int w = _button->contentsRect().width() - 10;
     QFontMetrics fm(_button->font());
     _button->setText(fm.elidedText(QFileInfo(_value).fileName(), Qt::ElideRight, w));

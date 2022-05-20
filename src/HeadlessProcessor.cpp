@@ -28,7 +28,6 @@
 #include <QSettings>
 #include <QStringList>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "FilterParameters/FilterParametersWidget.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterTextTranslator.h"

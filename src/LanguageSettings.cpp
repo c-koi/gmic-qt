@@ -32,9 +32,9 @@
 #include <QSettings>
 #include <QTranslator>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "Globals.h"
 #include "Logger.h"
+#include "Settings.h"
 
 namespace GmicQt
 {

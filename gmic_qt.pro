@@ -310,6 +310,7 @@ HEADERS +=  \
   src/MainWindow.h \
   src/Misc.h \
   src/ParametersCache.h \
+  src/Settings.h \
   src/Tags.h \
   src/TimeLogger.h \
   src/Updater.h \
@@ -387,6 +388,7 @@ SOURCES += \
   src/Logger.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
+  src/Settings.cpp \
   src/Tags.cpp \
   src/TimeLogger.cpp \
   src/Updater.cpp \

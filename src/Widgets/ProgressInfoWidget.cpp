@@ -26,7 +26,6 @@
 #include <QFile>
 #include <QGuiApplication>
 #include <QScreen>
-#include "DialogSettings.h"
 #include "GmicProcessor.h"
 #include "IconLoader.h"
 #include "ui_progressinfowidget.h"

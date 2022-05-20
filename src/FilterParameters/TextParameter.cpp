@@ -33,7 +33,6 @@
 #include <QTextEdit>
 #include <QWidget>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "FilterParameters/MultilineTextParameterWidget.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"

@@ -57,6 +57,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "ParametersCache.h"
+#include "Settings.h"
 #include "Updater.h"
 #include "Utils.h"
 #include "Widgets/VisibleTagSelector.h"
@@ -200,7 +201,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   }
 
   QPalette p = QGuiApplication::palette();
-  DialogSettings::UnselectedFilterTextColor = p.color(QPalette::Disabled, QPalette::WindowText);
+  Settings::UnselectedFilterTextColor = p.color(QPalette::Disabled, QPalette::WindowText);
 
   _filtersPresenter = new FiltersPresenter(this);
   _filtersPresenter->setFiltersView(ui->filtersView);
@@ -301,8 +302,8 @@ void MainWindow::setDarkTheme()
   qApp->setPalette(p);
 
   p = ui->cbInternetUpdate->palette();
-  p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
-  p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
+  p.setColor(QPalette::Text, Settings::CheckBoxTextColor);
+  p.setColor(QPalette::Base, Settings::CheckBoxBaseColor);
   ui->cbInternetUpdate->setPalette(p);
   ui->cbPreview->setPalette(p);
 
@@ -323,7 +324,7 @@ void MainWindow::setDarkTheme()
   qApp->setStyleSheet(css);
   ui->inOutSelector->setDarkTheme();
   ui->vSplitterLine->setStyleSheet("QFrame{ border-top: 0px none #a0a0a0; border-bottom: 1px solid rgb(160,160,160);}");
-  DialogSettings::UnselectedFilterTextColor = DialogSettings::UnselectedFilterTextColor.darker(150);
+  Settings::UnselectedFilterTextColor = Settings::UnselectedFilterTextColor.darker(150);
 }
 
 void MainWindow::setPluginParameters(const RunParameters & parameters)
@@ -468,7 +469,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
 
   ui->progressInfoWidget->stopAnimationAndHide();
   if (status == (int)Updater::UpdateStatus::SomeFailed) {
-    if (DialogSettings::notifyFailedStartupUpdate()) {
+    if (Settings::notifyFailedStartupUpdate()) {
       showMessage(tr("Filters update could not be achieved"), 3000);
     }
   } else if (status == (int)Updater::UpdateStatus::Successful) {
@@ -681,12 +682,12 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
 
   context.inputOutputState = ui->inOutSelector->state();
-  context.outputMessageMode = DialogSettings::outputMessageMode();
+  context.outputMessageMode = Settings::outputMessageMode();
   ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
   context.zoomFactor = ui->previewWidget->currentZoomFactor();
   context.previewWindowWidth = ui->previewWidget->width();
   context.previewWindowHeight = ui->previewWidget->height();
-  context.previewTimeout = DialogSettings::previewTimeout();
+  context.previewTimeout = Settings::previewTimeout();
   // context.filterName = currentFilter.plainTextName; // Unused in this context
   // context.filterHash = currentFilter.hash; // Unused in this context
   context.filterCommand = currentFilter.previewCommand;
@@ -787,7 +788,7 @@ void MainWindow::processImage()
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   rect.x = rect.y = rect.w = rect.h = -1;
   context.inputOutputState = ui->inOutSelector->state();
-  context.outputMessageMode = DialogSettings::outputMessageMode();
+  context.outputMessageMode = Settings::outputMessageMode();
   context.filterName = currentFilter.plainTextName;
   context.filterFullPath = currentFilter.fullPath;
   context.filterHash = currentFilter.hash;
@@ -821,7 +822,7 @@ void MainWindow::setZoomConstraint()
 {
   const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
   ZoomConstraint constraint;
-  if (currentFilter.hash.isEmpty() || currentFilter.isAccurateIfZoomed || DialogSettings::previewZoomAlwaysEnabled() || (currentFilter.previewFactor == PreviewFactorAny)) {
+  if (currentFilter.hash.isEmpty() || currentFilter.isAccurateIfZoomed || Settings::previewZoomAlwaysEnabled() || (currentFilter.previewFactor == PreviewFactorAny)) {
     constraint = ZoomConstraint::Any;
   } else if (currentFilter.previewFactor == PreviewFactorActualSize) {
     constraint = ZoomConstraint::OneOrMore;
@@ -990,7 +991,7 @@ void MainWindow::saveSettings()
 
   // Save all settings
 
-  DialogSettings::saveSettings(settings);
+  Settings::save(settings);
   settings.setValue("LastExecution/gmic_version", gmic_version);
   _processor.saveSettings(settings);
   settings.setValue("SelectedFilter", _filtersPresenter->currentFilter().hash);
@@ -1030,10 +1031,10 @@ void MainWindow::loadSettings()
   if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
     setPreviewPosition(PreviewPosition::Left);
   }
-  if (DialogSettings::darkThemeEnabled()) {
+  if (Settings::darkThemeEnabled()) {
     setDarkTheme();
   }
-  if (!DialogSettings::logosAreVisible()) {
+  if (!Settings::visibleLogos()) {
     ui->logosLabel->hide();
   }
 
@@ -1251,8 +1252,8 @@ void MainWindow::showEvent(QShowEvent * event)
     Logger::clear();
   }
   QObject::connect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
-  Logger::setMode(DialogSettings::outputMessageMode());
-  Updater::setOutputMessageMode(DialogSettings::outputMessageMode());
+  Logger::setMode(Settings::outputMessageMode());
+  Updater::setOutputMessageMode(Settings::outputMessageMode());
   int ageLimit;
   {
     QSettings settings;
@@ -1277,10 +1278,10 @@ bool MainWindow::askUserForGTKFavesImport()
                          QMessageBox::Yes | QMessageBox::No, this);
   messageBox.setDefaultButton(QMessageBox::Yes);
   QCheckBox * cb = new QCheckBox(tr("Don't ask again"));
-  if (DialogSettings::darkThemeEnabled()) {
+  if (Settings::darkThemeEnabled()) {
     QPalette p = cb->palette();
-    p.setColor(QPalette::Text, DialogSettings::CheckBoxTextColor);
-    p.setColor(QPalette::Base, DialogSettings::CheckBoxBaseColor);
+    p.setColor(QPalette::Text, Settings::CheckBoxTextColor);
+    p.setColor(QPalette::Base, Settings::CheckBoxBaseColor);
     cb->setPalette(p);
   }
   messageBox.setCheckBox(cb);
@@ -1341,8 +1342,8 @@ void MainWindow::onSettingsClicked()
 
   DialogSettings dialog(this);
   dialog.exec();
-  bool previewPositionChanged = (_previewPosition != DialogSettings::previewPosition());
-  setPreviewPosition(DialogSettings::previewPosition());
+  bool previewPositionChanged = (_previewPosition != Settings::previewPosition());
+  setPreviewPosition(Settings::previewPosition());
   if (previewPositionChanged) {
     splitterSizes.clear();
     if (_previewPosition == PreviewPosition::Left) {
@@ -1357,7 +1358,7 @@ void MainWindow::onSettingsClicked()
     ui->splitter->setSizes(splitterSizes);
   }
   bool shouldUpdatePreview = false;
-  if (DialogSettings::logosAreVisible()) {
+  if (Settings::visibleLogos()) {
     if (!ui->logosLabel->isVisible()) {
       shouldUpdatePreview = true;
       ui->logosLabel->show();
@@ -1373,7 +1374,7 @@ void MainWindow::onSettingsClicked()
   }
   // Manage zoom constraints
   setZoomConstraint();
-  if (!DialogSettings::previewZoomAlwaysEnabled()) {
+  if (!Settings::previewZoomAlwaysEnabled()) {
     const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
     if (((ui->previewWidget->zoomConstraint() == ZoomConstraint::Fixed) && (ui->previewWidget->defaultZoomFactor() != ui->previewWidget->currentZoomFactor())) ||
         ((ui->previewWidget->zoomConstraint() == ZoomConstraint::OneOrMore) && (ui->previewWidget->currentZoomFactor() < 1.0))) {

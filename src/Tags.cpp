@@ -34,7 +34,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include "Common.h"
-#include "DialogSettings.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -94,9 +94,9 @@ const QIcon & TagAssets::menuIcon(TagColor color, IconMark mark)
       if (color == TagColor::None) {
         QPen pen;
         pen.setWidth(3);
-        if (DialogSettings::darkThemeEnabled()) {
+        if (Settings::darkThemeEnabled()) {
           pen.setColor(QColor(40, 40, 40));
-          p.setBrush(DialogSettings::CheckBoxBaseColor);
+          p.setBrush(Settings::CheckBoxBaseColor);
         } else {
           QPalette palette;
           pen.setColor(palette.text().color());
@@ -112,7 +112,7 @@ const QIcon & TagAssets::menuIcon(TagColor color, IconMark mark)
     }
     QColor markColor = Qt::black;
     if (color == TagColor::None) {
-      markColor = DialogSettings::darkThemeEnabled() ? QColor(170, 170, 170) : QPalette().text().color();
+      markColor = Settings::darkThemeEnabled() ? QColor(170, 170, 170) : QPalette().text().color();
     }
     QPixmap pixmap(bg);
     {

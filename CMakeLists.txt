@@ -422,6 +422,7 @@ set (gmic_qt_SRCS
   src/Logger.h
   src/MainWindow.h
   src/ParametersCache.h
+  src/Settings.h
   src/TimeLogger.h
   src/Tags.h
   src/Updater.h
@@ -498,6 +499,7 @@ set (gmic_qt_SRCS
   src/Logger.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
+  src/Settings.cpp
   src/TimeLogger.cpp
   src/Tags.cpp
   src/Updater.cpp

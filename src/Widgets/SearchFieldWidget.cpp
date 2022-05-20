@@ -33,8 +33,8 @@
 #include <QRegExpValidator>
 #include <QToolButton>
 #include "Common.h"
-#include "DialogSettings.h"
 #include "IconLoader.h"
+#include "Settings.h"
 #include "ui_SearchFieldWidget.h"
 
 namespace GmicQt
@@ -81,7 +81,7 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
   _lineEdit->setToolTip(tr("Search in filters list (%1)").arg(QKeySequence(QKeySequence::Find).toString()));
   setFocusProxy(_lineEdit);
 #if QT_VERSION_GTE(5, 12, 0)
-  if (DialogSettings::darkThemeEnabled()) {
+  if (Settings::darkThemeEnabled()) {
     QPalette palette = _lineEdit->palette();
     palette.setColor(QPalette::PlaceholderText, Qt::gray);
     _lineEdit->setPalette(palette);

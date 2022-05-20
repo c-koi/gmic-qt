@@ -32,12 +32,12 @@
 #include <QString>
 #include <QTimerEvent>
 #include <QWidget>
-#include "DialogSettings.h"
 #include "FilterParameters/CustomDoubleSpinBox.h"
 #include "FilterTextTranslator.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
+#include "Settings.h"
 
 namespace GmicQt
 {
@@ -72,7 +72,7 @@ bool FloatParameter::addTo(QWidget * widget, int row)
   _slider->setMinimumWidth(SLIDER_MIN_WIDTH);
   _slider->setRange(0, SLIDER_MAX_RANGE);
   _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
-  if (DialogSettings::darkThemeEnabled()) {
+  if (Settings::darkThemeEnabled()) {
     QPalette p = _slider->palette();
     p.setColor(QPalette::Button, QColor(100, 100, 100));
     p.setColor(QPalette::Highlight, QColor(130, 130, 130));
