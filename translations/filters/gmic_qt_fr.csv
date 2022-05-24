@@ -1,9 +1,9 @@
-Light , Légère , Comic Book
-None , Aucune , Comic Book
+Light , Légère , Comicbook
+None , Aucune , Comicbook
 For edges: , Pour les bords :
-Line Strength , Dose de lignes , Comic Book
+Line Strength , Dose de lignes , Comicbook
 For colors: , Pour les couleurs :
-Colors to Black or White , Transformer en noir et blanc , Comic Book
+Colors to Black or White , Transformer en noir et blanc , Comicbook
 <b>Faves</b> , <b>Favoris</b>
 <i>About</i> , <i>A propos</i>
 <b>Arrays & Tiles</b> , <b>Tableaux & tuiles</b>
@@ -2957,7 +2957,7 @@ Coloring ,
 Colorful Blobs ,
 Comix Colors ,
 Comic Style ,
-Comic Book ,
+Comicbook ,
 Column by Column ,
 Compression Blur ,
 Compress Highlights ,
