@@ -445,13 +445,13 @@ translations/es.ts \
 translations/fr.ts \
 translations/id.ts \
 translations/it.ts \
+translations/ja.ts \
 translations/nl.ts \
 translations/pl.ts \
 translations/pt.ts \
 translations/ru.ts \
 translations/sv.ts \
-translations/ua.ts \
-translations/ja.ts \
+translations/uk.ts \
 translations/zh.ts \
 translations/zh_tw.ts
 

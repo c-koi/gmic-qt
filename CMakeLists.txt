@@ -557,22 +557,22 @@ set(gmic_translation_files
     translations/fr.ts
     translations/id.ts
     translations/it.ts
+    translations/ja.ts
     translations/nl.ts
     translations/pl.ts
     translations/pt.ts
     translations/ru.ts
-    translations/ua.ts
-    translations/ja.ts
+    translations/sv.ts
+    translations/uk.ts
     translations/zh.ts
-)
+    translations/zh_tw.ts
+  )
 
 set_source_files_properties(${gmic_translation_files} PROPERTIES OUTPUT_LOCATION translations)
 
-set(gmic_filters_translation_files
-    translations/filters/fr.ts
-)
-
-set_source_files_properties(${gmic_filters_translation_files} PROPERTIES OUTPUT_LOCATION translations/filters)
+# Prevent overwriting of these files by lupdate
+# set(gmic_filters_translation_files translations/filters/fr.ts )
+# set_source_files_properties(${gmic_filters_translation_files} PROPERTIES OUTPUT_LOCATION translations/filters)
 
 # qt5_create_translation(
 #     qmic_qt_QM
