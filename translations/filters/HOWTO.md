@@ -1,27 +1,40 @@
 # G'MIC-Qt: Contribute to filters translation
 
 We describe here the steps you should follow
-if you want to help with the Italian translation of the filters
+if you want to help with the *Italian* translation of the filters
 (names, parameters, etc.).
 
-## Step 1: Edit the `it.ts` file
+## Step 1: Edit the `it.csv` file
 
-* The `.ts` files are located in the
+* The `.csv` files are located in the
 [translations/filters](https://github.com/c-koi/gmic-qt/tree/master/translations/filters)
 folder.
 
-* They contain only automatic translations for now.
+* They contain only automatic translations for now (except for French and Chinese).
 Therefore they really need some editing!
 
-* Editing can be done using a simple text editor, although the
-`linguist-qt5` tool may help.
+* Editing can be done using a simple text editor.
+
+* The CSV file contains up to 3 columns :
+
+```txt
+Original text , Translation [, Filter name] 
+```
  
-## Step 2: Produce an `it.qm` file
-* `it.qm` file is the "binary" version of `it.ts`.
-* In the `translations/filters` folder, run:
+Filter name may be used to disambiguate the translation by providing a context.
+
+## Step 2: Enable the language in `translations/filters/Makefile`
+
+* Edit the `Makefile` to add the `.qm` file to the list.
+
+```txt
+ QM = fr.qm zh.qm it.qm
+```
+
+* In the `translations/filters` folder, run make:
 
 ```shell
-$ lrelease-qt5 -compress fr.ts
+$ make
 ```
 
 * Check that this indeed produced the file `it.qm`.
@@ -34,6 +47,7 @@ $ lrelease-qt5 -compress fr.ts
 <RCC>
     <qresource prefix="/">
        <file>translations/filters/fr.qm</file>
+       <file>translations/filters/zh.qm</file>
        <file>translations/filters/it.qm</file>
     </qresource>
 </RCC>
@@ -42,5 +56,6 @@ $ lrelease-qt5 -compress fr.ts
 As a WIP, it is disabled by default.
 
 ## Step 4: Submit a Pull Request
-* Your PR should only include the `it.ts` file and the updated
+
+* Your PR should only include the `it.csv`, the `Makefile`, and the updated
  `wip_translations.qrc`.

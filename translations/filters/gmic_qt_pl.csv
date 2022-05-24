@@ -1,0 +1,3263 @@
+<b>Arrays & Tiles</b> , <b>Tablice i płytki</b>
+<b>Artistic</b> , <b>Artystyczny</b>
+<b>Black & White</b> , <b>Black & White</b>
+<b>Colors</b> , <b>Kolory</b>
+<b>Contours</b> , <b>Kontury</b>
+<b>Deformations</b> , <b>Deformacje</b>
+<b>Degradations</b> , <b>Degradacja</b>
+<b>Details</b> , <b>Szczegóły</b>
+<b>Testing</b> , <b>Testowanie</b>
+<b>Frames</b> , <b>Ramki</b>
+<b>Frequencies</b> , <b>Częstotliwości</b>
+<b>Layers</b> , <b>Warstwy</b>
+<b>Lights & Shadows</b> , <b>Światła i cienie</b>
+<b>Patterns</b> , <b>Wzory</b>
+<b>Rendering</b> , <b>Rendering</b>
+<b>Repair</b> , <b>Naprawa</b>
+<b>Sequences</b> , <b>Sekwencje</b>
+<b>Silhouettes</b> , <b>Sylwetki</b>
+<b>Icons</b> , <b>Ikony</b>
+<b>Misc</b> , <b>Misc</b>
+<b>Nature</b> , <b>Przyroda</b>
+<b>Others</b> , <b>Inni</b>
+<b>Stereoscopic 3D</b> , <b>Stereoskopowy 3D</b>
+*Vivid Edges* , *Widome krawędzie*
+- NO - , - NIE -
+-1. Value Action , -1. Wartość Działania
+-2. Overall Channel(s) , -2. Ogólny kanał(y)
+-3. Normalisation Channel(s) , -3. Kanał (kanały) normalizacji
+-4. Normalise , -4. Normalizacja .
+0.  Recompute , 0. Obliczyć .
+1 Levels , 1 Poziomy
+1.  Plasma Texture [Discards Input Image] , 1. Tekstura plazmowa [Obraz wejściowy odrzucany]
+10.  Quadtree Max Precision , 10. Quadtree Max Precision
+10th , 10.
+10th Color , 10. kolor
+11.  Quadtree Min Homogeneity , 11. Quadtree Min Homogeneity
+11th , 11.
+12 Colors , 12 kolorów
+12 Grays , 12 Szarości
+12.  Quadtree Max Homogeneity , 12. Quadtree Max Homogeneity
+125 Keypoints , 125 Punkty orientacyjne
+12th , 12.
+13. Noise Type , 13. Rodzaj hałasu
+13th , 13.
+14. Minimum Noise , 14. Minimalny hałas
+14th , 14.
+15. Maximum Noise , 15. Maksymalny hałas
+15th , 15.
+16 Colors , 16 Kolory
+16 Grays , 16 Szarości
+16. Noise Channel(s) , 16. Kanał(y) Hałasowy(e)
+16th , 16.
+17. Warp Iterations , 17. Iteracje osnowy
+18. Warp Intensity , 18. Osnowa Intensywność
+180 Deg. , 180 stopni.
+19. Warp Offset , 19. Przesunięcie warp
+1st , 1.
+1st Additional Palette (.Gpl) , 1. dodatkowa paleta (.Gpl)
+1st Color , 1. kolor
+1st Parameter , 1. parametr
+1st Text , 1. tekst
+1st Tone , 1 tonacja
+1st Variance , 1 Variance
+1st X-Coord , 1. przewód X-Coord
+1st Y-Coord , 1-szy Y-Coord
+2 Colors , 2 Kolory
+2 Grays , 2 Szarości
+2 Noise , 2 Hałas
+2-Strip Process , Proces 2-krotny
+2.  Plasma Scale , 2. Skala plazmowa
+20. Scale to Width , 20. Skala do szerokości
+21. Scale to Height , 21. Skala do wysokości
+22. Correlated Channels , 22. Kanały powiązane
+22.5 Deg. , 22,5 Deg.
+23. Boundary , 23. Granica
+24. Warp Channel(s) , 24. Kanał(y) Warp
+25. Random Negation , 25. Losowa negacja
+26. Random Negation Channel(s) , 26. Kanał (kanały) losowej negacji
+29. Normalise , 29. Normalizacja
+2nd , 2.
+2nd Additional Palette (.Gpl) , 2. dodatkowa paleta (.Gpl)
+2nd Color , 2. kolor
+2nd Parameter , 2. parametr
+2nd Text , 2. tekst
+2nd Tone , 2. tonacja
+2nd Variance , 2. wariancja
+2nd X-Coord , 2. przewód X-Coord
+2nd Y-Coord , 2. przewód Y-Coord
+2x Type , 2x Typ
+2XY Mirror , 2XY Lustro
+3 Colors , 3 Kolory
+3 Grays , 3 Szarości
+3 Mix , 3 Mieszanka
+3.  Plasma Alpha Channel , 3. Kanał Plazmowy Alfa
+30. Minimum Hue , 30. Minimalny odcień
+31. Maximum Hue , 31. Maksymalny odcień
+32. Minimum Saturation , 32. Minimalne nasycenie
+33. Maximum Saturation , 33. Maksymalne nasycenie
+34. Minimum Value , 34. Wartość minimalna
+343 Keypoints , 343 Punkty orientacyjne
+35. Maximum Value , 35. Wartość maksymalna
+37. Saturation Offset , 37. Przesunięcie nasycenia
+38. Value Offset , 38. Przesunięcie wartości
+3D Blocks , Bloki 3D
+3D CLUT (Fast) , 3D CLUT (szybki)
+3D CLUT (Precise) , 3D CLUT (Precyzyjny)
+3D Colored Object , Kolorowy obiekt 3D
+3D Conversion , Konwersja 3D
+3D Elevation , Wzniesienie 3D
+3D Elevation [Animated] , Wzniesienie 3D [Animowane]
+3D Extrusion , Wytłaczanie 3D
+3D Extrusion [Animated] , Wytłaczanie 3D [Animowane]
+3D Image Object , Obiekt obrazu 3D
+3D Image Object [Animated] , Obiekt obrazu 3D [Animowany]
+3D Image Type , Typ obrazu 3D
+3D Lathing , 3D Wytrzymałość
+3D Metaballs , Metabale 3D
+3D Random Objects , Obiekty losowe 3D
+3D Reflection , Odbicie 3D
+3D Rubber Object , Gumowy obiekt 3D
+3D Text Pointcloud , Chmura punktów tekstowych 3D
+3D Tiles , Płytki 3D
+3D Video Conversion , Konwersja wideo 3D
+3D Waves , Fale 3D
+3rd , 3.
+3rd Color , 3. kolor
+3rd Parameter , 3. parametr
+3rd Tone , 3. tonacja
+3rd X-Coord , 3. przewód X-Coord
+3rd Y-Coord , 3. przewód Y-Coord
+4 Colors , 4 Kolory
+4 Grays , 4 Szarości
+4.  Segmentation [No Alpha Channel] , 4. Segmentacja [Brak kanału alfa]
+4096x4096 Layer , 4096x4096 Warstwa
+4th , 4.
+4th Color , 4. kolor
+4th Tone , 4. tonacja
+5.  Edge Threshold , 5. Próg krawędziowy
+512x512 Layer , 512x512 Warstwa
+5th , piąty
+5th Color , 5. kolor
+5th Tone , 5. tonacja
+6.  Smoothness , 6. Gładkość
+60's (faded Alt) , Lata 60. (wyblakłe Alt)
+60's (faded) , Lata 60. (wyblakłe)
+64 (Faster) , 64 (Szybciej)
+67.5 Deg. , 67,5 Deg.
+6th , szósty
+6th Color , 6. kolor
+6th Tone , 6 Ton
+7.  Blur , 7. Rozmycie
+7th , 7.
+7th Color , 7. kolor
+7th Tone , 7 Ton
+8 Colors , 8 Kolory
+8 Grays , 8 Szarości
+8 Keypoints (RGB Corners) , 8 punktów kluczowych (RGB Corners)
+8.  Quadtree Pixelisation [No Alpha Channel] , 8. Pikselizacja czterodniowa [Brak kanału alfa]
+8th , 8.
+8th Color , 8. kolor
+8th Tone , 8. tonacja
+9.  Quadtree Min Precision , 9. Quadtree Min Precision
+9th , 9.
+9th Color , 9. kolor
+[Cyan]MYK , MYK
+A Lot of Cyan , Dużo Cyanu
+A Lot of Magenta , Dużo Magenty
+A-Color Factor , Współczynnik A-Color
+A-Component , A-Komponent
+A4 / 100 PPI (Recommended) , A4 / 100 PPI (zalecane)
+About G'MIC , O G'MIC
+Absolute Brightness , Absolutna jasność
+Absolute Value , Wartość bezwzględna
+Abstraction , Abstrakcja
+Acceleration , Przyspieszenie
+Achromatomaly , Achromatomalia
+Achromatopsia , Achromatopsja
+Action , Działanie
+Action #1 , Działanie nr 1
+Action #10 , Akcja nr 10
+Action #11 , Akcja nr 11
+Action #12 , Akcja nr 12
+Action #13 , Działanie nr 13
+Action #14 , Działanie nr 14
+Action #15 , Akcja nr 15
+Action #16 , Działanie nr 16
+Action #17 , Działanie nr 17
+Action #18 , Akcja nr 18
+Action #19 , Akcja #19
+Action #2 , Działanie nr 2
+Action #20 , Akcja nr 20
+Action #21 , Działanie nr 21
+Action #22 , Działanie nr 22
+Action #23 , Akcja nr 23
+Action #24 , Akcja nr 24
+Action #3 , Akcja nr 3
+Action #4 , Akcja nr 4
+Action #5 , Działanie nr 5
+Action #6 , Działanie nr 6
+Action #7 , Działanie nr 7
+Action #8 , Akcja nr 8
+Action #9 , Akcja nr 9
+Action Magenta 01 , Działanie Magenta 01
+Action Red 01 , Akcja Czerwony 01
+Activate 'Pencil Smoother' , Aktywacja "Pencil Smoother
+Activate Color Enhancement , Aktywacja ulepszania kolorów
+Activate Colors Geometric Shapes , Aktywacja kolorów Kształty geometryczne
+Activate Custom Filter , Aktywuj filtr niestandardowy
+Activate Lizards , Aktywuj jaszczurki
+Activate Mirror , Aktywuj lustro
+Activate Pink Elephants , Aktywuj różowe słonie
+Activate Second Direction , Aktywuj drugi kierunek
+Activate Shakes , Aktywuj wstrząsy
+Activate Slice 1 , Aktywuj plaster 1
+Activate Slice 2 , Aktywuj plaster 2
+Activate Slice 3 , Aktywuj plaster 3
+Activate Slice 4 , Aktywuj plaster 4
+Activer Symmetrizoscope , Symmetrizoskop aktorowy
+Adaptive , Adaptacyjny
+Add , Dodaj
+Add 1px Outline , Dodaj 1px kontur
+Add Alpha Channels to Detail Scale Layers , Dodaj kanały Alpha do szczegółowej skali warstw
+Add as a New Layer , Dodaj jako nową warstwę
+Add Chalk Highlights , Dodaj kredę Highlights
+Add Color Background , Dodaj kolor tła
+Add Comment Area in HTML Page , Dodaj obszar komentarza na stronie HTML
+Add Grain , Dodaj ziarno
+Add Image Label , Dodaj etykietę z obrazem
+Add Painter's Touch , Dodaj dotyk malarza
+Add User-Defined Constraints (Interactive) , Dodaj ograniczenia zdefiniowane przez użytkownika (Interaktywne)
+Additional Duplicates Count , Dodatkowa liczba duplikatów
+Additional Outline , Dodatkowy zarys
+Additive , Dodatek
+Adjust Background Reconstruction , Regulacja rekonstrukcji tła
+Adventure 1453 , Przygoda 1453
+Algorithm , Algorytm
+Alien Green , Obcy Zielony
+Align Image Streams , Wyrównywanie strumieni obrazu
+Align Layers , Wyrównać warstwy
+Aligned , Wyrównane
+Alignment Type , Typ wyrównania
+All , Wszystkie
+All 45° Rotations , Wszystkie 45 i stopnie; Obroty
+All 90° Rotations , Wszystkie 90 i stopnie; Obroty
+All [Collage] , Wszystko [Kolaż]
+All but Reference Color , Wszystkie oprócz koloru odniesienia
+All Layers and Masks , Wszystkie warstwy i maski
+All Tones , Wszystkie tony
+All XY-Flips , Wszystkie XY-Flipy
+Allow Angle , Pozwól na kąt
+Allow Self Intersections , Pozwól na skrzyżowania własne
+Alpha Channel , Kanał Alfa
+Alpha Mode , Tryb Alpha
+Also Match Gradients , Również gradienty dopasowania
+Ambient Lightness , Lekkość otoczenia
+Amount , Kwota
+Amplitude , Amplituda
+Amplitude (%) , Amplituda (%)
+Amplitude / Angle , Amplituda / Kąt
+Anaglyph Blue/yellow , Anaglif Niebieski/żółty
+Anaglyph Blue/yellow Optimized , Anaglif Niebieski/żółty Zoptymalizowany
+Anaglyph Glasses Adjustment , Regulacja okularów anaglifowych (Anaglyph Glasses)
+Anaglyph Green/magenta , Anaglif Zielony/magenta
+Anaglyph Green/magenta Optimized , Anaglif Zielony/magenta Zoptymalizowany
+Anaglyph Reconstruction , Rekonstrukcja anaglifowa
+Anaglyph Red/cyan , Anaglif Czerwony/cyan
+Anaglyph Red/cyan Optimized , Anaglif Czerwony/cyan Zoptymalizowany
+Anaglyph: Red/Cyan , Anaglif: Czerwony/Cyjan
+AnalogFX - Old Style I , AnalogFX - Stary Styl I
+AnalogFX - Old Style II , AnalogFX - Stary Styl II
+AnalogFX - Old Style III , AnalogFX - Stary Styl III
+Analysis Scale , Skala analityczna
+Analysis Smoothness , Analiza Gładkość
+And , I
+Angle , Kąt
+Angle (%) , Kąt (%)
+Angle (deg) , Kąt (stopień)
+Angle (deg.) , Kąt (stopień)
+Angle / Size , Kąt / Rozmiar
+Angle Cut , Kątowe cięcie
+Angle Dispersion , Rozproszenie kątowe
+Angle Image Contour , Kątowy kontur obrazu
+Angle of Disturbance Surface , Kąt Zaburzenia Powierzchnia
+Angle of Main Nebulous Surface , Kąt głównej powierzchni mgławicowej
+Angle Range , Zasięg kątowy
+Angle Range (deg.) , Zasięg kątowy (deg.)
+Angle Tilt , Kąt nachylenia
+Angle Variations , Zmiany kątów
+Anguish , Udręka
+Angular , Kątowy
+Angular Precision , Precyzja kątowa
+Angular Tiles , Płytki kątowe
+Anisotropic , Anizotropowy
+Anisotropy , Anizotropia
+Annular Steiner Chain Round Tiles , Okrągłe płytki łańcuchowe okrągłe Steinera
+Anti-Aliasing , Anty-Aliasing
+Antisymmetry , Antysymetria
+Any , Każdy
+Apocalypse This Very Moment , Apokalipsa Ta Bardzo Moment
+Apples , Jabłka
+Apply Adjustments On , Zastosuj korekty Wł.
+Apply Color Balance , Stosowanie Color Balance
+Apply External CLUT , Zastosuj zewnętrzne zamknięcie
+Apply Mask , Zastosuj maskę
+Apply Skin Tone Mask , Nałóż maseczkę z tonikiem skóry
+Apply Transformation From , Zastosuj transformację Od
+Aqua and Orange Dark , Aqua i Orange Dark
+Area , Obszar
+Area Smoothness , Obszar Gładkość
+Areas Light Adjustment , Obszary regulacji oświetlenia
+Areas Smoothness , Obszary Gładkość
+Array [Faded] , Tablica [Wyblakłe]
+Array [Mirrored] , Tablica [Mirrored]
+Array [Random Colors] , Tablica [Przypadkowe kolory]
+Array [Random] , Tablica [Losowo]
+Array [Regular] , Tablica [zwykła]
+Array Mode , Tryb macierzowy
+Arrows , Strzałki
+Arrows (Outline) , Strzałki (kontur)
+Artistic  Modern , Nowoczesność artystyczna
+Artistic Hard , Twardy artystyczny
+Artistic Round , Runda artystyczna
+Ascii Art , Sztuka Ascii
+Aspect , Aspekt
+Aspect Ratio , Współczynnik aspektów
+Associated Color , Powiązany kolor
+Attenuation , Tłumienie
+Auto Balance , Automatyczne wyważenie
+Auto Reduce Level (Level Slider Is Disabled) , Automatyczna redukcja poziomu (suwak poziomu jest wyłączony)
+Auto Set Hue Inverse (Hue Slider Is Disabled) , Automatyczne ustawianie inwersji barwy (suwak barwy jest wyłączony)
+Auto-Reduce Number of Frames , Auto-Reduce Liczba ramek
+Auto-Set Periodicity , Automatyczne ustawianie okresowości
+Auto-Threshold , Auto-próg
+Autocrop Output Layers , Warstwy wyjściowe Autocrop
+Automatic , Automatycznie
+Automatic & Contrast Mask , Maska automatyczna i kontrastowa
+Automatic [Scan All Hues] , Automatyczne [skanowanie wszystkich odcieni]
+Automatic Color Balance , Automatyczny balans kolorów
+Automatic Depth Estimation , Automatyczne szacowanie głębokości
+Automatic Upscale for Optimum Results , Automatyczna skala wzrostu dla optymalnych wyników
+Autumn , Jesień
+Avalanche , Lawina
+Average , Średnia
+Average 3x3 , Średnia 3x3
+Average 5x5 , Średnia 5x5
+Average 7x7 , Średnia 7x7
+Average 9x9 , Średnia 9x9
+Average RGB , Średni RGB
+Average Smoothness , Średnia gładkość
+Avg Branching , Odgałęzienie Avg
+Avg Left Angle (deg.) , Avg Lewy kąt (stopień)
+Avg Length Factor (%) , Współczynnik średniej długości (%)
+Avg Thickness Factor (%) , Średni współczynnik grubości (%)
+Axis , Oś
+Azimuth , Azymut
+B&W , BOŚNIA I HERCEGOWINA
+B&W Pencil [Animated] , Ołówek B&W [Animowany]
+B&W Photograph , Fotografia B&W
+B&W Stencil [Animated] , B&W Stencil [Animowany]
+B-Color Factor , Czynnik B-Kolor
+B-Color Smoothness , B-Color Gładkość
+B-Component , B-Komponent
+Background , Tło
+Background Color , Kolor tła
+Background Intensity , Tło Intensywność pomocy
+Background Point (%) , Punkt wyjścia (%)
+Backward , Wsteczny
+Backward Horizontal , Wsteczny Poziomy
+Backward Vertical , Wsteczny Pionowy
+Balance , Bilans
+Balance Color , Równowaga kolorów
+Balance SRGB , Saldo SRGB
+Balloons , Balony
+Balls , Bale
+Band Width , Szerokość pasma
+Bandwidth , Szerokość pasma
+Barbed Wire , Drut kolczasty
+Bars , Bary
+Base Reference Dimension , Wymiar referencyjny podstawy
+Base Scale , Skala podstawowa
+Base Thickness (%) , Grubość podstawowa (%)
+Basic Adjustments , Dostosowania podstawowe
+Batch Processing , Przetwarzanie wsadowe
+Bayer Filter , Filtr Bayera
+Bayer Reconstruction , Rekonstrukcja Bayera
+Behind , Za
+Below , Poniżej
+Berlin Sky , Berlin Niebo
+Best Match , Najlepszy mecz
+BG Textured , BG Teksturowane
+Bi-Directional , Dwukierunkowy:
+Bidirectional [Smooth] , Bidirectional [Gładko]
+Bidirectional Rendering , Licytacja dwukierunkowa
+Bilateral , Dwustronnie
+Bilateral Radius , Promień dwustronny
+Binary , Binarny
+Binary Digits , Cyfry binarne
+Bit Masking (End) , Maskowanie bitów (koniec)
+Bit Masking (Start) , Maskowanie bitów (Start)
+Black , Czarny
+Black Level , Poziom czerni
+Black on Transparent , Czarny na przezroczystym
+Black on Transparent White , Czarny na białym przezroczystym
+Black on White , Czarno na białym
+Black Star , Czarna Gwiazda
+Black to White , Od czarnego do białego
+Blacks , Czarnuchy
+Blade Runner , Biegacz łopatkowy
+Blank , Puste miejsce
+Bleech Bypass Yellow 01 , Bleech Bypass Żółty 01
+Blend , Mieszanka
+Blend [Average All] , Blend [Średnia wszystkich]
+Blend [Edges] , Blend [Krawędzie]
+Blend [Median] , Blend [Mediana]
+Blend [Seamless] , Blend [Bez szwu]
+Blend All Layers , Łączyć wszystkie warstwy
+Blend Decay , Rozpad mieszaniny
+Blend Mode , Tryb mieszania
+Blend Scales , Wagi mieszane
+Blending Mode , Tryb mieszania
+Blending Size , Rozmiar mieszanki
+Blindness Type , Typ ślepoty
+Blob 1 Color , Blob 1 Kolor
+Blob 10 Color , Blob 10 Kolor
+Blob 11 Color , Blob 11 Kolor
+Blob 12 Color , Blob 12 Kolor
+Blob 2 Color , Blob 2 Kolor
+Blob 3 Color , Blob 3 Kolor
+Blob 4 Color , Blob 4 Kolor
+Blob 5 Color , Blob 5 Kolor
+Blob 6 Color , Blob 6 Kolor
+Blob 7 Color , Blob 7 Kolor
+Blob 8 Color , Blob 8 Kolor
+Blob 9 Color , Blob 9 Kolor
+Blobs Editor , Redaktor Blobs
+Bloc , Blok
+Bloc Size (%) , Wielkość bloku (%)
+Blockism , Blokizm
+Blue , Niebieski
+Blue & Red Chrominances , Niebieskie i czerwone Chrominancje
+Blue Chroma Factor , Współczynnik niebieskiego aromatu
+Blue Chroma Smoothness , Niebieski aromat Gładkość
+Blue Chrominance , Błękitny Chrominance
+Blue Factor , Czynnik niebieski
+Blue House , Błękitny Dom
+Blue Ice , Niebieski lód
+Blue Level , Poziom niebieski
+Blue Rotations , Niebieskie obroty
+Blue Screen Mode , Tryb Blue Screen
+Blue Smoothness , Niebieska gładkość
+Blue Steel , Niebieska stal
+Blue Wavelength , Niebieska Długość fali
+Blur , Rozmycie
+Blur [Angular] , Rozmycie [kątowe]
+Blur [Depth-Of-Field] , Rozmycie [Głębokie pole]
+Blur [Gaussian] , Rozmycie [Gaussian]
+Blur [Glow] , Rozmycie [Glow]
+Blur [Linear] , Rozmycie [Liniowe]
+Blur [Multidirectional] , Rozmycie [Wielokierunkowy]
+Blur [Radial] , Rozmycie [Radial]
+Blur Alpha , Rozmycie Alfa
+Blur Amount , Rozmycie Kwota
+Blur Amplitude , Rozmycie Amplitudy
+Blur Dodge and Burn Layer , Rozmycie warstwy uskoków i oparzeń
+Blur Factor , Czynnik rozmycia
+Blur Frame , Rozmycie ramki
+Blur Percentage , Rozmycie Procent
+Blur Precision , Rozmycie Dokładność
+Blur Standard Deviation , Rozmycie odchylenia standardowego
+Blur Strength , Siła rozmycia
+Blur the Mask , Rozmycie maski
+Boats , Łodzie
+Boost Chromaticity , Zwiększyć chromatyczność
+Boost Contrast , Kontrast wzrostowy
+Boost Stroke , Pobudzenie udaru
+Border Color , Kolor granicy
+Border Opacity , Nieprzezroczystość na granicy
+Border Outline , Obrys granicy
+Border Smoothness , Granica Gładkość
+Border Thickness (%) , Grubość granicy (%)
+Border Width , Szerokość granicy
+Both , Oba
+Bottles , Butelki
+Bottom , Dół
+Bottom and Left Foreground , Dół i lewy pierwszy plan
+Bottom and Right Foreground , Dół i prawy pierwszy plan
+Bottom and Top Foreground , Dół i góra pierwszego planu
+Bottom Layer , Warstwa spodnia
+Bottom Left , Dół Lewa strona
+Bottom Right , Na dole po prawej stronie
+Bottom Size , Wielkość dna
+Bottom-Left , Dół-Lewica
+Bottom-Left Vertex (%) , Wierzchołek dolny-lewy (%)
+Bottom-Right , Dół-prawo
+Bottom-Right Vertex (%) , Wierzchołek dolny-prawy (%)
+Bouncing Balls , Podskakujące piłki
+Boundaries (%) , Granice (%)
+Boundary , Granica
+Boundary Condition , Stan graniczny
+Boundary Conditions , Warunki brzegowe
+Box Fitting , Wyposażenie pudełka
+Branches , Oddziały
+Braque: Landscape near Antwerp , Braque: Krajobraz w pobliżu Antwerpii
+Braque: Little Bay at La Ciotat , Braque: Little Bay w La Ciotat
+Braque: The Mandola , Braque: Mandola
+Brighness , Jasność
+Bright , Jasne
+Bright Green , Jasnozielony
+Bright Length , Jasna Długość
+Bright Pixels , Jasne piksele
+Bright Teal Orange , Jasna Tealowa Pomarańcza
+Bright Warm , Jasny Ciepły
+Brighter , Jaśniejszy
+Brightness , Jasność
+Brightness (%) , Jasność (%)
+Bristle Size , Rozmiar włosia
+Bronze , Brązowy
+Brownish , Brązowy
+Built-in Gray , Wbudowany w szarość
+Bump Factor , Czynnik uderzeniowy
+Bump Map , Mapa uderzeniowa
+Burn Blur , Rozmycie płomieni
+Burn Strength , Wytrzymałość na oparzenia
+By Blue Chrominance , Przez Blue Chrominance
+By Blue Component , Przez składnik niebieski
+By Custom Expression , Według indywidualnego wyrażenia
+By Green Component , Przez komponent zielony
+By Iteration , Przez Iterację
+By Lightness , Przez lekkość
+By Luminance , Przez Luminancję
+By Red Chrominance , Przez Red Chrominance
+By Red Component , Przez komponent czerwony
+By Value , Według wartości
+Byers 11 , Bajery 11
+C[Magenta]YK , C[Magenta] YK
+Camera Motion Only , Tylko ruch kamery
+Camera X , Kamera X
+Camera Y , Kamera Y
+Cameraman , Kamerzysta
+Candle Light , Światło świec
+Canvas Brightness , Płótno Jasność
+Canvas Color , Kolor płótna
+Canvas Darkness , Płótno Ciemność
+Canvas Texture , Tekstura płótna
+Car , Samochód
+Card Suits , Garnitury na karty
+Cartesian Transform , Transformacja kartezjańska
+Cartoon , Kreskówka
+Cartoon [Animated] , Kreskówka [Animowany]
+Category , Kategoria
+Cell Size , Wielkość komórki
+Center , Centrum
+Center (%) , Centrum (%)
+Center Background , Centrum Tło
+Center Foreground , Centrum Pierwszy plan
+Center Help , Pomoc Centrum
+Center Size , Rozmiar środka
+Center Smoothness , Centrum Gładkość
+Center X , Centrum X
+Center X-Shift , Centrum X-Shift
+Center Y , Centrum Y
+Center Y-Shift , Centrum Y-Shift
+Centering (%) , Centrowanie (%)
+Centering / Scale , Centrowanie / Skala
+Centers Color , Centra Kolor
+Centers Radius , Centra Promień
+Centimeter , Centymetr
+Central  Perspective Outdoor , Centralna perspektywa na zewnątrz
+Central Perspective Indoor , Perspektywa centralna Wewnątrz
+Central Perspective Outdoor , Centralna perspektywa na zewnątrz
+Centre , Centrum
+Channel #1 , Kanał #1
+Channel #2 , Kanał #2
+Channel #3 , Kanał #3
+Channel Processing , Przetwarzanie kanałów
+Channel(s) , Kanał(y)
+Channels , Kanały
+Channels to Layers , Kanały do warstw
+Charcoal , Węgiel drzewny
+Checkered Inverse , Inwersja w szachownicę
+Chemical 168 , Chemikalia 168
+Chessboard , Szachownica
+Chick , Kurczak
+Chroma Noise , Chroma Hałas
+Chromatic Aberrations , Aberracje chromatyczne
+Chromaticity From , Chromatyczność Od
+Chrome 01 , Chrom 01
+Chrominances Only (ab) , Tylko chrominanse (ab)
+Chrominances Only (CbCr) , Tylko chrominanse (CbCr)
+Cinema , Kino
+Cinema 2 , Kino 2
+Cinema 3 , Kino 3
+Cinema 4 , Kino 4
+Cinema 5 , Kino 5
+Cinema Noir , Kino Noir
+Cinematic (8) , Kino (8)
+Cinematic Mexico , Kino Meksyk
+Cinematic Travel (29) , Podróże kinematograficzne (29)
+Circle , Koło
+Circle (Inv.) , Koło (Inv.)
+Circle 1 , Okręg 1
+Circle 2 , Okręg 2
+Circle Abstraction , Okrąg Abstrakcja
+Circle Art , Sztuka koła
+Circle to Square , Koło do kwadratu
+Circle Transform , Transformacja okręgu
+Circles , Koła
+Circles (Outline) , Kręgi (kontur)
+Circles 1 , Okręgi 1
+Circles 2 , Koła 2
+Circular , Okólnik
+City 7 , Miasto 7
+Clarity , Przejrzystość
+Classic Chrome , Chrom klasyczny
+Classic Teal and Orange , Classic Teal i Orange
+Clean , Czyste
+Clean Text , Czysty tekst
+Clear Control Points , Przejrzyste punkty kontroli
+Clip , Klip
+Clip CMYK , Klips CMYK
+Closing , Zamknięcie
+Closing - Opening , Zamknięcie - Otwarcie
+Closing - Original , Zamknięcie - Oryginał
+Clouds , Chmury
+CLUT from After - Before Layers , CLUT od After - Before Layers
+CLUT Opacity , ZAMKNIĘTE ZAMKNIĘCIE
+CM[Yellow]K , CM[Żółty]K
+CMY[Key] , CMY[Klucz]
+CMYK [cyan] , CMYK [cyjan]
+CMYK [Key] , CMYK [Klucz]
+CMYK [Yellow] , CMYK [Żółty]
+CMYK Tone , Ton CMYK
+Coarse , Gruby
+Coarsest (faster) , Najgrubszy (szybszy)
+Code , Kod
+Coefficients , Współczynniki
+Coffee 44 , Kawa 44
+Coherence , Spójność
+Cold Simplicity 2 , Prostota na zimno 2
+Color , Kolor
+Color (rich) , Kolor (bogaty)
+Color 1 , Kolor 1
+Color 1 (Up/Left Corner) , Kolor 1 (górny/lewy narożnik)
+Color 2 , Kolor 2
+Color 2 (Up/Right Corner) , Kolor 2 (góra/prawa strona narożnika)
+Color 3 , Kolor 3
+Color 3 (Bottom/Left Corner) , Kolor 3 (dolny/lewy narożnik)
+Color 4 , Kolor 4
+Color 4 (Bottom/Right Corner) , Kolor 4 (dolny/prawy narożnik)
+Color A , Kolor A
+Color Abstraction Opacity , Abstrakcyjna barwa Nieprzezroczystość
+Color Abstraction Paint , Kolorowa farba abstrakcyjna
+Color B , Kolor B
+Color Balance , Bilans kolorów
+Color Basis , Podstawa koloru
+Color Blending , Łączenie kolorów
+Color Blindness , Ślepota kolorów
+Color Blue-Yellow , Kolor niebiesko-żółty
+Color Burn , Oparzenie kolorem
+Color C , Kolor C
+Color Channel  Smoothing , Wygładzanie kanałów kolorowych (Color Channel Smoothing)
+Color Channels , Kanały kolorowe
+Color D , Kolor D
+Color Dispersion , Dyspersja kolorów
+Color Doping , Doping kolorystyczny
+Color E , Kolor E
+Color Effect Mode , Tryb efektów kolorystycznych
+Color F , Kolor F
+Color G , Kolor G
+Color Grading , Klasyfikacja kolorów
+Color Green-Magenta , Kolor Green-Magenta
+Color Highlights , Kolory podświetlenia
+Color Image , Kolorowy obrazek
+Color Intensity , Intensywność koloru
+Color Mask , Maska kolorowa
+Color Mask [Interactive] , Maska kolorowa [Interaktywna]
+Color Median , Mediana kolorów
+Color Metric , Kolor metryczny
+Color Midtones , Kolory Midtones
+Color Mode , Tryb kolorystyczny
+Color Model , Model kolorowy
+Color Negative , Kolor Negatywny
+Color on White , Kolor na białym
+Color Overall Effect , Ogólny efekt kolorystyczny
+Color Presets , Ustawienia kolorów
+Color Quantization , Kwantyfikacja kolorów
+Color Rendering , Rendering kolorów
+Color Shading (%) , Cieniowanie kolorów (%)
+Color Shadows , Cienie kolorów
+Color Smoothness , Gładkość kolorów
+Color Space , Przestrzeń barw
+Color Spots + Extrapolated Colors + Lineart , Kolorowe plamy + Ekstrapolowane kolory + Lineart
+Color Spots + Lineart , Kolorowe plamy + Lineart
+Color Strength , Wytrzymałość koloru
+Color Temperature , Temperatura barwowa
+Color Tolerance , Tolerancja kolorów
+Color Variation [Random -1] , Zmiana koloru [Przypadkowa -1]
+Colorbase , Baza kolorystyczna
+Colored Geometry , Geometria barwna
+Colored Grain , Kolorowe Ziarno
+Colored Lineart , Kolorowy Lineart
+Colored on Black , Kolorowy na czarno
+Colored on Transparent , Kolorowy na Transparentnym
+Colored Outline , Kolorowy kontur
+Colored Pencils , Ołówki kolorowe
+Colored Regions , Kolorowe regiony
+Colorful , Kolorowy
+Colorful 0209 , Kolorowy 0209
+Colorful Blobs , Kolorowe kleksy
+Coloring , Koloryzacja
+Colorize [Interactive] , Koloryzacja [Interaktywny]
+Colorize [Photographs] , Koloryzacja [Fotografie]
+Colorize [with Colormap] , Colorize [z Colormapem]
+Colorize Mode , Tryb koloryzacji
+Colorized Image (1 Layer) , Obraz kolorowy (1 warstwa)
+Colormap Type , Typ Colormap
+Colors , Kolory
+Colors A , Kolory A
+Colors B , Kolory B
+Colors Only , Tylko kolory
+Colors Only (1 Layer) , Tylko kolory (1 warstwa)
+Colors to Layers , Kolory do warstw
+Colour , Kolor
+Colour Channels , Kanały kolorowe
+Colour Model , Model kolorowy
+Colour Smoothing , Wygładzanie kolorów
+Colour Space Mode , Tryb przestrzeni barw
+Column by Column , Kolumna po kolumnie
+Comic Style , Styl komiksowy
+Components , Części składowe
+Composed Layers , Warstwy złożone
+Compress Highlights , Kompresja Highlights
+Compression Blur , Rozmycie kompresji
+Compression Filter , Filtr kompresyjny
+Computation Mode , Tryb obliczeniowy
+Cone , Stożkowe
+Conflict 01 , Konflikt 01
+Conformal Maps , Mapy konformalne
+Connectivity , Łączność
+Connectors Centering , Łączniki Centrowanie
+Connectors Variability , Złącza Zmienność
+Constrain Image Size , Ograniczenie rozmiaru obrazu
+Constrain Values , Ograniczenia wartości
+Constrained Sharpen , Ograniczone Ostrzenie
+Constraint Radius , Ograniczenie Promień
+Continuous Droste , Ciągłe odmrażanie (Continuous Droste)
+Contour Coherence , Kontur Spójność
+Contour Detection (%) , Wykrywanie konturów (%)
+Contour Normalization , Normalizacja konturów
+Contour Precision , Precyzja konturu
+Contour Threshold , Kontur Próg
+Contour Threshold (%) , Kontur Próg (%)
+Contours , Kontury
+Contours + Flocon/Snowflake , Kontury + flokon/ płatek śniegu
+Contours Recursion , Kontury Odwrócenie
+Contrail 35 , Kontrast 35
+Contrast , Kontrast
+Contrast (%) , Kontrast (%)
+Contrast Smoothness , Kontrast Gładkość
+Contrast Swiss Mask , Kontrast Maska szwajcarska
+Contrast with Highlights Protection , Kontrast z ochroną przed światłem słonecznym
+Contrasty Afternoon , Kontrast Po południu
+Contrasty Green , Kontrast Zielony
+Contributors , Współtwórcy
+Control Point 1 , Punkt kontroli 1
+Control Point 2 , Punkt kontroli 2
+Control Point 3 , Punkt kontroli 3
+Control Point 4 , Punkt kontroli 4
+Control Point 5 , Punkt kontroli 5
+Control Point 6 , Punkt kontroli 6
+Convolve , Konvolve
+Cool / Warm , Cool / Ciepło
+Copper , Miedź
+Corner Brightness , Narożnik Jasność
+Correlated Channels , Kanały powiązane
+Counter Clockwise , W kierunku przeciwnym do ruchu wskazówek zegara
+Course 4 , Kurs 4
+Cracks , Pęknięcia
+Creative Pack (33) , Pakiet kreatywny (33)
+Crisp Romance , Rzepki Romans
+Crisp Warm , Chrupiące Ciepło
+Criterion , Kryterium
+Crop , Uprawa
+Crop (%) , Uprawy (%)
+Cross Process CP 130 , Proces krzyżowy CP 130
+Cross Process CP 14 , Proces krzyżowy CP 14
+Cross Process CP 15 , Proces krzyżowy CP 15
+Cross Process CP 16 , Proces krzyżowy CP 16
+Cross Process CP 18 , Proces krzyżowy CP 18
+Cross Process CP 3 , Proces krzyżowy CP 3
+Cross Process CP 4 , Proces krzyżowy CP 4
+Cross Process CP 6 , Proces krzyżowy CP 6
+Cross-Hatch Amount , Wylęgarnia Ilość (Cross-Hatch)
+Crossed , Przekreślony
+Crosses 1 , Krzyżyki 1
+Crosses 2 , Krzyżyki 2
+Crosshair , Włosie krzyżowe
+CRT Sub-Pixels , Subpikseli CRT
+Crystal Background , Kryształowe tło
+Cube , Kostka
+Cube (256) , Kostka (256)
+Cubic , Sześcienny
+Cubicle 99 , Boks 99
+Cubism , Kubizm
+Cubism on Color Abstraction , Kubizm na temat abstrakcji kolorystycznej
+Cup , Puchar
+Cupid , Kupidyn
+Curvature , Zakrzywienie
+Curvature Shadow , Cień krzywizny
+Curve Amount , Krzywa Kwota
+Curve Angle , Kąt krzywizny
+Curve Length , Długość krzywej
+Curved , Wygięty
+Curved Stroke , Zakrzywiony Udar
+Curves , Krzywe
+Curves Previously Defined , Poprzednio zdefiniowane krzywe
+Custom , Niestandardowy
+Custom Code [Global] , Kod niestandardowy [Globalny]
+Custom Code [Local] , Kod niestandardowy [lokalny]
+Custom Correction Map , Niestandardowa mapa korekcyjna
+Custom Depth Correction , Niestandardowa korekta głębokości
+Custom Depth Maps Stream , Niestandardowe mapy głębokości Strumień
+Custom Dictionary , Słownik zwyczajowy
+Custom Filter Code , Niestandardowy kod filtrujący
+Custom Formula , Formuła niestandardowa
+Custom Kernel , Jądro niestandardowe
+Custom Layers , Warstwy niestandardowe
+Custom Layout , Układ niestandardowy
+Custom Style (Bottom Layer) , Styl niestandardowy (warstwa dolna)
+Custom Style (Top Layer) , Styl niestandardowy (górna warstwa)
+Custom Transform , Transformacja niestandardowa
+Customize CLUT , Dostosuj ZAMKNIĘCIE
+Cut , Cięcie
+Cut & Normalize , Cięcie i normalizacja
+Cutout , Wycięcie
+Cyan , Cyjan
+Cyan Factor , Czynnik cyjanowy
+Cyan Smoothness , Cyjan Gładkość
+Cycle Layers , Warstwy rowerowe
+Cycles , Cykle
+D and O 1 , D i O 1
+Damping per Octave , Tłumienie na oktawę
+Dark  Motive , Mroczny motyw
+Dark Blues in Sunlight , Ciemny błękit w świetle słonecznym
+Dark Color , Ciemny kolor
+Dark Edges , Ciemne Krawędzie (Dark Edges)
+Dark Motive , Mroczny motyw
+Dark Pixels , Ciemne piksele
+Dark Place 01 , Ciemne miejsce 01
+Dark Sky , Ciemne niebo
+Darken , Ciemny
+Darker , Ciemniejszy
+Darkness , Ciemność
+Darkness Level , Poziom ciemności
+Date 39 , Data 39
+Day for Night , Dzień na noc
+Day4Nite , Dzień 4Nite
+Daylight Scene , Scena dzienna
+Debug Font Size , Rozmiar czcionki debugowej
+Decompose , Rozkładać się
+Decompose Channels , Rozkładanie kanałów
+Decoration , Dekoracja
+Decreasing , Zmniejszający się
+Deep , Głębokie
+Deep Blue , Głęboki błękit
+Deep High Contrast , Głęboki Wysoki Kontrast
+Default , Domyślnie
+Defects Contrast , Wady Kontrast
+Defects Density , Wady Gęstość
+Defects Size , Wady Rozmiar
+Defects Smoothness , Wady Gładkość
+Deform , Deformować
+Delaunay: Portrait De Metzinger , Delaunay: Portret De Metzinger
+Delaunay: Windows Open Simultaneously , Delaunay: Windows otwarty jednocześnie
+Delete Layer Source , Usuń źródło warstwy
+Delicatessen , Delikatesy
+Density , Gęstość zaludnienia
+Density (%) , Gęstość (%)
+Depth , Głębokość
+Depth Fade In Frames , Głębokie zaniki w obramowaniach
+Depth Fade Out Frames , Ramy zanikające wgłębienie (Depth Fade Out Frames)
+Depth Field Control , Kontrola pola głębokości
+Depth Map , Mapa głębokości
+Depth Map Construction , Budowa mapy głębokości
+Depth Map Only , Tylko mapa głębokości
+Depth Map Reconstruction , Rekonstrukcja mapy głębokości
+Depth Maps Only , Tylko mapy głębokości
+Depth-Of-Field Type , Głębokość pola Typ
+Desaturate (%) , Desaturat (%)
+Desaturate Norm , Nienasycona norma
+Descent Method , Metoda zejścia
+Descreen , Ekran
+Desert Gold 37 , Pustynne złoto 37
+Destination (%) , Miejsce przeznaczenia (%)
+Destination X-Tiles , Miejsce docelowe Płytki X
+Destination Y-Tiles , Miejsce przeznaczenia Płytki Y
+Detail , Szczegóły
+Detail Level , Poziom szczegółowości
+Detail Reconstruction Detection , Szczegóły Wykrywanie rekonstrukcji
+Detail Reconstruction Smoothness , Szczegóły Rekonstrukcja Gładkość
+Detail Reconstruction Strength , Szczegóły Rekonstrukcja Wytrzymałość
+Detail Reconstruction Style , Szczegóły Styl rekonstrukcji
+Detail Scale , Skala szczegółowa
+Detail Strength , Siła szczegółowa
+Details , Szczegóły
+Details Amount , Szczegóły Kwota
+Details Equalizer , Szczegóły Korektor
+Details Scale , Szczegóły Skala
+Details Smoothness , Szczegóły Gładkość
+Details Strength (%) , Szczegóły Wytrzymałość (%)
+Detect Skin , Wykrywaj skórę
+Deuteranomaly , Deuteranomalia
+Deviation , Odchylenie
+Diamond , Diament
+Diamonds , Diamenty
+Diamonds (Outline) , Diamenty (kontur)
+Dices , Kostki
+Dices with Colored Numbers , Kostki z kolorowymi numerami
+Dices with Colored Sides , Kostki z kolorowymi ścianami bocznymi
+Difference , Różnica
+Difference Mixing , Różnica Mieszanie
+Difference of Gaussians , Różnica między Gausjanami
+Different Axis , Różne osie
+Diffuse (%) , Rozproszone (%)
+Diffuse Shadow , Rozproszony cień
+Diffusion , Dyfuzja
+Diffusion Tensors , Tensory dyfuzyjne
+Diffusivity , Diffuzyjność
+Digits , Cyfry
+Dilatation , Dylatacja
+Dilate , Dylatacja
+Dilation , Dylatacja
+Dilation - Original , Dylatacja - Oryginalna
+Dilation / Erosion , Dylatacja / Erozja
+Dimension , Wymiar
+Dimension [Diff] , Wymiar [Różnica]
+Dimension A , Wymiar A
+Dimensions (%) , Wymiary (%)
+Dimensions Pixels , Wymiary Piksele
+Dipole: 1/(4*z^2-1) , Dipol: 1/(4*z^2-1)
+Direct , Bezpośrednio
+Direction , Kierunek:
+Directions 23 , Wskazówki 23
+Dirty , Brudny
+Disable , Wyłączyć
+Disabled , Niepełnosprawni
+Discard Contour Guides , Prowadnice konturów odrzutów
+Discard Transparency , Przejrzystość odrzutów
+Display , Wyświetlacz
+Display Blob Controls , Wyświetlanie pokręteł
+Display Color Axes , Wyświetlanie osi kolorów
+Display Contours , Wyświetlanie konturów
+Display Coordinates , Współrzędne wyświetlania
+Display Coordinates on Preview Window , Wyświetlanie współrzędnych w oknie podglądu
+Display Debug Info on Preview , Wyświetlanie informacji o debugach na Podglądzie
+Distance , Odległość
+Distance (Fast) , Odległość (Szybko)
+Distance Transform , Odległość Transformacja
+Distort Lens , Zniekształcenie obiektywu
+Distortion Factor , Czynnik zniekształcający
+Distortion Surface Angle , Zakłócenie Kąt powierzchniowy
+Distortion Surface Position , Zniekształcenie Położenie powierzchniowe
+Disturbance Scale-By-Factor , Skala zaburzeń - czynnik powodujący zaburzenia
+Disturbance X , Zakłócenie X
+Disturbance Y , Zakłócenie Y
+Dither Output , Dither Wyjście
+Divide , Podziel
+Do Not Flatten Transparency , Nie spłaszczać przejrzystości
+Dodge and Burn , Dodge i Burn
+Dodge Strength , Wytrzymałość na uskoki (Dodge Strength)
+DOF Analyzer , Analizator DOF
+Dog , Pies
+Dot Size , Rozmiar kropki
+Dots , Kropki
+Download External Data , Pobieranie danych zewnętrznych
+Dragon Curve , Smocza krzywa
+Dragonfly , Ważka
+Drawing Mode , Tryb rysunkowy
+Dream , Sen
+Dream 1 , Sen 1
+Dream 85 , Sen 85
+Dream Smoothing , Wygładzanie snów
+Drop Water , Kropla wody
+Duck , Kaczka
+Duplicate Bottom , Duplikat Dół
+Duplicate Horizontal , Duplikat Poziomy
+Duplicate Left , Duplikat w lewo
+Duplicate Right , Duplikat prawa
+Duplicate Top , Duplikat wierzchołka
+Duplicate Vertical , Duplikat w pionie
+Duration , Czas trwania pomocy
+Dynamic Range Increase , Dynamiczny wzrost zasięgu
+Eagle , Orzeł
+Earth , Ziemia
+Earth Tone Boost , Ziemskie Tony Boost
+Edge Antialiasing , Antialiasing krawędziowy
+Edge Attenuation , Tłumienie krawędziowe
+Edge Detect Includes Chroma , Wykrywacz krawędzi zawiera Chroma
+Edge Exponent , Wykładnik krawędziowy
+Edge Fidelity , Wierność krawędzi
+Edge Influence , Wpływ krawędziowy
+Edge Mask , Maska krawędziowa
+Edge Sensitivity , Wrażliwość krawędziowa
+Edge Simplicity , Prostota krawędzi
+Edge Smoothness , Gładkość krawędzi
+Edge Thickness , Grubość krawędzi
+Edge Threshold , Próg krawędziowy
+Edge Threshold (%) , Próg krawędziowy (%)
+Edges , Krawędzie
+Edges (%) , Krawędzie (%)
+Edges [Animated] , Krawędzie [Animowane]
+Edges Offsets , Krawędzie Odstępstwa
+Edges on Fire , Krawędzie w ogniu
+Edges-0.5 (beware: Memory-Consuming!) , Krawędzie-0.5 (uwaga: Pamięć-zużywa!)
+Edges-1 (beware: Memory-Consuming!) , Edges-1 (uważaj: Pamięć-Zużywa!)
+Edges-2 (beware: Memory-Consuming!) , Krawędzie-2 (uwaga: Pamięć-zabierająca!)
+Effect Strength , Siła oddziaływania
+Effect X-Axis Scaling , Efekt X-axis Scaling
+Effect Y-Axis Scaling , Efekt Y-Axis Scaling
+Eight Layers , Osiem warstw
+Eight Threads , Osiem gwintów
+Elegance 38 , Elegancja 38
+Elephant , Słoń
+Elevation , Wzniesienie
+Elevation (%) , Wzniesienie (%)
+Ellipse Painting , Malarstwo elipsowe
+Ellipse Ratio , Stosunek elipsy
+Ellipsionism , Elipsjonizm
+Ellipsionism Opacity , Elipsjonizm Nieprzezroczystość
+Ellipsoid , Elipsoida
+Emboss , Wytłoczenie
+Enable Antialiasing , Włączanie antyaliasingu
+Enable Interpolated Motion , Włącz Interpolowany Ruch
+Enable Morphology , Włącz morfologię
+Enable Paintstroke , Włączanie pociągnięcia farbą
+Enable Segmentation , Włącz Segmentację
+Enchanted , Zaczarowany
+End Color , Kolor końcowy
+End Frame Number , Numer ramy końcowej
+End of Mid-Tones , Koniec Mid-Tones
+End Point Connectivity , Łączność z punktami końcowymi
+End Point Rate (%) , Stopa punktów końcowych (%)
+Ending Angle , Kąt końcowy
+Ending Color , Kolor końcowy
+Ending Feathering , Zakończenie pierzenia
+Ending Point (%) , Punkt końcowy (%)
+Ending Scale (%) , Skala końcowa (%)
+Ending Value , Wartość końcowa
+Ending X-Centering , Zakończenie X-Centrowania
+Ending Y-Centering , Końcowy Y-Centrowanie
+Engrave , Grawerunek
+Enhance Detail , Zwiększanie szczegółowości
+Enhance Details , Poprawa szczegółów
+Equalization , Wyrównanie
+Equalization (%) , Wyrównanie (%)
+Equalize , Wyrównać
+Equalize and Normalize , Wyrównywać i normalizować
+Equalize at Each Step , Wyrównać na każdym kroku
+Equalize HSI-HSL-HSV , Wyrównać HSI-HSL-HSV
+Equalize HSV , Wyrównać HSV
+Equalize Light , Wyrównać światło
+Equalize Local Histograms , Wyrównywanie lokalnych histogramów
+Equalize Shadow , Wyrównać cień
+Equation Plot [Parametric] , Wykres równań [Parametryczny]
+Equation Plot [Y=f(X)] , Działka równania [Y=f(X)]
+Equirectangular to Nadir-Zenith , Równoległe do Nadir-Zenitu
+Erosion , Erozja
+Erosion / Dilation , Erozja / Dylatacja
+Etch Tones , Tony wytrawiające
+Eterna for Flog , Eterna dla Floga
+Euclidean , Euklidesan
+Euclidean - Polar , Euklidesowy - Polarny
+Exclusion , Wyłączenie
+Expand , Rozwiń
+Expand Background Reconstruction , Rozszerzenie zaplecza Odbudowa
+Expand Shadows , Rozwiń cienie
+Expand Size , Rozszerzenie rozmiaru
+Expanding Mirrors , Rozszerzające się lustra
+Expired (fade) , Wygasł (blaknięcie)
+Expired (polaroid) , Wygasł (polaroid)
+Expired 69 , Wygasł 69
+Exponent , Składnik
+Exponent (Imaginary) , Składnik (Wyobrażeniowy)
+Exponent (Real) , Wyrażnik (rzeczywisty)
+Exponential , Wykładniczy
+Export RGB-565 File , Eksport pliku RGB-565
+Exposure , Ekspozycja
+Expression , Wyrażenie
+Extend 1px , Rozszerzenie 1px
+External Transparency , Przejrzystość zewnętrzna
+Extra  Smooth , Wyjątkowo gładki
+Extract Foreground [Interactive] , Wyciągnij pierwszy plan [Interaktywny]
+Extract Objects , Ekstrakt Obiekty
+Extrapolate Color Spots on Transparent Top Layer , Ekstrapolowane kolorowe plamy na przezroczystej warstwie wierzchniej
+Factor , Czynnik
+Fade , Wygasanie
+Fade End , Blaknięcie Koniec
+Fade End (%) , Blaknięcie Koniec (%)
+Fade Layers , Warstwy blaknięcia
+Faded , Wyblakły
+Faded (alt) , Wyblakły (alt)
+Faded (analog) , Wyblakły (analogowy)
+Faded (extreme) , Wyblakłe (skrajne)
+Faded (vivid) , Wyblakły (żywy)
+Faded 47 , Wyblakły 47
+Faded Green , Wyblakły zielony
+Faded Look , Wyblakłe spojrzenie
+Faded Print , Wyblakły druk
+Faded Retro 01 , Wyblakłe Retro 01
+Faded Retro 02 , Wyblakłe Retro 02
+Fading , Zanikający
+Fall Colors , Kolory jesienne
+Far Point Deviation , Odchylenie punktu dalekiego
+Fast , Szybko
+Fast &#40;Approx.&#41; , Fast (Ok. )
+Fast (Low Precision) Preview , Szybki (niska precyzja) Podgląd
+Fast Approximation , Szybkie przybliżenie
+Fast Blend , Szybka mieszanka
+Fast Blend Preview , Podgląd szybkiej mieszanki
+Fast Recovery , Szybki powrót do zdrowia
+Fast Resize , Szybka zmiana rozmiaru
+Feature Analyzer Smoothness , Analizator Feature Analyzer Gładkość
+Feature Analyzer Threshold , Próg dla analizatora Feature Analyzer
+Felt Pen , Pióro filcowe
+FFT Preview , Podgląd FFT
+Fibers , Włókna
+Fibers Amplitude , Włókna Amplituda
+Fibers Smoothness , Włókna Gładkość
+Fibrousness , Włóknistość
+Fidelity Chromaticity , Wierność Chromatyczność
+Fidelity Smoothness (Coarsest) , Wierność Gładkość (Najgrubsza)
+Fidelity Smoothness (Finest) , Wierność Gładkość (Finest)
+Fidelity to Target (Coarsest) , Wierność celowi (najgrubsza)
+Fidelity to Target (Finest) , Wierność celowi (Finest)
+Filename , Nazwa pliku
+Fill Holes , Wypełnianie otworów
+Fill Holes % , Wypełnianie otworów %
+Fill Transparent Holes , Wypełnianie przezroczystych otworów
+Filled , Wypełniony
+Filled Circles , Wypełnione kółka
+Filling , Wypełnianie
+Film Highlight Contrast , Kontrast świateł filmowych (Film Highlight Contrast)
+Filmic , Filmowy
+Filter Design , Projektowanie filtrów
+Final Image , Obraz końcowy
+Fine , Dobrze
+Fine 2 , Grzywna 2
+Fine Details Smoothness , Drobne szczegóły Gładkość
+Fine Details Threshold , Szczegóły Próg
+Fine Noise , Drobny hałas
+Fine Scale , Dokładna skala
+Finest (slower) , Najlepszy (wolniejszy)
+Finger Paint , Farba do malowania palcami
+Finger Size , Rozmiar palca
+Fire Effect , Efekt pożarowy
+Fireworks , Fajerwerki
+First , Najpierw
+First Color , Pierwszy kolor
+First Frame , Pierwsza rama
+First Offset , Pierwszy offset
+First Radius , Pierwszy promień
+First Size , Pierwszy rozmiar
+Fish-Eye Effect , Efekt rybiego oka
+Fitting Function , Funkcja dopasowywania
+Five Layers , Pięć warstw
+Flag , Flaga
+Flag (256) , Flaga (256)
+Flat Color , Kolor płaski
+Flat Regions Removal , Usuwanie regionów płaskich
+Flatness , Płaskość
+Flip Left / Right , Przerzucanie w lewo / w prawo
+Flip Left/Right , Przerzucanie w lewo/prawo
+Flip Tolerance , Tolerancja przerzucania
+Flower , Kwiat
+Foggy Night , Mglista noc
+Folder Name , Nazwa folderu
+Font Colors , Kolory czcionek
+Force Gray , Siła Szara
+Force Re-Download from Scratch , Siła Powtórne obciążenie od zarysowania
+Force Tiles to Have Same Size , Wymuszać, aby płytki miały ten sam rozmiar
+Force Transparency , Siła Przejrzystość
+Foreground Color , Kolor pierwszego planu
+Form , Formularz
+Formula , Formuła
+Forward , Do przodu
+Forward  Horizontal , Do przodu Poziomo
+Forward Horizontal , Do przodu Poziomo
+Forward Vertical , Do przodu Pionowo
+Four Layers , Cztery warstwy
+Four Threads , Cztery nici
+Fourier Analysis , Analiza Fouriera
+Fourier Filtering , Filtracja Fouriera
+Fourier Transform , Transformacja Fouriera
+Fourier Watermark , Znak wodny Fouriera
+Fractal Noise , Hałas fałdowy
+Fractal Points , Fraktalne punkty
+Fractal Set , Zestaw Fractal Set
+Fractured Clouds , Złamane chmury
+Fragment Blur , Rozmycie fragmentów
+Frame (px) , Ramka (px)
+Frame [Blur] , Ramka [Rozmycie]
+Frame [Cube] , Ramka [Kostka]
+Frame [Fuzzy] , Ramka [Fuzzy]
+Frame [Mirror] , Ramka [Lustro]
+Frame [Painting] , Rama [Malarstwo]
+Frame [Pattern] , Ramka [Wzór]
+Frame [Regular] , Rama [zwykła]
+Frame [Round] , Rama [Runda]
+Frame [Smooth] , Rama [Smooth]
+Frame as a New Layer , Rama jako nowa warstwa (Frame as a New Layer)
+Frame Color , Kolor ramki
+Frame Files Format , Format plików ramki
+Frame Format , Format ramki
+Frame Size , Rozmiar ramki
+Frame Skip , Ramka Pomijanie
+Frame Type , Typ ramy
+Frame Width , Szerokość ramy
+Frames , Ramki
+Frames Offset , Ramki Przesunięcie
+Freaky B&W , Dziwny B&W
+Freaky Details , Dziwne szczegóły
+Freeze , Zamrażanie
+French Comedy , Komedia francuska
+Frequency , Częstotliwość:
+Frequency (%) , Częstotliwość (%)
+Frequency Analyzer , Analizator częstotliwości
+Frequency Range , Zakres częstotliwości
+From Input , Od wejścia
+From Reference Color , Od koloru referencyjnego
+Frosted , Zamrożone
+Fruits , Owoce
+Fuji FP-100c Negative , Fuji FP-100c Negatywny
+Fuji FP-100c Negative + , Fuji FP-100c Ujemny +
+Fuji FP-100c Negative ++ , Fuji FP-100c Ujemny ++
+Fuji FP-100c Negative +++ , Fuji FP-100c Ujemny +++
+Fuji FP-100c Negative ++a , Fuji FP-100c Ujemny ++a
+Fuji FP-100c Negative - , Fuji FP-100c Negatywny -
+Fuji FP-100c Negative -- , Fuji FP-100c Negatywne --
+Fuji FP-3000b Negative , Fuji FP-3000b Negatywny
+Fuji FP-3000b Negative + , Fuji FP-3000b Ujemny +
+Fuji FP-3000b Negative ++ , Fuji FP-3000b Ujemny ++
+Fuji FP-3000b Negative +++ , Fuji FP-3000b Ujemny +++
+Fuji FP-3000b Negative - , Fuji FP-3000b Negatywny -
+Fuji FP-3000b Negative -- , Fuji FP-3000b Negatywne --
+Fuji FP-3000b Negative Early , Fuji FP-3000b Negatywne Wczesny wzrost
+Full , Pełna
+Full (Allows Multi-Layers) , Pełny (Pozwala na wielowarstwowe)
+Full (Slower) , Pełny (Wolniejszy)
+Full Bottom/top , Pełne dno/góra
+Full Colors , Pełne kolory
+Full HD Frame Packing , Pakowanie ramek Full HD
+Full Layer Stack -Slow!- , Pełnowarstwowy stos - Powoli!-
+Full Side by Side Keep Uncompressed , Pełna strona po stronie Trzymaj bez kompresji
+Futuristic Bleak 1 , Futurystyczny Bleak 1
+Futuristic Bleak 2 , Futurystyczny Bleak 2
+Futuristic Bleak 3 , Futurystyczny Bleak 3
+Futuristic Bleak 4 , Futurystyczny Bleak 4
+G'MIC Operator , Operator G'MIC
+G/M Smoothness , G/M Gładkość
+Games & Demos , Gry i demonstracje
+Gamma Balance , Saldo gamma
+Gamma Equalizer , Korektor Gamma
+Generate Random-Colors Layer , Generowanie przypadkowej warstwy barwnej (Random-Colors Layer)
+Generic Fuji Astia 100 , Generyczne Fuji Astia 100
+Generic Fuji Provia 100 , Generyczne Fuji Provia 100
+Generic Fuji Velvia 100 , Generyczne Fuji Velvia 100
+Generic Kodachrome 64 , Kodachrom ogólny 64
+Generic Kodak Ektachrome 100 VS , Generyczny Kodak Ektachrome 100 VS
+Generic Skin Structure , Ogólna struktura skóry
+Gentle Mode (overrides Minimum Brightness and Minimun Red:Blue Ratio) , Tryb łagodny (nadpisuje minimalną jasność i minimalną czerwień: stosunek niebieski)
+Geometry , Geometria
+Global Mapping , Mapowanie globalne
+Gmicky (by Deevad) , Gmicky (przez Deevad)
+Gmicky (by Mahvin) , Gmicky (przez Mahvina)
+Going for a Walk , Idziemy na spacer
+Gold , Złoto
+Golden , Złoty
+Golden (bright) , Złoty (jasny)
+Golden (fade) , Złoty (blaknięcie)
+Golden (mono) , Złoty (mono)
+Golden (vibrant) , Złoty (żywy)
+Golden Gate , Złota Brama
+GoldFX - Bright Summer Heat , GoldFX - Jasny letni upał
+GoldFX - Hot Summer Heat , GoldFX - Gorące letnie ciepło
+GoldFX - Perfect Sunset 10min , GoldFX - Idealny zachód słońca 10min
+GoldFX - Summer Heat , GoldFX - Letnie upały
+Good Morning , Dzień dobry
+Gradient [Corners] , Gradient [Rogi]
+Gradient [Custom Shape] , Gradient [Niestandardowy kształt]
+Gradient [from Line] , Gradient [od linii]
+Gradient [Linear] , Gradient [liniowy]
+Gradient [Random] , Gradient [Losowo]
+Gradient Norm , Norma gradientu
+Gradient Preset , Wstępne ustawienie gradientu
+Gradient Smoothness , Gładkość gradientu
+Gradient Values , Wartości gradientowe
+Grain , Ziarno
+Grain (Highlights) , Ziarno (Highlights)
+Grain (Midtones) , Ziarno (Midtones)
+Grain (Shadows) , Ziarno (Shadows)
+Grain Extract , Ekstrakt zboża
+Grain Merge , Łączenie zboża
+Grain Only , Tylko ziarno
+Grain Scale , Skala ziarna
+Grain Tone Fading , Blaknięcie koloru ziarna
+Grain Type , Rodzaj ziarna
+Grainextract , Wyciąg z winogron
+Granularity , Granularność
+Graphic Colours , Kolory graficzne
+Graphic Novel , Powieść graficzna
+Graphix Colors , Kolory Graphix
+Grayscale , Skala szarości
+Greece , Grecja
+Green , Zielony
+Green 15 , Zielona 15
+Green 2025 , Zielony 2025
+Green Action , Zielone działanie
+Green Afternoon , Zielone popołudnie
+Green Blues , Zielony Niebieski
+Green Conflict , Zielony Konflikt
+Green Day 01 , Zielony dzień 01
+Green Day 02 , Zielony Dzień 02
+Green Factor , Czynnik zielony
+Green G09 , Zielony G09
+Green Level , Poziom ekologiczny
+Green Light , Zielone światło
+Green Rotations , Zielone obroty
+Green Smoothness , Zielona gładkość
+Green Wavelength , Zielona Długość fali
+Green Yellow , Zielono-żółty
+Greenish Contrasty , Kontrast zielonkawy
+Grey , Szarość
+Greyscale , Skala szarości
+Grid , Siatka
+Grid [Cartesian] , Siatka [kartezjański]
+Grid [Hexagonal] , Siatka [sześciokątna]
+Grid [Triangular] , Siatka [trójkątna]
+Grid Divisions , Działy kratowe
+Grid Smoothing , Wygładzanie siatki
+Grid Width , Szerokość siatki
+Grow Alpha , Rozwijaj Alphę
+Guide As , Przewodnik Jak
+Guide Recovery , Przewodnik Odzyskiwanie
+H Cutoff , H Odcięcie
+Hair Locks , Zamki do włosów
+Half Bottom/top , Połowa dna / góra
+Half Side  by Side , Half Side by Side
+Halftone Shapes , Kształty półtonów
+Hanoi Tower , Wieża Hanoi
+Hard , Twardy
+Hard Light , Twarde światło
+Hard Mix , Twarda mieszanka
+Hard Sketch , Szkic twardy
+Hard Teal Orange , Twardy Teal Orange
+Harsh Day , Surowy dzień
+Harsh Sunset , Surowy zachód słońca
+HDR Effect (Tone Map) , Efekt HDR (Tone Map)
+Heart , Serce
+Hearts , Serca
+Hearts (Outline) , Serca (kontur)
+Hedcut (Experimental) , Hedcut (eksperymentalny)
+Height , Wysokość
+Height (%) , Wysokość (%)
+Herderite , Herderyt
+Heulandite , Heulandit
+High , Wysoki
+High (Slower) , Wysoki (Wolniejszy)
+High Frequency , Wysoka częstotliwość
+High Frequency Layer , Warstwa wysokiej częstotliwości
+High Key , Wysoki Klucz
+High Quality , Wysoka jakość
+High Scale , Wysoka skala
+High Speed , Duża prędkość
+High Value , Wysoka wartość
+Higher Mask Threshold (%) , Wyższy próg maski (%)
+Highlight (%) , Podświetlenie (%)
+Highlights , Najważniejsze informacje
+Highlights Abstraction , Najważniejsze informacje Abstrakcja
+Highlights Brightness , Najważniejsze Jasność
+Highlights Color Intensity , Najważniejsze informacje o intensywności kolorów
+Highlights Crossover Point , Najważniejsze punkty na skrzyżowaniu
+Highlights Lightness , Podkreślenia Lekkość
+Highlights Protection , Ochrona przed zagrożeniami
+Highlights Selection , Wybór najważniejszych punktów
+Highlights Threshold , Wysokie wartości progowe
+Highlights Zone , Najważniejsze strefy
+Histogram Analysis , Analiza histogramowa
+Histogram Transfer , Przeniesienie histogramu
+Homogeneity , Jednolitość
+Hong Kong , Hongkong
+Hope Poster , Plakat nadziei
+Horisontal Length , Długość pozioma
+Horizontal , Horyzontalny
+Horizontal (%) , Poziomy (%)
+Horizontal Amount , Kwota horyzontalna
+Horizontal Array , Układ poziomy
+Horizontal Blur , Rozmycie poziome
+Horizontal Length , Długość pozioma
+Horizontal Size (%) , Wielkość pozioma (%)
+Horizontal Stripes , Paski poziome
+Horizontal Tiles , Płytki poziome
+Horizontal Warp Only , Tylko osnowa pozioma
+Horror Blue , Horror Niebieski
+Hot , Gorący
+Hot (256) , Gorący (256)
+House , Dom
+Householder , Właściciel domu
+HSI [all] , HSI [wszyscy]
+HSI [Intensity] , HSI [Intensywność]
+HSL [all] , HSL [wszyscy]
+HSL [Lightness] , HSL [Lekkość]
+HSL Adjustment , Regulacja HSL
+HSV [all] , HSV [wszyscy]
+HSV [Saturation] , HSV [Nasycenie]
+HSV [Value] , HSV [Wartość]
+HSV Select , HSV Wybierz
+Hue Factor , Czynnik barwy (Hue Factor)
+Hue Offset , Przesunięcie barwy (Hue Offset)
+Hue Smoothness , Hue Gładkość
+Human  2 , Człowiek 2
+Human 1 , Człowiek 1
+Human 2 , Człowiek 2
+Hybrid Median - Medium Speed Softest Output , Hybrydowa Mediana - Średnia prędkość Najmniejsza wydajność
+Hypnosis , Hipnoza
+Iain Noise Reduction 2019 , Redukcja hałasu Iain 2019
+Identity , Tożsamość
+Ignore , Ignoruj
+Ignore Current Aspect , Ignorowanie aspektów bieżących
+Illuminate 2D Shape , Oświetlenie kształtu 2D
+Illumination , Oświetlenie
+Illustration Look , Ilustracja Spójrz
+Image , Obrazek
+Image + Background , Obraz + tło
+Image + Colors (2 Layers) , Obraz + kolory (2 warstwy)
+Image + Colors (Multi-Layers) , Obraz + kolory (Multi-Layers)
+Image Contour Dimensions , Wymiary konturu obrazu
+Image Smoothness , Gładkość obrazu
+Image to Grab Color from (.Png) , Image to Grab Color z (.Png)
+Image Weight , Waga obrazu
+Import Data , Dane dotyczące przywozu
+Import RGB-565 File , Import pliku RGB-565
+Impulses 5x5 , Impulsy 5x5
+Impulses 7x7 , Impulsy 7x7
+Impulses 9x9 , Impulsy 9x9
+Inch , Cale
+Include Opacity Layer , Włączyć warstwę kryjącą
+IncreaseChroma1 , ZwiększyćChroma1
+Increasing , Rosnące
+Industrial 33 , Przemysłowy 33
+Influence of Color Samples (%) , Wpływ próbek koloru (%)
+Information , Informacja
+Init. Resolution , Init. Uchwała
+Init. Type , Init. Typ
+Init. With High Gradients Only , Init. Tylko z wysokimi nachyleniami
+Initial Density , Gęstość początkowa
+Initialization , Inicjalizacja
+Inner , Wewnątrz
+Inner Fading , Blaknięcie wewnętrzne
+Inner Length , Długość wewnętrzna
+Inner Radius , Promień wewnętrzny
+Inner Radius (%) , Promień wewnętrzny (%)
+Inner Shade , Odcień wewnętrzny
+Inpaint [Holes] , Farba [Dziury]
+Inpaint [Morphological] , Inpaint [Morfologiczny]
+Input , Wejście:
+Input Folder , Folder wejściowy
+Input Frame Files Name , Ramka wejściowa Nazwa pliku
+Input Guide Color , Kolor przewodnika wejściowego
+Input Layers , Warstwy wejściowe
+Input Transparency , Wejście Przejrzystość
+Input Type , Typ wejścia
+Insert New CLUT Layer , Wstawić nową warstwę zamykającą
+Inside , Wewnątrz
+Inside Color , Kolor wewnętrzny
+Instant [Consumer] (54) , Błyskawiczny [Konsument] (54)
+Intarsia , Intarsja
+Intensity , Intensywność pomocy
+Intensity of Purple Fringe , Intensywność fioletowej grzywki
+Inter-Frames , Między ramami
+Interlace Horizontal , Interlace Poziomy
+Interlace Vertical , Interlace Pionowy
+Interpolate , Interpolować
+Interpolation , Interpolacja
+Interpolation Type , Typ interpolacji
+Inverse , Odwróć się
+Inverse Depth Map , Mapa odwrotnej głębokości
+Inverse Radius , Odwrotny promień
+Inverse Transform , Odwrotna transformacja
+Inversions , Inwersje
+Invert Background / Foreground , Odwrócenie tła / pierwszy plan
+Invert Blur , Odwrócenie rozmycia
+Invert Canvas Colors , Odwróć kolory płótna
+Invert Colors , Odwróć kolory
+Invert Image Colors , Odwróć kolory obrazu
+Invert Luminance , Odwrócona luminancja
+Invert Mask , Odwróć maskę
+Inward , Wewnątrz
+Isophotes , Izofoty
+Isotropic , Izotropowy
+Iteration , Iteracja
+Iterations , Iteracje
+Japanese Maple Leaf , Japoński liść klonowy
+Jet (256) , Odrzutowiec (256)
+JPEG Artefacts , Artefakty JPEG
+Just Peachy , Tylko Peachy
+Kaleidoscope [Blended] , Kalejdoskop [mieszany]
+Kaleidoscope [Polar] , Kalejdoskop [Polar]
+Kaleidoscope [Symmetry] , Kalejdoskop [Symetria]
+Kandinsky: Squares with Concentric Circles , Kandinsky: Skwery z koncentrycznymi kołami
+Keep , Trzymaj
+Keep Aspect Ratio , Zachowaj proporcje proporcje proporcji
+Keep Base Layer as Input Background , Zachowanie warstwy bazowej jako tła wejściowego
+Keep Borders Square , Trzymaj Plac Graniczny
+Keep Color Channels , Zachowaj kanały kolorów
+Keep Colors , Zachowaj kolory
+Keep Detail , Zachowaj szczegóły
+Keep Detail Layer Separate , Oddzielenie warstwy szczegółów
+Keep Iterations as Different Layers , Zachowaj Iteracje jako różne warstwy
+Keep Layers Separate , Oddzielenie warstw
+Keep Original Image Size , Zachowaj oryginalny rozmiar obrazu
+Keep Original Layer , Zachowaj oryginalną warstwę
+Keep Tiles Square , Trzymaj płytki na placu
+Keep Transparency in Output , Zachowanie przejrzystości w produkcji
+Kernel Multiplier , Mnożnik jądra (Kernel Multiplier)
+Kernel Type , Typ jądra
+Key Factor , Czynnik kluczowy
+Key Frame Rate , Kluczowa stawka ramowa
+Key Smoothness , Gładkość klucza
+Keypoint Influence (%) , Wpływ punktu kluczowego (%)
+Klee: Death and Fire , Klee: Śmierć i ogień
+Klee: In the Style of Kairouan , Klee: W stylu Kairouan
+Klee: Polyphony 2 , Klee: Polifonia 2
+Klee: Red Waistcoat , Klee: Czerwona kamizelka
+Kuwahara , Kuwejtara
+Kuwahara on Painting , Kuwejtara na Malarstwie
+Lab , Laboratorium
+Lab (Chroma Only) , Laboratorium (tylko dla aromatu)
+Lab (Distinct) , Laboratorium (Distinct)
+Lab (Luma Only) , Laboratorium (tylko Luma)
+Lab (Luma/Chroma) , Laboratorium (Luma/Chroma)
+Lab (Mixed) , Laboratorium (mieszane)
+Lab [a-Chrominance] , Laboratorium [a-Chrominance]
+Lab [ab-Chrominances] , Laboratorium [ab-Chrominances]
+Lab [all] , Laboratorium [wszystkie]
+Lab [b-Chrominance] , Laboratorium [b-Chrominance]
+Lab [Lightness] , Laboratorium [Lekkość]
+Landscape , Krajobraz
+Landscape-10 , Krajobraz-10
+Landscape-3 , Krajobraz-3
+Landscape-4 , Krajobraz-4
+Landscape-5 , Krajobraz-5
+Landscape-6 , Krajobraz 6
+Landscape-7 , Krajobraz-7
+Landscape-8 , Krajobraz-8
+Landscape-9 , Krajobraz-9
+Laplacian , Laplacjan
+Large , Duże
+Large Noise , Duży hałas
+Last , Ostatni
+Last Frame , Ostatnia ramka
+Late Afternoon Wanderlust , Późnym popołudniem Wanderlust
+Late Sunset , Późny zachód słońca
+Lava Lamp , Lampka lawowa
+Layer , Warstwa
+Layer Processing , Przetwarzanie warstw
+Layers to Tiles , Warstwy do płytek
+Lch [all] , Lch [wszyscy]
+Leaf , Liść
+Leaf Color , Kolor liści
+Leaf Opacity (%) , Nieprzezroczystość liści (%)
+Leak Type , Rodzaj przecieku
+Left , W lewo
+Left  Foreground , Lewy pierwszy plan
+Left / Right Blur (%) , Rozmycie w lewo / w prawo (%)
+Left and Right Background , Lewe i prawe tło
+Left and Right Foreground , Lewy i prawy pierwszy plan
+Left and Right Image Streams , Lewy i prawy strumień obrazu
+Left Diagonal Foreground , Lewy przekątny Pierwszy plan
+Left Foreground , Lewy pierwszy plan
+Left Position , Pozycja lewa
+Left Side Orientation , Ukierunkowanie boczne w lewo
+Left Slope , Lewy stok
+Left Stream Only , Tylko Left Stream
+Length , Długość
+Lenticular Density LPI , Gęstość Soczewkowa LPI
+Lenticular Orientation , Orientacja soczewicowa
+Lenticular Print , Druk soczewkowy (Lenticular Print)
+Level , Poziom
+Level Frequency , Poziom Częstotliwość
+Levels , Poziomy
+Lifestyle & Commercial-1 , Styl życia i reklama-1
+Lifestyle & Commercial-10 , Styl życia i reklama-10
+Lifestyle & Commercial-3 , Styl życia i reklama-3
+Lifestyle & Commercial-5 , Styl życia i reklama-5
+Lifestyle & Commercial-6 , Styl życia i reklama-6
+Lifestyle & Commercial-9 , Styl życia i handel-9
+Light , Światło
+Light (blown) , Światło (dmuchane)
+Light Angle , Kąt świetlny
+Light Color , Kolor światła
+Light Direction , Kierunek światła
+Light Effect , Efekt świetlny
+Light Glow , Jasny blask
+Light Grey , Jasnoszary
+Light Leaks , Lekkie wycieki
+Light Motive , Lekki motyw
+Light Patch , Łata świetlna
+Light Rays , Promienie świetlne
+Light Smoothness , Gładkość światła
+Light Strength , Wytrzymałość na światło
+Light Type , Typ światła
+Lighten , Rozjaśnij
+Lighten Edges , Krawędzie świetlne
+Lighter , Zapalniczka
+Lighting , Oświetlenie
+Lighting Angle , Kąt oświetlenia
+Lightness , Lekkość
+Lightness (%) , Lekkość (%)
+Lightness Factor , Współczynnik lekkości
+Lightness Level , Poziom lekkości
+Lightness Max (%) , Lekkość Max (%)
+Lightness Min (%) , Lekkość Min (%)
+Lightness Shift , Przesunięcie lekkości
+Lightness Smoothness , Lekkość Gładkość Smoothness
+Lightning , Błyskawica
+Limit Hue Range , Graniczny zakres barwy
+Line , Linia
+Line Opacity , Linia Nieprzezroczystość
+Line Precision , Precyzja linii
+Linear Burn , Oparzenie liniowe
+Linear Light , Światło liniowe
+Linear RGB , Liniowy RGB
+Linear RGB [All] , Linear RGB [Wszystkie]
+Linear RGB [Blue] , Linear RGB [Niebieski]
+Linear RGB [Green] , Linear RGB [Zielony]
+Linearity , Liniowość
+Lineart + Color Spots , Lineart + kolorowe plamy
+Lineart + Color Spots + Extrapolated Colors , Lineart + Kolorowe plamy + Kolory ekstrapolowane
+Lineart + Colors , Lineart + Kolory
+Lineart + Extrapolated Colors , Lineart + Ekstrapolowane kolory
+Lines , Linie
+Lines (256) , Linie (256)
+Linf-Norm , Link-Norm
+Lion , Lew
+Lissajous [Animated] , Lissajous [Animowany]
+Lissajous Spiral , Spirala Lissajous
+Little , Mały
+Little Cyan , Mały Cyjan
+Little Magenta , Mała Magenta
+Little Red , Mała czerwień
+Little Yellow , Mały Żółty
+LN Amplititude , LN Amplituła
+LN Amplitude , LN Amplituda
+LN Average-Smoothness , LN Średnia - Gładkość
+LN Size , Wielkość LN
+Local  Normalisation , Normalizacja lokalna
+Local Contrast , Kontrast lokalny
+Local Contrast Effect , Lokalny efekt kontrastu
+Local Contrast Enhance , Lokalne wzmocnienie kontrastu
+Local Contrast Enhancement , Wzmocnienie lokalnego kontrastu
+Local Contrast Style , Lokalny Styl Kontrastu
+Local Normalization , Lokalna normalizacja
+Local Orientation , Lokalna orientacja
+Local Processing , Przetwarzanie lokalne
+Local Similarity Mask , Maska podobieństwa lokalnego
+Local Variance Normalization , Normalizacja lokalnej zmienności
+Lock Return Scaling to Source Layer , Blokada Powrót skalowania do warstwy źródłowej
+Lock Source , Źródło zamka
+Lock Uniform Sampling , Jednolite pobieranie próbek na zamek
+Log(z) , Dziennik(z)
+Logarithmic Distortion , Zakłócenia logarytmiczne
+Logarithmic Distortion Axis Combination for X-Axis , Logarytmiczna kombinacja osi zniekształceń dla osi X-Axis
+Logarithmic Distortion Axis Combination for Y-Axis , Logarytmiczna kombinacja osi zniekształceń dla osi Y
+Logarithmic Distortion X-Axis Direction , Zniekształcenia logarytmiczne Kierunek X-Axis
+Logarithmic Distortion Y-Axis Direction , Zniekształcenia logarytmiczne Kierunek Y-Axis
+Lomography Redscale 100 , Lomografia Czerwona skala 100
+Lomography X-Pro Slide 200 , Lomografia X-Pro Slide 200
+Lookup Factor , Współczynnik wyszukiwania
+Lookup Size , Rozmiar Lookup
+Loop Method , Metoda pętli
+Low , Niski poziom
+Low Bias , Niski poziom uprzedzenia
+Low Contrast Blue , Niski Kontrast Niebieski
+Low Frequency , Niska częstotliwość
+Low Frequency Layer , Warstwa niskiej częstotliwości
+Low Key , Niski klawisz
+Low Key 01 , Niski klawisz 01
+Low Scale , Niska skala
+Low Value , Niska wartość
+Lower Layer Is the Bottom Layer for All Blends , Dolna warstwa jest dolną warstwą dla wszystkich mieszanek.
+Lower Mask Threshold (%) , Dolny próg maski (%)
+Lower Side Orientation , Dolna orientacja boczna
+Lowercase Letters , Małymi literami
+Lowlights Crossover Point , Skrzyżowanie świateł dolnych
+Lowres CLUT , Zamknięcie Lowres
+Lucky 64 , Szczęśliwy 64
+Luma Noise , Hałas Lumy
+Luminance , Luminancja
+Luminance Factor , Współczynnik luminancji
+Luminance Level , Poziom luminancji
+Luminance Only , Tylko Luminancja
+Luminance Only (Lab) , Tylko luminancja (laboratorium)
+Luminance Only (YCbCr) , Tylko luminancja (YCbCr)
+Luminance Shift , Zmiana luminancji
+Luminance Smoothness , Luminancja Gładkość
+Luminosity from Color , Jasność od koloru
+Luminosity Type , Rodzaj natężenia światła
+Lush Green Summer , Bujne zielone lato
+LUTs Pack , Pakiet LUT
+Lylejk's Painting , Malarstwo Lylejk's Painting
+Magenta Coffee , Kawa Magenta
+Magenta Day , Dzień Magenty
+Magenta Day 01 , Dzień Magenty 01
+Magenta Factor , Czynnik Magenta
+Magenta Smoothness , Magenta Gładkość
+Magenta Yellow , Magenta Żółty
+Magic Details , Magiczne szczegóły
+Magnitude / Phase , Wielkość / faza
+Mail , Poczta
+Make Hue Depends on Region Size , Make Hue zależy od wielkości regionu
+Make Seamless [Diffusion] , Make Seamless [Dyfuzja]
+Make Seamless [Patch-Based] , Make Seamless [Oparte na łatach]
+Make Squiggly , Zrób Squiggly
+Make Up , Makijaż
+Manual , Podręcznik
+Manual Controls , Sterowanie ręczne
+Map , Mapa
+Map Tones , Tony na mapie
+Mapping , Mapowanie
+Marble , Marmur
+Margin (%) , Marża (%)
+Mascot Image , Obrazek maskotki
+Masculine , Męski
+Mask , Maska
+Mask + Background , Maska + tło
+Mask as Bottom Layer , Maska jako warstwa spodnia (Bottom Layer)
+Mask By , Maska przez
+Mask Color , Kolor maski
+Mask Contrast , Kontrast maskowy
+Mask Creator , Twórca maski
+Mask Dilation , Dylatacja maski
+Mask Size , Rozmiar maski
+Mask Smoothness (%) , Maska Gładkość (%)
+Mask Type , Typ maski
+Masked Image , Obraz maskowy
+Masking , Maskowanie
+Match Colors With , Dopasuj kolory Z
+Matching Precision (Smaller Is Faster) , Dopasowanie precyzji (Smaller Is Faster)
+Math Symbols , Symbole matematyczne
+Matrix , Matryca
+Max Angle , Kąt Maxa
+Max Angle Deviation (deg) , Maksymalne odchylenie kątowe (deg)
+Max Area , Maksymalny obszar
+Max Curve , Krzywa Maxa
+Max Cut (%) , Maksymalne cięcie (%)
+Max Iterations , Max. Iteracje
+Max Length (%) , Długość maksymalna (%)
+Max Offset (%) , Maksymalny offset (%)
+Max Threshold , Maksymalny próg
+Maximal Area , Maksymalny obszar
+Maximal Color Saturation , Maksymalne nasycenie kolorów
+Maximal Highlights , Maksymalne oświetlenie
+Maximal Radius , Maksymalny promień
+Maximal Seams per Iteration (%) , Maksymalne szwy na powtórzenie (%)
+Maximal Size , Maksymalny rozmiar
+Maximal Value , Wartość maksymalna
+Maximum , Maksymalnie
+Maximum Dimension , Maksymalny wymiar
+Maximum Image Size , Maksymalny rozmiar obrazu
+Maximum Number of Image Colors , Maksymalna liczba kolorów obrazu
+Maximum Number of Output Layers , Maksymalna liczba warstw wyjściowych
+Maximum Red:Blue Ratio in the Fringe , Maksymalny współczynnik czerwieni: Niebieski na obrzeżach
+Maximum Saturation , Maksymalne nasycenie
+Maximum Size Factor , Maksymalny współczynnik wielkości
+Maximum Value , Wartość maksymalna
+Maze Type , Typ labiryntu
+Mean Color , Średni kolor
+Mean Curvature , Średnia krzywizna
+Median , Mediana
+Median (beware: Memory-Consuming!) , Mediana (uważaj: Pamięć-zabsorbująca!)
+Medium 3 , Średnia 3
+Medium Details Smoothness , Średnie szczegóły Gładkość
+Medium Details Threshold , Średni poziom szczegółowości Próg
+Medium Frequency Layer , Warstwa średniej częstotliwości
+Medium Scale (Original) , Średnia skala (Oryginalna)
+Medium Scale (Smoothed) , Średnia skala (wygładzona)
+Memories , Wspomnienia
+Merge Brightness / Colors , Połączyć jasność / kolory
+Merge Layers? , Połączyć warstwy?
+Merging Mode , Tryb łączenia
+Merging Option , Opcja połączenia
+Merging Steps , Etapy łączenia
+Mess with Bits , Bałagan z bitami
+Metallic Look , Metaliczny wygląd
+Method , Metoda
+Metric , Metryczny
+Micro/macro Details  Adjusted , Mikro/makro Szczegóły Dostosowane
+Mid Noise , Hałas środkowy
+Mid Offset , Przesunięcie środkowe
+Mid Tone Contrast , Kontrast Środkowego Tonu
+Middle Grey , Szarość środkowa
+Middle Scale , Skala średnia
+Midtones Color Intensity , Tony średnie Intensywność koloru
+Mighty Details , Potężne szczegóły
+Min Angle Deviation (deg) , Min. odchylenie kątowe (deg)
+Min Area % , Obszar Min. %
+Min Cut (%) , Minimalne cięcie (%)
+Min Length (%) , Długość minimalna (%)
+Min Offset (%) , Min. Przesunięcie (%)
+Min Threshold , Min. próg
+Mineral Mosaic , Mozaika mineralna
+Minesweeper , Zamiatarka górnicza
+Minimal Area , Minimalna powierzchnia
+Minimal Area (%) , Minimalna powierzchnia (%)
+Minimal Color Intensity , Minimalna intensywność koloru
+Minimal Highlights , Minimalne oświetlenie
+Minimal Path , Minimalna ścieżka
+Minimal Radius , Minimalny promień
+Minimal Region Area , Minimalny obszar regionu
+Minimal Scale (%) , Skala minimalna (%)
+Minimal Shape Area , Minimalny obszar kształtu
+Minimal Size , Minimalna wielkość
+Minimal Size (%) , Minimalna wielkość (%)
+Minimal Stroke Length , Minimalna długość skoku
+Minimal Value , Wartość minimalna
+Minimalist Caffeination , Minimalistyczna kofeinacja
+Minimum Brightness , Minimalna jasność
+Minimum Red:Blue Ratio in the Fringe , Minimalny stosunek czerwieni do błękitu na obrzeżach
+Mirror , Lustro
+Mirror Effect , Efekt lustra
+Mirror X , Lustro X
+Mirror Y , Lustro Y
+Mixed Mode , Tryb mieszany
+Mixer [CMYK] , Mikser [CMYK]
+Mixer [HSV] , Mikser [HSV]
+Mixer Mode , Tryb miksera
+Mixer Style , Styl miksera
+Mode , Tryb
+Modern Film , Film współczesny
+Modulo Value , Modulo Wartość
+Moir&eacute; Animation , Moir&eacute; Animacja
+Moire Removal , Usuwanie wilgoci
+Moire Removal Method , Metoda usuwania wilgoci
+Mondrian: Composition in Red-Yellow-Blue , Mondrian: Skład w kolorze czerwono-żółto-niebieskim
+Mondrian: Evening; Red Tree , Mondrian: Wieczór; Red Tree
+Monet: San Giorgio Maggiore at Dusk , Monet: San Giorgio Maggiore o zmierzchu
+Monet: Water-Lily Pond , Monet: Staw wodno-lilijny
+Monet: Wheatstacks - End of Summer , Monet: Stogi pszenicy - koniec lata
+Mono Tinted , Mono Przyciemniany
+Mono-Directional , Monokierunkowy
+Monochrome , Monochromatyczne
+Monochrome 1 , Monochromatyczny 1
+Monochrome 2 , Monochromatyczny 2
+Montage Type , Rodzaj montażu
+Moonlight , Światło księżyca
+Moonlight 01 , Światło księżycowe 01
+Moonrise , Wschód księżyca
+Morning 6 , Dzień dobry 6
+Morph [Interactive] , Morph [Interaktywny]
+Morph Layers , Warstwy morfowe
+Morphological - Fastest Sharpest Output , Morfologiczny - Najszybsze ostre wyjście
+Morphological Closing , Zamknięcie morfologiczne
+Morphological Filter , Filtr morfologiczny
+Morphology Painting , Morfologia Malarstwo
+Morphology Strength , Morfologia Wytrzymałość
+Mosaic , Mozaika
+Most , Większość
+Mostly Blue , Głównie niebieski
+Motion Analyzer , Analizator ruchu
+Motion-Compensated , Wniosek-rekompensata
+Much , Dużo
+Much Blue , Dużo niebieskiego
+Multi-Layer Etch , Trawienie wielowarstwowe
+Multiple Colored Shapes Over Transp. BG , Wielokolorowe kształty przezroczyste. BG
+Multiple Layers , Wiele warstw
+Multiplier , Mnożnik
+Multiply , Pomnożyć
+Multiscale Operator , Operator multiskalowy
+Muted 01 , Wyciszony 01
+Muted Fade , Wyciszony blask
+Name , Nazwa
+Natural (vivid) , Naturalny (żywy)
+Nature & Wildlife-1 , Przyroda i dzika przyroda-1
+Nature & Wildlife-10 , Przyroda i dzika przyroda-10
+Nature & Wildlife-2 , Przyroda i dzika natura-2
+Nature & Wildlife-3 , Przyroda i dzika przyroda-3
+Nature & Wildlife-4 , Przyroda i dzika natura-4
+Nature & Wildlife-5 , Przyroda i dzika przyroda-5
+Nature & Wildlife-6 , Przyroda i dzika natura-6
+Nature & Wildlife-7 , Przyroda i dzika natura-7
+Nature & Wildlife-8 , Przyroda i dzika przyroda-8
+Nature & Wildlife-9 , Przyroda i dzika przyroda-9
+Nb Circles Surrounding , Nb Kręgi Otoczenie
+Near Black , Blisko Czarnego
+Nearest , Najbliższy
+Nearest Neighbor , Najbliższy sąsiad
+Negation , Negacja
+Negative , Negatywny
+Negative [Color] (13) , Negatywny [Kolor] (13)
+Negative [New] (39) , Negatywny [nowy] (39)
+Negative [Old] (44) , Negatywny [Stary] (44)
+Negative Color Abstraction , Abstrakcja kolorów ujemnych
+Negative Colors , Kolory ujemne
+Negative Effect , Negatywny wpływ
+Neighborhood Size (%) , Sąsiedztwo Wielkość (%)
+Neighborhood Smoothness , Sąsiedztwo Gładkość
+Nemesis , Nemezis
+Neon Lightning , Błyskawica neonowa
+Neutral Color , Neutralny kolor
+Neutral Teal Orange , Neutralny Teal Orange
+New Curves [Interactive] , Nowe krzywe [Interaktywne]
+Newspaper , Gazeta
+Night 01 , Noc 01
+Night Blade 4 , Nocne Ostrze 4
+Night From Day , Noc Od dnia
+Night King 141 , Nocny Król 141
+Night Spy , Nocny Szpieg
+Nine Layers , Dziewięć warstw
+No Masking , Nie Maskowanie
+No Recovery , Brak odzysku
+No Rescaling , Nie Rescaling
+No Transparency , Brak przejrzystości
+Noise , Hałas
+Noise [Additive] , Hałas [Dodatkowy]
+Noise [Perlin] , Hałas [Perlin]
+Noise [Spread] , Hałas [Rozproszony]
+Noise A , Hałas A
+Noise B , Hałas B
+Noise C , Hałas C
+Noise D , Hałas D
+Noise Level , Poziom hałasu
+Noise Scale , Skala hałasu
+Noise Type , Rodzaj hałasu
+Non / No , Nie / Nie
+Non-Linearity , Nieliniowość
+Non-Rigid , Niesztywny
+None , Brak
+None (Allows Multi-Layers) , Brak (pozwala na wielowarstwowe)
+None- Skip , Non - Skip
+Norm Type , Typ normalny
+Normal , Normalny
+Normal Map , Mapa normalna
+Normal Output , Wyjście normalne
+Normalization , Normalizacja
+Normalize , Normalizacja
+Normalize Brightness , Normalizacja jasności
+Normalize Colors , Normalizacja kolorów
+Normalize Illumination , Normalizacja oświetlenia
+Normalize Input , Normalizacja danych wejściowych
+Normalize Luma , Normalizacja Lumy
+Normalize Scales , Normalizacja wagi
+Nostalgia Honey , Nostalgia Miód
+Nostalgic , Nostalgiczny
+Nothing , Nic
+Number , Numer
+Number of Added Frames , Liczba dodanych ramek
+Number of Angles , Liczba kątów
+Number of Clusters , Liczba klastrów
+Number of Colors , Liczba kolorów
+Number of Frames , Liczba ramek
+Number of Inter-Frames , Liczba ramek międzysystemowych
+Number of Iterations per Scale , Liczba Iteracji na skali
+Number of Key-Frames , Liczba ramek kluczowych
+Number of Levels , Liczba poziomów
+Number of Matches (Coarsest) , Liczba meczów (Najgrubsze)
+Number of Matches (Finest) , Liczba meczów (Finest)
+Number of Orientations , Liczba kierunków
+Number Of Rays , Liczba promieni
+Number of Scales , Liczba podziałek
+Number of Sizes , Liczba rozmiarów
+Number of Streaks , Liczba smug
+Number of Teeth , Liczba zębów
+Number of Tones , Liczba tonów
+Object Animation , Animacja obiektu
+Object Ratio , Stosunek liczby obiektów
+Object Tolerance , Tolerancja obiektu
+Octagon , Oktagon
+Octagonal , Ośmiokątny
+Octaves , Oktawy
+Octogon , Ośmiornica
+Oddness (%) , Dziwność (%)
+Offset (%) , Przesunięcie (%)
+Offset Angle Rays Layer 1 , Przesunięcie kątowe warstwy promieniowej 1
+Offset Angle Rays Layer 2 , Przesunięcie kątowe warstwy promieniowej 2
+Old Method - Slowest , Stara metoda - Najwolniejszy
+Old Photograph , Stara fotografia
+Old West , Stary Zachód
+Oldschool 8bits , Oldschool 8 bitów
+ON1 Photography (90) , ON1 Fotografia (90)
+One Layer , Jedna warstwa
+One Layer (Horizontal) , Jedna warstwa (pozioma)
+One Layer (Vertical) , Jedna warstwa (pionowa)
+One Layer per Single Color , Jedna warstwa na jeden kolor
+One Layer per Single Region , Jedna warstwa na jeden region
+One Thread , Jeden wątek
+Only Leafs , Tylko Leafs
+Only Red , Tylko czerwony
+Only Red and Blue , Tylko czerwony i niebieski
+Opacity , Nieprzezroczystość
+Opacity (%) , Nieprzezroczystość (%)
+Opacity as Heightmap , Nieprzezroczystość jako mapa wysokości
+Opacity Contours , Kontury nieprzezroczystości
+Opacity Factor , Współczynnik zmętnienia
+Opacity Gain , Wzmocnienie zmętnienia
+Opacity Gamma , Nieprzezroczystość Gamma
+Opacity Snowflake , Nieprzezroczystość Płatek śniegu
+Opacity Threshold (%) , Próg zmętnienia (%)
+Opaque Pixels , Nieprzezroczyste piksele
+Opaque Regions on Top Layer , Regiony nieprzejrzyste na wierzchniej warstwie
+Opaque Skin , Nieprzezroczysta skóra
+Opening , Otwarcie
+Operation Yellow , Operacja Żółty
+Opposing , Sprzeciwiający się
+Optimized Lateral Inhibition , Zoptymalizowana Inhibicja Boczna
+Orange Tone , Tonacja pomarańczowa
+Orange Underexposed , Pomarańczowy Nienaświetlony
+Oranges , Pomarańcze
+Order , Zamówienie
+Order By , Zamówienie przez
+Orientation , Orientacja
+Orientation Coherence , Orientacja Spójność
+Orientation Only , Tylko orientacja
+Orientations , Orientacja
+Original , Oryginał
+Original - (Opening + Closing)/2 , Oryginalny - (Otwarcie + Zamknięcie)/2
+Original - Erosion , Oryginał - Erozja
+Original - Opening , Oryginał - Otwarcie
+Orthogonal Radius , Promień ortogonalny
+Others (69) , Inni (69)
+Ouline Color , Kolor Ouline
+Outer , Na zewnątrz
+Outer Fading , Zewnętrzne blaknięcie
+Outer Length , Długość zewnętrzna
+Outer Radius , Promień zewnętrzny
+Outline , Zarys
+Outline (%) , Obrys (%)
+Outline Color , Kolor konturu
+Outline Contrast , Kontrast konturu
+Outline Opacity , Szkic nieprzejrzystości
+Outline Size , Rozmiar zarysu
+Outline Smoothness , Obrys Gładkość
+Outline Thickness , Obrys Grubość
+Outlined , W zarysie
+Output , Wyjście
+Output As , Wyjście Jak
+Output as Files , Wyjście jako plik
+Output as Frames , Wyjście w postaci ramek
+Output as Multiple Layers , Wyjście jako wielowarstwowe
+Output as Separate Layers , Wyjście jako oddzielne warstwy
+Output Ascii File , Wyjście Plik Ascii
+Output Chroma NR , Wyjście Chroma NR
+Output CLUT , ZAMKNIĘCIE Wyjścia
+Output CLUT Resolution , Rozdzielczość ZAMKNIĘCIA Wyjścia
+Output Coordinates File , Plik współrzędnych wyjściowych
+Output Corresponding CLUT , Wyjście Odpowiadające ZAMKNIĘCIE
+Output Directory , Katalog wyjściowy
+Output Each Piece on a Different Layer , Wyjście Każdy element na innej warstwie
+Output Filename , Nazwa pliku wyjściowego
+Output Files , Pliki wyjściowe
+Output Folder , Folder wyjściowy
+Output Format , Format wyjściowy
+Output Frames , Ramy wyjściowe
+Output Height , Wysokość wyjściowa
+Output HTML File , Wyjście Plik HTML
+Output Layers , Warstwy wyjściowe
+Output Mode , Tryb wyjściowy
+Output Multiple Layers , Wyjście Wielowarstwowe
+Output Preset as a HaldCLUT Layer , Wyjście zaprogramowane jako warstwa HaldCLUT
+Output Region Delimiters , Region wyjściowy Ograniczniki
+Output Saturation , Nasycenie wyjściowe
+Output Sharpening , Ostrzenie wyjściowe
+Output Stroke Layer On , Wyjściowa warstwa pociągowa włączona
+Output to Folder , Wyjście do folderu
+Output Type , Typ wyjścia
+Output Width , Szerokość wyjściowa
+Outside , Na zewnątrz
+Outside Color , Kolor zewnętrzny
+Outward , Na zewnątrz
+Overall Blur , Całkowite rozmycie
+Overall Contrast , Kontrast ogólny
+Overall Lightness , Ogólna lekkość
+Overlap (%) , Nakładanie się (%)
+Overlay , Nakładka
+Oversample , Nadpróba
+Overshoot , Przesadzenie
+Pack , Pakiet
+Paint , Farba
+Paint Effect , Efekt malarski
+Paint Splat , Płytka farby
+Painter's Smoothness , Gładkość malarza
+Painter's Touch Sharpness , Ostrość dotykowa malarza
+Painting , Malarstwo
+Painting Opacity , Krycie malarskie
+Paladin , Paladyn
+Paladin 1875 , Paladyn 1875
+Paper Texture , Tekstura papieru
+Parallel Processing , Przetwarzanie równoległe
+Parrots , Papugi
+Passing By , Przechodzenie przez
+Pastell Art , Sztuka pastelowa
+Patch Measure , Miara łatek
+Patch Size , Rozmiar łatki
+Patch Size for Analysis , Rozmiar łatki do analizy
+Patch Size for Synthesis , Rozmiar łatki do syntezy
+Patch Size for Synthesis (Final) , Rozmiar plastrów do syntezy (końcowy)
+Patch Smoothness , Łata Gładkość
+Patch Variance , Wariacja plastyczna
+Pattern , Wzór:
+Pattern Angle , Kąt Wzorca
+Pattern Type , Typ wzoru
+Pattern Variation 1 , Zmiana wzoru 1
+Pattern Variation 2 , Wariacja wzoru 2
+Pattern Variation 3 , Zmiana wzoru 3
+Pattern Weight , Wzór Waga
+Pattern Width , Szerokość wzorca
+PCA Transfer , Przeniesienie PCA
+Pea Soup , Zupa grochowa
+Pen Drawing , Rysunek długopisu
+Penalize Patch Repetitions , Karanie powtórzeń plastrów
+Pencil , Ołówek
+Pencil Amplitude , Amplituda ołówka
+Pencil Portrait , Portret ołówkowy
+Pencil Size , Rozmiar ołówka
+Pencil Smoother Edge Protection , Ochrona ołówka przed wygładzaniem krawędzi
+Pencil Smoother Sharpness , Ołówek Bardziej gładki Ostrość
+Pencil Smoother Smoothness , Ołówek Gładszy Gładszy Smoothness
+Pencil Type , Typ ołówka
+Pencils , Ołówki
+Percent of Image Half-Hypotenuse (%) , Procentowy udział Obrazu Hipotensja połowiczna (%)
+Periodic , Okresowo
+Periodic Dots , Kropki okresowe
+Periodicity , Okresowość
+Perserve Luminance , Zachowaj luminancję
+Perspective , Perspektywa
+Perturbation , Perturbacja
+Petals , Płatki
+Phase , Faza
+Phone , Telefon
+Photoillustration , Fotoillustracja
+Picasso: Seated Woman , Picasso: Siedząca Kobieta
+Piece Complexity , Złożoność utworu
+Piece Size (px) , Rozmiar kawałka (px)
+Pixel Sort , Sortowanie pikseli
+Pixel Values , Wartości pikseli
+Placement , Umieszczenie
+Plane , Samolot
+Plasma , Plazma
+Plasma Effect , Efekt plazmowy
+Plot Type , Typ działki
+Point #0 , Punkt #0
+Point #1 , Punkt #1
+Point #2 , Punkt #2
+Point #3 , Punkt #3
+Point 1 , Punkt 1
+Point 2 , Punkt 2
+Points , Punkty
+Polar Transform , Transformacja biegunowa
+Polaroid 665 Negative , Polaroid 665 Negatywny
+Polaroid 665 Negative + , Polaroid 665 Negatywny +
+Polaroid 665 Negative - , Polaroid 665 Negatywny -
+Polaroid 665 Negative HC , Polaroid 665 Ujemny HC
+Polaroid 669 Cold , Polaroid 669 Zimny
+Polaroid 669 Cold + , Polaroid 669 Zimny +
+Polaroid 669 Cold - , Polaroid 669 Zimny -
+Polaroid 669 Cold -- , Polaroid 669 Zimny...
+Polaroid 690 Cold , Polaroid 690 Zimny
+Polaroid 690 Cold - , Polaroid 690 Zimny -
+Polaroid 690 Cold -- , Polaroid 690 Zimny...
+Polaroid 690 Warm , Polaroid 690 Ciepły
+Polaroid 690 Warm + , Polaroid 690 Ciepły +
+Polaroid 690 Warm ++ , Polaroid 690 Ciepły ++
+Polaroid 690 Warm - , Polaroid 690 Ciepły -
+Polaroid 690 Warm -- , Polaroid 690 Ciepły...
+Polaroid Polachrome , Polaroid Polachrom
+Polaroid PX-100UV+ Cold ++ , Polaroid PX-100UV+ Zimno ++
+Polaroid PX-100UV+ Cold +++ , Polaroid PX-100UV+ Zimno +++
+Polaroid PX-100UV+ Warm , Polaroid PX-100UV+ Ciepły
+Polaroid PX-100UV+ Warm + , Polaroid PX-100UV+ Ciepło +
+Polaroid PX-100UV+ Warm ++ , Polaroid PX-100UV+ Ciepły ++
+Polaroid PX-100UV+ Warm +++ , Polaroid PX-100UV+ Ciepły +++
+Polaroid PX-100UV+ Warm - , Polaroid PX-100UV+ Ciepły -
+Polaroid PX-100UV+ Warm -- , Polaroid PX-100UV+ Ciepły --
+Polaroid PX-680 Cold , Polaroid PX-680 Zimny
+Polaroid PX-680 Cold ++a , Polaroid PX-680 Zimny ++a
+Polaroid PX-680 Warm , Polaroid PX-680 Ciepły
+Polaroid PX-680 Warm + , Polaroid PX-680 Ciepły +
+Polaroid PX-680 Warm ++ , Polaroid PX-680 Ciepłe ++
+Polaroid PX-680 Warm - , Polaroid PX-680 Ciepły -
+Polaroid PX-680 Warm -- , Polaroid PX-680 Ciepły --
+Polaroid PX-70 Cold , Polaroid PX-70 Zimny
+Polaroid PX-70 Cold + , Polaroid PX-70 Zimny +
+Polaroid PX-70 Cold ++ , Polaroid PX-70 Zimny ++
+Polaroid PX-70 Cold -- , Polaroid PX-70 Zimny --
+Polaroid PX-70 Warm , Polaroid PX-70 Ciepły
+Polaroid PX-70 Warm + , Polaroid PX-70 Ciepły +
+Polaroid PX-70 Warm ++ , Polaroid PX-70 Ciepły ++
+Polaroid PX-70 Warm - , Polaroid PX-70 Ciepły -
+Polaroid PX-70 Warm -- , Polaroid PX-70 Ciepły --
+Polaroid Time Zero (Expired) , Czas Polaroida Zerowy (wygasły)
+Polaroid Time Zero (Expired) + , Czas Polaroida Zerowy (wygasający) +
+Polaroid Time Zero (Expired) ++ , Czas Polaroida Zerowy (wygasający) ++
+Polaroid Time Zero (Expired) - , Czas Polaroida Zero (wygasły) -
+Polaroid Time Zero (Expired) -- , Czas Polaroida Zero (wygasły) --
+Polaroid Time Zero (Expired) --- , Czas polaroidowy zero (wygasły) ---
+Polaroid Time Zero (Expired) Cold , Czas Polaroida Zerowy (wygasły) Zimny
+Polaroid Time Zero (Expired) Cold - , Czas Polaroida Zero (wygasły) Zimno -
+Polaroid Time Zero (Expired) Cold -- , Polaroid Czas Zero (wygasł) Zimno --
+Polaroid Time Zero (Expired) Cold --- , Polaroid Czas Zero (wygasły) Zimno ---
+Pole Lat , Polak Lat
+Pole Long , Długi Polak
+Pole Rotation , Obrót bieguna
+Polka Dots , Polka Kropki
+Pollock: Convergence , Pollock: Konwergencja
+Polygonize [Energy] , Poligonize [Energia]
+Portrait , Portret
+Portrait Retouching , Retusz portretowy
+Portrait-1 , Portret-1
+Portrait-2 , Portret-2
+Portrait-3 , Portret-3
+Portrait-4 , Portret-4
+Portrait-5 , Portret-5
+Portrait-6 , Portret-6
+Portrait-7 , Portret-7
+Portrait-8 , Portret-8
+Portrait-9 , Portret-9
+Portrait0 , Portret0
+Portrait1 , Portret1
+Portrait10 , Portret10
+Portrait2 , Portret2
+Portrait3 , Portret3
+Portrait4 , Portret4
+Portrait5 , Portret5
+Portrait6 , Portret6
+Portrait7 , Portret7
+Portrait8 , Portret8
+Portrait9 , Portret9
+Position , Stanowisko
+Position X (%) , Pozycja X (%)
+Position X Origin (%) , Pozycja X Pochodzenie (%)
+Position Y (%) , Pozycja Y (%)
+Position Y Origin (%) , Pozycja Y Pochodzenie (%)
+Positive , Pozytywny
+Post-Process , Po przetworzeniu
+Poster Edges , Krawędzie plakatu
+Posterization Antialiasing , Posteryzacja Antialiasing
+Posterization Level , Poziom posteryzacji
+Posterize , Posteruj
+Posterized Dithering , Posteryzowany Dithering
+Power , Władza
+Pre-Defined , Wstępnie zdefiniowany
+Pre-Defined Colormap , Wstępnie zdefiniowana Colormap
+Pre-Normalize Image , Wstępna normalizacja obrazu
+Pre-Process , Proces wstępny
+Precision , Precyzja
+Precision (%) , Dokładność (%)
+Preliminary Surface Shift , Wstępna zmiana powierzchniowa
+Preliminary X-Axis Scaling , Wstępne skalowanie X-Axis
+Preliminary Y-Axis Scaling , Wstępne skalowanie Y-Axis
+Preprocessor Power , Moc preprocesora
+Preprocessor Radius , Preprocesor Promień
+Preserve Canvas for Post Bump Mapping , Zachowaj płótno do mapowania po uderzeniu
+Preserve Edges , Zachowaj krawędzie
+Preserve Image Dimension , Zachowaj wymiar obrazu
+Preserve Initial Brightness , Zachowaj początkową jasność
+Preserve Luminance , Zachowaj luminancję
+Preview , Premiera
+Preview All Outputs , Podgląd wszystkich wyjść
+Preview Bands , Zespoły podglądowe
+Preview Brush , Podgląd szczotki
+Preview Data , Podgląd danych
+Preview Detected Shapes , Podgląd wykrytych kształtów
+Preview Frame Selection , Wybór ramki podglądu (Preview Frame Selection)
+Preview Gradient , Gradient podglądowy
+Preview Grain Alone , Podgląd Ziarno Samodzielne
+Preview Grid , Siatka podglądowa
+Preview Guides , Przewodniki podglądowe
+Preview Mapping , Podgląd mapowania
+Preview Mask , Maska poglądowa
+Preview Only Shadow , Podgląd tylko cień
+Preview Opacity (%) , Podgląd Nieprzezroczystość (%)
+Preview Original , Podgląd Oryginalny
+Preview Precision , Podgląd Precyzja
+Preview Progress (%) , Podgląd postępów (%)
+Preview Progression While Running , Progresja podglądu podczas biegu
+Preview Ref Point , Punkt referencyjny podglądu
+Preview Reference Circle , Podgląd Kręgu Referencyjnego
+Preview Selection , Wybór podglądu
+Preview Shape , Podgląd kształtu
+Preview Shows , Pokazy podglądowe
+Preview Split , Podgląd Rozdzielenie
+Preview Subsampling , Podgląd Próba wstępna Próba wstępna
+Preview Time , Czas podglądu
+Preview Tones Map , Podgląd mapy tonów
+Preview Type , Typ podglądu
+Preview Without Alpha , Podgląd bez Alphy
+Primary Angle , Kąt podstawowy
+Primary Color , Kolor podstawowy
+Primary Factor , Czynnik pierwotny
+Primary Gamma , Gamma pierwotna
+Primary Radius , Promień pierwotny
+Primary Shift , Zmiana pierwotna
+Print Adjustment Marks , Znaki korekcji druku
+Print Films (12) , Drukowanie filmów (12)
+Print Frame Numbers , Numery ramek do drukowania
+Print Size Unit , Jednostka rozmiaru wydruku
+Print Size Width , Rozmiar wydruku Szerokość
+Privacy Notice , Informacja o ochronie prywatności
+Probability Map , Mapa prawdopodobieństwa
+Procedural , Proceduralne
+Process As , Proces Jak
+Process by Blocs of Size , Proces w podziale na bloki wielkości
+Process Channels Individually , Kanały procesowe Indywidualnie
+Process Top Layer Only , Tylko górna warstwa procesowa
+Process Transparency , Przejrzystość procesu
+Processing Mode , Tryb przetwarzania
+Propagation , Propagowanie
+Proportion , Proporcja
+Protanomaly , Protanomalia
+Protect Highlights 01 , Chroń reflektory 01
+Prussian Blue , Niebieski Pruski
+Pseudo-Gray Dithering , Pseudo-szary Dithering
+Purple , Fioletowy
+Purple11 (12) , Fioletowy11 (12)
+Pyramid , Piramida
+Pyramid Processing , Przetwarzanie w piramidzie
+Pythagoras Tree , Drzewo Pitagorasa
+Quadrangle , Kwadrant
+Quadtree Variations , Wariacje Quadtree
+Quality , Jakość
+Quality (%) , Jakość (%)
+Quantization , Kwantyfikacja
+Quantize Colors , Ilość Kolory
+Quick , Szybko
+Quick Copyright , Szybkie prawa autorskie
+Quick Enlarge , Szybkie powiększenie
+R/B Smoothness (Principal) , R/B Gładkość (Główna)
+R/B Smoothness (Secondary) , R/B Gładkość (wtórna)
+Radius , Promień
+Radius (%) , Promień (%)
+Radius / Angle , Promień / Kąt
+Radius [Manual] , Promień [Instrukcja]
+Radius Cut , Cięcie promieniowe
+Radius Middle Circle , Promień Koła Środkowego
+Radius Outer Circle A (>0 W%) (<0 H%) , Promień Okrąg zewnętrzny A (>0 W%) (<0 H%)
+Rain & Snow , Deszcz i śnieg
+Rainbow , Tęcza
+Raindrops , Krople deszczu
+Random , Losowo
+Random [non-Transparent] , Losowo [nieprzezroczysty]
+Random Angle , Kąt przypadkowy
+Random Color Ellipses , Przypadkowe elipsy kolorystyczne (Random Color Ellipses)
+Random Colors , Przypadkowe kolory
+Random Seed , Nasiona losowe
+Randomized , Randomizowany
+Randomness , Przypadkowość
+Range , Zasięg
+Ratio , Stosunek:
+Raw , Surowy
+Rays , Ray
+Rays Colors ABCD , Rays Kolory ABCD
+Rays Colors ABCDE , Ray Kolory ABCDE
+Rays Colors ABCDEF , Ray Kolory ABCDEF
+Rays Colors ABCDEFG , Ray Kolory ABCDEFG
+Rebuild From Similar Blocs , Odbudować się z podobnych bloków
+Recompose , Ponownie skomponować
+Reconstruct From Previous Frames , Rekonstrukcja z poprzednich ramek
+Recover , Odzyskaj
+Recover Highlights , Odzyskaj ważne informacje
+Recover Shadows , Odzyskaj cienie
+Recovery , Odbudowa
+Rectangle , Prostokątny
+Recursion Depth , Głębokość rewersyjna
+Recursions , Rekrutacje
+Recursive Median , Mediana zwrotna
+Red , Czerwony
+Red - Green - Blue , Czerwony - Zielony - Niebieski
+Red - Green - Blue - Alpha , Czerwony - Zielony - Niebieski - Alpha
+Red Blue Yellow , Czerwony Niebieski Żółty
+Red Chroma Factor , Współczynnik czerwonego aromatu
+Red Chroma Smoothness , Gładkość czerwonego aromatu
+Red Day 01 , Dzień Czerwony 01
+Red Factor , Czynnik czerwony
+Red Level , Poziom czerwony
+Red Smoothness , Czerwona Gładkość
+Red Wavelength , Długość fali czerwonej
+Red-Eye Attenuation , Tłumienie czerwonych oczu
+Red-Green , Czerwono-zielony
+Reds , Czerwoni
+Reds Oranges Yellows , Pomarańcze czerwone Pomarańcze żółte
+Reduce Halos , Zmniejszyć halos
+Reduce Noise , Zmniejszyć hałas
+Reduce RAM , Zmniejszenie pamięci RAM
+Reduce Redness , Zmniejszyć czerwień
+Reference , Odniesienie
+Reference Angle (deg.) , Kąt odniesienia (deg.)
+Reference Color , Kolor odniesienia
+Reference Colors , Kolory referencyjne
+Reflect , Refleksja
+Reflection , Refleksja
+Refraction , Refrakcja
+Regular Grid , Siatka zwykła
+Regularity , Regularność
+Regularity (%) , Regularność (%)
+Regularization , Regularizacja
+Regularization (%) , Regulacja (%)
+Regularization Factor , Czynnik regulujący
+Regularization Iterations , Iteracje regularyzacyjne
+Reject , Odrzucić
+Rejected Colors , Odrzucone kolory
+Rejected Mask , Odrzucona maska
+Relative Block Count , Względna liczba bloków
+Relative Size , Rozmiar względny
+Relative Warping , Wypaczenia względne
+Release Notes , Uwagi do publikacji
+Relief Amplitude , Amplituda ulgi
+Relief Contrast , Kontrast ulgi
+Relief Size , Wielkość ulgi
+Relief Smoothness , Ulga Gładkość
+Remove Artifacts From Micro/Macro Detail , Usuwanie artefaktów z Mikro/Macro szczegółów
+Remove Hot Pixels , Usuwanie gorących pikseli
+Remove Tile , Usuń płytkę
+Render Multiple Frames , Render Wiele ramek
+Render on Dark Areas , Render na Ciemnych Obszarach
+Render on White Areas , Render na White Areas
+Render Routine for Wiggle Animations , Rutyna Render dla animacji Wiggle'a
+Rendering Mode , Tryb renderowania
+Repair Scanned Document , Zeskanowany dokument naprawczy
+Repeat , Powtórzyć
+Repeat [Memory Consuming!] , Powtórz. [Pożerająca pamięć!]
+Repeats , Powtarza się
+Replace , Zastąpić
+Replace (Sharpest) , Zastąpić (Najostrzejszy)
+Replace Layer with CLUT , Wymień warstwę na CLUT
+Replace Source by Target , Zastąpienie źródła przez cel
+Replace With White , Wymień z białym
+Replaced Color , Zastąpiony kolor
+Replacement Color , Kolor zastępczy
+Reptile , Gad
+Rescaling , Skalowanie
+Reset View , Resetuj widok
+Resize Image for Optimum Effect , Zmiana rozmiaru obrazu w celu uzyskania optymalnego efektu
+Resolution , Rezolucja
+Resolution (%) , Rezolucja (%)
+Resolution (px) , Uchwała (px)
+Rest 33 , Reszta 33
+Result Image , Obraz wynikowy
+Result Type , Rodzaj wyniku
+Resynthetize Texture [FFT] , Tekstura resyntetyzowana [FFT]
+Resynthetize Texture [Patch-Based] , Tekstura reyntetyzowania [na bazie plastrów]
+Retouch Layer , Warstwa retuszu
+Retouched and Sharpened Areas , Obszary remontowane i zaostrzone
+Retouched Areas Only , Tylko obszary remontowane
+Retouched Image , Retuszowany obraz
+Retouched Image Basic , Retuszowany obraz podstawowy
+Retouched Image Final , Retuszowany obraz końcowy
+Retouching Style , Styl retuszu
+Retro Brown 01 , Retro Brązowy 01
+Retro Summer 3 , Retro Lato 3
+Retro Yellow 01 , Retro Żółty 01
+Return Scaling , Skalowanie powrotne
+Reverse Bits , Bity odwrotne
+Reverse Bytes , Bajty odwrotne
+Reverse Effect , Efekt odwrotny
+Reverse Endianness , Odwrotna Endianiczność
+Reverse Flip , Odwrócone salto
+Reverse Frame Stack , Odwrotny stos ramek
+Reverse Gradient , Gradient odwrotny
+Reverse Mod , Odwrócony mod
+Reverse Motion , Odwrotny wniosek
+Reverse Order , Odwrotny porządek
+Reverse Pow , Odwrotny Pow
+Reversing , Cofanie
+Revert Layer Order , Odwrotna kolejność warstw
+Revert Layers , Warstwy odwrotne
+RGB [All] , RGB [Wszystkie]
+RGB [Blue] , RGB [Niebieski]
+RGB [Green] , RGB [Zielony]
+RGB [red] , RGB [czerwony]
+RGB Image + Binary Mask (2 Layers) , Obraz RGB + maska binarna (2 warstwy)
+RGB Quantization , RGB Kwantyfikacja
+RGB Tone , Ton RGB
+RGBA [All] , RGBA [Wszystkie]
+RGBA Foreground + Background (2 Layers) , RGBA Pierwszy plan + tło (2 warstwy)
+RGBA Image (Full-Transparency / 1 Layer) , Obraz RGBA (Full Transsparency / 1 warstwa)
+RGBA Image (Updatable / 1 Layer) , Obraz RGBA (z możliwością aktualizacji / 1 warstwa)
+Rice , Ryż
+Right , Prawo
+Right Diagonal  Foreground , Prawa przekątna pierwszego planu
+Right Diagonal Foreground , Prawa przekątna pierwszego planu
+Right Eye View , Widok prawego oka
+Right Foreground , Prawy pierwszy plan
+Right Position , Właściwa pozycja
+Right Side Orientation , Prawostronna orientacja
+Right Slope , Prawy stok
+Right Stream Only , Tylko Right Stream
+Rigid , Sztywny
+Roddy (by Mahvin) , Roddy (przez Mahvina)
+Rodilius [Animated] , Rodilius [Animowany]
+Rollei Retro 100 Tonal , Rollei Retro 100 Tonalny
+Rollei Retro 80s , Rollei Retro lat 80.
+Rose , Róża
+Rotate , Obróć
+Rotate (muted) , Obrót (wyciszenie)
+Rotate (vibrant) , Obracaj się (wibruj)
+Rotate 180 Deg. , Obróć o 180 stopni.
+Rotate 270 Deg. , Obróć o 270 stopni.
+Rotate 90 Deg. , Obróć o 90 stopni.
+Rotate Hue Bands , Obróć opaski Hue Bands
+Rotate Tree , Obróć drzewo
+Rotated , Obrócony
+Rotated (crush) , Obrócony (zgniecenie)
+Rotations , Obroty
+Round , Runda
+Row by Row , Wiersz po wierszu
+RYB [All] , RYB [Wszystkie]
+RYB [Blue] , RYB [Niebieski]
+S-Curve Contrast , Kontrast krzywej S
+Salt and Pepper , Sól i pieprz
+Same as Input , Tak samo jak wejście
+Same Axis , Ta sama oś
+Sample Image , Przykładowy obraz
+Sampling , Pobieranie próbek
+Saturated Blue , Nasycony błękit
+Saturation , Nasycenie
+Saturation (%) , Nasycenie (%)
+Saturation Channel Gamma , Kanał nasycenia Gamma
+Saturation Correction , Korekta nasycenia
+Saturation EQ , EQ nasycenia
+Saturation Factor , Współczynnik nasycenia
+Saturation Offset , Przesunięcie nasycenia
+Saturation Shift , Przesunięcie nasycenia
+Saturation Smoothness , Nasycenie Gładkość
+Save CLUT as .Cube or .Png File , Zapisz CLUT jako plik .Cube lub .Png
+Save Gradient As , Zapisz gradient jako
+Saving Private Damon , Ratowanie prywatnego Damona
+Scale , Skala:
+Scale (%) , Skala (%)
+Scale 1 , Skala 1
+Scale 2 , Skala 2
+Scale CMYK , Skala CMYK
+Scale Factor , Współczynnik skali
+Scale Output , Skala wyjściowa
+Scale Plasma , Skala Plazma
+Scale RGB , Skala RGB
+Scale Style to Fit Target Resolution , Styl skali dopasowany do rozdzielczości docelowej
+Scale Variations , Zmiany skali
+Scaled , Skalowany
+Scales , Wagi
+Scaling Factor , Współczynnik skalowania
+Scene Selector , Selektor scen
+Screen , Ekran
+Screen Border , Granica ekranu
+Seamless Deco , Bezszwowe Deco
+Seamless Turbulence , Bezszwowa turbulencja
+Second Color , Drugi kolor
+Second Offset , Drugi offset
+Second Radius , Drugi promień
+Second Size , Druga wielkość
+Secondary Color , Kolor wtórny
+Secondary Factor , Czynnik drugorzędny
+Secondary Gamma , Gamma drugorzędna
+Secondary Radius , Promień drugorzędny
+Secondary Shift , Zmiana wtórna
+Sectors , Sektory
+Seed , Nasiona
+Segment Max Length (px) , Segment Maksymalna długość (px)
+Segmentation , Segmentacja
+Segmentation Edge Threshold , Segmentacyjny próg krawędziowy
+Segmentation Smoothness , Segmentacja Gładkość
+Segments , Segmenty
+Segments Strength , Segmenty Wytrzymałość
+Select By , Wybierz Przez
+Select-Replace Color , Wybierz-Replace Color
+Selected Color , Wybrany kolor
+Selected Colors , Wybrane kolory
+Selected Frame , Wybrana ramka
+Selected Mask , Wybrana maska
+Selection , Wybór
+Selective Desaturation , Desaturacja selektywna
+Selective Gaussian , Selektywny Gaussian
+Self Image , Obraz siebie
+Sensitivity , Wrażliwość
+Sequence X4 , Sekwencja X4
+Sequence X6 , Sekwencja X6
+Sequence X8 , Sekwencja X8
+Serenity , Spokój
+Serial Number , Numer seryjny
+Seringe 4 , Serge 4
+Serpent , Wąż
+Set Aspect Only , Tylko w aspekcie
+Set Frame Format , Ustawianie formatu ramki
+Seven Layers , Siedem warstw
+Seventies Magazine , Magazyn z lat siedemdziesiątych
+Shade , Cień
+Shade Angle , Kąt widzenia cienia
+Shade Back to First Color , Odcień Powrót do pierwszego koloru
+Shade Strength , Wytrzymałość cienia
+Shading , Cieniowanie
+Shading (%) , Cieniowanie (%)
+Shadow , Cień
+Shadow Contrast , Kontrast cieni (Shadow Contrast)
+Shadow Intensity , Cień Intensywność
+Shadow Offset X , Przesunięcie cienia X
+Shadow Offset Y , Przesunięcie cienia Y
+Shadow Size , Rozmiar cienia (Shadow Size)
+Shadow Smoothness , Cień Gładkość cienia
+Shadows , Cienie
+Shadows Abstraction , Cienie Abstrakcja
+Shadows Brightness , Cienie Jasność
+Shadows Color Intensity , Cienie Intensywność koloru
+Shadows Lightness , Cienie Lekkość
+Shadows Selection , Wybór cieni (Shadows Selection)
+Shadows Threshold , Cienie Próg
+Shadows Zone , Strefa cieni (Shadows Zone)
+Shape , Kształt
+Shape Area Max , Obszar kształtu Max
+Shape Area Max0 , Obszar kształtu Max0
+Shape Area Min0 , Obszar kształtu Min0
+Shape Average , Kształt Średnia
+Shape Average0 , Kształt Średnia0
+Shape Max , Kształt Max
+Shape Max0 , Kształt Max0
+Shape Median , Kształt Mediany
+Shape Median0 , Kształt Mediany0
+Shape Min0 , Kształt Min0
+Shapeaverage , Średni kształt
+Shapes , Kształty
+Sharp Abstract , Ostre streszczenie
+Sharpen , Ostrzyć
+Sharpen [Deblur] , Ostrzyć [Deblur]
+Sharpen [Gold-Meinel] , Ostrzyć [Gold-Meinel]
+Sharpen [Gradient] , Ostrzyć [Gradient]
+Sharpen [Hessian] , Ostrzyć [Hessian]
+Sharpen [Inverse Diffusion] , Wyostrzyć [Odwrócenie dyfuzji]
+Sharpen [Multiscale] , Ostrzyć [Multiscale]
+Sharpen [Octave Sharpening] , Sharpen [Oktawowe Ostrzenie]
+Sharpen [Richardson-Lucy] , Wyostrzyć [Richardson-Lucy]
+Sharpen [Shock Filters] , Wyostrzyć [Filtry wstrząsające]
+Sharpen [Texture] , Wyostrzyć [Tekstura]
+Sharpen [Tones] , Wyostrzyć [Tony]
+Sharpen [Unsharp Mask] , Wyostrzyć [Maska Naostrzona]
+Sharpen [Whiten] , Ostrzyć [Whiten]
+Sharpen Details in Preview , Wyostrzyć szczegóły w Podglądzie
+Sharpen Edges Only , Tylko ostre krawędzie
+Sharpen Object , Ostrzony obiekt
+Sharpen Radius , Ostry promień
+Sharpen Shades , Wyostrzone odcienie (Sharpen Shades)
+Sharpened Areas Only , Tylko obszary zaostrzone
+Sharpening , Ostrzenie
+Sharpening Layer , Ostrzenie warstwy
+Sharpening Radius , Promień ostrzenia
+Sharpening Strength , Wytrzymałość na ostrzenie
+Sharpening Type , Rodzaj ostrzenia
+Sharpest , Najostrzejszy
+Sharpness , Ostrość
+Shift Linear Interpolation? , Interpolacja liniowa Shift?
+Shift Point , Punkt zmiany
+Shift Y , Zmiana Y
+Shininess , Błyskotliwość
+Shivers , Ciarki
+Shopping Cart , Wózek na zakupy
+Show Both Poles , Pokaż obu Polaków
+Show Difference , Pokaż różnicę
+Show Frame , Pokaż ramkę
+Shrink , Kurczyć się
+Shuffle Pieces , Shuffle Kawałki
+Sierpinksi Design , Projekt Sierpinksi
+Sierpinski Triangle , Trójkąt Sierpińskiego
+Silver , Srebro
+Similarity Space , Podobieństwo przestrzeni
+Simple Local Contrast , Prosty lokalny kontrast
+Simple Noise Canvas , Hałasowe płótno proste
+Simulate Film , Symuluj film
+Sin(z) , Grzech (z)
+Single (Merged) , Pojedynczy (połączony)
+Single Custom Depth Map , Pojedyncza niestandardowa mapa głębokości
+Single Image Stereogram , Stereogram jednoobrazowy
+Single Layer , Jednowarstwowy
+Six Layers , Sześć warstw
+Sixteen Threads , Szesnaście wątków
+Size , Rozmiar
+Size (%) , Wielkość (%)
+Size for Bright Tones , Rozmiar dla Jasnych Tonów
+Size for Dark Tones , Rozmiar dla Dark Tones
+Size of Frame Numbers (%) , Wielkość Liczba ramek (%)
+Size Variance , Rozmiar Rozmiar Variance
+Size-1 , Wielkość 1
+Size-2 , Rozmiar 2
+Size-3 , Wielkość - 3
+Skeleton , Szkielet
+Skin Estimation , Ocena skóry
+Skin Mask , Maska na skórę
+Skin Tone Colors , Kolory tonów skóry
+Skin Tone Mask , Maska z odcieniem skóry
+Skin Tone Protection , Ochrona przed zabarwieniem skóry
+Skip All Other Steps , Pomiń wszystkie inne kroki
+Skip Finest Scales , Pomiń najdrobniejsze skale
+Skip Others Steps , Pomiń inne kroki
+Skip This Step , Pomiń ten krok
+Skip to Use the Mask to Boost , Przejdź do opcji Użyj maski, aby zwiększyć.
+Slice Luminosity , Plaster Luminosity
+Slide [Color] (26) , Suwak [Kolor] (26)
+Slow Recovery , Powolny powrót do zdrowia
+Small , Mały
+Small (Faster) , Mały (Szybszy)
+Smart Threshold , Inteligentny próg
+Smooth , Gładko
+Smooth [Anisotropic] , Gładki [Anizotropowy]
+Smooth [Bilateral] , Gładko [dwustronnie]
+Smooth [Block PCA] , Gładko [blok PCA]
+Smooth [Diffusion] , Smooth [Dyfuzja]
+Smooth [Geometric-Median] , Gładki [Geometryczno-medyczny]
+Smooth [Guided] , Smooth [Prowadzony]
+Smooth [Mean-Curvature] , Gładka [średnia-kurwatura]
+Smooth [Median] , Smooth [Mediana]
+Smooth [Patch-Based] , Gładko. [Łata]
+Smooth [Patch-PCA] , Gładki [Patch-PCA]
+Smooth [Selective Gaussian] , Smooth [Gaussian Selektywny]
+Smooth [Skin] , Smooth [Skóra]
+Smooth [Thin Brush] , Gładko [cienka szczotka]
+Smooth [Total Variation] , Gładko [Całkowita zmienność]
+Smooth Abstract , Gładkie streszczenie
+Smooth Amount , Gładka kwota
+Smooth Clear , Smooth Jasne
+Smooth Colors , Gładkie kolory
+Smooth Only , Tylko gładki
+Smooth Sailing , Gładkie żeglowanie
+Smoothen Background Reconstruction , Wygładzanie tła Odbudowa tła
+Smoother Sharpness , Gładsza ostrość
+Smoothing , Wygładzanie
+Smoothing Style , Styl wygładzający
+Smoothing Type , Typ wygładzania
+Smoothness , Gładkość
+Smoothness (%) , Gładkość (%)
+Smoothness (px) , Gładkość (px)
+Smoothness Shadow , Gładkość Cień
+Smoothness Type , Gładkość Typ
+Snowflake , Płatek śniegu
+Snowflake 2 , Płatek śniegu 2
+Snowflake Recursion , Płatek śniegu Powrót
+Soft , Miękka
+Soft  Light , Miękkie światło
+Soft Burn , Miękkie oparzenie
+Soft Fade , Miękkie zanikanie
+Soft Glow , Miękka poświata
+Soft Light , Miękkie światło
+Soft Random Shades , Miękkie przypadkowe odcienie
+Soft Warming , Miękkie Ogrzewanie
+Soften , Często
+Soften All Channels , Zmiękcz wszystkie kanały
+Soften Guide , Przewodnik Miękki
+Solarize , Solaryzować
+Solarize Color , Kolor słoneczny
+Solarized Color2 , Kolor słoneczny2
+Solidify , Solidaryzuje się
+Solve Maze , Rozwiązuj labirynt
+Some , Niektóre
+Some Blue , Niektóre Blue
+Some Cyan , Jakiś Cyjan
+Some Green , Trochę zieleni
+Some Key , Jakiś klucz
+Some Magenta , Trochę Magenty
+Some Red , Trochę czerwieni
+Some Yellow , Trochę żółty
+Sort Colors , Sortowanie kolorów
+Sorting Criterion , Kryterium sortowania
+Source (%) , Źródło (%)
+Source Color #1 , Kolor źródłowy #1
+Source Color #10 , Kolor źródłowy #10
+Source Color #11 , Kolor źródłowy #11
+Source Color #12 , Kolor źródłowy #12
+Source Color #13 , Kolor źródłowy #13
+Source Color #14 , Kolor źródłowy #14
+Source Color #15 , Źródło Kolor #15
+Source Color #16 , Źródło Kolor #16
+Source Color #17 , Kolor źródłowy #17
+Source Color #18 , Kolor źródłowy #18
+Source Color #19 , Źródło Kolor #19
+Source Color #2 , Źródło Kolor #2
+Source Color #20 , Kolor źródłowy #20
+Source Color #21 , Źródło Kolor #21
+Source Color #22 , Kolor źródłowy #22
+Source Color #23 , Kolor źródłowy #23
+Source Color #24 , Źródło Kolor #24
+Source Color #3 , Źródło Kolor #3
+Source Color #4 , Kolor źródłowy #4
+Source Color #5 , Kolor źródłowy #5
+Source Color #6 , Źródło Kolor #6
+Source Color #7 , Kolor źródłowy #7
+Source Color #8 , Źródło Kolor #8
+Source Color #9 , Źródło Kolor #9
+Source X-Tiles , Źródło X-Tiles
+Source Y-Tiles , Źródło Płytki Y
+Space , Przestrzeń
+Spatial Bandwidth , Pasmo przestrzenne
+Spatial Metric , Metryka przestrzenna
+Spatial Overlap , Przestrzenne nakładanie się
+Spatial Precision , Precyzja przestrzenna
+Spatial Radius , Promień przestrzenny
+Spatial Regularization , Regulacja przestrzenna
+Spatial Sampling , Pobieranie próbek przestrzennych
+Spatial Scale , Skala przestrzenna
+Spatial Tolerance , Tolerancja przestrzenna
+Spatial Transition , Transformacja przestrzenna
+Spatial Variance , Wariacja przestrzenna
+Special Effects , Efekty specjalne
+Specific Saturation , Specyficzne nasycenie
+Specify Different Output Size , Określać różne wielkości wyjściowe
+Specify HaldCLUT As , Określ HaldCLUT jako
+Specular Centering , Centrowanie spekulacyjne
+Specular Intensity , Spekularna Intensywność
+Specular Light , Światło migawkowe
+Specular Lightness , Lekkość mowy
+Specular Size , Rozmiar spekulatywny
+Speed , Prędkość
+Sphere , Sfera
+Spiral , Spirala
+Spiral RGB , Spirala RGB
+Spline B1 , Klinga B1
+Spline B2 , Linia B2
+Spline B3 , Klinika B3
+Spline B4 , Klinga B4
+Spline B5 , Klinga B5
+Spline B6 , Klinga B6
+Spline Editor , Redaktor Spline
+Spline Max Angle (deg) , Klinga Max Kąt (deg)
+Spline Max Length (px) , Klinga Maksymalna długość (px)
+Spline Roundness , Spline Okrągłość
+Splines , Spliny
+Split Base and Detail Output , Wyjście z podziałem na bazę i szczegóły
+Split Brightness / Colors , Podział Jasność / Kolory
+Split Details [Alpha] , Szczegóły podziału [Alpha]
+Split Details [Wavelets] , Szczegóły podziału [Fale]
+Sponge , Gąbka
+Spread Amount , Spread Kwota
+Spread Angles , Kąty rozproszenia
+Spread Noise Amount , Hałas rozproszony Ilość
+Spreading , Rozprzestrzenianie się
+Spring Morning , Wiosenny poranek
+Sprocket 231 , Koło zębate 231
+Spy 29 , Szpieg 29
+Square , Plac
+Square 1 , Plac 1
+Square 2 , Plac 2
+Square to Circle , Od kwadratu do koła
+Squared-Euclidean , Kwadratowo-Euklidesowy
+Squares , Placyki
+Squares (Outline) , Kwadraty (kontur)
+SRGB Conversion , Konwersja SRGB
+Stabilizer , Stabilizator
+Stained Glass , Witraż
+Stamp , Stempel
+Standard [No Scan] , Standard [Bez skanowania]
+Standard Deviation , Odchylenie standardowe
+Star , Gwiazda
+Star: -5*(z^3/3-Z/4)/2 , Gwiazda: -5*(z^3/3-Z/4)/2
+Stars , Gwiazdy
+Stars (Outline) , Gwiazdy (kontur)
+Start Angle , Kąt startu
+Start Color , Kolor startowy
+Start Frame Number , Numer ramy startowej
+Start of Mid-Tones , Początek tonów średnich
+Starting Angle , Kąt początkowy
+Starting Color , Kolor początkowy
+Starting Feathering , Rozpoczęcie pierzenia
+Starting Frame , Rama startowa
+Starting Level , Poziom wyjściowy
+Starting Pattern , Wzór początkowy
+Starting Point , Punkt startowy
+Starting Point (%) , Punkt początkowy (%)
+Starting Scale (%) , Skala początkowa (%)
+Starting Value , Wartość początkowa
+Stationary Frames , Ramy stacjonarne
+Std Angle (deg.) , Kąt Std (deg.)
+Std Branching , Oddział Std
+Std Length Factor (%) , Std Współczynnik długości (%)
+Std Thickness Factor (%) , Std Współczynnik grubości (%)
+Stencil Type , Typ szablonu
+Step , Krok
+Step (%) , Stopień (%)
+Steps , Kroki
+Stereo Image , Obraz Stereo
+Stereo Window Position , Pozycja okna Stereo
+Stereographic Projection , Projekcja stereograficzna
+Stereoscopic Image Alignment , Stereoskopowe wyrównywanie obrazu
+Stereoscopic Window Position , Stereoskopowa pozycja okna
+Straight , Prosto
+Strands , Nitki
+Street , Ulica
+Strength , Siła
+Strength (%) , Siła (%)
+Strength Effect , Efekt siły
+Strength Highlights , Mocne strony
+Strength Midtones , Siła Midtonów
+Strength Shadows , Siła Cienie (Strength Shadows)
+Stretch Contrast , Kontrast rozciągający
+Stretch Factor , Czynnik rozciągający (Stretch Factor)
+Stripe Orientation , Orientacja pasków
+Stroke Angle , Kąt uderzenia
+Stroke Length , Długość skoku
+Stroke Strength , Wytrzymałość na uderzenia
+Strong , Silny
+Structure Smoothness , Struktura Gładkość
+Style , Styl
+Style Variations , Zmiany w stylu
+Stylize , Styliza
+Subdivisions , Pododdziały
+Subpixel Interpolation , Interpolacja subpikselowa
+Subpixel Level , Poziom subpikseli
+Subsampling (%) , Pobieranie podpróbek (%)
+Subtle Blue , Subtelny błękit
+Subtle Green , Subtelna zieleń
+Subtle Yellow , Subtelnie żółty
+Subtract , Odejmij
+Subtractive , Odejmowalne
+Summer , Lato
+Summer (alt) , Lato (alt)
+Sunny , Słoneczny
+Sunny (alt) , Słoneczny (alt)
+Sunny (rich) , Słoneczny (bogaty)
+Sunny (warm) , Słonecznie (ciepło)
+Super Warm , Super Ciepło
+Super Warm (rich) , Super ciepły (bogaty)
+Super-Pixels , Super-Piksele
+Superformula , Superformuła
+Superimpose with Original? , Nakładać z Oryginałem?
+Surface Disturbance , Zakłócenia powierzchniowe
+Surface Disturbance Multiplier , Zakłócenia powierzchniowe Mnożnik
+Swap Layers , Warstwy zamienne
+Swap Radius / Angle , Promień zamiany / Kąt
+Sweet Gelatto , Słodka żelatynka
+Symmetric 2D Shape , Symetryczny kształt 2D
+Symmetrize , Symetryzuj
+Symmetry , Symetria
+Symmetry Sides , Symetria Strony
+Synthesis Scale , Skala syntezy
+Tangent Radius , Promień styczny
+Target Color #1 , Kolor docelowy #1
+Target Color #10 , Kolor docelowy #10
+Target Color #11 , Kolor docelowy #11
+Target Color #12 , Kolor docelowy #12
+Target Color #13 , Kolor docelowy #13
+Target Color #14 , Kolor docelowy #14
+Target Color #15 , Kolor docelowy #15
+Target Color #16 , Kolor docelowy #16
+Target Color #17 , Kolor docelowy #17
+Target Color #18 , Kolor docelowy #18
+Target Color #19 , Kolor docelowy #19
+Target Color #2 , Kolor docelowy #2
+Target Color #20 , Kolor docelowy #20
+Target Color #21 , Kolor docelowy #21
+Target Color #22 , Kolor docelowy #22
+Target Color #23 , Kolor docelowy #23
+Target Color #24 , Kolor docelowy #24
+Target Color #3 , Kolor docelowy #3
+Target Color #4 , Kolor docelowy #4
+Target Color #5 , Kolor docelowy #5
+Target Color #6 , Kolor docelowy #6
+Target Color #7 , Kolor docelowy #7
+Target Color #8 , Kolor docelowy #8
+Target Color #9 , Kolor docelowy #9
+TechnicalFX - Backlight Filter , TechnicalFX - Filtr podświetlający
+Temperature Balance , Bilans temperaturowy
+Ten Layers , Dziesięć warstw
+Tension Green 1 , Napięcie Zielony 1
+Tension Green 2 , Napięcie Zielony 2
+Tension Green 3 , Napięcie Zielony 3
+Tension Green 4 , Napięcie Zielony 4
+Tertiary Factor , Czynnik trzeciorzędny
+Tertiary Gamma , Trzeciorzędowa Gamma
+Tertiary Shift , Trzeciorzędna zmiana
+Tertiary Twist , Trzeciorzędny Twist
+Text , Tekst
+Texture , Tekstura
+Texture Enhance , Wzmocnienie tekstury
+Textured Glass , Szkło teksturowane
+The Matrices , Matryce
+Thickness , Grubość
+Thickness (%) , Grubość (%)
+Thickness (px) , Grubość (px)
+Thickness Factor , Współczynnik grubości
+Thin Edges , Cienkie krawędzie
+Thin Separators , Cienki Separator
+Thinness , Cienkość
+Thinning , Przerzedzanie
+Thinning (Slow) , Przerzedzanie (Powoli)
+Three Layers , Trzy warstwy
+Threshold , Próg
+Threshold (%) , Próg (%)
+Threshold High , Wysoki próg
+Threshold Low , Niski próg
+Threshold Max , Próg Max
+Threshold Mid , Próg Mid
+Threshold On , Próg włączony
+Thumbnail Size , Wielkość miniatury
+Tiger , Tygrys
+Tikhonov , Tichonow
+Tile Poles , Kafelki
+Tile Size , Wielkość płytek
+Tileable Rotation , Obrót płytami stolikowymi
+Tiled Isolation , Izolacja kafelkowa
+Tiled Normalization , Normalizacja kafelkowa
+Tiled Parameterization , Parametryzacja płytek
+Tiled Preview , Podgląd kafelkowy
+Tiled Random Shifts , Przypadkowe zmiany kafelkowe (Tiled Random Shifts)
+Tiled Rotation , Obrót kafelkami
+Tiles , Płytki
+Tiles to Layers , Kafelki do warstw
+Tilt , Przechylenie
+Time , Czas
+Time Step , Krok czasowy
+Timed Image , Obraz czasowy
+Tiny , Malutki
+To Nadir / Zenith , Do Nadiru / Zenitu
+Toggle to View Base Image , Przełączanie do widoku obrazu podstawowego
+Tolerance , Tolerancja
+Tolerance to Gaps , Tolerancja na luki
+Tonal Bandwidth , Tonalna szerokość pasma
+Tone Blur , Rozmycie tonalne
+Tone Enhance , Wzmocnienie tonu
+Tone Mapping [Fast] , Tone Mapping [Szybko]
+Tone Mapping Fast , Szybkie mapowanie tonów
+Tone Presets , Ustawienia tonów
+Tone Threshold , Próg tonalny
+Tones Range , Tony Range
+Tones Smoothness , Tony Gładkość
+Tones to Layers , Tony do warstw
+Top Layer , Warstwa wierzchnia
+Top Left , Górna lewa strona
+Top Right , Na górze, po prawej stronie
+Top-Left Vertex (%) , Wierzchołek lewy-prawy (%)
+Top-Right Vertex (%) , Wierzchołek prawy (%)
+Total Layers , Warstwy ogółem
+Total Variation , Całkowite wahania
+Transfer Colors [Histogram] , Kolory transferowe [Histogram]
+Transfer Colors [Patch-Based] , Kolory transferowe [na bazie plastrów]
+Transfer Colors [PCA] , Kolory transferowe [PCA]
+Transfer Colors [Variational] , Kolory transferowe [Variational]
+Transform , Transformacja
+Transition Map , Mapa przejściowa
+Transition Shape , Przejściowy kształt
+Transition Smoothness , Przejście Gładkość
+Transmittance Map , Mapa przekaźnikowa
+Transparency , Przejrzystość
+Transparent , Przejrzysty
+Transparent Background , Przejrzyste tło
+Transparent Black & White , Przezroczysty czarno-biały
+Transparent Color , Kolor transparentny
+Transparent on Black , Przejrzysty na czarno
+Transparent on White , Przejrzysty na białym
+Transparent Skin , Przejrzysta skóra
+Tree , Drzewo
+Triangle , Trójkąt
+Triangles , Trójkątów
+Triangles (Outline) , Trójkątów (kontur)
+Triangular Ha , Trójkątny Ha
+Triangular Hb , Trójkątny Hb
+Triangular Va , Trójkątny Va
+Triangular Vb , Trójkątny Vb
+Tritanomaly , Tritanomalia
+Trunk Color , Kolor tułowia
+Trunk Opacity (%) , Nieprzezroczystość pnia (%)
+Trunks , Kufry
+Tulips , Tulipany
+Tunnel , Tunel
+Turbulence , Turbulencje
+Turbulence 2 , Turbulencja 2
+Turbulent Halftone , Turbulentny Halftone
+Turn on Rotate and Twirl , Włączyć Rotate i Twirl
+Two Layers , Dwie warstwy
+Two Threads , Dwa nici
+Type , Typ
+Type Snowflake , Typ Płatek śniegu
+Ultra Water , Ultra Woda
+UltraWarp++++ , UltraWarp+++
+Unaligned Images , Obrazy niesymetryczne
+Undeniable , Bezsprzecznie
+Undeniable 2 , Niezaprzeczalny 2
+Underwater , Pod wodą
+Unknown , Nieznany
+Unpurple , Nieprecyzyjny
+Unsharp Mask , Maska nieostra
+Up-Left , W górę-lewo
+Upper Layer Is the Top Layer for All Blends , Górna warstwa jest górną warstwą dla wszystkich mieszanek
+Upper Side Orientation , Górna orientacja boczna
+Uppercase Letters , Wielkie litery
+Upscale [Diffusion] , Upscale [Dyfuzja]
+Urban Cowboy , Kowboj Miejski
+Use as Hue , Użyj jako barwy
+Use as Saturation , Zastosowanie jako nasycenie
+Use Individual Depth Map , Użyj indywidualnej mapy głębokości
+Use Light , Użyj światła
+Use Maximum Tones , Użyj Maksymalnych Tonów
+Use Top Layer as a Priority Mask , Użyj górnej warstwy jako maski priorytetowej
+User-Defined , Zdefiniowany przez użytkownika
+User-Defined (Bottom Layer) , Zdefiniowany przez użytkownika (warstwa dolna)
+Uzbek Bukhara , Uzbecka Buchara
+Uzbek Marriage , Uzbeckie Małżeństwo
+Uzbek Samarcande , Uzbecki Samarcande
+V Cutoff , V Odcięcie
+Value , Wartość
+Value Action , Wartość Działania
+Value Blending , Łączenie wartości
+Value Bottom , Wartość Dół
+Value Correction , Korekta wartości
+Value Factor , Współczynnik wartości
+Value Normalization , Wartość Normalizacja
+Value Offset , Wartość Przesunięcie
+Value Precision , Wartość Precyzja
+Value Range , Zakres wartości
+Value Scale , Skala wartości
+Value Shift , Zmiana wartości
+Value Smoothness , Wartość Gładkość
+Value Top , Wartość górna
+Value Variance , Zmienność wartości
+Values , Wartości
+Van Gogh: Irises , Van Gogh: Irysy
+Van Gogh: The Starry Night , Van Gogh: Gwieździsta noc
+Van Gogh: Wheat Field with Crows , Van Gogh: Pole pszenicy z wronami
+Variability , Zmienność
+Variation A , Wariacja A
+Variation B , Zmiana B
+Variation C , Zmiana C
+Vector Painting , Malarstwo wektorowe (Vector Painting)
+Vertex Type , Typ Vertexu
+Vertical , Pionowo
+Vertical (%) , Pionowe (%)
+Vertical 1 Amount , Pionowe 1 Kwota
+Vertical 1 Length , Pionowe 1 Długość
+Vertical 2 Amount , Pionowe 2 Kwota
+Vertical 2 Length , Pionowe 2 Długość
+Vertical Amount , Kwota pionowa
+Vertical Array , Układ pionowy
+Vertical Blur , Rozmycie pionowe
+Vertical Length , Długość pionowa
+Vertical Size (%) , Wielkość pionowa (%)
+Vertical Stripes , Paski pionowe
+Vertical Tiles , Płytki pionowe
+Very Course 5 , Bardzo Kurs 5
+Very Fine , Bardzo dobrze
+Very High , Bardzo wysoka
+Very High (Even Slower) , Bardzo wysoka (nawet wolniejsza)
+Very Warm Greenish , Bardzo ciepły zielonkawy
+Vibrant (alien) , Vibrant (kosmita)
+Vibrant (contrast) , Vibrant (kontrast)
+Victory , Zwycięstwo
+View Outlines Only , Widok tylko konturów
+View Resolution , Rozdzielczość widoków
+Vignette , Winieta
+Vignette Contrast , Kontrast winiety
+Vignette Max Radius , Winieta Max Promień
+Vignette Min Radius , Winieta Min. Promień
+Vignette Size , Rozmiar winiety
+Vignette Strength , Wytrzymałość winiety
+Vignette Strenth , Winieta Strenth
+Vintage (brighter) , Vintage (jaśniejszy)
+Vintage 163 , Stary rocznik 163
+Vintage Chrome , Chrom antyczny
+Vintage Warmth 1 , Ciepło zabytkowe 1
+Virtual Landscape , Wirtualny Krajobraz
+Visible Watermark , Widoczny znak wodny
+Vivid Edges , Żywe krawędzie
+Vivid Edges* , Żywe krawędzie*
+Vivid Light , Żywe światło
+Wall , Ściana
+Warm , Ciepłe
+Warm (highlight) , Ciepło (główna atrakcja)
+Warm (yellow) , Ciepły (żółty)
+Warm Dark Contrasty , Ciepły, ciemny kontrast
+Warm Neutral , Ciepły Neutralny
+Warm Sunset Red , Ciepła czerwień zachodu słońca
+Warm Teal , Ciepły Teal
+Warp [Interactive] , Osnowa [Interaktywny]
+Warp by Intensity , Osnowa według intensywności
+Water , Woda
+Waterfall , Wodospad
+Wave , Fala
+Wave(s) , Fala(-y)
+Wavelength , Długość fali
+Waves Amplitude , Fale Amplituda
+Waves Smoothness , Fale Gładkość
+We'll See , Zobaczymy
+Weave , Splot
+Weird , Dziwne
+Whirl Drawing , Rysunek wiru
+White , Biały
+White Dices , Białe kostki
+White Layers , Białe warstwy
+White Level , Poziom bieli
+White on Black , Biały na czarnym
+White on Transparent , Biały na Transparentnym
+White on Transparent Black , Biały na przezroczystym czarnym
+White Point , Biały punkt
+White to Black , Biały do czarnego
+White Walls , Białe ściany
+Whiter Whites , Bielsze biali
+Whites , Biali
+Width , Szerokość
+Width (%) , Szerokość (%)
+Wind , Wiatr
+Winter Lighthouse , Latarnia Zimowa
+Wipe , Wytrzyj
+Without , Bez
+Wooden Gold 20 , Drewniane złoto 20
+Work on Frameset , Prace nad ramkami
+Wrap , Folia
+X Center , X Centrum
+X Origine , X Pochodzenie
+X-Amplitude , X-Amplituda
+X-Axis Then Y-Axis , X-Axis Potem Y-Axis
+X-Centering , X-Centrowanie
+X-Centering (%) , X-Centrowanie (%)
+X-Coordinate [Manual] , Współrzędna X [Instrukcja]
+X-Factor (%) , X-Faktor (%)
+X-Resolution , Rozwiązanie X-Resolution
+X-Rotation , Zdjęcie rentgenowskie
+X-Size , Rozmiar X:
+X-Size (px) , Rozmiar X (px)
+X-Smoothness , X-płynność
+X1 (none) , X1 (brak)
+XY Mirror , Lustro XY
+XY-Amplitude , Amplituda XY
+XY-Coordinates (%) , Współrzędne XY (%)
+Y Center , Centrum Y
+Y Origine , Y Pochodzenie
+Y-Amplitude , Y-Amplituda
+Y-Axis Then X-Axis , Y-Axis Potem X-Axis
+Y-Center , Y-Centrum
+Y-Centering , Y-Centrowanie
+Y-Centering (%) , Y-Centryczny (%)
+Y-Coordinate [Manual] , Współrzędna Y [Instrukcja]
+Y-Dispersion , Y-Dyfuzja
+Y-Factor (%) , Y-Faktor (%)
+Y-Multiplier , Y-Multiplikator
+Y-Resolution , Y-Rezolucja
+Y-Rotation , Y-Rotacja
+Y-Scale , Skala Y:
+Y-Size , Rozmiar Y
+Y-Size (px) , Rozmiar Y (px)
+Y-Tiles , Panele Y
+Y-Variations , Y-Wariacje
+YAG Effect , Efekt YAG
+YCbCr (Chroma Only) , YCbCr (tylko chrom)
+YCbCr (Luma Only) , YCbCr (tylko Luma)
+YCbCr (Mixed) , YCbCr (Mieszane)
+YCbCr [Blue-Red Chrominances] , YCbCr [niebiesko-czerwone chrominanse]
+YCbCr [Green Chrominance] , YCbCr [Zielony Chrominance]
+YCbCr [Luminance] , YCbCr [Luminancja]
+Yellow , Żółty
+Yellow 55B , Żółty 55B
+Yellow Factor , Czynnik żółty
+Yellow Film 01 , Film żółty 01
+Yellow Smoothness , Żółta Gładkość
+YES8 , TAK8
+Z-Multiplier , Z-Multiplikator
+Z-Rotation , Z-Rotacja
+Z-Scale , Z-Skala
+Z-Size , Rozmiar Z
+ZilverFX - B&W Solarization , ZilverFX - B&W Solaryzacja
+Zone System , System strefowy
+Zoom Center , Centrum Zoom
+Zoom Factor , Współczynnik powiększenia
+Zoom Out , Powiększenie

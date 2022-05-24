@@ -1,0 +1,4755 @@
+Light , Légère , Comic Book
+None , Aucune , Comic Book
+For edges: , Pour les bords :
+Line Strength , Dose de lignes , Comic Book
+For colors: , Pour les couleurs :
+Colors to Black or White , Transformer en noir et blanc , Comic Book
+<b>Faves</b> , <b>Favoris</b>
+<i>About</i> , <i>A propos</i>
+<b>Arrays & Tiles</b> , <b>Tableaux & tuiles</b>
+<b>Artistic</b> , <b>Artistique</b>
+<b>Black & White</b> , <b>Noir & blanc</b>
+<b>Colors</b> , <b>Couleurs</b>
+<b>Deformations</b> , <b>Déformations</b>
+<b>Degradations</b> , <b>Dégradations</b>
+<b>Details</b> , <b>Détails</b>
+<b>Frames</b> , <b>Cadres</b>
+<b>Frequencies</b> , <b>Fréquences</b>
+<b>Layers</b> , <b>Calques</b>
+<b>Lights & Shadows</b> , <b>Ombres & lumières</b>
+<b>Patterns</b> , <b>Motifs</b>
+<b>Rendering</b> , <b>Rendu</b>
+<b>Repair</b> , <b>Réparation</b>
+<b>Sequences</b> , <b>Séquences</b>
+<b>Stereoscopic 3D</b> , <b>Stéréoscopie 3D</b>
+<b>Testing</b> , <b>En test</b>
+<b>Various</b> , <b>Divers</b>
+Preview Type , Type de prévisualisation
+Backward Horizontal , Séparation horizontale arrière
+Forward Vertical , Séparation verticale avant
+Backward Vertical , Séparation verticale arrière
+Full , Entier
+Forward Horizontal , Séparation horizontale avant
+Duplicate Right , Copie à droite
+Duplicate Left , Copie à gauche
+Duplicate Bottom , Copie en bas
+Duplicate Top , Copie en haut
+Duplicate Vertical , Copie verticale
+Duplicate Horizontal , Copie horizontale
+Checkered Inverse , En damier inversé
+Checkered , En damier
+Preview Split , Découpage de la prévisualisation
+Smoothness , Régularité
+None , Aucun
+Lab [ab-Chrominances] , Lab [Chrominances-ab]
+Lab [b-Chrominance] , Lab [Chrominance-b]
+Lab [a-Chrominance] , Lab [Chrominance-a]
+Lch [h-Chrominance] , Lch [Chrominance-h]
+Lch [c-Chrominance] , Lch [Chrominance-c]
+Lch [ch-Chrominances] , Lch [Chrominance-ch]
+All , Tous
+Channel(s) , Canaux
+YCbCr [Blue-Red Chrominances] , YCbCr [Chrominances bleu-rouge]
+YCbCr [Blue Chrominance] , YCbCr [Chrominance bleue]
+Linear RGB [All] , RVB Linéaire [Tous]
+Linear RGB [Blue] , RVB Linéaire [Bleu]
+Linear RGB [Green] , RVB Linéaire [Vert]
+Linear RGB [Red] , RVB Linéaire [Rouge]
+RGB [All] , RVB [Tous]
+RGB [Blue] , RVB [Bleu]
+RGB [Red] , RVB [Rouge]
+RGB [Green] , RVB [Vert]
+CMYK [Magenta] , CMJN [Magenta]
+CMYK [Key] , CMJN [Noir]
+CMYK [Cyan] , CMJN [Cyan]
+HSL [Lightness] , HSL [Luminosité]
+CMYK [Yellow] , CMJN [Jaune]
+Lab [Lightness] , Lab [Luminosité]
+HSI [Intensity] , HSI [Intensité]
+HSV [Value] , HSV [Valeur]
+YCbCr [Green Chrominance] , YCbCr [Chrominance verte]
+YCbCr [Red Chrominance] , YCbCr [Chrominance rouge]
+HSV [Hue] , HSV [Teinte]
+RGBA [All] , RGBA [Tous]
+RYB [Yellow] , RJB [Jaune]
+RYB [Blue] , RJB [Bleu]
+RYB [All] , RJB [Tous]
+RYB [Red] , RJB [Rouge]
+Color , Couleur
+Radius , Rayon
+Iterations , Itérations
+Preset , Préréglage
+Normalize , Normalise
+Cut , Coupe
+Opacity , Opacité
+Mirror , Mirroir
+All [Collage] , Tous [Collage]
+Density , Densité
+Size , Taille
+Threshold , Seuil
+Antialiasing , Anticrénelage
+Nearest , Plus proche voisin
+Periodic , Périodique
+Boundary , Bord
+RGB , RVB
+Lock Source , Vérouille la source
+Replace Source by Target , Replace la source par la cible
+Value Action , Action sur la valeur
+Scale , Échelle
+Sharpness , Netteté
+Parallel Processing , Calcul parallèle
+Center (%) , Centre (%)
+Size (%) , Taille (%)
+Linear , Linéaire
+Lightness , Luminosité
+Random , Hasard
+Hue , Teinte
+Value , Valeur
+Gaussian , Gaussien
+Thickness , Épaisseur
+X-Angle , Angle-X
+Contrast (%) , Contraste (%)
+Y-Angle , Angle-Y
+Darken , Plus sombre
+CMYK [magenta] , CMJN [magenta]
+CMYK [key] , CMJN [noir]
+CMYK [yellow] , CMJN [jaune]
+HSV [value] , HSV [valeur]
+HSI [intensity] , HSI [intensité]
+HSV [hue] , HSV [teinte]
+HSL [lightness] , HSL [luminosité]
+Brightness (%) , Luminosité
+CMYK [cyan] , CMJN [cyan]
+YCbCr [green Chrominance] , YCbCr [Chrominance verte]
+YCbCr [red Chrominance] , YCbCr [Chrominance rouge]
+Resolution , Résolution
+Lab [lightness] , Lab [Luminosité]
+Multiply , Multiplication
+Linear RGB [red] , RVB Linéaire [rouge]
+Linear RGB [green] , RVB Linéaire [verte]
+Contrast , Contraste
+YCbCr [blue-Red Chrominances] , YCbCr [Chrominance bleu-rouge]
+Z-Angle , Angle-Z
+RGBA [all] , RGBA [tous]
+Height , Hauteur
+YCbCr [blue Chrominance] , YCbCr [Chrominance bleue]
+RGB [all] , RVB [tous]
+RGB [green] , RVB [vert]
+RGB [blue] , RVB [bleu]
+Overlay , Superposition
+Average , Moyenne
+RGB [red] , RVB [rouge]
+Linear RGB [blue] , RVB linéaire [bleu]
+Linear RGB [all] , RVB Linéaire [tous]
+Colorspace , Espace de couleur
+Edges , Bords
+Width , Largeur
+Amount , Quantité
+Four Threads , Quatre fils
+Flat , Plat
+Sixteen Threads , Seize threads
+Eight Threads , Huit threads
+Two Threads , Deux threads
+One Thread , Un thread
+Spatial Overlap , Superposition spatiale
+Specular Lightness , Luminosité spéculaire
+Z-Light , Lumière-Z
+Specular Shininess , Brillance spéculaire
+Negative , Négatif
+Grain Merge , Fusion de grain
+Linear RGB , RVB linéaire
+Y-Light , Lumière-Y
+X-Light , Lumière-X
+Red , Rouge
+Y-Tiles , Tuiles-Y
+Output Folder , Répertoire de destination
+X-Tiles , Tuiles-X
+Blue , Bleu
+Frames , Cadres
+Hard Light , Lumière dure
+Add , Addition
+Lighten , Plus clair
+Edge Threshold , Seuil de contours
+Reflect , Réflexion
+Green , Vert
+Strength , Force
+Soft Light , Lumière douce
+Difference , Différence
+Negation , Négation
+Negative Colors , Couleurs négatives
+Opacity (%) , Opacité (%)
+Tangent , Tangente
+Anisotropy , Anisotropie
+Anti-Aliasing , Anti-crénelage
+Burn , Brûler
+Rendering , Rendu
+Sinusoidal , Sinusoïdale
+Dodge , Esquisse
+Value Offset , Décalage de valeur
+Off , Éteint
+Screen , Écran
+Stamp , Tampon
+Hue (%) , Teinte (%)
+Shape , Forme
+Number of Scales , Nombre d'échelles
+Arc-Tangent , Arc-tangente
+X-Axis , Axe-X
+Hue Offset , Décalage de teinte
+Target Value (%) , Valeur cible (%)
+Target Saturation (%) , Saturation cible (%)
+Target Hue (%) , Teinte cible (%)
+Wireframe , Fil de fer
+Offset , Décalage
+Nearest Neighbor , Plus proche voisin
+Lock , Vérouiller
+Top Layer , Calque supérieur
+Bottom Layer , Calque inférieur
+Precision , Précision
+Smooth , Régulier
+Flat-Shaded , Éclairage plat
+Freeze , Geler
+Dots , Points
+Remap , Reprojette
+Saturation Offset , Décalage de saturation
+Cosinusoidal , Cosinusoïdal
+Depth , Profondeur
+Y-Axis , Axe-Y
+Positive , Positif
+Strength (%) , Force (%)
+Outline Color , Couleur de liseret
+Custom Formula , Formule personnalisée
+Shadows , Ombres
+Black , Noir
+Custom , Personnalisé
+Density (%) , Densité (%)
+Bilateral , Bilatéral
+Black & White , Noir & Blanc
+Random Seed , Graine aléatoire
+Highlights , Tons clairs
+Patch Size , Taille de patch
+Regularization , Régularisation
+Rotate , Tourne
+Output , Sortie
+Tones Smoothness , Régularité des tons
+Invert , Inversion
+Factor , Facteur
+Smoothness (%) , Régularité (%)
+And , Et
+Output Mode , Mode de sortie
+Equalize , Égalise
+Channels , Canaux
+Salt and Pepper , Poivre et sel
+Divide , Division
+Dilation , Dilatation
+X-Offset , Décalage-X
+Y-Offset , Décalage-Y
+Y-Size , Taille-Y
+Subtract , Soustraction
+Number of Colors , Nombre de couleurs
+Tones Range , Intervalle de tons
+Seed , Graine
+Time Step , Pas de temps
+Details Scale , Échelle de détails
+Coherence , Cohérence
+Black on White , Noir sur blanc
+Grain Extract , Extraction de grain
+Gradient Smoothness , Régularité du gradient
+Bicubic , Bicubique
+Softlight , Lumière douce
+Tolerance , Tolérance
+XY-Axes , Axes-XY
+White on Black , Blanc sur noir
+X-Size , Taille-X
+All Tones , Tous les tons
+Output as Files , Sauve sous forme de fichiers
+Output as Frames , Sauve sous forme de trames
+Uniform , Uniforme
+Transparency , Transparence
+Square , Carré
+Preserve , Préserve
+Mid-Tones , Tons médians
+White , Blanc
+Colors , Couleurs
+Fine , Fin
+Blend Mode , Mode de fusion
+Normalize Colors , Normalise les couleurs
+Post-Normalize , Post-normalise
+Landscape , Paysage
+Y-Shadow , Ombre-Y
+Frequency , Fréquence
+Edge , Bord
+Base Scale , Échelle de base
+Min Threshold , Seuil min
+Mask Color , Couleur de masque
+Equalize Light , Égalise la lumière
+Repeat , Répète
+Values , Valeurs
+Max Threshold , Seuil max
+Merging Option , Option de fusion
+Preview Progression While Running , Prévisualise la progression pendant le calcul
+Fast Approximation , Approximation rapide
+Outline , Liseret
+Smoothness Type , Type de régularisation
+Color Mode , Mode de couleur
+Grainmerge , Fusion de grain
+Blur , Lissage
+Shading , Ombrage
+Center , Centre
+X-Shadow , Ombre-X
+X-Offset (%) , Décalage-X (%)
+CMYK , CMNJ
+Darker , Plus sombre
+Scales , Échelles
+Tensor Smoothness , Régularité des tenseurs
+Diamond , Diamant
+Y-Offset (%) , Décalage-Y (%)
+Darkness , Obscurité
+Levels , Niveaux
+Output Frames , Génère des trames
+Color Strength , Force de la couleur
+Hardlight , Lumière dure
+Some Magenta , Un peu de magenta
+Some Key , Un peu de noir
+Ending Value , Valeur de fin
+Starting Feathering , Adoucissement de départ
+Automatic , Automatique
+Skip All Other Steps , Ignore toutes les autres étapes
+Output Files , Sauve fichiers
+Attenuation , Atténuation
+Softburn , Brûlure douce
+Color Boost , Renforcement des couleurs
+Length , Longueur
+Softdodge , Esquive douce
+Filename , Nom de fichier
+Circular , Circulaire
+Sphere , Sphère
+Some Yellow , Un peu de jaune
+Area , Aire
+Some Cyan , Un peu de cyan
+Hue Shift , Décalage de teinte
+Frame Size , Taille du cadre
+Color Model , Modèle de couleurs
+Torus , Tore
+Brightness , Luminosité
+Grayscale , Niveaux de gris
+Curvature , Courbure
+Background Color , Couleur de fond
+Grainextract , Exttraction de grain
+Disable , Désactiver
+Number of Tones , Nombre de tons
+Scale (%) , Échelle (%)
+Blank , Vierge
+Pre-Normalize , Pré-normalise
+Both , Les deux
+Outline (%) , Liseret (%)
+Output As , Sauve comme
+Edge Thickness , Épaisseur du bord
+Preview Shows , La prévisualisation montre
+Starting Value , Valeur de départ
+Automatic Depth Estimation , Estimation automatique de la profondeur
+Ending Feathering , Fin d'adoucissement
+Preview Guides , Guides sur la prévisualisation
+Intensity , Intensité
+Background , Fond
+CMY , CMJ
+Sharpening , Renforcement de la netteté
+Cubic , Cubique
+Revert Layers , Inverse les calques
+Reverse Order , Inverse l'ordre
+Minimal Area , Aire minimale
+A Lot of Cyan , Beaucoup de Cyan
+Mirror-Y , Mirroir-Y
+Mirror-XY , Mirroir-XY
+Little Cyan , Un peu de Cyan
+X/Y-Ratio , Ratio-X/Y
+X-Amplitude , Amplitude-X
+Mask Dilation , Dilatation du masque
+Little Yellow , Un peu de jaune
+Y-Amplitude , Amplitude-Y
+Light , Lumière
+A Lot of Magenta , Beaucoup de magenta
+A Lot of Yellow , Beaucoup de jaune
+Mirror-X , Mirroir-X
+Little Key , Un peu de noir
+Little Magenta , Un peu de magenta
+A Lot of Key , Beaucoup de noir
+Lines , Lignes
+Method , Méthode
+Medium , Médium
+Maximal Size , Taille maximale
+Color Dispersion , Dispersion couleur
+Color Doping , Dopage couleur
+Low , Bas
+Color Balance , Balance des couleurs
+Color 2 , Couleur 2
+Soft , Doux
+Color 1 , Couleur 1
+Output Format , Format de sortie
+X-Factor , Facteur-X
+Stars , Étoiles
+Radius (%) , Rayon (%)
+Central Perspective Indoor , Perspective centrale intérieure
+Star , Étoile
+Spread , Propagation
+Human 1 , Humain 1
+Coarse , Grossier
+Specular Size , Taille spéculaire
+Hue Band , Bande de teinte
+Closing , Fermeture
+Circles , Cercles
+Spacing , Espacement
+Some Blue , Un peu de bleu
+Squares , Carrés
+Lookup Size , Taille de la recherche
+Some Green , Un peu de vert
+Output as Separate Layers , Génère des calques séparés
+Some Red , Un peu de rouge
+Opening , Ouverture
+Keep Iterations as Different Layers , Garde les itérations comme des calques différents
+Linearlight , Lumière linéaire
+Linearity , Linéarité
+Linearburn , Brûlure linéaire
+Bottom and Top Foreground , Avant-plan du haut et du bas
+Bottom and Right Foreground , Avant-plan du bas et de droite
+Bottom and Left Foreground , Avant-plan du bas et de gauche
+Bottom Right , En bas à droite
+Bottom Left , En bas à gauche
+Blue & Red Chrominances , Chrominances bleues et rouges
+Blend Size , Taille du mélange
+Threshold (%) , Seuil (%)
+Black on Transparent White , Noir sur blanc transparent
+Noise Type , Type de bruit
+Vignette Size , Taille de vignette
+Vividlight , Lumière vive
+Kernel , Noyau
+Number of Orientations , Nombre d'orientations
+Number of Levels , Numbre de niveaux
+Text , Texte
+Stencil Type , Type de pochoir
+Input , Entrée
+White on Transparent Black , Blanc sur noir transparent
+Little Red , Un peu de rouge
+Little Green , Un peu de vert
+Starting Color , Couleur de départ
+Local Detail Enhancer , Rehausseur de détails local
+Center Foreground , Centre l'avant-plan
+Center Background , Centre l'arrière-plan
+Width (%) , Largeur (%)
+Little Blue , Un peu de bleu
+Interlace Vertical , Entrelace verticalement
+Interpolate , Interpole
+Isotropic , Isotrope
+Boundary Condition , Conditions aux bords
+Optimized Lateral Inhibition , Inhibition latérale optimisée
+Stroke Length , Longueur du trait
+Weird , Étrange
+Inter-Frames , Inter-Trames
+Interlace Horizontal , Entrelace horizontalement
+Color Temperature , Température couleur
+Mask , Masque
+Dithering , Tramage
+Y-Shift , Décalage-Y
+Y-Multiplier , Multiplicateur-Y
+Edge-Oriented , Orienté contours
+Preview Ref Point , Prévisualise point de réf
+1st Color , 1ère couleur
+Right Foreground , Avant-plan de droite
+Saturation Correction , Correction de saturation
+Deviation , Déviation
+Details , Détails
+Gamma Compensation , Compensation gamma
+Scene Selector , Sélecteur de scènes
+Minimal Size , Taille minimale
+Full Bottom/top , Entier en haut/bas
+2nd Color , 2ème couleur
+Y-Factor , Facteur-Y
+Flower , Fleur
+Recursions , Récursions
+Forward , En avant
+Z-Size , Taille-Z
+Zoom Factor , Facteur de zoom
+Flip Left / Right , Basculement gauche/droite
+Feature Analyzer Threshold , Seuil de l'analyseur de caractéristiques
+Feature Analyzer Smoothness , Régularité de l'analyseur de caractéristiques
+Reference Colors , Couleurs de référence
+Ending Color , Couleur de fin
+Yellow , Jaune
+Frequency Analyzer , Analyseur de fréquence
+Resolution (%) , Résolution (%)
+Z-Offset , Décalage-Z
+Pyramid , Pyramide
+Z-Multiplier , Multiplicateur-Z
+Regularization Iterations , Itérations de régularisation
+Erosion , Érosion
+Skip Others Steps , Passer les autres étapes
+Pinlight , Lumière d'épingle
+X-Shift , Décalage-X
+Half Bottom/top , A moitié en haut/bas
+Half Side  by Side , A moitié côte à côte
+Plane , Avion
+Gyroid , Gyroïde
+Contour Threshold , Seuil de contour
+X-Multiplier , Multiplicateur-X
+Hexagon , Hexagone
+High , Haut
+Smoothing , Lissage
+Color on White , Couleur sur blanc
+Color Tolerance , Tolérance couleur
+Colormap , Carte de couleurs
+Hardmix , Mélange dur
+Heart , Cœur
+Hearts , Cœurs
+Height (%) , Hauteur (%)
+Delaunay-Guided , Guidé par Delaunay
+Sepia , Sépia
+Daylight Scene , Scène de jour
+Detail , Détail
+Depth Field Control , Contrôle du champ de profondeurs
+Shadow , Ombre
+Cup , Coupe
+Shift , Décalage
+Grid , Grille
+DOF Analyzer , Analyseur DOF
+Shadow Smoothness , Régularité de l'ombre
+Shapeaverage , Moyenne sur la forme
+Sharpen , Rendre net
+Anaglyph Blue/yellow , Anaglyphe bleu/jaune
+User-Defined , Définir par l'utilisateur
+Left and Right Foreground , Avant-plan gauche et droite
+Light Color , Couleur lumineuse
+Top Left , Haut gauche
+Top Right , Haut droite
+Anaglyph Red/cyan , Anaglyphe rouge/cyan
+Anaglyph Red/cyan Optimized , Anaglyphe rouge/cyan optimisé
+Level , Niveau
+Twirl , Tourbillon
+Much Blue , Beaucoup de bleu
+Angular , Anuglaire
+Value Correction , Correction de valeur
+Much Red , Beaucoup de rouge
+Much Green , Beaucoup de vert
+Lighter , Plus lumineux
+Band Width , Largeur de bande
+Anaglyph Green/magenta , Anaglyphe vert/magenta
+Anaglyph Blue/yellow Optimized , Anaglyphe bleu/jaune optimisé
+Top Layer Defines Object Texture , Le calque supérieur définit la texture de l'objet
+Light Motive , Mobile léger
+Allow Angle , Autorise un angle
+Left and Right Background , Arrière-plan gauche et droite
+Backward , En arrière
+Multiplier , Multiplicateur
+Anaglyph Glasses Adjustment , Ajustement des lunettes anaglyphes
+Underwater , Sous l'eau
+Left Diagonal Foreground , Avant-plan diagonal gauche
+Unknown , Inconnu
+X-Variations , Variations-X
+Similarity Space , Espace de similarité
+Sine , Sinus
+Sine+ , Sinus+
+Laplacian , Laplacien
+Modern Film , Film moderne
+Skin Estimation , Estimation de la peau
+Small , Petit
+Connectivity , Connectivité
+X-Scale , Échelle-X
+3rd Color , 3ème couleur
+Skeleton , Squelette
+Small (Faster) , Petit (plus rapide)
+Luminance Factor , Facteur de luminance
+Custom Layout , Disposition personnalisée
+Shape Max0 , Max0 de forme
+Shape Max , Max de forme
+Shape Average0 , Moyenne de forme
+Custom Kernel , Noyau personnalisé
+Shape Min0 , Min0 de forme
+Shape Min , Min de forme
+Vector Painting , Peinture vectorielle
+Shadows Threshold , Seuil des ombres
+Shape Area Max , Aire max de forme
+Shape Average , Moyenne de forme
+Shape Area Min0 , Aire min0 de forme
+Shape Area Min , Aire min de forme
+Shape Area Max0 , Aire max0 de forme
+Sharpen Details in Preview , Détails nets dans la prévisualisation
+Sharpening Strength , Force de netteté
+Sharpening Radius , Rayon de netteté
+Shrink , Rétracte
+Crop , Couper
+Green Smoothness , Réularité verte
+Mixer Mode , Mode de mixage
+Gray , Gris
+Graphic Colours , Couleurs graphiques
+Array Mode , Mode de tableau
+Coarsest (faster) , Plus grossier (rapide)
+5th Color , 5ème couleur
+Highlights Threshold , Seuil des tons clairs
+Horizontal Amount , Quantité horizontale
+Closing - Original , Fermeture - Original
+Light Grey , Gris clair
+X-Centering , Centrage-X
+Pencil Amplitude , Amplitude du crayon
+Soften , Plus doux
+Color Burn , Brulûre des couleurs
+Pea Soup , Soupe de pois
+Alternating , En alternance
+Some , Un peu
+Color 3 , Couleur 3
+Color 4 , Couleur 4
+Horizontal Size (%) , Taille horizontale (%)
+Hue Randomness (%) , Aléa de teinte (%)
+Specular , Spéculaire
+Spatial Variance , Variance spatiale
+Paint , Peinture
+Vertical Size (%) , Taille verticale (%)
+Oversample , Sur-échantillonne
+Human  2 , Humain 2
+7th Color , 7ème couleur
+Space , Espace
+Allow Outer Blending , Autorise le mélange extérieur
+Hot , Chaud
+6th Color , 6ème couleur
+Circle , Cercle
+Spatial Scale , Echelle spatiale
+Spatial Radius , Rayon spatial
+Spatial Precision , Précision spatiale
+Color Channels , Canaux couleurs
+High (Slower) , Haut (plus lent)
+Periods , Périodes
+4th Color , 4ème couleur
+Two Layers , Deux calques
+Attenuation Near Center (%) , Atténuation près du centre (%)
+Attenuation Decay , Décroissance de l'atténuation
+Aspect Ratio , Rapport d'aspect
+Pin Light , Lumière d'épingle
+4096x4096 Layer , Calque 4096x4096
+Smooth [Antialias] , Lisse [Anticrénelage]
+Perserve Luminance , Préserve la luminance
+Hard Mix , Mélange dur
+Pentagon , Pentagone
+Soft Dodge , Esquive douce
+Soft Burn , Brûlure douce
+Color Metric , Métrique couleur
+Color Intensity , Intensité de couleur
+512x512 Layer , Calque 512x512
+Color Grading , Étalonnage couleur
+Pencil Size , Taille du crayon
+Highlight , Tons clairs
+High Pass , Passe-haut
+Color Smoothness , Régularité des couleurs
+Color Space , Espace de couleurs
+Color Spots + Extrapolated Colors + Lineart , Taches de couleurs + Couleurs extrapolées
+Color Quantization , Quantification couleur
+Pencil Smoother Sharpness , Netteté du lisseur de crayon
+Low Frequency , Fréquence basse
+Auto Balance , Balance automatique
+Pencil Type , Type de crayon
+Repeat [Memory Consuming!] , Répète [coûteux en mémoire!]
+Frequency (%) , Fréquence (%)
+Ending Point (%) , Point de fin
+Enhance Details , Renforce les détails
+Emboss , Gaufrage
+Effect Strength , Force de l'effet
+Angle Cut , Coupure d'angle
+Primary Radius , Rayon primaire
+Purple , Violet
+Fractured Clouds , Nuages fragmentés
+Exponential , Exponentiel
+Expand , Étend
+Equalize and Normalize , Égalise et normalise
+Euclidean , Euclidéen
+Preview Gradient , Prévisualise le gradient
+Reverse Endianness , Inverse l'endianness
+Masked Image , Image masquée
+Masking , Masquage
+Dynamic Range Increase , Augmente l'intervalle dynamique
+Edge Sensitivity , Sensibilité au contours
+Edge Threshold (%) , Seuil de contours (%)
+Preview Precision , Précision de la prévisualisation
+Edge Behavior X , Comportement du contour en X
+Edge Behavior Y , Comportement du contour en Y
+Preview Original , Prévisualise l'original
+Reference Color , Couleur de référence
+Range , Intervalle
+Filling , Remplissage
+Anaglyph Green/magenta Optimized , Anaglyphe vert/magenta optimisé
+RGB[A] , RVB[A]
+Median , Médian
+Value Scale , Échelle de valeurs
+Flip , Renverse
+Maze Type , Type de labyrinthe
+Fine Scale , Échelle fine
+Finest (slower) , Le plus fin possible (plus lent)
+Radius Cut , Coupe de rayon
+Pencil Smoother Smoothness , Régularité du lisseur de crayon
+First Offset , Premier décalage
+Flag , Drapeau
+Zoom Center , Centre du zoom
+Zoom In , Zoome
+Zoom Out , Dézoome
+Red Smoothness , Régularité rouge
+Fade End , Fin du fondu
+Forward  Horizontal , Horizontal en avant
+Fade Start , Début du fondu
+Maximal Radius , Rayon maximal
+Fractal Noise , Bruit fractal
+Quadratic , Quadratique
+Reduce Halos , Réduit les halos
+Quantization , Quantification
+Value Randomness (%) , Aléa des valeurs (%)
+Maximum Dimension , Dimension maximale
+Recovery , Récupération
+Fast Resize , Redimensionnement rapide
+Far Point Deviation , Déviation du point éloigné
+Value Precision , Précision de la valeur
+Quantize Colors , Quantifie les couleurs
+Formula , Formule
+Faded Print , Impression décolorée
+Depth (%) , Profondeur ()
+Any , N'importe lequel
+Secondary Radius , Rayon secondaire
+Second Offset , Second décalage
+Y-Centering , Centrage-Y
+Deformation Type , Type de déformation
+Selected Color , Couleur sélectionnée
+Much , Beaucoup
+Minimal Region Area , Aire minimale de région
+Fuzzyness , Fugacité
+Scale Factor , Facteur d'échelle
+Desaturate , Désature
+Anti Alias , Anti-crénelage
+Left  Foreground , Avant-plan gauche
+Shade , Nuance
+Dark Walls , Murs sombres
+Darkness Level , Niveau d'obscurité
+Dark Grey , Gris foncé
+Dark  Motive , Motif obscur
+Dark Color , Couleur sombre
+Dark Edges , Contours sombres
+Self , Soi
+Default , Défaut
+Decreasing , Décroissant
+Seventies Magazine , Magazine 70's
+Debug Font Size , Taille de la fonte de débogage
+Anisotropic , Anisotrope
+Angle Range , Intervalle d'angle
+Precision (%) , Précision (%)
+Rooster , Coq
+Preprocessor Power , Puissance du préprocesseur
+Pre-Normalize Image , Pré-normalise l'image
+Display Debug Info on Preview , Affiche des infos de débogage sur la prévisualisation
+Roundness , Rondeur
+Power , Puissance
+Angle Variations , Variations d'angle
+Angle Inclinaison / Tilt , Inclinaison d'angle
+Right Diagonal  Foreground , Avant-plan diagonal droit
+Drawing Mode , Mode de dessin
+Y-Variations , Variations-Y
+Preprocessor Radius , Rayon du préprocesseur
+Preserve Edges , Préserve les contours
+Angular Precision , Précision angulaire
+Full (Allows Multi-Layers) , Tous (autorise le multi-calques)
+Saturation Randomness (%) , Aléa de la saturation (%)
+Manual , Manuel
+Save Gradient As , Sauve le gradient comme
+Different Axis , Axe différent
+Same Axis , Même axe
+Y-Scale , Échelle-Y
+Dilation - Original , Dilaté - Original
+Map Tones , Projette les tons
+Stardust , Poussière d'étoiles
+Increasing , Augmentation
+Black Point , Point noir
+Central  Perspective Outdoor , Perspective centrale extérieure
+Balance Color , Équilibre les couleurs
+Starting Angle , Angle de départ
+Blacks , Noirs
+Wave , Vague
+Vivid Light , Lumière vive
+Vignette Max Radius , Rayon max de la vignette
+LN Size , Taille LN
+Tiles , Tuiles
+Normalize Luma , Normalise la Luma
+Vivid Edges , Contours vifs
+Bottom , Bas
+Operator , Opérateur
+Original - Opening , Original - Ouverture
+Original - Erosion , Original - Érosion
+None (Allows Multi-Layers) , Aucun (autorise le multi-calques)
+White Walls , Murs blancs
+Blue Smoothness , Régularité bleue
+Tiled Preview , Prévisualisation en tuiles
+Whiter Whites , Blancs plus blancs
+Most , Plus
+Outline Size , Taille du liseret
+Activate 'Pencil Smoother' , Active le 'Lisseur de crayon'
+Night 01 , Nuit 01
+Wavelet , Ondelette
+Normalization , Normalisation
+Inner Shade , Teinte intérieure
+Inner Radius (%) , Rayon intérieur (%)
+Inner Radius , Rayon intérieur
+View Resolution , Résolution de la vue
+Very High (Even Slower) , Très haut (encore plus lent)
+Starting Point (%) , Point de départ (%)
+Box , Boîte
+Output Filename , Nom du fichier de sortie
+Brighter , Plus lumineux
+Thumbnail Size , Taille des vignettes
+Balance , Équilibre
+Line , Ligne
+Normal Map , Carte normale
+Octogon , Octogone
+Local Contrast , Contraste local
+Bandwidth , Largeur de bande
+Absolute Value , Valeur absolue
+Brush Diameter (px) , Diamètre de brosse (px)
+Thinness , Finesse
+Symmetry Sides , Cotés symétriques
+Output Type , Type de sortie
+Lineart + Color Spots + Extrapolated Colors , Lineart + Taches de couleurs + Couleurs extrapolées
+Boost Contrast , Booste le contraste
+Inside , A l'intérieur
+Square to Circle , Carré en cercle
+Thickness (%) , Épaisseur (%)
+Bidirectional Rendering , Rendu bidirectionnel
+Thickness (px) , Épaisseur (px)
+Lightness Level , Niveau de luminosité
+Symmetry , Symétrie
+Input Type , Type d'entrée
+8th Color , 8ème couleur
+Stretch , Étire
+Little , Petit
+Bump Map , Carte d'élévation
+Number , Nombre
+Vignette Strength , Force de la vignette
+Image Smoothness , Réularité de l'image
+Stretch Contrast , Étire le contraste
+Outer Radius , Rayon extérieur
+Stroke Length (px) , Longueur de trait (px)
+Aliasing , Crénelage
+Tiny , Minuscule
+Vignette Min Radius , Rayon min de la vignette
+Blur Amplitude , Amplitude du lissage
+Swap , Échange
+Linear Light , Lumière linéaire
+Number of Frames , Nombre de trames
+Warm Vintage , Vintage chaud
+Swap Colors , Échange les couleurs
+Swap Layers , Échange les calques
+Whirls , Tourbillons
+Tone Mapping , Projection des tons
+Linear Burn , Brûlure linéaire
+Number of Key-Frames , Nombre de trames clés
+Posterized Dithering , Tramage postérisé
+Number of Iterations per Scale , Nombre d'itérations par échelle
+Précision Détails / Details Scale , Détail/Échelle des précisions
+Preview Frame Selection , Prévisualise la sélection des trames
+Mineral Mosaic , Mosaïque minérale
+Preview Detected Shapes , Prévisualise les formes détectées
+Pre Normalize , Pré-normalise
+Pow , Puissance
+Pre-Defined Colormap , Palette de couleurs pré-définie
+Preview Brush , Prévisualise la brosse
+Number of Matches (Coarsest) , Nombre de correspondances (grossier)
+Preview Color Mapping , Prévisualise la projection de couleurs
+Pre-Gamma , Pré-Gamma
+Preview Data , Prévisualise les données
+Pre-Defined , Pré-défini
+Object Animation , Animation de l'objet
+Preview , Prévisualisation
+Preliminary Y-Axis Scaling , Mise à l'échelle préliminaire selon l'axe Y
+Object Tolerance , Tolérance de l'objet
+Preview All Outputs , Prévisualise toutes les sorties
+Object Ratio , Rapport d'aspect de l'objet
+Preserve Alpha? , Préserve l'Alpha ?
+Preserve Image Dimension , Préserve la dimension de l'image
+Preserve Initial Brightness , Préserve la luminosité initiale
+Number of Streaks , Nombre de traces
+Preserve Range , Préserve l'intervalle
+Preserve Canvas for Post Bump Mapping , Préserve le canvas pour l'après bump mapping
+Preserve Covariance , Préserve la covariance
+Number of Sizes , Nombre de tailles
+Number of Teeth , Nombre de dents
+Preliminary X-Axis Scaling , Mise à l'échelle préliminaire suivant l'axe X
+Minesweeper , Démineur
+Preserve Luminance , Préserve la luminance
+Min Length (%) , Longueur min (%)
+Min Offset (%) , Décalage min (%)
+Min Detail Level , Niveau de détail min
+Pre-Process , Pré-calcule
+Number of Matches (Finest) , Nombre de correspondances (le plus fin)
+Night 02 , Nuit 02
+Preview Bands , Prévisualise les bandes
+Octagon , Octagone
+Preview Background , Prévisualise l'arrière plan
+Preliminary Surface Shift , Décalage préliminaire de la surface
+Predefined Formula , Formule pré-définie
+MinRGB , MinRVB
+Predefined Style , Style pré-defini
+Min Radius , Rayon min
+Minimal Shape Area , Aire minimale de forme
+One Layer per Single Color , Un calque par couleur différente
+One Layer (Vertical) , Un calque (vertical)
+One Layer per Single Region , Un calque par région différente
+Minimal Size (%) , Taille minimale (%)
+Only Leafs , Seulement les feuilles
+One Layer , Un calque
+Once Upon a Time , Il était une fois
+Minimal Scale (%) , Échelle minimale (%)
+One Layer (Horizontal) , Un calque (horizontal)
+Polygonize [Delaunay] , Polygonise [Delaunay]
+Polygonize [Energy] , Polygonise [Énergie]
+Pop Shadows , Fait ressortir les ombres
+Minimal Stroke Length , Longueur minimale de trait
+Popcorn Fractal , Fractales Popcorn
+Only Red and Blue , Seulement rouge et bleu
+Only Red , Seulement rouge
+Portrait Retouching , Retouche de portrait
+Minimal Color Intensity , Intensité minimale de couleur
+Newspaper , Papier journal
+Minimal Area (%) , Aire minimale (%)
+Offset Y-Transformation , Transformation du décalage-Y
+Minimal Highlights , Ton clairs minimaux
+Morphological Filter , Filtre morphologique
+Oddness (%) , Étrangeté (%)
+Newton Fractal , Fractale de Newton
+Posterization Level , Niveau de postérisation
+Posterize , Postérise
+Posterization Antialiasing , Anti-crénelage de postérisation
+Post-Process , Post-traitement
+Offset X-Transformation , Transformation du décalage-X
+Offset (%) , Décalage (%)
+Poster Edges , Contours de poster
+Minimal Radius , Rayon minimal
+Old-Movie Stripes , Rayures de vieux film
+Old West , Vieil Ouest
+Morphological Closing , Fermeture morphologique
+Offsets , Décalages
+New Filters , Nouveaux filtres
+Minimal Path , Chemin minimal
+Old Photograph , Vieille photographie
+Old Method - Slowest , Ancienne méthode - la plus lente
+Quick Enlarge , Aggrandissement rapide
+Quick Tonemap , Projection des tons rapides
+R/B Smoothness (Principal) , Régularité R/B (principal)
+Quick Copyright , Copyright rapide
+Quick , Rapide
+Noise [Perlin] , Bruit [Perlin]
+RGB Tone , Ton RVB
+Noise [Additive] , Bruit [Additif]
+RGB Quantization , Quantification RVB
+R/B Smoothness (Secondary) , Régularité R/B (secondaire)
+Noise [Spread] , Bruit [dispersé]
+Mid , Moyen
+RGB Image + Binary Mask (2 Layers) , Image RVB + Masque binaire (2 calques)
+Micro/macro Details  Adjusted , Ajustement des micro/macro détails
+Non-Linearity , Non-linéarité
+Motion Analyzer , Analyseur de mouvement
+Motion-Compensated , Compensé en mouvement
+Pyramid Processing , Traitement pyramidal
+Pseudorandom Noise , Bruit pseudo-aléatoire
+Push Point , Point de pression
+Normal Inverted , Nomales inversées
+Mid Noise , Bruit moyen
+Mid Grey , Gris moyen
+Moving Leaf , Feuille mouvante
+Non-Rigid , Non-rigide
+Quality (%) , Qualité (%)
+Pythagoras Tree , Arbre de Pythagore
+Norm Type , Type de norme
+Quadtree Variations , Variations d'abres quaternaires
+Quality , Qualité
+RYB , RJB
+Medium Scale (Smoothed) , Échelle moyenne (lissée)
+Medium Scale (Original) , Échelle moyenne (originale)
+Medium Frequency Layer , Calque de fréquence moyenne
+Night 04 , Nuit 04
+Nine Layers , Neuf calques
+Merge Brightness / Colors , Fusionner luminosité/couleurs
+No Rescaling , Pas de redimensionnement
+No Recovery , Pas de récupération
+Memories , Mémoires
+No Masking , Pas de masquage
+Radioactive Flower , Fleur radioactive
+Night From Day , Nuit à partir du jour
+Night 05 , Nuit 05
+RYB8 , RJB8
+Radial Edge Behaviour , Comportement de contour radial
+Radial Influence , Influence radiale
+No Transparency , Pas de transparence
+Noise , Bruit
+Metallic Look , Look métallique
+Metal , Métal
+Noise Level , Niveau de bruit
+Night 03 , Nuit 03
+Metropolis , Métropolis
+Noise Scale , Échelle de bruit
+Metric , Métrique
+RGBA Image (Updatable / 1 Layer) , Image RVBA (modifiable / 1 calque)
+Merging Steps , Étapes de fusion
+Merging Mode , Mode de fusion
+Merge Layers? , Fusionne les calques ?
+RGBA Image (Full-Transparency / 1 Layer) , Image RVBA (En transparence / 1 calque)
+Mess with Bits , S'amuser avec les bits
+RGB8 , RVB8
+RGBA , RVBA
+No-Skip , Pas de saut
+RGBA Foreground + Background (2 Layers) , Avant-plan RVBA + Arrière plan (2 calques)
+Pseudo-Gray Dithering , Tramage en pseudo-gris
+Nostalgia Honey , Miel de nostalgie
+Normalize Scales , Normalise les échelles
+Preview Without Alpha , Prévisualise sans le Alpha
+Preview Tones Map , Prévisualise la carte des tons
+Preview Shape , Prévisualise la forme
+Min Angle Deviation (deg) ,
+Moviz 34 ,
+Preview Subsampling ,
+Preview Time ,
+Normalize Input ,
+Primary Radius (%) ,
+Mighty Details ,
+Morroco 16 ,
+Primary Shift ,
+Primary Gamma ,
+Moviz 44 ,
+Prewitt-Y ,
+Primary Angle ,
+Primary Color ,
+Primary Factor ,
+Preview Selection ,
+Preview Light Shape ,
+Preview Mapping ,
+Preview Mask ,
+Number of Clusters ,
+Preview Only Shadow ,
+Morphology Strength ,
+Number of Iterations ,
+Preview Grain Alone ,
+Number of Inter-Frames ,
+Preview Grid ,
+Morphology Painting ,
+Min Cut (%) ,
+Nostalgic ,
+Moviz 45 ,
+Min Area % ,
+Preview Reference Circle ,
+Moviz 46 ,
+Preview Opacity (%) ,
+Number of Angles ,
+Number of Added Frames ,
+Preview Progress (%) ,
+Nothing ,
+Normal Output ,
+Process by Blocs of Size ,
+Processing Mode ,
+Progressen ,
+Propagation ,
+Process Transparency ,
+Process Channels Individually ,
+Middle Grey ,
+Process Top Layer Only ,
+Mid-Light Grey ,
+Mid-Dark Grey ,
+Mid Tone Contrast ,
+Prussian Blue ,
+Mid Offset ,
+Mostly Blue ,
+Moviz 37 ,
+Provia ,
+Moviz 36 ,
+Proportion ,
+Protanomaly ,
+Protanopia ,
+Protect Highlights 01 ,
+Middle Scale ,
+Print Size Unit ,
+Print Size Width ,
+Privacy Notice ,
+Pro Neg Hi ,
+Moviz 43 ,
+Print Frame Numbers ,
+Primary Twist ,
+Print Adjustment Marks ,
+Print Films (12) ,
+Normalize Illumination ,
+Midtones Hue ,
+Midpoint Shift ,
+Midpoint ,
+Probability Map ,
+Procedural ,
+Process As ,
+Pro Neg Std ,
+Mosaic ,
+Midtones Color Intensity ,
+Moviz 35 ,
+Midtones Brightness ,
+Normalize Brightness ,
+Minimal Value ,
+Output CLUT Resolution ,
+Moire Removal Method ,
+Output CLUT ,
+Output Ascii File ,
+Moviz 26 ,
+Output Chroma NR ,
+Mona Lisa ,
+Output Each Piece on a Different Layer ,
+Output Directory ,
+Output Corresponding CLUT ,
+Output Coordinates File ,
+Outline Smoothness ,
+Peppers ,
+Outline Opacity ,
+Outline Contrast ,
+Negative Effect ,
+Moire Removal ,
+Moody-5 ,
+Pencils ,
+Nature & Wildlife-5 ,
+Outlined ,
+Outline Thickness ,
+Moody-4 ,
+Moviz 18 ,
+Paw ,
+Moody-2 ,
+Pen Drawing ,
+Penalize Patch Repetitions ,
+Pattern Width ,
+Nb Branches / Rays ,
+Mondrian: Gray Tree ,
+Output HTML File ,
+Moviz 19 ,
+Nature & Wildlife-9 ,
+Moviz 17 ,
+Nature & Wildlife-7 ,
+Nature & Wildlife-6 ,
+Moody-3 ,
+Pencil Portrait ,
+Nature & Wildlife-8 ,
+Negative Color Abstraction ,
+Moviz 25 ,
+Pencil ,
+Mondrian: Evening; Red Tree ,
+Mondrian: Composition in Red-Yellow-Blue ,
+PictureFX - Faux Infrared Color P2 ,
+PictureFX - Faux Infrared Color P3 ,
+Negative [Old] (44) ,
+PictureFX - Faux Infrared R0a ,
+PictureFX - Faux Infrared R0b ,
+PictureFX - Faux Infrared B&W1 ,
+Modern Films 06 ,
+Picabia: Udnie ,
+Picasso: Seated Woman ,
+Picasso: The Reservoir - Horta De Ebro ,
+PictureFX (25) ,
+Neighborhood Smoothness ,
+Modern Films 04 ,
+Nemesis ,
+Neon 770 ,
+Moviz 16 ,
+Neighborhood Size (%) ,
+Name ,
+PictureFX - Faux Infrared YP1 ,
+Piece Complexity ,
+Modern Films 05 ,
+Piece Size (px) ,
+Modern Films 07 ,
+Moir&eacute; Animation ,
+Perturbation ,
+Petallian ,
+Petals ,
+Phase ,
+Moviz 27 ,
+Moody-6 ,
+Periodic Dots ,
+Periodicity ,
+Nature & Wildlife-4 ,
+Negative [Color] (13) ,
+Moody-7 ,
+Natural (vivid) ,
+PhotoComix Preset ,
+Photoillustration ,
+Negative [New] (39) ,
+Nature & Wildlife-1 ,
+Nature & Wildlife-3 ,
+Nature & Wildlife-2 ,
+Phone ,
+Modulo Value ,
+Nature & Wildlife-10 ,
+Monet: San Giorgio Maggiore at Dusk ,
+Moody ,
+Mono-Directional ,
+Mono+Ye ,
+Output Width ,
+Moviz 20 ,
+Padding (px) ,
+PIXLS.US (31) ,
+Pack ,
+Pack Sprites ,
+Pacman ,
+Moviz 22 ,
+Output Stroke Layer On ,
+Output Sharpening ,
+Mono+G ,
+Output Saturation ,
+Painting Order ,
+Painting Opacity ,
+Paint Effect ,
+Mono+R ,
+Paint Splat ,
+Paint With Brush ,
+Painting ,
+PI-Based Scaling ,
+Outside-In ,
+Outward ,
+Overall Blur ,
+Overall Contrast ,
+Overall Lightness ,
+Outside Color ,
+Montage ,
+Near Black ,
+Moviz 21 ,
+Output to Folder ,
+Outside ,
+Montage Type ,
+Overshoot ,
+P''(z) ,
+P(z) ,
+PCA Transfer ,
+Overload Y ,
+Overlap (%) ,
+Monochrome 2 ,
+Overload Count** ,
+Overload X ,
+Monochrome 1 ,
+Patch Size for Synthesis (Final) ,
+Patch Smoothness ,
+Patch Variance ,
+Pattern ,
+Pattern Angle ,
+Patch Size for Synthesis ,
+Mono ,
+Patch ,
+Patch Measure ,
+Monkey ,
+Patch Size for Analysis ,
+Negate ,
+Pattern Weight ,
+Monet: Wheatstacks - End of Summer ,
+Moviz 24 ,
+Monet: Water-Lily Pond ,
+Pattern Variation 3 ,
+Pattern Height ,
+Pattern Type ,
+Moviz 23 ,
+Pattern Variation 1 ,
+Pattern Variation 2 ,
+Output Height ,
+Paladin 1875 ,
+Paper Texture ,
+Nb Cercles Extérieurs / Circles Surrounding ,
+Parabolic ,
+Output Preset as a HaldCLUT Layer ,
+Moody-10 ,
+Paintstroke ,
+Neat Merge ,
+Output Region Delimiters ,
+Moody-1 ,
+Paladin ,
+Moviz 2 ,
+Pasadena 21 ,
+Passing By ,
+Pastell Art ,
+Output Layers ,
+Parrots ,
+Output Multiple Layers ,
+Nebulous ,
+Parabolic Chaos ,
+Mono Tinted ,
+Parameter Settings ,
+Opposing ,
+Polaroid PX-100UV+ Warm ,
+Polaroid PX-100UV+ Warm + ,
+Mirror Effect ,
+Multiple Colored Shapes Over Transp. BG ,
+Neutral Pump ,
+Mirror X ,
+Moviz 12 ,
+Neutral Color ,
+Polaroid PX-100UV+ Cold ++ ,
+Polaroid PX-100UV+ Cold +++ ,
+Polaroid PX-680 + ,
+Morph [Interactive] ,
+Mul ,
+Operation Yellow ,
+Ministeck ,
+Polaroid PX-680 ,
+Polaroid PX-100UV+ Warm ++ ,
+Multi-Layer Etch ,
+Polaroid PX-100UV+ Warm +++ ,
+Neutral Teal Orange ,
+Neutral Warm Fade ,
+Mirror Y ,
+Moviz 28 ,
+Polaroid 690 Warm + ,
+Polaroid 690 Warm ++ ,
+Orange Underexposed ,
+Multipliers ,
+Oranges ,
+Order By ,
+Order ,
+Polaroid 690 Warm ,
+Mixed Mode ,
+Mix ,
+Morning 6 ,
+Orange Dark 4 ,
+Morph Layers ,
+Moviz 29 ,
+Multiple Layers ,
+Moviz 13 ,
+Orange Tone ,
+Orange Dark Look ,
+Polaroid PX-100UV+ Cold ,
+Orange Dark 7 ,
+Polaroid PX-100UV+ Cold + ,
+Polaroid PX-70 Warm + ,
+Polaroid PX-70 Warm ++ ,
+Polaroid Polachrome ,
+Opacity Gamma ,
+Opacity Gain ,
+Polaroid PX-70 Warm ,
+Polaroid PX-70 Cold ,
+Polaroid PX-70 Cold + ,
+Polaroid PX-70 Cold ++ ,
+Opacity as Heightmap ,
+Opacity Threshold (%) ,
+Morphological - Fastest Sharpest Output ,
+Pole Lat ,
+Minimalist Caffeination ,
+Pole Long ,
+Pole Rotation ,
+Polaroid Time Zero (Expired) Cold ,
+Polaroid Time Zero (Expired) ,
+Opacity Factor ,
+Polaroid Time Zero (Expired) + ,
+Polaroid Time Zero (Expired) ++ ,
+MorphoStrenght ,
+Opaque Pixels ,
+Polaroid PX-680 Cold ++a ,
+Minimum Red:Blue Ratio in the Fringe ,
+Minimum Dimension ,
+Minimum Brightness ,
+Minimum ,
+Open Interactive Preview ,
+Polaroid PX-680 ++ ,
+New Curves [Interactive] ,
+Polaroid PX-680 Cold ,
+Polaroid PX-680 Cold + ,
+Polaroid PX-680 Cold ++ ,
+Output as Multiple Layers ,
+Polaroid PX-70 + ,
+Polaroid PX-70 ++ ,
+Polaroid PX-70 +++ ,
+Moviz 30 ,
+Opaque Regions on Top Layer ,
+Opaque Skin ,
+Polaroid PX-680 Warm ,
+Moviz 3 ,
+Polaroid PX-680 Warm + ,
+Polaroid PX-680 Warm ++ ,
+Polaroid 690 Cold ++ ,
+Placement ,
+Orthogonal Radius ,
+Placement of Distortion ,
+Plaid ,
+Moviz 14 ,
+Mixer [YCbCr] ,
+Mod ,
+Pixel Values ,
+Orwo NP20-GDR ,
+Pixelmator (45) ,
+Orton Glow ,
+Point #2 ,
+Netteté / Sharpness ,
+Point #3 ,
+Point 1 ,
+Muted 01 ,
+Point #1 ,
+Mixer [RGB] ,
+Neon Lightning ,
+Plasma Effect ,
+Plot Type ,
+Point #0 ,
+Mode 0 ,
+Outer Radius (%) ,
+Pitaya 15 ,
+Modern Films 01 ,
+Pixel Denoise ,
+Mystic Purple Sunset ,
+Nah ,
+Moviz 15 ,
+Pink Fade ,
+Modern Films 03 ,
+Naif ,
+Modern Films 02 ,
+Ouline Color ,
+Others (69) ,
+Pixel Size ,
+Pixel Sort ,
+Mode 1 ,
+Muted Fade ,
+Outer Length ,
+Outer Fading ,
+Modeler / Shape ,
+Outer ,
+Pixel Push ,
+Polaroid 669 Cold ,
+Origin ,
+Polaroid 669 Cold + ,
+Moonlight ,
+Orientation Only ,
+Moon2panorama ,
+Mixer [HSV] ,
+Polaroid 669 +++ ,
+Mixer [CMYK] ,
+Original ,
+Moody-9 ,
+Polaroid 690 Cold ,
+Mixer ,
+Multiscale Operator ,
+Moonrise ,
+Polaroid 690 Cold + ,
+Orientation Coherence ,
+Mixer Style ,
+Polaroid 672 ,
+Polaroid 690 + ,
+Polaroid 690 ++ ,
+Moonlight 01 ,
+Polaroid 669 ++ ,
+Poisson + Gaussian ,
+Polar Transform ,
+Polaroid ,
+Moody-8 ,
+Polaroid 664 ,
+Mixer [Lab] ,
+Point 2 ,
+Point Warp ,
+Mixer [PCA] ,
+Point Width ,
+Mute Shift ,
+Polaroid 665 Negative HC ,
+Polaroid 667 ,
+Original - (Opening + Closing)/2 ,
+Polaroid 669 + ,
+Munch: The Scream ,
+Polaroid 665 Negative - ,
+Polaroid 665 ,
+Polaroid 665 + ,
+Polaroid 665 ++ ,
+Polaroid 665 Negative ,
+Polaroid 665 Negative + ,
+Tones to Layers ,
+Tone Threshold ,
+Tone Presets ,
+Tone Mapping [Fast] ,
+Total Layers ,
+Top-Right Vertex (%) ,
+Top-Left Vertex (%) ,
+Top ,
+Tone Enhance ,
+Tone Blur ,
+Tonal Bandwidth ,
+Tolerance to Gaps ,
+Tone Mapping Soft ,
+Tone Mapping Fast ,
+Tone Mapping (%) ,
+Tone Gamma ,
+Total Variation ,
+Transparent Background ,
+Transmittance Map ,
+Transition Smoothness ,
+Transition Shape ,
+Transparent on Black ,
+Transparent Skin ,
+Transparent Color ,
+Transparent Black & White ,
+Transfer Colors [Patch-Based] ,
+Transfer Colors [PCA] ,
+Transfer Colors [Histogram] ,
+Tout ,
+Transition Map ,
+Transformer ,
+Transform ,
+Transfer Colors [Variational] ,
+Toggle to View Base Image ,
+Threshold Mid ,
+Threshold Max ,
+Threshold Low ,
+Threshold High ,
+Tiger ,
+Tic-Tac-Toe ,
+Thriller 2 ,
+Threshold On ,
+Thorn Fractal - Secant Sea ,
+Thinning (Slow) ,
+Thinning ,
+Thin Separators ,
+Threshold Etch ,
+Three Layers ,
+Thorny Petal 2 ,
+Thorny Petal 1 ,
+Tikhonov ,
+Timed Image ,
+Time ,
+Tilt ,
+Tiles to Layers ,
+Toes ,
+Toasted Garden ,
+To Nadir / Zenith ,
+To Equirectangular ,
+Tiled Isolation ,
+Tileable Rotation ,
+Tile Size ,
+Tile Poles ,
+Tiled Rotation ,
+Tiled Random Shifts ,
+Tiled Parameterization ,
+Tiled Normalization ,
+Unquantize [JPEG Smooth] ,
+Unpurple ,
+Unearthing Origami ,
+Undo Anaglyph ,
+Up-Left ,
+Untwist ,
+Unstrip ,
+Unsharp Mask ,
+UltraWarp++++ ,
+Ultra Water ,
+Type Flocon / Snowflake ,
+Type Aperçu ,
+Undeniable 2 ,
+Undeniable ,
+Unbounded ,
+Unaligned Images ,
+Up-Right ,
+Urban 04 ,
+Urban 03 ,
+Urban 02 ,
+Urban 01 ,
+Use Individual Depth Map ,
+Use Bi-Sided Convolution? ,
+Urban Cowboy ,
+Urban 05 ,
+Uppercase Letters ,
+Upper Side Orientation ,
+Upper Layer Is the Top Layer for All Blends ,
+Update Neural Network ,
+Upscale [Scale2x] ,
+Upscale [Edge] ,
+Upscale [Diffusion] ,
+Upscale [DCCI2x] ,
+Two-By-Two ,
+Trig-6 ,
+Trig-4 ,
+Triangular Vb ,
+Triangular Va ,
+Trunk Color ,
+True Colors 8 ,
+Tritanopia ,
+Tritanomaly ,
+Triangles (Outline) ,
+Trent 18 ,
+Tree ,
+Transparent on White ,
+Triangular Pattern ,
+Triangular Interweaving ,
+Triangular Hb ,
+Triangular Ha ,
+Trunk Opacity (%) ,
+Twist Strength (%) ,
+Twist Angle (°) ,
+Tweed 71 ,
+Turn on Rotate and Twirl ,
+Twisted Tunnel ,
+Twisted Rays ,
+Twisted Heart 2 ,
+Twisted Heart ,
+Tune HSV Colors ,
+Tulips ,
+Tubular Waves ,
+Trunks ,
+Turkiest 42 ,
+Turing ,
+Turbulent Halftone ,
+Tunnel ,
+Summer (alt) ,
+Summer ,
+Subtractive ,
+Subtle Yellow ,
+Sunny (rich) ,
+Sunny (alt) ,
+Sunny ,
+Sunlight Love ,
+Subpixel Level ,
+Subpixel Interpolation ,
+Sublevel ,
+Subdivisions ,
+Subtle Green ,
+Subtle Blue ,
+Subsampling Level ,
+Subsampling (%) ,
+Sunny (warm) ,
+Sutro FX ,
+Surface Disturbance Multiplier ,
+Surface Disturbance ,
+Surface Angle ,
+Sweet Bubblegum ,
+Swap Sides ,
+Swap Radius / Angle ,
+Swan ,
+Super Warm ,
+Sunset Violet Mood ,
+Sunset Intense Violet Blue ,
+Sunset Aqua Orange ,
+Superimpose with Original? ,
+Superformula ,
+Super-Pixels ,
+Super Warm (rich) ,
+Stylize ,
+Stereoscopic Window Position ,
+Stereoscopic Image Alignment ,
+Stereographic Projection ,
+Stereo Window Position ,
+Street ,
+Streak ,
+Strands ,
+Straight ,
+Stencil ,
+Std Thickness Factor (%) ,
+Std Length Factor (%) ,
+Std Branching ,
+Stereo Image ,
+Steps ,
+Step (%) ,
+Step ,
+Strength Effect ,
+Strong Antialias ,
+Strong ,
+Stroke Strength ,
+Stroke Angle ,
+Style Variations ,
+Style ,
+Studio Skin Tone Shaper ,
+Structure Smoothness ,
+Stretch Colors ,
+Strength Shadows ,
+Strength Midtones ,
+Strength Highlights ,
+Stroke ,
+Stripe Orientation ,
+Strip ,
+Stretch Factor ,
+Temperature Balance ,
+Teigen 28 ,
+Teddy ,
+TechnicalFX - Backlight Filter ,
+Tension Green 2 ,
+Tension Green 1 ,
+Tends to Be Square ,
+Ten Layers ,
+Teal Moonlight ,
+Teal Magenta Gold ,
+Teal Fade ,
+Tarraco ,
+Teal Orange 3 ,
+Teal Orange 2 ,
+Teal Orange 1 ,
+Teal Orange ,
+Tension Green 3 ,
+Thelypteridaceae ,
+The Matrices ,
+The Game of Life ,
+Textured Glass ,
+Thin Edges ,
+Thin Brush ,
+Thickness(%) ,
+Thickness Factor ,
+Tertiary Gamma ,
+Tertiary Factor ,
+Terra 4 ,
+Tension Green 4 ,
+Texture Enhance ,
+Texture ,
+Tertiary Twist ,
+Tertiary Shift ,
+Target Color #9 ,
+Target Color #10 ,
+Target Color #1 ,
+Taquin ,
+Tanh Stroke ,
+Target Color #14 ,
+Target Color #13 ,
+Target Color #12 ,
+Target Color #11 ,
+Synthesis Scale ,
+Symmetrize ,
+Symmetric 2D Shape ,
+Sweet Gelatto ,
+Tangent Radius ,
+Tan(z) ,
+Taille / Size ,
+Taiga ,
+Target Color #15 ,
+Target Color #4 ,
+Target Color #3 ,
+Target Color #24 ,
+Target Color #23 ,
+Target Color #8 ,
+Target Color #7 ,
+Target Color #6 ,
+Target Color #5 ,
+Target Color #19 ,
+Target Color #18 ,
+Target Color #17 ,
+Target Color #16 ,
+Target Color #22 ,
+Target Color #21 ,
+Target Color #20 ,
+Target Color #2 ,
+Xb-Multiplier ,
+Xb-Exponent ,
+Xa/Xb ,
+Xa-Sign ,
+Y Center ,
+Xy-Axes ,
+Xb-Sign ,
+Xb-Offset (deg.) ,
+XY-Factor ,
+XY-Coordinates (%) ,
+XY-Axis Mode? ,
+XY-Axis Formula U ,
+Xa-Offset (deg.) ,
+Xa-Multiplier ,
+Xa-Exponent ,
+XY-Light ,
+Y Origine ,
+Y-Coordinate [Manual] ,
+Y-Coordinate ,
+Y-Centering (%) ,
+Y-Center ,
+Y-Factor (%) ,
+Y-End (%) ,
+Y-Dispersion ,
+Y-Curvature ,
+Y-Axis Formula T ,
+Y-Axis Formula S ,
+Y-Angle (deg.) ,
+Y(t) ,
+Y-Border ,
+Y-Balance ,
+Y-Axis Then X-Axis ,
+Y-Axis Formula U ,
+XY-Axis Formula T ,
+X-Dispersion ,
+X-Curvature ,
+X-Coordinate [Manual] ,
+X-Coordinate ,
+X-Min ,
+X-Max ,
+X-Factor (%) ,
+X-End (%) ,
+X-Axis Then Y-Axis ,
+X-Axis Formula U ,
+X-Axis Formula T ,
+X-Axis Formula S ,
+X-Centering (%) ,
+X-Center ,
+X-Border ,
+X-Balance ,
+X-Motion ,
+X1 (none) ,
+X-Warping ,
+X-Start (%) ,
+X-Smoothness ,
+XY-Axis Formula S ,
+XY-Axis ,
+XY-Amplitude ,
+XY Mirror ,
+X-Rotation ,
+X-Resolution ,
+X-Ratio ,
+X-Ombre X-Shadow ,
+X-Size (px) ,
+X-Shift (px) ,
+X-Shift (%) ,
+X-Seed (Julia) ,
+Z^^3 - 1 ,
+Z^^2 - 1 ,
+Z-Scale ,
+Z-Rotation ,
+Za-Exponent ,
+Z^^8 + 15*z^^4 - 1 ,
+Z^^6 + Z^^3 - 1 ,
+Z^^5 - 1 ,
+You Can Do It ,
+Yellowstone ,
+Yellow Smoothness ,
+Yellow Shift ,
+Z-Range ,
+Z-Motion ,
+Z-Angle (deg.) ,
+Youssef Hossam (5) ,
+Za-Multiplier ,
+ZilverFX - B&W Solarization ,
+Zero ,
+Zelda ,
+Zeke 39 ,
+Zoom (%) ,
+Zone System ,
+ZilverFX - Vintage B&W ,
+ZilverFX - InfraRed ,
+Zb-Exponent ,
+Za/Zb ,
+Za-Sign ,
+Za-Offset (deg.) ,
+Zed 32 ,
+Zb-Sign ,
+Zb-Offset (deg.) ,
+Zb-Multiplier ,
+Yellow Film 01 ,
+Y-Warping ,
+Y-Start (%) ,
+Y-Smoothness ,
+Y-Size (px) ,
+YCbCr (Luma Only) ,
+YCbCr (Distinct) ,
+YCbCr (Chroma Only) ,
+YAG Effect ,
+Y-Resolution ,
+Y-Ratio ,
+Y-Ombre Y-Shadow ,
+Y-Motion ,
+Y-Shift (px) ,
+Y-Shift (%) ,
+Y-Seed (Julia) ,
+Y-Rotation ,
+YCbCr (Luma/Chroma) ,
+Yb-Offset (deg.) ,
+Yb-Multiplier ,
+Yb-Exponent ,
+Ya/Yb ,
+Yellow Factor ,
+Yellow Color ,
+Yellow 55B ,
+Yb-Sign ,
+YES8 ,
+YCbCrJPEG ,
+YCbCrGLIC ,
+YCbCr (Mixed) ,
+Ya-Sign ,
+Ya-Offset (deg.) ,
+Ya-Multiplier ,
+Ya-Exponent ,
+Vertical Tiles ,
+Vertical Stripes ,
+Vertical Length ,
+Vertical Blur ,
+Very Warm Greenish ,
+Very High ,
+Very Fine ,
+Very Course 5 ,
+Vertical 1 Length ,
+Vertical 1 Amount ,
+Vertex Type ,
+Velvia ,
+Vertical Array ,
+Vertical Amount ,
+Vertical 2 Length ,
+Vertical 2 Amount ,
+Vibrant ,
+Vintage 01 ,
+Vintage (brighter) ,
+Vintage (alt) ,
+Vintage ,
+Vintage 05 ,
+Vintage 04 ,
+Vintage 03 ,
+Vintage 02 ,
+Victory ,
+Vibrant (crome-Ish) ,
+Vibrant (contrast) ,
+Vibrant (alien) ,
+Vignette Strenth ,
+Vignette Contrast ,
+Vignette ,
+View Outlines Only ,
+Velocity ,
+V Cutoff ,
+Uzbek Samarcande ,
+Uzbek Marriage ,
+Uzbek Bukhara ,
+Value Bottom ,
+Value Blending ,
+Val Range ,
+VFB 21 ,
+Use Top Layer as a Priority Mask ,
+Use Negative Overload ,
+Use Maximum Tones ,
+Use Light ,
+Usure [bruit/noise] ,
+User-Defined (Bottom Layer) ,
+Use as Saturation ,
+Use as Hue ,
+Value Factor ,
+Variability ,
+Van Gogh: Wheat Field with Crows ,
+Van Gogh: The Starry Night ,
+Van Gogh: Irises ,
+Variation C ,
+Variation B ,
+Variation A ,
+Variance ,
+Value Shift ,
+Value Range ,
+Value Randomness ,
+Value Normalization ,
+Van Gogh: Almond Blossom ,
+Value Variance ,
+Value Top ,
+Value Smoothness ,
+Whitening ,
+White to Black ,
+White on Transparent ,
+White Point ,
+Wipe ,
+Winter Lighthouse ,
+Wind ,
+Whites ,
+Western Lut 2 ,
+Western ,
+Webbing Cubic Unearthing ,
+Weave ,
+White Level ,
+White Layers ,
+White Dices ,
+Whirl Drawing ,
+Wiremap ,
+X 9 ,
+X 8 ,
+X 6 ,
+X 4 ,
+X-Angle (deg.) ,
+X(t) ,
+X Origine ,
+X Center ,
+X 16 ,
+X 12 ,
+Work on Frameset ,
+Wooden Gold 20 ,
+X 3 ,
+X 27 ,
+X 2 ,
+X 18 ,
+Wavy ,
+Vivid Screen ,
+Vivid Edges* ,
+Visible Watermark ,
+Virtual Landscape ,
+Warm ,
+Warhol ,
+Wall ,
+Voronoi ,
+Vintage Style ,
+Vintage Mob ,
+Vintage Chrome ,
+Vintage 163 ,
+Vireo 37 ,
+Violet Taste ,
+Vintage Warmth 1 ,
+Vintage Tone (%) ,
+Warm (highlight) ,
+Waterslide ,
+Waterfall ,
+Water ,
+Warp by Intensity ,
+Waves Smoothness ,
+Waves Amplitude ,
+Wavelength ,
+Wave(s) ,
+Warm Fade 1 ,
+Warm Fade ,
+Warm Dark Contrasty ,
+Warm (yellow) ,
+Warp [Interactive] ,
+Warm Teal ,
+Warm Sunset Red ,
+Warm Neutral ,
+Rotations ,
+Rotated (crush) ,
+Rotated ,
+Rotate Tree ,
+Row by Row ,
+Round ,
+Rotinv-Y ,
+Rotinv-X ,
+Rotate (vibrant) ,
+Rotate (muted) ,
+Rose ,
+Rosace ,
+Rotate Hue Bands ,
+Rotate 90 Deg. ,
+Rotate 270 Deg. ,
+Rotate 180 Deg. ,
+S-Curve Contrast ,
+Saturation EQ ,
+Saturation Channel Gamma ,
+Saturated Blue ,
+Satin ,
+Saturation Randomness ,
+[Cyan]MYK ,
+Saturation Increase ,
+Saturation Factor ,
+Sampling ,
+Sample Image ,
+Same as Input ,
+SRGB Conversion ,
+Sat Top ,
+Sat Range ,
+Sat Bottom ,
+Sans ,
+Rorschach ,
+Revert Layer Order ,
+Reversing ,
+Reverse Tangent Division ,
+Reverse Pow ,
+Right Eye View ,
+Right Diagonal Foreground ,
+Right ,
+Rice ,
+Reverse Flip ,
+Reverse Effect ,
+Reverse Bytes ,
+Reverse Bits ,
+Reverse Motion ,
+Reverse Mod ,
+Reverse Gradient ,
+Reverse Frame Stack ,
+Right Position ,
+Rodilius [Animated] ,
+Rodilius ,
+Roddy (by Mahvin) ,
+Roddy ,
+Rollei Retro 80s ,
+Rollei Retro 100 Tonal ,
+Rollei Ortho 25 ,
+Rollei IR 400 ,
+Rigid ,
+Right Stream Only ,
+Right Slope ,
+Right Side Orientation ,
+RocketStock (35) ,
+Robert Cross 2 ,
+Robert Cross 1 ,
+Ripple ,
+Selected Frame ,
+Selected Colors ,
+Select-Replace Color ,
+Select By ,
+Selective Gaussian ,
+Selective Desaturation ,
+Selection ,
+Selected Mask ,
+Segment Max Length (px) ,
+Sectors ,
+Secondary Twist ,
+Secondary Shift ,
+Segments Strength ,
+Segments ,
+Segmentation Smoothness ,
+Segmentation Edge Threshold ,
+Self Glitching ,
+Set Frame Format ,
+Set Aspect Only ,
+Serpent ,
+Seringe 4 ,
+Shade Back to First Color ,
+Shade Angle ,
+Sevsuz ,
+Seven Layers ,
+Sequence X4 ,
+Sensitivity ,
+Semi-Thorny Petallian ,
+Self Image ,
+Serial Number ,
+Serenity ,
+Sequence X8 ,
+Sequence X6 ,
+Secondary Radius (%) ,
+Scale Style to Fit Target Resolution ,
+Scale RGB ,
+Scale Plasma ,
+Scale Output ,
+Scaling X-Axis ,
+Scaling Factor ,
+Scaled ,
+Scale Variations ,
+Saving Private Damon ,
+Save CLUT as .Cube or .Png File ,
+Saturation Smoothness ,
+Saturation Shift ,
+Scale CMYK ,
+Scale 2 ,
+Scale 1 ,
+Scalar ,
+Scaling XY-Axis ,
+Second Radius ,
+Second Color ,
+Secant ,
+Seamless Turbulence ,
+Secondary Gamma ,
+Secondary Factor ,
+Secondary Color ,
+Second Size ,
+Scr ,
+Science Fiction ,
+Scanlines ,
+Scaling Y-Axis ,
+Seamless Deco ,
+Seamcarve ,
+Sea ,
+Screen Border ,
+Red Chroma Smoothness ,
+Red Chroma Shift ,
+Red Chroma Factor ,
+Red Blue Yellow ,
+Red Dream 01 ,
+Red Day 01 ,
+Red Color ,
+Red Chrominance ,
+Recursions Flocon / Snowflake ,
+Recursion Depth ,
+Rectangle ,
+Recover Shadows ,
+Red Afternoon 01 ,
+Red - Green - Blue - Alpha ,
+Red - Green - Blue ,
+Recursive Median ,
+Red Factor ,
+Reeve 38 ,
+Reduce Redness ,
+Reduce RAM ,
+Reduce Noise ,
+Refraction ,
+Reflection ,
+Reference Angle (deg.) ,
+Reference ,
+Red Wavelength ,
+Red Shift ,
+Red Rotations ,
+Red Level ,
+Reds Oranges Yellows ,
+Reds ,
+Red-Green ,
+Red-Eye Attenuation ,
+Recover Highlights ,
+Random [non-Transparent] ,
+Random Shade Stripes ,
+Random Pattern ,
+Random Colors ,
+Randomness ,
+Randomized ,
+Randomize Seed ,
+Randomize ,
+Rainbow ,
+Rain & Snow ,
+Radius [Manual] ,
+Radius / Angle ,
+Random Color Map ,
+Random Color Ellipses ,
+Random Angle ,
+Raindrops ,
+Ratios ,
+Rcx ,
+Rays ,
+Rayons Couleurs ABCDEFG ,
+Rayons Couleurs ABCDEF ,
+Recover ,
+Reconstruct From Previous Frames ,
+Recompose ,
+Rebuild From Similar Blocs ,
+Rayon Cercle Milieu / Radius Middle Circle ,
+Rayon Cercle Extérieur / Radius Outer Circle A (>0 W%) (<0 H%) ,
+Ray Length ,
+Raw ,
+Rayons Couleurs ABCDE ,
+Rayons Couleurs ABCD ,
+Rayons Couleurs ABC ,
+Rayons Couleurs AB ,
+Resolution (px) ,
+Resize Image for Optimum Effect ,
+Reset View ,
+Rescaling ,
+Resynthetize Texture [FFT] ,
+Result Type ,
+Result Image ,
+Rest 33 ,
+Replace Layer with CLUT ,
+Replace (Sharpest) ,
+Replace ,
+Repeats ,
+Reptile ,
+Replacement Color ,
+Replaced Color ,
+Replace With White ,
+Resynthetize Texture [Patch-Based] ,
+Retro Fade ,
+Retro Brown 01 ,
+Retro ,
+Retourner Motif / Flip Pattern ,
+Return Scaling ,
+Retro Yellow 01 ,
+Retro Summer 3 ,
+Retro Magenta 01 ,
+Retouched Image ,
+Retouched Areas Only ,
+Retouch Layer ,
+Retinex ,
+Retouching Style ,
+Retouched and Sharpened Areas ,
+Retouched Image Final ,
+Retouched Image Basic ,
+Repair Scanned Document ,
+Relative Warping ,
+Relative Size ,
+Relative Block Count ,
+Rejected Mask ,
+Relief Light ,
+Relief Contrast ,
+Relief Amplitude ,
+Release Notes ,
+Regularity (%) ,
+Regularity ,
+Regular Grid ,
+Refractive Space ,
+Rejected Colors ,
+Reject ,
+Regularization Factor ,
+Regularization (%) ,
+Relief Size ,
+Rendu ,
+Rendering Mode ,
+Render on White Areas ,
+Render on Dark Areas ,
+Rendu a Gauche ,
+Rendu a Droite ,
+Rendu En Haut ,
+Rendu En Bas ,
+Remove Tile ,
+Remove Hot Pixels ,
+Remove Artifacts From Micro/Macro Detail ,
+Relief Smoothness ,
+Render Routine for Wiggle Animations ,
+Render Multiple Frames ,
+Remy 24 ,
+Removed Filters ,
+Source Color #20 ,
+Source Color #2 ,
+Source Color #19 ,
+Source Color #18 ,
+Source Color #24 ,
+Source Color #23 ,
+Source Color #22 ,
+Source Color #21 ,
+Source Color #13 ,
+Source Color #12 ,
+Source Color #11 ,
+Source Color #10 ,
+Source Color #17 ,
+Source Color #16 ,
+Source Color #15 ,
+Source Color #14 ,
+Source Color #3 ,
+Spatial Metric ,
+Spatial Bandwidth ,
+Span ,
+Spaceship ,
+Spatial Tolerance ,
+Spatial Step ,
+Spatial Sampling ,
+Spatial Regularization ,
+Source Color #7 ,
+Source Color #6 ,
+Source Color #5 ,
+Source Color #4 ,
+Source Y-Tiles ,
+Source X-Tiles ,
+Source Color #9 ,
+Source Color #8 ,
+Source Color #1 ,
+Smoothing Type ,
+Smoothing Style ,
+Smoother Softness ,
+Smoother Sharpness ,
+Sobel-X ,
+Snowflake 2 ,
+Snowflake ,
+Smoothness (px) ,
+Smooth [Wavelets] ,
+Smooth [Total Variation] ,
+Smooth [Thin Brush] ,
+Smooth [Skin] ,
+Smoother Edge Protection ,
+Smoothen Background Reconstruction ,
+Smooth-Artistry ,
+Smooth [Wiener] ,
+Sobel-Y ,
+Solidify ,
+Solarized Color2 ,
+Solarize Color ,
+Solarize ,
+Source (%) ,
+Sorting Criterion ,
+Sort Colors ,
+Solve Maze ,
+Soft Glow [Animated] ,
+Soft Glow ,
+Soft Fade ,
+Soft  Light ,
+Soften Guide ,
+Soften All Channels ,
+Soft Warming ,
+Soft Random Shades ,
+Square 1 ,
+Square (Inv.) ,
+Spy 29 ,
+Sprocket 231 ,
+Stabilizer ,
+Squares (Outline) ,
+Squared-Euclidean ,
+Square 2 ,
+Spread Amount ,
+Spotify ,
+Sponge ,
+Split Type-5 ,
+Spring Morning ,
+Spreading ,
+Spread Noise Amount ,
+Spread Angles ,
+Stained Glass ,
+Starting Pattern ,
+Starting Level ,
+Starting Frame ,
+Start of Mid-Tones ,
+Std Angle (deg.) ,
+Stationary Frames ,
+Starting Scale (%) ,
+Starting Point ,
+Star: -5*(z^3/3-Z/4)/2 ,
+Standard [No Scan] ,
+Standard Deviation ,
+Standard (256) ,
+Start Frame Number ,
+Start Color ,
+Start Angle ,
+Stars (Outline) ,
+Split Type-4 ,
+Spiderweb-Diamond ,
+Spherize ,
+Speed ,
+Specular Light ,
+Spline B2 ,
+Spline B1 ,
+Spiral RGB ,
+Spiral ,
+Specify Different Output Size ,
+Specific Saturation ,
+Special Effects ,
+Spatial Transition ,
+Specular Intensity ,
+Specular Centering ,
+Specular (%) ,
+Specify HaldCLUT As ,
+Spline B3 ,
+Split Details [Gaussian] ,
+Split Details [Alpha] ,
+Split Brightness / Colors ,
+Split Base and Detail Output ,
+Split Type-3 ,
+Split Type-2 ,
+Split Type-1 ,
+Split Details [Wavelets] ,
+Spline Editor ,
+Spline B6 ,
+Spline B5 ,
+Spline B4 ,
+Splines ,
+Spline Roundness ,
+Spline Max Length (px) ,
+Spline Max Angle (deg) ,
+Shift Point ,
+Shift Linear Interpolation? ,
+Sharpness (%) ,
+Sharpest ,
+Shininess ,
+Shine ,
+Shift Y ,
+Shift X ,
+Sharpen [Unsharp Mask] ,
+Sharpen [Tones] ,
+Sharpen [Texture] ,
+Sharpen [Shock Filters] ,
+Sharpening Type ,
+Sharpening Layer ,
+Sharpened Areas Only ,
+Sharpen [Whiten] ,
+Shivers ,
+Sierpinksi Design ,
+Side by Side ,
+Shuffle Pieces ,
+Show Watershed ,
+Signs ,
+Sigma 2 ,
+Sigma 1 ,
+Sierpinski Triangle ,
+Show Both Poles ,
+Short ,
+Shopping Cart ,
+Shock Waves ,
+Show Grid ,
+Show Frame ,
+Show Fill Ratio? ,
+Show Difference ,
+Sharpen [Richardson-Lucy] ,
+Shadows Color Intensity ,
+Shadows Brightness ,
+Shadows Abstraction ,
+Shadow Size ,
+Shadows Zone ,
+Shadows Selection ,
+Shadows Lightness ,
+Shadows Hue Shift ,
+Shading (%) ,
+Shadebobs ,
+Shade Strength ,
+Shade Bobs ,
+Shadow Patch ,
+Shadow King 39 ,
+Shadow Intensity ,
+Shadow Contrast ,
+Shamoon Abbasi (25) ,
+Sharpen [Gradient] ,
+Sharpen [Gold-Meinel] ,
+Sharpen [Deblur] ,
+Sharpen Shades ,
+Sharpen [Octave Sharpening] ,
+Sharpen [Multiscale] ,
+Sharpen [Inverse Diffusion] ,
+Sharpen [Hessian] ,
+Shapes ,
+Shapeism ,
+Shape Median0 ,
+Shape Median ,
+Sharpen Radius ,
+Sharpen Object ,
+Sharpen Edges Only ,
+Sharp Abstract ,
+Smooth Dark ,
+Smooth Crome-Ish ,
+Smooth Colors ,
+Smooth Clear ,
+Smooth Looping ,
+Smooth Light ,
+Smooth Green Orange ,
+Smooth Fade ,
+Smart Contrast ,
+Smart ,
+SmallHD Movie Look (7) ,
+Slow Recovery ,
+Smooth Amount ,
+Smooth Abstract ,
+Smokey ,
+Smart Threshold ,
+Smooth Only ,
+Smooth [NL-Means] ,
+Smooth [Median] ,
+Smooth [Mean-Curvature] ,
+Smooth [IUWT] ,
+Smooth [Selective Gaussian] ,
+Smooth [Perona-Malik] ,
+Smooth [Patch-PCA] ,
+Smooth [Patch-Based] ,
+Smooth [Bilateral] ,
+Smooth [Anisotropic] ,
+Smooth Teal Orange ,
+Smooth Sailing ,
+Smooth [Guided] ,
+Smooth [Geometric-Median] ,
+Smooth [Diffusion] ,
+Smooth [Block PCA] ,
+Slow &#40;Accurate&#41; ,
+Single Opaque Shapes Over Transp. BG ,
+Single Layer ,
+Single Image Stereogram ,
+Single Custom Depth Map ,
+Size Variance ,
+Six Layers ,
+Sinusoidal Water Distortion ,
+Sinusoidal Liquid ,
+Simplification ,
+Simple Noise Canvas ,
+Simple Local Contrast ,
+Silver ,
+Single (Merged) ,
+Sine Curve ,
+Sin(z) ,
+Simulate Film ,
+Size for Bright Tones ,
+Skip Finest Scales ,
+Skin Tone Protection ,
+Skin Tone Mask ,
+Skin Tone Colors ,
+Slide [Color] (26) ,
+Slice Luminosity ,
+Skip to Use the Mask to Boost ,
+Skip This Step ,
+Size-2 ,
+Size-1 ,
+Size of Frame Numbers (%) ,
+Size for Dark Tones ,
+Skin Mask ,
+Sketch ,
+Skeletik ,
+Size-3 ,
+Chroma Noise ,
+Chroma ,
+Christine Garner: Willow Charcoal ,
+Christine Garner: Sketching Pastel ,
+Chrominances Only (CbCr) ,
+Chrome 01 ,
+Chromaticity From ,
+Chromatic Aberrations ,
+Christine Garner: Pencil ,
+Chessboard ,
+Chemical 168 ,
+Charset ,
+Charcoal ,
+Christine Garner: Dark Coloured Pencil ,
+Christine Garner: Colour Pencil Sepia ,
+Christine Garner: Black Colour Pencil ,
+Chick ,
+Cinema 2 ,
+Cinema ,
+Cine Warm ,
+Cine Vibrant ,
+Cinema Noir ,
+Cinema 5 ,
+Cinema 4 ,
+Cinema 3 ,
+Cine Teal Orange 2 ,
+Cine Blue ,
+Cine Basic ,
+Cine BM4k ,
+Chrominances Only (ab) ,
+Cine Teal Orange 1 ,
+Cine Drama ,
+Cine Cold ,
+Cine Bright ,
+Chaotic Tangent ,
+Center Y ,
+Center X-Shift ,
+Center X ,
+Center Smoothness ,
+Centers Color ,
+Centering / Scale ,
+Centering (%) ,
+Center Y-Shift ,
+Center Size ,
+Cat ,
+Cartoon [Animated] ,
+Cartoon ,
+Cartesian Transform ,
+Center Help ,
+Cell Size ,
+Category ,
+Cat Pad ,
+Chaos Spacetime ,
+Chaos Deep-Vibrato ,
+Channels to Layers ,
+Channel Processing ,
+Chaotic Hooks Unearthing ,
+Chaotic Hooks ,
+Chaotic Creation ,
+Chaos-Vibrato ,
+Channel #3 ,
+Cercle / Circle C ,
+Central Perspective Outdoor ,
+Centimeter ,
+Centers Radius ,
+Channel #2 ,
+Channel #1 ,
+Chalk It Up [Fr] ,
+Cercle / Circle D ,
+Cinematic (8) ,
+Clear Control Points ,
+Clean Text ,
+Clean ,
+Clayton 33 ,
+Clip CMYK ,
+Clip ,
+Cliff ,
+Clear Teal Fade ,
+Classic Teal and Orange ,
+Classic Films 01 ,
+Classic Chrome ,
+Clarity ,
+City Dust ,
+Classic Films 05 ,
+Classic Films 04 ,
+Classic Films 03 ,
+Classic Films 02 ,
+Cold Simplicity 2 ,
+Cold Ice ,
+Cold Clear Blue 1 ,
+Cold Clear Blue ,
+Color 3 (Bottom/Left Corner) ,
+Color 2 (Up/Right Corner) ,
+Color 1 (Up/Left Corner) ,
+Color (rich) ,
+Coffee 44 ,
+Clouds ,
+Closing - Opening ,
+Closeup ,
+Clip RGB ,
+Coefficients ,
+Cobi 3 ,
+Coarse to Fine ,
+Clouseau 54 ,
+City 7 ,
+Cinematic-01 ,
+Cinematic for Flog ,
+Cinematic Travel (29) ,
+Cinematic Mexico ,
+Cinematic-10 ,
+Cinematic-1 ,
+Cinematic-03 ,
+Cinematic-02 ,
+Cinematic Lady Bird ,
+Cinematic 04 ,
+Cinematic 03 ,
+Cinematic 02 ,
+Cinematic 01 ,
+Cinematic Forest ,
+Cinematic 07 ,
+Cinematic 06 ,
+Cinematic 05 ,
+Circle to Square ,
+Circle Transform ,
+Circle Art ,
+Circle Abstraction ,
+City ,
+Circles 2 ,
+Circles 1 ,
+Circles (Outline) ,
+Circle (Inv.) ,
+Cinematic-5 ,
+Cinematic-4 ,
+Cinematic-3 ,
+Cinematic-2 ,
+Cinematic-9 ,
+Cinematic-8 ,
+Cinematic-7 ,
+Cinematic-6 ,
+Carnivorous Plant ,
+Blur [Gaussian] ,
+Blur [Depth-Of-Field] ,
+Blur [Bloom] ,
+Blur [Angular] ,
+Blur [Radial] ,
+Blur [Multidirectional] ,
+Blur [Linear] ,
+Blur [Glow] ,
+Blur Strength ,
+Blur Frame ,
+Blur Factor ,
+Blur Dodge and Burn Layer ,
+Blur Amount ,
+Blur Standard Deviation ,
+Blur Shade ,
+Blur Precision ,
+Blur Percentage ,
+Border Outline ,
+Border Opacity ,
+Border Color ,
+Boost-Fade ,
+Bottles ,
+Border Width ,
+Border Thickness (%) ,
+Border Smoothness ,
+Boost Stroke ,
+Bob Ford ,
+Boats ,
+Blur the Mask ,
+Blur [Splinter] ,
+Boost Smooth ,
+Boost Chromaticity ,
+Boost ,
+Bokeh ,
+Blur Alpha ,
+Blockism ,
+Bloc Size (%) ,
+Blobs Editor ,
+Blob2 ,
+Blue Chroma Smoothness ,
+Blue Chroma Shift ,
+Blue Chroma Factor ,
+Bloom ,
+Blob Size ,
+Blob 7 Color ,
+Blob 7 ,
+Blob 6 Color ,
+Blob 6 ,
+Blob 9 Color ,
+Blob 9 ,
+Blob 8 Color ,
+Blob 8 ,
+Blue Shift ,
+Blue Shadows 01 ,
+Blue Screen Mode ,
+Blue Rotations ,
+Blues ,
+Blue-Green ,
+Blue Wavelength ,
+Blue Steel ,
+Blue Mono ,
+Blue Dark ,
+Blue Color ,
+Blue Cold Fade ,
+Blue Chrominance ,
+Blue Level ,
+Blue Ice ,
+Blue House ,
+Blue Factor ,
+Bottom Size ,
+CFB-[cfb] ,
+CFA-[cfa] ,
+C-Line ,
+Byers 11 ,
+CMY[Key] ,
+CMYK Tone ,
+CLUT from After - Before Layers ,
+CLUT Opacity ,
+By Value ,
+By Iteration ,
+By Green Component ,
+By Custom Expression ,
+By Blue Component ,
+By Red Component ,
+By Red Chrominance ,
+By Luminance ,
+By Lightness ,
+Canvas Darkness ,
+Canvas Color ,
+Canvas Brightness ,
+Candle Light ,
+Caribe ,
+Card Suits ,
+Car ,
+Canvas Texture ,
+Canal Alpha ,
+Camera Motion Only ,
+C[Magenta]YK ,
+CRT Sub-Pixels ,
+CM[Yellow]K ,
+Camouflage ,
+Cameraman ,
+Camera Y ,
+Camera X ,
+By Blue Chrominance ,
+Breaks ,
+Braque: The Mandola ,
+Braque: Little Bay at La Ciotat ,
+Braque: Landscape near Antwerp ,
+Bright Green 01 ,
+Bright Green ,
+Bright ,
+Brighness ,
+Box Fitting ,
+Bottom-Right Vertex (%) ,
+Bottom-Right ,
+Bottom-Left Vertex (%) ,
+Bottom-Left ,
+Bourbon 64 ,
+Boundary Conditions ,
+Boundaries (%) ,
+Bouncing Balls ,
+Built-in Gray ,
+Brushify ,
+Brush Diameter ,
+Bruit / Noise ,
+Butterfly ,
+Burn Strength ,
+Burn Blur ,
+Bump Factor ,
+Brownish ,
+Bright Warm ,
+Bright Teal Orange ,
+Bright Pixels ,
+Bright Length ,
+Brown Mobster ,
+Brown BM ,
+Bronze ,
+Bristle Size ,
+Cut & Normalize ,
+Customize CLUT ,
+Custom Transform ,
+Custom Style (Top Layer) ,
+Cyan Color ,
+Cutout ,
+Cut Low ,
+Cut High ,
+Custom Style (Bottom Layer) ,
+Custom Dictionary ,
+Custom Depth Maps Stream ,
+Custom Depth Correction ,
+Custom D-Y-[vy] ,
+Custom Layers ,
+Custom Filter Code ,
+Custom E-Y-[vy] ,
+Custom E-X-[vx] ,
+DCP Dehaze ,
+DCCI2x ,
+D and O 1 ,
+Déformation 2 ,
+Dark Boost ,
+Dark Blues in Sunlight ,
+Dark ,
+Damping per Octave ,
+Déformation 1 ,
+Cycle Layers ,
+Cyan Smoothness ,
+Cyan Shift ,
+Cyan Factor ,
+Déformation ,
+Décalage Ombre Y / Shadow Offset Y ,
+Décalage Ombre X / Shadow Offset X ,
+Cylinder ,
+Custom D-X-[vx] ,
+Cubic Unearthing ,
+Cube (256) ,
+Crystal Background ,
+Crystal ,
+Cubism on Color Abstraction ,
+Cubism ,
+Cubicle 99 ,
+Cubic-Diamond Chaos ,
+Crushin ,
+Cross-Hatch Amount ,
+Cross Process CP 6 ,
+Cross Process CP 4 ,
+Cross Process CP 3 ,
+Crosshair ,
+Crosses 2 ,
+Crosses 1 ,
+Crossed ,
+Custom C-X-[vx] ,
+Custom B-Y-[vy] ,
+Custom B-X-[vx] ,
+Custom A-Y-[vy] ,
+Custom Correction Map ,
+Custom Code [Local] ,
+Custom Code [Global] ,
+Custom C-Y-[vy] ,
+Custom A-X-[vx] ,
+Curve Length ,
+Curve Angle ,
+Curve Amount ,
+Cupid ,
+Curves Previously Defined ,
+Curves ,
+Curved Stroke ,
+Curved ,
+Dark Green 02 ,
+Depth Map Construction ,
+Depth Map ,
+Depth Fade Out Frames ,
+Depth Fade In Frames ,
+Depth-Of-Field Type ,
+Depth Maps Only ,
+Depth Map Reconstruction ,
+Depth Map Only ,
+Dense ,
+Denim [bruit/noise] ,
+Denim Texture ,
+Delicatessen ,
+Delaunay: Windows Open Simultaneously ,
+Denoise Smooth Alt ,
+Denoise Smooth ,
+Denoise Simple 40 ,
+Denoise ,
+Detail Reconstruction Strength ,
+Detail Reconstruction Smoothness ,
+Detail Reconstruction Detection ,
+Detail Level ,
+Details (%) ,
+Detail Strength ,
+Detail Scale ,
+Detail Reconstruction Style ,
+Destination Y-Tiles ,
+Descent Method ,
+Desaturate Norm ,
+Desaturate (%) ,
+Deriche ,
+Destination X-Tiles ,
+Destination (%) ,
+Desert Gold 37 ,
+Descreen ,
+Delaunay: Portrait De Metzinger ,
+Day4Nite ,
+Day for Night ,
+David ,
+Date 39 ,
+Decompose Channels ,
+Decompose ,
+Decagon ,
+De-Anaglyph ,
+Dark Sky ,
+Dark Motive ,
+Dark Man X ,
+Dark Length ,
+Dark Green 1 ,
+Dark Screen ,
+Dark Place 01 ,
+Dark Pixels ,
+Dark Orange Teal ,
+Defects Size ,
+Defects Density ,
+Defects Contrast ,
+Default (Circle) ,
+Deinterlace2x ,
+Deinterlace ,
+Deform ,
+Defects Smoothness ,
+Deep Warm Fade ,
+Deep Dark Warm ,
+Deep Blue ,
+Deep ,
+Decoration ,
+Deep Teal Fade ,
+Deep Skin Tones 3 ,
+Deep Skin Tones 2 ,
+Deep High Contrast ,
+Cross Process CP 18 ,
+Colorize [with Colormap] ,
+Colorize [Photographs] ,
+Colorize [Interactive] ,
+Colorize Mode ,
+Colors Only (1 Layer) ,
+Colors Only ,
+Colormap Type ,
+Colorized Image (1 Layer) ,
+Colorize Lineart [Smart Coloring] ,
+Colorful 0209 ,
+Colorful ,
+Colored on Transparent ,
+Colored on Black ,
+Colorize Lineart [Propagation] ,
+Colorize Lineart [Auto-Fill] ,
+Coloring ,
+Colorful Blobs ,
+Comix Colors ,
+Comic Style ,
+Comic Book ,
+Column by Column ,
+Compression Blur ,
+Compress Highlights ,
+Composed Layers ,
+Components ,
+Colours ,
+Colour Channels ,
+Colour ,
+Colors to Layers ,
+Colors to Black or White ,
+Colour Space Mode ,
+Colour Smoothing ,
+Colour Model ,
+Colour Generation Seed ,
+Colored Regions ,
+Color Highlights ,
+Color Green-Magenta ,
+Color Gamma ,
+Color Effect Mode ,
+Color Median ,
+Color Mask [Interactive] ,
+Color Mask ,
+Color Image ,
+Color Channel  Smoothing ,
+Color Angle ,
+Color Abstraction Paint ,
+Color Abstraction Opacity ,
+Color 4 (Bottom/Right Corner) ,
+Color Blue-Yellow ,
+Color Blindness ,
+Color Blending ,
+Color Basis ,
+Colored Geometry ,
+Colored Edges ,
+Colorburn ,
+Colorbase ,
+Colored Pencils ,
+Colored Outline ,
+Colored Lineart ,
+Colored Grain ,
+Color Variation [Random -1] ,
+Color Presets ,
+Color Overall Effect ,
+Color Negative ,
+Color Midtones ,
+Color Spots + Lineart ,
+Color Shadows ,
+Color Shading (%) ,
+Color Rendering ,
+Compression Filter ,
+Couleur / Color D ,
+Couleur / Color C ,
+Couleur / Color B ,
+Couleur / Color A ,
+Couleur Denim ,
+Couleur / Color G ,
+Couleur / Color F ,
+Couleur / Color E ,
+Couleur / Color ,
+Copper ,
+Cool / Warm ,
+Cool (256) ,
+Convolve ,
+Cosinusoidal Liquid ,
+Cos(z) ,
+Correlated Channels ,
+Corner Brightness ,
+Crop (%) ,
+Criterion ,
+Crisp Warm ,
+Crisp Romance ,
+Cross Process CP 16 ,
+Cross Process CP 15 ,
+Cross Process CP 14 ,
+Cross Process CP 130 ,
+Crip Winter ,
+Courbure Ombre / Curvature Shadow ,
+Counter Clockwise ,
+Couleurs B ,
+Couleurs A ,
+Creative Pack (33) ,
+Crease ,
+Cracks ,
+Course 4 ,
+Control Point 6 ,
+Construction Material Texture ,
+Constraint Radius ,
+Constrained Sharpen ,
+Constrain Values ,
+Contour Detection (%) ,
+Contour Coherence ,
+Contour Chaos ,
+Continuous Droste ,
+Constrain Image Size ,
+Conformal Maps ,
+Conflict 01 ,
+Cone ,
+Computation Mode ,
+Connectors Variability ,
+Connectors Centering ,
+Connect-Four ,
+Conical Start at 0? ,
+Control Point 1 ,
+Contributors ,
+Contrasty Green ,
+Contrasty Afternoon ,
+Control Point 5 ,
+Control Point 4 ,
+Control Point 3 ,
+Control Point 2 ,
+Contrast(%) ,
+Contours + Flocon/Snowflake ,
+Contour Threshold (%) ,
+Contour Precision ,
+Contour Normalization ,
+Contrast with Highlights Protection ,
+Contrast Swiss Mask ,
+Contrast Smoothness ,
+Contrail 35 ,
+Blob 5 Color ,
+50. Activate Relief Processing ,
+5. Octaves ,
+5.  Edge Threshold ,
+4th Tone ,
+54. Blending Mode ,
+53. Smoothness ,
+52. Depth (%) ,
+51. Angle ,
+4th ,
+45. HP Order Cube Root ,
+45 Deg. ,
+44. HP Frequency Power ,
+43. LP Resonance ,
+49. Makeup Gain ,
+48. Absolute ,
+47. Colour Space ,
+46. HP Resonance ,
+7.  Blur ,
+6th Tone ,
+6th ,
+67.5 Deg. ,
+7th Tone ,
+7th ,
+7Drk21 ,
+7. Mode ,
+64px ,
+5th Tone ,
+5th ,
+5:4 ,
+55. Blending Opacity (%) ,
+64 Keypoints ,
+64 (Faster) ,
+6. Damping per Octave ,
+6.  Smoothness ,
+42. LP Order Cube Root ,
+3D Image Type ,
+3D Image Object [Animated] ,
+3D Image Object ,
+3D Extrusion [Animated] ,
+3D Reflection ,
+3D Random Objects ,
+3D Metaballs ,
+3D Lathing ,
+3D Extrusion ,
+3D CLUT (Precise) ,
+3D CLUT (Fast) ,
+3D Blocks ,
+3D Angles ,
+3D Elevation [Animated] ,
+3D Elevation ,
+3D Conversion ,
+3D Colored Object ,
+4 Grays ,
+4 Colors ,
+3rd Y-Coord ,
+3rd X-Coord ,
+41. LP Frequency Power ,
+40. Create Copy? ,
+4. Radius ,
+4.  Segmentation [No Alpha Channel] ,
+3rd Tone ,
+3D Tiles ,
+3D Text Pointcloud ,
+3D Starfield ,
+3D Rubber Object ,
+3rd Parameter ,
+3rd ,
+3D Waves ,
+3D Video Conversion ,
+8 Colors ,
+Action #24 ,
+Action #23 ,
+Action #22 ,
+Action #21 ,
+Action #6 ,
+Action #5 ,
+Action #4 ,
+Action #3 ,
+Action #20 ,
+Action #16 ,
+Action #15 ,
+Action #14 ,
+Action #13 ,
+Action #2 ,
+Action #19 ,
+Action #18 ,
+Action #17 ,
+Activate Second Direction ,
+Activate Pink Elephants ,
+Activate Overload Functions ,
+Activate Mirror ,
+Activate Slice 3 ,
+Activate Slice 2 ,
+Activate Slice 1 ,
+Activate Shakes ,
+Activate Lizards ,
+Action Magenta 01 ,
+Action #9 ,
+Action #8 ,
+Action #7 ,
+Activate Grid? ,
+Activate Custom Filter ,
+Activate Color Enhancement ,
+Action Red 01 ,
+Action #12 ,
+A-Color Smoothness ,
+A-Color Shift ,
+A-Color Factor ,
+9th Color ,
+A4 / 150 PPI ,
+A4 / 100 PPI (Recommended) ,
+A-Value ,
+A-Component ,
+9th ,
+8.  Quadtree Pixelisation [No Alpha Channel] ,
+8-10. Color Balance ,
+8 Keypoints (RGB Corners) ,
+8 Grays ,
+9.  Quadtree Min Precision ,
+8th Tone ,
+8th ,
+8px ,
+Acrylic Earthing ,
+Acros+Ye ,
+Acros+R ,
+Acros+G ,
+Action #11 ,
+Action #10 ,
+Action #1 ,
+Acrylica ,
+Acros ,
+Absolute Brightness ,
+Abigail Gonzalez (21) ,
+A4 / 75 PPI ,
+A4 / 300 PPI ,
+Achromatopsia ,
+Achromatomaly ,
+Accentuation Nuances / Sharpen Shades ,
+Acceleration ,
+3:2 ,
+15. Maximum Noise ,
+15. Colour Space ,
+15. Channel 1 ,
+14th ,
+16. Channel 2 ,
+16 Grays ,
+16 Colors ,
+15th ,
+14. Value Action ,
+12th ,
+128px ,
+125 Keypoints ,
+12. Noise Type ,
+14. Minimum Noise ,
+13th ,
+13. Noise Type ,
+13. Channel(s) ,
+1st Additional Palette (.Gpl) ,
+1st ,
+1:1 ,
+19. Warp Offset ,
+1st Variance ,
+1st Tone ,
+1st Text ,
+1st Parameter ,
+19. Desaturation (%) ,
+16th ,
+16px ,
+16:10 ,
+16. Noise Channel(s) ,
+18. Warp Intensity ,
+18. Normalise ,
+17. Warp Iterations ,
+17. Channel 3 ,
+12.  Quadtree Max Homogeneity ,
+*Vivid Screen* ,
+*Vivid Edges* ,
+*Graphix Colors ,
+*Dark Screen* ,
+-1. Value Action ,
+- NON / NO - ,
++90 Deg. ,
++180 Deg. ,
+*Dark Edges* ,
+× 3 ,
+× 2 ,
+× 1.5 ,
+× 1.25 ,
+*Comix Colors* ,
+*Colors Doping* ,
+*Colors Doping ,
+♥ Support Us ! ♥ ,
+11.  Quadtree Min Homogeneity ,
+10th Color ,
+10th ,
+10.  Quadtree Max Precision ,
+12 Grays ,
+12 Colors ,
+11th ,
+11. Amplitude ,
+1.85:1 ,
+.Bmp ,
+-4. Normalise ,
+-3. Normalisation Channel(s) ,
+-2. Overall Channel(s) ,
+1.  Plasma Texture [Discards Input Image] ,
+1 Levels ,
+0.  Recompute ,
+.Png ,
+1st X-Coord ,
+3.  Plasma Alpha Channel ,
+3 Mix ,
+3 Grays ,
+3 Colors ,
+31. Y-Factor ,
+31. Maximum Hue ,
+30. X-Factor ,
+30. Minimum Hue ,
+2xy-Axes ,
+2nd Tone ,
+2nd Text ,
+2nd Parameter ,
+2nd Additional Palette (.Gpl) ,
+2x Type ,
+2nd Y-Coord ,
+2nd X-Coord ,
+2nd Variance ,
+37. Channel(s) ,
+36. Hue Offset ,
+36. Boundary ,
+35. Maximum Value ,
+39. Activate Butterworth Bandpass Processing ,
+38. Value Offset ,
+38. Blur Original ,
+37. Saturation Offset ,
+35. Interpolation ,
+33. Maximum Saturation ,
+32px ,
+32. X-Offset ,
+32. Minimum Saturation ,
+343 Keypoints ,
+34. Y-Offset ,
+34. Minimum Value ,
+34. Correlated Channels ,
+2nd ,
+22. Correlated Channels ,
+21:9 ,
+216 Keypoints ,
+21. Self-Blending ,
+23. Self-Blending V. Original Blending ,
+23. Boundary ,
+22.5 Deg. ,
+22. Self-Blending Opacity (%) ,
+21. Scale to Height ,
+2 Noise ,
+2 Grays ,
+2 Colors ,
+1st Y-Coord ,
+20. Scale to Width ,
+2.35:1 ,
+2.  Plasma Scale ,
+2-Strip Process ,
+29. Negate? ,
+28. Hue Offset ,
+28. Equalize? ,
+27. Number #2 ,
+2XY-Axes ,
+2XY Mirror ,
+2:1 ,
+29. Normalise ,
+27. Gamma Offset ,
+25. Value Action ,
+25. Random Negation ,
+24. Warp Channel(s) ,
+24. Self-Blend V. Original Opacity (%) ,
+27 Keypoints ,
+26. Random Negation Channel(s) ,
+26. Number #1 ,
+256px ,
+Balloons ,
+Ball ,
+Balance(%) ,
+Balance SRGB ,
+Barbara ,
+Bandpass ,
+Banding Denoise ,
+Balls ,
+Background Point (%) ,
+BC Darkum ,
+B-Component ,
+B-Color Smoothness ,
+B-Color Shift ,
+Background Intensity ,
+Background (%) ,
+BW but Yellow ,
+BG Textured ,
+Beach Faded Analog ,
+Beach Aqua Orange ,
+Bayer Reconstruction ,
+Bayer Filter ,
+Berlin Sky ,
+Berat (10) ,
+Below ,
+Behind ,
+Bayer ,
+Bars ,
+Barnsley Fern ,
+Barbouillage Paint Daub ,
+Barbed Wire ,
+Batch Processing ,
+Basic Adjustments ,
+Base Thickness (%) ,
+Base Reference Dimension ,
+B-Color Factor ,
+Average 5x5 ,
+Average 3x3 ,
+Avalanche ,
+Ava 614 ,
+Average RGB ,
+Average Color ,
+Average 9x9 ,
+Average 7x7 ,
+Autumn ,
+Autocrop Output Layers ,
+Auto-Threshold ,
+Auto-Set Periodicity ,
+Auto-Reduce Number of Frames ,
+Automatic [Scan All Hues] ,
+Automatic Upscale for Optimum Results ,
+Automatic Color Balance ,
+Automatic & Contrast Mask ,
+B&W Pencil [Animated] ,
+B&W ,
+Azrael 93 ,
+Azimuth ,
+B-Boyz 2 ,
+B&W Stencil [Animated] ,
+B&W Stencil ,
+B&W Photograph ,
+Axis ,
+Avg Branching ,
+Avg / Max Weight ,
+Avg ,
+Average Smoothness ,
+Avg Thickness Factor (%) ,
+Avg Right Angle (deg.) ,
+Avg Length Factor (%) ,
+Avg Left Angle (deg.) ,
+Best Match ,
+Blend [Fade] ,
+Blend [Edges] ,
+Blend [Average All] ,
+Blend Threshold ,
+Blending Mode ,
+Blend [Standard] ,
+Blend [Seamless] ,
+Blend [Median] ,
+Blend Scales ,
+Bleech Bypass Green ,
+Bleach Bypass 4 ,
+Bleach Bypass 3 ,
+Bleach Bypass 2 ,
+Blend Decay ,
+Blend All Layers ,
+Blend ,
+Bleech Bypass Yellow 01 ,
+Blob 3 ,
+Blob 2 Color ,
+Blob 12 Color ,
+Blob 12 ,
+Blob 5 ,
+Blob 4 Color ,
+Blob 4 ,
+Blob 3 Color ,
+Blob 11 Color ,
+Blob 1 ,
+Blindness Type ,
+Blending Size ,
+Blending Opacity (%) ,
+Blob 11 ,
+Blob 10 Color ,
+Blob 10 ,
+Blob 1 Color ,
+Bleach Bypass 1 ,
+Black & White 03 ,
+Black & White 02 ,
+Black & White 01 ,
+Black & White (25) ,
+Black & White-1 ,
+Black & White 06 ,
+Black & White 05 ,
+Black & White 04 ,
+Bit Masking (Start) ,
+Bidirectional [Smooth] ,
+Bidirectional [Sharp] ,
+Bias ,
+Bi-Directional ,
+Bit Masking (End) ,
+Binary Digits ,
+Binary ,
+Bilateral Radius ,
+Black Star ,
+Black Level ,
+Black Dices ,
+Black Crayon Graffiti ,
+Bleach Bypass ,
+Blade Runner ,
+Black to White ,
+Black on Transparent ,
+Black & White-9 ,
+Black & White-4 ,
+Black & White-3 ,
+Black & White-2 ,
+Black & White-10 ,
+Black & White-8 ,
+Black & White-7 ,
+Black & White-6 ,
+Black & White-5 ,
+Auto-Clean Bottom Color Layer ,
+Alternating Chaos 2 ,
+Alternating Chaos 1 [Legacy] ,
+Alternating Chaos 1 ,
+Alternating Chaos 0 ,
+Alternating Chaos 4 ,
+Alternating Chaos 3 [Legacy] ,
+Alternating Chaos 3 ,
+Alternating Chaos 2 [Legacy] ,
+Also Match Gradients ,
+All Round ,
+All Layers and Masks ,
+All 90&deg; Rotations ,
+All 45&deg; Rotations ,
+Alpha Mode ,
+Allow Self Intersections ,
+All but Reference Color ,
+All XY-Flips ,
+Amstragram+ ,
+Amstragram ,
+Amplitude / Angle ,
+Amount (%) ,
+Analog Film 1 ,
+Anaglyph: Red/Cyan ,
+Anaglyph Reconstruction ,
+Anaglypgh Green/magenta Optimized ,
+Ambient Lightness ,
+Alternating Custom Formula Level 1 ,
+Alternating Chaos 5 [Legacy] ,
+Alternating Chaos 5 ,
+Alternating Chaos 4 [Legacy] ,
+Ambient (%) ,
+Alternative Custom Formula Level 3 ,
+Alternating Custom Formula Level 4 ,
+Alternating Custom Formula Level 2 ,
+Alignment Type ,
+Add Image Label ,
+Add Grain ,
+Add Comment Area in HTML Page ,
+Add Colors ,
+Additional Outline ,
+Additional Duplicates Count ,
+Add as a New Layer ,
+Add User-Defined Constraints (Interactive) ,
+Add Color Background ,
+Adapt Luminance ,
+Activer Symmetrizoscope ,
+Activer Couleurs Formes ,
+Activate Slice 4 ,
+Add Chalk Highlights ,
+Add Alpha Channels to Detail Scale Layers ,
+Add 1px Outline ,
+Adaptive ,
+Alien Green ,
+Algorithm ,
+Alex Jordan (81) ,
+Aggressive Highlights Recovery 5 ,
+Aligned ,
+Align Layers ,
+Align Image Streams ,
+Alien Rasta ,
+Aggresive ,
+Agfa APX 100 ,
+Adventure 1453 ,
+Adjust Background Reconstruction ,
+Additive ,
+Agfa Vista 200 ,
+Agfa Ultra Color 100 ,
+Agfa Precisa 100 ,
+Agfa APX 25 ,
+AnalogFX - Anno 1870 Color ,
+Array [Regular] ,
+Array [Random] ,
+Array [Random Colors] ,
+Array [Mirrored] ,
+Artistic Hard ,
+Artistic  Modern ,
+Arrows (Outline) ,
+Arrows ,
+Array [Faded] ,
+Arabica 12 ,
+Aqua and Orange Dark ,
+Aqua ,
+Apply Transformation From ,
+Areas Smoothness ,
+Areas Light Adjustment ,
+Area Smoothness ,
+Arctangent ,
+Aurora ,
+Atomic Pink ,
+Asymphological Vibrato ,
+Asymphological Basic 2 ,
+Auto Set Hue Inverse (Hue Slider Is Disabled) ,
+Auto Reduce Level (Level Slider Is Disabled) ,
+Auto Crop ,
+Australia ,
+Asymphological Basic ,
+Aspect ,
+Ascii Art ,
+Ascii ,
+Artistic Round ,
+Asymphochaos ,
+Astia ,
+Associated Color ,
+Asplenium Adiantum-Nigrum ,
+Apply Skin Tone Mask ,
+Angle Décalage Des Couleurs A / Offset ,
+Angle / Size ,
+Angle (deg.) ,
+Angle (deg) ,
+Angle Edge Behaviour ,
+Angle Dispersion ,
+Angle Décalage Image Contour ,
+Angle Décalage Des Couleurs B / Offset ,
+Angle (%) ,
+AnalogFX - Sepia Color ,
+AnalogFX - Old Style III ,
+AnalogFX - Old Style II ,
+AnalogFX - Old Style I ,
+Analysis Smoothness ,
+Analysis Scale ,
+AnalogFX - Soft Sepia II ,
+AnalogFX - Soft Sepia I ,
+Apply Adjustments On ,
+Apples ,
+Apocalypse This Very Moment ,
+Antisymmetry ,
+Apply Relief? ,
+Apply Mask ,
+Apply External CLUT ,
+Apply Color Balance ,
+Annular Steiner Chain Round Tile ,
+Angoisse Anguish ,
+Angle of Main Nebulous Surface ,
+Angle of Disturbance Surface ,
+Angle Range (deg.) ,
+Anisotropy (%) ,
+Anime ,
+Angular Tiles ,
+Angular Step (°) ,
+K-2 ,
+K-1 ,
+K Variable ,
+K Mode ,
+KH 10 ,
+KH 1 ,
+K-Tone Vintage Kodachrome ,
+K-Factor ,
+Just Peachy ,
+JPEG Smooth ,
+JPEG Artefacts ,
+J.T. Semple (14) ,
+J. Wick 21 ,
+Julia ,
+Jet (256) ,
+Jawbreaker ,
+Japanese Maple Leaf ,
+Kandinsky: Squares with Concentric Circles ,
+Kaleidoscope [Symmetry] ,
+Kaleidoscope [Reptorian-Polar] ,
+Kaleidoscope [Polar] ,
+Keep Base Layer as Input Background ,
+Keep Aspect Ratio ,
+Keep ,
+Kandinsky: Yellow-Red-Blue ,
+Kaleidoscope [Blended] ,
+KH 5 ,
+KH 4 ,
+KH 3 ,
+KH 2 ,
+KH 9 ,
+KH 8 ,
+KH 7 ,
+KH 6 ,
+Iuwt ,
+Instant [Consumer] (54) ,
+Inside-Out ,
+Inside Color ,
+Insert New CLUT Layer ,
+Intensity of Purple Fringe ,
+Intarsia ,
+Instant-C ,
+Instant [Pro] (68) ,
+Input Transparency ,
+Inpaint [Transport-Diffusion] ,
+Inpaint [Patch-Based] ,
+Inpaint [Multi-Scale] ,
+Inpaint [Morphological] ,
+Input Layers ,
+Input Guide Color ,
+Input Frame Files Name ,
+Input Folder ,
+Invert Luminance ,
+Invert Image Colors ,
+Invert Embossing? ,
+Invert Canvas Colors ,
+Iteration ,
+Isophotes ,
+Inward ,
+Invert Mask ,
+Invert Blur ,
+Inverse Radius ,
+Inverse Depth Map ,
+Interpolation Type ,
+Interp ,
+Invert Background / Foreground ,
+Inversions ,
+Inversion Couleurs / Invert Colors ,
+Inverse Transform ,
+Keep Borders Square ,
+Kodak Portra 160 + ,
+Kodak Portra 160 ,
+Kodak Kodachrome 64 ,
+Kodak Kodachrome 25 ,
+Kodak Portra 160 NC ++ ,
+Kodak Portra 160 NC + ,
+Kodak Portra 160 - ,
+Kodak Portra 160 ++ ,
+Kodak Kodachrome 200 ,
+Kodak Elite Chrome 400 ,
+Kodak Elite Chrome 200 ,
+Kodak Elite 100 XPRO ,
+Kodak Ektar 100 ,
+Kodak HIE (HS Infra) ,
+Kodak Elite ExtraColor 100 ,
+Kodak Elite Color 400 ,
+Kodak Elite Color 200 ,
+Kodak Portra 400 UC ,
+Kodak Portra 400 NC - ,
+Kodak Portra 400 NC ++ ,
+Kodak Portra 400 NC + ,
+Kodak Portra 400 VC ,
+Kodak Portra 400 UC - ,
+Kodak Portra 400 UC ++ ,
+Kodak Portra 400 UC + ,
+Kodak Portra 400 NC ,
+Kodak Portra 160 VC - ,
+Kodak Portra 160 VC ++ ,
+Kodak Portra 160 VC + ,
+Kodak Portra 160 NC - ,
+Kodak Portra 400 - ,
+Kodak Portra 400 ++ ,
+Kodak Portra 400 + ,
+Kodak Portra 400 ,
+Kodak Ektachrome 100 VS ,
+Key Factor ,
+Kernel Type ,
+Kernel Multiplier ,
+Keftales ,
+Keypoint Influence (%) ,
+Key Smoothness ,
+Key Shift ,
+Key Frame Rate ,
+Keep Transparency in Output ,
+Keep Detail Layer Separate ,
+Keep Detail ,
+Keep Colors ,
+Keep Color Channels ,
+Keep Tiles Square ,
+Keep Original Layer ,
+Keep Original Image Size ,
+Keep Layers Separate ,
+Kodak 2393 (Constlclip) ,
+Kodak 2383 (Cuspclip) ,
+Kodak 2383 (Constlmap) ,
+Kodak 2383 (Constlclip) ,
+Kodak E-100 GX Ektachrome 100 ,
+Kodak BW 400 CN ,
+Kodak 2393 (Cuspclip) ,
+Kodak 2393 (Constlmap) ,
+Kodak 1-8 ,
+Klee: In the Style of Kairouan ,
+Klee: Death and Fire ,
+Kitaoka Spin Illusion ,
+Killstreak ,
+Klimt: The Kiss ,
+Klee: Red Waistcoat ,
+Klee: Polyphony 2 ,
+Klee: Oriental Pleasure Garden Anagoria ,
+Inpaint [Holes] ,
+Highlights Protection ,
+Highlights Lightness ,
+Highlights Hue ,
+Highlights Crossover Point ,
+Hilutite ,
+Highres CLUT ,
+Highlights Zone ,
+Highlights Selection ,
+Highlights Color Intensity ,
+Higher Mask Threshold (%) ,
+High Value ,
+High Speed ,
+High Scale ,
+Highlights Brightness ,
+Highlights Abstraction ,
+Highlight Bloom ,
+Highlight (%) ,
+Horizontal Array ,
+Horizon Leveling (deg) ,
+Horisontal Length ,
+Hope Poster ,
+Horizontal Tiles ,
+Horizontal Stripes ,
+Horizontal Length ,
+Horizontal Blur ,
+Hong Kong ,
+Hitman ,
+Histogram Transfer ,
+Histogram Analysis ,
+Histogram ,
+Honey Light ,
+Homogeneity ,
+Holes Probability (Type-5) (%) ,
+Hokusai: The Great Wave ,
+High Quality ,
+Halftone Shapes ,
+Halftone ,
+Half Image-Diagonal(%) ,
+Half Image-Diagonal (%) ,
+Hard ,
+Happyness 133 ,
+Hanoi Tower ,
+Hallowen Dark ,
+HaldCLUT Filename ,
+HSV Select ,
+HSV (256) ,
+HSL [all] ,
+HSL Adjustment ,
+HaldCLUT ,
+Hair Locks ,
+Hackmanite ,
+HSV [all] ,
+Hexagonal ,
+Heulandite ,
+Herderite ,
+Helios ,
+High Key ,
+High Frequency Layer ,
+High Frequency ,
+Hiddenite ,
+Hedcut (Experimental) ,
+Harsh Day ,
+Hard Teal Orange ,
+Hard Sketch ,
+Hard Dark ,
+Heavy (Faster) ,
+Heavy ,
+Hearts (Outline) ,
+Harsh Sunset ,
+Horizontal Warp Only ,
+Impulses 9x9 ,
+Impulses 7x7 ,
+Impulses 5x5 ,
+Import RGB-565 File ,
+IncreaseChroma1 ,
+Include Opacity Layer ,
+Inch ,
+InAvision (15) ,
+Import Data ,
+Image + Colors (2 Layers) ,
+Image + Background ,
+Illustration Look ,
+Illumination ,
+Image to Grab Color from (.Png) ,
+Image Weight ,
+Image Contour Dimension ,
+Image + Colors (Multi-Layers) ,
+Initialization ,
+Initial Density ,
+Init. With High Gradients Only ,
+Init. Type ,
+Inner Length ,
+Inner Fading ,
+Inner ,
+Ink Wash ,
+Init. Resolution ,
+Inflation 2 ,
+Inflation ,
+Industrial 33 ,
+Indoor Blue ,
+Init Canvas ,
+Infrared - Dust Pink ,
+Information ,
+Influence of Color Samples (%) ,
+Illuminate 2D Shape ,
+Hue Range ,
+Hue Randomness ,
+Hue Min (%) ,
+Hue Max (%) ,
+Hydracore ,
+Hybrid Median - Medium Speed Softest Output ,
+Human 2 ,
+Hue Smoothness ,
+Hue Lighten-Darken ,
+Hough Transform ,
+Hough Sketch ,
+Hot (256) ,
+Horror Blue ,
+Hue Factor ,
+Howlite ,
+Householder ,
+House ,
+Ilford FP4 Plus 125 ,
+Ilford Delta 400 ,
+Ilford Delta 3200 ,
+Ilford Delta 100 ,
+Ilford XP2 ,
+Ilford Pan F Plus 50 ,
+Ilford HPS 800 ,
+Ilford HP5 Plus 400 ,
+Ignore Current Aspect ,
+Hypnosis ,
+Hypersthene ,
+Hyper Droste ,
+Hyla 68 ,
+Identity ,
+Iain Noise Reduction 2019 ,
+Hypressen ,
+Hypotrochoid ,
+Lowlights Crossover Point ,
+Lowercase Letters ,
+Lower Side Orientation ,
+Lower Mask Threshold (%) ,
+Luminance Level ,
+Luma Noise ,
+Lucky 64 ,
+Lowres CLUT ,
+Lower Layer Is the Bottom Layer for All Blends ,
+Low Frequency Layer ,
+Low Contrast Blue ,
+Low Bias ,
+Louetta ,
+Low Value ,
+Low Scale ,
+Low Key 01 ,
+Low Key ,
+Magenta Coffee ,
+MIxer ,
+Mélanges Rayons / Blend Rays ,
+Lutify.Me (7) ,
+Magenta Dream ,
+Magenta Day 01 ,
+Magenta Day ,
+Magenta Color ,
+Lush Green Summer ,
+Luminance Shift ,
+Luminance Only (YCbCr) ,
+Luminance Only (Lab) ,
+Luminance Only ,
+Luminosity from Color ,
+Luminosity Type ,
+Luminosity Increase ,
+Luminance Smoothness ,
+Loop Method ,
+Local Contrast Enhancement ,
+Local Contrast Enhance ,
+Local Contrast Effect ,
+Local  Normalisation ,
+Local Processing ,
+Local Orientation ,
+Local Normalization ,
+Local Contrast Style ,
+Lissajous [Animated] ,
+Linify ,
+Linf-Norm ,
+Lines Antialias ,
+Lines (256) ,
+Lissajous Spiral ,
+Lissajous ,
+Liquid Parabolic ,
+Lion ,
+London Nights ,
+Lomography X-Pro Slide 200 ,
+Lomography Redscale 100 ,
+Logarithmic Distortion Y-Axis Direction ,
+Loop Limitation ,
+Lookup Factor ,
+Lookup ,
+Long ,
+Logarithmic Distortion X-Axis Direction ,
+Lock Uniform Sampling ,
+Lock Return Scaling to Source Layer ,
+Local Variance Normalization ,
+Local Similarity Mask ,
+Logarithmic Distortion Axis Combination for Y-Axis ,
+Logarithmic Distortion Axis Combination for X-Axis ,
+Logarithmic Distortion ,
+Log(z) ,
+Magenta Factor ,
+Maximal Area ,
+MaxRGB ,
+Max-T ,
+Max Radius ,
+Maximal Value ,
+Maximal Seams per Iteration (%) ,
+Maximal Highlights ,
+Maximal Color Saturation ,
+Max Offset (%) ,
+Max Area ,
+Max Angle Deviation (deg) ,
+Max Angle ,
+Matrix ,
+Max Length (%) ,
+Max Iterations ,
+Max Cut (%) ,
+Max Curve ,
+Median (beware: Memory-Consuming!) ,
+Mean Curvature ,
+Mean Color ,
+McKinnon 75 ,
+Medium Details Threshold ,
+Medium Details Smoothness ,
+Medium 3 ,
+Median Radius ,
+Maze ,
+Maximum Number of Output Layers ,
+Maximum Number of Image Colors ,
+Maximum Image Size ,
+Maximum ,
+Maximum Value ,
+Maximum Size Factor ,
+Maximum Saturation ,
+Maximum Red:Blue Ratio in the Fringe ,
+Math Symbols ,
+Mandelbrot ,
+Make Up ,
+Make Squiggly ,
+Make Seamless [Patch-Based] ,
+Manual Controls ,
+Mandrill ,
+Mandelbrot Explorer ,
+Mandelbrot - Julia Sets ,
+Make Seamless [Diffusion] ,
+Magenta-Yellow ,
+Magenta Yellow ,
+Magenta Smoothness ,
+Magenta Shift ,
+Make Hue Depends on Region Size ,
+Mail ,
+Magnitude / Phase ,
+Magic Details ,
+Mask Type ,
+Mask Smoothness (%) ,
+Mask Size ,
+Mask Creator ,
+Matching Precision (Smaller Is Faster) ,
+Match Colors With ,
+MasterOpacity ,
+Mask as Bottom Layer ,
+Mask Contrast ,
+Margin (%) ,
+Marble ,
+Mapping ,
+Map ,
+Mask By ,
+Mask + Background ,
+Masculine ,
+Mascot Image ,
+Lineart + Extrapolated Colors ,
+Lanczsos ,
+Lab8 ,
+Lab [all] ,
+Lab (Mixed) ,
+Landscape 04 ,
+Landscape 03 ,
+Landscape 02 ,
+Landscape 01 ,
+Lab (Luma/Chroma) ,
+LN Amplitude ,
+LN Amplititude ,
+LMS Adjustment ,
+LAB8 ,
+Lab (Luma Only) ,
+Lab (Distinct) ,
+Lab (Chroma Only) ,
+LUTs Pack ,
+Last ,
+Large Noise ,
+Landscape-9 ,
+Landscape-8 ,
+Lava ,
+Late Sunset ,
+Late Afternoon Wanderlust ,
+Last Frame ,
+Landscape-7 ,
+Landscape-2 ,
+Landscape-10 ,
+Landscape-1 ,
+Landscape 05 ,
+Landscape-6 ,
+Landscape-5 ,
+Landscape-4 ,
+Landscape-3 ,
+LAB-Lightness ,
+Kodak T-MAX 3200 - ,
+Kodak T-MAX 3200 ++ ,
+Kodak T-MAX 3200 + ,
+Kodak T-MAX 3200 (alt) ,
+Kodak TMAX 3200 ,
+Kodak T-Max 400 ,
+Kodak T-Max 3200 ,
+Kodak T-Max 100 ,
+Kodak T-MAX 3200 ,
+Kodak Portra 800 ,
+Kodak Portra 400 VC - ,
+Kodak Portra 400 VC ++ ,
+Kodak Portra 400 VC + ,
+Kodak Portra 800 HC ,
+Kodak Portra 800 - ,
+Kodak Portra 800 ++ ,
+Kodak Portra 800 + ,
+L1-Norm ,
+Kyler Holland (10) ,
+Kuwahara on Painting ,
+Korben 214 ,
+LAB-B ,
+LAB-A ,
+LAB ,
+L2-Norm ,
+Kookaburra ,
+Kodak TRI-X 400 (alt) ,
+Kodak TRI-X 400 ,
+Kodak TRI-X 1600 ,
+Kodak TMAX 400 ,
+Kodak Tri-X 400 ,
+Kodak TRI-X 400 - ,
+Kodak TRI-X 400 ++ ,
+Kodak TRI-X 400 + ,
+Lava Lamp ,
+Light-X ,
+Light Type ,
+Light Strength ,
+Light Smoothness ,
+Lighting ,
+Lighten Edges ,
+Light-Z ,
+Light-Y ,
+Light Rays ,
+Light Effect ,
+Light Direction ,
+Light Antialias ,
+Light Angle ,
+Light Position ,
+Light Patch ,
+Light Leaks ,
+Light Glow ,
+Line Strength ,
+Line Precision ,
+Line Opacity ,
+Limit Hue Range ,
+Lineart + Colors ,
+Lineart + Color Spots ,
+Lineart ,
+Line Thickness ,
+Lighty Smooth ,
+Lightness Max (%) ,
+Lightness Factor ,
+Lightness (%) ,
+Lighting Angle ,
+Lightning ,
+Lightness Smoothness ,
+Lightness Shift ,
+Lightness Min (%) ,
+Light (blown) ,
+Left Side Orientation ,
+Left Position ,
+Left Foreground ,
+Left / Right Blur (%) ,
+Lena ,
+Left and Right Image Streams ,
+Left Stream Only ,
+Left Slope ,
+Left ,
+Lch [all] ,
+Layers to Tiles ,
+Layer Processing ,
+Layer ,
+Leak Type ,
+Leaf Opacity (%) ,
+Leaf Color ,
+Leaf ,
+Lifestyle & Commercial-5 ,
+Lifestyle & Commercial-4 ,
+Lifestyle & Commercial-3 ,
+Lifestyle & Commercial-2 ,
+Lifestyle & Commercial-9 ,
+Lifestyle & Commercial-8 ,
+Lifestyle & Commercial-7 ,
+Lifestyle & Commercial-6 ,
+Lifestyle & Commercial-10 ,
+Lenticular Orientation ,
+Lenticular Density LPI ,
+Lenox 340 ,
+Leno ,
+Lifestyle & Commercial-1 ,
+Life Giving Tree ,
+Level Frequency ,
+Lenticular Print ,
+HSI [all] ,
+External Transparency ,
+Extend 1px ,
+Expression ,
+Exposure ,
+Extrapolate Color Spots on Transparent Top Layer ,
+Extract Objects ,
+Extract Foreground [Interactive] ,
+Extra  Smooth ,
+Export RGB-565 File ,
+Expired (polaroid) ,
+Expired (fade) ,
+Expanding Mirrors ,
+Expand Size ,
+Exponents ,
+Exponent (Real) ,
+Exponent (Imaginary) ,
+Exponent ,
+Faded (alt) ,
+Faded ,
+Fade to Green ,
+Fade Start (%) ,
+Faded 47 ,
+Faded (vivid) ,
+Faded (extreme) ,
+Faded (analog) ,
+Fade Layers ,
+F(X) ,
+Extreme ,
+Extrapolated Colors + Lineart ,
+Extrapolate Colors As ,
+Fade End (%) ,
+Fade ,
+Fabric Chaos ,
+FFT Preview ,
+Expand Shadows ,
+Ending Y-Centering ,
+Ending X-Centering ,
+Ending Scale (%) ,
+Ending Angle ,
+Equalization (%) ,
+Equalization ,
+Enhance Detail ,
+Engrave ,
+End of Mid-Tones ,
+Enchanted ,
+Enable Segmentation ,
+Enable Paintstroke ,
+Enable Morphology ,
+End Point Rate (%) ,
+End Point Connectivity ,
+End Frame Number ,
+End Color ,
+Eterna for Flog ,
+Etch Tones ,
+Escape Value ,
+Erosion / Dilation ,
+Expand Background Reconstruction ,
+Exp(z) ,
+Exp ,
+Euclidean - Polar ,
+Eric Ellerbrock (14) ,
+Equalize Shadow ,
+Equalize Local Histograms ,
+Equalize HSV ,
+Equalize HSI-HSL-HSV ,
+Equirectangular to Nadir-Zenith ,
+Equation Plot [Y=f(X)] ,
+Equation Plot [Parametric] ,
+Equalize at Each Step ,
+Faded Green ,
+Fine Noise ,
+Fine Details Threshold ,
+Fine Details Smoothness ,
+Fine 2 ,
+Fire Effect ,
+Finger Size ,
+Finger Paint ,
+Fine to Coarse ,
+Final Image ,
+Film Print 02 ,
+Film Print 01 ,
+Film Highlight Contrast ,
+Film GB-19 ,
+Final Flattening (bilateral) ,
+FilterGrade Cinematic (8) ,
+Filter Design ,
+Filmic ,
+Flat 30 ,
+Flag (256) ,
+Five Layers ,
+Fitting Function ,
+Flatness ,
+Flat Regions Removal ,
+Flat Color ,
+Flat Blue Moon ,
+Fit Radial End to Min/Max Dimension ,
+First Frame ,
+First Color ,
+First ,
+Fireworks ,
+Fish-Eye Effect ,
+Fish-Eye ,
+First Size ,
+First Radius ,
+Film 9879 ,
+Fast Recovery ,
+Fast Blend Preview ,
+Fast Blend ,
+Fast (Low Precision) Preview ,
+Felt Spots ,
+Felt Pen ,
+Feathering ,
+Faux Infrared ,
+Fast &#40;Approx.&#41; ,
+Faded Retro 02 ,
+Faded Retro 01 ,
+Faded Pink-Ish ,
+Faded Look ,
+Fast ,
+Fall Colors ,
+Fading Shape ,
+Fading ,
+Fill Transparent Holes ,
+Fill Holes % ,
+Fill Holes ,
+Fidelity to Target (Finest) ,
+Film 0987 ,
+Filling Opacity (%) ,
+Filled Circles ,
+Filled ,
+Fidelity to Target (Coarsest) ,
+Fibers Smoothness ,
+Fibers Amplitude ,
+Fibers ,
+Ferrofluid ,
+Fidelity Smoothness (Finest) ,
+Fidelity Smoothness (Coarsest) ,
+Fidelity Chromaticity ,
+Fibrousness ,
+Enable Interpolated Motion ,
+Distance to Center (%) ,
+Distance Transform ,
+Distance (Fast) ,
+Display Coordinates on Preview Window ,
+Distortion Surface Angle ,
+Distortion Factor ,
+Distortion Angle ,
+Distort Lens ,
+Display Coordinates ,
+Discard Contour Guides ,
+Disabled ,
+Dirty ,
+Directions 23 ,
+Display Color Axes ,
+Display Blob Controls ,
+Disco ,
+Discard Transparency ,
+Dodge Strength ,
+Dodge Blur ,
+DoNothing ,
+DoNotMergeLayers ,
+Doodle ,
+Domingo 145 ,
+Dog ,
+Dodge and Burn ,
+Do Not Flatten Transparency ,
+Disturbance Scale-By-Factor ,
+Distortion Y-[dy] ,
+Distortion X-[dx] ,
+Distortion Surface Position ,
+Django 25 ,
+Dither Output ,
+Disturbance Y ,
+Disturbance X ,
+Direction ,
+Dices with Colored Sides ,
+Dices with Colored Numbers ,
+Dices ,
+Diamonds (Outline) ,
+Diff. of Median ,
+Diff. of Gauss. ,
+Diff. of BoxBlur ,
+Dif ,
+Diamonds ,
+Details Strength (%) ,
+Details Smoothness ,
+Details Equalizer ,
+Details Amount ,
+Diamond (Inv.) ,
+Deuteranopia ,
+Deuteranomaly ,
+Detect Skin ,
+Dimension (%) ,
+Dimension ,
+Dilation / Erosion ,
+Dilate Contours ,
+Direct ,
+Dipole: 1/(4*z^2-1) ,
+Dimension [Diff] ,
+Dimension Motif Base ,
+Dilatation Motif / Pattern ,
+Diffuse Shadow ,
+Diffuse (%) ,
+Difference of Gaussians ,
+Difference Mixing ,
+Dilatation ,
+Digits ,
+Diffusivity ,
+Diffusion Tensors ,
+Dot Size ,
+Edges on Fire ,
+Edges [Animated] ,
+Edges Offsets ,
+Edges (%) ,
+Edgy Ember ,
+Edges-2 (beware: Memory-Consuming!) ,
+Edges-1 (beware: Memory-Consuming!) ,
+Edges-0.5 (beware: Memory-Consuming!) ,
+Edge Smoothness ,
+Edge Influence ,
+Edge Fidelity ,
+Edge Exponent ,
+Edge Detect Includes Chroma ,
+Edge Simplicity ,
+Edge Shade ,
+Edge Method ,
+Edge Mask ,
+Ellipsoid ,
+Ellipsionism Opacity ,
+Ellipsionism ,
+Ellipse Ratio ,
+Enable Extreme Emboss or Relief? ,
+Enable CFA/CFB* Formulas for OVX and OVY Formulas? ,
+Enable Antialiasing ,
+Emboss-Relief ,
+Ellipse Painting ,
+Elegance 38 ,
+Eight Layers ,
+Effect Y-Axis Scaling ,
+Effect X-Axis Scaling ,
+Ellipse ,
+Elevation (%) ,
+Elevation ,
+Elephant ,
+Edge Desaturation Method ,
+Drop Blues ,
+Dreamy ,
+Dream Smoothing ,
+Dream 85 ,
+Drop Water ,
+Drop Shadow 3D ,
+Drop Shadow ,
+Drop Green Tint 14 ,
+Dream 1 ,
+Download External Data ,
+Douceur Ombre / Smoothness Shadow ,
+Douceur / Smoothness ,
+Double Pixel Axis? ,
+Dream ,
+Drawn Montage ,
+Dragonfly ,
+Dragon Curve ,
+Echo Hall 2 ,
+Echo Hall ,
+Easy Skin Retouch ,
+Earthing ,
+Edge Attenuation ,
+Edge Antialiasing ,
+Echo Wide ,
+Echo Squircle ,
+Earth Tone Boost ,
+Duplicates ,
+DuoTone Blue Red ,
+Duck ,
+Droste ,
+Earth ,
+Eagle ,
+Dusty ,
+Duration ,
+Gold ,
+Going for a Walk ,
+Gmicky - Roddy ,
+Gmicky (by Mahvin) ,
+GoldFX - Perfect Sunset 01min ,
+GoldFX - Hot Summer Heat ,
+GoldFX - Bright Summer Heat ,
+GoldFX - Bright Spring Breeze ,
+Gmicky (by Deevad) ,
+Glow ,
+Global Mapping ,
+Global ,
+Glamour Glow ,
+Gmicky (Mahvin) ,
+Gmicky (Deevad) ,
+Gmicky & Wilber (by Mahvin) ,
+Gmicky & Wilber ,
+Golden Time ,
+Golden Sony 37 ,
+Golden Night Softner 43 ,
+Golden Gate ,
+GradienNormSmoothness ,
+GradienNormLinearity ,
+Got It! ,
+Good Morning ,
+Golden (vibrant) ,
+GoldFX - Summer Heat ,
+GoldFX - Spring Breeze ,
+GoldFX - Perfect Sunset 10min ,
+GoldFX - Perfect Sunset 05min ,
+Golden (mono) ,
+Golden (fade) ,
+Golden (bright) ,
+Golden ,
+Ghost ,
+Full Side by Uncompressed ,
+Full Layer Stack -Slow!- ,
+Full Colors ,
+Full (Slower) ,
+Futuristic Bleak 2 ,
+Futuristic Bleak 1 ,
+Fusion 88 ,
+Function Angle ,
+Fuji XTrans III (15) ,
+Fuji Superia 800 - ,
+Fuji Superia 800 ++ ,
+Fuji Superia 800 + ,
+Fuji Superia 800 ,
+Fuji Velvia 50 ,
+Fuji Superia X-Tra 800 ,
+Fuji Superia Reala 100 ,
+Fuji Superia HG 1600 ,
+Generic Kodachrome 64 ,
+Generic Fuji Velvia 100 ,
+Generic Fuji Provia 100 ,
+Generic Fuji Astia 100 ,
+Geometry ,
+Gentle Mode (overrides Minimum Brightness and Minimun Red:Blue Ratio) ,
+Generic Skin Structure ,
+Generic Kodak Ektachrome 100 VS ,
+Generate Random-Colors Layer ,
+G/M Smoothness ,
+Fuzzy ,
+Futuristic Bleak 4 ,
+Futuristic Bleak 3 ,
+Gear ,
+Gamma Equalizer ,
+Gamma Balance ,
+Games & Demos ,
+Gradient ,
+Greenish Fade 1 ,
+Greenish Fade ,
+Greenish Contrasty ,
+Green-Red ,
+Grid Divisions ,
+Greyscale ,
+Grey ,
+Gremerta ,
+Green-Blue ,
+Green Rotations ,
+Green Mono ,
+Green Light ,
+Green Level ,
+Green and Orange ,
+Green Yellow ,
+Green Wavelength ,
+Green Shift ,
+Gummy ,
+Gum Leaf ,
+Guided Light Rays ,
+Guide Recovery ,
+HLG 1 ,
+HDR Effect (Tone Map) ,
+H Variable ,
+H Cutoff ,
+Guide Mix ,
+Grid [Hexagonal] ,
+Grid [Cartesian] ,
+Grid Width ,
+Grid Smoothing ,
+Guide As ,
+Grow Alpha ,
+Gritty ,
+Grid [Triangular] ,
+Green Indoor ,
+Grain (Shadows) ,
+Grain (Midtones) ,
+Grain (Highlights) ,
+Gradient [from Line] ,
+Grain Type ,
+Grain Tone Fading ,
+Grain Scale ,
+Grain Only ,
+Gradient [Random] ,
+Gradient Values ,
+Gradient RGB ,
+Gradient Preset ,
+Gradient Norm ,
+Gradient [Radial] ,
+Gradient [Linear] ,
+Gradient [Custom Shape] ,
+Gradient [Corners] ,
+Green Conflict ,
+Green Color ,
+Green Blues ,
+Green Afternoon ,
+Green G09 ,
+Green Factor ,
+Green Day 02 ,
+Green Day 01 ,
+Green Action ,
+Graphic Novel ,
+Graphic Boost ,
+Granularity ,
+Grainext ,
+Green 2025 ,
+Green 15 ,
+Greece ,
+Graphix Colors ,
+Fuji Superia 400 - ,
+Frame [Painting] ,
+Frame [Mirror] ,
+Frame [Fuzzy] ,
+Frame [Cube] ,
+Frame [Smooth] ,
+Frame [Round] ,
+Frame [Regular] ,
+Frame [Pattern] ,
+Frame [Blur] ,
+Frame Files Format ,
+Frame Color ,
+Frame (px) ,
+Fragment Blur ,
+Frame Width ,
+Frame Type ,
+Frame Skip ,
+Frame Format ,
+Fruits ,
+Frosted Beach Picnic ,
+Frosted ,
+From Reference Color ,
+Fuji 160C - ,
+Fuji 160C ++ ,
+Fuji 160C + ,
+Fuji 160C ,
+From Input ,
+Freaky Details ,
+Freaky B&W ,
+Frames Offset ,
+Frame as a New Layer ,
+Friends Hall of Fame ,
+Freqy Pattern ,
+Frequency Range ,
+French Comedy ,
+Fractalize ,
+Fly Karateka ,
+Flower Cushion ,
+Flou / Blur Contours ,
+Flou / Blur ,
+Font Colors ,
+Folger 50 ,
+Folder Name ,
+Foggy Night ,
+Flocon / Snowflake ,
+Flip Angle Direction? ,
+Flip & Rotate Blocs ,
+Flavin ,
+Flattening for Edge (bilateral) ,
+Flip Tolerance ,
+Flip Radial Direction? ,
+Flip Left/Right ,
+Flip Cross-Hatch ,
+Fourier Watermark ,
+Fourier Transform ,
+Fourier Filtering ,
+Fourier Analysis ,
+Fractal Whirl ,
+Fractal Set ,
+Fractal Points ,
+Fractal Mapping ,
+Four Layers ,
+Force Tiles to Have Same Size ,
+Force Re-Download from Scratch ,
+Force Gray ,
+Font Height (px) ,
+Formula B ,
+Forme ,
+Foreground Color ,
+Force Transparency ,
+Fuji 3510 (Constlclip) ,
+Fuji Ilford HP5 - ,
+Fuji Ilford HP5 ++ ,
+Fuji Ilford HP5 + ,
+Fuji Ilford HP5 ,
+Fuji Neopan Acros 100 ,
+Fuji Neopan 1600 - ,
+Fuji Neopan 1600 ++ ,
+Fuji Neopan 1600 + ,
+Fuji Ilford Delta 3200 - ,
+Fuji FP-3000b Negative Early ,
+Fuji FP-3000b Negative +++ ,
+Fuji FP-3000b Negative ++ ,
+Fuji FP-3000b Negative + ,
+Fuji Ilford Delta 3200 ++ ,
+Fuji Ilford Delta 3200 + ,
+Fuji Ilford Delta 3200 ,
+Fuji HDR ,
+Fuji Superia 200 ,
+Fuji Superia 1600 - ,
+Fuji Superia 1600 ++ ,
+Fuji Superia 1600 + ,
+Fuji Superia 400 ++ ,
+Fuji Superia 400 + ,
+Fuji Superia 400 ,
+Fuji Superia 200 XPRO ,
+Fuji Superia 1600 ,
+Fuji Sensia 100 ,
+Fuji Provia 400X ,
+Fuji Provia 400F ,
+Fuji Provia 100F ,
+Fuji Superia 100 - ,
+Fuji Superia 100 ++ ,
+Fuji Superia 100 + ,
+Fuji Superia 100 ,
+Fuji FP-3000b Negative ,
+Fuji 800Z - ,
+Fuji 800Z ++ ,
+Fuji 800Z + ,
+Fuji 800Z ,
+Fuji FP-100c (alt) ,
+Fuji FP-100c ,
+Fuji FP 100C ,
+Fuji Astia 100F ,
+Fuji 400H - ,
+Fuji 3513 (Constlmap) ,
+Fuji 3513 (Constlclip) ,
+Fuji 3510 (Cuspclip) ,
+Fuji 3510 (Constlmap) ,
+Fuji 400H ++ ,
+Fuji 400H + ,
+Fuji 400H ,
+Fuji 3513 (Cuspclip) ,
+Fuji FP-3000b ,
+Fuji FP-100c Negative ++a ,
+Fuji FP-100c Negative +++ ,
+Fuji FP-100c Negative ++ ,
+Fuji FP-3000b HC ,
+Fuji FP-3000b +++ ,
+Fuji FP-3000b ++ ,
+Fuji FP-3000b + ,
+Fuji FP-100c Negative + ,
+Fuji FP-100c ++a ,
+Fuji FP-100c +++ ,
+Fuji FP-100c ++ ,
+Fuji FP-100c + ,
+Fuji FP-100c Negative ,
+Fuji FP-100c Cool ++ ,
+Fuji FP-100c Cool + ,
+Fuji FP-100c Cool ,
