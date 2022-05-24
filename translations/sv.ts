@@ -3,7 +3,7 @@
 <!-- Original Swedish translation done by starinspace@github -->
 
 <!DOCTYPE TS>
-<TS version="2.1" language="sw">
+<TS version="2.1" language="sv">
 <context>
     <name>DialogSettings</name>
     <message>

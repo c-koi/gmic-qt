@@ -3,7 +3,7 @@
 <!-- Original Chinese translation done by LinuxToy (https://twitter.com/linuxtoy) -->
 
 <!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<TS version="2.1" language="zh">
 <context>
     <name>DialogSettings</name>
     <message>
