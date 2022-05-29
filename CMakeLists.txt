@@ -2,7 +2,7 @@ project(gmic-qt)
 
 message(STATUS "Using CMake version: ${CMAKE_VERSION}")
 
-cmake_minimum_required(VERSION 3.6.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR)
 LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 include(FeatureSummary)
 include(FindPkgConfig)
@@ -210,18 +210,17 @@ endif()
 #
 # Test for OpenMP
 #
-find_package(OpenMP)
+find_package(OpenMP 2.0)
 set_package_properties(OpenMP PROPERTIES
     DESCRIPTION "A low-level parallel execution library"
     URL "http://openmp.org/wp/"
     TYPE OPTIONAL
     PURPOSE "Optionally used by gmic-qt")
 
-if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8.3 AND OPENMP_FOUND)
-    message("G'Mic: using OpenMP")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+if (OpenMP_FOUND)
+    message(STATUS "G'Mic: using OpenMP ${OpenMP_CXX_VERSION}")
+    link_libraries(OpenMP::OpenMP_CXX)
     add_definitions(-Dcimg_use_openmp)
-    add_definitions(-fopenmp)
 endif()
 
 #
