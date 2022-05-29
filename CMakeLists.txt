@@ -44,16 +44,17 @@ set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shar
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
+include(CheckIPOSupported)
+
+check_ipo_supported(RESULT HAVE_LTO LANGUAGES CXX)
+
+if (HAVE_LTO)
 option(ENABLE_LTO "Enable Link Time Optimizer" OFF)
+endif()
 
 if (MSVC)
   option(ENABLE_CFG "Enable Control Flow Guard (MSVC)" ON)
   add_definitions(-D__PRETTY_FUNCTION__=__FUNCSIG__)
-endif()
-
-if (WIN32 AND NOT MSVC)
-    message("LTO is disabled (windows platform, not MSVC)")
-    set(ENABLE_LTO OFF)
 endif()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -228,19 +229,8 @@ endif()
 #
 
 if (ENABLE_LTO)
-    message("Link Time Optimizer enabled")
-    if (MSVC)
-      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO}")
-      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO}")
-      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO}")
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GL")
-      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /LTCG")
-      set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /LTCG")
-      set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /LTCG")
-    else()
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
-      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
-    endif()
+    message(STATUS "Link Time Optimizer enabled")
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 endif()
 
 #
