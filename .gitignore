@@ -16,3 +16,6 @@ gmic_paintdotnet_qt
 gmic_qt
 CMakeLists.txt.user
 .rsync-exclude
+translations/*.qm
+translations/filters/*.qm
+translations/filters/*.ts
