@@ -9,7 +9,7 @@
 .qmake.stash
 .qrc/*
 .ui/*
-Makefile
+./Makefile
 gmic_gimp_qt
 gmic_krita_qt
 gmic_paintdotnet_qt
