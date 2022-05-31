@@ -2,7 +2,7 @@ project(gmic-qt)
 
 message(STATUS "Using CMake version: ${CMAKE_VERSION}")
 
-cmake_minimum_required(VERSION 3.6.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR)
 LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 include(FeatureSummary)
 include(FindPkgConfig)
@@ -44,16 +44,17 @@ set (GMIC_LIB_PATH "${GMIC_PATH}" CACHE STRING "Define the path to the GMIC shar
 option(ENABLE_ASAN "Enable -fsanitize=address (if debug build)" ON)
 option(ENABLE_FFTW3 "Enable FFTW3 library support" ON)
 
+include(CheckIPOSupported)
+
+check_ipo_supported(RESULT HAVE_LTO LANGUAGES CXX)
+
+if (HAVE_LTO)
 option(ENABLE_LTO "Enable Link Time Optimizer" OFF)
+endif()
 
 if (MSVC)
   option(ENABLE_CFG "Enable Control Flow Guard (MSVC)" ON)
   add_definitions(-D__PRETTY_FUNCTION__=__FUNCSIG__)
-endif()
-
-if (WIN32 AND NOT MSVC)
-    message("LTO is disabled (windows platform, not MSVC)")
-    set(ENABLE_LTO OFF)
 endif()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -210,18 +211,17 @@ endif()
 #
 # Test for OpenMP
 #
-find_package(OpenMP)
+find_package(OpenMP 2.0)
 set_package_properties(OpenMP PROPERTIES
     DESCRIPTION "A low-level parallel execution library"
     URL "http://openmp.org/wp/"
     TYPE OPTIONAL
     PURPOSE "Optionally used by gmic-qt")
 
-if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8.3 AND OPENMP_FOUND)
-    message("G'Mic: using OpenMP")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+if (OpenMP_FOUND)
+    message(STATUS "G'Mic: using OpenMP ${OpenMP_CXX_VERSION}")
+    link_libraries(OpenMP::OpenMP_CXX)
     add_definitions(-Dcimg_use_openmp)
-    add_definitions(-fopenmp)
 endif()
 
 #
@@ -229,32 +229,25 @@ endif()
 #
 
 if (ENABLE_LTO)
-    message("Link Time Optimizer enabled")
-    if (MSVC)
-      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO}")
-      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO}")
-      string(REPLACE "INCREMENTAL" "INCREMENTAL:NO" CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO}")
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GL")
-      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /LTCG")
-      set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /LTCG")
-      set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /LTCG")
-    else()
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
-      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
-    endif()
+    message(STATUS "Link Time Optimizer enabled")
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 endif()
 
 #
 # Enable CFG
 #
 if (MSVC)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:4194304")
-    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /STACK:4194304")
-    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /STACK:4194304")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:16777216")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /STACK:16777216")
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /STACK:16777216")
     if (ENABLE_CFG)
         add_compile_options(/guard:CF)
         add_link_options(/GUARD:CF)
     endif()
+elseif(WIN32)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--stack,16777216")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--stack,16777216")
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -Wl,--stack,16777216")
 endif()
 
 #
