@@ -156,8 +156,8 @@ int run(UserInterfaceMode interfaceMode,                   //
 
   disableModes(disabledInputModes, disabledOutputModes);
   if (interfaceMode == UserInterfaceMode::Silent) {
-    QCoreApplication app(dummy_argc, dummy_argv);
     configureApplication();
+    QCoreApplication app(dummy_argc, dummy_argv);
     Settings::load(interfaceMode);
     Logger::setMode(Settings::outputMessageMode());
     HeadlessProcessor processor(&app);
@@ -171,9 +171,9 @@ int run(UserInterfaceMode interfaceMode,                   //
     setValueIfNotNullPointer(dialogWasAccepted, processor.processingCompletedProperly());
     return status;
   } else if (interfaceMode == UserInterfaceMode::ProgressDialog) {
+    configureApplication();
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
-    configureApplication();
     Settings::load(interfaceMode);
     Logger::setMode(Settings::outputMessageMode());
     LanguageSettings::installTranslators();
@@ -190,9 +190,9 @@ int run(UserInterfaceMode interfaceMode,                   //
     setValueIfNotNullPointer(dialogWasAccepted, processor.processingCompletedProperly());
     return status;
   } else if (interfaceMode == UserInterfaceMode::Full) {
+    configureApplication();
     QApplication app(dummy_argc, dummy_argv);
     QApplication::setWindowIcon(QIcon(":resources/gmic_hat.png"));
-    configureApplication();
     Settings::load(interfaceMode);
     LanguageSettings::installTranslators();
     MainWindow mainWindow;
