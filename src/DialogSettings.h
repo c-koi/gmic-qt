@@ -54,7 +54,7 @@ public slots:
   void onUpdatePeriodicityChanged(int i);
   void onColorDialogsToggled(bool);
   void done(int r) override;
-  void onVisibleLogosToggled(bool);
+  void onLogosVisibleToggled(bool);
   void onPreviewTimeoutChange(int);
   void onOutputMessageModeChanged(int);
   void onPreviewZoomToggled(bool);
