@@ -89,6 +89,8 @@ public:
   reverse_iterator rend() { return _keypoints.rend(); }
   const_reverse_iterator rbegin() const { return _keypoints.crbegin(); }
   const_reverse_iterator rend() const { return _keypoints.crend(); }
+  const_reverse_iterator crbegin() const { return _keypoints.crbegin(); }
+  const_reverse_iterator crend() const { return _keypoints.crend(); }
 
 private:
   std::deque<Keypoint> _keypoints;
