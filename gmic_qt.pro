@@ -307,6 +307,7 @@ HEADERS +=  \
   src/MainWindow.h \
   src/Misc.h \
   src/ParametersCache.h \
+  src/PersistentMemory.h \
   src/Settings.h \
   src/Tags.h \
   src/TimeLogger.h \
@@ -385,6 +386,7 @@ SOURCES += \
   src/Logger.cpp \
   src/MainWindow.cpp \
   src/ParametersCache.cpp \
+  src/PersistentMemory.cpp \
   src/Settings.cpp \
   src/Tags.cpp \
   src/TimeLogger.cpp \

@@ -415,6 +415,7 @@ set (gmic_qt_SRCS
   src/Logger.h
   src/MainWindow.h
   src/ParametersCache.h
+  src/PersistentMemory.h
   src/Settings.h
   src/TimeLogger.h
   src/Tags.h
@@ -492,6 +493,7 @@ set (gmic_qt_SRCS
   src/Logger.cpp
   src/MainWindow.cpp
   src/ParametersCache.cpp
+  src/PersistentMemory.cpp
   src/Settings.cpp
   src/TimeLogger.cpp
   src/Tags.cpp

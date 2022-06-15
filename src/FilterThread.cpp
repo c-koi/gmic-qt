@@ -29,13 +29,17 @@
 #include "GmicStdlib.h"
 #include "Logger.h"
 #include "Misc.h"
+#include "PersistentMemory.h"
 #include "gmic.h"
 
 namespace GmicQt
 {
 
 FilterThread::FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode)
-    : QThread(parent), _command(command), _arguments(arguments), _environment(environment), _images(new cimg_library::CImgList<float>), _imageNames(new cimg_library::CImgList<char>),
+    : QThread(parent), _command(command), _arguments(arguments), _environment(environment), //
+      _images(new cimg_library::CImgList<float>),                                           //
+      _imageNames(new cimg_library::CImgList<char>),                                        //
+      _persistentMemoryOuptut(new cimg_library::CImg<char>),                                //
       _messageMode(mode)
 {
   _gmicAbort = false;
@@ -51,6 +55,7 @@ FilterThread::~FilterThread()
 {
   delete _images;
   delete _imageNames;
+  delete _persistentMemoryOuptut;
 }
 
 void FilterThread::setImageNames(const cimg_library::CImgList<char> & imageNames)
@@ -76,6 +81,11 @@ const cimg_library::CImgList<float> & FilterThread::images() const
 const cimg_library::CImgList<char> & FilterThread::imageNames() const
 {
   return *_imageNames;
+}
+
+cimg_library::CImg<char> & FilterThread::persistentMemoryOutput()
+{
+  return *_persistentMemoryOuptut;
 }
 
 QStringList FilterThread::status2StringList(const QString & status)
@@ -206,10 +216,12 @@ void FilterThread::run()
       Logger::log(fullCommandLine, _logSuffix, true);
     }
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, nullptr, nullptr, 0.0f);
+    gmicInstance.set_variable("_gmic_qt_persistent", PersistentMemory::image());
     gmicInstance.set_variable("_host", '=', GmicQtHost::ApplicationShortname);
     gmicInstance.set_variable("_tk", '=', "qt");
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
     _gmicStatus = gmicInstance.status;
+    gmicInstance.get_variable("_gmic_qt_persistent").move_to(*_persistentMemoryOuptut);
   } catch (gmic_exception & e) {
     _images->assign();
     _imageNames->assign();

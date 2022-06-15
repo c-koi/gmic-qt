@@ -42,6 +42,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "OverrideCursor.h"
+#include "PersistentMemory.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -321,6 +322,7 @@ void GmicProcessor::onPreviewThreadFinished()
   _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   _gmicImages->assign();
   _filterThread->swapImages(*_gmicImages);
+  PersistentMemory::move_from(_filterThread->persistentMemoryOutput());
   unsigned int badSpectrumIndex = 0;
   bool correctSpectrums = checkImageSpectrumAtMost4(*_gmicImages, badSpectrumIndex);
   if (correctSpectrums) {
@@ -362,6 +364,7 @@ void GmicProcessor::onApplyThreadFinished()
     emit fullImageProcessingFailed(message);
   } else {
     _filterThread->swapImages(*_gmicImages);
+    PersistentMemory::move_from(_filterThread->persistentMemoryOutput());
     unsigned int badSpectrumIndex = 0;
     bool correctSpectrums = checkImageSpectrumAtMost4(*_gmicImages, badSpectrumIndex);
     if (!correctSpectrums) {
@@ -465,6 +468,7 @@ void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
   _parametersVisibilityStates = runner.parametersVisibilityStates();
   _gmicImages->assign();
   runner.swapImages(*_gmicImages);
+  PersistentMemory::move_from(runner.persistentMemoryOutput());
   for (unsigned int i = 0; i < _gmicImages->size(); ++i) {
     GmicQtHost::applyColorProfile((*_gmicImages)[i]);
   }

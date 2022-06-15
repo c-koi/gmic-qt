@@ -30,8 +30,8 @@
 #include <QTime>
 
 #include "Common.h"
-#include "Host/GmicQtHost.h"
 #include "GmicQt.h"
+#include "Host/GmicQtHost.h"
 class QObject;
 
 namespace cimg_library
@@ -54,6 +54,7 @@ public:
   void swapImages(cimg_library::CImgList<float> & images);
   const cimg_library::CImgList<float> & images() const;
   const cimg_library::CImgList<char> & imageNames() const;
+  cimg_library::CImg<char> & persistentMemoryOutput();
   QStringList gmicStatus() const;
   QList<int> parametersVisibilityStates() const;
   QString errorMessage() const;
@@ -71,6 +72,7 @@ private:
   QString _environment;
   cimg_library::CImgList<float> * _images;
   cimg_library::CImgList<char> * _imageNames;
+  cimg_library::CImg<char> * _persistentMemoryOuptut;
   bool _gmicAbort;
   bool _failed;
   QString _gmicStatus;

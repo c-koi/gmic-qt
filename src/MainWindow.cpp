@@ -57,6 +57,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "ParametersCache.h"
+#include "PersistentMemory.h"
 #include "Settings.h"
 #include "Updater.h"
 #include "Utils.h"
@@ -613,7 +614,7 @@ void MainWindow::makeConnections()
   connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(updateZoomLabel(double)));
   connect(ui->previewWidget, SIGNAL(previewVisibleRectIsChanging()), &_processor, SLOT(cancel()));
 
-  connect(_filtersPresenter, SIGNAL(filterSelectionChanged()), this, SLOT(onFilterSelectionChanged()));
+  connect(_filtersPresenter, &FiltersPresenter::filterSelectionChanged, this, &MainWindow::onFilterSelectionChanged);
 
   connect(ui->pbOk, SIGNAL(clicked(bool)), this, SLOT(onOkClicked()));
   connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
@@ -929,11 +930,13 @@ void MainWindow::onProgressionWidgetCancelClicked()
 void MainWindow::onReset()
 {
   if (!_filtersPresenter->currentFilter().hash.isEmpty() && _filtersPresenter->currentFilter().isAFave) {
+    PersistentMemory::clear();
     ui->filterParams->setVisibilityStates(_filtersPresenter->currentFilter().defaultVisibilityStates);
     ui->filterParams->setValues(_filtersPresenter->currentFilter().defaultParameterValues, true);
     return;
   }
   if (!_filtersPresenter->currentFilter().isNoPreviewFilter()) {
+    PersistentMemory::clear();
     ui->filterParams->reset(true);
   }
 }
@@ -1227,6 +1230,7 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
 
 void MainWindow::setNoFilter()
 {
+  PersistentMemory::clear();
   ui->filterParams->setNoFilter(_filtersPresenter->errorMessage());
   ui->previewWidget->disableRightClick();
   ui->previewWidget->setKeypoints(KeypointList());
