@@ -25,18 +25,21 @@
 #ifndef GMIC_QT_COMMON_H
 #define GMIC_QT_COMMON_H
 
+#include <QTime>
 #include <QtGlobal>
 #include <iostream>
 #include "TimeLogger.h"
 
 #ifdef _GMIC_QT_DEBUG_
-#define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
-#define LEAVING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Leaving>>"
-#define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
-#define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << __LINE__ << "]" << #V << "=" << (V)
+#define DEBUG_QTIMESTAMP QTime::currentTime().toString("[hh:mm:ss]")
+#define DEBUG_TIMESTAMP QTime::currentTime().toString("[hh:mm:ss]").toStdString()
+#define ENTERING std::cerr << DEBUG_TIMESTAMP << " [" << __PRETTY_FUNCTION__ << "] <<Entering>>" << std::endl
+#define LEAVING std::cerr << DEBUG_TIMESTAMP << " [" << __PRETTY_FUNCTION__ << "] <<Leaving>>" << std::endl
+#define TRACE qWarning() << DEBUG_QTIMESTAMP << "[" << __PRETTY_FUNCTION__ << "]"
+#define TSHOW(V) qWarning() << DEBUG_QTIMESTAMP << __PRETTY_FUNCTION__ << __LINE__ << ":" << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
-#define STDSHOW(V) std::cout << #V << " = " << (V) << std::endl
-#define QSTDSHOW(STR) std::cout << #STR << " = " << (STR).toStdString() << std::endl
+#define STDSHOW(V) std::cerr << #V << " = " << (V) << std::endl
+#define QSTDSHOW(STR) std::cerr << #STR << " = " << (STR).toStdString() << std::endl
 #else
 #define ENTERING while (false)
 #define LEAVING while (false)
