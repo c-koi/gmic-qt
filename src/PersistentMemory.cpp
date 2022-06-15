@@ -28,12 +28,12 @@
 namespace GmicQt
 {
 
-cimg_library::CImg<char> * PersistentMemory::_image = nullptr;
+std::unique_ptr<cimg_library::CImg<char>> PersistentMemory::_image;
 
 cimg_library::CImg<char> & PersistentMemory::image()
 {
   if (!_image) {
-    _image = new cimg_library::CImg<char>;
+    _image.reset(new cimg_library::CImg<char>);
   }
   return *_image;
 }
@@ -43,9 +43,9 @@ void PersistentMemory::clear()
   image().assign();
 }
 
-void PersistentMemory::move_from(cimg_library::CImg<char> & list)
+void PersistentMemory::move_from(cimg_library::CImg<char> & buffer)
 {
-  list.move_to(image());
+  buffer.move_to(image());
 }
 
 } // namespace GmicQt

@@ -24,7 +24,7 @@
  */
 #ifndef GMIC_QT__PERSISTENTMEMORY_H
 #define GMIC_QT__PERSISTENTMEMORY_H
-
+#include <memory>
 namespace cimg_library
 {
 template <typename T> struct CImg;
@@ -37,10 +37,10 @@ class PersistentMemory {
 public:
   static cimg_library::CImg<char> & image();
   static void clear();
-  static void move_from(cimg_library::CImg<char> & list);
+  static void move_from(cimg_library::CImg<char> & buffer);
 
 private:
-  static cimg_library::CImg<char> * _image;
+  static std::unique_ptr<cimg_library::CImg<char>> _image;
 };
 
 } // namespace GmicQt
