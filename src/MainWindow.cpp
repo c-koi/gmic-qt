@@ -36,6 +36,7 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QShowEvent>
+#include <QStringList>
 #include <QStyleFactory>
 #include <cassert>
 #include <iostream>
@@ -463,6 +464,17 @@ void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash,
   }
 }
 
+QString MainWindow::screenGeometries()
+{
+  QList<QScreen *> screens = QGuiApplication::screens();
+  QStringList geometries;
+  for (QScreen * screen : screens) {
+    QRect geometry = screen->geometry();
+    geometries.push_back(QString("(%1,%2,%3,%4)").arg(geometry.x()).arg(geometry.y()).arg(geometry.width()).arg(geometry.height()));
+  }
+  return geometries.join(QString());
+}
+
 void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
   bool ok = QObject::disconnect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
@@ -819,6 +831,25 @@ void MainWindow::onInputModeChanged(InputMode mode)
   ui->previewWidget->sendUpdateRequest();
 }
 
+void MainWindow::onVeryFirstShowEvent()
+{
+  adjustVerticalSplitter();
+  if (_newSession) {
+    Logger::clear();
+  }
+  QObject::connect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
+  Logger::setMode(Settings::outputMessageMode());
+  Updater::setOutputMessageMode(Settings::outputMessageMode());
+  int ageLimit;
+  {
+    QSettings settings;
+    ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
+  }
+  const bool useNetwork = (ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY);
+  ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
+  Updater::getInstance()->startUpdate(ageLimit, 4, useNetwork);
+}
+
 void MainWindow::setZoomConstraint()
 {
   const FiltersPresenter::Filter & currentFilter = _filtersPresenter->currentFilter();
@@ -1001,6 +1032,7 @@ void MainWindow::saveSettings()
   settings.setValue("Config/MainWindowPosition", frameGeometry().topLeft());
   settings.setValue("Config/MainWindowRect", rect());
   settings.setValue("Config/MainWindowMaximized", isMaximized());
+  settings.setValue("Config/ScreenGeometries", screenGeometries());
   settings.setValue("Config/PreviewEnabled", ui->cbPreview->isChecked());
   settings.setValue("LastExecution/ExitedNormally", true);
   settings.setValue("LastExecution/HostApplicationID", host_app_pid());
@@ -1044,10 +1076,11 @@ void MainWindow::loadSettings()
   // Mainwindow geometry
   QPoint position = settings.value("Config/MainWindowPosition", QPoint(20, 20)).toPoint();
   QRect r = settings.value("Config/MainWindowRect", QRect()).toRect();
+  const bool sameScreenGeometries = (settings.value("Config/ScreenGeometries", QString()).toString() == screenGeometries());
   if (settings.value("Config/MainWindowMaximized", false).toBool()) {
     ui->pbFullscreen->setChecked(true);
   } else {
-    if (r.isValid()) {
+    if (r.isValid() && sameScreenGeometries) {
       if ((r.width() < 640) || (r.height() < 400)) {
         r.setSize(QSize(640, 400));
       }
@@ -1250,25 +1283,10 @@ void MainWindow::showEvent(QShowEvent * event)
 {
   TIMING;
   event->accept();
-  if (_showEventReceived) {
-    return;
+  if (!_showEventReceived) {
+    _showEventReceived = true;
+    onVeryFirstShowEvent();
   }
-  _showEventReceived = true;
-  adjustVerticalSplitter();
-  if (_newSession) {
-    Logger::clear();
-  }
-  QObject::connect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
-  Logger::setMode(Settings::outputMessageMode());
-  Updater::setOutputMessageMode(Settings::outputMessageMode());
-  int ageLimit;
-  {
-    QSettings settings;
-    ageLimit = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
-  }
-  const bool useNetwork = (ageLimit != INTERNET_NEVER_UPDATE_PERIODICITY);
-  ui->progressInfoWidget->startFiltersUpdateAnimationAndShow();
-  Updater::getInstance()->startUpdate(ageLimit, 4, useNetwork);
 }
 
 void MainWindow::resizeEvent(QResizeEvent * e)

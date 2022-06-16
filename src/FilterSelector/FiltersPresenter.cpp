@@ -581,7 +581,6 @@ bool FiltersPresenter::danglingFaveIsSelected() const
 
 void FiltersPresenter::setCurrentFilter(const QString & hash)
 {
-  ENTERING;
   _errorMessage.clear();
   PersistentMemory::clear();
   if (hash.isEmpty()) {

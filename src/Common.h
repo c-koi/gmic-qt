@@ -36,7 +36,7 @@
 #define ENTERING std::cerr << DEBUG_TIMESTAMP << " [" << __PRETTY_FUNCTION__ << "] <<Entering>>" << std::endl
 #define LEAVING std::cerr << DEBUG_TIMESTAMP << " [" << __PRETTY_FUNCTION__ << "] <<Leaving>>" << std::endl
 #define TRACE qWarning() << DEBUG_QTIMESTAMP << "[" << __PRETTY_FUNCTION__ << "]"
-#define TSHOW(V) qWarning() << DEBUG_QTIMESTAMP << __PRETTY_FUNCTION__ << __LINE__ << ":" << #V << "=" << (V)
+#define TSHOW(V) qWarning() << DEBUG_QTIMESTAMP << "[" << __PRETTY_FUNCTION__ << "]:" << __LINE__ << " " << #V << "=" << (V)
 #define SHOW(V) qWarning() << #V << "=" << (V)
 #define STDSHOW(V) std::cerr << #V << " = " << (V) << std::endl
 #define QSTDSHOW(STR) std::cerr << #STR << " = " << (STR).toStdString() << std::endl

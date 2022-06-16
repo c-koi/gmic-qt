@@ -130,6 +130,7 @@ private slots:
   void onInputModeChanged(InputMode);
 
 private:
+  void onVeryFirstShowEvent();
   void setZoomConstraint();
   bool filtersSelectionMode();
   void clearMessage();
@@ -140,7 +141,7 @@ private:
   bool askUserForGTKFavesImport();
   void buildFiltersTree();
   void retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters);
-
+  static QString screenGeometries();
   enum class ProcessingAction
   {
     NoAction,
