@@ -375,7 +375,7 @@
 Cannot retrieve default parameters.
 
 %2</source>
-        <translation>Ошибка при парсинге параметров для фильтра:
+        <translation>Ошибка при анализе параметров для фильтра:
 
 %1
 
