@@ -220,7 +220,7 @@ void FilterThread::run()
     gmicInstance.set_variable("_host", '=', GmicQtHost::ApplicationShortname);
     gmicInstance.set_variable("_tk", '=', "qt");
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
-    _gmicStatus = gmicInstance.status;
+    _gmicStatus = QString::fromLocal8Bit(gmicInstance.status);
     gmicInstance.get_variable("_persistent").move_to(*_persistentMemoryOuptut);
   } catch (gmic_exception & e) {
     _images->assign();
