@@ -106,7 +106,7 @@ QStringList FilterThread::status2StringList(const QString & status)
     while (it != list.end()) {
       QByteArray array = it->toLocal8Bit();
       gmic::strreplace_fw(array.data());
-      *it++ = array;
+      *it++ = QString::fromLocal8Bit(array);
     }
   }
   return list;
