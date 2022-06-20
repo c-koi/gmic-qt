@@ -29,7 +29,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="24"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Вид</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="64"/>
@@ -64,22 +64,22 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="149"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Язык</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="179"/>
         <source>Always enable preview zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда разрешать масштабирование предпросмотра</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Warning: preview may be inaccurate&lt;br/&gt;if checked.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Внимание: предпросмотр может быть неточным&lt;br/&gt;если включено.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="215"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Другое</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="253"/>
@@ -104,17 +104,17 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="169"/>
         <source>Timeout (seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Тайм-аут (в секундах)</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="36"/>
         <source>Show institution logos</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображение институциональных логотипов</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="262"/>
         <source>Notify when scheduled update fails</source>
-        <translation type="unfinished"></translation>
+        <translation>Уведомлять в случае неудачи запланированного обновления</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="304"/>
@@ -249,7 +249,9 @@
         <source>Error parsing filter parameters
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при анализе параметров фильтра
+
+</translation>
     </message>
 </context>
 <context>
@@ -257,13 +259,12 @@
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="498"/>
         <source>Unknown filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестный фильтр</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="606"/>
-        <source>Cannot find this fave&apos;s original filter
-</source>
-        <translation type="unfinished"></translation>
+        <source>Cannot find this fave&apos;s original filter</source>
+        <translation>Не удаётся найти оригинал этого избранного фильтра</translation>
     </message>
 </context>
 <context>
@@ -276,42 +277,42 @@
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="670"/>
         <source>Rename Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать избранное</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="672"/>
         <source>Remove Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить из избранного</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="674"/>
         <source>Clone Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>Клонировать избранное</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="678"/>
         <source>Add Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить в избранное</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="697"/>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить все</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="704"/>
         <source>%1 (%2 %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2 %3)</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="704"/>
         <source>Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтры</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="704"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтр</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="351"/>
@@ -319,7 +320,10 @@
 
 %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить этот фильтр из избранного?
+
+%1
+</translation>
     </message>
 </context>
 <context>
@@ -335,13 +339,14 @@
     <message>
         <location filename="../src/GmicProcessor.cpp" line="299"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
-        <translation type="unfinished"></translation>
+        <translation>Возвращённое фильтром изображение #%1 имеет %2 канал(а/ов) (должно быть не более 4)</translation>
     </message>
     <message>
         <location filename="../src/GmicProcessor.cpp" line="333"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
-        <translation type="unfinished"></translation>
+        <translation>Возвращённое фильтром изображение #%1 имеет %2 канал(а/ов)
+(должно быть не более 4)</translation>
     </message>
 </context>
 <context>
@@ -349,17 +354,17 @@
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="81"/>
         <source>At least a filter path or a filter command must be provided.</source>
-        <translation type="unfinished"></translation>
+        <translation>Должен быть предоставлен путь к фильтру или команда фильтра.</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="83"/>
         <source>Custom command (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Пользовательская команда (%1)</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="91"/>
         <source>Cannot find filter matching path %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтр отсутствует на заданном пути %1</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="98"/>
@@ -370,22 +375,28 @@
 Cannot retrieve default parameters.
 
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при анализе параметров для фильтра:
+
+%1
+
+Не удалось восстановить значения по умолчанию.
+
+%2</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="116"/>
         <source>Error parsing supplied command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка анализа данной команды: %1</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="119"/>
         <source>Supplied command (%1) does not match path (%2), (should be %3).</source>
-        <translation type="unfinished"></translation>
+        <translation>Данная команда (%1) не совпадает с путём (%2), (должно быть %3).</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="233"/>
         <source>Filter execution failed, but with no error message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Применение фильтра не удалось, но без сообщения об ошибке.</translation>
     </message>
 </context>
 <context>
@@ -463,12 +474,12 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="208"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Ввод</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="210"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Вывод</translation>
     </message>
 </context>
 <context>
@@ -476,12 +487,12 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="53"/>
         <source>System default (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Системный (%1)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="62"/>
         <source>Translations are very likely to be incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Переводы в большинстве случаев неполны.</translation>
     </message>
 </context>
 <context>
@@ -494,7 +505,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="111"/>
         <source>Reset parameters to default values</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить параметры до значений по умолчанию</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="117"/>
@@ -504,7 +515,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="124"/>
         <source>Rename fave</source>
-        <translation>Переименовать избранный</translation>
+        <translation>Переименовать избранное</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="126"/>
@@ -524,7 +535,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="139"/>
         <source>Selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим выбора фильтров для скрытия из списка</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="177"/>
@@ -535,7 +546,8 @@ Cannot retrieve default parameters.
         <location filename="../src/MainWindow.cpp" line="231"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
-        <translation type="unfinished"></translation>
+        <translation>Управление видимыми маркерами
+(ПКМ на избранном/неизбранном фильтре, чтобы добавить/удалить маркеры)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="353"/>
@@ -552,14 +564,16 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="358"/>
         <source>No download was needed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка не потребовалась.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="411"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Плагин был вызван путём к фильтру без соответствующего фильтра:
+
+Путь: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="419"/>
@@ -571,21 +585,31 @@ Path: %1</source>
 Cannot retrieve default parameters.
 
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при анализе параметров для фильтра:
+
+%1
+
+Не удалось восстановить значения по умолчанию.
+
+%2</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="432"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Плагин был вызван командой, которая не может быть распознана как фильтр:
+
+Команда: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="427"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Плагин был вызван командой, которая не может быть проанализирована:
+
+%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="436"/>
@@ -594,12 +618,16 @@ Command: %1</source>
 Path: %1
 Command: %2
 Command found for this path : %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Плагин был вызван командой, путь которой не совпадает с предоставленным:
+
+Путь: %1
+Команда: %2
+Команда, найденная по этому пути: %3</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="471"/>
         <source>Filters update could not be achieved</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось обновить</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="597"/>
@@ -619,7 +647,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="899"/>
         <source>Waiting for cancelled jobs...</source>
-        <translation type="unfinished"></translation>
+        <translation>В ожидании отменённых заданий...</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1272"/>
@@ -660,7 +688,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="49"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс плагина G&apos;MIC-Qt</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="52"/>
@@ -670,7 +698,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="150"/>
         <source>Updating filters...</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтры обновляются...</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="205"/>
@@ -689,7 +717,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="49"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс плагина G&apos;MIC-Qt</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="141"/>
@@ -717,7 +745,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/SearchFieldWidget.cpp" line="80"/>
         <source>Search in filters list (%1)</source>
-        <translation>Ищу в списке фильтиров (%1)</translation>
+        <translation>Поиск фильтра в списке (%1)</translation>
     </message>
 </context>
 <context>
@@ -725,7 +753,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Updater.cpp" line="198"/>
         <source>Error downloading %1 (empty file?)</source>
-        <translation>Ошибка скачивания %1 (Пустой файл?)</translation>
+        <translation>Ошибка скачивания %1 (пустой файл?)</translation>
     </message>
     <message>
         <location filename="../src/Updater.cpp" line="207"/>
@@ -740,7 +768,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Updater.cpp" line="229"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при загрузке %1&lt;br/&gt;Ошибка: %2: %3</translation>
     </message>
     <message>
         <location filename="../src/Updater.cpp" line="265"/>
@@ -753,12 +781,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="55"/>
         <source>Show All Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Отобразить все фильтры</translation>
     </message>
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="59"/>
         <source>Show %1 Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Отобразить %1 маркеры</translation>
     </message>
 </context>
 <context>
@@ -766,22 +794,22 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="54"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Приблизить</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="55"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Отдалить</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="56"/>
         <source>Reset zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить масштабирование</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="156"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
-        <translation type="unfinished"></translation>
+        <translation>Внимание: предпросмотр может быть неточным (изменена настройка для масштабирования)</translation>
     </message>
 </context>
 <context>
@@ -807,7 +835,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../ui/inoutpanel.ui" line="47"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/inoutpanel.ui" line="92"/>
@@ -825,38 +853,38 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="20"/>
         <location filename="../src/Host/None/JpegQualityDialog.cpp" line="12"/>
         <source>JPEG Quality</source>
-        <translation type="unfinished"></translation>
+        <translation>Качество JPEG</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="28"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="42"/>
         <source>100</source>
-        <translation type="unfinished"></translation>
+        <translation>100</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="60"/>
         <source>Always use this quality for this execution of G&apos;MIC-Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда использовать выбранное качество для G&apos;MIC-Qt</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="85"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отмена</translation>
+        <translation>&amp;Отмена</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="92"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -874,7 +902,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="48"/>
         <source>Translate filters (WIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Перевод фильтров (в процессе)</translation>
     </message>
 </context>
 <context>
@@ -887,33 +915,33 @@ Command found for this path : %3</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Скачать определения фильтров с отдалённого ресурса&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Скачать определения фильтров из отдалённых ресурсов&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="179"/>
         <source>Internet</source>
-        <translation>Internet</translation>
+        <translation>Интернет</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="511"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="248"/>
         <location filename="../ui/mainwindow.ui" line="255"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished">MainWindow</translation>
+        <translation>MainWindow</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="401"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Включение/выключение предпросмотра&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(ПКМ на предпросмотре для мгновенного переключения)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="404"/>
@@ -1011,17 +1039,17 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/host_none.cpp" line="80"/>
         <source>Could not open file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось открыть файл.</translation>
     </message>
     <message>
         <location filename="../src/Host/None/host_none.cpp" line="84"/>
         <source>Default image</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображение по умолчанию</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="81"/>
         <source>Visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Видимость</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="103"/>
@@ -1031,57 +1059,57 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Misc.cpp" line="330"/>
         <source>List %1 cannot be merged considering theses runs: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Список %1 не может быть объединён, учитывая это: %2</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="151"/>
         <source>%1 Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 маркер</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="157"/>
         <source>None</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="158"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Красный</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="159"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation>Зелёный</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>Синий</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="161"/>
         <source>Cyan</source>
-        <translation type="unfinished"></translation>
+        <translation>Голубой</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="162"/>
         <source>Magenta</source>
-        <translation type="unfinished"></translation>
+        <translation>Пурпурный</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="163"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation>Жёлтый</translation>
     </message>
     <message>
         <location filename="../src/LanguageSettings.cpp" line="127"/>
         <source>Could not install translator for file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось установить переводчик для файла %1</translation>
     </message>
     <message>
         <location filename="../src/LanguageSettings.cpp" line="130"/>
         <source>Could not load translation file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить файл перевода %1</translation>
     </message>
 </context>
 <context>
@@ -1105,27 +1133,27 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="71"/>
         <source>G&apos;MIC-Qt filter output</source>
-        <translation type="unfinished"></translation>
+        <translation>G&apos;MIC-Qt результат работы фильтра</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="82"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="85"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить как...</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="120"/>
         <source>%1 file (*.%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 файл (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="141"/>
         <source>Save image as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить изображение как...</translation>
     </message>
 </context>
 <context>
@@ -1133,12 +1161,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
         <source>Could not write image file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось записать изображение в файл %1</translation>
     </message>
 </context>
 </TS>
