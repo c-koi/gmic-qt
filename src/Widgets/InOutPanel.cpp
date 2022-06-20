@@ -101,9 +101,9 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   setTopLabel();
   updateLayoutIfUniqueRow();
 
-  connect(ui->inputLayers, SIGNAL(currentIndexChanged(int)), this, SLOT(onInputModeSelected(int)));
-  connect(ui->outputMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onOutputModeSelected(int)));
-  connect(ui->tbReset, SIGNAL(clicked(bool)), this, SLOT(onResetButtonClicked()));
+  connect(ui->inputLayers, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &InOutPanel::onInputModeSelected);
+  connect(ui->outputMode, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &InOutPanel::onOutputModeSelected);
+  connect(ui->tbReset, &QToolButton::clicked, this, &InOutPanel::onResetButtonClicked);
 
   _notifyValueChange = true;
 }

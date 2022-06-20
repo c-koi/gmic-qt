@@ -103,7 +103,7 @@ void BoolParameter::connectCheckBox()
   if (_connected) {
     return;
   }
-  connect(_checkBox, SIGNAL(toggled(bool)), this, SLOT(onCheckBoxChanged(bool)));
+  connect(_checkBox, &QCheckBox::toggled, this, &BoolParameter::onCheckBoxChanged);
   _connected = true;
 }
 

@@ -39,7 +39,7 @@ MultilineTextParameterWidget::MultilineTextParameterWidget(const QString & name,
   ui->textEdit->installEventFilter(this);
   ui->label->setText(name);
   ui->pbUpdate->setToolTip(tr("Ctrl+Return"));
-  connect(ui->pbUpdate, SIGNAL(clicked(bool)), this, SLOT(onUpdate(bool)));
+  connect(ui->pbUpdate, &QPushButton::clicked, this, &MultilineTextParameterWidget::onUpdate);
 }
 
 MultilineTextParameterWidget::~MultilineTextParameterWidget()

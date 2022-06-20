@@ -80,10 +80,10 @@ ImageDialog::ImageDialog(QWidget * parent) : QDialog(parent)
   auto hbox = new QHBoxLayout;
   vbox->addLayout(hbox);
   _closeButton = new QPushButton(tr("Close"));
-  connect(_closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked(bool)));
+  connect(_closeButton, &QPushButton::clicked, this, &ImageDialog::onCloseClicked);
   hbox->addWidget(_closeButton);
   _saveButton = new QPushButton(tr("Save as..."));
-  connect(_saveButton, SIGNAL(clicked(bool)), this, SLOT(onSaveAs()));
+  connect(_saveButton, &QPushButton::clicked, this, &ImageDialog::onSaveAs);
   hbox->addWidget(_saveButton);
 }
 

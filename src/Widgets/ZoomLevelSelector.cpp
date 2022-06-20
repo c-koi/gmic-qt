@@ -58,12 +58,11 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new
   ui->tbZoomOut->setIcon(LOAD_ICON("zoom-out"));
   ui->tbZoomReset->setIcon(LOAD_ICON("view-refresh"));
 
-  connect(ui->comboBox->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onComboBoxEditingFinished()));
-  connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged(int)));
-
-  connect(ui->tbZoomIn, SIGNAL(clicked(bool)), this, SIGNAL(zoomIn()));
-  connect(ui->tbZoomOut, SIGNAL(clicked(bool)), this, SIGNAL(zoomOut()));
-  connect(ui->tbZoomReset, SIGNAL(clicked(bool)), this, SIGNAL(zoomReset()));
+  connect(ui->comboBox->lineEdit(), &QLineEdit::editingFinished, this, &ZoomLevelSelector::onComboBoxEditingFinished);
+  connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ZoomLevelSelector::onComboIndexChanged);
+  connect(ui->tbZoomIn, &QToolButton::clicked, this, &ZoomLevelSelector::zoomIn);
+  connect(ui->tbZoomOut, &QToolButton::clicked, this, &ZoomLevelSelector::zoomOut);
+  connect(ui->tbZoomReset, &QToolButton::clicked, this, &ZoomLevelSelector::zoomReset);
   setZoomConstraint(ZoomConstraint::Any);
 }
 

@@ -72,7 +72,8 @@ public:
                                           QVector<int> * size = nullptr);
 
 public slots:
-  void updateValueString(bool notify = true);
+  void updateValueString(bool notify);
+  void updateValueStringAndNotify();
 
 signals:
   void valueChanged();

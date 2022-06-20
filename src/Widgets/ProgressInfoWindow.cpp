@@ -54,7 +54,7 @@ ProgressInfoWindow::ProgressInfoWindow(HeadlessProcessor * processor) : QMainWin
   ui->progressBar->setValue(100);
   ui->info->setText("");
   connect(processor, &HeadlessProcessor::progressWindowShouldShow, this, &ProgressInfoWindow::show);
-  connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked(bool)));
+  connect(ui->pbCancel, &QPushButton::clicked, this, &ProgressInfoWindow::onCancelClicked);
   connect(processor, &HeadlessProcessor::progression, this, &ProgressInfoWindow::onProgress);
   connect(processor, &HeadlessProcessor::done, this, &ProgressInfoWindow::onProcessingFinished);
   _isShown = false;

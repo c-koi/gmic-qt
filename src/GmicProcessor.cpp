@@ -54,7 +54,7 @@ GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
   _gmicImages = new cimg_library::CImgList<gmic_pixel_type>;
   _previewImage = new cimg_library::CImg<float>;
   _waitingCursorTimer.setSingleShot(true);
-  connect(&_waitingCursorTimer, SIGNAL(timeout()), this, SLOT(showWaitingCursor()));
+  connect(&_waitingCursorTimer, &QTimer::timeout, this, &GmicProcessor::showWaitingCursor);
   cimg_library::cimg::srand();
   _previewRandomSeed = cimg_library::cimg::_rand();
   _lastAppliedCommandInOutState = InputOutputState::Unspecified;
@@ -152,7 +152,7 @@ void GmicProcessor::execute()
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("preview");
-    connect(_filterThread, SIGNAL(finished()), this, SLOT(onPreviewThreadFinished()), Qt::QueuedConnection);
+    connect(_filterThread, &FilterThread::finished, this, &GmicProcessor::onPreviewThreadFinished, Qt::QueuedConnection);
     cimg_library::cimg::srand();
     _previewRandomSeed = cimg_library::cimg::_rand();
     _filterExecutionTime.restart();
@@ -167,7 +167,7 @@ void GmicProcessor::execute()
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("apply");
-    connect(_filterThread, SIGNAL(finished()), this, SLOT(onApplyThreadFinished()), Qt::QueuedConnection);
+    connect(_filterThread, &FilterThread::finished, this, &GmicProcessor::onApplyThreadFinished, Qt::QueuedConnection);
     cimg_library::cimg::srand(_previewRandomSeed);
     _filterThread->start();
   }
@@ -446,7 +446,7 @@ void GmicProcessor::abortCurrentFilterThread()
     return;
   }
   _filterThread->disconnect(this);
-  connect(_filterThread, SIGNAL(finished()), this, SLOT(onAbortedThreadFinished()));
+  connect(_filterThread, &FilterThread::finished, this, &GmicProcessor::onAbortedThreadFinished);
   _unfinishedAbortedThreads.push_back(_filterThread);
   _filterThread->abortGmic();
   _filterThread = nullptr;

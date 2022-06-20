@@ -165,7 +165,7 @@ void HeadlessProcessor::startProcessing()
   _filterThread->swapImages(*_gmicImages);
   _filterThread->setImageNames(imageNames);
   _processingCompletedProperly = false;
-  connect(_filterThread, SIGNAL(finished()), this, SLOT(onProcessingFinished()));
+  connect(_filterThread, &FilterThread::finished, this, &HeadlessProcessor::onProcessingFinished);
   _timer.setInterval(250);
   connect(&_timer, &QTimer::timeout, this, &HeadlessProcessor::sendProgressInformation);
   _timer.start();

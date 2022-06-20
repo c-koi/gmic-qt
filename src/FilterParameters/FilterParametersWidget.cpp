@@ -191,7 +191,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
       grid->setRowStretch(row, 0);
       ++row;
     }
-    connect(parameter, SIGNAL(valueChanged()), this, SLOT(updateValueString()));
+    connect(parameter, &AbstractParameter::valueChanged, this, &FilterParametersWidget::updateValueStringAndNotify);
     ++it;
   }
 
@@ -447,6 +447,11 @@ void FilterParametersWidget::updateValueString(bool notify)
   if (notify) {
     emit valueChanged();
   }
+}
+
+void FilterParametersWidget::updateValueStringAndNotify()
+{
+  updateValueString(true);
 }
 
 void FilterParametersWidget::clear()

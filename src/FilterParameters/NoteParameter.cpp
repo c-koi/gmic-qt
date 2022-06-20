@@ -59,7 +59,7 @@ bool NoteParameter::addTo(QWidget * widget, int row)
   _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   _label->setWordWrap(true);
   setTextSelectable(_label);
-  connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
+  connect(_label, &QLabel::linkActivated, this, &NoteParameter::onLinkActivated);
   _grid->addWidget(_label, row, 0, 1, 3);
   return true;
 }

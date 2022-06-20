@@ -75,7 +75,7 @@ bool FileParameter::addTo(QWidget * widget, int row)
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   setTextSelectable(_label);
   _grid->addWidget(_button, row, 1, 1, 2);
-  connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
+  connect(_button, &QPushButton::clicked, this, &FileParameter::onButtonPressed);
   return true;
 }
 

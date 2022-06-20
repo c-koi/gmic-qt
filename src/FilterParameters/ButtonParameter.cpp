@@ -56,7 +56,7 @@ bool ButtonParameter::addTo(QWidget * widget, int row)
   _pushButton = new QPushButton(_text, widget);
   _pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   _grid->addWidget(_pushButton, row, 0, 1, 3, _alignment);
-  connect(_pushButton, SIGNAL(clicked(bool)), this, SLOT(onPushButtonClicked(bool)));
+  connect(_pushButton, &QPushButton::clicked, this, &ButtonParameter::onPushButtonClicked);
   return true;
 }
 

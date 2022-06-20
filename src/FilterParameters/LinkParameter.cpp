@@ -59,7 +59,7 @@ bool LinkParameter::addTo(QWidget * widget, int row)
   _label->setTextFormat(Qt::RichText);
   _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   setTextSelectable(_label);
-  connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
+  connect(_label, &QLabel::linkActivated, this, &LinkParameter::onLinkActivated);
   _grid->addWidget(_label, row, 0, 1, 3);
   return true;
 }

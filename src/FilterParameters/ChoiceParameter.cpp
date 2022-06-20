@@ -142,7 +142,7 @@ void ChoiceParameter::connectComboBox()
   if (_connected) {
     return;
   }
-  connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxIndexChanged(int)));
+  connect(_comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ChoiceParameter::onComboBoxIndexChanged);
   _connected = true;
 }
 

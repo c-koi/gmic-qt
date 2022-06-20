@@ -57,13 +57,13 @@ FiltersView::FiltersView(QWidget * parent) : QWidget(parent), ui(new Ui::Filters
   ui->treeView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
   ui->treeView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-  connect(delegate, SIGNAL(commitData(QWidget *)), this, SLOT(onRenameFaveFinished(QWidget *)));
-  connect(ui->treeView, SIGNAL(returnKeyPressed()), this, SLOT(onReturnKeyPressedInFiltersTree()));
-  connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
-  connect(&_model, SIGNAL(itemChanged(QStandardItem *)), this, SLOT(onItemChanged(QStandardItem *)));
+  connect(delegate, &FilterTreeItemDelegate::commitData, this, &FiltersView::onRenameFaveFinished);
+  connect(ui->treeView, &TreeView::returnKeyPressed, this, &FiltersView::onReturnKeyPressedInFiltersTree);
+  connect(ui->treeView, &TreeView::clicked, this, &FiltersView::onItemClicked);
+  connect(&_model, &QStandardItemModel::itemChanged, this, &FiltersView::onItemChanged);
 
   ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
-  connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomContextMenu(QPoint)));
+  connect(ui->treeView, &TreeView::customContextMenuRequested, this, &FiltersView::onCustomContextMenu);
   _faveContextMenu = nullptr;
   _filterContextMenu = nullptr;
   ui->treeView->installEventFilter(this);
@@ -673,15 +673,15 @@ QMenu * FiltersView::itemContextMenu(MenuType type, FilterTreeItem * item)
   switch (type) {
   case MenuType::Fave:
     action = menu->addAction(tr("Rename Fave"));
-    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRenameFave()));
+    connect(action, &QAction::triggered, this, &FiltersView::onContextMenuRenameFave);
     action = menu->addAction(tr("Remove Fave"));
-    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuRemoveFave()));
+    connect(action, &QAction::triggered, this, &FiltersView::onContextMenuRemoveFave);
     action = menu->addAction(tr("Clone Fave"));
-    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
+    connect(action, &QAction::triggered, this, &FiltersView::onContextMenuAddFave);
     break;
   case MenuType::Filter:
     action = menu->addAction(tr("Add Fave"));
-    connect(action, SIGNAL(triggered(bool)), this, SLOT(onContextMenuAddFave()));
+    connect(action, &QAction::triggered, this, &FiltersView::onContextMenuAddFave);
     break;
   }
   TagColorSet tags = item->tags();

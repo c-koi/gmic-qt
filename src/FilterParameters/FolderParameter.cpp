@@ -68,7 +68,7 @@ bool FolderParameter::addTo(QWidget * widget, int row)
   setTextSelectable(_label);
   _grid->addWidget(_button, row, 1, 1, 2);
   setValue(_value);
-  connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
+  connect(_button, &QPushButton::clicked, this, &FolderParameter::onButtonPressed);
   return true;
 }
 

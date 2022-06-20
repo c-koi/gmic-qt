@@ -194,9 +194,9 @@ void IntParameter::connectSliderSpinBox()
   if (_connected) {
     return;
   }
-  connect(_slider, SIGNAL(sliderMoved(int)), this, SLOT(onSliderMoved(int)));
-  connect(_slider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
-  connect(_spinBox, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxChanged(int)));
+  connect(_slider, &QSlider::sliderMoved, this, &IntParameter::onSliderMoved);
+  connect(_slider, &QSlider::valueChanged, this, &IntParameter::onSliderValueChanged);
+  connect(_spinBox, QOverload<int>::of(&CustomSpinBox::valueChanged), this, &IntParameter::onSpinBoxChanged);
   _connected = true;
 }
 

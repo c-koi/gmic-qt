@@ -155,11 +155,11 @@ void TextParameter::connectEditor()
     return;
   }
   if (_textEdit) {
-    connect(_textEdit, SIGNAL(valueChanged()), this, SLOT(onValueChanged()));
+    connect(_textEdit, &MultilineTextParameterWidget::valueChanged, this, &TextParameter::onValueChanged);
   } else if (_lineEdit) {
-    connect(_lineEdit, SIGNAL(editingFinished()), this, SLOT(onValueChanged()));
+    connect(_lineEdit, &QLineEdit::editingFinished, this, &TextParameter::onValueChanged);
 #if QT_VERSION_GTE(5, 2, 0)
-    connect(_updateAction, SIGNAL(triggered(bool)), this, SLOT(onValueChanged()));
+    connect(_updateAction, &QAction::triggered, this, &TextParameter::onValueChanged);
 #endif
   }
   _connected = true;

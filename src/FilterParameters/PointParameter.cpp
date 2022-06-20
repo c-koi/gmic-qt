@@ -422,10 +422,10 @@ void PointParameter::connectSpinboxes()
   if (_connected || !_spinBoxX) {
     return;
   }
-  connect(_spinBoxX, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
-  connect(_spinBoxY, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged()));
+  connect(_spinBoxX, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &PointParameter::onSpinBoxChanged);
+  connect(_spinBoxY, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &PointParameter::onSpinBoxChanged);
   if (_removable && _removeButton) {
-    connect(_removeButton, SIGNAL(toggled(bool)), this, SLOT(onRemoveButtonToggled(bool)));
+    connect(_removeButton, &QToolButton::toggled, this, &PointParameter::onRemoveButtonToggled);
   }
   _connected = true;
 }

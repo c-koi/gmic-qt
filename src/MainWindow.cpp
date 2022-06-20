@@ -159,19 +159,19 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   auto searchAction = new QAction(this);
   searchAction->setShortcut(QKeySequence::Find);
   searchAction->setShortcutContext(Qt::ApplicationShortcut);
-  connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
+  connect(searchAction, &QAction::triggered, ui->searchField, QOverload<>::of(&SearchFieldWidget::setFocus));
   addAction(searchAction);
 
   auto togglePreviewAction = new QAction(this);
   togglePreviewAction->setShortcut(QKeySequence("Ctrl+P"));
   togglePreviewAction->setShortcutContext(Qt::ApplicationShortcut);
-  connect(togglePreviewAction, SIGNAL(triggered(bool)), ui->cbPreview, SLOT(toggle()));
+  connect(togglePreviewAction, &QAction::triggered, ui->cbPreview, &QCheckBox::toggle);
   addAction(togglePreviewAction);
 
   searchAction = new QAction(this);
   searchAction->setShortcut(QKeySequence("/"));
   searchAction->setShortcutContext(Qt::ApplicationShortcut);
-  connect(searchAction, SIGNAL(triggered(bool)), ui->searchField, SLOT(setFocus()));
+  connect(searchAction, &QAction::triggered, ui->searchField, QOverload<>::of(&SearchFieldWidget::setFocus));
   addAction(searchAction);
 
   {
@@ -220,7 +220,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   QAction * escAction = new QAction(this);
   escAction->setShortcut(QKeySequence(Qt::Key_Escape));
   escAction->setShortcutContext(Qt::ApplicationShortcut);
-  connect(escAction, SIGNAL(triggered(bool)), this, SLOT(onEscapeKeyPressed()));
+  connect(escAction, &QAction::triggered, this, &MainWindow::onEscapeKeyPressed);
   addAction(escAction);
 
   CroppedImageListProxy::clear();
@@ -620,48 +620,36 @@ void MainWindow::showUpdateErrors()
 
 void MainWindow::makeConnections()
 {
-  connect(ui->zoomLevelSelector, SIGNAL(valueChanged(double)), ui->previewWidget, SLOT(setZoomLevel(double)));
+  connect(ui->zoomLevelSelector, &ZoomLevelSelector::valueChanged, ui->previewWidget, &PreviewWidget::setZoomLevel);
 
-  connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(showZoomWarningIfNeeded()));
-  connect(ui->previewWidget, SIGNAL(zoomChanged(double)), this, SLOT(updateZoomLabel(double)));
-  connect(ui->previewWidget, SIGNAL(previewVisibleRectIsChanging()), &_processor, SLOT(cancel()));
-
+  connect(ui->previewWidget, &PreviewWidget::zoomChanged, this, &MainWindow::showZoomWarningIfNeeded);
+  connect(ui->previewWidget, &PreviewWidget::zoomChanged, this, &MainWindow::updateZoomLabel);
+  connect(ui->previewWidget, &PreviewWidget::previewVisibleRectIsChanging, &_processor, &GmicProcessor::cancel);
   connect(_filtersPresenter, &FiltersPresenter::filterSelectionChanged, this, &MainWindow::onFilterSelectionChanged);
-
-  connect(ui->pbOk, SIGNAL(clicked(bool)), this, SLOT(onOkClicked()));
-  connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
-  connect(ui->pbApply, SIGNAL(clicked(bool)), this, SLOT(onApplyClicked()));
-  connect(ui->tbResetParameters, SIGNAL(clicked(bool)), this, SLOT(onReset()));
+  connect(ui->pbOk, &QPushButton::clicked, this, &MainWindow::onOkClicked);
+  connect(ui->pbCancel, &QPushButton::clicked, this, &MainWindow::onCancelClicked);
+  connect(ui->pbApply, &QPushButton::clicked, this, &MainWindow::onApplyClicked);
+  connect(ui->tbResetParameters, &QToolButton::clicked, this, &MainWindow::onReset);
   connect(ui->tbCopyCommand, &QToolButton::clicked, this, &MainWindow::onCopyGMICCommand);
-
-  connect(ui->tbUpdateFilters, SIGNAL(clicked(bool)), this, SLOT(onUpdateFiltersClicked()));
-
-  connect(ui->pbSettings, SIGNAL(clicked(bool)), this, SLOT(onSettingsClicked()));
-
-  connect(ui->pbFullscreen, SIGNAL(toggled(bool)), this, SLOT(onToggleFullScreen(bool)));
-
-  connect(ui->filterParams, SIGNAL(valueChanged()), this, SLOT(onParametersChanged()));
-  connect(ui->previewWidget, SIGNAL(previewUpdateRequested()), this, SLOT(onPreviewUpdateRequested()));
-  connect(ui->previewWidget, SIGNAL(keypointPositionsChanged(unsigned int, unsigned long)), this, SLOT(onPreviewKeypointsEvent(unsigned int, unsigned long)));
-
-  connect(ui->zoomLevelSelector, SIGNAL(zoomIn()), ui->previewWidget, SLOT(zoomIn()));
-  connect(ui->zoomLevelSelector, SIGNAL(zoomOut()), ui->previewWidget, SLOT(zoomOut()));
-  connect(ui->zoomLevelSelector, SIGNAL(zoomReset()), this, SLOT(onPreviewZoomReset()));
-
-  connect(ui->tbAddFave, SIGNAL(clicked(bool)), this, SLOT(onAddFave()));
+  connect(ui->tbUpdateFilters, &QToolButton::clicked, this, &MainWindow::onUpdateFiltersClicked);
+  connect(ui->pbSettings, &QPushButton::clicked, this, &MainWindow::onSettingsClicked);
+  connect(ui->pbFullscreen, &QPushButton::toggled, this, &MainWindow::onToggleFullScreen);
+  connect(ui->filterParams, &FilterParametersWidget::valueChanged, this, &MainWindow::onParametersChanged);
+  connect(ui->previewWidget, &PreviewWidget::previewUpdateRequested, this, QOverload<>::of(&MainWindow::onPreviewUpdateRequested));
+  connect(ui->previewWidget, &PreviewWidget::keypointPositionsChanged, this, &MainWindow::onPreviewKeypointsEvent);
+  connect(ui->zoomLevelSelector, &ZoomLevelSelector::zoomIn, ui->previewWidget, QOverload<>::of(&PreviewWidget::zoomIn));
+  connect(ui->zoomLevelSelector, &ZoomLevelSelector::zoomOut, ui->previewWidget, QOverload<>::of(&PreviewWidget::zoomOut));
+  connect(ui->zoomLevelSelector, &ZoomLevelSelector::zoomReset, this, &MainWindow::onPreviewZoomReset);
+  connect(ui->tbAddFave, &QToolButton::clicked, this, &MainWindow::onAddFave);
   connect(_filtersPresenter, &FiltersPresenter::faveAdditionRequested, this, &MainWindow::onAddFave);
   connect(ui->tbRemoveFave, &QToolButton::clicked, this, &MainWindow::onRemoveFave);
   connect(ui->tbRenameFave, &QToolButton::clicked, this, &MainWindow::onRenameFave);
-  connect(ui->inOutSelector, SIGNAL(inputModeChanged(InputMode)), this, SLOT(onInputModeChanged(InputMode)));
-
-  connect(ui->cbPreview, SIGNAL(toggled(bool)), this, SLOT(onPreviewCheckBoxToggled(bool)));
-  connect(ui->searchField, SIGNAL(textChanged(QString)), this, SLOT(search(QString)));
-
-  connect(ui->tbExpandCollapse, SIGNAL(clicked(bool)), this, SLOT(expandOrCollapseFolders()));
-  connect(ui->progressInfoWidget, SIGNAL(cancel()), this, SLOT(onProgressionWidgetCancelClicked()));
-
-  connect(ui->tbSelectionMode, SIGNAL(toggled(bool)), this, SLOT(onFiltersSelectionModeToggled(bool)));
-
+  connect(ui->inOutSelector, &InOutPanel::inputModeChanged, this, &MainWindow::onInputModeChanged);
+  connect(ui->cbPreview, &QCheckBox::toggled, this, &MainWindow::onPreviewCheckBoxToggled);
+  connect(ui->searchField, &SearchFieldWidget::textChanged, this, &MainWindow::search);
+  connect(ui->tbExpandCollapse, &QToolButton::clicked, this, &MainWindow::expandOrCollapseFolders);
+  connect(ui->progressInfoWidget, &ProgressInfoWidget::cancel, this, &MainWindow::onProgressionWidgetCancelClicked);
+  connect(ui->tbSelectionMode, &QToolButton::toggled, this, &MainWindow::onFiltersSelectionModeToggled);
   connect(&_processor, &GmicProcessor::previewImageAvailable, this, &MainWindow::onPreviewImageAvailable);
   connect(&_processor, &GmicProcessor::previewCommandFailed, this, &MainWindow::onPreviewError);
   connect(&_processor, &GmicProcessor::fullImageProcessingFailed, this, &MainWindow::onFullImageProcessingError);
@@ -931,7 +919,7 @@ void MainWindow::onCancelClicked()
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     if (_processor.isProcessing()) {
       _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
-      connect(&_processor, SIGNAL(noMoreUnfinishedJobs()), this, SLOT(close()));
+      connect(&_processor, &GmicProcessor::noMoreUnfinishedJobs, this, &MainWindow::close);
       ui->progressInfoWidget->showBusyIndicator();
       ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
       _processor.cancel();

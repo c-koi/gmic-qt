@@ -49,8 +49,8 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   ui->progressBar->setRange(0, 100);
   ui->tbCancel->setIcon(LOAD_ICON("process-stop"));
   ui->tbCancel->setToolTip(tr("Abort"));
-  connect(&_timer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
-  connect(ui->tbCancel, SIGNAL(clicked(bool)), this, SLOT(onCancelClicked()));
+  connect(&_timer, &QTimer::timeout, this, &ProgressInfoWidget::onTimeOut);
+  connect(ui->tbCancel, &QToolButton::clicked, this, &ProgressInfoWidget::onCancelClicked);
   if (!parent) {
     QRect position = frameGeometry();
     QList<QScreen *> screens = QGuiApplication::screens();
@@ -62,9 +62,9 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
 
   _showingTimer.setSingleShot(true);
   _showingTimer.setInterval(500);
-  connect(&_showingTimer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
-  connect(&_showingTimer, SIGNAL(timeout()), &_timer, SLOT(start()));
-  connect(&_showingTimer, SIGNAL(timeout()), this, SLOT(show()));
+  connect(&_showingTimer, &QTimer::timeout, this, &ProgressInfoWidget::onTimeOut);
+  connect(&_showingTimer, &QTimer::timeout, &_timer, QOverload<>::of(&QTimer::start));
+  connect(&_showingTimer, &QTimer::timeout, this, &ProgressInfoWidget::show);
 }
 
 ProgressInfoWidget::~ProgressInfoWidget()
