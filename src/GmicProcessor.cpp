@@ -148,7 +148,7 @@ void GmicProcessor::execute()
     manageSynchonousRunner(runner);
     recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
   } else if (_filterContext.requestType == FilterContext::RequestType::Preview) {
-    _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("preview");
@@ -163,7 +163,7 @@ void GmicProcessor::execute()
     _lastAppliedCommand = _filterContext.filterCommand;
     _lastAppliedCommandArguments = _filterContext.filterArguments;
     _lastAppliedCommandInOutState = _filterContext.inputOutputState;
-    _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env);
     _filterThread->swapImages(*_gmicImages);
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("apply");

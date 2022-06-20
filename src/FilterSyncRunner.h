@@ -80,7 +80,6 @@ private:
   QString _errorMessage;
   QString _name;
   QString _logSuffix;
-  OutputMessageMode _messageMode;
 };
 
 } // namespace GmicQt

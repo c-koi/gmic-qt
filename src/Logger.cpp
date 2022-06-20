@@ -28,6 +28,7 @@
 #include <QStringList>
 #include "Common.h"
 #include "GmicQt.h"
+#include "Settings.h"
 #include "Utils.h"
 #include "gmic.h"
 
@@ -86,6 +87,9 @@ void Logger::log(const QString & message, bool space)
 
 void Logger::log(const QString & message, const QString & hint, bool space)
 {
+  if (Settings::outputMessageMode() == OutputMessageMode::Quiet) {
+    return;
+  }
   QString text = message;
   while (!text.isEmpty() && text[text.size() - 1].isSpace()) {
     text.chop(1);

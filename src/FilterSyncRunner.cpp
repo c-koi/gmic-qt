@@ -31,6 +31,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "PersistentMemory.h"
+#include "Settings.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -40,8 +41,7 @@ FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, co
     : QObject(parent), _command(command), _arguments(arguments), _environment(environment), //
       _images(new cimg_library::CImgList<float>),                                           //
       _imageNames(new cimg_library::CImgList<char>),                                        //
-      _persistentMemoryOuptut(new cimg_library::CImg<char>),                                //
-      _messageMode(mode)
+      _persistentMemoryOuptut(new cimg_library::CImg<char>)
 {
 #ifdef _IS_MACOS_
   static bool stackSize8MB = false;
@@ -150,14 +150,12 @@ void FilterSyncRunner::run()
   _failed = false;
   QString fullCommandLine;
   try {
-    fullCommandLine = commandFromOutputMessageMode(_messageMode);
+    fullCommandLine = commandFromOutputMessageMode(Settings::outputMessageMode());
     appendWithSpace(fullCommandLine, _command);
     appendWithSpace(fullCommandLine, _arguments);
     _gmicAbort = false;
     _gmicProgress = -1;
-    if (_messageMode > OutputMessageMode::Quiet) {
-      Logger::log(fullCommandLine, _logSuffix, true);
-    }
+    Logger::log(fullCommandLine, _logSuffix, true);
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, 0, 0, 0.f);
     gmicInstance.set_variable("_persistent", PersistentMemory::image());
     gmicInstance.set_variable("_host", '=', GmicQtHost::ApplicationShortname);
@@ -170,9 +168,7 @@ void FilterSyncRunner::run()
     _imageNames->assign();
     const char * message = e.what();
     _errorMessage = message;
-    if (_messageMode > OutputMessageMode::Quiet) {
-      Logger::error(QString("When running command '%1', this error occurred:\n%2").arg(fullCommandLine).arg(message), true);
-    }
+    Logger::error(QString("When running command '%1', this error occurred:\n%2").arg(fullCommandLine).arg(message), true);
     _failed = true;
   }
 }

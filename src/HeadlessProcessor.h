@@ -74,7 +74,6 @@ private:
   QString _command;
   QString _arguments;
   OutputMode _outputMode;
-  OutputMessageMode _outputMessageMode;
   InputMode _inputMode;
   QTimer _singleShotTimer;
   bool _processingCompletedProperly;

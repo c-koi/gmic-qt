@@ -37,6 +37,7 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "ParametersCache.h"
+#include "Settings.h"
 #include "Updater.h"
 #include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
@@ -130,8 +131,6 @@ bool HeadlessProcessor::setPluginParameters(const RunParameters & parameters)
       }
     }
   }
-  _outputMessageMode = (OutputMessageMode)settings.value("OutputMessageMode", (int)DefaultOutputMessageMode).toInt();
-  Logger::setMode(_outputMessageMode);
   return _errorMessage.isEmpty();
 }
 
@@ -160,8 +159,8 @@ void HeadlessProcessor::startProcessing()
   }
   QString env = QString("_input_layers=%1").arg((int)_inputMode);
   env += QString(" _output_mode=%1").arg((int)_outputMode);
-  env += QString(" _output_messages=%1").arg((int)_outputMessageMode);
-  _filterThread = new FilterThread(this, _command, _arguments, env, _outputMessageMode);
+  env += QString(" _output_messages=%1").arg((int)Settings::outputMessageMode());
+  _filterThread = new FilterThread(this, _command, _arguments, env);
   _filterThread->swapImages(*_gmicImages);
   _filterThread->setImageNames(imageNames);
   _processingCompletedProperly = false;
