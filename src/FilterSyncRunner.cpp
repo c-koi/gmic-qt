@@ -37,7 +37,7 @@
 namespace GmicQt
 {
 
-FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment, OutputMessageMode mode)
+FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment)
     : QObject(parent), _command(command), _arguments(arguments), _environment(environment), //
       _images(new cimg_library::CImgList<float>),                                           //
       _imageNames(new cimg_library::CImgList<char>),                                        //

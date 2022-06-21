@@ -683,7 +683,6 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
 
   context.inputOutputState = ui->inOutSelector->state();
-  context.outputMessageMode = Settings::outputMessageMode();
   ui->previewWidget->getPositionStringCorrection(context.positionStringCorrection.xFactor, context.positionStringCorrection.yFactor);
   context.zoomFactor = ui->previewWidget->currentZoomFactor();
   context.previewWindowWidth = ui->previewWidget->width();
@@ -789,7 +788,6 @@ void MainWindow::processImage()
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   rect.x = rect.y = rect.w = rect.h = -1;
   context.inputOutputState = ui->inOutSelector->state();
-  context.outputMessageMode = Settings::outputMessageMode();
   context.filterName = currentFilter.plainTextName;
   context.filterFullPath = currentFilter.fullPath;
   context.filterHash = currentFilter.hash;

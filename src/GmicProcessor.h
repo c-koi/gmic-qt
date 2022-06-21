@@ -69,7 +69,6 @@ public:
     RequestType requestType;
     VisibleRect visibleRect;
     InputOutputState inputOutputState;
-    OutputMessageMode outputMessageMode;
     PositionStringCorrection positionStringCorrection;
     double zoomFactor;
     int previewWindowWidth;

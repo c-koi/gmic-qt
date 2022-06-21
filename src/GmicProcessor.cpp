@@ -43,6 +43,7 @@
 #include "Misc.h"
 #include "OverrideCursor.h"
 #include "PersistentMemory.h"
+#include "Settings.h"
 #include "gmic.h"
 
 namespace GmicQt
@@ -94,7 +95,7 @@ void GmicProcessor::execute()
   const InputOutputState & io = _filterContext.inputOutputState;
   QString env = QString("_input_layers=%1").arg(static_cast<int>(io.inputMode));
   env += QString(" _output_mode=%1").arg(static_cast<int>(io.outputMode));
-  env += QString(" _output_messages=%1").arg(static_cast<int>(_filterContext.outputMessageMode));
+  env += QString(" _output_messages=%1").arg(static_cast<int>(Settings::outputMessageMode()));
   if ((_filterContext.requestType == FilterContext::RequestType::Preview) || //
       (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview)) {
     env += QString(" _preview_area_width=%1").arg(_filterContext.previewWindowWidth);
@@ -137,7 +138,7 @@ void GmicProcessor::execute()
   env += QString(" _preview_width=%1").arg(previewSize.width());
   env += QString(" _preview_height=%1").arg(previewSize.height());
   if (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview) {
-    FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env, _filterContext.outputMessageMode);
+    FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env);
     runner.swapImages(*_gmicImages);
     runner.setImageNames(imageNames);
     runner.setLogSuffix("preview");
