@@ -162,7 +162,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         QString filterPreviewCommand = preview[0].trimmed();
         QString start = line;
         start.replace(QRegExp("^\\s*"), "");
-        start.replace(QRegExp(" .*"), " :");
+        start.replace(QRegExp(" .*"), "[ ]?:");
         QRegExp startRegexp(QString("^\\s*%1").arg(start));
 
         // Read parameters
@@ -179,7 +179,6 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
                  && !folderRegexpLanguage.exactMatch(buffer)   //
                  && !filterRegexpNoLanguage.exactMatch(buffer) //
                  && !filterRegexpLanguage.exactMatch(buffer));
-
         FiltersModel::Filter filter;
         filter.setName(filterName);
         filter.setCommand(filterCommand);
