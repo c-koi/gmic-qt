@@ -48,7 +48,7 @@ public slots:
   void onUpdate(bool);
 
 protected:
-  bool eventFilter(QObject * obj, QEvent * event);
+  bool eventFilter(QObject * obj, QEvent * event) override;
 
 private:
   Ui::MultilineTextParameterWidget * ui;
