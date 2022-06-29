@@ -27,6 +27,9 @@
 #include <QDebug>
 #include "Common.h"
 #include "Host/GmicQtHost.h"
+#ifndef gmic_core
+#include "CImg.h"
+#endif
 #include "gmic.h"
 
 namespace GmicQt

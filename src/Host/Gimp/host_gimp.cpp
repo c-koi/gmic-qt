@@ -38,6 +38,9 @@
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "GmicQt.h"
+#ifndef gmic_core
+#include "CImg.h"
+#endif
 #include "gmic.h"
 
 /*

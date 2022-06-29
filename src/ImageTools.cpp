@@ -27,6 +27,9 @@
 #include <QImage>
 #include <QPainter>
 #include "GmicStdlib.h"
+#ifndef gmic_core
+#include "CImg.h"
+#endif
 #include "gmic.h"
 
 /*

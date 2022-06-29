@@ -36,6 +36,9 @@
 #include "Common.h"
 #include "Host/GmicQtHost.h"
 #include "Logger.h"
+#ifndef gmic_core
+#include "CImg.h"
+#endif
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
