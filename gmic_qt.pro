@@ -65,7 +65,7 @@ equals( HOST, "gimp3" ) {
 
 DEFINES += cimg_use_cpp11=1
 DEFINES += cimg_use_fftw3 cimg_use_zlib
-DEFINES += gmic_core cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_jpeg
+DEFINES += cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_jpeg
 DEFINES += cimg_appname="\\\"gmic\\\""
 
 equals(TIMING, "on") {
@@ -416,6 +416,7 @@ equals(GMIC_DYNAMIC_LINKING, "on" ) {
 
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
    SOURCES += $$GMIC_PATH/gmic.cpp
+   DEFINES += gmic_core
 }
 
 # ALL_FORMS
