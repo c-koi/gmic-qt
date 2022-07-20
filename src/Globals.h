@@ -50,6 +50,7 @@ const char WarningPrefix = '!';
 #define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
 #define ENABLE_FILTER_TRANSLATION "Config/FilterTranslation"
 #define LANGUAGE_CODE_KEY "Config/LanguageCode"
+#define HIGHDPI_KEY "Config/HighDPIEnabled"
 #define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()
 #define ONE_DAY_HOURS (24)
 #define ONE_WEEK_HOURS (7 * 24)

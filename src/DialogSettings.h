@@ -59,6 +59,7 @@ public slots:
   void onOutputMessageModeChanged(int);
   void onPreviewZoomToggled(bool);
   void onNotifyStartupUpdateFailedToggle(bool);
+  void onHighDPIToggled(bool);
 
 private:
   Ui::DialogSettings * ui;

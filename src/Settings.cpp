@@ -50,6 +50,7 @@ int Settings::_previewTimeout = 16;
 OutputMessageMode Settings::_outputMessageMode;
 bool Settings::_previewZoomAlwaysEnabled = false;
 bool Settings::_notifyFailedStartupUpdate = true;
+bool Settings::_highDPI = false;
 
 const QColor Settings::CheckBoxBaseColor(83, 83, 83);
 const QColor Settings::CheckBoxTextColor(255, 255, 255);
@@ -85,6 +86,7 @@ void Settings::load(UserInterfaceMode userInterfaceMode)
   _previewZoomAlwaysEnabled = settings.value("AlwaysEnablePreviewZoom", false).toBool();
   _outputMessageMode = filterDeprecatedOutputMessageMode((GmicQt::OutputMessageMode)settings.value("OutputMessageMode", static_cast<int>(GmicQt::DefaultOutputMessageMode)).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
+  _highDPI = settings.value(HIGHDPI_KEY, false).toBool();
   if (userInterfaceMode != UserInterfaceMode::Silent) {
     AddIcon = LOAD_ICON("list-add");
     RemoveIcon = LOAD_ICON("list-remove");
@@ -205,6 +207,16 @@ void Settings::setNotifyFailedStartupUpdate(bool on)
   _notifyFailedStartupUpdate = on;
 }
 
+bool Settings::highDPIEnabled()
+{
+  return _highDPI;
+}
+
+void Settings::setHighDPIEnabled(bool on)
+{
+  _highDPI = on;
+}
+
 void Settings::save(QSettings & settings)
 {
   removeObsoleteKeys(settings);
@@ -221,12 +233,13 @@ void Settings::save(QSettings & settings)
   settings.setValue("PreviewTimeout", _previewTimeout);
   settings.setValue("OutputMessageMode", (int)_outputMessageMode);
   settings.setValue("AlwaysEnablePreviewZoom", _previewZoomAlwaysEnabled);
+  settings.setValue("Config/NotifyIfStartupUpdateFails", _notifyFailedStartupUpdate);
+  settings.setValue(HIGHDPI_KEY, _highDPI);
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
   settings.remove("Config/UseFaveOutputMode");
   settings.remove("Config/UseFaveOutputMessages");
   settings.remove("Config/UseFavePreviewMode");
-  settings.setValue("Config/NotifyIfStartupUpdateFails", _notifyFailedStartupUpdate);
 }
 
 void Settings::removeObsoleteKeys(QSettings & settings)

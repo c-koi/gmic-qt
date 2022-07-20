@@ -62,6 +62,8 @@ public:
   static void setPreviewZoomAlwaysEnabled(bool);
   static bool notifyFailedStartupUpdate();
   static void setNotifyFailedStartupUpdate(bool);
+  static bool highDPIEnabled();
+  static void setHighDPIEnabled(bool);
 
   static void save(QSettings &);
   static void load(UserInterfaceMode userInterfaceMode);
@@ -90,6 +92,7 @@ private:
   static OutputMessageMode _outputMessageMode;
   static bool _previewZoomAlwaysEnabled;
   static bool _notifyFailedStartupUpdate;
+  static bool _highDPI;
 };
 
 } // namespace GmicQt
