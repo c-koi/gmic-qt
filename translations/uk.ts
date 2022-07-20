@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="202"/>
-        <source>Use native color dialog</source>
-        <translation>Використовувати власні кольори діалогових вікон</translation>
+        <source>&amp;Use native color dialog</source>
+        <translation>&amp;Використовувати власні кольори діалогових вікон</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="163"/>

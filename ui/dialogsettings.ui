@@ -193,13 +193,20 @@
          <item>
           <widget class="QGroupBox" name="groupBox_4">
            <property name="title">
-            <string>Dialogs</string>
+            <string>Misc</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QCheckBox" name="cbNativeColorDialogs">
               <property name="text">
-               <string>Use native color dialog</string>
+               <string>&amp;Use native color dialog</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string>&amp;Enable High-DPI support</string>
               </property>
              </widget>
             </item>

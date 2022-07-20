@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="202"/>
-        <source>Use native color dialog</source>
-        <translation>Dialogues de choix de couleur natifs</translation>
+        <source>&amp;Use native color dialog</source>
+        <translation>&amp;Dialogues de choix de couleur natifs</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="163"/>
