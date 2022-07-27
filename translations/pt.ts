@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Original Portuguese translation done by maxr -->
-
 <!DOCTYPE TS>
-<TS version="2.1" language="pt">
+<TS version="2.0" language="pt">
 <context>
     <name>DialogSettings</name>
     <message>
@@ -64,7 +61,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="149"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="179"/>
@@ -259,7 +256,7 @@
         <source>Error parsing filter parameters
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Erro nos parâmetros do filtro</translation>
     </message>
 </context>
 <context>
@@ -267,7 +264,7 @@
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="499"/>
         <source>Unknown filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro desconhecido</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="609"/>
@@ -473,12 +470,12 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="207"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="209"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Saída</translation>
     </message>
 </context>
 <context>
@@ -504,7 +501,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="117"/>
         <source>Reset parameters to default values</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetar parametros para o valor padrão</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
@@ -534,7 +531,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="145"/>
         <source>Selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de seleção</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="183"/>
@@ -763,7 +760,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="55"/>
         <source>Show All Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir todos os filtros</translation>
     </message>
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="59"/>
@@ -835,13 +832,13 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Diálogo</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="20"/>
         <location filename="../src/Host/None/JpegQualityDialog.cpp" line="12"/>
         <source>JPEG Quality</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualidade do JPEG</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="28"/>
@@ -861,12 +858,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="85"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="92"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -918,7 +915,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished">Janela Principal</translation>
+        <translation>Janela Principal</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="401"/>
@@ -1021,17 +1018,17 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/host_none.cpp" line="83"/>
         <source>Could not open file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pode abrir arquivo.</translation>
     </message>
     <message>
         <location filename="../src/Host/None/host_none.cpp" line="87"/>
         <source>Default image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem padrão</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="81"/>
         <source>Visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Visível</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="104"/>
@@ -1046,37 +1043,37 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Tags.cpp" line="157"/>
         <source>None</source>
-        <translation type="unfinished">Nenhuma</translation>
+        <translation>Nenhuma</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="158"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Vermelho</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="159"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation>Verde</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>Azul</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="161"/>
         <source>Cyan</source>
-        <translation type="unfinished"></translation>
+        <translation>Ciano</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="162"/>
         <source>Magenta</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="163"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation>Amarelo</translation>
     </message>
     <message>
         <location filename="../src/LanguageSettings.cpp" line="127"/>
@@ -1120,22 +1117,22 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="85"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="88"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar como...</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="123"/>
         <source>%1 file (*.%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 arquivo (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="144"/>
         <source>Save image as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar imagem como...</translation>
     </message>
 </context>
 <context>
@@ -1143,12 +1140,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="66"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="66"/>
         <source>Could not write image file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível gravar a imagem %1</translation>
     </message>
 </context>
 </TS>
