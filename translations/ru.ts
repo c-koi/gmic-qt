@@ -79,17 +79,17 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="196"/>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation>Разное</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="209"/>
         <source>&amp;Enable High-DPI support</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Включить поддержку высокого разрешения</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="216"/>
         <source>&lt;i&gt;(Restart needed)&lt;/i&gt;</source>
-        <translation type="unfinished">&lt;i&gt;(Требуется перезапуск)&lt;/i&gt;</translation>
+        <translation>&lt;i&gt;(Требуется перезапуск)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="232"/>
@@ -275,7 +275,8 @@
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="609"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось найти оригинал этого избранного фильтра
+</translation>
     </message>
 </context>
 <context>
@@ -663,7 +664,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="1291"/>
         <source>Import faves</source>
-        <translation>Импорт избранного</translation>
+        <translation>Импорт избранных</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1291"/>
@@ -715,12 +716,12 @@ Command found for this path : %3</source>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="204"/>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="217"/>
         <source>[Processing %1 | %2]</source>
-        <translation>[Обработано %1 | %2]</translation>
+        <translation>[Обрабатывается %1 | %2]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="219"/>
         <source>[Processing %1]</source>
-        <translation>[Обработано %1]</translation>
+        <translation>[Обрабатывается %1]</translation>
     </message>
 </context>
 <context>
@@ -728,7 +729,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="52"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
-        <translation>Прогресс плагина G&apos;MIC-Qt</translation>
+        <translation>G&apos;MIC-Qt Прогресс плагина</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="144"/>
@@ -738,12 +739,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="154"/>
         <source>[Processing %1 | %2]</source>
-        <translation>[Обработано %1 | %2]</translation>
+        <translation>[Обрабатывается %1 | %2]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="156"/>
         <source>[Processing %1]</source>
-        <translation>[Обработано %1]</translation>
+        <translation>[Обрабатывается %1]</translation>
     </message>
 </context>
 <context>
@@ -797,7 +798,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="59"/>
         <source>Show %1 Tags</source>
-        <translation>Отобразить %1 маркеры</translation>
+        <translation>Отобразить %1(ые) маркеры</translation>
     </message>
 </context>
 <context>
@@ -820,7 +821,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="154"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
-        <translation>Внимание: предпросмотр может быть неточным (изменена настройка для масштабирования)</translation>
+        <translation>Внимание: предпросмотр может быть неточным (изменена настройка масштабирования)</translation>
     </message>
 </context>
 <context>
