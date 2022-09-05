@@ -137,3 +137,13 @@ OutputMode: 0
 ### Option `--show-last-after`
 
 Print last applied plugin parameters after filter execution. (Indeed, some filters may change the value of their parameters.)
+
+### Option `--layers`
+
+Consider multiple input files as layers of the same image (first image is the top layer).
+
+```sh
+$ ./gmic_qt -p "Blend [Average All]" --layers --apply -o output.png toplayer.png middlelayer.png bottomlayer.png
+```
+
+
