@@ -17,7 +17,7 @@ suggested to include one of the `%b` or `%f` placeholders in the specified filen
   - `%b` is the input file basename, that is the filename with no extension and no path.
   - `%f` is the input file filename (without path).
 
-If, on the other hand, multiple layers are expected as output, the `%l` placeholder will be replaced by the layer number in each output file.
+If, on the other hand, multiple layers are expected as output, the `%l` placeholder will be replaced by the layer number in each output file (0 is top layer).
 
 #### Examples
 
@@ -148,5 +148,3 @@ Consider multiple input files as layers of the same image (first image is the to
 ```sh
 $ ./gmic_qt -p "Blend [Average All]" --layers --apply -o output.png toplayer.png middlelayer.png bottomlayer.png
 ```
-
-
