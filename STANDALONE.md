@@ -17,6 +17,7 @@ suggested to include one of the `%b` or `%f` placeholders in the specified filen
   - `%b` is the input file basename, that is the filename with no extension and no path.
   - `%f` is the input file filename (without path).
 
+If, on the other hand, multiple layers are expected as output, the `%l` placeholder will be replaced by the layer number in each output file.
 
 #### Examples
 
@@ -25,6 +26,8 @@ suggested to include one of the `%b` or `%f` placeholders in the specified filen
 $ ./gmic_qt --output output.png input.png
 # Select a filter and its parameters twice (i.e. once for each input), save each output to a distinct file.
 $ ./gmic_qt --output processed-%f input1.png input2.png
+# Save the expected output layers in layer_0.png, layer_1.png, ...
+$ ./gmic_qt -o /tmp/layer_%l.png -p "Layers/Tiles to Layers" gmicky.png
 ```
 
 ### Option `-q --quality N`

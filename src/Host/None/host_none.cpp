@@ -228,21 +228,26 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
         delete dialog;
       }
     } else {
-      gmic_qt_standalone::input_images.resize(1);
-      gmic_qt_standalone::current_image_filenames.resize(1);
-      GmicQt::convertCImgToQImage(images[0], gmic_qt_standalone::input_images.first());
-      QString outputFilename = gmic_qt_standalone::output_image_filename;
-      if (outputFilename.contains("%b")) {
-        const QString basename = QFileInfo(gmic_qt_standalone::input_image_filenames.first()).completeBaseName();
-        outputFilename.replace("%b", basename);
+      gmic_qt_standalone::input_images.resize(images.size());
+      gmic_qt_standalone::current_image_filenames.resize(images.size());
+      for (unsigned int layer = 0; layer < images.size(); ++layer) {
+        GmicQt::convertCImgToQImage(images[layer], gmic_qt_standalone::input_images[layer]);
+        QString outputFilename = gmic_qt_standalone::output_image_filename;
+        if (outputFilename.contains("%b")) {
+          const QString basename = QFileInfo(gmic_qt_standalone::input_image_filenames.first()).completeBaseName();
+          outputFilename.replace("%b", basename);
+        }
+        if (outputFilename.contains("%f")) {
+          const QString filename = QFileInfo(gmic_qt_standalone::input_image_filenames.first()).fileName();
+          outputFilename.replace("%f", filename);
+        }
+        if (outputFilename.contains("%l")) {
+          outputFilename.replace("%l", QString::number(layer));
+        }
+        std::cout << "[gmic_qt] Writing output file for layer " << layer << ": " << outputFilename.toStdString() << std::endl;
+        gmic_qt_standalone::input_images[layer].save(outputFilename, nullptr, gmic_qt_standalone::jpeg_quality);
+        gmic_qt_standalone::current_image_filenames[layer] = gmic_qt_standalone::imageName((const char *)imageNames[layer]);
       }
-      if (outputFilename.contains("%f")) {
-        const QString filename = QFileInfo(gmic_qt_standalone::input_image_filenames.first()).fileName();
-        outputFilename.replace("%f", filename);
-      }
-      std::cout << "[gmic_qt] Writing output file " << outputFilename.toStdString() << std::endl;
-      gmic_qt_standalone::input_images.first().save(outputFilename, nullptr, gmic_qt_standalone::jpeg_quality);
-      gmic_qt_standalone::current_image_filenames.first() = gmic_qt_standalone::imageName((const char *)imageNames[0]);
     }
   }
   unused(mode);
@@ -267,6 +272,7 @@ void usage(const std::string & argv0)
                "                        -o --output FILE : Write output image to FILE\n"
                "                                            %b will be replaced by the input file basename (i.e. without path and extension)\n"
                "                                            %f will be replaced by the input filename (without path)\n"
+               "                                            %l will be replaced by the layer number (0 is top layer)\n"
                "                        -q --quality NNN : JPEG quality of output file(s) in 0..100\n"
                "                             -r --repeat : Use last applied filter and parameters\n"
                "     -p --path FILTER_PATH | FILTER_NAME : Select filter\n"
