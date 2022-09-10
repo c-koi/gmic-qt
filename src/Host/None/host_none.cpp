@@ -230,7 +230,8 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
     } else {
       gmic_qt_standalone::input_images.resize(images.size());
       gmic_qt_standalone::current_image_filenames.resize(images.size());
-      for (unsigned int layer = 0; layer < images.size(); ++layer) {
+      const unsigned int layerLimit = gmic_qt_standalone::output_image_filename.contains("%l") ? images.size() : 1;
+      for (unsigned int layer = 0; layer < layerLimit; ++layer) {
         GmicQt::convertCImgToQImage(images[layer], gmic_qt_standalone::input_images[layer]);
         QString outputFilename = gmic_qt_standalone::output_image_filename;
         if (outputFilename.contains("%b")) {
@@ -241,9 +242,7 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
           const QString filename = QFileInfo(gmic_qt_standalone::input_image_filenames.first()).fileName();
           outputFilename.replace("%f", filename);
         }
-        if (outputFilename.contains("%l")) {
-          outputFilename.replace("%l", QString::number(layer));
-        }
+        outputFilename.replace("%l", QString::number(layer));
         std::cout << "[gmic_qt] Writing output file for layer " << layer << ": " << outputFilename.toStdString() << std::endl;
         gmic_qt_standalone::input_images[layer].save(outputFilename, nullptr, gmic_qt_standalone::jpeg_quality);
         gmic_qt_standalone::current_image_filenames[layer] = gmic_qt_standalone::imageName((const char *)imageNames[layer]);
