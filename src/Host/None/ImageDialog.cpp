@@ -56,11 +56,11 @@ void ImageView::setImage(const QImage & image)
 bool ImageView::save(const QString & filename, int quality)
 {
   QString ext = QFileInfo(filename).suffix().toLower();
-  if ((ext == "jpg" || ext == "jpeg") && (quality == -1)) {
+  if ((ext == "jpg" || ext == "jpeg") && (quality == ImageDialog::UNSPECIFIED_JPEG_QUALITY)) {
     quality = JpegQualityDialog::ask(dynamic_cast<QWidget *>(parent()), -1);
-  }
-  if (quality == -1) {
-    return false;
+    if (quality == ImageDialog::UNSPECIFIED_JPEG_QUALITY) {
+      return false;
+    }
   }
   if (!_image.save(filename, nullptr, quality)) {
     QMessageBox::critical(this, tr("Error"), tr("Could not write image file %1").arg(filename));

@@ -70,6 +70,8 @@ public:
   int currentImageIndex() const;
   static void supportedImageFormats(QStringList & extensions, QString & filters);
   void setJPEGQuality(int);
+  static const int UNSPECIFIED_JPEG_QUALITY = -1;
+
 public slots:
   void onSaveAs();
   void onCloseClicked(bool);
@@ -80,7 +82,6 @@ private:
   QTabWidget * _tabWidget;
   QVector<bool> _savedTab;
   int _jpegQuality;
-  static const int UNSPECIFIED_JPEG_QUALITY = -1;
 };
 
 } // namespace gmic_qt_standalone

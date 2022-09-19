@@ -56,7 +56,7 @@ QVector<QImage> input_images;
 QVector<QString> current_image_filenames;
 QVector<QString> input_image_filenames;
 QString output_image_filename;
-int jpeg_quality = -1;
+int jpeg_quality = ImageDialog::UNSPECIFIED_JPEG_QUALITY;
 
 QWidget * visibleMainWindow()
 {
