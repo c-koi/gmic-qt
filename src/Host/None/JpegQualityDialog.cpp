@@ -1,5 +1,6 @@
 #include "JpegQualityDialog.h"
 #include <QSettings>
+#include "Settings.h"
 #include "ui_jpegqualitydialog.h"
 int JpegQualityDialog::_permanentQuality = -1;
 int JpegQualityDialog::_selectedQuality = -1;
@@ -29,6 +30,13 @@ JpegQualityDialog::JpegQualityDialog(QWidget * parent) : QDialog(parent), ui(new
   connect(ui->pbOk, &QPushButton::clicked, this, &QDialog::accept);
   connect(ui->pbCancel, &QPushButton::clicked, this, &QDialog::reject);
   connect(ui->makePermanent, &QCheckBox::toggled, this, &JpegQualityDialog::makePermanent);
+
+  if (GmicQt::Settings::darkThemeEnabled()) {
+    QPalette p = ui->makePermanent->palette();
+    p.setColor(QPalette::Text, GmicQt::Settings::CheckBoxTextColor);
+    p.setColor(QPalette::Base, GmicQt::Settings::CheckBoxBaseColor);
+    ui->makePermanent->setPalette(p);
+  }
 }
 
 JpegQualityDialog::~JpegQualityDialog()
