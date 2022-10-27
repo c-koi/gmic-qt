@@ -2342,9 +2342,18 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
     }
 }
 
-void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images)
+void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & image)
 {
-    unused(images);
+	if (!image)
+	{
+		return;
+	}
+	
+    if (host_8bf::grayScale && (image.spectrum() == 3 || image.spectrum() == 4))
+	{
+		// Convert the RGB image to grayscale.
+		GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
+	}
 }
 
 void showMessage(const char * message)
