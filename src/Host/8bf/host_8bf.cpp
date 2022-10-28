@@ -652,8 +652,8 @@ namespace
 
         return InputFileParseStatus::Ok;
     }
-	
-	InputFileParseStatus CopyTileToGmicImage32Interleaved(
+
+    InputFileParseStatus CopyTileToGmicImage32Interleaved(
         const float* tileBuffer,
         size_t tileBufferStride,
         int left,
@@ -1011,9 +1011,9 @@ namespace
         case 16:
             status = ConvertGmic8bfInputToGmicImage16(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
             break;
-		case 32:
-		    status = ConvertGmic8bfInputToGmicImage32(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
-			break;
+        case 32:
+            status = ConvertGmic8bfInputToGmicImage32(dataStream, inTileWidth, inTileHeight, numberOfChannels, planar, image);
+            break;
         default:
             status = InputFileParseStatus::InvalidArgument;
             break;
@@ -1742,8 +1742,8 @@ namespace
             }
         }
     }
-	
-	void WriteGmicOutputTile32Interleaved(
+
+    void WriteGmicOutputTile32Interleaved(
         QDataStream& dataStream,
         const cimg_library::CImg<float>& in,
         float* rowBuffer,
@@ -2334,9 +2334,9 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
             case 16:
                 WriteGmicOutput16(outputPath, in, planar, tileWidth, tileHeight);
                 break;
-			case 32:
-			    WriteGmicOutput32(outputPath, in, planar, tileWidth, tileHeight);
-				break;
+            case 32:
+                WriteGmicOutput32(outputPath, in, planar, tileWidth, tileHeight);
+                break;
             }
         }
     }
@@ -2344,16 +2344,16 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
 
 void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & image)
 {
-	if (!image)
-	{
-		return;
-	}
-	
+    if (!image)
+    {
+        return;
+    }
+
     if (host_8bf::grayScale && (image.spectrum() == 3 || image.spectrum() == 4))
-	{
-		// Convert the RGB image to grayscale.
-		GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
-	}
+    {
+        // Convert the RGB image to grayscale.
+        GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
+    }
 }
 
 void showMessage(const char * message)
