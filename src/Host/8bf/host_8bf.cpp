@@ -46,6 +46,8 @@
 #include "CImg.h"
 #endif
 #include "gmic.h"
+#include <lcms2.h>
+#include <QMainWindow>
 
 struct Gmic8bfLayer
 {
@@ -67,6 +69,12 @@ namespace host_8bf
     int32_t documentHeight;
     int32_t hostTileWidth;
     int32_t hostTileHeight;
+    cmsContext lcmsContext;
+    cmsHPROFILE imageProfile;
+    cmsHPROFILE displayProfile;
+    bool fetchedDisplayProfileFromQtWidget;
+    cmsHTRANSFORM transform;
+    cmsUInt32Number transformFormat;
 }
 
 namespace GmicQtHost
@@ -107,7 +115,9 @@ namespace
         InvalidArgument,
         OutOfMemory,
         EndOfFile,
-        PlatformEndianMismatch
+        PlatformEndianMismatch,
+        FileReadError,
+        IccProfileError
     };
 
     InputFileParseStatus FillTileBuffer(
@@ -1022,6 +1032,27 @@ namespace
         return status;
     }
 
+    InputFileParseStatus ReadColorProfile(const QString& path, cmsContext context, cmsHPROFILE* outProfile)
+    {
+        QFile file(path);
+
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            return InputFileParseStatus::FileOpenError;
+        }
+
+        QByteArray data = file.readAll();
+
+        if (static_cast<qint64>(data.size()) != file.size())
+        {
+            return InputFileParseStatus::FileReadError;
+        }
+
+        *outProfile = cmsOpenProfileFromMemTHR(context, data.constData(), static_cast<cmsUInt32Number>(data.size()));
+
+        return *outProfile != nullptr ? InputFileParseStatus::Ok : InputFileParseStatus::IccProfileError;
+    }
+
     InputFileParseStatus ParseInputFileIndex(const QString& indexFilePath)
     {
         QFile file(indexFilePath);
@@ -1068,7 +1099,7 @@ namespace
 
         dataStream >> fileVersion;
 
-        if (fileVersion != 2)
+        if (fileVersion != 3)
         {
             return InputFileParseStatus::UnknownFileVersion;
         }
@@ -1079,16 +1110,47 @@ namespace
 
         dataStream >> host_8bf::activeLayerIndex;
 
+        dataStream >> host_8bf::bitsPerChannel;
+
         uint8_t grayScale;
 
         dataStream >> grayScale;
 
         host_8bf::grayScale = grayScale != 0;
 
-        dataStream >> host_8bf::bitsPerChannel;
+        uint8_t haveIccProfiles;
 
-        // Skip the padding bytes.
-        dataStream.skipRawData(2);
+        dataStream >> haveIccProfiles;
+
+        // Skip the padding byte.
+        dataStream.skipRawData(1);
+
+        if (haveIccProfiles != 0)
+        {
+            QString imageColorProfile = ReadUTF8String(dataStream);
+            QString displayColorProfile = ReadUTF8String(dataStream);
+
+            host_8bf::lcmsContext = cmsCreateContext(nullptr, nullptr);
+
+            if (host_8bf::lcmsContext == nullptr)
+            {
+                return InputFileParseStatus::IccProfileError;
+            }
+
+            InputFileParseStatus status = ReadColorProfile(imageColorProfile, host_8bf::lcmsContext, &host_8bf::imageProfile);
+
+            if (status != InputFileParseStatus::Ok)
+            {
+                return status;
+            }
+
+            status = ReadColorProfile(displayColorProfile, host_8bf::lcmsContext, &host_8bf::displayProfile);
+
+            if (status != InputFileParseStatus::Ok)
+            {
+                return status;
+            }
+        }
 
         host_8bf::layers.reserve(layerCount);
 
@@ -2166,6 +2228,80 @@ namespace
             WriteUtf8String(dataStream, parameters.filterName());
         }
     }
+
+    QWidget* visibleMainWindow()
+    {
+        for (QWidget* w : QApplication::topLevelWidgets()) {
+
+            if ((dynamic_cast<QMainWindow*>(w) != nullptr) && (w->isVisible())) {
+                return w;
+            }
+        }
+        return nullptr;
+    }
+
+#ifdef Q_OS_WIN
+    void FetchDisplayProfileFromWindowHandle(HWND hwnd)
+    {
+        HMONITOR hMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+
+        MONITORINFOEXW monitorInfo{};
+        monitorInfo.cbSize = sizeof(monitorInfo);
+
+        if (GetMonitorInfoW(hMonitor, &monitorInfo))
+        {
+            HDC hdc = CreateDCW(monitorInfo.szDevice, monitorInfo.szDevice, nullptr, nullptr);
+
+            if (hdc != nullptr)
+            {
+                DWORD size = 0;
+
+                GetICMProfileA(hdc, &size, nullptr);
+
+                if (size > 0)
+                {
+                    CHAR* chars = new (std::nothrow) CHAR[size];
+
+                    if (chars != nullptr && GetICMProfileA(hdc, &size, chars))
+                    {
+                        cmsHPROFILE profile = cmsOpenProfileFromFileTHR(host_8bf::lcmsContext, chars, "rb");
+
+                        if (profile != nullptr)
+                        {
+                            if (host_8bf::displayProfile != nullptr)
+                            {
+                                cmsCloseProfile(host_8bf::displayProfile);
+                            }
+
+                            host_8bf::displayProfile = profile;
+                        }
+                    }
+
+                    delete[] chars;
+                }
+
+                DeleteDC(hdc);
+            }
+        }
+    }
+#endif
+
+    void FetchDisplayProfileFromQtWidget()
+    {
+#ifdef Q_OS_WIN
+        QWidget* mainWindow = visibleMainWindow();
+
+        if (mainWindow != nullptr)
+        {
+            WId mainWindowHandle = mainWindow->winId();
+
+            if (mainWindowHandle != static_cast<quintptr>(0))
+            {
+                FetchDisplayProfileFromWindowHandle(reinterpret_cast<HWND>(mainWindowHandle));
+            }
+        }
+#endif
+    }
 }
 
 namespace GmicQtHost {
@@ -2344,16 +2480,115 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
 
 void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & image)
 {
-    if (!image)
+    if (!image || image.spectrum() > 4)
     {
         return;
     }
 
-    if (host_8bf::grayScale && (image.spectrum() == 3 || image.spectrum() == 4))
+    const bool performColorCorrection = host_8bf::lcmsContext != nullptr && host_8bf::imageProfile != nullptr && host_8bf::displayProfile != nullptr;
+
+    if (host_8bf::grayScale)
     {
-        // Convert the RGB image to grayscale.
-        GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
+        if (image.spectrum() == 3 || image.spectrum() == 4)
+        {
+            // Convert the RGB image to gray scale.
+            GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
+        }
     }
+    else
+    {
+        if (performColorCorrection && (image.spectrum() == 1 || image.spectrum() == 2))
+        {
+            // Convert the gray scale image to RGB.
+            // The color profile of a RGB image may not support gray scale image data.
+            GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
+        }
+    }
+
+    if (!performColorCorrection)
+    {
+        return;
+    }
+
+    if (!host_8bf::fetchedDisplayProfileFromQtWidget)
+    {
+        host_8bf::fetchedDisplayProfileFromQtWidget = true;
+
+        FetchDisplayProfileFromQtWidget();
+    }
+
+    cimg_library::CImg<gmic_pixel_type> corrected;
+    image.get_permute_axes("cxyz").move_to(corrected) /= 255;
+
+#ifndef TYPE_GRAYA_FLT
+#define TYPE_GRAYA_FLT FLOAT_SH(1)|COLORSPACE_SH(PT_GRAY)|EXTRA_SH(1)|CHANNELS_SH(1)|BYTES_SH(4)
+#endif
+
+    cmsUInt32Number format = 0;
+    cmsUInt32Number transformFlags = cmsFLAGS_BLACKPOINTCOMPENSATION;
+
+    switch (image.spectrum())
+    {
+    case 1:
+        format = TYPE_GRAY_FLT;
+        break;
+    case 2:
+        format = TYPE_GRAYA_FLT;
+        transformFlags |= cmsFLAGS_COPY_ALPHA;
+        break;
+    case 3:
+        format = TYPE_RGB_FLT;
+        break;
+    case 4:
+        format = TYPE_RGBA_FLT;
+        transformFlags |= cmsFLAGS_COPY_ALPHA;
+        break;
+    }
+
+    if (format != 0)
+    {
+        if (format != host_8bf::transformFormat)
+        {
+            host_8bf::transformFormat = format;
+
+            if (host_8bf::transform != nullptr)
+            {
+                cmsDeleteTransform(host_8bf::transform);
+            }
+
+            host_8bf::transform = cmsCreateTransformTHR(
+                host_8bf::lcmsContext,
+                host_8bf::imageProfile,
+                format,
+                host_8bf::displayProfile,
+                format,
+                INTENT_RELATIVE_COLORIMETRIC,
+                transformFlags);
+        }
+
+        if (host_8bf::transform != nullptr)
+        {
+            const cmsUInt64Number bytesPerLine64 = static_cast<cmsUInt64Number>(image.width()) * image.spectrum() * sizeof(gmic_pixel_type);
+
+            if (bytesPerLine64 <= std::numeric_limits<cmsUInt32Number>::max())
+            {
+                const cmsUInt64Number bytesPerLine = static_cast<cmsUInt32Number>(bytesPerLine64);
+
+                cmsDoTransformLineStride(
+                    host_8bf::transform,
+                    corrected.data(),
+                    corrected.data(),
+                    image.width(),
+                    image.height(),
+                    bytesPerLine,
+                    bytesPerLine,
+                    0,
+                    0);
+            }
+        }
+    }
+
+    (corrected.permute_axes("yzcx") *= 255).cut(0, 255).move_to(image);
 }
 
 void showMessage(const char * message)
@@ -2405,6 +2640,29 @@ bool launchDebugger()
 }
 #endif // defined(_MSC_VER) && defined(_DEBUG)
 
+void DestroyLCMSData()
+{
+    if (host_8bf::imageProfile != nullptr)
+    {
+        cmsCloseProfile(host_8bf::imageProfile);
+    }
+
+    if (host_8bf::displayProfile != nullptr)
+    {
+        cmsCloseProfile(host_8bf::displayProfile);
+    }
+
+    if (host_8bf::transform != nullptr)
+    {
+        cmsDeleteTransform(host_8bf::transform);
+    }
+
+    if (host_8bf::lcmsContext != nullptr)
+    {
+        cmsDeleteContext(host_8bf::lcmsContext);
+    }
+}
+
 int main(int argc, char *argv[])
 {
 #if defined(_MSC_VER) && defined(_DEBUG)
@@ -2446,34 +2704,49 @@ int main(int argc, char *argv[])
 
     try
     {
+        host_8bf::lcmsContext = nullptr;
+        host_8bf::imageProfile = nullptr;
+        host_8bf::displayProfile = nullptr;
+        host_8bf::fetchedDisplayProfileFromQtWidget = false;
+        host_8bf::transform = nullptr;
+        host_8bf::transformFormat = 0;
+
         InputFileParseStatus status = ParseInputFileIndex(indexFilePath);
 
         // The return value 5 is skipped because it is already being used to
         // indicate that the user canceled the dialog.
-        switch (status)
+        if (status != InputFileParseStatus::Ok)
         {
-        case InputFileParseStatus::Ok:
-            // No error
-            break;
-        case InputFileParseStatus::FileOpenError:
-            return 6;
-        case InputFileParseStatus::BadFileSignature:
-        case InputFileParseStatus::InvalidArgument:
-            return 7;
-        case InputFileParseStatus::UnknownFileVersion:
-            return 8;
-        case InputFileParseStatus::OutOfMemory:
-            return 9;
-        case InputFileParseStatus::EndOfFile:
-            return 10;
-        case InputFileParseStatus::PlatformEndianMismatch:
-            return 11;
-        default:
-            return 4; // Unknown error
+            DestroyLCMSData();
+
+            switch (status)
+            {
+            case InputFileParseStatus::InvalidArgument:
+               return 3;
+            case InputFileParseStatus::FileOpenError:
+                return 6;
+            case InputFileParseStatus::BadFileSignature:
+                return 7;
+            case InputFileParseStatus::UnknownFileVersion:
+                return 8;
+            case InputFileParseStatus::OutOfMemory:
+                return 9;
+            case InputFileParseStatus::EndOfFile:
+                return 10;
+            case InputFileParseStatus::PlatformEndianMismatch:
+                return 11;
+            case InputFileParseStatus::FileReadError:
+                return 12;
+            case InputFileParseStatus::IccProfileError:
+                return 13;
+            default:
+                return 4; // Unknown error
+            }
         }
     }
     catch (const std::bad_alloc&)
     {
+        DestroyLCMSData();
         return 9;
     }
 
@@ -2529,6 +2802,8 @@ int main(int argc, char *argv[])
             exitCode = 5;
         }
     }
+
+    DestroyLCMSData();
 
     return exitCode;
 }
