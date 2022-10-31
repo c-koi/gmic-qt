@@ -655,15 +655,25 @@ elseif (${GMIC_QT_HOST} STREQUAL "paintdotnet")
 
 elseif (${GMIC_QT_HOST} STREQUAL "8bf")
 
-    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/8bf/host_8bf.cpp)
-    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
-    add_definitions(-DGMIC_HOST=plugin8bf)
-    add_executable(gmic_8bf_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
-    target_link_libraries(
-      gmic_8bf_qt
-      PRIVATE
-      ${gmic_qt_LIBRARIES}
-      )
+  # Look for a CMake package on MSVC or a PkgConfig file on MinGW etc.
+  if (MSVC)
+    find_package(lcms2 CONFIG REQUIRED)
+    include_directories(${LCMS2_INCLUDE_DIR})
+  else()
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(LCMS2 REQUIRED lcms2)
+  endif()
+  
+  set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/8bf/host_8bf.cpp)
+  qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+  add_definitions(-DGMIC_HOST=plugin8bf)
+  add_executable(gmic_8bf_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
+  target_link_libraries(
+    gmic_8bf_qt
+    PRIVATE
+    ${gmic_qt_LIBRARIES}
+	${LCMS2_LIBRARIES}
+    )
 
 else()
     message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, gimp3, krita, none, paintdotnet or 8bf")
