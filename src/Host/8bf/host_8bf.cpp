@@ -2501,7 +2501,7 @@ void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & image)
         {
             // Convert the gray scale image to RGB.
             // The color profile of a RGB image may not support gray scale image data.
-            GmicQt::calibrateImage(image, image.spectrum() == 4 ? 2 : 1, false);
+            GmicQt::calibrateImage(image, image.spectrum() == 2 ? 4 : 3, false);
         }
     }
 
