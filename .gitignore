@@ -1,3 +1,4 @@
+Makefile
 *.a
 *.o
 *.pro.user

@@ -87,8 +87,13 @@ defined(GMIC_PATH, var) {
 defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
  error("G'MIC repository was not found ("$$GMIC_PATH")")
 }
+!defined(GMIC_PATH, var) {
+ error("GMIC_PATH variable not set, and no G'MIC source tree found")
+}
 
 message("G'MIC repository was found ("$$GMIC_PATH")")
+
+DEPENDPATH += $$GMIC_PATH
 
 equals( COMPILER, "clang" ) {
  message("Compiler is clang++")
@@ -96,47 +101,33 @@ equals( COMPILER, "clang" ) {
  QMAKE_LINK = clang++
 }
 
-#
-# Make sure CImg.h is in G'MIC source tree
-#
-!exists( $$GMIC_PATH/CImg.h ) {
-  message( "CImg.h is missing. Trying to get it..." )
-  !system(make -C $$GMIC_PATH CImg.h) {
-    error("Could not get CImg.h from G'MIC repository")
-  }
-  !exists($$GMIC_PATH/CImg.h) {
-    error("Could not get CImg.h from G'MIC repository")
-  }
-  message("CImg.h found")
-}
+gmic_files.commands = \$(MAKE) -C $$GMIC_PATH CImg.h
+gmic_files.commands += $$escape_expand(\n\t)\$(MAKE) -C $$GMIC_PATH gmic_stdlib_community.h
+gmic_files.commands += $$escape_expand(\n\t)bash ./check_versions.sh $$GMIC_PATH
 
-#
-# Make sure gmic_stdlib_community.h is in G'MIC source tree
-#
-!exists( $$GMIC_PATH/gmic_stdlib_community.h ) {
-  message( "gmic_stdlib_community.h is missing. Trying to get it..." )
-  !system(make -C $$GMIC_PATH gmic_stdlib_community.h) {
-    error("Could not get gmic_stdlib_community.h from G'MIC repository")
-  }
-  !exists($$GMIC_PATH/gmic_stdlib_community.h) {
-    error("Could not get gmic_stdlib_community.h from G'MIC repository")
-  }
-  message("gmic_stdlib_community.h found")
-}
+QMAKE_DISTCLEAN = \
+  translations/*.qm \
+  translations/filters/*.ts \
+  translations/filters/*.qm
 
-# Make sure CImg, gmic and gmic_stdlib_community.h are the same version
-GMIC_VERSION = $$system(bash check_versions.sh $$GMIC_PATH gmic)
-STDLIB_VERSION = $$system(bash check_versions.sh $$GMIC_PATH stdlib)
-CIMG_VERSION = $$system(bash check_versions.sh $$GMIC_PATH CImg)
-message("G'MIC version is ................." $$GMIC_VERSION)
-message("gmic_stdlib_community.h version is" $$STDLIB_VERSION)
-message("CImg version is .................." $$CIMG_VERSION)
-!equals(GMIC_VERSION, $$CIMG_VERSION):{
-   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'CImg.h' (" $$CIMG_VERSION ") mismatch")
-}
-!equals(GMIC_VERSION, $$STDLIB_VERSION):{
-   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'gmic_stdlib_community.h' (" $$STDLIB_VERSION ") mismatch")
-}
+'$(SOURCES)'.depends += gmic_files
+'.PHONY'.depends += gmic_files
+
+'translations/%.qm'.depends += 'translations/%.ts'
+'translations/%.qm'.commands += './translations/lrelease.sh $<'
+
+'translations/filters/%.qm'.depends += 'translations/filters/%.ts'
+'translations/filters/%.qm'.commands += './translations/lrelease.sh $<'
+
+'translations/filters/%.ts'.depends += 'translations/filters/gmic_qt_%.csv'
+'translations/filters/%.ts'.commands += './translations/filters/csv2ts.sh -o $@ $<'
+
+QMAKE_EXTRA_TARGETS += '.PHONY' \
+                       '$(SOURCES)' \
+                       'gmic_files' \
+                       'translations/%.qm' \
+                       'translations/filters/%.qm' \
+                       'translations/filters/%.ts'
 
 !isEmpty(PRERELEASE) {
   message( Prerelease date is $$PRERELEASE )
@@ -213,7 +204,6 @@ equals( HOST, "8bf") {
 !macx:equals(COMPILER,"clang") {
     CONFIG += openmp
 }
-
 
 # use qmake CONFIG+=openmp ... to force using openmp
 # For example, on OS X with GCC 4.8 installed:
@@ -332,8 +322,6 @@ HEADERS +=  \
 
 
 HEADERS += $$GMIC_PATH/gmic.h
-HEADERS += $$GMIC_PATH/CImg.h
-HEADERS += $$GMIC_PATH/gmic_stdlib_community.h
 
 SOURCES += \
   src/ClickableLabel.cpp \
@@ -456,24 +444,8 @@ translations/zh_tw.ts
 
 RESOURCES += wip_translations.qrc
 
-# message(Build QM translation files)
-# system(make -C translations)
-# system(make -C translations/filters)
-
-qm_files.commands += make -C translations
-qm_filter_files.commands += make -C translations/filters
-QMAKE_EXTRA_TARGETS += qm_files qm_filter_files
-PRE_TARGETDEPS += qm_files qm_filter_files
-
-QMAKE_DISTCLEAN = \
-  translations/*.qm \
-  translations/filters/*.ts \
-  translations/filters/*.qm
-
 # Prevent overwriting of these files by lupdate
 # TRANSLATIONS += translations/filters/fr.ts
-
-# PRE_TARGETDEPS +=
 
 QMAKE_CXXFLAGS_RELEASE += -Ofast # -O3 -s
 QMAKE_LFLAGS_RELEASE += -s
