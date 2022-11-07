@@ -55,6 +55,7 @@ private:
   bool _default;
   bool _value;
   QCheckBox * _checkBox;
+  QLabel * _label;
   bool _connected;
 };
 
