@@ -99,23 +99,15 @@ message("G'MIC repository was found ("$$GMIC_PATH")")
 
 DEPENDPATH += $$GMIC_PATH
 
-equals( COMPILER, "clang" ) {
- message("Compiler is clang++")
- QMAKE_CXX = clang++
- QMAKE_LINK = clang++
-}
+CIMG.target = $$GMIC_PATH/CImg.h
+CIMG.commands = \$(MAKE) -C $$GMIC_PATH CImg.h
+QMAKE_EXTRA_TARGETS += CIMG
 
-gmic_files.commands = \$(MAKE) -C $$GMIC_PATH CImg.h
-gmic_files.commands += $$escape_expand(\n\t)\$(MAKE) -C $$GMIC_PATH gmic_stdlib_community.h
-gmic_files.commands += $$escape_expand(\n\t)bash ./check_versions.sh $$GMIC_PATH
+GMIC_STDLIB.target = $$GMIC_PATH/gmic_stdlib_community.h
+GMIC_STDLIB.commands = \$(MAKE) -C $$GMIC_PATH gmic_stdlib_community.h
+QMAKE_EXTRA_TARGETS += GMIC_STDLIB
 
-QMAKE_DISTCLEAN = \
-  translations/*.qm \
-  translations/filters/*.ts \
-  translations/filters/*.qm
-
-'$(SOURCES)'.depends += gmic_files
-'.PHONY'.depends += gmic_files
+# $$escape_expand(\n\t)
 
 'translations/%.qm'.depends += 'translations/%.ts'
 'translations/%.qm'.commands += './translations/lrelease.sh $<'
@@ -126,12 +118,42 @@ QMAKE_DISTCLEAN = \
 'translations/filters/%.ts'.depends += 'translations/filters/gmic_qt_%.csv'
 'translations/filters/%.ts'.commands += './translations/filters/csv2ts.sh -o $@ $<'
 
-QMAKE_EXTRA_TARGETS += '.PHONY' \
-                       '$(SOURCES)' \
-                       'gmic_files' \
-                       'translations/%.qm' \
+QMAKE_EXTRA_TARGETS += 'translations/%.qm' \
                        'translations/filters/%.qm' \
                        'translations/filters/%.ts'
+
+GMIC_VERSION = $$system(bash check_versions.sh $$GMIC_PATH gmic)
+message("G'MIC version is ................." $$GMIC_VERSION)
+exists($$GMIC_PATH/CImg.h) {
+ CIMG_VERSION = $$system(bash check_versions.sh $$GMIC_PATH CImg)
+ message("CImg version is .................." $$CIMG_VERSION)
+}
+exists($$GMIC_PATH/gmic_stdlib_community.h) {
+ STDLIB_VERSION = $$system(bash check_versions.sh $$GMIC_PATH stdlib)
+ message("gmic_stdlib_community.h version is" $$STDLIB_VERSION)
+}
+exists($$GMIC_PATH/CImg.h):exists($$GMIC_PATH/gmic_stdlib_community.h) {
+ GMIC_VERSION = $$system(bash check_versions.sh $$GMIC_PATH gmic)
+ STDLIB_VERSION = $$system(bash check_versions.sh $$GMIC_PATH stdlib)
+ CIMG_VERSION = $$system(bash check_versions.sh $$GMIC_PATH CImg)
+ !equals(GMIC_VERSION, $$CIMG_VERSION):{
+   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'CImg.h' (" $$CIMG_VERSION ") mismatch")
+ }
+ !equals(GMIC_VERSION, $$STDLIB_VERSION):{
+   error("Version numbers of files 'gmic.h' (" $$GMIC_VERSION ") and 'gmic_stdlib_community.h' (" $$STDLIB_VERSION ") mismatch")
+ }
+}
+
+QMAKE_DISTCLEAN = \
+  translations/*.qm \
+  translations/filters/*.ts \
+  translations/filters/*.qm
+
+equals( COMPILER, "clang" ) {
+ message("Compiler is clang++")
+ QMAKE_CXX = clang++
+ QMAKE_LINK = clang++
+}
 
 !isEmpty(PRERELEASE) {
   message( Prerelease date is $$PRERELEASE )
@@ -323,7 +345,6 @@ HEADERS +=  \
   src/Widgets/SearchFieldWidget.h \
   src/Widgets/LanguageSelectionWidget.h \
   src/Widgets/ProgressInfoWindow.h
-
 
 HEADERS += $$GMIC_PATH/gmic.h
 
