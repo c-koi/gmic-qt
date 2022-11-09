@@ -336,7 +336,7 @@ void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
           (parameter->visibilityPropagation() == AbstractParameter::VisibilityPropagation::UpDown)) {
         int i = n - 1;
         while ((i >= 0) && !_parameters[i]->isActualParameter()) {
-          newVisibilityStates[i++] = state;
+          newVisibilityStates[i--] = state;
         }
       }
       if ((parameter->visibilityPropagation() == AbstractParameter::VisibilityPropagation::Down) || //
