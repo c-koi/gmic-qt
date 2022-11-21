@@ -12,7 +12,6 @@ Makefile
 .ui/*
 ./Makefile
 gmic_gimp_qt
-gmic_krita_qt
 gmic_paintdotnet_qt
 gmic_qt
 CMakeLists.txt.user

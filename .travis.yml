@@ -33,10 +33,6 @@ matrix:
       dist: bionic
       env:
         - BUILD="cmake" GMIC_HOST="gimp"
-    - os: linux
-      dist: bionic
-      env:
-        - BUILD="cmake" GMIC_HOST="krita"
   fast_finish: true
 
 before_install:

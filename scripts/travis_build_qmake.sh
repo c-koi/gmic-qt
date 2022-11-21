@@ -17,8 +17,3 @@ echo "Building Gimp plugin"
 qmake CONFIG+=${config} HOST=gimp GMIC_PATH=gmic-clone/src
 make
 make
-
-echo "Building Krita plugin"
-qmake CONFIG+=${config} HOST=krita GMIC_PATH=gmic-clone/src
-make
-make

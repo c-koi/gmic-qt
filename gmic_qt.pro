@@ -1,6 +1,6 @@
 #
 # Set HOST variable to define target host software.
-# Possible values are "none", "gimp", "gimp3" (experimental) "krita" and "paintdotnet"
+# Possible values are "none", "gimp", "gimp3" (experimental), and "paintdotnet"
 #
 #
 
@@ -197,14 +197,6 @@ equals( HOST, "none") {
  FORMS += src/Host/None/jpegqualitydialog.ui
  DEPENDPATH += $$PWD/src/Host/None
  message(Building standalone version)
-}
-
-equals( HOST, "krita") {
- TARGET = gmic_krita_qt
- SOURCES += src/Host/Krita/host_krita.cpp
- DEFINES += GMIC_HOST=krita
- DEPENDPATH += $$PWD/src/Host/Krita
- message(Target host software is Krita)
 }
 
 equals( HOST, "paintdotnet") {

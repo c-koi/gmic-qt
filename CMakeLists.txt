@@ -22,7 +22,7 @@ endif()
 
 message("Build type is " ${CMAKE_BUILD_TYPE})
 
-set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host gmic-qt will be built: gimp, gimp3 (experimental), krita, none, paintdotnet or 8bf.")
+set (GMIC_QT_HOST "gimp" CACHE STRING "Define for which host gmic-qt will be built: gimp, gimp3 (experimental), none, paintdotnet or 8bf.")
 if (${GMIC_QT_HOST} STREQUAL "none")
   message("Building standalone version.")
 else()
@@ -611,19 +611,6 @@ if (${GMIC_QT_HOST} STREQUAL "gimp" OR ${GMIC_QT_HOST} STREQUAL "gimp3")
       )
     install(TARGETS gmic_gimp_qt RUNTIME DESTINATION "${GIMP_PKGLIBDIR}/plug-ins/gmic_gimp_qt")
 
-elseif (${GMIC_QT_HOST} STREQUAL "krita")
-
-    set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Krita/host_krita.cpp)
-    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
-    add_definitions(-DGMIC_HOST=krita)
-    add_executable(gmic_krita_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
-    target_link_libraries(
-      gmic_krita_qt
-      PRIVATE
-      ${gmic_qt_LIBRARIES}
-      )
-    install(TARGETS gmic_krita_qt RUNTIME DESTINATION bin)
-
 elseif (${GMIC_QT_HOST} STREQUAL "none")
 
   set (gmic_qt_SRCS ${gmic_qt_SRCS}
@@ -663,7 +650,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "8bf")
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(LCMS2 REQUIRED lcms2)
   endif()
-  
+
   set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/8bf/host_8bf.cpp)
   qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
   add_definitions(-DGMIC_HOST=plugin8bf)
@@ -676,7 +663,7 @@ elseif (${GMIC_QT_HOST} STREQUAL "8bf")
     )
 
 else()
-    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, gimp3, krita, none, paintdotnet or 8bf")
+    message(FATAL_ERROR "GMIC_QT_HOST is not defined as gimp, gimp3, none, paintdotnet or 8bf")
 endif()
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
