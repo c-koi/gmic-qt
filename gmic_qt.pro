@@ -421,7 +421,6 @@ equals(GMIC_DYNAMIC_LINKING, "on" ) {
 
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
    SOURCES += $$GMIC_PATH/gmic.cpp
-   DEFINES += gmic_core
 }
 
 # ALL_FORMS
