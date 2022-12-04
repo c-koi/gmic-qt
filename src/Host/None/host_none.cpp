@@ -170,7 +170,7 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode)
   }
 }
 
-void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
+void getCroppedImages(gmic_library::gmic_list<float> & images, gmic_library::gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
   const bool entireImage = x < 0 && y < 0 && width < 0 && height < 0;
   if (entireImage) {
@@ -194,7 +194,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
 
     QString name = QString("pos(0,0),name(%1)").arg(noParenthesisName);
     QByteArray ba = name.toUtf8();
-    gmic_image<char>::string(ba.constData()).move_to(imageNames[i]);
+    gmic_library::gmic_image<char>::string(ba.constData()).move_to(imageNames[i]);
 
     const QImage & input_image = gmic_qt_standalone::inputImage(i);
     const int ix = static_cast<int>(entireImage ? 0 : std::floor(x * input_image.width()));
@@ -205,7 +205,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
   }
 }
 
-void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames, GmicQt::OutputMode mode)
+void outputImages(gmic_library::gmic_list<float> & images, const gmic_library::gmic_list<char> & imageNames, GmicQt::OutputMode mode)
 {
   if (images.size() > 0) {
     if (gmic_qt_standalone::output_image_filename.isEmpty()) {
