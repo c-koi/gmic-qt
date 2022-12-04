@@ -44,9 +44,6 @@
 #include "OverrideCursor.h"
 #include "PersistentMemory.h"
 #include "Settings.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -55,12 +52,12 @@ namespace GmicQt
 GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
 {
   _filterThread = nullptr;
-  _gmicImages = new cimg_library::CImgList<gmic_pixel_type>;
-  _previewImage = new cimg_library::CImg<float>;
+  _gmicImages = new gmic_library::gmic_list<gmic_pixel_type>;
+  _previewImage = new gmic_library::gmic_image<float>;
   _waitingCursorTimer.setSingleShot(true);
   connect(&_waitingCursorTimer, &QTimer::timeout, this, &GmicProcessor::showWaitingCursor);
-  cimg_library::cimg::srand();
-  _previewRandomSeed = cimg_library::cimg::_rand();
+  gmic_library::cimg::srand();
+  _previewRandomSeed = gmic_library::cimg::_rand();
   _lastAppliedCommandInOutState = InputOutputState::Unspecified;
   _filterExecutionTime.start();
   _completeFullImageProcessingCount = 0;
@@ -145,8 +142,8 @@ void GmicProcessor::execute()
     runner.swapImages(*_gmicImages);
     runner.setImageNames(imageNames);
     runner.setLogSuffix("preview");
-    cimg_library::cimg::srand();
-    _previewRandomSeed = cimg_library::cimg::_rand();
+    gmic_library::cimg::srand();
+    _previewRandomSeed = gmic_library::cimg::_rand();
     _filterExecutionTime.restart();
     runner.run();
     manageSynchonousRunner(runner);
@@ -157,8 +154,8 @@ void GmicProcessor::execute()
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("preview");
     connect(_filterThread, &FilterThread::finished, this, &GmicProcessor::onPreviewThreadFinished, Qt::QueuedConnection);
-    cimg_library::cimg::srand();
-    _previewRandomSeed = cimg_library::cimg::_rand();
+    gmic_library::cimg::srand();
+    _previewRandomSeed = gmic_library::cimg::_rand();
     _filterExecutionTime.restart();
     _filterThread->start();
   } else if (_filterContext.requestType == FilterContext::RequestType::FullImage) {
@@ -172,7 +169,7 @@ void GmicProcessor::execute()
     _filterThread->setImageNames(imageNames);
     _filterThread->setLogSuffix("apply");
     connect(_filterThread, &FilterThread::finished, this, &GmicProcessor::onApplyThreadFinished, Qt::QueuedConnection);
-    cimg_library::cimg::srand(_previewRandomSeed);
+    gmic_library::cimg::srand(_previewRandomSeed);
     _filterThread->start();
   }
 }
@@ -258,7 +255,7 @@ bool GmicProcessor::hasUnfinishedAbortedThreads() const
   return !_unfinishedAbortedThreads.isEmpty();
 }
 
-const cimg_library::CImg<float> & GmicProcessor::previewImage() const
+const gmic_library::gmic_image<float> & GmicProcessor::previewImage() const
 {
   return *_previewImage;
 }

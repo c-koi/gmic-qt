@@ -42,9 +42,6 @@
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "GmicQt.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 #include <lcms2.h>
 #include <QMainWindow>
@@ -55,7 +52,7 @@ struct Gmic8bfLayer
     int32_t height;
     bool visible;
     QString name;
-    cimg_library::CImg<float> imageData;
+    gmic_library::gmic_image<float> imageData;
 };
 
 namespace host_8bf
@@ -151,7 +148,7 @@ namespace
         int top,
         int right,
         int bottom,
-        cimg_library::CImg<float>& out)
+        gmic_library::gmic_image<float>& out)
     {
         const int imageWidth = out.width();
         const int numberOfChannels = out.spectrum();
@@ -266,7 +263,7 @@ namespace
         int right,
         int bottom,
         int channelIndex,
-        cimg_library::CImg<float>& image)
+        gmic_library::gmic_image<float>& image)
     {
         const int imageWidth = image.width();
 
@@ -294,7 +291,7 @@ namespace
         int32_t inTileHeight,
         int32_t inNumberOfChannels,
         bool planar,
-        cimg_library::CImg<float>& image)
+        gmic_library::gmic_image<float>& image)
     {
         int32_t maxTileStride = planar ? inTileWidth : inTileWidth * inNumberOfChannels;
         size_t tileBufferSize = static_cast<size_t>(maxTileStride) * inTileHeight;
@@ -405,7 +402,7 @@ namespace
         int top,
         int right,
         int bottom,
-        cimg_library::CImg<float>& image,
+        gmic_library::gmic_image<float>& image,
         const QVector<float>& sixteenBitToEightBitLUT)
     {
         const int imageWidth = image.width();
@@ -519,7 +516,7 @@ namespace
         int right,
         int bottom,
         int channelIndex,
-        cimg_library::CImg<float>& image,
+        gmic_library::gmic_image<float>& image,
         const QVector<float>& sixteenBitToEightBitLUT)
     {
         const int imageWidth = image.width();
@@ -547,7 +544,7 @@ namespace
         int32_t inTileHeight,
         int32_t inNumberOfChannels,
         bool planar,
-        cimg_library::CImg<float>& image)
+        gmic_library::gmic_image<float>& image)
     {
         size_t maxTileStride = planar ? inTileWidth : static_cast<size_t>(inTileWidth) * inNumberOfChannels;
         size_t tileBufferSize = maxTileStride * inTileHeight * 2;
@@ -670,7 +667,7 @@ namespace
         int top,
         int right,
         int bottom,
-        cimg_library::CImg<float>& out)
+        gmic_library::gmic_image<float>& out)
     {
         const int imageWidth = out.width();
         const int numberOfChannels = out.spectrum();
@@ -785,7 +782,7 @@ namespace
         int right,
         int bottom,
         int channelIndex,
-        cimg_library::CImg<float>& image)
+        gmic_library::gmic_image<float>& image)
     {
         const int imageWidth = image.width();
 
@@ -811,7 +808,7 @@ namespace
         int32_t inTileHeight,
         int32_t inNumberOfChannels,
         bool planar,
-        cimg_library::CImg<float>& image)
+        gmic_library::gmic_image<float>& image)
     {
         int32_t maxTileStride = planar ? inTileWidth : inTileWidth * inNumberOfChannels;
         size_t tileBufferSize = static_cast<size_t>(maxTileStride) * inTileHeight * 4;
@@ -918,7 +915,7 @@ namespace
         return InputFileParseStatus::Ok;
     }
 
-    InputFileParseStatus ReadGmic8bfInput(const QString& path, cimg_library::CImg<float>& image, bool isActiveLayer)
+    InputFileParseStatus ReadGmic8bfInput(const QString& path, gmic_library::gmic_image<float>& image, bool isActiveLayer)
     {
         QFile file(path);
 
@@ -1172,7 +1169,7 @@ namespace
 
             QString filePath = ReadUTF8String(dataStream);
 
-            cimg_library::CImg<float> image;
+            gmic_library::gmic_image<float> image;
 
             InputFileParseStatus status = ReadGmic8bfInput(filePath, image, i == host_8bf::activeLayerIndex);
 
@@ -1329,7 +1326,7 @@ namespace
 
     void WriteGmicOutputTile8Interleaved(
         QDataStream& dataStream,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         unsigned char* rowBuffer,
         int rowBufferLengthInBytes,
         int left,
@@ -1455,7 +1452,7 @@ namespace
 
     void WriteGmicOutputTile8Planar(
         QDataStream& dataStream,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         unsigned char* rowBuffer,
         int rowBufferLengthInBytes,
         int left,
@@ -1487,7 +1484,7 @@ namespace
 
     void WriteGmicOutput8(
         const QString& outputFilePath,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         bool planar,
         int32_t tileWidth,
         int32_t tileHeight)
@@ -1567,7 +1564,7 @@ namespace
 
     void WriteGmicOutputTile16Interleaved(
         QDataStream& dataStream,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         unsigned short* rowBuffer,
         int rowBufferLengthInBytes,
         int left,
@@ -1693,7 +1690,7 @@ namespace
 
     void WriteGmicOutputTile16Planar(
         QDataStream& dataStream,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         unsigned short* rowBuffer,
         int rowBufferLengthInBytes,
         int left,
@@ -1725,7 +1722,7 @@ namespace
 
     void WriteGmicOutput16(
         const QString& outputFilePath,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         bool planar,
         int32_t tileWidth,
         int32_t tileHeight)
@@ -1807,7 +1804,7 @@ namespace
 
     void WriteGmicOutputTile32Interleaved(
         QDataStream& dataStream,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         float* rowBuffer,
         int rowBufferLengthInBytes,
         int left,
@@ -1930,7 +1927,7 @@ namespace
 
     void WriteGmicOutputTile32Planar(
         QDataStream& dataStream,
-        const cimg_library::CImg<float>& in,
+        const gmic_library::gmic_image<float>& in,
         float* rowBuffer,
         int rowBufferLengthInBytes,
         int left,
@@ -1960,7 +1957,7 @@ namespace
 
     void WriteGmicOutput32(
         const QString& outputFilePath,
-        cimg_library::CImg<float>& in,
+        gmic_library::gmic_image<float>& in,
         bool planar,
         int32_t tileWidth,
         int32_t tileHeight)
@@ -2421,7 +2418,7 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
                 outputPath = QString("%1/%2.g8i").arg(host_8bf::outputDir).arg(timestamp);
             }
 
-            cimg_library::CImg<float>& in = images[i];
+            gmic_library::gmic_image<float>& in = images[i];
 
             const int width = in.width();
             const int height = in.height();
@@ -2478,7 +2475,7 @@ void outputImages(gmic_list<float> & images, const gmic_list<char> & imageNames,
     }
 }
 
-void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & image)
+void applyColorProfile(gmic_library::gmic_image<gmic_pixel_type> & image)
 {
     if (!image || image.spectrum() > 4)
     {
@@ -2517,7 +2514,7 @@ void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & image)
         FetchDisplayProfileFromQtWidget();
     }
 
-    cimg_library::CImg<gmic_pixel_type> corrected;
+    gmic_library::gmic_image<gmic_pixel_type> corrected;
     image.get_permute_axes("cxyz").move_to(corrected) /= 255;
 
 #ifndef TYPE_GRAYA_FLT

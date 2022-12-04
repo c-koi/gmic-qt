@@ -41,9 +41,6 @@
 #include "GmicQt.h"
 #include "Host/GmicQtHost.h"
 #include "Host/None/ImageDialog.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 #define STRINGIFY(X) #X
@@ -257,7 +254,7 @@ void showMessage(const char * message)
   std::cout << message << std::endl;
 }
 
-void applyColorProfile(cimg_library::CImg<gmic_pixel_type> &) {}
+void applyColorProfile(gmic_library::gmic_image<gmic_pixel_type> &) {}
 
 } // namespace GmicQtHost
 

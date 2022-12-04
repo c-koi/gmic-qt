@@ -32,9 +32,6 @@
 #include "Misc.h"
 #include "PersistentMemory.h"
 #include "Settings.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -42,9 +39,9 @@ namespace GmicQt
 
 FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, const QString & arguments, const QString & environment)
     : QObject(parent), _command(command), _arguments(arguments), _environment(environment), //
-      _images(new cimg_library::CImgList<float>),                                           //
-      _imageNames(new cimg_library::CImgList<char>),                                        //
-      _persistentMemoryOuptut(new cimg_library::CImg<char>)
+      _images(new gmic_library::gmic_list<float>),                                           //
+      _imageNames(new gmic_library::gmic_list<char>),                                        //
+      _persistentMemoryOuptut(new gmic_library::gmic_image<char>)
 {
 #ifdef _IS_MACOS_
   static bool stackSize8MB = false;
@@ -70,32 +67,32 @@ void FilterSyncRunner::setArguments(const QString & str)
   _arguments = str;
 }
 
-void FilterSyncRunner::setImageNames(const cimg_library::CImgList<char> & imageNames)
+void FilterSyncRunner::setImageNames(const gmic_library::gmic_list<char> & imageNames)
 {
   *_imageNames = imageNames;
 }
 
-void FilterSyncRunner::swapImages(cimg_library::CImgList<float> & images)
+void FilterSyncRunner::swapImages(gmic_library::gmic_list<float> & images)
 {
   _images->swap(images);
 }
 
-void FilterSyncRunner::setInputImages(const cimg_library::CImgList<float> & list)
+void FilterSyncRunner::setInputImages(const gmic_library::gmic_list<float> & list)
 {
   *_images = list;
 }
 
-const cimg_library::CImgList<float> & FilterSyncRunner::images() const
+const gmic_library::gmic_list<float> & FilterSyncRunner::images() const
 {
   return *_images;
 }
 
-const cimg_library::CImgList<char> & FilterSyncRunner::imageNames() const
+const gmic_library::gmic_list<char> & FilterSyncRunner::imageNames() const
 {
   return *_imageNames;
 }
 
-cimg_library::CImg<char> & FilterSyncRunner::persistentMemoryOutput()
+gmic_library::gmic_image<char> & FilterSyncRunner::persistentMemoryOutput()
 {
   return *_persistentMemoryOuptut;
 }

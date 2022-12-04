@@ -38,9 +38,6 @@
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "GmicQt.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 /*
@@ -169,7 +166,7 @@ namespace
 {
 _GimpImagePtr gmic_qt_gimp_image_id;
 
-cimg_library::CImg<int> inputLayerDimensions;
+gmic_library::gmic_image<int> inputLayerDimensions;
 std::vector<_GimpLayerPtr> inputLayers;
 
 #if (GIMP_MAJOR_VERSION >= 3 || GIMP_MINOR_VERSION > 8) && !defined(GIMP_NORMAL_MODE)
@@ -281,7 +278,7 @@ inline void _GIMP_ITEM_SET_NAME(_GimpItemPtr item_ID, const gchar * name)
 
 // Get layer blending mode from string.
 //-------------------------------------
-void get_output_layer_props(const char * const s, GimpLayerModeEffects & blendmode, double & opacity, int & posx, int & posy, cimg_library::CImg<char> & name)
+void get_output_layer_props(const char * const s, GimpLayerModeEffects & blendmode, double & opacity, int & posx, int & posy, gmic_library::gmic_image<char> & name)
 {
   if (!s || !*s)
     return;
@@ -383,7 +380,7 @@ _GimpLayerPtr * get_gimp_layers_flat_list(_GimpImagePtr imageId, int * count)
   return layersId.data();
 }
 
-template <typename T> void image2uchar(cimg_library::CImg<T> & img)
+template <typename T> void image2uchar(gmic_library::gmic_image<T> & img)
 {
   unsigned int len = img.width() * img.height();
   auto dst = reinterpret_cast<unsigned char *>(img.data());
@@ -449,7 +446,7 @@ void showMessage(const char * message)
   }
 }
 
-void applyColorProfile(cimg_library::CImg<float> & image)
+void applyColorProfile(gmic_library::gmic_image<float> & image)
 {
 #if GIMP_VERSION_LTE(2, 8)
   unused(image);
@@ -477,7 +474,7 @@ void applyColorProfile(cimg_library::CImg<float> & image)
 //    if (!transform) {
 //      continue;
 //    }
-//    cimg_library::CImg<float> corrected;
+//    gmic_library::gmic_image<float> corrected;
 //    image.get_permute_axes("cxyz").move_to(corrected) /= 255;
 //    gimp_color_transform_process_pixels(transform,fmt,corrected,fmt,corrected,
 //                                        corrected.height()*corrected.depth());
@@ -555,8 +552,8 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
 
 void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, double x, double y, double width, double height, GmicQt::InputMode mode)
 {
-  using cimg_library::CImg;
-  using cimg_library::CImgList;
+  using gmic_library::gmic_image;
+  using gmic_library::gmic_list;
   int layersCount = 0;
   _GimpLayerPtr * layers = get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   _GimpLayerPtr * end_layers = layers + layersCount;
@@ -679,7 +676,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
     GimpDrawable * drawable = gimp_drawable_get(inputLayers[l]);
     GimpPixelRgn region;
     gimp_pixel_rgn_init(&region, drawable, ix, iy, iw, ih, false, false);
-    CImg<unsigned char> img(spectrum, iw, ih);
+    gmic_image<unsigned char> img(spectrum, iw, ih);
     gimp_pixel_rgn_get_rect(&region, img, ix, iy, iw, ih);
     gimp_drawable_detach(drawable);
     img.permute_axes("yzcx");
@@ -688,7 +685,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
     gegl_rectangle_set(&rect, ix, iy, iw, ih);
     GeglBuffer * buffer = gimp_drawable_get_buffer(_GIMP_DRAWABLE(inputLayers[l]));
     const char * const format = spectrum == 1 ? "Y' " gmic_pixel_type_str : spectrum == 2 ? "Y'A " gmic_pixel_type_str : spectrum == 3 ? "R'G'B' " gmic_pixel_type_str : "R'G'B'A " gmic_pixel_type_str;
-    CImg<float> img(spectrum, iw, ih);
+    gmic_image<float> img(spectrum, iw, ih);
     gegl_buffer_get(buffer, &rect, 1, babl_format(format), img.data(), 0, GEGL_ABYSS_NONE);
     (img *= 255).permute_axes("yzcx");
     g_object_unref(buffer);
@@ -742,7 +739,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
 
   bool is_compatible_dimensions = (images.size() == inputLayers.size());
   for (unsigned int p = 0; p < images.size() && is_compatible_dimensions; ++p) {
-    const cimg_library::CImg<gmic_pixel_type> & img = images[p];
+    const gmic_library::gmic_image<gmic_pixel_type> & img = images[p];
     const bool source_is_alpha = (inputLayerDimensions(p, 3) == 2 || inputLayerDimensions(p, 3) >= 4);
     const bool dest_is_alpha = (img.spectrum() == 2 || img.spectrum() >= 4);
     if (dest_is_alpha && !source_is_alpha) {
@@ -758,7 +755,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
   GimpLayerModeEffects layer_blendmode = GIMP_NORMAL_MODE;
   gint layer_posx = 0, layer_posy = 0;
   double layer_opacity = 100;
-  cimg_library::CImg<char> layer_name;
+  gmic_library::gmic_image<char> layer_name;
 
   if (outputMode == GmicQt::OutputMode::InPlace) {
     gint rgn_x, rgn_y, rgn_width, rgn_height;
@@ -768,9 +765,9 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
         layer_blendmode = gimp_layer_get_mode(inputLayers[p]);
         layer_opacity = gimp_layer_get_opacity(inputLayers[p]);
         _gimp_drawable_get_offsets(_GIMP_DRAWABLE(inputLayers[p]), &layer_posx, &layer_posy);
-        cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
+        gmic_library::gmic_image<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
         get_output_layer_props(imageNames[p], layer_blendmode, layer_opacity, layer_posx, layer_posy, layer_name);
-        cimg_library::CImg<gmic_pixel_type> & img = images[p];
+        gmic_library::gmic_image<gmic_pixel_type> & img = images[p];
         GmicQt::calibrateImage(img, inputLayerDimensions(p, 3), false);
         if (gimp_drawable_mask_intersect(_GIMP_DRAWABLE(inputLayers[p]), &rgn_x, &rgn_y, &rgn_width, &rgn_height)) {
 #if GIMP_VERSION_LTE(2, 8)
@@ -825,7 +822,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
             if (!is_selection) {
               _gimp_drawable_get_offsets(_GIMP_DRAWABLE(inputLayers[p]), &layer_posx, &layer_posy);
             }
-            cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
+            gmic_library::gmic_image<char>::string(gimp_item_get_name(_GIMP_ITEM(inputLayers[p]))).move_to(layer_name);
             gimp_image_remove_layer(gmic_qt_gimp_image_id, inputLayers[p]);
           } else {
             layer_blendmode = GIMP_NORMAL_MODE;
@@ -841,7 +838,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           top_left.y = std::min(top_left.y, layer_posy);
           bottom_right.x = std::max(bottom_right.x, (gint)(layer_posx + images[p]._width));
           bottom_right.y = std::max(bottom_right.y, (gint)(layer_posy + images[p]._height));
-          cimg_library::CImg<gmic_pixel_type> & img = images[p];
+          gmic_library::gmic_image<gmic_pixel_type> & img = images[p];
           if (_gimp_image_get_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
             GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
           } else {
@@ -905,7 +902,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
             if (!is_selection) {
               _gimp_drawable_get_offsets(_GIMP_DRAWABLE(active_layer_id), &layer_posx, &layer_posy);
             }
-            cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(active_layer_id))).move_to(layer_name);
+            gmic_library::gmic_image<char>::string(gimp_item_get_name(_GIMP_ITEM(active_layer_id))).move_to(layer_name);
           } else {
             layer_name.assign();
           }
@@ -915,7 +912,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           bottom_right.x = std::max(bottom_right.x, (gint)(layer_posx + images[p]._width));
           bottom_right.y = std::max(bottom_right.y, (gint)(layer_posy + images[p]._height));
 
-          cimg_library::CImg<gmic_pixel_type> & img = images[p];
+          gmic_library::gmic_image<gmic_pixel_type> & img = images[p];
           if (_gimp_image_get_base_type(gmic_qt_gimp_image_id) == GIMP_GRAY) {
             GmicQt::calibrateImage(img, !is_selection && (img.spectrum() == 1 || img.spectrum() == 3) ? 1 : 2, false);
           } else {
@@ -987,7 +984,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
             if (!is_selection) {
               _gimp_drawable_get_offsets(_GIMP_DRAWABLE(active_layer_id), &layer_posx, &layer_posy);
             }
-            cimg_library::CImg<char>::string(gimp_item_get_name(_GIMP_ITEM(active_layer_id))).move_to(layer_name);
+            gmic_library::gmic_image<char>::string(gimp_item_get_name(_GIMP_ITEM(active_layer_id))).move_to(layer_name);
           } else {
             layer_name.assign();
           }
@@ -996,7 +993,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
             layer_posx = 0;
             layer_posy = 0;
           }
-          cimg_library::CImg<gmic_pixel_type> & img = images[p];
+          gmic_library::gmic_image<gmic_pixel_type> & img = images[p];
           if (_gimp_image_get_base_type(nimage_id) != GIMP_GRAY) {
             GmicQt::calibrateImage(img, (img.spectrum() == 1 || img.spectrum() == 3) ? 3 : 4, false);
           }

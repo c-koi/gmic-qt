@@ -38,9 +38,6 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace
@@ -367,7 +364,7 @@ QStringList quotedStringList(const QStringList & stringList)
 QString unescaped(const QString & text)
 {
   QByteArray ba = text.toUtf8();
-  cimg_library::cimg::strunescape(ba.data());
+  gmic_library::cimg::strunescape(ba.data());
   return QString::fromUtf8(ba.data());
 }
 

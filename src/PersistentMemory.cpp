@@ -23,20 +23,17 @@
  *
  */
 #include "PersistentMemory.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
 {
 
-std::unique_ptr<cimg_library::CImg<char>> PersistentMemory::_image;
+std::unique_ptr<gmic_library::gmic_image<char>> PersistentMemory::_image;
 
-cimg_library::CImg<char> & PersistentMemory::image()
+gmic_library::gmic_image<char> & PersistentMemory::image()
 {
   if (!_image) {
-    _image.reset(new cimg_library::CImg<char>);
+    _image.reset(new gmic_library::gmic_image<char>);
   }
   return *_image;
 }
@@ -46,7 +43,7 @@ void PersistentMemory::clear()
   image().assign();
 }
 
-void PersistentMemory::move_from(cimg_library::CImg<char> & buffer)
+void PersistentMemory::move_from(gmic_library::gmic_image<char> & buffer)
 {
   buffer.move_to(image());
 }

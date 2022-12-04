@@ -45,9 +45,6 @@
 #include "Updater.h"
 #include "Widgets/InOutPanel.h"
 #include "Widgets/ProgressInfoWindow.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 #ifdef _IS_MACOS_
 #include <libgen.h>
@@ -222,7 +219,7 @@ std::string RunParameters::filterName() const
 }
 
 template <typename T> //
-void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool isPreview)
+void calibrateImage(gmic_library::gmic_image<T> & img, const int spectrum, const bool isPreview)
 {
   if (!img || !spectrum) {
     return;
@@ -350,10 +347,10 @@ void calibrateImage(cimg_library::CImg<T> & img, const int spectrum, const bool 
   }
 }
 
-template void calibrateImage(cimg_library::CImg<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
-template void calibrateImage(cimg_library::CImg<unsigned char> & img, const int spectrum, const bool is_preview);
+template void calibrateImage(gmic_library::gmic_image<gmic_pixel_type> & img, const int spectrum, const bool is_preview);
+template void calibrateImage(gmic_library::gmic_image<unsigned char> & img, const int spectrum, const bool is_preview);
 
-void convertCImgToQImage(const cimg_library::CImg<float> & in, QImage & out)
+void convertCImgToQImage(const gmic_library::gmic_image<float> & in, QImage & out)
 {
   out = QImage(in.width(), in.height(), QImage::Format_RGB888);
 
@@ -480,7 +477,7 @@ void convertCImgToQImage(const cimg_library::CImg<float> & in, QImage & out)
   }
 }
 
-void convertQImageToCImg(const QImage & in, cimg_library::CImg<float> & out)
+void convertQImageToCImg(const QImage & in, gmic_library::gmic_image<float> & out)
 {
   Q_ASSERT_X(in.format() == QImage::Format_ARGB32 || in.format() == QImage::Format_RGB888, "convert", "bad input format");
 

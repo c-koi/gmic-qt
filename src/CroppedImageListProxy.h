@@ -30,7 +30,7 @@
 
 namespace gmic_library
 {
-template <typename T> struct CImg;
+template <typename T> struct gmic_image;
 template <typename T> struct gmic_list;
 } // namespace gmic_library
 

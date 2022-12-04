@@ -27,9 +27,6 @@
 #include <QImage>
 #include <QPainter>
 #include "GmicStdlib.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 /*
@@ -40,9 +37,9 @@
 namespace GmicQt
 {
 
-void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result)
+void buildPreviewImage(const gmic_library::gmic_list<float> & images, gmic_library::gmic_image<float> & result)
 {
-  cimg_library::CImgList<gmic_pixel_type> preview_input_images;
+  gmic_library::gmic_list<gmic_pixel_type> preview_input_images;
   if (images.size() > 0) {
     preview_input_images.push_back(images[0]);
     int spectrum = 0;
@@ -55,7 +52,7 @@ void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_librar
   }
 }
 
-bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, unsigned int & index)
+bool checkImageSpectrumAtMost4(const gmic_library::gmic_list<float> & images, unsigned int & index)
 {
   for (unsigned int i = 0; i < images.size(); ++i) {
     if (images[i].spectrum() > 4) {
@@ -66,12 +63,12 @@ bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, uns
   return true;
 }
 
-template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image)
+template <typename T> bool hasAlphaChannel(const gmic_library::gmic_image<T> & image)
 {
   return image.spectrum() == 2 || image.spectrum() == 4;
 }
 
-template bool hasAlphaChannel(const cimg_library::CImg<float> &);
-template bool hasAlphaChannel(const cimg_library::CImg<unsigned char> &);
+template bool hasAlphaChannel(const gmic_library::gmic_image<float> &);
+template bool hasAlphaChannel(const gmic_library::gmic_image<unsigned char> &);
 
 } // namespace GmicQt

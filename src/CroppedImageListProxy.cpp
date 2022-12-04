@@ -28,9 +28,6 @@
 #include <cmath>
 #include "Common.h"
 #include "Host/GmicQtHost.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -42,11 +39,11 @@ double CroppedImageListProxy::_width = -1.0;
 double CroppedImageListProxy::_height = -1.0;
 double CroppedImageListProxy::_zoom = 0.0;
 InputMode CroppedImageListProxy::_inputMode = InputMode::Unspecified;
-std::unique_ptr<cimg_library::CImgList<gmic_pixel_type>> CroppedImageListProxy::_cachedImageList(new cimg_library::CImgList<gmic_pixel_type>);
-std::unique_ptr<cimg_library::CImgList<char>> CroppedImageListProxy::_cachedImageNames(new cimg_library::CImgList<char>);
+std::unique_ptr<gmic_library::gmic_list<gmic_pixel_type>> CroppedImageListProxy::_cachedImageList(new gmic_library::gmic_list<gmic_pixel_type>);
+std::unique_ptr<gmic_library::gmic_list<char>> CroppedImageListProxy::_cachedImageNames(new gmic_library::gmic_list<char>);
 
-void CroppedImageListProxy::get(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, InputMode mode,
-                                double zoom)
+void CroppedImageListProxy::get(gmic_library::gmic_list<gmic_pixel_type> & images, gmic_library::gmic_list<char> & imageNames,
+                                double x, double y, double width, double height, InputMode mode, double zoom)
 {
   if ((x != _x) || (y != _y) || (width != _width) || (height != _height) || (mode != _inputMode) || (zoom != _zoom)) {
     update(x, y, width, height, mode, zoom);

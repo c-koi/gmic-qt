@@ -30,9 +30,6 @@
 #include "GmicQt.h"
 #include "Settings.h"
 #include "Utils.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -60,11 +57,11 @@ void Logger::setMode(const Logger::Mode mode)
       fclose(_logFile);
     }
     _logFile = nullptr;
-    cimg_library::cimg::output(stdout);
+    gmic_library::cimg::output(stdout);
   } else {
     QString filename = QString("%1gmic_qt_log").arg(gmicConfigPath(true));
     _logFile = fopen(filename.toLocal8Bit().constData(), "a");
-    cimg_library::cimg::output(_logFile ? _logFile : stdout);
+    gmic_library::cimg::output(_logFile ? _logFile : stdout);
   }
   _currentMode = mode;
 }
@@ -103,12 +100,12 @@ void Logger::log(const QString & message, const QString & hint, bool space)
   prefix += hint.isEmpty() ? " " : QString("./%1/ ").arg(hint);
 
   if (space) {
-    std::fprintf(cimg_library::cimg::output(), "\n");
+    std::fprintf(gmic_library::cimg::output(), "\n");
   }
   for (const QString & line : lines) {
-    std::fprintf(cimg_library::cimg::output(), "%s\n", (prefix + line).toLocal8Bit().constData());
+    std::fprintf(gmic_library::cimg::output(), "%s\n", (prefix + line).toLocal8Bit().constData());
   }
-  std::fflush(cimg_library::cimg::output());
+  std::fflush(gmic_library::cimg::output());
 }
 
 void Logger::error(const QString & message, bool space)
