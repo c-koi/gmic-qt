@@ -72,9 +72,9 @@ DEFINES += cimg_use_fftw3 cimg_use_zlib
 DEFINES += cimg_use_abort gmic_is_parallel cimg_use_curl cimg_use_png cimg_use_jpeg
 DEFINES += cimg_appname="\\\"gmic\\\""
 
-equals(TIMING, "on") {
-DEFINES += _TIMING_ENABLED_
-message(Timing is enabled)
+equals(TIMING, "on")|equals(TIMING,"ON") {
+ DEFINES += _TIMING_ENABLED_
+ message(Timing is enabled)
 }
 
 defined(GMIC_PATH, var) {
@@ -247,7 +247,8 @@ openmp:equals(COMPILER,"clang") {
     QMAKE_LFLAGS_RELEASE += -fopenmp=libomp
 }
 
-CONFIG(release, debug|release):gcc|clang:equals(LTO,"on") {
+equals(LTO,"on") { LTO = ON }
+CONFIG(release, debug|release):gcc|clang:equals(LTO,"ON") {
     message("Link Time Optimizer enabled")
     QMAKE_CXXFLAGS_RELEASE += -flto
     QMAKE_LFLAGS_RELEASE += -flto
@@ -414,12 +415,12 @@ SOURCES += \
   src/Widgets/LanguageSelectionWidget.cpp \
   src/Widgets/ProgressInfoWindow.cpp
 
-equals(GMIC_DYNAMIC_LINKING, "on" ) {
+equals(GMIC_DYNAMIC_LINKING, "on" )|equals(GMIC_DYNAMIC_LINKING, "ON" ) {
   message(Dynamic linking with libgmic)
   LIBS += -Wl,-rpath,. $$GMIC_PATH/libgmic.so
 }
 
-equals(GMIC_DYNAMIC_LINKING, "off" ) {
+equals(GMIC_DYNAMIC_LINKING, "off" )|equals(GMIC_DYNAMIC_LINKING, "OFF" ) {
    SOURCES += $$GMIC_PATH/gmic.cpp
 }
 
@@ -480,7 +481,7 @@ CONFIG(debug, debug|release) {
 #    QMAKE_CXXFLAGS_DEBUG += -Wfatal-errors
 }
 
-equals(ASAN, "on" ) {
+equals(ASAN,"on")|equals(ASAN,"ON") {
     message(Address sanitizer enabled)
     QMAKE_CXXFLAGS_DEBUG += -fsanitize=address
     QMAKE_LFLAGS_DEBUG += -fsanitize=address
