@@ -29,11 +29,11 @@
 #include <memory>
 #include "GmicQt.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImg;
-template <typename T> struct CImgList;
-} // namespace cimg_library
+template <typename T> struct gmic_image;
+template <typename T> struct gmic_list;
+} // namespace gmic_library
 
 namespace GmicQt
 {
@@ -41,13 +41,13 @@ class CroppedActiveLayerProxy {
 public:
   CroppedActiveLayerProxy() = delete;
 
-  static void get(cimg_library::CImg<gmic_pixel_type> & image, double x, double y, double width, double height);
+  static void get(gmic_library::gmic_image<gmic_pixel_type> & image, double x, double y, double width, double height);
   static QSize getSize(double x, double y, double width, double height);
   static void clear();
 
 private:
   static void update(double x, double y, double width, double height);
-  static std::unique_ptr<cimg_library::CImg<float>> _cachedImage;
+  static std::unique_ptr<gmic_library::gmic_image<float>> _cachedImage;
   static double _x;
   static double _y;
   static double _width;

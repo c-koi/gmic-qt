@@ -28,11 +28,11 @@
 #include <memory>
 #include "GmicQt.h"
 
-namespace cimg_library
+namespace gmic_library
 {
 template <typename T> struct CImg;
-template <typename T> struct CImgList;
-} // namespace cimg_library
+template <typename T> struct gmic_list;
+} // namespace gmic_library
 
 namespace GmicQt
 {
@@ -41,13 +41,13 @@ class CroppedImageListProxy {
 public:
   CroppedImageListProxy() = delete;
 
-  static void get(cimg_library::CImgList<gmic_pixel_type> & images, cimg_library::CImgList<char> & imageNames, double x, double y, double width, double height, InputMode mode, double zoom);
+  static void get(gmic_library::gmic_list<gmic_pixel_type> & images, gmic_library::gmic_list<char> & imageNames, double x, double y, double width, double height, InputMode mode, double zoom);
   static void update(double x, double y, double width, double height, InputMode mode, double zoom);
   static void clear();
 
 private:
-  static std::unique_ptr<cimg_library::CImgList<float>> _cachedImageList;
-  static std::unique_ptr<cimg_library::CImgList<char>> _cachedImageNames;
+  static std::unique_ptr<gmic_library::gmic_list<float>> _cachedImageList;
+  static std::unique_ptr<gmic_library::gmic_list<char>> _cachedImageNames;
   static double _x;
   static double _y;
   static double _width;

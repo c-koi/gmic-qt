@@ -38,11 +38,11 @@
 #include "GmicQt.h"
 #include "InputOutputState.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImgList;
-template <typename T> struct CImg;
-} // namespace cimg_library
+template <typename T> struct gmic_list;
+template <typename T> struct gmic_image;
+} // namespace gmic_library
 
 namespace GmicQt
 {
@@ -94,7 +94,7 @@ public:
   bool isIdle() const;
   bool hasUnfinishedAbortedThreads() const;
 
-  const cimg_library::CImg<float> & previewImage() const;
+  const gmic_library::gmic_image<float> & previewImage() const;
   const QStringList & gmicStatus() const;
   const QList<int> & parametersVisibilityStates() const;
   void setGmicStatusQuotedParameters(const QVector<bool> & quotedParameters);
@@ -128,14 +128,14 @@ private slots:
   void hideWaitingCursor();
 
 private:
-  void updateImageNames(cimg_library::CImgList<char> & imageNames);
+  void updateImageNames(gmic_library::gmic_list<char> & imageNames);
   void abortCurrentFilterThread();
   void manageSynchonousRunner(FilterSyncRunner & runner);
 
   FilterThread * _filterThread;
   FilterContext _filterContext;
-  cimg_library::CImgList<float> * _gmicImages;
-  cimg_library::CImg<float> * _previewImage;
+  gmic_library::gmic_list<float> * _gmicImages;
+  gmic_library::gmic_image<float> * _previewImage;
   QList<FilterThread *> _unfinishedAbortedThreads;
 
   unsigned int _previewRandomSeed;

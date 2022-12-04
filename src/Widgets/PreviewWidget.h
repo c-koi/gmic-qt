@@ -39,11 +39,11 @@
 #include "KeypointList.h"
 #include "ZoomConstraint.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImgList;
-template <typename T> struct CImg;
-} // namespace cimg_library
+template <typename T> struct gmic_list;
+template <typename T> struct gmic_image;
+} // namespace gmic_library
 
 namespace GmicQt
 {
@@ -64,11 +64,11 @@ public:
   double defaultZoomFactor() const;
   void updateVisibleRect();
   void centerVisibleRect();
-  void setPreviewImage(const cimg_library::CImg<float> & image);
+  void setPreviewImage(const gmic_library::gmic_image<float> & image);
   void setOverlayMessage(const QString &);
   void clearOverlayMessage();
   void setPreviewErrorMessage(const QString &);
-  const cimg_library::CImg<float> & image() const;
+  const gmic_library::gmic_image<float> & image() const;
   void translateNormalized(double dx, double dy);
   void translateFullImage(double dx, double dy);
   void setPreviewEnabled(bool on);
@@ -131,7 +131,7 @@ public slots:
 private:
   void paintPreview(QPainter &);
   void paintOriginalImage(QPainter &);
-  void getOriginalImageCrop(cimg_library::CImg<float> & image);
+  void getOriginalImageCrop(gmic_library::gmic_image<float> & image);
   void updateOriginalImagePosition();
   void updateErrorImage();
 
@@ -143,8 +143,8 @@ private:
 
   QSize originalImageCropSize();
   void saveVisibleCenter();
-  cimg_library::CImg<float> * _image;
-  cimg_library::CImg<float> * _savedPreview;
+  gmic_library::gmic_image<float> * _image;
+  gmic_library::gmic_image<float> * _savedPreview;
   QSize _fullImageSize;
   double _currentZoomFactor;
   ZoomConstraint _zoomConstraint;

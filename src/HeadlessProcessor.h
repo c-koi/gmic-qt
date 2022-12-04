@@ -31,9 +31,9 @@
 #include <QVector>
 #include "GmicQt.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImgList;
+template <typename T> struct gmic_list;
 }
 
 namespace GmicQt
@@ -66,7 +66,7 @@ signals:
 private:
   void endApplication(const QString & errorMessage);
   FilterThread * _filterThread;
-  cimg_library::CImgList<float> * _gmicImages;
+  gmic_library::gmic_list<float> * _gmicImages;
   ProgressInfoWindow * _progressWindow;
   QTimer _timer;
   QString _filterName;

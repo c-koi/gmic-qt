@@ -27,11 +27,11 @@
 #include <QString>
 #include "GmicQt.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImg;
-template <typename T> struct CImgList;
-} // namespace cimg_library
+template <typename T> struct gmic_image;
+template <typename T> struct gmic_list;
+} // namespace gmic_library
 
 namespace GmicQtHost
 {
@@ -64,8 +64,8 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode);
  * @param height Normalized height of the layers w.r.t. image/extends height
  * @param mode Input mode
  */
-void getCroppedImages(cimg_library::CImgList<gmic_pixel_type> & images, //
-                      cimg_library::CImgList<char> & imageNames,        //
+void getCroppedImages(gmic_library::gmic_list<gmic_pixel_type> & images, //
+                      gmic_library::gmic_list<char> & imageNames,        //
                       double x,                                         //
                       double y,                                         //
                       double width,                                     //
@@ -79,14 +79,14 @@ void getCroppedImages(cimg_library::CImgList<gmic_pixel_type> & images, //
  * @param imageNames Layers labels
  * @param mode Output mode (\see GmicQt.h)
  */
-void outputImages(cimg_library::CImgList<gmic_pixel_type> & images, const cimg_library::CImgList<char> & imageNames, GmicQt::OutputMode mode);
+void outputImages(gmic_library::gmic_list<gmic_pixel_type> & images, const gmic_library::gmic_list<char> & imageNames, GmicQt::OutputMode mode);
 
 /**
  * @brief Apply a color profile to a given image
  *
  * @param [in,out] images An image
  */
-void applyColorProfile(cimg_library::CImg<gmic_pixel_type> & images);
+void applyColorProfile(gmic_library::gmic_image<gmic_pixel_type> & images);
 
 /**
  * @brief Display a message in the host application.

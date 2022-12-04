@@ -34,9 +34,9 @@
 #include "Host/GmicQtHost.h"
 class QObject;
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImgList;
+template <typename T> struct gmic_list;
 }
 
 namespace GmicQt
@@ -49,12 +49,12 @@ public:
 
   virtual ~FilterSyncRunner();
   void setArguments(const QString &);
-  void setInputImages(const cimg_library::CImgList<float> & list);
-  void setImageNames(const cimg_library::CImgList<char> & imageNames);
-  void swapImages(cimg_library::CImgList<float> & images);
-  const cimg_library::CImgList<float> & images() const;
-  const cimg_library::CImgList<char> & imageNames() const;
-  cimg_library::CImg<char> & persistentMemoryOutput();
+  void setInputImages(const gmic_library::gmic_list<float> & list);
+  void setImageNames(const gmic_library::gmic_list<char> & imageNames);
+  void swapImages(gmic_library::gmic_list<float> & images);
+  const gmic_library::gmic_list<float> & images() const;
+  const gmic_library::gmic_list<char> & imageNames() const;
+  gmic_library::gmic_image<char> & persistentMemoryOutput();
   QStringList gmicStatus() const;
   QList<int> parametersVisibilityStates() const;
   QString errorMessage() const;
@@ -70,9 +70,9 @@ private:
   QString _command;
   QString _arguments;
   QString _environment;
-  cimg_library::CImgList<float> * _images;
-  cimg_library::CImgList<char> * _imageNames;
-  cimg_library::CImg<char> * _persistentMemoryOuptut;
+  gmic_library::gmic_list<float> * _images;
+  gmic_library::gmic_list<char> * _imageNames;
+  gmic_library::gmic_image<char> * _persistentMemoryOuptut;
   bool _gmicAbort;
   bool _failed;
   QString _gmicStatus;
