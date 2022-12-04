@@ -28,19 +28,19 @@
 #include "Common.h"
 #include "GmicQt.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImg;
-template <typename T> struct CImgList;
-} // namespace cimg_library
+template <typename T> struct gmic_image;
+template <typename T> struct gmic_list;
+} // namespace gmic_library
 
 namespace GmicQt
 {
 
-bool checkImageSpectrumAtMost4(const cimg_library::CImgList<float> & images, unsigned int & index);
-void buildPreviewImage(const cimg_library::CImgList<float> & images, cimg_library::CImg<float> & result);
+bool checkImageSpectrumAtMost4(const gmic_library::gmic_list<float> & images, unsigned int & index);
+void buildPreviewImage(const gmic_library::gmic_list<float> & images, gmic_library::gmic_image<float> & result);
 
-template <typename T> bool hasAlphaChannel(const cimg_library::CImg<T> & image);
+template <typename T> bool hasAlphaChannel(const gmic_library::gmic_image<T> & image);
 
 } // namespace GmicQt
 

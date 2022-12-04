@@ -31,9 +31,6 @@
 #include "Misc.h"
 #include "PersistentMemory.h"
 #include "Settings.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -41,9 +38,9 @@ namespace GmicQt
 
 FilterThread::FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment)
     : QThread(parent), _command(command), _arguments(arguments), _environment(environment), //
-      _images(new cimg_library::CImgList<float>),                                           //
-      _imageNames(new cimg_library::CImgList<char>),                                        //
-      _persistentMemoryOuptut(new cimg_library::CImg<char>)
+      _images(new gmic_library::gmic_list<float>),                                           //
+      _imageNames(new gmic_library::gmic_list<char>),                                        //
+      _persistentMemoryOuptut(new gmic_library::gmic_image<char>)
 {
   _gmicAbort = false;
   _failed = false;
@@ -61,32 +58,32 @@ FilterThread::~FilterThread()
   delete _persistentMemoryOuptut;
 }
 
-void FilterThread::setImageNames(const cimg_library::CImgList<char> & imageNames)
+void FilterThread::setImageNames(const gmic_library::gmic_list<char> & imageNames)
 {
   *_imageNames = imageNames;
 }
 
-void FilterThread::swapImages(cimg_library::CImgList<float> & images)
+void FilterThread::swapImages(gmic_library::gmic_list<float> & images)
 {
   _images->swap(images);
 }
 
-void FilterThread::setInputImages(const cimg_library::CImgList<float> & list)
+void FilterThread::setInputImages(const gmic_library::gmic_list<float> & list)
 {
   *_images = list;
 }
 
-const cimg_library::CImgList<float> & FilterThread::images() const
+const gmic_library::gmic_list<float> & FilterThread::images() const
 {
   return *_images;
 }
 
-const cimg_library::CImgList<char> & FilterThread::imageNames() const
+const gmic_library::gmic_list<char> & FilterThread::imageNames() const
 {
   return *_imageNames;
 }
 
-cimg_library::CImg<char> & FilterThread::persistentMemoryOutput()
+gmic_library::gmic_image<char> & FilterThread::persistentMemoryOutput()
 {
   return *_persistentMemoryOuptut;
 }

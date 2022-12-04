@@ -26,8 +26,8 @@
 #include "HtmlTranslator.h"
 #include <QDebug>
 #include <QRegularExpression>
-#include "CImg.h"
 #include "Common.h"
+#include "gmic.h"
 
 namespace GmicQt
 {
@@ -57,7 +57,7 @@ bool HtmlTranslator::hasHtmlEntities(const QString & str)
 QString HtmlTranslator::fromUtf8Escapes(const QString & str)
 {
   QByteArray ba = str.toUtf8();
-  cimg_library::cimg::strunescape(ba.data());
+  gmic_library::cimg::strunescape(ba.data());
   return QString::fromUtf8(ba);
 }
 

@@ -40,9 +40,9 @@
 #include "Globals.h"
 #include "GmicQt.h"
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImg;
+template <typename T> struct gmic_image;
 }
 
 namespace gmic_qt_standalone
@@ -51,7 +51,7 @@ namespace gmic_qt_standalone
 class ImageView : public QWidget {
 public:
   ImageView(QWidget * parent);
-  void setImage(const cimg_library::CImg<gmic_pixel_type> & image);
+  void setImage(const gmic_library::gmic_image<gmic_pixel_type> & image);
   void setImage(const QImage & image);
   bool save(const QString & filename, int quality);
   void paintEvent(QPaintEvent *) override;
@@ -65,7 +65,7 @@ class ImageDialog : public QDialog {
   Q_OBJECT
 public:
   ImageDialog(QWidget * parent);
-  void addImage(const cimg_library::CImg<gmic_pixel_type> & image, const QString & name);
+  void addImage(const gmic_library::gmic_image<gmic_pixel_type> & image, const QString & name);
   const QImage & currentImage() const;
   int currentImageIndex() const;
   static void supportedImageFormats(QStringList & extensions, QString & filters);

@@ -42,9 +42,6 @@
 #include "Misc.h"
 #include "OverrideCursor.h"
 #include "Settings.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -55,9 +52,9 @@ const PreviewWidget::PreviewRect PreviewWidget::PreviewRect::Full{0.0, 0.0, 1.0,
 PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
 {
   setAutoFillBackground(false);
-  _image = new cimg_library::CImg<float>;
+  _image = new gmic_library::gmic_image<float>;
   _image->assign();
-  _savedPreview = new cimg_library::CImg<float>;
+  _savedPreview = new gmic_library::gmic_image<float>;
   _savedPreview->assign();
   _transparency.load(":resources/transparency.png");
 
@@ -85,12 +82,12 @@ PreviewWidget::~PreviewWidget()
   delete _savedPreview;
 }
 
-const cimg_library::CImg<float> & PreviewWidget::image() const
+const gmic_library::gmic_image<float> & PreviewWidget::image() const
 {
   return *_image;
 }
 
-void PreviewWidget::setPreviewImage(const cimg_library::CImg<float> & image)
+void PreviewWidget::setPreviewImage(const gmic_library::gmic_image<float> & image)
 {
   _errorMessage.clear();
   _errorImage = QImage();
@@ -212,8 +209,8 @@ void PreviewWidget::updateOriginalImagePosition()
 
 void PreviewWidget::updateErrorImage()
 {
-  cimg_library::CImgList<float> images;
-  cimg_library::CImgList<char> imageNames;
+  gmic_library::gmic_list<float> images;
+  gmic_library::gmic_list<char> imageNames;
   images.assign();
   imageNames.assign();
   gmic_image<float> image;
@@ -858,7 +855,7 @@ QSize PreviewWidget::originalImageCropSize()
   return CroppedActiveLayerProxy::getSize(_visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h);
 }
 
-void PreviewWidget::getOriginalImageCrop(cimg_library::CImg<float> & image)
+void PreviewWidget::getOriginalImageCrop(gmic_library::gmic_image<float> & image)
 {
   CroppedActiveLayerProxy::get(image, _visibleRect.x, _visibleRect.y, _visibleRect.w, _visibleRect.h);
 }

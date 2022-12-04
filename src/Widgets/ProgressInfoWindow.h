@@ -35,9 +35,9 @@ namespace Ui
 class ProgressInfoWindow;
 }
 
-namespace cimg_library
+namespace gmic_library
 {
-template <typename T> struct CImgList;
+template <typename T> struct gmic_list;
 }
 
 namespace GmicQt

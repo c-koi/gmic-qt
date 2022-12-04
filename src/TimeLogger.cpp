@@ -27,9 +27,9 @@
 #include <QDebug>
 #include <QString>
 #include <cassert>
-#include "CImg.h"
 #include "Common.h"
 #include "Utils.h"
+#include "gmic.h"
 
 namespace GmicQt
 {
@@ -60,7 +60,7 @@ void TimeLogger::step(const char * function, int line, const char * filename)
   static cimg_ulong first = 0;
   static cimg_ulong last = 0;
   static unsigned int count = 0;
-  const cimg_ulong now = cimg_library::cimg::time();
+  const cimg_ulong now = gmic_library::cimg::time();
   if (!last) {
     last = first = now;
   }

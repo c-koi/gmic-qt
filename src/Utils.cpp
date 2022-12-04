@@ -36,9 +36,6 @@
 #include "Common.h"
 #include "Host/GmicQtHost.h"
 #include "Logger.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 #ifdef _IS_WINDOWS_
@@ -108,7 +105,7 @@ const QString & pluginFullName()
   if (result.isEmpty()) {
     result = QString("G'MIC-Qt %1- %2 %3 bits - %4" BETA_SUFFIX)
                  .arg(GmicQtHost::ApplicationName.isEmpty() ? QString() : QString("for %1 ").arg(GmicQtHost::ApplicationName))
-                 .arg(cimg_library::cimg::stros())
+                 .arg(gmic_library::cimg::stros())
                  .arg(sizeof(void *) == 8 ? 64 : 32)
                  .arg(gmicVersionString());
   }

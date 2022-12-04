@@ -27,9 +27,6 @@
 #include <QDebug>
 #include "Common.h"
 #include "Host/GmicQtHost.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -39,9 +36,9 @@ double CroppedActiveLayerProxy::_x = -1.0;
 double CroppedActiveLayerProxy::_y = -1.0;
 double CroppedActiveLayerProxy::_width = -1.0;
 double CroppedActiveLayerProxy::_height = -1.0;
-std::unique_ptr<cimg_library::CImg<gmic_pixel_type>> CroppedActiveLayerProxy::_cachedImage(new cimg_library::CImg<gmic_pixel_type>);
+std::unique_ptr<gmic_library::gmic_image<gmic_pixel_type>> CroppedActiveLayerProxy::_cachedImage(new gmic_library::gmic_image<gmic_pixel_type>);
 
-void CroppedActiveLayerProxy::get(cimg_library::CImg<gmic_pixel_type> & image, double x, double y, double width, double height)
+void CroppedActiveLayerProxy::get(gmic_library::gmic_image<gmic_pixel_type> & image, double x, double y, double width, double height)
 {
   if ((x != _x) || (y != _y) || (width != _width) || (height != _height)) {
     update(x, y, width, height);
@@ -70,8 +67,8 @@ void CroppedActiveLayerProxy::update(double x, double y, double width, double he
   _width = width;
   _height = height;
 
-  cimg_library::CImgList<gmic_pixel_type> images;
-  cimg_library::CImgList<char> imageNames;
+  gmic_library::gmic_list<gmic_pixel_type> images;
+  gmic_library::gmic_list<char> imageNames;
   GmicQtHost::getCroppedImages(images, imageNames, _x, _y, _width, _height, InputMode::Active);
   if (images.size() > 0) {
     GmicQtHost::applyColorProfile(images.front());

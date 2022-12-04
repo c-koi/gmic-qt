@@ -33,9 +33,6 @@
 #include "Logger.h"
 #include "Misc.h"
 #include "Utils.h"
-#ifndef gmic_core
-#include "CImg.h"
-#endif
 #include "gmic.h"
 
 namespace GmicQt
@@ -68,8 +65,8 @@ void Updater::updateSources(bool useNetwork)
   if (!prefix.isEmpty()) {
     prefix.push_back(QChar(' '));
   }
-  cimg_library::CImgList<gmic_pixel_type> gptSources;
-  cimg_library::CImgList<char> names;
+  gmic_library::gmic_list<gmic_pixel_type> gptSources;
+  gmic_library::gmic_list<char> names;
   QString command = QString("%1gui_filter_sources %2").arg(prefix).arg(useNetwork);
   try {
     gmic(command.toLocal8Bit().constData(), gptSources, names, nullptr, true);
@@ -77,11 +74,11 @@ void Updater::updateSources(bool useNetwork)
     Logger::error(QString("Command '%1' failed.").arg(command));
     gptSources.assign();
   }
-  cimg_library::CImgList<char> sources;
+  gmic_library::gmic_list<char> sources;
   gptSources.move_to(sources);
   cimglist_for(sources, l)
   {
-    cimg_library::CImg<char> & str = sources[l];
+    gmic_library::gmic_image<char> & str = sources[l];
     str.unroll('x');
     bool isStdlib = (str.back() == 1);
     if (isStdlib) {
@@ -288,11 +285,11 @@ QByteArray Updater::cimgzDecompress(const QByteArray & array)
     return QByteArray();
   }
   tmpZ.close();
-  cimg_library::CImg<unsigned char> buffer;
+  gmic_library::gmic_image<unsigned char> buffer;
   try {
     buffer.load_cimg(tmpZ.fileName().toUtf8().constData());
   } catch (...) {
-    Logger::warning("Updater::cimgzDecompress(): CImg<>::load_cimg error for file " + tmpZ.fileName());
+    Logger::warning("Updater::cimgzDecompress(): gmic_image<>::load_cimg error for file " + tmpZ.fileName());
     return QByteArray();
   }
   return QByteArray((char *)buffer.data(), (int)buffer.size());
@@ -300,11 +297,11 @@ QByteArray Updater::cimgzDecompress(const QByteArray & array)
 
 QByteArray Updater::cimgzDecompressFile(const QString & filename)
 {
-  cimg_library::CImg<unsigned char> buffer;
+  gmic_library::gmic_image<unsigned char> buffer;
   try {
     buffer.load_cimg(filename.toLocal8Bit().constData());
   } catch (...) {
-    Logger::warning("Updater::cimgzDecompressFile(): CImg<>::load_cimg error for file " + filename);
+    Logger::warning("Updater::cimgzDecompressFile(): gmic_image<>::load_cimg error for file " + filename);
     return QByteArray();
   }
   return QByteArray((char *)buffer.data(), (int)buffer.size());
