@@ -40,7 +40,7 @@ ImageView::ImageView(QWidget * parent) : QWidget(parent) {}
 
 void ImageView::setImage(const gmic_library::gmic_image<gmic_pixel_type> & image)
 {
-  GmicQt::convertCImgToQImage(image, _image);
+  GmicQt::convertGmicImageToQImage(image, _image);
   setMinimumSize(std::min(640, image.width()), std::min(480, image.height()));
 }
 
