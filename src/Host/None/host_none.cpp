@@ -201,7 +201,7 @@ void getCroppedImages(gmic_library::gmic_list<float> & images, gmic_library::gmi
     const int iy = static_cast<int>(entireImage ? 0 : std::floor(y * input_image.height()));
     const int iw = entireImage ? input_image.width() : std::min(input_image.width() - ix, static_cast<int>(1 + std::ceil(width * input_image.width())));
     const int ih = entireImage ? input_image.height() : std::min(input_image.height() - iy, static_cast<int>(1 + std::ceil(height * input_image.height())));
-    GmicQt::convertQImageToCImg(input_image.copy(ix, iy, iw, ih), images[i]);
+    GmicQt::convertQImageToGmicImage(input_image.copy(ix, iy, iw, ih), images[i]);
   }
 }
 
@@ -229,7 +229,7 @@ void outputImages(gmic_library::gmic_list<float> & images, const gmic_library::g
       gmic_qt_standalone::current_image_filenames.resize(images.size());
       const unsigned int layerLimit = gmic_qt_standalone::output_image_filename.contains("%l") ? images.size() : 1;
       for (unsigned int layer = 0; layer < layerLimit; ++layer) {
-        GmicQt::convertCImgToQImage(images[layer], gmic_qt_standalone::input_images[layer]);
+        GmicQt::convertGmicImageToQImage(images[layer], gmic_qt_standalone::input_images[layer]);
         QString outputFilename = gmic_qt_standalone::output_image_filename;
         if (outputFilename.contains("%b")) {
           const QString basename = QFileInfo(gmic_qt_standalone::input_image_filenames.first()).completeBaseName();

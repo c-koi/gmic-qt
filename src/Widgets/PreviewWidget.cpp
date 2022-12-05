@@ -236,7 +236,7 @@ void PreviewWidget::updateErrorImage()
     return;
   }
   QImage qimage;
-  convertCImgToQImage(images.front(), qimage);
+  convertGmicImageToQImage(images.front(), qimage);
   if (qimage.size() != size()) {
     _errorImage = qimage.scaled(size());
   } else {
@@ -372,7 +372,7 @@ void PreviewWidget::paintPreview(QPainter & painter)
     painter.fillRect(_imagePosition, QBrush(_transparency));
   }
   QImage qimage;
-  convertCImgToQImage(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
+  convertGmicImageToQImage(_image->get_resize(_imagePosition.width(), _imagePosition.height(), 1, -100, 1), qimage);
   painter.drawImage(_imagePosition, qimage);
   paintKeypoints(painter);
 }
@@ -390,7 +390,7 @@ void PreviewWidget::paintOriginalImage(QPainter & painter)
       painter.fillRect(_imagePosition, QBrush(_transparency));
     }
     QImage qimage;
-    convertCImgToQImage(image, qimage);
+    convertGmicImageToQImage(image, qimage);
     painter.drawImage(_imagePosition, qimage);
     paintKeypoints(painter);
   }
