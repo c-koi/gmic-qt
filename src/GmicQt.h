@@ -140,9 +140,9 @@ int run(UserInterfaceMode interfaceMode = UserInterfaceMode::Full,              
 template <typename T> //
 void calibrateImage(gmic_library::gmic_image<T> & img, const int spectrum, const bool isPreview);
 
-void convertCImgToQImage(const gmic_library::gmic_image<float> & in, QImage & out);
+void convertGmicImageToQImage(const gmic_library::gmic_image<float> & in, QImage & out);
 
-void convertQImageToCImg(const QImage & in, gmic_library::gmic_image<float> & out);
+void convertQImageToGmicImage(const QImage & in, gmic_library::gmic_image<float> & out);
 
 } // namespace GmicQt
 
