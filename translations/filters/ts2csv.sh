@@ -44,7 +44,7 @@ in="$1"
 function html2ascii()
 {
   local text="$1"
-  text=${text//&amp;/&}
+  text=${text//&amp;/\&}
   text=${text//&lt;/<}
   text=${text//&gt;/>}
   text=${text//&quot;/\"}

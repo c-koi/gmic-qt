@@ -65,11 +65,11 @@ function xml_tag()
 {
   local name="$1"
   local text="$2"
-  text=${text//&/&amp;}
-  text=${text//\"/&quot;}
-  text=${text//\'/&apos;}
-  text=${text//</&lt;}
-  text=${text//>/&gt;}
+  text=${text//&/\&amp;}
+  text=${text//\"/\&quot;}
+  text=${text//\'/\&apos;}
+  text=${text//</\&lt;}
+  text=${text//>/\&gt;}
   text=${text# }
   echo "      <${name}>${text}</$name>"
 }
