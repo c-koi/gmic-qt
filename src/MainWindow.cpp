@@ -813,6 +813,7 @@ void MainWindow::onFullImageProcessingError(const QString & message)
 
 void MainWindow::onInputModeChanged(InputMode mode)
 {
+  PersistentMemory::clear();
   ui->previewWidget->setFullImageSize(LayersExtentProxy::getExtent(mode));
   ui->previewWidget->sendUpdateRequest();
 }
