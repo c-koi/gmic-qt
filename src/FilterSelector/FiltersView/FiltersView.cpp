@@ -399,7 +399,11 @@ void FiltersView::editSelectedFaveName()
 
 void FiltersView::expandAll()
 {
+  auto index = ui->treeView->currentIndex();
   ui->treeView->expandAll();
+  if (index.isValid()) {
+    ui->treeView->scrollTo(index, QAbstractItemView::PositionAtCenter);
+  }
 }
 
 void FiltersView::collapseAll()
