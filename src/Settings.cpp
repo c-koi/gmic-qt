@@ -72,7 +72,7 @@ void Settings::load(UserInterfaceMode userInterfaceMode)
   _darkThemeEnabled = settings.value(DARK_THEME_KEY, GmicQtHost::DarkThemeIsDefault).toBool();
   _languageCode = settings.value(LANGUAGE_CODE_KEY, QString()).toString();
 
-  if (settings.value("Config/PreviewPosition", "Left").toString() == "Left") {
+  if (settings.value("Config/PreviewPosition", "Right").toString() == "Left") {
     _previewPosition = MainWindow::PreviewPosition::Left;
   } else {
     _previewPosition = MainWindow::PreviewPosition::Right;
