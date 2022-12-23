@@ -71,7 +71,7 @@ namespace GmicQtHost
 {
     const QString ApplicationName = QString("Paint.NET");
     const char * const ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
-    const bool DarkThemeIsDefault = false;
+    const bool DarkThemeIsDefault = true;
 }
 
 namespace
