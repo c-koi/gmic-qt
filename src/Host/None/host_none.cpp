@@ -151,7 +151,7 @@ namespace GmicQtHost
 {
 const QString ApplicationName;
 const char * const ApplicationShortname = XSTRINGIFY(GMIC_HOST);
-const bool DarkThemeIsDefault = false;
+const bool DarkThemeIsDefault = true;
 
 void getLayersExtent(int * width, int * height, GmicQt::InputMode)
 {
