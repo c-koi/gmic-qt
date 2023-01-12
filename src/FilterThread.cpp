@@ -38,8 +38,8 @@ namespace GmicQt
 
 FilterThread::FilterThread(QObject * parent, const QString & command, const QString & arguments, const QString & environment)
     : QThread(parent), _command(command), _arguments(arguments), _environment(environment), //
-      _images(new gmic_library::gmic_list<float>),                                           //
-      _imageNames(new gmic_library::gmic_list<char>),                                        //
+      _images(new gmic_library::gmic_list<float>),                                          //
+      _imageNames(new gmic_library::gmic_list<char>),                                       //
       _persistentMemoryOuptut(new gmic_library::gmic_image<char>)
 {
   _gmicAbort = false;
@@ -213,11 +213,11 @@ void FilterThread::run()
     _gmicAbort = false;
     _gmicProgress = -1;
     Logger::log(fullCommandLine, _logSuffix, true);
-    gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, nullptr, nullptr, 0.0f);
+    gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, &_gmicProgress, &_gmicAbort, 0.0f);
     gmicInstance.set_variable("_persistent", PersistentMemory::image());
     gmicInstance.set_variable("_host", '=', GmicQtHost::ApplicationShortname);
     gmicInstance.set_variable("_tk", '=', "qt");
-    gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames, &_gmicProgress, &_gmicAbort);
+    gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames);
     _gmicStatus = QString::fromLocal8Bit(gmicInstance.status);
     gmicInstance.get_variable("_persistent").move_to(*_persistentMemoryOuptut);
   } catch (gmic_exception & e) {
