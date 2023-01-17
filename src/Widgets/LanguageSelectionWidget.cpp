@@ -70,11 +70,6 @@ LanguageSelectionWidget::~LanguageSelectionWidget()
   delete ui;
 }
 
-QString LanguageSelectionWidget::selectedLanguageCode() const
-{
-  return ui->comboBox->currentData().toString();
-}
-
 bool LanguageSelectionWidget::translateFiltersEnabled() const
 {
   return ui->cbTranslateFilters->isChecked();
@@ -87,7 +82,6 @@ void LanguageSelectionWidget::enableFilterTranslation(bool on)
 
 void LanguageSelectionWidget::selectLanguage(const QString & code)
 {
-  int count = ui->comboBox->count();
   QString lang;
   // Empty code means "system default"
   if (code.isEmpty()) {
@@ -103,6 +97,7 @@ void LanguageSelectionWidget::selectLanguage(const QString & code)
       lang = "en";
     }
   }
+  const int count = ui->comboBox->count();
   for (int i = _systemDefaultIsAvailable ? 1 : 0; i < count; ++i) {
     if (ui->comboBox->itemData(i).toString() == lang) {
       ui->comboBox->setCurrentIndex(i);
@@ -114,6 +109,7 @@ void LanguageSelectionWidget::selectLanguage(const QString & code)
 void LanguageSelectionWidget::onLanguageSelectionChanged(int index)
 {
   QString lang = ui->comboBox->itemData(index).toString();
+  Settings::setLanguageCode(lang);
   if (lang.isEmpty()) {
     lang = LanguageSettings::systemDefaultAndAvailableLanguageCode();
   }
@@ -123,8 +119,6 @@ void LanguageSelectionWidget::onLanguageSelectionChanged(int index)
     ui->cbTranslateFilters->setChecked(false);
     ui->cbTranslateFilters->setEnabled(false);
   }
-  emit languageCodeSelected(lang);
-  Settings::setLanguageCode(lang);
 }
 
 void LanguageSelectionWidget::onCheckboxToggled(bool on)

@@ -41,7 +41,6 @@ class LanguageSelectionWidget : public QWidget {
 public:
   explicit LanguageSelectionWidget(QWidget * parent);
   ~LanguageSelectionWidget();
-  QString selectedLanguageCode() const;
   bool translateFiltersEnabled() const;
   void enableFilterTranslation(bool on);
 
@@ -50,9 +49,6 @@ public slots:
 private slots:
   void onLanguageSelectionChanged(int index);
   void onCheckboxToggled(bool);
-
-signals:
-  void languageCodeSelected(QString);
 
 private:
   Ui::LanguageSelectionWidget * ui;
