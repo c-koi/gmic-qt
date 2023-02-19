@@ -38,7 +38,7 @@
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "GmicQt.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 /*
  * Part of this code is much inspired by the original source code

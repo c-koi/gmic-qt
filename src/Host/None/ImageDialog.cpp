@@ -31,7 +31,7 @@
 #include <QStringList>
 #include "Common.h"
 #include "JpegQualityDialog.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace gmic_qt_standalone
 {

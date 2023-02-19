@@ -41,7 +41,7 @@
 #include "GmicQt.h"
 #include "Host/GmicQtHost.h"
 #include "Host/None/ImageDialog.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 #define STRINGIFY(X) #X
 #define XSTRINGIFY(X) STRINGIFY(X)

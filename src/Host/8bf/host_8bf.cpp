@@ -42,7 +42,7 @@
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
 #include "GmicQt.h"
-#include "gmic.h"
+#include "Gmic.h"
 #include <lcms2.h>
 #include <QMainWindow>
 

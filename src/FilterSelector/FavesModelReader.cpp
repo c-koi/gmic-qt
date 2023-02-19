@@ -38,7 +38,7 @@
 #include "FilterSelector/FavesModel.h"
 #include "Logger.h"
 #include "Utils.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace GmicQt
 {

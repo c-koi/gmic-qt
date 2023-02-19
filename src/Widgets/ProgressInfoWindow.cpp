@@ -38,7 +38,7 @@
 #include "Settings.h"
 #include "Updater.h"
 #include "ui_progressinfowindow.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace GmicQt
 {

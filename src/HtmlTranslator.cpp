@@ -27,7 +27,7 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include "Common.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace GmicQt
 {

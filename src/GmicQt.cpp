@@ -45,7 +45,7 @@
 #include "Updater.h"
 #include "Widgets/InOutPanel.h"
 #include "Widgets/ProgressInfoWindow.h"
-#include "gmic.h"
+#include "Gmic.h"
 #ifdef _IS_MACOS_
 #include <libgen.h>
 #include <mach-o/dyld.h>

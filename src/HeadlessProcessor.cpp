@@ -40,7 +40,7 @@
 #include "Settings.h"
 #include "Updater.h"
 #include "Widgets/ProgressInfoWindow.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 #ifdef _IS_WINDOWS_
 #include <windows.h>

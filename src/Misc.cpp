@@ -38,7 +38,7 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace
 {

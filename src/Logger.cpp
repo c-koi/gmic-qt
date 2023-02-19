@@ -30,7 +30,7 @@
 #include "GmicQt.h"
 #include "Settings.h"
 #include "Utils.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace GmicQt
 {

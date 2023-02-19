@@ -33,7 +33,7 @@
 #include "Host/GmicQtHost.h"
 #include "MainWindow.h"
 #include "GmicQt.h"
-#include "gmic.h"
+#include "Gmic.h"
 #include <Windows.h>
 
 struct KernelHandleCloser

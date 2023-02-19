@@ -23,7 +23,7 @@
  *
  */
 #include "PersistentMemory.h"
-#include "gmic.h"
+#include "Gmic.h"
 
 namespace GmicQt
 {
