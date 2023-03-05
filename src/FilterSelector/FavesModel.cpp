@@ -25,13 +25,12 @@
 #include "FilterSelector/FavesModel.h"
 #include <QCryptographicHash>
 #include <QDebug>
+#include <QRegularExpression>
 #include <QString>
 #include <limits>
-#include "Common.h"
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Misc.h"
-#include "GmicQt.h"
 
 namespace GmicQt
 {
@@ -99,7 +98,7 @@ const FavesModel::Fave & FavesModel::getFaveFromHash(const QString & hash) const
 QString FavesModel::uniqueName(const QString & name, const QString & faveHashToIgnore)
 {
   QString basename(name);
-  basename.replace(QRegExp(R"~( *\(\d+\)$)~"), QString());
+  basename.remove(QRegularExpression(R"~( *\(\d+\)$)~"));
   int iMax = -1;
   bool nameIsUnique = true;
   QMap<QString, Fave>::const_iterator it = _faves.cbegin();
@@ -109,11 +108,12 @@ QString FavesModel::uniqueName(const QString & name, const QString & faveHashToI
       if (faveName == name) {
         nameIsUnique = false;
       }
-      QRegExp re(R"~( *\((\d+)\)$)~");
-      if (re.indexIn(faveName) != -1) {
-        faveName.replace(re, QString());
+      QRegularExpression re(R"~( *\((\d+)\)$)~");
+      QRegularExpressionMatch match = re.match(faveName);
+      if (match.hasMatch()) {
+        faveName.remove(re);
         if (faveName == basename) {
-          iMax = std::max(iMax, re.cap(1).toInt());
+          iMax = std::max(iMax, match.captured(1).toInt());
         }
       } else if ((basename == faveName) && (iMax == -1)) {
         iMax = 1;

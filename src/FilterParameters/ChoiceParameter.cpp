@@ -26,6 +26,7 @@
 #include <QComboBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QWidget>
 #include "Common.h"
@@ -123,7 +124,7 @@ bool ChoiceParameter::initFromText(const QString & filterName, const char * text
   }
   QList<QString>::iterator it = _choices.begin();
   while (it != _choices.end()) {
-    *it = it->trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
+    *it = it->trimmed().remove(QRegularExpression("^\"")).remove(QRegularExpression("\"$"));
     *it = HtmlTranslator::html2txt(FilterTextTranslator::translate(*it, filterName));
     ++it;
   }

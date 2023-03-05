@@ -27,6 +27,7 @@
 #include <QDesktopServices>
 #include <QGridLayout>
 #include <QLabel>
+#include <QRegularExpression>
 #include <QString>
 #include <QUrl>
 #include "Common.h"
@@ -105,12 +106,12 @@ bool LinkParameter::initFromText(const QString & filterName, const char * text, 
   }
 
   if (values.size() == 2) {
-    _text = values[0].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
+    _text = values[0].trimmed().remove(QRegularExpression("^\"")).remove(QRegularExpression("\"$"));
     _text = HtmlTranslator::html2txt(FilterTextTranslator::translate(_text, filterName));
     values.pop_front();
   }
   if (values.size() == 1) {
-    _url = values[0].trimmed().remove(QRegExp("^\"")).remove(QRegExp("\"$"));
+    _url = values[0].trimmed().remove(QRegularExpression("^\"")).remove(QRegularExpression("\"$"));
   }
   if (values.isEmpty()) {
     return false;

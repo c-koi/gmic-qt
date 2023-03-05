@@ -29,8 +29,8 @@
 #include <QIcon>
 #include <QLineEdit>
 #include <QPalette>
-#include <QRegExp>
-#include <QRegExpValidator>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 #include <QToolButton>
 #include "Common.h"
 #include "IconLoader.h"
@@ -87,7 +87,7 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
     _lineEdit->setPalette(palette);
   }
 #endif
-  QRegExpValidator * validator = new QRegExpValidator(QRegExp("[^/].*"), this);
+  auto validator = new QRegularExpressionValidator(QRegularExpression("[^/].*"), this);
   _lineEdit->setValidator(validator);
 }
 

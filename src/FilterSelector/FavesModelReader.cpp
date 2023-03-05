@@ -34,7 +34,6 @@
 #include <QRegularExpression>
 #include <QSettings>
 #include <QString>
-#include "Common.h"
 #include "FilterSelector/FavesModel.h"
 #include "Logger.h"
 #include "Utils.h"
@@ -83,7 +82,7 @@ void FavesModelReader::importFavesFromGmicGTK()
     int lineNumber = 1;
     while (!(line = file.readLine()).isEmpty()) {
       line = line.trimmed();
-      line.replace(QRegExp("^."), "").replace(QRegExp(".$"), "");
+      line.remove(QRegularExpression("^.")).remove(QRegularExpression(".$"));
       QList<QString> list = line.split("}{");
       for (QString & str : list) {
         str.replace(QChar(gmic_lbrace), QString("{"));
@@ -147,7 +146,7 @@ void FavesModelReader::loadFaves()
       while (!(line = file.readLine()).isEmpty()) {
         line = line.trimmed();
         if (line.startsWith("{")) {
-          line.replace(QRegExp("^."), "").replace(QRegExp(".$"), "");
+          line.remove(QRegularExpression("^.")).remove(QRegularExpression(".$"));
           QList<QString> list = line.split("}{");
           for (QString & str : list) {
             str.replace(QChar(gmic_lbrace), QString("{"));

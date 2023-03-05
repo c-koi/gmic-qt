@@ -25,7 +25,7 @@
 #include <libgimp/gimp.h>
 #include <QDebug>
 #include <QFileInfo>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <algorithm>
 #include <limits>
@@ -35,9 +35,9 @@
 #include <QTextCodec>
 #endif
 #include "Common.h"
+#include "GmicQt.h"
 #include "Host/GmicQtHost.h"
 #include "ImageTools.h"
-#include "GmicQt.h"
 #include "gmic.h"
 
 /*
@@ -55,7 +55,7 @@
 #define _gimp_item_get_visible gimp_item_get_visible
 #endif
 
-#if GIMP_CHECK_VERSION(2,99,6)
+#if GIMP_CHECK_VERSION(2, 99, 6)
 #define _gimp_image_get_width gimp_image_get_width
 #define _gimp_image_get_height gimp_image_get_height
 #define _gimp_image_get_base_type gimp_image_get_base_type
@@ -113,25 +113,13 @@ struct _GmicQtPluginClass {
 
 GType gmic_qt_get_type(void) G_GNUC_CONST;
 
-static GList * gmic_qt_query(GimpPlugIn *plug_in);
-static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn *plug_in,
-                                                const gchar *name);
+static GList * gmic_qt_query(GimpPlugIn * plug_in);
+static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name);
 
 #if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
-static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
-                                    GimpRunMode run_mode,
-                                    GimpImage *image,
-                                    GimpDrawable *drawable,
-                                    const GimpValueArray *args,
-                                    gpointer run_data);
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data);
 #else
-static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
-                                    GimpRunMode run_mode,
-                                    GimpImage *image,
-                                    gint n_drawables,
-                                    GimpDrawable **drawables,
-                                    const GimpValueArray  *args,
-                                    gpointer run_data);
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, const GimpValueArray * args, gpointer run_data);
 #endif
 
 G_DEFINE_TYPE(GmicQtPlugin, gmic_qt, GIMP_TYPE_PLUG_IN)
@@ -285,18 +273,20 @@ void get_output_layer_props(const char * const s, GimpLayerModeEffects & blendmo
   QString str(s);
 
   // Read output blending mode.
-  QRegExp modeRe("mode\\(\\s*([^)]*)\\s*\\)");
-  if (modeRe.indexIn(str) != -1) {
-    QString modeStr = modeRe.cap(1).trimmed();
+  QRegularExpression modeRe(R"_(mode\(\s*([^)]*)\s*\))_");
+  QRegularExpressionMatch match = modeRe.match(str);
+  if (match.hasMatch()) {
+    QString modeStr = match.captured(1).trimmed();
     if (BlendingModesMap.find(modeStr) != BlendingModesMap.end()) {
       blendmode = BlendingModesMap[modeStr];
     }
   }
 
   // Read output opacity.
-  QRegExp opacityRe("opacity\\(\\s*([^)]*)\\s*\\)");
-  if (opacityRe.indexIn(str) != -1) {
-    QString opacityStr = opacityRe.cap(1).trimmed();
+  QRegularExpression opacityRe(R"_(opacity\(\s*([^)]*)\s*\))_");
+  match = opacityRe.match(str);
+  if (match.hasMatch()) {
+    QString opacityStr = match.captured(1).trimmed();
     bool ok = false;
     double x = opacityStr.toDouble(&ok);
     if (ok) {
@@ -310,10 +300,11 @@ void get_output_layer_props(const char * const s, GimpLayerModeEffects & blendmo
   }
 
   // Read output positions.
-  QRegExp posRe("pos\\(\\s*(-?\\d*)[^)](-?\\d*)\\s*\\)");
-  if (posRe.indexIn(str) != -1) {
-    QString xStr = posRe.cap(1);
-    QString yStr = posRe.cap(2);
+  QRegularExpression posRe(R"_(pos\(\s*(-?\d*)[^)](-?\d*)\s*\))_"); // FIXME : Allow more spaces
+  match = posRe.match(str);
+  if (match.hasMatch()) {
+    QString xStr = match.captured(1);
+    QString yStr = match.captured(2);
     bool okX = false;
     bool okY = false;
     int x = xStr.toInt(&okX);
@@ -1134,20 +1125,9 @@ static GList * gmic_qt_query(GimpPlugIn * plug_in)
  * 'Run' function, required by the GIMP plug-in API.
  */
 #if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
-static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
-                                    GimpRunMode run_mode,
-                                    GimpImage *image,
-                                    GimpDrawable *drawable,
-                                    const GimpValueArray *args,
-                                    gpointer run_data)
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data)
 #else
-static GimpValueArray * gmic_qt_run(GimpProcedure *procedure,
-                                    GimpRunMode run_mode,
-                                    GimpImage *image,
-                                    gint n_drawables,
-                                    GimpDrawable **drawables,
-                                    const GimpValueArray  *args,
-                                    gpointer run_data)
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, const GimpValueArray * args, gpointer run_data)
 #endif
 {
   gegl_init(NULL, NULL);

@@ -27,7 +27,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QPainter>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QSize>
 #include <QString>
 #include <cstring>
@@ -428,13 +428,14 @@ void GmicProcessor::updateImageNames(gmic_list<char> & imageNames)
   for (size_t i = 0; i < imageNames.size(); ++i) {
     gmic_image<char> & name = imageNames[i];
     QString str((const char *)name);
-    QRegExp position("pos\\((\\d*)([^0-9]*)(\\d*)\\)");
-    if (str.contains(position) && position.matchedLength() > 0) {
-      int xPos = position.cap(1).toInt();
-      int yPos = position.cap(3).toInt();
+    QRegularExpression re(R"_(pos\((\d*)([^0-9]*)(\d*)\))_");
+    auto match = re.match(str);
+    if (match.hasMatch() && match.captured(1).size() && match.captured(3).size()) {
+      int xPos = match.captured(1).toInt();
+      int yPos = match.captured(3).toInt();
       int newXPos = (int)(xPos * (xFactor / (double)maxWidth));
       int newYPos = (int)(yPos * (yFactor / (double)maxHeight));
-      str.replace(position.cap(0), QString("pos(%1%2%3)").arg(newXPos).arg(position.cap(2)).arg(newYPos));
+      str.replace(match.captured(0), QString("pos(%1%2%3)").arg(newXPos).arg(match.captured(2)).arg(newYPos));
       name.resize(str.size() + 1);
       std::memcpy(name.data(), str.toLatin1().constData(), name.width());
     }

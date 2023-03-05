@@ -37,8 +37,6 @@
 #include "GmicQt.h"
 #include "LanguageSettings.h"
 #include "Logger.h"
-#include "Utils.h"
-#include "gmic.h"
 
 namespace GmicQt
 {
@@ -66,30 +64,31 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
   QString buffer = readBufferLine(stdlib);
   QString line;
 
-  QRegExp folderRegexpNoLanguage("^\\s*#@gui[ ][^:]+$");
-  QRegExp folderRegexpLanguage(QString("^\\s*#@gui_%1[ ][^:]+$").arg(language));
+  QRegularExpression folderRegexpNoLanguage("^\\s*#@gui[ ][^:]+$");
+  QRegularExpression folderRegexpLanguage(QString("^\\s*#@gui_%1[ ][^:]+$").arg(language));
 
-  QRegExp filterRegexpNoLanguage("^\\s*#@gui[ ][^:]+[ ]*:.*");
-  QRegExp filterRegexpLanguage(QString("^\\s*#@gui_%1[ ][^:]+[ ]*:.*").arg(language));
+  QRegularExpression filterRegexpNoLanguage("^\\s*#@gui[ ][^:]+[ ]*:.*");
+  QRegularExpression filterRegexpLanguage(QString("^\\s*#@gui_%1[ ][^:]+[ ]*:.*").arg(language));
 
-  QRegExp hideCommandRegExp(QString("^\\s*#@gui_%1[ ]+hide\\((.*)\\)").arg(language));
-  QRegExp guiComment("^\\s*#@gui");
+  QRegularExpression hideCommandRegExp(QString("^\\s*#@gui_%1[ ]+hide\\((.*)\\)").arg(language));
+  QRegularExpression guiComment("^\\s*#@gui");
   QVector<QString> hiddenPaths;
 
   const QChar WarningPrefix('!');
   do {
     line = buffer.trimmed();
-    if (guiComment.indexIn(line) == 0) {
-      if (hideCommandRegExp.exactMatch(line)) {
-        QString path = hideCommandRegExp.cap(1);
+    if (guiComment.match(line).hasMatch()) {
+      QRegularExpressionMatch match = hideCommandRegExp.match(line);
+      if (match.hasMatch()) {
+        QString path = match.captured(1);
         hiddenPaths.push_back(path);
         buffer = readBufferLine(stdlib);
-      } else if (folderRegexpNoLanguage.exactMatch(line) || folderRegexpLanguage.exactMatch(line)) {
+      } else if (folderRegexpNoLanguage.match(line).hasMatch() || folderRegexpLanguage.match(line).hasMatch()) {
         //
         // A folder
         //
         QString folderName = line;
-        folderName.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"), "");
+        folderName.remove(QRegularExpression("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"));
 
         while (folderName.startsWith("_") && !filterPath.isEmpty()) {
           folderName.remove(0, 1);
@@ -102,26 +101,27 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
           filterPath.push_back(folderName);
         }
         buffer = readBufferLine(stdlib);
-      } else if (filterRegexpNoLanguage.exactMatch(line) || filterRegexpLanguage.exactMatch(line)) {
+      } else if (filterRegexpNoLanguage.match(line).hasMatch() || filterRegexpLanguage.match(line).hasMatch()) {
         //
         // A filter
         //
         QString filterName = line;
-        filterName.remove(QRegExp("[ ]*:.*$"));
-        filterName.remove(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"));
+        filterName.remove(QRegularExpression("[ ]*:.*$"));
+        filterName.remove(QRegularExpression("^\\s*#@gui[_a-zA-Z]{0,3}[ ]"));
         const bool warning = filterName.startsWith(WarningPrefix);
         if (warning) {
           filterName.remove(0, 1);
         }
 
         QString filterCommands = line;
-        filterCommands.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"), "");
+        filterCommands.remove(QRegularExpression("^\\s*#@gui[_a-zA-Z]{0,3}[ ][^:]+[ ]*:[ ]*"));
 
         // Extract default input mode
         InputMode defaultInputMode = InputMode::Unspecified;
-        QRegExp reInputMode("\\s*:\\s*([xX.*+vViI-])\\s*$");
-        if (reInputMode.indexIn(filterCommands) != -1) {
-          QString mode = reInputMode.cap(1);
+        QRegularExpression reInputMode("\\s*:\\s*([xX.*+vViI-])\\s*$");
+        match = reInputMode.match(filterCommands);
+        if (match.hasMatch()) {
+          QString mode = match.captured(1);
           filterCommands.remove(reInputMode);
           defaultInputMode = symbolToInputMode(mode);
         }
@@ -150,7 +150,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
             accurateIfZoomed = false;
           }
           bool ok = false;
-          preview[1].replace(QRegExp("\\).*"), "");
+          preview[1].remove(QRegularExpression("\\).*"));
           previewFactor = preview[1].toFloat(&ok);
           if (!ok) {
             Logger::error(QString("Cannot parse zoom factor for filter [%1]:\n%2").arg(filterName).arg(line));
@@ -161,24 +161,24 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
 
         QString filterPreviewCommand = preview[0].trimmed();
         QString start = line;
-        start.replace(QRegExp("^\\s*"), "");
-        start.replace(QRegExp(" .*"), "[ ]?:");
-        QRegExp startRegexp(QString("^\\s*%1").arg(start));
+        start.remove(QRegularExpression("^\\s*"));
+        start.replace(QRegularExpression(" .*"), "[ ]?:");
+        QRegularExpression startRegexp(QString("^\\s*%1").arg(start));
 
         // Read parameters
         QString parameters;
         do {
           buffer = readBufferLine(stdlib);
-          if (startRegexp.indexIn(buffer) == 0) {
+          if (startRegexp.match(buffer).hasMatch()) {
             QString parameterLine = buffer;
-            parameterLine.replace(QRegExp("^\\s*#@gui[_a-zA-Z]{0,3}[ ]*:[ ]*"), "");
+            parameterLine.remove(QRegularExpression("^\\s*#@gui[_a-zA-Z]{0,3}[ ]*:[ ]*"));
             parameters += parameterLine;
           }
-        } while (!stdlib.atEnd()                               //
-                 && !folderRegexpNoLanguage.exactMatch(buffer) //
-                 && !folderRegexpLanguage.exactMatch(buffer)   //
-                 && !filterRegexpNoLanguage.exactMatch(buffer) //
-                 && !filterRegexpLanguage.exactMatch(buffer));
+        } while (!stdlib.atEnd()                                     //
+                 && !folderRegexpNoLanguage.match(buffer).hasMatch() //
+                 && !folderRegexpLanguage.match(buffer).hasMatch()   //
+                 && !filterRegexpNoLanguage.match(buffer).hasMatch() //
+                 && !filterRegexpLanguage.match(buffer).hasMatch());
         FiltersModel::Filter filter;
         filter.setName(filterName);
         filter.setCommand(filterCommand);
@@ -269,20 +269,21 @@ QString FiltersModelReader::readBufferLine(QBuffer & buffer)
   // is too big (e.g. 1MB). We read large lines in multiple calls.
   QString result;
   QString text;
-  QRegExp commentStart("^\\s*#");
+  QRegularExpression commentStart("^\\s*#");
   do {
     text = buffer.readLine(1024);
     result.append(text);
   } while (!text.isEmpty() && !text.endsWith("\n"));
 
   // Merge comment lines ending with '\'
-  if (commentStart.indexIn(result) == 0) {
+  if (commentStart.match(result).hasMatch()) {
     while (result.endsWith("\\\n")) {
       QString nextLinePeek = buffer.peek(1024);
-      if (commentStart.indexIn(nextLinePeek) == -1) {
+      QRegularExpressionMatch match = commentStart.match(nextLinePeek);
+      if (!match.hasMatch()) {
         return result;
       }
-      const QString nextCommentPrefix = commentStart.cap(0);
+      const QString nextCommentPrefix = match.captured(0);
       result.chop(2);
       QString nextLine;
       do {

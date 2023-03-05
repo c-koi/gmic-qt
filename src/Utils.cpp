@@ -29,7 +29,6 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QRegExp>
 #include <QStandardPaths>
 #include <QString>
 #include <QTemporaryFile>

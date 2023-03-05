@@ -27,9 +27,8 @@
 #include <QDesktopServices>
 #include <QGridLayout>
 #include <QLabel>
+#include <QRegularExpression>
 #include <QUrl>
-#include "Common.h"
-#include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "Settings.h"
 
@@ -86,18 +85,18 @@ bool NoteParameter::initFromText(const QString & /* filterName */, const char * 
   }
 
   _text = list[1].trimmed(); // Notes are never translated
-  _text.remove(QRegExp("^\"")).remove(QRegExp("\"$")).replace(QString("\\\""), "\"");
+  _text.remove(QRegularExpression("^\"")).remove(QRegularExpression("\"$")).replace(QString("\\\""), "\"");
   _text.replace(QString("\\n"), "<br/>");
 
   if (Settings::darkThemeEnabled()) {
-    _text.replace(QRegExp("color\\s*=\\s*\"purple\""), QString("color=\"#ff00ff\""));
-    _text.replace(QRegExp("foreground\\s*=\\s*\"purple\""), QString("foreground=\"#ff00ff\""));
-    _text.replace(QRegExp("color\\s*=\\s*\"blue\""), QString("color=\"#9b9bff\""));
-    _text.replace(QRegExp("foreground\\s*=\\s*\"blue\""), QString("foreground=\"#9b9bff\""));
+    _text.replace(QRegularExpression("color\\s*=\\s*\"purple\""), QString("color=\"#ff00ff\""));
+    _text.replace(QRegularExpression("foreground\\s*=\\s*\"purple\""), QString("foreground=\"#ff00ff\""));
+    _text.replace(QRegularExpression("color\\s*=\\s*\"blue\""), QString("color=\"#9b9bff\""));
+    _text.replace(QRegularExpression("foreground\\s*=\\s*\"blue\""), QString("foreground=\"#9b9bff\""));
   }
 
-  _text.replace(QRegExp("color\\s*=\\s*\""), QString("style=\"color:"));
-  _text.replace(QRegExp("foreground\\s*=\\s*\""), QString("style=\"color:"));
+  _text.replace(QRegularExpression("color\\s*=\\s*\""), QString("style=\"color:"));
+  _text.replace(QRegularExpression("foreground\\s*=\\s*\""), QString("style=\"color:"));
   _text = HtmlTranslator::fromUtf8Escapes(_text);
   return true;
 }

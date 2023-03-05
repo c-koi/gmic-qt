@@ -30,7 +30,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QWidget>
 #include "Common.h"
 #include "FilterTextTranslator.h"
@@ -111,8 +111,8 @@ bool FolderParameter::initFromText(const QString & filterName, const char * text
     return false;
   }
   _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
-  QRegExp re("^\".*\"$");
-  if (re.exactMatch(list[1])) {
+  QRegularExpression re("^\".*\"$");
+  if (re.match(list[1]).hasMatch()) {
     list[1].chop(1);
     list[1].remove(0, 1);
   }

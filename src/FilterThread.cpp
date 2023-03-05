@@ -24,6 +24,7 @@
  */
 #include "FilterThread.h"
 #include <QDebug>
+#include <QRegularExpression>
 #include <iostream>
 #include "FilterParameters/AbstractParameter.h"
 #include "GmicStdlib.h"
@@ -90,17 +91,20 @@ gmic_library::gmic_image<char> & FilterThread::persistentMemoryOutput()
 
 QStringList FilterThread::status2StringList(const QString & status)
 {
+  // FIXME : Remove [+*-]?   ???
+
   // Check if status matches something like "{...}{...}_1{...}_0"
-  QRegExp statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012][+*-]?)?$"));
-  QRegExp statusSeparatorRegExp(QChar(gmic_rbrace) + QString("(_[012][+*-]?)?") + QChar(gmic_lbrace));
+  QRegularExpression statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012][+*-]?)?$"));
+  QRegularExpression statusSeparatorRegExp(QChar(gmic_rbrace) + QString("(_[012][+*-]?)?") + QChar(gmic_lbrace));
   if (status.isEmpty()) {
     return QStringList();
   }
-  if (statusRegExp.indexIn(status) == -1) {
+  QRegularExpressionMatch match = statusRegExp.match(status);
+  if (!match.hasMatch()) {
     // TRACE << "Warning: Incorrect status syntax " << status;
     return QStringList();
   }
-  QStringList list = statusRegExp.cap(1).split(statusSeparatorRegExp);
+  QStringList list = match.captured(1).split(statusSeparatorRegExp);
   if (!list.isEmpty()) {
     QStringList::iterator it = list.begin();
     while (it != list.end()) {
@@ -118,8 +122,8 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
     return QList<int>();
   }
   // Check if status matches something like "{...}{...}_1{...}_0"
-  QRegExp statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012])?$"));
-  if (!status.isEmpty() && statusRegExp.indexIn(status) == -1) {
+  QRegularExpression statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012])?$"));
+  if (!status.isEmpty() && !status.contains(statusRegExp)) {
     // TRACE << "Incorrect status syntax " << status;
     return QList<int>();
   }

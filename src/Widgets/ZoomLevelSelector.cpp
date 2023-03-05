@@ -25,6 +25,7 @@
 #include "Widgets/ZoomLevelSelector.h"
 #include <QDebug>
 #include <QLineEdit>
+#include <QRegularExpression>
 #include <cmath>
 #include "Common.h"
 #include "Globals.h"
@@ -167,7 +168,7 @@ void ZoomLevelSelector::onComboBoxEditingFinished()
     return;
   }
   if (!text.endsWith(" %")) {
-    text.remove(QRegExp(" ?%?$"));
+    text.remove(QRegularExpression(" ?%?$"));
     text += " %";
   }
   QString digits = text;
@@ -207,7 +208,7 @@ ZoomLevelValidator::ZoomLevelValidator(QObject * parent) : QValidator(parent)
 QValidator::State ZoomLevelValidator::validate(QString & input, int & pos) const
 {
   QString str = input;
-  str.remove(QRegExp(" ?%?$"));
+  str.remove(QRegularExpression(" ?%?$"));
   return _doubleValidator->validate(str, pos);
 }
 

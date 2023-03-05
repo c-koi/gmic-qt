@@ -26,8 +26,8 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QLabel>
+#include <QRegularExpression>
 #include <cstring>
-#include "Common.h"
 #include "FilterParameters/BoolParameter.h"
 #include "FilterParameters/ButtonParameter.h"
 #include "FilterParameters/ChoiceParameter.h"
@@ -85,7 +85,7 @@ AbstractParameter * AbstractParameter::createFromText(const QString & filterName
   QString line = text;
   error.clear();
 
-#define IS_OF_TYPE(ptype) (QRegExp("^[^=]*\\s*=\\s*_?" ptype, Qt::CaseInsensitive).indexIn(line) == 0)
+#define IS_OF_TYPE(ptype) QRegularExpression("^[^=]*\\s*=\\s*_?" ptype, QRegularExpression::CaseInsensitiveOption).match(line).hasMatch()
 
 #define PREFIX "^[^=]*\\s*=\\s*_?"
   if (IS_OF_TYPE("int")) {
@@ -122,21 +122,24 @@ AbstractParameter * AbstractParameter::createFromText(const QString & filterName
       delete result;
       result = nullptr;
       if (!line.isEmpty()) {
-        QRegExp nameRegExp("^[^=]*\\s*=");
-        if (nameRegExp.indexIn(line) == 0) {
-          QString name = nameRegExp.cap(0).remove(QRegExp("=$"));
+        QRegularExpression nameRegExp("^([^=]*\\s*)=");
+        QRegularExpressionMatch match = nameRegExp.match(line);
+        if (match.hasMatch()) {
+          QString name = match.captured(1);
           error = "Parameter name: " + name + "\n" + error;
         }
       }
     }
   } else {
     if (!line.isEmpty()) {
-      QRegExp nameRegExp("^[^=]*\\s*=");
-      if (nameRegExp.indexIn(line) == 0) {
-        QString name = nameRegExp.cap(0).remove(QRegExp("=$"));
-        QRegExp typeRegExp("^[^=]*\\s*=\\s*_?([^\\( ]*)\\s*\\(");
-        if (typeRegExp.indexIn(line) == 0) {
-          error = "Parameter name: " + name + "\n" + "Type <" + typeRegExp.cap(1) + "> is not recognized\n" + error;
+      QRegularExpression nameRegExp("^([^=]*\\s*)=");
+      QRegularExpressionMatch match = nameRegExp.match(line);
+      if (match.hasMatch()) {
+        QString name = match.captured(1);
+        QRegularExpression typeRegExp(R"_(^[^=]*\s*=\s*_?([^\( ]*)\s*\()_");
+        match = typeRegExp.match(line);
+        if (match.hasMatch()) {
+          error = "Parameter name: " + name + "\n" + "Type <" + match.captured(1) + "> is not recognized\n" + error;
         } else {
           error = "Parameter name: " + name + "\n" + error;
         }
@@ -211,15 +214,15 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
   _debugName = result.back();
 #endif
 
-  QRegExp re(QString("^[^=]*\\s*=\\s*(_?)%1\\s*(.)").arg(type), Qt::CaseInsensitive);
-  re.indexIn(str);
-  const int prefixLength = re.cap(0).toUtf8().size();
+  QRegularExpression re(QString("^[^=]*\\s*=\\s*(_?)%1\\s*(.)").arg(type), QRegularExpression::CaseInsensitiveOption);
+  QRegularExpressionMatch match = re.match(str);
+  const int prefixLength = match.captured(0).toUtf8().size();
 
-  if (re.cap(1) == "_") {
+  if (match.captured(1) == "_") {
     _update = false;
   }
 
-  QString open = re.cap(2);
+  QString open = match.captured(2);
   const char * end = nullptr;
   const char * closing = (open == "(") ? ")" : (open == "{") ? "}" : (open == "[") ? "]" : nullptr;
   if (!closing) {
@@ -235,8 +238,8 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
   }
 
   // QString values = str.mid(prefixLength, -1).left(end - (text + prefixLength)).trimmed();
-  QString values = QString::fromUtf8(text + prefixLength, end - (text + prefixLength)).trimmed();
-  length = 1 + end - text;
+  QString values = QString::fromUtf8(text + prefixLength, int(end - (text + prefixLength))).trimmed();
+  length = int(1 + end - text);
 
   if (text[length] == '_' && text[length + 1] >= '0' && text[length + 1] <= '2') {
     _defaultVisibilityState = static_cast<VisibilityState>(text[length + 1] - '0');
@@ -273,7 +276,7 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
 
 bool AbstractParameter::matchType(const QString & type, const char * text) const
 {
-  return QString(text).contains(QRegExp(QString("^[^=]*\\s*=\\s*_?%1\\s*.").arg(type), Qt::CaseInsensitive));
+  return QString::fromUtf8(text).contains(QRegularExpression(QString("^[^=]*\\s*=\\s*_?%1\\s*.").arg(type), QRegularExpression::CaseInsensitiveOption));
 }
 
 void AbstractParameter::notifyIfRelevant()

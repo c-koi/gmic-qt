@@ -32,9 +32,9 @@
 #include <QLabel>
 #include <QPainter>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QWidget>
 #include <cstdio>
-#include "Common.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
@@ -161,8 +161,7 @@ bool ColorParameter::initFromText(const QString & filterName, const char * text,
 
   // color(#e9cc00) and color(#e9cc00ff)
   const QString trimmed = list[1].trimmed();
-  QRegExp colorRE("#[0-9a-fA-F]{6,8}");
-  if (colorRE.exactMatch(trimmed)) {
+  if (QRegularExpression("^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$").match(trimmed).hasMatch()) {
     _default = QColor(trimmed.left(7));
     if (trimmed.length() == 9) {
       _alphaChannel = true;
