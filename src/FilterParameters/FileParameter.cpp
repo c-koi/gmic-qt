@@ -152,17 +152,18 @@ void FileParameter::onButtonPressed()
   }
 
   QString filename;
+  const QFileDialog::Options options = Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
 
   switch (_dialogMode) {
   case DialogMode::Input:
-    filename = QFileDialog::getOpenFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr);
+    filename = QFileDialog::getOpenFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr, options);
     break;
   case DialogMode::Output:
-    filename = QFileDialog::getSaveFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr);
+    filename = QFileDialog::getSaveFileName(QApplication::topLevelWidgets().at(0), tr("Select a file"), folder, QString(), nullptr, options);
     break;
   case DialogMode::InputOutput: {
     QFileDialog dialog(dynamic_cast<QWidget *>(parent()), tr("Select a file"), folder, QString());
-    dialog.setOptions(QFileDialog::DontConfirmOverwrite | QFileDialog::DontUseNativeDialog);
+    dialog.setOptions(QFileDialog::DontConfirmOverwrite | options);
     dialog.setFileMode(QFileDialog::AnyFile);
     if (!_value.isEmpty()) {
       dialog.selectFile(_value);

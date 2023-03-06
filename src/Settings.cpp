@@ -45,6 +45,7 @@ QString Settings::_languageCode;
 bool Settings::_filterTranslationEnabled = false;
 MainWindow::PreviewPosition Settings::_previewPosition;
 bool Settings::_nativeColorDialogs;
+bool Settings::_nativeFileDialogs;
 int Settings::_updatePeriodicity;
 int Settings::_previewTimeout = 16;
 OutputMessageMode Settings::_outputMessageMode;
@@ -79,6 +80,7 @@ void Settings::load(UserInterfaceMode userInterfaceMode)
   }
   _filterTranslationEnabled = settings.value(ENABLE_FILTER_TRANSLATION, false).toBool();
   _nativeColorDialogs = settings.value("Config/NativeColorDialogs", false).toBool();
+  _nativeFileDialogs = settings.value("Config/NativeFileDialogs", false).toBool();
   _updatePeriodicity = settings.value(INTERNET_UPDATE_PERIODICITY_KEY, INTERNET_DEFAULT_PERIODICITY).toInt();
   FolderParameterDefaultValue = settings.value("FolderParameterDefaultValue", QDir::homePath()).toString();
   FileParameterDefaultPath = settings.value("FileParameterDefaultPath", QDir::homePath()).toString();
@@ -157,6 +159,16 @@ void Settings::setNativeColorDialogs(bool on)
   _nativeColorDialogs = on;
 }
 
+bool Settings::nativeFileDialogs()
+{
+  return _nativeFileDialogs;
+}
+
+void Settings::setNativeFileDialogs(bool on)
+{
+  _nativeFileDialogs = on;
+}
+
 int Settings::updatePeriodicity()
 {
   return _updatePeriodicity;
@@ -227,6 +239,7 @@ void Settings::save(QSettings & settings)
   settings.setValue("Config/PreviewPosition", (_previewPosition == MainWindow::PreviewPosition::Left) ? "Left" : "Right");
 
   settings.setValue("Config/NativeColorDialogs", _nativeColorDialogs);
+  settings.setValue("Config/NativeFileDialogs", _nativeFileDialogs);
   settings.setValue(INTERNET_UPDATE_PERIODICITY_KEY, _updatePeriodicity);
   settings.setValue("FolderParameterDefaultValue", FolderParameterDefaultValue);
   settings.setValue("FileParameterDefaultPath", FileParameterDefaultPath);

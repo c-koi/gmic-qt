@@ -52,6 +52,8 @@ public:
   static void setPreviewPosition(MainWindow::PreviewPosition);
   static bool nativeColorDialogs();
   static void setNativeColorDialogs(bool);
+  static bool nativeFileDialogs();
+  static void setNativeFileDialogs(bool);
   static int updatePeriodicity();
   static void setUpdatePeriodicity(int hours);
   static int previewTimeout();
@@ -87,6 +89,7 @@ private:
   static bool _filterTranslationEnabled;
   static MainWindow::PreviewPosition _previewPosition;
   static bool _nativeColorDialogs;
+  static bool _nativeFileDialogs;
   static int _updatePeriodicity;
   static int _previewTimeout;
   static OutputMessageMode _outputMessageMode;

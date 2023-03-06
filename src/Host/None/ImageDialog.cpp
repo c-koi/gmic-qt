@@ -24,6 +24,7 @@
  */
 #include "Host/None/ImageDialog.h"
 #include <QDebug>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QImageWriter>
 #include <QMessageBox>
@@ -31,6 +32,7 @@
 #include <QStringList>
 #include "Common.h"
 #include "JpegQualityDialog.h"
+#include "Settings.h"
 #include "gmic.h"
 
 namespace gmic_qt_standalone
@@ -138,7 +140,8 @@ void ImageDialog::onSaveAs()
   QStringList extensions;
   QString filters;
   supportedImageFormats(extensions, filters);
-  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters, &selectedFilter);
+  const QFileDialog::Options options = GmicQt::Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters, &selectedFilter, options);
   QString extension = selectedFilter.split("*").back();
   extension.chop(1);
   if (!extensions.contains(QFileInfo(filename).suffix())) {

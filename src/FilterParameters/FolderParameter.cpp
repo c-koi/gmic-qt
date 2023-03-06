@@ -133,7 +133,9 @@ bool FolderParameter::isQuoted() const
 void FolderParameter::onButtonPressed()
 {
   QString oldValue = _value;
-  QString path = QFileDialog::getExistingDirectory(dynamic_cast<QWidget *>(parent()), tr("Select a folder"), _value);
+  QFileDialog::Options options = Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+  options |= QFileDialog::ShowDirsOnly;
+  QString path = QFileDialog::getExistingDirectory(dynamic_cast<QWidget *>(parent()), tr("Select a folder"), _value, options);
   if (path.isEmpty()) {
     setValue(oldValue);
   } else {

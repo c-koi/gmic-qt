@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Original traditional Chinese translation done by ZX-WT (https://github.com/ZX-WT) -->
-
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
@@ -12,12 +9,12 @@
         <translation>對話框</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="238"/>
+        <location filename="../ui/dialogsettings.ui" line="245"/>
         <source>Internet updates</source>
         <translation>網際網路更新</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="247"/>
+        <location filename="../ui/dialogsettings.ui" line="254"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>
@@ -83,21 +80,26 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="209"/>
-        <source>&amp;Enable High-DPI support</source>
+        <source>Use native file dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="216"/>
+        <source>&amp;Enable High-DPI support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="223"/>
         <source>&lt;i&gt;(Restart needed)&lt;/i&gt;</source>
         <translation type="unfinished">&lt;i&gt;（需要重啟程式）&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="232"/>
+        <location filename="../ui/dialogsettings.ui" line="239"/>
         <source>Other</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="270"/>
+        <location filename="../ui/dialogsettings.ui" line="277"/>
         <source>Output messages</source>
         <translation>輸出訊息</translation>
     </message>
@@ -122,12 +124,12 @@
         <translation>顯示機構標誌</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="279"/>
+        <location filename="../ui/dialogsettings.ui" line="286"/>
         <source>Notify when scheduled update fails</source>
         <translation>在定期更新失敗時通知</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="321"/>
+        <location filename="../ui/dialogsettings.ui" line="328"/>
         <source>&amp;Ok</source>
         <translation>確定(&amp;O)</translation>
     </message>
@@ -143,7 +145,7 @@
 <context>
     <name>GmicQt::ColorParameter</name>
     <message>
-        <location filename="../src/FilterParameters/ColorParameter.cpp" line="201"/>
+        <location filename="../src/FilterParameters/ColorParameter.cpp" line="200"/>
         <source>Select color</source>
         <translation>選取色彩</translation>
     </message>
@@ -230,13 +232,18 @@
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
         <translation>核取以使用系統原生的色彩對話框，不核取則使用 Qt 提供的版本</translation>
     </message>
+    <message>
+        <location filename="../src/DialogSettings.cpp" line="90"/>
+        <source>Check to use Native/OS file dialog, uncheck to use Qt&apos;s</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GmicQt::FileParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="158"/>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="161"/>
-        <location filename="../src/FilterParameters/FileParameter.cpp" line="164"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="159"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="162"/>
+        <location filename="../src/FilterParameters/FileParameter.cpp" line="165"/>
         <source>Select a file</source>
         <translation>選擇檔案</translation>
     </message>
@@ -287,42 +294,42 @@
         <translation>從最愛移除</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="675"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="679"/>
         <source>Rename Fave</source>
         <translation>重新命名最愛</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="677"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="681"/>
         <source>Remove Fave</source>
         <translation>從最愛移除</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="679"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="683"/>
         <source>Clone Fave</source>
         <translation>再製最愛</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="683"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="687"/>
         <source>Add Fave</source>
         <translation>加到最愛</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="702"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="706"/>
         <source>Remove All</source>
         <translation>移除全部</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="709"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
         <source>%1 (%2 %3)</source>
         <translation>%1 (%2 %3)</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="709"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
         <source>Filters</source>
         <translation>濾鏡</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="709"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
         <source>Filter</source>
         <translation>濾鏡</translation>
     </message>
@@ -349,12 +356,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="345"/>
+        <location filename="../src/GmicProcessor.cpp" line="342"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation>濾鏡傳回的影像 #%1 含有 %2 個通道（應為不多於 4 個）</translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="380"/>
+        <location filename="../src/GmicProcessor.cpp" line="377"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation>濾鏡傳回的影像 #%1 含有 %2 個通道
@@ -364,22 +371,22 @@
 <context>
     <name>GmicQt::HeadlessProcessor</name>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="84"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="81"/>
         <source>At least a filter path or a filter command must be provided.</source>
         <translation>必須提供濾鏡路徑或濾鏡命令。</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="86"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="83"/>
         <source>Custom command (%1)</source>
         <translation>自訂命令 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="94"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="91"/>
         <source>Cannot find filter matching path %1</source>
         <translation>找不到符合路徑「%1」的濾鏡</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="101"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="98"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -396,17 +403,17 @@ Cannot retrieve default parameters.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="119"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="116"/>
         <source>Error parsing supplied command: %1</source>
         <translation>解析所提供的命令時出現錯誤：%1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="122"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="119"/>
         <source>Supplied command (%1) does not match path (%2), (should be %3).</source>
         <translation>所提供的命令 (%1) 不符合路徑 (%2)（應為 %3）。</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="234"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="231"/>
         <source>Filter execution failed, but with no error message.</source>
         <translation>濾鏡執行失敗，但沒有錯誤訊息。</translation>
     </message>
@@ -510,76 +517,76 @@ Cannot retrieve default parameters.
 <context>
     <name>GmicQt::MainWindow</name>
     <message>
-        <location filename="../src/MainWindow.cpp" line="115"/>
+        <location filename="../src/MainWindow.cpp" line="112"/>
         <source>Add fave</source>
         <translation>加到最愛</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="117"/>
+        <location filename="../src/MainWindow.cpp" line="114"/>
         <source>Reset parameters to default values</source>
         <translation>重設參數到預設值</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="123"/>
+        <location filename="../src/MainWindow.cpp" line="120"/>
         <source>Copy G&apos;MIC command to clipboard</source>
         <translation>複製 G&apos;MIC 命令到剪貼簿</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="130"/>
+        <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Rename fave</source>
         <translation>重新命名最愛</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="132"/>
+        <location filename="../src/MainWindow.cpp" line="129"/>
         <source>Remove fave</source>
         <translation>從最愛移除</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="136"/>
+        <location filename="../src/MainWindow.cpp" line="133"/>
         <source>Expand/Collapse all</source>
         <translation>全部展開或折疊</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="138"/>
+        <location filename="../src/MainWindow.cpp" line="135"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;諾曼第大學 (https://www.unicaen.fr)&lt;br/&gt;ENSICAEN (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="145"/>
+        <location filename="../src/MainWindow.cpp" line="142"/>
         <source>Selection mode</source>
         <translation>選取模式</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="183"/>
+        <location filename="../src/MainWindow.cpp" line="180"/>
         <source>Update filters</source>
         <translation>更新濾鏡</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="237"/>
+        <location filename="../src/MainWindow.cpp" line="234"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
         <translation>管理可見標籤
 （右鍵點選最愛或濾鏡，以設定或移除標籤）</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="359"/>
+        <location filename="../src/MainWindow.cpp" line="356"/>
         <source>Update completed</source>
         <translation>更新完成</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="359"/>
-        <location filename="../src/MainWindow.cpp" line="361"/>
-        <location filename="../src/MainWindow.cpp" line="493"/>
+        <location filename="../src/MainWindow.cpp" line="356"/>
+        <location filename="../src/MainWindow.cpp" line="358"/>
+        <location filename="../src/MainWindow.cpp" line="490"/>
         <source>Filter definitions have been updated.</source>
         <translation>濾鏡定義已更新。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="364"/>
+        <location filename="../src/MainWindow.cpp" line="361"/>
         <source>No download was needed.</source>
         <translation>無需下載。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="417"/>
+        <location filename="../src/MainWindow.cpp" line="414"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -588,8 +595,8 @@ Path: %1</source>
 路徑為：%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="425"/>
-        <location filename="../src/MainWindow.cpp" line="452"/>
+        <location filename="../src/MainWindow.cpp" line="422"/>
+        <location filename="../src/MainWindow.cpp" line="449"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -606,7 +613,7 @@ Cannot retrieve default parameters.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="438"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -615,7 +622,7 @@ Command: %1</source>
 命令：%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="433"/>
+        <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -624,7 +631,7 @@ Command: %1</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="442"/>
+        <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -637,52 +644,52 @@ Command found for this path : %3</source>
 路徑中找到的命令：%3</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="489"/>
+        <location filename="../src/MainWindow.cpp" line="486"/>
         <source>Filters update could not be achieved</source>
         <translation>無法完成濾鏡更新</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="615"/>
+        <location filename="../src/MainWindow.cpp" line="612"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>由於發生以下錯誤，&lt;br&gt;無法完成更新：&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="621"/>
+        <location filename="../src/MainWindow.cpp" line="618"/>
         <source>Update error</source>
         <translation>更新錯誤</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="810"/>
+        <location filename="../src/MainWindow.cpp" line="807"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="925"/>
+        <location filename="../src/MainWindow.cpp" line="923"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>正在等待取消工作……</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1291"/>
+        <location filename="../src/MainWindow.cpp" line="1289"/>
         <source>Import faves</source>
         <translation>匯入最愛</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1291"/>
+        <location filename="../src/MainWindow.cpp" line="1289"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>你要從以下檔案匯入最愛嗎？&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1294"/>
+        <location filename="../src/MainWindow.cpp" line="1292"/>
         <source>Don&apos;t ask again</source>
         <translation>不再詢問</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1406"/>
+        <location filename="../src/MainWindow.cpp" line="1404"/>
         <source>Confirmation</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1406"/>
+        <location filename="../src/MainWindow.cpp" line="1404"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>一項 gmic 命令正在執行中。&lt;br&gt;你確定要關閉外掛程式嗎？</translation>
     </message>
@@ -727,22 +734,22 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::ProgressInfoWindow</name>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="52"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="49"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation>G&apos;MIC-Qt 外掛程式進度</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="144"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="141"/>
         <source>%1 seconds</source>
         <translation>%1 秒</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="154"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="151"/>
         <source>[Processing %1 | %2]</source>
         <translation>[正在處理 %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="156"/>
+        <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="153"/>
         <source>[Processing %1]</source>
         <translation>[正在處理 %1]</translation>
     </message>
@@ -763,27 +770,27 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="202"/>
+        <location filename="../src/Updater.cpp" line="199"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>下載「%1」時出現錯誤（空白檔案？）</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="211"/>
+        <location filename="../src/Updater.cpp" line="208"/>
         <source>Could not read/decompress %1</source>
         <translation>不能讀取或解壓縮「%1」</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="216"/>
+        <location filename="../src/Updater.cpp" line="213"/>
         <source>Error writing file %1</source>
         <translation>寫入檔案「%1」時出現錯誤</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="233"/>
+        <location filename="../src/Updater.cpp" line="230"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>下載「%1」時出現錯誤&lt;br/&gt;錯誤 %2：%3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="269"/>
+        <location filename="../src/Updater.cpp" line="266"/>
         <source>Download timeout: %1</source>
         <translation>下載逾時：%1</translation>
     </message>
@@ -804,22 +811,22 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::ZoomLevelSelector</name>
     <message>
-        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="53"/>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="54"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="54"/>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="55"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="55"/>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="56"/>
         <source>Reset zoom</source>
         <translation>重設縮放比例</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="154"/>
+        <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="155"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
         <translation>警告：預覽可能不準確（縮放比例已修改）</translation>
     </message>
@@ -869,7 +876,7 @@ Command found for this path : %3</source>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="20"/>
-        <location filename="../src/Host/None/JpegQualityDialog.cpp" line="12"/>
+        <location filename="../src/Host/None/JpegQualityDialog.cpp" line="13"/>
         <source>JPEG Quality</source>
         <translation>JPEG 品質</translation>
     </message>
@@ -1049,22 +1056,22 @@ Command found for this path : %3</source>
         <translation>可用的濾鏡 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="77"/>
+        <location filename="../src/Host/None/host_none.cpp" line="74"/>
         <source>Select an image to open...</source>
         <translation>開啟影像…</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="83"/>
+        <location filename="../src/Host/None/host_none.cpp" line="82"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="83"/>
+        <location filename="../src/Host/None/host_none.cpp" line="82"/>
         <source>Could not open file.</source>
         <translation>無法開啟檔案。</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="87"/>
+        <location filename="../src/Host/None/host_none.cpp" line="86"/>
         <source>Default image</source>
         <translation>預設影像</translation>
     </message>
@@ -1119,7 +1126,7 @@ Command found for this path : %3</source>
         <translation>無法載入翻譯檔「%1」</translation>
     </message>
     <message>
-        <location filename="../src/Misc.cpp" line="333"/>
+        <location filename="../src/Misc.cpp" line="336"/>
         <source>List %1 cannot be merged considering these runs: %2</source>
         <translation>無法合併清單 %1，關聯的執行次：%2</translation>
     </message>
@@ -1143,27 +1150,27 @@ Command found for this path : %3</source>
 <context>
     <name>gmic_qt_standalone::ImageDialog</name>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="74"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="71"/>
         <source>G&apos;MIC-Qt filter output</source>
         <translation>G&apos;MIC-Qt 濾鏡輸出</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="85"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="82"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="88"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="85"/>
         <source>Save as...</source>
         <translation>另存為…</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="123"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="120"/>
         <source>%1 file (*.%2)</source>
         <translation>%1 檔 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="144"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="141"/>
         <source>Save image as...</source>
         <translation>儲存影像為…</translation>
     </message>
@@ -1171,12 +1178,12 @@ Command found for this path : %3</source>
 <context>
     <name>gmic_qt_standalone::ImageView</name>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="66"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="66"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
         <source>Could not write image file %1</source>
         <translation>無法寫入影像檔「%1」</translation>
     </message>

@@ -204,6 +204,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="cbNativeFileDialogs">
+              <property name="text">
+               <string>Use native file dialog</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="cbHighDPI">
               <property name="text">
                <string>&amp;Enable High-DPI support</string>

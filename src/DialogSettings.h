@@ -53,6 +53,7 @@ public slots:
   void enableUpdateButton();
   void onUpdatePeriodicityChanged(int i);
   void onColorDialogsToggled(bool);
+  void onFileDialogsToggled(bool);
   void done(int r) override;
   void onVisibleLogosToggled(bool);
   void onPreviewTimeoutChange(int);
