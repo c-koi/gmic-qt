@@ -50,7 +50,7 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
 #if QT_VERSION_GTE(5, 2, 0)
   auto hbox = dynamic_cast<QHBoxLayout *>(layout());
   if (hbox) {
-    hbox->setMargin(0);
+    hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(0);
     hbox->addWidget(_lineEdit = new QLineEdit(this));
     _action = _lineEdit->addAction(LOAD_ICON("edit-find"), QLineEdit::TrailingPosition);

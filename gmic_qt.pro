@@ -29,6 +29,14 @@
 # For debugging purpose
 !defined(TIMING,var) { TIMING = off }
 
+# DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+greaterThan(QT_MAJOR_VERSION, 5) {
+ message("Qt version >= 6.0.0")
+ QMAKE_CXXFLAGS += -fPIE
+ QMAKE_LFLAGS += -fPIE
+}
+
 #
 # Check Qt version (>= 5.2)
 #
@@ -47,7 +55,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 TEMPLATE = app
 QT += widgets network
-CONFIG	+= qt c++11
+CONFIG	+= qt c++17
 CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig

@@ -90,7 +90,6 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   ui->sbPreviewTimeout->setValue(Settings::previewTimeout());
   ui->cbPreviewZoom->setChecked(Settings::previewZoomAlwaysEnabled());
   ui->cbNotifyFailedUpdate->setChecked(Settings::notifyFailedStartupUpdate());
-  ui->cbHighDPI->setChecked(Settings::highDPIEnabled());
 
   connect(ui->pbOk, &QPushButton::clicked, this, &DialogSettings::onOk);
   connect(ui->rbLeftPreview, &QRadioButton::toggled, this, &DialogSettings::onRadioLeftPreviewToggled);
@@ -106,7 +105,14 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   connect(ui->sbPreviewTimeout, QOverload<int>::of(&QSpinBox::valueChanged), this, &DialogSettings::onPreviewTimeoutChange);
   connect(ui->outputMessages, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &DialogSettings::onOutputMessageModeChanged);
   connect(ui->cbNotifyFailedUpdate, &QCheckBox::toggled, this, &DialogSettings::onNotifyStartupUpdateFailedToggle);
+
+#if QT_VERSION_GTE(6, 0, 0)
+  ui->cbHighDPI->hide();
+  ui->labelHighDPI->hide();
+#else
+  ui->cbHighDPI->setChecked(Settings::highDPIEnabled());
   connect(ui->cbHighDPI, &QCheckBox::toggled, this, &DialogSettings::onHighDPIToggled);
+#endif
 
   ui->languageSelector->selectLanguage(Settings::languageCode());
   ui->languageSelector->enableFilterTranslation(Settings::filterTranslationEnabled());

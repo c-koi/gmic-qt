@@ -29,7 +29,6 @@
 class QFile;
 class QByteArray;
 class QString;
-class QStringList;
 
 namespace GmicQt
 {

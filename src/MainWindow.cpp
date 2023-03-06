@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
   copyShortcut->setContext(Qt::ApplicationShortcut);
-  connect(copyShortcut, &QShortcut::activated, [this] { ui->tbCopyCommand->animateClick(100); });
+  connect(copyShortcut, &QShortcut::activated, [this] { ui->tbCopyCommand->animateClick(); });
   ui->tbCopyCommand->setToolTip(appendShortcutText(tr("Copy G'MIC command to clipboard"), copyShortcut->key()));
   ui->tbCopyCommand->setVisible(false);
 

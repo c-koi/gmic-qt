@@ -62,13 +62,12 @@ QString CustomDoubleSpinBox::textFromValue(double value) const
   QString text = QString::number(value, 'g', MAX_DIGITS);
   if (text.contains('e') || text.contains('E')) {
     text = QString::number(value, 'f', decimals());
-    const QChar DecimalPoint = QLocale().decimalPoint();
-    if (text.contains(DecimalPoint)) {
+    if (text.contains(Settings::DecimalPoint)) {
       while (text.endsWith(QChar('0'))) {
         text.chop(1);
       }
-      if (text.endsWith(DecimalPoint)) {
-        text.chop(1);
+      if (text.endsWith(Settings::DecimalPoint)) {
+        text.chop(Settings::DecimalPoint.length());
       }
     }
   }

@@ -135,7 +135,12 @@ void LanguageSettings::installTranslator(const QString & qmPath)
 void LanguageSettings::installQtTranslator(const QString & lang)
 {
   auto qtTranslator = new QTranslator(qApp);
-  if (qtTranslator->load(QString("qt_%1").arg(lang), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+#if QT_VERSION_GTE(6,0,0)
+  QString path = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#else
+  QString path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
+  if (qtTranslator->load(QString("qt_%1").arg(lang), path)) {
     QApplication::installTranslator(qtTranslator);
   } else {
     qtTranslator->deleteLater();

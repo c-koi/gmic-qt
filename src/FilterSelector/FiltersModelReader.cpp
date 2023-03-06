@@ -295,7 +295,7 @@ QString FiltersModelReader::readBufferLine(QBuffer & buffer)
       while (ignoreCount < limit && nextLine[ignoreCount] <= ' ') {
         ++ignoreCount;
       }
-      result.append(nextLine.rightRef(nextLine.length() - ignoreCount));
+      result.append(nextLine.right(nextLine.length() - ignoreCount));
     }
   }
   return result;

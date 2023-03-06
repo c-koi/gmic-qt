@@ -211,7 +211,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="labelHighDPI">
               <property name="text">
                <string>&lt;i&gt;(Restart needed)&lt;/i&gt;</string>
               </property>

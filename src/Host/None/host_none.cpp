@@ -25,7 +25,6 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFont>
@@ -115,9 +114,9 @@ QString imageName(const char * text)
       result = QString::fromUtf8(start + 5, (unsigned int)(ps - start - 5));
       result.chop(1);
       for (QChar & c : result) {
-        if (c == 21) {
+        if (c == char(21)) {
           c = '(';
-        } else if (c == 22) {
+        } else if (c == char(22)) {
           c = ')';
         }
       }

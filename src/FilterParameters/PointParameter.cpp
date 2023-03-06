@@ -90,7 +90,7 @@ bool PointParameter::addTo(QWidget * widget, int row)
 
   _rowCell = new QWidget(widget);
   auto hbox = new QHBoxLayout(_rowCell);
-  hbox->setMargin(0);
+  hbox->setContentsMargins(0, 0, 0, 0);
   hbox->addWidget(_colorLabel = new QLabel(_rowCell));
 
   QFontMetrics fm(widget->font());
