@@ -66,8 +66,9 @@ void TimeLogger::step(const char * function, int line, const char * filename)
   }
   double elapsed = (now - last) / 1000.0;
   const double total = (now - first) / 1000.0;
-  printf("%02d @%2.3f +%2.3f %s <%s:%d>\n", count++, total, elapsed, function, filename, line);
-  fprintf(_file, "%02d @%2.3f +%2.3f %s <%s:%d>\n", count++, total, elapsed, function, filename, line);
+  printf("%02d @%2.3f +%2.3f %s <%s:%d>\n", count, total, elapsed, function, filename, line);
+  fprintf(_file, "%02d @%2.3f +%2.3f %s <%s:%d>\n", count, total, elapsed, function, filename, line);
+  ++count;
   last = now;
 }
 
