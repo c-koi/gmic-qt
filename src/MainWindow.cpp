@@ -1039,7 +1039,6 @@ void MainWindow::loadSettings()
 {
   QSettings settings;
   _filtersPresenter->loadSettings(settings);
-
   _lastExecutionOK = settings.value("LastExecution/ExitedNormally", true).toBool();
   _newSession = host_app_pid() != settings.value("LastExecution/HostApplicationID", 0).toUInt();
   settings.setValue("LastExecution/ExitedNormally", false);

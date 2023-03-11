@@ -23,13 +23,14 @@
  *
  */
 #include "Updater.h"
+#include <QByteArray>
 #include <QDebug>
+#include <QFile>
 #include <QNetworkRequest>
 #include <QTextStream>
 #include <QUrl>
 #include <iostream>
 #include "Common.h"
-#include "GmicStdlib.h"
 #include "Logger.h"
 #include "Misc.h"
 #include "Utils.h"
@@ -70,7 +71,9 @@ void Updater::updateSources(bool useNetwork)
   gmic_library::gmic_list<char> names;
   QString command = QString("%1gui_filter_sources %2").arg(prefix).arg(useNetwork);
   try {
+    TIMING;
     gmic(command.toLocal8Bit().constData(), gptSources, names, nullptr, true, nullptr, nullptr);
+    TIMING;
   } catch (...) {
     Logger::error(QString("Command '%1' failed.").arg(command));
     gptSources.assign();
@@ -342,7 +345,7 @@ QByteArray Updater::buildFullStdlib() const
   for (const QString & source : _sources) {
     QString filename = localFilename(source);
     QFile file(filename);
-    if (file.open(QFile::ReadOnly)) {
+    if (file.open(QIODevice::ReadOnly)) {
       QByteArray array;
       if (isStdlib(source) && !file.peek(10).startsWith("#@gmic")) {
         // Try to uncompress

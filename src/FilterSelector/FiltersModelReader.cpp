@@ -48,14 +48,17 @@ const QChar CHAR_TAB('\t');
 const QChar CHAR_COLON(':');
 const QChar CHAR_UNDERSCORE('_');
 const QChar CHAR_CROSS_SIGN('#');
+const QChar CHAR_NEWLINE('\n');
 const QString AT_GUI("#@gui");
 
 #ifdef __GNUC__
 inline bool isSpace(const QChar & c) __attribute__((always_inline));
+inline bool isSpace(const char c) __attribute__((always_inline));
 inline void traverseSpaces(const QChar *& pc, const QChar * limit) __attribute__((always_inline));
+inline void traverseSpaces(const char *& pc, const char * limit) __attribute__((always_inline));
 inline bool traverseOneChar(const QChar *& pc, const QChar * limit, const QChar & c) __attribute__((always_inline));
+inline bool traverseOneChar(const char *& pc, const char * limit, const char c) __attribute__((always_inline));
 inline bool traverseOneCharDifferentFrom(const QChar *& pc, const QChar * limit, const QChar & c) __attribute__((always_inline));
-
 inline void traverseCharSequenceDifferentFrom(const QChar *& pc, const QChar * limit, const QChar & c) __attribute__((always_inline));
 inline bool equals(const QChar *& pc, const QChar * limit, const QString & text) __attribute__((always_inline));
 #endif
@@ -65,14 +68,35 @@ inline bool isSpace(const QChar & c)
   return (c == CHAR_SPACE) || (c == CHAR_TAB);
 }
 
+inline bool isSpace(const char c)
+{
+  return (c == ' ') || (c == '\t');
+}
+
 inline void traverseSpaces(const QChar *& pc, const QChar * limit)
 {
-  while ((pc != limit) && (isSpace(*pc))) {
+  while ((pc != limit) && isSpace(*pc)) {
+    ++pc;
+  }
+}
+
+inline void traverseSpaces(const char *& pc, const char * limit)
+{
+  while ((pc != limit) && isSpace(*pc)) {
     ++pc;
   }
 }
 
 inline bool traverseOneChar(const QChar *& pc, const QChar * limit, const QChar & c)
+{
+  if ((pc != limit) && (*pc == c)) {
+    ++pc;
+    return true;
+  }
+  return false;
+}
+
+inline bool traverseOneChar(const char *& pc, const char * limit, const char c)
 {
   if ((pc != limit) && (*pc == c)) {
     ++pc;
@@ -285,6 +309,13 @@ bool containsLeadingSpaceAndCrossSign(const QString & text)
   return traverseOneChar(pc, limit, CHAR_CROSS_SIGN);
 }
 
+// "^\\s*#"
+bool containsLeadingSpaceAndCrossSign(const char * text, const char * limit)
+{
+  traverseSpaces(text, limit);
+  return traverseOneChar(text, limit, '#');
+}
+
 // Remove "\\s*:.*$"
 void removeColonAndText(QString & text)
 {
@@ -421,11 +452,11 @@ namespace GmicQt
 
 FiltersModelReader::FiltersModelReader(FiltersModel & model) : _model(model) {}
 
-void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
+void FiltersModelReader::parseFiltersDefinitions(const QByteArray & stdlibArray)
 {
   TIMING;
-  QBuffer stdlib(&stdlibArray);
-  stdlib.open(QBuffer::ReadOnly | QBuffer::Text);
+  const char * stdlib = stdlibArray.constData();
+  const char * stdLibLimit = stdlib + stdlibArray.size();
   QList<QString> filterPath;
 
   QString language = LanguageSettings::configuredTranslator();
@@ -439,7 +470,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
     language = "en";
   }
 
-  QString buffer = readBufferLine(stdlib);
+  QString buffer = readBufferLine(stdlib, stdLibLimit);
   QString line;
   QVector<QString> hiddenPaths;
 
@@ -450,7 +481,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
       QString path;
       if (containsHidePath(line, language, path)) {
         hiddenPaths.push_back(path);
-        buffer = readBufferLine(stdlib);
+        buffer = readBufferLine(stdlib, stdLibLimit);
       } else if (isFolderNoLanguage(line) || isFolderLanguage(line, language)) {
         //
         // A folder
@@ -468,7 +499,7 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         if (!folderName.isEmpty()) {
           filterPath.push_back(folderName);
         }
-        buffer = readBufferLine(stdlib);
+        buffer = readBufferLine(stdlib, stdLibLimit);
       } else if (isFilterNoLanguage(line) || isFilterLanguage(line, language)) {
         //
         // A filter
@@ -536,13 +567,13 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         // Read parameters
         QString parameters;
         do {
-          buffer = readBufferLine(stdlib);
+          buffer = readBufferLine(stdlib, stdLibLimit);
           if (isPrefixAndColon(buffer, start)) { //
             QString parameterLine = buffer;
             removeAtGuiSpacesAndColon(parameterLine);
             parameters += parameterLine;
           }
-        } while (!stdlib.atEnd()                        //
+        } while ((stdlib != stdLibLimit)                //
                  && !isFolderNoLanguage(buffer)         //
                  && !isFolderLanguage(buffer, language) //
                  && !isFilterNoLanguage(buffer)         //
@@ -561,10 +592,10 @@ void FiltersModelReader::parseFiltersDefinitions(QByteArray & stdlibArray)
         filter.build();
         _model.addFilter(filter);
       } else {
-        buffer = readBufferLine(stdlib);
+        buffer = readBufferLine(stdlib, stdLibLimit);
       }
     } else {
-      buffer = readBufferLine(stdlib);
+      buffer = readBufferLine(stdlib, stdLibLimit);
     }
   } while (!buffer.isEmpty());
 
@@ -631,40 +662,38 @@ InputMode FiltersModelReader::symbolToInputMode(const QString & str)
   }
 }
 
-QString FiltersModelReader::readBufferLine(QBuffer & buffer)
-{
-  // QBuffer::readline(max_size) may be very slow, in debug mode, when max_size
-  // is too big (e.g. 1MB). We read large lines in multiple calls.
-  QString result;
-  QString text;
-  do {
-    text = buffer.readLine(1024);
-    result.append(text);
-  } while (!text.isEmpty() && !text.endsWith("\n"));
+// QString FiltersModelReader::readBufferLine(const char * & pc, const char * limit)
 
-  // Merge comment lines ending with '\'
-  if (containsLeadingSpaceAndCrossSign(result)) {
-    QString commentPrefix; // "^\\s*#"
-    while (result.endsWith("\\\n")) {
-      QString nextLinePeek = buffer.peek(1024);
-      if (!containsLeadingSpaceAndCrossSign(nextLinePeek, commentPrefix)) {
-        return result;
+QString FiltersModelReader::readBufferLine(const char *& ptr, const char * limit)
+{
+  if (ptr == limit) {
+    return QString();
+  }
+  QString line;
+  const char * eol = strchr(ptr, '\n');
+  const char * start = ptr;
+  ptr = eol ? (eol + 1) : limit;
+  const int lineSize = int(ptr - start);
+  line = QString::fromUtf8(start, lineSize);
+
+  if (containsLeadingSpaceAndCrossSign(start, start + lineSize)) {
+    while (line.endsWith("\\\n")) {
+      line.chop(2);
+      if (!containsLeadingSpaceAndCrossSign(ptr, limit)) {
+        line.append(CHAR_NEWLINE);
+        break;
       }
-      result.chop(2);
-      QString nextLine;
-      do {
-        text = buffer.readLine(1024);
-        nextLine.append(text);
-      } while (!text.isEmpty() && !text.endsWith("\n"));
-      int ignoreCount = commentPrefix.length();
-      const int limit = nextLine.length() - nextLine.endsWith("\n");
-      while ((ignoreCount < limit) && (nextLine[ignoreCount] <= CHAR_SPACE)) {
-        ++ignoreCount;
+      while (isSpace(*ptr)) { // Skip spaces
+        ++ptr;
       }
-      result.append(nextLine.right(nextLine.length() - ignoreCount));
+      ++ptr; // Skip '#'
+      eol = strchr(ptr, '\n');
+      start = ptr;
+      ptr = eol ? (eol + 1) : limit;
+      line.append(QString::fromUtf8(start, int(ptr - start)));
     }
   }
-  return result;
+  return line;
 }
 
 } // namespace GmicQt

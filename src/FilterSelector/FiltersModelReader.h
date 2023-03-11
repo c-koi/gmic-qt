@@ -36,11 +36,12 @@ namespace GmicQt
 class FiltersModelReader {
 public:
   FiltersModelReader(FiltersModel & model);
-  void parseFiltersDefinitions(QByteArray & stdlibArray);
+  void parseFiltersDefinitions(const QByteArray &stdlibArray);
 
 private:
   FiltersModel & _model;
   static QString readBufferLine(QBuffer &);
+  static QString readBufferLine(const char *& ptr, const char * limit);
   static bool textIsPrecededBySpacesInSomeLineOfArray(const QByteArray & text, const QByteArray & array);
   static InputMode symbolToInputMode(const QString & str);
 };
