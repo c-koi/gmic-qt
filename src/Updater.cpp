@@ -80,13 +80,11 @@ void Updater::updateSources(bool useNetwork)
   {
     gmic_library::gmic_image<char> & str = sources[l];
     str.unroll('x');
-    bool isStdlib = (str.back() == 1);
-    if (isStdlib) {
-      str.back() = 0;
-    } else {
-      str.columns(0, str.width());
+    bool isStdlib = ((str.width() > 0) && (str.back() == 1));
+    if (isStdlib && (str.width() > 1)) {
+      str.columns(0, str.width() - 2);
     }
-    QString source = QString::fromUtf8(str);
+    QString source = QString::fromUtf8(str.data(), str.width());
     _sources << source;
     _sourceIsStdLib[source] = isStdlib;
   }
@@ -227,7 +225,7 @@ void Updater::onNetworkReplyFinished(QNetworkReply * reply)
     QDebug d(&str);
     d << error;
     str = str.trimmed();
-    _errorMessages << QString(tr("Error downloading %1<br/>Error %2: %3")).arg(reply->request().url().toString()).arg(static_cast<int>(error)).arg(str);
+    _errorMessages << tr("Error downloading %1<br/>Error %2: %3").arg(reply->request().url().toString()).arg(static_cast<int>(error)).arg(str);
     Logger::error("Update failed");
     Logger::note(QString("Error string: %1").arg(reply->errorString()));
     Logger::note("******* Full reply contents ******\n");
