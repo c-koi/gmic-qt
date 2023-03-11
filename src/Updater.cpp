@@ -60,6 +60,7 @@ void Updater::updateSources(bool useNetwork)
 {
   _sources.clear();
   _sourceIsStdLib.clear();
+
   // Build sources map
   QString prefix = commandFromOutputMessageMode(_outputMessageMode);
   if (!prefix.isEmpty()) {
@@ -69,7 +70,7 @@ void Updater::updateSources(bool useNetwork)
   gmic_library::gmic_list<char> names;
   QString command = QString("%1gui_filter_sources %2").arg(prefix).arg(useNetwork);
   try {
-    gmic(command.toLocal8Bit().constData(), gptSources, names, nullptr, true);
+    gmic(command.toLocal8Bit().constData(), gptSources, names, nullptr, true, nullptr, nullptr);
   } catch (...) {
     Logger::error(QString("Command '%1' failed.").arg(command));
     gptSources.assign();
