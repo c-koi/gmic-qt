@@ -285,31 +285,6 @@ bool containsHidePath(const QString & text, const QString & language, QString & 
 }
 
 // "^\\s*#"
-bool containsLeadingSpaceAndCrossSign(const QString & text, QString & capture)
-{
-  const QChar * begin = text.constData();
-  const QChar * pc = begin;
-  const QChar * limit = pc + text.size();
-  traverseSpaces(pc, limit);
-  if (!traverseOneChar(pc, limit, CHAR_CROSS_SIGN)) {
-    capture.clear();
-    return false;
-  }
-  capture = QString(begin, pc - begin);
-  return true;
-}
-
-// "^\\s*#"
-bool containsLeadingSpaceAndCrossSign(const QString & text)
-{
-  const QChar * begin = text.constData();
-  const QChar * pc = begin;
-  const QChar * limit = pc + text.size();
-  traverseSpaces(pc, limit);
-  return traverseOneChar(pc, limit, CHAR_CROSS_SIGN);
-}
-
-// "^\\s*#"
 bool containsLeadingSpaceAndCrossSign(const char * text, const char * limit)
 {
   traverseSpaces(text, limit);
