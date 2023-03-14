@@ -9,12 +9,12 @@
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="245"/>
+        <location filename="../ui/dialogsettings.ui" line="250"/>
         <source>Internet updates</source>
         <translation>Mises à jour internet</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="254"/>
+        <location filename="../ui/dialogsettings.ui" line="259"/>
         <source>Update now</source>
         <translation>Mettre à jour maintenant</translation>
     </message>
@@ -95,11 +95,16 @@
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="239"/>
+        <source>Filter sources</source>
+        <translation>Sources de filtres</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogsettings.ui" line="244"/>
         <source>Other</source>
         <translation>Autre</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="277"/>
+        <location filename="../ui/dialogsettings.ui" line="282"/>
         <source>Output messages</source>
         <translation>Messages de sortie</translation>
     </message>
@@ -124,12 +129,12 @@
         <translation>Afficher les logos institutionnels</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="286"/>
+        <location filename="../ui/dialogsettings.ui" line="291"/>
         <source>Notify when scheduled update fails</source>
         <translation>Signaler quand une mise à jour automatique échoue</translation>
     </message>
     <message>
-        <location filename="../ui/dialogsettings.ui" line="328"/>
+        <location filename="../ui/dialogsettings.ui" line="333"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -274,12 +279,12 @@
 <context>
     <name>GmicQt::FiltersPresenter</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="499"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="510"/>
         <source>Unknown filter</source>
         <translation>Filtre inconnu</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="609"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="620"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
         <translation>Filtre original introuvable pour ce favori
@@ -348,7 +353,7 @@
 <context>
     <name>GmicQt::FolderParameter</name>
     <message>
-        <location filename="../src/FilterParameters/FolderParameter.cpp" line="136"/>
+        <location filename="../src/FilterParameters/FolderParameter.cpp" line="138"/>
         <source>Select a folder</source>
         <translation>Sélectionnez un dossier</translation>
     </message>
@@ -371,22 +376,22 @@
 <context>
     <name>GmicQt::HeadlessProcessor</name>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="81"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="79"/>
         <source>At least a filter path or a filter command must be provided.</source>
         <translation>Au moins un chemin de filtre ou une commande doivent être founis.</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="83"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="81"/>
         <source>Custom command (%1)</source>
         <translation>Commande personnalisée (%1)</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="91"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="89"/>
         <source>Cannot find filter matching path %1</source>
         <translation>Impossible de trouver un filtre correspondant au chemin %1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="98"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="96"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -403,17 +408,17 @@ Impossible de déterminer les paramètres par défaut.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="116"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="114"/>
         <source>Error parsing supplied command: %1</source>
         <translation>Erreur d&apos;analyse de la commande fournie: %1</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="119"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="117"/>
         <source>Supplied command (%1) does not match path (%2), (should be %3).</source>
         <translation>La commande fournie (%1) ne correspond pas au chemin (%2), (ce devrait être %3).</translation>
     </message>
     <message>
-        <location filename="../src/HeadlessProcessor.cpp" line="231"/>
+        <location filename="../src/HeadlessProcessor.cpp" line="229"/>
         <source>Filter execution failed, but with no error message.</source>
         <translation>L&apos;exécution du filtre a échoué, mais sans message d&apos;erreur.</translation>
     </message>
@@ -511,82 +516,82 @@ Impossible de déterminer les paramètres par défaut.
     <message>
         <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="62"/>
         <source>Translations are very likely to be incomplete.</source>
-        <translation>La traduction est certainement très incomplète</translation>
+        <translation>La traduction est certainement très incomplète.</translation>
     </message>
 </context>
 <context>
     <name>GmicQt::MainWindow</name>
     <message>
-        <location filename="../src/MainWindow.cpp" line="112"/>
+        <location filename="../src/MainWindow.cpp" line="110"/>
         <source>Add fave</source>
         <translation>Ajouter un favori</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="114"/>
+        <location filename="../src/MainWindow.cpp" line="112"/>
         <source>Reset parameters to default values</source>
         <translation>Réinitialiser les paramètres du filtre</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="120"/>
+        <location filename="../src/MainWindow.cpp" line="118"/>
         <source>Copy G&apos;MIC command to clipboard</source>
         <translation>Copier la commande G&apos;MIC dans le presse-papier</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="127"/>
+        <location filename="../src/MainWindow.cpp" line="125"/>
         <source>Rename fave</source>
         <translation>Renommer un favori</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="129"/>
+        <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Remove fave</source>
         <translation>Supprimer un favori</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="133"/>
+        <location filename="../src/MainWindow.cpp" line="131"/>
         <source>Expand/Collapse all</source>
         <translation>Déplier/Réduire tout</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="135"/>
+        <location filename="../src/MainWindow.cpp" line="133"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandie Université (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="142"/>
+        <location filename="../src/MainWindow.cpp" line="140"/>
         <source>Selection mode</source>
         <translation>Mode sélection</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="180"/>
+        <location filename="../src/MainWindow.cpp" line="178"/>
         <source>Update filters</source>
         <translation>Mettre à jour les filtres (Ctrl+R / F5)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="234"/>
+        <location filename="../src/MainWindow.cpp" line="232"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
         <translation>Gérer les tags visibles
 (Ajouter/supprimer des tags par clic droit sur un favori ou sur un filtre)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="356"/>
+        <location filename="../src/MainWindow.cpp" line="355"/>
         <source>Update completed</source>
         <translation>Mise à jour réussie</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="356"/>
-        <location filename="../src/MainWindow.cpp" line="358"/>
-        <location filename="../src/MainWindow.cpp" line="490"/>
+        <location filename="../src/MainWindow.cpp" line="355"/>
+        <location filename="../src/MainWindow.cpp" line="357"/>
+        <location filename="../src/MainWindow.cpp" line="489"/>
         <source>Filter definitions have been updated.</source>
         <translation>Les définitions de filtres ont été mises à jour.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="361"/>
+        <location filename="../src/MainWindow.cpp" line="360"/>
         <source>No download was needed.</source>
         <translation>Aucun téléchargement n&apos;était requis.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="414"/>
+        <location filename="../src/MainWindow.cpp" line="413"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -595,8 +600,8 @@ Path: %1</source>
 Chemin: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="422"/>
-        <location filename="../src/MainWindow.cpp" line="449"/>
+        <location filename="../src/MainWindow.cpp" line="421"/>
+        <location filename="../src/MainWindow.cpp" line="448"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -613,7 +618,7 @@ Impossible de déterminer les paramètres par défaut.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="435"/>
+        <location filename="../src/MainWindow.cpp" line="434"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -622,7 +627,7 @@ Command: %1</source>
 Commande: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
+        <location filename="../src/MainWindow.cpp" line="429"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -631,7 +636,7 @@ Commande: %1</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="438"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -644,52 +649,52 @@ Commande : %2
 Commande trouvée pour le chemin : %3</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="486"/>
+        <location filename="../src/MainWindow.cpp" line="485"/>
         <source>Filters update could not be achieved</source>
         <translation>La mise à jour des filtres n&apos;a pas réussi</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="612"/>
+        <location filename="../src/MainWindow.cpp" line="611"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>La mise à jour n&apos;a pas réussi en raison&lt;br/&gt;des erreurs suivantes :&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="618"/>
+        <location filename="../src/MainWindow.cpp" line="617"/>
         <source>Update error</source>
         <translation>Erreurs lors de la mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="807"/>
+        <location filename="../src/MainWindow.cpp" line="806"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="923"/>
+        <location filename="../src/MainWindow.cpp" line="922"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>En attente des traitements annulés...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1289"/>
+        <location filename="../src/MainWindow.cpp" line="1287"/>
         <source>Import faves</source>
         <translation>Importer les favoris</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1289"/>
+        <location filename="../src/MainWindow.cpp" line="1287"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Voulez-vous importer les favoris du fichier ci-dessous ?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1292"/>
+        <location filename="../src/MainWindow.cpp" line="1290"/>
         <source>Don&apos;t ask again</source>
         <translation>Ne plus me demander</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1404"/>
+        <location filename="../src/MainWindow.cpp" line="1402"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1404"/>
+        <location filename="../src/MainWindow.cpp" line="1402"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Une commande gmic est en cours d&apos;exécution.&lt;br&gt;Voulez-vous vraiment fermer le plugin ?</translation>
     </message>
@@ -768,29 +773,108 @@ Commande trouvée pour le chemin : %3</translation>
     </message>
 </context>
 <context>
+    <name>GmicQt::SourcesWidget</name>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="46"/>
+        <source>Move source up</source>
+        <translation>Déplacer la source vers le haut</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="48"/>
+        <source>Move source down</source>
+        <translation>Déplacer la source vers le bas</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="50"/>
+        <source>Remove source</source>
+        <translation>Supprimer la source</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="52"/>
+        <source>Add local file (dialog)</source>
+        <translation>Ajouter un fichier local (dialogue)</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="54"/>
+        <source>Set to default list</source>
+        <translation>Réinitialiser (liste par défaut)</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="78"/>
+        <source>Macros: $HOME %APPDATA% $VERSION</source>
+        <translation>Macros : $HOME %APPDATA% $VERSION</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="80"/>
+        <source>Macros: $HOME $VERSION</source>
+        <translation>Macros : $HOME $VERSION</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="83"/>
+        <source>Disable</source>
+        <translation>Désactiver</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="84"/>
+        <source>Enable without updates</source>
+        <translation>Activer sans les mises à jour</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="85"/>
+        <source>Enable with updates (recommended)</source>
+        <translation>Activer avec les mises à jour (recommandé)</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="102"/>
+        <source>$HOME is replaced by &apos;%1&apos;
+$VERSION is replaced by &apos;%2&apos;
+%APPDATA% is replaced by &apos;%3&apos;</source>
+        <translation>$HOME est remplacé par &apos;%1&apos;
+$VERSION est remplacé par &apos;%2&apos;
+%APPDATA% est remplacé par &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="109"/>
+        <source>$HOME is replaced by &apos;%1&apos;
+$VERSION is replaced by &apos;%2&apos;</source>
+        <translation>$HOME est remplacé par &apos;%1&apos;
+$VERSION est remplacé par &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="117"/>
+        <source>New source</source>
+        <translation>Nouvelle source</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="163"/>
+        <source>Select a file</source>
+        <translation>Sélectionnez un fichier</translation>
+    </message>
+</context>
+<context>
     <name>GmicQt::Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="199"/>
+        <location filename="../src/Updater.cpp" line="185"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Erreur de téléchargement de %1 (fichier vide ?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="208"/>
+        <location filename="../src/Updater.cpp" line="194"/>
         <source>Could not read/decompress %1</source>
         <translation>Impossible de lire/décompresser %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="213"/>
+        <location filename="../src/Updater.cpp" line="199"/>
         <source>Error writing file %1</source>
         <translation>Erreur d&apos;écriture du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="230"/>
+        <location filename="../src/Updater.cpp" line="216"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>Erreur lors du téléchargement de %1&lt;br/&gt; Erreur %2 : %3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="266"/>
+        <location filename="../src/Updater.cpp" line="252"/>
         <source>Download timeout: %1</source>
         <translation>Téléchargement annulé (hors délai) : %1</translation>
     </message>
@@ -1046,22 +1130,22 @@ Commande trouvée pour le chemin : %3</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="74"/>
+        <location filename="../src/Host/None/host_none.cpp" line="76"/>
         <source>Select an image to open...</source>
         <translation>Sélectionnez une image à ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="84"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="82"/>
+        <location filename="../src/Host/None/host_none.cpp" line="84"/>
         <source>Could not open file.</source>
         <translation>Impossible d&apos;ouvrir le fichier.</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/host_none.cpp" line="86"/>
+        <location filename="../src/Host/None/host_none.cpp" line="88"/>
         <source>Default image</source>
         <translation>Image par défaut</translation>
     </message>
@@ -1071,7 +1155,7 @@ Commande trouvée pour le chemin : %3</translation>
         <translation>Visible</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="104"/>
+        <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="106"/>
         <source>Available filters (%1)</source>
         <translation>Filtres disponibles (%1)</translation>
     </message>
@@ -1140,6 +1224,44 @@ Commande trouvée pour le chemin : %3</translation>
     </message>
 </context>
 <context>
+    <name>SourcesWidget</name>
+    <message>
+        <location filename="../ui/sourceswidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>GMIC</translation>
+    </message>
+    <message>
+        <location filename="../ui/sourceswidget.ui" line="22"/>
+        <source>Official filters:</source>
+        <translation>Filtres officiels :</translation>
+    </message>
+    <message>
+        <location filename="../ui/sourceswidget.ui" line="49"/>
+        <source>File / URL</source>
+        <translation>Fichier / URL</translation>
+    </message>
+    <message>
+        <location filename="../ui/sourceswidget.ui" line="59"/>
+        <source>Add new</source>
+        <translation>Ajouter nouveau</translation>
+    </message>
+    <message>
+        <location filename="../ui/sourceswidget.ui" line="66"/>
+        <location filename="../ui/sourceswidget.ui" line="82"/>
+        <location filename="../ui/sourceswidget.ui" line="89"/>
+        <location filename="../ui/sourceswidget.ui" line="96"/>
+        <location filename="../ui/sourceswidget.ui" line="103"/>
+        <location filename="../ui/sourceswidget.ui" line="129"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../ui/sourceswidget.ui" line="136"/>
+        <source>Macros: $HOME $VERSION</source>
+        <translation>Macros : $HOME $VERSION</translation>
+    </message>
+</context>
+<context>
     <name>ZoomLevelSelector</name>
     <message>
         <location filename="../ui/zoomlevelselector.ui" line="20"/>
@@ -1150,27 +1272,27 @@ Commande trouvée pour le chemin : %3</translation>
 <context>
     <name>gmic_qt_standalone::ImageDialog</name>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="71"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="73"/>
         <source>G&apos;MIC-Qt filter output</source>
         <translation>Résultat du filtre G&apos;MIC-Qt</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="82"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="84"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="85"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="87"/>
         <source>Save as...</source>
         <translation>Enregistrer sous...</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="120"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="122"/>
         <source>%1 file (*.%2)</source>
         <translation>Fichier %1 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="141"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="144"/>
         <source>Save image as...</source>
         <translation>Enregistrer l&apos;image sous...</translation>
     </message>
@@ -1178,12 +1300,12 @@ Commande trouvée pour le chemin : %3</translation>
 <context>
     <name>gmic_qt_standalone::ImageView</name>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="65"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/Host/None/ImageDialog.cpp" line="63"/>
+        <location filename="../src/Host/None/ImageDialog.cpp" line="65"/>
         <source>Could not write image file %1</source>
         <translation>Impossible d&apos;écrire le fichier %1</translation>
     </message>

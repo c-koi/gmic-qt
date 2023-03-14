@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file DialogSettings.h
+ *  @file SourcesWidget.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,49 +22,55 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_DIALOGSETTINGS_H
-#define GMIC_QT_DIALOGSETTINGS_H
+#ifndef GMIC_QT_SOURCESWIDGET_H
+#define GMIC_QT_SOURCESWIDGET_H
 
-#include <QDialog>
-class QCloseEvent;
-class QSettings;
+#include <QString>
+#include <QStringList>
+#include <QWidget>
 
 namespace Ui
 {
-class DialogSettings;
+class SourcesWidget;
 }
+
+class QSettings;
 
 namespace GmicQt
 {
 
-class DialogSettings : public QDialog {
+class SourcesWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit DialogSettings(QWidget * parent);
-  ~DialogSettings() override;
+  enum class OfficialFilters
+  {
+    Disabled,
+    EnabledWithoutUpdates,
+    EnabledWithUpdates
+  };
 
-public slots:
-  void onRadioLeftPreviewToggled(bool);
-  void onDarkThemeToggled(bool on);
-  void onUpdateClicked();
-  void onOk();
-  void enableUpdateButton();
-  void onUpdatePeriodicityChanged(int i);
-  void onColorDialogsToggled(bool);
-  void onFileDialogsToggled(bool);
-  void done(int r) override;
-  void onVisibleLogosToggled(bool);
-  void onPreviewTimeoutChange(int);
-  void onOutputMessageModeChanged(int);
-  void onPreviewZoomToggled(bool);
-  void onNotifyStartupUpdateFailedToggle(bool);
-  void onHighDPIToggled(bool);
+  explicit SourcesWidget(QWidget * parent = nullptr);
+  ~SourcesWidget() override;
+
+  QStringList list() const;
+  static QStringList defaultList();
+  void saveSettings();
+
+private slots:
+  void onOpenFile();
+  void onAddNew();
+  void setToDefault();
+  void enableButtons();
+  void removeCurrentSource();
+  void onMoveDown();
+  void onMoveUp();
+  void showMacrosTooltip();
 
 private:
-  Ui::DialogSettings * ui;
+  Ui::SourcesWidget * ui;
+  QString _newItemText;
 };
 
 } // namespace GmicQt
-
-#endif // GMIC_QT_DIALOGSETTINGS_H
+#endif // GMIC_QT_SOURCESWIDGET_H

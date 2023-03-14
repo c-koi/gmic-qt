@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="interface">
       <attribute name="title">
@@ -234,6 +234,11 @@
        </item>
       </layout>
      </widget>
+     <widget class="GmicQt::SourcesWidget" name="sources">
+      <attribute name="title">
+       <string>Filter sources</string>
+      </attribute>
+     </widget>
      <widget class="QWidget" name="other">
       <attribute name="title">
        <string>Other</string>
@@ -343,6 +348,12 @@
    <class>GmicQt::LanguageSelectionWidget</class>
    <extends>QWidget</extends>
    <header>Widgets/LanguageSelectionWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GmicQt::SourcesWidget</class>
+   <extends>QWidget</extends>
+   <header>SourcesWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

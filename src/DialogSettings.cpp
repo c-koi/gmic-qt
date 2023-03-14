@@ -153,6 +153,7 @@ void DialogSettings::onOk()
 void DialogSettings::done(int r)
 {
   QSettings settings;
+  ui->sources->saveSettings();
   Settings::save(settings);
   QDialog::done(r);
 }

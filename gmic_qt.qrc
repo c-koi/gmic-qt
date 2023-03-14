@@ -16,10 +16,12 @@
         <file>icons/dark/list-remove.png</file>
         <file>icons/dark/package_settings.png</file>
         <file>icons/dark/process-stop.png</file>
+	<file>icons/dark/question.png</file>
         <file>icons/dark/rename.png</file>
         <file>icons/dark/selection_mode.png</file>
         <file>icons/dark/system-run.png</file>
         <file>icons/dark/undo.png</file>
+        <file>icons/dark/user-trash.png</file>
         <file>icons/dark/view-fullscreen.png</file>
         <file>icons/dark/view-refresh.png</file>
         <file>icons/dark/zoom-in.png</file>
@@ -36,10 +38,12 @@
         <file>icons/list-remove.png</file>
         <file>icons/package_settings.png</file>
         <file>icons/process-stop.png</file>
+        <file>icons/question.png</file>
         <file>icons/rename.png</file>
         <file>icons/selection_mode.png</file>
         <file>icons/system-run.png</file>
         <file>icons/undo.png</file>
+        <file>icons/user-trash.png</file>
         <file>icons/view-fullscreen.png</file>
         <file>icons/view-refresh.png</file>
         <file>icons/zoom-in.png</file>
