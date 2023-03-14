@@ -72,14 +72,10 @@ public:
   void startUpdate(int ageLimit, int timeout, bool useNetwork);
 
   QList<QString> errorMessages();
-  QList<QString> remotesThatNeedUpdate(int ageLimit) const;
-  bool someUpdatesNeeded(int ageLimit) const;
   bool allDownloadsOk() const;
-  QList<QString> sources() const;
   QByteArray buildFullStdlib() const;
 
   bool someNetworkUpdateAchieved() const;
-  void updateSources(bool useNetwork);
 
 signals:
   void updateIsDone(int status);
@@ -95,17 +91,18 @@ protected:
 
 private:
   static QString localFilename(QString url);
-  bool isStdlib(const QString & source) const;
-
+  void appendBuiltinGmicStdlib(QByteArray & array) const;
+  bool appendLocalGmicFile(QByteArray & array, QString filename) const;
+  void prependOfficialSourceIfRelevant(QStringList & list);
   explicit Updater(QObject * parent);
+  static bool isCImgCompressed(const QByteArray & data);
   static QByteArray cimgzDecompress(const QByteArray & array);
   static QByteArray cimgzDecompressFile(const QString & filename);
   static std::unique_ptr<Updater> _instance;
   static OutputMessageMode _outputMessageMode;
+  static const char * OfficialFilterSourceURL;
 
   QNetworkAccessManager * _networkAccessManager;
-  QList<QString> _sources;
-  QMap<QString, bool> _sourceIsStdLib;
   QSet<QNetworkReply *> _pendingReplies;
   QList<QString> _errorMessages;
   bool _someNetworkUpdatesAchieved;

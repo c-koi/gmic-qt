@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdlib.h
+ *  @file FiltersModelBinaryWriter.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,26 +22,37 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_GMICSTDLIB_H
-#define GMIC_QT_GMICSTDLIB_H
+#ifndef GMIC_QT_FILTERSMODELBINARYWRITER_H
+#define GMIC_QT_FILTERSMODELBINARYWRITER_H
 
-#include <QByteArray>
+class QByteArray;
+#include <QDataStream>
+#include <QList>
 #include <QString>
-#include <QStringList>
 
 namespace GmicQt
 {
 
-class GmicStdLib {
+class FiltersModel;
+
+class FiltersModelBinaryWriter {
 public:
-  GmicStdLib() = delete;
-  static void loadStdLib();
-  static QByteArray Array;
-  static QString substituteSourceVariables(QString text);
-  static QStringList substituteSourceVariables(QStringList list);
-  static QByteArray hash();
+  FiltersModelBinaryWriter(const FiltersModel & model);
+  bool write(const QString & filename, const QByteArray & hash);
+
+private:
+  static inline void writeStringList(const QList<QString> & list, QDataStream & stream);
+  const FiltersModel & _model;
 };
+
+void FiltersModelBinaryWriter::writeStringList(const QList<QString> & list, QDataStream & stream)
+{
+  stream << (quint8)list.size();
+  for (const QString & str : list) {
+    stream << str.toUtf8();
+  }
+}
 
 } // namespace GmicQt
 
-#endif // GMIC_QT_GMICSTDLIB_H
+#endif // GMIC_QT_FILTERSMODELBINARYWRITER_H

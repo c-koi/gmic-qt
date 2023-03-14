@@ -31,11 +31,20 @@
 #include <vector>
 #include "GmicQt.h"
 
+class FiltersModelBinaryReader;
+class FiltersModelBinaryWriter;
+
 namespace GmicQt
 {
 class FiltersModel {
+  friend class FiltersModelBinaryReader;
+  friend class FiltersModelBinaryWriter;
+
 public:
   class Filter {
+    friend class FiltersModelBinaryReader;
+    friend class FiltersModelBinaryWriter;
+
   public:
     Filter();
     Filter & setName(const QString & name);

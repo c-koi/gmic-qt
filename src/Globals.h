@@ -41,6 +41,7 @@ const char WarningPrefix = '!';
 #define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
 #define FILTERS_VISIBILITY_FILENAME "gmic_qt_visibility.dat"
 #define FILTERS_TAGS_FILENAME "gmic_qt_tags.dat"
+#define FILTERS_CACHE_FILENAME "gmic_qt_filters.dat"
 
 #define FAVE_FOLDER_TEXT "<b>Faves</b>"
 #define FAVES_IMPORT_KEY "Faves/ImportedGTK179"
@@ -48,6 +49,7 @@ const char WarningPrefix = '!';
 #define DARK_THEME_KEY "Config/DarkTheme"
 #define REFRESH_USING_INTERNET_KEY "Config/RefreshInternetUpdate"
 #define INTERNET_UPDATE_PERIODICITY_KEY "Config/UpdatesPeriodicityValue"
+#define OFFICIAL_FILTER_SOURCE_KEY "Config/OfficialFilterSource"
 #define ENABLE_FILTER_TRANSLATION "Config/FilterTranslation"
 #define LANGUAGE_CODE_KEY "Config/LanguageCode"
 #define HIGHDPI_KEY "Config/HighDPIEnabled"

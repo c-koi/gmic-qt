@@ -60,7 +60,6 @@ HeadlessProcessor::HeadlessProcessor(QObject * parent) //
 {
   _progressWindow = nullptr;
   _processingCompletedProperly = false;
-  Updater::getInstance()->updateSources(false);
   GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
 }
 
@@ -71,7 +70,6 @@ HeadlessProcessor::~HeadlessProcessor()
 
 bool HeadlessProcessor::setPluginParameters(const RunParameters & parameters)
 {
-  QSettings settings;
   _path = QString::fromStdString(parameters.filterPath);
   _inputMode = (parameters.inputMode == InputMode::Unspecified) ? DefaultInputMode : parameters.inputMode;
   _outputMode = (parameters.outputMode == OutputMode::Unspecified) ? DefaultOutputMode : parameters.outputMode;

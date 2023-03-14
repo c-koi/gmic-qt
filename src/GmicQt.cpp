@@ -42,7 +42,6 @@
 #include "MainWindow.h"
 #include "Misc.h"
 #include "Settings.h"
-#include "Updater.h"
 #include "Widgets/InOutPanel.h"
 #include "Widgets/ProgressInfoWindow.h"
 #include "gmic.h"
@@ -76,6 +75,7 @@ namespace GmicQt
 InputMode DefaultInputMode = InputMode::Active;
 OutputMode DefaultOutputMode = OutputMode::InPlace;
 const OutputMessageMode DefaultOutputMessageMode = OutputMessageMode::Quiet;
+const int GmicVersion = gmic_version;
 
 const QString & gmicVersionString()
 {

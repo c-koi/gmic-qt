@@ -96,6 +96,8 @@ extern const OutputMessageMode DefaultOutputMessageMode;
 
 const QString & gmicVersionString();
 
+extern const int GmicVersion;
+
 struct RunParameters {
   std::string command;
   std::string filterPath;

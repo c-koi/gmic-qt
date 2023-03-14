@@ -384,10 +384,10 @@ endif (NOT ENABLE_SYSTEM_GMIC)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 set (gmic_qt_SRCS
-
   src/ClickableLabel.h
   src/Common.h
-  src/OverrideCursor.h
+  src/CroppedActiveLayerProxy.h
+  src/CroppedImageListProxy.h
   src/DialogSettings.h
   src/FilterParameters/AbstractParameter.h
   src/FilterParameters/BoolParameter.h
@@ -408,56 +408,60 @@ set (gmic_qt_SRCS
   src/FilterParameters/PointParameter.h
   src/FilterParameters/SeparatorParameter.h
   src/FilterParameters/TextParameter.h
+  src/FilterSelector/FavesModel.h
+  src/FilterSelector/FavesModelReader.h
+  src/FilterSelector/FavesModelWriter.h
+  src/FilterSelector/FiltersModelBinaryReader.h
+  src/FilterSelector/FiltersModelBinaryWriter.h
   src/FilterSelector/FiltersModel.h
   src/FilterSelector/FiltersModelReader.h
   src/FilterSelector/FiltersPresenter.h
   src/FilterSelector/FiltersView/FiltersView.h
+  src/FilterSelector/FiltersView/FilterTreeAbstractItem.h
+  src/FilterSelector/FiltersView/FilterTreeFolder.h
+  src/FilterSelector/FiltersView/FilterTreeItemDelegate.h
+  src/FilterSelector/FiltersView/FilterTreeItem.h
   src/FilterSelector/FiltersView/TreeView.h
   src/FilterSelector/FiltersVisibilityMap.h
   src/FilterSelector/FilterTagMap.h
-  src/CroppedImageListProxy.h
-  src/CroppedActiveLayerProxy.h
   src/FilterSyncRunner.h
-  src/FilterThread.h
   src/FilterTextTranslator.h
+  src/FilterThread.h
   src/Globals.h
+  src/GmicProcessor.h
   src/GmicQt.h
   src/GmicStdlib.h
-  src/GmicProcessor.h
   src/HeadlessProcessor.h
   src/Host/GmicQtHost.h
+  src/Host/None/ImageDialog.h
+  src/Host/None/JpegQualityDialog.h
   src/HtmlTranslator.h
   src/IconLoader.h
   src/ImageTools.h
   src/InputOutputState.h
   src/KeypointList.h
-  src/LayersExtentProxy.h
   src/LanguageSettings.h
+  src/LayersExtentProxy.h
   src/Logger.h
   src/MainWindow.h
+  src/Misc.h
+  src/OverrideCursor.h
   src/ParametersCache.h
   src/PersistentMemory.h
   src/Settings.h
-  src/TimeLogger.h
+  src/SourcesWidget.h
   src/Tags.h
+  src/TimeLogger.h
   src/Updater.h
   src/Utils.h
-  src/Misc.h
-  src/FilterSelector/FiltersView/FilterTreeFolder.h
-  src/FilterSelector/FiltersView/FilterTreeItem.h
-  src/FilterSelector/FavesModel.h
-  src/FilterSelector/FavesModelReader.h
-  src/FilterSelector/FiltersView/FilterTreeAbstractItem.h
-  src/FilterSelector/FiltersView/FilterTreeItemDelegate.h
-  src/FilterSelector/FavesModelWriter.h
-  src/Widgets/ProgressInfoWidget.h
-  src/Widgets/PreviewWidget.h
   src/Widgets/InOutPanel.h
-  src/Widgets/ZoomLevelSelector.h
-  src/Widgets/SearchFieldWidget.h
   src/Widgets/LanguageSelectionWidget.h
+  src/Widgets/PreviewWidget.h
+  src/Widgets/ProgressInfoWidget.h
   src/Widgets/ProgressInfoWindow.h
+  src/Widgets/SearchFieldWidget.h
   src/Widgets/VisibleTagSelector.h
+  src/Widgets/ZoomLevelSelector.h
   src/ZoomConstraint.h
 )
 
@@ -474,7 +478,8 @@ set(gmic_qt_SRCS
   ${gmic_qt_SRCS}
   src/ClickableLabel.cpp
   src/Common.cpp
-  src/OverrideCursor.cpp
+  src/CroppedActiveLayerProxy.cpp
+  src/CroppedImageListProxy.cpp
   src/DialogSettings.cpp
   src/FilterParameters/AbstractParameter.cpp
   src/FilterParameters/BoolParameter.cpp
@@ -495,69 +500,78 @@ set(gmic_qt_SRCS
   src/FilterParameters/PointParameter.cpp
   src/FilterParameters/SeparatorParameter.cpp
   src/FilterParameters/TextParameter.cpp
+  src/FilterSelector/FavesModel.cpp
+  src/FilterSelector/FavesModelReader.cpp
+  src/FilterSelector/FavesModelWriter.cpp
+  src/FilterSelector/FiltersModelBinaryReader.cpp
+  src/FilterSelector/FiltersModelBinaryWriter.cpp
   src/FilterSelector/FiltersModel.cpp
   src/FilterSelector/FiltersModelReader.cpp
   src/FilterSelector/FiltersPresenter.cpp
   src/FilterSelector/FiltersView/FiltersView.cpp
+  src/FilterSelector/FiltersView/FilterTreeAbstractItem.cpp
+  src/FilterSelector/FiltersView/FilterTreeFolder.cpp
+  src/FilterSelector/FiltersView/FilterTreeItem.cpp
+  src/FilterSelector/FiltersView/FilterTreeItemDelegate.cpp
   src/FilterSelector/FiltersView/TreeView.cpp
   src/FilterSelector/FiltersVisibilityMap.cpp
   src/FilterSelector/FilterTagMap.cpp
-  src/CroppedImageListProxy.cpp
-  src/CroppedActiveLayerProxy.cpp
   src/FilterSyncRunner.cpp
-  src/FilterThread.cpp
   src/FilterTextTranslator.cpp
-  src/GmicQt.cpp
+  src/FilterThread.cpp
   src/Globals.cpp
-  src/GmicStdlib.cpp
   src/GmicProcessor.cpp
+  src/GmicQt.cpp
+  src/GmicStdlib.cpp
   src/HeadlessProcessor.cpp
+  src/Host/8bf/host_8bf.cpp
+  src/Host/Gimp/host_gimp.cpp
+  src/Host/None/host_none.cpp
+  src/Host/None/ImageDialog.cpp
+  src/Host/None/JpegQualityDialog.cpp
+  src/Host/PaintDotNet/host_paintdotnet.cpp
   src/HtmlTranslator.cpp
   src/IconLoader.cpp
   src/ImageTools.cpp
   src/InputOutputState.cpp
   src/KeypointList.cpp
-  src/LayersExtentProxy.cpp
   src/LanguageSettings.cpp
+  src/LayersExtentProxy.cpp
   src/Logger.cpp
   src/MainWindow.cpp
+  src/Misc.cpp
+  src/OverrideCursor.cpp
   src/ParametersCache.cpp
   src/PersistentMemory.cpp
   src/Settings.cpp
-  src/TimeLogger.cpp
+  src/SourcesWidget.cpp
   src/Tags.cpp
+  src/TimeLogger.cpp
   src/Updater.cpp
   src/Utils.cpp
-  src/Misc.cpp
-  src/FilterSelector/FiltersView/FilterTreeItem.cpp
-  src/FilterSelector/FiltersView/FilterTreeFolder.cpp
-  src/FilterSelector/FavesModel.cpp
-  src/FilterSelector/FavesModelReader.cpp
-  src/FilterSelector/FiltersView/FilterTreeAbstractItem.cpp
-  src/FilterSelector/FiltersView/FilterTreeItemDelegate.cpp
-  src/FilterSelector/FavesModelWriter.cpp
+  src/Widgets/InOutPanel.cpp
+  src/Widgets/LanguageSelectionWidget.cpp
   src/Widgets/PreviewWidget.cpp
   src/Widgets/ProgressInfoWidget.cpp
-  src/Widgets/InOutPanel.cpp
-  src/Widgets/ZoomLevelSelector.cpp
-  src/Widgets/SearchFieldWidget.cpp
-  src/Widgets/LanguageSelectionWidget.cpp
   src/Widgets/ProgressInfoWindow.cpp
+  src/Widgets/SearchFieldWidget.cpp
   src/Widgets/VisibleTagSelector.cpp
+  src/Widgets/ZoomLevelSelector.cpp
 )
 
 set (gmic_qt_FORMS
-  ui/dialogsettings.ui
-  ui/filtersview.ui
-  ui/headlessprogressdialog.ui
-  ui/inoutpanel.ui
-  ui/languageselectionwidget.ui
-  ui/mainwindow.ui
-  ui/multilinetextparameterwidget.ui
-  ui/progressinfowidget.ui
-  ui/progressinfowindow.ui
-  ui/SearchFieldWidget.ui
-  ui/zoomlevelselector.ui
+  dialogsettings.ui
+  filtersview.ui
+  headlessprogressdialog.ui
+  inoutpanel.ui
+  languageselectionwidget.ui
+  mainwindow.ui
+  multilinetextparameterwidget.ui
+  progressinfowidget.ui
+  progressinfowindow.ui
+  SearchFieldWidget.ui
+  sourceswidget.ui
+  zoomlevelselector.ui
 )
 
 if(ENABLE_DYNAMIC_LINKING)

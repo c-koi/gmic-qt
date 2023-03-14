@@ -23,8 +23,13 @@
  *
  */
 #include "Settings.h"
+#include "Globals.h"
+#include "GmicStdlib.h"
 #include "Host/GmicQtHost.h"
 #include "IconLoader.h"
+#include "SourcesWidget.h"
+
+#include <QRegularExpression>
 namespace
 {
 GmicQt::OutputMessageMode filterDeprecatedOutputMessageMode(const GmicQt::OutputMessageMode & mode)
@@ -52,6 +57,8 @@ OutputMessageMode Settings::_outputMessageMode;
 bool Settings::_previewZoomAlwaysEnabled = false;
 bool Settings::_notifyFailedStartupUpdate = true;
 bool Settings::_highDPI = false;
+QStringList Settings::_filterSources;
+SourcesWidget::OfficialFilters Settings::_officialFilterSource;
 
 const QColor Settings::CheckBoxBaseColor(83, 83, 83);
 const QColor Settings::CheckBoxTextColor(255, 255, 255);
@@ -89,6 +96,17 @@ void Settings::load(UserInterfaceMode userInterfaceMode)
   _outputMessageMode = filterDeprecatedOutputMessageMode((GmicQt::OutputMessageMode)settings.value("OutputMessageMode", static_cast<int>(GmicQt::DefaultOutputMessageMode)).toInt());
   _notifyFailedStartupUpdate = settings.value("Config/NotifyIfStartupUpdateFails", true).toBool();
   _highDPI = settings.value(HIGHDPI_KEY, false).toBool();
+  _filterSources = settings.value("Config/FilterSources", SourcesWidget::defaultList()).toStringList();
+
+  QString officialFilterSource = settings.value(OFFICIAL_FILTER_SOURCE_KEY, QString("EnabledWithUpdates")).toString();
+  if (officialFilterSource == QString("Disable")) {
+    _officialFilterSource = SourcesWidget::OfficialFilters::Disabled;
+  } else if (officialFilterSource == QString("EnabledWithoutUpdates")) {
+    _officialFilterSource = SourcesWidget::OfficialFilters::EnabledWithoutUpdates;
+  } else if (officialFilterSource == QString("EnabledWithUpdates")) {
+    _officialFilterSource = SourcesWidget::OfficialFilters::EnabledWithUpdates;
+  }
+
   if (userInterfaceMode != UserInterfaceMode::Silent) {
     AddIcon = LOAD_ICON("list-add");
     RemoveIcon = LOAD_ICON("list-remove");
@@ -229,6 +247,26 @@ void Settings::setHighDPIEnabled(bool on)
   _highDPI = on;
 }
 
+const QStringList & Settings::filterSources()
+{
+  return _filterSources;
+}
+
+void Settings::setFilterSources(const QStringList & sources)
+{
+  _filterSources = sources;
+}
+
+SourcesWidget::OfficialFilters Settings::officialFilterSource()
+{
+  return _officialFilterSource;
+}
+
+void Settings::setOfficialFilterSource(SourcesWidget::OfficialFilters status)
+{
+  _officialFilterSource = status;
+}
+
 void Settings::save(QSettings & settings)
 {
   removeObsoleteKeys(settings);
@@ -248,6 +286,20 @@ void Settings::save(QSettings & settings)
   settings.setValue("AlwaysEnablePreviewZoom", _previewZoomAlwaysEnabled);
   settings.setValue("Config/NotifyIfStartupUpdateFails", _notifyFailedStartupUpdate);
   settings.setValue(HIGHDPI_KEY, _highDPI);
+  settings.setValue("Config/FilterSources", _filterSources);
+
+  switch (_officialFilterSource) {
+  case SourcesWidget::OfficialFilters::Disabled:
+    settings.setValue(OFFICIAL_FILTER_SOURCE_KEY, "Disable");
+    break;
+  case SourcesWidget::OfficialFilters::EnabledWithoutUpdates:
+    settings.setValue(OFFICIAL_FILTER_SOURCE_KEY, "EnabledWithoutUpdates");
+    break;
+  case SourcesWidget::OfficialFilters::EnabledWithUpdates:
+    settings.setValue(OFFICIAL_FILTER_SOURCE_KEY, "EnabledWithUpdates");
+    break;
+  }
+
   // Remove obsolete keys (2.0.0 pre-release)
   settings.remove("Config/UseFaveInputMode");
   settings.remove("Config/UseFaveOutputMode");

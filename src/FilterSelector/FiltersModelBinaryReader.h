@@ -1,6 +1,6 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
  *
- *  @file GmicStdlib.h
+ *  @file FiltersModelBinaryReader.h
  *
  *  Copyright 2017 Sebastien Fourey
  *
@@ -22,26 +22,43 @@
  *  along with gmic_qt.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef GMIC_QT_GMICSTDLIB_H
-#define GMIC_QT_GMICSTDLIB_H
 
 #include <QByteArray>
+#include <QDataStream>
+#include <QList>
 #include <QString>
-#include <QStringList>
+#ifndef GMIC_QT_FILTERSMODELBINARYREADER_H
+#define GMIC_QT_FILTERSMODELBINARYREADER_H
 
 namespace GmicQt
 {
 
-class GmicStdLib {
+class FiltersModel;
+
+class FiltersModelBinaryReader {
 public:
-  GmicStdLib() = delete;
-  static void loadStdLib();
-  static QByteArray Array;
-  static QString substituteSourceVariables(QString text);
-  static QStringList substituteSourceVariables(QStringList list);
-  static QByteArray hash();
+  FiltersModelBinaryReader(FiltersModel & model);
+  bool read(const QString & filename);
+  static QByteArray readHash(const QString & filename);
+
+private:
+  FiltersModel & _model;
+  static bool readHeader(QDataStream & stream, QByteArray & hash);
+  inline static void readStringList(QDataStream & stream, QList<QString> & list);
 };
+
+void FiltersModelBinaryReader::readStringList(QDataStream & stream, QList<QString> & list)
+{
+  list.clear();
+  quint8 size;
+  stream >> size;
+  QByteArray array;
+  while (size--) {
+    stream >> array;
+    list.push_back(QString::fromUtf8(array));
+  }
+}
 
 } // namespace GmicQt
 
-#endif // GMIC_QT_GMICSTDLIB_H
+#endif // GMIC_QT_FILTERSMODELBINARYREADER_H

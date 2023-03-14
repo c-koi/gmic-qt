@@ -28,9 +28,11 @@
 #include <QColor>
 #include <QIcon>
 #include <QObject>
-#include "Globals.h"
+#include <QString>
+#include <QStringList>
 #include "GmicQt.h"
 #include "MainWindow.h"
+#include "SourcesWidget.h"
 class QSettings;
 
 namespace GmicQt
@@ -66,6 +68,10 @@ public:
   static void setNotifyFailedStartupUpdate(bool);
   static bool highDPIEnabled();
   static void setHighDPIEnabled(bool);
+  static const QStringList & filterSources();
+  static void setFilterSources(const QStringList &);
+  static SourcesWidget::OfficialFilters officialFilterSource();
+  static void setOfficialFilterSource(SourcesWidget::OfficialFilters);
 
   static void save(QSettings &);
   static void load(UserInterfaceMode userInterfaceMode);
@@ -96,6 +102,8 @@ private:
   static bool _previewZoomAlwaysEnabled;
   static bool _notifyFailedStartupUpdate;
   static bool _highDPI;
+  static QStringList _filterSources;
+  static SourcesWidget::OfficialFilters _officialFilterSource;
 };
 
 } // namespace GmicQt

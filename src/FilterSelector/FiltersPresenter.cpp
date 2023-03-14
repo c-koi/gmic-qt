@@ -29,8 +29,10 @@
 #include "Common.h"
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FavesModelWriter.h"
+#include "FilterSelector/FiltersModelBinaryWriter.h"
 #include "FilterSelector/FiltersModelReader.h"
 #include "FilterTextTranslator.h"
+#include "FiltersModelBinaryReader.h"
 #include "FiltersVisibilityMap.h"
 #include "Globals.h"
 #include "GmicStdlib.h"
@@ -115,11 +117,20 @@ void FiltersPresenter::clear()
 void FiltersPresenter::readFilters()
 {
   _filtersModel.clear();
-  if (GmicStdLib::Array.isEmpty()) {
-    GmicStdLib::loadStdLib();
+
+  QString cacheFilename = QString("%1%2").arg(gmicConfigPath(true), FILTERS_CACHE_FILENAME);
+  bool readFromCache = false;
+  if (GmicStdLib::hash() == FiltersModelBinaryReader::readHash(cacheFilename)) {
+    readFromCache = FiltersModelBinaryReader(_filtersModel).read(cacheFilename);
   }
-  FiltersModelReader filterModelReader(_filtersModel);
-  filterModelReader.parseFiltersDefinitions(GmicStdLib::Array);
+
+  if (!readFromCache) {
+    FiltersModelReader filterModelReader(_filtersModel);
+    filterModelReader.parseFiltersDefinitions(GmicStdLib::Array);
+    // Write cache
+    FiltersModelBinaryWriter writer(_filtersModel);
+    writer.write(cacheFilename, GmicStdLib::hash());
+  }
 }
 
 void FiltersPresenter::readFaves()
