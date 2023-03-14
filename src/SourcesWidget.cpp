@@ -58,7 +58,6 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   connect(ui->tbTrash, &QPushButton::clicked, this, &SourcesWidget::removeCurrentSource);
   connect(ui->tbUp, &QPushButton::clicked, this, &SourcesWidget::onMoveUp);
   connect(ui->tbDown, &QPushButton::clicked, this, &SourcesWidget::onMoveDown);
-  connect(ui->tbMacrosQuestion, &QPushButton::clicked, this, &SourcesWidget::showMacrosTooltip);
   connect(ui->list, &QListWidget::currentItemChanged, this, &SourcesWidget::enableButtons);
   connect(ui->list, &QListWidget::currentItemChanged, [this]() { //
     QListWidgetItem * item = ui->list->currentItem();
@@ -96,23 +95,15 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
     break;
   }
 
-  ui->tbMacrosQuestion->setIcon(LOAD_ICON("question"));
-
 #ifdef _IS_WINDOWS_
-  QString text = tr("$HOME is replaced by '%1'\n"
-                    "$VERSION is replaced by '%2'\n"
-                    "%APPDATA% is replaced by '%3'")
-                     .arg(GmicStdLib::substituteSourceVariables(QString::fromUtf8("$HOME")))
-                     .arg(GmicStdLib::substituteSourceVariables(QString::fromUtf8("$VERSION")))
-                     .arg(GmicStdLib::substituteSourceVariables(QString::fromUtf8("%APPDATA%")));
+  ui->labelVariables->setText(tr("Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.\n"
+                                 "Furthermore, $VERSION is substituted by G'MIC version number (currently %1).")
+                                  .arg(GmicQt::GmicVersion));
 #else
-  QString text = tr("$HOME is replaced by '%1'\n"
-                    "$VERSION is replaced by '%2'")
-                     .arg(GmicStdLib::substituteSourceVariables(QString::fromUtf8("$HOME")))
-                     .arg(GmicStdLib::substituteSourceVariables(QString::fromUtf8("$VERSION")));
+  ui->labelVariables->setText(tr("Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.\n"
+                                 "Furthermore, $VERSION is substituted by G'MIC version number (currently %1).")
+                                  .arg(GmicQt::GmicVersion));
 #endif
-  ui->tbMacrosQuestion->setToolTip(text);
-  ui->labelVariables->setToolTip(text);
 
   _newItemText = tr("New source");
   enableButtons();
@@ -139,7 +130,7 @@ QStringList SourcesWidget::defaultList()
 #ifdef _IS_WINDOWS_
   result << QString("%APPDATA%%1user.gmic").arg(QDir::separator());
 #else
-  result << "$HOME/.gmic";
+  result << "${HOME}/.gmic";
 #endif
   return result;
 }
@@ -242,15 +233,6 @@ void SourcesWidget::onMoveUp()
   ui->list->item(row - 1)->setText(ui->list->item(row)->text());
   ui->list->item(row)->setText(textUp);
   ui->list->setCurrentRow(row - 1);
-}
-
-void SourcesWidget::showMacrosTooltip()
-{
-  QToolTip::showText(mapToGlobal(ui->tbMacrosQuestion->geometry().topLeft()), //
-                     ui->tbMacrosQuestion->toolTip(),                         //
-                     ui->tbMacrosQuestion,                                    //
-                     ui->tbMacrosQuestion->rect(),                            //
-                     2000);
 }
 
 } // namespace GmicQt

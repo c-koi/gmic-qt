@@ -800,53 +800,51 @@ Commande trouvée pour le chemin : %3</translation>
         <translation>Réinitialiser (liste par défaut)</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="78"/>
+        <location filename="../src/SourcesWidget.cpp" line="77"/>
         <source>Macros: $HOME %APPDATA% $VERSION</source>
         <translation>Macros : $HOME %APPDATA% $VERSION</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="80"/>
+        <location filename="../src/SourcesWidget.cpp" line="79"/>
         <source>Macros: $HOME $VERSION</source>
         <translation>Macros : $HOME $VERSION</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="83"/>
+        <location filename="../src/SourcesWidget.cpp" line="82"/>
         <source>Disable</source>
         <translation>Désactiver</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="84"/>
+        <location filename="../src/SourcesWidget.cpp" line="83"/>
         <source>Enable without updates</source>
         <translation>Activer sans les mises à jour</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="85"/>
+        <location filename="../src/SourcesWidget.cpp" line="84"/>
         <source>Enable with updates (recommended)</source>
         <translation>Activer avec les mises à jour (recommandé)</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="102"/>
-        <source>$HOME is replaced by &apos;%1&apos;
-$VERSION is replaced by &apos;%2&apos;
-%APPDATA% is replaced by &apos;%3&apos;</source>
-        <translation>$HOME est remplacé par &apos;%1&apos;
-$VERSION est remplacé par &apos;%2&apos;
-%APPDATA% est remplacé par &apos;%3&apos;</translation>
+        <location filename="../src/SourcesWidget.cpp" line="99"/>
+        <source>Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.
+Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1).</source>
+        <translation>Les variables d&apos;environnement (e.g. %APPDATA% ou %HOMEDIR%) sont substituées dans les sources.
+De plus, $VERSION est remplacé par le numéro de version de G&apos;MIC (actuellement %1).</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="109"/>
-        <source>$HOME is replaced by &apos;%1&apos;
-$VERSION is replaced by &apos;%2&apos;</source>
-        <translation>$HOME est remplacé par &apos;%1&apos;
-$VERSION est remplacé par &apos;%2&apos;</translation>
+        <location filename="../src/SourcesWidget.cpp" line="103"/>
+        <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
+Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1).</source>
+        <translation>Les variables d&apos;environnement (e.g. $HOME ou ${HOME}) sont substituées dans les sources.
+De plus, $VERSION est remplacé par le numéro de version de G&apos;MIC (actuellement %1).</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="117"/>
+        <location filename="../src/SourcesWidget.cpp" line="108"/>
         <source>New source</source>
         <translation>Nouvelle source</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="163"/>
+        <location filename="../src/SourcesWidget.cpp" line="154"/>
         <source>Select a file</source>
         <translation>Sélectionnez un fichier</translation>
     </message>
@@ -854,27 +852,27 @@ $VERSION est remplacé par &apos;%2&apos;</translation>
 <context>
     <name>GmicQt::Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="185"/>
+        <location filename="../src/Updater.cpp" line="136"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Erreur de téléchargement de %1 (fichier vide ?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="194"/>
+        <location filename="../src/Updater.cpp" line="145"/>
         <source>Could not read/decompress %1</source>
         <translation>Impossible de lire/décompresser %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="199"/>
+        <location filename="../src/Updater.cpp" line="150"/>
         <source>Error writing file %1</source>
         <translation>Erreur d&apos;écriture du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="216"/>
+        <location filename="../src/Updater.cpp" line="167"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>Erreur lors du téléchargement de %1&lt;br/&gt; Erreur %2 : %3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="252"/>
+        <location filename="../src/Updater.cpp" line="203"/>
         <source>Download timeout: %1</source>
         <translation>Téléchargement annulé (hors délai) : %1</translation>
     </message>
@@ -1251,12 +1249,11 @@ $VERSION est remplacé par &apos;%2&apos;</translation>
         <location filename="../ui/sourceswidget.ui" line="89"/>
         <location filename="../ui/sourceswidget.ui" line="96"/>
         <location filename="../ui/sourceswidget.ui" line="103"/>
-        <location filename="../ui/sourceswidget.ui" line="129"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="136"/>
+        <location filename="../ui/sourceswidget.ui" line="129"/>
         <source>Macros: $HOME $VERSION</source>
         <translation>Macros : $HOME $VERSION</translation>
     </message>

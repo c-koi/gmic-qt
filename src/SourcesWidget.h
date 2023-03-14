@@ -65,7 +65,6 @@ private slots:
   void removeCurrentSource();
   void onMoveDown();
   void onMoveUp();
-  void showMacrosTooltip();
 
 private:
   Ui::SourcesWidget * ui;

@@ -29,9 +29,12 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QList>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 #include <QString>
 #include <QStringList>
 #include <QtGlobal>
+#include "Common.h"
 #include "GmicQt.h"
 #include "Utils.h"
 #include "gmic.h"
@@ -57,11 +60,24 @@ void GmicStdLib::loadStdLib() // TODO : Remove
 
 QString GmicStdLib::substituteSourceVariables(QString text)
 {
-  text.replace("$HOME", QDir::home().absolutePath());
-  text.replace("$VERSION", QString::number(GmicQt::GmicVersion));
+  QRegularExpression reVariables[] = {
 #ifdef _IS_WINDOWS_
-  text.replace("%APPDATA%", QString::fromLocal8Bit(qgetenv("APPDATA")));
+      QRegularExpression{"%([A-Za-z_][A-Za-z0-9]+)%"} //
+#else
+      QRegularExpression{"\\$([A-Za-z_][A-Za-z0-9]+)"},  //
+      QRegularExpression{"\\${([A-Za-z_][A-Za-z0-9]+)}"} //
 #endif
+  };
+
+  text.replace("$VERSION", QString::number(GmicQt::GmicVersion));
+  text.replace("${VERSION}", QString::number(GmicQt::GmicVersion));
+
+  for (QRegularExpression re : reVariables) {
+    QRegularExpressionMatch match;
+    while ((match = re.match(text)).hasMatch()) {
+      text.replace(match.captured(0), QString::fromLocal8Bit(qgetenv(match.captured(1).toLocal8Bit().constData())));
+    }
+  }
   return text;
 }
 
