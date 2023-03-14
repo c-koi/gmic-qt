@@ -64,7 +64,7 @@ bool FiltersModelBinaryWriter::write(const QString & filename, const QByteArray 
     writeStringList(it.value()._translatedPlainPath, stream);
     stream << it.value()._command.toUtf8();
     stream << it.value()._previewCommand.toUtf8();
-    stream << it.value()._defaultInputMode;
+    stream << quint8(it.value()._defaultInputMode);
     stream << it.value()._parameters.toUtf8();
     stream << it.value()._previewFactor;
     stream << it.value()._isAccurateIfZoomed;

@@ -56,6 +56,7 @@ bool FiltersModelBinaryReader::read(const QString & filename)
 
   FiltersModel::Filter filter;
   QByteArray array;
+  quint8 inputMode;
   while (!stream.atEnd()) {
     READ_STRING(filter._name);
     READ_STRING(filter._plainText);
@@ -65,7 +66,8 @@ bool FiltersModelBinaryReader::read(const QString & filename)
     readStringList(stream, filter._translatedPlainPath);
     READ_STRING(filter._command);
     READ_STRING(filter._previewCommand);
-    stream >> filter._defaultInputMode;
+    stream >> inputMode;
+    filter._defaultInputMode = InputMode(inputMode);
     READ_STRING(filter._parameters);
     stream >> filter._previewFactor;
     stream >> filter._isAccurateIfZoomed;
