@@ -565,36 +565,36 @@ Cannot retrieve default parameters.
         <translation>Режим выбора фильтров для скрытия из списка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="178"/>
+        <location filename="../src/MainWindow.cpp" line="179"/>
         <source>Update filters</source>
         <translation>Обновить фильтры</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="232"/>
+        <location filename="../src/MainWindow.cpp" line="233"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
         <translation>Управление видимыми маркерами
 (ПКМ на избранном/неизбранном фильтре, чтобы добавить/удалить маркеры)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="355"/>
+        <location filename="../src/MainWindow.cpp" line="356"/>
         <source>Update completed</source>
         <translation>Обновление завершено</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="355"/>
-        <location filename="../src/MainWindow.cpp" line="357"/>
-        <location filename="../src/MainWindow.cpp" line="489"/>
+        <location filename="../src/MainWindow.cpp" line="356"/>
+        <location filename="../src/MainWindow.cpp" line="358"/>
+        <location filename="../src/MainWindow.cpp" line="496"/>
         <source>Filter definitions have been updated.</source>
         <translation>Определения фильтров обновлены.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="360"/>
+        <location filename="../src/MainWindow.cpp" line="361"/>
         <source>No download was needed.</source>
         <translation>Загрузка не потребовалась.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="413"/>
+        <location filename="../src/MainWindow.cpp" line="414"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -603,8 +603,8 @@ Path: %1</source>
 Путь: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="421"/>
-        <location filename="../src/MainWindow.cpp" line="448"/>
+        <location filename="../src/MainWindow.cpp" line="422"/>
+        <location filename="../src/MainWindow.cpp" line="449"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -621,7 +621,7 @@ Cannot retrieve default parameters.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="434"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -630,7 +630,12 @@ Command: %1</source>
 Команда: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="429"/>
+        <location filename="../src/MainWindow.cpp" line="895"/>
+        <source>[Elapsed time: %1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -639,7 +644,7 @@ Command: %1</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="438"/>
+        <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -652,57 +657,52 @@ Command found for this path : %3</source>
 Команда, найденная по этому пути: %3</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="485"/>
+        <location filename="../src/MainWindow.cpp" line="492"/>
         <source>Filters update could not be achieved</source>
         <translation>Не удалось обновить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="613"/>
+        <location filename="../src/MainWindow.cpp" line="632"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Не удалось обновить&lt;br/&gt;по следующим причинам:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="619"/>
+        <location filename="../src/MainWindow.cpp" line="638"/>
         <source>Update error</source>
         <translation>Ошибка обновления</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="809"/>
+        <location filename="../src/MainWindow.cpp" line="829"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="876"/>
-        <source>Elapsed time: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="931"/>
+        <location filename="../src/MainWindow.cpp" line="951"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>В ожидании отменённых заданий...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1296"/>
+        <location filename="../src/MainWindow.cpp" line="1315"/>
         <source>Import faves</source>
         <translation>Импорт избранных</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1296"/>
+        <location filename="../src/MainWindow.cpp" line="1315"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Вы хотите импортировать избранные из следующего файла?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1299"/>
+        <location filename="../src/MainWindow.cpp" line="1318"/>
         <source>Don&apos;t ask again</source>
         <translation>Больше не спрашивать</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1411"/>
+        <location filename="../src/MainWindow.cpp" line="1437"/>
         <source>Confirmation</source>
         <translation>Подтвердить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1411"/>
+        <location filename="../src/MainWindow.cpp" line="1437"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Обрабатывается команда gmic.&lt;br&gt;Вы действительно хотите закрыть плагин?</translation>
     </message>
@@ -718,17 +718,17 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::ProgressInfoWidget</name>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="48"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="49"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation>Прогресс плагина G&apos;MIC-Qt</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="51"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="52"/>
         <source>Abort</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="149"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="150"/>
         <source>Updating filters...</source>
         <translation>Фильтры обновляются...</translation>
     </message>
@@ -783,74 +783,74 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::SourcesWidget</name>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="46"/>
+        <location filename="../src/SourcesWidget.cpp" line="47"/>
         <source>Move source up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="48"/>
+        <location filename="../src/SourcesWidget.cpp" line="49"/>
         <source>Move source down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="50"/>
+        <location filename="../src/SourcesWidget.cpp" line="51"/>
         <source>Remove source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="52"/>
+        <location filename="../src/SourcesWidget.cpp" line="53"/>
         <source>Add local file (dialog)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="54"/>
+        <location filename="../src/SourcesWidget.cpp" line="55"/>
         <source>Set to default list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="77"/>
+        <location filename="../src/SourcesWidget.cpp" line="78"/>
         <source>Macros: $HOME %APPDATA% $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="79"/>
+        <location filename="../src/SourcesWidget.cpp" line="80"/>
         <source>Macros: $HOME $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="82"/>
+        <location filename="../src/SourcesWidget.cpp" line="83"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="83"/>
+        <location filename="../src/SourcesWidget.cpp" line="84"/>
         <source>Enable without updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="84"/>
+        <location filename="../src/SourcesWidget.cpp" line="85"/>
         <source>Enable with updates (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="99"/>
+        <location filename="../src/SourcesWidget.cpp" line="100"/>
         <source>Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="103"/>
+        <location filename="../src/SourcesWidget.cpp" line="104"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="108"/>
+        <location filename="../src/SourcesWidget.cpp" line="109"/>
         <source>New source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="154"/>
+        <location filename="../src/SourcesWidget.cpp" line="185"/>
         <source>Select a file</source>
         <translation type="unfinished">Выбрать файл</translation>
     </message>
@@ -1031,6 +1031,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="511"/>
+        <location filename="../ui/mainwindow.ui" line="518"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
@@ -1061,22 +1062,22 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <translation>Настройки...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="524"/>
+        <location filename="../ui/mainwindow.ui" line="531"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="537"/>
+        <location filename="../ui/mainwindow.ui" line="544"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Полный экран</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="550"/>
+        <location filename="../ui/mainwindow.ui" line="557"/>
         <source>&amp;Apply</source>
         <translation>&amp;Применить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="563"/>
+        <location filename="../ui/mainwindow.ui" line="570"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -1253,7 +1254,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <location filename="../ui/sourceswidget.ui" line="39"/>
         <location filename="../ui/sourceswidget.ui" line="55"/>
         <location filename="../ui/sourceswidget.ui" line="62"/>
-        <location filename="../ui/sourceswidget.ui" line="69"/>
+        <location filename="../ui/sourceswidget.ui" line="85"/>
         <location filename="../ui/sourceswidget.ui" line="92"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
