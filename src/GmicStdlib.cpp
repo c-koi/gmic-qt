@@ -62,15 +62,19 @@ QString GmicStdLib::substituteSourceVariables(QString text)
 {
   QRegularExpression reVariables[] = {
 #ifdef _IS_WINDOWS_
-      QRegularExpression{"%([A-Za-z_][A-Za-z0-9]+)%"} //
+      QRegularExpression{"%([A-Za-z_][A-Za-z0-9_]+)%"} //
 #else
-      QRegularExpression{"\\$([A-Za-z_][A-Za-z0-9]+)"},  //
-      QRegularExpression{"\\${([A-Za-z_][A-Za-z0-9]+)}"} //
+      QRegularExpression{"\\$([A-Za-z_][A-Za-z0-9_]+)"},  //
+      QRegularExpression{"\\${([A-Za-z_][A-Za-z0-9_]+)}"} //
 #endif
   };
 
+#ifdef _IS_WINDOWS_
+  text.replace("%VERSION%", QString::number(GmicQt::GmicVersion));
+#else
   text.replace("$VERSION", QString::number(GmicQt::GmicVersion));
   text.replace("${VERSION}", QString::number(GmicQt::GmicVersion));
+#endif
 
   for (QRegularExpression re : reVariables) {
     QRegularExpressionMatch match;
