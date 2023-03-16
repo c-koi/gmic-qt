@@ -358,12 +358,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="342"/>
+        <location filename="../src/GmicProcessor.cpp" line="349"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="377"/>
+        <location filename="../src/GmicProcessor.cpp" line="385"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation type="unfinished"></translation>
@@ -627,47 +627,52 @@ Command found for this path : %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="611"/>
+        <location filename="../src/MainWindow.cpp" line="613"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>这次更新由于以下错误&lt;br/&gt;不能完成:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="617"/>
+        <location filename="../src/MainWindow.cpp" line="619"/>
         <source>Update error</source>
         <translation>更新错误</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="806"/>
+        <location filename="../src/MainWindow.cpp" line="809"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="922"/>
+        <location filename="../src/MainWindow.cpp" line="876"/>
+        <source>Elapsed time: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="931"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1287"/>
+        <location filename="../src/MainWindow.cpp" line="1296"/>
         <source>Import faves</source>
         <translation>导入收藏</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1287"/>
+        <location filename="../src/MainWindow.cpp" line="1296"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>你要从下面文件导入收藏吗?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1290"/>
+        <location filename="../src/MainWindow.cpp" line="1299"/>
         <source>Don&apos;t ask again</source>
         <translation>别再问</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1402"/>
+        <location filename="../src/MainWindow.cpp" line="1411"/>
         <source>Confirmation</source>
         <translation>确认</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1402"/>
+        <location filename="../src/MainWindow.cpp" line="1411"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>gmic 命令正在运行。&lt;br&gt;你真的想要关闭插件吗?</translation>
     </message>

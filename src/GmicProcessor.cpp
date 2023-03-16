@@ -59,7 +59,7 @@ GmicProcessor::GmicProcessor(QObject * parent) : QObject(parent)
   gmic_library::cimg::srand();
   _previewRandomSeed = gmic_library::cimg::_rand();
   _lastAppliedCommandInOutState = InputOutputState::Unspecified;
-  _filterExecutionTime.start();
+  _ongoingFilterExecutionTime.start();
   _completeFullImageProcessingCount = 0;
 }
 
@@ -137,6 +137,7 @@ void GmicProcessor::execute()
   env += QString(" _preview_y1=%1").arg(preview_y1);
   env += QString(" _preview_width=%1").arg(previewSize.width());
   env += QString(" _preview_height=%1").arg(previewSize.height());
+  _completedExecutionTime.restart();
   if (_filterContext.requestType == FilterContext::RequestType::SynchronousPreview) {
     FilterSyncRunner runner(this, _filterContext.filterCommand, _filterContext.filterArguments, env);
     runner.swapImages(*_gmicImages);
@@ -144,10 +145,10 @@ void GmicProcessor::execute()
     runner.setLogSuffix("preview");
     gmic_library::cimg::srand();
     _previewRandomSeed = gmic_library::cimg::_rand();
-    _filterExecutionTime.restart();
+    _ongoingFilterExecutionTime.restart();
     runner.run();
     manageSynchonousRunner(runner);
-    recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
+    recordPreviewFilterExecutionDurationMS((int)_ongoingFilterExecutionTime.elapsed());
   } else if (_filterContext.requestType == FilterContext::RequestType::Preview) {
     _filterThread = new FilterThread(this, _filterContext.filterCommand, _filterContext.filterArguments, env);
     _filterThread->swapImages(*_gmicImages);
@@ -156,7 +157,7 @@ void GmicProcessor::execute()
     connect(_filterThread, &FilterThread::finished, this, &GmicProcessor::onPreviewThreadFinished, Qt::QueuedConnection);
     gmic_library::cimg::srand();
     _previewRandomSeed = gmic_library::cimg::_rand();
-    _filterExecutionTime.restart();
+    _ongoingFilterExecutionTime.restart();
     _filterThread->start();
   } else if (_filterContext.requestType == FilterContext::RequestType::FullImage) {
     _lastAppliedFilterHash = _filterContext.filterHash;
@@ -245,6 +246,11 @@ int GmicProcessor::completedFullImageProcessingCount() const
   return _completeFullImageProcessingCount;
 }
 
+qint64 GmicProcessor::lastCompletedExecutionTime() const
+{
+  return _lastCompletedExecutionTime;
+}
+
 void GmicProcessor::cancel()
 {
   abortCurrentFilterThread();
@@ -308,6 +314,7 @@ void GmicProcessor::onPreviewThreadFinished()
   if (_filterThread->isRunning()) {
     return;
   }
+  _lastCompletedExecutionTime = _completedExecutionTime.elapsed();
   if (_filterThread->failed()) {
     _gmicStatus.clear();
     _parametersVisibilityStates.clear();
@@ -337,7 +344,7 @@ void GmicProcessor::onPreviewThreadFinished()
   hideWaitingCursor();
   if (correctSpectrums) {
     emit previewImageAvailable();
-    recordPreviewFilterExecutionDurationMS((int)_filterExecutionTime.elapsed());
+    recordPreviewFilterExecutionDurationMS((int)_ongoingFilterExecutionTime.elapsed());
   } else {
     QString message(tr("Image #%1 returned by filter has %2 channels (should be at most 4)"));
     emit previewCommandFailed(message.arg(badSpectrumIndex).arg((*_gmicImages)[badSpectrumIndex].spectrum()));
@@ -351,6 +358,7 @@ void GmicProcessor::onApplyThreadFinished()
   if (_filterThread->isRunning()) {
     return;
   }
+  _lastCompletedExecutionTime = _completedExecutionTime.elapsed();
   _gmicStatus = _filterThread->gmicStatus();
   _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   hideWaitingCursor();
@@ -458,6 +466,7 @@ void GmicProcessor::abortCurrentFilterThread()
 
 void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)
 {
+  _lastCompletedExecutionTime = _completedExecutionTime.elapsed();
   if (runner.failed()) {
     _gmicStatus.clear();
     _gmicImages->assign();

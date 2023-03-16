@@ -406,4 +406,23 @@ QStringList expandParameterList(const QStringList & parameters, const QVector<in
   return result;
 }
 
+QString readableDuration(qint64 ms)
+{
+  const qint64 HOUR = 3600000;
+  const qint64 MINUTE = 60000;
+  const qint64 SECOND = 1000;
+  if (ms < SECOND) {
+    return QString("%1 ms").arg(ms);
+  }
+  if (ms < MINUTE) {
+    return QString("%1 s %2 ms").arg(ms / SECOND).arg(ms % SECOND);
+  }
+  const int hours = ms / HOUR;
+  return QString("%1:%2:%3.%4")                             //
+      .arg(ms / HOUR, (hours < 10) ? 2 : 0, 10, QChar('0')) // Hours
+      .arg((ms % HOUR) / MINUTE, 2, 10, QChar('0'))         // Minutes
+      .arg((ms % MINUTE) / 1000, 2, 10, QChar('0'))         // Seconds
+      .arg(ms % SECOND, 3, 10, QChar('0'));                 // Milliseconds
+}
+
 } // namespace GmicQt

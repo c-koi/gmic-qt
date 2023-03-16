@@ -580,11 +580,11 @@ void MainWindow::onEscapeKeyPressed()
 
 void MainWindow::clearMessage()
 {
+  ui->messageLabel->setText(QString());
   if (!_messageTimerID) {
     return;
   }
   killTimer(_messageTimerID);
-  ui->messageLabel->setText(QString());
   _messageTimerID = 0;
 }
 
@@ -600,9 +600,11 @@ void MainWindow::timerEvent(QTimerEvent * e)
 void MainWindow::showMessage(const QString & text, int ms)
 {
   clearMessage();
-  if (!text.isEmpty() && ms) {
+  if (!text.isEmpty()) {
     ui->messageLabel->setText(text);
-    _messageTimerID = startTimer(ms);
+    if (ms) {
+      _messageTimerID = startTimer(ms);
+    }
   }
 }
 
@@ -659,6 +661,7 @@ void MainWindow::makeConnections()
 
 void MainWindow::onPreviewUpdateRequested()
 {
+  clearMessage();
   onPreviewUpdateRequested(false);
 }
 
@@ -854,6 +857,7 @@ void MainWindow::setZoomConstraint()
 
 void MainWindow::onFullImageProcessingDone()
 {
+  ENTERING;
   ui->progressInfoWidget->stopAnimationAndHide();
   enableWidgetList(true);
   ui->previewWidget->update();
@@ -868,6 +872,9 @@ void MainWindow::onFullImageProcessingDone()
     ui->previewWidget->updateFullImageSizeIfDifferent(extent);
     ui->previewWidget->sendUpdateRequest();
     _okButtonShouldApply = false;
+    if (_pendingActionAfterCurrentProcessing == ProcessingAction::Apply) {
+      showMessage(QString(tr("Elapsed time: %1")).arg(readableDuration(_processor.lastCompletedExecutionTime())), 0);
+    }
   }
 }
 
@@ -891,6 +898,7 @@ void MainWindow::search(const QString & text)
 
 void MainWindow::onApplyClicked()
 {
+  clearMessage();
   _pendingActionAfterCurrentProcessing = ProcessingAction::Apply;
   processImage();
 }
@@ -903,6 +911,7 @@ void MainWindow::onOkClicked()
     return;
   }
   if (_okButtonShouldApply) {
+    clearMessage();
     _pendingActionAfterCurrentProcessing = ProcessingAction::Ok;
     processImage();
   } else {

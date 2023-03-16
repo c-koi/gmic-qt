@@ -89,7 +89,6 @@ public:
   void execute();
 
   bool isProcessingFullImage() const;
-
   bool isProcessing() const;
   bool isIdle() const;
   bool hasUnfinishedAbortedThreads() const;
@@ -108,6 +107,7 @@ public:
   void recordPreviewFilterExecutionDurationMS(int duration);
   int averagePreviewFilterExecutionDuration() const;
   int completedFullImageProcessingCount() const;
+  qint64 lastCompletedExecutionTime() const;
 
 public slots:
   void cancel();
@@ -150,7 +150,9 @@ private:
   QString _lastAppliedCommandArguments;
   QStringList _lastAppliedCommandGmicStatus;
   InputOutputState _lastAppliedCommandInOutState;
-  QElapsedTimer _filterExecutionTime;
+  QElapsedTimer _ongoingFilterExecutionTime;
+  QElapsedTimer _completedExecutionTime;
+  qint64 _lastCompletedExecutionTime;
   std::deque<int> _lastFilterPreviewExecutionDurations;
   int _completeFullImageProcessingCount;
   QVector<bool> _gmicStatusQuotedParameters;
