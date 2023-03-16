@@ -97,11 +97,11 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
 
 #ifdef _IS_WINDOWS_
   ui->labelVariables->setText(tr("Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.\n"
-                                 "Furthermore, $VERSION is substituted by G'MIC version number (currently %1).")
+                                 "VERSION is also a predefined variable that stands for the G'MIC version number (currently %1).")
                                   .arg(GmicQt::GmicVersion));
 #else
   ui->labelVariables->setText(tr("Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.\n"
-                                 "Furthermore, $VERSION is substituted by G'MIC version number (currently %1).")
+                                 "VERSION is also a predefined variable that stands for the G'MIC version number (currently %1).")
                                   .arg(GmicQt::GmicVersion));
 #endif
 

@@ -827,16 +827,16 @@ Commande trouvée pour le chemin : %3</translation>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="99"/>
         <source>Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.
-Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1).</source>
+VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation>Les variables d&apos;environnement (e.g. %APPDATA% ou %HOMEDIR%) sont substituées dans les sources.
-De plus, $VERSION est remplacé par le numéro de version de G&apos;MIC (actuellement %1).</translation>
+VERSION est aussi une variable prédéfinie à la valeur de la version de G&apos;MIC (actuellement %1).</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="103"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
-Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1).</source>
+VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation>Les variables d&apos;environnement (e.g. $HOME ou ${HOME}) sont substituées dans les sources.
-De plus, $VERSION est remplacé par le numéro de version de G&apos;MIC (actuellement %1).</translation>
+VERSION est aussi une variable prédéfinie à la valeur de la version de G&apos;MIC (actuellement %1).</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="108"/>
@@ -1229,31 +1229,31 @@ De plus, $VERSION est remplacé par le numéro de version de G&apos;MIC (actuell
         <translation>GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="22"/>
+        <location filename="../ui/sourceswidget.ui" line="136"/>
         <source>Official filters:</source>
         <translation>Filtres officiels :</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="49"/>
+        <location filename="../ui/sourceswidget.ui" line="22"/>
         <source>File / URL</source>
         <translation>Fichier / URL</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="59"/>
+        <location filename="../ui/sourceswidget.ui" line="32"/>
         <source>Add new</source>
         <translation>Ajouter nouveau</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="66"/>
-        <location filename="../ui/sourceswidget.ui" line="82"/>
-        <location filename="../ui/sourceswidget.ui" line="89"/>
-        <location filename="../ui/sourceswidget.ui" line="96"/>
-        <location filename="../ui/sourceswidget.ui" line="103"/>
+        <location filename="../ui/sourceswidget.ui" line="39"/>
+        <location filename="../ui/sourceswidget.ui" line="55"/>
+        <location filename="../ui/sourceswidget.ui" line="62"/>
+        <location filename="../ui/sourceswidget.ui" line="69"/>
+        <location filename="../ui/sourceswidget.ui" line="92"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="129"/>
+        <location filename="../ui/sourceswidget.ui" line="118"/>
         <source>Macros: $HOME $VERSION</source>
         <translation>Macros : $HOME $VERSION</translation>
     </message>

@@ -800,13 +800,13 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="99"/>
         <source>Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.
-Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1).</source>
+VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="103"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
-Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1).</source>
+VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1200,31 +1200,31 @@ Furthermore, $VERSION is substituted by G&apos;MIC version number (currently %1)
         <translation type="unfinished">GMIC</translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="22"/>
+        <location filename="../ui/sourceswidget.ui" line="136"/>
         <source>Official filters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="49"/>
+        <location filename="../ui/sourceswidget.ui" line="22"/>
         <source>File / URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="59"/>
+        <location filename="../ui/sourceswidget.ui" line="32"/>
         <source>Add new</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="66"/>
-        <location filename="../ui/sourceswidget.ui" line="82"/>
-        <location filename="../ui/sourceswidget.ui" line="89"/>
-        <location filename="../ui/sourceswidget.ui" line="96"/>
-        <location filename="../ui/sourceswidget.ui" line="103"/>
+        <location filename="../ui/sourceswidget.ui" line="39"/>
+        <location filename="../ui/sourceswidget.ui" line="55"/>
+        <location filename="../ui/sourceswidget.ui" line="62"/>
+        <location filename="../ui/sourceswidget.ui" line="69"/>
+        <location filename="../ui/sourceswidget.ui" line="92"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sourceswidget.ui" line="129"/>
+        <location filename="../ui/sourceswidget.ui" line="118"/>
         <source>Macros: $HOME $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
