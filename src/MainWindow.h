@@ -142,6 +142,7 @@ private:
   void buildFiltersTree();
   void retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters);
   static QString screenGeometries();
+  void updateFilters(bool internet);
   enum class ProcessingAction
   {
     NoAction,

@@ -474,6 +474,12 @@ QString MainWindow::screenGeometries()
   return geometries.join(QString());
 }
 
+void MainWindow::updateFilters(bool internet)
+{
+  ui->tbUpdateFilters->setEnabled(false);
+  updateFiltersFromSources(0, internet);
+}
+
 void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
   bool ok = QObject::disconnect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
@@ -986,8 +992,7 @@ void MainWindow::onPreviewZoomReset()
 
 void MainWindow::onUpdateFiltersClicked()
 {
-  ui->tbUpdateFilters->setEnabled(false);
-  updateFiltersFromSources(0, ui->cbInternetUpdate->isChecked());
+  updateFilters(ui->cbInternetUpdate->isChecked());
 }
 
 void MainWindow::saveCurrentParameters()
@@ -1403,6 +1408,13 @@ void MainWindow::onSettingsClicked()
     }
   }
   showZoomWarningIfNeeded();
+  // Sources modification may require an update
+  bool sourcesModified = false;
+  bool sourcesRequireInternetUpdate = false;
+  dialog.sourcesStatus(sourcesModified, sourcesRequireInternetUpdate);
+  if (sourcesModified) {
+    updateFilters(sourcesRequireInternetUpdate && ui->cbInternetUpdate->isChecked());
+  }
 }
 
 bool MainWindow::confirmAbortProcessingOnCloseRequest()

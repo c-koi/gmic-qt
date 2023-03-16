@@ -145,6 +145,11 @@ DialogSettings::~DialogSettings()
   delete ui;
 }
 
+void DialogSettings::sourcesStatus(bool & modified, bool & internetUpdateRequired)
+{
+  modified = ui->sources->sourcesModified(internetUpdateRequired);
+}
+
 void DialogSettings::onOk()
 {
   done(QDialog::Accepted);

@@ -28,6 +28,7 @@
 #include <QFileDialog>
 #include <QListWidget>
 #include <QPushButton>
+#include <QSet>
 #include <QToolTip>
 #include <algorithm>
 #include "GmicStdlib.h"
@@ -71,7 +72,7 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
       ui->list->currentItem()->setText(text);
     }
   });
-  ui->list->addItems(Settings::filterSources());
+  ui->list->addItems(_sourcesAtOpening = Settings::filterSources());
 
 #ifdef _IS_WINDOWS_
   ui->labelVariables->setText(tr("Macros: $HOME %APPDATA% $VERSION"));
@@ -83,7 +84,7 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   ui->cbOfficialFilters->addItem(tr("Enable without updates"), int(OfficialFilters::EnabledWithoutUpdates));
   ui->cbOfficialFilters->addItem(tr("Enable with updates (recommended)"), int(OfficialFilters::EnabledWithUpdates));
 
-  switch (Settings::officialFilterSource()) {
+  switch (_officialFiltersAtOpening = Settings::officialFilterSource()) {
   case OfficialFilters::Disabled:
     ui->cbOfficialFilters->setCurrentIndex(0);
     break;
@@ -141,6 +142,36 @@ void SourcesWidget::saveSettings()
   Settings::setOfficialFilterSource((OfficialFilters)ui->cbOfficialFilters->currentData().toInt());
 }
 
+bool SourcesWidget::sourcesModified(bool & internetUpdateRequired)
+{
+  internetUpdateRequired = false;
+  const QStringList currentSourceList = list();
+  const OfficialFilters currentOfficialFilters = OfficialFilters(ui->cbOfficialFilters->currentData().toInt());
+  if ((currentSourceList == _sourcesAtOpening) && (_officialFiltersAtOpening == currentOfficialFilters)) {
+    return false;
+  }
+  QSet<QString> remoteSourcesBefore;
+  for (const QString & source : _sourcesAtOpening) {
+    if (source.startsWith("http://") || source.startsWith("https://")) {
+      remoteSourcesBefore.insert(source);
+    }
+  }
+  QSet<QString> remoteSourcesAfter;
+  for (const QString & source : currentSourceList) {
+    if (source.startsWith("http://") || source.startsWith("https://")) {
+      remoteSourcesAfter.insert(source);
+    }
+  }
+  if (!(remoteSourcesAfter - remoteSourcesBefore).isEmpty()) {
+    internetUpdateRequired = true;
+  }
+  if ((currentOfficialFilters == OfficialFilters::EnabledWithUpdates) //
+      && (currentOfficialFilters != _officialFiltersAtOpening)) {
+    internetUpdateRequired = true;
+  }
+  return true;
+}
+
 void SourcesWidget::onOpenFile()
 {
   const QFileDialog::Options options = Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
@@ -180,7 +211,6 @@ void SourcesWidget::setToDefault()
 void SourcesWidget::enableButtons()
 {
   int index = ui->list->currentRow();
-  TSHOW(index);
   if (index == -1) {
     ui->tbUp->setEnabled(false);
     ui->tbDown->setEnabled(false);
@@ -199,8 +229,6 @@ void SourcesWidget::removeCurrentSource()
 {
   QListWidgetItem * item = ui->list->currentItem();
   int row = ui->list->currentRow();
-  SHOW(item);
-  SHOW(row);
   if (item) {
     ui->list->removeItemWidget(item);
     delete item;

@@ -43,6 +43,7 @@ class DialogSettings : public QDialog {
 public:
   explicit DialogSettings(QWidget * parent);
   ~DialogSettings() override;
+  void sourcesStatus(bool & modified, bool & internetUpdateRequired);
 
 public slots:
   void onRadioLeftPreviewToggled(bool);

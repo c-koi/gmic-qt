@@ -56,6 +56,7 @@ public:
   QStringList list() const;
   static QStringList defaultList();
   void saveSettings();
+  bool sourcesModified(bool & internetUpdateRequired);
 
 private slots:
   void onOpenFile();
@@ -69,6 +70,8 @@ private slots:
 private:
   Ui::SourcesWidget * ui;
   QString _newItemText;
+  QStringList _sourcesAtOpening;
+  OfficialFilters _officialFiltersAtOpening;
 };
 
 } // namespace GmicQt
