@@ -28,6 +28,7 @@
 #include <QScreen>
 #include "GmicProcessor.h"
 #include "IconLoader.h"
+#include "Misc.h"
 #include "ui_progressinfowidget.h"
 
 #ifdef _IS_WINDOWS_
@@ -183,8 +184,7 @@ void ProgressInfoWidget::updateThreadInformation()
       ui->progressBar->setValue(value);
     }
   }
-  QTime duration = QTime::fromMSecsSinceStartOfDay(ms);
-  QString durationStr = (ms >= 60000) ? duration.toString("HH:mm:ss") : QString("%1 seconds").arg(ms / 1000);
+  QString durationStr = readableDuration(ms);
 #ifdef _IS_LINUX_
   // Get memory usage
   QString memoryStr("? KiB");
