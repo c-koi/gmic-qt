@@ -146,6 +146,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   ui->progressInfoWidget->hide();
   ui->messageLabel->setText(QString());
   ui->messageLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+  ui->rightMessageLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
   ui->filterParams->setNoFilter();
   _pendingActionAfterCurrentProcessing = ProcessingAction::NoAction;
@@ -594,6 +595,18 @@ void MainWindow::clearMessage()
   _messageTimerID = 0;
 }
 
+void MainWindow::clearRightMessage()
+{
+  ui->rightMessageLabel->hide();
+  ui->rightMessageLabel->clear();
+}
+
+void MainWindow::showRightMessage(const QString & text)
+{
+  ui->rightMessageLabel->setText(text);
+  ui->rightMessageLabel->show();
+}
+
 void MainWindow::timerEvent(QTimerEvent * e)
 {
   if (e->timerId() == _messageTimerID) {
@@ -668,6 +681,7 @@ void MainWindow::makeConnections()
 void MainWindow::onPreviewUpdateRequested()
 {
   clearMessage();
+  clearRightMessage();
   onPreviewUpdateRequested(false);
 }
 
@@ -878,7 +892,7 @@ void MainWindow::onFullImageProcessingDone()
     ui->previewWidget->sendUpdateRequest();
     _okButtonShouldApply = false;
     if (_pendingActionAfterCurrentProcessing == ProcessingAction::Apply) {
-      showMessage(QString(tr("Elapsed time: %1")).arg(readableDuration(_processor.lastCompletedExecutionTime())), 0);
+      showRightMessage(QString(tr("Elapsed time: %1")).arg(readableDuration(_processor.lastCompletedExecutionTime())));
     }
   }
 }
@@ -904,6 +918,7 @@ void MainWindow::search(const QString & text)
 void MainWindow::onApplyClicked()
 {
   clearMessage();
+  clearRightMessage();
   _pendingActionAfterCurrentProcessing = ProcessingAction::Apply;
   processImage();
 }
@@ -917,6 +932,7 @@ void MainWindow::onOkClicked()
   }
   if (_okButtonShouldApply) {
     clearMessage();
+    clearRightMessage();
     _pendingActionAfterCurrentProcessing = ProcessingAction::Ok;
     processImage();
   } else {
@@ -927,7 +943,6 @@ void MainWindow::onOkClicked()
 
 void MainWindow::onCancelClicked()
 {
-  TIMING;
   if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
     if (_processor.isProcessing()) {
       _pendingActionAfterCurrentProcessing = ProcessingAction::Close;

@@ -283,8 +283,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>230</width>
-                 <height>399</height>
+                 <width>194</width>
+                 <height>395</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -482,7 +482,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0,0">
       <item>
        <widget class="QPushButton" name="pbSettings">
         <property name="sizePolicy">
@@ -507,6 +507,13 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="rightMessageLabel">
         <property name="text">
          <string>TextLabel</string>
         </property>
