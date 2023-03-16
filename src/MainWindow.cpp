@@ -857,7 +857,6 @@ void MainWindow::setZoomConstraint()
 
 void MainWindow::onFullImageProcessingDone()
 {
-  ENTERING;
   ui->progressInfoWidget->stopAnimationAndHide();
   enableWidgetList(true);
   ui->previewWidget->update();

@@ -50,13 +50,6 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QToolButton" name="tbReset">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="tbUp">
          <property name="text">
           <string>...</string>
@@ -85,6 +78,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="tbReset">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QToolButton" name="tbTrash">
