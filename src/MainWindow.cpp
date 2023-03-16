@@ -892,7 +892,7 @@ void MainWindow::onFullImageProcessingDone()
     ui->previewWidget->sendUpdateRequest();
     _okButtonShouldApply = false;
     if (_pendingActionAfterCurrentProcessing == ProcessingAction::Apply) {
-      showRightMessage(QString(tr("Elapsed time: %1")).arg(readableDuration(_processor.lastCompletedExecutionTime())));
+      showRightMessage(QString(tr("[Elapsed time: %1]")).arg(readableDuration(_processor.lastCompletedExecutionTime())));
     }
   }
 }
