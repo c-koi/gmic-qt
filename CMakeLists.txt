@@ -433,8 +433,6 @@ set (gmic_qt_SRCS
   src/GmicStdlib.h
   src/HeadlessProcessor.h
   src/Host/GmicQtHost.h
-  src/Host/None/ImageDialog.h
-  src/Host/None/JpegQualityDialog.h
   src/HtmlTranslator.h
   src/IconLoader.h
   src/ImageTools.h
@@ -524,12 +522,6 @@ set(gmic_qt_SRCS
   src/GmicQt.cpp
   src/GmicStdlib.cpp
   src/HeadlessProcessor.cpp
-  src/Host/8bf/host_8bf.cpp
-  src/Host/Gimp/host_gimp.cpp
-  src/Host/None/host_none.cpp
-  src/Host/None/ImageDialog.cpp
-  src/Host/None/JpegQualityDialog.cpp
-  src/Host/PaintDotNet/host_paintdotnet.cpp
   src/HtmlTranslator.cpp
   src/IconLoader.cpp
   src/ImageTools.cpp
@@ -560,18 +552,18 @@ set(gmic_qt_SRCS
 )
 
 set (gmic_qt_FORMS
-  dialogsettings.ui
-  filtersview.ui
-  headlessprogressdialog.ui
-  inoutpanel.ui
-  languageselectionwidget.ui
-  mainwindow.ui
-  multilinetextparameterwidget.ui
-  progressinfowidget.ui
-  progressinfowindow.ui
-  SearchFieldWidget.ui
-  sourceswidget.ui
-  zoomlevelselector.ui
+  ui/dialogsettings.ui
+  ui/filtersview.ui
+  ui/headlessprogressdialog.ui
+  ui/inoutpanel.ui
+  ui/languageselectionwidget.ui
+  ui/mainwindow.ui
+  ui/multilinetextparameterwidget.ui
+  ui/progressinfowidget.ui
+  ui/progressinfowindow.ui
+  ui/SearchFieldWidget.ui
+  ui/sourceswidget.ui
+  ui/zoomlevelselector.ui
 )
 
 if(ENABLE_DYNAMIC_LINKING)
