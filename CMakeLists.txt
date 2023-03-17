@@ -560,18 +560,18 @@ set(gmic_qt_SRCS
 )
 
 set (gmic_qt_FORMS
-  dialogsettings.ui
-  filtersview.ui
-  headlessprogressdialog.ui
-  inoutpanel.ui
-  languageselectionwidget.ui
-  mainwindow.ui
-  multilinetextparameterwidget.ui
-  progressinfowidget.ui
-  progressinfowindow.ui
-  SearchFieldWidget.ui
-  sourceswidget.ui
-  zoomlevelselector.ui
+  ui/dialogsettings.ui
+  ui/filtersview.ui
+  ui/headlessprogressdialog.ui
+  ui/inoutpanel.ui
+  ui/languageselectionwidget.ui
+  ui/mainwindow.ui
+  ui/multilinetextparameterwidget.ui
+  ui/progressinfowidget.ui
+  ui/progressinfowindow.ui
+  ui/SearchFieldWidget.ui
+  ui/sourceswidget.ui
+  ui/zoomlevelselector.ui
 )
 
 if(ENABLE_DYNAMIC_LINKING)
