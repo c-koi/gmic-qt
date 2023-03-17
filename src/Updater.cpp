@@ -212,24 +212,16 @@ void Updater::onUpdateNotNecessary()
 
 QByteArray Updater::cimgzDecompress(const QByteArray & array)
 {
-  QTemporaryFile tmpZ(QDir::tempPath() + QDir::separator() + "gmic_qt_update_XXXXXX_cimgz");
-  if (!tmpZ.open()) {
-    Logger::warning("Updater::cimgzDecompress(): Error creating " + tmpZ.fileName());
-    return QByteArray();
-  }
-  if (!writeAll(array, tmpZ)) {
-    Logger::warning("Updater::cimgzDecompress(): Error writing temporary " + tmpZ.fileName());
-    return QByteArray();
-  }
-  tmpZ.close();
-  gmic_library::gmic_image<unsigned char> buffer;
   try {
-    buffer.load_cimg(tmpZ.fileName().toUtf8().constData());
+    gmic_library::gmic_image<char> buffer(array.constData(), array.size(), 1, 1, 1, true);
+    gmic_library::gmic_list<char> list = gmic_library::gmic_list<char>::get_unserialize(buffer);
+    if (list.size() == 1) {
+      return {list[0].data(), int(list[0].size())};
+    }
   } catch (...) {
-    Logger::warning("Updater::cimgzDecompress(): gmic_image<>::load_cimg error for file " + tmpZ.fileName());
-    return QByteArray();
+    Logger::warning("Updater::cimgzDecompress(): Error decompressing data");
   }
-  return QByteArray((char *)buffer.data(), (int)buffer.size());
+  return {};
 }
 
 QByteArray Updater::cimgzDecompressFile(const QString & filename)
