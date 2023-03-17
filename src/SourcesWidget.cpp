@@ -30,6 +30,7 @@
 #include <QPushButton>
 #include <QSet>
 #include <QToolTip>
+#include <QVector>
 #include <algorithm>
 #include "GmicStdlib.h"
 #include "IconLoader.h"
@@ -59,13 +60,7 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   connect(ui->tbTrash, &QPushButton::clicked, this, &SourcesWidget::removeCurrentSource);
   connect(ui->tbUp, &QPushButton::clicked, this, &SourcesWidget::onMoveUp);
   connect(ui->tbDown, &QPushButton::clicked, this, &SourcesWidget::onMoveDown);
-  connect(ui->list, &QListWidget::currentItemChanged, this, &SourcesWidget::enableButtons);
-  connect(ui->list, &QListWidget::currentItemChanged, [this]() { //
-    QListWidgetItem * item = ui->list->currentItem();
-    if (item) {
-      ui->leURL->setText(item->text());
-    }
-  });
+  connect(ui->list, &QListWidget::currentItemChanged, this, &SourcesWidget::onSourceSelected);
   connect(ui->leURL, &QLineEdit::textChanged, [this](QString text) { //
     QListWidgetItem * item = ui->list->currentItem();
     if (item) {
@@ -120,7 +115,10 @@ QStringList SourcesWidget::list() const
   QStringList result;
   const int count = ui->list->count();
   for (int row = 0; row < count; ++row) {
-    result.push_back(ui->list->item(row)->text());
+    QString text = ui->list->item(row)->text();
+    if (!text.isEmpty() && (text != _newItemText)) {
+      result.push_back(text);
+    }
   }
   return result;
 }
@@ -267,6 +265,40 @@ void SourcesWidget::onMoveUp()
   ui->list->item(row - 1)->setText(ui->list->item(row)->text());
   ui->list->item(row)->setText(textUp);
   ui->list->setCurrentRow(row - 1);
+}
+
+void SourcesWidget::onSourceSelected()
+{
+  enableButtons();
+  cleanupEmptySources();
+  QListWidgetItem * item = ui->list->currentItem();
+  if (item) {
+    ui->leURL->setText(item->text());
+  }
+}
+
+void SourcesWidget::cleanupEmptySources()
+{
+  QListWidgetItem * currentItem = ui->list->currentItem();
+  QVector<QListWidgetItem *> removableItems;
+  for (int row = 0; row < ui->list->count(); ++row) {
+    QListWidgetItem * item = ui->list->item(row);
+    if (item && (item != currentItem) && (item->text().isEmpty() || (item->text() == _newItemText))) {
+      removableItems.push_back(item);
+    }
+  }
+  for (QListWidgetItem * item : removableItems) {
+    ui->list->removeItemWidget(item);
+    delete item;
+  }
+  if (currentItem) {
+    for (int row = 0; row < ui->list->count(); ++row) {
+      if (ui->list->item(row) == currentItem) {
+        ui->list->setCurrentRow(row);
+        break;
+      }
+    }
+  }
 }
 
 } // namespace GmicQt

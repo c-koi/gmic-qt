@@ -66,8 +66,10 @@ private slots:
   void removeCurrentSource();
   void onMoveDown();
   void onMoveUp();
+  void onSourceSelected();
 
 private:
+  void cleanupEmptySources();
   Ui::SourcesWidget * ui;
   QString _newItemText;
   QStringList _sourcesAtOpening;
