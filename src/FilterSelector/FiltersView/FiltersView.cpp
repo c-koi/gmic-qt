@@ -206,6 +206,7 @@ void FiltersView::clear()
   _model.setColumnCount(1);
   _cachedFolder = _model.invisibleRootItem();
   _cachedFolderPath.clear();
+  _indexBeforeClick = QModelIndex{};
 }
 
 void FiltersView::sort()
