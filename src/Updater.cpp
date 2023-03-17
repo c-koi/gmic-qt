@@ -264,7 +264,7 @@ bool Updater::appendLocalGmicFile(QByteArray & array, QString filename) const
     file.close();
     TRACE << "Appending compressed file:" << filename;
     fileData = cimgzDecompressFile(filename);
-    if (fileData.size()) {
+    if (!fileData.size()) {
       return false;
     }
   } else { // Try to uncompress
@@ -299,8 +299,6 @@ QByteArray Updater::buildFullStdlib() const
     result.append(ToTopLevelSeparator);
     break;
   case SourcesWidget::OfficialFilters::EnabledWithUpdates:
-    SHOW(OfficialFilterSourceURL);
-    SHOW(localFilename(QString::fromUtf8(OfficialFilterSourceURL)));
     if (!appendLocalGmicFile(result, localFilename(QString::fromUtf8(OfficialFilterSourceURL)))) {
       // Fallback on builtin stdlib
       appendBuiltinGmicStdlib(result);
