@@ -777,7 +777,7 @@ Command found for this path : %3</source>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="55"/>
-        <source>Set to default list</source>
+        <source>Reset filter sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

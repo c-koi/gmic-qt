@@ -52,7 +52,7 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   ui->tbOpen->setIcon(LOAD_ICON("folder"));
   ui->tbOpen->setToolTip(tr("Add local file (dialog)"));
   ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
-  ui->tbReset->setToolTip(tr("Set to default list"));
+  ui->tbReset->setToolTip(tr("Reset filter sources"));
   connect(ui->tbOpen, &QPushButton::clicked, this, &SourcesWidget::onOpenFile);
   connect(ui->tbNew, &QPushButton::clicked, this, &SourcesWidget::onAddNew);
   connect(ui->tbReset, &QPushButton::clicked, this, &SourcesWidget::setToDefault);
@@ -206,6 +206,12 @@ void SourcesWidget::setToDefault()
 {
   ui->list->clear();
   ui->list->addItems(defaultList());
+  for (int i = 0; i < ui->cbOfficialFilters->count(); ++i) {
+    if (ui->cbOfficialFilters->itemData(i).toInt() == int(OfficialFilters::EnabledWithUpdates)) {
+      ui->cbOfficialFilters->setCurrentIndex(i);
+      break;
+    }
+  }
 }
 
 void SourcesWidget::enableButtons()

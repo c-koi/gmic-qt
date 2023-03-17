@@ -801,8 +801,8 @@ Commande trouvée pour le chemin : %3</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="55"/>
-        <source>Set to default list</source>
-        <translation>Réinitialiser (liste par défaut)</translation>
+        <source>Reset filter sources</source>
+        <translation>Réinitialiser les sources de filtres</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="78"/>
