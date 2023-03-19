@@ -89,29 +89,23 @@ gmic_library::gmic_image<char> & FilterThread::persistentMemoryOutput()
   return *_persistentMemoryOuptut;
 }
 
-QStringList FilterThread::status2StringList(const QString & status)
+QStringList FilterThread::status2StringList(QString status)
 {
-  // FIXME : Remove [+*-]?   ???
-
   // Check if status matches something like "{...}{...}_1{...}_0"
-  QRegularExpression statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012][+*-]?)?$"));
-  QRegularExpression statusSeparatorRegExp(QChar(gmic_rbrace) + QString("(_[012][+*-]?)?") + QChar(gmic_lbrace));
-  if (status.isEmpty()) {
+  const QChar front = QChar::fromLatin1(gmic_lbrace);
+  QRegularExpression back(QString("%1(_[012])?$").arg(QChar::fromLatin1(gmic_rbrace)));
+  if (!(status.startsWith(front) && status.contains(back))) {
     return QStringList();
   }
-  QRegularExpressionMatch match = statusRegExp.match(status);
-  if (!match.hasMatch()) {
-    // TRACE << "Warning: Incorrect status syntax " << status;
-    return QStringList();
-  }
-  QStringList list = match.captured(1).split(statusSeparatorRegExp);
-  if (!list.isEmpty()) {
-    QStringList::iterator it = list.begin();
-    while (it != list.end()) {
-      QByteArray array = it->toLocal8Bit();
-      gmic::strreplace_fw(array.data());
-      *it++ = QString::fromLocal8Bit(array);
-    }
+  status.remove(0, 1);
+  status.remove(back);
+  QRegularExpression separator(QChar::fromLatin1(gmic_rbrace) + QString("(_[012])?") + QChar::fromLatin1(gmic_lbrace));
+  QStringList list = status.split(separator);
+  QStringList::iterator it = list.begin();
+  while (it != list.end()) {
+    QByteArray array = it->toLocal8Bit();
+    gmic::strreplace_fw(array.data());
+    *it++ = QString::fromLocal8Bit(array);
   }
   return list;
 }
@@ -122,9 +116,9 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
     return QList<int>();
   }
   // Check if status matches something like "{...}{...}_1{...}_0"
-  QRegularExpression statusRegExp(QString("^") + QChar(gmic_lbrace) + "(.*)" + QChar(gmic_rbrace) + QString("(_[012])?$"));
-  if (!status.isEmpty() && !status.contains(statusRegExp)) {
-    // TRACE << "Incorrect status syntax " << status;
+  const QChar front = QChar::fromLatin1(gmic_lbrace);
+  QRegularExpression back(QString("%1(_[012])?$").arg(QChar::fromLatin1(gmic_rbrace)));
+  if (!(status.startsWith(front) && status.contains(back))) {
     return QList<int>();
   }
 
@@ -142,7 +136,6 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
         result.push_back((int)AbstractParameter::VisibilityState::Unspecified);
         ++pc;
       } else {
-        // TRACE << "Ignoring status" << qPrintable(status);
         return QList<int>();
       }
     } else {
