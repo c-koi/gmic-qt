@@ -168,8 +168,9 @@ equals( COMPILER, "clang" ) {
   DEFINES += gmic_prerelease="\\\"$$PRERELEASE\\\""
 }
 
+LIBS += -lfftw3_threads
+
 !win32 {
- LIBS += -lfftw3_threads
  DEFINES += cimg_display=1
 }
 
