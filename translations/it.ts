@@ -162,8 +162,8 @@
     <name>GmicQt::DialogSettings</name>
     <message>
         <location filename="../src/DialogSettings.cpp" line="45"/>
-        <source>Settings</source>
-        <translation>Parametri</translation>
+        <source>&amp;Settings</source>
+        <translation>&amp;Parametri</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="51"/>

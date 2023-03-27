@@ -159,8 +159,8 @@
     <name>GmicQt::DialogSettings</name>
     <message>
         <location filename="../src/DialogSettings.cpp" line="45"/>
-        <source>Settings</source>
-        <translation>Paramètres</translation>
+        <source>&amp;Settings</source>
+        <translation>&amp;Paramètres</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="51"/>
@@ -1057,8 +1057,8 @@ VERSION est aussi une variable prédéfinie à la valeur de la version de G&apos
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="495"/>
-        <source>Settings...</source>
-        <translation>Paramètres...</translation>
+        <source>&amp;Settings...</source>
+        <translation>&amp;Paramètres...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="531"/>
