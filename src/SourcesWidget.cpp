@@ -27,6 +27,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QListWidget>
+#include <QListWidgetItem>
 #include <QPushButton>
 #include <QSet>
 #include <QToolTip>
@@ -234,10 +235,13 @@ void SourcesWidget::removeCurrentSource()
   QListWidgetItem * item = ui->list->currentItem();
   int row = ui->list->currentRow();
   if (item) {
+    disconnect(ui->list, &QListWidget::currentItemChanged, this, nullptr);
     ui->list->removeItemWidget(item);
     delete item;
+    connect(ui->list, &QListWidget::currentItemChanged, this, &SourcesWidget::onSourceSelected, Qt::UniqueConnection);
     if (ui->list->count()) {
       ui->list->setCurrentRow(std::min(ui->list->count() - 1, row));
+      onSourceSelected();
     }
     enableButtons();
   }
