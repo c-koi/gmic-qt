@@ -71,17 +71,13 @@ void FiltersTagMap::load()
     return;
   }
   if (jsonFile.open(QFile::ReadOnly)) {
-#ifdef _GMIC_QT_DEBUG_
     QJsonDocument jsonDoc;
     QByteArray allFile = jsonFile.readAll();
-    if (allFile.startsWith("{")) {
+    if (allFile.startsWith("{")) { // Was created in debug mode
       jsonDoc = QJsonDocument::fromJson(allFile);
     } else {
       jsonDoc = QJsonDocument::fromJson(qUncompress(allFile));
     }
-#else
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(qUncompress(jsonFile.readAll()));
-#endif
     if (jsonDoc.isNull()) {
       Logger::warning(QString("Cannot parse ") + jsonFilename);
       Logger::warning("Filter tags are lost!");
