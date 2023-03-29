@@ -264,7 +264,7 @@ bool Updater::appendLocalGmicFile(QByteArray & array, QString filename) const
     if (!fileData.size()) {
       return false;
     }
-  } else { // Try to uncompress
+  } else {
     TRACE << "Appending:" << filename;
     fileData = file.readAll();
   }
