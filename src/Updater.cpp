@@ -326,9 +326,13 @@ void Updater::setOutputMessageMode(OutputMessageMode mode)
 void Updater::appendBuiltinGmicStdlib(QByteArray & array) const
 {
   gmic_image<char> stdlib_h = gmic::decompress_stdlib();
-  QByteArray tmp = QByteArray::fromRawData(stdlib_h, (int)stdlib_h.size());
-  tmp[tmp.size() - 1] = '\n';
+  if (!stdlib_h.size() || (stdlib_h.size() == 1)) {
+    Logger::error("Could not decompress gmic builtin stdlib");
+    return;
+  }
+  QByteArray tmp(stdlib_h, int(stdlib_h.size() - 1));
   array.append(tmp);
+  array.append('\n');
 }
 
 } // namespace GmicQt
