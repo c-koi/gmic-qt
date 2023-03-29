@@ -26,6 +26,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QFile>
+#include <QFileInfo>
 #include <QNetworkRequest>
 #include <QTextStream>
 #include <QUrl>
@@ -247,8 +248,12 @@ QString Updater::localFilename(QString url)
 
 bool Updater::appendLocalGmicFile(QByteArray & array, QString filename) const
 {
+  if (QFileInfo(filename).exists()) {
+    return false;
+  }
   QFile file(filename);
   if (!file.open(QIODevice::ReadOnly)) {
+    Logger::error("Error opening file: " + filename);
     return false;
   }
   QByteArray fileData;
