@@ -248,7 +248,8 @@ QString Updater::localFilename(QString url)
 
 bool Updater::appendLocalGmicFile(QByteArray & array, QString filename) const
 {
-  if (QFileInfo(filename).exists()) {
+  QFileInfo info(filename);
+  if (!info.exists() || !info.size()) {
     return false;
   }
   QFile file(filename);

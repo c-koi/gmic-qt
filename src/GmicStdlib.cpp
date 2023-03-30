@@ -85,7 +85,7 @@ QString GmicStdLib::substituteSourceVariables(QString text)
   return text;
 }
 
-QStringList GmicStdLib::substituteSourceVariables(QStringList list)
+QStringList GmicStdLib::substituteSourceVariables(const QStringList & list)
 {
   QStringList result;
   for (const QString & str : list) {

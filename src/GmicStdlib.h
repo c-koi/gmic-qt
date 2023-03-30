@@ -38,7 +38,7 @@ public:
   static void loadStdLib();
   static QByteArray Array;
   static QString substituteSourceVariables(QString text);
-  static QStringList substituteSourceVariables(QStringList list);
+  static QStringList substituteSourceVariables(const QStringList &list);
   static QByteArray hash();
 };
 
