@@ -71,7 +71,7 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   ui->list->addItems(_sourcesAtOpening = Settings::filterSources());
 
 #ifdef _IS_WINDOWS_
-  ui->labelVariables->setText(tr("Macros: $HOME %APPDATA% $VERSION"));
+  ui->labelVariables->setText(tr("Macros: $HOME %USERPROFILE% $VERSION"));
 #else
   ui->labelVariables->setText(tr("Macros: $HOME $VERSION"));
 #endif
@@ -93,7 +93,7 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   }
 
 #ifdef _IS_WINDOWS_
-  ui->labelVariables->setText(tr("Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.\n"
+  ui->labelVariables->setText(tr("Environment variables (e.g. %USERPROFILE% or %HOMEDIR%) are substituted in sources.\n"
                                  "VERSION is also a predefined variable that stands for the G'MIC version number (currently %1).")
                                   .arg(GmicQt::GmicVersion));
 #else
@@ -129,7 +129,7 @@ QStringList SourcesWidget::defaultList()
   QStringList result;
 #ifdef _IS_WINDOWS_
   result << QString("%GMIC_USER%%1user.gmic").arg(QDir::separator());
-  result << QString("%APPDATA%%1user.gmic").arg(QDir::separator());
+  result << QString("%USERPROFILE%%1gmic").arg(QDir::separator());
 #else
   result << "${GMIC_USER}/.gmic";
   result << "${HOME}/.gmic";

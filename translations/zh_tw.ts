@@ -162,8 +162,8 @@
     <name>GmicQt::DialogSettings</name>
     <message>
         <location filename="../src/DialogSettings.cpp" line="45"/>
-        <source>&amp;Settings</source>
-        <translation>設定</translation>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="51"/>
@@ -297,52 +297,52 @@
 <context>
     <name>GmicQt::FiltersView</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="352"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="353"/>
         <source>Remove fave</source>
         <translation>從最愛移除</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="679"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="680"/>
         <source>Rename Fave</source>
         <translation>重新命名最愛</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="681"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="682"/>
         <source>Remove Fave</source>
         <translation>從最愛移除</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="683"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="684"/>
         <source>Clone Fave</source>
         <translation>再製最愛</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="687"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="688"/>
         <source>Add Fave</source>
         <translation>加到最愛</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="706"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="707"/>
         <source>Remove All</source>
         <translation>移除全部</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>%1 (%2 %3)</source>
         <translation>%1 (%2 %3)</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>Filters</source>
         <translation>濾鏡</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>Filter</source>
         <translation>濾鏡</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="353"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="354"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -783,74 +783,74 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::SourcesWidget</name>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="47"/>
+        <location filename="../src/SourcesWidget.cpp" line="49"/>
         <source>Move source up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="49"/>
+        <location filename="../src/SourcesWidget.cpp" line="51"/>
         <source>Move source down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="51"/>
+        <location filename="../src/SourcesWidget.cpp" line="53"/>
         <source>Remove source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="53"/>
+        <location filename="../src/SourcesWidget.cpp" line="55"/>
         <source>Add local file (dialog)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="55"/>
+        <location filename="../src/SourcesWidget.cpp" line="57"/>
         <source>Reset filter sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="78"/>
-        <source>Macros: $HOME %APPDATA% $VERSION</source>
+        <location filename="../src/SourcesWidget.cpp" line="74"/>
+        <source>Macros: $HOME %USERPROFILE% $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="80"/>
+        <location filename="../src/SourcesWidget.cpp" line="96"/>
+        <source>Environment variables (e.g. %USERPROFILE% or %HOMEDIR%) are substituted in sources.
+VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="76"/>
         <source>Macros: $HOME $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="83"/>
+        <location filename="../src/SourcesWidget.cpp" line="79"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="84"/>
+        <location filename="../src/SourcesWidget.cpp" line="80"/>
         <source>Enable without updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="85"/>
+        <location filename="../src/SourcesWidget.cpp" line="81"/>
         <source>Enable with updates (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="100"/>
-        <source>Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.
-VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/SourcesWidget.cpp" line="104"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="109"/>
+        <location filename="../src/SourcesWidget.cpp" line="105"/>
         <source>New source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="185"/>
+        <location filename="../src/SourcesWidget.cpp" line="186"/>
         <source>Select a file</source>
         <translation type="unfinished">選擇檔案</translation>
     </message>
@@ -858,27 +858,27 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
 <context>
     <name>GmicQt::Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="136"/>
+        <location filename="../src/Updater.cpp" line="137"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>下載「%1」時出現錯誤（空白檔案？）</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="145"/>
+        <location filename="../src/Updater.cpp" line="146"/>
         <source>Could not read/decompress %1</source>
         <translation>不能讀取或解壓縮「%1」</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="150"/>
+        <location filename="../src/Updater.cpp" line="151"/>
         <source>Error writing file %1</source>
         <translation>寫入檔案「%1」時出現錯誤</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="167"/>
+        <location filename="../src/Updater.cpp" line="168"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>下載「%1」時出現錯誤&lt;br/&gt;錯誤 %2：%3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="203"/>
+        <location filename="../src/Updater.cpp" line="204"/>
         <source>Download timeout: %1</source>
         <translation>下載逾時：%1</translation>
     </message>
@@ -1052,8 +1052,8 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="495"/>
-        <source>Settings...</source>
-        <translation>設定…</translation>
+        <source>&amp;Settings...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="511"/>

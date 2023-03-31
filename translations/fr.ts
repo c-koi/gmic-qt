@@ -159,8 +159,8 @@
     <name>GmicQt::DialogSettings</name>
     <message>
         <location filename="../src/DialogSettings.cpp" line="45"/>
-        <source>&amp;Settings</source>
-        <translation>&amp;Paramètres</translation>
+        <source>Settings</source>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="51"/>
@@ -294,52 +294,52 @@
 <context>
     <name>GmicQt::FiltersView</name>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="352"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="353"/>
         <source>Remove fave</source>
         <translation>Supprimer le favori</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="679"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="680"/>
         <source>Rename Fave</source>
         <translation>Renommer le favori</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="681"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="682"/>
         <source>Remove Fave</source>
         <translation>Supprimer le favori</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="683"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="684"/>
         <source>Clone Fave</source>
         <translation>Dupliquer le favori</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="687"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="688"/>
         <source>Add Fave</source>
         <translation>Ajouter comme favori</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="706"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="707"/>
         <source>Remove All</source>
         <translation>Supprimer tous les marqueurs</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>%1 (%2 %3)</source>
         <translation>%1 (%2 %3)</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>Filters</source>
         <translation>filtres</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="713"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>Filter</source>
         <translation>filtre</translation>
     </message>
     <message>
-        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="353"/>
+        <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="354"/>
         <source>Do you really want to remove the following fave?
 
 %1
@@ -780,76 +780,76 @@ Commande trouvée pour le chemin : %3</translation>
 <context>
     <name>GmicQt::SourcesWidget</name>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="47"/>
+        <location filename="../src/SourcesWidget.cpp" line="49"/>
         <source>Move source up</source>
         <translation>Déplacer la source vers le haut</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="49"/>
+        <location filename="../src/SourcesWidget.cpp" line="51"/>
         <source>Move source down</source>
         <translation>Déplacer la source vers le bas</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="51"/>
+        <location filename="../src/SourcesWidget.cpp" line="53"/>
         <source>Remove source</source>
         <translation>Supprimer la source</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="53"/>
+        <location filename="../src/SourcesWidget.cpp" line="55"/>
         <source>Add local file (dialog)</source>
         <translation>Ajouter un fichier local (dialogue)</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="55"/>
+        <location filename="../src/SourcesWidget.cpp" line="57"/>
         <source>Reset filter sources</source>
         <translation>Réinitialiser les sources de filtres</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="78"/>
-        <source>Macros: $HOME %APPDATA% $VERSION</source>
-        <translation>Macros : $HOME %APPDATA% $VERSION</translation>
+        <location filename="../src/SourcesWidget.cpp" line="74"/>
+        <source>Macros: $HOME %USERPROFILE% $VERSION</source>
+        <translation>Macros: $HOME %USERPROFILE% $VERSION</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="80"/>
+        <location filename="../src/SourcesWidget.cpp" line="96"/>
+        <source>Environment variables (e.g. %USERPROFILE% or %HOMEDIR%) are substituted in sources.
+VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
+        <translation>Les variables d&apos;environement (e.g. %USERPROFILE% ou %HOMEDIR%) sont substituées dans les sources.
+VERSION est aussi une variable définie comme le numéro de version courante de G&apos;MIC (actuellement %1).</translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="76"/>
         <source>Macros: $HOME $VERSION</source>
         <translation>Macros : $HOME $VERSION</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="83"/>
+        <location filename="../src/SourcesWidget.cpp" line="79"/>
         <source>Disable</source>
         <translation>Désactiver</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="84"/>
+        <location filename="../src/SourcesWidget.cpp" line="80"/>
         <source>Enable without updates</source>
         <translation>Activer sans les mises à jour</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="85"/>
+        <location filename="../src/SourcesWidget.cpp" line="81"/>
         <source>Enable with updates (recommended)</source>
         <translation>Activer avec les mises à jour (recommandé)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="100"/>
-        <source>Environment variables (e.g. %APPDATA% or %HOMEDIR%) are substituted in sources.
-VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
-        <translation>Les variables d&apos;environnement (e.g. %APPDATA% ou %HOMEDIR%) sont substituées dans les sources.
-VERSION est aussi une variable prédéfinie à la valeur de la version de G&apos;MIC (actuellement %1).</translation>
-    </message>
-    <message>
-        <location filename="../src/SourcesWidget.cpp" line="104"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation>Les variables d&apos;environnement (e.g. $HOME ou ${HOME}) sont substituées dans les sources.
 VERSION est aussi une variable prédéfinie à la valeur de la version de G&apos;MIC (actuellement %1).</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="109"/>
+        <location filename="../src/SourcesWidget.cpp" line="105"/>
         <source>New source</source>
         <translation>Nouvelle source</translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="185"/>
+        <location filename="../src/SourcesWidget.cpp" line="186"/>
         <source>Select a file</source>
         <translation>Sélectionnez un fichier</translation>
     </message>
@@ -857,27 +857,27 @@ VERSION est aussi une variable prédéfinie à la valeur de la version de G&apos
 <context>
     <name>GmicQt::Updater</name>
     <message>
-        <location filename="../src/Updater.cpp" line="136"/>
+        <location filename="../src/Updater.cpp" line="137"/>
         <source>Error downloading %1 (empty file?)</source>
         <translation>Erreur de téléchargement de %1 (fichier vide ?)</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="145"/>
+        <location filename="../src/Updater.cpp" line="146"/>
         <source>Could not read/decompress %1</source>
         <translation>Impossible de lire/décompresser %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="150"/>
+        <location filename="../src/Updater.cpp" line="151"/>
         <source>Error writing file %1</source>
         <translation>Erreur d&apos;écriture du fichier %1</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="167"/>
+        <location filename="../src/Updater.cpp" line="168"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
         <translation>Erreur lors du téléchargement de %1&lt;br/&gt; Erreur %2 : %3</translation>
     </message>
     <message>
-        <location filename="../src/Updater.cpp" line="203"/>
+        <location filename="../src/Updater.cpp" line="204"/>
         <source>Download timeout: %1</source>
         <translation>Téléchargement annulé (hors délai) : %1</translation>
     </message>
