@@ -79,7 +79,11 @@ QString GmicStdLib::substituteSourceVariables(QString text)
   for (QRegularExpression re : reVariables) {
     QRegularExpressionMatch match;
     while ((match = re.match(text)).hasMatch()) {
-      text.replace(match.captured(0), QString::fromLocal8Bit(qgetenv(match.captured(1).toLocal8Bit().constData())));
+      QByteArray value = qgetenv(match.captured(1).toLocal8Bit().constData());
+      if (value.isEmpty()) { // Undefined variables should yield an ignored source
+        return {};
+      }
+      text.replace(match.captured(0), QString::fromLocal8Bit(value));
     }
   }
   return text;
@@ -89,7 +93,10 @@ QStringList GmicStdLib::substituteSourceVariables(const QStringList & list)
 {
   QStringList result;
   for (const QString & str : list) {
-    result << substituteSourceVariables(str);
+    QString source = substituteSourceVariables(str);
+    if (!source.isEmpty()) {
+      result << source;
+    }
   }
   return result;
 }
