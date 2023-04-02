@@ -46,7 +46,6 @@ FilterThread::FilterThread(QObject * parent, const QString & command, const QStr
   _gmicAbort = false;
   _failed = false;
   _gmicProgress = 0.0f;
-  // ENTERING;
 #ifdef _IS_MACOS_
   setStackSize(8 * 1024 * 1024);
 #endif

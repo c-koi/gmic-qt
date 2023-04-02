@@ -37,8 +37,6 @@
 #include "Globals.h"
 #include "GmicStdlib.h"
 #include "ImageTools.h"
-#include "LayersExtentProxy.h"
-#include "Logger.h"
 #include "Misc.h"
 #include "OverrideCursor.h"
 #include "Settings.h"
@@ -484,10 +482,9 @@ bool PreviewWidget::eventFilter(QObject *, QEvent * event)
   return false;
 }
 
-void PreviewWidget::leaveEvent(QEvent *)
-{
-  OverrideCursor::setWaiting(false);
-}
+void PreviewWidget::leaveEvent(QEvent *) {}
+
+void PreviewWidget::enterEvent(QEvent *) {}
 
 void PreviewWidget::wheelEvent(QWheelEvent * event)
 {
