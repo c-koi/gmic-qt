@@ -25,8 +25,6 @@
 
 #include "OverrideCursor.h"
 #include <QApplication>
-#include <QDebug>
-#include "Common.h"
 
 namespace GmicQt
 {
