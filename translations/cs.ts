@@ -358,12 +358,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="349"/>
+        <location filename="../src/GmicProcessor.cpp" line="384"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="385"/>
+        <location filename="../src/GmicProcessor.cpp" line="420"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation type="unfinished"></translation>
@@ -512,83 +512,88 @@ Cannot retrieve default parameters.
 <context>
     <name>GmicQt::MainWindow</name>
     <message>
-        <location filename="../src/MainWindow.cpp" line="110"/>
+        <location filename="../src/MainWindow.cpp" line="111"/>
         <source>Add fave</source>
         <translation>Přidat oblíbený</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="112"/>
+        <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Reset parameters to default values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="118"/>
+        <location filename="../src/MainWindow.cpp" line="119"/>
         <source>Copy G&apos;MIC command to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="125"/>
+        <location filename="../src/MainWindow.cpp" line="126"/>
         <source>Rename fave</source>
         <translation>Přejmenovat oblíbený</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="127"/>
+        <location filename="../src/MainWindow.cpp" line="128"/>
         <source>Remove fave</source>
         <translation>Odstranit oblíbený</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="131"/>
+        <location filename="../src/MainWindow.cpp" line="132"/>
         <source>Expand/Collapse all</source>
         <translation>Rozbalit/Sbalit vše</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="133"/>
+        <location filename="../src/MainWindow.cpp" line="134"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="140"/>
+        <location filename="../src/MainWindow.cpp" line="141"/>
         <source>Selection mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="179"/>
+        <location filename="../src/MainWindow.cpp" line="180"/>
         <source>Update filters</source>
         <translation>Aktualizovat filtry</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="233"/>
+        <location filename="../src/MainWindow.cpp" line="231"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="356"/>
+        <location filename="../src/MainWindow.cpp" line="237"/>
+        <source>Force &amp;quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="350"/>
         <source>Update completed</source>
         <translation>Aktualizace dokončena</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="356"/>
-        <location filename="../src/MainWindow.cpp" line="358"/>
-        <location filename="../src/MainWindow.cpp" line="496"/>
+        <location filename="../src/MainWindow.cpp" line="350"/>
+        <location filename="../src/MainWindow.cpp" line="352"/>
+        <location filename="../src/MainWindow.cpp" line="490"/>
         <source>Filter definitions have been updated.</source>
         <translation>Definice filtrů byly aktualizovány.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="361"/>
+        <location filename="../src/MainWindow.cpp" line="355"/>
         <source>No download was needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="414"/>
+        <location filename="../src/MainWindow.cpp" line="408"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="422"/>
-        <location filename="../src/MainWindow.cpp" line="449"/>
+        <location filename="../src/MainWindow.cpp" line="416"/>
+        <location filename="../src/MainWindow.cpp" line="443"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -599,26 +604,26 @@ Cannot retrieve default parameters.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="435"/>
+        <location filename="../src/MainWindow.cpp" line="429"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="895"/>
+        <location filename="../src/MainWindow.cpp" line="889"/>
         <source>[Elapsed time: %1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
+        <location filename="../src/MainWindow.cpp" line="424"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="433"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -627,52 +632,52 @@ Command found for this path : %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="492"/>
+        <location filename="../src/MainWindow.cpp" line="486"/>
         <source>Filters update could not be achieved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="632"/>
+        <location filename="../src/MainWindow.cpp" line="626"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Aktualizace nemohla být provedena&lt;br/&gt;kvůli následujícím chybám:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="638"/>
+        <location filename="../src/MainWindow.cpp" line="632"/>
         <source>Update error</source>
         <translation>Chyba aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="829"/>
+        <location filename="../src/MainWindow.cpp" line="823"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="951"/>
+        <location filename="../src/MainWindow.cpp" line="1431"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1315"/>
+        <location filename="../src/MainWindow.cpp" line="1292"/>
         <source>Import faves</source>
         <translation>Importovat oblíbené</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1315"/>
+        <location filename="../src/MainWindow.cpp" line="1292"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Chcete importovat oblíbené ze souboru níže?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1318"/>
+        <location filename="../src/MainWindow.cpp" line="1295"/>
         <source>Don&apos;t ask again</source>
         <translation>Znovu už se neptat</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1437"/>
+        <location filename="../src/MainWindow.cpp" line="1414"/>
         <source>Confirmation</source>
         <translation>Potvrzení</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1437"/>
+        <location filename="../src/MainWindow.cpp" line="1414"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Gmic příkaz stále běží.&lt;br&gt;Opravdu chcete zavřít plugin?</translation>
     </message>

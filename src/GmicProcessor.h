@@ -111,6 +111,8 @@ public:
 
 public slots:
   void cancel();
+  void detachAllThreads();
+  void terminateAllThreads();
 
 signals:
   void previewCommandFailed(QString errorMessage);

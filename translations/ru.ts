@@ -364,12 +364,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="349"/>
+        <location filename="../src/GmicProcessor.cpp" line="384"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation>Возвращённое фильтром изображение #%1 имеет %2 канал(а/ов) (должно быть не более 4)</translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="385"/>
+        <location filename="../src/GmicProcessor.cpp" line="420"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation>Возвращённое фильтром изображение #%1 имеет %2 канал(а/ов)
@@ -525,76 +525,81 @@ Cannot retrieve default parameters.
 <context>
     <name>GmicQt::MainWindow</name>
     <message>
-        <location filename="../src/MainWindow.cpp" line="110"/>
+        <location filename="../src/MainWindow.cpp" line="111"/>
         <source>Add fave</source>
         <translation>Добавить в избранное</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="112"/>
+        <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Reset parameters to default values</source>
         <translation>Сбросить параметры до значений по умолчанию</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="118"/>
+        <location filename="../src/MainWindow.cpp" line="119"/>
         <source>Copy G&apos;MIC command to clipboard</source>
         <translation>Скопируйте команду G&apos;MIC в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="125"/>
+        <location filename="../src/MainWindow.cpp" line="126"/>
         <source>Rename fave</source>
         <translation>Переименовать избранное</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="127"/>
+        <location filename="../src/MainWindow.cpp" line="128"/>
         <source>Remove fave</source>
         <translation>Удалить из избранного</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="131"/>
+        <location filename="../src/MainWindow.cpp" line="132"/>
         <source>Expand/Collapse all</source>
         <translation>Свернуть/развернуть всё</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="133"/>
+        <location filename="../src/MainWindow.cpp" line="134"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
         <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Университет Нормандии (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="140"/>
+        <location filename="../src/MainWindow.cpp" line="141"/>
         <source>Selection mode</source>
         <translation>Режим выбора фильтров для скрытия из списка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="179"/>
+        <location filename="../src/MainWindow.cpp" line="180"/>
         <source>Update filters</source>
         <translation>Обновить фильтры</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="233"/>
+        <location filename="../src/MainWindow.cpp" line="231"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
         <translation>Управление видимыми маркерами
 (ПКМ на избранном/неизбранном фильтре, чтобы добавить/удалить маркеры)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="356"/>
+        <location filename="../src/MainWindow.cpp" line="237"/>
+        <source>Force &amp;quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="350"/>
         <source>Update completed</source>
         <translation>Обновление завершено</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="356"/>
-        <location filename="../src/MainWindow.cpp" line="358"/>
-        <location filename="../src/MainWindow.cpp" line="496"/>
+        <location filename="../src/MainWindow.cpp" line="350"/>
+        <location filename="../src/MainWindow.cpp" line="352"/>
+        <location filename="../src/MainWindow.cpp" line="490"/>
         <source>Filter definitions have been updated.</source>
         <translation>Определения фильтров обновлены.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="361"/>
+        <location filename="../src/MainWindow.cpp" line="355"/>
         <source>No download was needed.</source>
         <translation>Загрузка не потребовалась.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="414"/>
+        <location filename="../src/MainWindow.cpp" line="408"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -603,8 +608,8 @@ Path: %1</source>
 Путь: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="422"/>
-        <location filename="../src/MainWindow.cpp" line="449"/>
+        <location filename="../src/MainWindow.cpp" line="416"/>
+        <location filename="../src/MainWindow.cpp" line="443"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -621,7 +626,7 @@ Cannot retrieve default parameters.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="435"/>
+        <location filename="../src/MainWindow.cpp" line="429"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -630,12 +635,12 @@ Command: %1</source>
 Команда: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="895"/>
+        <location filename="../src/MainWindow.cpp" line="889"/>
         <source>[Elapsed time: %1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
+        <location filename="../src/MainWindow.cpp" line="424"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -644,7 +649,7 @@ Command: %1</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="433"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -657,52 +662,52 @@ Command found for this path : %3</source>
 Команда, найденная по этому пути: %3</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="492"/>
+        <location filename="../src/MainWindow.cpp" line="486"/>
         <source>Filters update could not be achieved</source>
         <translation>Не удалось обновить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="632"/>
+        <location filename="../src/MainWindow.cpp" line="626"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Не удалось обновить&lt;br/&gt;по следующим причинам:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="638"/>
+        <location filename="../src/MainWindow.cpp" line="632"/>
         <source>Update error</source>
         <translation>Ошибка обновления</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="829"/>
+        <location filename="../src/MainWindow.cpp" line="823"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="951"/>
+        <location filename="../src/MainWindow.cpp" line="1431"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>В ожидании отменённых заданий...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1315"/>
+        <location filename="../src/MainWindow.cpp" line="1292"/>
         <source>Import faves</source>
         <translation>Импорт избранных</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1315"/>
+        <location filename="../src/MainWindow.cpp" line="1292"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Вы хотите импортировать избранные из следующего файла?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1318"/>
+        <location filename="../src/MainWindow.cpp" line="1295"/>
         <source>Don&apos;t ask again</source>
         <translation>Больше не спрашивать</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1437"/>
+        <location filename="../src/MainWindow.cpp" line="1414"/>
         <source>Confirmation</source>
         <translation>Подтвердить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1437"/>
+        <location filename="../src/MainWindow.cpp" line="1414"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Обрабатывается команда gmic.&lt;br&gt;Вы действительно хотите закрыть плагин?</translation>
     </message>

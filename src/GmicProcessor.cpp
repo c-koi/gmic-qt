@@ -177,7 +177,7 @@ void GmicProcessor::execute()
 
 bool GmicProcessor::isProcessingFullImage() const
 {
-  return _filterContext.requestType == FilterContext::RequestType::FullImage;
+  return _filterThread && (_filterContext.requestType == FilterContext::RequestType::FullImage);
 }
 
 bool GmicProcessor::isProcessing() const
@@ -254,6 +254,41 @@ qint64 GmicProcessor::lastCompletedExecutionTime() const
 void GmicProcessor::cancel()
 {
   abortCurrentFilterThread();
+}
+
+void GmicProcessor::detachAllThreads()
+{
+  if (_filterThread) {
+    _filterThread->disconnect(this);
+    _filterThread->setParent(nullptr);
+    _filterThread = nullptr;
+  }
+  for (FilterThread * thread : _unfinishedAbortedThreads) {
+    thread->disconnect(this);
+    thread->setParent(nullptr);
+  }
+  _unfinishedAbortedThreads.clear();
+  _waitingCursorTimer.stop();
+  OverrideCursor::setWaiting(false);
+}
+
+void GmicProcessor::terminateAllThreads()
+{
+  if (_filterThread) {
+    _filterThread->disconnect(this);
+    _filterThread->terminate();
+    _filterThread->wait();
+    delete _filterThread;
+  }
+  while (!_unfinishedAbortedThreads.isEmpty()) {
+    _unfinishedAbortedThreads.front()->disconnect(this);
+    _unfinishedAbortedThreads.front()->terminate();
+    _unfinishedAbortedThreads.front()->wait();
+    delete _unfinishedAbortedThreads.front();
+    _unfinishedAbortedThreads.pop_front();
+  }
+  _waitingCursorTimer.stop();
+  OverrideCursor::setWaiting(false);
 }
 
 bool GmicProcessor::hasUnfinishedAbortedThreads() const

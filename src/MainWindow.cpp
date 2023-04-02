@@ -55,6 +55,7 @@
 #include "LayersExtentProxy.h"
 #include "Logger.h"
 #include "Misc.h"
+#include "OverrideCursor.h"
 #include "ParametersCache.h"
 #include "PersistentMemory.h"
 #include "Settings.h"
@@ -210,11 +211,8 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   ui->progressInfoWidget->setGmicProcessor(&_processor);
 
-  TIMING;
   loadSettings();
-  TIMING;
   ParametersCache::load(!_newSession);
-  TIMING;
   setIcons();
   QAction * escAction = new QAction(this);
   escAction->setShortcut(QKeySequence(Qt::Key_Escape));
@@ -236,17 +234,13 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   _visibleTagSelector->updateColors();
   _filtersPresenter->setVisibleTagSelector(_visibleTagSelector);
 
-  TIMING;
+  _forceQuitText = tr("Force &quit");
+
   makeConnections();
-  TIMING;
 }
 
 MainWindow::~MainWindow()
 {
-  //  QSet<QString> hashes;
-  //  FiltersTreeAbstractItem::buildHashesList(_filtersTreeModel.invisibleRootItem(),hashes);
-  //  ParametersCache::cleanup(hashes);
-
   saveCurrentParameters();
   ParametersCache::save();
   saveSettings();
@@ -391,7 +385,7 @@ void MainWindow::buildFiltersTree()
     setNoFilter();
     ui->previewWidget->sendUpdateRequest();
   } else {
-    activateFilter(false);
+    activateFilter(false); // FIXME : Redundant with THERE
   }
 }
 
@@ -533,7 +527,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
     _filtersPresenter->adjustViewSize();
     activateFilter(true, pluginParametersCommandArguments);
     if (ui->cbPreview->isChecked()) {
-      ui->previewWidget->sendUpdateRequest();
+      ui->previewWidget->sendUpdateRequest(); // FIXME: Redundant with THERE
     }
   }
   // Preview update is triggered when PreviewWidget receives
@@ -937,23 +931,6 @@ void MainWindow::onOkClicked()
     processImage();
   } else {
     _isAccepted = _processor.completedFullImageProcessingCount();
-    close();
-  }
-}
-
-void MainWindow::onCancelClicked()
-{
-  if (_processor.isProcessing() && confirmAbortProcessingOnCloseRequest()) {
-    if (_processor.isProcessing()) {
-      _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
-      connect(&_processor, &GmicProcessor::noMoreUnfinishedJobs, this, &MainWindow::close);
-      ui->progressInfoWidget->showBusyIndicator();
-      ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
-      _processor.cancel();
-    } else {
-      close();
-    }
-  } else {
     close();
   }
 }
@@ -1446,17 +1423,60 @@ void MainWindow::enableWidgetList(bool on)
   ui->inOutSelector->setEnabled(on);
 }
 
+void MainWindow::abortProcessingOnCloseRequest()
+{
+  _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
+  connect(&_processor, &GmicProcessor::noMoreUnfinishedJobs, this, &MainWindow::close);
+  ui->progressInfoWidget->showBusyIndicator();
+  ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
+  enableWidgetList(false);
+  ui->pbCancel->setEnabled(true);
+  ui->pbCancel->setText(_forceQuitText);
+  _processor.cancel();
+}
+
+void MainWindow::onCancelClicked()
+{
+  if (ui->pbCancel->text() == _forceQuitText) {
+    ui->pbCancel->setEnabled(false);
+    _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
+    QTimer::singleShot(2000, this, &MainWindow::close);
+    return;
+  }
+  if (_processor.isProcessing() || _processor.hasUnfinishedAbortedThreads()) {
+    if (confirmAbortProcessingOnCloseRequest()) {
+      abortProcessingOnCloseRequest();
+    }
+    return;
+  }
+  close();
+}
+
 void MainWindow::closeEvent(QCloseEvent * e)
 {
-  if (_processor.isProcessing() && _pendingActionAfterCurrentProcessing != ProcessingAction::Close) {
-    if (confirmAbortProcessingOnCloseRequest()) {
-      _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
-      _processor.cancel();
-    }
-    e->ignore();
-  } else {
+  if (_pendingActionAfterCurrentProcessing == ProcessingAction::ForceQuit) {
+    _processor.disconnect(this);
+    _processor.detachAllThreads();
     e->accept();
+    return;
   }
+  if (_processor.isProcessing() || _processor.hasUnfinishedAbortedThreads()) {
+    if (ui->pbCancel->text() == _forceQuitText) {
+      ui->pbCancel->setEnabled(false);
+      _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
+      QTimer::singleShot(2000, this, &MainWindow::close);
+      e->ignore();
+      return;
+    }
+    if (_pendingActionAfterCurrentProcessing != ProcessingAction::Close) {
+      if (confirmAbortProcessingOnCloseRequest()) {
+        abortProcessingOnCloseRequest();
+      }
+      e->ignore();
+      return;
+    }
+  }
+  e->accept();
 }
 
 } // namespace GmicQt

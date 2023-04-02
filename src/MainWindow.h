@@ -145,12 +145,14 @@ private:
   void retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters);
   static QString screenGeometries();
   void updateFilters(bool internet);
+  void abortProcessingOnCloseRequest();
   enum class ProcessingAction
   {
     NoAction,
     Ok,
+    Apply,
     Close,
-    Apply
+    ForceQuit
   };
 
   Ui::MainWindow * ui;
@@ -172,6 +174,7 @@ private:
   static bool _isAccepted;
   RunParameters _pluginParameters;
   VisibleTagSelector * _visibleTagSelector;
+  QString _forceQuitText;
 };
 
 } // namespace GmicQt
