@@ -66,7 +66,7 @@ signals:
 
 private:
   void updateThreadInformation();
-  void updateUpdateProgression();
+  void updateFilterUpdateProgression();
 
   Ui::ProgressInfoWidget * ui;
   const GmicProcessor * _gmicProcessor;

@@ -220,7 +220,7 @@ void DialogSettings::onUpdateClicked()
 
 void DialogSettings::onDarkThemeToggled(bool on)
 {
-  Settings::setDarkThemeEnabled(on);
+  QSettings().setValue(DARK_THEME_KEY, on);
 }
 
 void DialogSettings::onUpdatePeriodicityChanged(int)

@@ -94,7 +94,7 @@ void ProgressInfoWidget::onTimeOut()
   if (_mode == Mode::GmicProcessing) {
     updateThreadInformation();
   } else if (_mode == Mode::FiltersUpdate) {
-    updateUpdateProgression();
+    updateFilterUpdateProgression();
   }
 }
 
@@ -224,7 +224,7 @@ void ProgressInfoWidget::updateThreadInformation()
 #endif
 }
 
-void ProgressInfoWidget::updateUpdateProgression()
+void ProgressInfoWidget::updateFilterUpdateProgression()
 {
   int value = ui->progressBar->value();
   if (_growing) {
