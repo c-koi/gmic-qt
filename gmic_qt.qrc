@@ -2,9 +2,13 @@
     <qresource prefix="/">
         <file>icons/bookmark-add.png</file>
         <file>icons/bookmark-remove.png</file>
+        <file>icons/cancel.png</file>
+        <file>icons/close.png</file>
         <file>icons/dark/bookmark-add.png</file>
         <file>icons/dark/bookmark-remove.png</file>
-        <file>icons/dark/document-open.png</file>
+        <file>icons/dark/cancel.png</file>
+        <file>icons/dark/close.png</file>
+	<file>icons/dark/document-open.png</file>
         <file>icons/dark/draw-arrow-down.png</file>
         <file>icons/dark/draw-arrow-up.png</file>
         <file>icons/dark/edit-clear.png</file>
@@ -15,7 +19,6 @@
         <file>icons/dark/list-add.png</file>
         <file>icons/dark/list-remove.png</file>
         <file>icons/dark/package_settings.png</file>
-        <file>icons/dark/process-stop.png</file>
         <file>icons/dark/rename.png</file>
         <file>icons/dark/selection_mode.png</file>
         <file>icons/dark/system-run.png</file>
@@ -36,7 +39,6 @@
         <file>icons/list-add.png</file>
         <file>icons/list-remove.png</file>
         <file>icons/package_settings.png</file>
-        <file>icons/process-stop.png</file>
         <file>icons/rename.png</file>
         <file>icons/selection_mode.png</file>
         <file>icons/system-run.png</file>

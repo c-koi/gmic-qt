@@ -29,12 +29,30 @@
 namespace GmicQt
 {
 
-QIcon IconLoader::getForDarkTheme(const QString & name)
+QIcon IconLoader::getForDarkTheme(const char * name)
 {
-  QPixmap pixmap(QString(":/icons/dark/%1.png").arg(name));
+  QPixmap pixmap(darkIconPath(name));
   QIcon icon(pixmap);
   icon.addPixmap(darkerPixmap(pixmap), QIcon::Disabled, QIcon::Off);
   return icon;
+}
+
+QIcon IconLoader::load(const char * name)
+{
+  if (Settings::darkThemeEnabled()) {
+    return getForDarkTheme(name);
+  } else {
+    return QIcon(QString(":/icons/%1.png").arg(name));
+  }
+}
+
+QIcon IconLoader::loadNoDarkened(const char * name)
+{
+  if (Settings::darkThemeEnabled()) {
+    return QIcon(darkIconPath(name));
+  } else {
+    return QIcon(QString(":/icons/%1.png").arg(name));
+  }
 }
 
 QPixmap IconLoader::darkerPixmap(const QPixmap & pixmap)
@@ -54,6 +72,15 @@ QPixmap IconLoader::darkerPixmap(const QPixmap & pixmap)
     }
   }
   return QPixmap::fromImage(image);
+}
+
+QString IconLoader::darkIconPath(const char * name)
+{
+  QString darkPath = QString(":/icons/dark/%1.png").arg(name);
+  if (QFileInfo(darkPath).exists()) {
+    return darkPath;
+  }
+  return QString(":/icons/%1.png").arg(name); // Fallback
 }
 
 } // namespace GmicQt

@@ -46,7 +46,7 @@ DialogSettings::DialogSettings(QWidget * parent) : QDialog(parent), ui(new Ui::D
   setWindowIcon(parent->windowIcon());
   adjustSize();
 
-  ui->pbUpdate->setIcon(LOAD_ICON("view-refresh"));
+  ui->pbUpdate->setIcon(IconLoader::load("view-refresh"));
 
   ui->cbUpdatePeriodicity->addItem(tr("Never"), QVariant(INTERNET_NEVER_UPDATE_PERIODICITY));
   ui->cbUpdatePeriodicity->addItem(tr("Daily"), QVariant(ONE_DAY_HOURS));

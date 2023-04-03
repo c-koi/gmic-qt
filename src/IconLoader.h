@@ -30,19 +30,19 @@
 #include "Settings.h"
 class QString;
 
-#define LOAD_ICON(NAME) (Settings::darkThemeEnabled() ? IconLoader::getForDarkTheme(NAME) : QIcon(":/icons/" NAME ".png"))
-#define LOAD_ICON_NO_DARKENED(NAME) (Settings::darkThemeEnabled() ? QIcon(":/icons/dark/" NAME ".png") : QIcon(":/icons/" NAME ".png"))
-
 namespace GmicQt
 {
 
 class IconLoader {
 public:
   IconLoader() = delete;
-  static QIcon getForDarkTheme(const QString & name);
+  static QIcon getForDarkTheme(const char * name);
+  static QIcon load(const char * name);
+  static QIcon loadNoDarkened(const char * name);
 
 private:
   static QPixmap darkerPixmap(const QPixmap & pixmap);
+  static QString darkIconPath(const char * name);
 };
 
 } // namespace GmicQt

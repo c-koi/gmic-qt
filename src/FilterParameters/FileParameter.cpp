@@ -71,7 +71,7 @@ bool FileParameter::addTo(QWidget * widget, int row)
     buttonText = fm.elidedText(QFileInfo(_value).fileName(), Qt::ElideRight, w);
   }
   _button = new QPushButton(buttonText, widget);
-  _button->setIcon(LOAD_ICON("document-open"));
+  _button->setIcon(IconLoader::load("document-open"));
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   setTextSelectable(_label);
   _grid->addWidget(_button, row, 1, 1, 2);

@@ -48,7 +48,7 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   _growing = true;
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
   ui->progressBar->setRange(0, 100);
-  ui->tbCancel->setIcon(LOAD_ICON("cancel"));
+  ui->tbCancel->setIcon(IconLoader::load("cancel"));
   ui->tbCancel->setToolTip(tr("Abort"));
   connect(&_timer, &QTimer::timeout, this, &ProgressInfoWidget::onTimeOut);
   connect(ui->tbCancel, &QToolButton::clicked, this, &ProgressInfoWidget::cancel);

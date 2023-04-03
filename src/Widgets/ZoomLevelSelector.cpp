@@ -55,9 +55,9 @@ ZoomLevelSelector::ZoomLevelSelector(QWidget * parent) : QWidget(parent), ui(new
   ui->tbZoomOut->setToolTip(tr("Zoom out"));
   ui->tbZoomReset->setToolTip(tr("Reset zoom"));
 
-  ui->tbZoomIn->setIcon(LOAD_ICON("zoom-in"));
-  ui->tbZoomOut->setIcon(LOAD_ICON("zoom-out"));
-  ui->tbZoomReset->setIcon(LOAD_ICON("view-refresh"));
+  ui->tbZoomIn->setIcon(IconLoader::load("zoom-in"));
+  ui->tbZoomOut->setIcon(IconLoader::load("zoom-out"));
+  ui->tbZoomReset->setIcon(IconLoader::load("view-refresh"));
 
   connect(ui->comboBox->lineEdit(), &QLineEdit::editingFinished, this, &ZoomLevelSelector::onComboBoxEditingFinished);
   connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ZoomLevelSelector::onComboIndexChanged);

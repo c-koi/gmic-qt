@@ -57,7 +57,7 @@ InOutPanel::InOutPanel(QWidget * parent) : QWidget(parent), ui(new Ui::InOutPane
   ui->setupUi(this);
 
   ui->topLabel->setStyleSheet("QLabel { font-weight: bold }");
-  ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
+  ui->tbReset->setIcon(IconLoader::load("view-refresh"));
 
   ui->inputLayers->setToolTip(tr("Input layers"));
 
@@ -159,7 +159,7 @@ void InOutPanel::onResetButtonClicked()
 
 void InOutPanel::setDarkTheme()
 {
-  ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
+  ui->tbReset->setIcon(IconLoader::load("view-refresh"));
 }
 
 void InOutPanel::setDefaultInputMode()

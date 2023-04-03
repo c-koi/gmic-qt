@@ -108,8 +108,8 @@ void Settings::load(UserInterfaceMode userInterfaceMode)
   }
 
   if (userInterfaceMode != UserInterfaceMode::Silent) {
-    AddIcon = LOAD_ICON("list-add");
-    RemoveIcon = LOAD_ICON("list-remove");
+    AddIcon = IconLoader::load("list-add");
+    RemoveIcon = IconLoader::load("list-remove");
   }
   QLocale locale;
   GroupSeparator = locale.groupSeparator();

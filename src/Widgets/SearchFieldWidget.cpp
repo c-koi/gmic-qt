@@ -43,8 +43,8 @@ namespace GmicQt
 SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new Ui::SearchFieldWidget)
 {
   ui->setupUi(this);
-  _clearIcon = LOAD_ICON("edit-clear");
-  _findIcon = LOAD_ICON("edit-find");
+  _clearIcon = IconLoader::load("edit-clear");
+  _findIcon = IconLoader::load("edit-find");
   _empty = true;
 
 #if QT_VERSION_GTE(5, 2, 0)
@@ -53,7 +53,7 @@ SearchFieldWidget::SearchFieldWidget(QWidget * parent) : QWidget(parent), ui(new
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(0);
     hbox->addWidget(_lineEdit = new QLineEdit(this));
-    _action = _lineEdit->addAction(LOAD_ICON("edit-find"), QLineEdit::TrailingPosition);
+    _action = _lineEdit->addAction(IconLoader::load("edit-find"), QLineEdit::TrailingPosition);
     connect(_action, &QAction::triggered, _lineEdit, &QLineEdit::clear);
   }
 #else

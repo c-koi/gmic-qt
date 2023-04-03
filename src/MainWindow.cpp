@@ -252,22 +252,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::setIcons()
 {
-  ui->tbTags->setIcon(LOAD_ICON("color-wheel"));
-  ui->tbRenameFave->setIcon(LOAD_ICON("rename"));
-  ui->pbSettings->setIcon(LOAD_ICON("package_settings"));
-  ui->pbFullscreen->setIcon(LOAD_ICON("view-fullscreen"));
-  ui->tbUpdateFilters->setIcon(LOAD_ICON_NO_DARKENED("view-refresh"));
-  ui->pbApply->setIcon(LOAD_ICON("system-run"));
-  ui->pbOk->setIcon(LOAD_ICON("insert-image"));
-  ui->tbResetParameters->setIcon(LOAD_ICON("view-refresh"));
-  ui->tbCopyCommand->setIcon(LOAD_ICON("edit-copy"));
-  ui->pbClose->setIcon(LOAD_ICON("close"));
-  ui->pbCancel->setIcon(LOAD_ICON("cancel"));
-  ui->tbAddFave->setIcon(LOAD_ICON("bookmark-add"));
-  ui->tbRemoveFave->setIcon(LOAD_ICON("bookmark-remove"));
-  ui->tbSelectionMode->setIcon(LOAD_ICON("selection_mode"));
-  _expandIcon = LOAD_ICON("draw-arrow-down");
-  _collapseIcon = LOAD_ICON("draw-arrow-up");
+  ui->tbTags->setIcon(IconLoader::load("color-wheel"));
+  ui->tbRenameFave->setIcon(IconLoader::load("rename"));
+  ui->pbSettings->setIcon(IconLoader::load("package_settings"));
+  ui->pbFullscreen->setIcon(IconLoader::load("view-fullscreen"));
+  ui->tbUpdateFilters->setIcon(IconLoader::loadNoDarkened("view-refresh"));
+  ui->pbApply->setIcon(IconLoader::load("system-run"));
+  ui->pbOk->setIcon(IconLoader::load("insert-image"));
+  ui->tbResetParameters->setIcon(IconLoader::load("view-refresh"));
+  ui->tbCopyCommand->setIcon(IconLoader::load("edit-copy"));
+  ui->pbClose->setIcon(IconLoader::load("close"));
+  ui->pbCancel->setIcon(IconLoader::load("cancel"));
+  ui->tbAddFave->setIcon(IconLoader::load("bookmark-add"));
+  ui->tbRemoveFave->setIcon(IconLoader::load("bookmark-remove"));
+  ui->tbSelectionMode->setIcon(IconLoader::load("selection_mode"));
+  _expandIcon = IconLoader::load("draw-arrow-down");
+  _collapseIcon = IconLoader::load("draw-arrow-up");
   _expandCollapseIcon = &_expandIcon;
   ui->tbExpandCollapse->setIcon(_expandIcon);
 }

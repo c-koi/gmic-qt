@@ -63,7 +63,7 @@ bool FolderParameter::addTo(QWidget * widget, int row)
   delete _button;
 
   _button = new QPushButton(widget);
-  _button->setIcon(LOAD_ICON("folder"));
+  _button->setIcon(IconLoader::load("folder"));
   _grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
   setTextSelectable(_label);
   _grid->addWidget(_button, row, 1, 1, 2);

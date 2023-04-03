@@ -45,15 +45,15 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
 {
   ui->setupUi(this);
 
-  ui->tbUp->setIcon(LOAD_ICON("draw-arrow-up"));
+  ui->tbUp->setIcon(IconLoader::load("draw-arrow-up"));
   ui->tbUp->setToolTip(tr("Move source up"));
-  ui->tbDown->setIcon(LOAD_ICON("draw-arrow-down"));
+  ui->tbDown->setIcon(IconLoader::load("draw-arrow-down"));
   ui->tbDown->setToolTip(tr("Move source down"));
-  ui->tbTrash->setIcon(LOAD_ICON("user-trash"));
+  ui->tbTrash->setIcon(IconLoader::load("user-trash"));
   ui->tbTrash->setToolTip(tr("Remove source"));
-  ui->tbOpen->setIcon(LOAD_ICON("folder"));
+  ui->tbOpen->setIcon(IconLoader::load("folder"));
   ui->tbOpen->setToolTip(tr("Add local file (dialog)"));
-  ui->tbReset->setIcon(LOAD_ICON("view-refresh"));
+  ui->tbReset->setIcon(IconLoader::load("view-refresh"));
   ui->tbReset->setToolTip(tr("Reset filter sources"));
   connect(ui->tbOpen, &QPushButton::clicked, this, &SourcesWidget::onOpenFile);
   connect(ui->tbNew, &QPushButton::clicked, this, &SourcesWidget::onAddNew);

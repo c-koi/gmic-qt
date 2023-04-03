@@ -79,7 +79,7 @@ bool TextParameter::addTo(QWidget * widget, int row)
     _textEdit = nullptr;
     _grid->addWidget(_lineEdit, row, 1, 1, 2);
 #if QT_VERSION_GTE(5, 2, 0)
-    _updateAction = _lineEdit->addAction(LOAD_ICON("view-refresh"), QLineEdit::TrailingPosition);
+    _updateAction = _lineEdit->addAction(IconLoader::load("view-refresh"), QLineEdit::TrailingPosition);
 #endif
   }
   connectEditor();
