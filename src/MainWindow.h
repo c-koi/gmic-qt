@@ -77,6 +77,7 @@ public:
 public slots:
   void onUpdateDownloadsFinished(int status);
   void onApplyClicked();
+  void onProgressionWidgetCancelClicked();
   void onPreviewUpdateRequested(bool synchronous);
   void onPreviewUpdateRequested();
   void onPreviewKeypointsEvent(unsigned int flags, unsigned long time);
@@ -85,7 +86,6 @@ public slots:
   void search(const QString &);
   void onOkClicked();
   void onCancelClicked();
-  void onProgressionWidgetCancelClicked();
   void onReset();
   void onCopyGMICCommand();
   void onPreviewZoomReset();

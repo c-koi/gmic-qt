@@ -104,9 +104,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
-  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,       ui->filterParams,   ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
-                          ui->pbOk,          ui->pbApply,           ui->tbResetParameters, ui->tbCopyCommand,  ui->searchField,     ui->cbPreview,    ui->tbAddFave,
-                          ui->tbRemoveFave,  ui->tbRenameFave,      ui->tbExpandCollapse,  ui->tbSelectionMode};
+  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,  ui->filterParams,      ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
+                          ui->pbOk,          ui->pbApply,           ui->pbClose,      ui->tbResetParameters, ui->tbCopyCommand,   ui->searchField,  ui->cbPreview,
+                          ui->tbAddFave,     ui->tbRemoveFave,      ui->tbRenameFave, ui->tbExpandCollapse,  ui->tbSelectionMode};
 
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
@@ -236,6 +236,8 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   _forceQuitText = tr("Force &quit");
 
+  ui->pbCancel->setEnabled(false);
+
   makeConnections();
 }
 
@@ -259,7 +261,8 @@ void MainWindow::setIcons()
   ui->pbOk->setIcon(LOAD_ICON("insert-image"));
   ui->tbResetParameters->setIcon(LOAD_ICON("view-refresh"));
   ui->tbCopyCommand->setIcon(LOAD_ICON("edit-copy"));
-  ui->pbCancel->setIcon(LOAD_ICON("process-stop"));
+  ui->pbClose->setIcon(LOAD_ICON("close"));
+  ui->pbCancel->setIcon(LOAD_ICON("cancel"));
   ui->tbAddFave->setIcon(LOAD_ICON("bookmark-add"));
   ui->tbRemoveFave->setIcon(LOAD_ICON("bookmark-remove"));
   ui->tbSelectionMode->setIcon(LOAD_ICON("selection_mode"));
@@ -572,7 +575,7 @@ void MainWindow::onEscapeKeyPressed()
   ui->searchField->clear();
   if (_processor.isProcessing()) {
     if (_processor.isProcessingFullImage()) {
-      ui->progressInfoWidget->onCancelClicked();
+      ui->progressInfoWidget->cancel();
     } else {
       _processor.cancel();
       ui->previewWidget->displayOriginalImage();
@@ -644,6 +647,7 @@ void MainWindow::makeConnections()
   connect(_filtersPresenter, &FiltersPresenter::filterSelectionChanged, this, &MainWindow::onFilterSelectionChanged);
   connect(ui->pbOk, &QPushButton::clicked, this, &MainWindow::onOkClicked);
   connect(ui->pbCancel, &QPushButton::clicked, this, &MainWindow::onCancelClicked);
+  connect(ui->pbClose, &QPushButton::clicked, this, &MainWindow::close);
   connect(ui->pbApply, &QPushButton::clicked, this, &MainWindow::onApplyClicked);
   connect(ui->tbResetParameters, &QToolButton::clicked, this, &MainWindow::onReset);
   connect(ui->tbCopyCommand, &QToolButton::clicked, this, &MainWindow::onCopyGMICCommand);
@@ -664,7 +668,8 @@ void MainWindow::makeConnections()
   connect(ui->cbPreview, &QCheckBox::toggled, this, &MainWindow::onPreviewCheckBoxToggled);
   connect(ui->searchField, &SearchFieldWidget::textChanged, this, &MainWindow::search);
   connect(ui->tbExpandCollapse, &QToolButton::clicked, this, &MainWindow::expandOrCollapseFolders);
-  connect(ui->progressInfoWidget, &ProgressInfoWidget::cancel, this, &MainWindow::onProgressionWidgetCancelClicked);
+  connect(ui->pbCancel, &QPushButton::clicked, this, &MainWindow::onCancelClicked);
+  connect(ui->progressInfoWidget, &ProgressInfoWidget::canceled, this, &MainWindow::onProgressionWidgetCancelClicked);
   connect(ui->tbSelectionMode, &QToolButton::toggled, this, &MainWindow::onFiltersSelectionModeToggled);
   connect(&_processor, &GmicProcessor::previewImageAvailable, this, &MainWindow::onPreviewImageAvailable);
   connect(&_processor, &GmicProcessor::previewCommandFailed, this, &MainWindow::onPreviewError);
@@ -792,8 +797,9 @@ void MainWindow::processImage()
     return;
   }
 
-  ui->progressInfoWidget->startFilterThreadAnimationAndShow(true);
+  ui->progressInfoWidget->startFilterThreadAnimationAndShow();
   enableWidgetList(false);
+  ui->pbCancel->setEnabled(true);
 
   GmicProcessor::FilterContext context;
   context.requestType = GmicProcessor::FilterContext::RequestType::FullImage;
@@ -818,6 +824,7 @@ void MainWindow::onFullImageProcessingError(const QString & message)
   ui->progressInfoWidget->stopAnimationAndHide();
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
   enableWidgetList(true);
+  ui->pbCancel->setEnabled(false);
   if ((_pendingActionAfterCurrentProcessing == ProcessingAction::Ok) || (_pendingActionAfterCurrentProcessing == ProcessingAction::Close)) {
     close();
   }
@@ -869,6 +876,7 @@ void MainWindow::onFullImageProcessingDone()
 {
   ui->progressInfoWidget->stopAnimationAndHide();
   enableWidgetList(true);
+  ui->pbCancel->setEnabled(false);
   ui->previewWidget->update();
   ui->filterParams->setValues(_processor.gmicStatus(), false);
   ui->filterParams->setVisibilityStates(_processor.parametersVisibilityStates());
@@ -928,21 +936,6 @@ void MainWindow::onOkClicked()
   } else {
     _isAccepted = _processor.completedFullImageProcessingCount();
     close();
-  }
-}
-
-void MainWindow::onProgressionWidgetCancelClicked()
-{
-  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::Mode::GmicProcessing) {
-    if (_processor.isProcessing()) {
-      _pendingActionAfterCurrentProcessing = ProcessingAction::NoAction;
-      _processor.cancel();
-      ui->progressInfoWidget->stopAnimationAndHide();
-      enableWidgetList(true);
-    }
-  }
-  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::Mode::FiltersUpdate) {
-    Updater::getInstance()->cancelAllPendingDownloads();
   }
 }
 
@@ -1419,6 +1412,13 @@ void MainWindow::enableWidgetList(bool on)
   ui->inOutSelector->setEnabled(on);
 }
 
+void MainWindow::onProgressionWidgetCancelClicked()
+{
+  if (ui->progressInfoWidget->mode() == ProgressInfoWidget::Mode::FiltersUpdate) {
+    Updater::getInstance()->cancelAllPendingDownloads();
+  }
+}
+
 void MainWindow::abortProcessingOnCloseRequest()
 {
   _pendingActionAfterCurrentProcessing = ProcessingAction::Close;
@@ -1426,31 +1426,38 @@ void MainWindow::abortProcessingOnCloseRequest()
   ui->progressInfoWidget->showBusyIndicator();
   ui->previewWidget->setOverlayMessage(tr("Waiting for cancelled jobs..."));
   enableWidgetList(false);
-  ui->pbCancel->setEnabled(true);
-  ui->pbCancel->setText(_forceQuitText);
-  _processor.detachAllThreads(); // Keep only one thread in list after next line
+  ui->pbCancel->setEnabled(false);
+  ui->pbClose->setEnabled(false);
+
+  QTimer::singleShot(2000, [this]() {
+    _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
+    ui->pbClose->setText(_forceQuitText);
+    ui->pbClose->setEnabled(true);
+  });
+
+  _processor.detachAllUnfinishedAbortedThreads(); // Keep only one thread in list after next line
   _processor.cancel();
 }
 
 void MainWindow::onCancelClicked()
 {
-  close();
+  ui->progressInfoWidget->cancel();
+  if (_processor.isProcessing()) {
+    _pendingActionAfterCurrentProcessing = ProcessingAction::NoAction;
+    _processor.cancel();
+    ui->progressInfoWidget->stopAnimationAndHide();
+    enableWidgetList(true);
+    ui->pbCancel->setEnabled(false);
+  }
 }
 
 void MainWindow::closeEvent(QCloseEvent * e)
 {
   if (_pendingActionAfterCurrentProcessing == ProcessingAction::ForceQuit) {
     _processor.disconnect(this);
-    _processor.detachAllThreads();
+    _processor.cancel();
+    _processor.detachAllUnfinishedAbortedThreads();
     e->accept();
-    return;
-  }
-
-  if (_processor.hasUnfinishedAbortedThreads() && (ui->pbCancel->text() == _forceQuitText)) {
-    ui->pbCancel->setEnabled(false);
-    _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
-    QTimer::singleShot(2000, this, &MainWindow::close);
-    e->ignore();
     return;
   }
 

@@ -256,20 +256,13 @@ void GmicProcessor::cancel()
   abortCurrentFilterThread();
 }
 
-void GmicProcessor::detachAllThreads()
+void GmicProcessor::detachAllUnfinishedAbortedThreads()
 {
-  if (_filterThread) {
-    _filterThread->disconnect(this);
-    _filterThread->setParent(nullptr);
-    _filterThread = nullptr;
-  }
   for (FilterThread * thread : _unfinishedAbortedThreads) {
     thread->disconnect(this);
     thread->setParent(nullptr);
   }
   _unfinishedAbortedThreads.clear();
-  _waitingCursorTimer.stop();
-  OverrideCursor::setWaiting(false);
 }
 
 void GmicProcessor::terminateAllThreads()

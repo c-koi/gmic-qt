@@ -48,10 +48,10 @@ ProgressInfoWidget::ProgressInfoWidget(QWidget * parent) : QWidget(parent), ui(n
   _growing = true;
   setWindowTitle(tr("G'MIC-Qt Plug-in progression"));
   ui->progressBar->setRange(0, 100);
-  ui->tbCancel->setIcon(LOAD_ICON("process-stop"));
+  ui->tbCancel->setIcon(LOAD_ICON("cancel"));
   ui->tbCancel->setToolTip(tr("Abort"));
   connect(&_timer, &QTimer::timeout, this, &ProgressInfoWidget::onTimeOut);
-  connect(ui->tbCancel, &QToolButton::clicked, this, &ProgressInfoWidget::onCancelClicked);
+  connect(ui->tbCancel, &QToolButton::clicked, this, &ProgressInfoWidget::cancel);
   if (!parent) {
     QRect position = frameGeometry();
     QList<QScreen *> screens = QGuiApplication::screens();
@@ -97,10 +97,10 @@ void ProgressInfoWidget::onTimeOut()
   }
 }
 
-void ProgressInfoWidget::onCancelClicked()
+void ProgressInfoWidget::cancel()
 {
   _canceled = true;
-  emit cancel();
+  emit canceled();
 }
 
 void ProgressInfoWidget::stopAnimationAndHide()
@@ -110,14 +110,14 @@ void ProgressInfoWidget::stopAnimationAndHide()
   hide();
 }
 
-void ProgressInfoWidget::startFilterThreadAnimationAndShow(bool showCancelButton)
+void ProgressInfoWidget::startFilterThreadAnimationAndShow()
 {
   layout()->removeWidget(ui->tbCancel);
   layout()->removeWidget(ui->progressBar);
   layout()->removeWidget(ui->label);
   layout()->addWidget(ui->progressBar);
-  layout()->addWidget(ui->tbCancel);
   layout()->addWidget(ui->label);
+  ui->tbCancel->hide();
 
   _canceled = false;
   _mode = Mode::GmicProcessing;
@@ -127,7 +127,6 @@ void ProgressInfoWidget::startFilterThreadAnimationAndShow(bool showCancelButton
   onTimeOut();
   _timer.setInterval(250);
   _timer.start();
-  ui->tbCancel->setVisible(showCancelButton);
   show();
 }
 

@@ -111,7 +111,7 @@ public:
 
 public slots:
   void cancel();
-  void detachAllThreads();
+  void detachAllUnfinishedAbortedThreads();
   void terminateAllThreads();
 
 signals:
