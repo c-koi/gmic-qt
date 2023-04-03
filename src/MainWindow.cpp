@@ -576,6 +576,7 @@ void MainWindow::onEscapeKeyPressed()
   if (_processor.isProcessing()) {
     if (_processor.isProcessingFullImage()) {
       ui->progressInfoWidget->cancel();
+      ui->pbCancel->animateClick();
     } else {
       _processor.cancel();
       ui->previewWidget->displayOriginalImage();
@@ -646,7 +647,6 @@ void MainWindow::makeConnections()
   connect(ui->previewWidget, &PreviewWidget::previewVisibleRectIsChanging, &_processor, &GmicProcessor::cancel);
   connect(_filtersPresenter, &FiltersPresenter::filterSelectionChanged, this, &MainWindow::onFilterSelectionChanged);
   connect(ui->pbOk, &QPushButton::clicked, this, &MainWindow::onOkClicked);
-  connect(ui->pbCancel, &QPushButton::clicked, this, &MainWindow::onCancelClicked);
   connect(ui->pbClose, &QPushButton::clicked, this, &MainWindow::close);
   connect(ui->pbApply, &QPushButton::clicked, this, &MainWindow::onApplyClicked);
   connect(ui->tbResetParameters, &QToolButton::clicked, this, &MainWindow::onReset);
