@@ -23,6 +23,7 @@
  *
  */
 #include "SourcesWidget.h"
+#include <QAction>
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFileDialog>
@@ -45,12 +46,18 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
 {
   ui->setupUi(this);
 
+  QAction * removeAction = new QAction(this);
+  removeAction->setIcon(IconLoader::load("user-trash"));
+  removeAction->setShortcutContext(Qt::WindowShortcut);
+  removeAction->setShortcut(Qt::Key_Delete);
+  removeAction->setToolTip(tr("Remove source (Delete)"));
+  connect(removeAction, &QAction::triggered, this, &SourcesWidget::removeCurrentSource);
+  ui->tbTrash->setDefaultAction(removeAction);
+
   ui->tbUp->setIcon(IconLoader::load("draw-arrow-up"));
   ui->tbUp->setToolTip(tr("Move source up"));
   ui->tbDown->setIcon(IconLoader::load("draw-arrow-down"));
   ui->tbDown->setToolTip(tr("Move source down"));
-  ui->tbTrash->setIcon(IconLoader::load("user-trash"));
-  ui->tbTrash->setToolTip(tr("Remove source"));
   ui->tbOpen->setIcon(IconLoader::load("folder"));
   ui->tbOpen->setToolTip(tr("Add local file (dialog)"));
   ui->tbReset->setIcon(IconLoader::load("view-refresh"));
@@ -58,7 +65,6 @@ SourcesWidget::SourcesWidget(QWidget * parent) : QWidget(parent), ui(new Ui::Sou
   connect(ui->tbOpen, &QPushButton::clicked, this, &SourcesWidget::onOpenFile);
   connect(ui->tbNew, &QPushButton::clicked, this, &SourcesWidget::onAddNew);
   connect(ui->tbReset, &QPushButton::clicked, this, &SourcesWidget::setToDefault);
-  connect(ui->tbTrash, &QPushButton::clicked, this, &SourcesWidget::removeCurrentSource);
   connect(ui->tbUp, &QPushButton::clicked, this, &SourcesWidget::onMoveUp);
   connect(ui->tbDown, &QPushButton::clicked, this, &SourcesWidget::onMoveDown);
   connect(ui->list, &QListWidget::currentItemChanged, this, &SourcesWidget::onSourceSelected);
@@ -221,14 +227,14 @@ void SourcesWidget::enableButtons()
   if (index == -1) {
     ui->tbUp->setEnabled(false);
     ui->tbDown->setEnabled(false);
-    ui->tbTrash->setEnabled(false);
+    ui->tbTrash->defaultAction()->setEnabled(false);
     ui->leURL->clear();
     ui->leURL->setEnabled(false);
     return;
   }
   ui->tbUp->setEnabled(index > 0);
   ui->tbDown->setEnabled(index < ui->list->count() - 1);
-  ui->tbTrash->setEnabled(true);
+  ui->tbTrash->defaultAction()->setEnabled(true);
   ui->leURL->setEnabled(true);
 }
 

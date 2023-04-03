@@ -361,12 +361,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="377"/>
+        <location filename="../src/GmicProcessor.cpp" line="378"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="413"/>
+        <location filename="../src/GmicProcessor.cpp" line="414"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation type="unfinished"></translation>
@@ -578,7 +578,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="353"/>
         <location filename="../src/MainWindow.cpp" line="355"/>
-        <location filename="../src/MainWindow.cpp" line="495"/>
+        <location filename="../src/MainWindow.cpp" line="487"/>
         <source>Filter definitions have been updated.</source>
         <translation>Filterdefinitioner har uppdaterats.</translation>
     </message>
@@ -588,15 +588,15 @@ Cannot retrieve default parameters.
         <translation>Inga nerladdningar behövs.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="412"/>
+        <location filename="../src/MainWindow.cpp" line="405"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="420"/>
-        <location filename="../src/MainWindow.cpp" line="447"/>
+        <location filename="../src/MainWindow.cpp" line="413"/>
+        <location filename="../src/MainWindow.cpp" line="440"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -607,26 +607,26 @@ Cannot retrieve default parameters.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="433"/>
+        <location filename="../src/MainWindow.cpp" line="426"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="893"/>
+        <location filename="../src/MainWindow.cpp" line="885"/>
         <source>[Elapsed time: %1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="428"/>
+        <location filename="../src/MainWindow.cpp" line="421"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="437"/>
+        <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -635,52 +635,52 @@ Command found for this path : %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="491"/>
+        <location filename="../src/MainWindow.cpp" line="483"/>
         <source>Filters update could not be achieved</source>
         <translation>Filteruppdatering kunde inte utföras</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="631"/>
+        <location filename="../src/MainWindow.cpp" line="624"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Uppdateringen kunde inte uppnås&lt;br/&gt;på grund av följande fel:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="637"/>
+        <location filename="../src/MainWindow.cpp" line="630"/>
         <source>Update error</source>
         <translation>Uppdateringsfel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="825"/>
+        <location filename="../src/MainWindow.cpp" line="817"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1427"/>
+        <location filename="../src/MainWindow.cpp" line="1419"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>Väntar på avbrutet arbete...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1281"/>
+        <location filename="../src/MainWindow.cpp" line="1273"/>
         <source>Import faves</source>
         <translation>Importera faves</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1281"/>
+        <location filename="../src/MainWindow.cpp" line="1273"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Vill du importera faves från filen nedan?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1284"/>
+        <location filename="../src/MainWindow.cpp" line="1276"/>
         <source>Don&apos;t ask again</source>
         <translation>Fråga inte igen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1403"/>
+        <location filename="../src/MainWindow.cpp" line="1395"/>
         <source>Confirmation</source>
         <translation>Bekräfta</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1403"/>
+        <location filename="../src/MainWindow.cpp" line="1395"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Ett g&apos;mic-kommando körs.&lt;br&gt;Vill du verkligen stänga plugin-programmet?</translation>
     </message>
@@ -771,74 +771,74 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::SourcesWidget</name>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="49"/>
+        <location filename="../src/SourcesWidget.cpp" line="58"/>
         <source>Move source up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="51"/>
+        <location filename="../src/SourcesWidget.cpp" line="60"/>
         <source>Move source down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="53"/>
-        <source>Remove source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/SourcesWidget.cpp" line="55"/>
+        <location filename="../src/SourcesWidget.cpp" line="62"/>
         <source>Add local file (dialog)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="57"/>
+        <location filename="../src/SourcesWidget.cpp" line="64"/>
         <source>Reset filter sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="74"/>
+        <location filename="../src/SourcesWidget.cpp" line="80"/>
         <source>Macros: $HOME %USERPROFILE% $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="96"/>
+        <location filename="../src/SourcesWidget.cpp" line="102"/>
         <source>Environment variables (e.g. %USERPROFILE% or %HOMEDIR%) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="76"/>
+        <location filename="../src/SourcesWidget.cpp" line="82"/>
         <source>Macros: $HOME $VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="79"/>
+        <location filename="../src/SourcesWidget.cpp" line="53"/>
+        <source>Remove source (Delete)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/SourcesWidget.cpp" line="85"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="80"/>
+        <location filename="../src/SourcesWidget.cpp" line="86"/>
         <source>Enable without updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="81"/>
+        <location filename="../src/SourcesWidget.cpp" line="87"/>
         <source>Enable with updates (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="100"/>
+        <location filename="../src/SourcesWidget.cpp" line="106"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="105"/>
+        <location filename="../src/SourcesWidget.cpp" line="111"/>
         <source>New source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/SourcesWidget.cpp" line="186"/>
+        <location filename="../src/SourcesWidget.cpp" line="192"/>
         <source>Select a file</source>
         <translation type="unfinished">Välj en fil</translation>
     </message>
