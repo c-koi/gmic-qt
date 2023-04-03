@@ -364,12 +364,12 @@
 <context>
     <name>GmicQt::GmicProcessor</name>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="384"/>
+        <location filename="../src/GmicProcessor.cpp" line="377"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
         <translation>濾鏡傳回的影像 #%1 含有 %2 個通道（應為不多於 4 個）</translation>
     </message>
     <message>
-        <location filename="../src/GmicProcessor.cpp" line="420"/>
+        <location filename="../src/GmicProcessor.cpp" line="413"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
         <translation>濾鏡傳回的影像 #%1 含有 %2 個通道
@@ -582,24 +582,24 @@ Cannot retrieve default parameters.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="350"/>
+        <location filename="../src/MainWindow.cpp" line="353"/>
         <source>Update completed</source>
         <translation>更新完成</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="350"/>
-        <location filename="../src/MainWindow.cpp" line="352"/>
-        <location filename="../src/MainWindow.cpp" line="490"/>
+        <location filename="../src/MainWindow.cpp" line="353"/>
+        <location filename="../src/MainWindow.cpp" line="355"/>
+        <location filename="../src/MainWindow.cpp" line="495"/>
         <source>Filter definitions have been updated.</source>
         <translation>濾鏡定義已更新。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="355"/>
+        <location filename="../src/MainWindow.cpp" line="358"/>
         <source>No download was needed.</source>
         <translation>無需下載。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="408"/>
+        <location filename="../src/MainWindow.cpp" line="412"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -608,8 +608,8 @@ Path: %1</source>
 路徑為：%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="416"/>
-        <location filename="../src/MainWindow.cpp" line="443"/>
+        <location filename="../src/MainWindow.cpp" line="420"/>
+        <location filename="../src/MainWindow.cpp" line="447"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -626,7 +626,7 @@ Cannot retrieve default parameters.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="429"/>
+        <location filename="../src/MainWindow.cpp" line="433"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -635,12 +635,12 @@ Command: %1</source>
 命令：%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="889"/>
+        <location filename="../src/MainWindow.cpp" line="893"/>
         <source>[Elapsed time: %1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="424"/>
+        <location filename="../src/MainWindow.cpp" line="428"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -649,7 +649,7 @@ Command: %1</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="433"/>
+        <location filename="../src/MainWindow.cpp" line="437"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -662,52 +662,52 @@ Command found for this path : %3</source>
 路徑中找到的命令：%3</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="486"/>
+        <location filename="../src/MainWindow.cpp" line="491"/>
         <source>Filters update could not be achieved</source>
         <translation>無法完成濾鏡更新</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="626"/>
+        <location filename="../src/MainWindow.cpp" line="631"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>由於發生以下錯誤，&lt;br&gt;無法完成更新：&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="632"/>
+        <location filename="../src/MainWindow.cpp" line="637"/>
         <source>Update error</source>
         <translation>更新錯誤</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="823"/>
+        <location filename="../src/MainWindow.cpp" line="825"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1431"/>
+        <location filename="../src/MainWindow.cpp" line="1427"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>正在等待取消工作……</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1292"/>
+        <location filename="../src/MainWindow.cpp" line="1281"/>
         <source>Import faves</source>
         <translation>匯入最愛</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1292"/>
+        <location filename="../src/MainWindow.cpp" line="1281"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>你要從以下檔案匯入最愛嗎？&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1295"/>
+        <location filename="../src/MainWindow.cpp" line="1284"/>
         <source>Don&apos;t ask again</source>
         <translation>不再詢問</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1414"/>
+        <location filename="../src/MainWindow.cpp" line="1403"/>
         <source>Confirmation</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1414"/>
+        <location filename="../src/MainWindow.cpp" line="1403"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>一項 gmic 命令正在執行中。&lt;br&gt;你確定要關閉外掛程式嗎？</translation>
     </message>
@@ -723,28 +723,38 @@ Command found for this path : %3</source>
 <context>
     <name>GmicQt::ProgressInfoWidget</name>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="49"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="50"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
         <translation>G&apos;MIC-Qt 外掛程式進度</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="52"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="53"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="150"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="126"/>
+        <source>[Processing 88:00:00.888 | 888.9 GiB]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="128"/>
+        <source>[Processing 88:00:00.888]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="160"/>
         <source>Updating filters...</source>
         <translation>正在更新濾鏡……</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="204"/>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="217"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="221"/>
         <source>[Processing %1 | %2]</source>
         <translation>[正在處理 %1 | %2]</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="219"/>
+        <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="223"/>
         <source>[Processing %1]</source>
         <translation>[正在處理 %1]</translation>
     </message>
@@ -1067,22 +1077,27 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="531"/>
+        <location filename="../ui/mainwindow.ui" line="544"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="557"/>
         <source>&amp;Cancel</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="544"/>
+        <location filename="../ui/mainwindow.ui" line="531"/>
         <source>&amp;Fullscreen</source>
         <translation>全螢幕(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="557"/>
+        <location filename="../ui/mainwindow.ui" line="570"/>
         <source>&amp;Apply</source>
         <translation>套用(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="570"/>
+        <location filename="../ui/mainwindow.ui" line="583"/>
         <source>&amp;OK</source>
         <translation>確定(&amp;O)</translation>
     </message>
@@ -1223,6 +1238,26 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <location filename="../src/Misc.cpp" line="336"/>
         <source>List %1 cannot be merged considering these runs: %2</source>
         <translation>無法合併清單 %1，關聯的執行次：%2</translation>
+    </message>
+    <message>
+        <location filename="../src/Misc.cpp" line="431"/>
+        <source>%1 GiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Misc.cpp" line="433"/>
+        <source>%1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Misc.cpp" line="435"/>
+        <source>%1 KiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Misc.cpp" line="437"/>
+        <source>%1 B</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

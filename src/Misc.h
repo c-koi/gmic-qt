@@ -81,6 +81,8 @@ inline QString elided80(const std::string & text)
 
 QString readableDuration(qint64 ms);
 
+QString readableSize(quint64);
+
 template <typename T> //
 QString stringify(const T & value)
 {

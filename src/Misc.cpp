@@ -425,4 +425,17 @@ QString readableDuration(qint64 ms)
       .arg(ms % SECOND, 3, 10, QChar('0'));                 // Milliseconds
 }
 
+QString readableSize(quint64 n)
+{
+  if (n >= (1ul << 30)) {
+    return QString(QObject::tr("%1 GiB")).arg(n / (double)(1 << 30), 0, 'f', 1);
+  } else if (n >= (1ul << 20)) {
+    return QString(QObject::tr("%1 MiB")).arg(n / (double)(1 << 20), 0, 'f', 1);
+  } else if (n >= (1ul << 10)) {
+    return QString(QObject::tr("%1 KiB")).arg(n / (double)(1 << 10), 0, 'f', 1);
+  } else {
+    return QString(QObject::tr("%1 B")).arg(n);
+  }
+}
+
 } // namespace GmicQt
