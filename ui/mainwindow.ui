@@ -482,7 +482,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0,0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0,0,0">
       <item>
        <widget class="QPushButton" name="pbSettings">
         <property name="sizePolicy">
@@ -520,19 +520,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pbCancel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>&amp;Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="pbFullscreen">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -542,6 +529,32 @@
         </property>
         <property name="text">
          <string>&amp;Fullscreen</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbClose">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>&amp;Close</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbCancel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>&amp;Cancel</string>
         </property>
        </widget>
       </item>
@@ -624,7 +637,6 @@
   <tabstop>previewWidget</tabstop>
   <tabstop>cbPreview</tabstop>
   <tabstop>pbCancel</tabstop>
-  <tabstop>pbFullscreen</tabstop>
   <tabstop>pbApply</tabstop>
   <tabstop>pbOk</tabstop>
  </tabstops>
