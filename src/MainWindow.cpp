@@ -688,6 +688,7 @@ void MainWindow::onPreviewUpdateRequested()
 
 void MainWindow::onPreviewUpdateRequested(bool synchronous)
 {
+  ENTERING;
   if (!ui->cbPreview->isChecked()) {
     ui->previewWidget->invalidateSavedPreview();
     return;
@@ -1183,61 +1184,61 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
 
   if (filter.hash.isEmpty()) {
     setNoFilter();
-  } else {
-    QList<QString> savedValues = values.isEmpty() ? ParametersCache::getValues(filter.hash) : values;
-    if (savedValues.isEmpty() && filter.isAFave) {
-      savedValues = filter.defaultParameterValues;
-    }
-    QList<int> savedVisibilityStates = ParametersCache::getVisibilityStates(filter.hash);
-    if (savedVisibilityStates.isEmpty() && filter.isAFave) {
-      savedVisibilityStates = filter.defaultVisibilityStates;
-    }
-    if (!ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues, savedVisibilityStates)) {
-      _filtersPresenter->setInvalidFilter();
-      ui->previewWidget->setKeypoints(KeypointList());
-    } else {
-      ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
-    }
-    setFilterName(FilterTextTranslator::translate(filter.name));
-    ui->inOutSelector->enable();
-    if (ui->inOutSelector->hasActiveControls()) {
-      ui->inOutSelector->show();
-    } else {
-      ui->inOutSelector->hide();
-    }
-
-    InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
-    if (inOutState.inputMode == InputMode::Unspecified) {
-      if ((filter.defaultInputMode != InputMode::Unspecified)) {
-        inOutState.inputMode = filter.defaultInputMode;
-      } else {
-        inOutState.inputMode = DefaultInputMode;
-      }
-    }
-
-    // Take plugin parameters into account
-    if (_pluginParameters.inputMode != InputMode::Unspecified) {
-      inOutState.inputMode = _pluginParameters.inputMode;
-      _pluginParameters.inputMode = InputMode::Unspecified;
-    }
-    if (_pluginParameters.outputMode != OutputMode::Unspecified) {
-      inOutState.outputMode = _pluginParameters.outputMode;
-      _pluginParameters.outputMode = OutputMode::Unspecified;
-    }
-
-    ui->inOutSelector->setState(inOutState, false);
-
-    ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
-    ui->filterName->setVisible(true);
-    ui->tbAddFave->setEnabled(true);
-    ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
-    setZoomConstraint();
-    _okButtonShouldApply = true;
-    ui->tbResetParameters->setVisible(true);
-    ui->tbCopyCommand->setVisible(true);
-    ui->tbRemoveFave->setEnabled(filter.isAFave);
-    ui->tbRenameFave->setEnabled(filter.isAFave);
+    return;
   }
+
+  QList<QString> savedValues = values.isEmpty() ? ParametersCache::getValues(filter.hash) : values;
+  if (savedValues.isEmpty() && filter.isAFave) {
+    savedValues = filter.defaultParameterValues;
+  }
+  QList<int> savedVisibilityStates = ParametersCache::getVisibilityStates(filter.hash);
+  if (savedVisibilityStates.isEmpty() && filter.isAFave) {
+    savedVisibilityStates = filter.defaultVisibilityStates;
+  }
+  if (!ui->filterParams->build(filter.name, filter.hash, filter.parameters, savedValues, savedVisibilityStates)) {
+    _filtersPresenter->setInvalidFilter();
+    ui->previewWidget->setKeypoints(KeypointList());
+  } else {
+    ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
+  }
+  setFilterName(FilterTextTranslator::translate(filter.name));
+  ui->inOutSelector->enable();
+  if (ui->inOutSelector->hasActiveControls()) {
+    ui->inOutSelector->show();
+  } else {
+    ui->inOutSelector->hide();
+  }
+
+  InputOutputState inOutState = ParametersCache::getInputOutputState(filter.hash);
+  if (inOutState.inputMode == InputMode::Unspecified) {
+    if ((filter.defaultInputMode != InputMode::Unspecified)) {
+      inOutState.inputMode = filter.defaultInputMode;
+    } else {
+      inOutState.inputMode = DefaultInputMode;
+    }
+  }
+
+  // Take plugin parameters into account
+  if (_pluginParameters.inputMode != InputMode::Unspecified) {
+    inOutState.inputMode = _pluginParameters.inputMode;
+    _pluginParameters.inputMode = InputMode::Unspecified;
+  }
+  if (_pluginParameters.outputMode != OutputMode::Unspecified) {
+    inOutState.outputMode = _pluginParameters.outputMode;
+    _pluginParameters.outputMode = OutputMode::Unspecified;
+  }
+
+  ui->inOutSelector->setState(inOutState, false);
+  ui->previewWidget->updateFullImageSizeIfDifferent(LayersExtentProxy::getExtent(ui->inOutSelector->inputMode()));
+  ui->filterName->setVisible(true);
+  ui->tbAddFave->setEnabled(true);
+  ui->previewWidget->setPreviewFactor(filter.previewFactor, resetZoom);
+  setZoomConstraint();
+  _okButtonShouldApply = true;
+  ui->tbResetParameters->setVisible(true);
+  ui->tbCopyCommand->setVisible(true);
+  ui->tbRemoveFave->setEnabled(filter.isAFave);
+  ui->tbRenameFave->setEnabled(filter.isAFave);
 }
 
 void MainWindow::setNoFilter()
