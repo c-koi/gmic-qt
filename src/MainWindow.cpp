@@ -364,6 +364,7 @@ void MainWindow::onUpdateDownloadsFinished(int status)
 
 void MainWindow::buildFiltersTree()
 {
+  ENTERING;
   saveCurrentParameters();
   GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   const bool withVisibility = filtersSelectionMode();
@@ -477,6 +478,7 @@ void MainWindow::updateFilters(bool internet)
 
 void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
+  ENTERING;
   bool ok = QObject::disconnect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
   Q_ASSERT_X(ok, __PRETTY_FUNCTION__, "Cannot disconnect Updater::updateIsDone from MainWindow::onStartupFiltersUpdateFinished");
 
@@ -754,9 +756,6 @@ void MainWindow::onPreviewImageAvailable()
   ui->previewWidget->setPreviewImage(_processor.previewImage());
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
-  if (_pendingActionAfterCurrentProcessing == ProcessingAction::Close) {
-    close();
-  }
 }
 
 void MainWindow::onPreviewError(const QString & message)
@@ -764,9 +763,6 @@ void MainWindow::onPreviewError(const QString & message)
   ui->previewWidget->setPreviewErrorMessage(message);
   ui->previewWidget->enableRightClick();
   ui->tbUpdateFilters->setEnabled(true);
-  if (_pendingActionAfterCurrentProcessing == ProcessingAction::Close) {
-    close();
-  }
 }
 
 void MainWindow::onParametersChanged()
@@ -822,7 +818,7 @@ void MainWindow::onFullImageProcessingError(const QString & message)
   ui->progressInfoWidget->stopAnimationAndHide();
   QMessageBox::warning(this, tr("Error"), message, QMessageBox::Close);
   enableWidgetList(true);
-  if ((_pendingActionAfterCurrentProcessing == ProcessingAction::Ok || _pendingActionAfterCurrentProcessing == ProcessingAction::Close)) {
+  if ((_pendingActionAfterCurrentProcessing == ProcessingAction::Ok) || (_pendingActionAfterCurrentProcessing == ProcessingAction::Close)) {
     close();
   }
 }
@@ -1432,23 +1428,12 @@ void MainWindow::abortProcessingOnCloseRequest()
   enableWidgetList(false);
   ui->pbCancel->setEnabled(true);
   ui->pbCancel->setText(_forceQuitText);
+  _processor.detachAllThreads(); // Keep only one thread in list after next line
   _processor.cancel();
 }
 
 void MainWindow::onCancelClicked()
 {
-  if (ui->pbCancel->text() == _forceQuitText) {
-    ui->pbCancel->setEnabled(false);
-    _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
-    QTimer::singleShot(2000, this, &MainWindow::close);
-    return;
-  }
-  if (_processor.isProcessing() || _processor.hasUnfinishedAbortedThreads()) {
-    if (confirmAbortProcessingOnCloseRequest()) {
-      abortProcessingOnCloseRequest();
-    }
-    return;
-  }
   close();
 }
 
@@ -1460,21 +1445,21 @@ void MainWindow::closeEvent(QCloseEvent * e)
     e->accept();
     return;
   }
-  if (_processor.isProcessing() || _processor.hasUnfinishedAbortedThreads()) {
-    if (ui->pbCancel->text() == _forceQuitText) {
-      ui->pbCancel->setEnabled(false);
-      _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
-      QTimer::singleShot(2000, this, &MainWindow::close);
-      e->ignore();
-      return;
+
+  if (_processor.hasUnfinishedAbortedThreads() && (ui->pbCancel->text() == _forceQuitText)) {
+    ui->pbCancel->setEnabled(false);
+    _pendingActionAfterCurrentProcessing = ProcessingAction::ForceQuit;
+    QTimer::singleShot(2000, this, &MainWindow::close);
+    e->ignore();
+    return;
+  }
+
+  if (_processor.isProcessing() && (_pendingActionAfterCurrentProcessing != ProcessingAction::Close)) {
+    if (confirmAbortProcessingOnCloseRequest()) {
+      abortProcessingOnCloseRequest();
     }
-    if (_pendingActionAfterCurrentProcessing != ProcessingAction::Close) {
-      if (confirmAbortProcessingOnCloseRequest()) {
-        abortProcessingOnCloseRequest();
-      }
-      e->ignore();
-      return;
-    }
+    e->ignore();
+    return;
   }
   e->accept();
 }
