@@ -458,7 +458,7 @@ double PreviewWidget::currentZoomFactor() const
 
 bool PreviewWidget::event(QEvent * event)
 {
-  if (event->type() == QEvent::WindowActivate && _pendingResize) {
+  if ((event->type() == QEvent::WindowActivate) && _pendingResize) {
     _pendingResize = false;
     if (width() && height()) {
       updateVisibleRect();

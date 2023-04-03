@@ -360,18 +360,19 @@ void MainWindow::onUpdateDownloadsFinished(int status)
 
   buildFiltersTree();
   ui->tbUpdateFilters->setEnabled(true);
-  if (!_filtersPresenter->currentFilter().hash.isEmpty()) {
-    ui->previewWidget->sendUpdateRequest();
+  if (_filtersPresenter->currentFilter().hash.isEmpty()) {
+    setNoFilter();
+  } else {
+    activateFilter(false);
   }
+  ui->previewWidget->sendUpdateRequest();
 }
 
 void MainWindow::buildFiltersTree()
 {
-  ENTERING;
   saveCurrentParameters();
   GmicStdLib::Array = Updater::getInstance()->buildFullStdlib();
   const bool withVisibility = filtersSelectionMode();
-
   _filtersPresenter->clear();
   _filtersPresenter->readFilters();
   _filtersPresenter->readFaves();
@@ -382,15 +383,7 @@ void MainWindow::buildFiltersTree()
     _gtkFavesShouldBeImported = false;
     QSettings().setValue(FAVES_IMPORT_KEY, true);
   }
-
   _filtersPresenter->toggleSelectionMode(withVisibility);
-
-  if (_filtersPresenter->currentFilter().hash.isEmpty()) {
-    setNoFilter();
-    ui->previewWidget->sendUpdateRequest();
-  } else {
-    activateFilter(false); // FIXME : Redundant with THERE
-  }
 }
 
 void MainWindow::retrieveFilterAndParametersFromPluginParameters(QString & hash, QList<QString> & parameters)
@@ -481,7 +474,6 @@ void MainWindow::updateFilters(bool internet)
 
 void MainWindow::onStartupFiltersUpdateFinished(int status)
 {
-  ENTERING;
   bool ok = QObject::disconnect(Updater::getInstance(), &Updater::updateIsDone, this, &MainWindow::onStartupFiltersUpdateFinished);
   Q_ASSERT_X(ok, __PRETTY_FUNCTION__, "Cannot disconnect Updater::updateIsDone from MainWindow::onStartupFiltersUpdateFinished");
 
@@ -502,6 +494,7 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
   } else {
     _gtkFavesShouldBeImported = askUserForGTKFavesImport();
   }
+
   buildFiltersTree();
   ui->searchField->setFocus();
 
@@ -528,14 +521,13 @@ void MainWindow::onStartupFiltersUpdateFinished(int status)
     _filtersPresenter->expandFaveFolder();
     _filtersPresenter->adjustViewSize();
     ui->previewWidget->setPreviewFactor(PreviewFactorFullImage, true);
+    setNoFilter();
   } else {
     _filtersPresenter->adjustViewSize();
     activateFilter(true, pluginParametersCommandArguments);
-    if (ui->cbPreview->isChecked()) {
-      ui->previewWidget->sendUpdateRequest(); // FIXME: Redundant with THERE
-    }
   }
-  // Preview update is triggered when PreviewWidget receives
+  ui->previewWidget->sendUpdateRequest();
+  // Preview update is also triggered when PreviewWidget receives
   // the WindowActivate Event (while pendingResize is true
   // after the very first resize event).
 }
@@ -688,7 +680,6 @@ void MainWindow::onPreviewUpdateRequested()
 
 void MainWindow::onPreviewUpdateRequested(bool synchronous)
 {
-  ENTERING;
   if (!ui->cbPreview->isChecked()) {
     ui->previewWidget->invalidateSavedPreview();
     return;
