@@ -135,7 +135,7 @@ QStringList SourcesWidget::defaultList()
   QStringList result;
 #ifdef _IS_WINDOWS_
   result << QString("%GMIC_USER%%1user.gmic").arg(QDir::separator());
-  result << QString("%USERPROFILE%%1gmic").arg(QDir::separator());
+  result << QString("%USERPROFILE%%1user.gmic").arg(QDir::separator());
 #else
   result << "${GMIC_USER}/.gmic";
   result << "${HOME}/.gmic";
