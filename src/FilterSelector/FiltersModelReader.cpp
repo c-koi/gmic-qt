@@ -31,6 +31,7 @@
 #include <QRegularExpression>
 #include <QSettings>
 #include <QString>
+#include <cmath>
 #include <cstring>
 #include "Common.h"
 #include "FilterSelector/FiltersModel.h"
