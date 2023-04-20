@@ -180,7 +180,7 @@ win32 {
  DEFINES += cimg_display=2
 }
 
-linux {
+unix:!macx {
   DEFINES += _IS_LINUX_
   PKGCONFIG += x11
   message( Linux platform )
