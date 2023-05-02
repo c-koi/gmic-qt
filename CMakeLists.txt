@@ -299,14 +299,12 @@ add_definitions(-Dcimg_use_abort)
 add_definitions(-Dcimg_appname=\"gmic\")
 
 if (UNIX)
+    add_definitions(-D_IS_UNIX_)
     if(ANDROID)
         add_definitions(-Dcimg_display=0)
-        add_definitions(-D_IS_UNIX_)
     elseif(NOT APPLE)
         add_definitions(-Dcimg_display=1)
-        add_definitions(-D_IS_LINUX_)
         add_definitions(-Dcimg_use_vt100)
-        add_definitions(-D_IS_UNIX_)
         find_package(X11)
         set(gmic_qt_LIBRARIES
             ${gmic_qt_LIBRARIES}

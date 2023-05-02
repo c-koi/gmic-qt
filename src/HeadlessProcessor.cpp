@@ -197,7 +197,7 @@ void HeadlessProcessor::sendProgressInformation()
   float progress = _filterThread->progress();
   int ms = _filterThread->duration();
   unsigned long memory = 0;
-#if defined(_IS_LINUX_)
+#if defined(_IS_UNIX_)
   QFile status("/proc/self/status");
   if (status.open(QFile::ReadOnly)) {
     QByteArray text = status.readAll();

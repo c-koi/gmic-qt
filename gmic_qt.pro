@@ -181,10 +181,12 @@ win32 {
 }
 
 unix:!macx {
-  DEFINES += _IS_LINUX_
+  DEFINES += _IS_UNIX_
   PKGCONFIG += x11
-  message( Linux platform )
+  message( Unix platform )
 }
+
+macx {  DEFINES += _IS_MACOS_ }
 
 equals( HOST, "gimp")|equals( HOST, "gimp3") {
  TARGET = gmic_gimp_qt
@@ -507,6 +509,3 @@ UI_DIR = .ui
 MOC_DIR = .moc
 RCC_DIR = .qrc
 OBJECTS_DIR = .obj
-
-unix:!macx { DEFINES += _IS_UNIX_ }
-macx {  DEFINES += _IS_MACOS_ }

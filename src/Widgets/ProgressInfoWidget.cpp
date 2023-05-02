@@ -122,7 +122,7 @@ void ProgressInfoWidget::startFilterThreadAnimationAndShow()
 
   ui->label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
   ui->label->setAlignment(Qt::AlignRight);
-#if defined(_IS_LINUX_) || defined(_IS_WINDOWS_)
+#if defined(_IS_UNIX_) || defined(_IS_WINDOWS_)
   QString largestText(tr("[Processing 88:00:00.888 | 888.9 GiB]"));
 #else
   QString largestText(tr("[Processing 88:00:00.888]"));
@@ -198,7 +198,7 @@ void ProgressInfoWidget::updateThreadInformation()
     }
   }
   QString durationStr = readableDuration(ms);
-#ifdef _IS_LINUX_
+#ifdef _IS_UNIX_
   // Get memory usage
   QString memoryStr("? KiB");
   QFile status("/proc/self/status");

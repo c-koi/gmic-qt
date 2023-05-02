@@ -41,7 +41,7 @@
 #include <windows.h>
 #include <tlhelp32.h>
 #endif
-#ifdef _IS_LINUX_
+#ifdef _IS_UNIX_
 #include <unistd.h>
 #endif
 
@@ -70,7 +70,7 @@ const QString & gmicConfigPath(bool create)
 
 unsigned int host_app_pid()
 {
-#if defined(_IS_LINUX_)
+#if defined(_IS_UNIX_)
   return static_cast<int>(getppid());
 #elif defined(_IS_WINDOWS_)
   HANDLE h = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
