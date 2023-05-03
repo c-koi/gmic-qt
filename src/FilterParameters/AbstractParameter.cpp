@@ -154,6 +154,20 @@ AbstractParameter::VisibilityState AbstractParameter::defaultVisibilityState() c
   return _defaultVisibilityState;
 }
 
+void AbstractParameter::hideWidgets()
+{
+  if (!_grid || (_row == -1)) {
+    return;
+  }
+  for (int col = 0; col < 5; ++col) {
+    QLayoutItem * item = _grid->itemAtPosition(_row, col);
+    if (item) {
+      auto widget = item->widget();
+      widget->hide();
+    }
+  }
+}
+
 void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState state)
 {
   if (state == VisibilityState::Unspecified) {
@@ -161,7 +175,7 @@ void AbstractParameter::setVisibilityState(AbstractParameter::VisibilityState st
     return;
   }
   _visibilityState = state;
-  if (!_grid || _row == -1) {
+  if (!_grid || (_row == -1)) {
     return;
   }
   for (int col = 0; col < 5; ++col) {

@@ -189,6 +189,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
   while (it != _parameters.end()) {
     AbstractParameter * parameter = *it;
     if (parameter->addTo(this, row)) {
+      parameter->hideWidgets();
       grid->setRowStretch(row, 0);
       ++row;
     }

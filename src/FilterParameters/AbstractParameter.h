@@ -73,6 +73,7 @@ public:
 
   static const QStringList NoValueParameters;
 
+  void hideWidgets();
   virtual VisibilityState defaultVisibilityState() const;
   virtual void setVisibilityState(VisibilityState state);
   VisibilityState visibilityState() const;
