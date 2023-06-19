@@ -157,7 +157,10 @@ void FilterSyncRunner::run()
     _gmicProgress = -1;
     Logger::log(fullCommandLine, _logSuffix, true);
     gmic gmicInstance(_environment.isEmpty() ? nullptr : QString("%1").arg(_environment).toLocal8Bit().constData(), GmicStdLib::Array.constData(), true, &_gmicProgress, &_gmicAbort, 0.0f);
-    gmicInstance.set_variable("_persistent", PersistentMemory::image());
+    if (PersistentMemory::image()) {
+      if (*PersistentMemory::image()==gmic_store) gmicInstance.set_variable("_persistent", PersistentMemory::image());
+      else gmicInstance.set_variable("_persistent", '=', PersistentMemory::image());
+    }
     gmicInstance.set_variable("_host", '=', GmicQtHost::ApplicationShortname);
     gmicInstance.set_variable("_tk", '=', "qt");
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames);
