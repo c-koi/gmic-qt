@@ -1172,7 +1172,6 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
   saveCurrentParameters();
   const FiltersPresenter::Filter & filter = _filtersPresenter->currentFilter();
   _processor.resetLastPreviewFilterExecutionDurations();
-
   if (filter.hash.isEmpty()) {
     setNoFilter();
     return;

@@ -243,6 +243,7 @@ void ParametersCache::remove(const QString & hash)
 {
   _parametersCache.remove(hash);
   _inOutPanelStates.remove(hash);
+  _visibilityStates.remove(hash);
 }
 
 InputOutputState ParametersCache::getInputOutputState(const QString & hash)
