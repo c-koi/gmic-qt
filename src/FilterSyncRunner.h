@@ -72,7 +72,7 @@ private:
   QString _environment;
   gmic_library::gmic_list<float> * _images;
   gmic_library::gmic_list<char> * _imageNames;
-  gmic_library::gmic_image<char> * _persistentMemoryOuptut;
+  gmic_library::gmic_image<char> * _persistentMemoryOutput;
   bool _gmicAbort;
   bool _failed;
   QString _gmicStatus;
