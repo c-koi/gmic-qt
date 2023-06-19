@@ -201,6 +201,9 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
     Logger::warning(QString("Parameters/SetVisibilities: Wrong number of values %1 (expecting %2)").arg(visibilityStates.size()).arg(_actualParametersCount));
   }
 
+  SHOW(parameters);
+  SHOW(visibilityStates.size());
+  SHOW(_actualParametersCount);
   if (visibilityStates.isEmpty() || (_actualParametersCount != visibilityStates.size())) {
     applyDefaultVisibilityStates();
   } else {
@@ -310,9 +313,6 @@ void FilterParametersWidget::setValues(const QStringList & list, bool notify)
 
 void FilterParametersWidget::setVisibilityStates(const QList<int> & states)
 {
-  if (states.isEmpty()) {
-    return;
-  }
   if (_actualParametersCount != states.size()) {
     Logger::warning(QString("Parameters/SetVisibilities: Wrong number of values %1 (expecting %2)").arg(states.size()).arg(_actualParametersCount));
     return;
