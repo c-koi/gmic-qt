@@ -41,7 +41,7 @@ FilterSyncRunner::FilterSyncRunner(QObject * parent, const QString & command, co
     : QObject(parent), _command(command), _arguments(arguments), _environment(environment), //
       _images(new gmic_library::gmic_list<float>),                                          //
       _imageNames(new gmic_library::gmic_list<char>),                                       //
-      _persistentMemoryOuptut(new gmic_library::gmic_image<char>)
+      _persistentMemoryOutput(new gmic_library::gmic_image<char>)
 {
 #ifdef _IS_MACOS_
   static bool stackSize8MB = false;
@@ -59,7 +59,7 @@ FilterSyncRunner::~FilterSyncRunner()
 {
   delete _images;
   delete _imageNames;
-  delete _persistentMemoryOuptut;
+  delete _persistentMemoryOutput;
 }
 
 void FilterSyncRunner::setArguments(const QString & str)
@@ -94,7 +94,7 @@ const gmic_library::gmic_list<char> & FilterSyncRunner::imageNames() const
 
 gmic_library::gmic_image<char> & FilterSyncRunner::persistentMemoryOutput()
 {
-  return *_persistentMemoryOuptut;
+  return *_persistentMemoryOutput;
 }
 
 QStringList FilterSyncRunner::gmicStatus() const
@@ -162,7 +162,7 @@ void FilterSyncRunner::run()
     gmicInstance.set_variable("_tk", '=', "qt");
     gmicInstance.run(fullCommandLine.toLocal8Bit().constData(), *_images, *_imageNames);
     _gmicStatus = QString::fromLocal8Bit(gmicInstance.status);
-    gmicInstance.get_variable("_persistent").move_to(*_persistentMemoryOuptut);
+    gmicInstance.get_variable("_persistent").move_to(*_persistentMemoryOutput);
   } catch (gmic_exception & e) {
     _images->assign();
     _imageNames->assign();
