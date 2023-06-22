@@ -89,7 +89,9 @@ void BoolParameter::setValue(const QString & value)
 {
   _value = (value == "1");
   if (_checkBox) {
+    disconnectCheckBox();
     _checkBox->setChecked(_value);
+    connectCheckBox();
   }
 }
 
