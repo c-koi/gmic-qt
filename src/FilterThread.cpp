@@ -128,7 +128,7 @@ QList<int> FilterThread::status2Visibilities(const QString & status)
   QList<int> result;
   while (pc < limit) {
     if (*pc == gmic_rbrace) {
-      if ((pc < limit - 2) && pc[1] == '_' && pc[2] >= '0' && pc[2] <= '2' && (!pc[3] || pc[3] == gmic_lbrace)) {
+      if ((pc < limit - 2) && (pc[1] == '_') && (pc[2] >= '0') && (pc[2] <= '2') && (!pc[3] || (pc[3] == gmic_lbrace))) {
         result.push_back(pc[2] - '0'); // AbstractParameter::VisibilityState
         pc += 3;
       } else if (!pc[1] || (pc[1] == gmic_lbrace)) {
