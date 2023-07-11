@@ -482,7 +482,7 @@ RESOURCES += wip_translations.qrc
 # Prevent overwriting of these files by lupdate
 # TRANSLATIONS += translations/filters/fr.ts
 
-QMAKE_CXXFLAGS_RELEASE += -Ofast # -O3 -s
+QMAKE_CXXFLAGS_RELEASE += -O3
 QMAKE_LFLAGS_RELEASE += -s
 QMAKE_CXXFLAGS_DEBUG += -Dcimg_verbosity=3
 
