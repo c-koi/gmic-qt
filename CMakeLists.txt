@@ -9,7 +9,19 @@ include(FindPkgConfig)
 
 set(CMAKE_CXX_STANDARD 11)
 add_definitions(-Dcimg_use_cpp11=1)
-set(MIN_QT_VERSION 5.2.0)
+
+option(BUILD_WITH_QT6 "Build with Qt6, else Qt5" OFF)
+
+if(BUILD_WITH_QT6)
+
+    set(MIN_QT_VERSION 6.5.0)
+
+else()
+
+    set(MIN_QT_VERSION 5.2.0)
+
+endif()
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC OFF)
 set(CMAKE_AUTORCC ON)
@@ -150,21 +162,47 @@ endif (ENABLE_SYSTEM_GMIC)
 #
 find_package(Threads REQUIRED)
 
-#
-# Qt5
-#
-find_package(Qt5 ${MIN_QT_VERSION}
-        REQUIRED COMPONENTS
-        Core
-        Gui
-        Widgets
-        Network
-)
+if(BUILD_WITH_QT6)
 
-#
-# For the translations
-#
-find_package(Qt5LinguistTools REQUIRED)
+    #
+    # Qt6
+    #
+    find_package(Qt6 ${MIN_QT_VERSION}
+            REQUIRED COMPONENTS
+            Core
+            Gui
+            Widgets
+            Network
+    )
+
+    #
+    # For the translations
+    #
+    find_package(Qt6LinguistTools REQUIRED)
+
+    set(QT_VERSION_MAJOR 6)
+
+else()
+
+    #
+    # Qt5
+    #
+    find_package(Qt5 ${MIN_QT_VERSION}
+            REQUIRED COMPONENTS
+            Core
+            Gui
+            Widgets
+            Network
+    )
+
+    #
+    # For the translations
+    #
+    find_package(Qt5LinguistTools REQUIRED)
+
+    set(QT_VERSION_MAJOR 5)
+
+endif()
 
 #
 # PNG
@@ -271,10 +309,10 @@ endif()
 #
 
 set(gmic_qt_LIBRARIES
-        Qt5::Core
-        Qt5::Widgets
-        Qt5::Gui
-        Qt5::Network
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::Gui
+        Qt${QT_VERSION_MAJOR}::Network
         ${PNG_LIBRARIES}
         ${FFTW3_LIBRARIES}
         ${ZLIB_LIBRARIES}
@@ -645,7 +683,17 @@ if (${GMIC_QT_HOST} STREQUAL "gimp" OR ${GMIC_QT_HOST} STREQUAL "gimp3")
     execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} gimp-${TARGET_GIMP_VERSION}.0 --define-variable=prefix=${CMAKE_INSTALL_PREFIX} --variable gimplibdir OUTPUT_VARIABLE GIMP_PKGLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/Gimp/host_gimp.cpp)
-    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+    if(BUILD_WITH_QT6)
+
+        qt6_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+    else()
+
+        qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+    endif()
+
     add_definitions(-DGMIC_HOST=gimp -DGIMP_DISABLE_DEPRECATED)
     add_executable(gmic_gimp_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
     target_link_libraries(
@@ -668,7 +716,17 @@ elseif (${GMIC_QT_HOST} STREQUAL "none")
   set(gmic_qt_FORMS ${gmic_qt_FORMS}
     src/Host/None/jpegqualitydialog.ui
     )
-  qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  if(BUILD_WITH_QT6)
+
+    qt6_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  else()
+
+    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  endif()
+
   add_definitions(-DGMIC_HOST=standalone)
   add_executable(gmic_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
   target_link_libraries(gmic_qt PRIVATE ${gmic_qt_LIBRARIES})
@@ -677,7 +735,17 @@ elseif (${GMIC_QT_HOST} STREQUAL "none")
 elseif (${GMIC_QT_HOST} STREQUAL "paintdotnet")
 
   set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/PaintDotNet/host_paintdotnet.cpp)
-  qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  if(BUILD_WITH_QT6)
+
+    qt6_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  else()
+
+    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  endif()
+
   add_definitions(-DGMIC_HOST=paintdotnet)
   add_executable(gmic_paintdotnet_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
   target_link_libraries(
@@ -697,7 +765,16 @@ elseif (${GMIC_QT_HOST} STREQUAL "8bf")
   endif()
 
   set (gmic_qt_SRCS ${gmic_qt_SRCS} src/Host/8bf/host_8bf.cpp)
-  qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  if(BUILD_WITH_QT6)
+
+    qt6_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  else()
+
+    qt5_wrap_ui(gmic_qt_SRCS ${gmic_qt_FORMS})
+
+  endif()
   add_definitions(-DGMIC_HOST=plugin8bf)
   add_executable(gmic_8bf_qt ${gmic_qt_SRCS} ${gmic_qt_QRC})
   target_link_libraries(
