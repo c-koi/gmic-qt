@@ -484,7 +484,15 @@ bool PreviewWidget::eventFilter(QObject *, QEvent * event)
 
 void PreviewWidget::leaveEvent(QEvent *) {}
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+
+void PreviewWidget::enterEvent(QEnterEvent *) {}
+
+#else
+
 void PreviewWidget::enterEvent(QEvent *) {}
+
+#endif
 
 void PreviewWidget::wheelEvent(QWheelEvent * event)
 {
