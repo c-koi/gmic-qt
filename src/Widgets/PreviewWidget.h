@@ -97,14 +97,10 @@ protected:
   bool eventFilter(QObject *, QEvent * event) override;
   void leaveEvent(QEvent *) override;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-
-  void enterEvent(QEnterEvent* event) override;
-
+#if QT_VERSION_GTE(6, 0, 0)
+  void enterEvent(QEnterEvent *) override;
 #else
-
-  void enterEvent(QEvent* event) override;
-
+  void enterEvent(QEvent *) override;
 #endif
 
 signals:
