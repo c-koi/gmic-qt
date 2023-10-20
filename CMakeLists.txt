@@ -13,13 +13,9 @@ add_definitions(-Dcimg_use_cpp11=1)
 option(BUILD_WITH_QT6 "Build with Qt6, else Qt5" OFF)
 
 if(BUILD_WITH_QT6)
-
     set(MIN_QT_VERSION 6.5.0)
-
 else()
-
     set(MIN_QT_VERSION 5.2.0)
-
 endif()
 
 set(CMAKE_AUTOMOC ON)
