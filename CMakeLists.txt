@@ -80,7 +80,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(ENABLE_LTO OFF FORCE)
 endif()
 
-
 if (NOT ENABLE_SYSTEM_GMIC)
   #
   # Look for G'MIC repository
