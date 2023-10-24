@@ -344,6 +344,8 @@ void MainWindow::onUpdateDownloadsFinished(int status)
 {
   ui->progressInfoWidget->stopAnimationAndHide();
 
+  buildFiltersTree();
+
   if (status == (int)Updater::UpdateStatus::SomeFailed) {
     if (!ui->progressInfoWidget->hasBeenCanceled()) {
       showUpdateErrors();
@@ -358,7 +360,6 @@ void MainWindow::onUpdateDownloadsFinished(int status)
     showMessage(tr("No download was needed."), 3000);
   }
 
-  buildFiltersTree();
   ui->tbUpdateFilters->setEnabled(true);
   if (_filtersPresenter->currentFilter().hash.isEmpty()) {
     setNoFilter();
