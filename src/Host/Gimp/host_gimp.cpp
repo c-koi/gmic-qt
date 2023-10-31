@@ -480,7 +480,13 @@ void getLayersExtent(int * width, int * height, GmicQt::InputMode mode)
   // _GimpLayerPtr * begLayers = gimp_image_get_layers(gmic_qt_gimp_image_id, &layersCount);
   _GimpLayerPtr * begLayers = get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   _GimpLayerPtr * endLayers = begLayers + layersCount;
+#if GIMP_CHECK_VERSION(2, 99, 12)
+  GList * selected_layers = gimp_image_list_selected_layers(gmic_qt_gimp_image_id);
+  GList * first_layer = g_list_first(selected_layers);
+  _GimpLayerPtr activeLayerID = (_GimpLayerPtr)first_layer->data;
+#else
   _GimpLayerPtr activeLayerID = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
+#endif
 
   // Build list of input layers IDs
   std::vector<_GimpLayerPtr> layers;
@@ -548,7 +554,13 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
   int layersCount = 0;
   _GimpLayerPtr * layers = get_gimp_layers_flat_list(gmic_qt_gimp_image_id, &layersCount);
   _GimpLayerPtr * end_layers = layers + layersCount;
+#if GIMP_CHECK_VERSION(2, 99, 12)
+  GList * selected_layers = gimp_image_list_selected_layers(gmic_qt_gimp_image_id);
+  GList * first_layer = g_list_first(selected_layers);
+  _GimpLayerPtr active_layer_id = (_GimpLayerPtr)first_layer->data;
+#else
   _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
+#endif
 
   const bool entireImage = (x < 0 && y < 0 && width < 0 && height < 0) || (x == 0.0 && y == 0 && width == 1 && height == 0);
   if (entireImage) {
@@ -877,7 +889,13 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
     }
     gimp_image_undo_group_end(gmic_qt_gimp_image_id);
   } else if (outputMode == GmicQt::OutputMode::NewActiveLayers || outputMode == GmicQt::OutputMode::NewLayers) {
+#if GIMP_CHECK_VERSION(2, 99, 12)
+    GList * selected_layers = gimp_image_list_selected_layers(gmic_qt_gimp_image_id);
+    GList * first_layer = g_list_first(selected_layers);
+    _GimpLayerPtr active_layer_id = (_GimpLayerPtr)first_layer->data;
+#else
     _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
+#endif
     if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id)) {
       gimp_image_undo_group_start(gmic_qt_gimp_image_id);
       _GimpLayerPtr top_layer_id = _gimp_top_layer;
@@ -947,16 +965,32 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
         if (Mw && Mh) {
           gimp_image_resize(gmic_qt_gimp_image_id, Mw, Mh, -top_left.x, -top_left.y);
         }
+#if GIMP_CHECK_VERSION(2, 99, 12)
+        GimpLayer * selected_layer;
+        if (outputMode == GmicQt::OutputMode::NewLayers) {
+          selected_layer = active_layer_id;
+        } else {
+          selected_layer = top_layer_id;
+        }
+        gimp_image_set_selected_layers(gmic_qt_gimp_image_id, 1, (const GimpLayer **)&selected_layer);
+#else
         if (outputMode == GmicQt::OutputMode::NewLayers) {
           gimp_image_set_active_layer(gmic_qt_gimp_image_id, active_layer_id);
         } else {
           gimp_image_set_active_layer(gmic_qt_gimp_image_id, top_layer_id);
         }
+#endif
       }
       gimp_image_undo_group_end(gmic_qt_gimp_image_id);
     }
   } else if (outputMode == GmicQt::OutputMode::NewImage && images.size()) {
+#if GIMP_CHECK_VERSION(2, 99, 12)
+    GList * selected_layers = gimp_image_list_selected_layers(gmic_qt_gimp_image_id);
+    GList * first = g_list_first(selected_layers);
+    _GimpLayerPtr active_layer_id = (_GimpLayerPtr)first->data;
+#else
     _GimpLayerPtr active_layer_id = gimp_image_get_active_layer(gmic_qt_gimp_image_id);
+#endif
     const unsigned int max_width = (unsigned int)bottom_right.x;
     const unsigned int max_height = (unsigned int)bottom_right.y;
     if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id)) {
