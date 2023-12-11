@@ -55,7 +55,7 @@ By default, the gimp integration plugin is built.
 qmake is simple to use but only really works in an environment where bash is available.
 
 ```sh
-git clone https://github.com/dtschump/gmic.git
+git clone https://github.com/GreycLab/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib_community.h
 cd gmic-qt
@@ -68,7 +68,7 @@ make
 cmake works on all platforms. The first part is the same and requires make and wget to be available. If you don't have all dependencies, cmake will warn you which ones are missing. Note that the minimum cmake version is 3.1.
 
 ```sh
-git clone https://github.com/dtschump/gmic.git
+git clone https://github.com/GreycLab/gmic.git
 git clone https://github.com/c-koi/gmic-qt.git
 make -C gmic/src CImg.h gmic_stdlib_community.h
 cd gmic-qt
