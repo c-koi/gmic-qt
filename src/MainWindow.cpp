@@ -45,6 +45,7 @@
 #include "CroppedActiveLayerProxy.h"
 #include "CroppedImageListProxy.h"
 #include "DialogSettings.h"
+#include "FilterGuiDynamismCache.h"
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FiltersPresenter.h"
 #include "FilterTextTranslator.h"
@@ -213,6 +214,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   loadSettings();
   ParametersCache::load(!_newSession);
+  FilterGuiDynamismCache::load();
   setIcons();
   QAction * escAction = new QAction(this);
   escAction->setShortcut(QKeySequence(Qt::Key_Escape));
@@ -245,6 +247,7 @@ MainWindow::~MainWindow()
 {
   saveCurrentParameters();
   ParametersCache::save();
+  FilterGuiDynamismCache::save();
   saveSettings();
   Logger::setMode(Logger::Mode::StandardOutput); // Close log file, if necessary
   delete ui;
@@ -705,10 +708,11 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   context.previewWindowHeight = ui->previewWidget->height();
   context.previewTimeout = Settings::previewTimeout();
   // context.filterName = currentFilter.plainTextName; // Unused in this context
-  // context.filterHash = currentFilter.hash; // Unused in this context
+  context.filterHash = currentFilter.hash;
   context.filterCommand = currentFilter.previewCommand;
   context.filterArguments = ui->filterParams->valueString();
   context.previewFromFullImage = currentFilter.previewFromFullImage;
+  context.previewCheckBox = ui->cbPreview->isChecked();
   _processor.setContext(context);
   _processor.execute();
 
@@ -803,6 +807,7 @@ void MainWindow::processImage()
   context.filterFullPath = currentFilter.fullPath;
   context.filterHash = currentFilter.hash;
   context.filterCommand = currentFilter.command;
+  context.previewCheckBox = ui->cbPreview->isChecked();
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
   context.previewFromFullImage = false;

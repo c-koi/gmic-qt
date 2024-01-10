@@ -33,6 +33,7 @@
 #include <cstring>
 #include "CroppedActiveLayerProxy.h"
 #include "CroppedImageListProxy.h"
+#include "FilterGuiDynamismCache.h"
 #include "FilterSyncRunner.h"
 #include "FilterThread.h"
 #include "Globals.h"
@@ -111,6 +112,7 @@ void GmicProcessor::execute()
     env += QString(" _preview_area_width=%1").arg(_filterContext.previewWindowWidth);
     env += QString(" _preview_area_height=%1").arg(_filterContext.previewWindowHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
+    env += QString(" _preview=%1").arg(int(_filterContext.previewCheckBox));
   }
   int maxWidth;
   int maxHeight;
@@ -358,6 +360,7 @@ void GmicProcessor::onPreviewThreadFinished()
   _gmicStatus = _filterThread->gmicStatus();
   _parametersVisibilityStates = _filterThread->parametersVisibilityStates();
   _gmicImages->assign();
+  FilterGuiDynamismCache::setValue(_filterContext.filterHash, _gmicStatus.isEmpty() ? FilterGuiDynamism::Static : FilterGuiDynamism::Dynamic);
   _filterThread->swapImages(*_gmicImages);
   PersistentMemory::move_from(_filterThread->persistentMemoryOutput());
   unsigned int badSpectrumIndex = 0;

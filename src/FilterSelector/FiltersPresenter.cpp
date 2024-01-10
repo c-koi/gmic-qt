@@ -27,6 +27,7 @@
 #include <QSettings>
 #include <QString>
 #include "Common.h"
+#include "FilterGuiDynamismCache.h"
 #include "FilterSelector/FavesModelReader.h"
 #include "FilterSelector/FavesModelWriter.h"
 #include "FilterSelector/FiltersModelBinaryWriter.h"
@@ -119,12 +120,14 @@ void FiltersPresenter::readFilters()
   _filtersModel.clear();
 
   QString cacheFilename = QString("%1%2").arg(gmicConfigPath(true), FILTERS_CACHE_FILENAME);
-  bool readFromCache = false;
+  bool readFromCacheIsOK = false;
   if (GmicStdLib::hash() == FiltersModelBinaryReader::readHash(cacheFilename)) {
-    readFromCache = FiltersModelBinaryReader(_filtersModel).read(cacheFilename);
+    readFromCacheIsOK = FiltersModelBinaryReader(_filtersModel).read(cacheFilename);
+  } else {
+    FilterGuiDynamismCache::clear();
   }
 
-  if (!readFromCache) {
+  if (!readFromCacheIsOK) {
     FiltersModelReader filterModelReader(_filtersModel);
     filterModelReader.parseFiltersDefinitions(GmicStdLib::Array);
     // Write cache

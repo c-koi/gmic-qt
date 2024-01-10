@@ -311,6 +311,7 @@ HEADERS +=  \
   src/FilterSelector/FilterTagMap.h \
   src/CroppedImageListProxy.h \
   src/CroppedActiveLayerProxy.h \
+  src/FilterGuiDynamismCache.h \
   src/FilterSyncRunner.h \
   src/FilterThread.h \
   src/FilterTextTranslator.h \
@@ -391,6 +392,7 @@ SOURCES += \
   src/FilterSelector/FilterTagMap.cpp \
   src/CroppedImageListProxy.cpp \
   src/CroppedActiveLayerProxy.cpp \
+  src/FilterGuiDynamismCache.cpp \
   src/FilterSyncRunner.cpp \
   src/FilterThread.cpp \
   src/FilterTextTranslator.cpp \

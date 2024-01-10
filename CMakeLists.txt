@@ -455,6 +455,7 @@ set (gmic_qt_SRCS
   src/FilterSelector/FiltersView/TreeView.h
   src/FilterSelector/FiltersVisibilityMap.h
   src/FilterSelector/FilterTagMap.h
+  src/FilterGuiDynamismCache.h
   src/FilterSyncRunner.h
   src/FilterTextTranslator.h
   src/FilterThread.h
@@ -545,6 +546,7 @@ set(gmic_qt_SRCS
   src/FilterSelector/FiltersView/TreeView.cpp
   src/FilterSelector/FiltersVisibilityMap.cpp
   src/FilterSelector/FilterTagMap.cpp
+  src/FilterGuiDynamismCache.cpp
   src/FilterSyncRunner.cpp
   src/FilterTextTranslator.cpp
   src/FilterThread.cpp

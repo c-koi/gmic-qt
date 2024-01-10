@@ -39,6 +39,7 @@ const char WarningPrefix = '!';
 
 #define SLIDER_MIN_WIDTH 60
 #define PARAMETERS_CACHE_FILENAME "gmic_qt_params.dat"
+#define FILTER_GUI_DYNAMISM_CACHE_FILENAME "gmic_qt_dynamism.dat"
 #define FILTERS_VISIBILITY_FILENAME "gmic_qt_visibility.dat"
 #define FILTERS_TAGS_FILENAME "gmic_qt_tags.dat"
 #define FILTERS_CACHE_FILENAME "gmic_qt_filters.dat"
