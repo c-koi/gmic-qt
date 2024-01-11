@@ -668,6 +668,7 @@ void MainWindow::makeConnections()
   connect(ui->progressInfoWidget, &ProgressInfoWidget::canceled, this, &MainWindow::onProgressionWidgetCancelClicked);
   connect(ui->tbSelectionMode, &QToolButton::toggled, this, &MainWindow::onFiltersSelectionModeToggled);
   connect(&_processor, &GmicProcessor::previewImageAvailable, this, &MainWindow::onPreviewImageAvailable);
+  connect(&_processor, &GmicProcessor::guiDynamismRunDone, this, &MainWindow::onGUIDynamismRunDone);
   connect(&_processor, &GmicProcessor::previewCommandFailed, this, &MainWindow::onPreviewError);
   connect(&_processor, &GmicProcessor::fullImageProcessingFailed, this, &MainWindow::onFullImageProcessingError);
   connect(&_processor, &GmicProcessor::fullImageProcessingDone, this, &MainWindow::onFullImageProcessingDone);
@@ -684,20 +685,24 @@ void MainWindow::onPreviewUpdateRequested()
 
 void MainWindow::onPreviewUpdateRequested(bool synchronous)
 {
-  if (!ui->cbPreview->isChecked()) {
-    ui->previewWidget->invalidateSavedPreview();
-    return;
-  }
-  _processor.init();
-  if (_filtersPresenter->currentFilter().isNoPreviewFilter()) {
+  const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
+  if (currentFilter.isNoPreviewFilter()) {
     ui->previewWidget->displayOriginalImage();
     return;
   }
+  FilterGuiDynamism dynamism = FilterGuiDynamismCache::getValue(currentFilter.hash);
+  if (!ui->cbPreview->isChecked() && (dynamism == FilterGuiDynamism::Static)) {
+    ui->previewWidget->invalidateSavedPreview();
+    return;
+  }
   ui->tbUpdateFilters->setEnabled(false);
-
-  const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
+  _processor.init();
   GmicProcessor::FilterContext context;
-  context.requestType = synchronous ? GmicProcessor::FilterContext::RequestType::SynchronousPreview : GmicProcessor::FilterContext::RequestType::Preview;
+  if (!ui->cbPreview->isChecked()) {
+    context.requestType = GmicProcessor::FilterContext::RequestType::GUIDynamismRun;
+  } else {
+    context.requestType = synchronous ? GmicProcessor::FilterContext::RequestType::SynchronousPreview : GmicProcessor::FilterContext::RequestType::Preview;
+  }
   GmicProcessor::FilterContext::VisibleRect & rect = context.visibleRect;
   ui->previewWidget->normalizedVisibleRect(rect.x, rect.y, rect.w, rect.h);
 
@@ -757,6 +762,16 @@ void MainWindow::onPreviewImageAvailable()
   }
   ui->previewWidget->setPreviewImage(_processor.previewImage());
   ui->previewWidget->enableRightClick();
+  ui->tbUpdateFilters->setEnabled(true);
+}
+
+void MainWindow::onGUIDynamismRunDone()
+{
+  ui->filterParams->setValues(_processor.gmicStatus(), false);
+  ui->filterParams->setVisibilityStates(_processor.parametersVisibilityStates());
+  if (ui->filterParams->hasKeypoints()) {
+    ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
+  }
   ui->tbUpdateFilters->setEnabled(true);
 }
 

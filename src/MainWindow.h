@@ -104,6 +104,7 @@ public slots:
   void onFilterSelectionChanged();
   void onEscapeKeyPressed();
   void onPreviewImageAvailable();
+  void onGUIDynamismRunDone();
   void onPreviewError(const QString & message);
   void onParametersChanged();
   static bool isAccepted();
