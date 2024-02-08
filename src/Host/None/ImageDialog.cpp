@@ -146,13 +146,13 @@ void ImageDialog::onSaveAs()
   }
   const QFileDialog::Options options = GmicQt::Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
   QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters.join(";;"), &selectedFilter, options);
-  settings.setValue("Standalone/SaveAsSelectedFilter", selectedFilter);
-  QString extension = selectedFilter.split("*").back();
-  extension.chop(1);
-  if (!extensions.contains(QFileInfo(filename).suffix())) {
-    filename += extension;
-  }
   if (!filename.isEmpty()) {
+    settings.setValue("Standalone/SaveAsSelectedFilter", selectedFilter);
+    QString extension = selectedFilter.split("*").back();
+    extension.chop(1);
+    if (!extensions.contains(QFileInfo(filename).suffix())) {
+      filename += extension;
+    }
     auto view = dynamic_cast<ImageView *>(_tabWidget->currentWidget());
     int index = _tabWidget->currentIndex();
     if (view) {
