@@ -68,7 +68,7 @@ public:
   void addImage(const gmic_library::gmic_image<gmic_pixel_type> & image, const QString & name);
   const QImage & currentImage() const;
   int currentImageIndex() const;
-  static void supportedImageFormats(QStringList & extensions, QString & filters);
+  static void supportedImageFormats(QStringList & extensions, QStringList &filters);
   void setJPEGQuality(int);
   static const int UNSPECIFIED_JPEG_QUALITY = -1;
 

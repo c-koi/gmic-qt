@@ -111,22 +111,21 @@ int ImageDialog::currentImageIndex() const
   return _tabWidget->currentIndex();
 }
 
-void ImageDialog::supportedImageFormats(QStringList & extensions, QString & filters)
+void ImageDialog::supportedImageFormats(QStringList & extensions, QStringList & filters)
 {
   extensions.clear();
   for (const auto & ext : QImageWriter::supportedImageFormats()) {
     extensions.push_back(QString::fromLatin1(ext).toLower());
   }
-  QStringList filterList;
+  filters.clear();
   for (const auto & extension : extensions) {
     QString filter = QString(tr("%1 file (*.%2 *.%3)")).arg(extension.toUpper()).arg(extension.toUpper()).arg(extension);
     if (extension == "png" || extension == "jpg" || extension == "jpeg") {
-      filterList.push_front(filter);
+      filters.push_front(filter);
     } else {
-      filterList.push_back(filter);
+      filters.push_back(filter);
     }
   }
-  filters = filterList.join(";;");
 }
 
 void ImageDialog::setJPEGQuality(int q)
@@ -136,12 +135,18 @@ void ImageDialog::setJPEGQuality(int q)
 
 void ImageDialog::onSaveAs()
 {
+  QSettings settings;
   QString selectedFilter;
+  selectedFilter = settings.value("Standalone/SaveAsSelectedFilter", QString()).toString();
   QStringList extensions;
-  QString filters;
+  QStringList filters;
   supportedImageFormats(extensions, filters);
+  if (!filters.contains(selectedFilter)) {
+    selectedFilter.clear();
+  }
   const QFileDialog::Options options = GmicQt::Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
-  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters, &selectedFilter, options);
+  QString filename = QFileDialog::getSaveFileName(this, tr("Save image as..."), QString(), filters.join(";;"), &selectedFilter, options);
+  settings.setValue("Standalone/SaveAsSelectedFilter", selectedFilter);
   QString extension = selectedFilter.split("*").back();
   extension.chop(1);
   if (!extensions.contains(QFileInfo(filename).suffix())) {

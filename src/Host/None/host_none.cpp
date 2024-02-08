@@ -70,10 +70,10 @@ void askForInputImageFilename()
   QWidget * mainWidget = visibleMainWindow();
   Q_ASSERT_X(mainWidget, __PRETTY_FUNCTION__, "No top level window yet");
   QStringList extensions;
-  QString filters;
+  QStringList filters;
   gmic_qt_standalone::ImageDialog::supportedImageFormats(extensions, filters);
   const QFileDialog::Options options = GmicQt::Settings::nativeFileDialogs() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
-  QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", filters, nullptr, options);
+  QString filename = QFileDialog::getOpenFileName(mainWidget, QObject::tr("Select an image to open..."), ".", filters.join(";;"), nullptr, options);
   input_images.resize(1);
   current_image_filenames.resize(1);
   if (!filename.isEmpty() && QFileInfo(filename).isReadable() && input_images.first().load(filename)) {
