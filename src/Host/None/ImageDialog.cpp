@@ -119,7 +119,7 @@ void ImageDialog::supportedImageFormats(QStringList & extensions, QString & filt
   }
   QStringList filterList;
   for (const auto & extension : extensions) {
-    QString filter = QString(tr("%1 file (*.%2)")).arg(extension.toUpper()).arg(extension);
+    QString filter = QString(tr("%1 file (*.%2 *.%3)")).arg(extension.toUpper()).arg(extension.toUpper()).arg(extension);
     if (extension == "png" || extension == "jpg" || extension == "jpeg") {
       filterList.push_front(filter);
     } else {
