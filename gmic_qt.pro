@@ -170,7 +170,7 @@ equals( COMPILER, "clang" ) {
 
 LIBS += -lfftw3_threads
 
-!win32 {
+!win32:!macx {
  DEFINES += cimg_display=1
 }
 
@@ -186,7 +186,7 @@ unix:!macx {
   message( Unix platform )
 }
 
-macx {  DEFINES += _IS_MACOS_ }
+macx {  DEFINES += _IS_MACOS_ cimg_display=0 }
 
 equals( HOST, "gimp")|equals( HOST, "gimp3") {
  TARGET = gmic_gimp_qt
