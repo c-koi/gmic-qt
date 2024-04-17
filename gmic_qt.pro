@@ -170,26 +170,30 @@ equals( COMPILER, "clang" ) {
 
 LIBS += -lfftw3_threads
 
-!win32:!macx {
- DEFINES += cimg_display=1
-}
-
 win32 {
- DEFINES += _IS_WINDOWS_
- LIBS += -mwindows -lpthread -DPSAPI_VERSION=1 -lpsapi -lgdi32
- DEFINES += cimg_display=2
+  DEFINES += _IS_WINDOWS_
+  DEFINES += cimg_display=2
+  LIBS += -mwindows -lpthread -DPSAPI_VERSION=1 -lpsapi -lgdi32
+  message( Windows/GDI32 platform )
 }
 
 unix:!macx {
   DEFINES += _IS_UNIX_
+  DEFINES += cimg_display=1
   PKGCONFIG += x11
-  message( Unix platform )
+  message( Unix/X11 platform )
 }
 
 macx {
   DEFINES += _IS_MACOS_
   DEFINES += cimg_display=0
   ICON = icons/application/gmic_qt.icns
+  message( macOS platform )
+}
+
+!win32:!unix:!macx {
+  DEFINES += cimg_display=0
+  message( Unknown platform )
 }
 
 equals( HOST, "gimp")|equals( HOST, "gimp3") {
