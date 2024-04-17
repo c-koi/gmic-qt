@@ -186,7 +186,11 @@ unix:!macx {
   message( Unix platform )
 }
 
-macx {  DEFINES += _IS_MACOS_ cimg_display=0 }
+macx {
+  DEFINES += _IS_MACOS_
+  DEFINES += cimg_display=0
+  ICON = icons/application/gmic_qt.icns
+}
 
 equals( HOST, "gimp")|equals( HOST, "gimp3") {
  TARGET = gmic_gimp_qt
