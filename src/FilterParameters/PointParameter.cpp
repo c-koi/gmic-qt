@@ -33,6 +33,7 @@
 #include <QLabel>
 #include <QPainter>
 #include <QPushButton>
+#include <QRandomGenerator>
 #include <QSpacerItem>
 #include <QWidget>
 #include <cmath>
@@ -232,6 +233,21 @@ void PointParameter::reset()
   enableNotifications(true);
 }
 
+void PointParameter::randomize()
+{
+  if (acceptRandom()) {
+    auto generator = QRandomGenerator::global();
+    _position = QPointF(generator->bounded(100.0), // FIXME : 100.0 is excluded
+                        generator->bounded(100.0));
+    if (_spinBoxX) {
+      disconnectSpinboxes();
+      _spinBoxX->setValue(_position.rx());
+      _spinBoxY->setValue(_position.ry());
+      connectSpinboxes();
+    }
+  }
+}
+
 // P = point(x,y,removable{(0),1},burst{(0),1},r,g,b,a{negative->keepOpacityWhenSelected},radius,widget_visible{0|(1)})
 bool PointParameter::initFromText(const QString & filterName, const char * text, int & textLength)
 {
@@ -240,13 +256,9 @@ bool PointParameter::initFromText(const QString & filterName, const char * text,
     return false;
   }
   _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
-  QList<QString> params = list[1].split(",");
+  QList<QString> params = list[1].split(",", Qt::SkipEmptyParts);
 
   bool ok = true;
-
-  _defaultPosition.setX(50.0);
-  _defaultPosition.setY(50.0);
-  _defaultPosition = _position;
   _color.setRgb(255, 255, 255, 255);
   _burst = false;
   _removable = false;

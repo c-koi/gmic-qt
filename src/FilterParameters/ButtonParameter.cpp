@@ -27,6 +27,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QRandomGenerator>
 #include <QWidget>
 #include "Common.h"
 #include "FilterTextTranslator.h"
@@ -81,6 +82,18 @@ void ButtonParameter::clear()
 }
 
 void ButtonParameter::reset() {}
+
+void ButtonParameter::randomize()
+{
+  if (acceptRandom()) {
+    _value = QRandomGenerator::global()->bounded(0, 2);
+    if (_value) {
+      _pushButton->disconnect(this);
+      _pushButton->animateClick();
+      connect(_pushButton, &QPushButton::clicked, this, &ButtonParameter::onPushButtonClicked);
+    }
+  }
+}
 
 void ButtonParameter::onPushButtonClicked(bool)
 {

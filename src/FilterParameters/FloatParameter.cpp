@@ -28,6 +28,7 @@
 #include <QLabel>
 #include <QLocale>
 #include <QPalette>
+#include <QRandomGenerator>
 #include <QSlider>
 #include <QString>
 #include <QTimerEvent>
@@ -136,6 +137,18 @@ void FloatParameter::reset()
   _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
   _spinBox->setValue((double)_default);
   connectSliderSpinBox();
+}
+
+void FloatParameter::randomize()
+{
+  if (acceptRandom()) {
+    disconnectSliderSpinBox();
+    // FIXME : Upper bound is exluded!
+    _value = _min + QRandomGenerator::global()->bounded(_max - _min);
+    _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
+    _spinBox->setValue(_value);
+    connectSliderSpinBox();
+  }
 }
 
 bool FloatParameter::initFromText(const QString & filterName, const char * text, int & textLength)

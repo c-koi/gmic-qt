@@ -26,6 +26,7 @@
 #include <QComboBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QStringList>
 #include <QWidget>
@@ -102,6 +103,16 @@ void ChoiceParameter::reset()
   _comboBox->setCurrentIndex(_default);
   _value = _default;
   connectComboBox();
+}
+
+void ChoiceParameter::randomize()
+{
+  if (acceptRandom()) {
+    disconnectComboBox();
+    _value = QRandomGenerator::global()->bounded(0, _comboBox->count());
+    _comboBox->setCurrentIndex(_value);
+    connectComboBox();
+  }
 }
 
 bool ChoiceParameter::initFromText(const QString & filterName, const char * text, int & textLength)
