@@ -44,6 +44,7 @@ public:
   QString defaultValue() const override;
   void setValue(const QString & value) override;
   void reset() override;
+  void randomize() override;
   bool initFromText(const QString & filterName, const char * text, int & textLength) override;
 public slots:
   void onCheckBoxChanged(bool);

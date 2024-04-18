@@ -28,6 +28,7 @@
 #include <QLabel>
 #include <QRegularExpression>
 #include <cstring>
+#include "Common.h"
 #include "FilterParameters/BoolParameter.h"
 #include "FilterParameters/ButtonParameter.h"
 #include "FilterParameters/ChoiceParameter.h"
@@ -56,6 +57,7 @@ AbstractParameter::AbstractParameter(QObject * parent) : QObject(parent)
   _visibilityPropagation = VisibilityPropagation::NoPropagation;
   _row = -1;
   _grid = nullptr;
+  _acceptRandom = false;
 }
 
 AbstractParameter::~AbstractParameter() {}
@@ -75,6 +77,11 @@ void AbstractParameter::clear()
   // Used to clear the value of a ButtonParameter
 }
 
+void AbstractParameter::randomize()
+{
+  // By default, no effect
+}
+
 void AbstractParameter::addToKeypointList(KeypointList &) const {}
 
 void AbstractParameter::extractPositionFromKeypointList(KeypointList &) {}
@@ -85,9 +92,8 @@ AbstractParameter * AbstractParameter::createFromText(const QString & filterName
   QString line = text;
   error.clear();
 
-#define IS_OF_TYPE(ptype) QRegularExpression("^[^=]*\\s*=\\s*_?" ptype, QRegularExpression::CaseInsensitiveOption).match(line).hasMatch()
+#define IS_OF_TYPE(ptype) QRegularExpression("^[^=]*\\s*=\\s*[_~]{0,2}" ptype, QRegularExpression::CaseInsensitiveOption).match(line).hasMatch()
 
-#define PREFIX "^[^=]*\\s*=\\s*_?"
   if (IS_OF_TYPE("int")) {
     result = new IntParameter(parent);
   } else if (IS_OF_TYPE("float")) {
@@ -136,7 +142,7 @@ AbstractParameter * AbstractParameter::createFromText(const QString & filterName
       QRegularExpressionMatch match = nameRegExp.match(line);
       if (match.hasMatch()) {
         QString name = match.captured(1);
-        QRegularExpression typeRegExp(R"_(^[^=]*\s*=\s*_?([^\( ]*)\s*\()_");
+        QRegularExpression typeRegExp(R"_(^[^=]*\s*=\s*[_~]{0,2}([^\( ]*)\s*\()_");
         match = typeRegExp.match(line);
         if (match.hasMatch()) {
           error = "Parameter name: " + name + "\n" + "Type <" + match.captured(1) + "> is not recognized\n" + error;
@@ -212,6 +218,11 @@ AbstractParameter::VisibilityPropagation AbstractParameter::visibilityPropagatio
   return _visibilityPropagation;
 }
 
+bool AbstractParameter::acceptRandom() const
+{
+  return _acceptRandom;
+}
+
 void AbstractParameter::setTextSelectable(QLabel * label)
 {
   Qt::TextInteractionFlags flags = label->textInteractionFlags();
@@ -228,13 +239,12 @@ QStringList AbstractParameter::parseText(const QString & type, const char * text
   _debugName = result.back();
 #endif
 
-  QRegularExpression re(QString("^[^=]*\\s*=\\s*(_?)%1\\s*(.)").arg(type), QRegularExpression::CaseInsensitiveOption);
+  QRegularExpression re(QString("^[^=]*\\s*=\\s*([_~]{0,2})%1\\s*(.)").arg(type), QRegularExpression::CaseInsensitiveOption);
   QRegularExpressionMatch match = re.match(str);
   const int prefixLength = match.captured(0).toUtf8().size();
 
-  if (match.captured(1) == "_") {
-    _update = false;
-  }
+  _update = !match.captured(1).contains("_");
+  _acceptRandom = match.captured(1).contains("~");
 
   QString open = match.captured(2);
   const char * end = nullptr;

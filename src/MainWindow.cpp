@@ -105,17 +105,17 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   tsp.append(QString("/usr/share/icons/gnome"));
   QIcon::setThemeSearchPaths(tsp);
 
-  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,  ui->filterParams,      ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
-                          ui->pbOk,          ui->pbApply,           ui->pbClose,      ui->tbResetParameters, ui->tbCopyCommand,   ui->searchField,  ui->cbPreview,
-                          ui->tbAddFave,     ui->tbRemoveFave,      ui->tbRenameFave, ui->tbExpandCollapse,  ui->tbSelectionMode, ui->tbShuffle};
+  _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,  ui->filterParams,      ui->tbUpdateFilters, ui->pbFullscreen,       ui->pbSettings,
+                          ui->pbOk,          ui->pbApply,           ui->pbClose,      ui->tbResetParameters, ui->tbCopyCommand,   ui->searchField,        ui->cbPreview,
+                          ui->tbAddFave,     ui->tbRemoveFave,      ui->tbRenameFave, ui->tbExpandCollapse,  ui->tbSelectionMode, ui->tbShuffleParameters};
 
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
   ui->tbResetParameters->setVisible(false);
 
-  ui->tbShuffle->setToolTip(tr("Shuffle parameters"));
-  ui->tbShuffle->setVisible(true); // FIXME : Set to false
+  ui->tbShuffleParameters->setToolTip(tr("Shuffle parameters"));
+  ui->tbShuffleParameters->setVisible(false);
 
   QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
   copyShortcut->setContext(Qt::ApplicationShortcut);
@@ -266,7 +266,7 @@ void MainWindow::setIcons()
   ui->pbApply->setIcon(IconLoader::load("system-run"));
   ui->pbOk->setIcon(IconLoader::load("insert-image"));
   ui->tbResetParameters->setIcon(IconLoader::load("view-refresh"));
-  ui->tbShuffle->setIcon(IconLoader::load("question-mark"));
+  ui->tbShuffleParameters->setIcon(IconLoader::load("question-mark"));
   ui->tbCopyCommand->setIcon(IconLoader::load("edit-copy"));
   ui->pbClose->setIcon(IconLoader::load("close"));
   ui->pbCancel->setIcon(IconLoader::load("cancel"));
@@ -650,6 +650,7 @@ void MainWindow::makeConnections()
   connect(ui->pbClose, &QPushButton::clicked, this, &MainWindow::close);
   connect(ui->pbApply, &QPushButton::clicked, this, &MainWindow::onApplyClicked);
   connect(ui->tbResetParameters, &QToolButton::clicked, this, &MainWindow::onReset);
+  connect(ui->tbShuffleParameters, &QToolButton::clicked, this, &MainWindow::onShuffleParameters);
   connect(ui->tbCopyCommand, &QToolButton::clicked, this, &MainWindow::onCopyGMICCommand);
   connect(ui->tbUpdateFilters, &QToolButton::clicked, this, &MainWindow::onUpdateFiltersClicked);
   connect(ui->pbSettings, &QPushButton::clicked, this, &MainWindow::onSettingsClicked);
@@ -970,6 +971,13 @@ void MainWindow::onReset()
   }
 }
 
+void MainWindow::onShuffleParameters()
+{
+  if (!_filtersPresenter->currentFilter().isNoPreviewFilter()) {
+    ui->filterParams->randomize(true);
+  }
+}
+
 void MainWindow::onCopyGMICCommand()
 {
   QClipboard * clipboard = QGuiApplication::clipboard();
@@ -1215,6 +1223,7 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
     ui->previewWidget->setKeypoints(KeypointList());
   } else {
     ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
+    ui->tbShuffleParameters->setEnabled(ui->filterParams->acceptRandom());
   }
   setFilterName(FilterTextTranslator::translate(filter.name));
   ui->inOutSelector->enable();
@@ -1251,6 +1260,7 @@ void MainWindow::activateFilter(bool resetZoom, const QList<QString> & values)
   setZoomConstraint();
   _okButtonShouldApply = true;
   ui->tbResetParameters->setVisible(true);
+  ui->tbShuffleParameters->setVisible(true);
   ui->tbCopyCommand->setVisible(true);
   ui->tbRemoveFave->setEnabled(filter.isAFave);
   ui->tbRenameFave->setEnabled(filter.isAFave);
@@ -1268,6 +1278,7 @@ void MainWindow::setNoFilter()
   ui->tbAddFave->setEnabled(false);
   ui->tbCopyCommand->setVisible(false);
   ui->tbResetParameters->setVisible(false);
+  ui->tbShuffleParameters->setVisible(false);
   ui->zoomLevelSelector->showWarning(false);
   _okButtonShouldApply = false;
   ui->tbRemoveFave->setEnabled(_filtersPresenter->danglingFaveIsSelected());

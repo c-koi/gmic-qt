@@ -28,6 +28,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPalette>
+#include <QRandomGenerator>
 #include <QWidget>
 #include "Common.h"
 #include "FilterTextTranslator.h"
@@ -99,6 +100,14 @@ void BoolParameter::reset()
 {
   _checkBox->setChecked(_default);
   _value = _default;
+}
+
+void BoolParameter::randomize()
+{
+  if (acceptRandom()) {
+    _value = QRandomGenerator::global()->bounded(0, 2);
+    _checkBox->setChecked(_default);
+  }
 }
 
 void BoolParameter::onCheckBoxChanged(bool on)

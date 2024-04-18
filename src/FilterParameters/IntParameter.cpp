@@ -26,6 +26,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPalette>
+#include <QRandomGenerator>
 #include <QSlider>
 #include <QTimerEvent>
 #include <QWidget>
@@ -130,6 +131,17 @@ void IntParameter::reset()
   _spinBox->setValue(_default);
   _value = _default;
   connectSliderSpinBox();
+}
+
+void IntParameter::randomize()
+{
+  if (acceptRandom()) {
+    disconnectSliderSpinBox();
+    _value = QRandomGenerator::global()->bounded(_min, _max + 1);
+    _slider->setValue(_value);
+    _spinBox->setValue(_value);
+    connectSliderSpinBox();
+  }
 }
 
 bool IntParameter::initFromText(const QString & filterName, const char * text, int & textLength)

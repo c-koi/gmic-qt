@@ -45,6 +45,7 @@ FilterParametersWidget::FilterParametersWidget(QWidget * parent) : QWidget(paren
   _labelNoParams->setAlignment(Qt::AlignHCenter | Qt::AlignCenter);
   grid->addWidget(_labelNoParams, 0, 0, 4, 3);
   _actualParametersCount = 0;
+  _acceptRandom = false;
   _filterHash.clear();
   _hasKeypoints = false;
 }
@@ -53,6 +54,7 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
                                                                      const QString & parameters, //
                                                                      QObject * parent,           //
                                                                      int * actualParameterCount, //
+                                                                     bool * acceptRandom,        //
                                                                      QString * error)
 {
   QVector<AbstractParameter *> result;
@@ -60,7 +62,11 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
   const char * cstr = rawText.constData();
   int length = 0;
   int localActualParameterCount = 0;
+  bool localAcceptRandom = false;
   QString localError;
+  if (acceptRandom) {
+    *acceptRandom = false;
+  }
 
   AbstractParameter * parameter;
   do {
@@ -69,6 +75,9 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
       result.push_back(parameter);
       if (parameter->isActualParameter()) {
         localActualParameterCount += 1;
+      }
+      if (parameter->acceptRandom()) {
+        localAcceptRandom = true;
       }
     }
     cstr += length;
@@ -84,6 +93,9 @@ QVector<AbstractParameter *> FilterParametersWidget::buildParameters(const QStri
   }
   if (actualParameterCount) {
     *actualParameterCount = localActualParameterCount;
+  }
+  if (acceptRandom) {
+    *acceptRandom = localAcceptRandom;
   }
   if (error) {
     *error = localError;
@@ -119,7 +131,7 @@ QStringList FilterParametersWidget::defaultParameterList(const QString & paramet
   }
   QObject parent;
   QString localError;
-  QVector<AbstractParameter *> v = FilterParametersWidget::buildParameters("Dummy filter", parametersDefinition, &parent, nullptr, &localError);
+  QVector<AbstractParameter *> v = FilterParametersWidget::buildParameters("Dummy filter", parametersDefinition, &parent, nullptr, nullptr, &localError);
   if (!localError.isEmpty()) {
     if (error) {
       *error = localError;
@@ -167,7 +179,7 @@ bool FilterParametersWidget::build(const QString & name, const QString & hash, c
 
   // Build parameters and count actual ones
   QString error;
-  _parameters = buildParameters(_filterName, parameters, this, &_actualParametersCount, &error);
+  _parameters = buildParameters(_filterName, parameters, this, &_actualParametersCount, &_acceptRandom, &error);
   _quotedParameters = quotedParameters(_parameters);
 
   // Restore saved values
@@ -395,6 +407,16 @@ void FilterParametersWidget::reset(bool notify)
   updateValueString(notify);
 }
 
+void FilterParametersWidget::randomize(bool notify)
+{
+  for (AbstractParameter * param : _parameters) {
+    if (param->isActualParameter()) {
+      param->randomize();
+    }
+  }
+  updateValueString(notify);
+}
+
 QString FilterParametersWidget::filterName() const
 {
   return _filterName;
@@ -403,6 +425,11 @@ QString FilterParametersWidget::filterName() const
 int FilterParametersWidget::actualParametersCount() const
 {
   return _actualParametersCount;
+}
+
+int FilterParametersWidget::acceptRandom() const
+{
+  return _acceptRandom;
 }
 
 QString FilterParametersWidget::filterHash() const

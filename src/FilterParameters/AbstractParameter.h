@@ -49,6 +49,7 @@ public:
   virtual void setValue(const QString & value) = 0;
   virtual void clear();
   virtual void reset() = 0;
+  virtual void randomize();
 
   virtual void addToKeypointList(KeypointList &) const;
   virtual void extractPositionFromKeypointList(KeypointList &);
@@ -78,6 +79,7 @@ public:
   virtual void setVisibilityState(VisibilityState state);
   VisibilityState visibilityState() const;
   VisibilityPropagation visibilityPropagation() const;
+  bool acceptRandom() const;
 
 signals:
   void valueChanged();
@@ -96,6 +98,7 @@ protected:
 
 private:
   bool _update;
+  bool _acceptRandom;
   VisibilityState _visibilityState;
   VisibilityPropagation _visibilityPropagation;
 };
