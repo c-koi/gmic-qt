@@ -8,7 +8,7 @@
         <file>icons/dark/bookmark-remove.png</file>
         <file>icons/dark/cancel.png</file>
         <file>icons/dark/close.png</file>
-	<file>icons/dark/document-open.png</file>
+        <file>icons/dark/document-open.png</file>
         <file>icons/dark/draw-arrow-down.png</file>
         <file>icons/dark/draw-arrow-up.png</file>
         <file>icons/dark/edit-clear.png</file>
@@ -57,5 +57,7 @@
         <file>resources/transparency.png</file>
         <file>icons/color-wheel.png</file>
         <file>icons/dark/color-wheel.png</file>
+        <file>icons/dark/question-mark.png</file>
+        <file>icons/question-mark.png</file>
     </qresource>
 </RCC>

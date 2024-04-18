@@ -107,12 +107,15 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   _filterUpdateWidgets = {ui->previewWidget, ui->zoomLevelSelector, ui->filtersView,  ui->filterParams,      ui->tbUpdateFilters, ui->pbFullscreen, ui->pbSettings,
                           ui->pbOk,          ui->pbApply,           ui->pbClose,      ui->tbResetParameters, ui->tbCopyCommand,   ui->searchField,  ui->cbPreview,
-                          ui->tbAddFave,     ui->tbRemoveFave,      ui->tbRenameFave, ui->tbExpandCollapse,  ui->tbSelectionMode};
+                          ui->tbAddFave,     ui->tbRemoveFave,      ui->tbRenameFave, ui->tbExpandCollapse,  ui->tbSelectionMode, ui->tbShuffle};
 
   ui->tbAddFave->setToolTip(tr("Add fave"));
 
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
   ui->tbResetParameters->setVisible(false);
+
+  ui->tbShuffle->setToolTip(tr("Shuffle parameters"));
+  ui->tbShuffle->setVisible(true); // FIXME : Set to false
 
   QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
   copyShortcut->setContext(Qt::ApplicationShortcut);
@@ -263,6 +266,7 @@ void MainWindow::setIcons()
   ui->pbApply->setIcon(IconLoader::load("system-run"));
   ui->pbOk->setIcon(IconLoader::load("insert-image"));
   ui->tbResetParameters->setIcon(IconLoader::load("view-refresh"));
+  ui->tbShuffle->setIcon(IconLoader::load("question-mark"));
   ui->tbCopyCommand->setIcon(IconLoader::load("edit-copy"));
   ui->pbClose->setIcon(IconLoader::load("close"));
   ui->pbCancel->setIcon(IconLoader::load("cancel"));

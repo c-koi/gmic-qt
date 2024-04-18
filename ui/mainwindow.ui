@@ -250,6 +250,13 @@
                </widget>
               </item>
               <item>
+               <widget class="QToolButton" name="tbShuffle">
+                <property name="text">
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QToolButton" name="tbResetParameters">
                 <property name="text">
                  <string>...</string>
@@ -283,8 +290,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>194</width>
-                 <height>395</height>
+                 <width>209</width>
+                 <height>397</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
