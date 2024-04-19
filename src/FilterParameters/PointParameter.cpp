@@ -256,7 +256,7 @@ bool PointParameter::initFromText(const QString & filterName, const char * text,
     return false;
   }
   _name = HtmlTranslator::html2txt(FilterTextTranslator::translate(list[0], filterName));
-  QList<QString> params = list[1].split(",", Qt::SkipEmptyParts);
+  QList<QString> params = list[1].split(",", QT_SKIP_EMPTY_PARTS);
 
   bool ok = true;
   _color.setRgb(255, 255, 255, 255);
