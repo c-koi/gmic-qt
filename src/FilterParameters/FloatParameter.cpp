@@ -28,7 +28,6 @@
 #include <QLabel>
 #include <QLocale>
 #include <QPalette>
-#include <QRandomGenerator>
 #include <QSlider>
 #include <QString>
 #include <QTimerEvent>
@@ -38,6 +37,7 @@
 #include "Globals.h"
 #include "HtmlTranslator.h"
 #include "Logger.h"
+#include "Misc.h"
 #include "Settings.h"
 
 namespace GmicQt
@@ -143,8 +143,7 @@ void FloatParameter::randomize()
 {
   if (acceptRandom()) {
     disconnectSliderSpinBox();
-    // FIXME : Upper bound is exluded!
-    _value = _min + QRandomGenerator::global()->bounded(_max - _min);
+    _value = randomReal(_min, _max);
     _slider->setValue(static_cast<int>(SLIDER_MAX_RANGE * (_value - _min) / (_max - _min)));
     _spinBox->setValue(_value);
     connectSliderSpinBox();

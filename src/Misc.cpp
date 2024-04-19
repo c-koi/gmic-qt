@@ -28,6 +28,7 @@
 #include <QChar>
 #include <QDebug>
 #include <QMap>
+#include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QString>
 #include <QStringList>
@@ -436,6 +437,15 @@ QString readableSize(quint64 n)
   } else {
     return QString(QObject::tr("%1 B")).arg(n);
   }
+}
+
+qreal randomReal(qreal lowest, qreal highest)
+{
+  QRandomGenerator * rng = QRandomGenerator::global();
+  auto min = rng->min();
+  auto max = rng->max();
+  auto t = (rng->generate() - min) / double(max - min);
+  return (1 - t) * lowest + t * highest;
 }
 
 } // namespace GmicQt

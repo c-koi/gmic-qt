@@ -79,6 +79,8 @@ inline QString elided80(const std::string & text)
   return elided(QString::fromStdString(text), 80);
 }
 
+qreal randomReal(qreal lowest, qreal highest);
+
 QString readableDuration(qint64 ms);
 
 QString readableSize(quint64);

@@ -33,7 +33,6 @@
 #include <QLabel>
 #include <QPainter>
 #include <QPushButton>
-#include <QRandomGenerator>
 #include <QSpacerItem>
 #include <QWidget>
 #include <cmath>
@@ -43,6 +42,7 @@
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 #include "KeypointList.h"
+#include "Misc.h"
 #include "Settings.h"
 
 namespace GmicQt
@@ -236,9 +236,7 @@ void PointParameter::reset()
 void PointParameter::randomize()
 {
   if (acceptRandom()) {
-    auto generator = QRandomGenerator::global();
-    _position = QPointF(generator->bounded(100.0), // FIXME : 100.0 is excluded
-                        generator->bounded(100.0));
+    _position = QPointF(randomReal(0.0, 100.0), randomReal(0.0, 100.0));
     if (_spinBoxX) {
       disconnectSpinboxes();
       _spinBoxX->setValue(_position.rx());
