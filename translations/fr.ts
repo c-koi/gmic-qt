@@ -533,7 +533,7 @@ Impossible de déterminer les paramètres par défaut.
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="117"/>
-        <source>Shuffle parameters</source>
+        <source>Randomize parameters</source>
         <translation>Paramètres aléatoires</translation>
     </message>
     <message>

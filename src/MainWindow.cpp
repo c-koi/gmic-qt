@@ -114,7 +114,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   ui->tbResetParameters->setToolTip(tr("Reset parameters to default values"));
   ui->tbResetParameters->setVisible(false);
 
-  ui->tbShuffleParameters->setToolTip(tr("Shuffle parameters"));
+  ui->tbShuffleParameters->setToolTip(tr("Randomize parameters"));
   ui->tbShuffleParameters->setVisible(false);
 
   QShortcut * copyShortcut = new QShortcut(QKeySequence::Copy, this);
