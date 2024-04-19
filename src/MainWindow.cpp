@@ -266,7 +266,7 @@ void MainWindow::setIcons()
   ui->pbApply->setIcon(IconLoader::load("system-run"));
   ui->pbOk->setIcon(IconLoader::load("insert-image"));
   ui->tbResetParameters->setIcon(IconLoader::load("view-refresh"));
-  ui->tbShuffleParameters->setIcon(IconLoader::load("question-mark"));
+  ui->tbShuffleParameters->setIcon(IconLoader::load("twister"));
   ui->tbCopyCommand->setIcon(IconLoader::load("edit-copy"));
   ui->pbClose->setIcon(IconLoader::load("close"));
   ui->pbCancel->setIcon(IconLoader::load("cancel"));
