@@ -123,6 +123,10 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   ui->tbCopyCommand->setToolTip(appendShortcutText(tr("Copy G'MIC command to clipboard"), copyShortcut->key()));
   ui->tbCopyCommand->setVisible(false);
 
+  ui->tbShuffleParameters->setIconSize(QSize(20, 20));
+  ui->tbCopyCommand->setIconSize(QSize(20, 20));
+  ui->tbResetParameters->setIconSize(QSize(20, 20));
+
   QShortcut * closeShortcut = new QShortcut(QKeySequence::Close, this);
   closeShortcut->setContext(Qt::ApplicationShortcut);
   connect(closeShortcut, &QShortcut::activated, this, &MainWindow::close);
