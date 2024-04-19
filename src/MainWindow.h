@@ -87,7 +87,7 @@ public slots:
   void onOkClicked();
   void onCancelClicked();
   void onReset();
-  void onShuffleParameters();
+  void onRandomizeParameters();
   void onCopyGMICCommand();
   void onPreviewZoomReset();
   void onUpdateFiltersClicked();

@@ -250,7 +250,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="tbShuffleParameters">
+               <widget class="QToolButton" name="tbRandomizeParameters">
                 <property name="text">
                  <string>...</string>
                 </property>
