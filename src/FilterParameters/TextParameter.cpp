@@ -29,6 +29,7 @@
 #include <QIcon>
 #include <QLabel>
 #include <QLineEdit>
+#include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QTextEdit>
 #include <QWidget>
@@ -118,6 +119,27 @@ void TextParameter::reset()
     _lineEdit->setText(_default);
   }
   _value = _default;
+}
+
+void TextParameter::randomize()
+{
+  if (acceptRandom()) {
+    static QString charset = QString::fromUtf8("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890      ");
+    disconnectEditor();
+    QRandomGenerator * rng = QRandomGenerator::global();
+    int count = rng->bounded(5, 31);
+    int size = charset.size();
+    QString text;
+    while (count--) {
+      text.append(charset[rng->bounded(size)]);
+    }
+    if (_textEdit) {
+      _textEdit->setText(text);
+    } else if (_lineEdit) {
+      _lineEdit->setText(text);
+    }
+    connectEditor();
+  }
 }
 
 bool TextParameter::initFromText(const QString & filterName, const char * text, int & textLength)
