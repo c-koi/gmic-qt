@@ -159,7 +159,7 @@ void ColorParameter::randomize()
     _value.setRgb(generator->bounded(0, 256), //
                   generator->bounded(0, 256), //
                   generator->bounded(0, 256), //
-                  _alphaChannel ? generator->bounded(0, 256) : 255);
+                  _alphaChannel ? generator->bounded(164, 256) : 255);
     updateButtonColor();
   }
 }
