@@ -58,6 +58,5 @@
         <file>icons/color-wheel.png</file>
         <file>icons/dark/color-wheel.png</file>
         <file>icons/randomize.png</file>
-        <file>icons/dark/randomize.png</file>
     </qresource>
 </RCC>
