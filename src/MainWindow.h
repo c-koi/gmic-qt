@@ -33,7 +33,6 @@
 #include <QWidget>
 #include "Common.h"
 #include "GmicProcessor.h"
-#include "Updater.h"
 class QResizeEvent;
 
 namespace Ui
@@ -78,7 +77,7 @@ public slots:
   void onUpdateDownloadsFinished(int status);
   void onApplyClicked();
   void onProgressionWidgetCancelClicked();
-  void onPreviewUpdateRequested(bool synchronous);
+  void onPreviewUpdateRequested(bool synchronous, bool randomized = false);
   void onPreviewUpdateRequested();
   void onPreviewKeypointsEvent(unsigned int flags, unsigned long time);
   void onFullImageProcessingDone();

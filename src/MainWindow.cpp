@@ -38,9 +38,6 @@
 #include <QShowEvent>
 #include <QStringList>
 #include <QStyleFactory>
-#include <cassert>
-#include <iostream>
-#include <typeinfo>
 #include "Common.h"
 #include "CroppedActiveLayerProxy.h"
 #include "CroppedImageListProxy.h"
@@ -56,7 +53,6 @@
 #include "LayersExtentProxy.h"
 #include "Logger.h"
 #include "Misc.h"
-#include "OverrideCursor.h"
 #include "ParametersCache.h"
 #include "PersistentMemory.h"
 #include "Settings.h"
@@ -688,7 +684,7 @@ void MainWindow::onPreviewUpdateRequested()
   onPreviewUpdateRequested(false);
 }
 
-void MainWindow::onPreviewUpdateRequested(bool synchronous)
+void MainWindow::onPreviewUpdateRequested(bool synchronous, bool randomized)
 {
   const FiltersPresenter::Filter currentFilter = _filtersPresenter->currentFilter();
   if (currentFilter.isNoPreviewFilter()) {
@@ -723,6 +719,7 @@ void MainWindow::onPreviewUpdateRequested(bool synchronous)
   context.filterArguments = ui->filterParams->valueString();
   context.previewFromFullImage = currentFilter.previewFromFullImage;
   context.previewCheckBox = ui->cbPreview->isChecked();
+  context.randomized = randomized;
   _processor.setContext(context);
   _processor.execute();
 
@@ -828,6 +825,7 @@ void MainWindow::processImage()
   context.filterHash = currentFilter.hash;
   context.filterCommand = currentFilter.command;
   context.previewCheckBox = ui->cbPreview->isChecked();
+  context.randomized = false;
   ui->filterParams->updateValueString(false); // Required to get up-to-date values of text parameters
   context.filterArguments = ui->filterParams->valueString();
   context.previewFromFullImage = false;
@@ -973,9 +971,17 @@ void MainWindow::onReset()
 
 void MainWindow::onRandomizeParameters()
 {
-  if (!_filtersPresenter->currentFilter().isNoPreviewFilter()) {
-    ui->filterParams->randomize(true);
+  if (_filtersPresenter->currentFilter().isNoPreviewFilter()) {
+    return;
   }
+  ui->filterParams->randomize();
+  if (ui->filterParams->hasKeypoints()) {
+    ui->previewWidget->setKeypoints(ui->filterParams->keypoints());
+  }
+  ui->previewWidget->invalidateSavedPreview();
+  clearMessage();
+  clearRightMessage();
+  onPreviewUpdateRequested(false, true);
 }
 
 void MainWindow::onCopyGMICCommand()

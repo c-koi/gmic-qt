@@ -56,7 +56,7 @@ public:
 
   void applyDefaultVisibilityStates();
   void reset(bool notify);
-  void randomize(bool notify);
+  void randomize();
   QString filterName() const;
   int actualParametersCount() const;
   int acceptRandom() const;

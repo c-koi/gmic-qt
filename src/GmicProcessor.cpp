@@ -114,6 +114,7 @@ void GmicProcessor::execute()
     env += QString(" _preview_area_height=%1").arg(_filterContext.previewWindowHeight);
     env += QString(" _preview_timeout=%1").arg(_filterContext.previewTimeout);
     env += QString(" _preview_enabled=%1").arg(int(_filterContext.previewCheckBox));
+    env += QString(" _randomized=%1").arg(int(_filterContext.randomized));
   }
   int maxWidth;
   int maxHeight;

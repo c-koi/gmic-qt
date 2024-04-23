@@ -407,14 +407,14 @@ void FilterParametersWidget::reset(bool notify)
   updateValueString(notify);
 }
 
-void FilterParametersWidget::randomize(bool notify)
+void FilterParametersWidget::randomize()
 {
   for (AbstractParameter * param : _parameters) {
     if (param->isActualParameter()) {
       param->randomize();
     }
   }
-  updateValueString(notify);
+  updateValueString(false);
 }
 
 QString FilterParametersWidget::filterName() const
