@@ -24,6 +24,7 @@
  */
 
 #include "IconLoader.h"
+#include <QFileInfo>
 #include <QString>
 
 namespace GmicQt

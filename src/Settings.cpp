@@ -29,6 +29,8 @@
 #include "IconLoader.h"
 #include "SourcesWidget.h"
 
+#include <QDir>
+#include <QLocale>
 #include <QRegularExpression>
 namespace
 {

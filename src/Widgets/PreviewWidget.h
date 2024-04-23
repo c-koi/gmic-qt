@@ -34,7 +34,6 @@
 #include <QRectF>
 #include <QSize>
 #include <QWidget>
-#include <memory>
 #include "Host/GmicQtHost.h"
 #include "KeypointList.h"
 #include "ZoomConstraint.h"

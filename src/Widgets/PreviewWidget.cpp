@@ -31,7 +31,6 @@
 #include <QPainter>
 #include <QPointF>
 #include <algorithm>
-#include <functional>
 #include "Common.h"
 #include "CroppedActiveLayerProxy.h"
 #include "Globals.h"
