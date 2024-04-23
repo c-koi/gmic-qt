@@ -53,6 +53,8 @@ public slots:
   void onPushButtonClicked(bool);
 
 private:
+  void connectButton();
+  void disconnectButton();
   bool _value;
   QString _text;
   QPushButton * _pushButton;

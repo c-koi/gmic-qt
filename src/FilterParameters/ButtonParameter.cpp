@@ -29,7 +29,6 @@
 #include <QPushButton>
 #include <QRandomGenerator>
 #include <QWidget>
-#include "Common.h"
 #include "FilterTextTranslator.h"
 #include "HtmlTranslator.h"
 
@@ -57,7 +56,7 @@ bool ButtonParameter::addTo(QWidget * widget, int row)
   _pushButton = new QPushButton(_text, widget);
   _pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   _grid->addWidget(_pushButton, row, 0, 1, 3, _alignment);
-  connect(_pushButton, &QPushButton::clicked, this, &ButtonParameter::onPushButtonClicked);
+  connectButton();
   return true;
 }
 
@@ -87,18 +86,23 @@ void ButtonParameter::randomize()
 {
   if (acceptRandom()) {
     _value = QRandomGenerator::global()->bounded(0, 2);
-    if (_value) {
-      _pushButton->disconnect(this);
-      _pushButton->animateClick();
-      connect(_pushButton, &QPushButton::clicked, this, &ButtonParameter::onPushButtonClicked);
-    }
   }
 }
 
-void ButtonParameter::onPushButtonClicked(bool)
+void ButtonParameter::onPushButtonClicked(bool checked)
 {
   _value = true;
   notifyIfRelevant();
+}
+
+void ButtonParameter::connectButton()
+{
+  connect(_pushButton, &QPushButton::clicked, this, &ButtonParameter::onPushButtonClicked);
+}
+
+void ButtonParameter::disconnectButton()
+{
+  _pushButton->disconnect(this);
 }
 
 bool ButtonParameter::initFromText(const QString & filterName, const char * text, int & textLength)
