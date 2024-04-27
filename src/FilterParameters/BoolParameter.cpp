@@ -107,7 +107,7 @@ void BoolParameter::randomize()
   if (acceptRandom()) {
     _value = QRandomGenerator::global()->bounded(0, 2);
     disconnectCheckBox();
-    _checkBox->setChecked(_default);
+    _checkBox->setChecked(_value);
     connectCheckBox();
   }
 }

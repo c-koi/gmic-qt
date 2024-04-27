@@ -89,7 +89,7 @@ void ButtonParameter::randomize()
   }
 }
 
-void ButtonParameter::onPushButtonClicked(bool checked)
+void ButtonParameter::onPushButtonClicked(bool /* checked */)
 {
   _value = true;
   notifyIfRelevant();
