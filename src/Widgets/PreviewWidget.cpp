@@ -273,9 +273,6 @@ void PreviewWidget::paintKeypoints(QPainter & painter)
       pen.setColor(QColor(0, 0, 0, brushColor.alpha()));
       painter.setPen(pen);
       painter.drawEllipse(r);
-#ifdef _GMIC_QT_DEBUG_
-      painter.drawPoint(visibleCenter);
-#endif
     }
     ++it;
     --index;
