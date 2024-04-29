@@ -30,7 +30,7 @@
 namespace GmicQt
 {
 
-const float KeypointList::Keypoint::DefaultRadius = 6.0f;
+const float KeypointList::Keypoint::DefaultRadius = 9.0f;
 
 KeypointList::KeypointList() = default;
 
