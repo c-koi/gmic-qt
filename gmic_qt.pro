@@ -55,7 +55,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 TEMPLATE = app
 QT += widgets network
-CONFIG	+= qt c++17
+CONFIG	+= qt c++17 strict_c++
 CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
