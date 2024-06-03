@@ -56,6 +56,9 @@ bool HtmlTranslator::hasHtmlEntities(const QString & str)
 
 QString HtmlTranslator::fromUtf8Escapes(const QString & str)
 {
+  if (str.isEmpty()) {
+    return str;
+  }
   QByteArray ba = str.toUtf8();
   gmic_library::cimg::strunescape(ba.data());
   return QString::fromUtf8(ba);
