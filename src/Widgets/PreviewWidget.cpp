@@ -576,13 +576,13 @@ void PreviewWidget::paintEvent(QPaintEvent * e)
   if (_paintOriginalImage) {
     paintOriginalImage(painter);
   } else {
-    if (_previewType == PreviewType::Full) {
+    if ((_previewType == PreviewType::Full) || !_errorMessage.isEmpty()) {
       paintPreview(painter);
     } else {
       paintSplittedPreview(painter);
     }
   }
-  if (_previewType != PreviewType::Full) {
+  if ((_previewType != PreviewType::Full) && _errorMessage.isEmpty()) {
     paintPreviewSplitter(painter);
   }
   e->accept();
