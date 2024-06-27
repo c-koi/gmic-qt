@@ -21,7 +21,7 @@
     <item>
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Orientation::Horizontal</enum>
       </property>
       <widget class="QFrame" name="filtersFrame">
        <property name="sizePolicy">
@@ -31,10 +31,10 @@
         </sizepolicy>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Shape::NoFrame</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Shadow::Raised</enum>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,0,0">
         <property name="leftMargin">
@@ -46,7 +46,7 @@
         <item>
          <widget class="GmicQt::SearchFieldWidget" name="searchField" native="true">
           <property name="focusPolicy">
-           <enum>Qt::StrongFocus</enum>
+           <enum>Qt::FocusPolicy::StrongFocus</enum>
           </property>
          </widget>
         </item>
@@ -104,7 +104,7 @@
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -193,16 +193,16 @@
         </sizepolicy>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Shape::NoFrame</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Shadow::Raised</enum>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
          <widget class="QSplitter" name="verticalSplitter">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Orientation::Vertical</enum>
           </property>
           <property name="handleWidth">
            <number>6</number>
@@ -274,13 +274,13 @@
                </sizepolicy>
               </property>
               <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
+               <enum>QFrame::Shape::NoFrame</enum>
               </property>
               <property name="horizontalScrollBarPolicy">
-               <enum>Qt::ScrollBarAsNeeded</enum>
+               <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
               </property>
               <property name="sizeAdjustPolicy">
-               <enum>QAbstractScrollArea::AdjustToContents</enum>
+               <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
               </property>
               <property name="widgetResizable">
                <bool>true</bool>
@@ -304,7 +304,7 @@
                    </sizepolicy>
                   </property>
                   <property name="focusPolicy">
-                   <enum>Qt::NoFocus</enum>
+                   <enum>Qt::FocusPolicy::NoFocus</enum>
                   </property>
                  </widget>
                 </item>
@@ -315,10 +315,10 @@
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
+               <enum>QSizePolicy::Policy::Fixed</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -331,7 +331,7 @@
             <item>
              <widget class="Line" name="vSplitterLine">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
              </widget>
             </item>
@@ -369,10 +369,10 @@
         <item>
          <widget class="QFrame" name="previewFrame">
           <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
+           <enum>QFrame::Shape::StyledPanel</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
+           <enum>QFrame::Shadow::Raised</enum>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <property name="spacing">
@@ -393,7 +393,7 @@
            <item>
             <widget class="GmicQt::PreviewWidget" name="previewWidget" native="true">
              <property name="focusPolicy">
-              <enum>Qt::StrongFocus</enum>
+              <enum>Qt::FocusPolicy::StrongFocus</enum>
              </property>
             </widget>
            </item>
@@ -413,9 +413,16 @@
            </widget>
           </item>
           <item>
+           <widget class="QComboBox" name="cbPreviewType">
+            <property name="toolTip">
+             <string>Preview type</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -477,7 +484,7 @@
               <pixmap>:/resources/gimp_logos.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>

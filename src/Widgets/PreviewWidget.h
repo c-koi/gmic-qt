@@ -84,6 +84,23 @@ public:
     KeypointMouseReleaseEvent = 2
   };
 
+  enum class PreviewType
+  {
+    Full,
+    ForwardHorizontal,
+    ForwardVertical,
+    BackwardHorizontal,
+    BackwardVertical,
+    DuplicateTop,
+    DuplicateLeft,
+    DuplicateBottom,
+    DuplicateRight,
+    DuplicateHorizontal,
+    DuplicateVertical,
+    Checkered,
+    CheckeredInverse
+  };
+
 protected:
   void resizeEvent(QResizeEvent *) override;
   void timerEvent(QTimerEvent *) override;
@@ -132,19 +149,33 @@ public slots:
   void enableRightClick();
   void disableRightClick();
   void onPreviewToggled(bool on);
+  void setPreviewType(PreviewType previewType);
 
 private:
   void paintPreview(QPainter &);
   void paintOriginalImage(QPainter &);
+  void paintSplittedPreview(QPainter &);
   void getOriginalImageCrop(gmic_library::gmic_image<float> & image);
   void updateOriginalImagePosition();
+  void updatePreviewImagePosition();
+  QRect splittedPreviewPosition();
   void updateErrorImage();
+  void paintPreviewSplitter(QPainter & painter);
 
   void paintKeypoints(QPainter & painter);
   int keypointUnderMouse(const QPoint & p);
   QPoint keypointToPointInWidget(const KeypointList::Keypoint & kp) const;
   QPoint keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const;
   QPointF pointInWidgetToKeypointPosition(const QPoint &) const;
+
+  enum DraggingMode
+  {
+    Inactive = 0,
+    X = 1,
+    Y = 2,
+    XY = 3
+  };
+  DraggingMode splitterDraggingModeFromMousePosition(const QPoint & p);
 
   QSize originalImageCropSize();
   void saveVisibleCenter();
@@ -210,6 +241,12 @@ private:
   int _movedKeypointIndex;
   QPoint _movedKeypointOrigin;
   unsigned long _keypointTimestamp;
+  PreviewType _previewType;
+  float _xPreviewSplit;
+  float _yPreviewSplit;
+  static const int _SplitterButtonWidth = 10;
+  static const int _SplitterButtonMargin = 2;
+  DraggingMode _draggingMode;
 };
 
 } // namespace GmicQt

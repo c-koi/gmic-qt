@@ -70,7 +70,11 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
   _originalImageSize = QSize(-1, -1);
   _movedKeypointOrigin = QPoint(-1, -1);
   _movedKeypointIndex = -1;
+  _previewType = PreviewType::Full;
   setMouseTracking(false);
+  _xPreviewSplit = 0.5f;
+  _yPreviewSplit = 0.5f;
+  _draggingMode = DraggingMode::Inactive;
 }
 
 PreviewWidget::~PreviewWidget()
@@ -204,6 +208,44 @@ void PreviewWidget::updateOriginalImagePosition()
   }
 }
 
+void PreviewWidget::updatePreviewImagePosition()
+{
+  /*  If preview image has a size different from the original image crop, or
+   *  we are at "full image" zoom of an image smaller than the widget,
+   *  then the image should fit the widget size.
+   */
+  const QSize previewImageSize(_image->width(), _image->height());
+  if ((previewImageSize != _originalImageScaledSize) || (isAtFullZoom() && (_currentZoomFactor > 1.0))) {
+    QSize imageSize;
+    if (previewImageSize != _originalImageScaledSize) {
+      imageSize = previewImageSize.scaled(width(), height(), Qt::KeepAspectRatio);
+    } else {
+      imageSize = QSize(static_cast<int>(std::round(_originalImageSize.width() * _currentZoomFactor)), //
+                        static_cast<int>(std::round(_originalImageSize.height() * _currentZoomFactor)));
+    }
+    _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), //
+                                  std::max(0, (height() - imageSize.height()) / 2)),
+                           imageSize);
+    _originalImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
+  }
+  /*
+   *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
+   */
+}
+
+QRect PreviewWidget::splittedPreviewPosition()
+{
+  updateOriginalImagePosition();
+  QRect original = _imagePosition;
+  updatePreviewImagePosition();
+  QRect preview = _imagePosition;
+  int x1 = std::max(0, std::min(original.left(), preview.left()));
+  int y1 = std::max(0, std::min(original.top(), preview.top()));
+  int x2 = std::min(width() - 1, std::max(original.left() + original.width(), preview.left() + preview.width()));
+  int y2 = std::min(height() - 1, std::max(original.top() + original.height(), preview.top() + preview.height()));
+  return QRect(x1, y1, 1 + x2 - x1, 1 + y2 - y1);
+}
+
 void PreviewWidget::updateErrorImage()
 {
   gmic_library::gmic_list<float> images;
@@ -319,6 +361,42 @@ QPointF PreviewWidget::pointInWidgetToKeypointPosition(const QPoint & p) const
   return result;
 }
 
+PreviewWidget::DraggingMode PreviewWidget::splitterDraggingModeFromMousePosition(const QPoint & p)
+{
+  if (_previewType == PreviewType::Full) {
+    return DraggingMode::Inactive;
+  }
+  int x = (_imagePosition.left() <= 0) ? (_xPreviewSplit * width()) : (_imagePosition.left() + _xPreviewSplit * _imagePosition.width());
+  int y = (_imagePosition.top() <= 0) ? (_yPreviewSplit * height()) : (_imagePosition.top() + _yPreviewSplit * _imagePosition.height());
+  switch (_previewType) {
+  case PreviewType::ForwardHorizontal:
+  case PreviewType::BackwardHorizontal:
+  case PreviewType::DuplicateTop:
+  case PreviewType::DuplicateBottom:
+  case PreviewType::DuplicateHorizontal:
+    return (std::abs(p.y() - y) < (2 * _SplitterButtonWidth + _SplitterButtonMargin)) ? DraggingMode::Y : DraggingMode::Inactive;
+    break;
+  case PreviewType::ForwardVertical:
+  case PreviewType::BackwardVertical:
+  case PreviewType::DuplicateLeft:
+  case PreviewType::DuplicateRight:
+  case PreviewType::DuplicateVertical:
+    return (std::abs(p.x() - x) < (2 * _SplitterButtonWidth + _SplitterButtonMargin)) ? DraggingMode::X : DraggingMode::Inactive;
+    break;
+  case PreviewType::Checkered:
+  case PreviewType::CheckeredInverse: {
+    int flag = 0;
+    flag |= (std::abs(p.x() - x) < (2 * _SplitterButtonWidth + _SplitterButtonMargin)) ? DraggingMode::X : 0;
+    flag |= (std::abs(p.y() - y) < (2 * _SplitterButtonWidth + _SplitterButtonMargin)) ? DraggingMode::Y : 0;
+    return DraggingMode(flag);
+  } break;
+  case PreviewType::Full:
+    return DraggingMode::Inactive;
+    break;
+  }
+  return DraggingMode::Inactive;
+}
+
 void PreviewWidget::paintPreview(QPainter & painter)
 {
   if (!_overlayMessage.isEmpty()) {
@@ -342,25 +420,8 @@ void PreviewWidget::paintPreview(QPainter & painter)
     paintKeypoints(painter);
     return;
   }
-  /*  If preview image has a size different from the original image crop, or
-   *  we are at "full image" zoom of an image smaller than the widget,
-   *  then the image should fit the widget size.
-   */
-  const QSize previewImageSize(_image->width(), _image->height());
-  if ((previewImageSize != _originalImageScaledSize) || (isAtFullZoom() && _currentZoomFactor > 1.0)) {
-    QSize imageSize;
-    if (previewImageSize != _originalImageScaledSize) {
-      imageSize = previewImageSize.scaled(width(), height(), Qt::KeepAspectRatio);
-    } else {
-      imageSize = QSize(static_cast<int>(std::round(_originalImageSize.width() * _currentZoomFactor)), //
-                        static_cast<int>(std::round(_originalImageSize.height() * _currentZoomFactor)));
-    }
-    _imagePosition = QRect(QPoint(std::max(0, (width() - imageSize.width()) / 2), std::max(0, (height() - imageSize.height()) / 2)), imageSize);
-    _originalImageScaledSize = QSize(-1, -1); // Make sure next preview update will not consider originaImageScaledSize
-  }
-  /*
-   *  Otherwise : Preview size == Original scaled size and image position is therefore unchanged
-   */
+
+  updatePreviewImagePosition();
 
   if (hasAlphaChannel(*_image)) {
     painter.fillRect(_imagePosition, QBrush(_transparency));
@@ -390,15 +451,234 @@ void PreviewWidget::paintOriginalImage(QPainter & painter)
   }
 }
 
+void PreviewWidget::paintSplittedPreview(QPainter & painter)
+{
+  QRect position = splittedPreviewPosition();
+  // int x = (_imagePosition.left() <= 0) ? (_xPreviewSplit * width()) : (_imagePosition.left() + _xPreviewSplit * _imagePosition.width());
+  // int y = (_imagePosition.top() <= 0) ? (_yPreviewSplit * height()) : (_imagePosition.top() + _yPreviewSplit * _imagePosition.height());
+  int x = (position.left() + _xPreviewSplit * position.width());
+  int y = (position.top() + _yPreviewSplit * position.height());
+
+  switch (_previewType) {
+  case PreviewType::Full:
+    break;
+  case PreviewType::ForwardHorizontal:
+    paintOriginalImage(painter);
+    painter.save();
+    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::ForwardVertical:
+    paintOriginalImage(painter);
+    painter.save();
+    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::BackwardHorizontal:
+    paintPreview(painter);
+    painter.save();
+    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    paintOriginalImage(painter);
+    painter.restore();
+    break;
+  case PreviewType::BackwardVertical:
+    paintPreview(painter);
+    painter.save();
+    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    paintOriginalImage(painter);
+    painter.restore();
+    break;
+  case PreviewType::DuplicateTop:
+    paintOriginalImage(painter);
+    painter.save();
+    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    painter.translate(QPoint(0, y - position.top()));
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::DuplicateBottom:
+    paintOriginalImage(painter);
+    painter.save();
+    painter.setClipRect(0, position.top(), width(), y);
+    painter.translate(QPoint(0, y - position.bottom()));
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::DuplicateLeft:
+    paintOriginalImage(painter);
+    painter.save();
+    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    painter.translate(QPoint(x - position.left(), 0));
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::DuplicateRight:
+    paintOriginalImage(painter);
+    painter.save();
+    painter.setClipRect(position.left(), 0, x, position.height());
+    painter.translate(QPoint(x - position.right(), 0));
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::DuplicateHorizontal:
+    // Centered crop with corresponding height
+    painter.save();
+    painter.save();
+    painter.setClipRect(position);
+    painter.translate(QPoint(0, (y - position.bottom()) / 2));
+    paintOriginalImage(painter);
+    painter.restore();
+    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    painter.translate(QPoint(0, (y - position.top()) / 2));
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::DuplicateVertical:
+    // Centered crop with corresponding width
+    painter.save();
+    painter.save();
+    painter.setClipRect(position);
+    painter.translate(QPoint((x - position.right()) / 2, 0));
+    paintOriginalImage(painter);
+    painter.restore();
+    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    painter.translate(QPoint((x - position.left()) / 2, 0));
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::Checkered:
+    painter.save();
+    paintOriginalImage(painter);
+    painter.setClipRect(x, position.top(), 1 + position.right() - x, 1 + y - position.top());
+    paintPreview(painter);
+    painter.setClipRect(position.left(), y, 1 + x - position.left(), 1 + position.bottom() - y);
+    paintPreview(painter);
+    painter.restore();
+    break;
+  case PreviewType::CheckeredInverse:
+    painter.save();
+    paintOriginalImage(painter);
+    painter.setClipRect(position.left(), position.top(), 1 + x - position.left(), 1 + y - position.top());
+    paintPreview(painter);
+    painter.setClipRect(x, y, 1 + position.right() - x, 1 + position.bottom() - y);
+    paintPreview(painter);
+    painter.restore();
+    break;
+  }
+  painter.setClipping(false);
+}
+
 void PreviewWidget::paintEvent(QPaintEvent * e)
 {
   QPainter painter(this);
   if (_paintOriginalImage) {
     paintOriginalImage(painter);
   } else {
-    paintPreview(painter);
+    if (_previewType == PreviewType::Full) {
+      paintPreview(painter);
+    } else {
+      paintSplittedPreview(painter);
+    }
+  }
+  if (_previewType != PreviewType::Full) {
+    paintPreviewSplitter(painter);
   }
   e->accept();
+}
+
+void PreviewWidget::paintPreviewSplitter(QPainter & painter)
+{
+  painter.end();
+  painter.begin(this);
+  QPen pen(QColor(0, 0, 0, 164));
+  pen.setWidth(1);
+  painter.setPen(pen);
+
+  QRect position = splittedPreviewPosition();
+  int x = (position.left() + _xPreviewSplit * position.width());
+  int y = (position.top() + _yPreviewSplit * position.height());
+  QPolygon leftTriangle;
+  QPolygon topTriangle;
+  QPolygon bottomTriangle;
+  QPolygon rightTriangle;
+
+  switch (_previewType) {
+  case PreviewType::Full:
+    break;
+  case PreviewType::ForwardHorizontal:
+  case PreviewType::BackwardHorizontal:
+  case PreviewType::DuplicateTop:
+  case PreviewType::DuplicateBottom:
+  case PreviewType::DuplicateHorizontal:
+    x = width() / 2;
+    // int y = (_imagePosition.top() <= 0) ? (_yPreviewSplit * height()) : (_imagePosition.top() + _yPreviewSplit * _imagePosition.height()); // FIXME Remove
+    topTriangle << QPoint(x - _SplitterButtonWidth, y - _SplitterButtonMargin) << QPoint(x, y - (_SplitterButtonMargin + _SplitterButtonWidth))
+                << QPoint(x + _SplitterButtonWidth, y - _SplitterButtonMargin);
+    bottomTriangle << QPoint(x - _SplitterButtonWidth, y + _SplitterButtonMargin) << QPoint(x, y + (_SplitterButtonMargin + _SplitterButtonWidth))
+                   << QPoint(x + _SplitterButtonWidth, y + _SplitterButtonMargin);
+    painter.setBrush(QColor(255, 255, 255, 164));
+    painter.drawPolygon(topTriangle);
+    painter.drawPolygon(bottomTriangle);
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+    painter.drawLine(std::max(0, _imagePosition.left()), y, _imagePosition.right(), y);
+    pen.setDashPattern(QVector<qreal>() << 4.0 << 4.0);
+    pen.setStyle(Qt::CustomDashLine);
+    pen.setColor(Qt::white);
+    painter.setPen(pen);
+    painter.drawLine(std::max(0, _imagePosition.left()), y, _imagePosition.right(), y);
+    break;
+  case PreviewType::ForwardVertical:
+  case PreviewType::BackwardVertical:
+  case PreviewType::DuplicateLeft:
+  case PreviewType::DuplicateRight:
+  case PreviewType::DuplicateVertical:
+    // int x = (_imagePosition.left() <= 0) ? (_xPreviewSplit * width()) : (_imagePosition.left() + _xPreviewSplit * _imagePosition.width());
+    y = height() / 2;
+    leftTriangle << QPoint(x - _SplitterButtonMargin, y - _SplitterButtonWidth) << QPoint(x - (_SplitterButtonMargin + _SplitterButtonWidth), y)
+                 << QPoint(x - _SplitterButtonMargin, y + _SplitterButtonWidth);
+    rightTriangle << QPoint(x + _SplitterButtonMargin, y - _SplitterButtonWidth) << QPoint(x + (_SplitterButtonMargin + _SplitterButtonWidth), y)
+                  << QPoint(x + _SplitterButtonMargin, y + _SplitterButtonWidth);
+    painter.setBrush(QColor(255, 255, 255, 164));
+    painter.drawPolygon(leftTriangle);
+    painter.drawPolygon(rightTriangle);
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+    painter.drawLine(x, std::max(0, _imagePosition.top()), x, _imagePosition.bottom());
+    pen.setDashPattern(QVector<qreal>() << 4.0 << 4.0);
+    pen.setStyle(Qt::CustomDashLine);
+    pen.setColor(Qt::white);
+    painter.setPen(pen);
+    painter.drawLine(x, std::max(0, _imagePosition.top()), x, _imagePosition.bottom());
+    break;
+  case PreviewType::Checkered:
+  case PreviewType::CheckeredInverse:
+    // int x = (_imagePosition.left() <= 0) ? (_xPreviewSplit * width()) : (_imagePosition.left() + _xPreviewSplit * _imagePosition.width());
+    // int y = (_imagePosition.top() <= 0) ? (_yPreviewSplit * height()) : (_imagePosition.top() + _yPreviewSplit * _imagePosition.height());
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+    painter.drawLine(std::max(0, _imagePosition.left()), y, _imagePosition.right(), y);
+    painter.drawLine(x, std::max(0, _imagePosition.top()), x, _imagePosition.bottom());
+    pen.setDashPattern(QVector<qreal>() << 4.0 << 4.0);
+    pen.setStyle(Qt::CustomDashLine);
+    pen.setColor(Qt::white);
+    painter.setPen(pen);
+    painter.drawLine(std::max(0, _imagePosition.left()), y, _imagePosition.right(), y);
+    painter.drawLine(x, std::max(0, _imagePosition.top()), x, _imagePosition.bottom());
+    topTriangle << QPoint(x - _SplitterButtonWidth, y - _SplitterButtonMargin) << QPoint(x, y - (_SplitterButtonMargin + _SplitterButtonWidth))
+                << QPoint(x + _SplitterButtonWidth, y - _SplitterButtonMargin);
+    bottomTriangle << QPoint(x - _SplitterButtonWidth, y + _SplitterButtonMargin) << QPoint(x, y + (_SplitterButtonMargin + _SplitterButtonWidth))
+                   << QPoint(x + _SplitterButtonWidth, y + _SplitterButtonMargin);
+    pen.setColor(QColor(0, 0, 0, 164));
+    pen.setStyle(Qt::SolidLine);
+    painter.setPen(pen);
+    painter.setBrush(QColor(255, 255, 255, 164));
+    painter.drawPolygon(topTriangle);
+    painter.drawPolygon(bottomTriangle);
+    break;
+  }
 }
 
 void PreviewWidget::resizeEvent(QResizeEvent * e)
@@ -515,6 +795,7 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
       if (!_keypoints[index].keepOpacityWhenSelected) {
         update();
       }
+    } else if ((_draggingMode = splitterDraggingModeFromMousePosition(e->pos())) != DraggingMode::Inactive) {
     } else if (_imagePosition.contains(e->pos())) {
       _mousePosition = e->pos();
       abortUpdateTimer();
@@ -543,13 +824,14 @@ void PreviewWidget::mousePressEvent(QMouseEvent * e)
 void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
 {
   if (e->button() == Qt::LeftButton || e->button() == Qt::MiddleButton) {
-    if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
+    if (_draggingMode != DraggingMode::Inactive) {
+      _draggingMode = DraggingMode::Inactive;
+    } else if (!isAtFullZoom() && _mousePosition != QPoint(-1, -1)) {
       QPoint move = _mousePosition - e->pos();
       onMouseTranslationInImage(move);
       sendUpdateRequest();
       _mousePosition = QPoint(-1, -1);
-    }
-    if (_movedKeypointIndex != -1) {
+    } else if (_movedKeypointIndex != -1) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
@@ -585,23 +867,48 @@ void PreviewWidget::mouseReleaseEvent(QMouseEvent * e)
     e->accept();
     return;
   }
-}
+} // namespace GmicQt
 
 void PreviewWidget::mouseMoveEvent(QMouseEvent * e)
 {
   if (hasMouseTracking() && (_movedKeypointIndex == -1)) {
-    int index = keypointUnderMouse(e->pos());
-    OverrideCursor::setPointingHand((_mousePosition == QPoint(-1, -1)) && (index != -1));
+    DraggingMode mode = splitterDraggingModeFromMousePosition(e->pos());
+    if ((_mousePosition == QPoint(-1, -1)) && (keypointUnderMouse(e->pos()) != -1)) {
+      OverrideCursor::set(Qt::PointingHandCursor);
+    } else if (mode == DraggingMode::X) {
+      OverrideCursor::set(Qt::SplitHCursor);
+    } else if (mode == DraggingMode::Y) {
+      OverrideCursor::set(Qt::SplitVCursor);
+    } else if (mode == DraggingMode::XY) {
+      OverrideCursor::set(Qt::SizeAllCursor);
+    } else {
+      OverrideCursor::setNormal();
+    }
   }
   if (e->buttons() & (Qt::LeftButton | Qt::MiddleButton)) {
-    if (!isAtFullZoom() && (_mousePosition != QPoint(-1, -1))) {
+    if (_draggingMode != DraggingMode::Inactive) {
+      if (_draggingMode & DraggingMode::X) {
+        if (_imagePosition.left() <= 0) {
+          _xPreviewSplit = clamped(e->pos().x() / float(width()), 0.0f, 1.0f);
+        } else {
+          _xPreviewSplit = clamped((e->pos().x() - _imagePosition.left()) / float(_imagePosition.width()), 0.0f, 1.0f);
+        }
+      }
+      if (_draggingMode & DraggingMode::Y) {
+        if (_imagePosition.top() <= 0) {
+          _yPreviewSplit = clamped(e->pos().y() / float(height()), 0.0f, 1.0f);
+        } else {
+          _yPreviewSplit = clamped((e->pos().y() - _imagePosition.top()) / float(_imagePosition.height()), 0.0f, 1.0f);
+        }
+      }
+      update();
+    } else if (!isAtFullZoom() && (_mousePosition != QPoint(-1, -1))) {
       QPoint move = _mousePosition - e->pos();
       if (move.manhattanLength()) {
         onMouseTranslationInImage(move);
         _mousePosition = e->pos();
       }
-    }
-    if (_movedKeypointIndex != -1) {
+    } else if (_movedKeypointIndex != -1) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
@@ -889,6 +1196,13 @@ void PreviewWidget::onPreviewToggled(bool on)
   } else {
     displayOriginalImage();
   }
+}
+
+void PreviewWidget::setPreviewType(PreviewType previewType)
+{
+  _previewType = previewType;
+  setMouseTracking(previewType != PreviewType::Full);
+  update();
 }
 
 void PreviewWidget::setPreviewEnabled(bool on)

@@ -239,6 +239,24 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
   ui->pbCancel->setEnabled(false);
 
+  ui->cbPreviewType->addItem(tr("Full"), int(PreviewWidget::PreviewType::Full));
+  ui->cbPreviewType->addItem(tr("Forward Horizontal"), int(PreviewWidget::PreviewType::ForwardHorizontal));
+  ui->cbPreviewType->addItem(tr("Forward Vertical"), int(PreviewWidget::PreviewType::ForwardVertical));
+  ui->cbPreviewType->addItem(tr("Backward Horizontal"), int(PreviewWidget::PreviewType::BackwardHorizontal));
+  ui->cbPreviewType->addItem(tr("Backward Vertical"), int(PreviewWidget::PreviewType::BackwardVertical));
+  ui->cbPreviewType->addItem(tr("Duplicate Top"), int(PreviewWidget::PreviewType::DuplicateTop));
+  ui->cbPreviewType->addItem(tr("Duplicate Left"), int(PreviewWidget::PreviewType::DuplicateLeft));
+  ui->cbPreviewType->addItem(tr("Duplicate Bottom"), int(PreviewWidget::PreviewType::DuplicateBottom));
+  ui->cbPreviewType->addItem(tr("Duplicate Right"), int(PreviewWidget::PreviewType::DuplicateRight));
+  ui->cbPreviewType->addItem(tr("Duplicate Horizontal"), int(PreviewWidget::PreviewType::DuplicateHorizontal));
+  ui->cbPreviewType->addItem(tr("Duplicate Vertical"), int(PreviewWidget::PreviewType::DuplicateVertical));
+  ui->cbPreviewType->addItem(tr("Checkered"), int(PreviewWidget::PreviewType::Checkered));
+  ui->cbPreviewType->addItem(tr("Checkered Inverse"), int(PreviewWidget::PreviewType::CheckeredInverse));
+  connect(ui->cbPreviewType, QOverload<int>::of(&QComboBox::currentIndexChanged), //
+          [this](int index) {                                                     //
+            ui->previewWidget->setPreviewType(PreviewWidget::PreviewType(ui->cbPreviewType->itemData(index).toInt()));
+          });
+
   makeConnections();
 }
 
