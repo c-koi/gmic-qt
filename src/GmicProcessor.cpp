@@ -300,7 +300,7 @@ void GmicProcessor::terminateAllThreads()
     _unfinishedAbortedThreads.pop_front();
   }
   _waitingCursorTimer.stop();
-  OverrideCursor::setWaiting(false);
+  OverrideCursor::setNormal();
 }
 
 bool GmicProcessor::hasUnfinishedAbortedThreads() const
@@ -483,14 +483,14 @@ void GmicProcessor::onAbortedThreadFinished()
 void GmicProcessor::showWaitingCursor()
 {
   if (_filterThread) {
-    OverrideCursor::setWaiting(true);
+    OverrideCursor::set(Qt::WaitCursor);
   }
 }
 
 void GmicProcessor::hideWaitingCursor()
 {
   _waitingCursorTimer.stop();
-  OverrideCursor::setWaiting(false);
+  OverrideCursor::setNormal();
 }
 
 void GmicProcessor::updateImageNames(gmic_list<char> & imageNames)
@@ -528,7 +528,7 @@ void GmicProcessor::abortCurrentFilterThread()
   _filterThread->abortGmic();
   _filterThread = nullptr;
   _waitingCursorTimer.stop();
-  OverrideCursor::setWaiting(false);
+  OverrideCursor::setNormal();
 }
 
 void GmicProcessor::manageSynchonousRunner(FilterSyncRunner & runner)

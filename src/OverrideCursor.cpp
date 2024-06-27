@@ -28,47 +28,23 @@
 
 namespace GmicQt
 {
-bool OverrideCursor::_waiting = false;
-bool OverrideCursor::_pointingHand = false;
 
-void OverrideCursor::setWaiting(bool waiting)
+void OverrideCursor::set(Qt::CursorShape shape)
 {
-  if (waiting == _waiting) {
+  if (QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == shape) {
     return;
   }
-  _waiting = waiting;
-  updateCurrentCursor();
-}
-
-void OverrideCursor::setPointingHand(bool pointingHand)
-{
-  if (pointingHand == _pointingHand) {
-    return;
+  while (QApplication::overrideCursor()) {
+    QApplication::restoreOverrideCursor();
   }
-  _pointingHand = pointingHand;
-  updateCurrentCursor();
+  QApplication::setOverrideCursor(shape);
 }
 
-void OverrideCursor::updateCurrentCursor()
+void OverrideCursor::setNormal()
 {
   while (QApplication::overrideCursor()) {
     QApplication::restoreOverrideCursor();
   }
-  if (_pointingHand) {
-    QApplication::setOverrideCursor(Qt::PointingHandCursor);
-  } else if (_waiting) {
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-  }
-}
-
-bool OverrideCursor::currentCursorIsWaiting()
-{
-  return QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor;
-}
-
-bool OverrideCursor::currentCursorIsPointingHand()
-{
-  return QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor;
 }
 
 } // namespace GmicQt

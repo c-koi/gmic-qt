@@ -25,6 +25,8 @@
 #ifndef GMIC_QT_OVERRIDECURSOR_H
 #define GMIC_QT_OVERRIDECURSOR_H
 
+#include <QCursor>
+
 namespace GmicQt
 {
 
@@ -32,15 +34,10 @@ class OverrideCursor {
 public:
   OverrideCursor() = delete;
 
-  static void setWaiting(bool waiting);
-  static void setPointingHand(bool pointingHand);
+  static void set(Qt::CursorShape shape);
+  static void setNormal();
 
 private:
-  static void updateCurrentCursor();
-  static bool currentCursorIsWaiting();
-  static bool currentCursorIsPointingHand();
-  static bool _waiting;
-  static bool _pointingHand;
 };
 
 } // namespace GmicQt
