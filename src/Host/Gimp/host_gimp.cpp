@@ -47,7 +47,7 @@
 
 #define _gimp_image_get_item_position gimp_image_get_item_position
 
-#if (GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 7) && (GIMP_MICRO_VERSION <= 14)
+#if !GIMP_CHECK_VERSION(2, 7, 15)
 #define _gimp_item_get_visible gimp_drawable_get_visible
 #else
 #define _gimp_item_get_visible gimp_item_get_visible
@@ -114,7 +114,7 @@ GType gmic_qt_get_type(void) G_GNUC_CONST;
 static GList * gmic_qt_query(GimpPlugIn * plug_in);
 static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name);
 
-#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+#if !GIMP_CHECK_VERSION(2, 99, 6)
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data);
 #else
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, const GimpValueArray * args, gpointer run_data);
@@ -155,7 +155,7 @@ _GimpImagePtr gmic_qt_gimp_image_id;
 gmic_library::gmic_image<int> inputLayerDimensions;
 std::vector<_GimpLayerPtr> inputLayers;
 
-#if (GIMP_MAJOR_VERSION >= 3 || GIMP_MINOR_VERSION > 8) && !defined(GIMP_NORMAL_MODE)
+#if GIMP_CHECK_VERSION(2, 9, 0) && !defined(GIMP_NORMAL_MODE)
 typedef GimpLayerMode GimpLayerModeEffects;
 #define GIMP_NORMAL_MODE GIMP_LAYER_MODE_NORMAL
 const QMap<QString, GimpLayerModeEffects> BlendingModesMap = {{QString("alpha"), GIMP_LAYER_MODE_NORMAL},
@@ -1065,7 +1065,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
  */
 void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam * param, gint * nreturn_vals, GimpParam ** return_vals)
 {
-#if (GIMP_MAJOR_VERSION == 2 && GIMP_MINOR_VERSION > 8) || (GIMP_MAJOR_VERSION >= 3)
+#if GIMP_CHECK_VERSION(2, 9, 0)
   gegl_init(nullptr, nullptr);
   gimp_plugin_enable_precision();
 #endif
@@ -1156,7 +1156,7 @@ static GList * gmic_qt_query(GimpPlugIn * plug_in)
 /*
  * 'Run' function, required by the GIMP plug-in API.
  */
-#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+#if !GIMP_CHECK_VERSION(2, 99, 7)
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data)
 #else
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, const GimpValueArray * args, gpointer run_data)
