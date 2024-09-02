@@ -45,11 +45,9 @@
  * of the GTK version of the gmic plug-in for GIMP by David Tschumperl\'e.
  */
 
-#define GIMP_VERSION_LTE(MAJOR, MINOR) (GIMP_MAJOR_VERSION < MAJOR) || ((GIMP_MAJOR_VERSION == MAJOR) && (GIMP_MINOR_VERSION <= MINOR))
-
 #define _gimp_image_get_item_position gimp_image_get_item_position
 
-#if (GIMP_MAJOR_VERSION == 2) && (GIMP_MINOR_VERSION <= 7) && (GIMP_MICRO_VERSION <= 14)
+#if !GIMP_CHECK_VERSION(2, 7, 15)
 #define _gimp_item_get_visible gimp_drawable_get_visible
 #else
 #define _gimp_item_get_visible gimp_item_get_visible
@@ -71,7 +69,7 @@
 #define _gimp_drawable_get_offsets gimp_drawable_offsets
 #endif
 
-#if GIMP_VERSION_LTE(2, 98)
+#if !GIMP_CHECK_VERSION(2, 99, 0)
 #define _GimpImagePtr int
 #define _GimpLayerPtr int
 #define _GimpItemPtr int
@@ -116,10 +114,14 @@ GType gmic_qt_get_type(void) G_GNUC_CONST;
 static GList * gmic_qt_query(GimpPlugIn * plug_in);
 static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gchar * name);
 
-#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+#if !GIMP_CHECK_VERSION(2, 99, 6)
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data);
 #else
+#if !GIMP_CHECK_VERSION(2, 99, 19)
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, const GimpValueArray * args, gpointer run_data);
+#else
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, GimpProcedureConfig *config, gpointer run_data);
+#endif
 #endif
 
 G_DEFINE_TYPE(GmicQtPlugin, gmic_qt, GIMP_TYPE_PLUG_IN)
@@ -142,7 +144,7 @@ namespace GmicQtHost
 {
 const QString ApplicationName = QString("GIMP %1.%2").arg(GIMP_MAJOR_VERSION).arg(GIMP_MINOR_VERSION);
 const char * const ApplicationShortname = GMIC_QT_XSTRINGIFY(GMIC_HOST);
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
 const bool DarkThemeIsDefault = false;
 #else
 const bool DarkThemeIsDefault = true;
@@ -157,7 +159,7 @@ _GimpImagePtr gmic_qt_gimp_image_id;
 gmic_library::gmic_image<int> inputLayerDimensions;
 std::vector<_GimpLayerPtr> inputLayers;
 
-#if (GIMP_MAJOR_VERSION >= 3 || GIMP_MINOR_VERSION > 8) && !defined(GIMP_NORMAL_MODE)
+#if GIMP_CHECK_VERSION(2, 9, 0) && !defined(GIMP_NORMAL_MODE)
 typedef GimpLayerMode GimpLayerModeEffects;
 #define GIMP_NORMAL_MODE GIMP_LAYER_MODE_NORMAL
 const QMap<QString, GimpLayerModeEffects> BlendingModesMap = {{QString("alpha"), GIMP_LAYER_MODE_NORMAL},
@@ -439,7 +441,7 @@ void showMessage(const char * message)
 
 void applyColorProfile(gmic_library::gmic_image<float> & image)
 {
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
   unused(image);
 // SWAP RED<->GREEN CHANNELS : FOR TESTING PURPOSE ONLY!
 //  cimg_forXY(image,x,y) {
@@ -675,7 +677,7 @@ void getCroppedImages(gmic_list<float> & images, gmic_list<char> & imageNames, d
     QString name = QString("mode(%1),opacity(%2),pos(%3,%4),name(%5)").arg(blendingMode2String(blendMode)).arg(opacity).arg(xPos).arg(yPos).arg(noParenthesisName);
     QByteArray ba = name.toUtf8();
     gmic_image<char>::string(ba.constData()).move_to(imageNames[l]);
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
     GimpDrawable * drawable = gimp_drawable_get(inputLayers[l]);
     GimpPixelRgn region;
     gimp_pixel_rgn_init(&region, drawable, ix, iy, iw, ih, false, false);
@@ -773,7 +775,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
         gmic_library::gmic_image<gmic_pixel_type> & img = images[p];
         GmicQt::calibrateImage(img, inputLayerDimensions(p, 3), false);
         if (gimp_drawable_mask_intersect(_GIMP_DRAWABLE(inputLayers[p]), &rgn_x, &rgn_y, &rgn_width, &rgn_height)) {
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
           GimpDrawable * drawable = gimp_drawable_get(inputLayers[p]);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, rgn_x, rgn_y, rgn_width, rgn_height, true, true);
@@ -799,7 +801,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           if (!is_selection) {
             gimp_layer_set_offsets(inputLayers[p], layer_posx, layer_posy);
           } else {
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
             gimp_layer_translate(inputLayers[p], 0, 0);
 #else
             gimp_item_transform_translate(_GIMP_ITEM(inputLayers[p]), 0, 0);
@@ -854,7 +856,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, _GIMP_NULL_LAYER, layer_pos + p);
 
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
@@ -937,7 +939,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           }
           gimp_image_insert_layer(gmic_qt_gimp_image_id, layer_id, _GIMP_NULL_LAYER, p);
 
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
@@ -994,7 +996,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
     const unsigned int max_width = (unsigned int)bottom_right.x;
     const unsigned int max_height = (unsigned int)bottom_right.y;
     if (_GIMP_LAYER_IS_NOT_NULL(active_layer_id)) {
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
       _GimpImagePtr nimage_id = gimp_image_new(max_width, max_height, max_spectrum <= 2 ? GIMP_GRAY : GIMP_RGB);
 #else
       _GimpImagePtr nimage_id = gimp_image_new_with_precision(max_width, max_height, max_spectrum <= 2 ? GIMP_GRAY : GIMP_RGB, gimp_image_get_precision(gmic_qt_gimp_image_id));
@@ -1029,7 +1031,7 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
           }
           gimp_image_insert_layer(nimage_id, layer_id, _GIMP_NULL_LAYER, p);
 
-#if GIMP_VERSION_LTE(2, 8)
+#if !GIMP_CHECK_VERSION(2, 9, 0)
           GimpDrawable * drawable = gimp_drawable_get(layer_id);
           GimpPixelRgn region;
           gimp_pixel_rgn_init(&region, drawable, 0, 0, drawable->width, drawable->height, true, true);
@@ -1061,13 +1063,13 @@ void outputImages(gmic_list<gmic_pixel_type> & images, const gmic_list<char> & i
 
 } // namespace GmicQtHost
 
-#if GIMP_VERSION_LTE(2, 98)
+#if !GIMP_CHECK_VERSION(2, 99, 0)
 /*
  * 'Run' function, required by the GIMP plug-in API.
  */
 void gmic_qt_run(const gchar * /* name */, gint /* nparams */, const GimpParam * param, gint * nreturn_vals, GimpParam ** return_vals)
 {
-#if (GIMP_MAJOR_VERSION == 2 && GIMP_MINOR_VERSION > 8) || (GIMP_MAJOR_VERSION >= 3)
+#if GIMP_CHECK_VERSION(2, 9, 0)
   gegl_init(nullptr, nullptr);
   gimp_plugin_enable_precision();
 #endif
@@ -1158,10 +1160,14 @@ static GList * gmic_qt_query(GimpPlugIn * plug_in)
 /*
  * 'Run' function, required by the GIMP plug-in API.
  */
-#if (GIMP_MAJOR_VERSION <= 2) && (GIMP_MINOR_VERSION <= 99) && (GIMP_MICRO_VERSION < 6)
+#if !GIMP_CHECK_VERSION(2, 99, 7)
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, GimpDrawable * drawable, const GimpValueArray * args, gpointer run_data)
 #else
+#if !GIMP_CHECK_VERSION(2, 99, 19)
 static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, const GimpValueArray * args, gpointer run_data)
+#else
+static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_mode, GimpImage * image, gint n_drawables, GimpDrawable ** drawables, GimpProcedureConfig *config, gpointer run_data)
+#endif
 #endif
 {
   gegl_init(NULL, NULL);
@@ -1187,9 +1193,24 @@ static GimpValueArray * gmic_qt_run(GimpProcedure * procedure, GimpRunMode run_m
     break;
   case GIMP_RUN_NONINTERACTIVE:
     gmic_qt_gimp_image_id = image;
+#if !GIMP_CHECK_VERSION(2, 99, 19)
     pluginParameters.command = g_value_get_string(gimp_value_array_index(args, 2));
     pluginParameters.inputMode = static_cast<GmicQt::InputMode>(g_value_get_int(gimp_value_array_index(args, 0)) + (int)GmicQt::InputMode::NoInput);
     pluginParameters.outputMode = static_cast<GmicQt::OutputMode>(g_value_get_int(gimp_value_array_index(args, 1)) + (int)GmicQt::OutputMode::InPlace);
+#else
+    char *command;
+    int inputMode;
+    int outputMode;
+    g_object_get(config,
+		 "command", &command,
+		 "input", &inputMode,
+		 "output", &outputMode,
+		 NULL);
+    pluginParameters.command = command;
+    pluginParameters.inputMode = (GmicQt::InputMode)inputMode;
+    pluginParameters.outputMode = (GmicQt::OutputMode)outputMode;
+    g_free(command);
+#endif
     GmicQt::run(GmicQt::UserInterfaceMode::Silent, //
                 pluginParameters,                  //
                 std::list<GmicQt::InputMode>(),    //
@@ -1224,6 +1245,32 @@ static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gcha
                                    "S\303\251bastien Fourey", // copyright
                                    "2017");                   // date
 
+#if GIMP_CHECK_VERSION(2, 99, 19)
+   gimp_procedure_add_int_argument(procedure,
+				   "input",                                                                                                                                   // name
+				   "input",                                                                                                                                   // nick
+				   "Input layers mode, when non-interactive (0=none, 1=active, 2=all, 3=active & below, 4=active & above, 5=all visibles, 6=all invisibles)", // blurb
+				   0,                                                                                                                                         // min
+				   6,                                                                                                                                         // max
+				   0,                                                                                                                                         // default
+				   G_PARAM_READWRITE);                                                                                                                        // flags
+
+    gimp_procedure_add_int_argument(procedure,
+				    "output",                                                                                      // name
+				    "output",                                                                                      // nick
+				    "Output mode, when non-interactive (0=in place,1=new layers,2=new active layers,3=new image)", // blurb
+				    0,                                                                                             // min
+				    3,                                                                                             // max
+				    0,                                                                                             // default
+				    G_PARAM_READWRITE);                                                                            // flags
+
+    gimp_procedure_add_string_argument(procedure,
+				       "command",                                    // name
+				       "command",                                    // nick
+				       "G'MIC command string, when non-interactive", // blurb
+				       "",                                           // default
+				       G_PARAM_READWRITE);                           // flags
+#else
     GIMP_PROC_ARG_INT(procedure,
                       "input",                                                                                                                                   // name
                       "input",                                                                                                                                   // nick
@@ -1248,6 +1295,7 @@ static GimpProcedure * gmic_qt_create_procedure(GimpPlugIn * plug_in, const gcha
                          "G'MIC command string, when non-interactive", // blurb
                          "",                                           // default
                          G_PARAM_READWRITE);                           // flags
+#endif
   }
 
   return procedure;
