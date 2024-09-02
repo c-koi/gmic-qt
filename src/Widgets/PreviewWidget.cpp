@@ -465,35 +465,35 @@ void PreviewWidget::paintSplittedPreview(QPainter & painter)
   case PreviewType::ForwardHorizontal:
     paintOriginalImage(painter);
     painter.save();
-    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    painter.setClipRect(position.left(), y, position.width(), 1 + position.bottom() - y);
     paintPreview(painter);
     painter.restore();
     break;
   case PreviewType::ForwardVertical:
     paintOriginalImage(painter);
     painter.save();
-    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    painter.setClipRect(x, position.top(), 1 + position.right() - x, position.height());
     paintPreview(painter);
     painter.restore();
     break;
   case PreviewType::BackwardHorizontal:
     paintPreview(painter);
     painter.save();
-    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    painter.setClipRect(position.left(), y, position.width(), 1 + position.bottom() - y);
     paintOriginalImage(painter);
     painter.restore();
     break;
   case PreviewType::BackwardVertical:
     paintPreview(painter);
     painter.save();
-    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    painter.setClipRect(x, position.top(), 1 + position.right() - x, position.height());
     paintOriginalImage(painter);
     painter.restore();
     break;
   case PreviewType::DuplicateTop:
     paintOriginalImage(painter);
     painter.save();
-    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    painter.setClipRect(position.left(), y, position.width(), 1 + position.bottom() - y);
     painter.translate(QPoint(0, y - position.top()));
     paintPreview(painter);
     painter.restore();
@@ -509,7 +509,7 @@ void PreviewWidget::paintSplittedPreview(QPainter & painter)
   case PreviewType::DuplicateLeft:
     paintOriginalImage(painter);
     painter.save();
-    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    painter.setClipRect(x, position.top(), 1 + position.right() - x, position.height());
     painter.translate(QPoint(x - position.left(), 0));
     paintPreview(painter);
     painter.restore();
@@ -517,7 +517,7 @@ void PreviewWidget::paintSplittedPreview(QPainter & painter)
   case PreviewType::DuplicateRight:
     paintOriginalImage(painter);
     painter.save();
-    painter.setClipRect(position.left(), 0, x, position.height());
+    painter.setClipRect(position.left(), position.top(), x, position.height());
     painter.translate(QPoint(x - position.right(), 0));
     paintPreview(painter);
     painter.restore();
@@ -530,7 +530,7 @@ void PreviewWidget::paintSplittedPreview(QPainter & painter)
     painter.translate(QPoint(0, (y - position.bottom()) / 2));
     paintOriginalImage(painter);
     painter.restore();
-    painter.setClipRect(0, y, position.width(), 1 + position.bottom() - y);
+    painter.setClipRect(position.left(), y, position.width(), 1 + position.bottom() - y);
     painter.translate(QPoint(0, (y - position.top()) / 2));
     paintPreview(painter);
     painter.restore();
@@ -543,7 +543,7 @@ void PreviewWidget::paintSplittedPreview(QPainter & painter)
     painter.translate(QPoint((x - position.right()) / 2, 0));
     paintOriginalImage(painter);
     painter.restore();
-    painter.setClipRect(x, 0, 1 + position.right() - x, position.height());
+    painter.setClipRect(x, position.top(), 1 + position.right() - x, position.height());
     painter.translate(QPoint((x - position.left()) / 2, 0));
     paintPreview(painter);
     painter.restore();
