@@ -1516,6 +1516,7 @@ void MainWindow::selectPreviewType(PreviewWidget::PreviewType previewType)
 
 void MainWindow::switchPreviewType()
 {
+  ui->cbPreview->setChecked(true);
   if (ui->previewWidget->previewType() == PreviewWidget::PreviewType::Full) {
     selectPreviewType(ui->previewWidget->savedPreviewType());
   } else {
