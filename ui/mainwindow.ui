@@ -290,7 +290,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>271</width>
+                 <width>227</width>
                  <height>397</height>
                 </rect>
                </property>
@@ -415,7 +415,7 @@
           <item>
            <widget class="QComboBox" name="cbPreviewType">
             <property name="toolTip">
-             <string>Preview type</string>
+             <string>Preview type (Ctrl+Shift+P)</string>
             </property>
            </widget>
           </item>

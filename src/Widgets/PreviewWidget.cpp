@@ -75,10 +75,12 @@ PreviewWidget::PreviewWidget(QWidget * parent) : QWidget(parent)
   _xPreviewSplit = 0.5f;
   _yPreviewSplit = 0.5f;
   _draggingMode = DraggingMode::Inactive;
+  _savedPreviewType = static_cast<PreviewType>(QSettings().value(PREVIEW_SPLITTER_KEY, int(PreviewType::ForwardVertical)).toInt());
 }
 
 PreviewWidget::~PreviewWidget()
 {
+  QSettings().setValue(PREVIEW_SPLITTER_KEY, static_cast<int>(_savedPreviewType));
   delete _image;
   delete _savedPreview;
 }
@@ -1201,6 +1203,9 @@ void PreviewWidget::onPreviewToggled(bool on)
 void PreviewWidget::setPreviewType(PreviewType previewType)
 {
   _previewType = previewType;
+  if (previewType != PreviewType::Full) {
+    _savedPreviewType = previewType;
+  }
   setMouseTracking(previewType != PreviewType::Full);
   update();
 }
@@ -1230,6 +1235,16 @@ void PreviewWidget::setZoomConstraint(const ZoomConstraint & constraint)
 ZoomConstraint PreviewWidget::zoomConstraint() const
 {
   return _zoomConstraint;
+}
+
+PreviewWidget::PreviewType PreviewWidget::previewType() const
+{
+  return _previewType;
+}
+
+PreviewWidget::PreviewType PreviewWidget::savedPreviewType() const
+{
+  return _savedPreviewType;
 }
 
 void PreviewWidget::invalidateSavedPreview()

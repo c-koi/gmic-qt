@@ -101,6 +101,9 @@ public:
     CheckeredInverse
   };
 
+  PreviewType previewType() const;
+  PreviewType savedPreviewType() const;
+
 protected:
   void resizeEvent(QResizeEvent *) override;
   void timerEvent(QTimerEvent *) override;
@@ -242,6 +245,7 @@ private:
   QPoint _movedKeypointOrigin;
   unsigned long _keypointTimestamp;
   PreviewType _previewType;
+  PreviewType _savedPreviewType;
   float _xPreviewSplit;
   float _yPreviewSplit;
   static const int _SplitterButtonWidth = 10;

@@ -638,32 +638,32 @@ Cannot retrieve default parameters.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="372"/>
+        <location filename="../src/MainWindow.cpp" line="376"/>
         <source>Update completed</source>
         <translation>更新が完了しました</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="372"/>
-        <location filename="../src/MainWindow.cpp" line="374"/>
-        <location filename="../src/MainWindow.cpp" line="505"/>
+        <location filename="../src/MainWindow.cpp" line="376"/>
+        <location filename="../src/MainWindow.cpp" line="378"/>
+        <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Filter definitions have been updated.</source>
         <translation>フィルタ定義の更新が完了しました。</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="377"/>
+        <location filename="../src/MainWindow.cpp" line="381"/>
         <source>No download was needed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="423"/>
+        <location filename="../src/MainWindow.cpp" line="427"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="431"/>
-        <location filename="../src/MainWindow.cpp" line="458"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
+        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -674,26 +674,26 @@ Cannot retrieve default parameters.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="444"/>
+        <location filename="../src/MainWindow.cpp" line="448"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="923"/>
+        <location filename="../src/MainWindow.cpp" line="927"/>
         <source>[Elapsed time: %1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="443"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="448"/>
+        <location filename="../src/MainWindow.cpp" line="452"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -702,52 +702,52 @@ Command found for this path : %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="501"/>
+        <location filename="../src/MainWindow.cpp" line="505"/>
         <source>Filters update could not be achieved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="642"/>
+        <location filename="../src/MainWindow.cpp" line="646"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>以下のエラーにより&lt;br/&gt;更新に失敗しました:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="648"/>
+        <location filename="../src/MainWindow.cpp" line="652"/>
         <source>Update error</source>
         <translation>更新エラー</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="855"/>
+        <location filename="../src/MainWindow.cpp" line="859"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1474"/>
+        <location filename="../src/MainWindow.cpp" line="1478"/>
         <source>Waiting for cancelled jobs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1328"/>
+        <location filename="../src/MainWindow.cpp" line="1332"/>
         <source>Import faves</source>
         <translation>お気に入りをインポート</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1328"/>
+        <location filename="../src/MainWindow.cpp" line="1332"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>以下のファイルからお気に入りをインポートしますか？&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1331"/>
+        <location filename="../src/MainWindow.cpp" line="1335"/>
         <source>Don&apos;t ask again</source>
         <translation>次回から確認しない</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1450"/>
+        <location filename="../src/MainWindow.cpp" line="1454"/>
         <source>Confirmation</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1450"/>
+        <location filename="../src/MainWindow.cpp" line="1454"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>G&apos;MIC コマンドが実行中です。&lt;br&gt;本当にプラグインを終了しますか？</translation>
     </message>
@@ -1085,6 +1085,11 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <translation>インターネット</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="418"/>
+        <source>Preview type (Ctrl+Shift+P)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="509"/>
         <source>&amp;Settings...</source>
         <translation type="unfinished"></translation>
@@ -1116,11 +1121,6 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <location filename="../ui/mainwindow.ui" line="411"/>
         <source>Preview</source>
         <translation>プレビュー</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="418"/>
-        <source>Preview type</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="558"/>

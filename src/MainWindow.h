@@ -33,6 +33,7 @@
 #include <QWidget>
 #include "Common.h"
 #include "GmicProcessor.h"
+#include "Widgets/PreviewWidget.h"
 class QResizeEvent;
 
 namespace Ui
@@ -147,6 +148,8 @@ private:
   static QString screenGeometries();
   void updateFilters(bool internet);
   void abortProcessingOnCloseRequest();
+  void selectPreviewType(PreviewWidget::PreviewType previewType);
+  void switchPreviewType();
   enum class ProcessingAction
   {
     NoAction,

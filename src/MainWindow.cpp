@@ -123,6 +123,10 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
   closeShortcut->setContext(Qt::ApplicationShortcut);
   connect(closeShortcut, &QShortcut::activated, this, &MainWindow::close);
 
+  QShortcut * previewTypeShortcut = new QShortcut(QKeySequence("Ctrl+Shift+P"), this);
+  previewTypeShortcut->setContext(Qt::ApplicationShortcut);
+  connect(previewTypeShortcut, &QShortcut::activated, this, &MainWindow::switchPreviewType);
+
   ui->tbRenameFave->setToolTip(tr("Rename fave"));
   ui->tbRenameFave->setEnabled(false);
   ui->tbRemoveFave->setToolTip(tr("Remove fave"));
@@ -1488,6 +1492,35 @@ void MainWindow::abortProcessingOnCloseRequest()
 
   _processor.detachAllUnfinishedAbortedThreads(); // Keep only one thread in list after next line
   _processor.cancel();
+}
+
+void MainWindow::selectPreviewType(PreviewWidget::PreviewType previewType)
+{
+
+  if (ui->previewWidget->previewType() == PreviewWidget::PreviewType::Full) {
+    for (int index = 0; index < ui->cbPreviewType->count(); ++index) {
+      if (previewType == static_cast<PreviewWidget::PreviewType>(ui->cbPreviewType->itemData(index).toInt())) {
+        ui->cbPreviewType->setCurrentIndex(index);
+        return;
+      }
+    }
+  } else {
+    for (int index = 0; index < ui->cbPreviewType->count(); ++index) {
+      if (PreviewWidget::PreviewType::Full == static_cast<PreviewWidget::PreviewType>(ui->cbPreviewType->itemData(index).toInt())) {
+        ui->cbPreviewType->setCurrentIndex(index);
+        return;
+      }
+    }
+  }
+}
+
+void MainWindow::switchPreviewType()
+{
+  if (ui->previewWidget->previewType() == PreviewWidget::PreviewType::Full) {
+    selectPreviewType(ui->previewWidget->savedPreviewType());
+  } else {
+    selectPreviewType(PreviewWidget::PreviewType::Full);
+  }
 }
 
 void MainWindow::onCancelClicked()

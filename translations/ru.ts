@@ -652,24 +652,24 @@ Cannot retrieve default parameters.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="372"/>
+        <location filename="../src/MainWindow.cpp" line="376"/>
         <source>Update completed</source>
         <translation>Обновление завершено</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="372"/>
-        <location filename="../src/MainWindow.cpp" line="374"/>
-        <location filename="../src/MainWindow.cpp" line="505"/>
+        <location filename="../src/MainWindow.cpp" line="376"/>
+        <location filename="../src/MainWindow.cpp" line="378"/>
+        <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Filter definitions have been updated.</source>
         <translation>Определения фильтров обновлены.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="377"/>
+        <location filename="../src/MainWindow.cpp" line="381"/>
         <source>No download was needed.</source>
         <translation>Загрузка не потребовалась.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="423"/>
+        <location filename="../src/MainWindow.cpp" line="427"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
@@ -678,8 +678,8 @@ Path: %1</source>
 Путь: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="431"/>
-        <location filename="../src/MainWindow.cpp" line="458"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
+        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Error parsing filter parameters definition for filter:
 
 %1
@@ -696,7 +696,7 @@ Cannot retrieve default parameters.
 %2</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="444"/>
+        <location filename="../src/MainWindow.cpp" line="448"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
@@ -705,12 +705,12 @@ Command: %1</source>
 Команда: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="923"/>
+        <location filename="../src/MainWindow.cpp" line="927"/>
         <source>[Elapsed time: %1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="443"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
@@ -719,7 +719,7 @@ Command: %1</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="448"/>
+        <location filename="../src/MainWindow.cpp" line="452"/>
         <source>Plugin was called with a command that does not match the provided path:
 
 Path: %1
@@ -732,52 +732,52 @@ Command found for this path : %3</source>
 Команда, найденная по этому пути: %3</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="501"/>
+        <location filename="../src/MainWindow.cpp" line="505"/>
         <source>Filters update could not be achieved</source>
         <translation>Не удалось обновить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="642"/>
+        <location filename="../src/MainWindow.cpp" line="646"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
         <translation>Не удалось обновить&lt;br/&gt;по следующим причинам:&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="648"/>
+        <location filename="../src/MainWindow.cpp" line="652"/>
         <source>Update error</source>
         <translation>Ошибка обновления</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="855"/>
+        <location filename="../src/MainWindow.cpp" line="859"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1474"/>
+        <location filename="../src/MainWindow.cpp" line="1478"/>
         <source>Waiting for cancelled jobs...</source>
         <translation>В ожидании отменённых заданий...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1328"/>
+        <location filename="../src/MainWindow.cpp" line="1332"/>
         <source>Import faves</source>
         <translation>Импорт избранных</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1328"/>
+        <location filename="../src/MainWindow.cpp" line="1332"/>
         <source>Do you want to import faves from file below?&lt;br/&gt;%1</source>
         <translation>Вы хотите импортировать избранные из следующего файла?&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1331"/>
+        <location filename="../src/MainWindow.cpp" line="1335"/>
         <source>Don&apos;t ask again</source>
         <translation>Больше не спрашивать</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1450"/>
+        <location filename="../src/MainWindow.cpp" line="1454"/>
         <source>Confirmation</source>
         <translation>Подтвердить</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1450"/>
+        <location filename="../src/MainWindow.cpp" line="1454"/>
         <source>A gmic command is running.&lt;br&gt;Do you really want to close the plugin?</source>
         <translation>Обрабатывается команда gmic.&lt;br&gt;Вы действительно хотите закрыть плагин?</translation>
     </message>
@@ -1115,6 +1115,11 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <translation>Интернет</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="418"/>
+        <source>Preview type (Ctrl+Shift+P)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="509"/>
         <source>&amp;Settings...</source>
         <translation type="unfinished"></translation>
@@ -1146,11 +1151,6 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <location filename="../ui/mainwindow.ui" line="411"/>
         <source>Preview</source>
         <translation>Предпросмотр</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="418"/>
-        <source>Preview type</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="558"/>

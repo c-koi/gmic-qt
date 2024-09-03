@@ -54,6 +54,7 @@ const char WarningPrefix = '!';
 #define ENABLE_FILTER_TRANSLATION "Config/FilterTranslation"
 #define LANGUAGE_CODE_KEY "Config/LanguageCode"
 #define HIGHDPI_KEY "Config/HighDPIEnabled"
+#define PREVIEW_SPLITTER_KEY "Config/PreviewSplitterType"
 #define INTERNET_NEVER_UPDATE_PERIODICITY std::numeric_limits<int>::max()
 #define ONE_DAY_HOURS (24)
 #define ONE_WEEK_HOURS (7 * 24)
