@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Original Russian translation by Alex Mozheiko -->
-
 <!DOCTYPE TS>
 <TS version="2.1" language="ru">
 <context>
@@ -84,7 +81,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="209"/>
         <source>Use native file dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать собственный файловый диалог</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="216"/>
@@ -99,7 +96,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="239"/>
         <source>Filter sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтр источников</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="244"/>
@@ -134,7 +131,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="291"/>
         <source>Notify when scheduled update fails</source>
-        <translation>Уведомлять в случае неудачи запланированного обновления</translation>
+        <translation>Уведомлять о неудаче запланированного обновления</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="333"/>
@@ -163,7 +160,7 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="45"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="51"/>
@@ -243,7 +240,7 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Check to use Native/OS file dialog, uncheck to use Qt&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>Установите флажок, чтобы использовать диалоговое окно вашей ос, снимите флажок, чтобы использовать Qt</translation>
     </message>
 </context>
 <context>
@@ -537,7 +534,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Randomize parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Рандомизировать параметры</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
@@ -584,72 +581,72 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="238"/>
         <source>Force &amp;quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Принудительно &amp;выйти</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="242"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>Полный</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="243"/>
         <source>Forward Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Вперёд по горизонтали</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="244"/>
         <source>Forward Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Вверх по вертикали</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="245"/>
         <source>Backward Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Назад по горизонтали</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="246"/>
         <source>Backward Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Вниз по вертикали</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="247"/>
         <source>Duplicate Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать верх</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="248"/>
         <source>Duplicate Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать влево</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="249"/>
         <source>Duplicate Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать вниз</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="250"/>
         <source>Duplicate Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать вправо</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="251"/>
         <source>Duplicate Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать горизонтально</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="252"/>
         <source>Duplicate Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать вертикально</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="253"/>
         <source>Checkered</source>
-        <translation type="unfinished"></translation>
+        <translation>В шахматном порядке</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="254"/>
         <source>Checkered Inverse</source>
-        <translation type="unfinished"></translation>
+        <translation>Инверсия в шахматном порядке</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="376"/>
@@ -707,7 +704,7 @@ Command: %1</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="927"/>
         <source>[Elapsed time: %1]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Прошедшее время: %1]</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="443"/>
@@ -805,12 +802,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="126"/>
         <source>[Processing 88:00:00.888 | 888.9 GiB]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Обработка 88:00:00.888 | 888.9 Гб]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="128"/>
         <source>[Processing 88:00:00.888]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Обработка 88:00:00.888]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="160"/>
@@ -821,12 +818,12 @@ Command found for this path : %3</source>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="221"/>
         <source>[Processing %1 | %2]</source>
-        <translation>[Обрабатывается %1 | %2]</translation>
+        <translation>[Обрабатка %1 | %2]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="223"/>
         <source>[Processing %1]</source>
-        <translation>[Обрабатывается %1]</translation>
+        <translation>[Обработка %1]</translation>
     </message>
 </context>
 <context>
@@ -870,74 +867,76 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="58"/>
         <source>Move source up</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить источник вверх</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="60"/>
         <source>Move source down</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить источник вниз</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="62"/>
         <source>Add local file (dialog)</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить локальный файл (диалоговое окно)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="64"/>
         <source>Reset filter sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить источники фильтра</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="80"/>
         <source>Macros: $HOME %USERPROFILE% $VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>Макросы: $HOME %USERPROFILE% $VERSION</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="102"/>
         <source>Environment variables (e.g. %USERPROFILE% or %HOMEDIR%) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Переменные среды (например, %USERPROFILE% или %HOMEDIR%) заменяются в исходных текстах.
+ВЕРСИЯ также является предопределенной переменной, которая обозначает номер версии GMIC (в настоящее время %1).</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="82"/>
         <source>Macros: $HOME $VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>Макросы: $HOME $ $VERSION</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="53"/>
         <source>Remove source (Delete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить источник (Delete)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="85"/>
         <source>Disable</source>
-        <translation type="unfinished"></translation>
+        <translation>Отключить</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="86"/>
         <source>Enable without updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить без обновлений</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="87"/>
         <source>Enable with updates (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить с обновлениями (рекомендуется)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="106"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Переменные среды (например, $HOME или ${HOME} для вашего домашнего каталога) подставляются в исходные тексты.
+ВЕРСИЯ также является предопределенной переменной, которая обозначает номер версии GMIC (в настоящее время%1).</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="111"/>
         <source>New source</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый источник</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="192"/>
         <source>Select a file</source>
-        <translation type="unfinished">Выбрать файл</translation>
+        <translation>Выбрать файл</translation>
     </message>
 </context>
 <context>
@@ -1117,12 +1116,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/mainwindow.ui" line="418"/>
         <source>Preview type (Ctrl+Shift+P)</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип предпросмотра (Ctrl+Shift+P)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="509"/>
         <source>&amp;Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Настройки...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="525"/>
@@ -1155,7 +1154,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/mainwindow.ui" line="558"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Закрыть</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="571"/>
@@ -1313,27 +1312,27 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Misc.cpp" line="337"/>
         <source>List %1 cannot be merged considering these runs: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Список%1 не может быть объединен с учетом следующих запусков:%2</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="432"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ГБ</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="434"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 МБ</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="436"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 КБ</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="438"/>
         <source>%1 B</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Б</translation>
     </message>
 </context>
 <context>
@@ -1349,22 +1348,22 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/sourceswidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">GMIC</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="136"/>
         <source>Official filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Официальные фильтры:</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="22"/>
         <source>File / URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл / URL</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="32"/>
         <source>Add new</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новый</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="39"/>
@@ -1373,12 +1372,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <location filename="../ui/sourceswidget.ui" line="85"/>
         <location filename="../ui/sourceswidget.ui" line="92"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="118"/>
         <source>Macros: $HOME $VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>Макрос: $HOME $VERSION</translation>
     </message>
 </context>
 <context>
@@ -1409,7 +1408,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="122"/>
         <source>%1 file (*.%2 *.%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 файл (*.%2 *.%3)</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="148"/>
