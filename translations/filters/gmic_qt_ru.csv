@@ -43,36 +43,36 @@
 1 Levels , 1 Уровни
 1.  Plasma Texture [Discards Input Image] , 1. Плазменная текстура [удаляет входное изображение].
 10.  Quadtree Max Precision , 10. Квадтри Макс Точность
-10th , 10-ый
-10th Color , 10-ый цвет
+10th , 10-й
+10th Color , 10-й цвет
 11.  Quadtree Min Homogeneity , 11. Четырёхугольная мин однородность
 11th , 11-й
 12 Colors , 12 Цвета
 12 Grays , 12 Серые
 12.  Quadtree Max Homogeneity , 12. Четырёхугольная макс однородность
 125 Keypoints , 125 Ключевые точки
-12th , 12-ый
+12th , 12-й
 13. Noise Type , 13. Тип шума
 13th , 13-й
 14. Minimum Noise , 14. Минимальный шум
-14th , 14-я
+14th , 14-й
 15. Maximum Noise , 15. Максимальный шум
-15th , 15-ый
+15th , 15-й
 16 Colors , 16 Цвета
 16 Grays , 16 Серые
 16. Noise Channel(s) , 16. Шумовой канал(ы)
-16th , 16-ый
+16th , 16-й
 17. Warp Iterations , 17. Итерации деформации
 18. Warp Intensity , 18. Интенсивность искривления
 180 Deg. , 180 градусов
 19. Warp Offset , 19. Смещение по деформации
-1st , 1-ый
+1st , 1-й
 1st Additional Palette (.Gpl) , 1-я дополнительная палитра (.Gpl)
 1st Color , 1-й цвет
 1st Parameter , 1-й параметр
 1st Text , 1-й Текст
 1st Tone , 1-й Тон
-1st Variance , 1-я Вариант
+1st Variance , 1-й Вариант
 1st X-Coord , 1-й шнур X-Coord
 1st Y-Coord , 1-й Y-корд
 2 Colors , 2 Цвета
@@ -100,7 +100,7 @@
 2nd Parameter , 2-й параметр
 2nd Text , 2-й Текст
 2nd Tone , 2-й Тон
-2nd Variance , 2-я Вариант
+2nd Variance , 2-й Вариант
 2nd X-Coord , 2-й X-корд
 2nd Y-Coord , 2-й Y-корд
 2x Type , 2х Тип
@@ -152,12 +152,12 @@
 4.  Segmentation [No Alpha Channel] , 4. Сегментация [No Alpha Channel]
 4096x4096 Layer , 4096x4096 Слой
 45 Deg. , 45 градусов
-4th , 4-ый
+4th , 4-й
 4th Color , 4-й цвет
 4th Tone , 4-й Тон
 5.  Edge Threshold , 5. Порог кромки
 512x512 Layer , 512x512 Слой
-5th , 5-ый
+5th , 5-й
 5th Color , 5-й цвет
 5th Tone , 5-й Тон
 6.  Smoothness , 6. Гладкость
@@ -170,19 +170,19 @@
 6th Color , 6-й цвет
 6th Tone , 6-й Тон
 7.  Blur , 7. Пятно
-7th , 7-я
+7th , 7-й
 7th Color , 7-й цвет
 7th Tone , 7-й тон
 8 Colors , 8 Цвета
 8 Grays , 8 Серые
 8 Keypoints (RGB Corners) , 8 Ключевые точки (углы RGB)
 8.  Quadtree Pixelisation [No Alpha Channel] , 8. Квадтри пикселизации [Нет альфа-канала]
-8th , 8-я
+8th , 8-й
 8th Color , 8-й цвет
 8th Tone , 8-й тон
 9.  Quadtree Min Precision , 9. Квадтри мин точность
 90 Deg. , 90 градусов.
-9th , 9-ый
+9th , 9-й
 9th Color , 9-й цвет
 [Cyan]MYK , МИК
 A Lot of Cyan , Много сине-зелёного
