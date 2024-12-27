@@ -1529,7 +1529,7 @@ Futuristic Bleak 4 , футуристическая утечка 4
 G'MIC Operator , G'MIC Оператор
 G/M Smoothness , Гладкость зел/пур
 Gain , Получить
-Games & Demos , Игры и демо-версии
+Games & Demos , Игры и демонстрации
 Gamma , Гамма
 Gamma (%) , Гамма (%)
 Gamma Balance , Гамма-баланс
@@ -1537,11 +1537,11 @@ Gamma Compensation , Гамма компенсация
 Gamma Equalizer , Гамма эквалайзер
 Gaussian , гауссов
 Generate Random-Colors Layer , Генерация слоя случайных цветов
-Generic Fuji Astia 100 , Дженерик Fuji Астия 100
-Generic Fuji Provia 100 , Дженерик Fuji Provia 100
-Generic Fuji Velvia 100 , Дженерик Fuji Вельвия 100
-Generic Kodachrome 64 , Дженерик Кодахром 64
-Generic Kodak Ektachrome 100 VS , Дженерик Кодак Эктахром 100 ВС
+Generic Fuji Astia 100 , Generic Fuji Astia 100
+Generic Fuji Provia 100 , Generic Fuji Provia 100
+Generic Fuji Velvia 100 , Generic Fuji Velvia 100
+Generic Kodachrome 64 , Generic Kodachrome 64
+Generic Kodak Ektachrome 100 VS , Generic Kodak Ektachrome 100 VS
 Generic Skin Structure , Общая структура кожи
 Gentle Mode (overrides Minimum Brightness and Minimun Red:Blue Ratio) , Нежный режим (мин. яркость и мин. пропорция красного:синего)
 Geometry , Геометрия
@@ -1891,8 +1891,8 @@ Kodak Ektar 100 , Кодак Эктар 100
 Kodak Elite 100 XPRO , Кодак Элит 100 XPRO
 Kodak Elite Chrome 200 , Хром Кодак Элит 200
 Kodak Elite Chrome 400 , Хром Кодак Элит 400
-Kodak Elite Color 200 , Кодак Элит Цвет 200
-Kodak Elite Color 400 , Кодак Элит Цвет 400
+Kodak Elite Color 200 , Кодак Элит Колор 200
+Kodak Elite Color 400 , Кодак Элит Колор 400
 Kodak Kodachrome 200 , Кодак Кодахром 200
 Kodak Kodachrome 25 , Кодак Кодахром 25
 Kodak Kodachrome 64 , Кодак Кодахром 64
@@ -1954,16 +1954,16 @@ Lab [all] , Лаборатория [все]
 Lab [b-Chrominance] , Лаборатория [б-хромания]
 Lab [Lightness] , Лаборатория [Легкость]
 Landscape , Пейзаж
-Landscape-1 , Ландшафт-1
-Landscape-10 , Ландшафт - 10
+Landscape-1 , Пейзаж-1
+Landscape-10 , Пейзаж-10
 Landscape-2 , Пейзаж-2
-Landscape-3 , Ландшафт-3
-Landscape-4 , Ландшафт-4
-Landscape-5 , Ландшафт-5
-Landscape-6 , Ландшафт-6
-Landscape-7 , Ландшафт-7
-Landscape-8 , Ландшафт - 8
-Landscape-9 , Ландшафт - 9
+Landscape-3 , Пейзаж-3
+Landscape-4 , Пейзаж-4
+Landscape-5 , Пейзаж-5
+Landscape-6 , Пейзаж-6
+Landscape-7 , Пейзаж-7
+Landscape-8 , Пейзаж-8
+Landscape-9 , Пейзаж-9
 Laplacian , Лаплацкий
 Large , Большой
 Large Noise , Большой шум
@@ -2122,8 +2122,8 @@ Lowercase Letters , Нижний регистр Буквы
 Lowlights Crossover Point , Низко освещенная точка пересечения
 Lowres CLUT , Лоурес ЗАКРЫТО
 Lucky 64 , счастливчик 64
-Luma Noise , шум Лумы
-Luminance Factor , фактор яркости
+Luma Noise , Шум Лумы
+Luminance Factor , Фактор яркости
 Luminance Level , Уровень яркости
 Luminance Only , Только яркость
 Luminance Only (Lab) , Только яркость (Лаборатория)
@@ -2946,7 +2946,7 @@ Proportion , Доля
 Protanomaly , Протаномалия
 Protanopia , Протанопия
 Protect Highlights 01 , Защита Highlights 01
-Prussian Blue , берлинская лазурь
+Prussian Blue , Берлинская лазурь
 Pseudo-Gray Dithering , Псевдо-серый дизеринг
 Purple , Фиолетовый
 Purple11 (12) , Фиолетовый11 (12)
@@ -2960,7 +2960,7 @@ Quality , Качество
 Quality (%) , Качество (%)
 Quantization , Количество
 Quantize Colors , Количественные цвета
-Quasi-Gaussian , квази-гаусский
+Quasi-Gaussian , Квази-гаусский
 Quick , Быстрый
 Quick Copyright , Быстрое авторское право
 Quick Enlarge , Быстрое увеличение
@@ -3050,7 +3050,7 @@ Rejected Colors , Отклонённые цвета
 Rejected Mask , Отклонённая маска
 Relative Block Count , Количество относительных блоков
 Relative Size , Относительный размер
-Relative Warping , относительное искажение
+Relative Warping , Относительное искажение
 Release Notes , Информация о выпуске
 Relief , Рельеф
 Relief Amplitude , Амплитуда рельефа
