@@ -1192,11 +1192,11 @@ Edge Threshold (%) , Порог по краям (%)
 Edges , Края
 Edges (%) , Края (%)
 Edges [Animated] , Края [анимированные]
-Edges Offsets , Смещения по краям
+Edges Offsets , Края Смещение
 Edges on Fire , Края в огне
-Edges-0.5 (beware: Memory-Consuming!) , Края - 0.5 (берегись: Память-Потребитель!),,
-Edges-1 (beware: Memory-Consuming!) , Края-1 (остерегайся: Память-Потребляющая!)
-Edges-2 (beware: Memory-Consuming!) , Края-2 (остерегайся: Память-Потребляющая!)
+Edges-0.5 (beware: Memory-Consuming!) , Края - 0.5 (потребляет много памяти)
+Edges-1 (beware: Memory-Consuming!) , Края-1 (потребляет много памяти)
+Edges-2 (beware: Memory-Consuming!) , Края-2 (потребляет много памяти)
 Edgy Ember , Эдди Эмбер
 Effect Strength , Прочность эффекта
 Effect X-Axis Scaling , Эффект масштабирования по оси X
