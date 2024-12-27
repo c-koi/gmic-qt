@@ -166,7 +166,7 @@
 60's (faded) , 60-е годы (потускнело)
 64 (Faster) , 64 (Быстрее)
 64 Keypoints , 64 Ключевые точки
-67.5 Deg. ,67.5 градусов,,
+67.5 Deg. ,67.5 градусов
 6th , шестой
 6th Color , 6-й цвет
 6th Tone , 6-й Тон
@@ -230,9 +230,9 @@ Action #6 , Действие №6
 Action #7 , Действие №7
 Action #8 , Действие №8
 Action #9 , Действие №9
-Action Magenta 01 ," Акция ""Пурпурный 01"
+Action Magenta 01 , Действие Пурпурный 01"
 Action Red 01 , Действие Красный 01
-Activate 'Pencil Smoother' ," Активируйте ""Карандаш сглаживания""."
+Activate 'Pencil Smoother' , Активировать "Карандаш сглаживания"
 Activate Color Enhancement , Активировать улучшение цвета
 Activate Colors Geometric Shapes , Активировать цвета геометрических форм
 Activate Custom Filter , Активировать пользовательский фильтр
@@ -241,19 +241,19 @@ Activate Mirror , Активировать зеркало
 Activate Pink Elephants , Активировать розовых слонов
 Activate Second Direction , Активировать второе направление
 Activate Shakes , Активировать коктейли
-Activate Slice 1 , Активировать ломтик 1
-Activate Slice 2 , Активировать ломтик 2
-Activate Slice 3 , Активировать ломтик 3
-Activate Slice 4 , Активировать ломтик 4
+Activate Slice 1 , Активировать Срез 1
+Activate Slice 2 , Активировать Срез 2
+Activate Slice 3 , Активировать Срез 3
+Activate Slice 4 , Активировать Срез 4
 Activer Symmetrizoscope , Активерный симметризоскоп
 Adaptive , Адаптивный сайт
 Add , Добавить
-Add 1px Outline , Добавить 1px Очертание
+Add 1px Outline , Добавить 1пикс контур
 Add Alpha Channels to Detail Scale Layers , Добавить альфа-каналы в слои деталей шкалы
 Add as a New Layer , Добавить как новый слой
-Add Chalk Highlights , Добавить мелом Основные моменты
+Add Chalk Highlights , Добавить меловые блики
 Add Color Background , Добавить цветной фон
-Add Comment Area in HTML Page , Добавить область комментариев в HTML Page
+Add Comment Area in HTML Page , Добавить область комментариев в HTML
 Add Grain , Добавить зерно
 Add Image Label , Добавить ярлык изображения
 Add Painter's Touch , Добавить прикосновение художника
@@ -264,7 +264,7 @@ Additive , Добавочный сайт
 Adjust Background Reconstruction , Настроить фоновую реконструкцию
 Adventure 1453 , Приключение 1453
 Agfa Vista 200 , Агфа-Виста 200
-Aggressive Highlights Recovery 5 , Агрессивные моменты Восстановление 5
+Aggressive Highlights Recovery 5 , Агрессивное восстановление бликов
 Alex Jordan (81) , Алекс Джордан (81)
 Algorithm , Алгоритм
 Aliasing , Псевдоожижение
@@ -406,14 +406,14 @@ Axis , Ось
 Azimuth , Азимут
 Azrael 93 , Азраиль 93
 B&W , КРОВАТЬ И НОЧЬ
-B&W Pencil [Animated] , Чёрно-белый карандаш [анимированный]
+B&W Pencil [Animated] , ч/б карандаш [анимированный]
 B&W Photograph , ч/б фотография
-B&W Stencil , трафаретная печать
-B&W Stencil [Animated] , Трафарет по трафарету B&W [анимированный]
-B-Color Factor , Коэффициент B-цвета
-B-Color Shift , Сдвиг цвета B
-B-Color Smoothness , Гладкость цвета B
-B-Component , B-компонент
+B&W Stencil , ч/б трафарет
+B&W Stencil [Animated] , ч/б трафарет [анимированный]
+B-Color Factor , Коэффициент Син-цвета
+B-Color Shift , Сдвиг цвета Син
+B-Color Smoothness , Гладкость цвета Син
+B-Component , Син-компонент
 Background , Справочная информация
 Background Color , Цвет фона
 Background Intensity , Интенсивность фона
@@ -1713,7 +1713,7 @@ Horizontal Stripes , горизонтальные полосы
 Horizontal Tiles , горизонтальная плитка
 Horizontal Warp Only , Только искривление по горизонтали
 Horror Blue , Ужасная синева
-Hot , Горячий сайт
+Hot , Горячий
 Hot (256) , Горячий (256)
 Hough Sketch , Хоф Скетч
 Hough Transform , преобразование Хоуфа
@@ -1730,14 +1730,14 @@ HSV [Value] , HSV [Значение]
 HSV Select , HSV Выбор
 Hue , Оттенок
 Hue (%) , Оттенок (%)
-Hue Band , группа оттенков
-Hue Factor , фактор оттенка
+Hue Band , Группа оттенков
+Hue Factor , Фактор оттенка
 Hue Lighten-Darken , Хью Лайтен-Даркен
 Hue Max (%) , Максимальный оттенок (%)
 Hue Min (%) , Хью Мин (%)
-Hue Offset , смещение оттенка
-Hue Range , диапазон оттенков
-Hue Shift , сдвиг оттенков
+Hue Offset , Смещение оттенка
+Hue Range , Диапазон оттенков
+Hue Shift , Сдвиг оттенков
 Hue Smoothness , Гладкость оттенков
 Human  2 , Человек 2
 Human 1 , Человек 1
@@ -1865,11 +1865,11 @@ Keep Transparency in Output , Сохранить прозрачность на �
 Kernel , Кернел
 Kernel Multiplier , мультипликатор ядра
 Kernel Type , тип ядра
-Key Factor , Ключевой фактор
-Key Frame Rate , Частота смены кадров
-Key Shift , Смещение клавиш
-Key Smoothness , Ключевая гладкость
-Keypoint Influence (%) , Ключевое влияние (%)
+Key Factor , Ключ Фактор
+Key Frame Rate , Ключ Частота кадров
+Key Shift , Ключ Смещение
+Key Smoothness , Ключ Гладкость
+Keypoint Influence (%) , Влияние ключевой точки (%)
 KH 1 , КН 1
 KH 10 , КН 10
 KH 2 , КН 2
@@ -1878,7 +1878,7 @@ KH 6 , КН 6
 KH 7 , КН 7
 KH 8 , КН 8
 KH 9 , КН 9
-Kitaoka Spin Illusion , спиновая иллюзия Китаока
+Kitaoka Spin Illusion , Вращательная иллюзия Китаока
 Klee: Death and Fire , Клее: Смерть и огонь
 Klee: In the Style of Kairouan , Клее: В стиле Кайруана...
 Klee: Oriental Pleasure Garden Anagoria , Клее: Сад восточных удовольствий Анагория
