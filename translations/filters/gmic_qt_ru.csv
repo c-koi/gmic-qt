@@ -3302,24 +3302,24 @@ Shape Median , Форма Медиана
 Shape Median0 , Форма Медианы0
 Shape Min , Форма Мин
 Shape Min0 , Форма Мин0
-Shapeism , Шейпизм
+Shapeism , Трансформизм
 Shapes , Формы
-Sharp Abstract , Резкий аннотационный доклад
-Sharpen [Gradient] , Sharpen [Градиент]
-Sharpen [Hessian] , Шарпен [Гессен]
-Sharpen [Inverse Diffusion] , Sharpen [Обратная диффузия]
-Sharpen [Octave Sharpening] , Sharpen [Октава Sharpening]
-Sharpen [Richardson-Lucy] , Sharpen [Ричардсон-Люси]
-Sharpen Details in Preview , Подробности в предварительном просмотре
-Sharpen Edges Only , Только острые края
-Sharpen Object , Острый предмет
-Sharpen Radius , острый радиус
-Sharpened Areas Only , Только заточенные участки
-Sharpening , Заточка
-Sharpening Layer , Заточной слой
-Sharpening Radius , Радиус заточки
-Sharpening Strength , Прочность на заточку
-Sharpening Type , Тип заточки
+Sharp Abstract , Резкий Абстрактный
+Sharpen [Gradient] , Резкость [Градиент]
+Sharpen [Hessian] , Резкость [Гессен]
+Sharpen [Inverse Diffusion] , Резкость [Обратная диффузия]
+Sharpen [Octave Sharpening] , Резкость [Октава Sharpening]
+Sharpen [Richardson-Lucy] , Резкость [Ричардсон-Люси]
+Sharpen Details in Preview , Резкость Подробности в предпросмотре
+Sharpen Edges Only , Резкость Только края
+Sharpen Object , Резкость Объект
+Sharpen Radius , Резкость Радиус
+Sharpened Areas Only , Только резкие участки
+Sharpening , Усиление резкости
+Sharpening Layer , Усиление резкости Слой
+Sharpening Radius , Усиление резкости Радиус
+Sharpening Strength , Усиление резкости мощное
+Sharpening Type , Тип Усиления резкости
 Sharpness , Резкость
 Shift Linear Interpolation? , Линейная интерполяция сдвига?
 Shift Point , Точка переключения
