@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Original Japanese translation done by omiya tou (tokyogeometry / github) -->
+<!-- Original Japanese translation done by coolvitto -->
 
 <!DOCTYPE TS>
 <TS version="2.1" language="ja">
@@ -29,7 +29,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="24"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>インターフェース</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="64"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="126"/>
         <source>Dar&amp;k</source>
-        <translation>暗い色(&amp;K)</translation>
+        <translation>ダーク(&amp;K)</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="139"/>
@@ -64,47 +64,47 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="149"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>言語</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="179"/>
         <source>Always enable preview zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>常にプレビューの拡大縮小を有効にする</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Warning: preview may be inaccurate&lt;br/&gt;if checked.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(警告: チェックするとプレビューが&lt;br/&gt;正確でなくなる可能性があります)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="196"/>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation>その他</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="209"/>
         <source>Use native file dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ネイティブのファイルダイアログを使用</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="216"/>
         <source>&amp;Enable High-DPI support</source>
-        <translation type="unfinished"></translation>
+        <translation>High-DPI サポートを有効にする(&amp;E)</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="223"/>
         <source>&lt;i&gt;(Restart needed)&lt;/i&gt;</source>
-        <translation type="unfinished">&lt;i&gt;(再起動が必要です)&lt;/i&gt;</translation>
+        <translation>&lt;i&gt;(再起動が必要です)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="239"/>
         <source>Filter sources</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタソース</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="244"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>その他</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="282"/>
@@ -114,7 +114,7 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="202"/>
         <source>&amp;Use native color dialog</source>
-        <translation>ネイティブな色選択ダイアログを使用</translation>
+        <translation>ネイティブの色選択ダイアログを使用(&amp;U)</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="163"/>
@@ -124,17 +124,17 @@
     <message>
         <location filename="../ui/dialogsettings.ui" line="169"/>
         <source>Timeout (seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>タイムアウト (秒)</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="36"/>
         <source>Show institution logos</source>
-        <translation type="unfinished"></translation>
+        <translation>機関ロゴを表示</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="291"/>
         <source>Notify when scheduled update fails</source>
-        <translation type="unfinished"></translation>
+        <translation>定期更新が失敗した場合に通知</translation>
     </message>
     <message>
         <location filename="../ui/dialogsettings.ui" line="333"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="../ui/filtersview.ui" line="14"/>
         <source>Form</source>
-        <translation>フォーム</translation>
+        <translation>GMIC</translation>
     </message>
 </context>
 <context>
@@ -163,12 +163,12 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="45"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="51"/>
         <source>Never</source>
-        <translation>行わない</translation>
+        <translation>しない</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="52"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="57"/>
         <source>At launch (debug)</source>
-        <translation>起動時 (デバッグ用)</translation>
+        <translation>起動時 (デバッグ)</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="65"/>
@@ -203,7 +203,7 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="66"/>
         <source>Quiet (default)</source>
-        <translation>なし (デフォルト)</translation>
+        <translation>表示しない (デフォルト)</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="67"/>
@@ -238,12 +238,12 @@
     <message>
         <location filename="../src/DialogSettings.cpp" line="88"/>
         <source>Check to use Native/OS color dialog, uncheck to use Qt&apos;s</source>
-        <translation>チェックすると、システムに標準搭載された色選択ダイアログを使用します。チェックを外すと、Qt の色選択ダイアログを使用します</translation>
+        <translation>チェックすると OS ネイティブの色選択ダイアログを使用し、チェックを外すと Qt のダイアログを使用します</translation>
     </message>
     <message>
         <location filename="../src/DialogSettings.cpp" line="90"/>
         <source>Check to use Native/OS file dialog, uncheck to use Qt&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>チェックすると OS ネイティブのファイルダイアログを使用し、チェックを外すと Qt のダイアログを使用します</translation>
     </message>
 </context>
 <context>
@@ -262,19 +262,21 @@
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="44"/>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="273"/>
         <source>&lt;i&gt;Select a filter&lt;/i&gt;</source>
-        <translation>&lt;i&gt;フィルタを選択&lt;/i&gt;</translation>
+        <translation>&lt;i&gt;フィルタを選択してください&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="240"/>
         <source>&lt;i&gt;No parameters&lt;/i&gt;</source>
-        <translation>&lt;i&gt;パラメータなし&lt;/i&gt;</translation>
+        <translation>&lt;i&gt;パラメータはありません&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../src/FilterParameters/FilterParametersWidget.cpp" line="245"/>
         <source>Error parsing filter parameters
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタパラメータの解析中にエラーが発生しました
+
+</translation>
     </message>
 </context>
 <context>
@@ -282,13 +284,14 @@
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="513"/>
         <source>Unknown filter</source>
-        <translation type="unfinished"></translation>
+        <translation>不明なフィルタ</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersPresenter.cpp" line="623"/>
         <source>Cannot find this fave&apos;s original filter
 </source>
-        <translation type="unfinished"></translation>
+        <translation>このお気に入りの元のフィルタが見つかりません
+</translation>
     </message>
 </context>
 <context>
@@ -301,42 +304,42 @@
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="680"/>
         <source>Rename Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りの名前を変更</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="682"/>
         <source>Remove Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りを削除</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="684"/>
         <source>Clone Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りを複製</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="688"/>
         <source>Add Fave</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りに追加</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="707"/>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>すべて削除</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>%1 (%2 %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2%3)</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタ</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="714"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタ</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="354"/>
@@ -344,7 +347,10 @@
 
 %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>本当に次のお気に入りを削除しますか？
+
+%1
+</translation>
     </message>
 </context>
 <context>
@@ -352,7 +358,7 @@
     <message>
         <location filename="../src/FilterParameters/FolderParameter.cpp" line="138"/>
         <source>Select a folder</source>
-        <translation>フォルダを選択</translation>
+        <translation>フォルダーを選択</translation>
     </message>
 </context>
 <context>
@@ -360,13 +366,14 @@
     <message>
         <location filename="../src/GmicProcessor.cpp" line="416"/>
         <source>Image #%1 returned by filter has %2 channels (should be at most 4)</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタが返した画像 #%1 は %2 チャンネルです (最大 4 チャンネルである必要があります)</translation>
     </message>
     <message>
         <location filename="../src/GmicProcessor.cpp" line="452"/>
         <source>Image #%1 returned by filter has %2 channels
 (should be at most 4)</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタが返した画像 #%1 は %2 チャンネルです
+(最大 4 チャンネルである必要があります)</translation>
     </message>
 </context>
 <context>
@@ -374,17 +381,17 @@
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="79"/>
         <source>At least a filter path or a filter command must be provided.</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタパスまたはフィルタコマンドの少なくともいずれかを指定する必要があります。</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="81"/>
         <source>Custom command (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>カスタムコマンド (%1)</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="89"/>
         <source>Cannot find filter matching path %1</source>
-        <translation type="unfinished"></translation>
+        <translation>パス %1 に一致するフィルタが見つかりません</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="96"/>
@@ -395,22 +402,28 @@
 Cannot retrieve default parameters.
 
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタのパラメータ定義の解析中にエラーが発生しました:
+
+%1
+
+デフォルトパラメータを取得できません。
+
+%2</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="114"/>
         <source>Error parsing supplied command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>指定されたコマンドの解析中にエラーが発生しました: %1</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="117"/>
         <source>Supplied command (%1) does not match path (%2), (should be %3).</source>
-        <translation type="unfinished"></translation>
+        <translation>指定されたコマンド (%1) はパス (%2) と一致しません (%3 である必要があります)。</translation>
     </message>
     <message>
         <location filename="../src/HeadlessProcessor.cpp" line="229"/>
         <source>Filter execution failed, but with no error message.</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタの実行に失敗しましたが、エラーメッセージはありません。</translation>
     </message>
 </context>
 <context>
@@ -428,7 +441,7 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="69"/>
         <source>Active (default)</source>
-        <translation>アクティブなレイヤー (デフォルト)</translation>
+        <translation>アクティブレイヤー (デフォルト)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="70"/>
@@ -438,12 +451,12 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="71"/>
         <source>Active and below</source>
-        <translation>アクティブなレイヤーとその下のレイヤー</translation>
+        <translation>アクティブレイヤーと下のレイヤー</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="72"/>
         <source>Active and above</source>
-        <translation>アクティブなレイヤーとその上のレイヤー</translation>
+        <translation>アクティブレイヤーと上のレイヤー</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="73"/>
@@ -488,12 +501,12 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="207"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>入力</translation>
     </message>
     <message>
         <location filename="../src/Widgets/InOutPanel.cpp" line="209"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>出力</translation>
     </message>
 </context>
 <context>
@@ -501,12 +514,12 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="53"/>
         <source>System default (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>システムデフォルト (%1)</translation>
     </message>
     <message>
         <location filename="../src/Widgets/LanguageSelectionWidget.cpp" line="62"/>
         <source>Translations are very likely to be incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>翻訳は不完全である可能性が高いです。</translation>
     </message>
 </context>
 <context>
@@ -519,17 +532,17 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="110"/>
         <source>Reset parameters to default values</source>
-        <translation>パラメータの値を初期化</translation>
+        <translation>パラメータをデフォルト値にリセット</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Randomize parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>パラメータをランダム化</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
         <source>Copy G&apos;MIC command to clipboard</source>
-        <translation>G&apos;MICコマンドをクリップボードにコピー</translation>
+        <translation>G&apos;MIC コマンドをクリップボードにコピー</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="126"/>
@@ -539,17 +552,17 @@ Cannot retrieve default parameters.
     <message>
         <location filename="../src/MainWindow.cpp" line="128"/>
         <source>Remove fave</source>
-        <translation>お気に入りから削除</translation>
+        <translation>お気に入りを削除</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="132"/>
         <source>Expand/Collapse all</source>
-        <translation>すべて展開/すべて畳む</translation>
+        <translation>すべて展開 / すべて折りたたむ</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="134"/>
         <source>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;CNRS (https://www.cnrs.fr)&lt;br/&gt;Normandy University (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</source>
-        <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;フランス国立科学研究センター (https://www.cnrs.fr)&lt;br/&gt;カーン・ノルマンディー大学 (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
+        <translation>G&apos;MIC (https://gmic.eu)&lt;br/&gt;GREYC (https://www.greyc.fr)&lt;br/&gt;フランス国立科学研究センター (https://www.cnrs.fr)&lt;br/&gt;ノルマンディー大学 (https://www.unicaen.fr)&lt;br/&gt;Ensicaen (https://www.ensicaen.fr)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="141"/>
@@ -565,101 +578,104 @@ Cannot retrieve default parameters.
         <location filename="../src/MainWindow.cpp" line="232"/>
         <source>Manage visible tags
 (Right-click on a fave or a filter to set/remove tags)</source>
-        <translation type="unfinished"></translation>
+        <translation>表示タグの管理
+(お気に入りまたはフィルタを右クリックしてタグを設定/削除)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="238"/>
         <source>Force &amp;quit</source>
-        <translation type="unfinished"></translation>
+        <translation>強制終了(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="242"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>全面</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="243"/>
         <source>Forward Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>水平前方</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="244"/>
         <source>Forward Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直前方</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="245"/>
         <source>Backward Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>水平後方</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="246"/>
         <source>Backward Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直後方</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="247"/>
         <source>Duplicate Top</source>
-        <translation type="unfinished"></translation>
+        <translation>上に複製</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="248"/>
         <source>Duplicate Left</source>
-        <translation type="unfinished"></translation>
+        <translation>左に複製</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="249"/>
         <source>Duplicate Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>下に複製</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="250"/>
         <source>Duplicate Right</source>
-        <translation type="unfinished"></translation>
+        <translation>右に複製</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="251"/>
         <source>Duplicate Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>水平に複製</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="252"/>
         <source>Duplicate Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直に複製</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="253"/>
         <source>Checkered</source>
-        <translation type="unfinished"></translation>
+        <translation>市松模様</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="254"/>
         <source>Checkered Inverse</source>
-        <translation type="unfinished"></translation>
+        <translation>反転市松模様</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="376"/>
         <source>Update completed</source>
-        <translation>更新が完了しました</translation>
+        <translation>更新完了</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="376"/>
         <location filename="../src/MainWindow.cpp" line="378"/>
         <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Filter definitions have been updated.</source>
-        <translation>フィルタ定義の更新が完了しました。</translation>
+        <translation>フィルタ定義が更新されました。</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="381"/>
         <source>No download was needed.</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロードは不要でした。</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="427"/>
         <source>Plugin was called with a filter path with no matching filter:
 
 Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>一致するフィルタのないフィルタパスでプラグインが呼び出されました :
+
+パス: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="435"/>
@@ -671,26 +687,36 @@ Path: %1</source>
 Cannot retrieve default parameters.
 
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタのパラメータ定義の解析中にエラーが発生しました :
+
+%1
+
+デフォルトパラメータを取得できません。
+
+%2</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="448"/>
         <source>Plugin was called with a command that cannot be recognized as a filter:
 
 Command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタとして認識できないコマンドでプラグインが呼び出されました :
+
+コマンド: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="927"/>
         <source>[Elapsed time: %1]</source>
-        <translation type="unfinished"></translation>
+        <translation>[経過時間: %1]</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="443"/>
         <source>Plugin was called with a command that cannot be parsed:
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>解析できないコマンドでプラグインが呼び出されました :
+
+%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="452"/>
@@ -699,17 +725,21 @@ Command: %1</source>
 Path: %1
 Command: %2
 Command found for this path : %3</source>
-        <translation type="unfinished"></translation>
+        <translation>指定されたパスと一致しないコマンドでプラグインが呼び出されました :
+
+パス: %1
+コマンド: %2
+このパスで見つかったコマンド: %3</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="505"/>
         <source>Filters update could not be achieved</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタの更新を実行できませんでした</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="646"/>
         <source>The update could not be achieved&lt;br&gt;because of the following errors:&lt;br&gt;</source>
-        <translation>以下のエラーにより&lt;br/&gt;更新に失敗しました:&lt;br/&gt;</translation>
+        <translation>以下のエラーにより&lt;br/&gt;更新に失敗しました :&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="652"/>
@@ -724,7 +754,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="1478"/>
         <source>Waiting for cancelled jobs...</source>
-        <translation type="unfinished"></translation>
+        <translation>キャンセルされたジョブを待機中...</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1332"/>
@@ -765,7 +795,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="50"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
-        <translation type="unfinished"></translation>
+        <translation>G&apos;MIC-Qt プラグインの進捗</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="53"/>
@@ -775,28 +805,28 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="126"/>
         <source>[Processing 88:00:00.888 | 888.9 GiB]</source>
-        <translation type="unfinished"></translation>
+        <translation>[処理中 88:00:00.888 | 888.9 GiB]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="128"/>
         <source>[Processing 88:00:00.888]</source>
-        <translation type="unfinished"></translation>
+        <translation>[処理中 88:00:00.888]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="160"/>
         <source>Updating filters...</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタを更新中...</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="213"/>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="221"/>
         <source>[Processing %1 | %2]</source>
-        <translation type="unfinished"></translation>
+        <translation>[処理中 %1 | %2]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWidget.cpp" line="223"/>
         <source>[Processing %1]</source>
-        <translation type="unfinished"></translation>
+        <translation>[処理中 %1]</translation>
     </message>
 </context>
 <context>
@@ -804,7 +834,7 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="49"/>
         <source>G&apos;MIC-Qt Plug-in progression</source>
-        <translation type="unfinished"></translation>
+        <translation>G&apos;MIC-Qt プラグインの進捗</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="141"/>
@@ -814,12 +844,12 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="151"/>
         <source>[Processing %1 | %2]</source>
-        <translation type="unfinished"></translation>
+        <translation>[処理中 %1 | %2]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ProgressInfoWindow.cpp" line="153"/>
         <source>[Processing %1]</source>
-        <translation type="unfinished"></translation>
+        <translation>[処理中 %1]</translation>
     </message>
 </context>
 <context>
@@ -840,74 +870,76 @@ Command found for this path : %3</source>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="58"/>
         <source>Move source up</source>
-        <translation type="unfinished"></translation>
+        <translation>ソースを上へ移動</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="60"/>
         <source>Move source down</source>
-        <translation type="unfinished"></translation>
+        <translation>ソースを下へ移動</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="62"/>
         <source>Add local file (dialog)</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルファイルを追加 (ダイアログ)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="64"/>
         <source>Reset filter sources</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタソースをリセット</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="80"/>
         <source>Macros: $HOME %USERPROFILE% $VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>マクロ: $HOME %USERPROFILE% $VERSION</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="102"/>
         <source>Environment variables (e.g. %USERPROFILE% or %HOMEDIR%) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
-        <translation type="unfinished"></translation>
+        <translation>環境変数 (例: %USERPROFILE% や %HOMEDIR%) はソース内で置換されます。
+VERSION は G&apos;MIC のバージョン番号 (現在 %1) を表す定義済み変数でもあります。</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="82"/>
         <source>Macros: $HOME $VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>マクロ : $HOME $VERSION</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="53"/>
         <source>Remove source (Delete)</source>
-        <translation type="unfinished"></translation>
+        <translation>ソースを削除 (Delete キー)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="85"/>
         <source>Disable</source>
-        <translation type="unfinished"></translation>
+        <translation>無効</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="86"/>
         <source>Enable without updates</source>
-        <translation type="unfinished"></translation>
+        <translation>有効 (更新なし)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="87"/>
         <source>Enable with updates (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>有効 (更新あり、推奨)</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="106"/>
         <source>Environment variables (e.g. $HOME or ${HOME} for your home directory) are substituted in sources.
 VERSION is also a predefined variable that stands for the G&apos;MIC version number (currently %1).</source>
-        <translation type="unfinished"></translation>
+        <translation>環境変数 (例: $HOME や ${HOME} はホームディレクトリに置換されます) はソース内で置換されます。
+VERSION は G&apos;MIC のバージョン番号 (現在 %1) を表す定義済み変数でもあります。</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="111"/>
         <source>New source</source>
-        <translation type="unfinished"></translation>
+        <translation>新しいソース</translation>
     </message>
     <message>
         <location filename="../src/SourcesWidget.cpp" line="192"/>
         <source>Select a file</source>
-        <translation type="unfinished">ファイルを選択</translation>
+        <translation>ファイルを選択</translation>
     </message>
 </context>
 <context>
@@ -915,12 +947,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Updater.cpp" line="137"/>
         <source>Error downloading %1 (empty file?)</source>
-        <translation>%1 のダウンロード中にエラーが発生しました (空ファイル？)</translation>
+        <translation>%1 のダウンロード中にエラーが発生しました (空のファイル？)</translation>
     </message>
     <message>
         <location filename="../src/Updater.cpp" line="146"/>
         <source>Could not read/decompress %1</source>
-        <translation>%1 を読み込み・展開できませんでした</translation>
+        <translation>%1 を読み込み/展開できませんでした</translation>
     </message>
     <message>
         <location filename="../src/Updater.cpp" line="151"/>
@@ -930,12 +962,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Updater.cpp" line="168"/>
         <source>Error downloading %1&lt;br/&gt;Error %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 のダウンロード中にエラーが発生しました&lt;br/&gt;エラー %2: %3</translation>
     </message>
     <message>
         <location filename="../src/Updater.cpp" line="204"/>
         <source>Download timeout: %1</source>
-        <translation>ダウンロード中にタイムアウト: %1</translation>
+        <translation>ダウンロードがタイムアウトしました : %1</translation>
     </message>
 </context>
 <context>
@@ -943,12 +975,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="55"/>
         <source>Show All Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>すべてのフィルタを表示</translation>
     </message>
     <message>
         <location filename="../src/Widgets/VisibleTagSelector.cpp" line="59"/>
         <source>Show %1 Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 タグを表示</translation>
     </message>
 </context>
 <context>
@@ -956,12 +988,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="54"/>
         <source>Zoom in</source>
-        <translation>ズームイン</translation>
+        <translation>拡大</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="55"/>
         <source>Zoom out</source>
-        <translation>ズームアウト</translation>
+        <translation>縮小</translation>
     </message>
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="56"/>
@@ -971,7 +1003,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Widgets/ZoomLevelSelector.cpp" line="155"/>
         <source>Warning: Preview may be inaccurate (zoom factor has been modified)</source>
-        <translation>警告: プレビューは実際の処理結果と異なる場合があります (拡大率が変更されています)</translation>
+        <translation>警告: プレビューが正確でない可能性があります (拡大率が変更されました)</translation>
     </message>
 </context>
 <context>
@@ -1015,38 +1047,38 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">ダイアログ</translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="20"/>
         <location filename="../src/Host/None/JpegQualityDialog.cpp" line="13"/>
         <source>JPEG Quality</source>
-        <translation type="unfinished"></translation>
+        <translation>JPEG 品質</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="28"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="42"/>
         <source>100</source>
-        <translation type="unfinished"></translation>
+        <translation>100</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="60"/>
         <source>Always use this quality for this execution of G&apos;MIC-Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>この G&apos;MIC-Qt の実行中は常にこの品質を使用する</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="85"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">キャンセル(&amp;C)</translation>
+        <translation>キャンセル(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/Host/None/jpegqualitydialog.ui" line="92"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">OK(&amp;O)</translation>
+        <translation>OK(&amp;O)</translation>
     </message>
 </context>
 <context>
@@ -1054,7 +1086,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>フォーム</translation>
+        <translation>GMIC</translation>
     </message>
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="35"/>
@@ -1064,7 +1096,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/languageselectionwidget.ui" line="48"/>
         <source>Translate filters (WIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルタ名を翻訳 (開発中)</translation>
     </message>
 </context>
 <context>
@@ -1077,7 +1109,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/mainwindow.ui" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download filter definitions from remote sources&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Télécharger les définitions de filtres depuis les sources distantes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;リモートソースからフィルタ定義をダウンロード&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="179"/>
@@ -1087,18 +1119,18 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/mainwindow.ui" line="418"/>
         <source>Preview type (Ctrl+Shift+P)</source>
-        <translation type="unfinished"></translation>
+        <translation>プレビュータイプ (Ctrl+Shift+P)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="509"/>
         <source>&amp;Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>設定(&amp;S)...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="525"/>
         <location filename="../ui/mainwindow.ui" line="532"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>テキストラベル</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="248"/>
@@ -1110,12 +1142,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished">MainWindow</translation>
+        <translation>メインウィンドウ</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="408"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable preview&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(right click on preview image for instant swapping)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;プレビューの有効/無効&lt;br/&gt;(Ctrl+P)&lt;br/&gt;(プレビュー画像を右クリックで即座に切り替え)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="411"/>
@@ -1125,7 +1157,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/mainwindow.ui" line="558"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>閉じる(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="571"/>
@@ -1176,7 +1208,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/progressinfowidget.ui" line="55"/>
         <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <translation>テキストラベル</translation>
     </message>
 </context>
 <context>
@@ -1184,13 +1216,13 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/progressinfowindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation>MainWindow</translation>
+        <translation>メインウィンドウ</translation>
     </message>
     <message>
         <location filename="../ui/progressinfowindow.ui" line="30"/>
         <location filename="../ui/progressinfowindow.ui" line="50"/>
         <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <translation>テキストラベル</translation>
     </message>
     <message>
         <location filename="../ui/progressinfowindow.ui" line="72"/>
@@ -1213,12 +1245,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Host/None/host_none.cpp" line="84"/>
         <source>Could not open file.</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを開けませんでした。</translation>
     </message>
     <message>
         <location filename="../src/Host/None/host_none.cpp" line="88"/>
         <source>Default image</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルト画像</translation>
     </message>
     <message>
         <location filename="../src/FilterSelector/FiltersView/FiltersView.cpp" line="81"/>
@@ -1233,77 +1265,77 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Tags.cpp" line="151"/>
         <source>%1 Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 タグ</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="157"/>
         <source>None</source>
-        <translation type="unfinished">なし</translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="158"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation>赤</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="159"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation>緑</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>青</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="161"/>
         <source>Cyan</source>
-        <translation type="unfinished"></translation>
+        <translation>シアン</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="162"/>
         <source>Magenta</source>
-        <translation type="unfinished"></translation>
+        <translation>マゼンタ</translation>
     </message>
     <message>
         <location filename="../src/Tags.cpp" line="163"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation>黄</translation>
     </message>
     <message>
         <location filename="../src/LanguageSettings.cpp" line="127"/>
         <source>Could not install translator for file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル %1 の翻訳機能をインストールできませんでした</translation>
     </message>
     <message>
         <location filename="../src/LanguageSettings.cpp" line="130"/>
         <source>Could not load translation file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>翻訳ファイル %1 を読み込めませんでした</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="337"/>
         <source>List %1 cannot be merged considering these runs: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>これらの実行を考慮するとリスト %1 をマージできません : %2</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="432"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="434"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="436"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../src/Misc.cpp" line="438"/>
         <source>%1 B</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 B</translation>
     </message>
 </context>
 <context>
@@ -1319,22 +1351,22 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/sourceswidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>GMIC</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="136"/>
         <source>Official filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>公式フィルタ :</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="22"/>
         <source>File / URL</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル / URL</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="32"/>
         <source>Add new</source>
-        <translation type="unfinished"></translation>
+        <translation>新規追加</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="39"/>
@@ -1343,12 +1375,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
         <location filename="../ui/sourceswidget.ui" line="85"/>
         <location filename="../ui/sourceswidget.ui" line="92"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/sourceswidget.ui" line="118"/>
         <source>Macros: $HOME $VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>マクロ : $HOME $VERSION</translation>
     </message>
 </context>
 <context>
@@ -1356,7 +1388,7 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../ui/zoomlevelselector.ui" line="20"/>
         <source>Form</source>
-        <translation>フォーム</translation>
+        <translation>GMIC</translation>
     </message>
 </context>
 <context>
@@ -1364,27 +1396,27 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="73"/>
         <source>G&apos;MIC-Qt filter output</source>
-        <translation type="unfinished"></translation>
+        <translation>G&apos;MIC-Qt フィルタ出力</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="84"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>閉じる</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="87"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>名前を付けて保存...</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="122"/>
         <source>%1 file (*.%2 *.%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ファイル (*.%2 *.%3)</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="148"/>
         <source>Save image as...</source>
-        <translation type="unfinished"></translation>
+        <translation>画像を名前を付けて保存...</translation>
     </message>
 </context>
 <context>
@@ -1392,12 +1424,12 @@ VERSION is also a predefined variable that stands for the G&apos;MIC version num
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="65"/>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation>エラー</translation>
     </message>
     <message>
         <location filename="../src/Host/None/ImageDialog.cpp" line="65"/>
         <source>Could not write image file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>画像ファイル %1 を書き込めませんでした</translation>
     </message>
 </context>
 </TS>
